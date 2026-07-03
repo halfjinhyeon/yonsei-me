@@ -38,6 +38,7 @@ export default function HomePage({ params }: { params: { locale: string } }) {
             {t.rich('weAre.statement', {
               c1: (c) => <span className="text-yonsei-navy">{c}</span>,
               c2: (c) => <span className="text-yonsei-blue">{c}</span>,
+              br: () => <br />,
             })}
           </p>
           <Link

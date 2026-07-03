@@ -26,7 +26,8 @@
     --font-sans: 'Pretendard Variable', 'Pretendard';
     --font-display: 'Pretendard Variable', 'Pretendard';
     /* 본문 헤딩의 리드 단어(이탤릭 세리프)용 — Cornell 스타일 대비 */
-    --font-serif: 'Noto Serif KR', 'Nanum Myeongjo', 'Apple SD Myungjo', Batang, Georgia, serif;
+    /* Use the sans variable for serif slots so headings use the same sans font as body */
+    --font-serif: var(--font-sans);
   }
 
   .dark {
