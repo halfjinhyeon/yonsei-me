@@ -1,0 +1,80 @@
+import type { Config } from 'tailwindcss';
+
+const config: Config = {
+  darkMode: 'class',
+  content: [
+    './src/**/*.{ts,tsx,mdx}',
+    './content/**/*.{md,mdx}',
+  ],
+  theme: {
+    container: {
+      center: true,
+      padding: {
+        DEFAULT: '1.25rem',
+        sm: '1.5rem',
+        lg: '2rem',
+      },
+      screens: {
+        '2xl': '1360px',
+      },
+    },
+    extend: {
+      colors: {
+        // 연세대 브랜드 톤 (네이비/블루 계열)
+        yonsei: {
+          navy: '#00285E', // 메인 네이비 (Yonsei Blue)
+          blue: '#0057A8', // 서브 블루
+          sky: '#2E86D6', // 강조 라이트 블루
+          gold: '#C8A96A', // 포인트 골드 (독수리/전통색)
+        },
+        // 시맨틱 토큰 (CSS 변수 기반 → 다크모드 대응)
+        brand: {
+          DEFAULT: 'rgb(var(--brand) / <alpha-value>)',
+          fg: 'rgb(var(--brand-fg) / <alpha-value>)',
+          muted: 'rgb(var(--brand-muted) / <alpha-value>)',
+        },
+        surface: {
+          DEFAULT: 'rgb(var(--surface) / <alpha-value>)',
+          soft: 'rgb(var(--surface-soft) / <alpha-value>)',
+          border: 'rgb(var(--surface-border) / <alpha-value>)',
+        },
+        content: {
+          DEFAULT: 'rgb(var(--content) / <alpha-value>)',
+          soft: 'rgb(var(--content-soft) / <alpha-value>)',
+          faint: 'rgb(var(--content-faint) / <alpha-value>)',
+        },
+      },
+      fontFamily: {
+        sans: ['var(--font-sans)', 'Pretendard', 'system-ui', 'sans-serif'],
+        display: ['var(--font-display)', 'var(--font-sans)', 'sans-serif'],
+      },
+      fontSize: {
+        // 타이포 스케일
+        'display-lg': ['clamp(2.5rem, 5vw, 4rem)', { lineHeight: '1.05', letterSpacing: '-0.02em', fontWeight: '800' }],
+        'display': ['clamp(2rem, 4vw, 3rem)', { lineHeight: '1.1', letterSpacing: '-0.02em', fontWeight: '700' }],
+        'headline': ['clamp(1.5rem, 2.5vw, 2rem)', { lineHeight: '1.2', letterSpacing: '-0.01em', fontWeight: '700' }],
+      },
+      spacing: {
+        // 섹션 스페이싱 토큰
+        'section': 'clamp(3.5rem, 8vw, 7rem)',
+        'section-sm': 'clamp(2.5rem, 5vw, 4rem)',
+      },
+      borderRadius: {
+        card: '1rem',
+      },
+      boxShadow: {
+        card: '0 1px 2px rgb(0 40 94 / 0.04), 0 8px 24px -12px rgb(0 40 94 / 0.15)',
+        'card-hover': '0 2px 4px rgb(0 40 94 / 0.06), 0 20px 40px -16px rgb(0 40 94 / 0.25)',
+      },
+      maxWidth: {
+        prose: '68ch',
+      },
+      transitionTimingFunction: {
+        'out-expo': 'cubic-bezier(0.16, 1, 0.3, 1)',
+      },
+    },
+  },
+  plugins: [],
+};
+
+export default config;

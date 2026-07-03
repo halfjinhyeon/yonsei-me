@@ -1,0 +1,123 @@
+{
+  "undergraduate": [
+    {
+      "id": "design-manufacturing",
+      "title": {
+        "ko": "설계·제조",
+        "en": "Design & Manufacturing"
+      },
+      "desc": {
+        "ko": "기계요소 설계, CAD/CAE, 적층제조까지 아우르는 설계 역량",
+        "en": "Machine design, CAD/CAE, and additive manufacturing"
+      },
+      "image": "/img/programs/design-manufacturing.jpg",
+      "href": "/academics"
+    },
+    {
+      "id": "thermofluids",
+      "title": {
+        "ko": "열·유체",
+        "en": "Thermal & Fluids"
+      },
+      "desc": {
+        "ko": "열전달·유체역학·에너지 시스템의 원리와 응용",
+        "en": "Heat transfer, fluid mechanics, and energy systems"
+      },
+      "image": "/img/programs/thermofluids.jpg",
+      "href": "/academics"
+    },
+    {
+      "id": "dynamics-control",
+      "title": {
+        "ko": "동역학·제어",
+        "en": "Dynamics & Control"
+      },
+      "desc": {
+        "ko": "진동, 동역학, 자동제어 이론과 실제",
+        "en": "Vibration, dynamics, and automatic control"
+      },
+      "image": "/img/programs/dynamics-control.jpg",
+      "href": "/academics"
+    },
+    {
+      "id": "robotics-track",
+      "title": {
+        "ko": "로보틱스",
+        "en": "Robotics"
+      },
+      "desc": {
+        "ko": "로봇 메커니즘, 센서, 지능 제어 융합 트랙",
+        "en": "Robot mechanisms, sensing, and intelligent control"
+      },
+      "image": "/img/programs/robotics-track.jpg",
+      "href": "/research"
+    },
+    {
+      "id": "biomech-track",
+      "title": {
+        "ko": "바이오메카닉스",
+        "en": "Biomechanics"
+      },
+      "desc": {
+        "ko": "인체 동역학과 의공학 응용",
+        "en": "Human dynamics and biomedical applications"
+      },
+      "image": "/img/programs/biomech-track.jpg",
+      "href": "/research"
+    }
+  ],
+  "graduate": [
+    {
+      "id": "ms",
+      "title": {
+        "ko": "석사 과정",
+        "en": "Master's Program"
+      },
+      "desc": {
+        "ko": "심화 이론과 연구 방법론을 갖춘 전문 연구자 양성",
+        "en": "Advanced theory and research methods"
+      },
+      "image": "/img/programs/ms.jpg",
+      "href": "/academics"
+    },
+    {
+      "id": "phd",
+      "title": {
+        "ko": "박사 과정",
+        "en": "Doctoral Program"
+      },
+      "desc": {
+        "ko": "독립적 연구를 수행하는 미래 학계·산업 리더",
+        "en": "Future leaders of academia and industry"
+      },
+      "image": "/img/programs/phd.jpg",
+      "href": "/academics"
+    },
+    {
+      "id": "integrated",
+      "title": {
+        "ko": "석·박사 통합",
+        "en": "Integrated MS-PhD"
+      },
+      "desc": {
+        "ko": "석사부터 박사까지 연속된 연구 트랙",
+        "en": "A continuous research track from MS to PhD"
+      },
+      "image": "/img/programs/integrated.jpg",
+      "href": "/academics"
+    },
+    {
+      "id": "bk21",
+      "title": {
+        "ko": "BK21 FOUR",
+        "en": "BK21 FOUR"
+      },
+      "desc": {
+        "ko": "국가 지원 대학원 연구단, 국제 공동연구 참여",
+        "en": "National graduate research group and global collaboration"
+      },
+      "image": "/img/programs/bk21.jpg",
+      "href": "/research"
+    }
+  ]
+}

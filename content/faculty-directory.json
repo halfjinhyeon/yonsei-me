@@ -1,0 +1,784 @@
+[
+  {
+    "name": "김천욱",
+    "title": "Professor",
+    "role": null,
+    "email": null,
+    "phone": null,
+    "room": null,
+    "specialty": "고체역학",
+    "yearRange": "1963~2002",
+    "moreInfoUrl": null,
+    "photoAlt": "김천욱",
+    "lab": null
+  },
+  {
+    "name": "강건욱",
+    "title": "Associate Professor",
+    "role": null,
+    "email": "kwkang75@yonsei.ac.kr",
+    "phone": "02)2123-2825",
+    "room": "Engineering Building #1, Room 589",
+    "specialty": null,
+    "yearRange": null,
+    "moreInfoUrl": "https://me.yonsei.ac.kr/faculty/name_search.do?mode=view&userId=H6IAceQ75BsxdEuXLJXMoA%3D%3D&sosokcd=0000405",
+    "photoAlt": "강건욱",
+    "lab": {
+      "nameKo": "전산재료역학 연구실",
+      "nameEn": "Computational Mechanics of Materials Lab.",
+      "url": "https://sites.google.com/site/kwkanglab/"
+    }
+  },
+  {
+    "name": "민옥기",
+    "title": "Professor",
+    "role": null,
+    "email": null,
+    "phone": null,
+    "room": null,
+    "specialty": "응용역학",
+    "yearRange": "1983~2013",
+    "moreInfoUrl": null,
+    "photoAlt": "민옥기",
+    "lab": null
+  },
+  {
+    "name": "강신일",
+    "title": "Professor",
+    "role": null,
+    "email": "snlkang@yonsei.ac.kr",
+    "phone": "02)2123-2829",
+    "room": "Engineering Building #3, Room C324",
+    "specialty": null,
+    "yearRange": null,
+    "moreInfoUrl": "https://me.yonsei.ac.kr/faculty/name_search.do?mode=view&userId=b1GY5tMdKXn9pcopgnOXuA%3D%3D&sosokcd=",
+    "photoAlt": "강신일",
+    "lab": {
+      "nameKo": "마이크로 나노 응용 기술 개발 연구실",
+      "nameEn": "Nano Fabrication/Micro Optics Lab.",
+      "url": "http://nanofab.yonsei.ac.kr/"
+    }
+  },
+  {
+    "name": "박영필",
+    "title": "Professor",
+    "role": null,
+    "email": null,
+    "phone": null,
+    "room": null,
+    "specialty": "동영학, 기계진동, 진동제어",
+    "yearRange": "1977~2013",
+    "moreInfoUrl": null,
+    "photoAlt": "박영필",
+    "lab": null
+  },
+  {
+    "name": "김경식",
+    "title": "Professor",
+    "role": null,
+    "email": "kks@yonsei.ac.kr",
+    "phone": "02)2123-5815",
+    "room": "Engineering Building #3, Room C317",
+    "specialty": null,
+    "yearRange": null,
+    "moreInfoUrl": "https://me.yonsei.ac.kr/faculty/name_search.do?mode=view&userId=vf2yly2lcmm7EMPsUS2Fvw%3D%3D&sosokcd=",
+    "photoAlt": "김경식",
+    "lab": {
+      "nameKo": "광학 양자 연구실",
+      "nameEn": "Optics Quantum Lab.",
+      "url": "https://sites.google.com/yonsei.ac.kr/oql/"
+    }
+  },
+  {
+    "name": "백윤수",
+    "title": "Professor",
+    "role": null,
+    "email": "ysbaek@yonsei.ac.kr",
+    "phone": null,
+    "room": null,
+    "specialty": null,
+    "yearRange": null,
+    "moreInfoUrl": null,
+    "photoAlt": "백윤수",
+    "lab": null
+  },
+  {
+    "name": "김대은",
+    "title": "Professor",
+    "role": null,
+    "email": "kimde@yonsei.ac.kr",
+    "phone": "02)2123-2822",
+    "room": "Engineering Building #1, Room N202",
+    "specialty": null,
+    "yearRange": null,
+    "moreInfoUrl": "https://me.yonsei.ac.kr/faculty/name_search.do?mode=view&userId=Oc%2BnXOyFIPnaS%2F2tcn0VsQ%3D%3D&sosokcd=",
+    "photoAlt": "김대은",
+    "lab": {
+      "nameKo": "트라이볼로지 연구실",
+      "nameEn": "Tribology Research Lab.",
+      "url": "http://trl.yonsei.ac.kr/"
+    }
+  },
+  {
+    "name": "이강용",
+    "title": "Professor",
+    "role": null,
+    "email": null,
+    "phone": null,
+    "room": null,
+    "specialty": "파괴역학",
+    "yearRange": "1980~2012",
+    "moreInfoUrl": null,
+    "photoAlt": "이강용",
+    "lab": null
+  },
+  {
+    "name": "김석",
+    "title": "Associate Professor",
+    "role": null,
+    "email": "seokkim@yonsei.ac.kr",
+    "phone": "02)2123-4463",
+    "room": "Engineering Building #3, Room C314",
+    "specialty": null,
+    "yearRange": null,
+    "moreInfoUrl": "https://sites.google.com/view/seoklab",
+    "photoAlt": "김석",
+    "lab": {
+      "nameKo": "멀티스케일구조설계 및 극한제조 연구실",
+      "nameEn": "Multiscale Architecture and eXtreme manufacturing, MAX Lab.",
+      "url": "https://sites.google.com/view/seoklab/max"
+    }
+  },
+  {
+    "name": "이상조",
+    "title": "Professor",
+    "role": null,
+    "email": null,
+    "phone": null,
+    "room": null,
+    "specialty": "생산공학",
+    "yearRange": "1986~2019",
+    "moreInfoUrl": null,
+    "photoAlt": "이상조",
+    "lab": null
+  },
+  {
+    "name": "김영주",
+    "title": "Professor",
+    "role": null,
+    "email": "yjkim40@yonsei.ac.kr",
+    "phone": "02)2123-6852",
+    "room": "Engineering Building #3, Room C316",
+    "specialty": null,
+    "yearRange": null,
+    "moreInfoUrl": "https://me.yonsei.ac.kr/faculty/name_search.do?mode=view&userId=M%2FhpSLUqHMFmyYRpueciEw%3D%3D&sosokcd=",
+    "photoAlt": "김영주",
+    "lab": {
+      "nameKo": "나노광전자시스템 연구실",
+      "nameEn": "Nano-Optoelectronics System Lab.",
+      "url": "http://nos.yonsei.ac.kr/"
+    }
+  },
+  {
+    "name": "이수홍",
+    "title": "Professor",
+    "role": null,
+    "email": null,
+    "phone": null,
+    "room": null,
+    "specialty": "AI CADCAM 동시공학설계",
+    "yearRange": "1994~2024",
+    "moreInfoUrl": null,
+    "photoAlt": "이수홍",
+    "lab": null
+  },
+  {
+    "name": "김용준",
+    "title": "Professor",
+    "role": null,
+    "email": "yjk@yonsei.ac.kr",
+    "phone": "02)2123-2844",
+    "room": "Engineering Building #1, Room A585",
+    "specialty": null,
+    "yearRange": null,
+    "moreInfoUrl": "https://me.yonsei.ac.kr/faculty/name_search.do?mode=view&userId=rF3EfB2KwpYgW%2F3mA9hWYQ%3D%3D&sosokcd=",
+    "photoAlt": "김용준",
+    "lab": {
+      "nameKo": "마이크로시스템 연구실",
+      "nameEn": "MEMS Lab.",
+      "url": "http://mems.yonsei.ac.kr/"
+    }
+  },
+  {
+    "name": "이진호",
+    "title": "Professor",
+    "role": null,
+    "email": null,
+    "phone": null,
+    "room": null,
+    "specialty": "AI CADCAM 동시공학설계, 열공학",
+    "yearRange": "1983~2018",
+    "moreInfoUrl": null,
+    "photoAlt": "이진호",
+    "lab": null
+  },
+  {
+    "name": "김우철",
+    "title": "Professor",
+    "role": "학부장",
+    "email": "woochul@yonsei.ac.kr",
+    "phone": "02)2123-5816",
+    "room": "Engineering Building #3, Room C428",
+    "specialty": null,
+    "yearRange": null,
+    "moreInfoUrl": "https://me.yonsei.ac.kr/faculty/name_search.do?mode=view&userId=MS4QfqRPzaZ5YDrwsETFUA%3D%3D&sosokcd=",
+    "photoAlt": "김우철",
+    "lab": {
+      "nameKo": "어드밴스드 열공학 연구실",
+      "nameEn": "Advanced ThermoEngineering Lab.",
+      "url": "http://atel.yonsei.ac.kr/"
+    }
+  },
+  {
+    "name": "임윤철",
+    "title": "Professor",
+    "role": null,
+    "email": "rhimyc@yonsei.ac.kr",
+    "phone": null,
+    "room": null,
+    "specialty": "AI CADCAM 동시공학설계",
+    "yearRange": null,
+    "moreInfoUrl": null,
+    "photoAlt": "임윤철",
+    "lab": null
+  },
+  {
+    "name": "김원정",
+    "title": "Associate Professor",
+    "role": "학부주임교수",
+    "email": "WJK@YONSEI.AC.KR",
+    "phone": "02)2123-4471",
+    "room": null,
+    "specialty": null,
+    "yearRange": null,
+    "moreInfoUrl": "https://ssfl.yonsei.ac.kr/",
+    "photoAlt": "김원정",
+    "lab": {
+      "nameKo": "미소유체연구실",
+      "nameEn": "Small-Scale Fluids Lab.",
+      "url": "https://ssfl.yonsei.ac.kr/"
+    }
+  },
+  {
+    "name": "전광민",
+    "title": "Professor",
+    "role": null,
+    "email": "kmchun@yonsei.ac.kr",
+    "phone": null,
+    "room": null,
+    "specialty": null,
+    "yearRange": null,
+    "moreInfoUrl": null,
+    "photoAlt": "전광민",
+    "lab": null
+  },
+  {
+    "name": "김종백",
+    "title": "Professor",
+    "role": null,
+    "email": "kimjb@yonsei.ac.kr",
+    "phone": "02)2123-2812",
+    "room": "Engineering Building #3, Room C427",
+    "specialty": null,
+    "yearRange": null,
+    "moreInfoUrl": "https://me.yonsei.ac.kr/faculty/name_search.do?mode=view&userId=1RE2La5mkxWHrR7NkNGulA%3D%3D&sosokcd=0000405",
+    "photoAlt": "김종백",
+    "lab": {
+      "nameKo": "나노기전시스템 연구실",
+      "nameEn": "Nano Transducers Lab.",
+      "url": "http://ntl.yonsei.ac.kr/"
+    }
+  },
+  {
+    "name": "조강래",
+    "title": "Professor",
+    "role": null,
+    "email": null,
+    "phone": null,
+    "room": null,
+    "specialty": "유체역학",
+    "yearRange": "1971~2002",
+    "moreInfoUrl": null,
+    "photoAlt": "조강래",
+    "lab": null
+  },
+  {
+    "name": "김해진",
+    "title": "Associate Professor",
+    "role": null,
+    "email": "hjk@yonsei.ac.kr",
+    "phone": "02)2123-2819",
+    "room": "Engineering Building #1, Room N206",
+    "specialty": null,
+    "yearRange": null,
+    "moreInfoUrl": "https://me.yonsei.ac.kr/faculty/name_search.do?mode=view&userId=pAo4Dx2KA2dkOviAVvwsLQ%3D%3D&sosokcd=0000405",
+    "photoAlt": "김해진",
+    "lab": {
+      "nameKo": "지능소자공정 연구실",
+      "nameEn": "Laboratory for Intelligent Device & Manufacturing",
+      "url": "http://yslidm.com/"
+    }
+  },
+  {
+    "name": "조형희",
+    "title": "Professor",
+    "role": null,
+    "email": null,
+    "phone": null,
+    "room": null,
+    "specialty": null,
+    "yearRange": null,
+    "moreInfoUrl": "https://me.yonsei.ac.kr/faculty/name_search.do?mode=view&userId=hT04rPEoiwsNGXxdX%2B496w%3D%3D&sosokcd=",
+    "photoAlt": "조형희",
+    "lab": null
+  },
+  {
+    "name": "류원형",
+    "title": "Professor",
+    "role": null,
+    "email": "whryu@yonsei.ac.kr",
+    "phone": "02)2123-5821",
+    "room": "Engineering Building #3, Room C326",
+    "specialty": null,
+    "yearRange": null,
+    "moreInfoUrl": "https://me.yonsei.ac.kr/faculty/name_search.do?mode=view&userId=FbTFwqvmJtakGUouowJkLQ%3D%3D&sosokcd=",
+    "photoAlt": "류원형",
+    "lab": {
+      "nameKo": "바이오메디컬 & 에너지 시스템 연구실",
+      "nameEn": "Biomedical and Energy System Lab.",
+      "url": "https://sites.google.com/a/bmesyonsei.com/bmeslab/"
+    }
+  },
+  {
+    "name": "주원구",
+    "title": "Professor",
+    "role": null,
+    "email": "joo_wg@yonsei.ac.kr",
+    "phone": null,
+    "room": null,
+    "specialty": null,
+    "yearRange": null,
+    "moreInfoUrl": null,
+    "photoAlt": "주원구",
+    "lab": null
+  },
+  {
+    "name": "민경민",
+    "title": "Associate Professor",
+    "role": null,
+    "email": "kmin.min@yonsei.ac.kr",
+    "phone": "02)2123-4464",
+    "room": "Engineering Building #1, Room N201",
+    "specialty": null,
+    "yearRange": null,
+    "moreInfoUrl": "https://csailabyonsei.quv.kr/",
+    "photoAlt": "민경민",
+    "lab": {
+      "nameKo": "계산과학-인공지능 연구실",
+      "nameEn": "Computational Science - Artificial Intelligence Lab.",
+      "url": "https://csailabyonsei.quv.kr/"
+    }
+  },
+  {
+    "name": "차성운",
+    "title": "Professor",
+    "role": null,
+    "email": "swcha@yonsei.ac.kr",
+    "phone": null,
+    "room": null,
+    "specialty": null,
+    "yearRange": null,
+    "moreInfoUrl": "https://me.yonsei.ac.kr/faculty/name_search.do?mode=view&userId=ABTz8DQI6vw65KNq6XagYA%3D%3D&sosokcd=",
+    "photoAlt": "차성운",
+    "lab": null
+  },
+  {
+    "name": "민병권",
+    "title": "Professor",
+    "role": null,
+    "email": "bkmin@yonsei.ac.kr",
+    "phone": "02)2123-5813",
+    "room": null,
+    "specialty": null,
+    "yearRange": null,
+    "moreInfoUrl": "https://me.yonsei.ac.kr/faculty/name_search.do?mode=view&userId=epVKuTRkwjej3W7%2F8Ob6lA%3D%3D&sosokcd=0000405",
+    "photoAlt": "민병권",
+    "lab": {
+      "nameKo": "생산 & 메카트로닉스 연구실",
+      "nameEn": "Manufacturing & Mechatronics Lab.",
+      "url": "http://minlab.yonsei.ac.kr/"
+    }
+  },
+  {
+    "name": "최용제",
+    "title": "Professor",
+    "role": null,
+    "email": "yjchoi@yonsei.ac.kr",
+    "phone": null,
+    "room": null,
+    "specialty": null,
+    "yearRange": null,
+    "moreInfoUrl": null,
+    "photoAlt": "최용제",
+    "lab": null
+  },
+  {
+    "name": "박노철",
+    "title": "Professor",
+    "role": null,
+    "email": "pnch@yonsei.ac.kr",
+    "phone": "02)2123-4530",
+    "room": "Engineering Building #1, Room N311",
+    "specialty": null,
+    "yearRange": null,
+    "moreInfoUrl": "https://me.yonsei.ac.kr/faculty/name_search.do?mode=view&userId=0fw0kb%2Brd1T%2BAnxOWIWCMg%3D%3D&sosokcd=",
+    "photoAlt": "박노철",
+    "lab": {
+      "nameKo": "진동 및 광메카트로닉스 연구실",
+      "nameEn": "Vibration and Opto-Mechatronics Lab.",
+      "url": "http://optomecha.yonsei.ac.kr/"
+    }
+  },
+  {
+    "name": "한재원",
+    "title": "Professor",
+    "role": null,
+    "email": "jaewhahn@yonsei.ac.kr",
+    "phone": null,
+    "room": null,
+    "specialty": null,
+    "yearRange": null,
+    "moreInfoUrl": null,
+    "photoAlt": "한재원",
+    "lab": null
+  },
+  {
+    "name": "송순호",
+    "title": "Professor",
+    "role": null,
+    "email": "soonhosong@yonsei.ac.kr",
+    "phone": "02)2123-2811",
+    "room": "Engineering Building #3, Room C318",
+    "specialty": null,
+    "yearRange": null,
+    "moreInfoUrl": "https://me.yonsei.ac.kr/faculty/name_search.do?mode=view&userId=EMeDFsg7ezICnj1V655kTw%3D%3D&sosokcd=",
+    "photoAlt": "송순호",
+    "lab": {
+      "nameKo": "내연기관 & 청정에너지 연구실",
+      "nameEn": "Ice & Clean Energy Lab.",
+      "url": "http://cleanenergy.yonsei.ac.kr/"
+    }
+  },
+  {
+    "name": "황정호",
+    "title": "Professor",
+    "role": null,
+    "email": "hwangjh@yonsei.ac.kr",
+    "phone": null,
+    "room": null,
+    "specialty": null,
+    "yearRange": null,
+    "moreInfoUrl": "https://me.yonsei.ac.kr/faculty/name_search.do?mode=view&userId=MCmrOSwwxHveWq3XxBCIQA%3D%3D&sosokcd=",
+    "photoAlt": "황정호",
+    "lab": null
+  },
+  {
+    "name": "신동준",
+    "title": "Professor",
+    "role": null,
+    "email": "dj.shin@yonsei.ac.kr",
+    "phone": "02)2123-2826",
+    "room": "Engineering Building #3, Room 426",
+    "specialty": null,
+    "yearRange": null,
+    "moreInfoUrl": "http://hcr.yonsei.ac.kr/",
+    "photoAlt": "신동준",
+    "lab": {
+      "nameKo": "인간중심AI로보틱스 연구실",
+      "nameEn": "Human-Centered AI Robotics Lab.",
+      "url": "http://hcr.yonsei.ac.kr/"
+    }
+  },
+  {
+    "name": "양현석",
+    "title": "Professor",
+    "role": null,
+    "email": "hsyang@yonsei.ac.kr",
+    "phone": "02)2123-2824",
+    "room": "Engineering Building#1,Room A584",
+    "specialty": null,
+    "yearRange": null,
+    "moreInfoUrl": "https://me.yonsei.ac.kr/faculty/name_search.do?mode=view&userId=unA5vq9t8ID%2BONEoTLKWKQ%3D%3D&sosokcd=0000405",
+    "photoAlt": "양현석",
+    "lab": {
+      "nameKo": "정밀제어시스템 연구실",
+      "nameEn": "Micro Servo System Lab.",
+      "url": "http://mservo.yonsei.ac.kr/"
+    }
+  },
+  {
+    "name": "유정훈",
+    "title": "Professor",
+    "role": null,
+    "email": "yoojh@yonsei.ac.kr",
+    "phone": "02)2123-2859",
+    "room": "Engineering Building #3, Room C322",
+    "specialty": null,
+    "yearRange": null,
+    "moreInfoUrl": "https://me.yonsei.ac.kr/faculty/name_search.do?mode=view&userId=J7LH67wjoKs7HqFmJNWRwg%3D%3D&sosokcd=",
+    "photoAlt": "유정훈",
+    "lab": {
+      "nameKo": "전산구조설계 연구실",
+      "nameEn": "Systematic Structure Design Lab.",
+      "url": "http://ssd.yonsei.ac.kr/"
+    }
+  },
+  {
+    "name": "윤준영",
+    "title": "Associate Professor",
+    "role": null,
+    "email": "junyoung.yoon@yonsei.ac.kr",
+    "phone": "02)2123-2817",
+    "room": "Engineering Building #1, Room N205",
+    "specialty": null,
+    "yearRange": null,
+    "moreInfoUrl": null,
+    "photoAlt": "윤준영",
+    "lab": {
+      "nameKo": "정밀 생산 메카트로닉스 연구실 Research Laboratory of Manufacturing Mechatronics",
+      "nameEn": "",
+      "url": ""
+    }
+  },
+  {
+    "name": "이남규",
+    "title": "Assistant Professor",
+    "role": null,
+    "email": "NK.LEE@YONSEI.AC.KR",
+    "phone": null,
+    "room": "Engineering Building #1, Room N207",
+    "specialty": null,
+    "yearRange": null,
+    "moreInfoUrl": "https://me.yonsei.ac.kr/faculty/name_search.do?mode=view&userId=wLefcjV8lUCv2Zzs9J5RAQ%3D%3D&sosokcd=0000405",
+    "photoAlt": "이남규",
+    "lab": {
+      "nameKo": "열전달 및 열설계 연구실",
+      "nameEn": "Heat Transfer & Thermal Design Lab.",
+      "url": "https://sites.google.com/view/httd-yonsei"
+    }
+  },
+  {
+    "name": "이종수",
+    "title": "Professor",
+    "role": null,
+    "email": "jleej@yonsei.ac.kr",
+    "phone": "02)2123-4474",
+    "room": "Engineering Building #3, Room C323",
+    "specialty": null,
+    "yearRange": null,
+    "moreInfoUrl": "https://me.yonsei.ac.kr/faculty/name_search.do?mode=view&userId=AXk7pPArre7tC15Fk0psVg%3D%3D&sosokcd=",
+    "photoAlt": "이종수",
+    "lab": {
+      "nameKo": "멀티피직스 최적설계 & 건전성진단예지 연구실",
+      "nameEn": "Multi-Physics Design Optimization & Prognostics and Health Management Lab.",
+      "url": "http://mdophm.yonsei.ac.kr/"
+    }
+  },
+  {
+    "name": "이준상",
+    "title": "Professor",
+    "role": null,
+    "email": "joonlee@yonsei.ac.kr",
+    "phone": "02)2123-5820",
+    "room": "Eng 3, 327. 3공학관 327호",
+    "specialty": null,
+    "yearRange": null,
+    "moreInfoUrl": "https://me.yonsei.ac.kr/faculty/name_search.do?mode=view&userId=b2q9%2FrsniLTpqoJPWYQWVA%3D%3D&sosokcd=",
+    "photoAlt": "이준상",
+    "lab": {
+      "nameKo": "멀티스케일 유체역학 연구실",
+      "nameEn": "Multi-scale Fluid Dynamics Lab.",
+      "url": "https://mfdl.yonsei.ac.kr/"
+    }
+  },
+  {
+    "name": "이창훈",
+    "title": "Professor",
+    "role": null,
+    "email": "CLEE@YONSEI.AC.KR@yonsei.ac.kr",
+    "phone": "02)2123-2846",
+    "room": null,
+    "specialty": "ASTC 611a, Engineering I 590",
+    "yearRange": null,
+    "moreInfoUrl": "https://me.yonsei.ac.kr/faculty/name_search.do?mode=view&userId=DRg2MLLATF8Kat2jhI9Ziw%3D%3D&sosokcd=0000405",
+    "photoAlt": "이창훈",
+    "lab": {
+      "nameKo": "난류 연구실",
+      "nameEn": "Turbulence Lab.",
+      "url": "http://euler.yonsei.ac.kr/"
+    }
+  },
+  {
+    "name": "이형석",
+    "title": "Professor",
+    "role": null,
+    "email": "hyungsuk@yonsei.ac.kr",
+    "phone": "02)2123-5824",
+    "room": "Engineering Building #1, Room A588",
+    "specialty": null,
+    "yearRange": null,
+    "moreInfoUrl": "https://me.yonsei.ac.kr/faculty/name_search.do?mode=view&userId=bk0aGPYdMJPO%2FVyfZRhrHg%3D%3D&sosokcd=0000405",
+    "photoAlt": "이형석",
+    "lab": {
+      "nameKo": "생체역학 및 연성재료 연구실",
+      "nameEn": "Biomechanics & Soft Materials Lab.",
+      "url": "http://leelab.yonsei.ac.kr/"
+    }
+  },
+  {
+    "name": "장용훈",
+    "title": "Professor",
+    "role": null,
+    "email": "jyh@yonsei.ac.kr",
+    "phone": "02)2123-5812, 032)749-3122",
+    "room": "Engineering Building #1, Room A591",
+    "specialty": null,
+    "yearRange": null,
+    "moreInfoUrl": "https://me.yonsei.ac.kr/faculty/name_search.do?mode=view&userId=DotpS%2BViSxK%2FWL4BBUofsA%3D%3D&sosokcd=",
+    "photoAlt": "장용훈",
+    "lab": {
+      "nameKo": "마이크로역학 연구실",
+      "nameEn": "Micro Mechanics Lab.",
+      "url": "https://mcmclab.yonsei.ac.kr/"
+    }
+  },
+  {
+    "name": "전성찬",
+    "title": "Professor",
+    "role": null,
+    "email": "scj@yonsei.ac.kr",
+    "phone": "02)2123-5817",
+    "room": "Engineering Building #1, Room A587",
+    "specialty": null,
+    "yearRange": null,
+    "moreInfoUrl": "https://me.yonsei.ac.kr/faculty/name_search.do?mode=view&userId=wTKcmb%2F8b6Ols1dO%2B8bByg%3D%3D&sosokcd=",
+    "photoAlt": "전성찬",
+    "lab": {
+      "nameKo": "나노 융합 소자 연구실",
+      "nameEn": "NEMD Lab.",
+      "url": "http://nemd.yonsei.ac.kr/"
+    }
+  },
+  {
+    "name": "전흥재",
+    "title": "Professor",
+    "role": null,
+    "email": "hjchun@yonsei.ac.kr",
+    "phone": "02)2123-4827",
+    "room": "Engineering Building #3, Room C325",
+    "specialty": null,
+    "yearRange": null,
+    "moreInfoUrl": "https://me.yonsei.ac.kr/faculty/name_search.do?mode=view&userId=e5X28rITIomg0i%2BF34C3pg%3D%3D&sosokcd=",
+    "photoAlt": "전흥재",
+    "lab": {
+      "nameKo": "지능형 구조 및 통합 설계 연구실",
+      "nameEn": "Intelligent Structures & Integrated Design Lab.",
+      "url": "http://isid.yonsei.ac.kr/"
+    }
+  },
+  {
+    "name": "정효일",
+    "title": "Professor",
+    "role": null,
+    "email": "uridle7@yonsei.ac.kr",
+    "phone": "02)2123-5814",
+    "room": "Engineering Building #1, Room A592",
+    "specialty": null,
+    "yearRange": null,
+    "moreInfoUrl": "https://me.yonsei.ac.kr/faculty/name_search.do?mode=view&userId=eIbW20vagt1HuZYo4nBWjg%3D%3D&sosokcd=",
+    "photoAlt": "정효일",
+    "lab": {
+      "nameKo": "바이오칩 연구실",
+      "nameEn": "Laboratory of Biochip Technology",
+      "url": "https://sites.google.com/view/yonseilbt/introduction"
+    }
+  },
+  {
+    "name": "주철민",
+    "title": "Professor",
+    "role": null,
+    "email": "cjoo@yonsei.ac.kr",
+    "phone": "02)2123-5822",
+    "room": null,
+    "specialty": "Engineering Building C 328",
+    "yearRange": null,
+    "moreInfoUrl": "https://me.yonsei.ac.kr/faculty/name_search.do?mode=view&userId=bhaCBRF5otdK3WVWoRHYiw%3D%3D&sosokcd=0000405",
+    "photoAlt": "주철민",
+    "lab": {
+      "nameKo": "산술 광학 영상 및 응용 연구실",
+      "nameEn": "Computational Imaging & Instrumentation Laboratory",
+      "url": "http://boilab.wordpress.com/"
+    }
+  },
+  {
+    "name": "최종은",
+    "title": "Professor",
+    "role": null,
+    "email": "jongeunchoi@yonsei.ac.kr",
+    "phone": null,
+    "room": null,
+    "specialty": "Eng Blg III C319",
+    "yearRange": null,
+    "moreInfoUrl": "https://me.yonsei.ac.kr/faculty/name_search.do?mode=view&userId=i8y28rIy7%2Fvf1sq15evoBw%3D%3D&sosokcd=0000405",
+    "photoAlt": "최종은",
+    "lab": {
+      "nameKo": "기계학습 및 제어 시스템 연구실",
+      "nameEn": "Machine Learning and Control Systems Lab.",
+      "url": "http://mlcs.yonsei.ac.kr/"
+    }
+  },
+  {
+    "name": "현재상",
+    "title": "Assistant Professor",
+    "role": null,
+    "email": "hyun.jaesang@yonsei.ac.kr",
+    "phone": "02)2123-2818",
+    "room": "Engineering Building #3, Room C315",
+    "specialty": null,
+    "yearRange": null,
+    "moreInfoUrl": "https://me.yonsei.ac.kr/faculty/name_search.do?mode=view&userId=foH0i4BlWWcsEx6j%2B0Dwqg%3D%3D&sosokcd=0000405",
+    "photoAlt": "현재상",
+    "lab": {
+      "nameKo": "정밀 측정 및 지능형 센싱 연구실",
+      "nameEn": "High-Dimensional Accurate Measurement and Intelligent Sensing Lab.",
+      "url": "https://sites.google.com/view/damislab"
+    }
+  },
+  {
+    "name": "홍종섭",
+    "title": "Professor",
+    "role": null,
+    "email": "jongsup.hong@yonsei.ac.kr",
+    "phone": "02)2123-4465",
+    "room": null,
+    "specialty": null,
+    "yearRange": null,
+    "moreInfoUrl": "https://me.yonsei.ac.kr/faculty/name_search.do?mode=view&userId=OqCjCitbqY9SNaY%2FMELsJg%3D%3D&sosokcd=0000405",
+    "photoAlt": "홍종섭",
+    "lab": {
+      "nameKo": "지속가능한 에너지 플랫폼 개발 연구실",
+      "nameEn": "Multiphysics Energy System Lab.",
+      "url": "http://mes.yonsei.ac.kr/"
+    }
+  }
+]

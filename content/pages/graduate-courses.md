@@ -1,0 +1,187 @@
+#### 기계공학과 교과목
+
+| 학정번호 | 과목명 (Title) | 학점(Credits) |
+| --- | --- | --- |
+| MEU5001 | 품질공학설계 (Quality Engineering Design) | 3 |
+| MEU5002 | 분자열역학 (Molecular Thermodynamics) | 3 |
+| MEU5003 | 복사열전달 (Radiation Heat Transfer) | 3 |
+| MEU5004 | 나노기전소자 (Nano Electro-Mechanical Devices) | 3 |
+| MEU5005 | 음향학 I (Accoustics I) | 3 |
+| MEU5006 | 음향학 II (Accoustics II) | 3 |
+| MEU5007 | 고급나노생산송정 (Advanced Topics in Nano Devices) | 3 |
+| MEU5008 | 로보트공학 (Robotics) | 3 |
+| MEU5009 | 공학도를위한심리음향학 (Psychoacoustics for Engineers) | 3 |
+| MEU5010 | 비선형 음향학 (Nonlinear Accoustics) | 3 |
+| MEU5011 | 극초단동역학 (Ultrafast Dynamics) | 3 |
+| MEU5012 | 생체공학용재료 특론 (Advanced Materials for Bio-Engineering) | 3 |
+| MEU5013 | 나노소자의 기본원리 (Fundamentals for Nano Devices) | 3 |
+| MEU5014 | 바이오전산유체역학 (Introduction to Computational Biofluidics) | 3 |
+| MEU5015 | 의생물학용 마이크로시스템의 설계 및 제조 (Design and Fabrication for Biomedical Microdevices) | 3 |
+| MEU5016 | 나노전자기학개론 (Fundamentals of Nanoelectronics) | 3 |
+| MEU5017 | 반도체소자이론 (Principle of Semiconductor) | 3 |
+| MEU5018 | 기전설계 (Electromechanical Design) | 3 |
+| MEU5019 | 위상최적설계이론 (Theoretical Topology Optimization) | 3 |
+| MEU5020 | 고급열역학 (Advanced Thermodynamics) | 3 |
+| MEU5021 | 바이오메디칼 광학 이미징 (Biomedical Optical Imaging) | 3 |
+| MEU5022 | 기계공학에서의 광학기술 응용 (Optics in Mechanical Engineering) | 3 |
+| MEU5023 | 생체 시스템의 기계적 거동 (Mechanics in Biological System) | 3 |
+| MEU5024 | 비등열전달 (Boiling Heat Transfer) | 3 |
+| MEU5025 | 생체물리학 (Biopyhsics) | 3 |
+| MEU5026 | 응용동역학 (Applied Dynamics) | 3 |
+| MEU5027 | 유체윤할 (Fluid Film Lubrication) | 3 |
+| MEU5028 | 재료의 원자모사 방법론 (Atomistic Simulation of Materials) | 3 |
+| MEU5029 | 실험모우드해석 (Experimental Modal Analysis) | 3 |
+| MEU5030 | 연속체 역학 (Continuum Mechanics) | 3 |
+| MEU5031 | 기구합성론 (Planar Mechanism Design) | 3 |
+| MEU5032 | 마이크로 바이오 메카트로닉스 (Microbiomechatronics) | 3 |
+| MEU5033 | 코팅의 물리 및 기계적 특성 (Physics and Mechanics of Coatings) | 3 |
+| MEU5034 | 첨단응용소재 (State-of-the-art Materials) | 3 |
+| MEU5035 | 나노테크날러지 (Nanotechnology) | 3 |
+| MEU5036 | 기계가공의역학 (Mechanics and Dynamics of Machining) | 3 |
+| MEU5037 | 공학응용수학 (Applied Mathematics for Engineering) | 3 |
+| MEU5038 | 터보기계 (Turbomachinery) | 3 |
+| MEU5039 | 장치설계 (Thermal and Rotating Equipment Design) | 3 |
+| MEU5040 | 비점성유체역학 (Inviscid Flow Theory) | 3 |
+| MEU5041 | 역학및전자기학응용해석 (Applied Engineering in Mechanics and Electromagnetics) | 3 |
+| MEU5042 | 재료및구조역학 (Material and Structure Mechanics) | 3 |
+| MEU5043 | 시스템 다이나믹스 (System Dynamics) | 3 |
+| MEU5044 | 첨단 나노제작 기술 (Advanced Nanofabrication Technologies) | 3 |
+| MEU5045 | 매개변수추정 (Parameter Estimation) | 3 |
+| MEU5046 | 에너지변환시스템의 통합적해석 (Integrative analysis of Energy Conversion System) | 3 |
+| MEU5060 | 나노광자공학특론 (Advanced Nano Photonics) | 3 |
+| MEU5080 | 선형탄성파괴역학 (Linear Elastic Fracture Mechanics) | 3 |
+| MEU5090 | 나노과학개론 (Principles Of Nanoscience) | 3 |
+| MEU5100 | 전산유체특론 (Special Topic in Computational Fluid Dynamics) | 3 |
+| MEU5110 | 바이오산업창업과경영 (Bio-Industry and Management) | 3 |
+| MEU5120 | 기계금속학 (Mechanical Metallurgy) | 3 |
+| MEU5130 | 기계기구학특론 (Advanced Kinematics of Machines) | 3 |
+| MEU5150 | 내연기관이론 및 실험 (Internal Combustion Engine Theory and Experiment) | 3 |
+| MEU5210 | 통계열역학 (Statistical Thermodynamics) | 3 |
+| MEU5230 | 터보기계특론 (Special Topics in Turbomachinery) | 3 |
+| MEU5241 | 응용수치해석 (Applied Numerical Analysis) | 3 |
+| MEU5310 | 기계진동학특론 (Advanced Mechanical Vibration) | 3 |
+| MEU5320 | 시스템설계 (System Design) | 3 |
+| MEU5370 | 유한요소법 (Finite Element Method) | 3 |
+| MEU5410 | 동시공학설계 (Concurrent Engineering Design) | 3 |
+| MEU5420 | 공정계획설계 (Process Planning Design) | 3 |
+| MEU5430 | 제품개발및설계 (Product Development and Design) | 3 |
+| MEU5450 | 마이크로시스템 설계 (Microsystem Design) | 3 |
+| MEU5460 | 연소화학개론 (Introduction to Combustion Chemistry) | 3 |
+| MEU5480 | 생체분석시스템 (Bio-Analytical Systems) | 3 |
+| MEU5630 | 창의적문제해결방법론의 개요 (Introduction to TRIZ) | 3 |
+| MEU6000 | 동역학특론 (Advanced Dynamics) | 3 |
+| MEU6001 | 전자기학개론 (Instroduction to Electrodynamics) | 3 |
+| MEU6002 | 세포역학 (Mechanical of the Cells) | 3 |
+| MEU6003 | 제품개발론 (Product Planning And Development) | 3 |
+| MEU6004 | 박막플라즈마공정 (Processing of Thin Film and Plasma) | 3 |
+| MEU6005 | 고급극초단동역학 (Advanced Ultrafast Dynamics) | 3 |
+| MEU6006 | 마이크로옵틱스설계제조 (Design and Fabrication of Micro-Optics) | 3 |
+| MEU6010 | 나노스케일에너지전달 (Micro/Nanoscale Energy Transport) | 3 |
+| MEU6011 | 컴퓨터해석기구학특론 (Computer Aided Mechanism Analysis) | 3 |
+| MEU6020 | 탄소성파괴역학 (Elastic-Plastic Fracture Mechanics) | 3 |
+| MEU6041 | 최적설계공학 (Engineering Design Optimization) | 3 |
+| MEU6050 | 기계금속학특론 (Special Topics of Mechanical Metallurgy) | 3 |
+| MEU6060 | 분자기체역학 (Molecular Gas Dynamics) | 3 |
+| MEU6070 | 포토닉스 (Photonics) | 3 |
+| MEU6071 | 소프트컴퓨팅응용시스템설계 (Soft Computing in Intelligent System Design) | 3 |
+| MEU6080 | 마이크로시스템역학 (Mechanics of Microsystems) | 3 |
+| MEU6090 | 세포칩 특론 (Special Topics on Cell Chip) | 3 |
+| MEU6101 | 기계-전자기기설계 (Mechanical-Electric Device Design) | 3 |
+| MEU6111 | 구조최적설계 (Structural Optimal Design) | 3 |
+| MEU6130 | 용접공학특론 (Advanced Welding Engineering) | 3 |
+| MEU6140 | 특수가공법 (Special Topics in Contact Manufacturing Process) | 3 |
+| MEU6160 | 기계역학특론 (Advanced Dynamics of Machinery) | 3 |
+| MEU6170 | 첨단레이져광공학 (Advanced Laser and Optical Engineering) | 3 |
+| MEU6180 | 신뢰성공학 (Engineering Reliability) | 3 |
+| MEU6190 | 접촉역학 (Contact Mechanics) | 3 |
+| MEU6200 | 공리설계론 (Axiomatic Design) | 3 |
+| MEU6210 | 전도열전달 (Conduction Heat Transfer) | 3 |
+| MEU6230 | 점성유체역학 (Viscous Fluid Dynamics) | 3 |
+| MEU6240 | 연소공학 (Combustion Engineering) | 3 |
+| MEU6241 | 실험역학 (Experimental Mechanics) | 3 |
+| MEU6250 | 열시스템설계 (Design of Thermal System) | 3 |
+| MEU6260 | 전산유체역학 (Computational Fluid Dynamics) | 3 |
+| MEU6261 | 복합재료역학 (Engineering Mechanics of Composite Materials) | 3 |
+| MEU6270 | 고급윤활공학 (Advanced Triboligy) | 3 |
+| MEU6290 | 입자공학 (Particle Engineering) | 3 |
+| MEU6340 | 자동제어론 (Theory of Automatic Control) | 3 |
+| MEU6350 | 전기부품신뢰성설계 (Reliability Design For Electric Parts) | 3 |
+| MEU6360 | 설계최적화특론 (Advanced Optimal Design) | 3 |
+| MEU6411 | 마이크로광부품제조특론 (Micro-Optics Fabrication) | 3 |
+| MEU6420 | 전산난류특론 (Special Topics in Computational Turbulence) | 3 |
+| MEU6430 | 마이크로 및 나노 성형공정 (Micro and Nano Molding Process) | 3 |
+| MEU6440 | 플라즈마공학 (Plasma Engineering) | 3 |
+| MEU6450 | 접촉역학특론 (Special Topics in Contact Mechanics) | 3 |
+| MEU6460 | 기계공학을위한센서기술 (Sensor Technology Applied To Mechanical Engineering) | 3 |
+| MEU6470 | 응력해석과파손설계 (Stress Analysis and Failure) | 3 |
+| MEU6500 | 센서공학 (Sensors) | 3 |
+| MEU6510 | 추진공학 (Propulsion Engineering) | 3 |
+| MEU6520 | 대류열전달 (Convective Heat Transfer) | 3 |
+| MEU6530 | 가스터빈특론 (Advanced Gas Turbines) | 3 |
+| MEU6540 | 열/유체실험공학 (Experimental Method in Heat Transfer) | 3 |
+| MEU6560 | 열환경공학 (Thermal Environmental Engineering) | 3 |
+| MEU6600 | MEMS특론 (MEMS) | 3 |
+| MEU6610 | 마찰및마멸 (Friction and Wear) | 3 |
+| MEU6620 | 바이오엔지니어링특론 (Special Topics in Bioengineering) | 3 |
+| MEU6630 | 나노트라이볼로지 (Nanotribology) | 3 |
+| MEU6640 | 바이오엔지니어링특론II (Special Topics in Bioengineering II) | 3 |
+| MEU6641 | 로봇운동학 (Kinematics and Dynamics of Robots) | 3 |
+| MEU6671 | 운동기하학 (Kinematic Geometry) | 3 |
+| MEU6810 | 기계공학세미나1 (Seminar in Mechanical Science I) | 3 |
+| MEU6820 | 기계공학세미나2 (Seminar in Mechanical Science II) | 3 |
+| MEU6900 | 창의설계특론 (Special Topics in Creative Design) | 3 |
+| MEU7001 | 입자공학특론 (Advanced Particle Engineering) | 3 |
+| MEU7002 | 연소공학특론 (Special Topics in Combustion Engineering) | 3 |
+| MEU7003 | 파손설계특론 (Special Topics on Failure Design) | 3 |
+| MEU7004 | 열환경공학특론 (Advanced Thermal Environmental Engineering) | 3 |
+| MEU7005 | 응력재료설계특론 (Special Topics of Design of Stress and Materials) | 3 |
+| MEU7006 | 기계와 금속공학의 융합기술 (Fusion Technology of Mechanical and Material Engineering) | 3 |
+| MEU7007 | 기계금속해석특론 (Special Topics on Mechanical and Metallugical Analysis) | 3 |
+| MEU7008 | 양자론과 양자역학개론 (Introduction to Quantum Theory and Mechanics) | 3 |
+| MEU7009 | 위상최적설계이론 (Theoretical Topology Optimization) | 3 |
+| MEU7010 | 에어로졸응용공학 (Application of Aerosol Science and Technology) | 3 |
+| MEU7011 | 응력해석 (Stress Analysis) | 3 |
+| MEU7012 | 내부유동 (Internal Flow) | 3 |
+| MEU7013 | 응용전산유체역학 (Applied Device Design and Development) | 3 |
+| MEU7014 | 메디칼디바이스 설계 및 개발 (Medical Device Design and Development) | 3 |
+| MEU7015 | 분자및세포역학 (Molecular and Cell Biomechanics) | 3 |
+| MEU7016 | 전기화학 에너지 시스템 (Electrochemical Energy Systems) | 3 |
+| MEU7017 | 터보기계 실험공학 (Experimental Methods for Turbomachinery) | 3 |
+| MEU7018 | 전산 나노 과학 (Computational Nanotechnology) | 3 |
+| MEU7030 | 탄성이론 (Theory of Elasticity) | 3 |
+| MEU7060 | 기체운동론 (Kinetic Theory of Gas) | 3 |
+| MEU7070 | 나선이론 (Screw Theory) | 3 |
+| MEU7110 | 모우드해석 (Modal Analysis) | 3 |
+| MEU7120 | 진동제어 (Vibration Control) | 3 |
+| MEU7130 | 컴퓨터통합생산시스템특론 (Computer Integrated Manufacturing) | 3 |
+| MEU7140 | 메카트로닉스응용 (Application of Mechatronics) | 3 |
+| MEU7160 | 광공학특론 (Advanced Optical Engineering) | 3 |
+| MEU7170 | 생산시스템제어공학 (Control of Manufacturing System and Processes) | 3 |
+| MEU7250 | 전달현상특론 (Advanced Transport Phenomena) | 3 |
+| MEU7260 | 유동안정성이론 (Theory of Hydrodynamic Stability) | 3 |
+| MEU7270 | 근사해법 (Pertubation Method) | 3 |
+| MEU7300 | 난류이론 (Theory of Turbulent Flow) | 3 |
+| MEU7310 | 판의이론 (Theory of Plates) | 3 |
+| MEU7330 | 구조진동학특론 (Advanced Method in Structural Vibration) | 3 |
+| MEU7350 | 복합재료역학 (Mechanics of Composite Materials) | 3 |
+| MEU7370 | 자동제어특론 (Advanced Theory of Automatic Control) | 3 |
+| MEU7410 | 유체기계특론 (Special Topics in Fluid Machinery) | 3 |
+| MEU7450 | 윤활특론 (Special Topics in Tribology) | 3 |
+| MEU7460 | 난류특론 (Special Topics in Turbulence) | 3 |
+| MEU7470 | 패키징공학 (Electronic Packaging) | 3 |
+| MEU7610 | 마찰학응용 (Applications in Tribology) | 3 |
+| MEU7630 | 공기조화및냉동공학특론 (Special Topics in HVAC) | 3 |
+| MEU7910 | 기계공학세미나3 (Seminar in Mechanical Science 3) | 3 |
+| MEU7920 | 기계공학세미나4 (Seminar in Mechanical Science 4) | 3 |
+| MEU7930 | 압축성유체역학 (Compressible Fluid Dynamics) | 3 |
+| MEU7999 | 연구지도1 (Directed Research 1) | 0 |
+| MEU8120 | 정밀가공이론 (Theory of Precision Machining) | 3 |
+| MEU8130 | 제조공정특강 (Special Topics in Manufacturing Processes) | 3 |
+| MEU8210 | 내연기관특론 (Advanced Internal Combustion Engines) | 3 |
+| MEU8230 | 방전가공특론 (Special Topics in Electrical Discharge Machining) | 3 |
+| MEU8250 | 열전달특론 (Special Topics in Heat Transfer) | 3 |
+| MEU8260 | 공작기계설계특론 (Design of Precision Machine Tool System) | 3 |
+| MEU8350 | 비선형제어 (Nonlinear Control) | 3 |
+| MEU8400 | 재료거동학특론 (Special Topics in Mechanical Behavior of Materials) | 3 |
+| MEU8770 | 고분자가공특론 (Special Topics in Polymer Processing) | 3 |
+| MEU9999 | 연구지도2 (Directed Research 2) | 0 |

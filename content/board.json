@@ -1,0 +1,236 @@
+{
+  "seminars": [
+    {
+      "id": "sem-1",
+      "date": "2026-07-03",
+      "host": { "ko": "이서연 교수 (연세대 기계공학부)", "en": "Prof. Seoyeon Lee (Yonsei ME)" },
+      "title": {
+        "ko": "[학부 세미나] 인간-로봇 협력 제어의 최신 동향",
+        "en": "[UG Seminar] Recent Advances in Human-Robot Collaborative Control"
+      },
+      "body": {
+        "ko": "인간과 로봇이 같은 공간에서 안전하게 협력하기 위한 제어 이론의 최신 동향을 소개합니다. 임피던스 제어와 학습 기반 의도 추정을 중심으로, 실제 협동로봇 적용 사례를 함께 다룹니다.\n\n일시: 2026년 7월 3일(금) 오후 4시\n장소: 제4공학관 D701호\n대상: 학부생 및 관심 있는 대학원생 누구나",
+        "en": "This seminar introduces recent advances in control theory for safe human-robot collaboration, focusing on impedance control and learning-based intent estimation with real collaborative-robot case studies.\n\nDate: Friday, July 3, 2026, 4 PM\nVenue: Engineering Hall IV, Room D701\nOpen to all undergraduate and graduate students."
+      }
+    },
+    {
+      "id": "sem-2",
+      "date": "2026-07-04",
+      "host": { "ko": "정현우 교수 (연세대 기계공학부)", "en": "Prof. Hyunwoo Jung (Yonsei ME)" },
+      "title": {
+        "ko": "[BK세미나] 친환경 냉각 시스템과 열전달 설계",
+        "en": "[BK Seminar] Sustainable Cooling Systems and Heat Transfer Design"
+      },
+      "body": {
+        "ko": "데이터센터와 전기차 배터리 냉각을 중심으로, 저전력·친환경 냉각 시스템 설계의 핵심 열전달 문제를 살펴봅니다. 이상유동 비등 냉각과 히트파이프 최적 설계 사례를 소개합니다.\n\n일시: 2026년 7월 4일(토) 오전 10시\n장소: 제1공학관 A537호\n주관: BK21 FOUR 교육연구단",
+        "en": "Focusing on data-center and EV-battery thermal management, this talk examines key heat-transfer problems in low-power sustainable cooling design, including two-phase boiling cooling and heat-pipe optimization.\n\nDate: Saturday, July 4, 2026, 10 AM\nVenue: Engineering Hall I, Room A537\nHosted by the BK21 FOUR Education & Research Group."
+      }
+    },
+    {
+      "id": "sem-3",
+      "date": "2026-07-05",
+      "host": { "ko": "최유나 교수 (연세대 기계공학부)", "en": "Prof. Yuna Choi (Yonsei ME)" },
+      "title": {
+        "ko": "[대학원 세미나] 웨어러블 재활 로봇의 바이오메카닉스",
+        "en": "[Graduate Seminar] Biomechanics of Wearable Rehabilitation Robots"
+      },
+      "body": {
+        "ko": "보행 재활을 위한 웨어러블 로봇 설계에서 인체 동역학 모델이 어떻게 활용되는지 다룹니다. 근골격 시뮬레이션과 착용형 센서 데이터를 결합한 최신 연구 결과를 공유합니다.\n\n일시: 2026년 7월 5일(일) 오후 2시\n장소: 제4공학관 세미나실\n대상: 대학원생 (학부생 청강 가능)",
+        "en": "This seminar covers how human-dynamics models drive the design of wearable robots for gait rehabilitation, sharing recent results that combine musculoskeletal simulation with wearable sensor data.\n\nDate: Sunday, July 5, 2026, 2 PM\nVenue: Engineering Hall IV Seminar Room\nFor graduate students; undergraduates welcome."
+      }
+    }
+  ],
+  "events": [
+    {
+      "id": "evt-1",
+      "date": "2026-07-01",
+      "dateLabel": { "ko": "7/1~7/3", "en": "Jul 1–3" },
+      "title": {
+        "ko": "기계공학부 2026 여름학기 해외집중강의 시리즈",
+        "en": "2026 Summer Intensive Overseas Lecture Series"
+      },
+      "body": {
+        "ko": "해외 석학을 초청해 3일간 진행하는 집중강의 시리즈입니다. 올여름은 마이크로 유체역학과 적층제조 특론 두 과목이 개설되며, 전 일정 영어로 진행됩니다.\n\n기간: 2026년 7월 1일(수) ~ 7월 3일(금)\n장소: 제4공학관 D504호\n신청: 학부 사무실 이메일 접수 (선착순 40명)",
+        "en": "A three-day intensive lecture series with invited scholars from abroad. This summer features two courses — Microfluidics and Advanced Additive Manufacturing — conducted entirely in English.\n\nPeriod: July 1 (Wed) – July 3 (Fri), 2026\nVenue: Engineering Hall IV, Room D504\nRegistration by email to the department office (first 40 students)."
+      }
+    },
+    {
+      "id": "evt-2",
+      "date": "2026-07-07",
+      "dateLabel": { "ko": "7/7(화)", "en": "Jul 7 (Tue)" },
+      "title": {
+        "ko": "미래 모빌리티 기술 포럼: 자율 시스템의 내일",
+        "en": "Future Mobility Forum: The Next of Autonomous Systems"
+      },
+      "body": {
+        "ko": "산업계와 학계 연사가 함께 자율주행·도심항공모빌리티(UAM)의 기술 로드맵을 조망하는 포럼입니다. 패널 토론과 학생 포스터 세션이 함께 열립니다.\n\n일시: 2026년 7월 7일(화) 오후 1시~6시\n장소: 백양누리 그랜드볼룸\n참가: 사전 등록 필수 (무료)",
+        "en": "Industry and academic speakers survey the technology roadmap for autonomous driving and urban air mobility, with a panel discussion and a student poster session.\n\nDate: Tuesday, July 7, 2026, 1–6 PM\nVenue: Baekyang Nuri Grand Ballroom\nFree admission with advance registration."
+      }
+    },
+    {
+      "id": "evt-3",
+      "date": "2026-07-10",
+      "dateLabel": { "ko": "7/10(금)", "en": "Jul 10 (Fri)" },
+      "title": {
+        "ko": "BK21 연구클러스터 워크숍 (에너지·바이오)",
+        "en": "BK21 Research Cluster Workshop (Energy · Bio)"
+      },
+      "body": {
+        "ko": "BK21 FOUR 교육연구단의 에너지·바이오 클러스터 합동 워크숍입니다. 참여 연구실의 최신 성과 발표와 대학원생 연구 교류 세션이 진행됩니다.\n\n일시: 2026년 7월 10일(금) 오전 10시~오후 5시\n장소: 제1공학관 국제회의실\n대상: 참여 연구실 구성원 및 대학원 진학 희망 학부생",
+        "en": "A joint workshop of the Energy and Bio clusters of the BK21 FOUR group, featuring latest results from participating labs and a graduate research exchange session.\n\nDate: Friday, July 10, 2026, 10 AM – 5 PM\nVenue: Engineering Hall I International Conference Room\nOpen to cluster members and undergraduates considering graduate study."
+      }
+    }
+  ],
+  "noticesUndergrad": [
+    {
+      "id": "nu-1",
+      "date": "2026-06-29",
+      "title": {
+        "ko": "2026 여름계절학기 학부연구(3) 참여 신청서 제출 안내",
+        "en": "2026 Summer Undergraduate Research (3) Application Notice"
+      },
+      "body": {
+        "ko": "2026 여름계절학기 학부연구(3) 교과목 참여 신청을 받습니다. 지도교수와 사전 면담 후 신청서를 작성하여 학부 사무실로 제출해 주세요.\n\n제출 기한: 2026년 7월 6일(월) 오후 5시\n제출처: 학부 사무실 (제4공학관 D406호) 또는 이메일\n문의: 학사 담당 조교",
+        "en": "Applications are now open for the Summer 2026 Undergraduate Research (3) course. Meet with your advisor first, then submit the application form to the department office.\n\nDeadline: Monday, July 6, 2026, 5 PM\nSubmit to: Department Office (Engineering Hall IV, D406) or by email\nContact: academic affairs staff."
+      }
+    },
+    {
+      "id": "nu-2",
+      "date": "2026-06-24",
+      "title": {
+        "ko": "2026 여름학기 자율연구(VAR) 모집 안내",
+        "en": "2026 Summer Voluntary Autonomous Research (VAR) Recruitment"
+      },
+      "body": {
+        "ko": "방학 중 연구실에서 자기주도 연구를 경험하는 자율연구(VAR) 프로그램 참여자를 모집합니다. 참여 연구실 목록과 주제는 연구 탭의 연구실 목록에서 확인할 수 있습니다.\n\n모집 기간: 2026년 6월 24일 ~ 7월 3일\n활동 기간: 7월 중순 ~ 8월 말 (연구실별 상이)\n수료 시 활동확인서가 발급됩니다.",
+        "en": "The Voluntary Autonomous Research (VAR) summer program invites students to experience self-directed research in a lab. Participating labs and topics are listed on the Research page.\n\nApplication: June 24 – July 3, 2026\nProgram period: mid-July to late August (varies by lab)\nA certificate of participation is issued upon completion."
+      }
+    },
+    {
+      "id": "nu-3",
+      "date": "2026-06-23",
+      "title": {
+        "ko": "기계공학부 「홈페이지 구축 경진대회」 안내",
+        "en": "School of ME 'Homepage Design Competition' Notice"
+      },
+      "body": {
+        "ko": "학부 구성원의 아이디어로 새 홈페이지를 만드는 「홈페이지 구축 경진대회」를 개최합니다. 개인 또는 팀(3인 이내)으로 참가할 수 있으며, 수상작은 실제 학부 홈페이지 리뉴얼에 반영됩니다.\n\n접수 마감: 2026년 7월 31일(금)\n제출물: 배포 가능한 웹사이트와 소개 문서\n시상: 대상 1팀, 우수상 2팀",
+        "en": "The department hosts a Homepage Design Competition to rebuild its website with ideas from members. Enter individually or in teams of up to three; winning entries will inform the official renewal.\n\nDeadline: Friday, July 31, 2026\nDeliverables: a deployable website and a brief write-up\nAwards: one grand prize, two excellence prizes."
+      }
+    }
+  ],
+  "noticesGraduate": [
+    {
+      "id": "ng-1",
+      "date": "2026-06-23",
+      "title": {
+        "ko": "2026학년도 8월 졸업예정자 학위논문 제출 및 인준 안내",
+        "en": "Thesis Submission & Approval Notice for Aug 2026 Graduates"
+      },
+      "body": {
+        "ko": "2026년 8월 졸업예정자는 학위논문 최종본과 인준서를 기한 내 제출해야 합니다. 심사위원 전원의 서명이 완료된 인준서 원본과 온라인 원문 등록이 모두 필요합니다.\n\n제출 기한: 2026년 7월 17일(금)\n제출처: 대학원 교학팀 및 온라인 dCollection\n세부 절차는 대학원 졸업요건 페이지를 참고하세요.",
+        "en": "Students graduating in August 2026 must submit the final thesis and the signed approval form by the deadline. Both the original approval form signed by all committee members and the online full-text registration are required.\n\nDeadline: Friday, July 17, 2026\nSubmit to: Graduate School office and dCollection online\nSee the graduate requirements page for detailed procedures."
+      }
+    },
+    {
+      "id": "ng-2",
+      "date": "2026-06-19",
+      "title": {
+        "ko": "2026-2학기 대학원 신입생 모집 요강 공고",
+        "en": "2026 Fall Graduate Admissions Guidelines Announcement"
+      },
+      "body": {
+        "ko": "2026학년도 2학기 대학원 석사·박사·석박사통합과정 신입생 모집 요강이 공고되었습니다. 지원 자격, 전형 일정, 제출 서류를 확인하시기 바랍니다.\n\n원서 접수: 2026년 7월 13일 ~ 7월 17일\n면접 전형: 8월 초 (개별 통지)\n문의: 대학원 교학팀",
+        "en": "Admissions guidelines for the Fall 2026 MS, PhD, and integrated MS-PhD programs have been announced. Please review eligibility, schedule, and required documents.\n\nApplication window: July 13–17, 2026\nInterviews: early August (individually notified)\nContact: Graduate School office."
+      }
+    },
+    {
+      "id": "ng-3",
+      "date": "2026-06-16",
+      "title": {
+        "ko": "대학원 학사지도 체계화를 위한 APR 계획서 작성 안내",
+        "en": "APR Plan Submission Notice for Graduate Academic Advising"
+      },
+      "body": {
+        "ko": "대학원 학사지도 체계화를 위해 연간 연구계획서(APR)를 작성해 지도교수 확인 후 제출해 주세요. 재학 연차별 작성 항목이 다르니 양식의 안내를 확인하시기 바랍니다.\n\n제출 기한: 2026년 7월 10일(금)\n제출 방법: 포털 업로드\n대상: 석사·박사·통합과정 재학생 전원",
+        "en": "As part of systematic graduate advising, all students must complete the Annual Progress Report (APR), have it confirmed by their advisor, and submit it. Required sections vary by year in program.\n\nDeadline: Friday, July 10, 2026\nSubmission: portal upload\nApplies to all MS, PhD, and integrated-program students."
+      }
+    }
+  ],
+  "thesis": [
+    {
+      "id": "th-1",
+      "date": "2026-06-30",
+      "title": {
+        "ko": "2026년 8월 졸업 학위논문 본심사 일정 안내",
+        "en": "Final Thesis Defense Schedule for August 2026 Graduation"
+      },
+      "body": {
+        "ko": "2026년 8월 졸업예정자의 학위논문 본심사 일정을 안내합니다. 본심사는 심사위원 5인(박사) 또는 3인(석사) 전원 참석으로 진행되며, 발표 30분·질의 30분을 기준으로 합니다.\n\n심사 기간: 2026년 7월 6일 ~ 7월 15일\n장소: 각 심사위원장 지정 세미나실\n심사 후 결과보고서는 3일 이내 교학팀에 제출해야 합니다.",
+        "en": "Final defenses for August 2026 graduates will proceed with the full committee (five members for PhD, three for MS), with 30 minutes of presentation and 30 minutes of Q&A.\n\nDefense period: July 6–15, 2026\nVenue: seminar room designated by each committee chair\nResult reports are due to the office within three days of the defense."
+      }
+    },
+    {
+      "id": "th-2",
+      "date": "2026-06-25",
+      "title": {
+        "ko": "박사학위 예비심사 신청 및 요건 확인 안내",
+        "en": "PhD Preliminary Review Application and Requirements"
+      },
+      "body": {
+        "ko": "박사학위 예비심사를 신청하는 학생은 학술활동 요건(국제저명학술지 게재 등)과 영어시험 요건 충족 여부를 먼저 확인해야 합니다. 요건 미충족 시 본심사 신청이 제한됩니다.\n\n신청 기한: 2026년 7월 8일(수)\n제출 서류: 예비심사 신청서, 연구실적 목록, 논문 초안\n세부 요건은 대학원 졸업요건 페이지를 참고하세요.",
+        "en": "Students applying for the PhD preliminary review must first confirm the scholarly-activity requirement (e.g., publication in an international journal) and the English test requirement; unmet requirements block the final defense.\n\nDeadline: Wednesday, July 8, 2026\nDocuments: application form, publication list, draft thesis\nSee the graduate requirements page for details."
+      }
+    },
+    {
+      "id": "th-3",
+      "date": "2026-06-18",
+      "title": {
+        "ko": "학위논문 작성 양식(템플릿) 및 표절 검사 안내",
+        "en": "Thesis Template and Plagiarism Check Guidelines"
+      },
+      "body": {
+        "ko": "학위논문은 대학원 표준 양식에 따라 작성해야 하며, 제출 전 표절 검사 결과 확인서를 첨부해야 합니다. 표지·인준지·초록 순서와 여백 규정을 반드시 확인하세요.\n\n표절 검사: 도서관 제공 검사 서비스 이용\n확인서: 지도교수 서명 필수\n양식 문의: 대학원 교학팀",
+        "en": "Theses must follow the graduate school's standard template, and a plagiarism-check report must accompany submission. Check the required order of cover, approval page, and abstract, as well as margin rules.\n\nPlagiarism check: via the library's screening service\nReport: advisor's signature required\nTemplate questions: Graduate School office."
+      }
+    }
+  ],
+  "career": [
+    {
+      "id": "cr-1",
+      "date": "2026-07-02",
+      "title": {
+        "ko": "2026 하반기 채용연계형 인턴십 합동 설명회 안내",
+        "en": "2026 H2 Career-Track Internship Joint Info Session"
+      },
+      "body": {
+        "ko": "모빌리티·에너지·반도체 장비 분야 기업들이 참여하는 채용연계형 인턴십 합동 설명회를 개최합니다. 직무 소개와 현직 엔지니어 멘토링 부스가 운영됩니다.\n\n일시: 2026년 7월 9일(목) 오후 2시\n장소: 공학원 대강당\n참가 기업 목록은 추후 공지 예정입니다.",
+        "en": "A joint info session for career-track internships with companies in mobility, energy, and semiconductor equipment, featuring role introductions and mentoring booths with working engineers.\n\nDate: Thursday, July 9, 2026, 2 PM\nVenue: Engineering Research Park Auditorium\nThe participating-company list will be announced."
+      }
+    },
+    {
+      "id": "cr-2",
+      "date": "2026-06-27",
+      "title": {
+        "ko": "기계공학 전공자 대상 여름 현장실습(4주) 추가 모집",
+        "en": "Additional Recruitment: 4-Week Summer Field Practicum for ME Majors"
+      },
+      "body": {
+        "ko": "여름방학 4주 현장실습 프로그램의 추가 참여자를 모집합니다. 실습 기간 동안 실습지원비가 지급되며, 학점(현장실습 1) 인정이 가능합니다.\n\n모집 마감: 2026년 7월 4일(토)\n실습 기간: 7월 20일 ~ 8월 14일\n신청: 포털 현장실습 시스템",
+        "en": "Additional openings are available for the four-week summer field practicum. A stipend is provided and one practicum credit may be earned.\n\nDeadline: Saturday, July 4, 2026\nPracticum period: July 20 – August 14\nApply via the portal practicum system."
+      }
+    },
+    {
+      "id": "cr-3",
+      "date": "2026-06-20",
+      "title": {
+        "ko": "동문 멘토링 데이: 진로 상담 신청 안내 (7월)",
+        "en": "Alumni Mentoring Day: July Career Counseling Sign-up"
+      },
+      "body": {
+        "ko": "산업계와 연구소에서 활동 중인 동문 멘토와 1:1 진로 상담을 진행하는 멘토링 데이를 엽니다. 완성차, 항공우주, 로봇 스타트업, 정부출연연구소 등 다양한 분야의 멘토가 참여합니다.\n\n일시: 2026년 7월 11일(토) 오전 10시~오후 4시\n장소: 제4공학관 라운지\n신청: 구글폼 (선착순 30명)",
+        "en": "Mentoring Day offers one-on-one career counseling with alumni working in industry and research institutes — automotive, aerospace, robotics startups, and government labs.\n\nDate: Saturday, July 11, 2026, 10 AM – 4 PM\nVenue: Engineering Hall IV Lounge\nSign-up: Google Form (first 30 students)."
+      }
+    }
+  ]
+}

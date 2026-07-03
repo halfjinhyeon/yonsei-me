@@ -1,0 +1,118 @@
+[
+  {
+    "id": "energy-conversion",
+    "title": {
+      "ko": "에너지 변환·연소",
+      "en": "Energy Conversion & Combustion"
+    },
+    "pi": {
+      "ko": "김민준",
+      "en": "Minjun Kim"
+    },
+    "summary": {
+      "ko": "청정 연소, 수소 에너지, 고효율 발전 시스템을 연구하여 탄소중립 시대의 에너지 문제를 해결합니다.",
+      "en": "Research on clean combustion, hydrogen energy, and high-efficiency power systems for the carbon-neutral era."
+    },
+    "keywords": {
+      "ko": [
+        "수소연소",
+        "탄소중립",
+        "발전시스템"
+      ],
+      "en": [
+        "Hydrogen",
+        "Carbon Neutral",
+        "Power Systems"
+      ]
+    },
+    "accent": "energy",
+    "image": "/img/research/energy-conversion.jpg"
+  },
+  {
+    "id": "intelligent-robotics",
+    "title": {
+      "ko": "지능형 로보틱스",
+      "en": "Intelligent Robotics"
+    },
+    "pi": {
+      "ko": "이서연",
+      "en": "Seoyeon Lee"
+    },
+    "summary": {
+      "ko": "인간과 협력하는 로봇의 제어와 학습, 안전한 상호작용 기술을 개발합니다.",
+      "en": "Developing control and learning for collaborative robots and safe human-robot interaction."
+    },
+    "keywords": {
+      "ko": [
+        "로봇제어",
+        "강화학습",
+        "HRI"
+      ],
+      "en": [
+        "Control",
+        "RL",
+        "HRI"
+      ]
+    },
+    "accent": "robotics",
+    "image": "/img/research/intelligent-robotics.jpg"
+  },
+  {
+    "id": "precision-manufacturing",
+    "title": {
+      "ko": "정밀 설계·적층제조",
+      "en": "Precision Design & Additive Manufacturing"
+    },
+    "pi": {
+      "ko": "박지훈",
+      "en": "Jihoon Park"
+    },
+    "summary": {
+      "ko": "3D 프린팅과 정밀 가공을 결합해 경량·고성능 부품 설계 기술을 연구합니다.",
+      "en": "Combining 3D printing and precision machining for lightweight, high-performance component design."
+    },
+    "keywords": {
+      "ko": [
+        "적층제조",
+        "위상최적화",
+        "경량화"
+      ],
+      "en": [
+        "Additive Mfg.",
+        "Topology Opt.",
+        "Lightweight"
+      ]
+    },
+    "accent": "design",
+    "image": "/img/research/precision-manufacturing.jpg"
+  },
+  {
+    "id": "biomechanics",
+    "title": {
+      "ko": "바이오메카닉스",
+      "en": "Biomechanics"
+    },
+    "pi": {
+      "ko": "최유나",
+      "en": "Yuna Choi"
+    },
+    "summary": {
+      "ko": "인체 동역학 분석과 재활·보조 기기 설계로 삶의 질 향상에 기여합니다.",
+      "en": "Improving quality of life through human dynamics analysis and rehabilitation/assistive device design."
+    },
+    "keywords": {
+      "ko": [
+        "재활공학",
+        "인체동역학",
+        "웨어러블"
+      ],
+      "en": [
+        "Rehab",
+        "Human Dynamics",
+        "Wearable"
+      ]
+    },
+    "accent": "bio",
+    "image": "/img/programs/biomech-track.jpg"
+  }
+]

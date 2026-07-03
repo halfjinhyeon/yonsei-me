@@ -1,0 +1,62 @@
+[
+  {
+    "id": "kim-minjun",
+    "name": { "ko": "김민준", "en": "Minjun Kim" },
+    "title": { "ko": "교수", "en": "Professor" },
+    "field": "energy",
+    "specialty": { "ko": "연소·에너지 시스템", "en": "Combustion & Energy Systems" },
+    "email": "mjkim@yonsei.ac.kr",
+    "lab": { "ko": "에너지변환 연구실", "en": "Energy Conversion Lab" },
+    "photo": "/faculty/placeholder.svg"
+  },
+  {
+    "id": "lee-seoyeon",
+    "name": { "ko": "이서연", "en": "Seoyeon Lee" },
+    "title": { "ko": "교수", "en": "Professor" },
+    "field": "robotics",
+    "specialty": { "ko": "로봇 제어·인간-로봇 상호작용", "en": "Robot Control & HRI" },
+    "email": "sylee@yonsei.ac.kr",
+    "lab": { "ko": "지능로봇 연구실", "en": "Intelligent Robotics Lab" },
+    "photo": "/faculty/placeholder.svg"
+  },
+  {
+    "id": "park-jihoon",
+    "name": { "ko": "박지훈", "en": "Jihoon Park" },
+    "title": { "ko": "부교수", "en": "Associate Professor" },
+    "field": "design",
+    "specialty": { "ko": "정밀설계·적층제조", "en": "Precision Design & Additive Manufacturing" },
+    "email": "jhpark@yonsei.ac.kr",
+    "lab": { "ko": "정밀제조 연구실", "en": "Precision Manufacturing Lab" },
+    "photo": "/faculty/placeholder.svg"
+  },
+  {
+    "id": "choi-yuna",
+    "name": { "ko": "최유나", "en": "Yuna Choi" },
+    "title": { "ko": "부교수", "en": "Associate Professor" },
+    "field": "bio",
+    "specialty": { "ko": "바이오메카닉스·재활공학", "en": "Biomechanics & Rehabilitation Engineering" },
+    "email": "ynchoi@yonsei.ac.kr",
+    "lab": { "ko": "바이오메카닉스 연구실", "en": "Biomechanics Lab" },
+    "photo": "/faculty/placeholder.svg"
+  },
+  {
+    "id": "jung-hyunwoo",
+    "name": { "ko": "정현우", "en": "Hyunwoo Jung" },
+    "title": { "ko": "교수", "en": "Professor" },
+    "field": "energy",
+    "specialty": { "ko": "열전달·친환경 냉각", "en": "Heat Transfer & Sustainable Cooling" },
+    "email": "hwjung@yonsei.ac.kr",
+    "lab": { "ko": "열유체 연구실", "en": "Thermofluids Lab" },
+    "photo": "/faculty/placeholder.svg"
+  },
+  {
+    "id": "han-daeun",
+    "name": { "ko": "한다은", "en": "Daeun Han" },
+    "title": { "ko": "조교수", "en": "Assistant Professor" },
+    "field": "robotics",
+    "specialty": { "ko": "소프트 로보틱스·구동기", "en": "Soft Robotics & Actuators" },
+    "email": "dehan@yonsei.ac.kr",
+    "lab": { "ko": "소프트로봇 연구실", "en": "Soft Robotics Lab" },
+    "photo": "/faculty/placeholder.svg"
+  }
+]

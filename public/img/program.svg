@@ -1,0 +1,19 @@
+<svg width="800" height="600" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" role="img" aria-label="">
+  <!-- 카드 상단 이미지 플레이스홀더. currentColor로 카드별 색상 지정 가능 -->
+  <defs>
+    <linearGradient id="pg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="currentColor" stop-opacity="0.95"/>
+      <stop offset="1" stop-color="currentColor" stop-opacity="0.65"/>
+    </linearGradient>
+    <pattern id="pgrid" width="32" height="32" patternUnits="userSpaceOnUse">
+      <path d="M32 0H0V32" fill="none" stroke="#ffffff" stroke-opacity="0.08" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="800" height="600" fill="url(#pg)"/>
+  <rect width="800" height="600" fill="url(#pgrid)"/>
+  <g stroke="#ffffff" stroke-opacity="0.35" fill="none" stroke-width="2">
+    <circle cx="620" cy="120" r="90"/>
+    <circle cx="620" cy="120" r="55"/>
+    <path d="M530 120 H710 M620 30 V210"/>
+  </g>
+</svg>

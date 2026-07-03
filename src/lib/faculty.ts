@@ -1,0 +1,73 @@
+import { readFileSync, readdirSync } from 'node:fs';
+import { join } from 'node:path';
+
+export interface FacultyLab {
+  nameKo: string;
+  nameEn: string;
+  url: string;
+}
+
+export interface FacultyRecord {
+  name: string;
+  title: string;
+  role: string | null;
+  email: string | null;
+  phone: string | null;
+  room: string | null;
+  specialty: string | null;
+  yearRange: string | null;
+  moreInfoUrl: string | null;
+  photoAlt: string;
+  lab: FacultyLab | null;
+  photo: string | null;
+}
+
+export interface ClubSummary {
+  slug: string;
+  name: string;
+  teaser: string;
+}
+
+export interface LabDirectoryEntry {
+  nameKo: string;
+  nameEn: string;
+  professorKo: string;
+  professorEn: string;
+  location: string;
+  phone: string;
+  url: string;
+}
+
+function readJson<T>(name: string): T {
+  const path = join(process.cwd(), 'content', name);
+  return JSON.parse(readFileSync(path, 'utf-8')) as T;
+}
+
+/** public/img 에 있는 "{교수 이름}.{ext}" 프로필 사진을 이름 기준으로 매핑 */
+function getFacultyPhotoMap(): Map<string, string> {
+  const dir = join(process.cwd(), 'public', 'img');
+  const map = new Map<string, string>();
+  for (const file of readdirSync(dir)) {
+    const dot = file.lastIndexOf('.');
+    if (dot <= 0) continue;
+    map.set(file.slice(0, dot), `/img/${file}`);
+  }
+  return map;
+}
+
+/** content/faculty-directory.json — 교수진 게시판에서 구조화 추출한 실제 데이터 */
+export function getFacultyDirectory(): FacultyRecord[] {
+  const records = readJson<Omit<FacultyRecord, 'photo'>[]>('faculty-directory.json');
+  const photos = getFacultyPhotoMap();
+  return records.map((f) => ({ ...f, photo: photos.get(f.name) ?? null }));
+}
+
+/** content/clubs.json — 동아리 인덱스(슬러그/이름/티저) */
+export function getClubs(): ClubSummary[] {
+  return readJson<ClubSummary[]>('clubs.json');
+}
+
+/** content/labs-directory.json — 연구실 목록(지도교수·위치·연락처·사이트 링크) */
+export function getLabsDirectory(): LabDirectoryEntry[] {
+  return readJson<LabDirectoryEntry[]>('labs-directory.json');
+}

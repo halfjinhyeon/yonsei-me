@@ -1,0 +1,418 @@
+{
+  "meta": {
+    "siteName": "School of Mechanical Engineering, Yonsei University",
+    "shortName": "Mechanical Engineering",
+    "university": "Yonsei University",
+    "description": "School of Mechanical Engineering at Yonsei University — a hub of mechanical engineering education and research. Explore our people, research, academics, and admissions."
+  },
+  "nav": {
+    "about": "About",
+    "faculty": "Faculty",
+    "academics": "Academics",
+    "research": "Research",
+    "news": "News",
+    "admission": "Admissions",
+    "alumni": "Alumni",
+    "contact": "Contact",
+    "menu": "Open menu",
+    "close": "Close menu",
+    "skipToContent": "Skip to content"
+  },
+  "langToggle": {
+    "label": "Select language",
+    "ko": "한국어",
+    "en": "English"
+  },
+  "menu": {
+    "about": {
+      "label": "About",
+      "items": {
+        "history": "History",
+        "faculty": "Faculty",
+        "staff": "Staff",
+        "directions": "Directions"
+      }
+    },
+    "undergraduate": {
+      "label": "Undergraduate",
+      "items": {
+        "goals": "Educational Goals",
+        "requirements": "Graduation Requirements",
+        "courses": "Courses",
+        "curriculum": "Curriculum Map",
+        "clubs": "Student Clubs",
+        "scholarship": "Scholarships"
+      }
+    },
+    "graduate": {
+      "label": "Graduate",
+      "items": {
+        "admission": "Admissions",
+        "requirements": "Graduation Requirements",
+        "courses": "Courses",
+        "labs": "Lab Introductions & Videos",
+        "bk21": "BK21 FOUR"
+      }
+    },
+    "research": {
+      "label": "Research",
+      "items": {
+        "vision": "Research Vision",
+        "capacity": "Research Capacity",
+        "labs": "Laboratories",
+        "social": "Social Challenge Board"
+      }
+    },
+    "news": {
+      "label": "News & Notices",
+      "items": {
+        "notices": "Notices",
+        "news": "News",
+        "thesis": "Thesis Defense",
+        "resources": "Resources",
+        "career": "Career Info",
+        "events": "Events",
+        "seminars": "Seminars",
+        "calendar": "Calendar"
+      }
+    },
+    "recruit": {
+      "label": "Faculty Recruitment",
+      "items": {
+        "info": "Recruitment Info",
+        "apply": "Application"
+      }
+    }
+  },
+  "board": {
+    "news": {
+      "title": "News",
+      "more": "More"
+    },
+    "seminars": {
+      "title": "Seminars",
+      "more": "More",
+      "hostLabel": "Speaker"
+    },
+    "events": {
+      "title": "Events",
+      "more": "More"
+    },
+    "noticesUndergrad": {
+      "title": "Undergraduate Notices",
+      "more": "More"
+    },
+    "noticesGraduate": {
+      "title": "Graduate Notices",
+      "more": "More"
+    },
+    "weekly": {
+      "title": "This Week's Events",
+      "more": "More",
+      "empty": "No events"
+    }
+  },
+  "pages": {
+    "undergraduate": {
+      "subtitle": "Educational goals, curriculum, scholarships, and student life."
+    },
+    "graduate": {
+      "subtitle": "MS/PhD admissions, courses, labs, and the BK21 FOUR program."
+    },
+    "recruit": {
+      "subtitle": "Faculty recruitment information and the application process."
+    }
+  },
+  "home": {
+    "hero": {
+      "eyebrow": "YONSEI UNIVERSITY",
+      "title": "Engineering that moves the world,\npeople who design the future",
+      "subtitle": "The School of Mechanical Engineering at Yonsei University nurtures future engineers across energy, robotics, design, and biomechanics — built on creative thinking and rigorous fundamentals.",
+      "ctaPrimary": "About the School",
+      "ctaSecondary": "Meet our Faculty"
+    },
+    "statement": {
+      "eyebrow": "WHO WE ARE",
+      "title": "From questions to answers that change the world",
+      "body": "The School of Mechanical Engineering at Yonsei University combines the depth of basic science with engineering imagination to shape the future of energy, robotics, bio, and manufacturing. Beyond the boundaries of classroom and lab, every student grows into an engineer who takes on real-world problems."
+    },
+    "bandEducation": {
+      "eyebrow": "EDUCATION",
+      "title": "Education that bridges theory and practice",
+      "body": "A step-by-step curriculum that layers design, experiments, and projects on top of solid fundamentals — so graduates are ready to perform in the field from day one.",
+      "cta": "Explore academics"
+    },
+    "bandResearch": {
+      "eyebrow": "RESEARCH",
+      "title": "A research stage that competes with the world",
+      "body": "Labs in energy, robotics, biomechanics, and precision manufacturing produce results that draw the attention of international academia and industry.",
+      "cta": "Explore research"
+    },
+    "cta": {
+      "title": "We're looking for the engineers of tomorrow",
+      "body": "From admissions to lab visits, the doors of Yonsei Mechanical Engineering are always open.",
+      "primary": "Admissions",
+      "secondary": "Contact us"
+    },
+    "animHero": {
+      "pause": "Pause animation",
+      "play": "Play animation",
+      "region": "Main hero slides",
+      "slides": {
+        "0": {
+          "lead": "Analyze",
+          "lead2": "how things move",
+          "sub1": "from the micro",
+          "sub2": "to the massive"
+        },
+        "1": {
+          "lead": "Ask bigger",
+          "lead2": "questions",
+          "sub1": "and design",
+          "sub2": "better answers"
+        },
+        "2": {
+          "lead": "Move",
+          "lead2": "tomorrow's machines",
+          "sub1": "engineering",
+          "sub2": "for humanity"
+        },
+        "3": {
+          "lead": "See our",
+          "lead2": "innovation",
+          "sub1": "at work,",
+          "sub2": "right now"
+        }
+      }
+    },
+    "weAre": {
+      "statement": "<c1>Engineering</c1> that moves the world, <c2>people</c2> who design the future",
+      "link": "What is mechanical engineering? →"
+    },
+    "programs": {
+      "heading": "How will you move the <em>world</em> forward?",
+      "tabUg": "Undergraduate tracks",
+      "tabGrad": "Graduate programs",
+      "exploreUg": "Explore undergraduate academics →",
+      "exploreGrad": "Explore graduate programs →"
+    },
+    "people": {
+      "heading": "<em>Our</em> research at work",
+      "detail": "View lab",
+      "cta": "See all research areas →"
+    },
+    "innovate": {
+      "heading": "Innovate at <em>every</em> scale.",
+      "videoLabel": "School intro video (coming soon)"
+    },
+    "stats": {
+      "title": "Mechanical Engineering by the numbers",
+      "faculty": "Full-time faculty",
+      "students": "Enrolled students",
+      "labs": "Research labs",
+      "papers": "Papers per year",
+      "facultyUnit": "",
+      "studentsUnit": "",
+      "labsUnit": "",
+      "papersUnit": "+"
+    },
+    "vision": {
+      "eyebrow": "OUR VISION",
+      "title": "Grounded in fundamentals, reaching across boundaries",
+      "body": "We teach the core of mechanical engineering — thermal, fluids, solids, design, and control — in depth, while solving real-world problems through convergence with robotics, clean energy, precision medicine, and artificial intelligence.",
+      "pillars": {
+        "education": {
+          "title": "Solid Education",
+          "body": "A structured curriculum from core theory to hands-on design."
+        },
+        "research": {
+          "title": "World-class Research",
+          "body": "Leading labs and infrastructure in energy, robotics, bio, and manufacturing."
+        },
+        "global": {
+          "title": "Global Reach",
+          "body": "International collaborations and exchange programs onto the world stage."
+        }
+      }
+    },
+    "shortcuts": {
+      "title": "Quick Links",
+      "subtitle": "Jump straight to what you need.",
+      "academics": {
+        "title": "Academics",
+        "desc": "Undergraduate & graduate curriculum"
+      },
+      "research": {
+        "title": "Research",
+        "desc": "Labs and research themes"
+      },
+      "admission": {
+        "title": "Admissions",
+        "desc": "How to apply and career paths"
+      },
+      "news": {
+        "title": "Notices",
+        "desc": "News and seminar schedule"
+      }
+    },
+    "newsPreview": {
+      "title": "Latest News",
+      "viewAll": "View all"
+    }
+  },
+  "about": {
+    "hero": {
+      "title": "About the School",
+      "subtitle": "The tradition and ambition of Yonsei Mechanical Engineering since the 1950s."
+    },
+    "intro": {
+      "title": "Welcome to Mechanical Engineering",
+      "body": "The School of Mechanical Engineering at Yonsei University has grown alongside the nation's industrialization as a cradle of mechanical engineering education in Korea. We cultivate engineers with both depth in fundamentals and breadth in application, conducting world-class research across energy, robotics, bio, design, and manufacturing."
+    },
+    "vision": {
+      "title": "Vision & Goals",
+      "items": {
+        "0": {
+          "title": "Our People",
+          "body": "Convergent engineering leaders with creative problem-solving and ethical responsibility."
+        },
+        "1": {
+          "title": "Education Goal",
+          "body": "Engineers who balance solid fundamentals with practical capability."
+        },
+        "2": {
+          "title": "Research Focus",
+          "body": "Research that addresses humanity's challenges in energy, environment, and health."
+        }
+      }
+    },
+    "history": {
+      "title": "History",
+      "milestones": {
+        "0": {
+          "year": "1950s",
+          "text": "Founding of the department, laying the cornerstone of engineering education in Korea."
+        },
+        "1": {
+          "year": "1980s",
+          "text": "Launch of the doctoral program and shift to a research-centered structure."
+        },
+        "2": {
+          "year": "2000s",
+          "text": "Selected for the BK21 program; international collaborations take off."
+        },
+        "3": {
+          "year": "2020s",
+          "text": "Expansion of convergence research in robotics, clean energy, and biomechanics."
+        }
+      }
+    },
+    "dean": {
+      "title": "Message from the Chair",
+      "body": "Mechanical engineering has tangibly transformed human life. Even amid a changing era, the School of Mechanical Engineering at Yonsei University will nurture talents who boldly challenge the future on an unshakeable foundation. We ask for your continued interest and support.",
+      "sign": "Chair, School of Mechanical Engineering"
+    }
+  },
+  "stub": {
+    "badge": "Coming soon",
+    "body": "This page is structured and its detailed content will be added shortly.",
+    "back": "Back to home"
+  },
+  "faculty": {
+    "hero": {
+      "title": "Faculty",
+      "subtitle": "Meet the faculty leading each field of mechanical engineering."
+    },
+    "fields": {
+      "all": "All",
+      "energy": "Energy & Thermofluids",
+      "robotics": "Robotics & Control",
+      "design": "Design & Manufacturing",
+      "bio": "Biomechanics"
+    },
+    "emailLabel": "Email",
+    "labLabel": "Lab",
+    "moreLabel": "View details"
+  },
+  "academics": {
+    "hero": {
+      "title": "Academics",
+      "subtitle": "A structured undergraduate and graduate curriculum."
+    }
+  },
+  "research": {
+    "hero": {
+      "title": "Research",
+      "subtitle": "Explore our major research areas and laboratories."
+    },
+    "piLabel": "PI",
+    "keywordsLabel": "Keywords"
+  },
+  "news": {
+    "hero": {
+      "title": "News",
+      "subtitle": "Notices, news, and seminar schedules from the school."
+    },
+    "categories": {
+      "all": "All",
+      "notice": "Notice",
+      "seminar": "Seminar",
+      "achievement": "Achievement"
+    },
+    "readMore": "Read more",
+    "backToList": "Back to list",
+    "notFound": "The requested article could not be found.",
+    "view": {
+      "card": "Cards",
+      "list": "List"
+    },
+    "resources": {
+      "ugRequirements": "Undergraduate graduation requirements (by cohort)",
+      "curriculum": "Curriculum map",
+      "courses": "Undergraduate course catalog",
+      "gradRequirements": "Graduate degree requirements",
+      "labs": "Lab directory (with website links)",
+      "scholarship": "Scholarships",
+      "tagUg": "Undergraduate",
+      "tagGrad": "Graduate",
+      "tagResearch": "Research"
+    }
+  },
+  "admission": {
+    "hero": {
+      "title": "Admissions",
+      "subtitle": "Application information and career paths."
+    }
+  },
+  "alumni": {
+    "hero": {
+      "title": "Alumni & Partnership",
+      "subtitle": "Alumni network and industry collaboration."
+    }
+  },
+  "contact": {
+    "hero": {
+      "title": "Contact",
+      "subtitle": "Get in touch and find your way to us."
+    },
+    "addressLabel": "Address",
+    "phoneLabel": "Phone",
+    "emailLabel": "Email",
+    "mapTitle": "Map"
+  },
+  "footer": {
+    "address": "4th Engineering Hall, Yonsei University, 50 Yonsei-ro, Seodaemun-gu, Seoul, Korea",
+    "tel": "Tel",
+    "quickLinks": "Quick Links",
+    "related": "Related",
+    "university": "Yonsei University",
+    "engineering": "College of Engineering",
+    "portal": "Academic Portal",
+    "library": "Library",
+    "copyright": "School of Mechanical Engineering, Yonsei University. All rights reserved.",
+    "tagline": "Engineering that moves the world, people who design the future"
+  },
+  "breadcrumb": {
+    "home": "Home"
+  }
+}

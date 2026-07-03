@@ -1,0 +1,56 @@
+[
+  {
+    "slug": "2026-spring-seminar-series",
+    "category": "seminar",
+    "date": "2026-06-20",
+    "title": {
+      "ko": "2026년 하계 기계공학 세미나 시리즈 안내",
+      "en": "2026 Summer Mechanical Engineering Seminar Series"
+    },
+    "excerpt": {
+      "ko": "국내외 석학을 초청하여 진행되는 하계 세미나 시리즈 일정을 안내합니다.",
+      "en": "Announcing the summer seminar series featuring distinguished scholars from home and abroad."
+    },
+    "body": {
+      "ko": "기계공학부는 2026년 하계 세미나 시리즈를 개최합니다. 매주 목요일 오후 4시, 제4공학관 세미나실에서 진행되며 에너지, 로보틱스, 바이오메카닉스 분야의 최신 연구가 소개됩니다. 학부생과 대학원생 모두 참여 가능하며 사전 신청은 필요하지 않습니다.",
+      "en": "The School of Mechanical Engineering will host its 2026 summer seminar series. Sessions run every Thursday at 4 PM in the 4th Engineering Hall seminar room, covering the latest research in energy, robotics, and biomechanics. Open to all undergraduate and graduate students; no registration required."
+    },
+    "image": "/img/programs/bk21.jpg"
+  },
+  {
+    "slug": "robotics-lab-icra-award",
+    "category": "achievement",
+    "date": "2026-06-05",
+    "title": {
+      "ko": "지능로봇 연구실, 국제로봇학회(ICRA) 최우수논문상 수상",
+      "en": "Intelligent Robotics Lab wins ICRA Best Paper Award"
+    },
+    "excerpt": {
+      "ko": "이서연 교수 연구팀이 ICRA 2026에서 최우수논문상을 수상했습니다.",
+      "en": "Prof. Seoyeon Lee's team received the Best Paper Award at ICRA 2026."
+    },
+    "body": {
+      "ko": "이서연 교수 연구팀의 인간-로봇 협력 제어 연구가 세계 최대 로봇학회인 ICRA 2026에서 최우수논문상을 수상했습니다. 본 연구는 로봇이 사람의 의도를 실시간으로 예측하여 안전하게 협업하는 새로운 제어 기법을 제안했습니다.",
+      "en": "Prof. Seoyeon Lee's research on human-robot collaborative control received the Best Paper Award at ICRA 2026, the world's largest robotics conference. The work proposes a novel control method that predicts human intent in real time for safe collaboration."
+    },
+    "image": "/img/research/intelligent-robotics.jpg"
+  },
+  {
+    "slug": "2026-fall-admission-notice",
+    "category": "notice",
+    "date": "2026-05-28",
+    "title": {
+      "ko": "2026학년도 2학기 대학원 신입생 모집 안내",
+      "en": "2026 Fall Graduate Admissions Notice"
+    },
+    "excerpt": {
+      "ko": "석·박사 과정 신입생 모집 일정과 지원 방법을 안내합니다.",
+      "en": "Schedule and application details for master's and doctoral admissions."
+    },
+    "body": {
+      "ko": "2026학년도 2학기 기계공학부 대학원(석사·박사·석박사통합) 신입생을 모집합니다. 원서 접수는 6월 중순부터 시작되며, 자세한 전형 일정과 제출 서류는 대학원 입학처 홈페이지를 참고하시기 바랍니다. 문의는 학부 행정실로 연락 주시기 바랍니다.",
+      "en": "The School of Mechanical Engineering is recruiting graduate students (MS, PhD, integrated MS-PhD) for Fall 2026. Applications open in mid-June. Please refer to the Graduate Admissions Office website for the detailed schedule and required documents, or contact the school office with questions."
+    },
+    "image": "/img/programs/ms.jpg"
+  }
+]

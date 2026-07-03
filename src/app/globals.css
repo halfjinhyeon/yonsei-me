@@ -1,0 +1,300 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* =========================================================
+   디자인 토큰 — CSS 변수 (RGB 채널값, Tailwind alpha 지원)
+   색 대비는 WCAG AA 기준으로 조정
+   ========================================================= */
+@layer base {
+  :root {
+    /* 브랜드: 연세 네이비 계열 */
+    --brand: 0 40 94; /* #00285E */
+    --brand-fg: 255 255 255;
+    --brand-muted: 0 87 168; /* #0057A8 */
+
+    /* 표면 */
+    --surface: 255 255 255;
+    --surface-soft: 244 247 251; /* 아주 옅은 블루 그레이 */
+    --surface-border: 224 230 237;
+
+    /* 본문 텍스트 (AA 대비 확보) */
+    --content: 17 24 39; /* 거의 검정 */
+    --content-soft: 71 85 105; /* slate-600 */
+    --content-faint: 100 116 139; /* slate-500 */
+
+    --font-sans: 'Pretendard Variable', 'Pretendard';
+    --font-display: 'Pretendard Variable', 'Pretendard';
+    /* 본문 헤딩의 리드 단어(이탤릭 세리프)용 — Cornell 스타일 대비 */
+    --font-serif: 'Noto Serif KR', 'Nanum Myeongjo', 'Apple SD Myungjo', Batang, Georgia, serif;
+  }
+
+  .dark {
+    --brand: 96 165 250; /* 다크에선 밝은 블루를 강조색으로 */
+    --brand-fg: 8 15 30;
+    --brand-muted: 147 197 253;
+
+    --surface: 12 18 32; /* 딥 네이비 그레이 */
+    --surface-soft: 20 28 46;
+    --surface-border: 39 51 74;
+
+    --content: 237 242 249;
+    --content-soft: 186 197 214;
+    --content-faint: 148 163 184;
+  }
+
+  * {
+    border-color: rgb(var(--surface-border));
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: rgb(var(--surface));
+    color: rgb(var(--content));
+    font-family: var(--font-sans), system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* 키보드 포커스 링 (마우스 클릭 시엔 숨김) */
+  :focus-visible {
+    outline: 2px solid rgb(var(--brand-muted));
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  /* 제목 기본 밸런스 */
+  h1, h2, h3 {
+    text-wrap: balance;
+  }
+
+  /* 모션 최소화 선호 존중 */
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@layer components {
+  /* 본문 바로가기 링크: 포커스 시에만 노출 */
+  .skip-link {
+    @apply sr-only;
+  }
+  .skip-link:focus {
+    @apply not-sr-only fixed left-4 top-4 z-[100] rounded-md bg-yonsei-navy px-4 py-2 text-sm font-semibold text-white shadow-lg;
+  }
+
+  /* 재사용 버튼 */
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold transition-all duration-200 ease-out-expo focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2;
+  }
+  .btn-primary {
+    @apply btn bg-yonsei-navy text-white hover:bg-yonsei-blue hover:-translate-y-0.5 focus-visible:outline-yonsei-blue;
+  }
+  .btn-secondary {
+    @apply btn border border-surface-border bg-surface text-content hover:border-yonsei-blue hover:text-yonsei-blue;
+  }
+
+  /* eyebrow 라벨 */
+  .eyebrow {
+    @apply text-xs font-bold uppercase tracking-[0.18em] text-yonsei-blue;
+  }
+
+  /* 임포트 본문(마크다운) 렌더링 스타일 — 크고 굵은 타이포 + 넉넉한 여백,
+     컬러 악센트 바/아이콘 없이 순수 사이즈·굵기·자간으로만 위계를 표현 */
+  .prose-content {
+    @apply text-content;
+  }
+  .prose-content h1 {
+    @apply mt-0 max-w-3xl text-4xl font-bold leading-tight tracking-tight text-content sm:text-5xl;
+  }
+  .prose-content h2 {
+    @apply mt-16 max-w-3xl text-3xl font-bold leading-tight tracking-tight text-content sm:text-4xl;
+  }
+  .prose-content h3,
+  .prose-content h4 {
+    @apply mt-14 max-w-3xl text-3xl font-bold leading-tight tracking-tight text-content sm:text-4xl;
+  }
+  .prose-content h1:first-child,
+  .prose-content h2:first-child,
+  .prose-content h3:first-child,
+  .prose-content h4:first-child {
+    @apply mt-0;
+  }
+  /* 헤딩의 리드(첫) 단어 — 세리프(명조)로 대비를 줘 시선을 끈다 (이탤릭 없이) */
+  .prose-content h1 .lead,
+  .prose-content h2 .lead,
+  .prose-content h3 .lead,
+  .prose-content h4 .lead {
+    font-family: var(--font-serif);
+    font-style: normal;
+    font-weight: 400;
+    letter-spacing: 0;
+    margin-right: 0.06em;
+  }
+  /* 본문 문단·목록은 가독성을 위해 한 줄 길이를 제한 (표는 예외) */
+  .prose-content p,
+  .prose-content ul,
+  .prose-content ol {
+    @apply max-w-2xl;
+  }
+  .prose-content p {
+    @apply my-5 text-base leading-[1.8] text-content-soft;
+  }
+  .prose-content a {
+    @apply font-medium text-yonsei-blue underline-offset-2 hover:underline;
+  }
+  .prose-content ul {
+    @apply my-5 list-disc space-y-2 pl-5 text-base leading-[1.8] text-content-soft;
+  }
+  .prose-content ol {
+    @apply my-5 list-decimal space-y-2 pl-5 text-base leading-[1.8] text-content-soft;
+  }
+  .prose-content strong {
+    @apply font-semibold text-content;
+  }
+  .prose-content img {
+    @apply my-6 rounded-lg;
+  }
+  .prose-content blockquote {
+    @apply my-6 max-w-2xl border-l-2 border-content py-1 pl-5 text-lg leading-relaxed text-content;
+  }
+  /* 표: 에디토리얼(신문/잡지) 톤 — 컬러 블록·지브라 스트라이프·카드 그림자 없이
+     굵은 상단 룰과 헤어라인만으로 구분 (생성형 대시보드 느낌 배제) */
+  .prose-content table {
+    @apply my-8 block w-full overflow-x-auto text-sm;
+    border-collapse: collapse;
+  }
+  .prose-content thead {
+    @apply border-b-2 border-yonsei-navy;
+  }
+  .prose-content th {
+    @apply whitespace-nowrap px-3 py-3 text-left text-xs font-bold uppercase tracking-wide text-content-faint;
+  }
+  .prose-content td {
+    @apply border-b border-surface-border px-3 py-3.5 align-top text-content-soft;
+  }
+  .prose-content tbody tr:last-child td {
+    @apply border-b-0;
+  }
+}
+
+@layer utilities {
+  /* 부모 컨테이너 폭을 벗어나 뷰포트 전체로 확장 (풀블리드) */
+  .full-bleed {
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+  }
+
+  /* 애니메이션 그라디언트 (연세 네이비→블루→골드) */
+  .anim-gradient {
+    background: linear-gradient(135deg, #00285e 0%, #0057a8 45%, #2e86d6 75%, #1b3a6b 100%);
+    background-size: 200% 200%;
+    animation: gradientShift 14s ease-in-out infinite alternate;
+  }
+  @keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 50% 100%; }
+  }
+
+  /* 흐르는 웨이브 라인 (좌우로 천천히 이동) */
+  .wave-drift {
+    animation: waveDrift 22s linear infinite;
+  }
+  @keyframes waveDrift {
+    from { transform: translateX(0); }
+    to { transform: translateX(-8%); }
+  }
+
+  /* 슬라이드 페이드/업 진입 */
+  .slide-enter {
+    animation: slideEnter 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+  @keyframes slideEnter {
+    from { opacity: 0; transform: translateY(1.25rem); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+  /* ===== 서브페이지 히어로 & 사이드탭 진입 애니메이션 =====
+     Cornell Human Ecology 서브페이지에서 추출한 5가지 패턴을
+     연세 브랜드 톤(네이비/블루/골드)으로 재구현. */
+
+  @keyframes heroTitleIn {
+    from { opacity: 0; transform: translateX(-40px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+  @keyframes heroSubtitleIn {
+    from { opacity: 0; transform: translateX(-40px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+  @keyframes crumbFadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  @keyframes navItemUp {
+    from { opacity: 0; transform: translateY(14px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes panelFadeUp {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .anim-panel {
+    animation: panelFadeUp 0.35s ease-out forwards;
+  }
+
+  .anim-hero-title {
+    opacity: 0;
+    animation: heroTitleIn 0.8s ease 0.1s 1 forwards;
+  }
+  .anim-hero-subtitle {
+    opacity: 0;
+    animation: heroSubtitleIn 0.8s ease 0.3s 1 forwards;
+  }
+  .anim-crumb {
+    opacity: 0;
+    animation: crumbFadeIn 0.5s ease 0s 1 forwards;
+  }
+  /* 사이드/모바일 탭 목록: nth-child 순차 등장 (최대 8개) */
+  .anim-nav-item {
+    opacity: 0;
+    animation: navItemUp 0.5s ease-out forwards;
+  }
+  .anim-nav-item:nth-child(1) { animation-delay: 0ms; }
+  .anim-nav-item:nth-child(2) { animation-delay: 60ms; }
+  .anim-nav-item:nth-child(3) { animation-delay: 120ms; }
+  .anim-nav-item:nth-child(4) { animation-delay: 180ms; }
+  .anim-nav-item:nth-child(5) { animation-delay: 240ms; }
+  .anim-nav-item:nth-child(6) { animation-delay: 300ms; }
+  .anim-nav-item:nth-child(7) { animation-delay: 360ms; }
+  .anim-nav-item:nth-child(8) { animation-delay: 420ms; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .anim-hero-title,
+    .anim-hero-subtitle,
+    .anim-crumb,
+    .anim-nav-item,
+    .anim-panel {
+      opacity: 1;
+      animation: none;
+      transform: none;
+    }
+  }
+}
