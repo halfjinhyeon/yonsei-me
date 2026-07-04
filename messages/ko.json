@@ -41,7 +41,8 @@
         "courses": "교과목 소개",
         "curriculum": "교과목 체계도",
         "clubs": "동아리 소개",
-        "scholarship": "장학금"
+        "scholarship": "장학금",
+        "checker": "졸업요건 체크"
       }
     },
     "graduate": {
@@ -81,6 +82,15 @@
       "items": {
         "info": "초빙안내",
         "apply": "지원서작성"
+      }
+    },
+    "alumni": {
+      "label": "동문",
+      "items": {
+        "greeting": "동문 인사말",
+        "organization": "동문회 조직",
+        "notable": "자랑스러운 동문",
+        "network": "동문 소식·네트워크"
       }
     }
   },
@@ -386,8 +396,8 @@
   },
   "alumni": {
     "hero": {
-      "title": "동문·대외협력",
-      "subtitle": "동문 네트워크와 산학협력 활동."
+      "title": "동문",
+      "subtitle": "연세 기계공학부 동문 네트워크 — 어디에 있든 다시 연결됩니다."
     }
   },
   "contact": {

@@ -1,0 +1,100 @@
+{
+  "engineeringRequired": [
+    { "name": "공학수학(1)", "credits": 3, "aliases": ["공학수학1"] },
+    { "name": "공학수학(2)", "credits": 3, "aliases": ["공학수학2"] },
+    { "name": "공학수학(3)", "credits": 3, "aliases": ["공학수학3"] },
+    { "name": "공학수학(4)", "credits": 3, "aliases": ["공학수학4"] },
+    { "name": "공학정보처리", "credits": 3, "aliases": [] },
+    { "name": "공학물리학및실험(1)", "credits": 3, "aliases": ["공학물리학및실험1"] },
+    { "name": "공학물리학및실험(2)", "credits": 3, "aliases": ["공학물리학및실험2"] },
+    { "name": "공학화학및실험(1)", "credits": 3, "aliases": ["공학화학및실험1"] },
+    { "name": "공학화학및실험(2)", "credits": 3, "aliases": ["공학화학및실험2"] }
+  ],
+  "majorRequiredBase": [
+    { "name": "고체역학", "credits": 3, "aliases": [] },
+    { "name": "열역학", "credits": 3, "aliases": [] },
+    { "name": "동역학", "credits": 3, "aliases": [] },
+    { "name": "유체역학", "credits": 3, "aliases": [] },
+    { "name": "기계공학실험(1)", "credits": 3, "aliases": ["기계공학실험1"] },
+    { "name": "기계공학실험(2)", "credits": 3, "aliases": ["기계공학실험2"] },
+    { "name": "창의제품설계", "credits": 3, "aliases": [] },
+    { "name": "연구논문", "credits": 3, "aliases": [] }
+  ],
+  "majorCreativeDesign": { "name": "기계공학창의설계", "credits": 3, "aliases": [] },
+  "majorElectivePool": [
+    { "name": "응용고체역학", "credits": 3 },
+    { "name": "환경기계공학", "credits": 3 },
+    { "name": "공학재료", "credits": 3 },
+    { "name": "재료거동학", "credits": 3 },
+    { "name": "광공학", "credits": 3 },
+    { "name": "기계요소설계", "credits": 3 },
+    { "name": "기계진동", "credits": 3 },
+    { "name": "메카니즘설계", "credits": 3 },
+    { "name": "메카트로닉스", "credits": 3 },
+    { "name": "컴퓨터응용기계설계", "credits": 3 },
+    { "name": "생산공학", "credits": 3 },
+    { "name": "에너지동력공학", "credits": 3 },
+    { "name": "열전달", "credits": 3 },
+    { "name": "응용열역학", "credits": 3 },
+    { "name": "응용유체역학", "credits": 3 },
+    { "name": "정형생산시스템", "credits": 3 },
+    { "name": "전자기학및응용", "credits": 3 },
+    { "name": "기계시스템제어", "credits": 3 },
+    { "name": "나노기계공학", "credits": 3 },
+    { "name": "마이크로기계시스템", "credits": 3 },
+    { "name": "바이오의료기계", "credits": 3 },
+    { "name": "생체역학", "credits": 3 },
+    { "name": "컴퓨터해석기반설계", "credits": 3 },
+    { "name": "기계공학세미나", "credits": 3 },
+    { "name": "스페셜토픽", "credits": 1, "aliases": ["스페셜 토픽", "주니어세미나"] },
+    { "name": "학부연구(1)", "credits": 1, "aliases": ["학부연구1"] },
+    { "name": "학부연구(2)", "credits": 1, "aliases": ["학부연구2"] },
+    { "name": "학부연구(3)", "credits": 1, "aliases": ["학부연구3"] },
+    { "name": "학부연구(4)", "credits": 1, "aliases": ["학부연구4"] },
+    { "name": "공학수치해석", "credits": 3 },
+    { "name": "확률통계", "credits": 3 }
+  ],
+  "electiveAreas": ["문학과예술", "인간과역사", "언어와표현", "가치와윤리", "국가와사회", "지역과세계"],
+  "cohorts": [
+    {
+      "id": "25",
+      "label": "25학번",
+      "total": 130,
+      "majorRequiredCredits": 24,
+      "majorElectiveCredits": 36,
+      "freeCredits": 21,
+      "includeCreativeDesign": false,
+      "includeSocialEngagement": true
+    },
+    {
+      "id": "24",
+      "label": "24학번",
+      "total": 130,
+      "majorRequiredCredits": 24,
+      "majorElectiveCredits": 36,
+      "freeCredits": 21,
+      "includeCreativeDesign": false,
+      "includeSocialEngagement": true
+    },
+    {
+      "id": "23",
+      "label": "23학번",
+      "total": 130,
+      "majorRequiredCredits": 27,
+      "majorElectiveCredits": 33,
+      "freeCredits": 21,
+      "includeCreativeDesign": true,
+      "includeSocialEngagement": true
+    },
+    {
+      "id": "22",
+      "label": "22학번",
+      "total": 130,
+      "majorRequiredCredits": 27,
+      "majorElectiveCredits": 33,
+      "freeCredits": 22,
+      "includeCreativeDesign": true,
+      "includeSocialEngagement": false
+    }
+  ]
+}

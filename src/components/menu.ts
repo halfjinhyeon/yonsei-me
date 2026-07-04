@@ -29,6 +29,7 @@ export const menu: MenuGroup[] = [
     items: [
       { key: 'goals', href: '/undergraduate#goals' },
       { key: 'requirements', href: '/undergraduate#requirements' },
+      { key: 'checker', href: '/undergraduate#checker' },
       { key: 'courses', href: '/undergraduate#courses' },
       { key: 'curriculum', href: '/undergraduate#curriculum' },
       { key: 'clubs', href: '/undergraduate#clubs' },
@@ -68,6 +69,16 @@ export const menu: MenuGroup[] = [
       { key: 'events', href: '/news#events' },
       { key: 'seminars', href: '/news#seminars' },
       { key: 'calendar', href: '/news#calendar' },
+    ],
+  },
+  {
+    key: 'alumni',
+    href: '/alumni',
+    items: [
+      { key: 'greeting', href: '/alumni#greeting' },
+      { key: 'organization', href: '/alumni#organization' },
+      { key: 'notable', href: '/alumni#notable' },
+      { key: 'network', href: '/alumni#network' },
     ],
   },
   {

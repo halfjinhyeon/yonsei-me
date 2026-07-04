@@ -1,6 +1,6 @@
 #### 로보인
 
-> 🖼️ 이미지 자리: ROBOIN.jpg
+<img src="/동아리/ROBOIN.jpg" alt="MECAR" style="max-width:100%; height:auto;" />
 
 - 기계공학과 로봇 학술 동아리
 - 주요활동 로봇을 배우고 싶은 사람을 위한 '로보인 커리큘럼' 프로그램

@@ -1,0 +1,7 @@
+{
+  "/[locale]/undergraduate/page": "app/[locale]/undergraduate/page.js",
+  "/[locale]/page": "app/[locale]/page.js",
+  "/[locale]/admission/page": "app/[locale]/admission/page.js",
+  "/[locale]/research/page": "app/[locale]/research/page.js",
+  "/[locale]/faculty-recruitment/page": "app/[locale]/faculty-recruitment/page.js"
+}

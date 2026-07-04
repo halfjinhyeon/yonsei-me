@@ -9,6 +9,26 @@ import { LocaleToggle } from './LocaleToggle';
 import { Container } from './Container';
 import { Logo } from './Logo';
 
+function Chevron({ className }: { className?: string }) {
+  return (
+    <svg
+      aria-hidden="true"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      className={cn('h-3.5 w-3.5 transition-transform duration-200', className)}
+    >
+      <path d="m6 9 6 6 6-6" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+/**
+ * 상단 글로벌 헤더 — Cornell식 편집형 내비게이션.
+ * 히어로 위에서는 투명(흰 텍스트), 스크롤/드로어 열림 시 흰 배경 + 진한 텍스트로 반전.
+ * 같은 페이지 해시 링크의 탭 전환은 TabbedContent가 클릭/해시 변경을 감지해 처리한다.
+ */
 export function Header() {
   const t = useTranslations('nav');
   const tMenu = useTranslations('menu');
@@ -24,7 +44,7 @@ export function Header() {
     setExpanded(null);
   }, [pathname]);
 
-  // 스크롤 시 헤더를 솔리드로 반전 (히어로 위에서는 투명)
+  // 스크롤 시 헤더를 흰 배경으로 반전 (히어로 위에서는 투명)
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
     onScroll();
@@ -56,29 +76,49 @@ export function Header() {
   return (
     <header
       className={cn(
-        'fixed inset-x-0 top-0 z-50 text-white transition-colors duration-300',
+        'fixed inset-x-0 top-0 z-50 transition-colors duration-300',
         solid
-          ? 'bg-yonsei-navy/95 shadow-lg shadow-yonsei-navy/20 backdrop-blur supports-[backdrop-filter]:bg-yonsei-navy/85'
-          : 'bg-transparent',
+          ? 'border-b border-surface-border bg-surface text-content shadow-sm'
+          : 'bg-transparent text-white',
       )}
     >
       <Container>
-        <div className="flex h-16 items-center justify-between gap-4 lg:h-[4.5rem]">
-          {/* 로고 / 학부명 */}
+        <div className="flex h-16 items-center justify-between gap-6 lg:h-20">
+          {/* 로고 — 엠블럼 | 세로 실선 | 워드마크 (흰 마크라 밝은 헤더에선 네이비 칩 위에) */}
           <Link
             href="/"
-            className="flex shrink-0 items-center gap-3 rounded-md focus-visible:outline-white"
+            className="flex shrink-0 items-center gap-3.5 focus-visible:outline-yonsei-blue"
           >
-            <Logo size={40} className="h-10 w-10" />
+            <span
+              className={cn(
+                'grid h-11 w-11 shrink-0 place-items-center rounded-full transition-colors',
+                solid ? 'bg-yonsei-navy' : 'bg-transparent',
+              )}
+            >
+              <Logo size={36} className="h-9 w-9" />
+            </span>
+            <span
+              aria-hidden="true"
+              className={cn(
+                'h-9 w-px transition-colors',
+                solid ? 'bg-surface-border' : 'bg-white/30',
+              )}
+            />
             <span className="flex flex-col leading-tight">
-              <span className="text-sm font-bold sm:text-base">{tMeta('shortName')}</span>
-              <span className="text-[11px] text-white/60">{tMeta('university')}</span>
+              <span className="text-base font-bold tracking-tight sm:text-lg">
+                {tMeta('shortName')}
+              </span>
+              <span
+                className={cn('text-[11px]', solid ? 'text-content-faint' : 'text-white/60')}
+              >
+                {tMeta('university')}
+              </span>
             </span>
           </Link>
 
-          {/* 데스크톱 메가 네비 */}
+          {/* 데스크톱 내비게이션 */}
           <nav aria-label="주 메뉴" className="hidden xl:block">
-            <ul className="flex items-center">
+            <ul className="flex items-center gap-x-8">
               {menu.map((group) => (
                 <li key={group.key} className="group relative">
                   <Link
@@ -86,44 +126,33 @@ export function Header() {
                     aria-current={isActive(group.href) ? 'page' : undefined}
                     aria-haspopup="true"
                     className={cn(
-                      'flex items-center gap-1 rounded-md px-3.5 py-2 text-sm font-medium transition-colors',
-                      isActive(group.href) ? 'text-white' : 'text-white/80 hover:text-white',
+                      'flex items-center gap-1.5 py-2 text-[15px] font-medium transition-colors',
+                      solid
+                        ? isActive(group.href)
+                          ? 'text-content'
+                          : 'text-content-soft hover:text-content'
+                        : isActive(group.href)
+                          ? 'text-white'
+                          : 'text-white/85 hover:text-white',
                     )}
                   >
                     {tMenu(`${group.key}.label`)}
-                    <span
-                      aria-hidden="true"
-                      className="text-[0.6rem] opacity-60 transition-transform duration-200 group-hover:rotate-180"
-                    >
-                      ▾
-                    </span>
+                    <Chevron
+                      className={cn(
+                        'group-hover:rotate-180',
+                        solid ? 'text-content-faint' : 'text-white/60',
+                      )}
+                    />
                   </Link>
 
                   {/* 드롭다운 패널 */}
-                  <div
-                    className="invisible absolute left-0 top-full min-w-[15rem] translate-y-1 pt-2 opacity-0 transition-all duration-200 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100"
-                  >
-                    <ul className="overflow-hidden rounded-xl border border-surface-border bg-surface p-2 text-content shadow-card-hover">
+                  <div className="invisible absolute left-1/2 top-full min-w-[15rem] -translate-x-1/2 translate-y-1 pt-3 opacity-0 transition-all duration-200 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100">
+                    <ul className="border border-surface-border bg-surface py-2 text-content shadow-card-hover">
                       {group.items.map((sub) => (
                         <li key={sub.key}>
                           <Link
                             href={sub.href}
-                            onClick={(e) => {
-                              const base = sub.href.split('#')[0];
-                              const sameBase = pathname === base || pathname.endsWith(base) || pathname.startsWith(`${base}/`);
-                              if (sameBase) {
-                                // same-page anchor: force navigation to the anchor by updating hash and reloading
-                                e.preventDefault();
-                                const hash = sub.href.split('#')[1] ?? '';
-                                if (hash) {
-                                  window.location.hash = `#${hash}`;
-                                  window.location.reload();
-                                } else {
-                                  window.location.reload();
-                                }
-                              }
-                            }}
-                            className="block rounded-lg px-3 py-2 text-sm text-content-soft transition-colors hover:bg-surface-soft hover:text-yonsei-blue"
+                            className="block px-5 py-2.5 text-[15px] text-content-soft transition-colors hover:bg-surface-soft hover:text-yonsei-navy"
                           >
                             {tMenu(`${group.key}.items.${sub.key}`)}
                           </Link>
@@ -136,10 +165,33 @@ export function Header() {
             </ul>
           </nav>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-3">
             <div className="hidden sm:block">
-              <LocaleToggle tone="dark" />
+              <LocaleToggle tone={solid ? 'light' : 'dark'} />
             </div>
+
+            {/* CTA — Cornell 'Give →' 스타일 */}
+            <Link
+              href="/admission"
+              className={cn(
+                'group hidden items-center gap-2 px-4 py-2 text-sm font-semibold transition-colors lg:inline-flex',
+                solid
+                  ? 'bg-yonsei-navy text-white hover:bg-yonsei-blue'
+                  : 'bg-white text-yonsei-navy hover:bg-yonsei-gold',
+              )}
+            >
+              {t('admission')}
+              <svg
+                aria-hidden="true"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                className="h-3.5 w-3.5 transition-transform duration-200 group-hover:translate-x-0.5"
+              >
+                <path d="M4 12h15M13 6l6 6-6 6" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </Link>
 
             {/* 모바일/태블릿 메뉴 토글 */}
             <button
@@ -148,7 +200,10 @@ export function Header() {
               aria-expanded={open}
               aria-controls="mobile-menu"
               aria-label={open ? t('close') : t('menu')}
-              className="grid h-10 w-10 place-items-center rounded-md text-white hover:bg-white/10 xl:hidden"
+              className={cn(
+                'grid h-10 w-10 place-items-center xl:hidden',
+                solid ? 'text-content hover:bg-surface-soft' : 'text-white hover:bg-white/10',
+              )}
             >
               <span aria-hidden="true" className="relative block h-4 w-5">
                 <span
@@ -175,7 +230,7 @@ export function Header() {
         </div>
       </Container>
 
-      {/* 모바일 드로어 (아코디언) */}
+      {/* 모바일 드로어 (아코디언) — 흰 배경 */}
       <div
         id="mobile-menu"
         className={cn(
@@ -183,17 +238,17 @@ export function Header() {
           open ? 'block' : 'hidden',
         )}
       >
-        <nav aria-label="모바일 메뉴" className="border-t border-white/10 bg-yonsei-navy">
+        <nav aria-label="모바일 메뉴" className="border-t border-surface-border bg-surface">
           <Container>
             <ul className="flex flex-col py-2">
               {menu.map((group) => {
                 const isExp = expanded === group.key;
                 return (
-                  <li key={group.key} className="border-b border-white/5 last:border-0">
+                  <li key={group.key} className="border-b border-surface-border/60 last:border-0">
                     <div className="flex items-center">
                       <Link
                         href={group.href}
-                        className="flex-1 rounded-md px-3 py-3 text-base font-semibold text-white/90 hover:text-white"
+                        className="flex-1 px-3 py-3 text-base font-semibold text-content hover:text-yonsei-navy"
                       >
                         {tMenu(`${group.key}.label`)}
                       </Link>
@@ -202,14 +257,9 @@ export function Header() {
                         onClick={() => setExpanded(isExp ? null : group.key)}
                         aria-expanded={isExp}
                         aria-label={tMenu(`${group.key}.label`)}
-                        className="grid h-10 w-10 place-items-center rounded-md text-white/70 hover:bg-white/10"
+                        className="grid h-10 w-10 place-items-center text-content-faint hover:bg-surface-soft"
                       >
-                        <span
-                          aria-hidden="true"
-                          className={cn('transition-transform duration-200', isExp && 'rotate-180')}
-                        >
-                          ▾
-                        </span>
+                        <Chevron className={cn(isExp && 'rotate-180')} />
                       </button>
                     </div>
                     {isExp && (
@@ -218,22 +268,7 @@ export function Header() {
                           <li key={sub.key}>
                             <Link
                               href={sub.href}
-                              onClick={(e) => {
-                                const base = sub.href.split('#')[0];
-                                const sameBase = pathname === base || pathname.endsWith(base) || pathname.startsWith(`${base}/`);
-                                if (sameBase) {
-                                  // force reload so page content updates when navigating within same category
-                                  e.preventDefault();
-                                  const hash = sub.href.split('#')[1] ?? '';
-                                  if (hash) {
-                                    window.location.hash = `#${hash}`;
-                                    window.location.reload();
-                                  } else {
-                                    window.location.reload();
-                                  }
-                                }
-                              }}
-                              className="block rounded-md px-3 py-2 text-sm text-white/70 hover:bg-white/5 hover:text-white"
+                              className="block px-3 py-2 text-sm text-content-soft hover:bg-surface-soft hover:text-yonsei-navy"
                             >
                               {tMenu(`${group.key}.items.${sub.key}`)}
                             </Link>
@@ -245,8 +280,8 @@ export function Header() {
                 );
               })}
             </ul>
-            <div className="border-t border-white/10 py-4">
-              <LocaleToggle tone="dark" />
+            <div className="border-t border-surface-border py-4">
+              <LocaleToggle tone="light" />
             </div>
           </Container>
         </nav>

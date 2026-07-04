@@ -1,7 +1,14 @@
-import { useTranslations } from 'next-intl';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import type { Metadata } from 'next';
-import { StubPage } from '@/components/StubPage';
+import { Hero } from '@/components/Hero';
+import { TabbedContent, type TabItem } from '@/components/TabbedContent';
+import {
+  AlumniGreeting,
+  AlumniOrganization,
+  AlumniNotable,
+  AlumniNetwork,
+} from '@/components/AlumniContent';
+import type { Locale } from '@/i18n/routing';
 
 export async function generateMetadata({
   params,
@@ -12,15 +19,48 @@ export async function generateMetadata({
   return { title: t('hero.title') };
 }
 
-export default function AlumniPage({ params }: { params: { locale: string } }) {
+export default async function AlumniPage({ params }: { params: { locale: string } }) {
   setRequestLocale(params.locale);
-  const t = useTranslations('alumni');
-  const tNav = useTranslations('nav');
+  const locale = params.locale as Locale;
+  const tMenu = await getTranslations({ locale, namespace: 'menu' });
+  const tAlumni = await getTranslations({ locale, namespace: 'alumni' });
+  const tStub = await getTranslations({ locale, namespace: 'stub' });
+
+  const tabs: TabItem[] = [
+    {
+      key: 'greeting',
+      label: tMenu('alumni.items.greeting'),
+      markdown: null,
+      content: <AlumniGreeting locale={locale} />,
+    },
+    {
+      key: 'organization',
+      label: tMenu('alumni.items.organization'),
+      markdown: null,
+      content: <AlumniOrganization locale={locale} />,
+    },
+    {
+      key: 'notable',
+      label: tMenu('alumni.items.notable'),
+      markdown: null,
+      content: <AlumniNotable locale={locale} />,
+    },
+    {
+      key: 'network',
+      label: tMenu('alumni.items.network'),
+      markdown: null,
+      content: <AlumniNetwork locale={locale} emptyLabel={tStub('body')} />,
+    },
+  ];
+
   return (
-    <StubPage
-      title={t('hero.title')}
-      subtitle={t('hero.subtitle')}
-      crumbLabel={tNav('alumni')}
-    />
+    <>
+      <Hero
+        title={tAlumni('hero.title')}
+        subtitle={tAlumni('hero.subtitle')}
+        breadcrumb={[{ label: tMenu('alumni.label') }]}
+      />
+      <TabbedContent tabs={tabs} emptyLabel={tStub('body')} navTitle={tMenu('alumni.label')} />
+    </>
   );
 }

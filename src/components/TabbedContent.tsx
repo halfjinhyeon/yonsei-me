@@ -30,12 +30,31 @@ export function TabbedContent({
   const [activeKey, setActiveKey] = useState(tabs[0]?.key);
   const active = tabs.find((t) => t.key === activeKey) ?? tabs[0];
 
-  // /news#seminars 처럼 해시로 들어온 경우 해당 탭을 초기 선택
+  // /news#seminars 처럼 해시로 진입하거나 해시가 바뀌면 해당 탭을 선택.
+  // 헤더 드롭다운의 "같은 페이지" 해시 링크는 SPA(pushState) 내비게이션이라
+  // hashchange 이벤트가 발생하지 않으므로, 문서 레벨 클릭도 함께 감지한다.
   useEffect(() => {
-    const fromHash = window.location.hash.replace('#', '');
-    if (fromHash && tabs.some((t) => t.key === fromHash)) {
-      setActiveKey(fromHash);
+    function syncFromHash() {
+      const key = window.location.hash.replace('#', '');
+      if (key && tabs.some((t) => t.key === key)) setActiveKey(key);
     }
+    function onDocClick(e: MouseEvent) {
+      const anchor = (e.target as Element | null)?.closest?.(
+        'a[href*="#"]',
+      ) as HTMLAnchorElement | null;
+      if (!anchor) return;
+      const url = new URL(anchor.href, window.location.href);
+      if (url.pathname !== window.location.pathname) return;
+      const key = url.hash.replace('#', '');
+      if (key && tabs.some((t) => t.key === key)) setActiveKey(key);
+    }
+    syncFromHash();
+    window.addEventListener('hashchange', syncFromHash);
+    document.addEventListener('click', onDocClick);
+    return () => {
+      window.removeEventListener('hashchange', syncFromHash);
+      document.removeEventListener('click', onDocClick);
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

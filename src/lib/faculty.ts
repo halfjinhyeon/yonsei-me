@@ -26,7 +26,17 @@ export interface ClubSummary {
   slug: string;
   name: string;
   teaser: string;
+  /** 카드 왼쪽 배경에 깔리는 동아리 로고 (public/img/clubs/) */
+  logo?: string;
 }
+
+/** slug → 로고 파일 매핑 (public/img/clubs/) */
+const CLUB_LOGOS: Record<string, string> = {
+  yonseidrone: '/img/clubs/yonseidrone.jpeg',
+  mecar: '/img/clubs/mecar.jpeg',
+  roboin: '/img/clubs/roboin.jpg',
+  spacey: '/img/clubs/spacey.jpeg',
+};
 
 export interface LabDirectoryEntry {
   nameKo: string;
@@ -62,9 +72,12 @@ export function getFacultyDirectory(): FacultyRecord[] {
   return records.map((f) => ({ ...f, photo: photos.get(f.name) ?? null }));
 }
 
-/** content/clubs.json — 동아리 인덱스(슬러그/이름/티저) */
+/** content/clubs.json — 동아리 인덱스(슬러그/이름/티저) + 로고 매핑 */
 export function getClubs(): ClubSummary[] {
-  return readJson<ClubSummary[]>('clubs.json');
+  return readJson<ClubSummary[]>('clubs.json').map((c) => ({
+    ...c,
+    logo: CLUB_LOGOS[c.slug],
+  }));
 }
 
 /** content/labs-directory.json — 연구실 목록(지도교수·위치·연락처·사이트 링크) */

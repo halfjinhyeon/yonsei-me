@@ -1,6 +1,6 @@
 #### 메카 (MECar)
 
-> 🖼️ 이미지 자리: MECAR.png
+<img src="/동아리/MECAR.png" alt="MECAR" style="max-width:100%; height:auto;" />
 
 - 연세대학교 유일의 자작 자동차 동아리, MECar ●
 MECar는 차량 설계부터 부품 발주, 제작까지 차량을 제작하는 동아리입니다.

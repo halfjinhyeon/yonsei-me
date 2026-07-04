@@ -4,8 +4,11 @@ import { Hero } from '@/components/Hero';
 import { TabbedContent, type TabItem } from '@/components/TabbedContent';
 import { ClubGrid } from '@/components/ClubGrid';
 import { Accordion } from '@/components/Accordion';
+import { GraduationChecker } from '@/components/GraduationChecker';
 import { getPageMarkdown, getUndergraduateRequirementSections } from '@/lib/pages';
 import { getClubs } from '@/lib/faculty';
+import { getCheckerData } from '@/lib/checker';
+import type { Locale } from '@/i18n/routing';
 
 export async function generateMetadata({
   params,
@@ -17,10 +20,11 @@ export async function generateMetadata({
 }
 
 // 학부 하위 섹션: key → 임포트 마크다운 슬러그 (없으면 준비 중)
-// requirements는 학번별 아코디언으로 별도 렌더하므로 여기서는 제외
+// requirements(아코디언)·checker(졸업요건 체크)는 커스텀 컴포넌트로 렌더
 const SECTION_SLUGS: Record<string, string | null> = {
   goals: 'undergraduate-goals',
   requirements: null,
+  checker: null,
   courses: 'undergraduate-courses',
   curriculum: 'undergraduate-curriculum',
   clubs: 'undergraduate-clubs',
@@ -29,6 +33,7 @@ const SECTION_SLUGS: Record<string, string | null> = {
 
 export default async function UndergraduatePage({ params }: { params: { locale: string } }) {
   setRequestLocale(params.locale);
+  const locale = params.locale as Locale;
   const tMenu = await getTranslations({ locale: params.locale, namespace: 'menu' });
   const tPages = await getTranslations({ locale: params.locale, namespace: 'pages' });
   const tStub = await getTranslations({ locale: params.locale, namespace: 'stub' });
@@ -43,6 +48,8 @@ export default async function UndergraduatePage({ params }: { params: { locale: 
         <ClubGrid items={getClubs()} moreLabel={tFaculty('moreLabel')} />
       ) : key === 'requirements' ? (
         <Accordion items={getUndergraduateRequirementSections()} />
+      ) : key === 'checker' ? (
+        <GraduationChecker data={getCheckerData()} locale={locale} />
       ) : undefined,
   }));
 

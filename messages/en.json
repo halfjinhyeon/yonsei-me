@@ -41,7 +41,8 @@
         "courses": "Courses",
         "curriculum": "Curriculum Map",
         "clubs": "Student Clubs",
-        "scholarship": "Scholarships"
+        "scholarship": "Scholarships",
+        "checker": "Degree Checker"
       }
     },
     "graduate": {
@@ -81,6 +82,15 @@
       "items": {
         "info": "Recruitment Info",
         "apply": "Application"
+      }
+    },
+    "alumni": {
+      "label": "Alumni",
+      "items": {
+        "greeting": "Greeting",
+        "organization": "Association",
+        "notable": "Notable Alumni",
+        "network": "News & Network"
       }
     }
   },
@@ -386,8 +396,8 @@
   },
   "alumni": {
     "hero": {
-      "title": "Alumni & Partnership",
-      "subtitle": "Alumni network and industry collaboration."
+      "title": "Alumni",
+      "subtitle": "The Yonsei ME alumni network — connected, wherever you are."
     }
   },
   "contact": {

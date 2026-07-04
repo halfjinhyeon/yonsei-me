@@ -25,9 +25,18 @@ export function ClubGrid({ items, moreLabel }: { items: ClubSummary[]; moreLabel
             className={`group relative block overflow-hidden rounded-card bg-gradient-to-br text-white ${ACCENTS[i % ACCENTS.length]}`}
           >
             <div className="relative flex min-h-[9rem] flex-col justify-center gap-2 p-8 pr-16 sm:min-h-[10rem]">
-              <div aria-hidden="true" className="absolute inset-0 flex items-center justify-start pl-6 opacity-10">
-                <span className="text-7xl font-bold">{c.name.charAt(0)}</span>
-              </div>
+              {/* 왼쪽 배경 로고 — 오른쪽으로 갈수록 카드 그라디언트에 녹아들게 마스크 */}
+              {c.logo ? (
+                <div
+                  aria-hidden="true"
+                  className="absolute inset-y-0 left-0 w-3/5 bg-cover bg-left opacity-25 mix-blend-luminosity [mask-image:linear-gradient(to_right,black_25%,transparent_95%)]"
+                  style={{ backgroundImage: `url(${c.logo})` }}
+                />
+              ) : (
+                <div aria-hidden="true" className="absolute inset-0 flex items-center justify-start pl-6 opacity-10">
+                  <span className="text-7xl font-bold">{c.name.charAt(0)}</span>
+                </div>
+              )}
 
               <div className="relative min-w-0">
                 <h3 className="text-2xl font-bold sm:text-3xl">{c.name}</h3>

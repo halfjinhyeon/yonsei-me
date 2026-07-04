@@ -1,0 +1,2000 @@
+[
+  {
+    "category": "교양기초",
+    "area": "기독교의이해",
+    "name": "기독교와세계문화",
+    "code": "YCA1101"
+  },
+  {
+    "category": "교양기초",
+    "area": "기독교의이해",
+    "name": "기독교와현대사회",
+    "code": "YCA1102"
+  },
+  {
+    "category": "교양기초",
+    "area": "기독교의이해",
+    "name": "성서와기독교",
+    "code": "YCA1103"
+  },
+  {
+    "category": "교양기초",
+    "area": "글쓰기",
+    "name": "글쓰기",
+    "code": "YCB1101"
+  },
+  {
+    "category": "교양기초",
+    "area": "글쓰기",
+    "name": "글쓰기(심화)",
+    "code": "YCB1201"
+  },
+  {
+    "category": "대학교양",
+    "area": "문학과예술",
+    "name": "문학의이해",
+    "code": "UCB1107"
+  },
+  {
+    "category": "대학교양",
+    "area": "문학과예술",
+    "name": "미학",
+    "code": "UCB1110"
+  },
+  {
+    "category": "대학교양",
+    "area": "문학과예술",
+    "name": "영화의이해",
+    "code": "UCE1105"
+  },
+  {
+    "category": "대학교양",
+    "area": "문학과예술",
+    "name": "음악사",
+    "code": "UCE1107"
+  },
+  {
+    "category": "대학교양",
+    "area": "문학과예술",
+    "name": "디자인과문화",
+    "code": "UCE1108"
+  },
+  {
+    "category": "대학교양",
+    "area": "문학과예술",
+    "name": "그리스로마시대의시문학과사상",
+    "code": "UCG1126"
+  },
+  {
+    "category": "대학교양",
+    "area": "문학과예술",
+    "name": "한국미술사",
+    "code": "UCJ1104"
+  },
+  {
+    "category": "대학교양",
+    "area": "문학과예술",
+    "name": "시각예술의이해",
+    "code": "UCJ1112"
+  },
+  {
+    "category": "대학교양",
+    "area": "문학과예술",
+    "name": "한국영화의이해",
+    "code": "UCJ1119"
+  },
+  {
+    "category": "대학교양",
+    "area": "문학과예술",
+    "name": "문화콘텐츠와창조적상상력",
+    "code": "UCJ1124"
+  },
+  {
+    "category": "대학교양",
+    "area": "문학과예술",
+    "name": "오래된미래,르네상스",
+    "code": "YCD1001"
+  },
+  {
+    "category": "대학교양",
+    "area": "문학과예술",
+    "name": "문학환경과곁사슬문학의이해",
+    "code": "YCD1101"
+  },
+  {
+    "category": "대학교양",
+    "area": "문학과예술",
+    "name": "세계문학과사회적상상력",
+    "code": "YCD1103"
+  },
+  {
+    "category": "대학교양",
+    "area": "문학과예술",
+    "name": "세계문학감상여행",
+    "code": "YCD1104"
+  },
+  {
+    "category": "대학교양",
+    "area": "문학과예술",
+    "name": "노벨문학상수상작가들",
+    "code": "YCD1105"
+  },
+  {
+    "category": "대학교양",
+    "area": "문학과예술",
+    "name": "한국문학과문화읽기",
+    "code": "YCD1201"
+  },
+  {
+    "category": "대학교양",
+    "area": "문학과예술",
+    "name": "중부유럽의문화와예술",
+    "code": "YCD1351"
+  },
+  {
+    "category": "대학교양",
+    "area": "문학과예술",
+    "name": "영화로보는현대음악",
+    "code": "YCD1601"
+  },
+  {
+    "category": "대학교양",
+    "area": "문학과예술",
+    "name": "대중음악의이해",
+    "code": "YCD1602"
+  },
+  {
+    "category": "대학교양",
+    "area": "문학과예술",
+    "name": "문학과영상예술",
+    "code": "YCD1652"
+  },
+  {
+    "category": "대학교양",
+    "area": "문학과예술",
+    "name": "아시아영화탐색",
+    "code": "YCD1653"
+  },
+  {
+    "category": "대학교양",
+    "area": "문학과예술",
+    "name": "고전문학과상상력",
+    "code": "YCD1654"
+  },
+  {
+    "category": "대학교양",
+    "area": "문학과예술",
+    "name": "신화의세계와성서의세계",
+    "code": "YCD1655"
+  },
+  {
+    "category": "대학교양",
+    "area": "문학과예술",
+    "name": "명예특임교수강의시리즈",
+    "code": "YCD1998"
+  },
+  {
+    "category": "대학교양",
+    "area": "문학과예술",
+    "name": "GREAT BOOKS & DEBATE",
+    "code": "YCD1999"
+  },
+  {
+    "category": "대학교양",
+    "area": "인간과역사",
+    "name": "한국근현대사",
+    "code": "UCB1101"
+  },
+  {
+    "category": "대학교양",
+    "area": "인간과역사",
+    "name": "서양문화의유산",
+    "code": "UCB1103"
+  },
+  {
+    "category": "대학교양",
+    "area": "인간과역사",
+    "name": "서양철학사",
+    "code": "UCB1105"
+  },
+  {
+    "category": "대학교양",
+    "area": "인간과역사",
+    "name": "현대사회와심리학",
+    "code": "UCD1102"
+  },
+  {
+    "category": "대학교양",
+    "area": "인간과역사",
+    "name": "우리교육의어제와오늘",
+    "code": "UCD1107"
+  },
+  {
+    "category": "대학교양",
+    "area": "인간과역사",
+    "name": "미술사",
+    "code": "UCE1102"
+  },
+  {
+    "category": "대학교양",
+    "area": "인간과역사",
+    "name": "동아시아와인류문명",
+    "code": "UCG1105"
+  },
+  {
+    "category": "대학교양",
+    "area": "인간과역사",
+    "name": "화면위에쓴역사",
+    "code": "UCG1125"
+  },
+  {
+    "category": "대학교양",
+    "area": "인간과역사",
+    "name": "현대사회와정신건강",
+    "code": "UCL1205"
+  },
+  {
+    "category": "대학교양",
+    "area": "인간과역사",
+    "name": "신화와철학",
+    "code": "YCE1001"
+  },
+  {
+    "category": "대학교양",
+    "area": "인간과역사",
+    "name": "역사란무엇인가",
+    "code": "YCE1101"
+  },
+  {
+    "category": "대학교양",
+    "area": "인간과역사",
+    "name": "동서문화교류와역사",
+    "code": "YCE1102"
+  },
+  {
+    "category": "대학교양",
+    "area": "인간과역사",
+    "name": "전통문화와세계교류",
+    "code": "YCE1103"
+  },
+  {
+    "category": "대학교양",
+    "area": "인간과역사",
+    "name": "20세기한국의역사와세계",
+    "code": "YCE1104"
+  },
+  {
+    "category": "대학교양",
+    "area": "인간과역사",
+    "name": "인류의기원과진화",
+    "code": "YCE1105"
+  },
+  {
+    "category": "대학교양",
+    "area": "인간과역사",
+    "name": "동아시아역사분쟁과한국",
+    "code": "YCE1202"
+  },
+  {
+    "category": "대학교양",
+    "area": "인간과역사",
+    "name": "서울의역사와문화",
+    "code": "YCE1203"
+  },
+  {
+    "category": "대학교양",
+    "area": "인간과역사",
+    "name": "전쟁과역사",
+    "code": "YCE1251"
+  },
+  {
+    "category": "대학교양",
+    "area": "인간과역사",
+    "name": "역사의제국들",
+    "code": "YCE1252"
+  },
+  {
+    "category": "대학교양",
+    "area": "인간과역사",
+    "name": "책의역사로본서구문명",
+    "code": "YCE1253"
+  },
+  {
+    "category": "대학교양",
+    "area": "인간과역사",
+    "name": "이데올로기와역사의대화",
+    "code": "YCE1254"
+  },
+  {
+    "category": "대학교양",
+    "area": "인간과역사",
+    "name": "유럽도시문화공간으로읽는역사",
+    "code": "YCE1255"
+  },
+  {
+    "category": "대학교양",
+    "area": "인간과역사",
+    "name": "현대사회의데이팅과결혼",
+    "code": "YCE1551"
+  },
+  {
+    "category": "대학교양",
+    "area": "인간과역사",
+    "name": "대인관계의심리학",
+    "code": "YCE1601"
+  },
+  {
+    "category": "대학교양",
+    "area": "인간과역사",
+    "name": "마음이란무엇인가",
+    "code": "YCE1603"
+  },
+  {
+    "category": "대학교양",
+    "area": "인간과역사",
+    "name": "성과성차의심리",
+    "code": "YCE1604"
+  },
+  {
+    "category": "대학교양",
+    "area": "인간과역사",
+    "name": "이상행동의심리",
+    "code": "YCE1605"
+  },
+  {
+    "category": "대학교양",
+    "area": "인간과역사",
+    "name": "스트레스의과학과적응의삶",
+    "code": "YCE1607"
+  },
+  {
+    "category": "대학교양",
+    "area": "인간과역사",
+    "name": "명예특임교수강의시리즈",
+    "code": "YCE1998"
+  },
+  {
+    "category": "대학교양",
+    "area": "인간과역사",
+    "name": "GREAT BOOKS & DEBATE",
+    "code": "YCE1999"
+  },
+  {
+    "category": "대학교양",
+    "area": "언어와표현",
+    "name": "고급실용문쓰기",
+    "code": "UCJ1131"
+  },
+  {
+    "category": "대학교양",
+    "area": "언어와표현",
+    "name": "문화로배우는생활프랑스어",
+    "code": "UCK1129"
+  },
+  {
+    "category": "대학교양",
+    "area": "언어와표현",
+    "name": "러시아어연습(1)",
+    "code": "UCK1130"
+  },
+  {
+    "category": "대학교양",
+    "area": "언어와표현",
+    "name": "CAREER DEVELOPMENT ENGLISH(ADV)",
+    "code": "UCK1143"
+  },
+  {
+    "category": "대학교양",
+    "area": "언어와표현",
+    "name": "델레스페인어특강",
+    "code": "UCK1147"
+  },
+  {
+    "category": "대학교양",
+    "area": "언어와표현",
+    "name": "WORLD ISSUES: ENGLISH THROUGH THE MEDIA(ADV)",
+    "code": "UCK1150"
+  },
+  {
+    "category": "대학교양",
+    "area": "언어와표현",
+    "name": "WORLD ISSUES: ENGLISH THROUGH THE MEDIA(HONORS)",
+    "code": "UCK1158"
+  },
+  {
+    "category": "대학교양",
+    "area": "언어와표현",
+    "name": "CAREER DEVELOPMENT ENGLISH(HONORS)",
+    "code": "UCK1159"
+  },
+  {
+    "category": "대학교양",
+    "area": "언어와표현",
+    "name": "FROM DILEMMAS TO SOLUTIONS: MASTERING THE ART OF PROBLEM SOLVING(HONORS)",
+    "code": "UCK1165"
+  },
+  {
+    "category": "대학교양",
+    "area": "언어와표현",
+    "name": "NUTRIVERSE: EXPLORING A WORLD OF HEALTH IN ENGLISH(HONORS)",
+    "code": "UCK1166"
+  },
+  {
+    "category": "대학교양",
+    "area": "언어와표현",
+    "name": "WORLD WAR TWO IN ENGLISH(HONORS)",
+    "code": "UCK1167"
+  },
+  {
+    "category": "대학교양",
+    "area": "언어와표현",
+    "name": "COMMUNICATION HABITS AND TECHNIQUES FOR THOUGHTFUL ENGAGEMENT AND RAPPORT(HONORS)",
+    "code": "UCK1168"
+  },
+  {
+    "category": "대학교양",
+    "area": "언어와표현",
+    "name": "언어의세계",
+    "code": "YCF1102"
+  },
+  {
+    "category": "대학교양",
+    "area": "언어와표현",
+    "name": "한문(1)",
+    "code": "YCF1201"
+  },
+  {
+    "category": "대학교양",
+    "area": "언어와표현",
+    "name": "한문(2)",
+    "code": "YCF1202"
+  },
+  {
+    "category": "대학교양",
+    "area": "언어와표현",
+    "name": "한문(3)",
+    "code": "YCF1203"
+  },
+  {
+    "category": "대학교양",
+    "area": "언어와표현",
+    "name": "중국어(1)",
+    "code": "YCF1301"
+  },
+  {
+    "category": "대학교양",
+    "area": "언어와표현",
+    "name": "중국어(2)",
+    "code": "YCF1302"
+  },
+  {
+    "category": "대학교양",
+    "area": "언어와표현",
+    "name": "중국어(3)",
+    "code": "YCF1303"
+  },
+  {
+    "category": "대학교양",
+    "area": "언어와표현",
+    "name": "일본어(1)",
+    "code": "YCF1351"
+  },
+  {
+    "category": "대학교양",
+    "area": "언어와표현",
+    "name": "일본어(2)",
+    "code": "YCF1352"
+  },
+  {
+    "category": "대학교양",
+    "area": "언어와표현",
+    "name": "일본어(3)",
+    "code": "YCF1353"
+  },
+  {
+    "category": "대학교양",
+    "area": "언어와표현",
+    "name": "ENGLISH FOR HUMANITIES AND SOCIAL SCIENCES",
+    "code": "YCF1408"
+  },
+  {
+    "category": "대학교양",
+    "area": "언어와표현",
+    "name": "ENGLISH FOR BUSINESS",
+    "code": "YCF1409"
+  },
+  {
+    "category": "대학교양",
+    "area": "언어와표현",
+    "name": "ENGLISH FOR PHYSICAL SCIENCES AND ENGINEERING",
+    "code": "YCF1410"
+  },
+  {
+    "category": "대학교양",
+    "area": "언어와표현",
+    "name": "ENGLISH FOR NATURAL SCIENCES AND HEALTH SCIENCES",
+    "code": "YCF1411"
+  },
+  {
+    "category": "대학교양",
+    "area": "언어와표현",
+    "name": "ENGLISH FOR IT",
+    "code": "YCF1412"
+  },
+  {
+    "category": "대학교양",
+    "area": "언어와표현",
+    "name": "ENGLISH FOR MEDICINE",
+    "code": "YCF1413"
+  },
+  {
+    "category": "대학교양",
+    "area": "언어와표현",
+    "name": "FUNDAMENTAL ENGLISH",
+    "code": "YCF1414"
+  },
+  {
+    "category": "대학교양",
+    "area": "언어와표현",
+    "name": "ENGLISH FOR DENTISTRY",
+    "code": "YCF1415"
+  },
+  {
+    "category": "대학교양",
+    "area": "언어와표현",
+    "name": "LEARNING ENGLISH THROUGH CULTURE",
+    "code": "YCF1416"
+  },
+  {
+    "category": "대학교양",
+    "area": "언어와표현",
+    "name": "LEARNING ENGLISH THROUGH READING",
+    "code": "YCF1417"
+  },
+  {
+    "category": "대학교양",
+    "area": "언어와표현",
+    "name": "LEARNING ENGLISH THROUGH WRITING",
+    "code": "YCF1418"
+  },
+  {
+    "category": "대학교양",
+    "area": "언어와표현",
+    "name": "LOST IN TRANSLATION",
+    "code": "YCF1419"
+  },
+  {
+    "category": "대학교양",
+    "area": "언어와표현",
+    "name": "SPEECH AND PRESENTATION IN ENGLISH",
+    "code": "YCF1420"
+  },
+  {
+    "category": "대학교양",
+    "area": "언어와표현",
+    "name": "LEARNING ENGLISH THROUGH SPEAKING",
+    "code": "YCF1422"
+  },
+  {
+    "category": "대학교양",
+    "area": "언어와표현",
+    "name": "ENGLISH FOR STARTUPS",
+    "code": "YCF1423"
+  },
+  {
+    "category": "대학교양",
+    "area": "언어와표현",
+    "name": "FOOD THEORY: ENGLISH THROUGH FOOD",
+    "code": "YCF1424"
+  },
+  {
+    "category": "대학교양",
+    "area": "언어와표현",
+    "name": "CULTURAL CONNECTION THROUGH CUISINE AND ENGLISH",
+    "code": "YCF1425"
+  },
+  {
+    "category": "대학교양",
+    "area": "언어와표현",
+    "name": "INTRODUCTION OF DEBATE: THE ART OF PERSUASION AND DEBATE IN ENGLISH",
+    "code": "YCF1426"
+  },
+  {
+    "category": "대학교양",
+    "area": "언어와표현",
+    "name": "THE SCIENCE AND ART OF LEARNING",
+    "code": "YCF1427"
+  },
+  {
+    "category": "대학교양",
+    "area": "언어와표현",
+    "name": "UNDERSTANDING BUSINESS THROUGH FINANCIAL STATEMENTS",
+    "code": "YCF1428"
+  },
+  {
+    "category": "대학교양",
+    "area": "언어와표현",
+    "name": "LEARNING ENGLISH THROUGH LITERATURE",
+    "code": "YCF1429"
+  },
+  {
+    "category": "대학교양",
+    "area": "언어와표현",
+    "name": "DESIGN AND BEAUTY IN ENGLINEERING",
+    "code": "YCF1430"
+  },
+  {
+    "category": "대학교양",
+    "area": "언어와표현",
+    "name": "독일어(1)",
+    "code": "YCF1451"
+  },
+  {
+    "category": "대학교양",
+    "area": "언어와표현",
+    "name": "독일어(2)",
+    "code": "YCF1452"
+  },
+  {
+    "category": "대학교양",
+    "area": "언어와표현",
+    "name": "독일어(3)",
+    "code": "YCF1453"
+  },
+  {
+    "category": "대학교양",
+    "area": "언어와표현",
+    "name": "프랑스어(1)",
+    "code": "YCF1501"
+  },
+  {
+    "category": "대학교양",
+    "area": "언어와표현",
+    "name": "프랑스어(2)",
+    "code": "YCF1502"
+  },
+  {
+    "category": "대학교양",
+    "area": "언어와표현",
+    "name": "프랑스어(3)",
+    "code": "YCF1503"
+  },
+  {
+    "category": "대학교양",
+    "area": "언어와표현",
+    "name": "러시아어(1)",
+    "code": "YCF1551"
+  },
+  {
+    "category": "대학교양",
+    "area": "언어와표현",
+    "name": "러시아어(2)",
+    "code": "YCF1552"
+  },
+  {
+    "category": "대학교양",
+    "area": "언어와표현",
+    "name": "러시아어(3)",
+    "code": "YCF1553"
+  },
+  {
+    "category": "대학교양",
+    "area": "언어와표현",
+    "name": "라틴어(1)",
+    "code": "YCF1601"
+  },
+  {
+    "category": "대학교양",
+    "area": "언어와표현",
+    "name": "라틴어(2)",
+    "code": "YCF1602"
+  },
+  {
+    "category": "대학교양",
+    "area": "언어와표현",
+    "name": "스페인어(1)",
+    "code": "YCF1603"
+  },
+  {
+    "category": "대학교양",
+    "area": "언어와표현",
+    "name": "스페인어(2)",
+    "code": "YCF1604"
+  },
+  {
+    "category": "대학교양",
+    "area": "언어와표현",
+    "name": "아랍어(1)",
+    "code": "YCF1605"
+  },
+  {
+    "category": "대학교양",
+    "area": "언어와표현",
+    "name": "이탈리아어(1)",
+    "code": "YCF1607"
+  },
+  {
+    "category": "대학교양",
+    "area": "언어와표현",
+    "name": "이탈리아어(2)",
+    "code": "YCF1608"
+  },
+  {
+    "category": "대학교양",
+    "area": "언어와표현",
+    "name": "말하기와토론",
+    "code": "YCF1651"
+  },
+  {
+    "category": "대학교양",
+    "area": "언어와표현",
+    "name": "수어",
+    "code": "YCF1652"
+  },
+  {
+    "category": "대학교양",
+    "area": "언어와표현",
+    "name": "명예특임교수강의시리즈",
+    "code": "YCF1998"
+  },
+  {
+    "category": "대학교양",
+    "area": "언어와표현",
+    "name": "GREAT BOOKS & DEBATE",
+    "code": "YCF1999"
+  },
+  {
+    "category": "대학교양",
+    "area": "가치와윤리",
+    "name": "철학과윤리",
+    "code": "UCB1104"
+  },
+  {
+    "category": "대학교양",
+    "area": "가치와윤리",
+    "name": "철학과방법",
+    "code": "UCG1111"
+  },
+  {
+    "category": "대학교양",
+    "area": "가치와윤리",
+    "name": "페미니즘의이해",
+    "code": "UCI1124"
+  },
+  {
+    "category": "대학교양",
+    "area": "가치와윤리",
+    "name": "인문학에길을묻다",
+    "code": "YCG1004"
+  },
+  {
+    "category": "대학교양",
+    "area": "가치와윤리",
+    "name": "인지종교학:종교현상에대한인지과학적-철학적이해",
+    "code": "YCG1103"
+  },
+  {
+    "category": "대학교양",
+    "area": "가치와윤리",
+    "name": "인간의역사와미래의인간",
+    "code": "YCG1201"
+  },
+  {
+    "category": "대학교양",
+    "area": "가치와윤리",
+    "name": "소비와윤리",
+    "code": "YCG1402"
+  },
+  {
+    "category": "대학교양",
+    "area": "가치와윤리",
+    "name": "포스트휴먼시대의기독교윤리적이슈",
+    "code": "YCG1403"
+  },
+  {
+    "category": "대학교양",
+    "area": "가치와윤리",
+    "name": "젠더와성평등",
+    "code": "YCG1601"
+  },
+  {
+    "category": "대학교양",
+    "area": "가치와윤리",
+    "name": "기독교윤리와사회적책임",
+    "code": "YCG1702"
+  },
+  {
+    "category": "대학교양",
+    "area": "가치와윤리",
+    "name": "여성주의와기독교",
+    "code": "YCG1703"
+  },
+  {
+    "category": "대학교양",
+    "area": "가치와윤리",
+    "name": "기독교와서구문명",
+    "code": "YCG1704"
+  },
+  {
+    "category": "대학교양",
+    "area": "가치와윤리",
+    "name": "전생애발달과자기이해",
+    "code": "YCG1801"
+  },
+  {
+    "category": "대학교양",
+    "area": "가치와윤리",
+    "name": "행복의과학",
+    "code": "YCG1802"
+  },
+  {
+    "category": "대학교양",
+    "area": "가치와윤리",
+    "name": "인간의감정,감정의인간",
+    "code": "YCG1804"
+  },
+  {
+    "category": "대학교양",
+    "area": "가치와윤리",
+    "name": "불교와동서문화교류",
+    "code": "YCG1852"
+  },
+  {
+    "category": "대학교양",
+    "area": "가치와윤리",
+    "name": "문명과질병",
+    "code": "YCG1853"
+  },
+  {
+    "category": "대학교양",
+    "area": "가치와윤리",
+    "name": "사랑과결혼",
+    "code": "YCG1854"
+  },
+  {
+    "category": "대학교양",
+    "area": "가치와윤리",
+    "name": "포스트시대의갈등이해와해결의논법",
+    "code": "YCG1855"
+  },
+  {
+    "category": "대학교양",
+    "area": "가치와윤리",
+    "name": "우리시대의키워드:새로운가치와윤리",
+    "code": "YCG1856"
+  },
+  {
+    "category": "대학교양",
+    "area": "가치와윤리",
+    "name": "정의,평화,창조의보존",
+    "code": "YCG1857"
+  },
+  {
+    "category": "대학교양",
+    "area": "가치와윤리",
+    "name": "가족공동체와정상성",
+    "code": "YCG1858"
+  },
+  {
+    "category": "대학교양",
+    "area": "가치와윤리",
+    "name": "지적재산제도와경제사회",
+    "code": "YCG1859"
+  },
+  {
+    "category": "대학교양",
+    "area": "가치와윤리",
+    "name": "GREAT BOOKS & DEBATE",
+    "code": "YCG1999"
+  },
+  {
+    "category": "대학교양",
+    "area": "국가와사회",
+    "name": "현대사회와사회학",
+    "code": "UCD1101"
+  },
+  {
+    "category": "대학교양",
+    "area": "국가와사회",
+    "name": "시민사회와자원봉사",
+    "code": "UCD1105"
+  },
+  {
+    "category": "대학교양",
+    "area": "국가와사회",
+    "name": "미디어.사회.문화의이해",
+    "code": "UCE1106"
+  },
+  {
+    "category": "대학교양",
+    "area": "국가와사회",
+    "name": "법과사회질서",
+    "code": "UCI1109"
+  },
+  {
+    "category": "대학교양",
+    "area": "국가와사회",
+    "name": "현대사회와행정",
+    "code": "YCH1203"
+  },
+  {
+    "category": "대학교양",
+    "area": "국가와사회",
+    "name": "진보와보수",
+    "code": "YCH1302"
+  },
+  {
+    "category": "대학교양",
+    "area": "국가와사회",
+    "name": "대한민국의산업화와민주화",
+    "code": "YCH1303"
+  },
+  {
+    "category": "대학교양",
+    "area": "국가와사회",
+    "name": "서구도시에새겨진근대의동향",
+    "code": "YCH1304"
+  },
+  {
+    "category": "대학교양",
+    "area": "국가와사회",
+    "name": "국가와교회",
+    "code": "YCH1305"
+  },
+  {
+    "category": "대학교양",
+    "area": "국가와사회",
+    "name": "재산거래와법",
+    "code": "YCH1601"
+  },
+  {
+    "category": "대학교양",
+    "area": "국가와사회",
+    "name": "헌법의이해",
+    "code": "YCH1602"
+  },
+  {
+    "category": "대학교양",
+    "area": "국가와사회",
+    "name": "가족생활과법",
+    "code": "YCH1603"
+  },
+  {
+    "category": "대학교양",
+    "area": "국가와사회",
+    "name": "인권정책과법",
+    "code": "YCH1604"
+  },
+  {
+    "category": "대학교양",
+    "area": "국가와사회",
+    "name": "창업204:현대사회생활과지식재산의보호",
+    "code": "YCH1605"
+  },
+  {
+    "category": "대학교양",
+    "area": "국가와사회",
+    "name": "범죄와형벌",
+    "code": "YCH1606"
+  },
+  {
+    "category": "대학교양",
+    "area": "국가와사회",
+    "name": "법치국가의행정과법",
+    "code": "YCH1607"
+  },
+  {
+    "category": "대학교양",
+    "area": "국가와사회",
+    "name": "법치국가와형벌권집행",
+    "code": "YCH1608"
+  },
+  {
+    "category": "대학교양",
+    "area": "국가와사회",
+    "name": "명예특임교수강의시리즈",
+    "code": "YCH1998"
+  },
+  {
+    "category": "대학교양",
+    "area": "국가와사회",
+    "name": "GREAT BOOKS & DEBATE",
+    "code": "YCH1999"
+  },
+  {
+    "category": "대학교양",
+    "area": "지역과세계",
+    "name": "경제학입문",
+    "code": "ECO1001"
+  },
+  {
+    "category": "대학교양",
+    "area": "지역과세계",
+    "name": "경제학개론",
+    "code": "ECO1002"
+  },
+  {
+    "category": "대학교양",
+    "area": "지역과세계",
+    "name": "현대사회와경제",
+    "code": "UCD1103"
+  },
+  {
+    "category": "대학교양",
+    "area": "지역과세계",
+    "name": "현대사회의법과권리",
+    "code": "UCD1106"
+  },
+  {
+    "category": "대학교양",
+    "area": "지역과세계",
+    "name": "정보사회와디지털리터러시",
+    "code": "UCF1101"
+  },
+  {
+    "category": "대학교양",
+    "area": "지역과세계",
+    "name": "세계화시대의국제관계",
+    "code": "UCF1104"
+  },
+  {
+    "category": "대학교양",
+    "area": "지역과세계",
+    "name": "동아시아신화기행",
+    "code": "UCG1130"
+  },
+  {
+    "category": "대학교양",
+    "area": "지역과세계",
+    "name": "세계평화와발전의국제관계",
+    "code": "YCI1002"
+  },
+  {
+    "category": "대학교양",
+    "area": "지역과세계",
+    "name": "인권과세계시민주의",
+    "code": "YCI1301"
+  },
+  {
+    "category": "대학교양",
+    "area": "지역과세계",
+    "name": "중국문화의이해",
+    "code": "YCI1701"
+  },
+  {
+    "category": "대학교양",
+    "area": "지역과세계",
+    "name": "독일문화와예술",
+    "code": "YCI1702"
+  },
+  {
+    "category": "대학교양",
+    "area": "지역과세계",
+    "name": "프랑스문화와예술",
+    "code": "YCI1703"
+  },
+  {
+    "category": "대학교양",
+    "area": "지역과세계",
+    "name": "러시아문화와예술",
+    "code": "YCI1704"
+  },
+  {
+    "category": "대학교양",
+    "area": "지역과세계",
+    "name": "스페인의문화와예술",
+    "code": "YCI1705"
+  },
+  {
+    "category": "대학교양",
+    "area": "지역과세계",
+    "name": "라틴아메리카의사회와문화",
+    "code": "YCI1706"
+  },
+  {
+    "category": "대학교양",
+    "area": "지역과세계",
+    "name": "소비와패션트렌드",
+    "code": "YCI1851"
+  },
+  {
+    "category": "대학교양",
+    "area": "지역과세계",
+    "name": "글로벌리더십",
+    "code": "YCI1853"
+  },
+  {
+    "category": "대학교양",
+    "area": "지역과세계",
+    "name": "국제사회와법이야기",
+    "code": "YCI1901"
+  },
+  {
+    "category": "대학교양",
+    "area": "지역과세계",
+    "name": "아프리카의이해와외교의현장",
+    "code": "YCI1903"
+  },
+  {
+    "category": "대학교양",
+    "area": "지역과세계",
+    "name": "명예특임교수강의시리즈",
+    "code": "YCI1998"
+  },
+  {
+    "category": "대학교양",
+    "area": "지역과세계",
+    "name": "GREAT BOOKS & DEBATE",
+    "code": "YCI1999"
+  },
+  {
+    "category": "대학교양",
+    "area": "논리와수리",
+    "name": "미분적분학과벡터해석(1)",
+    "code": "MAT1001"
+  },
+  {
+    "category": "대학교양",
+    "area": "논리와수리",
+    "name": "미분적분학과벡터해석(2)",
+    "code": "MAT1002"
+  },
+  {
+    "category": "대학교양",
+    "area": "논리와수리",
+    "name": "공학수학(1)",
+    "code": "MAT1011"
+  },
+  {
+    "category": "대학교양",
+    "area": "논리와수리",
+    "name": "공학수학(2)",
+    "code": "MAT1012"
+  },
+  {
+    "category": "대학교양",
+    "area": "논리와수리",
+    "name": "핵심미적분학",
+    "code": "MAT1015"
+  },
+  {
+    "category": "대학교양",
+    "area": "논리와수리",
+    "name": "미분적분학과벡터해석(심화)(1)",
+    "code": "MAT1016"
+  },
+  {
+    "category": "대학교양",
+    "area": "논리와수리",
+    "name": "미분적분학과벡터해석(심화)(2)",
+    "code": "MAT1017"
+  },
+  {
+    "category": "대학교양",
+    "area": "논리와수리",
+    "name": "CALCULUS",
+    "code": "MAT1101"
+  },
+  {
+    "category": "대학교양",
+    "area": "논리와수리",
+    "name": "통계학입문",
+    "code": "STA1001"
+  },
+  {
+    "category": "대학교양",
+    "area": "논리와수리",
+    "name": "인문사회수학",
+    "code": "UCC1111"
+  },
+  {
+    "category": "대학교양",
+    "area": "논리와수리",
+    "name": "수사학과합리적소통",
+    "code": "UCG1137"
+  },
+  {
+    "category": "대학교양",
+    "area": "논리와수리",
+    "name": "수학과금융사회",
+    "code": "YCJ1001"
+  },
+  {
+    "category": "대학교양",
+    "area": "논리와수리",
+    "name": "수학과생명과학",
+    "code": "YCJ1002"
+  },
+  {
+    "category": "대학교양",
+    "area": "논리와수리",
+    "name": "머신러닝을위한기초수학",
+    "code": "YCJ1303"
+  },
+  {
+    "category": "대학교양",
+    "area": "논리와수리",
+    "name": "빅데이터속의수학",
+    "code": "YCJ1304"
+  },
+  {
+    "category": "대학교양",
+    "area": "논리와수리",
+    "name": "데이터기반의사결정과갈등관리리더십",
+    "code": "YCJ1305"
+  },
+  {
+    "category": "대학교양",
+    "area": "자연과우주",
+    "name": "일반화학및실험(1)",
+    "code": "CHE1001"
+  },
+  {
+    "category": "대학교양",
+    "area": "자연과우주",
+    "name": "일반화학및실험(2)",
+    "code": "CHE1002"
+  },
+  {
+    "category": "대학교양",
+    "area": "자연과우주",
+    "name": "공학화학및실험(1)",
+    "code": "CHE1011"
+  },
+  {
+    "category": "대학교양",
+    "area": "자연과우주",
+    "name": "공학화학및실험(2)",
+    "code": "CHE1012"
+  },
+  {
+    "category": "대학교양",
+    "area": "자연과우주",
+    "name": "GENERAL CHEMISTRY & EXPERIMENTS",
+    "code": "CHE1101"
+  },
+  {
+    "category": "대학교양",
+    "area": "자연과우주",
+    "name": "ADVANCED CHEMISTRY & EXPERIMENTS",
+    "code": "CHE1102"
+  },
+  {
+    "category": "대학교양",
+    "area": "자연과우주",
+    "name": "일반물리학및실험(1)",
+    "code": "PHY1001"
+  },
+  {
+    "category": "대학교양",
+    "area": "자연과우주",
+    "name": "일반물리학및실험(2)",
+    "code": "PHY1002"
+  },
+  {
+    "category": "대학교양",
+    "area": "자연과우주",
+    "name": "공학물리학및실험(1)",
+    "code": "PHY1011"
+  },
+  {
+    "category": "대학교양",
+    "area": "자연과우주",
+    "name": "공학물리학및실험(2)",
+    "code": "PHY1012"
+  },
+  {
+    "category": "대학교양",
+    "area": "자연과우주",
+    "name": "양자물리의세계",
+    "code": "UCC1102"
+  },
+  {
+    "category": "대학교양",
+    "area": "자연과우주",
+    "name": "물질문명의명암",
+    "code": "UCC1103"
+  },
+  {
+    "category": "대학교양",
+    "area": "자연과우주",
+    "name": "지구의생성과진화",
+    "code": "UCC1105"
+  },
+  {
+    "category": "대학교양",
+    "area": "자연과우주",
+    "name": "우주의이해",
+    "code": "UCC1106"
+  },
+  {
+    "category": "대학교양",
+    "area": "자연과우주",
+    "name": "기후와문명",
+    "code": "UCC1107"
+  },
+  {
+    "category": "대학교양",
+    "area": "자연과우주",
+    "name": "지구와우주",
+    "code": "UCH1102"
+  },
+  {
+    "category": "대학교양",
+    "area": "자연과우주",
+    "name": "지구와환경",
+    "code": "UCH1105"
+  },
+  {
+    "category": "대학교양",
+    "area": "자연과우주",
+    "name": "환경과대기",
+    "code": "UCH1108"
+  },
+  {
+    "category": "대학교양",
+    "area": "자연과우주",
+    "name": "모든이를위한과학,자연과학의통합적이해",
+    "code": "YCK1101"
+  },
+  {
+    "category": "대학교양",
+    "area": "자연과우주",
+    "name": "천문학과우주기술",
+    "code": "YCK1102"
+  },
+  {
+    "category": "대학교양",
+    "area": "자연과우주",
+    "name": "현대문명과물질",
+    "code": "YCK1103"
+  },
+  {
+    "category": "대학교양",
+    "area": "자연과우주",
+    "name": "자연과학의역사",
+    "code": "YCK1104"
+  },
+  {
+    "category": "대학교양",
+    "area": "자연과우주",
+    "name": "기후위기의실체와리더의대응",
+    "code": "YCK1502"
+  },
+  {
+    "category": "대학교양",
+    "area": "자연과우주",
+    "name": "명예특임교수강의시리즈",
+    "code": "YCK1998"
+  },
+  {
+    "category": "대학교양",
+    "area": "생명과환경",
+    "name": "일반생물학및실험(1)",
+    "code": "BIO1001"
+  },
+  {
+    "category": "대학교양",
+    "area": "생명과환경",
+    "name": "일반생물학및실험(2)",
+    "code": "BIO1002"
+  },
+  {
+    "category": "대학교양",
+    "area": "생명과환경",
+    "name": "일반생물학및실험(1)(심화)",
+    "code": "BIO1008"
+  },
+  {
+    "category": "대학교양",
+    "area": "생명과환경",
+    "name": "일반생물학및실험(2)(심화)",
+    "code": "BIO1009"
+  },
+  {
+    "category": "대학교양",
+    "area": "생명과환경",
+    "name": "공학생물학및실험(1)",
+    "code": "BIO1011"
+  },
+  {
+    "category": "대학교양",
+    "area": "생명과환경",
+    "name": "공학생물학및실험(2)",
+    "code": "BIO1012"
+  },
+  {
+    "category": "대학교양",
+    "area": "생명과환경",
+    "name": "인간과동식물",
+    "code": "BIO1013"
+  },
+  {
+    "category": "대학교양",
+    "area": "생명과환경",
+    "name": "GENERAL BIOLOGY & EXPERIMENTS",
+    "code": "BIO1101"
+  },
+  {
+    "category": "대학교양",
+    "area": "생명과환경",
+    "name": "ADVANCED BIOLOGY & EXPERIMENTS",
+    "code": "BIO1102"
+  },
+  {
+    "category": "대학교양",
+    "area": "생명과환경",
+    "name": "현대생명론",
+    "code": "UCC1104"
+  },
+  {
+    "category": "대학교양",
+    "area": "생명과환경",
+    "name": "생명과학이란무엇인가",
+    "code": "UCC1109"
+  },
+  {
+    "category": "대학교양",
+    "area": "생명과환경",
+    "name": "생명과학의세계",
+    "code": "UCC1113"
+  },
+  {
+    "category": "대학교양",
+    "area": "생명과환경",
+    "name": "물질과생명",
+    "code": "UCH1103"
+  },
+  {
+    "category": "대학교양",
+    "area": "생명과환경",
+    "name": "바이오시스템과환경",
+    "code": "UCH1104"
+  },
+  {
+    "category": "대학교양",
+    "area": "생명과환경",
+    "name": "생물과인간생활",
+    "code": "UCH1106"
+  },
+  {
+    "category": "대학교양",
+    "area": "생명과환경",
+    "name": "환경재난의과학적이해",
+    "code": "UCH1109"
+  },
+  {
+    "category": "대학교양",
+    "area": "생명과환경",
+    "name": "현대인의생활영양",
+    "code": "UCL1201"
+  },
+  {
+    "category": "대학교양",
+    "area": "생명과환경",
+    "name": "활과리라:생물학과철학의창조적접점찾기",
+    "code": "YCL1003"
+  },
+  {
+    "category": "대학교양",
+    "area": "생명과환경",
+    "name": "인간관계의신경생물학적이해",
+    "code": "YCL1004"
+  },
+  {
+    "category": "대학교양",
+    "area": "생명과환경",
+    "name": "인간의삶과역사속의미생물",
+    "code": "YCL1201"
+  },
+  {
+    "category": "대학교양",
+    "area": "생명과환경",
+    "name": "삶과성",
+    "code": "YCL1203"
+  },
+  {
+    "category": "대학교양",
+    "area": "생명과환경",
+    "name": "삶과건강과학",
+    "code": "YCL1401"
+  },
+  {
+    "category": "대학교양",
+    "area": "생명과환경",
+    "name": "생명과학과삶",
+    "code": "YCL1601"
+  },
+  {
+    "category": "대학교양",
+    "area": "생명과환경",
+    "name": "뇌와나의세계-뇌인지과학의기초",
+    "code": "YCL1602"
+  },
+  {
+    "category": "대학교양",
+    "area": "생명과환경",
+    "name": "명예특임교수강의시리즈",
+    "code": "YCL1998"
+  },
+  {
+    "category": "대학교양",
+    "area": "생명과환경",
+    "name": "GREAT BOOKS & DEBATE",
+    "code": "YCL1999"
+  },
+  {
+    "category": "대학교양",
+    "area": "정보와기술",
+    "name": "컴퓨팅적사고와SW프로그래밍",
+    "code": "YCS1001"
+  },
+  {
+    "category": "대학교양",
+    "area": "정보와기술",
+    "name": "SW프로그래밍",
+    "code": "YCS1002"
+  },
+  {
+    "category": "대학교양",
+    "area": "정보와기술",
+    "name": "인공지능의이해와활용",
+    "code": "YCS1003"
+  },
+  {
+    "category": "대학교양",
+    "area": "정보와기술",
+    "name": "빅데이터와지식탐사",
+    "code": "YCS1004"
+  },
+  {
+    "category": "대학교양",
+    "area": "정보와기술",
+    "name": "ICT산업연계프로젝트",
+    "code": "YCS1005"
+  },
+  {
+    "category": "대학교양",
+    "area": "정보와기술",
+    "name": "ICT산업연계프로젝트(심화)",
+    "code": "YCS1006"
+  },
+  {
+    "category": "대학교양",
+    "area": "정보와기술",
+    "name": "자동화를위한정보의측정과처리",
+    "code": "YCS1007"
+  },
+  {
+    "category": "대학교양",
+    "area": "정보와기술",
+    "name": "IoT와로보틱스",
+    "code": "YCS1008"
+  },
+  {
+    "category": "대학교양",
+    "area": "정보와기술",
+    "name": "세상을변화시키는프로그래밍",
+    "code": "YCS1009"
+  },
+  {
+    "category": "대학교양",
+    "area": "정보와기술",
+    "name": "데이터로이해하는세상",
+    "code": "YCS1012"
+  },
+  {
+    "category": "대학교양",
+    "area": "정보와기술",
+    "name": "과학적자료분석과예측",
+    "code": "YCS1013"
+  },
+  {
+    "category": "대학교양",
+    "area": "정보와기술",
+    "name": "컴퓨터시스템과피지컬컴퓨팅",
+    "code": "YCS1102"
+  },
+  {
+    "category": "대학교양",
+    "area": "정보와기술",
+    "name": "알고리즘의단계적사고",
+    "code": "YCS1103"
+  },
+  {
+    "category": "대학교양",
+    "area": "정보와기술",
+    "name": "데이터과학의이해와응용",
+    "code": "YCS1104"
+  },
+  {
+    "category": "대학교양",
+    "area": "정보와기술",
+    "name": "명예특임교수강의시리즈",
+    "code": "YCS1998"
+  },
+  {
+    "category": "대학교양",
+    "area": "체육과건강",
+    "name": "테니스",
+    "code": "UCL1101"
+  },
+  {
+    "category": "대학교양",
+    "area": "체육과건강",
+    "name": "축구",
+    "code": "UCL1102"
+  },
+  {
+    "category": "대학교양",
+    "area": "체육과건강",
+    "name": "수영",
+    "code": "UCL1103"
+  },
+  {
+    "category": "대학교양",
+    "area": "체육과건강",
+    "name": "농구",
+    "code": "UCL1104"
+  },
+  {
+    "category": "대학교양",
+    "area": "체육과건강",
+    "name": "골프",
+    "code": "UCL1105"
+  },
+  {
+    "category": "대학교양",
+    "area": "체육과건강",
+    "name": "펜싱",
+    "code": "UCL1106"
+  },
+  {
+    "category": "대학교양",
+    "area": "체육과건강",
+    "name": "배구",
+    "code": "UCL1107"
+  },
+  {
+    "category": "대학교양",
+    "area": "체육과건강",
+    "name": "호신술",
+    "code": "UCL1108"
+  },
+  {
+    "category": "대학교양",
+    "area": "체육과건강",
+    "name": "체력육성",
+    "code": "UCL1109"
+  },
+  {
+    "category": "대학교양",
+    "area": "체육과건강",
+    "name": "포크댄스",
+    "code": "UCL1110"
+  },
+  {
+    "category": "대학교양",
+    "area": "체육과건강",
+    "name": "배드민턴",
+    "code": "UCL1111"
+  },
+  {
+    "category": "대학교양",
+    "area": "체육과건강",
+    "name": "탁구",
+    "code": "UCL1112"
+  },
+  {
+    "category": "대학교양",
+    "area": "체육과건강",
+    "name": "댄스스포츠",
+    "code": "UCL1115"
+  },
+  {
+    "category": "대학교양",
+    "area": "체육과건강",
+    "name": "재즈댄스",
+    "code": "UCL1116"
+  },
+  {
+    "category": "대학교양",
+    "area": "체육과건강",
+    "name": "택견",
+    "code": "UCL1118"
+  },
+  {
+    "category": "대학교양",
+    "area": "체육과건강",
+    "name": "태권도",
+    "code": "UCL1119"
+  },
+  {
+    "category": "대학교양",
+    "area": "체육과건강",
+    "name": "요가",
+    "code": "UCL1121"
+  },
+  {
+    "category": "대학교양",
+    "area": "체육과건강",
+    "name": "수영(중급)",
+    "code": "UCL1127"
+  },
+  {
+    "category": "대학교양",
+    "area": "체육과건강",
+    "name": "오리엔티어링",
+    "code": "UCL1208"
+  },
+  {
+    "category": "대학교양",
+    "area": "체육과건강",
+    "name": "힙합댄스",
+    "code": "UCL1209"
+  },
+  {
+    "category": "대학교양",
+    "area": "체육과건강",
+    "name": "풋살",
+    "code": "UCL1210"
+  },
+  {
+    "category": "대학교양",
+    "area": "체육과건강",
+    "name": "야구",
+    "code": "UCL1214"
+  },
+  {
+    "category": "대학교양",
+    "area": "체육과건강",
+    "name": "필라테스",
+    "code": "UCL1215"
+  },
+  {
+    "category": "대학교양",
+    "area": "체육과건강",
+    "name": "볼링",
+    "code": "UCL1217"
+  },
+  {
+    "category": "대학교양",
+    "area": "체육과건강",
+    "name": "하키",
+    "code": "UCL1218"
+  },
+  {
+    "category": "대학교양",
+    "area": "체육과건강",
+    "name": "파워다이어트",
+    "code": "UCL1219"
+  },
+  {
+    "category": "대학교양",
+    "area": "체육과건강",
+    "name": "라인댄스",
+    "code": "UCL1222"
+  },
+  {
+    "category": "대학교양",
+    "area": "체육과건강",
+    "name": "리듬체조",
+    "code": "UCL1223"
+  },
+  {
+    "category": "대학교양",
+    "area": "체육과건강",
+    "name": "피클볼",
+    "code": "UCL1224"
+  },
+  {
+    "category": "대학교양",
+    "area": "체육과건강",
+    "name": "바디포라이프",
+    "code": "UCL1225"
+  },
+  {
+    "category": "대학교양",
+    "area": "체육과건강",
+    "name": "발레피트니스",
+    "code": "UCL1226"
+  },
+  {
+    "category": "대학교양",
+    "area": "체육과건강",
+    "name": "스쿼시",
+    "code": "UCL1227"
+  },
+  {
+    "category": "대학교양",
+    "area": "체육과건강",
+    "name": "현대무용",
+    "code": "UCL1228"
+  },
+  {
+    "category": "대학교양",
+    "area": "체육과건강",
+    "name": "비만관리를위한식이조절과운동",
+    "code": "UCL1229"
+  },
+  {
+    "category": "대학교양",
+    "area": "체육과건강",
+    "name": "매트필라테스",
+    "code": "UCL1230"
+  },
+  {
+    "category": "대학교양",
+    "area": "체육과건강",
+    "name": "힐링요가와명상",
+    "code": "UCL1231"
+  },
+  {
+    "category": "대학교양",
+    "area": "체육과건강",
+    "name": "e-스포츠",
+    "code": "UCL1235"
+  },
+  {
+    "category": "대학교양",
+    "area": "체육과건강",
+    "name": "발레필라테스",
+    "code": "UCL1237"
+  },
+  {
+    "category": "대학교양",
+    "area": "체육과건강",
+    "name": "탭댄스기초",
+    "code": "UCL1239"
+  },
+  {
+    "category": "대학교양",
+    "area": "체육과건강",
+    "name": "복싱",
+    "code": "UCL1240"
+  },
+  {
+    "category": "대학교양",
+    "area": "체육과건강",
+    "name": "라크로스",
+    "code": "UCL1241"
+  },
+  {
+    "category": "대학교양",
+    "area": "체육과건강",
+    "name": "아티스틱스위밍",
+    "code": "UCL1242"
+  },
+  {
+    "category": "RC교육",
+    "area": "사회참여(SE)",
+    "name": "사회참여(SE)",
+    "code": "UCR1015"
+  },
+  {
+    "category": "RC교육",
+    "area": "YONSEI RC 101",
+    "name": "YONSEI RC 101",
+    "code": "UCR1007"
+  },
+  {
+    "category": "RC교육",
+    "area": "RC 운영교과",
+    "name": "RA리더십개발론",
+    "code": "UCR1010"
+  },
+  {
+    "category": "RC교육",
+    "area": "RC 운영교과",
+    "name": "RC자기주도활동(1)",
+    "code": "UCR1013"
+  },
+  {
+    "category": "RC교육",
+    "area": "RC 운영교과",
+    "name": "RC자기주도활동(2)",
+    "code": "UCR1014"
+  },
+  {
+    "category": "RC교육",
+    "area": "RC 운영교과",
+    "name": "학생자율연구1",
+    "code": "UCR1023"
+  },
+  {
+    "category": "자율선택",
+    "area": "자율선택",
+    "name": "사회혁신과기업CSR",
+    "code": "UCI1167"
+  },
+  {
+    "category": "자율선택",
+    "area": "자율선택",
+    "name": "디자인씽킹기법을통한사회혁신적진로설계",
+    "code": "UCI1173"
+  },
+  {
+    "category": "자율선택",
+    "area": "자율선택",
+    "name": "연세정신과인권",
+    "code": "UCI1175"
+  },
+  {
+    "category": "자율선택",
+    "area": "자율선택",
+    "name": "반기문과함께하는지속가능발전의이해",
+    "code": "UCI1177"
+  },
+  {
+    "category": "자율선택",
+    "area": "자율선택",
+    "name": "사회문제해결을위한융합팀워크",
+    "code": "UCI1183"
+  },
+  {
+    "category": "자율선택",
+    "area": "자율선택",
+    "name": "기업의사회적가치와사회혁신",
+    "code": "UCI1185"
+  },
+  {
+    "category": "자율선택",
+    "area": "자율선택",
+    "name": "뉴미디어시대의현장실천",
+    "code": "UCI1189"
+  },
+  {
+    "category": "자율선택",
+    "area": "자율선택",
+    "name": "사회혁신을위한문제해결실습",
+    "code": "UCI1191"
+  },
+  {
+    "category": "자율선택",
+    "area": "자율선택",
+    "name": "테크포임팩트프로젝트",
+    "code": "UCI1194"
+  },
+  {
+    "category": "자율선택",
+    "area": "자율선택",
+    "name": "지역현안해결을위한실천적사회혁신",
+    "code": "UCI1195"
+  },
+  {
+    "category": "자율선택",
+    "area": "자율선택",
+    "name": "공연예술의이해",
+    "code": "UCI1196"
+  },
+  {
+    "category": "자율선택",
+    "area": "자율선택",
+    "name": "사회봉사",
+    "code": "UCI2001"
+  },
+  {
+    "category": "자율선택",
+    "area": "자율선택",
+    "name": "연세대학합창(랩콰이어)",
+    "code": "UCJ1135"
+  },
+  {
+    "category": "자율선택",
+    "area": "자율선택",
+    "name": "BOOK CLUB(1)",
+    "code": "UCK1162"
+  },
+  {
+    "category": "자율선택",
+    "area": "자율선택",
+    "name": "BOOK CLUB(2)",
+    "code": "UCK1163"
+  },
+  {
+    "category": "자율선택",
+    "area": "자율선택",
+    "name": "BOOK CLUB(3)",
+    "code": "UCK1164"
+  }
+]
