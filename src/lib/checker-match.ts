@@ -19,6 +19,8 @@ export interface CatalogCourse {
   category?: string;
   /** 교양 중분류 영역 */
   area?: string;
+  /** 과목 단위 (1000/2000/3000/4000) — 3000/4000단위 45학점 요건 집계용. 미상이면 undefined */
+  level?: number;
   aliases: string[];
 }
 
@@ -58,7 +60,7 @@ interface Span {
   end: number;
 }
 
-function exactMatch(hay: string, catalog: CatalogCourse[]): Set<string> {
+function exactMatch(hay: string, catalog: CatalogCourse[]): Span[] {
   const spans: Span[] = [];
   for (const course of catalog) {
     const needles = [normalizeName(course.name), ...course.aliases.map(normalizeName)].filter(
@@ -73,13 +75,31 @@ function exactMatch(hay: string, catalog: CatalogCourse[]): Set<string> {
     }
   }
   // 더 긴 매치에 완전히 포함된 매치 제거 (예: "응용고체역학" 매치 시 "고체역학" 오탐 방지)
-  const kept = spans.filter(
+  return spans.filter(
     (a) =>
       !spans.some(
         (b) => b !== a && b.start <= a.start && b.end >= a.end && b.end - b.start > a.end - a.start,
       ),
   );
-  return new Set(kept.map((s) => s.id));
+}
+
+/** 두 문자열의 편집거리(제한 초과 시 조기 종료) — fuzzy 모호성 판정용 */
+function editDistanceAtMost(a: string, b: string, limit: number): boolean {
+  if (Math.abs(a.length - b.length) > limit) return false;
+  let prev = Array.from({ length: b.length + 1 }, (_, j) => j);
+  for (let i = 1; i <= a.length; i++) {
+    const cur = new Array<number>(b.length + 1);
+    cur[0] = i;
+    let rowMin = cur[0];
+    for (let j = 1; j <= b.length; j++) {
+      const cost = a[i - 1] === b[j - 1] ? 0 : 1;
+      cur[j] = Math.min(prev[j] + 1, cur[j - 1] + 1, prev[j - 1] + cost);
+      if (cur[j] < rowMin) rowMin = cur[j];
+    }
+    if (rowMin > limit) return false;
+    prev = cur;
+  }
+  return prev[b.length] <= limit;
 }
 
 /**
@@ -120,19 +140,53 @@ function stemAndDigit(id: string): { stem: string; digit: string | null } {
 }
 
 /**
- * OCR 오인식(예: "험"→"8", "물"→"블")을 보정하는 오차 허용 매치.
- * 위험: 공학수학(1)/(2)/(3)/(4)처럼 끝자리 숫자만 다른 "패밀리"는 편집거리 1로
- * 서로 넘나들 수 있어, 숫자 접미사가 있는 과목은 어간(stem)만 fuzzy로 찾고
- * 뒤따르는 숫자는 반드시 정확히 일치해야 확정한다 — 그래야 (2)를 입력했는데
- * (1)(3)(4)까지 전부 이수한 것으로 잘못 채워지는 사고를 막는다.
+ * fuzzy 매칭이 금지되는 "모호한" 과목명 집합을 계산한다.
+ * 카탈로그 안에 편집거리 <= 허용오차인 다른 과목명이 존재하면(예: 고체역학 ↔
+ * 유체역학 ↔ 생체역학, 서로 거리 1) 그 과목명의 fuzzy 매치는 어떤 것을 찾은
+ * 것인지 구분할 수 없으므로 정확 매치만 허용한다.
  */
-function fuzzyMatch(hay: string, catalog: CatalogCourse[], exclude: Set<string>): Set<string> {
+function ambiguousNeedles(catalog: CatalogCourse[]): Set<string> {
+  const names = catalog.map((c) => normalizeName(c.name));
+  const ambiguous = new Set<string>();
+  for (let i = 0; i < names.length; i++) {
+    const tol = fuzzyTolerance(names[i].length);
+    for (let j = 0; j < names.length; j++) {
+      if (i === j) continue;
+      if (editDistanceAtMost(names[i], names[j], tol)) {
+        ambiguous.add(names[i]);
+        break;
+      }
+    }
+  }
+  return ambiguous;
+}
+
+/**
+ * OCR 오인식(예: "험"→"8", "물"→"블")을 보정하는 오차 허용 매치. 오탐 방지 3중 장치:
+ * 1) 공학수학(1)~(4)처럼 끝자리 숫자만 다른 "패밀리"는 어간(stem)만 fuzzy로 찾고
+ *    뒤따르는 숫자는 정확히 일치해야 확정 — (2) 하나로 (1)(3)(4)가 채워지는 사고 방지.
+ * 2) 카탈로그 안에 허용오차 이내의 다른 과목명이 있으면(고체역학↔유체역학↔생체역학)
+ *    fuzzy 자체를 금지 — 실제로 있던 과목의 이웃 과목까지 이수 처리되는 사고 방지.
+ * 3) fuzzy 매치 위치가 정확 매치 구간과 겹치면 무시 — 이미 확정된 텍스트의 재해석 방지.
+ */
+function fuzzyMatch(
+  hay: string,
+  catalog: CatalogCourse[],
+  exclude: Set<string>,
+  exactSpans: Span[],
+  ambiguous: Set<string>,
+): Set<string> {
   const families = new Map<string, { id: string; digit: string | null }[]>();
   for (const c of catalog) {
     const { stem, digit } = stemAndDigit(c.id);
     if (!families.has(stem)) families.set(stem, []);
     families.get(stem)!.push({ id: c.id, digit });
   }
+
+  const overlapsExact = (end: number, len: number) => {
+    const start = end - len; // 근사 시작 위치 (±허용오차)
+    return exactSpans.some((s) => start < s.end && end > s.start);
+  };
 
   const found = new Set<string>();
   for (const [stem, members] of families) {
@@ -141,14 +195,15 @@ function fuzzyMatch(hay: string, catalog: CatalogCourse[], exclude: Set<string>)
     if (members.length === 1 && members[0].digit === null) {
       const course = catalog.find((c) => c.id === members[0].id)!;
       const needle = normalizeName(course.name);
-      if (needle.length < 4 || exclude.has(course.id)) continue;
-      if (fuzzyFindEnd(hay, needle, fuzzyTolerance(needle.length)) !== -1) found.add(course.id);
+      if (needle.length < 4 || exclude.has(course.id) || ambiguous.has(needle)) continue;
+      const end = fuzzyFindEnd(hay, needle, fuzzyTolerance(needle.length));
+      if (end !== -1 && !overlapsExact(end, needle.length)) found.add(course.id);
       continue;
     }
 
-    if (stem.length < 4) continue;
+    if (stem.length < 4 || ambiguous.has(stem)) continue;
     const end = fuzzyFindEnd(hay, stem, fuzzyTolerance(stem.length));
-    if (end === -1) continue;
+    if (end === -1 || overlapsExact(end, stem.length)) continue;
     for (const m of members) {
       if (exclude.has(m.id) || m.digit === null) continue;
       if (hay.slice(end, end + m.digit.length) === m.digit) found.add(m.id);
@@ -166,11 +221,15 @@ export function matchCourses(texts: string | string[], catalog: CatalogCourse[])
   const all = (Array.isArray(texts) ? texts : [texts]).map(normalizeName).filter(Boolean);
   if (all.length === 0) return [];
 
+  const spansPerText = all.map((hay) => exactMatch(hay, catalog));
   const exact = new Set<string>();
-  for (const hay of all) for (const id of exactMatch(hay, catalog)) exact.add(id);
+  for (const spans of spansPerText) for (const s of spans) exact.add(s.id);
 
+  const ambiguous = ambiguousNeedles(catalog);
   const fuzzy = new Set<string>();
-  for (const hay of all) for (const id of fuzzyMatch(hay, catalog, exact)) fuzzy.add(id);
+  for (let i = 0; i < all.length; i++) {
+    for (const id of fuzzyMatch(all[i], catalog, exact, spansPerText[i], ambiguous)) fuzzy.add(id);
+  }
 
   return [...exact, ...fuzzy];
 }
@@ -202,6 +261,8 @@ export interface SectionResult {
   /** 영역 커버리지 (대학교양 선택) */
   areas?: { name: string; done: boolean }[];
   note?: string;
+  /** true면 다른 섹션과 겹쳐 집계되는 "추가 요건" — 총 이수학점 합산에서 제외 */
+  overlay?: boolean;
 }
 
 export interface EvaluationResult {
@@ -347,7 +408,26 @@ export function evaluate(
     });
   }
 
-  const totalEarned = sections.reduce((s, sec) => s + sec.earned, 0);
+  // 8. 3000/4000 단위 45학점 (03학번 이후 공통).
+  //    이 과목들은 전공·일반선택으로 이미 130학점에 포함돼 있고, 본 섹션은 같은
+  //    과목에 대한 별도 "수준" 조건일 뿐이므로 총 이수학점에 다시 더하지 않는다(overlay).
+  {
+    const upper = taken
+      .filter((c) => (c.level ?? 0) >= 3000)
+      .reduce((s, c) => s + c.credits, 0);
+    sections.push({
+      id: 'upperLevel',
+      title: '3000·4000 단위 과목',
+      required: 45,
+      earned: Math.min(45, upper),
+      overlay: true,
+      note: '03학번 이후 공통: 3000/4000 단위 과목을 45학점 이상 이수해야 합니다. 이 과목들은 전공·일반선택으로 총 130학점에 이미 포함되며, 본 항목은 그중 수준 요건을 충족했는지 별도로 확인하는 지표입니다.',
+    });
+  }
+
+  const totalEarned = sections
+    .filter((sec) => !sec.overlay)
+    .reduce((s, sec) => s + sec.earned, 0);
   const remainingRequired = sections.flatMap(
     (sec) => sec.items?.filter((i) => !i.done).map((i) => i.name) ?? [],
   );
