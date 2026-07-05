@@ -274,9 +274,83 @@ function labFamilyFallback(
 }
 
 /**
+ * labFamilyFallback의 "앵커는 정확 포함만 인정" 철학을 일반화한 보완 규칙.
+ * 긴 교양·전공 과목명(예: 세상을변화시키는프로그래밍, 13자)은 에브리타임 셀 폭이 좁아
+ * "세상을변화시"⏎"키는프로그래"⏎"밍"처럼 임의 위치에서 줄바꿈되고, SPARSE OCR이 줄 사이에
+ * 옆 셀 텍스트를 끼워 넣어 exact도 fuzzy(허용오차)도 실패한다.
+ * 보완: 이름의 "충분히 긴 연속 조각"이 텍스트에 정확히 남아 있고, 그 조각이 카탈로그
+ * 전체에서 이 과목만의 것(다른 어떤 과목의 이름·별칭에도 부분 문자열로 없음)이면 확정한다.
+ * 접두사를 우선 보되, 접두사가 없으면 내부 조각(infix)도 본다 — OCR이 이름 앞부분을
+ * 오인하면("세상을변화"→"세상올변화", 을→올 혼동) 접두사로는 영영 못 잡고, 정확히
+ * 읽힌 다른 줄의 조각("시키는프로")이 유일한 증거로 남기 때문 (실제 이미지로 재현).
+ * 오탐 방지 장치(전부 필수):
+ * 1) curated(fuzzy!==false) & 미매치 & 번호 패밀리 아님(digit===null: 조각으로는 (1)(2)
+ *    구분 불가) & 정규화 길이 >= 8 (줄바꿈에 취약한 긴 이름만; 짧은 모호 이름 자동 배제).
+ * 2) 조각은 텍스트에 "정확히" 포함될 때만 인정 (fuzzy 금지 — 앵커와 동일 이유: 조각이
+ *    오인되면 없는 과목이 잡힌다). 접두사는 최소 4자, 내부 조각은 시작 위치가 자의적인
+ *    만큼 최소 5자로 더 엄격하게 (셀 폭 줄바꿈이 5~6자 단위라 한 줄이 통째로 남는다).
+ * 3) 유일성 게이트: 조각이 카탈로그 전체(fuzzy:false 6천여 개 포함)의 "다른" 과목
+ *    이름·별칭 중 어느 하나에라도 부분 문자열로 있으면 그 조각은 버린다. 접두사는 충돌
+ *    시 더 짧은(더 모호한) 접두사도 시도하지 않는다(루프 중단). 이 게이트가 "그래밍"
+ *    (프로그래밍 계열 48개 과목이 공유) 같은 흔한 조각으로의 확정을 원천 차단한다.
+ */
+function prefixFallback(
+  normTexts: string[],
+  catalog: CatalogCourse[],
+  exclude: Set<string>,
+): Set<string> {
+  const found = new Set<string>();
+  const joined = normTexts.join(' ');
+  // 유일성 스캔용: 전체 카탈로그의 정규화된 이름·별칭 (자기 자신 제외를 위해 id도 함께 보관)
+  const allNeedles = catalog.map((c) => ({
+    id: c.id,
+    needles: [normalizeName(c.name), ...c.aliases.map(normalizeName)],
+  }));
+
+  for (const course of catalog) {
+    if (course.fuzzy === false) continue; // curated만
+    if (exclude.has(course.id)) continue; // 이미 매치된 과목은 제외
+    if (stemAndDigit(course.id).digit !== null) continue; // 번호 패밀리 제외
+    const name = normalizeName(course.name);
+    if (name.length < 8) continue; // 줄바꿈에 취약한 긴 이름만
+
+    // 유일성 스캔(비쌈)은 텍스트에서 실제 발견된 조각에만 수행.
+    const uniqueToThis = (frag: string) =>
+      !allNeedles.some((o) => o.id !== course.id && o.needles.some((n) => n.includes(frag)));
+
+    // 1) 긴 접두사부터 줄여가며 텍스트에 정확히 포함되는 첫 접두사를 찾는다.
+    let confirmed = false;
+    for (let len = name.length - 1; len >= 4; len--) {
+      const prefix = name.slice(0, len);
+      if (!joined.includes(prefix)) continue; // 텍스트 포함 검사(싸다) 먼저
+      if (!uniqueToThis(prefix)) break; // 모호한 접두사 → 더 짧은 접두사도 시도 안 함
+      found.add(course.id);
+      confirmed = true;
+      break;
+    }
+    if (confirmed) continue;
+
+    // 2) 접두사가 없으면 내부 조각(infix, 최소 5자·긴 것 우선): 이름 앞부분이 오인된
+    //    경우의 증거 수집. 충돌 조각은 그 조각만 버리고 다른 시작 위치를 계속 본다
+    //    (접두사와 달리 서로 다른 조각들은 포함관계가 아니므로 루프 중단 사유가 아님).
+    infix: for (let len = Math.min(8, name.length - 1); len >= 5; len--) {
+      for (let start = 1; start + len <= name.length; start++) {
+        const frag = name.slice(start, start + len);
+        if (!joined.includes(frag)) continue;
+        if (!uniqueToThis(frag)) continue;
+        found.add(course.id);
+        break infix;
+      }
+    }
+  }
+  return found;
+}
+
+/**
  * OCR 텍스트(들)에서 카탈로그 과목을 찾는다. 이미지 1장당 전처리(임계값)를 달리해
  * 여러 번 인식한 텍스트를 배열로 넘기면 결과를 합집합으로 반환한다.
- * 1) 정확 부분 문자열 매치 → 2) 실패 과목만 오차 허용(fuzzy) → 3) 실험 계열 특화 보완.
+ * 1) 정확 부분 문자열 매치 → 2) 실패 과목만 오차 허용(fuzzy) → 3) 실험 계열 특화 보완
+ * → 4) 긴 이름의 유일 조각(접두사·내부 조각) 보완.
  */
 export function matchCourses(texts: string | string[], catalog: CatalogCourse[]): string[] {
   const all = (Array.isArray(texts) ? texts : [texts]).map(normalizeName).filter(Boolean);
@@ -294,6 +368,7 @@ export function matchCourses(texts: string | string[], catalog: CatalogCourse[])
 
   const matched = new Set([...exact, ...fuzzy]);
   for (const id of labFamilyFallback(all, catalog, matched)) matched.add(id);
+  for (const id of prefixFallback(all, catalog, matched)) matched.add(id);
 
   return [...matched];
 }

@@ -44,6 +44,12 @@ const KIND_LABEL: Record<CatalogCourse['kind'], string> = {
   other: '기타·타과',
 };
 
+/** 학점 합계 — 소수점 학점(0.5 등)이 섞여도 부동소수 오차 없이 표기되도록 반올림 */
+function sumCredits(courses: CatalogCourse[]): number {
+  const total = courses.reduce((s, c) => s + c.credits, 0);
+  return Math.round(total * 10) / 10;
+}
+
 /** 흰 굵은 글씨(과목명) 배경색과 무관하게 배경색 채도가 있는 컬러 셀에서도 두드러지도록,
  * "밝고 채도 낮은(흰색에 가까운)" 픽셀만 검정 잉크로, 나머지는 흰 배경으로 바꾼 뒤 확대한다.
  * 임계값에 따라 잡히는 블록이 달라 두 임계값으로 각각 뽑아 합치는 편이 인식률이 더 높다. */
@@ -83,6 +89,7 @@ export function GraduationChecker({ data, locale }: { data: CheckerData; locale:
   // RC자기주도활동(1)/(2) 각각 이수 여부 (독립 체크박스)
   const [selfDirected, setSelfDirected] = useState<Record<1 | 2, boolean>>({ 1: false, 2: false });
   const [query, setQuery] = useState('');
+  const [chartView, setChartView] = useState<'bar' | 'donut'>('bar');
 
   const selfDirectedCount = (selfDirected[1] ? 1 : 0) + (selfDirected[2] ? 1 : 0);
   const [dragOver, setDragOver] = useState(false);
@@ -220,7 +227,12 @@ export function GraduationChecker({ data, locale }: { data: CheckerData; locale:
     .filter(Boolean) as CatalogCourse[];
   const grouped = (
     ['majorRequired', 'majorElective', 'engineering', 'liberal', 'other'] as const
-  ).map((kind) => ({ kind, courses: takenCourses.filter((c) => c.kind === kind) }));
+  ).map((kind) => {
+    const courses = takenCourses.filter((c) => c.kind === kind);
+    return { kind, courses, credits: sumCredits(courses) };
+  });
+  // 칩으로 표시되는 과목의 총 학점 (채플·RC자기주도는 칩이 아니므로 제외 — 기존 동작 유지)
+  const chipTotalCredits = sumCredits(takenCourses);
 
   const pct = Math.min(100, Math.round((result.totalEarned / result.totalRequired) * 100));
 
@@ -380,7 +392,12 @@ export function GraduationChecker({ data, locale }: { data: CheckerData; locale:
                     onClick={() => addCourse(c.id)}
                     className="flex w-full items-center justify-between gap-3 px-4 py-2 text-left text-sm text-content-soft transition-colors hover:bg-surface-soft hover:text-yonsei-navy"
                   >
-                    <span className="truncate">{c.name}</span>
+                    <span className="truncate">
+                      {c.name}
+                      <span className="ml-2 text-xs font-semibold text-yonsei-blue">
+                        {ko ? `${c.credits}학점` : `${c.credits} cr`}
+                      </span>
+                    </span>
                     <span className="shrink-0 text-xs text-content-faint">
                       {KIND_LABEL[c.kind]}
                       {c.area ? ` · ${c.area}` : ''}
@@ -471,12 +488,20 @@ export function GraduationChecker({ data, locale }: { data: CheckerData; locale:
         {/* 인식/추가된 과목 칩 */}
         {takenCourses.length > 0 ? (
           <div className="mt-6 space-y-4">
+            <p className="text-sm font-semibold text-content">
+              {ko
+                ? `합계 ${takenCourses.length}과목 · ${chipTotalCredits}학점`
+                : `Total ${takenCourses.length} courses · ${chipTotalCredits} cr.`}
+            </p>
             {grouped
               .filter((g) => g.courses.length > 0)
               .map((g) => (
                 <div key={g.kind}>
                   <p className="text-xs font-bold uppercase tracking-wide text-content-faint">
-                    {KIND_LABEL[g.kind]} ({g.courses.length})
+                    {KIND_LABEL[g.kind]}{' '}
+                    {ko
+                      ? `(${g.courses.length}과목 · ${g.credits}학점)`
+                      : `(${g.courses.length} courses · ${g.credits} cr.)`}
                   </p>
                   <ul className="mt-2 flex flex-wrap gap-2">
                     {g.courses.map((c) => (
@@ -485,6 +510,9 @@ export function GraduationChecker({ data, locale }: { data: CheckerData; locale:
                         className="inline-flex items-center gap-2 border border-surface-border bg-surface-soft px-3 py-1.5 text-sm text-content"
                       >
                         {c.name}
+                        <span className="text-xs font-semibold text-yonsei-blue">
+                          {ko ? `${c.credits}학점` : `${c.credits} cr`}
+                        </span>
                         <button
                           type="button"
                           onClick={() => removeCourse(c.id)}
@@ -509,6 +537,27 @@ export function GraduationChecker({ data, locale }: { data: CheckerData; locale:
       {/* STEP 04 — 결과 */}
       <section>
         <StepLabel num="04" title={ko ? '남은 졸업요건' : 'Remaining requirements'} />
+
+        {/* 뷰 전환 — 막대형 / 도넛형 */}
+        <div className="mt-4 inline-flex overflow-hidden rounded-lg border border-surface-border">
+          {(['bar', 'donut'] as const).map((v, i) => (
+            <button
+              key={v}
+              type="button"
+              onClick={() => setChartView(v)}
+              aria-pressed={chartView === v}
+              className={cn(
+                'px-5 py-2.5 text-sm font-semibold transition-colors',
+                i > 0 && 'border-l border-surface-border',
+                chartView === v
+                  ? 'bg-yonsei-navy text-white'
+                  : 'bg-surface text-content-soft hover:text-yonsei-navy',
+              )}
+            >
+              {v === 'bar' ? (ko ? '막대형' : 'Bars') : ko ? '도넛형' : 'Donuts'}
+            </button>
+          ))}
+        </div>
 
         {/* 총괄 */}
         <div className="mt-6 border-t-2 border-content pt-6">
@@ -535,7 +584,8 @@ export function GraduationChecker({ data, locale }: { data: CheckerData; locale:
           </div>
         </div>
 
-        {/* 섹션별 */}
+        {/* 섹션별 — 막대형 */}
+        {chartView === 'bar' && (
         <ul className="mt-8">
           {result.sections.map((sec, i) => {
             const secPct = Math.min(100, Math.round((sec.earned / sec.required) * 100));
@@ -623,6 +673,142 @@ export function GraduationChecker({ data, locale }: { data: CheckerData; locale:
             );
           })}
         </ul>
+        )}
+
+        {/* 섹션별 — 도넛형 */}
+        {chartView === 'donut' && (
+          <ul className="mt-8 grid grid-cols-1 gap-8 sm:grid-cols-2">
+            {result.sections.map((sec) => {
+              const secPct = Math.min(100, Math.round((sec.earned / sec.required) * 100));
+              const remaining = sec.items?.filter((it) => !it.done) ?? [];
+              const done = sec.items?.filter((it) => it.done) ?? [];
+              const C = 2 * Math.PI * 52;
+              return (
+                <li key={sec.id} className="flex flex-col items-center text-center">
+                  <svg
+                    viewBox="0 0 120 120"
+                    role="img"
+                    aria-label={
+                      ko
+                        ? `${sec.title} ${secPct}% (${sec.earned}/${sec.required}학점)`
+                        : `${sec.title} ${secPct}% (${sec.earned}/${sec.required} cr.)`
+                    }
+                    className="h-32 w-32"
+                  >
+                    <circle
+                      cx="60"
+                      cy="60"
+                      r="52"
+                      fill="none"
+                      strokeWidth="10"
+                      stroke="currentColor"
+                      className="text-surface-border"
+                    />
+                    <circle
+                      cx="60"
+                      cy="60"
+                      r="52"
+                      fill="none"
+                      strokeWidth="10"
+                      strokeLinecap="round"
+                      stroke="currentColor"
+                      transform="rotate(-90 60 60)"
+                      style={{ strokeDasharray: C, strokeDashoffset: C * (1 - secPct / 100) }}
+                      className={cn(
+                        'transition-all duration-500',
+                        secPct >= 100 ? 'text-yonsei-gold' : 'text-yonsei-blue',
+                      )}
+                    />
+                    <text
+                      x="60"
+                      y="58"
+                      textAnchor="middle"
+                      dominantBaseline="middle"
+                      fill="currentColor"
+                      className="text-content"
+                      style={{ fontSize: 26, fontWeight: 700 }}
+                    >
+                      {secPct}%
+                    </text>
+                    <text
+                      x="60"
+                      y="80"
+                      textAnchor="middle"
+                      dominantBaseline="middle"
+                      fill="currentColor"
+                      className="text-content-soft"
+                      style={{ fontSize: 11 }}
+                    >
+                      {sec.earned}/{sec.required}
+                      {ko ? '학점' : ' cr.'}
+                    </text>
+                  </svg>
+
+                  <div className="mt-4 w-full text-left">
+                    <div className="flex flex-wrap items-baseline justify-between gap-2">
+                      <h4 className="text-lg font-bold tracking-tight text-content sm:text-xl">
+                        {sec.title}
+                      </h4>
+                      <span
+                        className={cn(
+                          'text-sm font-bold tabular-nums',
+                          secPct >= 100 ? 'text-yonsei-blue' : 'text-content-soft',
+                        )}
+                      >
+                        {sec.earned} / {sec.required}
+                        {ko ? '학점' : ' cr.'}
+                        {secPct >= 100 && ' ✓'}
+                      </span>
+                    </div>
+
+                    {sec.areas && (
+                      <ul className="mt-3 flex flex-wrap gap-2">
+                        {sec.areas.map((a) => (
+                          <li
+                            key={a.name}
+                            className={cn(
+                              'border px-2.5 py-1 text-xs font-medium',
+                              a.done
+                                ? 'border-yonsei-blue/40 bg-yonsei-navy/5 text-yonsei-navy'
+                                : 'border-surface-border text-content-faint',
+                            )}
+                          >
+                            {a.done ? '✓ ' : ''}
+                            {a.name}
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+
+                    {remaining.length > 0 && (
+                      <div className="mt-3">
+                        <p className="text-xs font-bold uppercase tracking-wide text-content-faint">
+                          {ko ? '남은 과목' : 'Remaining'}
+                        </p>
+                        <ul className="mt-1.5 flex flex-wrap gap-2">
+                          {remaining.map((it) => (
+                            <li
+                              key={it.name}
+                              className="border border-yonsei-navy/30 bg-surface px-2.5 py-1 text-xs font-semibold text-yonsei-navy"
+                            >
+                              {it.name} ({it.credits})
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+                    {done.length > 0 && (
+                      <p className="mt-2 text-xs text-content-faint">
+                        ✓ {done.map((d) => d.name).join(' · ')}
+                      </p>
+                    )}
+                    {sec.note && <p className="mt-2 text-xs text-content-faint">{sec.note}</p>}
+                  </div>
+                </li>
+              );
+            })}
+          </ul>
+        )}
 
         <p className="mt-6 max-w-2xl text-xs leading-relaxed text-content-faint">
           {ko
