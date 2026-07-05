@@ -6,9 +6,11 @@ import { Section } from '@/components/Section';
 import { ProgramTabs } from '@/components/ProgramTabs';
 import { NewsCarousel } from '@/components/NewsCarousel';
 import { WeeklyCalendar } from '@/components/WeeklyCalendar';
+import { LabCarousel } from '@/components/LabCarousel';
 import { Reveal } from '@/components/Reveal';
 import { Container } from '@/components/Container';
-import { news, research, programs, board, pick } from '@/lib/content';
+import { news, programs, board, pick } from '@/lib/content';
+import { getLabsDirectory } from '@/lib/faculty';
 import { formatDate } from '@/lib/utils';
 import type { Locale } from '@/i18n/routing';
 
@@ -24,7 +26,7 @@ export default function HomePage({ params }: { params: { locale: string } }) {
   const locale = params.locale as Locale;
   const t = useTranslations('home');
   const tBoard = useTranslations('board');
-  const featuredResearch = research.slice(0, 3);
+  const labs = getLabsDirectory();
 
   return (
     <>
@@ -74,46 +76,22 @@ export default function HomePage({ params }: { params: { locale: string } }) {
         locale={locale}
       />
 
-      {/* 5. 연구 쇼케이스 (이미지 그리드) */}
-      <section className="full-bleed bg-yonsei-navy">
-        <div className="mx-auto max-w-[1360px] px-6 pt-14 sm:px-10 lg:px-16">
+      {/* 5. 연구실 카드 캐러셀 (자동 흐름 + 스와이프) */}
+      <section className="full-bleed bg-yonsei-navy py-14">
+        <div className="mx-auto mb-8 max-w-[1360px] px-6 sm:px-10 lg:px-16">
           <div className="flex flex-wrap items-end justify-between gap-4">
             <h2 className="text-headline font-bold text-white">
               {t.rich('people.heading', {
+                count: labs.length,
                 em: (c) => <em className="font-display font-normal not-italic text-yonsei-gold">{c}</em>,
               })}
             </h2>
-            <Link href="/research" className="pb-1 text-sm font-semibold text-yonsei-gold hover:underline">
+            <Link href="/research#labs" className="pb-1 text-sm font-semibold text-yonsei-gold hover:underline">
               {t('people.cta')}
             </Link>
           </div>
         </div>
-        <ul className="mt-8 grid gap-0 sm:grid-cols-2 lg:grid-cols-3">
-          {featuredResearch.map((r) => (
-            <li key={r.id}>
-              <Link
-                href="/research"
-                className="group relative block aspect-[4/5] overflow-hidden"
-              >
-                <span
-                  aria-hidden="true"
-                  className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
-                  style={{ backgroundImage: `url(${r.image})` }}
-                />
-                <span
-                  aria-hidden="true"
-                  className="absolute inset-0 bg-gradient-to-t from-yonsei-navy/90 via-yonsei-navy/30 to-transparent"
-                />
-                <span className="absolute inset-x-0 bottom-0 p-6">
-                  <span className="block text-lg font-bold text-white">{pick(r.title, locale)}</span>
-                  <span className="mt-1 inline-flex items-center gap-1.5 rounded bg-black/40 px-2.5 py-1 text-xs font-semibold text-white opacity-0 transition-opacity group-hover:opacity-100">
-                    {t('people.detail')} →
-                  </span>
-                </span>
-              </Link>
-            </li>
-          ))}
-        </ul>
+        <LabCarousel labs={labs} locale={locale} />
       </section>
 
       {/* 6. 뉴스 캐러셀 (다크) */}

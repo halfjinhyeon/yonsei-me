@@ -6,7 +6,8 @@
     "professorEn": "Keonwook Kang",
     "location": "공학관 N204",
     "phone": "02-2123-7426",
-    "url": "https://sites.google.com/site/kwkanglab/"
+    "url": "https://sites.google.com/site/kwkanglab/",
+    "image": "/img/labs/computational-materials-mechanics.jpg"
   },
   {
     "nameKo": "마이크로 나노 응용 기술 개발 연구실",
@@ -15,7 +16,8 @@
     "professorEn": "Kang, Shinill",
     "location": "공학관 C330",
     "phone": "02-2123- 2829",
-    "url": "http://nanofab.yonsei.ac.kr/"
+    "url": "http://nanofab.yonsei.ac.kr/",
+    "image": "/img/labs/micro-nano-optics.jpg"
   },
   {
     "nameKo": "광학 양자 연구실",
@@ -24,7 +26,8 @@
     "professorEn": "Kim, Kyoungsik",
     "location": "공학관 A534",
     "phone": "02-2123-7725",
-    "url": "https://sites.google.com/yonsei.ac.kr/oql/"
+    "url": "https://sites.google.com/yonsei.ac.kr/oql/",
+    "image": "/img/labs/optics-quantum.jpg"
   },
   {
     "nameKo": "트라이볼로지 연구실",
@@ -33,7 +36,8 @@
     "professorEn": "Kim, Dae Eun",
     "location": "공학관 A491",
     "phone": "02-2123-7424",
-    "url": "http://trl.yonsei.ac.kr/"
+    "url": "http://trl.yonsei.ac.kr/",
+    "image": "/img/labs/tribology-friction.jpg"
   },
   {
     "nameKo": "멀티스케일구조설계 및 극한제조 연구실",
@@ -42,7 +46,8 @@
     "professorEn": "Kim, Seok",
     "location": "공학관 C314",
     "phone": "02-2123-4463",
-    "url": "https://sites.google.com/view/seoklab/max"
+    "url": "https://sites.google.com/view/seoklab/max",
+    "image": "/img/labs/extreme-manufacturing.jpg"
   },
   {
     "nameKo": "나노광전자시스템 연구실",
@@ -51,7 +56,8 @@
     "professorEn": "Kim, Young-Joo",
     "location": "공학원 D332",
     "phone": "02-2123-7211",
-    "url": "http://nos.yonsei.ac.kr/"
+    "url": "http://nos.yonsei.ac.kr/",
+    "image": "/img/labs/nano-optoelectronics.jpg"
   },
   {
     "nameKo": "마이크로시스템 연구실",
@@ -60,7 +66,8 @@
     "professorEn": "Kim, Yong -Jun",
     "location": "공학관 A583",
     "phone": "02-2123-7212",
-    "url": "http://mems.yonsei.ac.kr/"
+    "url": "http://mems.yonsei.ac.kr/",
+    "image": "/img/labs/mems-microsystem.jpg"
   },
   {
     "nameKo": "어드밴스드 열공학 연구실",
@@ -69,7 +76,8 @@
     "professorEn": "Kim, Woochul",
     "location": "공학관 A310",
     "phone": "02-2123-7849",
-    "url": "http://atel.yonsei.ac.kr/"
+    "url": "http://atel.yonsei.ac.kr/",
+    "image": "/img/labs/advanced-thermal.jpg"
   },
   {
     "nameKo": "미소유체연구실",
@@ -78,7 +86,8 @@
     "professorEn": "Kim, Wonjung",
     "location": "공학관 A386",
     "phone": "02-2123-4471",
-    "url": "https://ssfl.yonsei.ac.kr/"
+    "url": "https://ssfl.yonsei.ac.kr/",
+    "image": "/img/labs/small-scale-fluids.jpg"
   },
   {
     "nameKo": "나노기전시스템 연구실",
@@ -87,7 +96,8 @@
     "professorEn": "Kim, Jongbaeg",
     "location": "산학협동관 520호",
     "phone": "02-2123-7895",
-    "url": "http://ntl.yonsei.ac.kr/"
+    "url": "http://ntl.yonsei.ac.kr/",
+    "image": "/img/labs/nano-transducers.jpg"
   },
   {
     "nameKo": "지능소자공정 연구실",
@@ -96,7 +106,8 @@
     "professorEn": "Kim, Hae-Jin",
     "location": "공학관 N206",
     "phone": "02-2123-2819",
-    "url": "http://yslidm.com/"
+    "url": "http://yslidm.com/",
+    "image": "/img/labs/intelligent-device-manufacturing.jpg"
   },
   {
     "nameKo": "바이오메디컬 & 에너지 시스템 연구실",
@@ -105,7 +116,8 @@
     "professorEn": "Ryu, WonHyoung",
     "location": "공학관 N105",
     "phone": "02-2123-7437",
-    "url": "https://sites.google.com/a/bmesyonsei.com/bmeslab/"
+    "url": "https://sites.google.com/a/bmesyonsei.com/bmeslab/",
+    "image": "/img/labs/biomedical-energy.jpg"
   },
   {
     "nameKo": "계산과학-인공지능 연구실",
@@ -114,7 +126,8 @@
     "professorEn": "Min, Kyoungmin",
     "location": "공학관 N201",
     "phone": "02-2123-4464",
-    "url": "https://csailabyonsei.quv.kr/"
+    "url": "https://csailabyonsei.quv.kr/",
+    "image": "/img/labs/computational-ai.jpg"
   },
   {
     "nameKo": "생산 & 메카트로닉스 연구실",
@@ -123,7 +136,8 @@
     "professorEn": "Min, Byung-Kwon",
     "location": "산학협동관 308호",
     "phone": "02-2123-6611",
-    "url": "http://minlab.yonsei.ac.kr/"
+    "url": "http://minlab.yonsei.ac.kr/",
+    "image": "/img/labs/manufacturing-mechatronics.jpg"
   },
   {
     "nameKo": "진동 및 광메카트로닉스 연구실",
@@ -132,7 +146,8 @@
     "professorEn": "Park, No-Cheol",
     "location": "공학원 332D",
     "phone": "02-2123-4677",
-    "url": "http://optomecha.yonsei.ac.kr/"
+    "url": "http://optomecha.yonsei.ac.kr/",
+    "image": "/img/labs/vibration-optomechatronics.jpg"
   },
   {
     "nameKo": "내연기관 & 청정에너지 연구실",
@@ -141,7 +156,8 @@
     "professorEn": "Song, Soonho",
     "location": "공학관 A180",
     "phone": "02-2123-7221",
-    "url": "http://cleanenergy.yonsei.ac.kr/"
+    "url": "http://cleanenergy.yonsei.ac.kr/",
+    "image": "/img/labs/clean-energy-engine.jpg"
   },
   {
     "nameKo": "인간중심AI로보틱스 연구실",
@@ -150,7 +166,8 @@
     "professorEn": "Shin, Dongjun",
     "location": "공학관 C426",
     "phone": "02-2123-2826",
-    "url": "http://hcr.yonsei.ac.kr/"
+    "url": "http://hcr.yonsei.ac.kr/",
+    "image": "/img/labs/ai-robotics.jpg"
   },
   {
     "nameKo": "정밀제어시스템 연구실",
@@ -159,7 +176,8 @@
     "professorEn": "Yang, Hyunseok",
     "location": "공학관 A283",
     "phone": "02-2123-7214",
-    "url": "http://mservo.yonsei.ac.kr/"
+    "url": "http://mservo.yonsei.ac.kr/",
+    "image": "/img/labs/precision-control.jpg"
   },
   {
     "nameKo": "전산구조설계 연구실",
@@ -168,7 +186,8 @@
     "professorEn": "Yoo, Jeonghoon",
     "location": "공학관 C334",
     "phone": "02-2123-2859",
-    "url": "http://ssd.yonsei.ac.kr/"
+    "url": "http://ssd.yonsei.ac.kr/",
+    "image": "/img/labs/structure-design.jpg"
   },
   {
     "nameKo": "정밀 생산 메카트로닉스 연구실 Research Laboratory of Manufacturing Mechatronics",
@@ -177,7 +196,8 @@
     "professorEn": "Yoon, Junyoung",
     "location": "공학관 A190",
     "phone": "02-2123-7445",
-    "url": ""
+    "url": "",
+    "image": "/img/labs/manufacturing-mechatronics2.jpg"
   },
   {
     "nameKo": "열전달 및 열설계 연구실",
@@ -186,7 +206,8 @@
     "professorEn": "Lee, NamKyu",
     "location": "공학관 N207",
     "phone": "02-2123-2820",
-    "url": "https://sites.google.com/view/httd-yonsei"
+    "url": "https://sites.google.com/view/httd-yonsei",
+    "image": "/img/labs/heat-transfer.jpg"
   },
   {
     "nameKo": "멀티피직스 최적설계 & 건전성진단예지 연구실",
@@ -195,7 +216,8 @@
     "professorEn": "Lee, Jongsoo",
     "location": "공학관 A286, C323",
     "phone": "02-2123-4474, 7275",
-    "url": "http://mdophm.yonsei.ac.kr/"
+    "url": "http://mdophm.yonsei.ac.kr/",
+    "image": "/img/labs/multiphysics-phm.jpg"
   },
   {
     "nameKo": "멀티스케일 유체역학 연구실",
@@ -204,7 +226,8 @@
     "professorEn": "Lee, Joon Sang",
     "location": "공학관 A277, N204",
     "phone": "02-2123-7217",
-    "url": "https://mfdl.yonsei.ac.kr/"
+    "url": "https://mfdl.yonsei.ac.kr/",
+    "image": "/img/labs/multiscale-fluid.jpg"
   },
   {
     "nameKo": "난류 연구실",
@@ -213,7 +236,8 @@
     "professorEn": "Lee, Changhoon",
     "location": "공학관 A178",
     "phone": "-",
-    "url": "http://euler.yonsei.ac.kr/"
+    "url": "http://euler.yonsei.ac.kr/",
+    "image": "/img/labs/turbulence.jpg"
   },
   {
     "nameKo": "생체역학 및 연성재료 연구실",
@@ -222,7 +246,8 @@
     "professorEn": "Hyung-Suk Lee",
     "location": "공학관 A581, N104",
     "phone": "02-2123-4624",
-    "url": "http://leelab.yonsei.ac.kr/"
+    "url": "http://leelab.yonsei.ac.kr/",
+    "image": "/img/labs/biomechanics-soft.jpg"
   },
   {
     "nameKo": "마이크로역학 연구실",
@@ -231,7 +256,8 @@
     "professorEn": "Jang, Yong Hoon",
     "location": "공학관 A110",
     "phone": "02-2123-7220",
-    "url": "https://mcmclab.yonsei.ac.kr/"
+    "url": "https://mcmclab.yonsei.ac.kr/",
+    "image": "/img/labs/micromechanics.jpg"
   },
   {
     "nameKo": "나노 융합 소자 연구실",
@@ -240,7 +266,8 @@
     "professorEn": "Jun, Seong Chan",
     "location": "공학관 N204",
     "phone": "02-2123-7888",
-    "url": "http://nemd.yonsei.ac.kr/"
+    "url": "http://nemd.yonsei.ac.kr/",
+    "image": "/img/labs/nano-device.jpg"
   },
   {
     "nameKo": "지능형 구조 및 통합 설계 연구실",
@@ -249,7 +276,8 @@
     "professorEn": "Chun, Heoung Jae",
     "location": "공학관 C332",
     "phone": "02-2123-7222",
-    "url": "http://isid.yonsei.ac.kr/"
+    "url": "http://isid.yonsei.ac.kr/",
+    "image": "/img/labs/intelligent-structures.jpg"
   },
   {
     "nameKo": "바이오칩 연구실",
@@ -258,7 +286,8 @@
     "professorEn": "Jung, Hyo-il",
     "location": "공학관 A108",
     "phone": "02-2123-7767",
-    "url": "https://sites.google.com/view/yonseilbt/introduction"
+    "url": "https://sites.google.com/view/yonseilbt/introduction",
+    "image": "/img/labs/biochip.jpg"
   },
   {
     "nameKo": "산술 광학 영상 및 응용 연구실",
@@ -267,7 +296,8 @@
     "professorEn": "Joo, Chulmin",
     "location": "공학관 N104",
     "phone": "02-2123-7706",
-    "url": "http://boilab.wordpress.com/"
+    "url": "http://boilab.wordpress.com/",
+    "image": "/img/labs/computational-imaging.jpg"
   },
   {
     "nameKo": "기계학습 및 제어 시스템 연구실",
@@ -276,7 +306,8 @@
     "professorEn": "Choi, Jongeun",
     "location": "공학관 N206",
     "phone": "-",
-    "url": "http://mlcs.yonsei.ac.kr/"
+    "url": "http://mlcs.yonsei.ac.kr/",
+    "image": "/img/labs/machine-learning-control.jpg"
   },
   {
     "nameKo": "정밀 측정 및 지능형 센싱 연구실",
@@ -285,7 +316,8 @@
     "professorEn": "Hyun, Jae-Sang",
     "location": "공학관 C315",
     "phone": "02-2123-2818",
-    "url": "https://sites.google.com/view/damislab"
+    "url": "https://sites.google.com/view/damislab",
+    "image": "/img/labs/precision-sensing.jpg"
   },
   {
     "nameKo": "지속가능한 에너지 플랫폼 개발 연구실",
@@ -294,6 +326,7 @@
     "professorEn": "Hong, Jongsup",
     "location": "공학관 A288",
     "phone": "-",
-    "url": "http://mes.yonsei.ac.kr/"
+    "url": "http://mes.yonsei.ac.kr/",
+    "image": "/img/labs/sustainable-energy.jpg"
   }
 ]

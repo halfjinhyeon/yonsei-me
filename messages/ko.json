@@ -200,16 +200,21 @@
       "link": "기계공학부란? →"
     },
     "programs": {
-      "heading": "당신은 어떻게 <em>세상</em>을 움직이겠습니까?",
-      "tabUg": "학부 전공·트랙",
-      "tabGrad": "대학원 과정",
-      "exploreUg": "학부 교육과정 살펴보기 →",
-      "exploreGrad": "대학원 과정 살펴보기 →"
+      "heading": "배움에서 <em>연구</em>까지, 당신의 길을 찾아보세요",
+      "tabUg": "학부",
+      "tabGrad": "대학원",
+      "exploreUg": "학부 과정 전체 보기 →",
+      "exploreGrad": "대학원 과정 전체 보기 →"
     },
     "people": {
-      "heading": "<em>우리의</em> 연구 현장",
+      "heading": "<em>우리의</em> 연구실 {count}곳",
       "detail": "연구실 보기",
-      "cta": "모든 연구 분야 보기 →"
+      "cta": "모든 연구실 보기 →",
+      "professorLabel": "지도교수",
+      "externalLabel": "외부 사이트로 이동",
+      "pause": "카드 흐름 일시정지",
+      "play": "카드 흐름 재생",
+      "region": "연구실 카드 캐러셀"
     },
     "innovate": {
       "heading": "모든 스케일에서 <em>혁신</em>하라.",

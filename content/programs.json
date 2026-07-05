@@ -1,123 +1,136 @@
 {
   "undergraduate": [
     {
-      "id": "design-manufacturing",
+      "id": "goals",
       "title": {
-        "ko": "설계·제조",
-        "en": "Design & Manufacturing"
+        "ko": "교육 목표",
+        "en": "Educational Goals"
       },
       "desc": {
-        "ko": "기계요소 설계, CAD/CAE, 적층제조까지 아우르는 설계 역량",
-        "en": "Machine design, CAD/CAE, and additive manufacturing"
+        "ko": "기계공학부가 지향하는 인재상과 학부 교육 목표",
+        "en": "The department's vision for its students and learning outcomes"
       },
-      "image": "/img/programs/design-manufacturing.jpg",
-      "href": "/academics"
+      "image": "/img/programs/goals.jpg",
+      "href": "/undergraduate#goals"
     },
     {
-      "id": "thermofluids",
+      "id": "curriculum",
       "title": {
-        "ko": "열·유체",
-        "en": "Thermal & Fluids"
+        "ko": "교과과정",
+        "en": "Curriculum Map"
       },
       "desc": {
-        "ko": "열전달·유체역학·에너지 시스템의 원리와 응용",
-        "en": "Heat transfer, fluid mechanics, and energy systems"
+        "ko": "1학년부터 4학년까지 이어지는 교과목 체계도",
+        "en": "The course roadmap from first year through graduation"
       },
-      "image": "/img/programs/thermofluids.jpg",
-      "href": "/academics"
+      "image": "/img/programs/curriculum.jpg",
+      "href": "/undergraduate#curriculum"
     },
     {
-      "id": "dynamics-control",
+      "id": "courses",
       "title": {
-        "ko": "동역학·제어",
-        "en": "Dynamics & Control"
+        "ko": "교과목 안내",
+        "en": "Course Guide"
       },
       "desc": {
-        "ko": "진동, 동역학, 자동제어 이론과 실제",
-        "en": "Vibration, dynamics, and automatic control"
+        "ko": "전공·설계·실험 등 개설 교과목 소개",
+        "en": "Major, design, and lab courses on offer"
       },
-      "image": "/img/programs/dynamics-control.jpg",
-      "href": "/academics"
+      "image": "/img/programs/courses.jpg",
+      "href": "/undergraduate#courses"
     },
     {
-      "id": "robotics-track",
+      "id": "checker",
       "title": {
-        "ko": "로보틱스",
-        "en": "Robotics"
+        "ko": "졸업요건 체크",
+        "en": "Degree Checker"
       },
       "desc": {
-        "ko": "로봇 메커니즘, 센서, 지능 제어 융합 트랙",
-        "en": "Robot mechanisms, sensing, and intelligent control"
+        "ko": "시간표 캡처 한 장으로 남은 졸업요건 자동 확인",
+        "en": "Upload a timetable screenshot to auto-check remaining requirements"
       },
-      "image": "/img/programs/robotics-track.jpg",
-      "href": "/research"
+      "image": "/img/programs/checker.jpg",
+      "href": "/undergraduate#checker"
     },
     {
-      "id": "biomech-track",
+      "id": "scholarship",
       "title": {
-        "ko": "바이오메카닉스",
-        "en": "Biomechanics"
+        "ko": "장학 제도",
+        "en": "Scholarships"
       },
       "desc": {
-        "ko": "인체 동역학과 의공학 응용",
-        "en": "Human dynamics and biomedical applications"
+        "ko": "학부생을 위한 교내외 장학 안내",
+        "en": "Internal and external scholarships for undergraduates"
       },
-      "image": "/img/programs/biomech-track.jpg",
-      "href": "/research"
+      "image": "/img/programs/scholarship.jpg",
+      "href": "/undergraduate#scholarship"
+    },
+    {
+      "id": "clubs",
+      "title": {
+        "ko": "학생 동아리",
+        "en": "Student Clubs"
+      },
+      "desc": {
+        "ko": "로봇·드론·자작차 등 직접 만드는 공학 동아리",
+        "en": "Robotics, drones, and build-it-yourself engineering clubs"
+      },
+      "image": "/동아리/SPACEY.jpg",
+      "href": "/undergraduate#clubs"
     }
   ],
   "graduate": [
     {
-      "id": "ms",
+      "id": "grad-admission",
       "title": {
-        "ko": "석사 과정",
-        "en": "Master's Program"
+        "ko": "입학 안내",
+        "en": "Admissions"
       },
       "desc": {
-        "ko": "심화 이론과 연구 방법론을 갖춘 전문 연구자 양성",
-        "en": "Advanced theory and research methods"
+        "ko": "석사·박사·석박사통합 과정 지원 안내",
+        "en": "How to apply for MS, PhD, and integrated programs"
       },
-      "image": "/img/programs/ms.jpg",
-      "href": "/academics"
+      "image": "/img/programs/grad-admission.jpg",
+      "href": "/graduate#admission"
     },
     {
-      "id": "phd",
+      "id": "grad-courses",
       "title": {
-        "ko": "박사 과정",
-        "en": "Doctoral Program"
+        "ko": "교과과정",
+        "en": "Curriculum"
       },
       "desc": {
-        "ko": "독립적 연구를 수행하는 미래 학계·산업 리더",
-        "en": "Future leaders of academia and industry"
+        "ko": "대학원 전공 교과목과 이수 체계",
+        "en": "Graduate courses and the study structure"
       },
-      "image": "/img/programs/phd.jpg",
-      "href": "/academics"
+      "image": "/img/programs/grad-courses.jpg",
+      "href": "/graduate#courses"
     },
     {
-      "id": "integrated",
+      "id": "grad-requirements",
       "title": {
-        "ko": "석·박사 통합",
-        "en": "Integrated MS-PhD"
+        "ko": "졸업요건",
+        "en": "Graduation Requirements"
       },
       "desc": {
-        "ko": "석사부터 박사까지 연속된 연구 트랙",
-        "en": "A continuous research track from MS to PhD"
+        "ko": "학위별 이수 학점과 논문 요건",
+        "en": "Credit and thesis requirements by degree"
       },
-      "image": "/img/programs/integrated.jpg",
-      "href": "/academics"
+      "image": "/img/programs/grad-requirements.jpg",
+      "href": "/graduate#requirements"
     },
     {
-      "id": "bk21",
+      "id": "grad-bk21",
       "title": {
-        "ko": "BK21 FOUR",
+        "ko": "BK21 교육연구단",
         "en": "BK21 FOUR"
       },
       "desc": {
-        "ko": "국가 지원 대학원 연구단, 국제 공동연구 참여",
+        "ko": "국가 지원 대학원 연구단과 국제 공동연구",
         "en": "National graduate research group and global collaboration"
       },
-      "image": "/img/programs/bk21.jpg",
-      "href": "/research"
+      "image": "/img/programs/grad-bk21.jpg",
+      "href": "/graduate#bk21"
     }
   ]
 }

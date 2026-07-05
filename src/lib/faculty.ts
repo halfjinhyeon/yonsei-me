@@ -28,6 +28,8 @@ export interface ClubSummary {
   teaser: string;
   /** 카드 왼쪽 배경에 깔리는 동아리 로고 (public/img/clubs/) */
   logo?: string;
+  /** 상세 페이지 카드뉴스 패널에서 좌우 교대로 쓰는 사진 (public/동아리/) */
+  images?: string[];
 }
 
 /** slug → 로고 파일 매핑 (public/img/clubs/) */
@@ -45,7 +47,10 @@ export interface LabDirectoryEntry {
   professorEn: string;
   location: string;
   phone: string;
+  /** 연구실 외부 사이트 링크. 빈 문자열이면 링크 없는 카드로 처리한다. */
   url: string;
+  /** 연구실별 실제 이미지 경로(public 기준). 없으면 더미 이미지 3장을 순환 사용. */
+  image?: string;
 }
 
 function readJson<T>(name: string): T {

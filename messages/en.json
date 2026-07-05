@@ -200,16 +200,21 @@
       "link": "What is mechanical engineering? →"
     },
     "programs": {
-      "heading": "How will you move the <em>world</em> forward?",
-      "tabUg": "Undergraduate tracks",
-      "tabGrad": "Graduate programs",
-      "exploreUg": "Explore undergraduate academics →",
-      "exploreGrad": "Explore graduate programs →"
+      "heading": "From learning to <em>research</em> — find your path",
+      "tabUg": "Undergraduate",
+      "tabGrad": "Graduate",
+      "exploreUg": "See all undergraduate programs →",
+      "exploreGrad": "See all graduate programs →"
     },
     "people": {
-      "heading": "<em>Our</em> research at work",
+      "heading": "<em>Our</em> {count} research labs",
       "detail": "View lab",
-      "cta": "See all research areas →"
+      "cta": "See all labs →",
+      "professorLabel": "Advisor",
+      "externalLabel": "Open external site",
+      "pause": "Pause card flow",
+      "play": "Play card flow",
+      "region": "Research lab card carousel"
     },
     "innovate": {
       "heading": "Innovate at <em>every</em> scale.",

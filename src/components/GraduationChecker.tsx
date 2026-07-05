@@ -1,6 +1,6 @@
 'use client';
 
-import { useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { cn } from '@/lib/utils';
 import {
   evaluate,
@@ -11,6 +11,13 @@ import {
   type CheckerData,
 } from '@/lib/checker-match';
 import type { Locale } from '@/i18n/routing';
+
+/** /public/data/course-catalog.json 의 한 행 (전체 개설과목 — 타 학과·기타) */
+interface RawCatalogEntry {
+  name: string;
+  credits: number;
+  level: number;
+}
 
 interface UploadedFile {
   id: string;
@@ -34,6 +41,7 @@ const KIND_LABEL: Record<CatalogCourse['kind'], string> = {
   majorElective: '전공선택',
   engineering: '공학기초',
   liberal: '교양',
+  other: '기타·타과',
 };
 
 /** 흰 굵은 글씨(과목명) 배경색과 무관하게 배경색 채도가 있는 컬러 셀에서도 두드러지도록,
@@ -72,13 +80,51 @@ export function GraduationChecker({ data, locale }: { data: CheckerData; locale:
   const [manualIds, setManualIds] = useState<string[]>([]);
   const [removedIds, setRemovedIds] = useState<string[]>([]);
   const [chapelCount, setChapelCount] = useState(0);
+  // RC자기주도활동(1)/(2) 각각 이수 여부 (독립 체크박스)
+  const [selfDirected, setSelfDirected] = useState<Record<1 | 2, boolean>>({ 1: false, 2: false });
   const [query, setQuery] = useState('');
+
+  const selfDirectedCount = (selfDirected[1] ? 1 : 0) + (selfDirected[2] ? 1 : 0);
   const [dragOver, setDragOver] = useState(false);
+  // 전체 개설과목(타 학과·기타) — 체커 사용 시에만 지연 로드 (curated 카탈로그보다 크므로)
+  const [otherCatalog, setOtherCatalog] = useState<CatalogCourse[]>([]);
   const inputRef = useRef<HTMLInputElement>(null);
   const busyRef = useRef(false);
 
+  useEffect(() => {
+    let cancelled = false;
+    fetch('/data/course-catalog.json')
+      .then((r) => (r.ok ? r.json() : []))
+      .then((rows: RawCatalogEntry[]) => {
+        if (cancelled) return;
+        setOtherCatalog(
+          rows.map((r) => ({
+            id: normalizeName(r.name),
+            name: r.name,
+            credits: r.credits,
+            kind: 'other' as const,
+            level: r.level || undefined,
+            fuzzy: false, // 대용량 카탈로그는 정확 매치만 (오탐·성능 방지)
+            aliases: [],
+          })),
+        );
+      })
+      .catch(() => {});
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
   const cohort = data.cohorts.find((c) => c.id === cohortId) ?? data.cohorts[0];
-  const byId = useMemo(() => new Map(data.catalog.map((c) => [c.id, c])), [data.catalog]);
+
+  // curated(전공·교양) 우선 + 타 학과 카탈로그 병합 (id 충돌 시 curated 유지)
+  const fullCatalog = useMemo(() => {
+    const ids = new Set(data.catalog.map((c) => c.id));
+    return [...data.catalog, ...otherCatalog.filter((c) => !ids.has(c.id))];
+  }, [data.catalog, otherCatalog]);
+
+  const dataFull = useMemo(() => ({ ...data, catalog: fullCatalog }), [data, fullCatalog]);
+  const byId = useMemo(() => new Map(fullCatalog.map((c) => [c.id, c])), [fullCatalog]);
 
   const takenIds = useMemo(() => {
     const ids = new Set<string>(manualIds);
@@ -88,13 +134,13 @@ export function GraduationChecker({ data, locale }: { data: CheckerData; locale:
   }, [files, manualIds, removedIds]);
 
   const result = useMemo(
-    () => evaluate(data, cohort, takenIds, chapelCount),
-    [data, cohort, takenIds, chapelCount],
+    () => evaluate(dataFull, cohort, takenIds, chapelCount, { selfDirectedCount }),
+    [dataFull, cohort, takenIds, chapelCount, selfDirectedCount],
   );
 
   const suggestions = useMemo(
-    () => searchCatalog(query, data.catalog).filter((c) => !takenIds.has(c.id)),
-    [query, data.catalog, takenIds],
+    () => searchCatalog(query, fullCatalog).filter((c) => !takenIds.has(c.id)),
+    [query, fullCatalog, takenIds],
   );
 
   async function processFiles(list: FileList | File[]) {
@@ -136,7 +182,7 @@ export function GraduationChecker({ data, locale }: { data: CheckerData; locale:
         await worker.terminate();
         bitmap.close();
 
-        const courseIds = matchCourses(texts, data.catalog);
+        const courseIds = matchCourses(texts, fullCatalog);
         const hasChapel = texts.some((t) => normalizeName(t).includes('채플'));
         if (hasChapel) setChapelCount((n) => Math.min(4, n + 1));
         setFiles((prev) =>
@@ -172,9 +218,9 @@ export function GraduationChecker({ data, locale }: { data: CheckerData; locale:
   const takenCourses = [...takenIds]
     .map((id) => byId.get(id))
     .filter(Boolean) as CatalogCourse[];
-  const grouped = (['majorRequired', 'majorElective', 'engineering', 'liberal'] as const).map(
-    (kind) => ({ kind, courses: takenCourses.filter((c) => c.kind === kind) }),
-  );
+  const grouped = (
+    ['majorRequired', 'majorElective', 'engineering', 'liberal', 'other'] as const
+  ).map((kind) => ({ kind, courses: takenCourses.filter((c) => c.kind === kind) }));
 
   const pct = Math.min(100, Math.round((result.totalEarned / result.totalRequired) * 100));
 
@@ -373,6 +419,53 @@ export function GraduationChecker({ data, locale }: { data: CheckerData; locale:
           <span className="text-xs text-content-faint">
             {ko ? '캡처에서 채플이 인식되면 자동 +1' : 'Auto +1 when chapel is detected'}
           </span>
+        </div>
+
+        {/* RC자기주도활동 — P/NP·각 0.5학점, 시간표에 안 잡히므로 직접 체크 */}
+        <div className="mt-5">
+          <p className="text-sm font-semibold text-content">
+            {ko ? 'RC자기주도활동 (P/NP, 각 0.5학점)' : 'RC Self-Directed Activity (P/NP, 0.5 cr. each)'}
+          </p>
+          <div className="mt-2 flex flex-wrap gap-2">
+            {([1, 2] as const).map((n) => {
+              const checked = selfDirected[n];
+              return (
+                <button
+                  key={n}
+                  type="button"
+                  role="checkbox"
+                  aria-checked={checked}
+                  onClick={() => setSelfDirected((s) => ({ ...s, [n]: !s[n] }))}
+                  className={cn(
+                    'inline-flex items-center gap-2 border px-3 py-1.5 text-sm transition-colors',
+                    checked
+                      ? 'border-yonsei-navy bg-yonsei-navy/5 font-semibold text-yonsei-navy'
+                      : 'border-surface-border text-content-soft hover:border-yonsei-blue',
+                  )}
+                >
+                  <span
+                    aria-hidden="true"
+                    className={cn(
+                      'grid h-4 w-4 shrink-0 place-items-center border',
+                      checked ? 'border-yonsei-navy bg-yonsei-navy' : 'border-content-faint',
+                    )}
+                  >
+                    {checked && (
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3.5" className="h-2.5 w-2.5 text-white">
+                        <path d="M5 13l4 4L19 7" strokeLinecap="round" strokeLinejoin="round" />
+                      </svg>
+                    )}
+                  </span>
+                  RC자기주도활동({n})
+                </button>
+              );
+            })}
+          </div>
+          <p className="mt-1.5 max-w-xl text-xs leading-relaxed text-content-faint">
+            {ko
+              ? 'RC공통·하우스 프로그램에 각 1개 이상 참여하며 한 학기 12 RC시간 이상 이수 시 학기당 0.5학점(연 1학점)이 인정됩니다. 이수한 학기를 선택하세요 (일반선택 학점에 반영).'
+              : 'Awarded 0.5 credit per semester (1/year) when RC requirements are met. Select completed semesters (counts toward general electives).'}
+          </p>
         </div>
 
         {/* 인식/추가된 과목 칩 */}

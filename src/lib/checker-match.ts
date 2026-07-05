@@ -7,7 +7,8 @@ export type CourseKind =
   | 'liberal' // 교양 (CSV 카탈로그)
   | 'engineering' // 대학교양 필수(공학기초)
   | 'majorRequired'
-  | 'majorElective';
+  | 'majorElective'
+  | 'other'; // 타 학과 전공·기타 과목 (전체 개설과목 CSV) — 일반선택으로 반영
 
 export interface CatalogCourse {
   /** 정규화된 이름을 id로 사용 */
@@ -21,6 +22,8 @@ export interface CatalogCourse {
   area?: string;
   /** 과목 단위 (1000/2000/3000/4000) — 3000/4000단위 45학점 요건 집계용. 미상이면 undefined */
   level?: number;
+  /** false면 오차허용(fuzzy) 매칭 대상에서 제외 (대용량 타과 카탈로그는 정확 매치만). 기본 true */
+  fuzzy?: boolean;
   aliases: string[];
 }
 
@@ -63,8 +66,11 @@ interface Span {
 function exactMatch(hay: string, catalog: CatalogCourse[]): Span[] {
   const spans: Span[] = [];
   for (const course of catalog) {
+    // 대용량 타과 카탈로그(fuzzy:false)의 2글자 이름("AI" 등)은 OCR 잡음에 오탐되므로
+    // 최소 3글자 요구. curated(전공·교양)는 2글자도 허용.
+    const minLen = course.fuzzy === false ? 3 : 2;
     const needles = [normalizeName(course.name), ...course.aliases.map(normalizeName)].filter(
-      (n) => n.length >= 2,
+      (n) => n.length >= minLen,
     );
     for (const needle of needles) {
       let idx = hay.indexOf(needle);
@@ -146,7 +152,9 @@ function stemAndDigit(id: string): { stem: string; digit: string | null } {
  * 것인지 구분할 수 없으므로 정확 매치만 허용한다.
  */
 function ambiguousNeedles(catalog: CatalogCourse[]): Set<string> {
-  const names = catalog.map((c) => normalizeName(c.name));
+  // fuzzy 대상(curated) 과목끼리만 모호성 판정 — 대용량 타과 카탈로그(fuzzy:false)를
+  // 포함하면 O(n²) 편집거리 계산이 폭발하고 fuzzy도 안 쓰므로 제외한다.
+  const names = catalog.filter((c) => c.fuzzy !== false).map((c) => normalizeName(c.name));
   const ambiguous = new Set<string>();
   for (let i = 0; i < names.length; i++) {
     const tol = fuzzyTolerance(names[i].length);
@@ -178,15 +186,18 @@ function fuzzyMatch(
 ): Set<string> {
   const families = new Map<string, { id: string; digit: string | null }[]>();
   for (const c of catalog) {
+    if (c.fuzzy === false) continue; // 대용량 타과 카탈로그는 정확 매치만
     const { stem, digit } = stemAndDigit(c.id);
     if (!families.has(stem)) families.set(stem, []);
     families.get(stem)!.push({ id: c.id, digit });
   }
 
-  const overlapsExact = (end: number, len: number) => {
-    const start = end - len; // 근사 시작 위치 (±허용오차)
-    return exactSpans.some((s) => start < s.end && end > s.start);
-  };
+  // fuzzy 매치가 "이미 정확 매치로 소비된 텍스트"를 재해석하는 것만 차단한다.
+  // 매치의 끝 위치가 정확 매치 구간 내부에 있으면 그 구간을 다시 읽은 것 → 차단.
+  // (start=end-len 방식은 삭제 편집이 섞이면 부정확해 인접 과목까지 잘못 겹침 판정하므로
+  //  끝 위치만 본다. 예: "열역학리더십워크샵"에서 리더십워크숍 fuzzy가 열역학에 걸리던 버그)
+  const endInsideExact = (end: number) =>
+    exactSpans.some((s) => end > s.start && end <= s.end);
 
   const found = new Set<string>();
   for (const [stem, members] of families) {
@@ -197,13 +208,13 @@ function fuzzyMatch(
       const needle = normalizeName(course.name);
       if (needle.length < 4 || exclude.has(course.id) || ambiguous.has(needle)) continue;
       const end = fuzzyFindEnd(hay, needle, fuzzyTolerance(needle.length));
-      if (end !== -1 && !overlapsExact(end, needle.length)) found.add(course.id);
+      if (end !== -1 && !endInsideExact(end)) found.add(course.id);
       continue;
     }
 
     if (stem.length < 4 || ambiguous.has(stem)) continue;
     const end = fuzzyFindEnd(hay, stem, fuzzyTolerance(stem.length));
-    if (end === -1 || overlapsExact(end, stem.length)) continue;
+    if (end === -1 || endInsideExact(end)) continue;
     for (const m of members) {
       if (exclude.has(m.id) || m.digit === null) continue;
       if (hay.slice(end, end + m.digit.length) === m.digit) found.add(m.id);
@@ -213,9 +224,59 @@ function fuzzyMatch(
 }
 
 /**
+ * "실험" 번호 계열(공학화학및실험·공학물리학및실험·기계공학실험)은 셀 폭에 따라
+ * 이름이 "공학화학및실"⏎"험(N)" 또는 "공학화학및"⏎"실험(N)" 등 임의 위치에서 줄바꿈되고,
+ * SPARSE OCR이 그 사이에 옆 셀 텍스트를 끼워 넣어 스템이 끊긴다 → 일반 매칭 전부 실패.
+ * 보완 규칙: ① 계열별 "명시적 앵커"(줄바꿈 위치와 무관하게 한 줄에 통째로 남는, 그
+ * 계열에만 나오는 접두어)가 텍스트에 정확히 있고 ② 이미지 전체에서 "험/혐/실험" 뒤
+ * 숫자가 정확히 한 종류이면, 앵커가 발견된 모든 계열을 그 번호로 확정한다.
+ * (한 학기 시간표에서 실험 과목들은 같은 번호로 수강하는 게 일반적이라 안전.
+ *  기계공학실험의 앵커는 "기계공학실" — "기계공학부/기계공학창의설계" 등 다른
+ *  기계공학* 텍스트와의 오인을 막기 위해 "실"까지 요구한다.)
+ */
+const LAB_ANCHORS: Record<string, string> = {
+  공학화학및실험: '공학화학',
+  공학물리학및실험: '공학물리학',
+  기계공학실험: '기계공학실',
+};
+
+function labFamilyFallback(
+  normTexts: string[],
+  catalog: CatalogCourse[],
+  exclude: Set<string>,
+): Set<string> {
+  const found = new Set<string>();
+  const joined = normTexts.join(' ');
+
+  const digits = new Set<string>();
+  for (const m of joined.matchAll(/[험혐](\d)/g)) digits.add(m[1]);
+  for (const m of joined.matchAll(/실험(\d)/g)) digits.add(m[1]);
+  if (digits.size !== 1) return found; // 숫자가 없거나 여러 종류면 애매 → 보류
+  const digit = [...digits][0];
+
+  const families = new Map<string, { id: string; digit: string | null }[]>();
+  for (const c of catalog) {
+    if (c.fuzzy === false) continue;
+    const { stem, digit: d } = stemAndDigit(c.id);
+    if (!(stem in LAB_ANCHORS)) continue;
+    if (!families.has(stem)) families.set(stem, []);
+    families.get(stem)!.push({ id: c.id, digit: d });
+  }
+
+  for (const [stem, members] of families) {
+    // 앵커는 OCR이 안정적으로 읽는 부분이라 "정확히" 포함될 때만 인정 (오탐 방지) —
+    // fuzzy로 풀면 다른 과목명 조각이 앵커로 오인돼 없는 과목이 잡힌다.
+    if (!joined.includes(LAB_ANCHORS[stem])) continue;
+    const member = members.find((m) => m.digit === digit);
+    if (member && !exclude.has(member.id)) found.add(member.id);
+  }
+  return found;
+}
+
+/**
  * OCR 텍스트(들)에서 카탈로그 과목을 찾는다. 이미지 1장당 전처리(임계값)를 달리해
  * 여러 번 인식한 텍스트를 배열로 넘기면 결과를 합집합으로 반환한다.
- * 1) 정확 부분 문자열 매치 → 2) 실패한 과목만 오차 허용(fuzzy) 매치로 보완.
+ * 1) 정확 부분 문자열 매치 → 2) 실패 과목만 오차 허용(fuzzy) → 3) 실험 계열 특화 보완.
  */
 export function matchCourses(texts: string | string[], catalog: CatalogCourse[]): string[] {
   const all = (Array.isArray(texts) ? texts : [texts]).map(normalizeName).filter(Boolean);
@@ -231,7 +292,10 @@ export function matchCourses(texts: string | string[], catalog: CatalogCourse[])
     for (const id of fuzzyMatch(all[i], catalog, exact, spansPerText[i], ambiguous)) fuzzy.add(id);
   }
 
-  return [...exact, ...fuzzy];
+  const matched = new Set([...exact, ...fuzzy]);
+  for (const id of labFamilyFallback(all, catalog, matched)) matched.add(id);
+
+  return [...matched];
 }
 
 /** 검색 자동완성: 카탈로그에서 질의어를 포함하는 과목 나열 */
@@ -273,11 +337,17 @@ export interface EvaluationResult {
   remainingRequired: string[];
 }
 
+export interface ExtraCredits {
+  /** RC자기주도활동 이수 학기 수 (0~2). 각 0.5학점, P/NP → 일반선택 학점에 반영 */
+  selfDirectedCount: number;
+}
+
 export function evaluate(
   data: CheckerData,
   cohort: CheckerCohort,
   takenIds: Set<string>,
   chapelCount: number,
+  extra: ExtraCredits = { selfDirectedCount: 0 },
 ): EvaluationResult {
   const byId = new Map(data.catalog.map((c) => [c.id, c]));
   const taken = [...takenIds].map((id) => byId.get(id)).filter(Boolean) as CatalogCourse[];
@@ -388,23 +458,30 @@ export function evaluate(
   }
 
   // 7. 일반선택 — 위 어느 요건에도 배정되지 않은 이수 학점
+  //    RC자기주도활동(1)/(2) 이수분(각 0.5학점, P/NP)도 여기에 더한다.
   {
     const assignedLiberal = new Set(['글쓰기', '기독교의이해', ...data.electiveAreas]);
-    const free = taken
-      .filter(
-        (c) =>
-          (c.kind === 'liberal' &&
-            !(c.area && assignedLiberal.has(c.area)) &&
-            c.category !== 'RC교육') ||
-          false,
-      )
-      .reduce((s, c) => s + c.credits, 0);
+    const selfDirected = Math.min(2, Math.max(0, extra.selfDirectedCount)) * 0.5;
+    const free =
+      taken
+        .filter(
+          (c) =>
+            // 교양 중 특정 영역/RC로 배정되지 않은 것 + 타 학과·기타 과목(other)
+            (c.kind === 'liberal' &&
+              !(c.area && assignedLiberal.has(c.area)) &&
+              c.category !== 'RC교육') ||
+            c.kind === 'other',
+        )
+        .reduce((s, c) => s + c.credits, 0) + selfDirected;
     sections.push({
       id: 'free',
       title: '일반선택',
       required: cohort.freeCredits,
       earned: Math.min(cohort.freeCredits, free),
-      note: '요건 외 이수 과목(자율선택 등) 학점',
+      note:
+        selfDirected > 0
+          ? `요건 외 이수 과목 + RC자기주도활동 ${selfDirected}학점 포함`
+          : '요건 외 이수 과목(자율선택·RC자기주도활동 등) 학점',
     });
   }
 

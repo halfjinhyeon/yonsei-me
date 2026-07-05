@@ -56,6 +56,16 @@ const LIBERAL_ALIASES: Record<string, string[]> = {
 };
 
 /**
+ * 대용량 타과 카탈로그(정확 매치 전용)에 있으나, 시간표에서 이름이 줄바꿈되며 특수문자가
+ * 오인식/누락돼("리더십워크숍"→"리더십워크샵"/"리더십워크") 정확 매치가 실패하는 과목.
+ * curated로 승격해 오차허용(fuzzy) 매칭을 허용한다. (동일 id는 이 항목이 우선)
+ * kind는 학점 배분을 위해 'other'로 두되, fuzzy는 켠다(fuzzy 필드 미지정 = 허용).
+ */
+const CATALOG_SUPPLEMENT: { name: string; credits: number; level: number }[] = [
+  { name: '리더십워크숍', credits: 3, level: 3000 }, // LEA3101 (RC 리더십)
+];
+
+/**
  * 졸업요건 체커 데이터 조립 (서버 전용).
  * 카탈로그 = 공학기초 + 전공필수 + 전공선택 + 교양(CSV) — 정규화 이름으로 중복 제거,
  * 요건 지정 과목(공학기초 등)이 교양 CSV의 동명 과목보다 우선한다.
@@ -110,6 +120,16 @@ export function getCheckerData(): CheckerData {
       area: row.area,
       level: levelFromCode(row.code),
       aliases: LIBERAL_ALIASES[row.name] ?? [],
+    });
+  }
+  for (const s of CATALOG_SUPPLEMENT) {
+    add({
+      id: normalizeName(s.name),
+      name: s.name,
+      credits: s.credits,
+      kind: 'other', // 학점은 일반선택(+3000/4000 단위)에 반영
+      level: s.level,
+      aliases: [], // fuzzy 미지정 → 오차허용 매칭 대상
     });
   }
 
