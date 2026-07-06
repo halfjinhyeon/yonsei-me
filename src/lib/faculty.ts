@@ -28,7 +28,7 @@ export interface ClubSummary {
   teaser: string;
   /** 카드 왼쪽 배경에 깔리는 동아리 로고 (public/img/clubs/) */
   logo?: string;
-  /** 상세 페이지 카드뉴스 패널에서 좌우 교대로 쓰는 사진 (public/동아리/) */
+  /** 상세 페이지 카드뉴스 패널에서 좌우 교대로 쓰는 사진 (public/img/club-photos/) */
   images?: string[];
 }
 
@@ -58,14 +58,14 @@ function readJson<T>(name: string): T {
   return JSON.parse(readFileSync(path, 'utf-8')) as T;
 }
 
-/** public/img 에 있는 "{교수 이름}.{ext}" 프로필 사진을 이름 기준으로 매핑 */
+/** public/img/faculty 에 있는 "{교수 이름}.{ext}" 프로필 사진을 이름 기준으로 매핑 */
 function getFacultyPhotoMap(): Map<string, string> {
-  const dir = join(process.cwd(), 'public', 'img');
+  const dir = join(process.cwd(), 'public', 'img', 'faculty');
   const map = new Map<string, string>();
   for (const file of readdirSync(dir)) {
     const dot = file.lastIndexOf('.');
     if (dot <= 0) continue;
-    map.set(file.slice(0, dot), `/img/${file}`);
+    map.set(file.slice(0, dot), `/img/faculty/${file}`);
   }
   return map;
 }

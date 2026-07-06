@@ -5,7 +5,11 @@
 
 # next.js
 /.next/
+/.next-dev/
 /out/
+
+# dev-only tooling assets (large, locally regenerable)
+/tools/traineddata/
 
 # production
 /build

@@ -1,1 +1,0 @@
-self.__REACT_LOADABLE_MANIFEST="{\"components\\\\GraduationChecker.tsx -> tesseract.js\":{\"id\":\"components\\\\GraduationChecker.tsx -> tesseract.js\",\"files\":[\"static/chunks/_app-pages-browser_node_modules_tesseract_js_src_index_js.js\"]}}"

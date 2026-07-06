@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-"""_import/동아리소개.html 전용 파서.
+"""tools/import-raw/동아리소개.html 전용 파서.
 
 각 동아리는 `<h4>[클럽명]</h4>` + 이미지 + 표(td 안에 <div> 줄바꿈)로 구성되어
 있어 범용 마크다운 추출기로는 한 줄로 뭉개진다. td 안의 <div>를 줄 단위로
@@ -14,7 +14,7 @@ from pathlib import Path
 from bs4 import BeautifulSoup, Tag
 
 ROOT = Path(__file__).resolve().parent.parent
-IMPORT_DIR = ROOT / "_import"
+IMPORT_DIR = ROOT / "tools" / "import-raw"
 PAGES_DIR = ROOT / "content" / "pages"
 
 SLUGS = {

@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-"""_import/졸업요건.html (학부 졸업요건, 학번별 아코디언) 전용 파서.
+"""tools/import-raw/졸업요건.html (학부 졸업요건, 학번별 아코디언) 전용 파서.
 
 원본은 `.view-box` 14개(전체 요약 + 학번 구간 13개)로 구성된 접이식 섹션이다.
 범용 추출기는 헤딩 태그가 아닌 <span> 라벨을 인식하지 못해 하나로 뭉개고
@@ -16,7 +16,7 @@ from pathlib import Path
 from bs4 import BeautifulSoup, Tag
 
 ROOT = Path(__file__).resolve().parent.parent
-IMPORT_DIR = ROOT / "_import"
+IMPORT_DIR = ROOT / "tools" / "import-raw"
 
 
 def parse_table(table: Tag) -> list[list[str]]:

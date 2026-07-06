@@ -5,11 +5,11 @@
     python scripts/extract_import.py
 
 동작:
-    _import/*.html 각각에 대해
+    tools/import-raw/*.html 각각에 대해
       - script/style/nav/header/footer/aside/form 등 보일러플레이트 제거
       - 흔한 본문 컨테이너 셀렉터를 시도해 텍스트가 가장 많은 영역 선택
       - 제목/문단/목록/표를 마크다운 비슷하게 정리
-      - _import/out/<이름>.md 로 저장
+      - tools/import-raw/out/<이름>.md 로 저장
     마지막에 파일별 글자 수 요약만 출력 (원본을 컨텍스트로 읽지 않음).
 """
 from __future__ import annotations
@@ -23,7 +23,7 @@ except ImportError:
     sys.exit(1)
 
 ROOT = Path(__file__).resolve().parent.parent
-IMPORT_DIR = ROOT / "_import"
+IMPORT_DIR = ROOT / "tools" / "import-raw"
 OUT_DIR = IMPORT_DIR / "out"
 
 # 제거할 보일러플레이트 태그/역할
@@ -163,7 +163,7 @@ def main() -> None:
         return
     html_files = sorted(IMPORT_DIR.glob("*.html")) + sorted(IMPORT_DIR.glob("*.htm"))
     if not html_files:
-        print("_import/ 에 .html 파일이 없습니다. 파일을 넣고 다시 실행하세요.")
+        print("tools/import-raw/ 에 .html 파일이 없습니다. 파일을 넣고 다시 실행하세요.")
         return
     OUT_DIR.mkdir(exist_ok=True)
 

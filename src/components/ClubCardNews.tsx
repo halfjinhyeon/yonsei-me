@@ -8,7 +8,7 @@ import type { ClubContent, ClubPanel } from '@/lib/pages';
 
 interface ClubCardNewsProps {
   content: ClubContent;
-  /** 좌우 교대로 배치할 사진들 (public/동아리/) */
+  /** 좌우 교대로 배치할 사진들 (public/img/club-photos/) */
   images: string[];
   /** 데코 패널의 큰 타이포에 쓰는 동아리명 */
   clubName: string;

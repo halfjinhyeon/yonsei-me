@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-"""_import/교수진.html (교수 게시판) + _import/연구실.html (연구실 표)을 구조화된
+"""tools/import-raw/교수진.html (교수 게시판) + tools/import-raw/연구실.html (연구실 표)을 구조화된
 JSON으로 파싱한다. 일반 마크다운 추출기(extract_import.py)로는 표현하기 어려운
 카드형 데이터(교수 1인당 여러 필드)를 위한 전용 파서.
 
@@ -17,7 +17,7 @@ from pathlib import Path
 from bs4 import BeautifulSoup
 
 ROOT = Path(__file__).resolve().parent.parent
-IMPORT_DIR = ROOT / "_import"
+IMPORT_DIR = ROOT / "tools" / "import-raw"
 DEST = ROOT / "content"
 
 

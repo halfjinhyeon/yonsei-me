@@ -1,7 +1,7 @@
 import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
 
-// 교과목_정리.csv (완성본) — 컬럼 순서: 교과목명, 학정번호, 학점
-const raw = readFileSync('교과목_정리.csv', 'utf-8').replace(/^﻿/, '');
+// tools/course-list.csv (완성본) — 컬럼 순서: 교과목명, 학정번호, 학점
+const raw = readFileSync('tools/course-list.csv', 'utf-8').replace(/^﻿/, '');
 
 function parseCSV(text) {
   const rows = [];
