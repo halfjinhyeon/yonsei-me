@@ -6,6 +6,12 @@
       "runtimeExecutable": "npm",
       "runtimeArgs": ["run", "dev"],
       "port": 3000
+    },
+    {
+      "name": "yonsei-me-prod",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["--prefix", "C:\\Users\\aquae\\Desktop\\새폴더~2\\files\\YONSEI~1", "start"],
+      "autoPort": true
     }
   ]
 }

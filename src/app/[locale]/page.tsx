@@ -17,7 +17,7 @@ import type { Locale } from '@/i18n/routing';
 const stats = [
   { key: 'faculty', value: 24, unitKey: 'facultyUnit' },
   { key: 'students', value: 620, unitKey: 'studentsUnit' },
-  { key: 'labs', value: 18, unitKey: 'labsUnit' },
+  { key: 'labs', value: 33, unitKey: 'labsUnit' },
   { key: 'papers', value: 150, unitKey: 'papersUnit' },
 ] as const;
 

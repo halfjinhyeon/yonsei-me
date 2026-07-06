@@ -51,6 +51,8 @@ export interface LabDirectoryEntry {
   url: string;
   /** 연구실별 실제 이미지 경로(public 기준). 없으면 더미 이미지 3장을 순환 사용. */
   image?: string;
+  /** 연구실 소개 영상 URL (YouTube watch 또는 Google Drive file 링크). 없으면 영상 미제공 */
+  video?: string;
 }
 
 function readJson<T>(name: string): T {

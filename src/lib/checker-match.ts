@@ -215,6 +215,16 @@ function fuzzyMatch(
     if (stem.length < 4 || ambiguous.has(stem)) continue;
     const end = fuzzyFindEnd(hay, stem, fuzzyTolerance(stem.length));
     if (end === -1 || endInsideExact(end)) continue;
+    // 숫자 확정은 "스템 끝이 텍스트에 실제로 있다"는 전제 위에서만 유효하다. 매치가
+    // 끝 글자 삭제로 끝났거나(끝 글자 불일치) 끝 부근이 치환으로 뭉개졌다면, 직후 문자는
+    // 스템과 무관한 인접 셀 텍스트일 수 있다 — 실사례 두 종:
+    // ① "공학화학및실"⏎"I자A102" → "공학화학및실1사102": 험 삭제 매치 후 옆 셀 강의실의
+    //    "1"을 번호로 읽어 공학화학및실험(1) 오탐.
+    // ② "…기계공학부"+"험(1)" 조각: 부↔실 치환으로 기계공학실험(1) 오탐 가능(공유 접두사).
+    // 긴 스템(6자↑ — 실험 계열, 조각나도 labFamilyFallback이 받쳐줌)은 끝 2글자 정확 일치,
+    // 짧은 스템(공학수학 등)은 끝 1글자만 요구해 중간 오인식("공학슈학") recall을 보존한다.
+    const tail = stem.length >= 6 ? 2 : 1;
+    if (hay.slice(end - tail, end) !== stem.slice(-tail)) continue;
     for (const m of members) {
       if (exclude.has(m.id) || m.digit === null) continue;
       if (hay.slice(end, end + m.digit.length) === m.digit) found.add(m.id);

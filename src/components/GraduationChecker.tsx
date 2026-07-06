@@ -74,6 +74,123 @@ async function whiteTextMask(bitmap: ImageBitmap, threshold: number, scale = 2):
 
 const OCR_THRESHOLDS = [130, 165];
 
+/** 캡처 테마 분류. 에브리타임 캡처는 세 갈래다:
+ * - light: 흰 페이지 배경 (글자는 흰색·굵음 → 흰글자 마스크)
+ * - darkWhiteText: 검정 배경 + 컬러 셀 위 "흰" 글자 → 흰글자 마스크가 그대로 통함
+ * - darkDarkText: 검정 배경 + 컬러 셀 위 "어두운" 글자 → 글자와 빈 배경이 둘 다 검정이라
+ *   셀 영역 기반 다크셀 마스크가 필요
+ * 배경 밝기(어두운 픽셀 비율 0.4 경계)로 다크 여부를, 셀 영역 안 흰 잉크(min>165) 대
+ * 어두운 잉크(max<80) 픽셀 수 비교로 글자 극성을 판별한다. 판별은 축소 캔버스에서 수행
+ * (비율·다수결 추정에는 충분하고 훨씬 싸다). */
+type CaptureTheme = 'light' | 'darkWhiteText' | 'darkDarkText';
+
+function detectCaptureTheme(bitmap: ImageBitmap): CaptureTheme {
+  const w = Math.min(512, bitmap.width);
+  const h = Math.max(1, Math.round((bitmap.height / bitmap.width) * w));
+  const canvas = document.createElement('canvas');
+  canvas.width = w;
+  canvas.height = h;
+  const ctx = canvas.getContext('2d')!;
+  ctx.drawImage(bitmap, 0, 0, w, h);
+  const d = ctx.getImageData(0, 0, w, h).data;
+  let dark = 0;
+  for (let i = 0; i < d.length; i += 4) {
+    if (Math.max(d[i], d[i + 1], d[i + 2]) < 60) dark++;
+  }
+  if (dark / (w * h) <= 0.4) return 'light';
+  // 컬러 셀 영역(closing으로 글자 구멍 메움) 안에서 잉크 극성 다수결
+  let bg: Uint8Array = new Uint8Array(w * h);
+  for (let p = 0, i = 0; p < w * h; p++, i += 4) {
+    bg[p] = Math.max(d[i], d[i + 1], d[i + 2]) >= 70 ? 1 : 0;
+  }
+  const R = Math.max(3, Math.round((10 * w) / bitmap.width)); // 원본 기준 R=10을 축소 비율로 환산
+  bg = morphBinary(morphBinary(bg, w, h, R, true), w, h, R, false);
+  let whiteInk = 0;
+  let darkInk = 0;
+  for (let p = 0, i = 0; p < w * h; p++, i += 4) {
+    if (!bg[p]) continue;
+    if (Math.min(d[i], d[i + 1], d[i + 2]) > 165) whiteInk++;
+    else if (Math.max(d[i], d[i + 1], d[i + 2]) < 80) darkInk++;
+  }
+  return whiteInk >= darkInk ? 'darkWhiteText' : 'darkDarkText';
+}
+
+/** 분리형 사각 구조요소 팽창/침식 (이진 0/1) — 다크모드 셀 영역 계산용 */
+function morphBinary(mask: Uint8Array, w: number, h: number, radius: number, dilate: boolean): Uint8Array {
+  const pick = dilate ? Math.max : Math.min;
+  const stop = dilate ? 1 : 0;
+  const tmp = new Uint8Array(mask.length);
+  for (let y = 0; y < h; y++) {
+    const base = y * w;
+    for (let x = 0; x < w; x++) {
+      let v = mask[base + x];
+      for (let dx = 1; dx <= radius && v !== stop; dx++) {
+        if (x - dx >= 0) v = pick(v, mask[base + x - dx]);
+        if (x + dx < w) v = pick(v, mask[base + x + dx]);
+      }
+      tmp[base + x] = v;
+    }
+  }
+  const out = new Uint8Array(mask.length);
+  for (let x = 0; x < w; x++) {
+    for (let y = 0; y < h; y++) {
+      let v = tmp[y * w + x];
+      for (let dy = 1; dy <= radius && v !== stop; dy++) {
+        if (y - dy >= 0) v = pick(v, tmp[(y - dy) * w + x]);
+        if (y + dy < h) v = pick(v, tmp[(y + dy) * w + x]);
+      }
+      out[y * w + x] = v;
+    }
+  }
+  return out;
+}
+
+/** 다크모드용 마스크: 어두운 글자가 컬러 셀 위에 얹혀 있고 빈 배경도 검정이라, 픽셀 색만으로는
+ * "글자"와 "빈 배경"이 구분되지 않는다(둘 다 검정). 그래서 ① 1배 해상도에서 컬러 셀 영역을
+ * 구하고(밝기 max>=70) closing(팽창→침식)으로 셀 안 글자 구멍을 메운 뒤, ② 부드럽게 2배
+ * 확대한 이미지에서 "셀 영역 안의 어두운 픽셀(max<80)"만 검정 잉크로 남긴다.
+ * (이진화 후 확대가 아니라 확대 후 이진화 — 윤곽이 각지면 인식률이 뚜렷이 떨어진다)
+ * darkThreshold는 라이트모드의 OCR_THRESHOLDS처럼 두 값으로 각각 뽑아 합친다 — 80은
+ * 획이 얇고 깨끗, 105는 안티앨리어싱 가장자리까지 획이 굵어져 작은 셀 글자에 유리. */
+function darkCellMask(bitmap: ImageBitmap, darkThreshold: number, scale = 2): HTMLCanvasElement {
+  const w = bitmap.width;
+  const h = bitmap.height;
+  // ① 셀 영역 (1배 — morph 비용 절감)
+  const base = document.createElement('canvas');
+  base.width = w;
+  base.height = h;
+  const bctx = base.getContext('2d')!;
+  bctx.drawImage(bitmap, 0, 0);
+  const bd = bctx.getImageData(0, 0, w, h).data;
+  let bg: Uint8Array = new Uint8Array(w * h);
+  for (let p = 0, i = 0; p < w * h; p++, i += 4) {
+    bg[p] = Math.max(bd[i], bd[i + 1], bd[i + 2]) >= 70 ? 1 : 0;
+  }
+  const R = 10; // 굵은 글자 획 뭉치를 덮을 만큼 (셀 내부 구멍 메움), 셀 경계는 원위치
+  bg = morphBinary(morphBinary(bg, w, h, R, true), w, h, R, false);
+  // ② 확대 후 분류
+  const canvas = document.createElement('canvas');
+  canvas.width = w * scale;
+  canvas.height = h * scale;
+  const ctx = canvas.getContext('2d')!;
+  ctx.imageSmoothingQuality = 'high';
+  ctx.drawImage(bitmap, 0, 0, canvas.width, canvas.height);
+  const img = ctx.getImageData(0, 0, canvas.width, canvas.height);
+  const d = img.data;
+  for (let p = 0, i = 0; p < canvas.width * canvas.height; p++, i += 4) {
+    const x = p % canvas.width;
+    const y = (p / canvas.width) | 0;
+    const cell = bg[((y / scale) | 0) * w + ((x / scale) | 0)];
+    const dark = Math.max(d[i], d[i + 1], d[i + 2]) < darkThreshold;
+    const v = cell && dark ? 0 : 255;
+    d[i] = v;
+    d[i + 1] = v;
+    d[i + 2] = v;
+  }
+  ctx.putImageData(img, 0, 0);
+  return canvas;
+}
+
 /**
  * 졸업요건 체크 — 에브리타임 시간표 캡처를 업로드하면 브라우저에서 OCR로
  * 과목을 인식해 학번별 졸업요건과 대조하고, 남은 요건을 보여준다.
@@ -164,26 +281,36 @@ export function GraduationChecker({ data, locale }: { data: CheckerData; locale:
       try {
         const { createWorker, PSM } = await import('tesseract.js');
         const bitmap = await createImageBitmap(file);
-        let passIndex = 0; // 진행률 계산용 — 현재 몇 번째 임계값 패스인지
+        // 다크+어두운글자 캡처만 다크셀 마스크 경로 (+ 하단 채플 등 검정 배경 위 밝은 글자용
+        // 흰글자 마스크 1회). 라이트·다크+흰글자 캡처는 기존 두 임계값 흰글자 마스크 그대로.
+        const masks: (() => Promise<HTMLCanvasElement>)[] =
+          detectCaptureTheme(bitmap) === 'darkDarkText'
+            ? [
+                async () => darkCellMask(bitmap, 80),
+                async () => darkCellMask(bitmap, 105),
+                () => whiteTextMask(bitmap, OCR_THRESHOLDS[0]),
+              ]
+            : OCR_THRESHOLDS.map((t) => () => whiteTextMask(bitmap, t));
+        let passIndex = 0; // 진행률 계산용 — 현재 몇 번째 마스크 패스인지
         const worker = await createWorker('kor+eng', 1, {
           logger: (m: { status: string; progress: number }) => {
             if (m.status === 'recognizing text') {
-              const combined = (passIndex + m.progress) / OCR_THRESHOLDS.length;
+              const combined = (passIndex + m.progress) / masks.length;
               setFiles((prev) => prev.map((f) => (f.id === id ? { ...f, progress: combined } : f)));
             }
           },
         });
         await worker.setParameters({ tessedit_pageseg_mode: PSM.SPARSE_TEXT });
 
-        // 임계값을 달리해 두 번 인식 (배경색에 따라 잡히는 블록이 달라짐) 후 합침
+        // 마스크를 달리해 여러 번 인식한 텍스트를 합쳐 매칭 (배경·테마에 따라 잡히는 블록이 다름)
         const texts: string[] = [];
-        for (const threshold of OCR_THRESHOLDS) {
-          const canvas = await whiteTextMask(bitmap, threshold);
+        for (const makeMask of masks) {
+          const canvas = await makeMask();
           const { data: ocr } = await worker.recognize(canvas);
           texts.push(ocr.text);
           passIndex += 1;
           setFiles((prev) =>
-            prev.map((f) => (f.id === id ? { ...f, progress: passIndex / OCR_THRESHOLDS.length } : f)),
+            prev.map((f) => (f.id === id ? { ...f, progress: passIndex / masks.length } : f)),
           );
         }
         await worker.terminate();
