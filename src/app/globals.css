@@ -298,4 +298,45 @@
       transform: none;
     }
   }
+
+  /* =========================================================
+     동아리 카드뉴스 "풀스크린 덱" (ClubCardNews)
+     - 데스크톱(lg↑)에서만 스크롤 스냅으로 패널을 한 장씩 넘긴다.
+     - 클래스 club-snap 은 컴포넌트 mount 시 <html> 에 부여/해제된다.
+     - Cornell식 진입 애니메이션은 GSAP 대신 IO가 붙이는
+       data-active 속성 + 기존 키프레임(heroTitleIn/panelFadeUp/navItemUp)으로 재현.
+     ========================================================= */
+
+  @media (min-width: 1024px) {
+    html.club-snap {
+      scroll-snap-type: y mandatory;
+    }
+    html.club-snap .club-panel {
+      scroll-snap-align: start;
+    }
+    /* 푸터 도달 보장 — mandatory 스냅에서 스냅 지점이 없으면 푸터가 접근 불가가 됨 */
+    html.club-snap footer {
+      scroll-snap-align: end;
+    }
+  }
+
+  /* JS 마운트 + 모션 허용 시에만 초기 숨김 (no-JS/SEO에서 콘텐츠 항상 보임) */
+  .club-deck.js-anim .club-panel:not([data-active]) [data-deck-anim] {
+    opacity: 0;
+  }
+  .club-deck.js-anim .club-panel[data-active] [data-deck-anim='title'] {
+    animation: heroTitleIn 0.8s ease 0.1s both;
+  }
+  .club-deck.js-anim .club-panel[data-active] [data-deck-anim='text'] {
+    animation: panelFadeUp 0.6s ease-out 0.25s both;
+  }
+  .club-deck.js-anim .club-panel[data-active] [data-deck-anim='media'] {
+    animation: navItemUp 0.7s ease-out both;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .club-deck.js-anim [data-deck-anim] {
+      opacity: 1 !important;
+      animation: none !important;
+    }
+  }
 }

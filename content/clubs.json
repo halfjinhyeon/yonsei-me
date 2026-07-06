@@ -3,24 +3,24 @@
     "slug": "yonseidrone",
     "name": "연세드론",
     "teaser": "무인비행체(드론·고정익·VTOL)를 직접 제작하고 비행하는 하드웨어·소프트웨어 동아리.",
-    "images": ["/img/club-photos/YONSEIDRONE.jpg", "/img/club-photos/yonsei_drone.jpeg"]
+    "images": ["/img/club-photos/YONSEIDRONE.jpg", "/img/club-photos/yonseidrone-software.jpg", "/img/club-photos/yonseidrone-hardware.jpeg", "/img/club-photos/yonseidrone-achievement.jpeg"]
   },
   {
     "slug": "mecar",
     "name": "메카 (MECar)",
     "teaser": "연세대학교 유일의 자작 자동차 동아리. 설계부터 부품 제작까지 직접 만든다.",
-    "images": ["/img/club-photos/MECAR.png", "/img/club-photos/mecar.jpeg"]
+    "images": ["/img/club-photos/MECAR.png", "/img/club-photos/mecar-developing.jpg", "/img/club-photos/mecar-electricity.jpg", "/img/club-photos/mecar-architecture.jpg", "/img/club-photos/mecar-marketting.jpg", "/img/club-photos/mecar-achievement.jpeg"]
   },
   {
     "slug": "roboin",
     "name": "로보인",
     "teaser": "기계공학과 로봇 학술 동아리. 로봇팔·드론·자율주행 등 원하는 주제로 제작 프로젝트를 진행한다.",
-    "images": ["/img/club-photos/ROBOIN.jpg", "/img/club-photos/ROBOIN-2.jpg"]
+    "images": ["/img/club-photos/roboin-main.jpg", "/img/club-photos/roboin-achievement.jpg"]
   },
   {
     "slug": "spacey",
     "name": "SPACE Y",
     "teaser": "연세대 유일 항공우주동아리. 로켓·인공위성·항공·컨버전스 4개 팀으로 구성되어 있다.",
-    "images": ["/img/club-photos/SPACEY.jpg", "/img/club-photos/spacey.jpeg"]
+    "images": ["/img/club-photos/SPACEY.jpg", "/img/club-photos/spacey-rocket-team.jpg", "/img/club-photos/spacey-wisung-team.jpg", "/img/club-photos/spacey-hangong-team.jpg", "/img/club-photos/spacey-convergence-team.jpg"]
   }
 ]

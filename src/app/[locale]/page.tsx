@@ -94,75 +94,77 @@ export default function HomePage({ params }: { params: { locale: string } }) {
         <LabCarousel labs={labs} locale={locale} />
       </section>
 
-      {/* 6. 뉴스 캐러셀 (다크) */}
-      <NewsCarousel items={news.slice(0, 6)} locale={locale} />
+      {/* 6. 뉴스 캐러셀 (다크) — 세미나·공지는 아래 전용 섹션이 있으므로 뉴스(성과)만 */}
+      <NewsCarousel
+        items={news.filter((n) => n.category === 'achievement').slice(0, 6)}
+        locale={locale}
+      />
 
-      {/* 6-b. 세미나 · 행사 */}
-      <Section aria-labelledby="board-title">
-        <h2 id="board-title" className="sr-only">
-          {tBoard('seminars.title')} · {tBoard('events.title')}
-        </h2>
-        <div className="grid gap-10 lg:grid-cols-2">
-          {/* 세미나 */}
-          <div>
-            <div className="mb-4 flex items-center justify-between border-b-2 border-yonsei-navy pb-2">
-              <h3 className="text-lg font-bold text-content">{tBoard('seminars.title')}</h3>
-              <Link href="/news#seminars" className="text-sm font-semibold text-yonsei-blue hover:underline">
-                {tBoard('seminars.more')} →
-              </Link>
-            </div>
-            <ul className="divide-y divide-surface-border">
-              {board.seminars.map((s) => (
-                <li key={s.id}>
-                  <Link href={`/news/post/${s.id}`} className="group flex gap-4 py-4">
-                    <time
-                      dateTime={s.date}
-                      className="shrink-0 text-sm font-semibold tabular-nums text-yonsei-blue"
-                    >
-                      {formatDate(s.date, locale)}
-                    </time>
-                    <span className="min-w-0">
-                      <span className="line-clamp-2 font-medium text-content group-hover:text-yonsei-blue">
-                        {pick(s.title, locale)}
-                      </span>
-                      <span className="mt-0.5 block text-sm text-content-faint">
-                        {tBoard('seminars.hostLabel')}: {pick(s.host, locale)}
-                      </span>
-                    </span>
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* 행사 */}
-          <div>
-            <div className="mb-4 flex items-center justify-between border-b-2 border-yonsei-navy pb-2">
-              <h3 className="text-lg font-bold text-content">{tBoard('events.title')}</h3>
-              <Link href="/news#events" className="text-sm font-semibold text-yonsei-blue hover:underline">
-                {tBoard('events.more')} →
-              </Link>
-            </div>
-            <ul className="divide-y divide-surface-border">
-              {board.events.map((e) => (
-                <li key={e.id}>
-                  <Link href={`/news/post/${e.id}`} className="group flex gap-4 py-4">
-                    <span className="shrink-0 rounded-md bg-yonsei-navy/5 px-2.5 py-1 text-xs font-bold text-yonsei-navy">
-                      {pick(e.dateLabel, locale)}
-                    </span>
-                    <span className="line-clamp-2 font-medium text-content group-hover:text-yonsei-blue">
-                      {pick(e.title, locale)}
-                    </span>
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
+      {/* 6-b. 세미나 (구 학과 사이트처럼 독립 풀폭 섹션 — 가로 카드 3장).
+          세미나→행사→공지는 한 "보드 그룹"이라 size=sm 으로 세로 리듬을 좁힌다. */}
+      <Section size="sm" aria-labelledby="seminars-title">
+        <div className="mb-6 flex items-center justify-between border-b-2 border-yonsei-navy pb-2">
+          <h2 id="seminars-title" className="text-lg font-bold text-content">
+            {tBoard('seminars.title')}
+          </h2>
+          <Link href="/news#seminars" className="text-sm font-semibold text-yonsei-blue hover:underline">
+            {tBoard('seminars.more')} →
+          </Link>
         </div>
+        <ul className="grid gap-6 md:grid-cols-3">
+          {board.seminars.slice(0, 3).map((s) => (
+            <li key={s.id}>
+              <Link
+                href={`/news/post/${s.id}`}
+                className="group flex h-full flex-col gap-2 rounded-card border border-surface-border bg-surface p-5 transition-all hover:-translate-y-1 hover:border-yonsei-blue/40 hover:shadow-card"
+              >
+                <time dateTime={s.date} className="text-sm font-semibold tabular-nums text-yonsei-blue">
+                  {formatDate(s.date, locale)}
+                </time>
+                <span className="line-clamp-3 font-medium text-content group-hover:text-yonsei-blue">
+                  {pick(s.title, locale)}
+                </span>
+                <span className="mt-auto pt-1 text-sm text-content-faint">
+                  {tBoard('seminars.hostLabel')}: {pick(s.host, locale)}
+                </span>
+              </Link>
+            </li>
+          ))}
+        </ul>
       </Section>
 
-      {/* 6-c. 학부 · 대학원 공지사항 */}
-      <Section tone="soft" aria-labelledby="notices-title">
+      {/* 6-b-2. 행사 (독립 풀폭 섹션 — 뒤 6-c 공지가 soft 라 여긴 기본 톤으로 두어 soft 연속을 피함).
+          같은 보드 그룹인 세미나와 한 묶음으로 읽히도록 상단 패딩은 제거. */}
+      <Section size="sm" className="!pt-0" aria-labelledby="events-title">
+        <div className="mb-6 flex items-center justify-between border-b-2 border-yonsei-navy pb-2">
+          <h2 id="events-title" className="text-lg font-bold text-content">
+            {tBoard('events.title')}
+          </h2>
+          <Link href="/news#events" className="text-sm font-semibold text-yonsei-blue hover:underline">
+            {tBoard('events.more')} →
+          </Link>
+        </div>
+        <ul className="grid gap-6 md:grid-cols-3">
+          {board.events.slice(0, 3).map((e) => (
+            <li key={e.id}>
+              <Link
+                href={`/news/post/${e.id}`}
+                className="group flex h-full flex-col gap-3 rounded-card border border-surface-border bg-surface p-5 transition-all hover:-translate-y-1 hover:border-yonsei-blue/40 hover:shadow-card"
+              >
+                <span className="w-fit shrink-0 rounded-md bg-yonsei-navy/5 px-2.5 py-1 text-xs font-bold text-yonsei-navy">
+                  {pick(e.dateLabel, locale)}
+                </span>
+                <span className="line-clamp-3 font-medium text-content group-hover:text-yonsei-blue">
+                  {pick(e.title, locale)}
+                </span>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </Section>
+
+      {/* 6-c. 학부 · 대학원 공지사항 (보드 그룹 — size=sm 으로 리듬 통일) */}
+      <Section size="sm" tone="soft" aria-labelledby="notices-title">
         <h2 id="notices-title" className="sr-only">
           {tBoard('noticesUndergrad.title')} · {tBoard('noticesGraduate.title')}
         </h2>
@@ -171,7 +173,7 @@ export default function HomePage({ params }: { params: { locale: string } }) {
             { key: 'noticesUndergrad', items: board.noticesUndergrad, href: '/news#notices' },
             { key: 'noticesGraduate', items: board.noticesGraduate, href: '/news#notices' },
           ].map((col) => (
-            <div key={col.key} className="rounded-card border border-surface-border bg-surface p-6">
+            <div key={col.key} className="rounded-card border border-surface-border bg-surface p-5">
               <div className="mb-2 flex items-center justify-between">
                 <h3 className="text-base font-bold text-content">{tBoard(`${col.key}.title`)}</h3>
                 <Link href={col.href} className="text-sm font-semibold text-yonsei-blue hover:underline">

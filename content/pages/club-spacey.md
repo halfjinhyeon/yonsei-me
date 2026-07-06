@@ -6,6 +6,8 @@
 - 2024년 11월부터 상시모집을 진행하고 있으니 많은 관심부탁드립니다. 인스타그램 링크트리를 통해 지원서 폼에 접근할 수 있습니다.
 
 
+<img src="/img/club-photos/SPACEY.jpg" alt="SPACE Y" style="max-width:100%; height:auto;" />
+
 **[로켓팀]**
 
 - 발사체부
@@ -20,6 +22,7 @@
 2023 NURA 학술대회 5등 (장려상) 수상
 2024 NURA 학술대회 2등 (금상, 항우연원장상) 수상
 
+<img src="/img/club-photos/SPACEY.jpg" alt="SPACE Y" style="max-width:100%; height:auto;" />
 
 **[인공위성팀]**
 
