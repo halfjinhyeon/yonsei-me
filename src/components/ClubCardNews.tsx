@@ -396,7 +396,7 @@ function LinksBody({ links, clubName }: { links: ClubLink[]; clubName: string })
             </>
           );
           const cardClass =
-            'group flex w-60 flex-col items-center gap-3 rounded-2xl border border-white/15 bg-white/5 px-6 py-8 transition hover:-translate-y-1 hover:border-white/35 hover:bg-white/10';
+            'group flex w-60 flex-col items-center gap-3 rounded-lg border border-white/15 bg-white/5 px-6 py-8 transition hover:-translate-y-1 hover:border-white/35 hover:bg-white/10';
           return (
             <li key={i}>
               {link.href ? (
@@ -435,7 +435,7 @@ function PanelPhoto({ src, alt }: { src: string; alt: string }) {
   return (
     <div
       style={{ aspectRatio: ratio }}
-      className="relative max-h-[72svh] w-full overflow-hidden rounded-2xl bg-yonsei-navy shadow-xl ring-1 ring-white/20"
+      className="relative max-h-[72svh] w-full overflow-hidden rounded-lg bg-yonsei-navy shadow-xl ring-1 ring-white/20"
     >
       <Image
         src={src}
@@ -460,7 +460,7 @@ function PanelDeco({ label }: { label: string }) {
   return (
     <div
       aria-hidden="true"
-      className="anim-gradient relative flex aspect-[4/3] w-full items-center justify-center overflow-hidden rounded-2xl p-8 shadow-xl ring-1 ring-white/20"
+      className="anim-gradient relative flex aspect-[4/3] w-full items-center justify-center overflow-hidden rounded-lg p-8 shadow-xl ring-1 ring-white/20"
     >
       <span className="text-center text-3xl font-bold leading-tight tracking-tight text-white/90 sm:text-4xl">
         {label}

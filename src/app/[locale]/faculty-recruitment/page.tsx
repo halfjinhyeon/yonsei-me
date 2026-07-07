@@ -2,7 +2,7 @@ import { getTranslations, setRequestLocale } from 'next-intl/server';
 import type { Metadata } from 'next';
 import { Hero } from '@/components/Hero';
 import { TabbedContent, type TabItem } from '@/components/TabbedContent';
-import { RecruitInfo, RecruitApply } from '@/components/RecruitContent';
+import { EditorialTab, getEditorialTab } from '@/components/EditorialTab';
 import type { Locale } from '@/i18n/routing';
 
 export async function generateMetadata({
@@ -21,19 +21,19 @@ export default async function FacultyRecruitmentPage({ params }: { params: { loc
   const tPages = await getTranslations({ locale: params.locale, namespace: 'pages' });
   const tStub = await getTranslations({ locale: params.locale, namespace: 'stub' });
 
-  // 줄글 마크다운 대신 편집형 타이포 컴포넌트로 렌더 (RecruitContent.tsx)
+  // 줄글 마크다운 대신 에디토리얼 타이포 컴포넌트로 렌더 (EditorialTab + content/editorial-tabs.json)
   const tabs: TabItem[] = [
     {
       key: 'info',
       label: tMenu('recruit.items.info'),
       markdown: null,
-      content: <RecruitInfo locale={locale} />,
+      content: <EditorialTab data={getEditorialTab('recruit-info')} locale={locale} />,
     },
     {
       key: 'apply',
       label: tMenu('recruit.items.apply'),
       markdown: null,
-      content: <RecruitApply locale={locale} />,
+      content: <EditorialTab data={getEditorialTab('recruit-apply')} locale={locale} />,
     },
   ];
 

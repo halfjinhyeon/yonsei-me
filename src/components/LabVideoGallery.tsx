@@ -1,6 +1,7 @@
 'use client';
 
 import { useMemo, useRef, useState } from 'react';
+import { UnderlineTabs } from '@/components/UnderlineTabs';
 import { cn } from '@/lib/utils';
 import type { LabDirectoryEntry } from '@/lib/faculty';
 import type { Locale } from '@/i18n/routing';
@@ -127,26 +128,15 @@ export function LabVideoGallery({ items, locale }: { items: LabDirectoryEntry[];
         )}
       </p>
 
-      {/* 필터 세그먼트 토글 — GraduationChecker STEP01 스타일과 동일 계열 */}
-      <div className="inline-flex overflow-hidden rounded-lg border border-surface-border">
-        {(['withVideo', 'all'] as const).map((f, i) => (
-          <button
-            key={f}
-            type="button"
-            onClick={() => changeFilter(f)}
-            aria-pressed={filter === f}
-            className={cn(
-              'px-5 py-2.5 text-sm font-semibold transition-colors',
-              i > 0 && 'border-l border-surface-border',
-              filter === f
-                ? 'bg-yonsei-navy text-white'
-                : 'bg-surface text-content-soft hover:text-yonsei-navy',
-            )}
-          >
-            {f === 'withVideo' ? (ko ? '영상 보유' : 'With video') : ko ? '전체 연구실' : 'All labs'}
-          </button>
-        ))}
-      </div>
+      {/* 필터 토글 — 사이트 공통 언더라인 탭 (선택 시 컬러바 슬라이드) */}
+      <UnderlineTabs
+        active={filter}
+        onChange={(id) => changeFilter(id as 'withVideo' | 'all')}
+        tabs={[
+          { id: 'withVideo', label: ko ? '영상 보유' : 'With video' },
+          { id: 'all', label: ko ? '전체 연구실' : 'All labs' },
+        ]}
+      />
 
       {/* 카드 그리드 — key로 필터·페이지 전환 시 애니메이션 재생 + 재생 중이던 iframe 초기화 */}
       <div

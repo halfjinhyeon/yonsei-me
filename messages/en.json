@@ -318,6 +318,13 @@
         }
       }
     },
+    "staffTable": {
+      "role": "Division",
+      "name": "Name",
+      "phone": "Phone",
+      "location": "Office",
+      "email": "Email"
+    },
     "dean": {
       "title": "Message from the Chair",
       "body": "Mechanical engineering has tangibly transformed human life. Even amid a changing era, the School of Mechanical Engineering at Yonsei University will nurture talents who boldly challenge the future on an unshakeable foundation. We ask for your continued interest and support.",
@@ -343,7 +350,12 @@
     },
     "emailLabel": "Email",
     "labLabel": "Lab",
-    "moreLabel": "View details"
+    "moreLabel": "View details",
+    "directoryFilter": {
+      "all": "All",
+      "active": "Faculty",
+      "emeritus": "Emeritus"
+    }
   },
   "academics": {
     "hero": {
@@ -417,7 +429,9 @@
     "addressLabel": "Address",
     "phoneLabel": "Phone",
     "emailLabel": "Email",
-    "mapTitle": "Map"
+    "mapTitle": "Map",
+    "subwayTitle": "Subway",
+    "busTitle": "Bus Routes"
   },
   "footer": {
     "address": "4th Engineering Hall, Yonsei University, 50 Yonsei-ro, Seodaemun-gu, Seoul, Korea",

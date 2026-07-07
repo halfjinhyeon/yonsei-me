@@ -3,7 +3,10 @@ import { getTranslations, setRequestLocale } from 'next-intl/server';
 import type { Metadata } from 'next';
 import { Hero } from '@/components/Hero';
 import { Section } from '@/components/Section';
-import { Card } from '@/components/Card';
+import { ContactInfoPanel } from '@/components/ContactInfoPanel';
+import { DirectionsInfo } from '@/components/DirectionsInfo';
+import { KakaoMap } from '@/components/KakaoMap';
+import type { Locale } from '@/i18n/routing';
 
 export async function generateMetadata({
   params,
@@ -14,10 +17,10 @@ export async function generateMetadata({
   return { title: t('hero.title') };
 }
 
-// 연세대 신촌캠퍼스 좌표 기반 OpenStreetMap 임베드 (API 키 불필요)
-const OSM_EMBED =
-  'https://www.openstreetmap.org/export/embed.html?bbox=126.933%2C37.562%2C126.943%2C37.568&layer=mapnik&marker=37.5651%2C126.9385';
-const OSM_LINK = 'https://www.openstreetmap.org/?mlat=37.5651&mlon=126.9385#map=17/37.5651/126.9385';
+// 연세대 신촌캠퍼스 제4공학관 좌표 기반 카카오맵 링크 (한글 포함 → encodeURI)
+const KAKAO_MAP_LINK = encodeURI(
+  'https://map.kakao.com/link/map/연세대학교 제4공학관,37.5651,126.9385',
+);
 
 export default function ContactPage({ params }: { params: { locale: string } }) {
   setRequestLocale(params.locale);
@@ -26,8 +29,8 @@ export default function ContactPage({ params }: { params: { locale: string } }) 
   const tFooter = useTranslations('footer');
 
   const info = [
-    { label: t('addressLabel'), value: tFooter('address') },
-    { label: t('phoneLabel'), value: '02-2123-0000' },
+    { label: t('addressLabel'), value: `${tFooter('address')} (03722)` },
+    { label: t('phoneLabel'), value: '02-2123-2810' },
     { label: t('emailLabel'), value: 'me@yonsei.ac.kr', href: 'mailto:me@yonsei.ac.kr' },
   ];
 
@@ -39,50 +42,27 @@ export default function ContactPage({ params }: { params: { locale: string } }) 
         breadcrumb={[{ label: tNav('contact') }]}
       />
       <Section>
-        <div className="grid gap-8 lg:grid-cols-[1fr_1.5fr]">
-          {/* 연락처 정보 */}
-          <Card>
-            <dl className="space-y-6">
-              {info.map((row) => (
-                <div key={row.label}>
-                  <dt className="text-xs font-bold uppercase tracking-wide text-content-faint">
-                    {row.label}
-                  </dt>
-                  <dd className="mt-1 text-base leading-relaxed text-content">
-                    {row.href ? (
-                      <a href={row.href} className="text-yonsei-blue hover:underline">
-                        {row.value}
-                      </a>
-                    ) : (
-                      row.value
-                    )}
-                  </dd>
-                </div>
-              ))}
-            </dl>
-          </Card>
+        {/* 연락처 패널과 지도를 한 카드로 합침 — 모서리는 rounded-lg로 각지게 */}
+        <div className="grid overflow-hidden rounded-lg border border-surface-border shadow-card lg:grid-cols-[1fr_1.5fr]">
+          {/* 연락처 정보 — 동아리 카드 스타일 비주얼 패널 */}
+          <ContactInfoPanel rows={info} />
 
-          {/* 지도 */}
-          <div className="overflow-hidden rounded-card border border-surface-border shadow-card">
-            <iframe
-              src={OSM_EMBED}
-              title={t('mapTitle')}
-              loading="lazy"
-              className="h-[360px] w-full lg:h-full"
-              style={{ border: 0 }}
-            />
-            <div className="bg-surface px-4 py-3 text-right text-sm">
-              <a
-                href={OSM_LINK}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-yonsei-blue hover:underline"
-              >
-                {t('mapTitle')} ↗
-              </a>
-            </div>
+          {/* 지도 — 하단 링크 바 없이 카드 바닥까지 채우고, 약도 링크는 지도 위 배지로 */}
+          <div className="relative flex flex-col">
+            <KakaoMap className="h-[360px] w-full lg:h-auto lg:flex-1" />
+            <a
+              href={KAKAO_MAP_LINK}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="absolute bottom-3 left-3 z-10 rounded-md bg-surface/90 px-3 py-1.5 text-xs font-semibold text-yonsei-blue shadow-card transition-colors hover:bg-surface"
+            >
+              {t('mapTitle')} ↗
+            </a>
           </div>
         </div>
+
+        {/* 지하철·버스 교통편 안내 */}
+        <DirectionsInfo locale={params.locale as Locale} />
       </Section>
     </>
   );

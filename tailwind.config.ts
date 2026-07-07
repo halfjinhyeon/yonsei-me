@@ -60,7 +60,8 @@ const config: Config = {
         'section-sm': 'clamp(2.5rem, 5vw, 4rem)',
       },
       borderRadius: {
-        card: '1rem',
+        // 사이트 공통 카드 곡률 — 각진 인상을 위해 0.5rem(8px)로 통일
+        card: '0.5rem',
       },
       boxShadow: {
         card: '0 1px 2px rgb(0 40 94 / 0.04), 0 8px 24px -12px rgb(0 40 94 / 0.15)',

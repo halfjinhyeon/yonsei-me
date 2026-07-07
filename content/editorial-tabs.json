@@ -1,0 +1,221 @@
+{
+  "undergraduate-goals": {
+    "eyebrow": "ABOUT",
+    "slogan": {
+      "ko": "창의적 사고와 도전정신을 바탕으로 종합 설계 능력을 갖추고 글로벌 사회에 유익한 가치를 창출할 수 있는 인재 양성",
+      "en": "Cultivating talent who — grounded in creative thinking and a spirit of challenge — master integrated design and create value beneficial to global society."
+    },
+    "lead": {
+      "ko": "기독교 정신에 기하여 학술의 심오한 이론과 광범 정치한 응용방법을 교수·연구하며, 국가와 인류 사회 발전에 공헌할 지도적 인격을 도야함을 목적으로 한다.",
+      "en": "Rooted in the Christian spirit, we teach and research both profound theory and its wide, precise application, cultivating leaders of character who contribute to the development of the nation and humanity."
+    },
+    "items": [
+      {
+        "title": { "ko": "설계·실무", "en": "Design & Practice" },
+        "body": {
+          "ko": "창의적 사고방법과 설계기술을 익히고, 기계공학을 기반으로 여러 전문 분야에 걸친 종합적인 공학설계에 적용할 수 있는 공학실무능력과 연구수행능력을 계발한다.",
+          "en": "Master creative thinking and design skills, developing the engineering practice and research capabilities to apply integrated, cross-disciplinary engineering design grounded in mechanical engineering."
+        }
+      },
+      {
+        "title": { "ko": "소통·리더십", "en": "Communication & Leadership" },
+        "body": {
+          "ko": "자신의 생각을 효율적으로 전달하고 동료들과 팀워크를 이루며, 조직을 관리하고 경영할 줄 아는 리더십을 배양한다.",
+          "en": "Cultivate the leadership to communicate ideas effectively, work in teams, and manage and lead organizations."
+        }
+      },
+      {
+        "title": { "ko": "도전·혁신", "en": "Challenge & Innovation" },
+        "body": {
+          "ko": "미래에 필요한, 예측하기 어려운 기술에 도전하고 신기술을 개발하여 새로운 환경에 유익하게 적용할 수 있는 능력을 계발한다.",
+          "en": "Develop the ability to take on unpredictable future technologies, create new ones, and apply them beneficially to changing environments."
+        }
+      },
+      {
+        "title": { "ko": "책임·윤리", "en": "Responsibility & Ethics" },
+        "body": {
+          "ko": "평생에 걸쳐 자기계발을 실천하며, 개방적인 마음과 비판적 의문을 가지고 자신의 연구결과 및 개발품에 대한 사회적·윤리적 책임을 인식하는 소양을 익힌다.",
+          "en": "Commit to lifelong self-development and, with an open mind and critical inquiry, recognize the social and ethical responsibility for one's research and creations."
+        }
+      },
+      {
+        "title": { "ko": "글로벌 리더십", "en": "Global Leadership" },
+        "body": {
+          "ko": "글로벌 사회에서 공학인의 국제적 역할을 인식하고, 산업체·교육연구기관·공공기관의 리더로 성장할 수 있는 역량을 계발한다.",
+          "en": "Recognize the international role of engineers in a global society and develop the capacity to grow into leaders in industry, academia, research institutes, and public institutions."
+        }
+      }
+    ]
+  },
+  "research-vision": {
+    "eyebrow": "OUR VISION",
+    "title": {
+      "ko": "연세대학교 대학원 기계공학과",
+      "en": "Graduate School of Mechanical Engineering, Yonsei University"
+    },
+    "slogan": {
+      "ko": "멈추지 않는 50년, 100년을 향한 도전!",
+      "en": "Fifty years unbroken — the challenge toward a hundred!"
+    },
+    "body": [
+      {
+        "ko": "1960년 창설된 연세대학교 기계공학과는 수많은 인재를 배출함은 물론, 우수한 교수진과 연구원들의 열정적인 연구활동을 통해 국가와 사회에 공헌해왔습니다.",
+        "en": "Founded in 1960, the Department of Mechanical Engineering at Yonsei University has produced countless talented individuals and contributed to the nation and society through the passionate research of its outstanding faculty and researchers."
+      },
+      {
+        "ko": "이제 여러분이 연세대학교 기계공학과에서 새로운 도전을 하십시오!",
+        "en": "Now it is your turn to take on a new challenge at Yonsei Mechanical Engineering!"
+      }
+    ],
+    "image": "/img/pages/research.jpg"
+  },
+  "research-capacity": {
+    "eyebrow": "RESEARCH CAPACITY",
+    "items": [
+      {
+        "stat": { "ko": "36명", "en": "36" },
+        "title": { "ko": "우수한 교수진과 연구인력", "en": "Outstanding Faculty & Researchers" },
+        "body": {
+          "ko": "36명의 교수진과 300여 명의 석·박사급 연구인력이 끊임없는 도전을 이어가고 있습니다.",
+          "en": "36 faculty members and some 300 master's and doctoral researchers press on with relentless challenge."
+        }
+      },
+      {
+        "stat": { "ko": "BK21", "en": "BK21" },
+        "title": { "ko": "국가연구사업의 핵심적 역할", "en": "A Core Role in National Research" },
+        "body": {
+          "ko": "우수한 실적으로 BK21 사업을 이어가는 한편, 다양한 국가지정 연구실과 연구단이 포진해 있습니다.",
+          "en": "Sustaining the BK21 program with strong results, the department hosts numerous nationally designated laboratories and research centers."
+        }
+      },
+      {
+        "stat": { "ko": "전용 공작실", "en": "Machine Shop" },
+        "title": { "ko": "다양한 연구장비 보유", "en": "Extensive Research Equipment" },
+        "body": {
+          "ko": "다양한 연구장비가 연구동과 각 연구실에 설치되어 있으며, 기구적 가공을 위한 별도의 공작실을 보유하고 있습니다.",
+          "en": "A wide array of research equipment is installed across the research building and individual labs, along with a dedicated machine shop for mechanical fabrication."
+        }
+      },
+      {
+        "stat": { "ko": "연 수백 편", "en": "Hundreds/yr" },
+        "title": { "ko": "높은 수준의 연구성과와 교류사업", "en": "High-Impact Output & Exchange" },
+        "body": {
+          "ko": "매년 수백 편의 논문을 국내외에 발표하며 풍부한 지적재산권을 보유하고 있고, 다양한 학술 교류사업도 개최하고 있습니다.",
+          "en": "The department publishes hundreds of papers domestically and abroad each year, holds a rich portfolio of intellectual property, and hosts diverse academic exchange programs."
+        }
+      }
+    ]
+  },
+  "research-social": {
+    "eyebrow": "PUBLIC PETITION",
+    "lead": {
+      "ko": "연세대학교 기계공학부에서는 기술적 난제를 극복하고자 하는 기업에 기술지원을 진행하고자 '사회난제 신문고'를 운영하고 있습니다.",
+      "en": "The School of Mechanical Engineering at Yonsei University runs the 'Social Challenge Petition' to provide technical support to companies seeking to overcome difficult engineering problems."
+    },
+    "body": [
+      {
+        "ko": "기술 애로사항을 접수해 주시면 기술이 매칭되는 참여교수 또는 소규모 연구그룹이 해결 방안을 수립해 기술지원을 진행합니다. 기술 혁신으로 충분히 극복 가능한 난제를 안고 있는 기업, 연구개발 지원이 필요한 기업의 많은 활용을 바랍니다.",
+        "en": "Submit your technical challenge, and a matched faculty member or a small research group will devise a solution and provide technical support. We welcome companies facing challenges that innovation can overcome, or in need of R&D support."
+      }
+    ],
+    "steps": [
+      {
+        "title": { "ko": "사회난제 접수", "en": "Submit the Challenge" },
+        "actor": { "ko": "업체", "en": "Company" }
+      },
+      {
+        "title": { "ko": "내용 검토 및 담당교수 배정", "en": "Review & Faculty Assignment" },
+        "actor": { "ko": "교육연구단", "en": "Education Research Group" }
+      },
+      {
+        "title": { "ko": "연구개발 세부사항 협의", "en": "R&D Consultation" },
+        "actor": { "ko": "담당교수", "en": "Assigned Professor" }
+      },
+      {
+        "title": { "ko": "연구개발 착수", "en": "R&D Kick-off" },
+        "actor": { "ko": "업체 및 담당교수", "en": "Company & Professor" }
+      }
+    ],
+    "outcome": { "ko": "사회난제 해결", "en": "Solving Social Challenges" },
+    "cta": {
+      "label": { "ko": "사회난제 신문고 신청 바로가기", "en": "Apply to the Petition Desk" },
+      "href": "https://docs.google.com/forms/d/e/1FAIpQLSea44Y6XTPfWXrMX5gGGZGpx2-2Z3DF1IDih2cp9jCeqH2MbA/viewform"
+    }
+  },
+  "graduate-admission": {
+    "eyebrow": "ADMISSION",
+    "lead": {
+      "ko": "대학원 입학 안내는 연세대학교 대학원 공식 홈페이지에서 확인할 수 있습니다.",
+      "en": "Graduate admissions information is available on the official Yonsei Graduate School website."
+    },
+    "cta": {
+      "label": { "ko": "대학원 입학 안내 바로가기", "en": "Go to Graduate Admissions" },
+      "href": "https://graduate.yonsei.ac.kr/graduate/index.do#n"
+    }
+  },
+  "recruit-info": {
+    "eyebrow": "FACULTY POSITIONS",
+    "lead": {
+      "ko": "연세대학교 기계공학부는 향후 수년에 걸쳐 다수의 정년트랙(tenure-track) 교수를 초빙할 계획입니다. 이는 학문적 탁월성에 대한 약속이자, 기계공학 전 분야에서 연구와 교육을 강화하려는 취지입니다.",
+      "en": "The School of Mechanical Engineering at Yonsei University plans to hire numerous tenure-track faculty over the coming years — a commitment to academic excellence and to strengthening research and education across every sub-discipline of the field."
+    },
+    "body": [
+      {
+        "ko": "우리는 역동적이고 협력적인 환경에 기여할 창의적 사고자와 리더를 찾습니다. 이상적인 지원자는 기계공학 또는 관련 분야의 박사 학위 소지자로, 연구와 교육에서 탁월한 성취를 입증한 분입니다. 복잡한 공학적 난제에 다양한 관점과 학제간 접근으로 기여할 수 있는 분을 환영합니다.",
+        "en": "We seek innovative thinkers and leaders eager to contribute to a dynamic, collaborative environment. Ideal candidates hold a Ph.D. in Mechanical Engineering or a related field with a proven record of excellence in research and teaching, and can bring diverse perspectives and interdisciplinary approaches to complex engineering challenges."
+      },
+      {
+        "ko": "지원 방법: 커뮤니티 합류의 첫 단계로 이력서(CV)를 PDF 형식으로 제출해 주십시오. 문의는 교수초빙위원회(mech@yonsei.ac.kr)로 연락 바랍니다.",
+        "en": "How to apply: As a preliminary step, please submit your curriculum vitae in PDF format. For questions, contact the Faculty Search Committee at mech@yonsei.ac.kr."
+      }
+    ],
+    "items": [
+      {
+        "title": { "ko": "역학·재료 (Mechanics, Materials)", "en": "Mechanics, Materials" },
+        "body": {
+          "ko": "고체역학 · 첨단재료 · 멀티스케일 모델링",
+          "en": "Solid mechanics · Advanced materials · Multiscale modeling"
+        }
+      },
+      {
+        "title": { "ko": "열·유체 시스템 (Thermal/Fluid Systems)", "en": "Thermal/Fluid Systems" },
+        "body": {
+          "ko": "열전달 · 유체역학 · 에너지 시스템",
+          "en": "Heat transfer · Fluid dynamics · Energy systems"
+        }
+      },
+      {
+        "title": { "ko": "동역학 시스템·제어 (Dynamic Systems and Control)", "en": "Dynamic Systems and Control" },
+        "body": {
+          "ko": "로보틱스 · 자율 시스템 · 지능형 제어",
+          "en": "Robotics · Autonomous systems · Intelligent control"
+        }
+      },
+      {
+        "title": { "ko": "생산·설계 (Manufacturing and Design)", "en": "Manufacturing and Design" },
+        "body": {
+          "ko": "정밀가공 · 설계공학 · 디지털 제조",
+          "en": "Precision manufacturing · Design engineering · Digital fabrication"
+        }
+      },
+      {
+        "title": { "ko": "신흥 분야 (Emerging Areas)", "en": "Emerging Areas" },
+        "body": {
+          "ko": "바이오 · 의료 · 나노 · 마이크로 · 광학 기술",
+          "en": "Bio · Medical · Nano · Micro · Optical technology"
+        }
+      }
+    ]
+  },
+  "recruit-apply": {
+    "eyebrow": "APPLICATION",
+    "lead": {
+      "ko": "지원서 작성은 아래 외부 페이지(Google Sites)에서 진행합니다.",
+      "en": "Applications are submitted through the external page (Google Sites) below."
+    },
+    "cta": {
+      "label": { "ko": "지원서 작성 페이지 바로가기", "en": "Go to the application page" },
+      "href": "https://sites.google.com/yonsei.ac.kr/me-faculty-application?usp=sharing"
+    }
+  }
+}

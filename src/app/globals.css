@@ -221,6 +221,13 @@
     animation: gradientShift 14s ease-in-out infinite alternate;
   }
 
+  /* 카카오맵 퍼가기 임베드(KakaoMap.tsx): 지도만 남기고 하단 카카오맵 바·주소
+     패널을 숨긴다. 숨긴 높이만큼 지도 크기는 컴포넌트가 보정 재렌더한다. */
+  .root_daum_roughmap .wrap_controllers,
+  .root_daum_roughmap .cont {
+    display: none !important;
+  }
+
   /* 흐르는 웨이브 라인 (좌우로 천천히 이동) */
   .wave-drift {
     animation: waveDrift 22s linear infinite;

@@ -1,14 +1,17 @@
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import type { Metadata } from 'next';
 import { Hero } from '@/components/Hero';
-import { Section, SectionHeader } from '@/components/Section';
-import { Card } from '@/components/Card';
+import { Section } from '@/components/Section';
+import { ContactInfoPanel } from '@/components/ContactInfoPanel';
+import { DirectionsInfo } from '@/components/DirectionsInfo';
+import { AboutIntro } from '@/components/AboutIntro';
 import { Prose } from '@/components/Prose';
 import { TabbedContent, type TabItem } from '@/components/TabbedContent';
 import { FacultyDirectoryGrid } from '@/components/FacultyDirectoryGrid';
 import { HistoryTimeline } from '@/components/HistoryTimeline';
+import { KakaoMap } from '@/components/KakaoMap';
 import { getFacultyDirectory } from '@/lib/faculty';
-import { history } from '@/lib/content';
+import { history, staff, pick } from '@/lib/content';
 import type { Locale } from '@/i18n/routing';
 
 export async function generateMetadata({
@@ -20,12 +23,10 @@ export async function generateMetadata({
   return { title: t('hero.title') };
 }
 
-const visionKeys = ['0', '1', '2'] as const;
-
-// 연세대 신촌캠퍼스 좌표 기반 OpenStreetMap 임베드 (API 키 불필요)
-const OSM_EMBED =
-  'https://www.openstreetmap.org/export/embed.html?bbox=126.933%2C37.562%2C126.943%2C37.568&layer=mapnik&marker=37.5651%2C126.9385';
-const OSM_LINK = 'https://www.openstreetmap.org/?mlat=37.5651&mlon=126.9385#map=17/37.5651/126.9385';
+// 연세대 신촌캠퍼스 제4공학관 좌표 기반 카카오맵 링크 (한글 포함 → encodeURI)
+const KAKAO_MAP_LINK = encodeURI(
+  'https://map.kakao.com/link/map/연세대학교 제4공학관,37.5651,126.9385',
+);
 
 export default async function AboutPage({ params }: { params: { locale: string } }) {
   setRequestLocale(params.locale);
@@ -38,8 +39,8 @@ export default async function AboutPage({ params }: { params: { locale: string }
   const tStub = await getTranslations({ locale: params.locale, namespace: 'stub' });
 
   const contactRows = [
-    { label: tContact('addressLabel'), value: tFooter('address') },
-    { label: tContact('phoneLabel'), value: '02-2123-0000' },
+    { label: tContact('addressLabel'), value: `${tFooter('address')} (03722)` },
+    { label: tContact('phoneLabel'), value: '02-2123-2810' },
     { label: tContact('emailLabel'), value: 'me@yonsei.ac.kr', href: 'mailto:me@yonsei.ac.kr' },
   ];
 
@@ -48,7 +49,13 @@ export default async function AboutPage({ params }: { params: { locale: string }
       key: 'history',
       label: tMenu('about.items.history'),
       markdown: null,
-      content: <HistoryTimeline events={history} locale={params.locale as Locale} />,
+      // 학부 소개 문구는 모든 탭 공통 상단이 아니라 연혁 탭 안에서만 보여준다 (UX)
+      content: (
+        <>
+          <AboutIntro locale={params.locale} />
+          <HistoryTimeline events={history} locale={params.locale as Locale} />
+        </>
+      ),
     },
     {
       key: 'faculty',
@@ -60,53 +67,63 @@ export default async function AboutPage({ params }: { params: { locale: string }
       key: 'staff',
       label: tMenu('about.items.staff'),
       markdown: null,
+      // 행정 교직원 표 — 데이터는 content/staff.json (콘텐츠/코드 분리)
+      content: (
+        <div className="overflow-x-auto">
+          <table className="w-full min-w-[560px] text-center text-sm sm:text-base">
+            <thead>
+              <tr className="border-b-2 border-yonsei-navy bg-surface-soft">
+                {(['role', 'name', 'phone', 'location', 'email'] as const).map((col) => (
+                  <th key={col} scope="col" className="px-4 py-3 font-bold text-content">
+                    {t(`staffTable.${col}`)}
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {staff.map((s) => (
+                <tr key={s.email} className="border-b border-surface-border">
+                  <td className="whitespace-nowrap px-4 py-3 text-content-soft">{pick(s.role, params.locale as Locale)}</td>
+                  <td className="whitespace-nowrap px-4 py-3 font-medium text-content">{pick(s.name, params.locale as Locale)}</td>
+                  <td className="whitespace-nowrap px-4 py-3 tabular-nums text-content-soft">{s.phone}</td>
+                  <td className="whitespace-nowrap px-4 py-3 text-content-soft">{pick(s.location, params.locale as Locale)}</td>
+                  <td className="px-4 py-3">
+                    <a href={`mailto:${s.email}`} className="text-yonsei-blue hover:underline">
+                      {s.email}
+                    </a>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      ),
     },
     {
       key: 'directions',
       label: tMenu('about.items.directions'),
       markdown: null,
       content: (
-        <div className="grid gap-8 lg:grid-cols-[1fr_1.5fr]">
-          <Card>
-            <dl className="space-y-6">
-              {contactRows.map((row) => (
-                <div key={row.label}>
-                  <dt className="text-xs font-bold uppercase tracking-wide text-content-faint">
-                    {row.label}
-                  </dt>
-                  <dd className="mt-1 text-base leading-relaxed text-content">
-                    {row.href ? (
-                      <a href={row.href} className="text-yonsei-blue hover:underline">
-                        {row.value}
-                      </a>
-                    ) : (
-                      row.value
-                    )}
-                  </dd>
-                </div>
-              ))}
-            </dl>
-          </Card>
-          <div className="overflow-hidden rounded-card border border-surface-border shadow-card">
-            <iframe
-              src={OSM_EMBED}
-              title={tContact('mapTitle')}
-              loading="lazy"
-              className="h-[360px] w-full lg:h-full"
-              style={{ border: 0 }}
-            />
-            <div className="bg-surface px-4 py-3 text-right text-sm">
+        <>
+          {/* 연락처 패널과 지도를 한 카드로 합침 — 모서리는 rounded-lg로 각지게 */}
+          <div className="grid overflow-hidden rounded-lg border border-surface-border shadow-card lg:grid-cols-[1fr_1.5fr]">
+            <ContactInfoPanel rows={contactRows} />
+            {/* 지도 — 하단 링크 바 없이 카드 바닥까지 채우고, 약도 링크는 지도 위 배지로 */}
+            <div className="relative flex flex-col">
+              <KakaoMap className="h-[270px] w-full lg:h-auto lg:flex-1" />
               <a
-                href={OSM_LINK}
+                href={KAKAO_MAP_LINK}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-yonsei-blue hover:underline"
+                className="absolute bottom-3 left-3 z-10 rounded-md bg-surface/90 px-3 py-1.5 text-xs font-semibold text-yonsei-blue shadow-card transition-colors hover:bg-surface"
               >
                 {tContact('mapTitle')} ↗
               </a>
             </div>
           </div>
-        </div>
+          {/* 지하철·버스 교통편 안내 */}
+          <DirectionsInfo locale={params.locale as Locale} />
+        </>
       ),
     },
   ];
@@ -118,36 +135,6 @@ export default async function AboutPage({ params }: { params: { locale: string }
         subtitle={t('hero.subtitle')}
         breadcrumb={[{ label: tNav('about') }]}
       />
-
-      {/* 소개 */}
-      <Section aria-labelledby="intro-title">
-        <div className="grid gap-10 lg:grid-cols-[1fr_1.4fr] lg:gap-16">
-          <div>
-            <p className="eyebrow">ABOUT</p>
-            <h2 id="intro-title" className="mt-3 text-headline font-bold text-content">
-              {t('intro.title')}
-            </h2>
-          </div>
-          <p className="text-lg leading-relaxed text-content-soft">{t('intro.body')}</p>
-        </div>
-      </Section>
-
-      {/* 비전과 목표 */}
-      <Section tone="soft" aria-labelledby="vision-title">
-        <SectionHeader title={t('vision.title')} id="vision-title" />
-        <div className="mt-10 grid gap-6 md:grid-cols-3">
-          {visionKeys.map((key) => (
-            <Card key={key}>
-              <h3 className="text-lg font-bold text-yonsei-navy">
-                {t(`vision.items.${key}.title`)}
-              </h3>
-              <p className="mt-3 text-sm leading-relaxed text-content-soft">
-                {t(`vision.items.${key}.body`)}
-              </p>
-            </Card>
-          ))}
-        </div>
-      </Section>
 
       {/* 연혁·교수진·교직원·오시는 길 — 다른 메뉴와 동일한 인덱스 탭 방식 */}
       <TabbedContent tabs={tabs} emptyLabel={tStub('body')} navTitle={tMenu('about.label')} />

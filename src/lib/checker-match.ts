@@ -587,9 +587,14 @@ export function evaluate(
     });
   }
 
-  const totalEarned = sections
-    .filter((sec) => !sec.overlay)
-    .reduce((s, sec) => s + sec.earned, 0);
+  // 총 이수학점은 구분별 "인정 상한(Math.min 캡)"과 무관하게 실제 취득 학점의 합.
+  // 구분 요건은 최소치라서 초과분(예: 대학교양 선택 12학점 초과 이수)도 총 130학점에는
+  // 그대로 포함된다 — 섹션별 earned 캡은 진행률 표시용으로만 유지한다.
+  // (기존에는 캡된 섹션 합을 썼더니 초과 이수분이 총계에서 증발하는 오류가 있었음)
+  const chapelCredits = Math.min(chapelCount, 4) * 0.5;
+  const selfDirectedCredits = Math.min(2, Math.max(0, extra.selfDirectedCount)) * 0.5;
+  const totalEarned =
+    taken.reduce((s, c) => s + c.credits, 0) + chapelCredits + selfDirectedCredits;
   const remainingRequired = sections.flatMap(
     (sec) => sec.items?.filter((i) => !i.done).map((i) => i.name) ?? [],
   );

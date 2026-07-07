@@ -3,8 +3,10 @@ import type { Metadata } from 'next';
 import { Hero } from '@/components/Hero';
 import { TabbedContent, type TabItem } from '@/components/TabbedContent';
 import { LabList } from '@/components/LabList';
+import { EditorialTab, getEditorialTab } from '@/components/EditorialTab';
 import { getPageMarkdown } from '@/lib/pages';
 import { getLabsDirectory } from '@/lib/faculty';
+import type { Locale } from '@/i18n/routing';
 
 export async function generateMetadata({
   params,
@@ -16,14 +18,15 @@ export async function generateMetadata({
 }
 
 const SECTION_SLUGS: Record<string, string | null> = {
-  vision: 'research-vision',
-  capacity: 'research-capacity',
+  vision: null,
+  capacity: null,
   labs: 'research-labs',
-  social: 'research-social',
+  social: null,
 };
 
 export default async function ResearchPage({ params }: { params: { locale: string } }) {
   setRequestLocale(params.locale);
+  const locale = params.locale as Locale;
   const tMenu = await getTranslations({ locale: params.locale, namespace: 'menu' });
   const tResearch = await getTranslations({ locale: params.locale, namespace: 'research' });
   const tStub = await getTranslations({ locale: params.locale, namespace: 'stub' });
@@ -32,7 +35,16 @@ export default async function ResearchPage({ params }: { params: { locale: strin
     key,
     label: tMenu(`research.items.${key}`),
     markdown: slug ? getPageMarkdown(slug) : null,
-    content: key === 'labs' ? <LabList items={getLabsDirectory()} /> : undefined,
+    content:
+      key === 'labs' ? (
+        <LabList items={getLabsDirectory()} />
+      ) : key === 'vision' ? (
+        <EditorialTab data={getEditorialTab('research-vision')} locale={locale} />
+      ) : key === 'capacity' ? (
+        <EditorialTab data={getEditorialTab('research-capacity')} locale={locale} />
+      ) : key === 'social' ? (
+        <EditorialTab data={getEditorialTab('research-social')} locale={locale} />
+      ) : undefined,
   }));
 
   return (

@@ -218,7 +218,7 @@ function NewsCardView({
       aria-hidden={ariaHidden || undefined}
       tabIndex={ariaHidden ? -1 : undefined}
       className={cn(
-        'group relative block aspect-[7/8] w-[270px] shrink-0 overflow-hidden rounded-xl border border-white/10 sm:w-[290px]',
+        'group relative block aspect-[7/8] w-[270px] shrink-0 overflow-hidden rounded-lg border border-white/10 sm:w-[290px]',
         'focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yonsei-gold',
       )}
     >

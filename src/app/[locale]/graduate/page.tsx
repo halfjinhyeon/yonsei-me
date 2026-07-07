@@ -5,6 +5,7 @@ import { TabbedContent, type TabItem } from '@/components/TabbedContent';
 import { getPageMarkdown } from '@/lib/pages';
 import { getLabsDirectory } from '@/lib/faculty';
 import { LabVideoGallery } from '@/components/LabVideoGallery';
+import { EditorialTab, getEditorialTab } from '@/components/EditorialTab';
 import type { Locale } from '@/i18n/routing';
 
 export async function generateMetadata({
@@ -18,7 +19,7 @@ export async function generateMetadata({
 
 // labs 는 마크다운 대신 LabVideoGallery(연구실 소개 영상 갤러리)로 렌더 → slug null 유지
 const SECTION_SLUGS: Record<string, string | null> = {
-  admission: 'graduate-admission',
+  admission: null,
   requirements: 'graduate-requirements',
   courses: 'graduate-courses',
   labs: null,
@@ -36,7 +37,9 @@ export default async function GraduatePage({ params }: { params: { locale: strin
     label: tMenu(`graduate.items.${key}`),
     markdown: slug ? getPageMarkdown(slug) : null,
     content:
-      key === 'labs' ? (
+      key === 'admission' ? (
+        <EditorialTab data={getEditorialTab('graduate-admission')} locale={params.locale as Locale} />
+      ) : key === 'labs' ? (
         <LabVideoGallery items={getLabsDirectory()} locale={params.locale as Locale} />
       ) : undefined,
   }));

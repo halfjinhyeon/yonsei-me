@@ -1,0 +1,32 @@
+{
+  "subway": {
+    "station": { "ko": "2호선 신촌역", "en": "Sinchon Station (Line 2)" },
+    "exits": [
+      {
+        "ko": "2번 출구 (연세대학교, 세브란스병원 방향)",
+        "en": "Exit 2 (toward Yonsei University & Severance Hospital)"
+      },
+      {
+        "ko": "3번 출구 (연세대학교, 한국사이버대학교 방향)",
+        "en": "Exit 3 (toward Yonsei University & Korea Cyber University)"
+      }
+    ]
+  },
+  "bus": [
+    {
+      "color": "green",
+      "label": { "ko": "초록 (지선)", "en": "Green (Branch)" },
+      "routes": "6711, 6712, 6714, 7014, 7015, 7017, 7020, 7613, 7712, 7720, 7725, 7726, 7727, 7728, 7736, 서대문03, 서대문04, 서대문05"
+    },
+    {
+      "color": "blue",
+      "label": { "ko": "파랑 (간선)", "en": "Blue (Trunk)" },
+      "routes": "163, 170, 171, 172, 270, 272, 370, 470, 472, 601, 606, 700, 750, 751"
+    },
+    {
+      "color": "red",
+      "label": { "ko": "빨강 (광역)", "en": "Red (Express)" },
+      "routes": "9600, 9601, 9602, 9702, 9704, 9706, 9708, 9713"
+    }
+  ]
+}

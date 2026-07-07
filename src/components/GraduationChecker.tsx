@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useMemo, useRef, useState } from 'react';
+import { UnderlineTabs } from '@/components/UnderlineTabs';
 import { cn } from '@/lib/utils';
 import {
   evaluate,
@@ -395,25 +396,12 @@ export function GraduationChecker({ data, locale }: { data: CheckerData; locale:
       {/* STEP 01 — 학번 선택 */}
       <section>
         <StepLabel num="01" title={ko ? '학번 선택' : 'Cohort'} />
-        <div className="mt-4 inline-flex overflow-hidden rounded-lg border border-surface-border">
-          {data.cohorts.map((c, i) => (
-            <button
-              key={c.id}
-              type="button"
-              onClick={() => setCohortId(c.id)}
-              aria-pressed={cohortId === c.id}
-              className={cn(
-                'px-5 py-2.5 text-sm font-semibold transition-colors',
-                i > 0 && 'border-l border-surface-border',
-                cohortId === c.id
-                  ? 'bg-yonsei-navy text-white'
-                  : 'bg-surface text-content-soft hover:text-yonsei-navy',
-              )}
-            >
-              {c.label}
-            </button>
-          ))}
-        </div>
+        <UnderlineTabs
+          className="mt-4"
+          active={cohortId}
+          onChange={setCohortId}
+          tabs={data.cohorts.map((c) => ({ id: c.id, label: c.label }))}
+        />
       </section>
 
       {/* STEP 02 — 시간표 업로드 */}
@@ -700,25 +688,15 @@ export function GraduationChecker({ data, locale }: { data: CheckerData; locale:
         <StepLabel num="04" title={ko ? '남은 졸업요건' : 'Remaining requirements'} />
 
         {/* 뷰 전환 — 막대형 / 도넛형 */}
-        <div className="mt-4 inline-flex overflow-hidden rounded-lg border border-surface-border">
-          {(['bar', 'donut'] as const).map((v, i) => (
-            <button
-              key={v}
-              type="button"
-              onClick={() => setChartView(v)}
-              aria-pressed={chartView === v}
-              className={cn(
-                'px-5 py-2.5 text-sm font-semibold transition-colors',
-                i > 0 && 'border-l border-surface-border',
-                chartView === v
-                  ? 'bg-yonsei-navy text-white'
-                  : 'bg-surface text-content-soft hover:text-yonsei-navy',
-              )}
-            >
-              {v === 'bar' ? (ko ? '막대형' : 'Bars') : ko ? '도넛형' : 'Donuts'}
-            </button>
-          ))}
-        </div>
+        <UnderlineTabs
+          className="mt-4"
+          active={chartView}
+          onChange={(id) => setChartView(id as 'bar' | 'donut')}
+          tabs={[
+            { id: 'bar', label: ko ? '막대형' : 'Bars' },
+            { id: 'donut', label: ko ? '도넛형' : 'Donuts' },
+          ]}
+        />
 
         {/* 총괄 */}
         <div className="mt-6 border-t-2 border-content pt-6">

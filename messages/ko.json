@@ -42,7 +42,7 @@
         "curriculum": "교과목 체계도",
         "clubs": "동아리 소개",
         "scholarship": "장학금",
-        "checker": "졸업요건 체크"
+        "checker": "나의 졸업요건"
       }
     },
     "graduate": {
@@ -318,6 +318,13 @@
         }
       }
     },
+    "staffTable": {
+      "role": "구분",
+      "name": "성명",
+      "phone": "교내 전화",
+      "location": "장소",
+      "email": "이메일"
+    },
     "dean": {
       "title": "학부장 인사말",
       "body": "기계공학은 인류의 삶을 실질적으로 바꿔 온 학문입니다. 연세대학교 기계공학부는 변화하는 시대 속에서도 흔들리지 않는 기초 위에, 담대하게 미래에 도전하는 인재를 키우겠습니다. 여러분의 관심과 성원을 부탁드립니다.",
@@ -343,7 +350,12 @@
     },
     "emailLabel": "이메일",
     "labLabel": "연구실",
-    "moreLabel": "상세정보 보기"
+    "moreLabel": "상세정보 보기",
+    "directoryFilter": {
+      "all": "전체",
+      "active": "교수",
+      "emeritus": "명예·퇴임 교수"
+    }
   },
   "academics": {
     "hero": {
@@ -417,7 +429,9 @@
     "addressLabel": "주소",
     "phoneLabel": "전화",
     "emailLabel": "이메일",
-    "mapTitle": "약도"
+    "mapTitle": "약도",
+    "subwayTitle": "지하철",
+    "busTitle": "버스 노선"
   },
   "footer": {
     "address": "서울특별시 서대문구 연세로 50 연세대학교 제4공학관",

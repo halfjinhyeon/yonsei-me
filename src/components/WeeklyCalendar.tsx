@@ -65,7 +65,7 @@ export function WeeklyCalendar({ events, locale }: { events: EventItem[]; locale
             <li
               key={day?.iso ?? i}
               className={cn(
-                'flex min-h-[7.5rem] flex-col rounded-xl border p-3',
+                'flex min-h-[7.5rem] flex-col rounded-lg border p-3',
                 day?.isToday
                   ? 'border-yonsei-blue bg-yonsei-navy text-white'
                   : 'border-surface-border bg-surface',

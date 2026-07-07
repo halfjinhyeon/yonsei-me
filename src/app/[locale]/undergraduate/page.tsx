@@ -8,6 +8,7 @@ import { GraduationChecker } from '@/components/GraduationChecker';
 import { getPageMarkdown, getUndergraduateRequirementSections } from '@/lib/pages';
 import { getClubs } from '@/lib/faculty';
 import { getCheckerData } from '@/lib/checker';
+import { EditorialTab, getEditorialTab } from '@/components/EditorialTab';
 import type { Locale } from '@/i18n/routing';
 
 export async function generateMetadata({
@@ -22,7 +23,7 @@ export async function generateMetadata({
 // 학부 하위 섹션: key → 임포트 마크다운 슬러그 (없으면 준비 중)
 // requirements(아코디언)·checker(졸업요건 체크)는 커스텀 컴포넌트로 렌더
 const SECTION_SLUGS: Record<string, string | null> = {
-  goals: 'undergraduate-goals',
+  goals: null,
   requirements: null,
   checker: null,
   courses: 'undergraduate-courses',
@@ -44,7 +45,9 @@ export default async function UndergraduatePage({ params }: { params: { locale: 
     label: tMenu(`undergraduate.items.${key}`),
     markdown: slug ? getPageMarkdown(slug) : null,
     content:
-      key === 'clubs' ? (
+      key === 'goals' ? (
+        <EditorialTab data={getEditorialTab('undergraduate-goals')} locale={locale} />
+      ) : key === 'clubs' ? (
         <ClubGrid items={getClubs()} moreLabel={tFaculty('moreLabel')} />
       ) : key === 'requirements' ? (
         <Accordion items={getUndergraduateRequirementSections()} />

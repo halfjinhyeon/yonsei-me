@@ -4,6 +4,7 @@ import newsData from '@content/news.json';
 import programsData from '@content/programs.json';
 import boardData from '@content/board.json';
 import historyData from '@content/history.json';
+import staffData from '@content/staff.json';
 import type { Locale } from '@/i18n/routing';
 
 /** 한/영 문자열 쌍 → 현재 로케일 값으로 뽑아내는 헬퍼 */
@@ -55,8 +56,18 @@ export interface NewsItem {
   attachments?: Attachment[];
 }
 
+/** 행정 교직원 (학부 소개 > 교직원 탭) */
+export interface StaffMember {
+  role: Localized;
+  name: Localized;
+  phone: string;
+  location: Localized;
+  email: string;
+}
+
 // ---- 접근자 ----
 export const faculty = facultyData as Faculty[];
+export const staff = staffData as StaffMember[];
 export const research = researchData as Research[];
 
 /** 뉴스는 항상 최신순 정렬해서 반환 */
