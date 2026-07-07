@@ -92,7 +92,10 @@
       "body": {
         "ko": "2026 여름계절학기 학부연구(3) 교과목 참여 신청을 받습니다. 지도교수와 사전 면담 후 신청서를 작성하여 학부 사무실로 제출해 주세요.\n\n제출 기한: 2026년 7월 6일(월) 오후 5시\n제출처: 학부 사무실 (제4공학관 D406호) 또는 이메일\n문의: 학사 담당 조교",
         "en": "Applications are now open for the Summer 2026 Undergraduate Research (3) course. Meet with your advisor first, then submit the application form to the department office.\n\nDeadline: Monday, July 6, 2026, 5 PM\nSubmit to: Department Office (Engineering Hall IV, D406) or by email\nContact: academic affairs staff."
-      }
+      },
+      "attachments": [
+        { "label": { "ko": "안내문.pdf", "en": "Notice.pdf" }, "href": "#" }
+      ]
     },
     {
       "id": "nu-2",

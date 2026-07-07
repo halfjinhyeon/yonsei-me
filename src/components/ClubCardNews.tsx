@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import { Prose } from '@/components/Prose';
 import { Container } from '@/components/Container';
+import { MeshCanvas } from '@/components/MeshCanvas';
 import { cn } from '@/lib/utils';
 import type { ClubContent, ClubPanel, ClubLink } from '@/lib/pages';
 
@@ -19,13 +20,16 @@ interface ClubCardNewsProps {
  * 동아리 상세 본문을 스크롤 스냅 "풀스크린 덱" 형식의 카드뉴스로 렌더한다.
  *
  * 설계 의도:
- * - 데스크톱(lg↑): <html.club-snap> 로 y축 mandatory 스냅을 걸어 패널을 한 장씩 넘긴다.
- *   각 패널은 100svh 풀블리드 다크 카드. IntersectionObserver(threshold 0.5)가
+ * - 전 화면 폭: <html.club-snap> 로 y축 mandatory 스냅을 걸어 패널을 한 장씩 넘긴다
+ *   (뷰포트보다 긴 패널은 CSS 스냅 스펙상 영역 내 자유 스크롤이 허용돼 갇히지 않음).
+ *   각 패널은 min-h 100svh 풀블리드 다크 카드. IntersectionObserver(threshold 0.5)가
  *   현재 패널을 추적해 (1) 배경 그라디언트 레이어를 크로스페이드하고
  *   (2) 진입 애니메이션용 data-active 를 붙이며(한 번 붙으면 유지)
  *   (3) 우측 도트 인디케이터의 활성 상태를 갱신한다.
- * - 모바일(<lg): 스냅/fixed 레이어 없이 자연 스택. 각 패널 섹션에 그라디언트를 직접 적용해
- *   풀블리드 다크 카드뉴스 아이덴티티만 유지 (하드 컷).
+ *   각 배경 레이어는 히어로(AnimatedHero)와 동일한 흐름 애니메이션(anim-gradient-flow,
+ *   globals.css의 gradientShift 키프레임)으로 배경 위치가 천천히 움직인다.
+ * - 모바일(<lg): 스냅은 동일하게 걸리되 fixed 크로스페이드 레이어 없이 각 패널 섹션에
+ *   흐르는 그라디언트를 직접 적용해 풀블리드 다크 카드뉴스 아이덴티티를 유지 (하드 컷).
  * - 진입 애니메이션은 GSAP 대신 CSS 키프레임(globals.css의 heroTitleIn/panelFadeUp/navItemUp)
  *   재사용. js-anim 게이트로 no-JS/SEO/reduced-motion 에서는 콘텐츠가 항상 보인다.
  *
@@ -120,12 +124,17 @@ export function ClubCardNews({ content, images, clubName }: ClubCardNewsProps) {
           <div
             key={i}
             className={cn(
-              'absolute inset-0 transition-opacity duration-700',
+              'anim-gradient-flow absolute inset-0 transition-opacity duration-700',
               activeIndex % PANEL_GRADIENTS.length === i ? 'opacity-100' : 'opacity-0',
             )}
-            style={{ background: bg }}
+            style={{ backgroundImage: bg }}
           />
         ))}
+        {/* 히어로(AnimatedHero)와 동일한 흐르는 웨이브 라인. 배경이 fixed 크로스페이드
+            구조라 캔버스 1장(rAF 1개)으로 전 패널을 커버한다. 본문 텍스트 가독성을 위해
+            Hero.tsx처럼 opacity를 낮추고, 하단 위주로 보이게 동일한 마스크를 쓴다.
+            모바일은 패널별 배경(하드 컷)이라 캔버스 다중 생성 비용 대비 효과가 작아 제외. */}
+        <MeshCanvas className="absolute inset-0 h-full w-full opacity-70 [mask-image:linear-gradient(to_top,transparent,black_22%)]" />
       </div>
 
       {/* 우측 도트 인디케이터 (데스크톱 전용) */}
@@ -186,14 +195,14 @@ function PanelSection({ index, children }: { index: number; children: React.Reac
   return (
     <section
       data-panel-index={index}
-      className="club-panel full-bleed relative flex items-center py-16 lg:min-h-[100svh] lg:py-0"
+      className="club-panel full-bleed relative flex min-h-[100svh] items-center py-16 lg:py-0"
     >
       {/* 모바일 전용 배경 그라디언트(하드 컷). 데스크톱은 상위 fixed 크로스페이드 레이어가 담당하므로
           이 레이어를 lg:hidden 으로 숨겨 fixed 레이어가 비쳐 보이게 한다. */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 -z-10 lg:hidden"
-        style={{ background: mobileBg }}
+        className="anim-gradient-flow pointer-events-none absolute inset-0 -z-10 lg:hidden"
+        style={{ backgroundImage: mobileBg }}
       />
       {/* 내용 래퍼에 dark 클래스 → Prose/text-content/border 가 자동 반전 (다크 배경용 밝은 톤) */}
       <Container className="dark relative w-full">{children}</Container>

@@ -1,13 +1,27 @@
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import type { Metadata } from 'next';
-import { notFound } from 'next/navigation';
 import { Section } from '@/components/Section';
-import { Breadcrumb } from '@/components/Breadcrumb';
-import { Container } from '@/components/Container';
+import { Hero } from '@/components/Hero';
+import { BoardShell, type BoardShellTab } from '@/components/BoardShell';
+import { PostArticle } from '@/components/PostArticle';
 import { Link } from '@/i18n/navigation';
 import { news, getNewsBySlug, pick } from '@/lib/content';
-import { formatDate } from '@/lib/utils';
 import { routing, type Locale } from '@/i18n/routing';
+
+// 목록 페이지(/news)와 동일한 8개 탭 (key/label)
+async function getNewsTabs(locale: Locale): Promise<BoardShellTab[]> {
+  const tMenu = await getTranslations({ locale, namespace: 'menu' });
+  return [
+    { key: 'notices', label: tMenu('news.items.notices') },
+    { key: 'news', label: tMenu('news.items.news') },
+    { key: 'thesis', label: tMenu('news.items.thesis') },
+    { key: 'resources', label: tMenu('news.items.resources') },
+    { key: 'career', label: tMenu('news.items.career') },
+    { key: 'events', label: tMenu('news.items.events') },
+    { key: 'seminars', label: tMenu('news.items.seminars') },
+    { key: 'calendar', label: tMenu('news.items.calendar') },
+  ];
+}
 
 // 모든 로케일 × 슬러그를 정적 생성
 export function generateStaticParams() {
@@ -38,7 +52,7 @@ export default async function NewsDetailPage({
   const locale = params.locale as Locale;
   const item = getNewsBySlug(params.slug);
   const t = await getTranslations({ locale, namespace: 'news' });
-  const tNav = await getTranslations({ locale, namespace: 'nav' });
+  const tMenu = await getTranslations({ locale, namespace: 'menu' });
 
   if (!item) {
     return (
@@ -53,41 +67,36 @@ export default async function NewsDetailPage({
     );
   }
 
+  const boardName = tMenu('news.items.news');
+  const tabs = await getNewsTabs(locale);
+
   return (
     <>
-      <Breadcrumb
-        items={[{ label: tNav('news'), href: '/news' }, { label: pick(item.title, locale) }]}
+      <Hero
+        title={t('hero.title')}
+        subtitle={t('hero.subtitle')}
+        breadcrumb={[{ label: tMenu('news.label'), href: '/news' }, { label: boardName }]}
       />
-      <article className="py-section-sm">
-        <Container>
-          <div className="mx-auto max-w-prose">
-            <p className="text-sm font-semibold text-yonsei-blue">
-              {t(`categories.${item.category}`)}
-            </p>
-            <h1 className="mt-3 text-headline font-bold text-content">
-              {pick(item.title, locale)}
-            </h1>
-            <time
-              dateTime={item.date}
-              className="mt-3 block text-sm text-content-faint"
-            >
-              {formatDate(item.date, locale)}
-            </time>
-
-            <div className="mt-8 border-t border-surface-border pt-8">
-              <p className="text-lg leading-relaxed text-content-soft">
-                {pick(item.body, locale)}
-              </p>
-            </div>
-
-            <div className="mt-12">
-              <Link href="/news" className="btn-secondary">
-                ← {t('backToList')}
-              </Link>
-            </div>
-          </div>
-        </Container>
-      </article>
+      <BoardShell tabs={tabs} activeKey="news" navTitle={tMenu('news.label')}>
+        <PostArticle
+          boardName={boardName}
+          title={pick(item.title, locale)}
+          date={item.date}
+          metaValue={t(`categories.${item.category}`)}
+          paragraphs={pick(item.body, locale).split('\n\n')}
+          attachments={item.attachments}
+          attachmentLabels={item.attachments?.map((a) => pick(a.label, locale))}
+          backHref="/news#news"
+          labels={{
+            title: t('detail.titleLabel'),
+            date: t('detail.dateLabel'),
+            metaRow: t('detail.categoryLabel'),
+            attachments: t('detail.attachmentsLabel'),
+            backToList: t('backToList'),
+          }}
+          locale={locale}
+        />
+      </BoardShell>
     </>
   );
 }

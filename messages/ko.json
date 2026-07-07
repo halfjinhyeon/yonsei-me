@@ -216,10 +216,6 @@
       "play": "카드 흐름 재생",
       "region": "연구실 카드 캐러셀"
     },
-    "innovate": {
-      "heading": "모든 스케일에서 <em>혁신</em>하라.",
-      "videoLabel": "학부 소개 영상 (준비 중)"
-    },
     "stats": {
       "title": "숫자로 보는 기계공학부",
       "faculty": "전임 교수",
@@ -377,6 +373,14 @@
     "readMore": "자세히 보기",
     "backToList": "목록으로",
     "notFound": "해당 소식을 찾을 수 없습니다.",
+    "detail": {
+      "titleLabel": "제목",
+      "dateLabel": "작성일",
+      "authorLabel": "작성자",
+      "categoryLabel": "분류",
+      "attachmentsLabel": "첨부",
+      "defaultAuthor": "기계공학부"
+    },
     "view": {
       "card": "카드형",
       "list": "목록형"

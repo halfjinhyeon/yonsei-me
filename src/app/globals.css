@@ -212,6 +212,15 @@
     100% { background-position: 50% 100%; }
   }
 
+  /* 히어로 흐름 애니메이션만 분리한 버전 — 배경 이미지는 지정하지 않아, 요소별로
+     다른 그라디언트(예: 카드뉴스 패널마다 다른 팔레트)에 얹어 재사용할 수 있다.
+     인라인 style의 backgroundImage와 함께 써야 한다(백그라운드 단축 속성이 아닌
+     backgroundImage로 지정해야 이 클래스의 background-size가 리셋되지 않는다). */
+  .anim-gradient-flow {
+    background-size: 200% 200%;
+    animation: gradientShift 14s ease-in-out infinite alternate;
+  }
+
   /* 흐르는 웨이브 라인 (좌우로 천천히 이동) */
   .wave-drift {
     animation: waveDrift 22s linear infinite;
@@ -301,23 +310,23 @@
 
   /* =========================================================
      동아리 카드뉴스 "풀스크린 덱" (ClubCardNews)
-     - 데스크톱(lg↑)에서만 스크롤 스냅으로 패널을 한 장씩 넘긴다.
+     - 모든 화면 폭에서 스크롤 스냅으로 패널을 한 장씩 넘긴다.
+       (패널이 뷰포트보다 긴 경우 CSS 스냅 스펙상 스냅 영역 내 자유 스크롤이
+       허용되므로, 모바일의 긴 본문 패널도 중간을 읽을 수 있고 갇히지 않는다)
      - 클래스 club-snap 은 컴포넌트 mount 시 <html> 에 부여/해제된다.
      - Cornell식 진입 애니메이션은 GSAP 대신 IO가 붙이는
        data-active 속성 + 기존 키프레임(heroTitleIn/panelFadeUp/navItemUp)으로 재현.
      ========================================================= */
 
-  @media (min-width: 1024px) {
-    html.club-snap {
-      scroll-snap-type: y mandatory;
-    }
-    html.club-snap .club-panel {
-      scroll-snap-align: start;
-    }
-    /* 푸터 도달 보장 — mandatory 스냅에서 스냅 지점이 없으면 푸터가 접근 불가가 됨 */
-    html.club-snap footer {
-      scroll-snap-align: end;
-    }
+  html.club-snap {
+    scroll-snap-type: y mandatory;
+  }
+  html.club-snap .club-panel {
+    scroll-snap-align: start;
+  }
+  /* 푸터 도달 보장 — mandatory 스냅에서 스냅 지점이 없으면 푸터가 접근 불가가 됨 */
+  html.club-snap footer {
+    scroll-snap-align: end;
   }
 
   /* JS 마운트 + 모션 허용 시에만 초기 숨김 (no-JS/SEO에서 콘텐츠 항상 보임) */

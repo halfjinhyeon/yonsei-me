@@ -36,6 +36,27 @@ function StepLabel({ num, title }: { num: string; title: string }) {
   );
 }
 
+/** 에브리타임 심벌 미니 로고 (시간표 바로가기 링크용).
+ *  어두운 부분은 currentColor 라 링크 텍스트 색을 따라 다크모드에서도 보인다. */
+function EverytimeLogo() {
+  return (
+    <svg width="16" height="16" viewBox="0 0 48 48" aria-hidden="true" className="shrink-0">
+      <path
+        d="M13 3.5c3.3 4.6 5 7.9 5 10a5 5 0 1 1-10 0c0-2.1 1.7-5.4 5-10Z"
+        fill="#F0432E"
+      />
+      <circle cx="36" cy="10.5" r="5.5" fill="currentColor" />
+      <path
+        d="M8.5 26c0 9.5 7.5 14.5 15.5 14.5S39.5 35.5 39.5 26"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="8.5"
+        strokeLinecap="round"
+      />
+    </svg>
+  );
+}
+
 const KIND_LABEL: Record<CatalogCourse['kind'], string> = {
   majorRequired: '전공필수',
   majorElective: '전공선택',
@@ -397,7 +418,20 @@ export function GraduationChecker({ data, locale }: { data: CheckerData; locale:
 
       {/* STEP 02 — 시간표 업로드 */}
       <section>
-        <StepLabel num="02" title={ko ? '시간표 업로드' : 'Upload timetables'} />
+        <div className="flex flex-wrap items-center justify-between gap-3">
+          <StepLabel num="02" title={ko ? '시간표 업로드' : 'Upload timetables'} />
+          {/* 캡처할 시간표를 새 탭에서 바로 열 수 있는 에브리타임 바로가기 */}
+          <a
+            href="https://everytime.kr/timetable"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 text-sm font-semibold text-content-soft transition-colors hover:text-yonsei-blue"
+          >
+            <EverytimeLogo />
+            {ko ? '에브리타임 시간표 열기' : 'Open Everytime timetable'}
+            <span aria-hidden="true">↗</span>
+          </a>
+        </div>
         <div
           role="button"
           tabIndex={0}

@@ -77,7 +77,7 @@ export default function HomePage({ params }: { params: { locale: string } }) {
       />
 
       {/* 5. 연구실 카드 캐러셀 (자동 흐름 + 스와이프) */}
-      <section className="full-bleed bg-yonsei-navy py-14">
+      <section className="full-bleed bg-yonsei-navy pb-4 pt-14">
         <div className="mx-auto mb-8 max-w-[1360px] px-6 sm:px-10 lg:px-16">
           <div className="flex flex-wrap items-end justify-between gap-4">
             <h2 className="text-headline font-bold text-white">
@@ -202,24 +202,7 @@ export default function HomePage({ params }: { params: { locale: string } }) {
       {/* 6-d. 금주의 행사 캘린더 */}
       <WeeklyCalendar events={board.events} locale={locale} />
 
-      {/* 7. 이노베이트 배너 + 비디오 */}
-      <section className="bg-gradient-to-b from-surface-soft to-surface px-6 pt-16 text-center sm:px-10">
-        <Reveal>
-          <h2 className="text-[clamp(2.25rem,7vw,5.5rem)] font-black tracking-tight text-yonsei-navy/85">
-            {t.rich('innovate.heading', {
-              em: (c) => <em className="font-display font-normal not-italic">{c}</em>,
-            })}
-          </h2>
-        </Reveal>
-        <div className="mx-auto mt-10 flex aspect-video max-h-[520px] w-full max-w-5xl items-center justify-center rounded-t-lg bg-yonsei-navy text-white/50">
-          <span className="flex items-center gap-3 text-sm">
-            <span aria-hidden="true" className="text-2xl">▶</span>
-            {t('innovate.videoLabel')}
-          </span>
-        </div>
-      </section>
-
-      {/* 8. CTA 밴드 */}
+      {/* 7. CTA 밴드 */}
       <section className="full-bleed relative isolate overflow-hidden bg-yonsei-navy text-white">
         <div
           aria-hidden="true"

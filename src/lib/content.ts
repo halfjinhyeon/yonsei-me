@@ -3,6 +3,7 @@ import researchData from '@content/research.json';
 import newsData from '@content/news.json';
 import programsData from '@content/programs.json';
 import boardData from '@content/board.json';
+import historyData from '@content/history.json';
 import type { Locale } from '@/i18n/routing';
 
 /** 한/영 문자열 쌍 → 현재 로케일 값으로 뽑아내는 헬퍼 */
@@ -12,6 +13,12 @@ export function pick<T>(value: Localized<T>, locale: Locale): T {
 }
 
 // ---- 타입 ----
+/** 게시물 첨부파일 (있을 때만 상세 페이지에 표시) */
+export interface Attachment {
+  label: Localized;
+  href: string;
+}
+
 export type FacultyField = 'energy' | 'robotics' | 'design' | 'bio';
 
 export interface Faculty {
@@ -45,6 +52,7 @@ export interface NewsItem {
   excerpt: Localized;
   body: Localized;
   image: string;
+  attachments?: Attachment[];
 }
 
 // ---- 접근자 ----
@@ -79,6 +87,7 @@ export interface Seminar {
   host: Localized;
   title: Localized;
   body: Localized;
+  attachments?: Attachment[];
 }
 
 export interface EventItem {
@@ -87,6 +96,7 @@ export interface EventItem {
   dateLabel: Localized;
   title: Localized;
   body: Localized;
+  attachments?: Attachment[];
 }
 
 export interface Notice {
@@ -94,6 +104,7 @@ export interface Notice {
   date: string;
   title: Localized;
   body: Localized;
+  attachments?: Attachment[];
 }
 
 export const board = boardData as {
@@ -115,6 +126,7 @@ export interface BoardPost {
   boardKey: 'notices' | 'seminars' | 'events' | 'thesis' | 'career';
   /** 부가 정보 한 줄 — 세미나 연사, 행사 기간, 공지 구분(학부/대학원) 등 */
   meta?: Localized;
+  attachments?: Attachment[];
 }
 
 export function getAllBoardPosts(): BoardPost[] {
@@ -136,6 +148,7 @@ export function getAllBoardPosts(): BoardPost[] {
       body: s.body,
       boardKey: 'seminars',
       meta: s.host,
+      attachments: s.attachments,
     })),
     ...board.events.map((e): BoardPost => ({
       id: e.id,
@@ -144,6 +157,7 @@ export function getAllBoardPosts(): BoardPost[] {
       body: e.body,
       boardKey: 'events',
       meta: e.dateLabel,
+      attachments: e.attachments,
     })),
     ...board.thesis.map((t): BoardPost => ({ ...t, boardKey: 'thesis' })),
     ...board.career.map((c): BoardPost => ({ ...c, boardKey: 'career' })),
@@ -153,3 +167,15 @@ export function getAllBoardPosts(): BoardPost[] {
 export function getBoardPost(id: string): BoardPost | undefined {
   return getAllBoardPosts().find((p) => p.id === id);
 }
+
+// ---- 연혁 ----
+/** 학과 연혁 이벤트. date는 "YYYY-MM" 형태 */
+export interface HistoryEvent {
+  date: string;
+  title: Localized;
+}
+
+/** 연혁은 항상 과거→현재 오름차순으로 반환 */
+export const history = (historyData as HistoryEvent[])
+  .slice()
+  .sort((a, b) => (a.date < b.date ? -1 : 1));

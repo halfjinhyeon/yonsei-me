@@ -216,10 +216,6 @@
       "play": "Play card flow",
       "region": "Research lab card carousel"
     },
-    "innovate": {
-      "heading": "Innovate at <em>every</em> scale.",
-      "videoLabel": "School intro video (coming soon)"
-    },
     "stats": {
       "title": "Mechanical Engineering by the numbers",
       "faculty": "Full-time faculty",
@@ -377,6 +373,14 @@
     "readMore": "Read more",
     "backToList": "Back to list",
     "notFound": "The requested article could not be found.",
+    "detail": {
+      "titleLabel": "Title",
+      "dateLabel": "Date",
+      "authorLabel": "Author",
+      "categoryLabel": "Category",
+      "attachmentsLabel": "Attachments",
+      "defaultAuthor": "School of Mechanical Engineering"
+    },
     "view": {
       "card": "Cards",
       "list": "List"

@@ -235,7 +235,7 @@ function LabCardView({
   );
 
   const shellClass =
-    'group relative block aspect-[4/5] w-[270px] shrink-0 overflow-hidden rounded-xl border border-white/10 sm:w-[290px]';
+    'group relative block aspect-[7/8] w-[270px] shrink-0 overflow-hidden rounded-xl border border-white/10 sm:w-[290px]';
 
   if (hasLink) {
     return (

@@ -6,8 +6,10 @@ import { Card } from '@/components/Card';
 import { Prose } from '@/components/Prose';
 import { TabbedContent, type TabItem } from '@/components/TabbedContent';
 import { FacultyDirectoryGrid } from '@/components/FacultyDirectoryGrid';
-import { getPageMarkdown } from '@/lib/pages';
+import { HistoryTimeline } from '@/components/HistoryTimeline';
 import { getFacultyDirectory } from '@/lib/faculty';
+import { history } from '@/lib/content';
+import type { Locale } from '@/i18n/routing';
 
 export async function generateMetadata({
   params,
@@ -41,13 +43,12 @@ export default async function AboutPage({ params }: { params: { locale: string }
     { label: tContact('emailLabel'), value: 'me@yonsei.ac.kr', href: 'mailto:me@yonsei.ac.kr' },
   ];
 
-  const historyMd = getPageMarkdown('about-history');
-
   const tabs: TabItem[] = [
     {
       key: 'history',
       label: tMenu('about.items.history'),
-      markdown: historyMd,
+      markdown: null,
+      content: <HistoryTimeline events={history} locale={params.locale as Locale} />,
     },
     {
       key: 'faculty',

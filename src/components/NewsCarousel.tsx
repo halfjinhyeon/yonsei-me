@@ -124,14 +124,15 @@ export function NewsCarousel({ items, locale }: { items: NewsItem[]; locale: Loc
   );
 
   return (
-    <section className="full-bleed relative isolate overflow-hidden bg-yonsei-navy py-section-sm text-white">
+    // 위 연구실 섹션과 같은 네이비 배경으로 이어지므로 상단 패딩은 얕게.
+    <section className="full-bleed relative isolate overflow-hidden bg-yonsei-navy pb-section-sm pt-4 text-white">
       <MeshCanvas className="pointer-events-none absolute inset-0 -z-10 h-full w-full opacity-60" />
 
       {/* 헤더만 컨테이너 폭 제한, 트랙은 아래에서 풀폭으로 흐른다. */}
       <div className="mx-auto max-w-[1360px] px-6 sm:px-10 lg:px-16">
         <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
           <h2 className="text-headline font-bold">{t('title')}</h2>
-          <Link href="/news" className="text-sm font-semibold text-yonsei-gold hover:underline">
+          <Link href="/news#news" className="text-sm font-semibold text-yonsei-gold hover:underline">
             {t('viewAll')} →
           </Link>
         </div>
@@ -217,7 +218,7 @@ function NewsCardView({
       aria-hidden={ariaHidden || undefined}
       tabIndex={ariaHidden ? -1 : undefined}
       className={cn(
-        'group relative block aspect-[4/5] w-[270px] shrink-0 overflow-hidden rounded-xl border border-white/10 sm:w-[290px]',
+        'group relative block aspect-[7/8] w-[270px] shrink-0 overflow-hidden rounded-xl border border-white/10 sm:w-[290px]',
         'focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yonsei-gold',
       )}
     >

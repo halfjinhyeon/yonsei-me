@@ -1,12 +1,27 @@
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import type { Metadata } from 'next';
 import { Section } from '@/components/Section';
-import { Breadcrumb } from '@/components/Breadcrumb';
-import { Container } from '@/components/Container';
+import { Hero } from '@/components/Hero';
+import { BoardShell, type BoardShellTab } from '@/components/BoardShell';
+import { PostArticle } from '@/components/PostArticle';
 import { Link } from '@/i18n/navigation';
 import { getAllBoardPosts, getBoardPost, pick } from '@/lib/content';
-import { formatDate } from '@/lib/utils';
 import { routing, type Locale } from '@/i18n/routing';
+
+// 목록 페이지(/news)와 동일한 8개 탭 (key/label)
+async function getNewsTabs(locale: Locale): Promise<BoardShellTab[]> {
+  const tMenu = await getTranslations({ locale, namespace: 'menu' });
+  return [
+    { key: 'notices', label: tMenu('news.items.notices') },
+    { key: 'news', label: tMenu('news.items.news') },
+    { key: 'thesis', label: tMenu('news.items.thesis') },
+    { key: 'resources', label: tMenu('news.items.resources') },
+    { key: 'career', label: tMenu('news.items.career') },
+    { key: 'events', label: tMenu('news.items.events') },
+    { key: 'seminars', label: tMenu('news.items.seminars') },
+    { key: 'calendar', label: tMenu('news.items.calendar') },
+  ];
+}
 
 // 모든 로케일 × 게시글을 정적 생성
 export function generateStaticParams() {
@@ -35,7 +50,6 @@ export default async function BoardPostPage({
   const post = getBoardPost(params.id);
   const t = await getTranslations({ locale, namespace: 'news' });
   const tMenu = await getTranslations({ locale, namespace: 'menu' });
-  const tNav = await getTranslations({ locale, namespace: 'nav' });
 
   if (!post) {
     return (
@@ -50,42 +64,37 @@ export default async function BoardPostPage({
     );
   }
 
-  const boardLabel = tMenu(`news.items.${post.boardKey}`);
-  const paragraphs = pick(post.body, locale).split('\n\n');
+  const boardName = tMenu(`news.items.${post.boardKey}`);
+  const tabs = await getNewsTabs(locale);
+  const author = post.meta ? pick(post.meta, locale) : t('detail.defaultAuthor');
 
   return (
     <>
-      <Breadcrumb
-        items={[{ label: tNav('news'), href: '/news' }, { label: pick(post.title, locale) }]}
+      <Hero
+        title={t('hero.title')}
+        subtitle={t('hero.subtitle')}
+        breadcrumb={[{ label: tMenu('news.label'), href: '/news' }, { label: boardName }]}
       />
-      <article className="py-section-sm">
-        <Container>
-          <div className="mx-auto max-w-prose">
-            <p className="text-sm font-semibold text-yonsei-blue">{boardLabel}</p>
-            <h1 className="mt-3 text-headline font-bold text-content">
-              {pick(post.title, locale)}
-            </h1>
-            <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-content-faint">
-              <time dateTime={post.date}>{formatDate(post.date, locale)}</time>
-              {post.meta && <span>{pick(post.meta, locale)}</span>}
-            </div>
-
-            <div className="mt-8 space-y-5 border-t border-surface-border pt-8">
-              {paragraphs.map((para, i) => (
-                <p key={i} className="whitespace-pre-line text-lg leading-relaxed text-content-soft">
-                  {para}
-                </p>
-              ))}
-            </div>
-
-            <div className="mt-12">
-              <Link href={`/news#${post.boardKey}`} className="btn-secondary">
-                ← {t('backToList')}
-              </Link>
-            </div>
-          </div>
-        </Container>
-      </article>
+      <BoardShell tabs={tabs} activeKey={post.boardKey} navTitle={tMenu('news.label')}>
+        <PostArticle
+          boardName={boardName}
+          title={pick(post.title, locale)}
+          date={post.date}
+          metaValue={author}
+          paragraphs={pick(post.body, locale).split('\n\n')}
+          attachments={post.attachments}
+          attachmentLabels={post.attachments?.map((a) => pick(a.label, locale))}
+          backHref={`/news#${post.boardKey}`}
+          labels={{
+            title: t('detail.titleLabel'),
+            date: t('detail.dateLabel'),
+            metaRow: t('detail.authorLabel'),
+            attachments: t('detail.attachmentsLabel'),
+            backToList: t('backToList'),
+          }}
+          locale={locale}
+        />
+      </BoardShell>
     </>
   );
 }
