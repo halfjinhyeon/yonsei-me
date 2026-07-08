@@ -108,17 +108,34 @@ export function NewsBoard({
             <li key={item.id} className="anim-nav-item" style={{ animationDelay: `${i * 70}ms` }}>
               <Link href={item.href} className="group block">
                 <div className="relative aspect-[4/3] overflow-hidden bg-surface-soft">
-                  {/* 이미지 로딩 전까지 보이는 독수리 스피너 (로드되면 이미지가 덮음) */}
-                  <span className="absolute inset-0 grid place-items-center">
-                    <EagleLoader decorative size={56} />
-                  </span>
-                  <Image
-                    src={item.image}
-                    alt=""
-                    fill
-                    sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 90vw"
-                    className="object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
+                  {item.image ? (
+                    <>
+                      {/* 이미지 로딩 전까지 보이는 독수리 스피너 (로드되면 이미지가 덮음) */}
+                      <span className="absolute inset-0 grid place-items-center">
+                        <EagleLoader decorative size={56} />
+                      </span>
+                      <Image
+                        src={item.image}
+                        alt=""
+                        fill
+                        sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 90vw"
+                        className="object-cover transition-transform duration-500 group-hover:scale-105"
+                      />
+                    </>
+                  ) : (
+                    // 이미지 미등록: eagle_empty 이미지 + "사진 미등록" 안내
+                    <div className="absolute inset-0 flex flex-col items-center justify-center gap-2.5 bg-surface-soft px-4 text-center">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src="/img/eagle_empty.png"
+                        alt=""
+                        className="h-16 w-auto opacity-70 sm:h-20"
+                      />
+                      <span className="text-xs font-medium text-content-faint">
+                        사진이 업로드되지 않았습니다
+                      </span>
+                    </div>
+                  )}
                   {item.tag && (
                     <span className="absolute bottom-0 left-0 bg-yonsei-navy/90 px-3 py-1.5 text-xs font-semibold text-white">
                       {item.tag}

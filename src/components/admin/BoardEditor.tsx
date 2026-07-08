@@ -93,7 +93,7 @@ export function BoardEditor({ config, boardKey, onDirtyChange }: Props) {
       setListError(null);
       try {
         if (m.isNews) {
-          const file = await loadJson<NewsItem[]>(cfg, 'content/news.json');
+          const file = await loadJson<NewsItem[]>(cfg, m.newsFile ?? 'content/news.json');
           setRawEntries(file.data);
         } else {
           const file = await loadJson<BoardFile>(cfg, 'content/board.json');
@@ -154,7 +154,8 @@ export function BoardEditor({ config, boardKey, onDirtyChange }: Props) {
     if (!config) return;
     setSaving(true);
     setSaveError(null);
-    const path = meta.isNews ? 'content/news.json' : 'content/board.json';
+    const newsPath = meta.newsFile ?? 'content/news.json';
+    const path = meta.isNews ? newsPath : 'content/board.json';
     try {
       if (meta.isNews) {
         const file = await loadJson<NewsItem[]>(config, path);
@@ -208,7 +209,7 @@ export function BoardEditor({ config, boardKey, onDirtyChange }: Props) {
     setSaving(true);
     setSaveError(null);
     setSuccess(null);
-    const path = meta.isNews ? 'content/news.json' : 'content/board.json';
+    const path = meta.isNews ? (meta.newsFile ?? 'content/news.json') : 'content/board.json';
     try {
       if (meta.isNews) {
         const file = await loadJson<NewsItem[]>(config, path);
@@ -240,7 +241,7 @@ export function BoardEditor({ config, boardKey, onDirtyChange }: Props) {
     void loadEntries(config, boardKey);
   }
 
-  const filePath = meta.isNews ? 'content/news.json' : 'content/board.json';
+  const filePath = meta.isNews ? (meta.newsFile ?? 'content/news.json') : 'content/board.json';
 
   return (
     <div className="min-w-0">

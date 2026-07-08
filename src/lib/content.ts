@@ -1,6 +1,7 @@
 import facultyData from '@content/faculty.json';
 import researchData from '@content/research.json';
 import newsData from '@content/news.json';
+import alumniNewsData from '@content/alumni-news.json';
 import programsData from '@content/programs.json';
 import boardData from '@content/board.json';
 import historyData from '@content/history.json';
@@ -79,6 +80,15 @@ export function getNewsBySlug(slug: string): NewsItem | undefined {
   return news.find((n) => n.slug === slug);
 }
 
+/** 동문 뉴스 — 별도 파일(content/alumni-news.json). 항상 최신순 정렬 */
+export const alumniNews = (alumniNewsData as NewsItem[])
+  .slice()
+  .sort((a, b) => (a.date < b.date ? 1 : -1));
+
+export function getAlumniNewsBySlug(slug: string): NewsItem | undefined {
+  return alumniNews.find((n) => n.slug === slug);
+}
+
 export interface Program {
   id: string;
   title: Localized;
@@ -126,6 +136,7 @@ export const board = boardData as {
   thesis: Notice[];
   career: Notice[];
   resources: Notice[];
+  alumniEvents: Seminar[];
 };
 
 /** 게시판 글(공지/세미나/행사/학위논문/취업)을 상세 페이지에서 단일 형태로 다루기 위한 통합 타입 */
@@ -179,6 +190,16 @@ export function getAllBoardPosts(): BoardPost[] {
 
 export function getBoardPost(id: string): BoardPost | undefined {
   return getAllBoardPosts().find((p) => p.id === id);
+}
+
+/** 동문 소식·네트워크 — board.json 의 alumniEvents(세미나형), 최신순.
+ *  뉴스 상세(getAllBoardPosts)와 섞지 않고 동문 전용 라우트에서만 쓴다. */
+export const alumniEvents = board.alumniEvents
+  .slice()
+  .sort((a, b) => (a.date < b.date ? 1 : -1));
+
+export function getAlumniEventById(id: string): Seminar | undefined {
+  return alumniEvents.find((e) => e.id === id);
 }
 
 // ---- 연혁 ----

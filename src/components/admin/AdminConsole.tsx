@@ -252,20 +252,61 @@ export function AdminConsole({ token, login }: Props) {
 function Dashboard({ onOpen }: { onOpen: (entry: MenuEntry) => void }) {
   return (
     <div className="space-y-12">
-      {/* 안내 콜아웃 — 브랜드 그라디언트 액센트 바 */}
+      {/* 사용 안내 — 사이트 에디토리얼 탭(연혁·교육목표) 톤의 번호형 인포그래픽 설명서.
+          박스 대신 여백·헤어라인·큰 번호로 위계를 만든다. */}
       <Reveal>
-        <div className="relative overflow-hidden rounded-card border border-surface-border bg-surface-soft p-6 shadow-card sm:p-7">
+        <section className="relative isolate overflow-hidden border-b border-surface-border pb-10">
+          {/* 장식용 독수리 워터마크 — eagle.png(흰 라인아트)를 마스크로 써서
+              브랜드 그라디언트로 아주 옅게 틴트. 텍스트 뒤(-z-10)에 배치. */}
           <span
             aria-hidden="true"
-            className="absolute inset-y-0 left-0 w-1 bg-gradient-to-b from-yonsei-navy via-yonsei-blue to-yonsei-gold"
+            className="eagle-mask pointer-events-none absolute -right-16 -top-12 -z-10 h-80 w-80 bg-gradient-to-br from-yonsei-navy to-yonsei-blue opacity-[0.06] sm:-right-20 sm:h-[26rem] sm:w-[26rem]"
           />
           <p className="eyebrow">시작하기</p>
-          <h2 className="mt-2 text-headline font-bold text-content">무엇을 수정할까요?</h2>
-          <p className="mt-3 max-w-2xl text-sm leading-relaxed text-content-soft sm:text-base">
-            이곳에서 저장하면 GitHub 저장소에 바로 커밋되고, Vercel이 1~2분 내 사이트에 자동
-            반영합니다. 왼쪽 메뉴 또는 아래 카드에서 편집할 콘텐츠를 선택하세요.
+          <h2 className="mt-3 max-w-3xl text-[clamp(1.7rem,3.5vw,2.75rem)] font-bold leading-[1.1] tracking-tight text-content">
+            무엇을 수정할까요?
+          </h2>
+          <p className="mt-5 max-w-prose text-base leading-relaxed text-content-soft sm:text-lg">
+            코드를 몰라도 됩니다. 아래 네 단계로 사이트의 모든 콘텐츠를 직접 편집하세요. 저장하면
+            GitHub 저장소에 바로 커밋되고, Vercel이 1~2분 내 사이트에 자동 반영합니다.
           </p>
-        </div>
+
+          {/* 설명서 — 01 → 02 → 03 → 04 절차 */}
+          <ol className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+            {[
+              { t: '콘텐츠 선택', b: '왼쪽 메뉴나 아래 카드에서 편집할 항목(게시판·연혁·교수진·교과목 등)을 고릅니다.' },
+              { t: '내용 편집', b: '한국어와 English를 입력합니다. “한→영 번역” 버튼으로 영문 초안을 채우고, 사진은 파일을 올리면 됩니다.' },
+              { t: '저장 = 커밋', b: '“저장” 버튼을 누르면 변경 내용이 GitHub 저장소에 바로 커밋됩니다.' },
+              { t: '자동 반영', b: 'Vercel이 1~2분 내 사이트에 자동 배포해 실제 페이지에 나타납니다.' },
+            ].map((step, i) => (
+              <li key={i} className="border-t border-surface-border pt-5">
+                <span className="block text-4xl font-light tabular-nums text-yonsei-blue/40">
+                  {String(i + 1).padStart(2, '0')}
+                  <span className="text-yonsei-gold">.</span>
+                </span>
+                <h3 className="mt-4 text-lg font-bold text-content">{step.t}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-content-soft">{step.b}</p>
+              </li>
+            ))}
+          </ol>
+
+          {/* 결과 강조 — 골드 아래 화살표 + 큰 타이포 (EditorialTab outcome 패턴) */}
+          <div className="mt-12 text-center">
+            <svg
+              aria-hidden="true"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              className="mx-auto h-6 w-6 text-yonsei-gold"
+            >
+              <path d="M12 4v15M5 12l7 7 7-7" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+            <p className="mt-4 text-2xl font-bold tracking-tight text-content sm:text-3xl">
+              누구나 코드 없이 사이트를 관리합니다<span className="text-yonsei-gold">.</span>
+            </p>
+          </div>
+        </section>
       </Reveal>
 
       {MENU_GROUPS.map((group, gi) => (
@@ -323,6 +364,48 @@ function Dashboard({ onOpen }: { onOpen: (entry: MenuEntry) => void }) {
           </section>
         </Reveal>
       ))}
+
+      {/* 관리자 등록 안내 — GitHub 로그인 허용 계정 관리 (에디토리얼 스타일) */}
+      <Reveal>
+        <section className="border-t border-surface-border pt-10">
+          <p className="eyebrow">관리자 추가</p>
+          <h3 className="mt-3 text-headline font-bold text-content">새 관리자를 등록하려면</h3>
+          <p className="mt-4 max-w-prose text-sm leading-relaxed text-content-soft sm:text-base">
+            이 콘솔은 GitHub 로그인으로 접근합니다. 새 담당자를 추가하려면 아래 세 가지가 필요합니다
+            (Vercel·GitHub 설정 권한이 있는 사람이 진행하세요).
+          </p>
+          <ol className="mt-10 grid gap-8 md:grid-cols-3">
+            {[
+              {
+                t: '로그인 허용',
+                b: 'Vercel → Settings → Environment Variables 의 ALLOWED_GITHUB_LOGINS 에 그 사람의 GitHub 계정명을 추가합니다(여러 명은 쉼표로 구분).',
+              },
+              {
+                t: '저장소 권한',
+                b: 'GitHub 저장소 halfjinhyeon/yonsei-me → Settings → Collaborators 에서 그 계정을 Write 권한으로 초대합니다(저장 = 커밋에 필요).',
+              },
+              {
+                t: '재배포',
+                b: '환경변수는 새 배포부터 적용됩니다. Vercel 에서 최신 배포를 Redeploy 하면 그 사람이 로그인할 수 있습니다.',
+              },
+            ].map((step, i) => (
+              <li key={i} className="border-t border-surface-border pt-5">
+                <span className="block text-4xl font-light tabular-nums text-yonsei-blue/40">
+                  {String(i + 1).padStart(2, '0')}
+                  <span className="text-yonsei-gold">.</span>
+                </span>
+                <h4 className="mt-4 text-lg font-bold text-content">{step.t}</h4>
+                <p className="mt-2 text-sm leading-relaxed text-content-soft">{step.b}</p>
+              </li>
+            ))}
+          </ol>
+          <p className="mt-8 max-w-prose text-xs leading-relaxed text-content-faint">
+            계정명은 이메일·실명이 아니라 GitHub username 입니다. 관리자를 제거하려면
+            ALLOWED_GITHUB_LOGINS 에서 계정명을 지우고 다시 배포하세요. (저장소 소유자 계정은
+            코드에 항상 허용되어 있습니다.)
+          </p>
+        </section>
+      </Reveal>
     </div>
   );
 }

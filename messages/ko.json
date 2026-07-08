@@ -88,8 +88,7 @@
       "label": "동문",
       "items": {
         "greeting": "동문 인사말",
-        "organization": "동문회 조직",
-        "notable": "자랑스러운 동문",
+        "news": "동문 뉴스",
         "network": "동문 소식·네트워크"
       }
     }

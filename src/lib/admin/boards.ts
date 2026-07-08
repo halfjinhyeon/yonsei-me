@@ -19,6 +19,7 @@ export interface BoardFile {
   thesis: Notice[];
   career: Notice[];
   resources: Notice[];
+  alumniEvents: Seminar[];
 }
 
 /** 어드민에서 선택 가능한 게시판 키 */
@@ -30,7 +31,9 @@ export type BoardKey =
   | 'events'
   | 'thesis'
   | 'career'
-  | 'resources';
+  | 'resources'
+  | 'alumniNews'
+  | 'alumniEvents';
 
 /** 편집 폼이 다루는 통합 레코드. 게시판에 따라 일부 필드만 사용된다. */
 export interface EditRecord {
@@ -71,6 +74,8 @@ export interface BoardMeta {
   hasHost: boolean;
   hasDateLabel: boolean;
   isNews: boolean;
+  /** isNews 게시판이 읽고 쓰는 뉴스 파일 경로 (기본 'content/news.json'). 동문 뉴스처럼 별도 파일을 쓰는 뉴스형 게시판에서 지정 */
+  newsFile?: string;
 }
 
 /** content/*.json 실제 id·slug 컨벤션에 맞춘 게시판 목록 */
@@ -83,6 +88,8 @@ export const BOARDS: BoardMeta[] = [
   { key: 'thesis', label: '학위논문심사', file: 'board.json', idPrefix: 'th-', hasHost: false, hasDateLabel: false, isNews: false },
   { key: 'resources', label: '자료실', file: 'board.json', idPrefix: 'res-', hasHost: false, hasDateLabel: false, isNews: false },
   { key: 'career', label: '취업 정보', file: 'board.json', idPrefix: 'cr-', hasHost: false, hasDateLabel: false, isNews: false },
+  { key: 'alumniNews', label: '동문 뉴스', file: 'news.json', idPrefix: '', hasHost: false, hasDateLabel: false, isNews: true, newsFile: 'content/alumni-news.json' },
+  { key: 'alumniEvents', label: '동문 소식·네트워크', file: 'board.json', idPrefix: 'ae-', hasHost: true, hasDateLabel: false, isNews: false },
 ];
 
 export function getBoard(key: BoardKey): BoardMeta {

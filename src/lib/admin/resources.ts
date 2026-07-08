@@ -572,7 +572,8 @@ export const MENU_GROUPS: MenuGroup[] = [
   {
     label: '동문',
     entries: [
-      { type: 'placeholder', label: '동문 페이지', note: '동문 페이지 구성 후 제공 예정입니다.' },
+      { type: 'board', boardKey: 'alumniNews' },
+      { type: 'board', boardKey: 'alumniEvents' },
     ],
   },
 ];

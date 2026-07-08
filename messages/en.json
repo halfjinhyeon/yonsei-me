@@ -88,8 +88,7 @@
       "label": "Alumni",
       "items": {
         "greeting": "Greeting",
-        "organization": "Association",
-        "notable": "Notable Alumni",
+        "news": "Alumni News",
         "network": "News & Network"
       }
     }

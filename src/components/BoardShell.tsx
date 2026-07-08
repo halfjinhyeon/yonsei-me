@@ -19,12 +19,15 @@ export function BoardShell({
   tabs,
   activeKey,
   navTitle,
+  basePath = '/news',
   children,
 }: {
   tabs: BoardShellTab[];
   activeKey: string;
   /** 우측 목차 박스 상단에 표시할 그룹명 (예: "뉴스 및 공지사항") */
   navTitle?: string;
+  /** 탭 링크가 이동할 목록 페이지 경로 (기본 '/news'). 동문 상세는 '/alumni' 를 준다 */
+  basePath?: string;
   children: ReactNode;
 }) {
   return (
@@ -34,7 +37,7 @@ export function BoardShell({
         {tabs.map((t, i) => (
           <Link
             key={t.key}
-            href={`/news#${t.key}`}
+            href={`${basePath}#${t.key}`}
             className={cn(
               'anim-nav-item whitespace-nowrap rounded-full px-4 py-1.5 text-xs font-semibold transition-all',
               activeKey === t.key
@@ -72,7 +75,7 @@ export function BoardShell({
                   style={{ animationDelay: `${i * 60}ms` }}
                 >
                   <Link
-                    href={`/news#${t.key}`}
+                    href={`${basePath}#${t.key}`}
                     className={cn(
                       'group flex w-full items-center justify-between gap-3 py-3 text-left text-sm transition-colors',
                       activeKey === t.key
