@@ -88,7 +88,12 @@ export function TabbedContent({
       <Container className="flex flex-col gap-10 py-10 lg:flex-row lg:items-start lg:gap-14 lg:py-16">
         {/* 콘텐츠 (레이아웃에 이미 <main id="main">이 있어 중첩 방지를 위해 section 사용) */}
         <section className="min-w-0 flex-1" aria-labelledby={`${active.key}-title`}>
-          <div key={active.key} className="anim-panel">
+          <div key={active.key} className="anim-panel relative isolate">
+            {/* 장식용 독수리 — 탭 큰 제목 좌상단, 남색(eagle.png 를 마스크로 틴트) */}
+            <span
+              aria-hidden="true"
+              className="eagle-mask pointer-events-none absolute -left-2 -top-12 -z-10 h-[230px] w-[230px] bg-yonsei-navy opacity-[0.08]"
+            />
             <h2
               id={`${active.key}-title`}
               className="mb-10 scroll-mt-24 text-display tracking-tight text-content"
