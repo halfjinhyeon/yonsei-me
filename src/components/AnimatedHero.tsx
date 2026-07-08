@@ -39,7 +39,7 @@ export function AnimatedHero() {
   const t = useTranslations('home.animHero');
 
   return (
-    <section className="anim-gradient relative isolate flex min-h-[100svh] flex-col justify-center overflow-hidden text-white">
+    <section className="anim-gradient relative isolate flex min-h-[100svh] flex-col justify-end overflow-hidden pb-[14vh] text-white sm:pb-[16vh]">
       {/* 캔버스 웨이브 배경 */}
       <MeshCanvas className="pointer-events-none absolute inset-0 -z-10 h-full w-full [mask-image:linear-gradient(to_top,transparent,black_22%)]" />
 
@@ -58,7 +58,7 @@ export function AnimatedHero() {
         </h1>
 
         <p
-          className="slide-enter mx-auto mt-10 max-w-3xl text-center text-base font-semibold leading-relaxed text-white/85 sm:mt-12 sm:text-xl"
+          className="slide-enter mt-8 max-w-2xl text-base font-semibold leading-relaxed text-white/85 sm:mt-10 sm:text-xl"
           style={{ animationDelay: '0.24s' }}
         >
           {t('tagline')}
