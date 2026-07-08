@@ -1,30 +1,82 @@
 [
   {
-    "role": { "ko": "대학원", "en": "Graduate Program" },
-    "name": { "ko": "남민화", "en": "Minhwa Nam" },
+    "role": {
+      "ko": "대학원",
+      "en": "Graduate Program"
+    },
+    "name": {
+      "ko": "남민화",
+      "en": "Minhwa Nam"
+    },
     "phone": "(02) 2123-2810",
-    "location": { "ko": "제 4공학관 D301호", "en": "Engineering Bldg. IV, Rm. D301" },
+    "location": {
+      "ko": "제 4공학관 D301호",
+      "en": "Engineering Bldg. IV, Rm. D301"
+    },
     "email": "nmh@yonsei.ac.kr"
   },
   {
-    "role": { "ko": "학부 행정", "en": "Undergraduate Administration" },
-    "name": { "ko": "정나경", "en": "Nakyung Jeong" },
+    "role": {
+      "ko": "학부 행정",
+      "en": "Undergraduate Administration"
+    },
+    "name": {
+      "ko": "정나경",
+      "en": "Nakyung Jeong"
+    },
     "phone": "(02) 2123-4426",
-    "location": { "ko": "제 4공학관 D301호", "en": "Engineering Bldg. IV, Rm. D301" },
+    "location": {
+      "ko": "제 4공학관 D301호",
+      "en": "Engineering Bldg. IV, Rm. D301"
+    },
     "email": "skyice@yonsei.ac.kr"
   },
   {
-    "role": { "ko": "BK21 교육 연구단", "en": "BK21 Education Research Group" },
-    "name": { "ko": "임은영", "en": "Eunyoung Lim" },
+    "role": {
+      "ko": "BK21 교육 연구단",
+      "en": "BK21 Education Research Group"
+    },
+    "name": {
+      "ko": "임은영",
+      "en": "Eunyoung Lim"
+    },
     "phone": "(02) 2123-7817",
-    "location": { "ko": "제 4공학관 D608호", "en": "Engineering Bldg. IV, Rm. D608" },
+    "location": {
+      "ko": "제 4공학관 D608호",
+      "en": "Engineering Bldg. IV, Rm. D608"
+    },
     "email": "mech_bk21_ley@yonsei.ac.kr"
   },
   {
-    "role": { "ko": "BK21 교육 연구단", "en": "BK21 Education Research Group" },
-    "name": { "ko": "정예솔", "en": "Yesol Jeong" },
+    "role": {
+      "ko": "BK21 교육 연구단",
+      "en": "BK21 Education Research Group"
+    },
+    "name": {
+      "ko": "정예솔",
+      "en": "Yesol Jeong"
+    },
     "phone": "(02) 2123-7815",
-    "location": { "ko": "제 4공학관 D608호", "en": "Engineering Bldg. IV, Rm. D608" },
+    "location": {
+      "ko": "제 4공학관 D608호",
+      "en": "Engineering Bldg. IV, Rm. D608"
+    },
     "email": "ysol912@yonsei.ac.kr"
+  },
+  {
+    "role": {
+      "ko": "개발진",
+      "en": "개발진"
+    },
+    "name": {
+      "ko": "반진현",
+      "en": "반진현"
+    },
+    "phone": "010-6888-4133",
+    "email": "wlsgus2006@gmail.com",
+    "location": {
+      "ko": "창천동4-17",
+      "en": "창천동4-17"
+    }
   }
 ]
