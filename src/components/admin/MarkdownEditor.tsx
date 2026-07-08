@@ -6,9 +6,11 @@
 
 import { useCallback, useEffect, useState } from 'react';
 import { commitText, loadText, savedBanner, type RepoConfig } from '@/lib/admin/github';
+import { hasTableBlock } from '@/lib/admin/markdown-blocks';
 import type { MarkdownPageDef } from '@/lib/admin/resources';
 import { Prose } from '@/components/Prose';
 import { CommitBanner } from './CommitBanner';
+import { MarkdownBlocksEditor } from './MarkdownBlocksEditor';
 
 interface Props {
   config: RepoConfig;
@@ -25,7 +27,10 @@ export function MarkdownEditor({ config, page, onDirtyChange }: Props) {
   const [text, setText] = useState('');
   const [loaded, setLoaded] = useState(''); // 로드 시점 원본 (dirty 비교용)
   const [sha, setSha] = useState('');
-  const [tab, setTab] = useState<'edit' | 'preview'>('edit');
+  const [tab, setTab] = useState<'blocks' | 'raw' | 'preview'>('raw');
+  // blocks 탭 진입·로드 시마다 증가 — MarkdownBlocksEditor 를 리마운트해
+  // 원문 탭에서 고친 내용이 재진입 시 확실히 반영되도록 한다.
+  const [blocksEpoch, setBlocksEpoch] = useState(0);
 
   const [loading, setLoading] = useState(false);
   const [loadError, setLoadError] = useState<string | null>(null);
@@ -47,6 +52,10 @@ export function MarkdownEditor({ config, page, onDirtyChange }: Props) {
       setText(file.data);
       setLoaded(file.data);
       setSha(file.sha);
+      // 표가 있는 문서는 표 편집 탭으로, 아니면 원문 탭으로 진입
+      setTab(hasTableBlock(file.data) ? 'blocks' : 'raw');
+      // 로드된 내용으로 blocks 편집기를 새로 마운트
+      setBlocksEpoch((n) => n + 1);
     } catch (err) {
       setLoadError(err instanceof Error ? err.message : '파일을 불러오지 못했습니다.');
     } finally {
@@ -58,7 +67,7 @@ export function MarkdownEditor({ config, page, onDirtyChange }: Props) {
   useEffect(() => {
     setSuccess(null);
     setSaveError(null);
-    setTab('edit');
+    // 기본 탭은 load 완료 시 문서 내용(표 유무)에 따라 결정한다
     void load();
   }, [load]);
 
@@ -116,13 +125,17 @@ export function MarkdownEditor({ config, page, onDirtyChange }: Props) {
         <p className="text-sm text-content-soft">불러오는 중…</p>
       ) : (
         <>
-          {/* 편집 / 미리보기 세그먼트 토글 */}
+          {/* 표 편집 / 원문 / 미리보기 세그먼트 토글 */}
           <div className="mb-3 inline-flex overflow-hidden rounded-lg border border-surface-border">
-            {(['edit', 'preview'] as const).map((t) => (
+            {(['blocks', 'raw', 'preview'] as const).map((t) => (
               <button
                 key={t}
                 type="button"
-                onClick={() => setTab(t)}
+                onClick={() => {
+                  // 표 편집 탭 진입 시 리마운트해 원문 탭 수정 내용을 반영
+                  if (t === 'blocks') setBlocksEpoch((n) => n + 1);
+                  setTab(t);
+                }}
                 aria-current={tab === t ? 'true' : undefined}
                 className={`px-4 py-2 text-sm font-medium transition-colors ${
                   tab === t
@@ -130,12 +143,19 @@ export function MarkdownEditor({ config, page, onDirtyChange }: Props) {
                     : 'bg-surface-soft text-content-soft hover:bg-surface hover:text-content'
                 }`}
               >
-                {t === 'edit' ? '편집' : '미리보기'}
+                {t === 'blocks' ? '표 편집' : t === 'raw' ? '원문' : '미리보기'}
               </button>
             ))}
           </div>
 
-          {tab === 'edit' ? (
+          {tab === 'blocks' ? (
+            <>
+              <MarkdownBlocksEditor key={blocksEpoch} value={text} onChange={setText} />
+              <p className="mt-3 text-xs text-content-faint">
+                표 편집에서 저장하면 표 서식이 표준 형태로 정리됩니다. 화면 표시는 동일합니다.
+              </p>
+            </>
+          ) : tab === 'raw' ? (
             <textarea
               aria-label={`${page.label} 마크다운`}
               rows={22}

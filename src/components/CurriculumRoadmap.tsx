@@ -161,6 +161,10 @@ export function CurriculumRoadmap({ locale }: { locale: Locale }) {
 
   // 로드맵 그리드 열 = 트랙 라벨 열(고정) + 학기 열들
   const gridTemplate = `12rem repeat(${columns.length}, minmax(9.5rem, 1fr))`;
+  // 그리드 최소 폭 = 라벨 열(12rem) + 학기 열들(각 9.5rem + 열 간격 gap-2 0.5rem).
+  // 컨테이너 min-width 를 이 값으로 줘야 헤더 룰·레인 구분선이 마지막 열까지 이어진다.
+  // (고정 min-w 가 콘텐츠보다 좁으면 뒤쪽 열이 박스를 넘쳐 선이 중간에 잘려 보인다.)
+  const gridMinWidth = `calc(12rem + ${columns.length} * 10rem)`;
 
   return (
     <div>
@@ -212,8 +216,9 @@ export function CurriculumRoadmap({ locale }: { locale: Locale }) {
 
       {/* 로드맵 — 가로 스크롤 래퍼. 평면 에디토리얼: 필 박스 대신 룰(선)과 타이포로 구조화 */}
       <div className="overflow-x-auto pb-2">
-        {/* key={filter} 로 필터 전환 시 레인 스태거 등장을 재트리거 */}
-        <div key={filter} className="min-w-[820px]">
+        {/* key={filter} 로 필터 전환 시 레인 스태거 등장을 재트리거.
+            min-width 를 전체 열 폭에 맞춰 헤더 룰·레인 구분선이 마지막 열까지 이어지게 한다. */}
+        <div key={filter} style={{ minWidth: gridMinWidth }}>
           {/* 헤더 행: 표 thead 문법 — 텍스트 + 굵은 네이비 상단 룰 */}
           <div
             className="grid gap-2 border-b-2 border-yonsei-navy pb-2"

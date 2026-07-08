@@ -83,11 +83,18 @@ function getFacultyPhotoMap(): Map<string, string> {
   return map;
 }
 
-/** content/faculty-directory.json — 교수진 게시판에서 구조화 추출한 실제 데이터 */
+/** content/faculty-directory.json — 교수진 게시판에서 구조화 추출한 실제 데이터.
+ *  사진은 JSON 의 명시적 photo(관리자 콘솔 업로드가 채움)를 우선하고, 없으면
+ *  기존 컨벤션대로 public/img/faculty 의 "<이름>.<ext>" 파일을 이름으로 매칭한다. */
 export function getFacultyDirectory(): FacultyRecord[] {
-  const records = readJson<Omit<FacultyRecord, 'photo'>[]>('faculty-directory.json');
+  const records = readJson<(Omit<FacultyRecord, 'photo'> & { photo?: string | null })[]>(
+    'faculty-directory.json',
+  );
   const photos = getFacultyPhotoMap();
-  return records.map((f) => ({ ...f, photo: photos.get(f.name) ?? null }));
+  return records.map(({ photo, ...rest }) => {
+    const explicit = typeof photo === 'string' && photo.trim() !== '' ? photo.trim() : null;
+    return { ...rest, photo: explicit ?? photos.get(rest.name) ?? null };
+  });
 }
 
 /** content/clubs.json — 동아리 인덱스(슬러그/이름/티저) + 로고 매핑 */

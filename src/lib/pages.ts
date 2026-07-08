@@ -69,7 +69,15 @@ function parseLinkLine(line: string): ClubLink {
 export function parseClubMarkdown(slug: string): ClubContent {
   const raw = getPageMarkdown(`club-${slug}`);
   if (!raw) return { panels: [], links: [] };
+  return parseClubContent(raw);
+}
 
+/**
+ * 동아리 마크다운 원문을 카드뉴스 패널 시퀀스로 파싱한다 (파일 I/O 없는 순수 함수).
+ * parseClubMarkdown 이 파일을 읽어 이 함수에 위임한다. 관리자 콘솔의 카드 편집기도
+ * 동일한 규칙으로 파싱/직렬화하기 위해 이 로직을 공유 기준으로 삼는다(왕복 무손실 근거).
+ */
+export function parseClubContent(raw: string): ClubContent {
   // #### 제목 줄과 <img ...> 태그 제거
   const cleaned = raw
     .replace(/^####\s.*$/m, '')

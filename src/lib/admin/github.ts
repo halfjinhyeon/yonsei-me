@@ -92,9 +92,13 @@ export function decodeBase64Utf8(base64: string): string {
 }
 
 export function encodeBase64Utf8(text: string): string {
-  const bytes = new TextEncoder().encode(text);
+  return base64FromBytes(new TextEncoder().encode(text));
+}
+
+/** 원시 바이트를 base64로 (이미지 등 바이너리 업로드용) */
+export function base64FromBytes(bytes: Uint8Array): string {
   let binary = '';
-  const chunk = 0x8000; // 큰 문자열에서 스택 초과 방지용 청크
+  const chunk = 0x8000; // 큰 파일에서 스택 초과 방지용 청크
   for (let i = 0; i < bytes.length; i += chunk) {
     binary += String.fromCharCode(...bytes.subarray(i, i + chunk));
   }
@@ -152,12 +156,22 @@ async function devLoad(path: string): Promise<LoadedFile<string> | null> {
   return { data: body.content, sha: body.sha };
 }
 
-/** 로컬 백엔드에 파일 저장. */
-async function devCommit(path: string, text: string): Promise<CommitResult> {
+/** 로컬 백엔드에 파일 저장. encoding='base64'면 바이너리(이미지)로 기록한다.
+ *  replaceSiblings=true 면 같은 basename 의 다른 확장자 파일을 정리한다. */
+async function devCommit(
+  path: string,
+  content: string,
+  opts?: { encoding?: 'base64'; replaceSiblings?: boolean },
+): Promise<CommitResult> {
   const res = await fetch('/api/dev-content', {
     method: 'PUT',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ path, content: text }),
+    body: JSON.stringify({
+      path,
+      content,
+      ...(opts?.encoding ? { encoding: opts.encoding } : {}),
+      ...(opts?.replaceSiblings ? { replaceSiblings: true } : {}),
+    }),
   });
   if (!res.ok) throw new Error(await devError(res));
   const body = (await res.json()) as { commit: { sha: string; html_url: string } };
@@ -261,6 +275,87 @@ export async function commitText(
   }
   const body = (await res.json()) as { commit: { sha: string; html_url: string } };
   return { sha: body.commit.sha, htmlUrl: body.commit.html_url };
+}
+
+/** 파일의 현재 sha만 조회한다 (덮어쓰기 커밋에 필요). 없으면 undefined. */
+async function getFileSha(cfg: RepoConfig, path: string): Promise<string | undefined> {
+  const res = await loadRaw(cfg, path);
+  if (res.status === 404) return undefined;
+  if (!res.ok) throw new Error(await readError(res));
+  const body = (await res.json()) as ContentsResponse;
+  return body.sha;
+}
+
+/**
+ * 이미지 파일을 저장소에 업로드(커밋)한다. repoPath 는 저장소 루트 기준
+ * (예: public/img/faculty/홍길동.jpg). 이미 있으면 덮어쓴다.
+ * dev 로컬 백엔드에서는 로컬 파일로 기록, 아니면 GitHub Contents API 로 커밋.
+ */
+export async function uploadImageToRepo(
+  cfg: RepoConfig,
+  repoPath: string,
+  file: File,
+): Promise<CommitResult> {
+  const base64 = base64FromBytes(new Uint8Array(await file.arrayBuffer()));
+  const message = `content: 이미지 업로드 — ${repoPath}`;
+
+  if (isLocalBackend(cfg)) {
+    return devCommit(repoPath, base64, { encoding: 'base64', replaceSiblings: true });
+  }
+
+  const sha = await getFileSha(cfg, repoPath);
+  const res = await fetch(`${API_BASE}/repos/${cfg.owner}/${cfg.repo}/contents/${repoPath}`, {
+    method: 'PUT',
+    headers: { ...headers(cfg.token), 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      message,
+      content: base64,
+      ...(sha ? { sha } : {}),
+      branch: cfg.branch,
+    }),
+  });
+  if (!res.ok) {
+    throw new Error(await readError(res));
+  }
+  const body = (await res.json()) as { commit: { sha: string; html_url: string } };
+  // 같은 basename 의 다른 확장자 사진 정리 (교수당 사진 1개 → 이름 매칭 모호성 제거).
+  // 실패해도 업로드 자체는 성공이므로 best-effort 로 무시한다.
+  await deleteSiblingImages(cfg, repoPath).catch(() => {});
+  return { sha: body.commit.sha, htmlUrl: body.commit.html_url };
+}
+
+/** repoPath 와 같은 basename 이지만 확장자가 다른 파일들을 삭제한다 (GitHub). */
+async function deleteSiblingImages(cfg: RepoConfig, repoPath: string): Promise<void> {
+  const slash = repoPath.lastIndexOf('/');
+  const folder = repoPath.slice(0, slash);
+  const filename = repoPath.slice(slash + 1);
+  const stem = filename.replace(/\.[^.]+$/, '');
+
+  const listRes = await fetch(
+    `${API_BASE}/repos/${cfg.owner}/${cfg.repo}/contents/${folder}?ref=${encodeURIComponent(cfg.branch)}`,
+    { headers: headers(cfg.token), cache: 'no-store' },
+  );
+  if (!listRes.ok) return; // 폴더 없음(404) 등 → 정리할 형제 없음
+  const entries = (await listRes.json()) as {
+    name: string;
+    path: string;
+    sha: string;
+    type: string;
+  }[];
+  const siblings = entries.filter(
+    (e) => e.type === 'file' && e.name !== filename && e.name.replace(/\.[^.]+$/, '') === stem,
+  );
+  for (const s of siblings) {
+    await fetch(`${API_BASE}/repos/${cfg.owner}/${cfg.repo}/contents/${s.path}`, {
+      method: 'DELETE',
+      headers: { ...headers(cfg.token), 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        message: `content: 이전 사진 정리 — ${s.path}`,
+        sha: s.sha,
+        branch: cfg.branch,
+      }),
+    });
+  }
 }
 
 /** 커밋 SHA로 GitHub 커밋 페이지 URL 생성 */

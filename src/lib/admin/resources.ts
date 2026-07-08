@@ -44,7 +44,10 @@ export type FieldDef =
   | (FieldBase & { kind: 'select'; options: SelectOption[]; emptyOptionLabel?: string })
   | (FieldBase & { kind: 'month' })
   | (FieldBase & { kind: 'image' }) // 경로 문자열 + 미리보기
-  | (FieldBase & { kind: 'imageList' }); // 경로 문자열 배열
+  | (FieldBase & { kind: 'imageList' }) // 경로 문자열 배열
+  // 파일 업로드 → 저장소 커밋 후 공개 URL 을 값으로 저장.
+  // folder: 커밋 대상 폴더(저장소 루트 기준), fileNameFrom: 파일명으로 쓸 폼 필드 key
+  | (FieldBase & { kind: 'imageUpload'; folder: string; fileNameFrom: string });
 
 // ---- 리소스 정의 ----
 
@@ -58,6 +61,8 @@ export interface LinkedMarkdown {
   hint?: string;
   /** 항목별 연결 마크다운 파일 경로 (저장소 루트 기준) */
   pathOf: (form: FormRecord) => string;
+  /** 지정 시 원문 textarea 대신 전용 구조 편집기를 함께 제공한다 */
+  structured?: 'clubCards';
 }
 
 export interface ResourceDef {
@@ -223,6 +228,11 @@ const FACULTY_BASE_FIELDS: FieldDef[] = [
   { kind: 'text', key: 'yearRange', label: '재직 기간', width: 'half', emptyAs: 'null', placeholder: '1963~2002', hint: '퇴임 교원만. 재직 중이면 비움' },
   { kind: 'text', key: 'moreInfoUrl', label: '상세 정보 URL', width: 'half', emptyAs: 'null' },
   { kind: 'text', key: 'photoAlt', label: '사진 대체 텍스트', width: 'half', hint: '비우면 이름을 사용' },
+  {
+    kind: 'imageUpload', key: 'photo', label: '프로필 사진', folder: 'public/img/faculty',
+    fileNameFrom: 'name', emptyAs: 'omit',
+    hint: '이미지를 올리면 이 교수의 프로필 사진으로 저장됩니다(교수진 목록·상세에 반영). 비워두면 public/img/faculty 의 "이름.확장자" 파일이 있으면 그것을 자동 사용합니다.',
+  },
 ];
 
 const FACULTY_LAB_FIELDS: FieldDef[] = [
@@ -427,9 +437,10 @@ const clubs: ResourceDef = {
   ],
   orderable: true,
   linkedMarkdown: {
-    label: '소개 본문 (마크다운)',
-    hint: '**[팀명]** 볼드 헤더 기준으로 패널이 나뉘고, 말미의 "- Instagram: ..." 줄은 SNS 링크로 표시됩니다.',
+    label: '소개 카드뉴스',
+    hint: '각 카드(팀 소개)를 직접 편집합니다. SNS 링크도 아래에서 관리하세요.',
     pathOf: (form) => `content/pages/club-${String(form.slug ?? '').trim()}.md`,
+    structured: 'clubCards',
   },
   summarize: (f) => cellText(f, 'name'),
 };

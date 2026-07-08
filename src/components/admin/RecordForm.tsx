@@ -8,6 +8,7 @@
 import { useState } from 'react';
 import type { FieldDef, FormRecord, LocalizedPair } from '@/lib/admin/resources';
 import { validateForm } from '@/lib/admin/resources';
+import { ClubCardsEditor } from './ClubCardsEditor';
 
 // PostForm 과 동일한 입력 스타일
 const fieldClass =
@@ -17,6 +18,8 @@ const fieldClass =
 export interface LinkedMarkdownField {
   label: string;
   hint?: string;
+  /** 지정 시 원문 textarea 대신 전용 구조 편집기 탭을 함께 제공한다 */
+  structured?: 'clubCards';
   value: string;
   loading?: boolean;
   onChange: (v: string) => void;
@@ -31,6 +34,8 @@ interface Props {
   onCancel: () => void;
   linkedMarkdown?: LinkedMarkdownField | null;
   onDirty?: () => void;
+  /** imageUpload 필드가 이미지를 저장소에 커밋할 때 호출 (config 를 가진 상위가 주입) */
+  onUploadImage?: (repoPath: string, file: File) => Promise<void>;
 }
 
 // 그리드 폭 → col-span 매핑 (컨테이너는 sm:grid-cols-6)
@@ -54,9 +59,15 @@ export function RecordForm({
   onCancel,
   linkedMarkdown,
   onDirty,
+  onUploadImage,
 }: Props) {
   const [form, setForm] = useState<FormRecord>(initial);
   const [error, setError] = useState<string | null>(null);
+  // 연결 마크다운이 structured 일 때의 편집 모드 (기본: 카드 편집)
+  const [mdTab, setMdTab] = useState<'structured' | 'raw'>('structured');
+  // imageUpload 필드별 업로드 상태 + 미리보기 캐시버스터
+  const [uploadState, setUploadState] = useState<Record<string, { busy: boolean; error: string | null }>>({});
+  const [previewBust, setPreviewBust] = useState(0);
 
   const hasLocalized = fields.some((f) => f.kind === 'localized');
 
@@ -109,6 +120,38 @@ export function RecordForm({
     }
     setError(null);
     onSubmit(form);
+  }
+
+  // 이미지 업로드: 파일명은 fileNameFrom 필드 값 기준(기존 이름-매칭 컨벤션과 일치),
+  // 저장소에 커밋 후 필드 값에 공개 URL 을 넣는다.
+  async function handleUpload(
+    f: Extract<FieldDef, { kind: 'imageUpload' }>,
+    file: File | null | undefined,
+  ) {
+    if (!file) return;
+    const setErr = (error: string) =>
+      setUploadState((s) => ({ ...s, [f.key]: { busy: false, error } }));
+
+    if (!onUploadImage) return setErr('업로드를 사용할 수 없습니다.');
+    const nameLabel = fields.find((x) => x.key === f.fileNameFrom)?.label ?? f.fileNameFrom;
+    const base = String(form[f.fileNameFrom] ?? '').trim().replace(/[\\/:*?"<>|]/g, '');
+    if (!base) return setErr(`${nameLabel}을(를) 먼저 입력하세요.`);
+    if (file.size > 5 * 1024 * 1024) return setErr('5MB 이하 이미지만 올릴 수 있습니다.');
+
+    const dot = file.name.lastIndexOf('.');
+    const ext = (dot > 0 ? file.name.slice(dot + 1) : 'jpg').toLowerCase().replace(/[^a-z0-9]/g, '') || 'jpg';
+    const repoPath = `${f.folder}/${base}.${ext}`;
+    const publicUrl = `/${repoPath.replace(/^public\//, '')}`;
+
+    setUploadState((s) => ({ ...s, [f.key]: { busy: true, error: null } }));
+    try {
+      await onUploadImage(repoPath, file);
+      setValue(f.key, publicUrl);
+      setPreviewBust((n) => n + 1);
+      setUploadState((s) => ({ ...s, [f.key]: { busy: false, error: null } }));
+    } catch (err) {
+      setErr(err instanceof Error ? err.message : '업로드에 실패했습니다.');
+    }
   }
 
   function renderField(f: FieldDef) {
@@ -282,6 +325,51 @@ export function RecordForm({
       );
     }
 
+    if (f.kind === 'imageUpload') {
+      const url = str;
+      const up = uploadState[f.key];
+      const hasImg = url.startsWith('/');
+      return (
+        <div>
+          {labelEl}
+          <div className="mt-1 flex items-start gap-3">
+            {hasImg ? (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img
+                src={`${url}?t=${previewBust}`}
+                alt=""
+                className="h-24 w-24 shrink-0 rounded-lg border border-surface-border object-cover"
+              />
+            ) : (
+              <div className="grid h-24 w-24 shrink-0 place-items-center rounded-lg border border-dashed border-surface-border text-[10px] text-content-faint">
+                사진 없음
+              </div>
+            )}
+            <div className="min-w-0 flex-1">
+              <input
+                id={id}
+                type="file"
+                accept="image/*"
+                aria-label={`${f.label} 업로드`}
+                disabled={busy || up?.busy || !onUploadImage}
+                onChange={(e) => {
+                  void handleUpload(f, e.target.files?.[0]);
+                  e.target.value = '';
+                }}
+                className="block w-full text-sm text-content-soft file:mr-3 file:cursor-pointer file:rounded-lg file:border file:border-surface-border file:bg-surface-soft file:px-3 file:py-1.5 file:text-sm file:font-medium file:text-content hover:file:border-yonsei-blue disabled:opacity-60"
+              />
+              {up?.busy && <p className="mt-1 text-xs text-content-soft">업로드 중…</p>}
+              {up?.error && <p className="mt-1 text-xs text-red-600">{up.error}</p>}
+              {hasImg && !up?.busy && !up?.error && (
+                <p className="mt-1 truncate text-xs text-content-faint">{url}</p>
+              )}
+            </div>
+          </div>
+          {f.hint && <p className="mt-2 text-xs text-content-faint">{f.hint}</p>}
+        </div>
+      );
+    }
+
     // imageList — PostForm 첨부파일 UI 처럼 행 추가/삭제
     const list = (form[f.key] ?? []) as string[];
     return (
@@ -343,6 +431,47 @@ export function RecordForm({
           )}
           {linkedMarkdown.loading ? (
             <p className="text-sm text-content-soft">불러오는 중…</p>
+          ) : linkedMarkdown.structured === 'clubCards' ? (
+            <>
+              {/* 카드 편집 / 원문 세그먼트 토글 (MarkdownEditor 톤) */}
+              <div className="mb-3 inline-flex overflow-hidden rounded-lg border border-surface-border">
+                {(['structured', 'raw'] as const).map((t) => (
+                  <button
+                    key={t}
+                    type="button"
+                    onClick={() => setMdTab(t)}
+                    aria-current={mdTab === t ? 'true' : undefined}
+                    className={`px-4 py-2 text-sm font-medium transition-colors ${
+                      mdTab === t
+                        ? 'bg-yonsei-navy text-white'
+                        : 'bg-surface-soft text-content-soft hover:bg-surface hover:text-content'
+                    }`}
+                  >
+                    {t === 'structured' ? '카드 편집' : '원문'}
+                  </button>
+                ))}
+              </div>
+              {mdTab === 'structured' ? (
+                <ClubCardsEditor
+                  value={linkedMarkdown.value}
+                  onChange={(v) => {
+                    onDirty?.();
+                    linkedMarkdown.onChange(v);
+                  }}
+                />
+              ) : (
+                <textarea
+                  aria-label={linkedMarkdown.label}
+                  rows={14}
+                  value={linkedMarkdown.value}
+                  onChange={(e) => {
+                    onDirty?.();
+                    linkedMarkdown.onChange(e.target.value);
+                  }}
+                  className={`${fieldClass} font-mono`}
+                />
+              )}
+            </>
           ) : (
             <textarea
               aria-label={linkedMarkdown.label}

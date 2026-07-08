@@ -16,6 +16,7 @@ import {
   loadJson,
   loadTextOptional,
   savedBanner,
+  uploadImageToRepo,
   type RepoConfig,
 } from '@/lib/admin/github';
 import {
@@ -67,6 +68,14 @@ export function CollectionEditor({ config, resource, onDirtyChange }: Props) {
     (f: FormRecord): unknown =>
       resource.fromForm ? resource.fromForm(f) : defaultFromForm(resource.fields, f),
     [resource],
+  );
+
+  // imageUpload 필드가 호출: 이미지를 저장소에 커밋(dev 는 로컬 파일)
+  const uploadImage = useCallback(
+    async (repoPath: string, file: File): Promise<void> => {
+      await uploadImageToRepo(config, repoPath, file);
+    },
+    [config],
   );
 
   // 원본 배열과 sha 를 그대로 보관 (표시용 FormRecord 는 파생)
@@ -367,6 +376,7 @@ export function CollectionEditor({ config, resource, onDirtyChange }: Props) {
           isEdit={!isNew}
           busy={saving}
           onSubmit={handleSubmit}
+          onUploadImage={uploadImage}
           onCancel={() => {
             setEditing(null);
             setMd(null);
@@ -377,6 +387,7 @@ export function CollectionEditor({ config, resource, onDirtyChange }: Props) {
               ? {
                   label: resource.linkedMarkdown.label,
                   hint: resource.linkedMarkdown.hint,
+                  structured: resource.linkedMarkdown.structured,
                   value: md.text,
                   loading: md.loading,
                   onChange: (v) => setMd((prev) => (prev ? { ...prev, text: v } : prev)),
