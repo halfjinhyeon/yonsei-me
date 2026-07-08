@@ -164,35 +164,9 @@
       "secondary": "찾아오기"
     },
     "animHero": {
-      "pause": "애니메이션 일시정지",
-      "play": "애니메이션 재생",
-      "region": "메인 히어로 슬라이드",
-      "slides": {
-        "0": {
-          "lead": "분석하라",
-          "lead2": "세상의 원리를",
-          "sub1": "미시 세계에서",
-          "sub2": "거대한 구조까지"
-        },
-        "1": {
-          "lead": "질문하라",
-          "lead2": "더 크게",
-          "sub1": "그리고 더 나은",
-          "sub2": "해답을 설계하라"
-        },
-        "2": {
-          "lead": "움직여라",
-          "lead2": "내일의 기계를",
-          "sub1": "인간을 위한",
-          "sub2": "공학으로"
-        },
-        "3": {
-          "lead": "우리의",
-          "lead2": "혁신을 보라",
-          "sub1": "지금, 연구",
-          "sub2": "현장에서"
-        }
-      }
+      "title1": "College of",
+      "title2": "Mechanical Engineering",
+      "tagline": "Find inspiration in everything that moves — Yonsei University."
     },
     "weAre": {
       "statement": "세상을 움직이는 <c1>공학</c1>, <br></br> 미래를 설계하는 <c2>사람들</c2>",

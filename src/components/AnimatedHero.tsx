@@ -1,115 +1,68 @@
-'use client';
-
-import { useEffect, useRef, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { MeshCanvas } from './MeshCanvas';
-import { cn } from '@/lib/utils';
-
-const SLIDE_KEYS = ['0', '1', '2', '3'] as const;
-const INTERVAL = 4200;
 
 /**
- * 풀뷰포트 애니메이션 히어로.
+ * 풀뷰포트 히어로 — 초대형 캡스 2행 타이틀 배너.
  * - 네이비 애니메이션 그라디언트 + 캔버스 웨이브 배경
- * - 로테이팅 헤드라인 슬라이드 (슬라이드-인)
- * - 일시정지 버튼 + prefers-reduced-motion 존중
+ * - "COLLEGE OF / MECHANICAL ENGINEERING" 정적 타이틀(브랜드 고정 요소라
+ *   양 로케일 모두 영어, 값은 messages 양쪽에 동일하게 둠)
+ * - 1행 끝에 흰색 톱니 기어가 천천히 회전(기계공학 모티프) + 하단 중앙 태그라인
  */
+
+/** 굵은 기하학 톱니 기어 — font-black 캡스와 어울리는 두꺼운 톱니 8개 + 축 구멍.
+ *  크기는 em 단위(부모 폰트 비례), currentColor 로 칠해 흰 타이틀을 따라간다. */
+function GearIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 100 100" fill="currentColor" aria-hidden="true" className={className}>
+      <mask id="gear-hole">
+        <rect width="100" height="100" fill="white" />
+        <circle cx="50" cy="50" r="15" fill="black" />
+      </mask>
+      <g mask="url(#gear-hole)">
+        <circle cx="50" cy="50" r="34" />
+        {Array.from({ length: 8 }, (_, i) => (
+          <rect
+            key={i}
+            x="43"
+            y="4"
+            width="14"
+            height="22"
+            rx="3"
+            transform={`rotate(${i * 45} 50 50)`}
+          />
+        ))}
+      </g>
+    </svg>
+  );
+}
 export function AnimatedHero() {
   const t = useTranslations('home.animHero');
-  const [active, setActive] = useState(0);
-  const [paused, setPaused] = useState(false);
-  const reduceRef = useRef(false);
-
-  useEffect(() => {
-    reduceRef.current = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (reduceRef.current) setPaused(true);
-  }, []);
-
-  useEffect(() => {
-    if (paused) return;
-    const id = setInterval(() => {
-      setActive((v) => (v + 1) % SLIDE_KEYS.length);
-    }, INTERVAL);
-    return () => clearInterval(id);
-  }, [paused]);
 
   return (
-    <section
-      className="anim-gradient relative isolate flex min-h-[100svh] flex-col justify-center overflow-hidden text-white"
-      aria-roledescription="carousel"
-      aria-label={t('region')}
-    >
+    <section className="anim-gradient relative isolate flex min-h-[100svh] flex-col justify-center overflow-hidden text-white">
       {/* 캔버스 웨이브 배경 */}
       <MeshCanvas className="pointer-events-none absolute inset-0 -z-10 h-full w-full [mask-image:linear-gradient(to_top,transparent,black_22%)]" />
 
-      <div className="mx-auto flex w-full max-w-[1360px] items-center px-6 sm:px-10 lg:px-16">
-        <div className="relative w-full">
-          {SLIDE_KEYS.map((key, i) => {
-            const isActive = i === active;
-            return (
-              <div
-                key={key}
-                aria-hidden={!isActive}
-                className={cn(
-                  'transition-opacity duration-700',
-                  isActive
-                    ? 'relative opacity-100'
-                    : 'pointer-events-none absolute inset-0 opacity-0',
-                )}
-              >
-                <h1
-                  className={cn(
-                    'text-[clamp(3rem,8vw,7rem)] font-black leading-[1.02] tracking-tight text-white/20',
-                    isActive && !reduceRef.current && 'slide-enter',
-                  )}
-                >
-                  <span className="block">{t(`slides.${key}.lead`)}</span>
-                  <span className="block">{t(`slides.${key}.lead2`)}</span>
-                </h1>
-                <p
-                  className={cn(
-                    'mt-6 text-[clamp(1.6rem,4.5vw,3.5rem)] font-black leading-[1.06] tracking-tight text-white/85',
-                    isActive && !reduceRef.current && 'slide-enter',
-                  )}
-                  style={isActive && !reduceRef.current ? { animationDelay: '0.15s' } : undefined}
-                >
-                  <span className="block font-display italic font-normal text-yonsei-gold">
-                    {t(`slides.${key}.sub1`)}
-                  </span>
-                  <span className="block">{t(`slides.${key}.sub2`)}</span>
-                </p>
-              </div>
-            );
-          })}
-        </div>
-      </div>
+      <div className="mx-auto w-full max-w-[1360px] px-6 sm:px-10 lg:px-16">
+        <h1 className="text-[clamp(2.4rem,7vw,6.5rem)] font-black uppercase leading-[1.04] tracking-tight text-white">
+          <span className="slide-enter block">
+            {t('title1')}
+            {/* 회전하는 흰색 톱니 기어 — 기계공학 모티프 (reduced-motion 시 전역 규칙이 정지) */}
+            <span className="ml-[0.32em] inline-block h-[0.72em] w-[0.72em] align-baseline">
+              <GearIcon className="h-full w-full animate-[spin_9s_linear_infinite]" />
+            </span>
+          </span>
+          <span className="slide-enter block" style={{ animationDelay: '0.12s' }}>
+            {t('title2')}
+          </span>
+        </h1>
 
-      {/* 컨트롤 */}
-      <div className="absolute inset-x-0 bottom-6 z-10 mx-auto flex max-w-[1360px] items-center justify-between px-6 sm:px-10 lg:px-16">
-        <button
-          type="button"
-          onClick={() => setPaused((v) => !v)}
-          className="inline-flex items-center gap-2 rounded-md border border-white/30 bg-black/30 px-4 py-2 text-xs font-medium text-white transition-colors hover:bg-black/50"
+        <p
+          className="slide-enter mx-auto mt-10 max-w-3xl text-center text-base font-semibold leading-relaxed text-white/85 sm:mt-12 sm:text-xl"
+          style={{ animationDelay: '0.24s' }}
         >
-          {paused ? '▶' : '⏸'} {paused ? t('play') : t('pause')}
-        </button>
-
-        {/* 슬라이드 인디케이터 */}
-        <div className="flex items-center gap-2">
-          {SLIDE_KEYS.map((key, i) => (
-            <button
-              key={key}
-              type="button"
-              onClick={() => setActive(i)}
-              aria-label={`${i + 1}`}
-              aria-current={i === active}
-              className={cn(
-                'h-1.5 rounded-full transition-all',
-                i === active ? 'w-6 bg-yonsei-gold' : 'w-2.5 bg-white/40 hover:bg-white/70',
-              )}
-            />
-          ))}
-        </div>
+          {t('tagline')}
+        </p>
       </div>
     </section>
   );

@@ -164,35 +164,9 @@
       "secondary": "Contact us"
     },
     "animHero": {
-      "pause": "Pause animation",
-      "play": "Play animation",
-      "region": "Main hero slides",
-      "slides": {
-        "0": {
-          "lead": "Analyze",
-          "lead2": "how things move",
-          "sub1": "from the micro",
-          "sub2": "to the massive"
-        },
-        "1": {
-          "lead": "Ask bigger",
-          "lead2": "questions",
-          "sub1": "and design",
-          "sub2": "better answers"
-        },
-        "2": {
-          "lead": "Move",
-          "lead2": "tomorrow's machines",
-          "sub1": "engineering",
-          "sub2": "for humanity"
-        },
-        "3": {
-          "lead": "See our",
-          "lead2": "innovation",
-          "sub1": "at work,",
-          "sub2": "right now"
-        }
-      }
+      "title1": "College of",
+      "title2": "Mechanical Engineering",
+      "tagline": "Find inspiration in everything that moves — Yonsei University."
     },
     "weAre": {
       "statement": "<c1>Engineering</c1> that moves the world, <c2>people</c2> who design the future",
