@@ -212,6 +212,13 @@
     100% { background-position: 50% 100%; }
   }
 
+  /* 공지 쇼케이스: 히어로 그라디언트의 밝은 로열블루 변주 — 각도·속도·진행 방향을 다르게 */
+  .anim-gradient-notice {
+    background: linear-gradient(120deg, #1d4ed8 0%, #2f6beb 45%, #4f8df5 80%, #1e40af 100%);
+    background-size: 220% 220%;
+    animation: gradientShift 18s ease-in-out infinite alternate-reverse;
+  }
+
   /* 히어로 흐름 애니메이션만 분리한 버전 — 배경 이미지는 지정하지 않아, 요소별로
      다른 그라디언트(예: 카드뉴스 패널마다 다른 팔레트)에 얹어 재사용할 수 있다.
      인라인 style의 backgroundImage와 함께 써야 한다(백그라운드 단축 속성이 아닌

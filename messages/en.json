@@ -385,6 +385,14 @@
     "readMore": "Read more",
     "backToList": "Back to list",
     "notFound": "The requested article could not be found.",
+    "search": {
+      "placeholder": "Search titles",
+      "fromLabel": "From",
+      "toLabel": "To",
+      "results": "{count} results",
+      "empty": "No posts match your filters.",
+      "clear": "Reset"
+    },
     "detail": {
       "titleLabel": "Title",
       "dateLabel": "Date",

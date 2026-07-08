@@ -385,6 +385,14 @@
     "readMore": "자세히 보기",
     "backToList": "목록으로",
     "notFound": "해당 소식을 찾을 수 없습니다.",
+    "search": {
+      "placeholder": "제목 검색",
+      "fromLabel": "시작일",
+      "toLabel": "종료일",
+      "results": "검색 결과 {count}건",
+      "empty": "조건에 맞는 게시물이 없습니다.",
+      "clear": "초기화"
+    },
     "detail": {
       "titleLabel": "제목",
       "dateLabel": "작성일",

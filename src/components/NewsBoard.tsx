@@ -1,10 +1,12 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import Image from 'next/image';
 import { Link } from '@/i18n/navigation';
 import { BoardList, type BoardRow } from '@/components/BoardList';
+import { BoardFilterBar, emptyFilter, isFilterActive, matchesFilter } from '@/components/BoardFilterBar';
 import { UnderlineTabs } from '@/components/UnderlineTabs';
+import { useTranslations } from 'next-intl';
 import { cn, formatDate } from '@/lib/utils';
 import type { Locale } from '@/i18n/routing';
 
@@ -33,7 +35,9 @@ export function NewsBoard({
   cardLabel: string;
   listLabel: string;
 }) {
+  const t = useTranslations('news');
   const [view, setView] = useState<'card' | 'list'>('card');
+  const [filter, setFilter] = useState(emptyFilter);
 
   useEffect(() => {
     const saved = window.localStorage.getItem(VIEW_STORAGE_KEY);
@@ -45,8 +49,18 @@ export function NewsBoard({
     window.localStorage.setItem(VIEW_STORAGE_KEY, next);
   }
 
+  const active = isFilterActive(filter);
+  const filtered = useMemo(
+    () => (active ? items.filter((item) => matchesFilter(item, filter)) : items),
+    [items, active, filter],
+  );
+  const emptyText = active ? t('search.empty') : emptyLabel;
+
   return (
     <div>
+      {/* 검색어 + 날짜범위 필터 바 */}
+      <BoardFilterBar value={filter} onChange={setFilter} resultCount={active ? filtered.length : null} />
+
       {/* 보기 방식 토글 — 사이트 공통 언더라인 탭 (선택 시 컬러바 슬라이드) */}
       <div className="mb-6 flex justify-end">
         <UnderlineTabs
@@ -84,12 +98,12 @@ export function NewsBoard({
       </div>
 
       {view === 'list' ? (
-        <BoardList items={items} locale={locale} emptyLabel={emptyLabel} />
-      ) : items.length === 0 ? (
-        <BoardList items={[]} locale={locale} emptyLabel={emptyLabel} />
+        <BoardList items={filtered} locale={locale} emptyLabel={emptyText} />
+      ) : filtered.length === 0 ? (
+        <BoardList items={[]} locale={locale} emptyLabel={emptyText} />
       ) : (
         <ul className="grid gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
-          {items.map((item, i) => (
+          {filtered.map((item, i) => (
             <li key={item.id} className="anim-nav-item" style={{ animationDelay: `${i * 70}ms` }}>
               <Link href={item.href} className="group block">
                 <div className="relative aspect-[4/3] overflow-hidden">

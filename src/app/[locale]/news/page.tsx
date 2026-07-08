@@ -3,8 +3,9 @@ import type { Metadata } from 'next';
 import { Hero } from '@/components/Hero';
 import { TabbedContent, type TabItem } from '@/components/TabbedContent';
 import { BoardList, type BoardRow } from '@/components/BoardList';
+import { FilterableBoardList } from '@/components/FilterableBoardList';
 import { NewsBoard, type NewsCardItem } from '@/components/NewsBoard';
-import { CalendarStrip } from '@/components/CalendarStrip';
+import { EventCalendar, type CalendarEntry } from '@/components/EventCalendar';
 import { news, board, pick } from '@/lib/content';
 import type { Locale } from '@/i18n/routing';
 
@@ -85,6 +86,25 @@ export default async function NewsPage({ params }: { params: { locale: string } 
     href: `/news/post/${c.id}`,
   }));
 
+  // 캘린더('일정' 탭)는 행사·세미나 게시판을 그대로 읽는다 — 관리자가 두 게시판에 글을
+  // 등록하면 그 date 필드가 월간 캘린더에 자동 반영된다(별도 일정 데이터 불필요).
+  const calendarEntries: CalendarEntry[] = [
+    ...board.events.map((e) => ({
+      id: e.id,
+      date: e.date,
+      title: pick(e.title, locale),
+      kind: 'event' as const,
+      href: `/news/post/${e.id}`,
+    })),
+    ...board.seminars.map((s) => ({
+      id: s.id,
+      date: s.date,
+      title: pick(s.title, locale),
+      kind: 'seminar' as const,
+      href: `/news/post/${s.id}`,
+    })),
+  ];
+
   // 자료실: 학부 안에 이미 있는 실제 자료 페이지로 연결하는 바로가기 모음
   const resourceRows: BoardRow[] = [
     { id: 'res-1', title: tNews('resources.ugRequirements'), tag: tNews('resources.tagUg'), href: '/undergraduate#requirements' },
@@ -96,7 +116,7 @@ export default async function NewsPage({ params }: { params: { locale: string } 
   ];
 
   const tabs: TabItem[] = [
-    { key: 'notices', label: tMenu('news.items.notices'), markdown: null, content: <BoardList items={notices} locale={locale} emptyLabel={tStub('body')} /> },
+    { key: 'notices', label: tMenu('news.items.notices'), markdown: null, content: <FilterableBoardList items={notices} locale={locale} emptyLabel={tStub('body')} /> },
     {
       key: 'news',
       label: tMenu('news.items.news'),
@@ -111,12 +131,12 @@ export default async function NewsPage({ params }: { params: { locale: string } 
         />
       ),
     },
-    { key: 'thesis', label: tMenu('news.items.thesis'), markdown: null, content: <BoardList items={thesisRows} locale={locale} emptyLabel={tStub('body')} /> },
+    { key: 'thesis', label: tMenu('news.items.thesis'), markdown: null, content: <FilterableBoardList items={thesisRows} locale={locale} emptyLabel={tStub('body')} /> },
     { key: 'resources', label: tMenu('news.items.resources'), markdown: null, content: <BoardList items={resourceRows} locale={locale} emptyLabel={tStub('body')} /> },
-    { key: 'career', label: tMenu('news.items.career'), markdown: null, content: <BoardList items={careerRows} locale={locale} emptyLabel={tStub('body')} /> },
-    { key: 'events', label: tMenu('news.items.events'), markdown: null, content: <BoardList items={eventRows} locale={locale} emptyLabel={tStub('body')} /> },
-    { key: 'seminars', label: tMenu('news.items.seminars'), markdown: null, content: <BoardList items={seminarRows} locale={locale} emptyLabel={tStub('body')} /> },
-    { key: 'calendar', label: tMenu('news.items.calendar'), markdown: null, content: <CalendarStrip events={board.events} locale={locale} /> },
+    { key: 'career', label: tMenu('news.items.career'), markdown: null, content: <FilterableBoardList items={careerRows} locale={locale} emptyLabel={tStub('body')} /> },
+    { key: 'events', label: tMenu('news.items.events'), markdown: null, content: <FilterableBoardList items={eventRows} locale={locale} emptyLabel={tStub('body')} /> },
+    { key: 'seminars', label: tMenu('news.items.seminars'), markdown: null, content: <FilterableBoardList items={seminarRows} locale={locale} emptyLabel={tStub('body')} /> },
+    { key: 'calendar', label: tMenu('news.items.calendar'), markdown: null, content: <EventCalendar entries={calendarEntries} locale={locale} /> },
   ];
 
   return (

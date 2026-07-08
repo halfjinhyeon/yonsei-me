@@ -37,13 +37,23 @@ interface ClubCardNewsProps {
  * Prose(prose-content)·text-content·border-surface-border 가 자동으로 다크 배경용 밝은 톤이 된다.
  */
 
-/** 패널 인덱스 % 4 로 순환하는 배경 그라디언트 팔레트 (전부 135deg, 히어로 톤 유지) */
+/** 패널 인덱스 % 4 로 순환하는 배경 그라디언트 팔레트 (전부 135deg, 히어로 톤 유지)
+ *  — 데스크톱 fixed 크로스페이드 레이어 전용 (시간축 전환이라 팔레트가 달라도 부드럽다) */
 const PANEL_GRADIENTS = [
   'linear-gradient(135deg, #00285e 0%, #0f3d7a 50%, #1b3a6b 100%)',
   'linear-gradient(135deg, #0b3268 0%, #0057a8 50%, #0f3d7a 100%)',
   'linear-gradient(135deg, #1b3a6b 0%, #2e86d6 45%, #00285e 100%)',
   'linear-gradient(135deg, #00285e 0%, #3a4f7d 50%, #8a774f 100%)',
 ];
+
+/** 모바일 패널 배경 "체인" 색 — 패널 i는 CHAIN[i]→CHAIN[i+1] 세로 그라디언트라
+ *  패널 경계에서 이전 패널의 끝 색과 다음 패널의 시작 색이 정확히 일치한다.
+ *  (패널마다 다른 135deg 팔레트를 깔던 기존 방식은 스냅 경계에서 색이 뚝 끊겼음) */
+const MOBILE_CHAIN = ['#00285e', '#123a7c', '#0057a8', '#1b3a6b', '#3a4f7d'];
+const mobilePanelBg = (index: number) =>
+  `linear-gradient(180deg, ${MOBILE_CHAIN[index % MOBILE_CHAIN.length]} 0%, ${
+    MOBILE_CHAIN[(index + 1) % MOBILE_CHAIN.length]
+  } 100%)`;
 
 export function ClubCardNews({ content, images, clubName }: ClubCardNewsProps) {
   const rootRef = useRef<HTMLDivElement | null>(null);
@@ -188,20 +198,22 @@ export function ClubCardNews({ content, images, clubName }: ClubCardNewsProps) {
 /**
  * 하나의 풀스크린 스냅 패널. full-bleed 다크 카드.
  * - 데스크톱: 배경은 상위 fixed 레이어가 담당하므로 투명, min-h 100svh + 수직 중앙.
- * - 모바일: 상위 fixed 레이어가 없으므로 이 섹션에 그라디언트를 직접 적용(하드 컷).
+ * - 모바일: 상위 fixed 레이어가 없으므로 이 섹션에 "체인" 세로 그라디언트를 직접 적용
+ *   — 이전 패널의 끝 색과 시작 색이 일치해 스냅 경계에서 색이 끊기지 않는다.
  */
 function PanelSection({ index, children }: { index: number; children: React.ReactNode }) {
-  const mobileBg = PANEL_GRADIENTS[index % PANEL_GRADIENTS.length];
+  const mobileBg = mobilePanelBg(index);
   return (
     <section
       data-panel-index={index}
       className="club-panel full-bleed relative flex min-h-[100svh] items-center py-16 lg:py-0"
     >
-      {/* 모바일 전용 배경 그라디언트(하드 컷). 데스크톱은 상위 fixed 크로스페이드 레이어가 담당하므로
-          이 레이어를 lg:hidden 으로 숨겨 fixed 레이어가 비쳐 보이게 한다. */}
+      {/* 모바일 전용 배경(체인 그라디언트). 흐름 애니메이션(anim-gradient-flow)은
+          배경 위치를 움직여 경계색을 다시 어긋나게 하므로 모바일에서는 쓰지 않는다.
+          데스크톱은 상위 fixed 크로스페이드 레이어가 담당하므로 lg:hidden. */}
       <div
         aria-hidden="true"
-        className="anim-gradient-flow pointer-events-none absolute inset-0 -z-10 lg:hidden"
+        className="pointer-events-none absolute inset-0 -z-10 lg:hidden"
         style={{ backgroundImage: mobileBg }}
       />
       {/* 내용 래퍼에 dark 클래스 → Prose/text-content/border 가 자동 반전 (다크 배경용 밝은 톤) */}

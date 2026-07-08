@@ -4,12 +4,12 @@ import { Link } from '@/i18n/navigation';
 import { AnimatedHero } from '@/components/AnimatedHero';
 import { Section } from '@/components/Section';
 import { ProgramTabs } from '@/components/ProgramTabs';
-import { NewsCarousel } from '@/components/NewsCarousel';
+import { NoticeShowcase } from '@/components/NoticeShowcase';
 import { WeeklyCalendar } from '@/components/WeeklyCalendar';
 import { LabCarousel } from '@/components/LabCarousel';
 import { Reveal } from '@/components/Reveal';
 import { Container } from '@/components/Container';
-import { news, programs, board, pick } from '@/lib/content';
+import { programs, board, pick } from '@/lib/content';
 import { getLabsDirectory } from '@/lib/faculty';
 import { formatDate } from '@/lib/utils';
 import type { Locale } from '@/i18n/routing';
@@ -26,7 +26,24 @@ export default function HomePage({ params }: { params: { locale: string } }) {
   const locale = params.locale as Locale;
   const t = useTranslations('home');
   const tBoard = useTranslations('board');
+  const tMenu = useTranslations('menu');
+  const tNews = useTranslations('news');
   const labs = getLabsDirectory();
+
+  // 공지 쇼케이스 데이터: 학부·대학원 공지를 합쳐 날짜 내림차순, 상위 7건.
+  // group 라벨은 기존 board 키를 재사용(신규 메시지 키 금지).
+  const showcaseNotices = [
+    ...board.noticesUndergrad.map((n) => ({ ...n, groupLabel: tBoard('noticesUndergrad.title') })),
+    ...board.noticesGraduate.map((n) => ({ ...n, groupLabel: tBoard('noticesGraduate.title') })),
+  ]
+    .sort((a, b) => (a.date < b.date ? 1 : -1))
+    .slice(0, 7)
+    .map((n) => ({
+      id: n.id,
+      date: n.date,
+      title: pick(n.title, locale),
+      groupLabel: n.groupLabel,
+    }));
 
   return (
     <>
@@ -76,17 +93,19 @@ export default function HomePage({ params }: { params: { locale: string } }) {
         locale={locale}
       />
 
-      {/* 5. 연구실 카드 캐러셀 (자동 흐름 + 스와이프) */}
-      <section className="full-bleed bg-yonsei-navy pb-4 pt-14">
-        <div className="mx-auto mb-8 max-w-[1360px] px-6 sm:px-10 lg:px-16">
-          <div className="flex flex-wrap items-end justify-between gap-4">
-            <h2 className="text-headline font-bold text-white">
+      {/* 5. 연구실 카드 캐러셀 (자동 흐름 + 스와이프) — 아래 공지 쇼케이스가
+          네이비 베일(ScrollVeil)로 시작하므로 경계는 스크롤 시 애니메이션으로 전환 */}
+      <section className="full-bleed bg-yonsei-navy pb-10 pt-10 sm:pb-14 sm:pt-14">
+        {/* 모바일: 헤더를 한 줄 컴팩트(작은 타이포·좁은 여백)로 */}
+        <div className="mx-auto mb-4 max-w-[1360px] px-6 sm:mb-8 sm:px-10 lg:px-16">
+          <div className="flex items-end justify-between gap-3 sm:gap-4">
+            <h2 className="text-lg font-bold text-white sm:text-headline">
               {t.rich('people.heading', {
                 count: labs.length,
                 em: (c) => <em className="font-display font-normal not-italic text-yonsei-gold">{c}</em>,
               })}
             </h2>
-            <Link href="/research#labs" className="pb-1 text-sm font-semibold text-yonsei-gold hover:underline">
+            <Link href="/research#labs" className="whitespace-nowrap pb-1 text-xs font-semibold text-yonsei-gold hover:underline sm:text-sm">
               {t('people.cta')}
             </Link>
           </div>
@@ -94,10 +113,13 @@ export default function HomePage({ params }: { params: { locale: string } }) {
         <LabCarousel labs={labs} locale={locale} />
       </section>
 
-      {/* 6. 뉴스 캐러셀 (다크) — 세미나·공지는 아래 전용 섹션이 있으므로 뉴스(성과)만 */}
-      <NewsCarousel
-        items={news.filter((n) => n.category === 'achievement').slice(0, 6)}
+      {/* 6. 공지 쇼케이스 (풀블리드) — 학부·대학원 공지를 밝은 로열블루 위에 지그재그로 */}
+      <NoticeShowcase
+        notices={showcaseNotices}
         locale={locale}
+        heading={tMenu('news.items.notices')}
+        subtitle={tNews('hero.subtitle')}
+        moreLabel={t('newsPreview.viewAll')}
       />
 
       {/* 6-b. 세미나 (구 학과 사이트처럼 독립 풀폭 섹션 — 가로 카드 3장).
@@ -163,69 +185,8 @@ export default function HomePage({ params }: { params: { locale: string } }) {
         </ul>
       </Section>
 
-      {/* 6-c. 학부 · 대학원 공지사항 (보드 그룹 — size=sm 으로 리듬 통일) */}
-      <Section size="sm" tone="soft" aria-labelledby="notices-title">
-        <h2 id="notices-title" className="sr-only">
-          {tBoard('noticesUndergrad.title')} · {tBoard('noticesGraduate.title')}
-        </h2>
-        <div className="grid gap-6 lg:grid-cols-2">
-          {[
-            { key: 'noticesUndergrad', items: board.noticesUndergrad, href: '/news#notices' },
-            { key: 'noticesGraduate', items: board.noticesGraduate, href: '/news#notices' },
-          ].map((col) => (
-            <div key={col.key} className="rounded-card border border-surface-border bg-surface p-5">
-              <div className="mb-2 flex items-center justify-between">
-                <h3 className="text-base font-bold text-content">{tBoard(`${col.key}.title`)}</h3>
-                <Link href={col.href} className="text-sm font-semibold text-yonsei-blue hover:underline">
-                  {tBoard(`${col.key}.more`)} →
-                </Link>
-              </div>
-              <ul className="divide-y divide-surface-border">
-                {col.items.map((n) => (
-                  <li key={n.id}>
-                    <Link href={`/news/post/${n.id}`} className="group flex items-center justify-between gap-4 py-3">
-                      <span className="line-clamp-1 text-sm text-content-soft group-hover:text-yonsei-blue">
-                        {pick(n.title, locale)}
-                      </span>
-                      <time dateTime={n.date} className="shrink-0 text-xs tabular-nums text-content-faint">
-                        {formatDate(n.date, locale)}
-                      </time>
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
-      </Section>
-
       {/* 6-d. 금주의 행사 캘린더 */}
       <WeeklyCalendar events={board.events} locale={locale} />
-
-      {/* 7. CTA 밴드 */}
-      <section className="full-bleed relative isolate overflow-hidden bg-yonsei-navy text-white">
-        <div
-          aria-hidden="true"
-          className="absolute inset-0 -z-10 bg-cover bg-center opacity-30"
-          style={{ backgroundImage: 'url(/img/hero.svg)' }}
-        />
-        <Container>
-          <div className="flex flex-col items-start gap-6 py-section-sm md:flex-row md:items-center md:justify-between">
-            <div className="max-w-2xl">
-              <h2 className="text-headline font-bold">{t('cta.title')}</h2>
-              <p className="mt-3 text-white/80">{t('cta.body')}</p>
-            </div>
-            <div className="flex flex-wrap gap-3">
-              <Link href="/admission" className="btn-primary bg-white !text-yonsei-navy hover:bg-yonsei-gold">
-                {t('cta.primary')}
-              </Link>
-              <Link href="/contact" className="btn border border-white/40 text-white hover:bg-white/10">
-                {t('cta.secondary')}
-              </Link>
-            </div>
-          </div>
-        </Container>
-      </section>
     </>
   );
 }

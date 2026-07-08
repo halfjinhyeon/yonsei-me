@@ -159,7 +159,7 @@ export function LabCarousel({
     >
       <div
         ref={trackRef}
-        className="no-scrollbar flex gap-5 overflow-x-auto overscroll-x-contain pb-2"
+        className="no-scrollbar flex gap-3.5 overflow-x-auto overscroll-x-contain pb-2 sm:gap-5"
         onWheel={nudgeResume}
         onScroll={wrap}
       >
@@ -178,7 +178,7 @@ export function LabCarousel({
         )}
       </div>
 
-      <div className="mx-auto mt-6 max-w-[1360px] px-6 sm:px-10 lg:px-16">
+      <div className="mx-auto mt-4 max-w-[1360px] px-6 sm:mt-6 sm:px-10 lg:px-16">
         <button
           type="button"
           onClick={() => setManualPaused((v) => !v)}
@@ -219,12 +219,12 @@ function LabCardView({
         aria-hidden="true"
         className="absolute inset-0 bg-gradient-to-t from-yonsei-navy via-yonsei-navy/60 to-yonsei-navy/10"
       />
-      <span className="absolute inset-x-0 bottom-0 flex flex-col gap-1 p-5">
-        <span className="line-clamp-2 text-base font-bold leading-snug text-white">{name}</span>
-        <span className="text-xs font-medium text-white/85">
+      <span className="absolute inset-x-0 bottom-0 flex flex-col gap-1 p-3.5 sm:p-5">
+        <span className="line-clamp-2 text-sm font-bold leading-snug text-white sm:text-base">{name}</span>
+        <span className="text-[11px] font-medium text-white/85 sm:text-xs">
           {professorLabel}: {professor}
         </span>
-        <span className="text-xs text-white/70">{card.location}</span>
+        <span className="text-[11px] text-white/70 sm:text-xs">{card.location}</span>
         {hasLink && (
           <span className="mt-1 inline-flex items-center gap-1 text-xs font-semibold text-yonsei-gold opacity-0 transition-opacity group-hover:opacity-100">
             {externalLabel} ↗
@@ -234,8 +234,9 @@ function LabCardView({
     </>
   );
 
+  // 모바일에서는 카드가 화면을 압도하지 않도록 폭을 줄인다 (텍스트도 함께 축소)
   const shellClass =
-    'group relative block aspect-[7/8] w-[270px] shrink-0 overflow-hidden rounded-lg border border-white/10 sm:w-[290px]';
+    'group relative block aspect-[7/8] w-[185px] shrink-0 overflow-hidden rounded-lg border border-white/10 sm:w-[290px]';
 
   if (hasLink) {
     return (

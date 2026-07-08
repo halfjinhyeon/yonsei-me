@@ -1,7 +1,6 @@
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import type { Metadata } from 'next';
 import { Hero } from '@/components/Hero';
-import { Section } from '@/components/Section';
 import { ContactInfoPanel } from '@/components/ContactInfoPanel';
 import { DirectionsInfo } from '@/components/DirectionsInfo';
 import { AboutIntro } from '@/components/AboutIntro';
@@ -138,26 +137,6 @@ export default async function AboutPage({ params }: { params: { locale: string }
 
       {/* 연혁·교수진·교직원·오시는 길 — 다른 메뉴와 동일한 인덱스 탭 방식 */}
       <TabbedContent tabs={tabs} emptyLabel={tStub('body')} navTitle={tMenu('about.label')} />
-
-      {/* 학부장 인사말 */}
-      <Section tone="brand" aria-labelledby="dean-title">
-        <figure className="mx-auto max-w-3xl text-center">
-          <p className="text-yonsei-gold" aria-hidden="true">
-            <span className="text-5xl font-serif leading-none">“</span>
-          </p>
-          <blockquote>
-            <h2 id="dean-title" className="sr-only">
-              {t('dean.title')}
-            </h2>
-            <p className="text-xl font-medium leading-relaxed text-white sm:text-2xl">
-              {t('dean.body')}
-            </p>
-          </blockquote>
-          <figcaption className="mt-8 text-sm font-semibold text-white/70">
-            — {t('dean.sign')}
-          </figcaption>
-        </figure>
-      </Section>
     </>
   );
 }
