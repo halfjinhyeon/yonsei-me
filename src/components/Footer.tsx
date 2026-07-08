@@ -56,6 +56,15 @@ export function Footer() {
                   </Link>
                 </li>
               ))}
+              {/* XML 사이트맵 — 로케일 접두어가 없는 루트 파일이라 native <a> 로 링크 */}
+              <li>
+                <a
+                  href="/sitemap.xml"
+                  className="text-content-soft transition-colors hover:text-yonsei-blue"
+                >
+                  {t('sitemap')}
+                </a>
+              </li>
             </ul>
           </nav>
 
