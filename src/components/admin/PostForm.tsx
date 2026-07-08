@@ -7,6 +7,7 @@
 import { useState } from 'react';
 import type { BoardMeta, EditRecord } from '@/lib/admin/boards';
 import { emptyAttachment } from '@/lib/admin/boards';
+import { TranslateButton } from './TranslateButton';
 
 interface Props {
   meta: BoardMeta;
@@ -122,9 +123,12 @@ export function PostForm({ meta, initial, isEdit, busy, onCancel, onSubmit }: Pr
           <input id="pf-title-ko" type="text" value={rec.titleKo} onChange={(e) => set('titleKo', e.target.value)} className={fieldClass} />
         </div>
         <div>
-          <label htmlFor="pf-title-en" className="block text-sm font-semibold text-content">
-            제목 (English)
-          </label>
+          <div className="flex flex-wrap items-center justify-between gap-2">
+            <label htmlFor="pf-title-en" className="block text-sm font-semibold text-content">
+              제목 (English)
+            </label>
+            <TranslateButton source={rec.titleKo} onTranslated={(v) => set('titleEn', v)} />
+          </div>
           <input id="pf-title-en" type="text" value={rec.titleEn} onChange={(e) => set('titleEn', e.target.value)} className={fieldClass} />
         </div>
       </div>
@@ -138,9 +142,12 @@ export function PostForm({ meta, initial, isEdit, busy, onCancel, onSubmit }: Pr
             <input id="pf-host-ko" type="text" value={rec.hostKo ?? ''} onChange={(e) => set('hostKo', e.target.value)} className={fieldClass} />
           </div>
           <div>
-            <label htmlFor="pf-host-en" className="block text-sm font-semibold text-content">
-              주최 (English)
-            </label>
+            <div className="flex flex-wrap items-center justify-between gap-2">
+              <label htmlFor="pf-host-en" className="block text-sm font-semibold text-content">
+                주최 (English)
+              </label>
+              <TranslateButton source={rec.hostKo ?? ''} onTranslated={(v) => set('hostEn', v)} />
+            </div>
             <input id="pf-host-en" type="text" value={rec.hostEn ?? ''} onChange={(e) => set('hostEn', e.target.value)} className={fieldClass} />
           </div>
         </div>
@@ -155,9 +162,12 @@ export function PostForm({ meta, initial, isEdit, busy, onCancel, onSubmit }: Pr
             <input id="pf-dl-ko" type="text" value={rec.dateLabelKo ?? ''} onChange={(e) => set('dateLabelKo', e.target.value)} placeholder="7/7(화)" className={fieldClass} />
           </div>
           <div>
-            <label htmlFor="pf-dl-en" className="block text-sm font-semibold text-content">
-              기간 라벨 (English)
-            </label>
+            <div className="flex flex-wrap items-center justify-between gap-2">
+              <label htmlFor="pf-dl-en" className="block text-sm font-semibold text-content">
+                기간 라벨 (English)
+              </label>
+              <TranslateButton source={rec.dateLabelKo ?? ''} onTranslated={(v) => set('dateLabelEn', v)} />
+            </div>
             <input id="pf-dl-en" type="text" value={rec.dateLabelEn ?? ''} onChange={(e) => set('dateLabelEn', e.target.value)} placeholder="Jul 7 (Tue)" className={fieldClass} />
           </div>
         </div>
@@ -173,9 +183,12 @@ export function PostForm({ meta, initial, isEdit, busy, onCancel, onSubmit }: Pr
               <textarea id="pf-excerpt-ko" rows={2} value={rec.excerptKo ?? ''} onChange={(e) => set('excerptKo', e.target.value)} className={fieldClass} />
             </div>
             <div>
-              <label htmlFor="pf-excerpt-en" className="block text-sm font-semibold text-content">
-                요약 (English)
-              </label>
+              <div className="flex flex-wrap items-center justify-between gap-2">
+                <label htmlFor="pf-excerpt-en" className="block text-sm font-semibold text-content">
+                  요약 (English)
+                </label>
+                <TranslateButton source={rec.excerptKo ?? ''} onTranslated={(v) => set('excerptEn', v)} />
+              </div>
               <textarea id="pf-excerpt-en" rows={2} value={rec.excerptEn ?? ''} onChange={(e) => set('excerptEn', e.target.value)} className={fieldClass} />
             </div>
           </div>
@@ -196,9 +209,12 @@ export function PostForm({ meta, initial, isEdit, busy, onCancel, onSubmit }: Pr
           <textarea id="pf-body-ko" rows={8} value={rec.bodyKo} onChange={(e) => set('bodyKo', e.target.value)} className={fieldClass} />
         </div>
         <div>
-          <label htmlFor="pf-body-en" className="block text-sm font-semibold text-content">
-            본문 (English)
-          </label>
+          <div className="flex flex-wrap items-center justify-between gap-2">
+            <label htmlFor="pf-body-en" className="block text-sm font-semibold text-content">
+              본문 (English)
+            </label>
+            <TranslateButton source={rec.bodyKo} onTranslated={(v) => set('bodyEn', v)} />
+          </div>
           <textarea id="pf-body-en" rows={8} value={rec.bodyEn} onChange={(e) => set('bodyEn', e.target.value)} className={fieldClass} />
         </div>
       </div>

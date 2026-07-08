@@ -9,6 +9,7 @@ import { useState } from 'react';
 import type { FieldDef, FormRecord, LocalizedPair } from '@/lib/admin/resources';
 import { validateForm } from '@/lib/admin/resources';
 import { ClubCardsEditor } from './ClubCardsEditor';
+import { TranslateButton } from './TranslateButton';
 
 // PostForm 과 동일한 입력 스타일
 const fieldClass =
@@ -188,9 +189,12 @@ export function RecordForm({
             )}
           </div>
           <div>
-            <label htmlFor={`${id}-en`} className="block text-sm font-semibold text-content">
-              {f.label} (English)
-            </label>
+            <div className="flex flex-wrap items-center justify-between gap-2">
+              <label htmlFor={`${id}-en`} className="block text-sm font-semibold text-content">
+                {f.label} (English)
+              </label>
+              <TranslateButton source={v.ko} onTranslated={(en) => setLocalized(f.key, 'en', en)} />
+            </div>
             {f.multiline ? (
               <textarea
                 id={`${id}-en`}
