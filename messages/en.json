@@ -369,7 +369,17 @@
       "subtitle": "Explore our major research areas and laboratories."
     },
     "piLabel": "PI",
-    "keywordsLabel": "Keywords"
+    "keywordsLabel": "Keywords",
+    "fieldFilter": {
+      "all": "All",
+      "basics": "Foundations",
+      "bioNano": "Bio·Nano",
+      "thermoFluid": "Thermal·Fluids",
+      "dynamicsControl": "Dynamics·Control",
+      "manufacturingDesign": "Manufacturing·Design",
+      "computation": "Computation·Analysis",
+      "mechanicsMaterials": "Mechanics·Materials"
+    }
   },
   "news": {
     "hero": {

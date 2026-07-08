@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { Link } from '@/i18n/navigation';
 import { BoardList, type BoardRow } from '@/components/BoardList';
 import { BoardFilterBar, emptyFilter, isFilterActive, matchesFilter } from '@/components/BoardFilterBar';
+import { EagleLoader } from '@/components/EagleLoader';
 import { UnderlineTabs } from '@/components/UnderlineTabs';
 import { useTranslations } from 'next-intl';
 import { cn, formatDate } from '@/lib/utils';
@@ -106,7 +107,11 @@ export function NewsBoard({
           {filtered.map((item, i) => (
             <li key={item.id} className="anim-nav-item" style={{ animationDelay: `${i * 70}ms` }}>
               <Link href={item.href} className="group block">
-                <div className="relative aspect-[4/3] overflow-hidden">
+                <div className="relative aspect-[4/3] overflow-hidden bg-surface-soft">
+                  {/* 이미지 로딩 전까지 보이는 독수리 스피너 (로드되면 이미지가 덮음) */}
+                  <span className="absolute inset-0 grid place-items-center">
+                    <EagleLoader decorative size={56} />
+                  </span>
                   <Image
                     src={item.image}
                     alt=""

@@ -40,6 +40,15 @@ const CLUB_LOGOS: Record<string, string> = {
   spacey: '/img/clubs/spacey.jpeg',
 };
 
+/** 6개 연구 분야 taxonomy 키 (분야 필터 공통 타입) */
+export type ResearchField =
+  | 'bioNano'
+  | 'thermoFluid'
+  | 'dynamicsControl'
+  | 'manufacturingDesign'
+  | 'computation'
+  | 'mechanicsMaterials';
+
 export interface LabDirectoryEntry {
   nameKo: string;
   nameEn: string;
@@ -53,6 +62,8 @@ export interface LabDirectoryEntry {
   image?: string;
   /** 연구실 소개 영상 URL (YouTube watch 또는 Google Drive file 링크). 없으면 영상 미제공 */
   video?: string;
+  /** 6개 연구 분야 중 하나 (분야 필터용) */
+  field: ResearchField;
 }
 
 function readJson<T>(name: string): T {

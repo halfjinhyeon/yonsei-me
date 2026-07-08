@@ -228,6 +228,13 @@
     animation: gradientShift 14s ease-in-out infinite alternate;
   }
 
+  /* 독수리 마스코트 실루엣 (eagle.png의 흰색 아트를 마스크로 사용) —
+     background-color 로 자유롭게 색조 변경 (로딩바·빈 상태·워터마크 공용) */
+  .eagle-mask {
+    -webkit-mask: url('/img/eagle.png') center / contain no-repeat;
+    mask: url('/img/eagle.png') center / contain no-repeat;
+  }
+
   /* 카카오맵 퍼가기 임베드(KakaoMap.tsx): 지도만 남기고 하단 카카오맵 바·주소
      패널을 숨긴다. 숨긴 높이만큼 지도 크기는 컴포넌트가 보정 재렌더한다. */
   .root_daum_roughmap .wrap_controllers,

@@ -1,0 +1,894 @@
+{
+  "MEU2104": {
+    "nameEn": "Mechanical Engineering Laboratory I",
+    "desc": "실험과 실습을 통하여 기계공학에 대한 깊이 있는 지식을 갖추며, 공학적인 문제의 정의, 실험의 수행 계획, 장비의 활용방법 및 실험 기술, 결과의 해석 및 보고서의 작성을 경험하는 것을 목표로 함. 실험 및 실습 주제에 대한 이론 강의와 학생이 직접 수행하는 실험 및 실습으로 이루어져 있음. 주제는 고체역학, 열역학, 생산공학 및 기초전자회로임."
+  },
+  "MEU2300": {
+    "nameEn": "Creative Thinking in Mechanical Engineering",
+    "desc": "창의적 공학설계를 통하여 기계공학의 근본이 되는 힘, 운동 및 에너지에 대하여 이해한다. 이와 관련된 대표적인 기술 및 응용사례에 대하여 알아본다. 개인별 또는 팀별 프로젝트 수행을 통하여 창의적 사고와 설계 능력을 배양한다."
+  },
+  "MEU2600": {
+    "nameEn": "Mechanics of Materials",
+    "desc": "고체역학에 필요한 정력학 개념(힘과 모멘트의 평형), 부정정 구조물 해석. 응력과 변형률, 여러 하중(축하중, 비틀림, 굽힘)에 따른 응력 및 변형률, 재료의 강도 및 이에 따른 설계, 보의 처짐을 다룬다."
+  },
+  "MEU2610": {
+    "nameEn": "Thermodynamics",
+    "desc": "에너지 기본개념, 상태방정식과 순수물질의 성지, 밀폐시스템에서의 열역학 제1법칙 및 제2법칙, 개방시스템 에서의 열역학 제1법칙 및 제2법칙, 증기동력사이클, 기체동력사이클을 다룬다."
+  },
+  "MEU2640": {
+    "nameEn": "Fluid Mechanics",
+    "desc": "유체의 정의, 정수력학, Bernoulli 식, 유체운동의 특성, 유한검사체적을 사용하는 적분형 유동방정식, Navier-Stokes방정식 등 미분해석, 차원해석 등을 다룬다."
+  },
+  "MEU2650": {
+    "nameEn": "Dynamics",
+    "desc": "질점의 운동학, 질점의 동역학, 질점계의 운동학, 질점계의 동역학, 강체의 운동학 및 동역학, 에너지, 운동량 등을 배운다."
+  },
+  "MEU3005": {
+    "nameEn": "Mechanical Engineering Laboratory II",
+    "desc": "실험과 실습을 통하여 기계공학에 대한 깊이 있는 지식을 갖추며, 공학적인 문제의 정의, 실험의 수행 계획, 장비의 활용방법 및 실험 기술, 결과의 해석 및 보고서의 작성을 경험하는 것을 목표로 함. 실험 및 실습 주제에 대한 이론 강의와 학생이 직접 수행하는 실험 및 실습으로 이루어져 있음. 주제는 유체역학, 동역학, 열전달 및 기계진동학임."
+  },
+  "MEU4300": {
+    "nameEn": "Creative Product Design",
+    "desc": "제품개발을 위한 설계 및 기반 지식에 초점을 두며 팀 프로젝트를 통하여 경쟁력 있는 공학적 제품을 설계하고 시작품을 제작한다. 본 과목의 주요 내용은 제품개발과정, 고급설계기법, 프로젝트 경영, 마케팅 전략, 지적재산권, 제품홍보, 제품개발 case study 등이다."
+  },
+  "MEU4400": {
+    "nameEn": "Undergraduate Thesis",
+    "desc": "기계공학 주제에 대하여 학생 스스로 문제를 정의하고 분석하여 종합된 보고서(논문)를 작성하고 발표하는 능력을 배양한다."
+  },
+  "MEU2620": {
+    "nameEn": "Computer-aided Mechanical Engineering Design",
+    "desc": "설계공학의 개요, CAD 및 3차원 솔리드모델링을 통한 도면작성, 공학제도의 방법, 정투상, 부투상, 단면법, 3차원 투영방법, 도면분석 및 관리, 공차해석, 기하공차, 형상공차, 시스템설계, 파라미터설계, 공차설계, CAD/CAM의 기초 등을 배운다."
+  },
+  "MEU3001": {
+    "nameEn": "",
+    "desc": "수송기관, 발전소 및 산업체 등 에서 배출되거나 실내 공간에 부유하는 가스상/입자상 유해물질의 종류를 살펴보고 이들에 대한 환경규제 및 인체에 미치는 영향을 공부한다. 그리고 이들 유해물질의 측정기기 및 저감기기의 작동 원리를 공부하고 이들 기기의 설계 이론을 습득한다."
+  },
+  "MEU3002": {
+    "nameEn": "Mechanism Design",
+    "desc": "좌표계, 속도해석, 가속도해석, 운동의 정의, 연쇄기구의 운동해석, 캠, 치차 및 치차열의 해석, 링크의 해석 및 합성을 다룬다."
+  },
+  "MEU3004": {
+    "nameEn": "Biomedical Mechanical Engineering",
+    "desc": "기계공학의 기초 지식과 이론을 바탕으로 유전자, 단백질, 세포 등의 생체 시스템을 이해하고 기계공학을 기반으로 한 의료용 진단 및 치료 기기 등의 원리에 대해 학습한다."
+  },
+  "MEU3006": {
+    "nameEn": "Undergraduate Independent Study I",
+    "desc": "교수 지도하에 기계공학 최신 주제 연구에 참여하여 전공에 대한 다양한 경험을 쌓고 심화된 기계공학 지식을 습득한다."
+  },
+  "MEU3007": {
+    "nameEn": "Undergraduate Independent Study II",
+    "desc": "교수 지도하에 기계공학 최신 주제 연구에 참여하여 전공에 대한 다양한 경험을 쌓고 심화된 기계공학 지식을 습득한다."
+  },
+  "MEU3008": {
+    "nameEn": "Undergraduate Independent Study III",
+    "desc": "교수 지도하에 기계공학 최신 주제 연구에 참여하여 전공에 대한 다양한 경험을 쌓고 심화된 기계공학 지식을 습득한다."
+  },
+  "MEU3009": {
+    "nameEn": "Undergraduate Independent Study IV",
+    "desc": "교수 지도하에 기계공학 최신 주제 연구에 참여하여 전공에 대한 다양한 경험을 쌓고 심화된 기계공학 지식을 습득한다."
+  },
+  "MEU3010": {
+    "nameEn": "Microsystems for Mechanical Engineering",
+    "desc": "마이크로 크기의 소자 제작 및 시스템에 대한 기초적 지식과 그 응용을 공부한다. 마이크로 스케일 구조의 가공방법, 마이크로 역학 및 그 응용에 관한 지식을 배운다."
+  },
+  "MEU3011": {
+    "nameEn": "Energy and Power Engineering",
+    "desc": "내연기관의 구조, 내연기관 관련 용어, 스파크점화기관과 압축점화기관의 비교, 흡기와 배기, 연료와 공기의 혼합, 점화와 연소, 배기가스 공해물질 배출, 열전달과 윤활, 진동, 내연기관 설계 및 열‧유체역학 요약, 가스터빈 사이클, 원심‧축류 압축기, 연소기 원심‧축류터빈, 터빈요소 성능 해석 및 시스템 구성을 배운다."
+  },
+  "MEU3012": {
+    "nameEn": "Optical Engineering",
+    "desc": "광학에 대한 기본 이론을 익히고, 기계공학응용을 위한 광학계 이론, 광학장치에 대해서 공부한다. 레이저에 대한 이론 및 종류, 그리고, 광공학과 첨단기술이 결합한 응용분야를 배운다."
+  },
+  "MEU3013": {
+    "nameEn": "Net-Shaped Manufacturing System",
+    "desc": "한번의 공정으로 원하는 형상이 제품을 가공하는 가공방법 및 가공시스템에 대해 강의하며, 구체적으로 금형설계 및 가공방법, 다이캐스팅공정, 초정밀 금속성형, 폴리머 성형, 쾌속조형(RP)등의 공정에 관련된 이론, 3D공정시뮬레이션, 공정실습 및 현장견학 등을 병행한다."
+  },
+  "MEU3014": {
+    "nameEn": "Mechatronics",
+    "desc": "메카트로닉스 시스템의 개요, 구성 요소 및 설계에 대해서 배운다. 센서의 원리 및 사용, 아날로그 디지털 변환회로 원리와 응용, 컴퓨터와의 인터페이싱 기법 등을 강의하며, DC모터의 제어를 포함한 실습을 수행한다."
+  },
+  "MEU3015": {
+    "nameEn": "Electromagnetics and Applications",
+    "desc": "기계공학도를 위한 전자기학의 물리적인 기본원리와 기계시스템 응용 지식을 학습한다. 본 강의 내용은 전자기학의 기본 물리이론, 전자기 응용으로 전기모터와 플라즈마 추진, 그리고 계산 전자기학의 기본 기술을 학습한다."
+  },
+  "MEU3301": {
+    "nameEn": "Mechanical Behaviors of Materials",
+    "desc": "응력 및 변형률 관계식, 재료거동에 대한 유변학 모델, 항복 및 파괴기준식, 파괴역학, 피로, 크립 등을 다룬다."
+  },
+  "MEU3600": {
+    "nameEn": "Advanced Mechanics of Materials",
+    "desc": "고체역학에서 기본 개념을 확장하여 보에 대한 응용이론 (비대칭 굽힘, 박판 보의 전단응력, 곡선보 등), 셀 구조이론(얇은 막 응력, 실린더 셀의 축대칭 굽힘), 두꺼운 실린더 및 디스크의 응력 및 변형, 탄성안정론 을 다룬다."
+  },
+  "MEU3610": {
+    "nameEn": "Applied Thermodynamics",
+    "desc": "에너지 변환 동력기기와 공기조화 냉동기기에 대한 구체적인 작동 원리 및 이론에 초점을 맞춘다. 이를 위해 열역학 관계식, 혼합기체의 성질, 온도 및 습도조절, 응축 및 이슬점, 화학반응과 연소, 열역학적 발란스, 화학평형, 상평형 등을 공부한다."
+  },
+  "MEU3620": {
+    "nameEn": "Manufacturing Process",
+    "desc": "기계적인 제품생산의 기초가 되는 주조, 성형, 절삭, 특수가공, 접합, 3D 프린팅 등 생산공정의 원리를 이해하고, 생산시스템 및 가공의 자동화, 생산의 경제학에 대한 개념을 학습함."
+  },
+  "MEU3630": {
+    "nameEn": "Design of Machine Element",
+    "desc": "기계공학전공 학생들에게 역학적 지식을 활용하여 기계부품과 이들로 구성된 시스템에 대해 문제를 정의하고 설계하는 과정을 습득할 수 있는 기회를 제공한다. 본 과목은 기존의 이론을 바탕으로 하는 축, 베어링, 나사, 기어 등의 기계부품의 해석 및 설계를 중심으로 이루어지며 동시에 새로이 대두되고 있는 설계 방법을 소개한다."
+  },
+  "MEU3640": {
+    "nameEn": "Applied Fluid Mechanics",
+    "desc": "관로유동, 외부유동, 포텐셜 유동, Open Channel 유동, 압축성 유동, 유체기계 및 전산유체역학에 대한 소개 등을 다룬다."
+  },
+  "MEU3650": {
+    "nameEn": "Heat Transfer",
+    "desc": "기계, 에너지, 전자 및 가전시스템의 설계/제작/운전/효율향상에 필요한 열전달에 대한 기본 원리 및 응용 방법(열전도, 휜 해석, 비정상 열전도, 열전달 수치해석, 강제대류, 자연대류, 복사, 응축, 증발 및 비등 열전달, 열교환기, 전자장비/나노/바이오 열전달 등)을 강의/토론/PBL 방식으로 배운다."
+  },
+  "MEU3660": {
+    "nameEn": "Engineering Materials",
+    "desc": "소재의 물리적, 화학적 기본원리를 공부하고 금속, 세라믹, 고분자, 반도체, 복합재료의 격자구조, 결함, 평형상태도, 철-탄소계 합금의 성질 및 공학재료의 기계적, 전기적, 광학적 특성, 나노/바이오 응용 및 신소재 응용에서의 재료 선택과 설계방법을 습득한다."
+  },
+  "MEU3670": {
+    "nameEn": "Mechanical Vibration",
+    "desc": "진동이라는 물리적 현상을 이해하고 동역학의 법칙을 활용하여 진동현상을 모델링하고 해석하는 방법을 배운다. 기계시스템의 진동의 분석과 이를 제어할 수 있는 방법을 배우고 기계설계에 어떻게 반영하는가를 학습한다."
+  },
+  "MEU3680": {
+    "nameEn": "Mechanical System Control",
+    "desc": "제어계의 개요. 모델링기법, 전달함수. 선형 시스템의 시간영역 및 주파수영역특성, 상태방정식, 안정도 판별법, 신호 흐름도 , 정상상태오차해석, 근궤적설계, 궤한제어, 제어계의 설계를 배운다."
+  },
+  "MEU3700": {
+    "nameEn": "Biomechanics",
+    "desc": "기계공학의 역학이론을 바탕으로 하여 생체시스템의 작동 원리를 이해하고 기계공학적 해석 방법을 배운다. 세포역학, 혈류역학, 순환기 시스템, 호흡기 시스템, 근골격 시스템 등의 생체 조직 및 시스템에 대한 이해와 역학적 분석 방법을 습득하고 이를 바탕으로 조직 공학 및 생체모방 공학과 같은 최신 응용 기술을 배운다."
+  },
+  "MEU3710": {
+    "nameEn": "Nano Mechanical Engineering",
+    "desc": "나노기술의 기본원리인 양자역학의 슈뢰딩거 운동방정식, 터널링, 불확정성 원리, 고체의 밴드 및 밴드갭 이론, 나노 열특성, 에너지 변환, 반도체 등에 대한 개념을 습득하고, 이를 이용한 측정 및 공정기술 등 기계공학에의 응용에 대해서 학습한다."
+  },
+  "MEU3801": {
+    "nameEn": "Computational Analysis Based Design",
+    "desc": "기계공학 영역에서 컴퓨터의 응용 및 활용 능력 강화를 위한 전산해석기반설계 과목으로 다양한 기계 분야에 적용 가능한 FEM/CFD 등의 해석 기술과 함께 기본적인 설계 이론을 학습한다."
+  },
+  "MEU4001": {
+    "nameEn": "Mechanical Engineering Seminar I",
+    "desc": "학생들로 하여금 기계공학도로서 필요한 교양, 직업윤리 의식, 공학 디자인, 공학 경영, 법률 및 특허 등을 세미나를 통하여 교육하고자 한다."
+  },
+  "MEU4002": {
+    "nameEn": "Mechanical Engineering Seminar II",
+    "desc": "학생들로 하여금 기계공학도로서 필요한 교양, 직업윤리 의식, 공학 디자인, 공학 경영, 법률 및 특허 등을 세미나를 통하여 교육하고자 한다."
+  },
+  "MEU3003": {
+    "nameEn": "Engineering Numerical Analysis",
+    "desc": "공학문제의 수치적 해결방법으로 여러 가지 수치기법, 알고리즘 등을 다룬다. 컴퓨터의 수치계산 오차, 대수방정식의 근 구하는 방법, 선형대수방정식의 해법, 최적화 방법, 커브피팅, 수치 미분/적분, 상미분 방정식, 편미분 방정식의 수치해석방법 등을 다룬다."
+  },
+  "MAT2013": {
+    "nameEn": "Probability and Statistics",
+    "desc": "불확실한 현상을 모형화하기 위해 이산형 및 연속형 확률 변수들의 특성을 다루며 실험데이터를 이용한 모형의 분석을 위해 기초적인 통계기법과 가설의 검증 및 단순 회귀분석 기법 등을 다룬다."
+  },
+  "MEU5001": {
+    "nameEn": "Quality Engineering Design",
+    "desc": ""
+  },
+  "MEU5002": {
+    "nameEn": "Molecular Thermodynamics",
+    "desc": ""
+  },
+  "MEU5003": {
+    "nameEn": "Radiation Heat Transfer",
+    "desc": ""
+  },
+  "MEU5004": {
+    "nameEn": "Nano Electro-Mechanical Devices",
+    "desc": ""
+  },
+  "MEU5005": {
+    "nameEn": "Accoustics I",
+    "desc": ""
+  },
+  "MEU5006": {
+    "nameEn": "Accoustics II",
+    "desc": ""
+  },
+  "MEU5007": {
+    "nameEn": "Advanced Topics in Nano Devices",
+    "desc": ""
+  },
+  "MEU5008": {
+    "nameEn": "Robotics",
+    "desc": ""
+  },
+  "MEU5009": {
+    "nameEn": "Psychoacoustics for Engineers",
+    "desc": ""
+  },
+  "MEU5010": {
+    "nameEn": "Nonlinear Accoustics",
+    "desc": ""
+  },
+  "MEU5011": {
+    "nameEn": "Ultrafast Dynamics",
+    "desc": ""
+  },
+  "MEU5012": {
+    "nameEn": "Advanced Materials for Bio-Engineering",
+    "desc": ""
+  },
+  "MEU5013": {
+    "nameEn": "Fundamentals for Nano Devices",
+    "desc": ""
+  },
+  "MEU5014": {
+    "nameEn": "Introduction to Computational Biofluidics",
+    "desc": ""
+  },
+  "MEU5015": {
+    "nameEn": "Design and Fabrication for Biomedical Microdevices",
+    "desc": ""
+  },
+  "MEU5016": {
+    "nameEn": "Fundamentals of Nanoelectronics",
+    "desc": ""
+  },
+  "MEU5017": {
+    "nameEn": "Principle of Semiconductor",
+    "desc": ""
+  },
+  "MEU5018": {
+    "nameEn": "Electromechanical Design",
+    "desc": ""
+  },
+  "MEU5019": {
+    "nameEn": "Theoretical Topology Optimization",
+    "desc": ""
+  },
+  "MEU5020": {
+    "nameEn": "Advanced Thermodynamics",
+    "desc": ""
+  },
+  "MEU5021": {
+    "nameEn": "Biomedical Optical Imaging",
+    "desc": ""
+  },
+  "MEU5022": {
+    "nameEn": "Optics in Mechanical Engineering",
+    "desc": ""
+  },
+  "MEU5023": {
+    "nameEn": "Mechanics in Biological System",
+    "desc": ""
+  },
+  "MEU5024": {
+    "nameEn": "Boiling Heat Transfer",
+    "desc": ""
+  },
+  "MEU5025": {
+    "nameEn": "Biopyhsics",
+    "desc": ""
+  },
+  "MEU5026": {
+    "nameEn": "Applied Dynamics",
+    "desc": ""
+  },
+  "MEU5027": {
+    "nameEn": "Fluid Film Lubrication",
+    "desc": ""
+  },
+  "MEU5028": {
+    "nameEn": "Atomistic Simulation of Materials",
+    "desc": ""
+  },
+  "MEU5029": {
+    "nameEn": "Experimental Modal Analysis",
+    "desc": ""
+  },
+  "MEU5030": {
+    "nameEn": "Continuum Mechanics",
+    "desc": ""
+  },
+  "MEU5031": {
+    "nameEn": "Planar Mechanism Design",
+    "desc": ""
+  },
+  "MEU5032": {
+    "nameEn": "Microbiomechatronics",
+    "desc": ""
+  },
+  "MEU5033": {
+    "nameEn": "Physics and Mechanics of Coatings",
+    "desc": ""
+  },
+  "MEU5034": {
+    "nameEn": "State-of-the-art Materials",
+    "desc": ""
+  },
+  "MEU5035": {
+    "nameEn": "Nanotechnology",
+    "desc": ""
+  },
+  "MEU5036": {
+    "nameEn": "Mechanics and Dynamics of Machining",
+    "desc": ""
+  },
+  "MEU5037": {
+    "nameEn": "Applied Mathematics for Engineering",
+    "desc": ""
+  },
+  "MEU5038": {
+    "nameEn": "Turbomachinery",
+    "desc": ""
+  },
+  "MEU5039": {
+    "nameEn": "Thermal and Rotating Equipment Design",
+    "desc": ""
+  },
+  "MEU5040": {
+    "nameEn": "Inviscid Flow Theory",
+    "desc": ""
+  },
+  "MEU5041": {
+    "nameEn": "Applied Engineering in Mechanics and Electromagnetics",
+    "desc": ""
+  },
+  "MEU5042": {
+    "nameEn": "Material and Structure Mechanics",
+    "desc": ""
+  },
+  "MEU5043": {
+    "nameEn": "System Dynamics",
+    "desc": ""
+  },
+  "MEU5044": {
+    "nameEn": "Advanced Nanofabrication Technologies",
+    "desc": ""
+  },
+  "MEU5045": {
+    "nameEn": "Parameter Estimation",
+    "desc": ""
+  },
+  "MEU5046": {
+    "nameEn": "Integrative analysis of Energy Conversion System",
+    "desc": ""
+  },
+  "MEU5060": {
+    "nameEn": "Advanced Nano Photonics",
+    "desc": ""
+  },
+  "MEU5080": {
+    "nameEn": "Linear Elastic Fracture Mechanics",
+    "desc": ""
+  },
+  "MEU5090": {
+    "nameEn": "Principles Of Nanoscience",
+    "desc": ""
+  },
+  "MEU5100": {
+    "nameEn": "Special Topic in Computational Fluid Dynamics",
+    "desc": ""
+  },
+  "MEU5110": {
+    "nameEn": "Bio-Industry and Management",
+    "desc": ""
+  },
+  "MEU5120": {
+    "nameEn": "Mechanical Metallurgy",
+    "desc": ""
+  },
+  "MEU5130": {
+    "nameEn": "Advanced Kinematics of Machines",
+    "desc": ""
+  },
+  "MEU5150": {
+    "nameEn": "Internal Combustion Engine Theory and Experiment",
+    "desc": ""
+  },
+  "MEU5210": {
+    "nameEn": "Statistical Thermodynamics",
+    "desc": ""
+  },
+  "MEU5230": {
+    "nameEn": "Special Topics in Turbomachinery",
+    "desc": ""
+  },
+  "MEU5241": {
+    "nameEn": "Applied Numerical Analysis",
+    "desc": ""
+  },
+  "MEU5310": {
+    "nameEn": "Advanced Mechanical Vibration",
+    "desc": ""
+  },
+  "MEU5320": {
+    "nameEn": "System Design",
+    "desc": ""
+  },
+  "MEU5370": {
+    "nameEn": "Finite Element Method",
+    "desc": ""
+  },
+  "MEU5410": {
+    "nameEn": "Concurrent Engineering Design",
+    "desc": ""
+  },
+  "MEU5420": {
+    "nameEn": "Process Planning Design",
+    "desc": ""
+  },
+  "MEU5430": {
+    "nameEn": "Product Development and Design",
+    "desc": ""
+  },
+  "MEU5450": {
+    "nameEn": "Microsystem Design",
+    "desc": ""
+  },
+  "MEU5460": {
+    "nameEn": "Introduction to Combustion Chemistry",
+    "desc": ""
+  },
+  "MEU5480": {
+    "nameEn": "Bio-Analytical Systems",
+    "desc": ""
+  },
+  "MEU5630": {
+    "nameEn": "Introduction to TRIZ",
+    "desc": ""
+  },
+  "MEU6000": {
+    "nameEn": "Advanced Dynamics",
+    "desc": ""
+  },
+  "MEU6001": {
+    "nameEn": "Instroduction to Electrodynamics",
+    "desc": ""
+  },
+  "MEU6002": {
+    "nameEn": "Mechanical of the Cells",
+    "desc": ""
+  },
+  "MEU6003": {
+    "nameEn": "Product Planning And Development",
+    "desc": ""
+  },
+  "MEU6004": {
+    "nameEn": "Processing of Thin Film and Plasma",
+    "desc": ""
+  },
+  "MEU6005": {
+    "nameEn": "Advanced Ultrafast Dynamics",
+    "desc": ""
+  },
+  "MEU6006": {
+    "nameEn": "Design and Fabrication of Micro-Optics",
+    "desc": ""
+  },
+  "MEU6010": {
+    "nameEn": "Micro/Nanoscale Energy Transport",
+    "desc": ""
+  },
+  "MEU6011": {
+    "nameEn": "Computer Aided Mechanism Analysis",
+    "desc": ""
+  },
+  "MEU6020": {
+    "nameEn": "Elastic-Plastic Fracture Mechanics",
+    "desc": ""
+  },
+  "MEU6041": {
+    "nameEn": "Engineering Design Optimization",
+    "desc": ""
+  },
+  "MEU6050": {
+    "nameEn": "Special Topics of Mechanical Metallurgy",
+    "desc": ""
+  },
+  "MEU6060": {
+    "nameEn": "Molecular Gas Dynamics",
+    "desc": ""
+  },
+  "MEU6070": {
+    "nameEn": "Photonics",
+    "desc": ""
+  },
+  "MEU6071": {
+    "nameEn": "Soft Computing in Intelligent System Design",
+    "desc": ""
+  },
+  "MEU6080": {
+    "nameEn": "Mechanics of Microsystems",
+    "desc": ""
+  },
+  "MEU6090": {
+    "nameEn": "Special Topics on Cell Chip",
+    "desc": ""
+  },
+  "MEU6101": {
+    "nameEn": "Mechanical-Electric Device Design",
+    "desc": ""
+  },
+  "MEU6111": {
+    "nameEn": "Structural Optimal Design",
+    "desc": ""
+  },
+  "MEU6130": {
+    "nameEn": "Advanced Welding Engineering",
+    "desc": ""
+  },
+  "MEU6140": {
+    "nameEn": "Special Topics in Contact Manufacturing Process",
+    "desc": ""
+  },
+  "MEU6160": {
+    "nameEn": "Advanced Dynamics of Machinery",
+    "desc": ""
+  },
+  "MEU6170": {
+    "nameEn": "Advanced Laser and Optical Engineering",
+    "desc": ""
+  },
+  "MEU6180": {
+    "nameEn": "Engineering Reliability",
+    "desc": ""
+  },
+  "MEU6190": {
+    "nameEn": "Contact Mechanics",
+    "desc": ""
+  },
+  "MEU6200": {
+    "nameEn": "Axiomatic Design",
+    "desc": ""
+  },
+  "MEU6210": {
+    "nameEn": "Conduction Heat Transfer",
+    "desc": ""
+  },
+  "MEU6230": {
+    "nameEn": "Viscous Fluid Dynamics",
+    "desc": ""
+  },
+  "MEU6240": {
+    "nameEn": "Combustion Engineering",
+    "desc": ""
+  },
+  "MEU6241": {
+    "nameEn": "Experimental Mechanics",
+    "desc": ""
+  },
+  "MEU6250": {
+    "nameEn": "Design of Thermal System",
+    "desc": ""
+  },
+  "MEU6260": {
+    "nameEn": "Computational Fluid Dynamics",
+    "desc": ""
+  },
+  "MEU6261": {
+    "nameEn": "Engineering Mechanics of Composite Materials",
+    "desc": ""
+  },
+  "MEU6270": {
+    "nameEn": "Advanced Triboligy",
+    "desc": ""
+  },
+  "MEU6290": {
+    "nameEn": "Particle Engineering",
+    "desc": ""
+  },
+  "MEU6340": {
+    "nameEn": "Theory of Automatic Control",
+    "desc": ""
+  },
+  "MEU6350": {
+    "nameEn": "Reliability Design For Electric Parts",
+    "desc": ""
+  },
+  "MEU6360": {
+    "nameEn": "Advanced Optimal Design",
+    "desc": ""
+  },
+  "MEU6411": {
+    "nameEn": "Micro-Optics Fabrication",
+    "desc": ""
+  },
+  "MEU6420": {
+    "nameEn": "Special Topics in Computational Turbulence",
+    "desc": ""
+  },
+  "MEU6430": {
+    "nameEn": "Micro and Nano Molding Process",
+    "desc": ""
+  },
+  "MEU6440": {
+    "nameEn": "Plasma Engineering",
+    "desc": ""
+  },
+  "MEU6450": {
+    "nameEn": "Special Topics in Contact Mechanics",
+    "desc": ""
+  },
+  "MEU6460": {
+    "nameEn": "Sensor Technology Applied To Mechanical Engineering",
+    "desc": ""
+  },
+  "MEU6470": {
+    "nameEn": "Stress Analysis and Failure",
+    "desc": ""
+  },
+  "MEU6500": {
+    "nameEn": "Sensors",
+    "desc": ""
+  },
+  "MEU6510": {
+    "nameEn": "Propulsion Engineering",
+    "desc": ""
+  },
+  "MEU6520": {
+    "nameEn": "Convective Heat Transfer",
+    "desc": ""
+  },
+  "MEU6530": {
+    "nameEn": "Advanced Gas Turbines",
+    "desc": ""
+  },
+  "MEU6540": {
+    "nameEn": "Experimental Method in Heat Transfer",
+    "desc": ""
+  },
+  "MEU6560": {
+    "nameEn": "Thermal Environmental Engineering",
+    "desc": ""
+  },
+  "MEU6600": {
+    "nameEn": "MEMS",
+    "desc": ""
+  },
+  "MEU6610": {
+    "nameEn": "Friction and Wear",
+    "desc": ""
+  },
+  "MEU6620": {
+    "nameEn": "Special Topics in Bioengineering",
+    "desc": ""
+  },
+  "MEU6630": {
+    "nameEn": "Nanotribology",
+    "desc": ""
+  },
+  "MEU6640": {
+    "nameEn": "Special Topics in Bioengineering II",
+    "desc": ""
+  },
+  "MEU6641": {
+    "nameEn": "Kinematics and Dynamics of Robots",
+    "desc": ""
+  },
+  "MEU6671": {
+    "nameEn": "Kinematic Geometry",
+    "desc": ""
+  },
+  "MEU6810": {
+    "nameEn": "Seminar in Mechanical Science I",
+    "desc": ""
+  },
+  "MEU6820": {
+    "nameEn": "Seminar in Mechanical Science II",
+    "desc": ""
+  },
+  "MEU6900": {
+    "nameEn": "Special Topics in Creative Design",
+    "desc": ""
+  },
+  "MEU7001": {
+    "nameEn": "Advanced Particle Engineering",
+    "desc": ""
+  },
+  "MEU7002": {
+    "nameEn": "Special Topics in Combustion Engineering",
+    "desc": ""
+  },
+  "MEU7003": {
+    "nameEn": "Special Topics on Failure Design",
+    "desc": ""
+  },
+  "MEU7004": {
+    "nameEn": "Advanced Thermal Environmental Engineering",
+    "desc": ""
+  },
+  "MEU7005": {
+    "nameEn": "Special Topics of Design of Stress and Materials",
+    "desc": ""
+  },
+  "MEU7006": {
+    "nameEn": "Fusion Technology of Mechanical and Material Engineering",
+    "desc": ""
+  },
+  "MEU7007": {
+    "nameEn": "Special Topics on Mechanical and Metallugical Analysis",
+    "desc": ""
+  },
+  "MEU7008": {
+    "nameEn": "Introduction to Quantum Theory and Mechanics",
+    "desc": ""
+  },
+  "MEU7009": {
+    "nameEn": "Theoretical Topology Optimization",
+    "desc": ""
+  },
+  "MEU7010": {
+    "nameEn": "Application of Aerosol Science and Technology",
+    "desc": ""
+  },
+  "MEU7011": {
+    "nameEn": "Stress Analysis",
+    "desc": ""
+  },
+  "MEU7012": {
+    "nameEn": "Internal Flow",
+    "desc": ""
+  },
+  "MEU7013": {
+    "nameEn": "Applied Device Design and Development",
+    "desc": ""
+  },
+  "MEU7014": {
+    "nameEn": "Medical Device Design and Development",
+    "desc": ""
+  },
+  "MEU7015": {
+    "nameEn": "Molecular and Cell Biomechanics",
+    "desc": ""
+  },
+  "MEU7016": {
+    "nameEn": "Electrochemical Energy Systems",
+    "desc": ""
+  },
+  "MEU7017": {
+    "nameEn": "Experimental Methods for Turbomachinery",
+    "desc": ""
+  },
+  "MEU7018": {
+    "nameEn": "Computational Nanotechnology",
+    "desc": ""
+  },
+  "MEU7030": {
+    "nameEn": "Theory of Elasticity",
+    "desc": ""
+  },
+  "MEU7060": {
+    "nameEn": "Kinetic Theory of Gas",
+    "desc": ""
+  },
+  "MEU7070": {
+    "nameEn": "Screw Theory",
+    "desc": ""
+  },
+  "MEU7110": {
+    "nameEn": "Modal Analysis",
+    "desc": ""
+  },
+  "MEU7120": {
+    "nameEn": "Vibration Control",
+    "desc": ""
+  },
+  "MEU7130": {
+    "nameEn": "Computer Integrated Manufacturing",
+    "desc": ""
+  },
+  "MEU7140": {
+    "nameEn": "Application of Mechatronics",
+    "desc": ""
+  },
+  "MEU7160": {
+    "nameEn": "Advanced Optical Engineering",
+    "desc": ""
+  },
+  "MEU7170": {
+    "nameEn": "Control of Manufacturing System and Processes",
+    "desc": ""
+  },
+  "MEU7250": {
+    "nameEn": "Advanced Transport Phenomena",
+    "desc": ""
+  },
+  "MEU7260": {
+    "nameEn": "Theory of Hydrodynamic Stability",
+    "desc": ""
+  },
+  "MEU7270": {
+    "nameEn": "Pertubation Method",
+    "desc": ""
+  },
+  "MEU7300": {
+    "nameEn": "Theory of Turbulent Flow",
+    "desc": ""
+  },
+  "MEU7310": {
+    "nameEn": "Theory of Plates",
+    "desc": ""
+  },
+  "MEU7330": {
+    "nameEn": "Advanced Method in Structural Vibration",
+    "desc": ""
+  },
+  "MEU7350": {
+    "nameEn": "Mechanics of Composite Materials",
+    "desc": ""
+  },
+  "MEU7370": {
+    "nameEn": "Advanced Theory of Automatic Control",
+    "desc": ""
+  },
+  "MEU7410": {
+    "nameEn": "Special Topics in Fluid Machinery",
+    "desc": ""
+  },
+  "MEU7450": {
+    "nameEn": "Special Topics in Tribology",
+    "desc": ""
+  },
+  "MEU7460": {
+    "nameEn": "Special Topics in Turbulence",
+    "desc": ""
+  },
+  "MEU7470": {
+    "nameEn": "Electronic Packaging",
+    "desc": ""
+  },
+  "MEU7610": {
+    "nameEn": "Applications in Tribology",
+    "desc": ""
+  },
+  "MEU7630": {
+    "nameEn": "Special Topics in HVAC",
+    "desc": ""
+  },
+  "MEU7910": {
+    "nameEn": "Seminar in Mechanical Science 3",
+    "desc": ""
+  },
+  "MEU7920": {
+    "nameEn": "Seminar in Mechanical Science 4",
+    "desc": ""
+  },
+  "MEU7930": {
+    "nameEn": "Compressible Fluid Dynamics",
+    "desc": ""
+  },
+  "MEU7999": {
+    "nameEn": "Directed Research 1",
+    "desc": ""
+  },
+  "MEU8120": {
+    "nameEn": "Theory of Precision Machining",
+    "desc": ""
+  },
+  "MEU8130": {
+    "nameEn": "Special Topics in Manufacturing Processes",
+    "desc": ""
+  },
+  "MEU8210": {
+    "nameEn": "Advanced Internal Combustion Engines",
+    "desc": ""
+  },
+  "MEU8230": {
+    "nameEn": "Special Topics in Electrical Discharge Machining",
+    "desc": ""
+  },
+  "MEU8250": {
+    "nameEn": "Special Topics in Heat Transfer",
+    "desc": ""
+  },
+  "MEU8260": {
+    "nameEn": "Design of Precision Machine Tool System",
+    "desc": ""
+  },
+  "MEU8350": {
+    "nameEn": "Nonlinear Control",
+    "desc": ""
+  },
+  "MEU8400": {
+    "nameEn": "Special Topics in Mechanical Behavior of Materials",
+    "desc": ""
+  },
+  "MEU8770": {
+    "nameEn": "Special Topics in Polymer Processing",
+    "desc": ""
+  },
+  "MEU9999": {
+    "nameEn": "Directed Research 2",
+    "desc": ""
+  }
+}

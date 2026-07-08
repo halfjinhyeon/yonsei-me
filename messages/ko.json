@@ -369,7 +369,17 @@
       "subtitle": "기계공학부의 주요 연구 분야와 연구실을 소개합니다."
     },
     "piLabel": "책임교수",
-    "keywordsLabel": "키워드"
+    "keywordsLabel": "키워드",
+    "fieldFilter": {
+      "all": "전체",
+      "basics": "기초·공통",
+      "bioNano": "바이오·나노",
+      "thermoFluid": "열·유체",
+      "dynamicsControl": "동역학·제어",
+      "manufacturingDesign": "생산·설계",
+      "computation": "계산·해석",
+      "mechanicsMaterials": "역학·재료"
+    }
   },
   "news": {
     "hero": {

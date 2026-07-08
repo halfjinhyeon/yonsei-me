@@ -18,6 +18,7 @@ export interface BoardFile {
   noticesGraduate: Notice[];
   thesis: Notice[];
   career: Notice[];
+  resources: Notice[];
 }
 
 /** 어드민에서 선택 가능한 게시판 키 */
@@ -28,7 +29,8 @@ export type BoardKey =
   | 'seminars'
   | 'events'
   | 'thesis'
-  | 'career';
+  | 'career'
+  | 'resources';
 
 /** 편집 폼이 다루는 통합 레코드. 게시판에 따라 일부 필드만 사용된다. */
 export interface EditRecord {
@@ -79,6 +81,7 @@ export const BOARDS: BoardMeta[] = [
   { key: 'seminars', label: '세미나', file: 'board.json', idPrefix: 'sem-', hasHost: true, hasDateLabel: false, isNews: false },
   { key: 'events', label: '행사', file: 'board.json', idPrefix: 'evt-', hasHost: false, hasDateLabel: true, isNews: false },
   { key: 'thesis', label: '학위논문심사', file: 'board.json', idPrefix: 'th-', hasHost: false, hasDateLabel: false, isNews: false },
+  { key: 'resources', label: '자료실', file: 'board.json', idPrefix: 'res-', hasHost: false, hasDateLabel: false, isNews: false },
   { key: 'career', label: '취업 정보', file: 'board.json', idPrefix: 'cr-', hasHost: false, hasDateLabel: false, isNews: false },
 ];
 

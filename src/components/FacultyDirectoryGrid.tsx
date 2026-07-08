@@ -4,6 +4,7 @@ import { useMemo, useState } from 'react';
 import Image from 'next/image';
 import { useTranslations } from 'next-intl';
 import { UnderlineTabs } from '@/components/UnderlineTabs';
+import { EagleLoader } from '@/components/EagleLoader';
 import { cn } from '@/lib/utils';
 import type { FacultyRecord } from '@/lib/faculty';
 
@@ -119,13 +120,19 @@ export function FacultyDirectoryGrid({
                 )}
               >
                 {f.photo ? (
-                  <Image
-                    src={f.photo}
-                    alt={f.name}
-                    fill
-                    sizes="(min-width: 640px) 112px, 96px"
-                    className="object-cover"
-                  />
+                  <>
+                    {/* 사진 로딩 전까지 보이는 독수리 스피너 (로드되면 사진이 덮음) */}
+                    <span className="absolute inset-0 grid place-items-center bg-surface-soft">
+                      <EagleLoader decorative size={44} />
+                    </span>
+                    <Image
+                      src={f.photo}
+                      alt={f.name}
+                      fill
+                      sizes="(min-width: 640px) 112px, 96px"
+                      className="object-cover"
+                    />
+                  </>
                 ) : (
                   <div aria-hidden="true" className="absolute inset-0 flex items-center justify-center">
                     <span className="text-3xl font-bold text-white/25">{f.name.charAt(0)}</span>

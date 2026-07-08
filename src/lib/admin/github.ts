@@ -35,11 +35,13 @@ export interface CommitResult {
 const API_BASE = 'https://api.github.com';
 
 function headers(token: string): HeadersInit {
-  return {
-    Authorization: `Bearer ${token}`,
+  const base: HeadersInit = {
     Accept: 'application/vnd.github+json',
     'X-GitHub-Api-Version': '2022-11-28',
   };
+  // dev 개방 모드에선 토큰이 없을 수 있다. 이때 인증 헤더를 생략하면 공개
+  // 저장소 읽기는 익명으로 동작한다(쓰기는 GitHub 가 401/403 으로 거부).
+  return token ? { Authorization: `Bearer ${token}`, ...base } : base;
 }
 
 /** 상태 코드를 한국어 메시지로 변환 (검증/커밋 공용) */
@@ -119,18 +121,101 @@ export async function verifyConnection(cfg: RepoConfig): Promise<void> {
   }
 }
 
-/** content/ 아래 파일을 로드해 파싱된 JSON과 sha를 반환 */
-export async function loadJson<T>(cfg: RepoConfig, path: string): Promise<LoadedFile<T>> {
-  const res = await fetch(
+// ---- dev 로컬 백엔드 ----
+// 토큰이 없으면(=dev 개방 모드) GitHub 대신 /api/dev-content 로 라우팅해
+// content/* 파일을 로컬에서 직접 읽고 쓴다. rate limit·실제 커밋이 없다.
+// 프로덕션에서는 token 이 반드시 존재하므로 이 경로는 dev 에서만 도달한다.
+
+/** 이 설정이 dev 로컬 백엔드를 써야 하는지 (토큰 없음) */
+export function isLocalBackend(cfg: RepoConfig): boolean {
+  return !cfg.token;
+}
+
+async function devError(res: Response): Promise<string> {
+  try {
+    const body = (await res.json()) as { error?: string };
+    if (body?.error) return body.error;
+  } catch {
+    /* 무시 */
+  }
+  return `로컬 파일 작업이 실패했습니다 (HTTP ${res.status}).`;
+}
+
+/** 로컬 백엔드에서 파일 로드. 없으면 null. */
+async function devLoad(path: string): Promise<LoadedFile<string> | null> {
+  const res = await fetch(`/api/dev-content?path=${encodeURIComponent(path)}`, {
+    cache: 'no-store',
+  });
+  if (res.status === 404) return null;
+  if (!res.ok) throw new Error(await devError(res));
+  const body = (await res.json()) as { content: string; sha: string };
+  return { data: body.content, sha: body.sha };
+}
+
+/** 로컬 백엔드에 파일 저장. */
+async function devCommit(path: string, text: string): Promise<CommitResult> {
+  const res = await fetch('/api/dev-content', {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ path, content: text }),
+  });
+  if (!res.ok) throw new Error(await devError(res));
+  const body = (await res.json()) as { commit: { sha: string; html_url: string } };
+  return { sha: body.commit.sha, htmlUrl: body.commit.html_url };
+}
+
+/** 저장 성공 배너 내용 — dev 로컬 백엔드와 GitHub 커밋을 구분한다. */
+export function savedBanner(cfg: RepoConfig, sha: string): { message: string; url: string } {
+  if (isLocalBackend(cfg)) {
+    return { message: '로컬 content 파일에 저장했습니다. dev 사이트에 바로 반영됩니다.', url: '' };
+  }
+  return { message: 'Vercel이 1~2분 내 자동 재배포합니다.', url: commitUrl(cfg, sha) };
+}
+
+/** 파일을 로드해 디코딩된 텍스트와 sha를 반환 (내부 공용) */
+async function loadRaw(cfg: RepoConfig, path: string): Promise<Response> {
+  return fetch(
     `${API_BASE}/repos/${cfg.owner}/${cfg.repo}/contents/${path}?ref=${encodeURIComponent(cfg.branch)}`,
     { headers: headers(cfg.token), cache: 'no-store' },
   );
+}
+
+/** content/ 아래 파일을 로드해 파싱된 JSON과 sha를 반환 */
+export async function loadJson<T>(cfg: RepoConfig, path: string): Promise<LoadedFile<T>> {
+  const file = await loadText(cfg, path);
+  return { data: JSON.parse(file.data) as T, sha: file.sha };
+}
+
+/** 텍스트 파일(마크다운 등)을 로드해 문자열과 sha를 반환 */
+export async function loadText(cfg: RepoConfig, path: string): Promise<LoadedFile<string>> {
+  if (isLocalBackend(cfg)) {
+    const file = await devLoad(path);
+    if (!file) throw new Error(`파일을 찾을 수 없습니다: ${path}`);
+    return file;
+  }
+  const res = await loadRaw(cfg, path);
   if (!res.ok) {
     throw new Error(await readError(res));
   }
   const body = (await res.json()) as ContentsResponse;
-  const text = decodeBase64Utf8(body.content);
-  return { data: JSON.parse(text) as T, sha: body.sha };
+  return { data: decodeBase64Utf8(body.content), sha: body.sha };
+}
+
+/** loadText와 같되 파일이 없으면(404) null — 새 파일 생성 플로우 지원 */
+export async function loadTextOptional(
+  cfg: RepoConfig,
+  path: string,
+): Promise<LoadedFile<string> | null> {
+  if (isLocalBackend(cfg)) {
+    return devLoad(path);
+  }
+  const res = await loadRaw(cfg, path);
+  if (res.status === 404) return null;
+  if (!res.ok) {
+    throw new Error(await readError(res));
+  }
+  const body = (await res.json()) as ContentsResponse;
+  return { data: decodeBase64Utf8(body.content), sha: body.sha };
 }
 
 /**
@@ -144,14 +229,30 @@ export async function commitJson<T>(
   sha: string,
   message: string,
 ): Promise<CommitResult> {
-  const text = `${JSON.stringify(data, null, 2)}\n`;
+  return commitText(cfg, path, `${JSON.stringify(data, null, 2)}\n`, sha, message);
+}
+
+/**
+ * 텍스트 파일을 커밋(PUT)한다. sha가 undefined면 새 파일을 생성한다.
+ * 기존 파일은 최신 sha를 인자로 받아 충돌(409/422)을 감지한다.
+ */
+export async function commitText(
+  cfg: RepoConfig,
+  path: string,
+  text: string,
+  sha: string | undefined,
+  message: string,
+): Promise<CommitResult> {
+  if (isLocalBackend(cfg)) {
+    return devCommit(path, text);
+  }
   const res = await fetch(`${API_BASE}/repos/${cfg.owner}/${cfg.repo}/contents/${path}`, {
     method: 'PUT',
     headers: { ...headers(cfg.token), 'Content-Type': 'application/json' },
     body: JSON.stringify({
       message,
       content: encodeBase64Utf8(text),
-      sha,
+      ...(sha ? { sha } : {}),
       branch: cfg.branch,
     }),
   });

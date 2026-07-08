@@ -9,7 +9,7 @@ import type { Locale } from '@/i18n/routing';
  * 뉴스 페이지 '일정' 탭의 월간 캘린더.
  *
  * 데이터 소스는 별도 콘텐츠 파일이 아니라 기존 board.json 의 행사(events)·세미나(seminars)
- * 게시판이다. 관리자 콘솔(/ko/admin)이 이미 이 두 게시판을 편집하므로, 관리자가 행사·세미나
+ * 게시판이다. 관리자 콘솔(/ko/contentmanagement)이 이미 이 두 게시판을 편집하므로, 관리자가 행사·세미나
  * 글을 올리기만 하면 그 글의 date 필드가 이 캘린더에 자동으로 표시된다(별도 일정 관리 불필요).
  * 서버(news/page.tsx)에서 두 게시판을 CalendarEntry[] 로 가공해 넘긴다.
  */

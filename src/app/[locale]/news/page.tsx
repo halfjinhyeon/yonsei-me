@@ -2,7 +2,7 @@ import { getTranslations, setRequestLocale } from 'next-intl/server';
 import type { Metadata } from 'next';
 import { Hero } from '@/components/Hero';
 import { TabbedContent, type TabItem } from '@/components/TabbedContent';
-import { BoardList, type BoardRow } from '@/components/BoardList';
+import { type BoardRow } from '@/components/BoardList';
 import { FilterableBoardList } from '@/components/FilterableBoardList';
 import { NewsBoard, type NewsCardItem } from '@/components/NewsBoard';
 import { EventCalendar, type CalendarEntry } from '@/components/EventCalendar';
@@ -105,15 +105,13 @@ export default async function NewsPage({ params }: { params: { locale: string } 
     })),
   ];
 
-  // 자료실: 학부 안에 이미 있는 실제 자료 페이지로 연결하는 바로가기 모음
-  const resourceRows: BoardRow[] = [
-    { id: 'res-1', title: tNews('resources.ugRequirements'), tag: tNews('resources.tagUg'), href: '/undergraduate#requirements' },
-    { id: 'res-2', title: tNews('resources.curriculum'), tag: tNews('resources.tagUg'), href: '/undergraduate#curriculum' },
-    { id: 'res-3', title: tNews('resources.courses'), tag: tNews('resources.tagUg'), href: '/undergraduate#courses' },
-    { id: 'res-4', title: tNews('resources.gradRequirements'), tag: tNews('resources.tagGrad'), href: '/graduate#requirements' },
-    { id: 'res-5', title: tNews('resources.labs'), tag: tNews('resources.tagResearch'), href: '/research#labs' },
-    { id: 'res-6', title: tNews('resources.scholarship'), tag: tNews('resources.tagUg'), href: '/undergraduate#scholarship' },
-  ];
+  // 자료실: 공지사항과 동일한 게시판 구조 (클릭 → 상세, 검색·날짜 필터)
+  const resourceRows: BoardRow[] = board.resources.map((r) => ({
+    id: r.id,
+    date: r.date,
+    title: pick(r.title, locale),
+    href: `/news/post/${r.id}`,
+  }));
 
   const tabs: TabItem[] = [
     { key: 'notices', label: tMenu('news.items.notices'), markdown: null, content: <FilterableBoardList items={notices} locale={locale} emptyLabel={tStub('body')} /> },
@@ -132,7 +130,7 @@ export default async function NewsPage({ params }: { params: { locale: string } 
       ),
     },
     { key: 'thesis', label: tMenu('news.items.thesis'), markdown: null, content: <FilterableBoardList items={thesisRows} locale={locale} emptyLabel={tStub('body')} /> },
-    { key: 'resources', label: tMenu('news.items.resources'), markdown: null, content: <BoardList items={resourceRows} locale={locale} emptyLabel={tStub('body')} /> },
+    { key: 'resources', label: tMenu('news.items.resources'), markdown: null, content: <FilterableBoardList items={resourceRows} locale={locale} emptyLabel={tStub('body')} /> },
     { key: 'career', label: tMenu('news.items.career'), markdown: null, content: <FilterableBoardList items={careerRows} locale={locale} emptyLabel={tStub('body')} /> },
     { key: 'events', label: tMenu('news.items.events'), markdown: null, content: <FilterableBoardList items={eventRows} locale={locale} emptyLabel={tStub('body')} /> },
     { key: 'seminars', label: tMenu('news.items.seminars'), markdown: null, content: <FilterableBoardList items={seminarRows} locale={locale} emptyLabel={tStub('body')} /> },

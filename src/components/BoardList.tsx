@@ -27,15 +27,9 @@ export function BoardList({
 }) {
   if (items.length === 0) {
     return (
-      <div className="flex flex-col items-center gap-4 rounded-card border border-surface-border bg-surface-soft px-6 py-20 text-center">
-        <span
-          aria-hidden="true"
-          className="grid h-12 w-12 place-items-center rounded-full bg-yonsei-navy/10 text-yonsei-navy"
-        >
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75">
-            <path d="M3 12c2-4 4-4 6 0s4 4 6 0 4-4 6 0" strokeLinecap="round" strokeLinejoin="round" />
-          </svg>
-        </span>
+      <div className="flex flex-col items-center gap-5 rounded-card border border-surface-border bg-surface-soft px-6 py-20 text-center">
+        {/* 독수리 마스코트 실루엣 (파란 계열 색조) — 빈 상태의 브랜드 마크 */}
+        <span aria-hidden="true" className="eagle-mask h-20 w-20 bg-yonsei-blue/35" />
         <p className="max-w-sm text-content-soft">{emptyLabel}</p>
       </div>
     );

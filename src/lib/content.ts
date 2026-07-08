@@ -125,6 +125,7 @@ export const board = boardData as {
   noticesGraduate: Notice[];
   thesis: Notice[];
   career: Notice[];
+  resources: Notice[];
 };
 
 /** 게시판 글(공지/세미나/행사/학위논문/취업)을 상세 페이지에서 단일 형태로 다루기 위한 통합 타입 */
@@ -134,7 +135,7 @@ export interface BoardPost {
   title: Localized;
   body: Localized;
   /** 소속 게시판 (뉴스 탭 key와 동일) */
-  boardKey: 'notices' | 'seminars' | 'events' | 'thesis' | 'career';
+  boardKey: 'notices' | 'seminars' | 'events' | 'thesis' | 'career' | 'resources';
   /** 부가 정보 한 줄 — 세미나 연사, 행사 기간, 공지 구분(학부/대학원) 등 */
   meta?: Localized;
   attachments?: Attachment[];
@@ -172,6 +173,7 @@ export function getAllBoardPosts(): BoardPost[] {
     })),
     ...board.thesis.map((t): BoardPost => ({ ...t, boardKey: 'thesis' })),
     ...board.career.map((c): BoardPost => ({ ...c, boardKey: 'career' })),
+    ...board.resources.map((r): BoardPost => ({ ...r, boardKey: 'resources' })),
   ];
 }
 
