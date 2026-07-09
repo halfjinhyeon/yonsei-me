@@ -67,7 +67,7 @@ export function Hero({
       ) : (
         <>
           {/* 홈 히어로와 통일된 애니메이션 그라디언트 + 웨이브 배경 */}
-          <div aria-hidden="true" className="anim-gradient absolute inset-0 -z-20" />
+          <div aria-hidden="true" className="anim-gradient-radial absolute inset-0 -z-20" />
           <MeshCanvas className="pointer-events-none absolute inset-0 -z-10 h-full w-full opacity-70 [mask-image:linear-gradient(to_bottom,transparent,black_35%)]" />
           <div
             aria-hidden="true"

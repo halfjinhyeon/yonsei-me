@@ -128,6 +128,12 @@ export interface Notice {
   attachments?: Attachment[];
 }
 
+/** 동문 소식·네트워크 항목 — 세미나형 + "특정 날짜 행사" 플래그.
+ *  isEvent=true 면 date 가 행사일로 간주되어 금주 캘린더 '동문'에 표시된다. */
+export interface AlumniEvent extends Seminar {
+  isEvent?: boolean;
+}
+
 export const board = boardData as {
   seminars: Seminar[];
   events: EventItem[];
@@ -136,7 +142,7 @@ export const board = boardData as {
   thesis: Notice[];
   career: Notice[];
   resources: Notice[];
-  alumniEvents: Seminar[];
+  alumniEvents: AlumniEvent[];
 };
 
 /** 게시판 글(공지/세미나/행사/학위논문/취업)을 상세 페이지에서 단일 형태로 다루기 위한 통합 타입 */
@@ -198,8 +204,38 @@ export const alumniEvents = board.alumniEvents
   .slice()
   .sort((a, b) => (a.date < b.date ? 1 : -1));
 
-export function getAlumniEventById(id: string): Seminar | undefined {
+export function getAlumniEventById(id: string): AlumniEvent | undefined {
   return alumniEvents.find((e) => e.id === id);
+}
+
+// ---- 금주 캘린더 통합 엔트리 ----
+/** 캘린더 표시 카테고리. 'event'=행사 게시판, 'alumni'=동문 소식·네트워크(행사 표시분) */
+export type CalendarCategory = 'event' | 'alumni';
+
+export interface CalendarEntry {
+  id: string;
+  /** 행사일 (YYYY-MM-DD) */
+  date: string;
+  title: Localized;
+  category: CalendarCategory;
+}
+
+/**
+ * 금주 캘린더에 표시할 엔트리 — 행사 게시판 전체 + 동문 소식·네트워크 중
+ * isEvent 로 표시된 항목(특정 날짜 행사)을 합친다. 각 항목의 date 를 행사일로 쓴다.
+ * 링크 라우트: event → /news/post/[id], alumni → /alumni/post/[id].
+ */
+export function getCalendarEntries(): CalendarEntry[] {
+  const events: CalendarEntry[] = board.events.map((e) => ({
+    id: e.id,
+    date: e.date,
+    title: e.title,
+    category: 'event',
+  }));
+  const alumni: CalendarEntry[] = board.alumniEvents
+    .filter((a) => a.isEvent && a.date)
+    .map((a) => ({ id: a.id, date: a.date, title: a.title, category: 'alumni' }));
+  return [...events, ...alumni];
 }
 
 // ---- 연혁 ----

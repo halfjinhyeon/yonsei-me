@@ -314,6 +314,7 @@
   "alumniEvents": [
     {
       "id": "ae-1",
+      "isEvent": true,
       "date": "2026-09-19",
       "host": { "ko": "동문회 사무국", "en": "Alumni Association" },
       "title": {
@@ -327,6 +328,7 @@
     },
     {
       "id": "ae-2",
+      "isEvent": true,
       "date": "2026-08-28",
       "host": { "ko": "모빌리티 산업 분과", "en": "Mobility Industry Chapter" },
       "title": {
@@ -340,6 +342,7 @@
     },
     {
       "id": "ae-3",
+      "isEvent": true,
       "date": "2026-07-11",
       "host": { "ko": "동문회 멘토링 위원회", "en": "Alumni Mentoring Committee" },
       "title": {

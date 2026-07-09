@@ -5,7 +5,7 @@ import { Container } from './Container';
 interface SectionProps {
   children: ReactNode;
   /** 배경 톤 */
-  tone?: 'default' | 'soft' | 'brand';
+  tone?: 'default' | 'soft' | 'brand' | 'transparent';
   /** 세로 패딩 크기 */
   size?: 'default' | 'sm';
   className?: string;
@@ -18,6 +18,8 @@ const toneStyles: Record<NonNullable<SectionProps['tone']>, string> = {
   default: 'bg-surface text-content',
   soft: 'bg-surface-soft text-content',
   brand: 'bg-yonsei-navy text-white',
+  // 배경 없음 — 홈 "단일 연속 배경(BgFlow)" 위에 얹을 때. 텍스트 색은 사용처에서 지정.
+  transparent: '',
 };
 
 /** 페이지 섹션의 세로 리듬과 배경 톤을 통일하는 컴포넌트 */

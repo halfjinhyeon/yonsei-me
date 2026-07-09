@@ -49,6 +49,8 @@ export interface EditRecord {
   // 행사 전용
   dateLabelKo?: string;
   dateLabelEn?: string;
+  // 동문 소식·네트워크 전용 — 특정 날짜가 정해진 행사인지(체크 시 캘린더 '동문'에 표시)
+  isEvent?: boolean;
   // 뉴스 전용
   category?: NewsItem['category'];
   excerptKo?: string;
@@ -74,6 +76,10 @@ export interface BoardMeta {
   hasHost: boolean;
   hasDateLabel: boolean;
   isNews: boolean;
+  /** true면 '날짜' 필드를 "행사 일정"으로 안내한다(그 날짜로 금주 캘린더에 표시됨) */
+  dateIsEvent?: boolean;
+  /** true면 "특정 날짜 행사" 체크박스를 노출한다(체크 시 캘린더 '동문'에 표시) */
+  hasEventFlag?: boolean;
   /** isNews 게시판이 읽고 쓰는 뉴스 파일 경로 (기본 'content/news.json'). 동문 뉴스처럼 별도 파일을 쓰는 뉴스형 게시판에서 지정 */
   newsFile?: string;
 }
@@ -84,12 +90,12 @@ export const BOARDS: BoardMeta[] = [
   { key: 'noticesGraduate', label: '대학원 공지', file: 'board.json', idPrefix: 'ng-', hasHost: false, hasDateLabel: false, isNews: false },
   { key: 'news', label: '뉴스', file: 'news.json', idPrefix: '', hasHost: false, hasDateLabel: false, isNews: true },
   { key: 'seminars', label: '세미나', file: 'board.json', idPrefix: 'sem-', hasHost: true, hasDateLabel: false, isNews: false },
-  { key: 'events', label: '행사', file: 'board.json', idPrefix: 'evt-', hasHost: false, hasDateLabel: true, isNews: false },
+  { key: 'events', label: '행사', file: 'board.json', idPrefix: 'evt-', hasHost: false, hasDateLabel: true, isNews: false, dateIsEvent: true },
   { key: 'thesis', label: '학위논문심사', file: 'board.json', idPrefix: 'th-', hasHost: false, hasDateLabel: false, isNews: false },
   { key: 'resources', label: '자료실', file: 'board.json', idPrefix: 'res-', hasHost: false, hasDateLabel: false, isNews: false },
   { key: 'career', label: '취업 정보', file: 'board.json', idPrefix: 'cr-', hasHost: false, hasDateLabel: false, isNews: false },
   { key: 'alumniNews', label: '동문 뉴스', file: 'news.json', idPrefix: '', hasHost: false, hasDateLabel: false, isNews: true, newsFile: 'content/alumni-news.json' },
-  { key: 'alumniEvents', label: '동문 소식·네트워크', file: 'board.json', idPrefix: 'ae-', hasHost: true, hasDateLabel: false, isNews: false },
+  { key: 'alumniEvents', label: '동문 소식·네트워크', file: 'board.json', idPrefix: 'ae-', hasHost: true, hasDateLabel: false, isNews: false, hasEventFlag: true },
 ];
 
 export function getBoard(key: BoardKey): BoardMeta {
@@ -164,6 +170,9 @@ export function toEditRecord(meta: BoardMeta, raw: unknown): EditRecord {
     base.dateLabelKo = dl.ko ?? '';
     base.dateLabelEn = dl.en ?? '';
   }
+  if (meta.hasEventFlag) {
+    base.isEvent = r.isEvent === true;
+  }
   if (meta.isNews) {
     const excerpt = loc(r.excerpt);
     base.category = (r.category as NewsItem['category']) ?? 'notice';
@@ -198,7 +207,12 @@ export function toBoardEntry(meta: BoardMeta, rec: EditRecord): Notice | Seminar
     ...(attachments ? { attachments } : {}),
   };
   if (meta.hasHost) {
-    return { ...common, host: localized(rec.hostKo ?? '', rec.hostEn ?? '') } as Seminar;
+    return {
+      ...common,
+      host: localized(rec.hostKo ?? '', rec.hostEn ?? ''),
+      // 동문 소식·네트워크: 체크 시에만 isEvent:true 저장(캘린더 '동문' 표시). 미체크는 키 생략.
+      ...(meta.hasEventFlag && rec.isEvent ? { isEvent: true } : {}),
+    } as Seminar;
   }
   if (meta.hasDateLabel) {
     return { ...common, dateLabel: localized(rec.dateLabelKo ?? '', rec.dateLabelEn ?? '') } as EventItem;

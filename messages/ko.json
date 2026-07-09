@@ -118,7 +118,9 @@
     "weekly": {
       "title": "금주의 행사",
       "more": "더보기",
-      "empty": "일정 없음"
+      "empty": "일정 없음",
+      "catEvent": "행사",
+      "catAlumni": "동문"
     }
   },
   "pages": {
@@ -169,11 +171,12 @@
       "tagline": "Find inspiration in everything that moves — Yonsei University."
     },
     "weAre": {
-      "statement": "세상을 움직이는 <c1>공학</c1>, <br></br> 미래를 설계하는 <c2>사람들</c2>",
+      "statement": "세상을 움직이는 <c2>공학</c2>, <br></br> 미래를 설계하는 <c2>사람들</c2>",
       "link": "기계공학부란? →"
     },
     "programs": {
       "heading": "배움에서 <em>연구</em>까지, 당신의 길을 찾아보세요",
+      "moveHeadline": "당신은 세상을 어떻게 <em>움직일</em> 것인가?",
       "tabUg": "학부",
       "tabGrad": "대학원",
       "exploreUg": "학부 과정 전체 보기 →",

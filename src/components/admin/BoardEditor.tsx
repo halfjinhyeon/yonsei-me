@@ -62,6 +62,7 @@ function blankRecord(key: BoardKey, suggestedId: string): EditRecord {
     bodyEn: '',
     ...(meta.hasHost ? { hostKo: '', hostEn: '' } : {}),
     ...(meta.hasDateLabel ? { dateLabelKo: '', dateLabelEn: '' } : {}),
+    ...(meta.hasEventFlag ? { isEvent: false } : {}),
     ...(meta.isNews ? { category: 'notice' as const, excerptKo: '', excerptEn: '', image: '' } : {}),
     attachments: [emptyAttachment()],
   };

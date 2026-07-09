@@ -43,7 +43,7 @@ export function NoticeShowcase({
       {/* 흐르는 웨이브 라인 오버레이 */}
       <MeshCanvas className="pointer-events-none absolute inset-0 -z-10 h-full w-full opacity-50" />
 
-      {/* 이전 섹션(네이비)에서 이 섹션(로열블루)으로의 스크롤 스크럽 배경 전환 —
+      {/* 이전 섹션에서 이 섹션(로열블루)으로의 스크롤 스크럽 배경 전환 —
           섹션이 떠오르는 진행률에 맞춰 네이비 베일이 걷힌다 */}
       <ScrollVeil className="pointer-events-none absolute inset-0 -z-[5] bg-yonsei-navy" />
 
@@ -118,7 +118,8 @@ function NoticeCard({ notice, locale }: { notice: ShowcaseNotice; locale: Locale
         aria-hidden="true"
         className="mt-auto grid h-9 w-9 select-none place-items-center self-end rounded-md border border-blue-600/40 text-blue-700 transition-all duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:bg-blue-600 group-hover:text-white"
       >
-        ↗
+        {/* ↗ 글리프가 상단에 치우쳐 보이는 착시 보정 — 1px 아래로 */}
+        <span className="translate-y-px leading-none">↗</span>
       </span>
     </Link>
   );

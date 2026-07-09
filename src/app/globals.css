@@ -2,6 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
+/* 세부 페이지 히어로 radial 그라디언트용 타입된 커스텀 프로퍼티.
+   <color> 로 타입해야 CSS 변수가 보간 가능해져 색전환이 부드럽다(@layer 밖 최상위 선언 필수).
+   미지원 브라우저에선 애니메이션이 멈추고 initial-value(연세 네이비 계열)가 정적으로 남는다. */
+@property --hero-c1 {
+  syntax: '<color>';
+  inherits: false;
+  initial-value: #00285e;
+}
+@property --hero-c2 {
+  syntax: '<color>';
+  inherits: false;
+  initial-value: #0057a8;
+}
+
 /* =========================================================
    디자인 토큰 — CSS 변수 (RGB 채널값, Tailwind alpha 지원)
    색 대비는 WCAG AA 기준으로 조정
@@ -210,6 +224,25 @@
     0% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
     100% { background-position: 50% 100%; }
+  }
+
+  /* radial oklch 애니메이션 그라디언트 — 세부 페이지 히어로 배경(Hero page variant).
+     @property 로 타입된 --hero-c1/--hero-c2 를 keyframe 에서 보간 → 하단 중심 방사형
+     그라디언트가 부드럽게 순환한다. in oklch 로 지각적으로 매끈한 색전환. 순수 CSS. */
+  /* 정적(모션 최소화·@property 미지원) 상태는 기존색 네이비→블루(#00285e→#0057a8).
+     애니메이션이 도는 동안에만 네이비 ↔ 공지 로얄블루(#1d4ed8)가 교차한다. */
+  .anim-gradient-radial {
+    --hero-c1: #00285e;
+    --hero-c2: #0057a8;
+    background-image: radial-gradient(circle at bottom in oklch, var(--hero-c1), var(--hero-c2));
+    animation: heroRadialShift 14s linear infinite;
+  }
+  @keyframes heroRadialShift {
+    0%, 100% { --hero-c1: #00285e; --hero-c2: #1d4ed8; }
+    50%      { --hero-c1: #1d4ed8; --hero-c2: #00285e; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .anim-gradient-radial { animation: none; }
   }
 
   /* 공지 쇼케이스: 히어로 그라디언트의 밝은 로열블루 변주 — 각도·속도·진행 방향을 다르게 */

@@ -118,7 +118,9 @@
     "weekly": {
       "title": "This Week's Events",
       "more": "More",
-      "empty": "No events"
+      "empty": "No events",
+      "catEvent": "Event",
+      "catAlumni": "Alumni"
     }
   },
   "pages": {
@@ -174,6 +176,7 @@
     },
     "programs": {
       "heading": "From learning to <em>research</em> — find your path",
+      "moveHeadline": "How will you <em>move</em> the world forward?",
       "tabUg": "Undergraduate",
       "tabGrad": "Graduate",
       "exploreUg": "See all undergraduate programs →",

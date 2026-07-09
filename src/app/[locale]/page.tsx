@@ -2,6 +2,7 @@ import { useTranslations } from 'next-intl';
 import { setRequestLocale } from 'next-intl/server';
 import { Link } from '@/i18n/navigation';
 import { AnimatedHero } from '@/components/AnimatedHero';
+import { BgFlow } from '@/components/BgFlow';
 import { Section } from '@/components/Section';
 import { ProgramTabs } from '@/components/ProgramTabs';
 import { NoticeShowcase } from '@/components/NoticeShowcase';
@@ -9,7 +10,7 @@ import { WeeklyCalendar } from '@/components/WeeklyCalendar';
 import { LabCarousel } from '@/components/LabCarousel';
 import { Reveal } from '@/components/Reveal';
 import { Container } from '@/components/Container';
-import { programs, board, pick } from '@/lib/content';
+import { programs, board, pick, getCalendarEntries } from '@/lib/content';
 import { getLabsDirectory } from '@/lib/faculty';
 import { formatDate } from '@/lib/utils';
 import type { Locale } from '@/i18n/routing';
@@ -47,39 +48,45 @@ export default function HomePage({ params }: { params: { locale: string } }) {
 
   return (
     <>
+      {/* 홈 단일 연속 배경(고정 그라디언트 레이어 + 섹션별 스크롤 색 전환) */}
+      <BgFlow />
+
       {/* 1. 애니메이션 히어로 (풀뷰포트) */}
       <AnimatedHero />
 
-      {/* 2. 컬러 스테이트먼트 */}
-      <section className="px-6 py-24 sm:px-10 lg:px-16 lg:py-32">
+      {/* 2. 컬러 스테이트먼트 — 배경 플로우 위 흰 텍스트(대형이라 AA large).
+          상단 패딩을 줄여 텍스트를 위로 올림(디졸브 타이밍이 자연스럽게). */}
+      <section data-flow className="px-6 pb-16 pt-8 text-white sm:px-10 lg:px-16 lg:pb-24 lg:pt-12">
         <Reveal className="mx-auto max-w-5xl">
-          <p className="text-[clamp(2rem,5.5vw,4.75rem)] font-black leading-[1.12] tracking-tighter text-content">
+          <p className="text-[clamp(2rem,5.5vw,4.75rem)] font-black leading-[1.12] tracking-tighter">
             {t.rich('weAre.statement', {
-              c1: (c) => <span className="text-yonsei-navy">{c}</span>,
-              c2: (c) => <span className="text-yonsei-blue">{c}</span>,
+              c1: (c) => <span className="text-yonsei-gold">{c}</span>,
+              c2: (c) => <span className="text-yonsei-sky">{c}</span>,
               br: () => <br />,
             })}
           </p>
           <Link
             href="/about"
-            className="mt-10 inline-flex items-center gap-2 border-b-2 border-yonsei-navy pb-1 text-base font-semibold text-yonsei-navy transition-opacity hover:opacity-70"
+            className="mt-10 inline-flex items-center gap-2 border-b-2 border-white pb-1 text-base font-semibold text-white transition-opacity hover:opacity-70"
           >
             {t('weAre.link')}
           </Link>
         </Reveal>
       </section>
 
-      {/* 3. 통계 스트립 (풀블리드) */}
-      <section className="full-bleed border-y border-surface-border bg-surface-soft">
+      {/* 3. 통계 스트립 (풀블리드) — 배경 플로우 위 흰 텍스트.
+          숫자를 위로 올리고 아래에 다크 여백을 둬, ProgramTabs 디졸브가
+          글자 없는 구간에서 일어나게 한다. */}
+      <section data-flow className="full-bleed border-t border-white/15 text-white">
         <Container>
-          <dl className="grid grid-cols-2 gap-6 py-10 lg:grid-cols-4">
+          <dl className="grid grid-cols-2 gap-6 pb-28 pt-10 sm:pb-40 lg:grid-cols-4">
             {stats.map((s) => (
               <div key={s.key} className="text-center">
-                <dd className="text-3xl font-extrabold tracking-tight text-yonsei-navy sm:text-4xl">
+                <dd className="text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
                   {s.value.toLocaleString(locale === 'ko' ? 'ko-KR' : 'en-US')}
-                  <span className="text-yonsei-blue">{t(`stats.${s.unitKey}`)}</span>
+                  <span className="text-yonsei-gold">{t(`stats.${s.unitKey}`)}</span>
                 </dd>
-                <dt className="mt-1 text-sm text-content-soft">{t(`stats.${s.key}`)}</dt>
+                <dt className="mt-1 text-sm text-white/70">{t(`stats.${s.key}`)}</dt>
               </div>
             ))}
           </dl>
@@ -93,19 +100,18 @@ export default function HomePage({ params }: { params: { locale: string } }) {
         locale={locale}
       />
 
-      {/* 5. 연구실 카드 캐러셀 (자동 흐름 + 스와이프) — 아래 공지 쇼케이스가
-          네이비 베일(ScrollVeil)로 시작하므로 경계는 스크롤 시 애니메이션으로 전환 */}
-      <section className="full-bleed bg-yonsei-navy pb-10 pt-10 sm:pb-14 sm:pt-14">
+      {/* 5. 연구실 카드 캐러셀 (자동 흐름 + 스와이프) — 흰 배경(디졸브 이후 구간) */}
+      <section className="full-bleed pb-10 pt-10 sm:pb-14 sm:pt-14">
         {/* 모바일: 헤더를 한 줄 컴팩트(작은 타이포·좁은 여백)로 */}
         <div className="mx-auto mb-4 max-w-[1360px] px-6 sm:mb-8 sm:px-10 lg:px-16">
           <div className="flex items-end justify-between gap-3 sm:gap-4">
-            <h2 className="text-lg font-bold text-white sm:text-headline">
+            <h2 className="text-lg font-bold text-content sm:text-headline">
               {t.rich('people.heading', {
                 count: labs.length,
-                em: (c) => <em className="font-display font-normal not-italic text-yonsei-gold">{c}</em>,
+                em: (c) => <em className="font-display font-normal not-italic text-yonsei-blue">{c}</em>,
               })}
             </h2>
-            <Link href="/research#labs" className="whitespace-nowrap pb-1 text-xs font-semibold text-yonsei-gold hover:underline sm:text-sm">
+            <Link href="/research#labs" className="whitespace-nowrap pb-1 text-xs font-semibold text-yonsei-blue hover:underline sm:text-sm">
               {t('people.cta')}
             </Link>
           </div>
@@ -122,8 +128,7 @@ export default function HomePage({ params }: { params: { locale: string } }) {
         moreLabel={t('newsPreview.viewAll')}
       />
 
-      {/* 6-b. 세미나 (구 학과 사이트처럼 독립 풀폭 섹션 — 가로 카드 3장).
-          세미나→행사→공지는 한 "보드 그룹"이라 size=sm 으로 세로 리듬을 좁힌다. */}
+      {/* 6-b. 세미나 (독립 풀폭 섹션 — 가로 카드 3장). 흰 배경 위 라이트 톤. */}
       <Section size="sm" aria-labelledby="seminars-title">
         <div className="mb-6 flex items-center justify-between border-b-2 border-yonsei-navy pb-2">
           <h2 id="seminars-title" className="text-lg font-bold text-content">
@@ -155,8 +160,7 @@ export default function HomePage({ params }: { params: { locale: string } }) {
         </ul>
       </Section>
 
-      {/* 6-b-2. 행사 (독립 풀폭 섹션 — 뒤 6-c 공지가 soft 라 여긴 기본 톤으로 두어 soft 연속을 피함).
-          같은 보드 그룹인 세미나와 한 묶음으로 읽히도록 상단 패딩은 제거. */}
+      {/* 6-b-2. 행사 (독립 풀폭 섹션). 같은 보드 그룹인 세미나와 묶여 보이도록 상단 패딩 제거. */}
       <Section size="sm" className="!pt-0" aria-labelledby="events-title">
         <div className="mb-6 flex items-center justify-between border-b-2 border-yonsei-navy pb-2">
           <h2 id="events-title" className="text-lg font-bold text-content">
@@ -185,8 +189,8 @@ export default function HomePage({ params }: { params: { locale: string } }) {
         </ul>
       </Section>
 
-      {/* 6-d. 금주의 행사 캘린더 */}
-      <WeeklyCalendar events={board.events} locale={locale} />
+      {/* 6-d. 금주의 행사 캘린더 — 행사 게시판 + 동문(행사 표시분) 통합 */}
+      <WeeklyCalendar entries={getCalendarEntries()} locale={locale} />
     </>
   );
 }

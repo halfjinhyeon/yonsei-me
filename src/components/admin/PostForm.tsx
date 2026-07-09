@@ -65,6 +65,8 @@ export function PostForm({ meta, initial, isEdit, busy, onCancel, onSubmit }: Pr
   }
 
   const idLabel = meta.isNews ? 'slug' : 'id';
+  // 행사 게시판, 또는 동문에서 '행사'로 체크된 글 → '날짜'를 행사 일정으로 안내(캘린더 연동)
+  const dateIsEvent = meta.dateIsEvent || (meta.hasEventFlag && !!rec.isEvent);
 
   return (
     <form onSubmit={handleSubmit} className="space-y-5" noValidate>
@@ -85,7 +87,7 @@ export function PostForm({ meta, initial, isEdit, busy, onCancel, onSubmit }: Pr
         </div>
         <div>
           <label htmlFor="pf-date" className="block text-sm font-semibold text-content">
-            날짜
+            {dateIsEvent ? '행사 일정 (날짜)' : '날짜'}
           </label>
           <input
             id="pf-date"
@@ -94,8 +96,29 @@ export function PostForm({ meta, initial, isEdit, busy, onCancel, onSubmit }: Pr
             onChange={(e) => set('date', e.target.value)}
             className={fieldClass}
           />
+          {dateIsEvent && (
+            <p className="mt-1 text-xs text-yonsei-blue">이 날짜로 금주 캘린더(일정)에 표시됩니다.</p>
+          )}
         </div>
       </div>
+
+      {/* 동문 소식·네트워크: 특정 날짜가 정해진 행사인지 체크 → 캘린더 '동문'에 표시 */}
+      {meta.hasEventFlag && (
+        <label className="flex items-start gap-2.5 rounded-lg border border-surface-border bg-surface-soft px-3 py-2.5 text-sm text-content">
+          <input
+            type="checkbox"
+            checked={!!rec.isEvent}
+            onChange={(e) => set('isEvent', e.target.checked)}
+            className="mt-0.5 h-4 w-4 shrink-0 accent-yonsei-blue"
+          />
+          <span>
+            <span className="font-semibold">특정 날짜가 정해진 행사입니다</span>
+            <span className="mt-0.5 block text-xs text-content-faint">
+              체크하면 위 &lsquo;날짜&rsquo;가 행사일이 되어 금주 캘린더(일정)의 <b>동문</b> 카테고리에 표시됩니다. 체크하지 않으면 일반 게시물로 저장되고 캘린더에는 나오지 않습니다.
+            </span>
+          </span>
+        </label>
+      )}
 
       {meta.isNews && (
         <div>
