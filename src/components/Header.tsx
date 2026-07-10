@@ -2,7 +2,7 @@
 
 import { useTranslations } from 'next-intl';
 import { Link, usePathname } from '@/i18n/navigation';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { cn } from '@/lib/utils';
 import { menu } from './menu';
 import { LocaleToggle } from './LocaleToggle';
@@ -36,6 +36,55 @@ export function Header() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [expanded, setExpanded] = useState<string | null>(null); // 모바일 아코디언
+
+  // 메가메뉴 측정 — 마운트/리사이즈 시:
+  // 1) 각 하위 목록의 최대폭 = 이웃 라벨 중간점 사이(라벨은 justify-between 으로
+  //    글자 사이 여백이 균일하게 퍼지므로, 목록 겹침 방지는 폭 측정으로 보장)
+  // 2) 시트 높이 = 가장 긴 목록 높이 (목록이 li 기준 absolute 라 시트가 스스로 못 늘어남)
+  const navRef = useRef<HTMLElement | null>(null);
+  const [panelH, setPanelH] = useState(0);
+
+  // 메가메뉴는 CSS hover/focus-within 으로 열리므로, 항목 클릭 후에도 마우스가
+  // 제자리면 계속 떠 있다 → 클릭 시 억제(suppress)해 즉시 닫고, 마우스가 nav 를
+  // 벗어나거나(재호버 대비) 포커스가 다시 들어오면(키보드 대비) 해제한다.
+  const [megaSuppressed, setMegaSuppressed] = useState(false);
+  function onNavClick(e: React.MouseEvent) {
+    if ((e.target as Element).closest('a')) {
+      setMegaSuppressed(true);
+      // 클릭된 링크에 남은 포커스가 focus-within 으로 패널을 다시 열지 않도록
+      (document.activeElement as HTMLElement | null)?.blur?.();
+    }
+  }
+  useEffect(() => {
+    const measure = () => {
+      const nav = navRef.current;
+      if (!nav) return;
+      const lis = Array.from(nav.querySelectorAll<HTMLElement>(':scope > ul > li'));
+      if (lis.length === 0) return;
+      const navRect = nav.getBoundingClientRect();
+      if (navRect.width === 0) return; // 모바일(숨김) — 측정 불가
+      const centers = lis.map((li) => {
+        const r = li.querySelector(':scope > a')!.getBoundingClientRect();
+        return r.left + r.width / 2;
+      });
+      const GUTTER = 16; // 이웃 목록과의 최소 여백
+      const lists: HTMLElement[] = [];
+      lis.forEach((li, i) => {
+        const list = li.querySelector<HTMLElement>('[data-mega-list]');
+        if (!list) return;
+        const leftEdge = i === 0 ? navRect.left - 24 : (centers[i - 1] + centers[i]) / 2;
+        const rightEdge =
+          i === lis.length - 1 ? navRect.right + 24 : (centers[i] + centers[i + 1]) / 2;
+        const half = Math.min(centers[i] - leftEdge, rightEdge - centers[i]) - GUTTER / 2;
+        list.style.maxWidth = `${Math.max(Math.floor(half * 2), 72)}px`;
+        lists.push(list);
+      });
+      if (lists.length > 0) setPanelH(Math.max(...lists.map((el) => el.offsetHeight)));
+    };
+    measure();
+    window.addEventListener('resize', measure);
+    return () => window.removeEventListener('resize', measure);
+  }, []);
 
   // 라우트 변경 시 메뉴 닫기
   useEffect(() => {
@@ -82,7 +131,9 @@ export function Header() {
       )}
     >
       <Container>
-        <div className="flex h-16 items-center justify-between gap-6 lg:h-20">
+        {/* 데스크톱: 로고↔첫 항목, 마지막 항목↔우측 버튼 간격도 항목 사이 간격과
+            동일하도록 nav 의 justify-evenly 바깥 여백이 그대로 경계 간격이 된다(gap 없음) */}
+        <div className="flex h-16 items-center justify-between gap-4 xl:gap-0 lg:h-20">
           {/* 로고 락업(엠블럼 | 헤어라인 | 연세체 워드마크) — 밝은 헤더에선 네이비로 전환 */}
           <Link
             href="/"
@@ -91,17 +142,43 @@ export function Header() {
             <Logo onLight={solid} />
           </Link>
 
-          {/* 데스크톱 내비게이션 */}
-          <nav aria-label="주 메뉴" className="hidden xl:block">
-            <ul className="flex items-center gap-x-8">
+          {/* 데스크톱 내비게이션 — 상단 항목 아무거나 호버/포커스하면 전체 하위 목록이
+              "각자 자기 메뉴 항목 바로 아래" 동시에 펼쳐진다(개별 드롭다운과 같은 위치
+              문법, 전부 열리는 것만 다름 → 상단 배치와 어긋나지 않는다).
+              self-stretch: nav 를 헤더 전체 높이로 늘려 링크→패널 마우스 이동 중
+              hover 가 끊기는 데드존을 없앤다 */}
+          <nav
+            ref={navRef}
+            aria-label="주 메뉴"
+            onClick={onNavClick}
+            onMouseLeave={() => setMegaSuppressed(false)}
+            onFocus={() => setMegaSuppressed(false)}
+            className="group/nav hidden min-w-0 self-stretch xl:flex xl:flex-1 xl:items-center"
+          >
+            {/* 공용 백드롭 시트 — 뷰포트 전폭. 높이는 가장 긴 목록에 맞춰 측정(panelH).
+                megaSuppressed 면 열림 클래스를 아예 제거해 클릭 직후 즉시 닫힌다 */}
+            <div
+              aria-hidden="true"
+              style={{ height: panelH }}
+              className={cn(
+                'invisible fixed inset-x-0 top-16 border-b border-t border-surface-border bg-surface opacity-0 shadow-card-hover transition-all duration-200 lg:top-20',
+                !megaSuppressed &&
+                  'group-hover/nav:visible group-hover/nav:opacity-100 group-focus-within/nav:visible group-focus-within/nav:opacity-100',
+              )}
+            />
+
+            {/* justify-evenly: 바깥 2 + 사이 6 = 8개 여백을 모두 동일하게 분배 →
+                "글자 사이 여백"이 일정하고, 로고·우측 버튼과의 경계 간격도 같아진다.
+                목록 겹침 방지는 위 measure() 가 이웃 라벨 중간점 기준으로 목록
+                최대폭을 지정해 보장. li 를 헤더 높이까지 늘려 top-full = 시트 상단 */}
+            <ul className="flex h-full w-full items-stretch justify-evenly">
               {menu.map((group) => (
-                <li key={group.key} className="group relative">
+                <li key={group.key} className="relative flex items-center">
                   <Link
                     href={group.href}
                     aria-current={isActive(group.href) ? 'page' : undefined}
-                    aria-haspopup="true"
                     className={cn(
-                      'flex items-center gap-1.5 py-2 text-[15px] font-medium transition-colors',
+                      'flex items-center gap-1.5 whitespace-nowrap py-2 text-[15px] font-medium transition-colors',
                       solid
                         ? isActive(group.href)
                           ? 'text-content'
@@ -114,27 +191,33 @@ export function Header() {
                     {tMenu(`${group.key}.label`)}
                     <Chevron
                       className={cn(
-                        'group-hover:rotate-180',
+                        !megaSuppressed && 'group-hover/nav:rotate-180',
                         solid ? 'text-content-faint' : 'text-white/60',
                       )}
                     />
                   </Link>
 
-                  {/* 드롭다운 패널 */}
-                  <div className="invisible absolute left-1/2 top-full min-w-[15rem] -translate-x-1/2 translate-y-1 pt-3 opacity-0 transition-all duration-200 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100">
-                    <ul className="border border-surface-border bg-surface py-2 text-content shadow-card-hover">
-                      {group.items.map((sub) => (
-                        <li key={sub.key}>
-                          <Link
-                            href={sub.href}
-                            className="block px-5 py-2.5 text-[15px] text-content-soft transition-colors hover:bg-surface-soft hover:text-yonsei-navy"
-                          >
-                            {tMenu(`${group.key}.items.${sub.key}`)}
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
+                  {/* 하위 목록 — 자기 라벨 아래 중앙 정렬, 최대폭은 measure() 가 지정
+                      (이웃 라벨 중간점까지 → 겹침 없음, 긴 항목은 그 안에서 줄바꿈) */}
+                  <ul
+                    data-mega-list
+                    className={cn(
+                      'invisible absolute left-1/2 top-full w-max -translate-x-1/2 translate-y-1 pb-7 pt-5 text-center opacity-0 transition-all duration-200',
+                      !megaSuppressed &&
+                        'group-hover/nav:visible group-hover/nav:translate-y-0 group-hover/nav:opacity-100 group-focus-within/nav:visible group-focus-within/nav:translate-y-0 group-focus-within/nav:opacity-100',
+                    )}
+                  >
+                    {group.items.map((sub) => (
+                      <li key={sub.key}>
+                        <Link
+                          href={sub.href}
+                          className="block py-1.5 text-sm leading-snug text-content-soft transition-colors hover:text-yonsei-navy"
+                        >
+                          {tMenu(`${group.key}.items.${sub.key}`)}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
                 </li>
               ))}
             </ul>
