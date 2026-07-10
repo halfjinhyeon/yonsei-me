@@ -1,11 +1,10 @@
 import type { Locale } from '@/i18n/routing';
 
-/** 헤딩의 리드 단어 — prose-content 헤딩과 동일한 세리프 대비 */
-function LeadHeading({ lead, rest }: { lead: string; rest: string }) {
+/** 큰 타이포 헤딩 — prose-content 헤딩과 동일한 굵기 */
+function GreetingHeading({ children }: { children: string }) {
   return (
     <h3 className="text-4xl font-bold leading-tight tracking-tight text-content sm:text-5xl">
-      <span className="mr-[0.08em] font-normal [font-family:var(--font-serif)]">{lead}</span>
-      {rest}
+      {children}
     </h3>
   );
 }
@@ -53,7 +52,7 @@ export function AlumniGreeting({ locale }: { locale: Locale }) {
 
       {/* 큰 타이포 헤딩 + 본문 */}
       <div className="anim-nav-item" style={{ animationDelay: '90ms' }}>
-        {ko ? <LeadHeading lead="동문" rest=" 인사말" /> : <LeadHeading lead="a" rest=" greeting" />}
+        <GreetingHeading>{ko ? '동문 인사말' : 'A greeting'}</GreetingHeading>
         <div className="mt-8 space-y-5">
           {paragraphs.map((p, i) => (
             <p key={i} className="max-w-2xl text-base leading-[1.8] text-content-soft">

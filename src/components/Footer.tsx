@@ -48,9 +48,10 @@ export function Footer() {
             <ul className="mt-4 space-y-2 text-sm">
               {navItems.slice(0, 5).map((item) => (
                 <li key={item.href}>
+                  {/* py-1 -my-1: 시각 변화 없이 터치 타깃을 24px 이상으로 확장 (WCAG 2.5.8) */}
                   <Link
                     href={item.href}
-                    className="text-content-soft transition-colors hover:text-yonsei-blue"
+                    className="-my-1 inline-block py-1 text-content-soft transition-colors hover:text-yonsei-blue"
                   >
                     {tNav(item.labelKey)}
                   </Link>
@@ -60,7 +61,7 @@ export function Footer() {
               <li>
                 <a
                   href="/sitemap.xml"
-                  className="text-content-soft transition-colors hover:text-yonsei-blue"
+                  className="-my-1 inline-block py-1 text-content-soft transition-colors hover:text-yonsei-blue"
                 >
                   {t('sitemap')}
                 </a>
@@ -78,7 +79,7 @@ export function Footer() {
                     href={link.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1 text-content-soft transition-colors hover:text-yonsei-blue"
+                    className="-my-1 inline-flex items-center gap-1 py-1 text-content-soft transition-colors hover:text-yonsei-blue"
                   >
                     {link.label}
                     <span aria-hidden="true" className="text-xs">

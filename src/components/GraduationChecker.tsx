@@ -842,14 +842,20 @@ export function GraduationChecker({ data, locale }: { data: CheckerData; locale:
 
         {/* 섹션별 — 도넛형 */}
         {chartView === 'donut' && (
-          <ul className="mt-8 grid grid-cols-1 gap-8 sm:grid-cols-2">
+          /* 2열(sm+)일 때 열 사이 세로 구분선: 왼쪽 열 항목의 border-r 로 그려
+             행 높이만큼만 이어지고 행 간 gap 에서 끊긴다. 짝 없는 마지막 항목은 제외.
+             gap-x 대신 좌우 px-4 로 간격을 만들어 선이 정확히 가운데 오게 한다. */
+          <ul className="mt-8 grid grid-cols-1 gap-8 sm:grid-cols-2 sm:gap-x-0">
             {result.sections.map((sec) => {
               const secPct = Math.min(100, Math.round((sec.earned / sec.required) * 100));
               const remaining = sec.items?.filter((it) => !it.done) ?? [];
               const done = sec.items?.filter((it) => it.done) ?? [];
               const C = 2 * Math.PI * 52;
               return (
-                <li key={sec.id} className="flex flex-col items-center text-center">
+                <li
+                  key={sec.id}
+                  className="flex flex-col items-center text-center sm:px-4 sm:[&:nth-child(odd):not(:last-child)]:border-r"
+                >
                   <svg
                     viewBox="0 0 120 120"
                     role="img"

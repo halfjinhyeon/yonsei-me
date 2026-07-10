@@ -94,7 +94,7 @@ export default function HomePage({ params }: { params: { locale: string } }) {
                 em: (c) => <em className="font-display font-normal not-italic text-yonsei-blue">{c}</em>,
               })}
             </h2>
-            <Link href="/research#labs" className="whitespace-nowrap pb-1 text-xs font-semibold text-yonsei-blue hover:underline sm:text-sm">
+            <Link href="/research#labs" className="-mt-2 whitespace-nowrap pb-1 pt-2 text-xs font-semibold text-yonsei-blue hover:underline sm:text-sm">
               {t('people.cta')}
             </Link>
           </div>
@@ -117,7 +117,7 @@ export default function HomePage({ params }: { params: { locale: string } }) {
           <h2 id="seminars-title" className="text-lg font-bold text-content">
             {tBoard('seminars.title')}
           </h2>
-          <Link href="/news#seminars" className="text-sm font-semibold text-yonsei-blue hover:underline">
+          <Link href="/news#seminars" className="-my-1 py-1 text-sm font-semibold text-yonsei-blue hover:underline">
             {tBoard('seminars.more')} →
           </Link>
         </div>
@@ -149,7 +149,7 @@ export default function HomePage({ params }: { params: { locale: string } }) {
           <h2 id="events-title" className="text-lg font-bold text-content">
             {tBoard('events.title')}
           </h2>
-          <Link href="/news#events" className="text-sm font-semibold text-yonsei-blue hover:underline">
+          <Link href="/news#events" className="-my-1 py-1 text-sm font-semibold text-yonsei-blue hover:underline">
             {tBoard('events.more')} →
           </Link>
         </div>

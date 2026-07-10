@@ -39,9 +39,6 @@
 
     --font-sans: 'Pretendard Variable', 'Pretendard';
     --font-display: 'Pretendard Variable', 'Pretendard';
-    /* 본문 헤딩의 리드 단어(이탤릭 세리프)용 — Cornell 스타일 대비 */
-    /* Use the sans variable for serif slots so headings use the same sans font as body */
-    --font-serif: var(--font-sans);
   }
 
   .dark {
@@ -73,6 +70,16 @@
     font-family: var(--font-sans), system-ui, sans-serif;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
+    /* 한글은 어절 단위로만 줄바꿈(글자 중간 끊김 방지),
+       긴 영문 토큰(URL·이메일·학정번호)은 넘치지 않게 강제 줄바꿈 허용 */
+    word-break: keep-all;
+    overflow-wrap: break-word;
+  }
+
+  /* 본문 문단·목록 — 줄 끝 고아 단어 완화 (미지원 브라우저는 무시) */
+  p,
+  li {
+    text-wrap: pretty;
   }
 
   /* 키보드 포커스 링 (마우스 클릭 시엔 숨김) */
@@ -83,7 +90,7 @@
   }
 
   /* 제목 기본 밸런스 */
-  h1, h2, h3 {
+  h1, h2, h3, h4 {
     text-wrap: balance;
   }
 
@@ -147,17 +154,6 @@
   .prose-content h3:first-child,
   .prose-content h4:first-child {
     @apply mt-0;
-  }
-  /* 헤딩의 리드(첫) 단어 — 세리프(명조)로 대비를 줘 시선을 끈다 (이탤릭 없이) */
-  .prose-content h1 .lead,
-  .prose-content h2 .lead,
-  .prose-content h3 .lead,
-  .prose-content h4 .lead {
-    font-family: var(--font-serif);
-    font-style: normal;
-    font-weight: 400;
-    letter-spacing: 0;
-    margin-right: 0.06em;
   }
   /* 본문 문단·목록은 가독성을 위해 한 줄 길이를 제한 (표는 예외) */
   .prose-content p,

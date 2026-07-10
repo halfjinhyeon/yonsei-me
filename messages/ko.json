@@ -249,11 +249,17 @@
     "researchGallery": {
       "eyebrow": "RESEARCH FIELDS",
       "heading": "여섯 갈래의 연구",
-      "hint": "분야를 선택해 연구실을 둘러보세요",
+      "hint": "카드를 넘기며 살펴보고, 분야를 선택해 연구실을 둘러보세요",
       "cta": "이 분야 연구실 보기",
       "back": "목록으로",
-      "scroll": "스크롤로 탐색"
+      "scroll": "스크롤로 탐색",
+      "prev": "이전 분야 보기",
+      "next": "다음 분야 보기"
     }
+  },
+  "toc": {
+    "collapse": "목차 접기",
+    "expand": "목차 펼치기"
   },
   "about": {
     "hero": {

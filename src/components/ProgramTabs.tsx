@@ -178,7 +178,7 @@ export function ProgramTabs({
 
         <Link
           href={tab === 'ug' ? '/undergraduate' : '/graduate'}
-          className="mt-6 inline-flex items-center gap-2 text-sm font-bold text-yonsei-blue hover:underline"
+          className="mt-5 inline-flex items-center gap-2 py-1 text-sm font-bold text-yonsei-blue hover:underline"
         >
           {tab === 'ug' ? t('exploreUg') : t('exploreGrad')}
         </Link>

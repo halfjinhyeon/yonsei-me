@@ -1,6 +1,6 @@
 'use client';
 
-import { useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { UnderlineTabs } from '@/components/UnderlineTabs';
 import { cn } from '@/lib/utils';
@@ -85,6 +85,20 @@ export function CurriculumRoadmap({ locale }: { locale: Locale }) {
   const [filter, setFilter] = useState<Filter>('all');
   const [selected, setSelected] = useState<string | null>(null);
   const detailRef = useRef<HTMLDivElement | null>(null);
+
+  // "좌우로 스크롤" 힌트 — 뷰포트 기준이 아니라 실제 스크롤 가능 여부로 표시.
+  // (데스크톱에서도 그리드가 컨테이너보다 넓으면 잘리므로 힌트가 필요하다)
+  const scrollRef = useRef<HTMLDivElement | null>(null);
+  const [canScroll, setCanScroll] = useState(false);
+  useEffect(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+    const update = () => setCanScroll(el.scrollWidth > el.clientWidth + 1);
+    update();
+    const ro = new ResizeObserver(update);
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
 
   // 칩 선택 시 상세 패널로 부드럽게 스크롤 (해제 시엔 이동하지 않음)
   const selectCourse = (code: string) => {
@@ -209,13 +223,15 @@ export function CurriculumRoadmap({ locale }: { locale: Locale }) {
             {ko ? '골드 — 선택된 과목' : 'Gold — Selected'}
           </li>
         </ul>
-        <p className="text-xs text-content-faint lg:hidden">
-          {ko ? '좌우로 스크롤하세요' : 'Scroll horizontally'}
-        </p>
+        {canScroll && (
+          <p className="text-xs text-content-faint">
+            {ko ? '좌우로 스크롤하세요 →' : 'Scroll horizontally →'}
+          </p>
+        )}
       </div>
 
       {/* 로드맵 — 가로 스크롤 래퍼. 평면 에디토리얼: 필 박스 대신 룰(선)과 타이포로 구조화 */}
-      <div className="overflow-x-auto pb-2">
+      <div ref={scrollRef} className="overflow-x-auto pb-2">
         {/* key={filter} 로 필터 전환 시 레인 스태거 등장을 재트리거.
             min-width 를 전체 열 폭에 맞춰 헤더 룰·레인 구분선이 마지막 열까지 이어지게 한다. */}
         <div key={filter} style={{ minWidth: gridMinWidth }}>

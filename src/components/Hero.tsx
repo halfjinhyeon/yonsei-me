@@ -84,7 +84,8 @@ export function Hero({
               return (
                 <li key={i} className="flex items-center gap-2">
                   {c.href && !isLast ? (
-                    <Link href={c.href} className="transition-colors hover:text-white">
+                    /* -m/p 상쇄: 시각 변화 없이 터치 타깃을 24px 이상으로 확장 (WCAG 2.5.8) */
+                    <Link href={c.href} className="-m-1.5 p-1.5 transition-colors hover:text-white">
                       {c.label}
                     </Link>
                   ) : (

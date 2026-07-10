@@ -73,7 +73,7 @@ export function WeeklyCalendar({ entries, locale }: { entries: CalendarEntry[]; 
                 {t('catAlumni')}
               </li>
             </ul>
-            <Link href="/news#calendar" className="text-sm font-semibold text-yonsei-blue hover:underline">
+            <Link href="/news#calendar" className="-my-1 py-1 text-sm font-semibold text-yonsei-blue hover:underline">
               {t('more')} →
             </Link>
           </div>

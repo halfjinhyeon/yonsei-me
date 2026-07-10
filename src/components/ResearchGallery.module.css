@@ -1,10 +1,10 @@
-/* 연구 분야 갤러리 → 오버레이 (Osmo "gallery-to-overlay" Flip 이식, 연세 ME 톤).
-   원본의 em 기반 구조를 유지하되 root font-size 를 화면폭에 비례시키고,
-   색은 사이트 톤(투명 배경 위 흰 글자 + 골드 강조)으로 재작성. CSS 모듈로 스코프.
+/* 연구 분야 캐러셀 → 오버레이 (GSAP Flip, 연세 ME 톤).
+   Osmo "gallery-to-overlay" 의 오버레이 전환은 그대로 두고, 갤러리 본체를
+   가로 스냅 캐러셀 카드(사진 + 번호·분야명)로 재구성. root font-size 를
+   화면폭에 비례시키는 em 체계와 색(투명 배경 위 흰 글자 + 골드 강조)도 유지.
 
-   구성: 헤더 + (이미지·캡션 | 번호·타이틀 리스트)를 하나의 중앙 블록으로 묶고,
-   이미지 캡션(01 — 분야명)과 활성 타이틀 마커로 "이미지 = 현재 분야"를 연결한다.
-   오버레이는 스크롤 없는 한 화면(분야명 + 사진 + 설명 + CTA 버튼). */
+   구성: 헤더(+ 화살표) / 스냅 스크롤 트랙(카드 6장) / 풀스크린 오버레이.
+   카드 진입 애니메이션(오른쪽→왼쪽 스태거)은 컴포넌트의 ScrollTrigger 가 담당. */
 
 .gallery {
   position: relative;
@@ -25,9 +25,17 @@
   position: relative;
 }
 
+/* 헤더 — 좌측 텍스트 + 우측 캐러셀 화살표(하단 정렬) */
 .header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 2em;
+  margin-bottom: 3em;
+}
+
+.headerText {
   max-width: 44em;
-  margin-bottom: 3.5em;
 }
 
 .eyebrow {
@@ -54,44 +62,102 @@
   color: rgba(255, 255, 255, 0.72);
 }
 
-/* 이미지(캡션 포함) + 타이틀 리스트 나란히, 수직 중앙 */
-.main {
+/* 캐러셀 화살표 — 각진 유리 버튼(오버레이 backBtn 과 동일 톤) */
+.arrows {
   display: flex;
-  align-items: center;
-  gap: 6em;
-}
-
-.mainCol {
-  display: flex;
-  align-items: center;
-  min-width: 0;
-}
-
-/* 좌: 이미지 + 캡션 세로 묶음 */
-.colMedia {
+  gap: 0.6em;
   flex: 0 0 auto;
+}
+
+.arrowBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3em;
+  height: 3em;
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+  font: inherit;
+  font-size: 1.15em;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s, opacity 0.2s;
+}
+
+.arrowBtn:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.18);
+  border-color: #fff;
+}
+
+.arrowBtn:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+.arrowBtn:focus-visible {
+  outline: 2px solid #c8a96a;
+  outline-offset: 2px;
+}
+
+/* 캐러셀 트랙 — 스냅 가로 스크롤(스크롤바 숨김, 터치 스와이프/화살표).
+   위아래 여유는 hover 리프트·포커스 링이 잘리지 않게 하기 위한 것 */
+.track {
+  display: flex;
+  gap: 2em;
+  margin: 0;
+  padding: 0.6em 0 0.5em;
+  list-style: none;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+.track::-webkit-scrollbar {
+  display: none;
+}
+
+.card {
+  flex: 0 0 auto;
+  scroll-snap-align: start;
+}
+
+/* 카드 전체가 버튼 — 사진 + (번호·분야명) */
+.cardButton {
+  display: flex;
   flex-flow: column;
   align-items: stretch;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  background: transparent;
+  font: inherit;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition: transform 0.45s cubic-bezier(0.625, 0.05, 0, 1), opacity 0.3s;
 }
 
-.imgList {
-  width: 22em;
-  height: 28em;
-  position: relative;
+.cardButton:hover {
+  transform: translateY(-0.4em);
 }
 
-.imgItem {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  visibility: hidden;
-  opacity: 0;
+.cardButton:focus-visible {
+  outline: 2px solid #c8a96a;
+  outline-offset: 4px;
 }
 
-/* JS 실행 전 깜빡임 방지 — 첫 이미지만 노출(이후 GSAP autoAlpha 가 제어) */
-.imgList .imgItem:first-child {
-  visibility: visible;
-  opacity: 1;
+/* 호버 중이 아닌 카드 딤 — GSAP 은 li(.card)의 인라인 opacity 만 만지므로 충돌 없음 */
+.track:hover .card:not(:hover) .cardButton {
+  opacity: 0.55;
+}
+
+/* 이미지 프레임 — 고정 크기라 Flip 으로 이미지가 떠나도 카드 레이아웃 유지 */
+.cardMedia {
+  display: block;
+  width: 19em;
+  height: 24em;
+  background: rgba(255, 255, 255, 0.06);
 }
 
 .image {
@@ -102,108 +168,32 @@
   display: block;
 }
 
-/* 이미지 캡션 — 현재 분야(호버 시 JS 로 갱신). 이미지와 타이틀을 잇는 라벨 */
-.imgCaption {
+/* 카드 하단 번호·분야명 — 상단 헤어라인으로 사진과 구분 */
+.cardMeta {
   display: flex;
   align-items: baseline;
-  gap: 0.9em;
+  gap: 0.8em;
   margin-top: 1em;
-  padding-top: 0.9em;
+  padding-top: 0.85em;
   border-top: 1px solid rgba(255, 255, 255, 0.3);
 }
 
-.capNum {
+.cardNum {
   font-size: 1em;
   font-weight: 700;
   letter-spacing: 0.08em;
   color: #c8a96a;
   font-variant-numeric: tabular-nums;
-}
-
-.capTitle {
-  font-size: 1.1em;
-  font-weight: 600;
-  color: rgba(255, 255, 255, 0.9);
-}
-
-/* 우: 번호 + 타이틀 리스트 */
-.titleList {
-  display: flex;
-  flex-flow: column;
-  justify-content: center;
-  align-items: flex-start;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  position: relative;
-}
-
-.titleItem {
-  display: flex;
-  align-items: center;
-  height: 1.3em;
-  font-size: 4.2em;
-  transition: opacity 0.2s;
-  position: relative;
-}
-
-.button {
-  background: transparent;
-  border: none;
-  padding: 0;
-  margin: 0;
-  font: inherit;
-  color: inherit;
-  cursor: pointer;
-  text-align: left;
-  display: flex;
-  align-items: baseline;
-  gap: 0.55em;
-}
-
-/* 항목 번호 — 구조·클릭 가능성 암시. Flip 으로 타이틀이 떠나도 리스트에 남는다 */
-.titleNum {
-  font-size: 0.28em;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  color: #c8a96a;
-  font-variant-numeric: tabular-nums;
-  transform: translateY(-0.9em);
 }
 
 .title {
   margin: 0;
-  font-size: 1em;
+  font-size: 1.5em;
   font-weight: 700;
-  line-height: 1;
-  letter-spacing: -0.03em;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
   white-space: nowrap;
   color: #fff;
-}
-
-.titleList:hover:has(.titleItem:hover) .titleItem:not(:hover) {
-  opacity: 0.4;
-}
-
-.title::after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  right: -0.3em;
-  width: 0.75em;
-  height: 0.12em;
-  border-radius: 100em;
-  background: #c8a96a;
-  opacity: 0;
-  transform: translate(100%, 0) scale(0);
-  transition: all 0.5s cubic-bezier(0.625, 0.05, 0, 1);
-}
-
-/* 활성(=이미지에 표시 중인) 분야 마커 — 기본 첫 항목, 호버로 이동 */
-.titleItem[data-active='true'] .title::after {
-  transform: translate(0, 0) scale(1);
-  opacity: 1;
-  width: 0.15em;
 }
 
 /* ── 오버레이 — 스크롤 없는 한 화면 (분야명 + 사진 + 설명 + CTA) ── */
@@ -272,7 +262,6 @@
 
 /* 절제된 타이틀 크기 — 압도하지 않게, 좁은 폭에선 vw 로 캡 */
 .overlayTitleWrap .title {
-  position: static;
   font-size: min(4.6em, 8vw);
 }
 
@@ -339,7 +328,7 @@
   gap: 0.5em;
 }
 
-/* ── 반응형: 좁은 화면은 세로 스택 + 큰 폰트, 오버레이는 세로 구성 ── */
+/* ── 반응형: 좁은 화면은 카드 축소 + 터치 스와이프(화살표 숨김), 오버레이는 세로 구성 ── */
 @media (max-width: 900px) {
   .gallery {
     font-size: clamp(11px, 2.7vw, 20px);
@@ -347,31 +336,29 @@
     padding: 3em 1.25em;
   }
   .header {
-    max-width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.2em;
     margin-bottom: 2em;
+  }
+  .headerText {
+    max-width: 100%;
   }
   .heading {
     font-size: 2em;
   }
-  .main {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 2em;
+  .arrows {
+    display: none;
   }
-  .colMedia {
-    width: 100%;
+  .track {
+    gap: 1.4em;
   }
-  .imgList {
-    width: 100%;
-    height: 17em;
+  .cardMedia {
+    width: 15em;
+    height: 19em;
   }
-  .titleItem {
-    font-size: 2.2em;
-    height: 1.45em;
-  }
-  .titleNum {
-    font-size: 0.4em;
-    transform: translateY(-0.5em);
+  .title {
+    font-size: 1.3em;
   }
 
   .overlayInner {
@@ -407,7 +394,8 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .title::after {
+  .cardButton,
+  .arrowBtn {
     transition: none;
   }
 }
