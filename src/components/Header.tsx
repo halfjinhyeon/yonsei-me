@@ -32,7 +32,6 @@ function Chevron({ className }: { className?: string }) {
 export function Header() {
   const t = useTranslations('nav');
   const tMenu = useTranslations('menu');
-  const tMeta = useTranslations('meta');
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -84,36 +83,12 @@ export function Header() {
     >
       <Container>
         <div className="flex h-16 items-center justify-between gap-6 lg:h-20">
-          {/* 로고 — 엠블럼 | 세로 실선 | 워드마크 (흰 마크라 밝은 헤더에선 네이비 칩 위에) */}
+          {/* 로고 락업(엠블럼 | 헤어라인 | 연세체 워드마크) — 밝은 헤더에선 네이비로 전환 */}
           <Link
             href="/"
-            className="flex shrink-0 items-center gap-3.5 focus-visible:outline-yonsei-blue"
+            className="flex shrink-0 items-center focus-visible:outline-yonsei-blue"
           >
-            <span
-              className={cn(
-                'grid h-11 w-11 shrink-0 place-items-center rounded-full transition-colors',
-                solid ? 'bg-yonsei-navy' : 'bg-transparent',
-              )}
-            >
-              <Logo size={36} className="h-9 w-9" />
-            </span>
-            <span
-              aria-hidden="true"
-              className={cn(
-                'h-9 w-px transition-colors',
-                solid ? 'bg-surface-border' : 'bg-white/30',
-              )}
-            />
-            <span className="flex flex-col leading-tight">
-              <span className="text-base font-bold tracking-tight sm:text-lg">
-                {tMeta('shortName')}
-              </span>
-              <span
-                className={cn('text-[11px]', solid ? 'text-content-faint' : 'text-white/60')}
-              >
-                {tMeta('university')}
-              </span>
-            </span>
+            <Logo onLight={solid} />
           </Link>
 
           {/* 데스크톱 내비게이션 */}

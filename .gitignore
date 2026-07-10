@@ -10,6 +10,9 @@
 
 # dev-only tooling assets (large, locally regenerable)
 /tools/traineddata/
+# 연세체 TTF — 배포 라이선스 불명확, 로고 워드마크는 tools/generate-wordmark.mjs 로
+# 빌드타임에 SVG 패스(src/components/logo-wordmark.ts)로 미리 변환해두므로 폰트 자체는 불필요
+/tools/fonts/
 
 # production
 /build
