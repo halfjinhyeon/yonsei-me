@@ -1,5 +1,23 @@
 [
   {
+    "slug": "2026-07-10-post",
+    "category": "notice",
+    "date": "2026-07-10",
+    "title": {
+      "ko": "공지사항 테스트 중입니다.",
+      "en": "The server is currently being tested."
+    },
+    "excerpt": {
+      "ko": "",
+      "en": ""
+    },
+    "body": {
+      "ko": "공지사항 테스트 중입니다.",
+      "en": "We are currently testing the announcements section."
+    },
+    "image": ""
+  },
+  {
     "slug": "2026-spring-seminar-series",
     "category": "seminar",
     "date": "2026-06-20",
