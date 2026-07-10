@@ -26,7 +26,8 @@ export default async function NewsPage({ params }: { params: { locale: string } 
   const tBoard = await getTranslations({ locale, namespace: 'board' });
   const tStub = await getTranslations({ locale, namespace: 'stub' });
 
-  // 공지사항: 학부 + 대학원 공지를 하나의 게시판으로 병합, 최신순 (클릭 → 상세)
+  // 공지사항: 학부 + 대학원 공지를 하나의 게시판으로 병합, 최신순 (클릭 → 상세).
+  // category(undergrad/graduate)로 상단 필터 탭에서 구분한다.
   const notices: BoardRow[] = [
     ...board.noticesUndergrad.map((n) => ({
       id: n.id,
@@ -34,6 +35,7 @@ export default async function NewsPage({ params }: { params: { locale: string } 
       title: pick(n.title, locale),
       tag: tBoard('noticesUndergrad.title'),
       href: `/news/post/${n.id}`,
+      category: 'undergrad',
     })),
     ...board.noticesGraduate.map((n) => ({
       id: n.id,
@@ -41,8 +43,15 @@ export default async function NewsPage({ params }: { params: { locale: string } 
       title: pick(n.title, locale),
       tag: tBoard('noticesGraduate.title'),
       href: `/news/post/${n.id}`,
+      category: 'graduate',
     })),
   ].sort((a, b) => ((a.date ?? '') < (b.date ?? '') ? 1 : -1));
+
+  // 공지 필터 탭(전체/학부/대학원) — 짧은 메뉴 라벨 재사용
+  const noticeCategories = [
+    { id: 'undergrad', label: tMenu('undergraduate.label') },
+    { id: 'graduate', label: tMenu('graduate.label') },
+  ];
 
   // 뉴스: 카드형/목록형 토글 지원 (이미지 포함)
   const newsItems: NewsCardItem[] = news.map((item) => ({
@@ -114,7 +123,7 @@ export default async function NewsPage({ params }: { params: { locale: string } 
   }));
 
   const tabs: TabItem[] = [
-    { key: 'notices', label: tMenu('news.items.notices'), markdown: null, content: <FilterableBoardList items={notices} locale={locale} emptyLabel={tStub('body')} /> },
+    { key: 'notices', label: tMenu('news.items.notices'), markdown: null, content: <FilterableBoardList items={notices} categories={noticeCategories} locale={locale} emptyLabel={tStub('body')} /> },
     {
       key: 'news',
       label: tMenu('news.items.news'),

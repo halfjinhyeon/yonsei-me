@@ -166,7 +166,7 @@
       "secondary": "찾아오기"
     },
     "animHero": {
-      "title1": "College of",
+      "title1": "School of",
       "title2": "Mechanical Engineering",
       "tagline": "Find inspiration in everything that moves — Yonsei University."
     },
@@ -386,6 +386,10 @@
       "results": "검색 결과 {count}건",
       "empty": "조건에 맞는 게시물이 없습니다.",
       "clear": "초기화"
+    },
+    "filter": {
+      "all": "전체",
+      "categoryLabel": "공지 구분"
     },
     "detail": {
       "titleLabel": "제목",

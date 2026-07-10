@@ -6,14 +6,15 @@
 // 실제 편집은 항목 종류별 에디터(BoardEditor / CollectionEditor / MarkdownEditor)에
 // 위임한다.
 //
-// 디자인은 사이트 본편과 통일한다: Hero(page.tsx)로 진입 헤더를 두고, 사이드바는
-// TabbedContent 목차 톤(스태거 진입·화살표 호버), 대시보드 카드는 사이트 공통
-// 시그니처 카드(hover:-translate-y-1 + shadow-card-hover)와 Reveal 스크롤 진입을 쓴다.
+// 대시보드 UX 원칙: "작업 공간 우선".
+// - 편집 카드 그리드가 최상단(검색 필터 + 최근 편집 바로가기 포함).
+// - 온보딩 설명서·관리자 등록 안내는 접이식(details)으로 하단에 — 처음 한 번만
+//   필요한 내용이 반복 방문자의 작업 동선을 가리지 않게 한다.
 //
 // 콘텐츠/코드 분리 원칙은 "사이트 콘텐츠"(content/*)에 적용된다.
 // 이 관리자 도구는 내부 운영용이라 한국어 UI 문자열을 컴포넌트에 직접 둔다.
 
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { cn } from '@/lib/utils';
 import { Reveal } from '@/components/Reveal';
 import { getBoard, type BoardKey } from '@/lib/admin/boards';
@@ -83,6 +84,48 @@ function isEditable(entry: MenuEntry): boolean {
   return entry.type !== 'placeholder';
 }
 
+/** 카드 우상단 유형 배지 — 무엇을 편집하게 될지 한눈에 */
+function entryKind(entry: MenuEntry): { label: string; cls: string } | null {
+  switch (entry.type) {
+    case 'board':
+      return { label: '게시판', cls: 'bg-yonsei-blue/10 text-yonsei-blue' };
+    case 'collection':
+      return { label: '데이터', cls: 'bg-yonsei-navy/10 text-yonsei-navy dark:bg-yonsei-sky/15 dark:text-yonsei-sky' };
+    case 'markdown':
+      return { label: '문서', cls: 'bg-yonsei-gold/15 text-[#8a6d2f] dark:text-yonsei-gold' };
+    case 'placeholder':
+      return null;
+  }
+}
+
+/** 전체 항목 평면 목록 (id → entry 역조회용) */
+const ALL_ENTRIES: MenuEntry[] = MENU_GROUPS.flatMap((g) => g.entries);
+function findEntry(id: string): MenuEntry | undefined {
+  return ALL_ENTRIES.find((e) => entryId(e) === id);
+}
+
+/** 최근 편집 항목 localStorage 키 */
+const RECENT_KEY = 'cms-recent-entries';
+
+function readRecents(): MenuEntry[] {
+  try {
+    const ids = JSON.parse(localStorage.getItem(RECENT_KEY) ?? '[]') as string[];
+    return ids.map(findEntry).filter((e): e is MenuEntry => !!e && isEditable(e));
+  } catch {
+    return [];
+  }
+}
+
+function pushRecent(id: string) {
+  try {
+    const ids = JSON.parse(localStorage.getItem(RECENT_KEY) ?? '[]') as string[];
+    const next = [id, ...ids.filter((x) => x !== id)].slice(0, 4);
+    localStorage.setItem(RECENT_KEY, JSON.stringify(next));
+  } catch {
+    /* localStorage 불가 환경은 조용히 무시 */
+  }
+}
+
 export function AdminConsole({ token, login }: Props) {
   // 저장소 설정은 세션 토큰으로 자동 구성한다(PAT 수동 입력 제거).
   const config = useMemo<RepoConfig>(
@@ -102,22 +145,27 @@ export function AdminConsole({ token, login }: Props) {
     }
     setDirty(false);
     setActive(next);
+    if (next && isEditable(next)) pushRecent(entryId(next));
   }
 
   const activeId = active ? entryId(active) : null;
 
   return (
     <div>
-      {/* 메타 바 — 저장소·계정 정보와 로그아웃 (제목은 Hero가 담당) */}
+      {/* 메타 바 — 계정·저장소 정보와 로그아웃 (제목은 Hero가 담당) */}
       <div className="mb-8 flex flex-wrap items-center justify-between gap-3 border-b border-surface-border pb-4">
-        <p className="text-xs text-content-faint">
-          {login && <span className="font-semibold text-content-soft">{login}님으로 로그인됨</span>}
-          {login && ' · '}
-          <span className="tabular-nums">
+        <div className="flex flex-wrap items-center gap-2 text-xs">
+          {login && (
+            <span className="inline-flex items-center gap-1.5 bg-surface-soft px-2.5 py-1 font-semibold text-content-soft">
+              <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-green-500" />
+              {login}
+            </span>
+          )}
+          <span className="tabular-nums text-content-faint">
             {config.owner}/{config.repo}
-          </span>{' '}
-          · <span className="rounded bg-surface-soft px-1.5 py-0.5 font-medium text-content-soft">{config.branch}</span>
-        </p>
+          </span>
+          <span className="bg-surface-soft px-1.5 py-0.5 font-medium text-content-soft">{config.branch}</span>
+        </div>
         <a href="/api/auth/signout" className="btn-secondary px-4 py-2 text-xs">
           로그아웃
         </a>
@@ -202,7 +250,7 @@ export function AdminConsole({ token, login }: Props) {
                               →
                             </span>
                           ) : (
-                            <span className="rounded bg-surface-soft px-1.5 py-0.5 text-[10px] text-content-faint">
+                            <span className="bg-surface-soft px-1.5 py-0.5 text-[10px] text-content-faint">
                               준비 중
                             </span>
                           )}
@@ -248,164 +296,255 @@ export function AdminConsole({ token, login }: Props) {
   );
 }
 
-/** 대시보드 — 안내 콜아웃 + 그룹별 편집 항목 카드 그리드 */
+/** 대시보드 — 작업 공간 우선: 검색 + 최근 편집 + 편집 카드 그리드,
+ *  온보딩·관리자 안내는 접이식으로 하단에. */
 function Dashboard({ onOpen }: { onOpen: (entry: MenuEntry) => void }) {
+  // 검색 필터 — 라벨·설명 부분일치로 그룹 안 항목을 걸러낸다.
+  const [query, setQuery] = useState('');
+  const q = query.trim().toLowerCase();
+  const filteredGroups = MENU_GROUPS.map((group) => ({
+    ...group,
+    entries: group.entries.filter(
+      (e) =>
+        !q ||
+        entryLabel(e).toLowerCase().includes(q) ||
+        entryDescription(e).toLowerCase().includes(q),
+    ),
+  })).filter((g) => g.entries.length > 0);
+
+  // 최근 편집 — localStorage. SSR 불일치를 피하려 마운트 후 로드.
+  const [recents, setRecents] = useState<MenuEntry[]>([]);
+  useEffect(() => {
+    setRecents(readRecents());
+  }, []);
+
   return (
     <div className="space-y-12">
-      {/* 사용 안내 — 사이트 에디토리얼 탭(연혁·교육목표) 톤의 번호형 인포그래픽 설명서.
-          박스 대신 여백·헤어라인·큰 번호로 위계를 만든다. */}
-      <Reveal>
-        <section className="relative isolate overflow-hidden border-b border-surface-border pb-10">
-          {/* 장식용 독수리 워터마크 — eagle.png(흰 라인아트)를 마스크로 써서
-              브랜드 그라디언트로 아주 옅게 틴트. 텍스트 뒤(-z-10)에 배치. */}
+      {/* 헤더 + 검색 — 바로 작업을 시작하는 진입점 */}
+      <section className="relative isolate overflow-hidden">
+        {/* 장식용 독수리 워터마크 — eagle.png(흰 라인아트)를 마스크로 써서
+            브랜드 그라디언트로 아주 옅게 틴트. 텍스트 뒤(-z-10)에 배치. */}
+        <span
+          aria-hidden="true"
+          className="eagle-mask pointer-events-none absolute -right-16 -top-16 -z-10 h-64 w-64 bg-gradient-to-br from-yonsei-navy to-yonsei-blue opacity-[0.06] sm:-right-10 sm:h-80 sm:w-80"
+        />
+        <p className="eyebrow">콘텐츠 관리</p>
+        <h2 className="mt-3 text-[clamp(1.6rem,3vw,2.4rem)] font-bold leading-[1.1] tracking-tight text-content">
+          무엇을 수정할까요?
+        </h2>
+        <p className="mt-3 max-w-prose text-sm leading-relaxed text-content-soft sm:text-base">
+          항목을 고르면 바로 편집할 수 있습니다. 저장하면 GitHub에 커밋되고 1~2분 내 사이트에
+          자동 반영됩니다.
+        </p>
+
+        {/* 검색 — 반복 방문자의 최단 동선 */}
+        <div className="relative mt-6 max-w-md">
           <span
             aria-hidden="true"
-            className="eagle-mask pointer-events-none absolute -right-16 -top-12 -z-10 h-80 w-80 bg-gradient-to-br from-yonsei-navy to-yonsei-blue opacity-[0.06] sm:-right-20 sm:h-[26rem] sm:w-[26rem]"
+            className="pointer-events-none absolute inset-y-0 left-3 grid place-items-center text-content-faint"
+          >
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <circle cx="11" cy="11" r="7" />
+              <path d="m21 21-4.3-4.3" strokeLinecap="round" />
+            </svg>
+          </span>
+          <input
+            type="text"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            placeholder="편집할 항목 검색 (예: 세미나, 교수진, 장학금)"
+            aria-label="편집할 항목 검색"
+            className="w-full border border-surface-border bg-surface py-2.5 pl-10 pr-4 text-sm text-content outline-none transition-colors focus:border-yonsei-blue"
           />
-          <p className="eyebrow">시작하기</p>
-          <h2 className="mt-3 max-w-3xl text-[clamp(1.7rem,3.5vw,2.75rem)] font-bold leading-[1.1] tracking-tight text-content">
-            무엇을 수정할까요?
-          </h2>
-          <p className="mt-5 max-w-prose text-base leading-relaxed text-content-soft sm:text-lg">
-            코드를 몰라도 됩니다. 아래 네 단계로 사이트의 모든 콘텐츠를 직접 편집하세요. 저장하면
-            GitHub 저장소에 바로 커밋되고, Vercel이 1~2분 내 사이트에 자동 반영합니다.
-          </p>
+        </div>
 
-          {/* 설명서 — 01 → 02 → 03 → 04 절차 */}
-          <ol className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-            {[
-              { t: '콘텐츠 선택', b: '왼쪽 메뉴나 아래 카드에서 편집할 항목(게시판·연혁·교수진·교과목 등)을 고릅니다.' },
-              { t: '내용 편집', b: '한국어와 English를 입력합니다. “한→영 번역” 버튼으로 영문 초안을 채우고, 사진은 파일을 올리면 됩니다.' },
-              { t: '저장 = 커밋', b: '“저장” 버튼을 누르면 변경 내용이 GitHub 저장소에 바로 커밋됩니다.' },
-              { t: '자동 반영', b: 'Vercel이 1~2분 내 사이트에 자동 배포해 실제 페이지에 나타납니다.' },
-            ].map((step, i) => (
-              <li key={i} className="border-t border-surface-border pt-5">
-                <span className="block text-4xl font-light tabular-nums text-yonsei-blue/40">
-                  {String(i + 1).padStart(2, '0')}
-                  <span className="text-yonsei-gold">.</span>
-                </span>
-                <h3 className="mt-4 text-lg font-bold text-content">{step.t}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-content-soft">{step.b}</p>
-              </li>
+        {/* 최근 편집 — 이어서 작업 (검색 중에는 숨겨 목록에 집중) */}
+        {recents.length > 0 && !q && (
+          <div className="mt-5 flex flex-wrap items-center gap-2">
+            <span className="text-xs font-semibold uppercase tracking-wide text-content-faint">
+              최근 편집
+            </span>
+            {recents.map((entry) => (
+              <button
+                key={entryId(entry)}
+                type="button"
+                onClick={() => onOpen(entry)}
+                className="inline-flex items-center gap-1.5 border border-surface-border bg-surface-soft px-3 py-1.5 text-xs font-semibold text-content-soft transition-colors hover:border-yonsei-blue hover:text-yonsei-blue"
+              >
+                {entryLabel(entry)}
+                <span aria-hidden="true">→</span>
+              </button>
             ))}
-          </ol>
+          </div>
+        )}
+      </section>
 
-          {/* 결과 강조 — 골드 아래 화살표 + 큰 타이포 (EditorialTab outcome 패턴) */}
-          <div className="mt-12 text-center">
+      {/* 편집 카드 그리드 — 대시보드의 본체 */}
+      {filteredGroups.length === 0 ? (
+        <p className="border-t border-surface-border pt-8 text-sm text-content-faint">
+          &lsquo;{query}&rsquo; 에 해당하는 항목이 없습니다. 다른 검색어를 시도해 보세요.
+        </p>
+      ) : (
+        filteredGroups.map((group, gi) => (
+          <Reveal key={group.label} delay={Math.min(gi, 3) * 80}>
+            <section>
+              <div className="mb-5 flex items-center justify-between border-b-2 border-yonsei-navy pb-2">
+                <h3 className="text-lg font-bold text-content">{group.label}</h3>
+                <span className="text-xs tabular-nums text-content-faint">{group.entries.length}</span>
+              </div>
+              <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+                {group.entries.map((entry) => {
+                  const editable = isEditable(entry);
+                  const kind = entryKind(entry);
+                  if (!editable) {
+                    return (
+                      <div
+                        key={entryId(entry)}
+                        className="flex h-full flex-col rounded-card border border-dashed border-surface-border bg-surface-soft/60 p-5"
+                      >
+                        <div className="flex items-start justify-between gap-3">
+                          <p className="font-semibold text-content-soft">{entryLabel(entry)}</p>
+                          <span className="shrink-0 bg-surface px-1.5 py-0.5 text-[10px] font-medium text-content-faint">
+                            준비 중
+                          </span>
+                        </div>
+                        <p className="mt-2 line-clamp-2 text-sm leading-relaxed text-content-faint">
+                          {entryDescription(entry)}
+                        </p>
+                      </div>
+                    );
+                  }
+                  return (
+                    <button
+                      key={entryId(entry)}
+                      type="button"
+                      onClick={() => onOpen(entry)}
+                      className="group flex h-full flex-col rounded-card border border-surface-border bg-surface p-5 text-left shadow-card transition-all duration-200 ease-out-expo hover:-translate-y-1 hover:border-yonsei-blue/40 hover:shadow-card-hover"
+                    >
+                      <div className="flex items-start justify-between gap-3">
+                        <p className="font-semibold text-content transition-colors group-hover:text-yonsei-blue">
+                          {entryLabel(entry)}
+                        </p>
+                        {kind && (
+                          <span
+                            className={cn(
+                              'shrink-0 px-1.5 py-0.5 text-[10px] font-bold tracking-wide',
+                              kind.cls,
+                            )}
+                          >
+                            {kind.label}
+                          </span>
+                        )}
+                      </div>
+                      <p className="mt-2 line-clamp-2 text-sm leading-relaxed text-content-soft">
+                        {entryDescription(entry)}
+                      </p>
+                      <span
+                        aria-hidden="true"
+                        className="mt-auto pt-3 text-xs font-semibold text-content-faint transition-colors group-hover:text-yonsei-blue"
+                      >
+                        편집하기 →
+                      </span>
+                    </button>
+                  );
+                })}
+              </div>
+            </section>
+          </Reveal>
+        ))
+      )}
+
+      {/* 참고 안내 — 접이식. 처음 한 번만 필요한 내용이라 작업 공간을 가리지 않는다. */}
+      <section className="space-y-0 border-t border-surface-border">
+        <details className="group border-b border-surface-border">
+          <summary className="flex cursor-pointer list-none items-center justify-between gap-3 py-5 text-base font-bold text-content transition-colors hover:text-yonsei-blue [&::-webkit-details-marker]:hidden">
+            <span>
+              처음이신가요? <span className="font-medium text-content-soft">— 사용 방법 4단계</span>
+            </span>
             <svg
               aria-hidden="true"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
               strokeWidth="2"
-              className="mx-auto h-6 w-6 text-yonsei-gold"
+              className="h-4 w-4 shrink-0 text-content-faint transition-transform group-open:rotate-180"
             >
-              <path d="M12 4v15M5 12l7 7 7-7" strokeLinecap="round" strokeLinejoin="round" />
+              <path d="m6 9 6 6 6-6" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
-            <p className="mt-4 text-2xl font-bold tracking-tight text-content sm:text-3xl">
-              누구나 코드 없이 사이트를 관리합니다<span className="text-yonsei-gold">.</span>
-            </p>
-          </div>
-        </section>
-      </Reveal>
-
-      {MENU_GROUPS.map((group, gi) => (
-        <Reveal key={group.label} delay={Math.min(gi, 3) * 80}>
-          <section>
-            <div className="mb-5 flex items-center justify-between border-b-2 border-yonsei-navy pb-2">
-              <h3 className="text-lg font-bold text-content">{group.label}</h3>
-            </div>
-            <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
-              {group.entries.map((entry) => {
-                const editable = isEditable(entry);
-                if (!editable) {
-                  return (
-                    <div
-                      key={entryId(entry)}
-                      className="flex h-full flex-col rounded-card border border-dashed border-surface-border bg-surface-soft/60 p-5"
-                    >
-                      <div className="flex items-start justify-between gap-3">
-                        <p className="font-semibold text-content-soft">{entryLabel(entry)}</p>
-                        <span className="shrink-0 rounded bg-surface px-1.5 py-0.5 text-[10px] font-medium text-content-faint">
-                          준비 중
-                        </span>
-                      </div>
-                      <p className="mt-2 line-clamp-2 text-sm leading-relaxed text-content-faint">
-                        {entryDescription(entry)}
-                      </p>
-                    </div>
-                  );
-                }
-                return (
-                  <button
-                    key={entryId(entry)}
-                    type="button"
-                    onClick={() => onOpen(entry)}
-                    className="group flex h-full flex-col rounded-card border border-surface-border bg-surface p-5 text-left shadow-card transition-all duration-200 ease-out-expo hover:-translate-y-1 hover:border-yonsei-blue/40 hover:shadow-card-hover"
-                  >
-                    <div className="flex items-start justify-between gap-3">
-                      <p className="font-semibold text-content transition-colors group-hover:text-yonsei-blue">
-                        {entryLabel(entry)}
-                      </p>
-                      <span
-                        aria-hidden="true"
-                        className="shrink-0 text-content-faint transition-transform duration-200 group-hover:translate-x-0.5 group-hover:text-yonsei-blue"
-                      >
-                        →
-                      </span>
-                    </div>
-                    <p className="mt-2 line-clamp-2 text-sm leading-relaxed text-content-soft">
-                      {entryDescription(entry)}
-                    </p>
-                  </button>
-                );
-              })}
-            </div>
-          </section>
-        </Reveal>
-      ))}
-
-      {/* 관리자 등록 안내 — GitHub 로그인 허용 계정 관리 (에디토리얼 스타일) */}
-      <Reveal>
-        <section className="border-t border-surface-border pt-10">
-          <p className="eyebrow">관리자 추가</p>
-          <h3 className="mt-3 text-headline font-bold text-content">새 관리자를 등록하려면</h3>
-          <p className="mt-4 max-w-prose text-sm leading-relaxed text-content-soft sm:text-base">
-            이 콘솔은 GitHub 로그인으로 접근합니다. 새 담당자를 추가하려면 아래 세 가지가 필요합니다
-            (Vercel·GitHub 설정 권한이 있는 사람이 진행하세요).
-          </p>
-          <ol className="mt-10 grid gap-8 md:grid-cols-3">
+          </summary>
+          <ol className="grid gap-8 pb-8 pt-2 sm:grid-cols-2 lg:grid-cols-4">
             {[
-              {
-                t: '로그인 허용',
-                b: 'Vercel → Settings → Environment Variables 의 ALLOWED_GITHUB_LOGINS 에 그 사람의 GitHub 계정명을 추가합니다(여러 명은 쉼표로 구분).',
-              },
-              {
-                t: '저장소 권한',
-                b: 'GitHub 저장소 halfjinhyeon/yonsei-me → Settings → Collaborators 에서 그 계정을 Write 권한으로 초대합니다(저장 = 커밋에 필요).',
-              },
-              {
-                t: '재배포',
-                b: '환경변수는 새 배포부터 적용됩니다. Vercel 에서 최신 배포를 Redeploy 하면 그 사람이 로그인할 수 있습니다.',
-              },
+              { t: '콘텐츠 선택', b: '왼쪽 메뉴나 위 카드에서 편집할 항목(게시판·연혁·교수진·교과목 등)을 고릅니다.' },
+              { t: '내용 편집', b: '한국어와 English를 입력합니다. “한→영 번역” 버튼으로 영문 초안을 채우고, 사진은 파일을 올리면 됩니다.' },
+              { t: '저장 = 커밋', b: '“저장” 버튼을 누르면 변경 내용이 GitHub 저장소에 바로 커밋됩니다.' },
+              { t: '자동 반영', b: 'Vercel이 1~2분 내 사이트에 자동 배포해 실제 페이지에 나타납니다.' },
             ].map((step, i) => (
-              <li key={i} className="border-t border-surface-border pt-5">
-                <span className="block text-4xl font-light tabular-nums text-yonsei-blue/40">
+              <li key={i} className="border-t border-surface-border pt-4">
+                <span className="block text-3xl font-light tabular-nums text-yonsei-blue/40">
                   {String(i + 1).padStart(2, '0')}
                   <span className="text-yonsei-gold">.</span>
                 </span>
-                <h4 className="mt-4 text-lg font-bold text-content">{step.t}</h4>
-                <p className="mt-2 text-sm leading-relaxed text-content-soft">{step.b}</p>
+                <h4 className="mt-3 text-base font-bold text-content">{step.t}</h4>
+                <p className="mt-1.5 text-sm leading-relaxed text-content-soft">{step.b}</p>
               </li>
             ))}
           </ol>
-          <p className="mt-8 max-w-prose text-xs leading-relaxed text-content-faint">
-            계정명은 이메일·실명이 아니라 GitHub username 입니다. 관리자를 제거하려면
-            ALLOWED_GITHUB_LOGINS 에서 계정명을 지우고 다시 배포하세요. (저장소 소유자 계정은
-            코드에 항상 허용되어 있습니다.)
-          </p>
-        </section>
-      </Reveal>
+        </details>
+
+        <details className="group border-b border-surface-border">
+          <summary className="flex cursor-pointer list-none items-center justify-between gap-3 py-5 text-base font-bold text-content transition-colors hover:text-yonsei-blue [&::-webkit-details-marker]:hidden">
+            <span>
+              새 관리자 등록 <span className="font-medium text-content-soft">— GitHub 계정 허용 절차</span>
+            </span>
+            <svg
+              aria-hidden="true"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              className="h-4 w-4 shrink-0 text-content-faint transition-transform group-open:rotate-180"
+            >
+              <path d="m6 9 6 6 6-6" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </summary>
+          <div className="pb-8 pt-2">
+            <p className="max-w-prose text-sm leading-relaxed text-content-soft">
+              이 콘솔은 GitHub 로그인으로 접근합니다. 새 담당자를 추가하려면 아래 세 가지가
+              필요합니다 (Vercel·GitHub 설정 권한이 있는 사람이 진행하세요).
+            </p>
+            <ol className="mt-8 grid gap-8 md:grid-cols-3">
+              {[
+                {
+                  t: '로그인 허용',
+                  b: 'Vercel → Settings → Environment Variables 의 ALLOWED_GITHUB_LOGINS 에 그 사람의 GitHub 계정명을 추가합니다(여러 명은 쉼표로 구분).',
+                },
+                {
+                  t: '저장소 권한',
+                  b: 'GitHub 저장소 halfjinhyeon/yonsei-me → Settings → Collaborators 에서 그 계정을 Write 권한으로 초대합니다(저장 = 커밋에 필요).',
+                },
+                {
+                  t: '재배포',
+                  b: '환경변수는 새 배포부터 적용됩니다. Vercel 에서 최신 배포를 Redeploy 하면 그 사람이 로그인할 수 있습니다.',
+                },
+              ].map((step, i) => (
+                <li key={i} className="border-t border-surface-border pt-4">
+                  <span className="block text-3xl font-light tabular-nums text-yonsei-blue/40">
+                    {String(i + 1).padStart(2, '0')}
+                    <span className="text-yonsei-gold">.</span>
+                  </span>
+                  <h4 className="mt-3 text-base font-bold text-content">{step.t}</h4>
+                  <p className="mt-1.5 text-sm leading-relaxed text-content-soft">{step.b}</p>
+                </li>
+              ))}
+            </ol>
+            <p className="mt-6 max-w-prose text-xs leading-relaxed text-content-faint">
+              계정명은 이메일·실명이 아니라 GitHub username 입니다. 관리자를 제거하려면
+              ALLOWED_GITHUB_LOGINS 에서 계정명을 지우고 다시 배포하세요. (저장소 소유자 계정은
+              코드에 항상 허용되어 있습니다.)
+            </p>
+          </div>
+        </details>
+      </section>
     </div>
   );
 }

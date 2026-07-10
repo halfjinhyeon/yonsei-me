@@ -10,6 +10,8 @@ export interface BoardRow {
   subtitle?: string;
   tag?: string;
   href?: string;
+  /** 카테고리 필터용 식별자 (FilterableBoardList 의 categories 와 매칭). 표시엔 안 씀 */
+  category?: string;
 }
 
 /**

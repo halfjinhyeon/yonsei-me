@@ -8,8 +8,8 @@ import { ProgramTabs } from '@/components/ProgramTabs';
 import { NoticeShowcase } from '@/components/NoticeShowcase';
 import { WeeklyCalendar } from '@/components/WeeklyCalendar';
 import { LabCarousel } from '@/components/LabCarousel';
-import { Reveal } from '@/components/Reveal';
 import { ResearchGallery } from '@/components/ResearchGallery';
+import { StatementReveal } from '@/components/StatementReveal';
 import { programs, board, pick, getCalendarEntries } from '@/lib/content';
 import galleryData from '@content/research-gallery.json';
 import { getLabsDirectory } from '@/lib/faculty';
@@ -66,25 +66,9 @@ export default function HomePage({ params }: { params: { locale: string } }) {
       {/* 1. 애니메이션 히어로 (풀뷰포트) */}
       <AnimatedHero />
 
-      {/* 2. 컬러 스테이트먼트 — 배경 플로우 위 흰 텍스트(대형이라 AA large).
-          상단 패딩을 줄여 텍스트를 위로 올림(디졸브 타이밍이 자연스럽게). */}
-      <section data-flow className="px-6 pb-16 pt-8 text-white sm:px-10 lg:px-16 lg:pb-24 lg:pt-12">
-        <Reveal className="mx-auto max-w-5xl">
-          <p className="text-[clamp(2rem,5.5vw,4.75rem)] font-black leading-[1.12] tracking-tighter">
-            {t.rich('weAre.statement', {
-              c1: (c) => <span className="text-yonsei-navy">{c}</span>,
-              c2: (c) => <span className="text-yonsei-navy">{c}</span>,
-              br: () => <br />,
-            })}
-          </p>
-          <Link
-            href="/about"
-            className="mt-10 inline-flex items-center gap-2 border-b-2 border-white pb-1 text-base font-semibold text-white transition-opacity hover:opacity-70"
-          >
-            {t('weAre.link')}
-          </Link>
-        </Reveal>
-      </section>
+      {/* 2. 컬러 스테이트먼트 — 스크롤 워드필(ScrollTrigger scrub + SplitText).
+          문장이 스크롤에 따라 단어 단위로 차오르고, 독수리는 우측 패럴랙스. */}
+      <StatementReveal />
 
       {/* 3. 연구 분야 갤러리 → 오버레이 (Osmo Flip). 배경 플로우 위 풀뷰포트 섹션.
           data-flow 로 BgFlow 색 흐름·ProgramTabs 디졸브 여백 유지. */}
