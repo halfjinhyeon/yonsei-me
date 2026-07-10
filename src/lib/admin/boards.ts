@@ -123,7 +123,12 @@ export function today(): string {
  */
 export function suggestId(meta: BoardMeta, existingIds: string[]): string {
   if (meta.isNews) {
-    return `${today()}-post`;
+    // 뉴스 slug: 날짜 기반. 같은 날 중복이면 -2, -3… 카운터를 붙여 고유화.
+    const base = `${today()}-post`;
+    if (!existingIds.includes(base)) return base;
+    let i = 2;
+    while (existingIds.includes(`${base}-${i}`)) i += 1;
+    return `${base}-${i}`;
   }
   const prefix = meta.idPrefix;
   let max = 0;

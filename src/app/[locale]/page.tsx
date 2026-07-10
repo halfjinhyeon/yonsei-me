@@ -9,18 +9,21 @@ import { NoticeShowcase } from '@/components/NoticeShowcase';
 import { WeeklyCalendar } from '@/components/WeeklyCalendar';
 import { LabCarousel } from '@/components/LabCarousel';
 import { Reveal } from '@/components/Reveal';
-import { Container } from '@/components/Container';
+import { ResearchGallery } from '@/components/ResearchGallery';
 import { programs, board, pick, getCalendarEntries } from '@/lib/content';
+import galleryData from '@content/research-gallery.json';
 import { getLabsDirectory } from '@/lib/faculty';
 import { formatDate } from '@/lib/utils';
 import type { Locale } from '@/i18n/routing';
 
-const stats = [
-  { key: 'faculty', value: 24, unitKey: 'facultyUnit' },
-  { key: 'students', value: 620, unitKey: 'studentsUnit' },
-  { key: 'labs', value: 33, unitKey: 'labsUnit' },
-  { key: 'papers', value: 150, unitKey: 'papersUnit' },
-] as const;
+// 연구 분야 갤러리 데이터(content/research-gallery.json) 형태
+type RawGalleryItem = {
+  field: string;
+  title: { ko: string; en: string };
+  description: { ko: string; en: string };
+  image: string;
+  images: string[];
+};
 
 export default function HomePage({ params }: { params: { locale: string } }) {
   setRequestLocale(params.locale);
@@ -30,6 +33,15 @@ export default function HomePage({ params }: { params: { locale: string } }) {
   const tMenu = useTranslations('menu');
   const tNews = useTranslations('news');
   const labs = getLabsDirectory();
+
+  // 연구 분야 갤러리 항목: 로케일 해석 후 클라이언트 컴포넌트로 전달
+  const galleryItems = (galleryData as RawGalleryItem[]).map((g) => ({
+    field: g.field,
+    title: pick(g.title, locale),
+    description: pick(g.description, locale),
+    image: g.image,
+    images: g.images,
+  }));
 
   // 공지 쇼케이스 데이터: 학부·대학원 공지를 합쳐 날짜 내림차순, 상위 7건.
   // group 라벨은 기존 board 키를 재사용(신규 메시지 키 금지).
@@ -60,8 +72,8 @@ export default function HomePage({ params }: { params: { locale: string } }) {
         <Reveal className="mx-auto max-w-5xl">
           <p className="text-[clamp(2rem,5.5vw,4.75rem)] font-black leading-[1.12] tracking-tighter">
             {t.rich('weAre.statement', {
-              c1: (c) => <span className="text-yonsei-gold">{c}</span>,
-              c2: (c) => <span className="text-yonsei-sky">{c}</span>,
+              c1: (c) => <span className="text-yonsei-navy">{c}</span>,
+              c2: (c) => <span className="text-yonsei-navy">{c}</span>,
               br: () => <br />,
             })}
           </p>
@@ -74,24 +86,11 @@ export default function HomePage({ params }: { params: { locale: string } }) {
         </Reveal>
       </section>
 
-      {/* 3. 통계 스트립 (풀블리드) — 배경 플로우 위 흰 텍스트.
-          숫자를 위로 올리고 아래에 다크 여백을 둬, ProgramTabs 디졸브가
-          글자 없는 구간에서 일어나게 한다. */}
-      <section data-flow className="full-bleed border-t border-white/15 text-white">
-        <Container>
-          <dl className="grid grid-cols-2 gap-6 pb-28 pt-10 sm:pb-40 lg:grid-cols-4">
-            {stats.map((s) => (
-              <div key={s.key} className="text-center">
-                <dd className="text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
-                  {s.value.toLocaleString(locale === 'ko' ? 'ko-KR' : 'en-US')}
-                  <span className="text-yonsei-gold">{t(`stats.${s.unitKey}`)}</span>
-                </dd>
-                <dt className="mt-1 text-sm text-white/70">{t(`stats.${s.key}`)}</dt>
-              </div>
-            ))}
-          </dl>
-        </Container>
-      </section>
+      {/* 3. 연구 분야 갤러리 → 오버레이 (Osmo Flip). 배경 플로우 위 풀뷰포트 섹션.
+          data-flow 로 BgFlow 색 흐름·ProgramTabs 디졸브 여백 유지. */}
+      <div data-flow>
+        <ResearchGallery items={galleryItems} />
+      </div>
 
       {/* 4. 프로그램 탭 (이미지 스왑 + 학부/대학원) */}
       <ProgramTabs
@@ -143,7 +142,7 @@ export default function HomePage({ params }: { params: { locale: string } }) {
             <li key={s.id}>
               <Link
                 href={`/news/post/${s.id}`}
-                className="group flex h-full flex-col gap-2 rounded-card border border-surface-border bg-surface p-5 transition-all hover:-translate-y-1 hover:border-yonsei-blue/40 hover:shadow-card"
+                className="group flex h-full flex-col gap-2 border border-surface-border bg-surface p-5 transition-all hover:-translate-y-1 hover:border-yonsei-blue/40 hover:shadow-card"
               >
                 <time dateTime={s.date} className="text-sm font-semibold tabular-nums text-yonsei-blue">
                   {formatDate(s.date, locale)}
@@ -175,9 +174,9 @@ export default function HomePage({ params }: { params: { locale: string } }) {
             <li key={e.id}>
               <Link
                 href={`/news/post/${e.id}`}
-                className="group flex h-full flex-col gap-3 rounded-card border border-surface-border bg-surface p-5 transition-all hover:-translate-y-1 hover:border-yonsei-blue/40 hover:shadow-card"
+                className="group flex h-full flex-col gap-3 border border-surface-border bg-surface p-5 transition-all hover:-translate-y-1 hover:border-yonsei-blue/40 hover:shadow-card"
               >
-                <span className="w-fit shrink-0 rounded-md bg-yonsei-navy/5 px-2.5 py-1 text-xs font-bold text-yonsei-navy">
+                <span className="w-fit shrink-0 bg-yonsei-navy/5 px-2.5 py-1 text-xs font-bold text-yonsei-navy">
                   {pick(e.dateLabel, locale)}
                 </span>
                 <span className="line-clamp-3 font-medium text-content group-hover:text-yonsei-blue">

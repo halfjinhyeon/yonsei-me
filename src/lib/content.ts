@@ -245,7 +245,7 @@ export interface HistoryEvent {
   title: Localized;
 }
 
-/** 연혁은 항상 과거→현재 오름차순으로 반환 */
+/** 연혁은 항상 최근→과거 내림차순으로 반환 */
 export const history = (historyData as HistoryEvent[])
   .slice()
-  .sort((a, b) => (a.date < b.date ? -1 : 1));
+  .sort((a, b) => (a.date < b.date ? 1 : -1));

@@ -236,7 +236,7 @@ function LabCardView({
 
   // 모바일에서는 카드가 화면을 압도하지 않도록 폭을 줄인다 (텍스트도 함께 축소)
   const shellClass =
-    'group relative block aspect-[7/8] w-[185px] shrink-0 overflow-hidden rounded-lg border border-black/5 sm:w-[290px]';
+    'group relative block aspect-[7/8] w-[185px] shrink-0 overflow-hidden border border-black/5 sm:w-[290px]';
 
   if (hasLink) {
     return (

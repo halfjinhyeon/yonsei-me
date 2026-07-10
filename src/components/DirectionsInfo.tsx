@@ -12,11 +12,12 @@ interface DirectionsData {
 
 const directions = directionsData as DirectionsData;
 
-/** 서울 시내버스 도색(지선 초록/간선 파랑/광역 빨강)을 그대로 반영하는 라벨 색 */
-const BUS_COLORS: Record<DirectionsData['bus'][number]['color'], string> = {
-  green: 'text-green-600 dark:text-green-500',
-  blue: 'text-blue-600 dark:text-blue-400',
-  red: 'text-red-600 dark:text-red-400',
+/** 서울 시내버스 도색(지선 초록/간선 파랑/광역 빨강)을 라벨 셀 배경에 반영.
+ *  밝은 -400 배경이라 글자는 고정 다크(text-neutral-900)로 대비 확보(다크모드에서도 유지). */
+const BUS_BG: Record<DirectionsData['bus'][number]['color'], string> = {
+  green: 'bg-green-400',
+  blue: 'bg-blue-400',
+  red: 'bg-red-400',
 };
 
 /**
@@ -54,7 +55,7 @@ export async function DirectionsInfo({ locale }: { locale: Locale }) {
           {directions.bus.map((row) => (
             <div key={row.color} className="contents">
               <dt
-                className={`flex items-center justify-center border-b border-surface-border bg-surface-soft px-4 py-3 text-center font-semibold ${BUS_COLORS[row.color]}`}
+                className={`flex items-center justify-center border-b border-surface-border px-4 py-3 text-center font-semibold text-neutral-900 ${BUS_BG[row.color]}`}
               >
                 {pick(row.label, locale)}
               </dt>

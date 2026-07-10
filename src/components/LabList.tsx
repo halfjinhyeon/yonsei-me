@@ -1,6 +1,6 @@
 'use client';
 
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { UnderlineTabs } from '@/components/UnderlineTabs';
 import { cn } from '@/lib/utils';
@@ -27,6 +27,15 @@ type Filter = 'all' | ResearchField;
 export function LabList({ items }: { items: LabDirectoryEntry[] }) {
   const t = useTranslations('research');
   const [filter, setFilter] = useState<Filter>('all');
+
+  // 홈 연구 분야 갤러리에서 /research?field=<분야>#labs 로 진입 시 해당 분야로 초기 필터.
+  // (정적 페이지 유지를 위해 useSearchParams 대신 window 로 읽는다.)
+  useEffect(() => {
+    const field = new URLSearchParams(window.location.search).get('field');
+    if (field && (FIELDS as string[]).includes(field)) {
+      setFilter(field as ResearchField);
+    }
+  }, []);
 
   const counts = useMemo(() => {
     const map = { all: items.length } as Record<Filter, number>;

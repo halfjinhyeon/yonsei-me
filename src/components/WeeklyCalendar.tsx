@@ -84,7 +84,7 @@ export function WeeklyCalendar({ entries, locale }: { entries: CalendarEntry[]; 
             <li
               key={day?.iso ?? i}
               className={cn(
-                'flex min-h-[7.5rem] flex-col rounded-lg border p-3',
+                'flex min-h-[7.5rem] flex-col border p-3',
                 day?.isToday
                   ? 'border-yonsei-blue bg-yonsei-navy text-white'
                   : 'border-surface-border bg-surface',
@@ -110,7 +110,7 @@ export function WeeklyCalendar({ entries, locale }: { entries: CalendarEntry[]; 
                           key={`${e.category}-${e.id}`}
                           href={entryHref(e)}
                           className={cn(
-                            'rounded-md px-2 py-1 text-[0.7rem] font-medium leading-snug transition-colors',
+                            'px-2 py-1 text-[0.7rem] font-medium leading-snug transition-colors',
                             day.isToday
                               ? 'bg-white/15 text-white hover:bg-white/25'
                               : e.category === 'alumni'

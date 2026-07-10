@@ -153,6 +153,8 @@ export function BoardEditor({ config, boardKey, onDirtyChange }: Props) {
   // 저장(추가/수정): 최신 sha 확보 → 배열 수정 → 커밋
   async function handleSave(rec: EditRecord) {
     if (!config) return;
+    // 새 글이면 저장 시점(최신 목록)에 고유번호/slug 를 자동 재부여해 충돌 방지
+    const isNew = !editing?.isEdit;
     setSaving(true);
     setSaveError(null);
     const newsPath = meta.newsFile ?? 'content/news.json';
@@ -160,8 +162,9 @@ export function BoardEditor({ config, boardKey, onDirtyChange }: Props) {
     try {
       if (meta.isNews) {
         const file = await loadJson<NewsItem[]>(config, path);
-        const entry = toNewsEntry(rec);
         const arr = file.data.slice();
+        const entry = toNewsEntry(rec);
+        if (isNew) entry.slug = suggestId(meta, arr.map((n) => n.slug));
         const idx = arr.findIndex((n) => n.slug === entry.slug);
         if (idx >= 0) arr[idx] = entry;
         else arr.unshift(entry);
@@ -176,8 +179,9 @@ export function BoardEditor({ config, boardKey, onDirtyChange }: Props) {
       } else {
         const file = await loadJson<BoardFile>(config, path);
         const key = boardKey as keyof BoardFile;
-        const entry = toBoardEntry(meta, rec);
         const list = (file.data[key] ?? []).slice() as { id: string }[];
+        const entry = toBoardEntry(meta, rec);
+        if (isNew) (entry as { id: string }).id = suggestId(meta, list.map((n) => n.id));
         const idx = list.findIndex((n) => n.id === entry.id);
         if (idx >= 0) list[idx] = entry as typeof list[number];
         else list.unshift(entry as typeof list[number]);

@@ -50,8 +50,9 @@ function groupByDecade(events: HistoryEvent[]): DecadeGroup[] {
     if (bucket) bucket.push(ev);
     else map.set(decade, [ev]);
   }
+  // 최근 연대 → 과거 연대. 연대 안의 항목은 입력 순서(=최근→과거)를 그대로 따른다.
   return [...map.entries()]
-    .sort((a, b) => a[0] - b[0])
+    .sort((a, b) => b[0] - a[0])
     .map(([decade, evs]) => ({ decade, events: evs }));
 }
 
@@ -205,7 +206,7 @@ function DecadeSection({
         {/* bg-surface 로 뒤의 스파인을 가려 선이 글자를 뚫고 지나가지 않게 한다 */}
         <span className="relative z-10 inline-block bg-surface pr-3 lg:px-5">
           {decadeLabel(group.decade, locale)}
-          <span className="text-yonsei-gold">.</span>
+          <span className="text-yonsei-gold"></span>
         </span>
       </h3>
 

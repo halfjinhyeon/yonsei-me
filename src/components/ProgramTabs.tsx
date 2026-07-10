@@ -157,7 +157,7 @@ export function ProgramTabs({
                 href={p.href}
                 onMouseEnter={() => setHoverId(p.id)}
                 onFocus={() => setHoverId(p.id)}
-                className="group flex items-center justify-between gap-4 py-2.5 transition-colors hover:text-yonsei-blue focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yonsei-blue"
+                className="group flex items-center justify-between gap-4 py-3.5 transition-colors hover:text-yonsei-blue focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yonsei-blue"
               >
                 <span className="min-w-0">
                   <span className="block font-semibold">{pick(p.title, locale)}</span>

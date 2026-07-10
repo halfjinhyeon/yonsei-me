@@ -245,6 +245,14 @@
     "newsPreview": {
       "title": "News",
       "viewAll": "View all"
+    },
+    "researchGallery": {
+      "eyebrow": "RESEARCH FIELDS",
+      "heading": "Six directions of research",
+      "hint": "Pick a field to explore its labs",
+      "cta": "Explore labs in this field",
+      "back": "Back to list",
+      "scroll": "Scroll to explore"
     }
   },
   "about": {

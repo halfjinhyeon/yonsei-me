@@ -525,12 +525,21 @@ export function GraduationChecker({ data, locale }: { data: CheckerData; locale:
 
         {/* 검색 추가 */}
         <div className="relative mt-4 max-w-md">
+          <span
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-y-0 left-3 grid place-items-center text-content-faint"
+          >
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <circle cx="11" cy="11" r="7" />
+              <path d="m21 21-4.3-4.3" strokeLinecap="round" />
+            </svg>
+          </span>
           <input
             type="text"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder={ko ? '과목명 검색 후 추가 (예: 열역학)' : 'Search a course to add'}
-            className="w-full border border-surface-border bg-surface px-4 py-2.5 text-sm text-content outline-none transition-colors focus:border-yonsei-blue"
+            className="w-full border border-surface-border bg-surface py-2.5 pl-10 pr-4 text-sm text-content outline-none transition-colors focus:border-yonsei-blue"
           />
           {suggestions.length > 0 && (
             <ul className="absolute z-10 mt-1 w-full overflow-hidden border border-surface-border bg-surface shadow-card">
@@ -558,10 +567,15 @@ export function GraduationChecker({ data, locale }: { data: CheckerData; locale:
           )}
         </div>
 
-        {/* 채플 카운터 */}
-        <div className="mt-5 flex items-center gap-4">
+        {/* 채플 카운터 — 1학기 이상 이수 시 연한 파랑으로 강조 */}
+        <div className="mt-6 flex items-center gap-4 border-t border-surface-border pt-6">
           <span className="text-sm font-semibold text-content">{ko ? '채플 이수 학기' : 'Chapel semesters'}</span>
-          <div className="inline-flex items-center overflow-hidden rounded-lg border border-surface-border">
+          <div
+            className={cn(
+              'inline-flex items-center overflow-hidden rounded-lg border transition-colors',
+              chapelCount >= 1 ? 'border-yonsei-blue bg-yonsei-blue/5' : 'border-surface-border',
+            )}
+          >
             <button
               type="button"
               onClick={() => setChapelCount((n) => Math.max(0, n - 1))}
@@ -570,7 +584,12 @@ export function GraduationChecker({ data, locale }: { data: CheckerData; locale:
             >
               −
             </button>
-            <span className="border-x border-surface-border px-4 py-1.5 text-sm font-bold tabular-nums text-content">
+            <span
+              className={cn(
+                'border-x px-4 py-1.5 text-sm font-bold tabular-nums transition-colors',
+                chapelCount >= 1 ? 'border-yonsei-blue/30 text-yonsei-blue' : 'border-surface-border text-content',
+              )}
+            >
               {chapelCount} / 4
             </span>
             <button
@@ -588,7 +607,7 @@ export function GraduationChecker({ data, locale }: { data: CheckerData; locale:
         </div>
 
         {/* RC자기주도활동 — P/NP·각 0.5학점, 시간표에 안 잡히므로 직접 체크 */}
-        <div className="mt-5">
+        <div className="mt-6 border-t border-surface-border pt-6">
           <p className="text-sm font-semibold text-content">
             {ko ? 'RC자기주도활동 (P/NP, 각 0.5학점)' : 'RC Self-Directed Activity (P/NP, 0.5 cr. each)'}
           </p>
@@ -634,14 +653,20 @@ export function GraduationChecker({ data, locale }: { data: CheckerData; locale:
           </p>
         </div>
 
-        {/* 인식/추가된 과목 칩 */}
-        {takenCourses.length > 0 ? (
-          <div className="mt-6 space-y-4">
-            <p className="text-sm font-semibold text-content">
-              {ko
-                ? `합계 ${takenCourses.length}과목 · ${chipTotalCredits}학점`
-                : `Total ${takenCourses.length} courses · ${chipTotalCredits} cr.`}
-            </p>
+        {/* 인식/추가된 과목 */}
+        <div className="mt-6 border-t border-surface-border pt-6">
+          <p className="text-sm font-semibold text-content">
+            {ko ? '인식된 과목' : 'Recognized courses'}
+            {takenCourses.length > 0 && (
+              <span className="ml-2 text-xs font-normal text-content-faint">
+                {ko
+                  ? `${takenCourses.length}과목 · ${chipTotalCredits}학점`
+                  : `${takenCourses.length} courses · ${chipTotalCredits} cr.`}
+              </span>
+            )}
+          </p>
+          {takenCourses.length > 0 ? (
+          <div className="mt-4 space-y-4">
             {grouped
               .filter((g) => g.courses.length > 0)
               .map((g) => (
@@ -676,11 +701,12 @@ export function GraduationChecker({ data, locale }: { data: CheckerData; locale:
                 </div>
               ))}
           </div>
-        ) : (
-          <p className="mt-6 text-sm text-content-faint">
+          ) : (
+          <p className="mt-2 text-sm text-content-faint">
             {ko ? '아직 인식되거나 추가된 과목이 없습니다.' : 'No courses recognized or added yet.'}
           </p>
-        )}
+          )}
+        </div>
       </section>
 
       {/* STEP 04 — 결과 */}

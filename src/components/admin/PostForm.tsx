@@ -49,10 +49,7 @@ export function PostForm({ meta, initial, isEdit, busy, onCancel, onSubmit }: Pr
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setError(null);
-    if (rec.id.trim() === '') {
-      setError(meta.isNews ? 'slug를 입력하세요.' : 'id를 입력하세요.');
-      return;
-    }
+    // id/slug 는 자동 부여(작성자 미입력) → 검증 대상 아님
     if (rec.date.trim() === '') {
       setError('날짜를 입력하세요.');
       return;
@@ -74,16 +71,22 @@ export function PostForm({ meta, initial, isEdit, busy, onCancel, onSubmit }: Pr
         <div>
           <label htmlFor="pf-id" className="block text-sm font-semibold text-content">
             {idLabel}
+            {!isEdit && <span className="ml-1 font-normal text-content-faint">(자동 부여)</span>}
           </label>
           <input
             id="pf-id"
             type="text"
             value={rec.id}
-            readOnly={isEdit}
-            onChange={(e) => set('id', e.target.value)}
-            className={`${fieldClass} ${isEdit ? 'cursor-not-allowed opacity-70' : ''}`}
+            readOnly
+            tabIndex={-1}
+            aria-readonly="true"
+            className={`${fieldClass} cursor-not-allowed opacity-70`}
           />
-          {isEdit && <p className="mt-1 text-xs text-content-faint">수정 모드에서는 {idLabel}를 변경할 수 없습니다.</p>}
+          <p className="mt-1 text-xs text-content-faint">
+            {isEdit
+              ? `수정 모드에서는 ${idLabel}를 변경할 수 없습니다.`
+              : `${idLabel}는 저장 시 자동으로 부여됩니다.`}
+          </p>
         </div>
         <div>
           <label htmlFor="pf-date" className="block text-sm font-semibold text-content">

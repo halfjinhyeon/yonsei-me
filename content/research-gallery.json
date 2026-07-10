@@ -1,0 +1,62 @@
+[
+  {
+    "field": "bioNano",
+    "title": { "ko": "바이오·나노", "en": "Bio · Nano" },
+    "description": {
+      "ko": "생체 시스템과 나노 스케일 공정을 결합해 바이오칩·MEMS·마이크로광학 등 정밀의료와 차세대 소자를 만듭니다. 살아있는 것과 만드는 것의 경계에서 새로운 진단·치료 기술을 탐구합니다.",
+      "en": "Bridging living systems and nanoscale processes — biochips, MEMS, and micro-optics for precision medicine and next-generation devices."
+    },
+    "image": "/img/labs/biochip.jpg",
+    "images": ["/img/labs/mems-microsystem.jpg", "/img/labs/micro-nano-optics.jpg"]
+  },
+  {
+    "field": "thermoFluid",
+    "title": { "ko": "열·유체", "en": "Thermal · Fluids" },
+    "description": {
+      "ko": "열전달·연소·유동 제어를 깊이 있게 다뤄 고효율 동력과 청정 에너지 시스템을 설계합니다. 눈에 보이지 않는 흐름과 열을 다스려 탄소중립 시대의 에너지 문제에 답합니다.",
+      "en": "Heat transfer, combustion, and flow control for high-efficiency power and clean-energy systems in the carbon-neutral era."
+    },
+    "image": "/img/labs/advanced-thermal.jpg",
+    "images": ["/img/labs/heat-transfer.jpg", "/img/labs/clean-energy-engine.jpg"]
+  },
+  {
+    "field": "dynamicsControl",
+    "title": { "ko": "동역학·제어", "en": "Dynamics · Control" },
+    "description": {
+      "ko": "로봇과 자율 시스템의 동역학을 이해하고 지능 제어로 움직임을 설계합니다. 사람과 함께 일하는 로봇, 스스로 판단하는 기계를 향해 나아갑니다.",
+      "en": "Understanding the dynamics of robots and autonomous systems, and designing intelligent control for machines that move and decide."
+    },
+    "image": "/img/labs/ai-robotics.jpg",
+    "images": ["/img/labs/machine-learning-control.jpg", "/img/research/intelligent-robotics.jpg"]
+  },
+  {
+    "field": "manufacturingDesign",
+    "title": { "ko": "생산·설계", "en": "Manufacturing · Design" },
+    "description": {
+      "ko": "정밀 가공·메카트로닉스·첨단 제조 공정으로 아이디어를 실제 제품으로 만듭니다. 더 작고, 더 정밀하고, 더 지능적인 제조의 미래를 설계합니다.",
+      "en": "Precision machining, mechatronics, and advanced processes that turn ideas into products — smaller, more precise, and more intelligent."
+    },
+    "image": "/img/labs/extreme-manufacturing.jpg",
+    "images": ["/img/labs/manufacturing-mechatronics.jpg", "/img/labs/intelligent-device-manufacturing.jpg"]
+  },
+  {
+    "field": "computation",
+    "title": { "ko": "계산·해석", "en": "Computation · Analysis" },
+    "description": {
+      "ko": "전산해석과 인공지능으로 복잡한 물리 현상을 예측하고 최적화합니다. 실험으로 닿기 어려운 극한과 스케일을 계산으로 탐험합니다.",
+      "en": "Computational analysis and AI to predict and optimize complex physical phenomena beyond the reach of experiment alone."
+    },
+    "image": "/img/labs/computational-ai.jpg",
+    "images": ["/img/labs/computational-imaging.jpg", "/img/labs/computational-materials-mechanics.jpg"]
+  },
+  {
+    "field": "mechanicsMaterials",
+    "title": { "ko": "역학·재료", "en": "Mechanics · Materials" },
+    "description": {
+      "ko": "고체·구조 역학과 첨단 재료를 연구해 더 가볍고 강하고 오래가는 구조를 만듭니다. 미소 스케일의 거동부터 구조 건전성까지 신뢰성의 근간을 다룹니다.",
+      "en": "Solid and structural mechanics with advanced materials for lighter, stronger, and more durable structures — from micro-scale behavior to structural integrity."
+    },
+    "image": "/img/labs/micromechanics.jpg",
+    "images": ["/img/labs/intelligent-structures.jpg", "/img/labs/multiphysics-phm.jpg"]
+  }
+]

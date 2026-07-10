@@ -176,7 +176,7 @@
     },
     "programs": {
       "heading": "배움에서 <em>연구</em>까지, 당신의 길을 찾아보세요",
-      "moveHeadline": "당신은 세상을 어떻게 <em>움직일</em> 것인가?",
+      "moveHeadline": "기계공학부의 체계",
       "tabUg": "학부",
       "tabGrad": "대학원",
       "exploreUg": "학부 과정 전체 보기 →",
@@ -245,6 +245,14 @@
     "newsPreview": {
       "title": "뉴스",
       "viewAll": "전체 보기"
+    },
+    "researchGallery": {
+      "eyebrow": "RESEARCH FIELDS",
+      "heading": "여섯 갈래의 연구",
+      "hint": "분야를 선택해 연구실을 둘러보세요",
+      "cta": "이 분야 연구실 보기",
+      "back": "목록으로",
+      "scroll": "스크롤로 탐색"
     }
   },
   "about": {

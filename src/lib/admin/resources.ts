@@ -284,7 +284,7 @@ const history: ResourceDef = {
   key: 'history',
   label: '연혁',
   description:
-    '학부 소개 > 연혁 탭 타임라인에 반영됩니다. 사이트에서 연월 오름차순으로 자동 정렬되므로 입력 순서는 무관합니다.',
+    '학부 소개 > 연혁 탭 타임라인에 반영됩니다. 사이트에서 연월 내림차순(최근→과거)으로 자동 정렬되므로 입력 순서는 무관합니다.',
   file: 'content/history.json',
   format: 'array',
   listColumns: [
