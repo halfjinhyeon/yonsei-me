@@ -8,7 +8,7 @@
 import { useRef, useState } from 'react';
 import type { BoardMeta, EditRecord } from '@/lib/admin/boards';
 import { emptyAttachment } from '@/lib/admin/boards';
-import type { UploadProgress, UploadProgressHandler } from '@/lib/admin/storage';
+import { UploadCancelledError, type UploadProgress, type UploadProgressHandler } from '@/lib/admin/storage';
 import { TranslateButton } from './TranslateButton';
 
 interface Props {
@@ -21,7 +21,11 @@ interface Props {
   onCancel: () => void;
   onSubmit: (rec: EditRecord) => void;
   /** 첨부·이미지 파일을 외부 스토리지에 올리고 URL 을 반환 (config 를 가진 상위가 주입) */
-  onUploadFile?: (file: File, onProgress?: UploadProgressHandler) => Promise<string>;
+  onUploadFile?: (
+    file: File,
+    onProgress?: UploadProgressHandler,
+    signal?: AbortSignal,
+  ) => Promise<string>;
 }
 
 // 사이트 공통 입력 문법(BoardFilterBar 와 동일): 각진 흰 필드 + 파랑 포커스 보더
@@ -42,7 +46,7 @@ function SectionTitle({ children }: { children: React.ReactNode }) {
 /** 파일 업로드 대상: 첨부 행 인덱스 또는 대표 이미지 */
 type UploadTarget = number | 'image';
 
-/** 진행 단계 → 사용자 표시 문구 (uploading 은 실제 퍼센트 표시) */
+/** 진행 단계 → 사용자 표시 문구 (uploading 은 실제 퍼센트, 미정이면 호환 모드 전송) */
 function uploadLabel(p: UploadProgress): string {
   switch (p.phase) {
     case 'preparing':
@@ -50,16 +54,21 @@ function uploadLabel(p: UploadProgress): string {
     case 'requesting':
       return '연결 중…';
     case 'uploading':
-      return `업로드 ${p.percent ?? 0}%`;
+      return p.percent === undefined ? '전송 중…' : `업로드 ${p.percent}%`;
     case 'done':
       return '완료';
   }
 }
 
+/** 확정 퍼센트가 없는 상태(준비·연결·호환 모드 전송)인지 — 진행 바 펄스 표시용 */
+function isIndeterminate(p: UploadProgress): boolean {
+  return p.phase === 'preparing' || p.phase === 'requesting' || (p.phase === 'uploading' && p.percent === undefined);
+}
+
 /** 진행 바 채움 비율 — 확정 퍼센트가 없는 단계는 얇게 깔아 살아있음을 표시 */
 function uploadBarWidth(p: UploadProgress): number {
   if (p.phase === 'done') return 100;
-  if (p.phase === 'uploading') return Math.max(p.percent ?? 0, 4);
+  if (p.phase === 'uploading' && p.percent !== undefined) return Math.max(p.percent, 4);
   return 6;
 }
 
@@ -73,6 +82,8 @@ export function PostForm({ meta, initial, isEdit, busy, onCancel, onSubmit, onUp
   const attInputRef = useRef<HTMLInputElement | null>(null);
   const imgInputRef = useRef<HTMLInputElement | null>(null);
   const pendingTargetRef = useRef<UploadTarget>(0);
+  // 진행 중 업로드의 취소 컨트롤러 (취소 버튼이 abort)
+  const abortRef = useRef<AbortController | null>(null);
 
   function set<K extends keyof EditRecord>(key: K, value: EditRecord[K]) {
     setRec((prev) => ({ ...prev, [key]: value }));
@@ -99,14 +110,16 @@ export function PostForm({ meta, initial, isEdit, busy, onCancel, onSubmit, onUp
     (target === 'image' ? imgInputRef : attInputRef).current?.click();
   }
 
-  /** 파일 선택 → 외부 스토리지 업로드(단계·퍼센트 실시간 표시) → 대상 필드에 URL 기입 */
+  /** 파일 선택 → 외부 스토리지 업로드(단계·퍼센트 실시간 표시, 취소 가능) → 대상 필드에 URL 기입 */
   async function handleFilePicked(file: File | null | undefined) {
     const target = pendingTargetRef.current;
     if (!file || !onUploadFile) return;
     setError(null);
+    const ctrl = new AbortController();
+    abortRef.current = ctrl;
     setUploading({ target, phase: 'preparing' });
     try {
-      const url = await onUploadFile(file, (p) => setUploading({ target, ...p }));
+      const url = await onUploadFile(file, (p) => setUploading({ target, ...p }), ctrl.signal);
       if (target === 'image') {
         set('image', url);
       } else {
@@ -126,12 +139,23 @@ export function PostForm({ meta, initial, isEdit, busy, onCancel, onSubmit, onUp
         });
       }
     } catch (err) {
-      setError(err instanceof Error ? err.message : '파일 업로드에 실패했습니다.');
+      // 사용자 취소는 실패가 아니라 안내로 표시
+      if (err instanceof UploadCancelledError) {
+        setError(err.message);
+      } else {
+        setError(err instanceof Error ? err.message : '파일 업로드에 실패했습니다.');
+      }
     } finally {
+      abortRef.current = null;
       setUploading(null);
       if (attInputRef.current) attInputRef.current.value = '';
       if (imgInputRef.current) imgInputRef.current.value = '';
     }
+  }
+
+  /** 진행 중 업로드 취소 (취소 버튼) */
+  function cancelUpload() {
+    abortRef.current?.abort();
   }
 
   function handleSubmit(e: React.FormEvent) {
@@ -374,12 +398,21 @@ export function PostForm({ meta, initial, isEdit, busy, onCancel, onSubmit, onUp
                 {uploading?.target === 'image' ? uploadLabel(uploading) : '이미지 업로드'}
               </button>
             )}
+            {uploading?.target === 'image' && (
+              <button
+                type="button"
+                onClick={cancelUpload}
+                className="shrink-0 border border-surface-border px-3 py-2 text-xs font-medium text-content-soft transition-colors hover:border-red-400 hover:text-red-600"
+              >
+                취소
+              </button>
+            )}
           </div>
           {/* 진행 바 — 단계·퍼센트를 시각화 (불확정 단계는 얇은 펄스) */}
           {uploading?.target === 'image' && (
             <div className="mt-2 h-1 w-full overflow-hidden bg-surface-soft" aria-hidden="true">
               <div
-                className={`h-full bg-yonsei-blue transition-[width] duration-200 ${uploading.phase === 'preparing' || uploading.phase === 'requesting' ? 'animate-pulse' : ''}`}
+                className={`h-full bg-yonsei-blue transition-[width] duration-200 ${isIndeterminate(uploading) ? 'animate-pulse' : ''}`}
                 style={{ width: `${uploadBarWidth(uploading)}%` }}
               />
             </div>
@@ -444,11 +477,16 @@ export function PostForm({ meta, initial, isEdit, busy, onCancel, onSubmit, onUp
                 {onUploadFile && (
                   <button
                     type="button"
-                    onClick={() => pickFile(i)}
-                    disabled={uploading !== null}
-                    className="btn-secondary whitespace-nowrap px-3 py-2 text-xs disabled:opacity-60"
+                    onClick={() => (uploading?.target === i ? cancelUpload() : pickFile(i))}
+                    disabled={uploading !== null && uploading.target !== i}
+                    className={`whitespace-nowrap px-3 py-2 text-xs disabled:opacity-60 ${
+                      uploading?.target === i
+                        ? 'border border-surface-border font-medium text-content-soft transition-colors hover:border-red-400 hover:text-red-600'
+                        : 'btn-secondary'
+                    }`}
+                    title={uploading?.target === i ? '클릭하면 업로드를 취소합니다' : undefined}
                   >
-                    {uploading?.target === i ? uploadLabel(uploading) : '파일'}
+                    {uploading?.target === i ? `${uploadLabel(uploading)} ✕` : '파일'}
                   </button>
                 )}
                 <button type="button" onClick={() => removeAtt(i)} className="btn-secondary px-3 py-2 text-xs">
@@ -459,7 +497,7 @@ export function PostForm({ meta, initial, isEdit, busy, onCancel, onSubmit, onUp
               {uploading?.target === i && (
                 <div className="mt-1.5 h-1 w-full overflow-hidden bg-surface-soft" aria-hidden="true">
                   <div
-                    className={`h-full bg-yonsei-blue transition-[width] duration-200 ${uploading.phase === 'preparing' || uploading.phase === 'requesting' ? 'animate-pulse' : ''}`}
+                    className={`h-full bg-yonsei-blue transition-[width] duration-200 ${isIndeterminate(uploading) ? 'animate-pulse' : ''}`}
                     style={{ width: `${uploadBarWidth(uploading)}%` }}
                   />
                 </div>

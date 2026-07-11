@@ -277,8 +277,8 @@ export function BoardEditor({ config, boardKey, onDirtyChange }: Props) {
             busy={saving}
             onCancel={() => setEditing(null)}
             onSubmit={handleSave}
-            onUploadFile={(file, onProgress) =>
-              uploadAttachment(config, boardKey, file, onProgress).then((r) => r.url)
+            onUploadFile={(file, onProgress, signal) =>
+              uploadAttachment(config, boardKey, file, onProgress, signal).then((r) => r.url)
             }
           />
         </div>
