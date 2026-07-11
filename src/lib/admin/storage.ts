@@ -14,6 +14,17 @@ import { base64FromBytes, isLocalBackend, type RepoConfig } from './github';
 /** 업로드 허용 최대 크기 — /api/upload 의 서버 제한과 동일하게 유지 */
 export const MAX_UPLOAD_BYTES = 20 * 1024 * 1024; // 20MB
 
+/** 업로드 진행 단계 — 폼이 사용자에게 "지금 무엇을 하는 중인지" 표시하는 데 쓴다.
+ *  작은 파일도 느릴 때가 있는데 대부분 토큰 발급('requesting') 지연이라,
+ *  단계를 나눠 보여주면 어디서 시간이 가는지가 그대로 드러난다. */
+export type UploadPhase = 'preparing' | 'requesting' | 'uploading' | 'done';
+export interface UploadProgress {
+  phase: UploadPhase;
+  /** 'uploading' 단계에서만 의미 있는 0~100 (그 외에는 미정) */
+  percent?: number;
+}
+export type UploadProgressHandler = (p: UploadProgress) => void;
+
 /** 압축 대상 이미지 타입 (gif 는 애니메이션 보존을 위해 제외) */
 const COMPRESSIBLE = ['image/jpeg', 'image/png', 'image/webp'];
 const MAX_DIMENSION = 1600; // 긴 변 기준 px
@@ -57,22 +68,26 @@ async function compressImage(file: File): Promise<File> {
 /**
  * 첨부파일을 스토리지에 업로드하고 게시물 JSON 에 저장할 URL 을 반환한다.
  * boardKey 는 경로 구분용 (uploads/<게시판>/<파일명>).
+ * onProgress 로 단계·퍼센트를 알려 폼이 실시간 상태를 표시할 수 있다.
  */
 export async function uploadAttachment(
   cfg: RepoConfig,
   boardKey: string,
   file: File,
+  onProgress?: UploadProgressHandler,
 ): Promise<{ url: string }> {
   if (file.size > MAX_UPLOAD_BYTES) {
     throw new Error('20MB 이하 파일만 올릴 수 있습니다.');
   }
 
+  onProgress?.({ phase: 'preparing' });
   const prepared = await compressImage(file);
   const name = `${Date.now()}-${sanitizeName(prepared.name)}`;
   const pathname = `uploads/${boardKey}/${name}`;
 
   // dev 로컬 백엔드: Blob 토큰 없이 public/uploads/ 에 기록 → dev 서버가 즉시 서빙
   if (isLocalBackend(cfg)) {
+    onProgress?.({ phase: 'uploading', percent: 0 });
     const base64 = base64FromBytes(new Uint8Array(await prepared.arrayBuffer()));
     const res = await fetch('/api/dev-content', {
       method: 'PUT',
@@ -83,13 +98,19 @@ export async function uploadAttachment(
       const body = (await res.json().catch(() => null)) as { error?: string } | null;
       throw new Error(body?.error ?? '로컬 업로드에 실패했습니다.');
     }
+    onProgress?.({ phase: 'done', percent: 100 });
     return { url: `/${pathname}` };
   }
 
-  // 프로덕션: /api/upload 에서 토큰을 받아 Blob 으로 직접 업로드
+  // 프로덕션: /api/upload 에서 토큰을 받아 Blob 으로 직접 업로드.
+  // 첫 진행 이벤트가 오기 전까지는 토큰 발급 왕복('requesting') 구간이다.
+  onProgress?.({ phase: 'requesting' });
   const blob = await upload(pathname, prepared, {
     access: 'public',
     handleUploadUrl: '/api/upload',
+    onUploadProgress: ({ percentage }) =>
+      onProgress?.({ phase: 'uploading', percent: Math.round(percentage) }),
   });
+  onProgress?.({ phase: 'done', percent: 100 });
   return { url: blob.url };
 }

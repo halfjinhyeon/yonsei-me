@@ -8,6 +8,7 @@
 import { useRef, useState } from 'react';
 import type { BoardMeta, EditRecord } from '@/lib/admin/boards';
 import { emptyAttachment } from '@/lib/admin/boards';
+import type { UploadProgress, UploadProgressHandler } from '@/lib/admin/storage';
 import { TranslateButton } from './TranslateButton';
 
 interface Props {
@@ -20,7 +21,7 @@ interface Props {
   onCancel: () => void;
   onSubmit: (rec: EditRecord) => void;
   /** 첨부·이미지 파일을 외부 스토리지에 올리고 URL 을 반환 (config 를 가진 상위가 주입) */
-  onUploadFile?: (file: File) => Promise<string>;
+  onUploadFile?: (file: File, onProgress?: UploadProgressHandler) => Promise<string>;
 }
 
 // 사이트 공통 입력 문법(BoardFilterBar 와 동일): 각진 흰 필드 + 파랑 포커스 보더
@@ -41,11 +42,34 @@ function SectionTitle({ children }: { children: React.ReactNode }) {
 /** 파일 업로드 대상: 첨부 행 인덱스 또는 대표 이미지 */
 type UploadTarget = number | 'image';
 
+/** 진행 단계 → 사용자 표시 문구 (uploading 은 실제 퍼센트 표시) */
+function uploadLabel(p: UploadProgress): string {
+  switch (p.phase) {
+    case 'preparing':
+      return '준비 중…';
+    case 'requesting':
+      return '연결 중…';
+    case 'uploading':
+      return `업로드 ${p.percent ?? 0}%`;
+    case 'done':
+      return '완료';
+  }
+}
+
+/** 진행 바 채움 비율 — 확정 퍼센트가 없는 단계는 얇게 깔아 살아있음을 표시 */
+function uploadBarWidth(p: UploadProgress): number {
+  if (p.phase === 'done') return 100;
+  if (p.phase === 'uploading') return Math.max(p.percent ?? 0, 4);
+  return 6;
+}
+
 export function PostForm({ meta, initial, isEdit, busy, onCancel, onSubmit, onUploadFile }: Props) {
   const [rec, setRec] = useState<EditRecord>(initial);
   const [error, setError] = useState<string | null>(null);
-  // 파일 업로드 진행 상태(대상별). 숨은 파일 입력은 첨부/이미지 각 1개를 공유한다.
-  const [uploading, setUploading] = useState<UploadTarget | null>(null);
+  // 파일 업로드 진행 상태(대상 + 단계 + 퍼센트). 숨은 파일 입력은 첨부/이미지 각 1개를 공유한다.
+  const [uploading, setUploading] = useState<(UploadProgress & { target: UploadTarget }) | null>(
+    null,
+  );
   const attInputRef = useRef<HTMLInputElement | null>(null);
   const imgInputRef = useRef<HTMLInputElement | null>(null);
   const pendingTargetRef = useRef<UploadTarget>(0);
@@ -75,14 +99,14 @@ export function PostForm({ meta, initial, isEdit, busy, onCancel, onSubmit, onUp
     (target === 'image' ? imgInputRef : attInputRef).current?.click();
   }
 
-  /** 파일 선택 → 외부 스토리지 업로드 → 대상 필드에 URL 기입 */
+  /** 파일 선택 → 외부 스토리지 업로드(단계·퍼센트 실시간 표시) → 대상 필드에 URL 기입 */
   async function handleFilePicked(file: File | null | undefined) {
     const target = pendingTargetRef.current;
     if (!file || !onUploadFile) return;
     setError(null);
-    setUploading(target);
+    setUploading({ target, phase: 'preparing' });
     try {
-      const url = await onUploadFile(file);
+      const url = await onUploadFile(file, (p) => setUploading({ target, ...p }));
       if (target === 'image') {
         set('image', url);
       } else {
@@ -347,10 +371,19 @@ export function PostForm({ meta, initial, isEdit, busy, onCancel, onSubmit, onUp
                 disabled={uploading !== null}
                 className="btn-secondary shrink-0 px-4 py-2 text-xs disabled:opacity-60"
               >
-                {uploading === 'image' ? '업로드 중…' : '이미지 업로드'}
+                {uploading?.target === 'image' ? uploadLabel(uploading) : '이미지 업로드'}
               </button>
             )}
           </div>
+          {/* 진행 바 — 단계·퍼센트를 시각화 (불확정 단계는 얇은 펄스) */}
+          {uploading?.target === 'image' && (
+            <div className="mt-2 h-1 w-full overflow-hidden bg-surface-soft" aria-hidden="true">
+              <div
+                className={`h-full bg-yonsei-blue transition-[width] duration-200 ${uploading.phase === 'preparing' || uploading.phase === 'requesting' ? 'animate-pulse' : ''}`}
+                style={{ width: `${uploadBarWidth(uploading)}%` }}
+              />
+            </div>
+          )}
           {rec.image?.trim() && (
             <div className="mt-3 flex items-end gap-3">
               {/* eslint-disable-next-line @next/next/no-img-element -- 관리자 미리보기(임의 외부 URL 허용) */}
@@ -382,44 +415,55 @@ export function PostForm({ meta, initial, isEdit, busy, onCancel, onSubmit, onUp
         <div className="mt-4 space-y-3">
           {rec.attachments.length === 0 && <p className="text-xs text-content-faint">첨부파일이 없습니다.</p>}
           {rec.attachments.map((att, i) => (
-            <div key={i} className="grid gap-2 sm:grid-cols-[1fr_1fr_1.5fr_auto_auto]">
-              <input
-                type="text"
-                aria-label={`첨부 ${i + 1} 라벨 한국어`}
-                value={att.labelKo}
-                onChange={(e) => updateAtt(i, 'labelKo', e.target.value)}
-                placeholder="라벨(한)"
-                className={attFieldClass}
-              />
-              <input
-                type="text"
-                aria-label={`첨부 ${i + 1} 라벨 영어`}
-                value={att.labelEn}
-                onChange={(e) => updateAtt(i, 'labelEn', e.target.value)}
-                placeholder="Label (en)"
-                className={attFieldClass}
-              />
-              <input
-                type="text"
-                aria-label={`첨부 ${i + 1} 링크`}
-                value={att.href}
-                onChange={(e) => updateAtt(i, 'href', e.target.value)}
-                placeholder="href — 파일 업로드 시 자동 기입"
-                className={attFieldClass}
-              />
-              {onUploadFile && (
-                <button
-                  type="button"
-                  onClick={() => pickFile(i)}
-                  disabled={uploading !== null}
-                  className="btn-secondary px-3 py-2 text-xs disabled:opacity-60"
-                >
-                  {uploading === i ? '업로드 중…' : '파일'}
+            <div key={i}>
+              <div className="grid gap-2 sm:grid-cols-[1fr_1fr_1.5fr_auto_auto]">
+                <input
+                  type="text"
+                  aria-label={`첨부 ${i + 1} 라벨 한국어`}
+                  value={att.labelKo}
+                  onChange={(e) => updateAtt(i, 'labelKo', e.target.value)}
+                  placeholder="라벨(한)"
+                  className={attFieldClass}
+                />
+                <input
+                  type="text"
+                  aria-label={`첨부 ${i + 1} 라벨 영어`}
+                  value={att.labelEn}
+                  onChange={(e) => updateAtt(i, 'labelEn', e.target.value)}
+                  placeholder="Label (en)"
+                  className={attFieldClass}
+                />
+                <input
+                  type="text"
+                  aria-label={`첨부 ${i + 1} 링크`}
+                  value={att.href}
+                  onChange={(e) => updateAtt(i, 'href', e.target.value)}
+                  placeholder="href — 파일 업로드 시 자동 기입"
+                  className={attFieldClass}
+                />
+                {onUploadFile && (
+                  <button
+                    type="button"
+                    onClick={() => pickFile(i)}
+                    disabled={uploading !== null}
+                    className="btn-secondary whitespace-nowrap px-3 py-2 text-xs disabled:opacity-60"
+                  >
+                    {uploading?.target === i ? uploadLabel(uploading) : '파일'}
+                  </button>
+                )}
+                <button type="button" onClick={() => removeAtt(i)} className="btn-secondary px-3 py-2 text-xs">
+                  삭제
                 </button>
+              </div>
+              {/* 진행 바 — 업로드 중인 행 아래에만 표시 */}
+              {uploading?.target === i && (
+                <div className="mt-1.5 h-1 w-full overflow-hidden bg-surface-soft" aria-hidden="true">
+                  <div
+                    className={`h-full bg-yonsei-blue transition-[width] duration-200 ${uploading.phase === 'preparing' || uploading.phase === 'requesting' ? 'animate-pulse' : ''}`}
+                    style={{ width: `${uploadBarWidth(uploading)}%` }}
+                  />
+                </div>
               )}
-              <button type="button" onClick={() => removeAtt(i)} className="btn-secondary px-3 py-2 text-xs">
-                삭제
-              </button>
             </div>
           ))}
         </div>
