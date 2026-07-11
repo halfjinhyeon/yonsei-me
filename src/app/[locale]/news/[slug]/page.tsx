@@ -83,7 +83,7 @@ export default async function NewsDetailPage({
           title={pick(item.title, locale)}
           date={item.date}
           metaValue={t(`categories.${item.category}`)}
-          paragraphs={pick(item.body, locale).split('\n\n')}
+          body={pick(item.body, locale)}
           attachments={item.attachments}
           attachmentLabels={item.attachments?.map((a) => pick(a.label, locale))}
           backHref="/news#news"

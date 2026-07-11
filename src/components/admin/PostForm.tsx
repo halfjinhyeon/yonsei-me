@@ -6,10 +6,14 @@
 // (한국어 UI 문자열은 내부 운영 도구라 컴포넌트에 직접 둔다.)
 
 import { useRef, useState } from 'react';
+import { Marked } from 'marked';
 import type { BoardMeta, EditRecord } from '@/lib/admin/boards';
 import { emptyAttachment } from '@/lib/admin/boards';
 import { UploadCancelledError, type UploadProgress, type UploadProgressHandler } from '@/lib/admin/storage';
 import { TranslateButton } from './TranslateButton';
+
+// 미리보기 렌더 — 사이트 게시물 렌더(PostArticle)와 동일 설정(breaks:true)
+const previewMarked = new Marked({ gfm: true, breaks: true });
 
 interface Props {
   meta: BoardMeta;
@@ -43,8 +47,14 @@ function SectionTitle({ children }: { children: React.ReactNode }) {
   );
 }
 
-/** 파일 업로드 대상: 첨부 행 인덱스 또는 대표 이미지 */
-type UploadTarget = number | 'image';
+/** 파일 업로드 대상: 첨부 행 인덱스, 대표 이미지, 또는 이미지 풀(다중) */
+type UploadTarget = number | 'image' | 'pool';
+
+/** 이미지 풀 항목 — 업로드된 사진 (본문 삽입·썸네일 지정의 재료) */
+interface PoolItem {
+  url: string;
+  name: string;
+}
 
 /** 진행 단계 → 사용자 표시 문구 (uploading 은 실제 퍼센트, 미정이면 호환 모드 전송) */
 function uploadLabel(p: UploadProgress): string {
@@ -75,15 +85,25 @@ function uploadBarWidth(p: UploadProgress): number {
 export function PostForm({ meta, initial, isEdit, busy, onCancel, onSubmit, onUploadFile }: Props) {
   const [rec, setRec] = useState<EditRecord>(initial);
   const [error, setError] = useState<string | null>(null);
-  // 파일 업로드 진행 상태(대상 + 단계 + 퍼센트). 숨은 파일 입력은 첨부/이미지 각 1개를 공유한다.
-  const [uploading, setUploading] = useState<(UploadProgress & { target: UploadTarget }) | null>(
-    null,
-  );
+  // 파일 업로드 진행 상태(대상 + 단계 + 퍼센트 + 다중 업로드 순번 note)
+  const [uploading, setUploading] = useState<
+    (UploadProgress & { target: UploadTarget; note?: string }) | null
+  >(null);
   const attInputRef = useRef<HTMLInputElement | null>(null);
   const imgInputRef = useRef<HTMLInputElement | null>(null);
+  const poolInputRef = useRef<HTMLInputElement | null>(null);
   const pendingTargetRef = useRef<UploadTarget>(0);
   // 진행 중 업로드의 취소 컨트롤러 (취소 버튼이 abort)
   const abortRef = useRef<AbortController | null>(null);
+
+  // ── 이미지 풀 + 본문 커서 상태 ──
+  const [pool, setPool] = useState<PoolItem[]>([]);
+  const [poolChecked, setPoolChecked] = useState<ReadonlySet<number>>(new Set());
+  const [bodyView, setBodyView] = useState<'write' | 'preview'>('write');
+  const bodyKoRef = useRef<HTMLTextAreaElement | null>(null);
+  const bodyEnRef = useRef<HTMLTextAreaElement | null>(null);
+  // 서식·본문 삽입이 적용될 입력칸 = 마지막으로 포커스한 본문 textarea
+  const lastBodyRef = useRef<'ko' | 'en'>('ko');
 
   function set<K extends keyof EditRecord>(key: K, value: EditRecord[K]) {
     setRec((prev) => ({ ...prev, [key]: value }));
@@ -156,6 +176,126 @@ export function PostForm({ meta, initial, isEdit, busy, onCancel, onSubmit, onUp
   /** 진행 중 업로드 취소 (취소 버튼) */
   function cancelUpload() {
     abortRef.current?.abort();
+  }
+
+  // ── 이미지 풀: 다중 업로드 → 체크 → 본문 삽입 / 썸네일 지정 ──
+
+  /** 여러 이미지를 순차 업로드해 풀에 쌓는다 (중간 취소 시 이미 올라간 것은 유지) */
+  async function handlePoolPicked(files: FileList | null) {
+    if (!files || files.length === 0 || !onUploadFile) return;
+    const list = Array.from(files);
+    setError(null);
+    const ctrl = new AbortController();
+    abortRef.current = ctrl;
+    try {
+      for (let i = 0; i < list.length; i += 1) {
+        const f = list[i];
+        const note = list.length > 1 ? `${i + 1}/${list.length}` : undefined;
+        setUploading({ target: 'pool', note, phase: 'preparing' });
+        // eslint-disable-next-line no-await-in-loop -- 순차 업로드(진행 표시·취소 단순화)
+        const url = await onUploadFile(f, (p) => setUploading({ target: 'pool', note, ...p }), ctrl.signal);
+        setPool((prev) => [...prev, { url, name: f.name }]);
+      }
+    } catch (err) {
+      if (err instanceof UploadCancelledError) {
+        setError(err.message);
+      } else {
+        setError(err instanceof Error ? err.message : '이미지 업로드에 실패했습니다.');
+      }
+    } finally {
+      abortRef.current = null;
+      setUploading(null);
+      if (poolInputRef.current) poolInputRef.current.value = '';
+    }
+  }
+
+  function togglePoolCheck(i: number) {
+    setPoolChecked((prev) => {
+      const next = new Set(prev);
+      if (next.has(i)) next.delete(i);
+      else next.add(i);
+      return next;
+    });
+  }
+
+  function removeCheckedFromPool() {
+    setPool((prev) => prev.filter((_, i) => !poolChecked.has(i)));
+    setPoolChecked(new Set());
+  }
+
+  /** 체크한 사진 1장을 대표 이미지(썸네일)로 지정 */
+  function setThumbnailFromPool() {
+    const idx = [...poolChecked][0];
+    if (idx === undefined || !pool[idx]) return;
+    set('image', pool[idx].url);
+  }
+
+  /** 마지막으로 포커스한 본문 textarea 와 대응 필드 키 */
+  function activeBodyTa(): { ta: HTMLTextAreaElement | null; key: 'bodyKo' | 'bodyEn' } {
+    return lastBodyRef.current === 'en'
+      ? { ta: bodyEnRef.current, key: 'bodyEn' }
+      : { ta: bodyKoRef.current, key: 'bodyKo' };
+  }
+
+  /** 본문 커서 위치에 블록 스니펫 삽입 (앞뒤 빈 줄 보정) */
+  function insertIntoBody(snippet: string) {
+    const { ta, key } = activeBodyTa();
+    const cur = String(rec[key] ?? '');
+    const pos = ta ? ta.selectionStart : cur.length;
+    const before = cur.slice(0, pos);
+    const after = cur.slice(pos);
+    const padL = before === '' || before.endsWith('\n\n') ? '' : before.endsWith('\n') ? '\n' : '\n\n';
+    const padR = after === '' || after.startsWith('\n\n') ? '' : after.startsWith('\n') ? '\n' : '\n\n';
+    set(key, before + padL + snippet + padR + after);
+    requestAnimationFrame(() => {
+      if (!ta) return;
+      ta.focus();
+      const p = (before + padL + snippet).length;
+      ta.setSelectionRange(p, p);
+    });
+  }
+
+  /** 체크한 사진들을 본문 커서 위치에 이미지 문법으로 삽입 */
+  function insertCheckedIntoBody() {
+    const urls = pool.filter((_, i) => poolChecked.has(i)).map((p) => p.url);
+    if (urls.length === 0) return;
+    insertIntoBody(urls.map((u) => `![](${u})`).join('\n\n'));
+  }
+
+  /** 서식 툴바 — 선택 영역을 마크다운 문법으로 감싼다/바꾼다 */
+  function applyFormat(kind: 'bold' | 'heading' | 'list' | 'link') {
+    const { ta, key } = activeBodyTa();
+    if (!ta) return;
+    const cur = String(rec[key] ?? '');
+    const s = ta.selectionStart;
+    const e = ta.selectionEnd;
+    const sel = cur.slice(s, e);
+    let insert: string;
+    switch (kind) {
+      case 'bold':
+        insert = `**${sel || '굵은 텍스트'}**`;
+        break;
+      case 'heading':
+        insert = `### ${sel || '소제목'}`;
+        break;
+      case 'list':
+        insert = (sel || '항목').split('\n').map((l) => `- ${l}`).join('\n');
+        break;
+      case 'link':
+        insert = `[${sel || '링크 텍스트'}](https://)`;
+        break;
+    }
+    const before = cur.slice(0, s);
+    const after = cur.slice(e);
+    // 블록 서식(소제목·목록)은 줄 시작에서만 성립 → 필요 시 개행 보정
+    const needsLine = kind === 'heading' || kind === 'list';
+    const padL = needsLine && before !== '' && !before.endsWith('\n') ? '\n' : '';
+    set(key, before + padL + insert + after);
+    requestAnimationFrame(() => {
+      ta.focus();
+      const base = s + padL.length;
+      ta.setSelectionRange(base, base + insert.length);
+    });
   }
 
   function handleSubmit(e: React.FormEvent) {
@@ -343,25 +483,245 @@ export function PostForm({ meta, initial, isEdit, busy, onCancel, onSubmit, onUp
           </div>
         )}
 
-        <div className="mt-4 grid gap-4 sm:grid-cols-2">
-          <div>
-            <label htmlFor="pf-body-ko" className="block text-sm font-semibold text-content">
-              본문 (한국어)
-            </label>
-            <textarea id="pf-body-ko" rows={8} value={rec.bodyKo} onChange={(e) => set('bodyKo', e.target.value)} className={fieldClass} />
+        {/* 서식 툴바 + 작성/미리보기 토글 */}
+        <div className="mt-4 flex flex-wrap items-center justify-between gap-2">
+          <div className="flex items-center gap-1.5">
+            {(
+              [
+                ['bold', 'B', '굵게'],
+                ['heading', 'H', '소제목'],
+                ['list', '≡', '목록'],
+                ['link', '🔗', '링크'],
+              ] as const
+            ).map(([kind, glyph, label]) => (
+              <button
+                key={kind}
+                type="button"
+                onClick={() => applyFormat(kind)}
+                disabled={bodyView === 'preview'}
+                title={`${label} — 마지막에 클릭한 본문 칸에 적용`}
+                className="grid h-8 w-8 place-items-center border border-surface-border text-sm font-bold text-content-soft transition-colors hover:border-yonsei-blue hover:text-yonsei-blue disabled:opacity-40"
+              >
+                <span aria-hidden="true">{glyph}</span>
+                <span className="sr-only">{label}</span>
+              </button>
+            ))}
+            <span className="ml-1 text-xs text-content-faint">
+              서식·본문 삽입은 마지막에 클릭한 본문 칸에 적용됩니다
+            </span>
           </div>
-          <div>
-            <div className="flex flex-wrap items-center justify-between gap-2">
-              <label htmlFor="pf-body-en" className="block text-sm font-semibold text-content">
-                본문 (English)
-              </label>
-              <TranslateButton source={rec.bodyKo} onTranslated={(v) => set('bodyEn', v)} />
-            </div>
-            <textarea id="pf-body-en" rows={8} value={rec.bodyEn} onChange={(e) => set('bodyEn', e.target.value)} className={fieldClass} />
+          <div className="flex border border-surface-border text-xs font-semibold">
+            {(
+              [
+                ['write', '작성'],
+                ['preview', '미리보기'],
+              ] as const
+            ).map(([view, label]) => (
+              <button
+                key={view}
+                type="button"
+                onClick={() => setBodyView(view)}
+                className={`px-3 py-1.5 transition-colors ${
+                  bodyView === view ? 'bg-yonsei-navy text-white' : 'text-content-soft hover:text-content'
+                }`}
+              >
+                {label}
+              </button>
+            ))}
           </div>
         </div>
-        <p className="mt-2 text-xs text-content-faint">문단은 빈 줄(엔터 두 번)로 구분됩니다. English를 비우면 저장 시 한국어 값이 복사됩니다.</p>
+
+        {bodyView === 'write' ? (
+          <div className="mt-3 grid gap-4 sm:grid-cols-2">
+            <div>
+              <label htmlFor="pf-body-ko" className="block text-sm font-semibold text-content">
+                본문 (한국어)
+              </label>
+              <textarea
+                id="pf-body-ko"
+                ref={bodyKoRef}
+                rows={14}
+                value={rec.bodyKo}
+                onChange={(e) => set('bodyKo', e.target.value)}
+                onFocus={() => {
+                  lastBodyRef.current = 'ko';
+                }}
+                className={fieldClass}
+              />
+            </div>
+            <div>
+              <div className="flex flex-wrap items-center justify-between gap-2">
+                <label htmlFor="pf-body-en" className="block text-sm font-semibold text-content">
+                  본문 (English)
+                </label>
+                <TranslateButton source={rec.bodyKo} onTranslated={(v) => set('bodyEn', v)} />
+              </div>
+              <textarea
+                id="pf-body-en"
+                ref={bodyEnRef}
+                rows={14}
+                value={rec.bodyEn}
+                onChange={(e) => set('bodyEn', e.target.value)}
+                onFocus={() => {
+                  lastBodyRef.current = 'en';
+                }}
+                className={fieldClass}
+              />
+            </div>
+          </div>
+        ) : (
+          /* 미리보기 — 실제 게시물 렌더(PostArticle)와 동일한 마크다운·타이포 */
+          <div className="mt-3 grid gap-4 sm:grid-cols-2">
+            {(
+              [
+                ['한국어', rec.bodyKo],
+                ['English', rec.bodyEn],
+              ] as const
+            ).map(([label, text]) => (
+              <div key={label} className="border border-surface-border">
+                <p className="border-b border-surface-border bg-surface-soft px-3 py-1.5 text-xs font-bold text-content-faint">
+                  {label}
+                </p>
+                <div
+                  className="prose-content min-h-[10rem] px-4 py-3 text-sm"
+                  dangerouslySetInnerHTML={{
+                    __html: previewMarked.parse(text || '_(내용 없음)_') as string,
+                  }}
+                />
+              </div>
+            ))}
+          </div>
+        )}
+        <p className="mt-2 text-xs text-content-faint">
+          빈 줄 = 문단 구분 · **굵게** · ### 소제목 · - 목록 · [텍스트](링크) — 사진은 아래
+          이미지 풀에서 &lsquo;본문 삽입&rsquo;. English를 비우면 저장 시 한국어 값이 복사됩니다.
+        </p>
       </section>
+
+      {/* ── 이미지 풀 — 여러 장 올려두고 체크해서 본문 삽입 / 썸네일 지정 ── */}
+      {onUploadFile && (
+        <section>
+          <SectionTitle>이미지</SectionTitle>
+          <input
+            ref={poolInputRef}
+            type="file"
+            accept="image/*"
+            multiple
+            className="hidden"
+            aria-hidden="true"
+            tabIndex={-1}
+            onChange={(e) => void handlePoolPicked(e.target.files)}
+          />
+          <div className="mt-4 flex flex-wrap items-center gap-2">
+            <button
+              type="button"
+              onClick={() => poolInputRef.current?.click()}
+              disabled={uploading !== null}
+              className="btn-secondary px-4 py-2 text-xs disabled:opacity-60"
+            >
+              {uploading?.target === 'pool'
+                ? `${uploadLabel(uploading)}${uploading.note ? ` (${uploading.note})` : ''}`
+                : '사진 업로드 (여러 장 가능)'}
+            </button>
+            {uploading?.target === 'pool' && (
+              <button
+                type="button"
+                onClick={cancelUpload}
+                className="border border-surface-border px-3 py-2 text-xs font-medium text-content-soft transition-colors hover:border-red-400 hover:text-red-600"
+              >
+                취소
+              </button>
+            )}
+            {pool.length > 0 && (
+              <>
+                <span className="mx-1 h-5 w-px bg-surface-border" aria-hidden="true" />
+                <button type="button" onClick={() => setPoolChecked(new Set(pool.map((_, i) => i)))} className="btn-secondary px-3 py-2 text-xs">
+                  전체 선택
+                </button>
+                <button type="button" onClick={() => setPoolChecked(new Set())} className="btn-secondary px-3 py-2 text-xs">
+                  전체 해제
+                </button>
+                <button
+                  type="button"
+                  onClick={insertCheckedIntoBody}
+                  disabled={poolChecked.size === 0}
+                  className="btn-primary px-3 py-2 text-xs disabled:opacity-50"
+                >
+                  본문 삽입
+                </button>
+                {meta.isNews && (
+                  <button
+                    type="button"
+                    onClick={setThumbnailFromPool}
+                    disabled={poolChecked.size !== 1}
+                    title="체크한 사진 1장을 대표 이미지로 지정"
+                    className="btn-secondary px-3 py-2 text-xs disabled:opacity-50"
+                  >
+                    썸네일 지정
+                  </button>
+                )}
+                <button
+                  type="button"
+                  onClick={removeCheckedFromPool}
+                  disabled={poolChecked.size === 0}
+                  className="btn-secondary px-3 py-2 text-xs disabled:opacity-50"
+                >
+                  선택 삭제
+                </button>
+              </>
+            )}
+          </div>
+          {uploading?.target === 'pool' && (
+            <div className="mt-2 h-1 w-full overflow-hidden bg-surface-soft" aria-hidden="true">
+              <div
+                className={`h-full bg-yonsei-blue transition-[width] duration-200 ${isIndeterminate(uploading) ? 'animate-pulse' : ''}`}
+                style={{ width: `${uploadBarWidth(uploading)}%` }}
+              />
+            </div>
+          )}
+          {pool.length === 0 ? (
+            <p className="mt-3 text-xs text-content-faint">
+              사진을 올린 뒤 체크하고 &lsquo;본문 삽입&rsquo;(커서 위치에 사진 배치)
+              {meta.isNews && ' 또는 ‘썸네일 지정’(대표 이미지)'} 을 누르세요. 이미지는 자동
+              압축(1600px·WebP)되어 외부 스토리지에 저장됩니다.
+            </p>
+          ) : (
+            <ul className="mt-4 grid grid-cols-3 gap-3 sm:grid-cols-4 md:grid-cols-6">
+              {pool.map((item, i) => {
+                const checked = poolChecked.has(i);
+                const isThumb = meta.isNews && rec.image === item.url;
+                return (
+                  <li key={item.url}>
+                    <label
+                      className={`relative block cursor-pointer border transition-colors ${
+                        checked ? 'border-yonsei-blue ring-2 ring-yonsei-blue/40' : 'border-surface-border hover:border-yonsei-blue/50'
+                      }`}
+                    >
+                      <input
+                        type="checkbox"
+                        checked={checked}
+                        onChange={() => togglePoolCheck(i)}
+                        className="absolute left-1.5 top-1.5 z-10 h-4 w-4 accent-yonsei-blue"
+                        aria-label={`${item.name} 선택`}
+                      />
+                      {isThumb && (
+                        <span className="absolute right-0 top-0 z-10 bg-yonsei-gold px-1.5 py-0.5 text-[10px] font-bold text-yonsei-navy">
+                          썸네일
+                        </span>
+                      )}
+                      {/* eslint-disable-next-line @next/next/no-img-element -- 관리자 풀 미리보기 */}
+                      <img src={item.url} alt="" className="h-20 w-full object-cover" />
+                      <span className="block truncate px-1.5 py-1 text-[11px] text-content-faint">
+                        {item.name}
+                      </span>
+                    </label>
+                  </li>
+                );
+              })}
+            </ul>
+          )}
+        </section>
+      )}
 
       {/* ── 대표 이미지 (뉴스) — 직접 업로드 또는 경로/링크 입력 ── */}
       {meta.isNews && (

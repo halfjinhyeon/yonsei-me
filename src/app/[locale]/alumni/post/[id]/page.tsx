@@ -78,7 +78,7 @@ export default async function AlumniPostPage({
           title={pick(event.title, locale)}
           date={event.date}
           metaValue={pick(event.host, locale)}
-          paragraphs={pick(event.body, locale).split('\n\n')}
+          body={pick(event.body, locale)}
           attachments={event.attachments}
           attachmentLabels={event.attachments?.map((a) => pick(a.label, locale))}
           backHref="/alumni#network"

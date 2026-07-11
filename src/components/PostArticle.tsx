@@ -1,7 +1,12 @@
+import { Marked } from 'marked';
 import { Link } from '@/i18n/navigation';
 import type { Attachment } from '@/lib/content';
 import type { Locale } from '@/i18n/routing';
 import { formatDate } from '@/lib/utils';
+
+// 게시물 본문 마크다운 — breaks:true 로 단일 개행도 줄바꿈으로 살린다
+// (비개발자가 쓰는 게시판 본문 특성). 콘텐츠는 관리자 작성 = 신뢰 소스(Prose 와 동일).
+const marked = new Marked({ gfm: true, breaks: true });
 
 export interface PostArticleLabels {
   title: string;
@@ -24,7 +29,7 @@ export function PostArticle({
   title,
   date,
   metaValue,
-  paragraphs,
+  body,
   attachments,
   attachmentLabels,
   backHref,
@@ -37,7 +42,8 @@ export function PostArticle({
   date: string;
   /** 세 번째 메타 행 값 — 카테고리 라벨 또는 작성자 */
   metaValue: string;
-  paragraphs: string[];
+  /** 본문 마크다운 원문 (CMS 에디터가 작성 — 문단·소제목·목록·이미지 등) */
+  body: string;
   attachments?: Attachment[];
   /** 각 첨부의 로케일 라벨 (부모에서 pick 처리해 전달) */
   attachmentLabels?: string[];
@@ -72,17 +78,12 @@ export function PostArticle({
         </dl>
       </header>
 
-      {/* 본문 — 가독 줄길이 제한 */}
-      <div className="mt-10 max-w-3xl space-y-5">
-        {paragraphs.map((para, i) => (
-          <p
-            key={i}
-            className="whitespace-pre-line text-base leading-[1.85] text-content-soft sm:text-lg"
-          >
-            {para}
-          </p>
-        ))}
-      </div>
+      {/* 본문 — 마크다운 렌더(사이트 공통 prose 타이포), 가독 줄길이 제한 */}
+      <div
+        className="prose-content mt-10 max-w-3xl"
+        // 관리자 작성 콘텐츠 = 신뢰 소스 (Prose 와 동일한 전제)
+        dangerouslySetInnerHTML={{ __html: marked.parse(body) as string }}
+      />
 
       {/* 첨부 (있을 때만) — 각진 박스 + 파일별 다운로드 아이콘 */}
       {hasAttachments && (

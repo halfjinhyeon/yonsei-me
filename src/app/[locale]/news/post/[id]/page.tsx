@@ -81,7 +81,7 @@ export default async function BoardPostPage({
           title={pick(post.title, locale)}
           date={post.date}
           metaValue={author}
-          paragraphs={pick(post.body, locale).split('\n\n')}
+          body={pick(post.body, locale)}
           attachments={post.attachments}
           attachmentLabels={post.attachments?.map((a) => pick(a.label, locale))}
           backHref={`/news#${post.boardKey}`}
