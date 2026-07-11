@@ -72,9 +72,13 @@ export async function POST(request: Request): Promise<Response> {
     });
     return Response.json(json);
   } catch (err) {
-    return Response.json(
-      { error: err instanceof Error ? err.message : '업로드 토큰 발급에 실패했습니다.' },
-      { status: 400 },
-    );
+    // 클라이언트 라이브러리는 이 응답의 error 를 무시하고 "Failed to retrieve the
+    // client token" 으로 덮어쓴다. 실제 원인(토큰 미주입·인증 실패 등)은 여기에서만
+    // 볼 수 있으므로 서버 로그(Vercel Functions 로그)에 남긴다.
+    const message = err instanceof Error ? err.message : '업로드 토큰 발급에 실패했습니다.';
+    console.error('[api/upload] 토큰 발급 실패:', message, {
+      hasBlobToken: Boolean(process.env.BLOB_READ_WRITE_TOKEN),
+    });
+    return Response.json({ error: message }, { status: 400 });
   }
 }
