@@ -27,6 +27,7 @@ type Filter = 'all' | ResearchField;
 export function LabList({ items }: { items: LabDirectoryEntry[] }) {
   const t = useTranslations('research');
   const [filter, setFilter] = useState<Filter>('all');
+  const [query, setQuery] = useState('');
 
   // 홈 연구 분야 갤러리에서 /research?field=<분야>#labs 로 진입 시 해당 분야로 초기 필터.
   // (정적 페이지 유지를 위해 useSearchParams 대신 window 로 읽는다.)
@@ -44,10 +45,17 @@ export function LabList({ items }: { items: LabDirectoryEntry[] }) {
     return map;
   }, [items]);
 
-  const visible = useMemo(
-    () => (filter === 'all' ? items : items.filter((lab) => lab.field === filter)),
-    [items, filter],
-  );
+  // 분야 필터 + 검색어(연구실명·교수명 한/영, 대소문자 무시) AND 결합
+  const visible = useMemo(() => {
+    const byField = filter === 'all' ? items : items.filter((lab) => lab.field === filter);
+    const q = query.trim().toLowerCase();
+    if (!q) return byField;
+    return byField.filter((lab) =>
+      [lab.nameKo, lab.nameEn, lab.professorKo, lab.professorEn]
+        .filter(Boolean)
+        .some((v) => v!.toLowerCase().includes(q)),
+    );
+  }, [items, filter, query]);
 
   return (
     <div>
@@ -76,6 +84,39 @@ export function LabList({ items }: { items: LabDirectoryEntry[] }) {
         />
       </div>
 
+      {/* 연구실 검색 — 연구실명·교수명 (BoardFilterBar 와 동일한 돋보기 입력 패턴) */}
+      <div className="mb-6 sm:max-w-xs">
+        <label htmlFor="lab-search" className="sr-only">
+          {t('search.labs')}
+        </label>
+        <div className="relative">
+          <span
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-y-0 left-3 grid place-items-center text-content-faint"
+          >
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <circle cx="11" cy="11" r="7" />
+              <path d="m21 21-4.3-4.3" strokeLinecap="round" />
+            </svg>
+          </span>
+          <input
+            id="lab-search"
+            type="search"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            placeholder={t('search.labs')}
+            className="w-full rounded-lg border border-surface-border bg-surface py-2 pl-9 pr-3 text-sm text-content transition-colors placeholder:text-content-faint focus:border-yonsei-blue focus:outline-none"
+          />
+        </div>
+      </div>
+
+      {visible.length === 0 ? (
+        /* 검색 결과 없음 — CourseCatalog 와 같은 독수리 빈 상태 */
+        <div className="flex flex-col items-center gap-5 rounded-card border border-surface-border bg-surface-soft px-6 py-20 text-center">
+          <span aria-hidden="true" className="eagle-mask h-20 w-20 bg-yonsei-blue/35" />
+          <p className="max-w-sm text-content-soft">{t('search.empty')}</p>
+        </div>
+      ) : (
       <div className="overflow-x-auto">
         <table className="w-full border-collapse text-sm">
           <thead className="border-b-2 border-yonsei-navy">
@@ -138,6 +179,7 @@ export function LabList({ items }: { items: LabDirectoryEntry[] }) {
           </tbody>
         </table>
       </div>
+      )}
     </div>
   );
 }

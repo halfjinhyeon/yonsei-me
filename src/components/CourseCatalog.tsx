@@ -59,6 +59,7 @@ export function CourseCatalog({
 }) {
   const t = useTranslations('research');
   const [filter, setFilter] = useState<Filter>('all');
+  const [query, setQuery] = useState('');
 
   const counts = useMemo(() => {
     const map = { all: courses.length } as Record<Filter, number>;
@@ -67,15 +68,20 @@ export function CourseCatalog({
     return map;
   }, [courses]);
 
-  const visible = useMemo(
-    () => (filter === 'all' ? courses : courses.filter((c) => c.field === filter)),
-    [courses, filter],
-  );
+  // 분야 필터 + 검색어(과목명·학정번호, 대소문자 무시) AND 결합
+  const visible = useMemo(() => {
+    const byField = filter === 'all' ? courses : courses.filter((c) => c.field === filter);
+    const q = query.trim().toLowerCase();
+    if (!q) return byField;
+    return byField.filter(
+      (c) => c.name.toLowerCase().includes(q) || c.code.toLowerCase().includes(q),
+    );
+  }, [courses, filter, query]);
 
   return (
     <div>
       {/* 언더라인 분야 필터 탭 — 사이트 공통 UnderlineTabs (좁은 화면은 가로 스크롤) */}
-      <div className="mb-8 overflow-x-auto">
+      <div className="mb-6 overflow-x-auto">
         <UnderlineTabs
           active={filter}
           onChange={(id) => setFilter(id as Filter)}
@@ -99,11 +105,39 @@ export function CourseCatalog({
         />
       </div>
 
+      {/* 과목 검색 — 과목명·학정번호 (BoardFilterBar 와 동일한 돋보기 입력 패턴) */}
+      <div className="mb-6 sm:max-w-xs">
+        <label htmlFor="course-search" className="sr-only">
+          {t('search.courses')}
+        </label>
+        <div className="relative">
+          <span
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-y-0 left-3 grid place-items-center text-content-faint"
+          >
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <circle cx="11" cy="11" r="7" />
+              <path d="m21 21-4.3-4.3" strokeLinecap="round" />
+            </svg>
+          </span>
+          <input
+            id="course-search"
+            type="search"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            placeholder={t('search.courses')}
+            className="w-full rounded-lg border border-surface-border bg-surface py-2 pl-9 pr-3 text-sm text-content transition-colors placeholder:text-content-faint focus:border-yonsei-blue focus:outline-none"
+          />
+        </div>
+      </div>
+
       {visible.length === 0 ? (
         /* 빈 분야 — BoardList 와 같은 독수리 마스코트 빈 상태 */
         <div className="flex flex-col items-center gap-5 rounded-card border border-surface-border bg-surface-soft px-6 py-20 text-center">
           <span aria-hidden="true" className="eagle-mask h-20 w-20 bg-yonsei-blue/35" />
-          <p className="max-w-sm text-content-soft">{emptyLabel}</p>
+          <p className="max-w-sm text-content-soft">
+            {query.trim() ? t('search.empty') : emptyLabel}
+          </p>
         </div>
       ) : (
         <div className="overflow-x-auto">

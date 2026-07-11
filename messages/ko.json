@@ -369,6 +369,11 @@
       "manufacturingDesign": "생산·설계",
       "computation": "계산·해석",
       "mechanicsMaterials": "역학·재료"
+    },
+    "search": {
+      "courses": "과목명·학정번호 검색",
+      "labs": "연구실·교수명 검색",
+      "empty": "검색 결과가 없습니다. 다른 검색어를 입력해 보세요."
     }
   },
   "news": {

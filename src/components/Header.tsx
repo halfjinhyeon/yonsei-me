@@ -1,6 +1,6 @@
 'use client';
 
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import { Link, usePathname } from '@/i18n/navigation';
 import { useEffect, useRef, useState } from 'react';
 import { cn } from '@/lib/utils';
@@ -33,6 +33,9 @@ export function Header() {
   const t = useTranslations('nav');
   const tMenu = useTranslations('menu');
   const pathname = usePathname();
+  // 영문은 라벨·항목이 길어 "라벨 아래 정렬형" 목록이 잘게 줄바꿈된다 →
+  // 영문 로케일은 그리드형 패널(컬럼 상단에 카테고리명)로 분기한다.
+  const gridMega = useLocale() === 'en';
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [expanded, setExpanded] = useState<string | null>(null); // 모바일 아코디언
@@ -155,17 +158,19 @@ export function Header() {
             onFocus={() => setMegaSuppressed(false)}
             className="group/nav hidden min-w-0 self-stretch xl:flex xl:flex-1 xl:items-center"
           >
-            {/* 공용 백드롭 시트 — 뷰포트 전폭. 높이는 가장 긴 목록에 맞춰 측정(panelH).
-                megaSuppressed 면 열림 클래스를 아예 제거해 클릭 직후 즉시 닫힌다 */}
-            <div
-              aria-hidden="true"
-              style={{ height: panelH }}
-              className={cn(
-                'invisible fixed inset-x-0 top-16 border-b border-t border-surface-border bg-surface opacity-0 shadow-card-hover transition-all duration-200 lg:top-20',
-                !megaSuppressed &&
-                  'group-hover/nav:visible group-hover/nav:opacity-100 group-focus-within/nav:visible group-focus-within/nav:opacity-100',
-              )}
-            />
+            {/* [정렬형 전용] 공용 백드롭 시트 — 뷰포트 전폭. 높이는 가장 긴 목록에 맞춰
+                측정(panelH). megaSuppressed 면 열림 클래스를 제거해 클릭 직후 즉시 닫힌다 */}
+            {!gridMega && (
+              <div
+                aria-hidden="true"
+                style={{ height: panelH }}
+                className={cn(
+                  'pointer-events-none invisible fixed inset-x-0 top-16 border-b border-t border-surface-border bg-surface opacity-0 shadow-card-hover transition-all duration-200 lg:top-20',
+                  !megaSuppressed &&
+                    'group-hover/nav:visible group-hover/nav:opacity-100 group-focus-within/nav:visible group-focus-within/nav:opacity-100',
+                )}
+              />
+            )}
 
             {/* justify-evenly: 바깥 2 + 사이 6 = 8개 여백을 모두 동일하게 분배 →
                 "글자 사이 여백"이 일정하고, 로고·우측 버튼과의 경계 간격도 같아진다.
@@ -197,30 +202,74 @@ export function Header() {
                     />
                   </Link>
 
-                  {/* 하위 목록 — 자기 라벨 아래 중앙 정렬, 최대폭은 measure() 가 지정
-                      (이웃 라벨 중간점까지 → 겹침 없음, 긴 항목은 그 안에서 줄바꿈) */}
-                  <ul
-                    data-mega-list
-                    className={cn(
-                      'invisible absolute left-1/2 top-full w-max -translate-x-1/2 translate-y-1 pb-7 pt-5 text-center opacity-0 transition-all duration-200',
-                      !megaSuppressed &&
-                        'group-hover/nav:visible group-hover/nav:translate-y-0 group-hover/nav:opacity-100 group-focus-within/nav:visible group-focus-within/nav:translate-y-0 group-focus-within/nav:opacity-100',
-                    )}
-                  >
-                    {group.items.map((sub) => (
-                      <li key={sub.key}>
-                        <Link
-                          href={sub.href}
-                          className="block py-1.5 text-sm leading-snug text-content-soft transition-colors hover:text-yonsei-navy"
-                        >
-                          {tMenu(`${group.key}.items.${sub.key}`)}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
+                  {/* [정렬형: ko] 하위 목록 — 자기 라벨 아래 중앙 정렬, 최대폭은
+                      measure() 가 지정(이웃 라벨 중간점까지 → 겹침 없음) */}
+                  {!gridMega && (
+                    <ul
+                      data-mega-list
+                      className={cn(
+                        'invisible absolute left-1/2 top-full w-max -translate-x-1/2 translate-y-1 pb-7 pt-5 text-center opacity-0 transition-all duration-200',
+                        !megaSuppressed &&
+                          'group-hover/nav:visible group-hover/nav:translate-y-0 group-hover/nav:opacity-100 group-focus-within/nav:visible group-focus-within/nav:translate-y-0 group-focus-within/nav:opacity-100',
+                      )}
+                    >
+                      {group.items.map((sub) => (
+                        <li key={sub.key}>
+                          <Link
+                            href={sub.href}
+                            className="block py-1.5 text-sm leading-snug text-content-soft transition-colors hover:text-yonsei-navy"
+                          >
+                            {tMenu(`${group.key}.items.${sub.key}`)}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
                 </li>
               ))}
             </ul>
+
+            {/* [그리드형: en] 전폭 시트 + 가운데 정렬 그리드(정렬형보다 조금 좁게).
+                긴 영문 라벨이 라벨 폭에 갇혀 잘게 줄바꿈되는 문제를 컬럼 그리드로 해결.
+                각 컬럼 상단에 카테고리명(구분선 포함)을 표시한다. */}
+            {gridMega && (
+              <div
+                className={cn(
+                  'invisible fixed inset-x-0 top-16 translate-y-1 opacity-0 transition-all duration-200 lg:top-20',
+                  !megaSuppressed &&
+                    'group-hover/nav:visible group-hover/nav:translate-y-0 group-hover/nav:opacity-100 group-focus-within/nav:visible group-focus-within/nav:translate-y-0 group-focus-within/nav:opacity-100',
+                )}
+              >
+                <div className="border-b border-t border-surface-border bg-surface text-content shadow-card-hover">
+                  <div className="mx-auto w-full max-w-6xl px-6">
+                    <div className="grid grid-cols-7 divide-x divide-surface-border">
+                      {menu.map((group) => (
+                        <div key={group.key} className="px-2.5 pb-8 pt-6 text-center">
+                          <Link
+                            href={group.href}
+                            className="block border-b border-surface-border pb-3 text-sm font-bold text-content transition-colors hover:text-yonsei-blue"
+                          >
+                            {tMenu(`${group.key}.label`)}
+                          </Link>
+                          <ul className="mt-3.5 space-y-0.5">
+                            {group.items.map((sub) => (
+                              <li key={sub.key}>
+                                <Link
+                                  href={sub.href}
+                                  className="block py-1.5 text-[13px] leading-snug text-content-soft transition-colors hover:text-yonsei-navy"
+                                >
+                                  {tMenu(`${group.key}.items.${sub.key}`)}
+                                </Link>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
           </nav>
 
           <div className="flex items-center gap-3">

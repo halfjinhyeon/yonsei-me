@@ -369,6 +369,11 @@
       "manufacturingDesign": "Manufacturing·Design",
       "computation": "Computation·Analysis",
       "mechanicsMaterials": "Mechanics·Materials"
+    },
+    "search": {
+      "courses": "Search by course name or code",
+      "labs": "Search labs or professors",
+      "empty": "No results found. Try a different search term."
     }
   },
   "news": {
