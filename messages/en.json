@@ -27,7 +27,7 @@
     "about": {
       "label": "About",
       "items": {
-        "history": "History",
+        "history": "About",
         "faculty": "Faculty",
         "staff": "Staff",
         "directions": "Directions"
@@ -268,7 +268,7 @@
     },
     "intro": {
       "title": "Welcome to Mechanical Engineering",
-      "body": "The School of Mechanical Engineering at Yonsei University has grown alongside the nation's industrialization as a cradle of mechanical engineering education in Korea. We cultivate engineers with both depth in fundamentals and breadth in application, conducting world-class research across energy, robotics, bio, design, and manufacturing."
+      "body": "The School of Mechanical Engineering at Yonsei University delivers world-class education and research across a broad spectrum of fields — mechanics and materials, energy and thermo-fluids, robotics and control, design and manufacturing, micro/nano engineering, and bio-photonics. Grounded in creative thinking and a pioneering spirit, we cultivate engineers with integrated design capabilities who create value for the global society."
     },
     "vision": {
       "title": "Vision & Goals",

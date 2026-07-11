@@ -62,21 +62,5 @@
       "en": "Engineering Bldg. IV, Rm. D608"
     },
     "email": "ysol912@yonsei.ac.kr"
-  },
-  {
-    "role": {
-      "ko": "개발진",
-      "en": "개발진"
-    },
-    "name": {
-      "ko": "반진현",
-      "en": "반진현"
-    },
-    "phone": "010-6888-4133",
-    "email": "wlsgus2006@gmail.com",
-    "location": {
-      "ko": "창천동4-17",
-      "en": "창천동4-17"
-    }
   }
 ]

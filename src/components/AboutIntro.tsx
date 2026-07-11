@@ -1,11 +1,18 @@
 import { getTranslations } from 'next-intl/server';
+import { pick } from '@/lib/content';
+import type { Locale } from '@/i18n/routing';
+import aboutStatsData from '@content/about-stats.json';
 
 const visionKeys = ['0', '1', '2'] as const;
 
+/** 숫자로 보는 학부 — content/about-stats.json (수치·라벨 모두 콘텐츠) */
+const aboutStats = aboutStatsData as { value: string; label: { ko: string; en: string } }[];
+
 /**
- * 학부 소개 문구 + 비전과 목표를 에디토리얼 타이포그래피로 묶은 서버 컴포넌트.
- * 카드·박스·그림자 없이 여백·헤어라인·번호 매김으로만 위계를 만든다 (Anthropic/Claude 무드).
- * 연혁 탭 안에서 HistoryTimeline 위에 놓여 소개→비전→연혁의 흐름을 만든다.
+ * 학부 소개 문구 + 비전과 목표 + 숫자 스트립을 에디토리얼 타이포그래피로 묶은
+ * 서버 컴포넌트. 카드·박스·그림자 없이 여백·헤어라인·번호 매김으로만 위계를
+ * 만든다 (Anthropic/Claude 무드). '학과 소개' 탭 안에서 HistoryTimeline 위에 놓여
+ * 소개→비전→숫자→연혁의 흐름을 만든다.
  */
 export async function AboutIntro({ locale }: { locale: string }) {
   const t = await getTranslations({ locale, namespace: 'about' });
@@ -46,6 +53,23 @@ export async function AboutIntro({ locale }: { locale: string }) {
           ))}
         </ol>
       </div>
+
+      {/* 숫자로 보는 학부 — 큰 네이비 숫자 + 아래 라벨 (기존 통계 스트립 타이포 유지).
+          수치·라벨은 content/about-stats.json 에서 편집 */}
+      {/* 가운데 정렬 + 위아래 헤어라인(아래 선이 연혁과의 구분선 역할) */}
+      <dl className="mt-16 grid grid-cols-2 gap-x-6 gap-y-10 border-b border-t border-surface-border py-12 text-center md:grid-cols-4">
+        {aboutStats.map((stat) => (
+          <div key={stat.label.en}>
+            {/* leading-none: 숫자 라인박스의 여분 공간을 제거해 라벨과의 간격을 고르게 */}
+            <dd className="text-5xl font-bold leading-none text-yonsei-navy tabular-nums">
+              {stat.value}
+            </dd>
+            <dt className="mt-3 text-sm font-semibold text-content-soft sm:text-base">
+              {pick(stat.label, locale as Locale)}
+            </dt>
+          </div>
+        ))}
+      </dl>
     </div>
   );
 }
