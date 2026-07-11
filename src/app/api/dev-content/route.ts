@@ -15,10 +15,12 @@ import { basename, dirname, join, resolve, sep } from 'node:path';
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
 
-// 쓰기·읽기를 허용하는 루트: 콘텐츠 파일과 업로드 이미지 폴더
+// 쓰기·읽기를 허용하는 루트: 콘텐츠 파일과 업로드 이미지·첨부 폴더
+// (public/uploads/ 는 dev 전용 Blob 대체 폴더 — .gitignore 처리, 커밋되지 않음)
 const ALLOWED_ROOTS = [
   { prefix: 'content/', abs: resolve(process.cwd(), 'content') },
   { prefix: 'public/img/', abs: resolve(process.cwd(), 'public', 'img') },
+  { prefix: 'public/uploads/', abs: resolve(process.cwd(), 'public', 'uploads') },
 ];
 
 /** 프로덕션이면 404 Response, 아니면 null(계속 진행) */

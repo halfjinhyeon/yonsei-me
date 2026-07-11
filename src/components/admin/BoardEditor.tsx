@@ -26,6 +26,7 @@ import {
   savedBanner,
   type RepoConfig,
 } from '@/lib/admin/github';
+import { uploadAttachment } from '@/lib/admin/storage';
 import type { NewsItem } from '@/lib/content';
 import { CommitBanner } from './CommitBanner';
 import { PostForm } from './PostForm';
@@ -276,6 +277,7 @@ export function BoardEditor({ config, boardKey, onDirtyChange }: Props) {
             busy={saving}
             onCancel={() => setEditing(null)}
             onSubmit={handleSave}
+            onUploadFile={(file) => uploadAttachment(config, boardKey, file).then((r) => r.url)}
           />
         </div>
       ) : (

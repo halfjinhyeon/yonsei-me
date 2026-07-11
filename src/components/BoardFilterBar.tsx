@@ -37,7 +37,7 @@ export function matchesFilter(row: { title: string; date?: string | null }, f: B
 }
 
 const inputClass =
-  'w-full rounded-lg border border-surface-border bg-surface px-3 py-2 text-sm text-content transition-colors placeholder:text-content-faint focus:border-yonsei-blue focus:outline-none';
+  'w-full border border-surface-border bg-surface px-3 py-2 text-sm text-content transition-colors placeholder:text-content-faint focus:border-yonsei-blue focus:outline-none';
 
 /**
  * 단일 게시판용 검색어 + 날짜범위 필터 바 (제어형).
@@ -121,7 +121,7 @@ export function BoardFilterBar({
           <button
             type="button"
             onClick={() => onChange(emptyFilter)}
-            className="rounded-lg border border-surface-border px-3 py-2 text-sm font-medium text-content-soft transition-colors hover:border-yonsei-blue hover:text-yonsei-blue"
+            className="border border-surface-border px-3 py-2 text-sm font-medium text-content-soft transition-colors hover:border-yonsei-blue hover:text-yonsei-blue"
           >
             {t('search.clear')}
           </button>

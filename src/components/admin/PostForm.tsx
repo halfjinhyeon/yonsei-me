@@ -4,7 +4,7 @@
 // 뉴스 slug/category/요약/이미지)를 조건부로 노출한다.
 // (한국어 UI 문자열은 내부 운영 도구라 컴포넌트에 직접 둔다.)
 
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import type { BoardMeta, EditRecord } from '@/lib/admin/boards';
 import { emptyAttachment } from '@/lib/admin/boards';
 import { TranslateButton } from './TranslateButton';
@@ -18,14 +18,20 @@ interface Props {
   busy: boolean;
   onCancel: () => void;
   onSubmit: (rec: EditRecord) => void;
+  /** 첨부 파일을 외부 스토리지에 올리고 URL 을 반환 (config 를 가진 상위가 주입) */
+  onUploadFile?: (file: File) => Promise<string>;
 }
 
 const fieldClass =
   'mt-1 w-full rounded-lg border border-surface-border bg-surface-soft px-3 py-2 text-sm text-content outline-none focus:border-yonsei-blue';
 
-export function PostForm({ meta, initial, isEdit, busy, onCancel, onSubmit }: Props) {
+export function PostForm({ meta, initial, isEdit, busy, onCancel, onSubmit, onUploadFile }: Props) {
   const [rec, setRec] = useState<EditRecord>(initial);
   const [error, setError] = useState<string | null>(null);
+  // 첨부 행별 파일 업로드 진행 상태 (행 인덱스). 숨은 파일 입력을 행마다 공유한다.
+  const [uploadingAtt, setUploadingAtt] = useState<number | null>(null);
+  const fileInputRef = useRef<HTMLInputElement | null>(null);
+  const pendingRowRef = useRef<number>(0);
 
   function set<K extends keyof EditRecord>(key: K, value: EditRecord[K]) {
     setRec((prev) => ({ ...prev, [key]: value }));
@@ -36,6 +42,42 @@ export function PostForm({ meta, initial, isEdit, busy, onCancel, onSubmit }: Pr
       const attachments = prev.attachments.map((a, idx) => (idx === i ? { ...a, [key]: value } : a));
       return { ...prev, attachments };
     });
+  }
+
+  /** 첨부 행의 "파일" 버튼 → 숨은 입력 열기 */
+  function pickFile(i: number) {
+    pendingRowRef.current = i;
+    fileInputRef.current?.click();
+  }
+
+  /** 파일 선택 → 외부 스토리지 업로드 → 해당 행 href 에 URL 기입 */
+  async function handleFilePicked(file: File | null | undefined) {
+    const i = pendingRowRef.current;
+    if (!file || !onUploadFile) return;
+    setError(null);
+    setUploadingAtt(i);
+    try {
+      const url = await onUploadFile(file);
+      setRec((prev) => {
+        const attachments = prev.attachments.map((a, idx) =>
+          idx === i
+            ? {
+                ...a,
+                href: url,
+                // 라벨이 비어 있으면 파일명으로 채워 한 번에 입력을 끝낸다
+                labelKo: a.labelKo || file.name,
+                labelEn: a.labelEn || file.name,
+              }
+            : a,
+        );
+        return { ...prev, attachments };
+      });
+    } catch (err) {
+      setError(err instanceof Error ? err.message : '파일 업로드에 실패했습니다.');
+    } finally {
+      setUploadingAtt(null);
+      if (fileInputRef.current) fileInputRef.current.value = '';
+    }
   }
 
   function addAtt() {
@@ -246,13 +288,26 @@ export function PostForm({ meta, initial, isEdit, busy, onCancel, onSubmit }: Pr
       </div>
       <p className="text-xs text-content-faint">문단은 빈 줄(엔터 두 번)로 구분됩니다. English를 비우면 저장 시 한국어 값이 복사됩니다.</p>
 
-      {/* 첨부파일 */}
+      {/* 첨부파일 — "파일" 버튼으로 실제 파일을 외부 스토리지에 올리거나(href 자동 기입),
+          외부 링크를 href 에 직접 붙여넣을 수 있다 */}
       <fieldset className="rounded-lg border border-surface-border p-4">
         <legend className="px-1 text-sm font-semibold text-content">첨부파일</legend>
+        {/* 행마다 공유하는 숨은 파일 입력 (클릭한 행 인덱스는 pendingRowRef 가 기억) */}
+        {onUploadFile && (
+          <input
+            ref={fileInputRef}
+            type="file"
+            accept="image/*,.pdf,.zip,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.hwp,.hwpx"
+            className="hidden"
+            aria-hidden="true"
+            tabIndex={-1}
+            onChange={(e) => void handleFilePicked(e.target.files?.[0])}
+          />
+        )}
         <div className="space-y-3">
           {rec.attachments.length === 0 && <p className="text-xs text-content-faint">첨부파일이 없습니다.</p>}
           {rec.attachments.map((att, i) => (
-            <div key={i} className="grid gap-2 sm:grid-cols-[1fr_1fr_1.5fr_auto]">
+            <div key={i} className="grid gap-2 sm:grid-cols-[1fr_1fr_1.5fr_auto_auto]">
               <input
                 type="text"
                 aria-label={`첨부 ${i + 1} 라벨 한국어`}
@@ -274,9 +329,19 @@ export function PostForm({ meta, initial, isEdit, busy, onCancel, onSubmit }: Pr
                 aria-label={`첨부 ${i + 1} 링크`}
                 value={att.href}
                 onChange={(e) => updateAtt(i, 'href', e.target.value)}
-                placeholder="href (#)"
+                placeholder="href — 파일 업로드 시 자동 기입"
                 className="rounded-lg border border-surface-border bg-surface-soft px-3 py-2 text-sm text-content outline-none focus:border-yonsei-blue"
               />
+              {onUploadFile && (
+                <button
+                  type="button"
+                  onClick={() => pickFile(i)}
+                  disabled={uploadingAtt !== null}
+                  className="btn-secondary px-3 py-2 text-xs disabled:opacity-60"
+                >
+                  {uploadingAtt === i ? '업로드 중…' : '파일'}
+                </button>
+              )}
               <button type="button" onClick={() => removeAtt(i)} className="btn-secondary px-3 py-2 text-xs">
                 삭제
               </button>
@@ -286,6 +351,12 @@ export function PostForm({ meta, initial, isEdit, busy, onCancel, onSubmit }: Pr
         <button type="button" onClick={addAtt} className="btn-secondary mt-3 px-4 py-2 text-xs">
           첨부 추가
         </button>
+        {onUploadFile && (
+          <p className="mt-2 text-xs text-content-faint">
+            파일은 외부 스토리지(Vercel Blob)에 저장되고 게시물에는 링크만 기록됩니다. 이미지 최대
+            20MB(자동 압축), 문서 20MB.
+          </p>
+        )}
       </fieldset>
 
       {error && (

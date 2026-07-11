@@ -10,6 +10,8 @@
 
 # dev-only tooling assets (large, locally regenerable)
 /tools/traineddata/
+# dev 전용 첨부 업로드 폴더 — 프로덕션은 Vercel Blob 에 저장(로컬 검증용 대체 경로)
+/public/uploads/
 # 연세체 TTF — 배포 라이선스 불명확, 로고 워드마크는 tools/generate-wordmark.mjs 로
 # 빌드타임에 SVG 패스(src/components/logo-wordmark.ts)로 미리 변환해두므로 폰트 자체는 불필요
 /tools/fonts/
