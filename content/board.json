@@ -3,44 +3,7 @@
   "events": [],
   "noticesUndergrad": [],
   "noticesGraduate": [],
-  "thesis": [
-    {
-      "id": "th-1",
-      "date": "2026-06-30",
-      "title": {
-        "ko": "2026년 8월 졸업 학위논문 본심사 일정 안내",
-        "en": "Final Thesis Defense Schedule for August 2026 Graduation"
-      },
-      "body": {
-        "ko": "2026년 8월 졸업예정자의 학위논문 본심사 일정을 안내합니다. 본심사는 심사위원 5인(박사) 또는 3인(석사) 전원 참석으로 진행되며, 발표 30분·질의 30분을 기준으로 합니다.\n\n심사 기간: 2026년 7월 6일 ~ 7월 15일\n장소: 각 심사위원장 지정 세미나실\n심사 후 결과보고서는 3일 이내 교학팀에 제출해야 합니다.",
-        "en": "Final defenses for August 2026 graduates will proceed with the full committee (five members for PhD, three for MS), with 30 minutes of presentation and 30 minutes of Q&A.\n\nDefense period: July 6–15, 2026\nVenue: seminar room designated by each committee chair\nResult reports are due to the office within three days of the defense."
-      }
-    },
-    {
-      "id": "th-2",
-      "date": "2026-06-25",
-      "title": {
-        "ko": "박사학위 예비심사 신청 및 요건 확인 안내",
-        "en": "PhD Preliminary Review Application and Requirements"
-      },
-      "body": {
-        "ko": "박사학위 예비심사를 신청하는 학생은 학술활동 요건(국제저명학술지 게재 등)과 영어시험 요건 충족 여부를 먼저 확인해야 합니다. 요건 미충족 시 본심사 신청이 제한됩니다.\n\n신청 기한: 2026년 7월 8일(수)\n제출 서류: 예비심사 신청서, 연구실적 목록, 논문 초안\n세부 요건은 대학원 졸업요건 페이지를 참고하세요.",
-        "en": "Students applying for the PhD preliminary review must first confirm the scholarly-activity requirement (e.g., publication in an international journal) and the English test requirement; unmet requirements block the final defense.\n\nDeadline: Wednesday, July 8, 2026\nDocuments: application form, publication list, draft thesis\nSee the graduate requirements page for details."
-      }
-    },
-    {
-      "id": "th-3",
-      "date": "2026-06-18",
-      "title": {
-        "ko": "학위논문 작성 양식(템플릿) 및 표절 검사 안내",
-        "en": "Thesis Template and Plagiarism Check Guidelines"
-      },
-      "body": {
-        "ko": "학위논문은 대학원 표준 양식에 따라 작성해야 하며, 제출 전 표절 검사 결과 확인서를 첨부해야 합니다. 표지·인준지·초록 순서와 여백 규정을 반드시 확인하세요.\n\n표절 검사: 도서관 제공 검사 서비스 이용\n확인서: 지도교수 서명 필수\n양식 문의: 대학원 교학팀",
-        "en": "Theses must follow the graduate school's standard template, and a plagiarism-check report must accompany submission. Check the required order of cover, approval page, and abstract, as well as margin rules.\n\nPlagiarism check: via the library's screening service\nReport: advisor's signature required\nTemplate questions: Graduate School office."
-      }
-    }
-  ],
+  "thesis": [],
   "career": [
     {
       "id": "cr-1",
