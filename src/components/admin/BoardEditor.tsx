@@ -7,8 +7,10 @@
 // 콘텐츠/코드 분리 원칙은 "사이트 콘텐츠"(content/*.json)에 적용된다.
 // 이 관리자 도구는 내부 운영용이라 한국어 UI 문자열을 컴포넌트에 직접 둔다.
 
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
+  BOARDS,
+  convertRecordForBoard,
   emptyAttachment,
   getBoard,
   suggestId,
@@ -76,6 +78,13 @@ export function BoardEditor({ config, boardKey, onDirtyChange }: Props) {
   const [loading, setLoading] = useState(false);
   const [listError, setListError] = useState<string | null>(null);
 
+  // 다중선택 상태: 선택된 항목의 id(뉴스는 slug) 집합. 게시판 리로드·액션 성공 시 초기화한다.
+  const [selected, setSelected] = useState<Set<string>>(new Set());
+  // 선택 이동 대상 게시판 키('' = 미선택)
+  const [moveTarget, setMoveTarget] = useState<BoardKey | ''>('');
+  // 전체선택 체크박스의 indeterminate(부분 선택)는 DOM 프로퍼티라 ref로만 설정 가능하다.
+  const selectAllRef = useRef<HTMLInputElement>(null);
+
   // 편집 상태: null이면 목록, 아니면 폼
   const [editing, setEditing] = useState<{ record: EditRecord; isEdit: boolean } | null>(null);
   const [saving, setSaving] = useState(false);
@@ -93,6 +102,9 @@ export function BoardEditor({ config, boardKey, onDirtyChange }: Props) {
       const m = getBoard(key);
       setLoading(true);
       setListError(null);
+      // 리로드하면 목록이 바뀌므로 선택·이동 대상을 초기화한다(액션 성공 후에도 이 경로를 탄다).
+      setSelected(new Set());
+      setMoveTarget('');
       try {
         if (m.isNews) {
           const file = await loadJson<NewsItem[]>(cfg, m.newsFile ?? 'content/news.json');
@@ -134,6 +146,196 @@ export function BoardEditor({ config, boardKey, onDirtyChange }: Props) {
     () => rawEntries.map((r) => String((r as Record<string, unknown>).id ?? (r as Record<string, unknown>).slug ?? '')),
     [rawEntries],
   );
+
+  const allSelected = listItems.length > 0 && selected.size === listItems.length;
+
+  // 부분 선택일 때만 전체선택 체크박스를 indeterminate로. (checked만으로는 표현 불가)
+  useEffect(() => {
+    if (selectAllRef.current) {
+      selectAllRef.current.indeterminate = selected.size > 0 && selected.size < listItems.length;
+    }
+  }, [selected, listItems.length]);
+
+  function toggleSelect(id: string) {
+    setSelected((prev) => {
+      const next = new Set(prev);
+      if (next.has(id)) next.delete(id);
+      else next.add(id);
+      return next;
+    });
+  }
+
+  function toggleSelectAll() {
+    setSelected((prev) => (prev.size === listItems.length ? new Set() : new Set(listItems.map((i) => i.id))));
+  }
+
+  // 선택 목록을 확인창용 문자열로: 제목 최대 5개 + 초과분은 "외 N건"
+  function selectionSummary(ids: string[]): string {
+    const titles = ids.map((id) => listItems.find((i) => i.id === id)?.titleKo ?? id);
+    const shown = titles.slice(0, 5).join('\n');
+    const extra = titles.length > 5 ? `\n외 ${titles.length - 5}건` : '';
+    return `${shown}${extra}`;
+  }
+
+  // 선택 삭제: 뉴스형이면 slug, 게시판이면 id를 일괄 filter 후 커밋 1번.
+  async function handleBulkDelete() {
+    if (!config || selected.size === 0) return;
+    const ids = Array.from(selected);
+    if (!window.confirm(`${ids.length}건을 삭제할까요?\n\n${selectionSummary(ids)}`)) return;
+    setSaving(true);
+    setSaveError(null);
+    setSuccess(null);
+    const idSet = new Set(ids);
+    const path = meta.isNews ? (meta.newsFile ?? 'content/news.json') : 'content/board.json';
+    try {
+      if (meta.isNews) {
+        const file = await loadJson<NewsItem[]>(config, path);
+        const arr = file.data.filter((n) => !idSet.has(n.slug));
+        const result = await commitJson(config, path, arr, file.sha, `content: ${meta.label} ${ids.length}건 삭제`);
+        finishSave(result.sha);
+      } else {
+        const file = await loadJson<BoardFile>(config, path);
+        const key = boardKey as keyof BoardFile;
+        const list = ((file.data[key] ?? []) as { id: string }[]).filter((n) => !idSet.has(n.id));
+        const next = { ...file.data, [key]: list } as BoardFile;
+        const result = await commitJson(config, path, next, file.sha, `content: ${meta.label} ${ids.length}건 삭제`);
+        finishSave(result.sha);
+      }
+    } catch (err) {
+      const msg = err instanceof Error ? err.message : '삭제에 실패했습니다.';
+      setSaveError(msg);
+      if (msg.includes('409') || msg.includes('422')) {
+        void loadEntries(config, boardKey);
+      }
+    } finally {
+      setSaving(false);
+    }
+  }
+
+  // 선택 이동: 원본 레코드를 대상 게시판 형태로 변환하고 id를 대상 규칙으로 새로 부여한다.
+  async function handleBulkMove() {
+    if (!config || selected.size === 0 || moveTarget === '') return;
+    const target = getBoard(moveTarget);
+    const ids = Array.from(selected);
+    const idSet = new Set(ids);
+    if (
+      !window.confirm(
+        `${ids.length}건을 '${target.label}'(으)로 이동할까요?\n\n대상 게시판에 없는 항목(주최·분류·요약 등)은 이동 시 제외되고, 글번호는 대상 게시판 규칙으로 새로 부여됩니다.`,
+      )
+    )
+      return;
+
+    setSaving(true);
+    setSaveError(null);
+    setSuccess(null);
+
+    const sourcePath = meta.isNews ? (meta.newsFile ?? 'content/news.json') : 'content/board.json';
+    const targetPath = target.isNews ? (target.newsFile ?? 'content/news.json') : 'content/board.json';
+    // 이동할 원본 레코드(현재 목록에 담긴 원본 그대로, 순서 유지)
+    const movingRaw = rawEntries.filter((raw) =>
+      idSet.has(String((raw as Record<string, unknown>).id ?? (raw as Record<string, unknown>).slug ?? '')),
+    );
+
+    // 변환 + 대상 규칙 id 재부여. targetIds에 부여한 id를 push해 연속 이동 시 중복을 막는다.
+    const buildBoardEntries = (existing: string[]) =>
+      movingRaw.map((raw) => {
+        const rec = convertRecordForBoard(meta, target, raw);
+        rec.id = suggestId(target, existing);
+        existing.push(rec.id);
+        return toBoardEntry(target, rec) as { id: string };
+      });
+    const buildNewsEntries = (existing: string[]) =>
+      movingRaw.map((raw) => {
+        const rec = convertRecordForBoard(meta, target, raw);
+        rec.id = suggestId(target, existing);
+        existing.push(rec.id);
+        return toNewsEntry(rec);
+      });
+
+    const moveMsg = `content: ${meta.label} → ${target.label} ${ids.length}건 이동`;
+
+    try {
+      if (sourcePath === targetPath) {
+        // 같은 board.json: 한 번 로드해 원본 키에서 제거 + 대상 키에 추가 후 커밋 1번.
+        const file = await loadJson<BoardFile>(config, sourcePath);
+        const sourceKey = boardKey as keyof BoardFile;
+        const targetKey = target.key as keyof BoardFile;
+        const sourceList = ((file.data[sourceKey] ?? []) as { id: string }[]).filter((n) => !idSet.has(n.id));
+        const targetList = ((file.data[targetKey] ?? []) as { id: string }[]).slice();
+        const converted = buildBoardEntries(targetList.map((n) => n.id));
+        const next = {
+          ...file.data,
+          [sourceKey]: sourceList,
+          [targetKey]: [...converted, ...targetList],
+        } as BoardFile;
+        const result = await commitJson(config, sourcePath, next, file.sha, moveMsg);
+        finishSave(result.sha);
+      } else {
+        // 다른 파일: ① 대상에 추가 커밋 → ② 원본에서 제거 커밋. ②가 실패하면 중복이 남지만
+        // 데이터 유실보다 낫다는 방향으로, 안내 후 새로고침한다.
+        let lastSha: string;
+        if (target.isNews) {
+          const tfile = await loadJson<NewsItem[]>(config, targetPath);
+          const converted = buildNewsEntries(tfile.data.map((n) => n.slug));
+          const nextArr = [...converted, ...tfile.data];
+          const r1 = await commitJson(config, targetPath, nextArr, tfile.sha, moveMsg);
+          lastSha = r1.sha;
+        } else {
+          const tfile = await loadJson<BoardFile>(config, targetPath);
+          const targetKey = target.key as keyof BoardFile;
+          const targetList = ((tfile.data[targetKey] ?? []) as { id: string }[]).slice();
+          const converted = buildBoardEntries(targetList.map((n) => n.id));
+          const next = { ...tfile.data, [targetKey]: [...converted, ...targetList] } as BoardFile;
+          const r1 = await commitJson(config, targetPath, next, tfile.sha, moveMsg);
+          lastSha = r1.sha;
+        }
+
+        try {
+          if (meta.isNews) {
+            const sfile = await loadJson<NewsItem[]>(config, sourcePath);
+            const arr = sfile.data.filter((n) => !idSet.has(n.slug));
+            const r2 = await commitJson(
+              config,
+              sourcePath,
+              arr,
+              sfile.sha,
+              `content: ${meta.label} → ${target.label} 이동 — 원본 ${ids.length}건 삭제`,
+            );
+            lastSha = r2.sha;
+          } else {
+            const sfile = await loadJson<BoardFile>(config, sourcePath);
+            const sourceKey = boardKey as keyof BoardFile;
+            const sourceList = ((sfile.data[sourceKey] ?? []) as { id: string }[]).filter((n) => !idSet.has(n.id));
+            const next = { ...sfile.data, [sourceKey]: sourceList } as BoardFile;
+            const r2 = await commitJson(
+              config,
+              sourcePath,
+              next,
+              sfile.sha,
+              `content: ${meta.label} → ${target.label} 이동 — 원본 ${ids.length}건 삭제`,
+            );
+            lastSha = r2.sha;
+          }
+        } catch {
+          // ①은 성공했으나 ② 실패 — 중복이 남았음을 알리고 리로드.
+          setSaveError(
+            '이동한 글이 대상 게시판에 추가되었지만 원본 삭제에 실패했습니다. 목록을 새로고침한 뒤 원본에서 남은 글을 직접 삭제해 주세요.',
+          );
+          void loadEntries(config, boardKey);
+          return;
+        }
+        finishSave(lastSha);
+      }
+    } catch (err) {
+      const msg = err instanceof Error ? err.message : '이동에 실패했습니다.';
+      setSaveError(msg);
+      if (msg.includes('409') || msg.includes('422')) {
+        void loadEntries(config, boardKey);
+      }
+    } finally {
+      setSaving(false);
+    }
+  }
 
   function startNew() {
     setSuccess(null);
@@ -308,26 +510,91 @@ export function BoardEditor({ config, boardKey, onDirtyChange }: Props) {
           )}
 
           {!loading && listItems.length > 0 && (
-            <ul className="divide-y divide-surface-border">
-              {listItems.map((item) => (
-                <li key={item.id} className="flex items-center justify-between gap-3 py-3">
-                  <div className="min-w-0">
-                    <p className="truncate text-sm font-medium text-content">{item.titleKo}</p>
-                    <p className="text-xs text-content-faint">
-                      {item.date} · {item.id}
-                    </p>
-                  </div>
-                  <div className="flex shrink-0 gap-2">
-                    <button type="button" onClick={() => startEdit(item.id)} disabled={saving} className="btn-secondary px-3 py-1.5 text-xs disabled:opacity-60">
-                      수정
+            <>
+              {/* 전체선택 헤더 — 부분 선택은 indeterminate(ref)로 표시 */}
+              <div className="flex items-center gap-3 border-b border-surface-border pb-2">
+                <input
+                  ref={selectAllRef}
+                  type="checkbox"
+                  checked={allSelected}
+                  onChange={toggleSelectAll}
+                  disabled={saving || loading}
+                  aria-label="전체 선택"
+                  className="h-4 w-4 accent-yonsei-navy"
+                />
+                <span className="text-xs text-content-faint">
+                  {selected.size > 0 ? `${selected.size}개 선택` : `전체 ${listItems.length}건`}
+                </span>
+              </div>
+
+              {/* 선택 액션 바 — 1개 이상 선택 시 노출(선택 삭제 + 게시판 이동) */}
+              {selected.size > 0 && (
+                <div className="flex flex-wrap items-center gap-2 border-b border-surface-border bg-surface-soft px-3 py-2">
+                  <span className="text-xs font-medium text-content">{selected.size}개 선택</span>
+                  <button
+                    type="button"
+                    onClick={handleBulkDelete}
+                    disabled={saving}
+                    className="btn-secondary px-3 py-1.5 text-xs text-red-600 hover:border-red-400 hover:text-red-600 disabled:opacity-60"
+                  >
+                    선택 삭제
+                  </button>
+                  <div className="ml-auto flex items-center gap-2">
+                    <select
+                      value={moveTarget}
+                      onChange={(e) => setMoveTarget(e.target.value as BoardKey | '')}
+                      disabled={saving}
+                      aria-label="이동할 게시판"
+                      className="border border-surface-border bg-surface px-2 py-1.5 text-xs text-content disabled:opacity-60"
+                    >
+                      <option value="">이동할 게시판…</option>
+                      {BOARDS.filter((b) => b.key !== boardKey).map((b) => (
+                        <option key={b.key} value={b.key}>
+                          {b.label}
+                        </option>
+                      ))}
+                    </select>
+                    <button
+                      type="button"
+                      onClick={handleBulkMove}
+                      disabled={saving || moveTarget === ''}
+                      className="btn-secondary px-3 py-1.5 text-xs disabled:opacity-60"
+                    >
+                      이동
                     </button>
-                    <button type="button" onClick={() => handleDelete(item.id)} disabled={saving} className="btn-secondary px-3 py-1.5 text-xs text-red-600 hover:border-red-400 hover:text-red-600 disabled:opacity-60">
-                      삭제
-                    </button>
                   </div>
-                </li>
-              ))}
-            </ul>
+                </div>
+              )}
+
+              <ul className="divide-y divide-surface-border">
+                {listItems.map((item) => (
+                  <li key={item.id} className="flex items-center gap-3 py-3">
+                    <input
+                      type="checkbox"
+                      checked={selected.has(item.id)}
+                      onChange={() => toggleSelect(item.id)}
+                      disabled={saving || loading}
+                      aria-label={`${item.titleKo} 선택`}
+                      className="h-4 w-4 shrink-0 accent-yonsei-navy"
+                    />
+                    <div className="min-w-0 flex-1">
+                      <p className="truncate text-sm font-medium text-content">{item.titleKo}</p>
+                      <p className="text-xs text-content-faint">
+                        {item.date} · {item.id}
+                      </p>
+                    </div>
+                    <div className="flex shrink-0 gap-2">
+                      <button type="button" onClick={() => startEdit(item.id)} disabled={saving} className="btn-secondary px-3 py-1.5 text-xs disabled:opacity-60">
+                        수정
+                      </button>
+                      <button type="button" onClick={() => handleDelete(item.id)} disabled={saving} className="btn-secondary px-3 py-1.5 text-xs text-red-600 hover:border-red-400 hover:text-red-600 disabled:opacity-60">
+                        삭제
+                      </button>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </>
           )}
         </div>
       )}

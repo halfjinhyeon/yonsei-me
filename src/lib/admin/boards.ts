@@ -239,3 +239,49 @@ export function toNewsEntry(rec: EditRecord): NewsItem {
     ...(attachments ? { attachments } : {}),
   };
 }
+
+/**
+ * 게시판 이동용: 원본 레코드를 대상 게시판이 요구하는 형태로 변환한다.
+ * 공통 필드(날짜·제목·본문·첨부)는 유지하고, 대상 게시판에만 있는 필드는
+ * 원본에 해당 값이 있으면 승계하고 없으면 기본값으로 채운다. 대상에 없는
+ * 필드는 아예 넣지 않아 이동 시 자연스럽게 탈락한다(주최·분류·요약 등).
+ * id는 대상 게시판 규칙으로 새로 부여해야 하므로 여기선 원본 값을 그대로 둔다.
+ */
+export function convertRecordForBoard(
+  source: BoardMeta,
+  target: BoardMeta,
+  raw: unknown,
+): EditRecord {
+  // 원본을 먼저 편집 레코드로 읽어 공통 필드를 확보한다.
+  const src = toEditRecord(source, raw);
+  const rec: EditRecord = {
+    id: src.id,
+    date: src.date,
+    titleKo: src.titleKo,
+    titleEn: src.titleEn,
+    bodyKo: src.bodyKo,
+    bodyEn: src.bodyEn,
+    attachments: src.attachments,
+  };
+  if (target.hasHost) {
+    // 원본에 주최가 있으면 승계, 없으면 빈 값.
+    rec.hostKo = src.hostKo ?? '';
+    rec.hostEn = src.hostEn ?? '';
+  }
+  if (target.hasDateLabel) {
+    rec.dateLabelKo = src.dateLabelKo ?? '';
+    rec.dateLabelEn = src.dateLabelEn ?? '';
+  }
+  if (target.hasEventFlag) {
+    rec.isEvent = src.isEvent === true;
+  }
+  if (target.isNews) {
+    // 원본도 뉴스면 분류를 승계, 아니면 기본 'notice'. (toEditRecord는 뉴스가
+    // 아닌 원본에는 category를 채우지 않으므로 ?? 폴백으로 안전하다.)
+    rec.category = src.category ?? 'notice';
+    rec.excerptKo = src.excerptKo ?? '';
+    rec.excerptEn = src.excerptEn ?? '';
+    rec.image = src.image ?? '';
+  }
+  return rec;
+}

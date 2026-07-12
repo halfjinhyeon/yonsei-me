@@ -11,6 +11,7 @@ import type { BoardMeta, EditRecord } from '@/lib/admin/boards';
 import { emptyAttachment } from '@/lib/admin/boards';
 import { UploadCancelledError, type UploadProgress, type UploadProgressHandler } from '@/lib/admin/storage';
 import { TranslateButton } from './TranslateButton';
+import { PostPreviewModal } from './PostPreviewModal';
 
 // 미리보기 렌더 — 사이트 게시물 렌더(PostArticle)와 동일 설정(breaks:true)
 const previewMarked = new Marked({ gfm: true, breaks: true });
@@ -85,6 +86,8 @@ function uploadBarWidth(p: UploadProgress): number {
 export function PostForm({ meta, initial, isEdit, busy, onCancel, onSubmit, onUploadFile }: Props) {
   const [rec, setRec] = useState<EditRecord>(initial);
   const [error, setError] = useState<string | null>(null);
+  // 저장 전 팝업 미리보기(실제 게시물과 동일 렌더) 표시 여부
+  const [showPreview, setShowPreview] = useState(false);
   // 파일 업로드 진행 상태(대상 + 단계 + 퍼센트 + 다중 업로드 순번 note)
   const [uploading, setUploading] = useState<
     (UploadProgress & { target: UploadTarget; note?: string }) | null
@@ -237,29 +240,59 @@ export function PostForm({ meta, initial, isEdit, busy, onCancel, onSubmit, onUp
       : { ta: bodyKoRef.current, key: 'bodyKo' };
   }
 
-  /** 본문 커서 위치에 블록 스니펫 삽입 (앞뒤 빈 줄 보정) */
-  function insertIntoBody(snippet: string) {
+  /** 체크한 사진들을 참조식 이미지로 본문 커서 위치에 삽입.
+   *  본문에는 짧은 태그(![사진 N][img-N])만 넣고 실제 스토리지 URL 은 문서 맨 아래
+   *  참조 정의([img-N]: URL)로 모은다 — 정의 줄은 렌더링에 나타나지 않는 표준 마크다운.
+   *  긴 URL 이 본문 한가운데 박히지 않아 편집 중 글 흐름을 읽기 쉽다.
+   *  같은 사진을 다시 넣으면 기존 번호를 재사용하고, 새 번호는 최대값+1부터 잇는다.
+   *  태그 삽입(커서)과 정의 추가(문서 끝)를 한 번의 set 으로 처리한다(상태 클로버 방지). */
+  function insertCheckedIntoBody() {
+    const urls = pool.filter((_, i) => poolChecked.has(i)).map((p) => p.url);
+    if (urls.length === 0) return;
     const { ta, key } = activeBodyTa();
     const cur = String(rec[key] ?? '');
+
+    // 이 본문 필드에 이미 있는 참조 정의 수집 (URL → id, 번호 최대값)
+    const byUrl = new Map<string, string>();
+    let maxN = 0;
+    for (const m of cur.matchAll(/^\[img-(\d+)\]:\s*(\S+)/gm)) {
+      const n = Number(m[1]);
+      if (n > maxN) maxN = n;
+      if (!byUrl.has(m[2])) byUrl.set(m[2], `img-${m[1]}`);
+    }
+
+    const tags: string[] = [];
+    const newDefs: string[] = [];
+    for (const url of urls) {
+      let id = byUrl.get(url);
+      if (!id) {
+        maxN += 1;
+        id = `img-${maxN}`;
+        byUrl.set(url, id);
+        newDefs.push(`[${id}]: ${url}`);
+      }
+      tags.push(`![사진 ${id.slice('img-'.length)}][${id}]`);
+    }
+
+    // 커서 위치에 태그 삽입(앞뒤 빈 줄 보정) + 새 정의는 문서 끝에 덧붙임
+    const snippet = tags.join('\n\n');
     const pos = ta ? ta.selectionStart : cur.length;
     const before = cur.slice(0, pos);
     const after = cur.slice(pos);
     const padL = before === '' || before.endsWith('\n\n') ? '' : before.endsWith('\n') ? '\n' : '\n\n';
     const padR = after === '' || after.startsWith('\n\n') ? '' : after.startsWith('\n') ? '\n' : '\n\n';
-    set(key, before + padL + snippet + padR + after);
+    let next = before + padL + snippet + padR + after;
+    if (newDefs.length > 0) {
+      // 정의 블록은 앞 문단과 빈 줄로 분리돼야 문단에 흡수되지 않는다
+      next = `${next.replace(/\n+$/, '')}\n\n${newDefs.join('\n')}\n`;
+    }
+    set(key, next);
     requestAnimationFrame(() => {
       if (!ta) return;
       ta.focus();
       const p = (before + padL + snippet).length;
       ta.setSelectionRange(p, p);
     });
-  }
-
-  /** 체크한 사진들을 본문 커서 위치에 이미지 문법으로 삽입 */
-  function insertCheckedIntoBody() {
-    const urls = pool.filter((_, i) => poolChecked.has(i)).map((p) => p.url);
-    if (urls.length === 0) return;
-    insertIntoBody(urls.map((u) => `![](${u})`).join('\n\n'));
   }
 
   /** 서식 툴바 — 선택 영역을 마크다운 문법으로 감싼다/바꾼다 */
@@ -889,7 +922,15 @@ export function PostForm({ meta, initial, isEdit, busy, onCancel, onSubmit, onUp
         <button type="button" onClick={onCancel} disabled={busy} className="btn-secondary disabled:opacity-60">
           취소
         </button>
+        {/* 미리보기는 저장과 무관하므로 업로드/저장 중(busy)에도 활성. ml-auto 로 우측 분리 */}
+        <button type="button" onClick={() => setShowPreview(true)} className="btn-secondary ml-auto">
+          미리보기
+        </button>
       </div>
+
+      {showPreview && (
+        <PostPreviewModal meta={meta} rec={rec} onClose={() => setShowPreview(false)} />
+      )}
     </form>
   );
 }
