@@ -100,44 +100,7 @@
     }
   ],
   "noticesUndergrad": [],
-  "noticesGraduate": [
-    {
-      "id": "ng-1",
-      "date": "2026-06-23",
-      "title": {
-        "ko": "2026학년도 8월 졸업예정자 학위논문 제출 및 인준 안내",
-        "en": "Thesis Submission & Approval Notice for Aug 2026 Graduates"
-      },
-      "body": {
-        "ko": "2026년 8월 졸업예정자는 학위논문 최종본과 인준서를 기한 내 제출해야 합니다. 심사위원 전원의 서명이 완료된 인준서 원본과 온라인 원문 등록이 모두 필요합니다.\n\n제출 기한: 2026년 7월 17일(금)\n제출처: 대학원 교학팀 및 온라인 dCollection\n세부 절차는 대학원 졸업요건 페이지를 참고하세요.",
-        "en": "Students graduating in August 2026 must submit the final thesis and the signed approval form by the deadline. Both the original approval form signed by all committee members and the online full-text registration are required.\n\nDeadline: Friday, July 17, 2026\nSubmit to: Graduate School office and dCollection online\nSee the graduate requirements page for detailed procedures."
-      }
-    },
-    {
-      "id": "ng-2",
-      "date": "2026-06-19",
-      "title": {
-        "ko": "2026-2학기 대학원 신입생 모집 요강 공고",
-        "en": "2026 Fall Graduate Admissions Guidelines Announcement"
-      },
-      "body": {
-        "ko": "2026학년도 2학기 대학원 석사·박사·석박사통합과정 신입생 모집 요강이 공고되었습니다. 지원 자격, 전형 일정, 제출 서류를 확인하시기 바랍니다.\n\n원서 접수: 2026년 7월 13일 ~ 7월 17일\n면접 전형: 8월 초 (개별 통지)\n문의: 대학원 교학팀",
-        "en": "Admissions guidelines for the Fall 2026 MS, PhD, and integrated MS-PhD programs have been announced. Please review eligibility, schedule, and required documents.\n\nApplication window: July 13–17, 2026\nInterviews: early August (individually notified)\nContact: Graduate School office."
-      }
-    },
-    {
-      "id": "ng-3",
-      "date": "2026-06-16",
-      "title": {
-        "ko": "대학원 학사지도 체계화를 위한 APR 계획서 작성 안내",
-        "en": "APR Plan Submission Notice for Graduate Academic Advising"
-      },
-      "body": {
-        "ko": "대학원 학사지도 체계화를 위해 연간 연구계획서(APR)를 작성해 지도교수 확인 후 제출해 주세요. 재학 연차별 작성 항목이 다르니 양식의 안내를 확인하시기 바랍니다.\n\n제출 기한: 2026년 7월 10일(금)\n제출 방법: 포털 업로드\n대상: 석사·박사·통합과정 재학생 전원",
-        "en": "As part of systematic graduate advising, all students must complete the Annual Progress Report (APR), have it confirmed by their advisor, and submit it. Required sections vary by year in program.\n\nDeadline: Friday, July 10, 2026\nSubmission: portal upload\nApplies to all MS, PhD, and integrated-program students."
-      }
-    }
-  ],
+  "noticesGraduate": [],
   "thesis": [
     {
       "id": "th-1",
