@@ -1,55 +1,6 @@
 {
   "seminars": [],
-  "events": [
-    {
-      "id": "evt-1",
-      "date": "2026-07-01",
-      "dateLabel": {
-        "ko": "7/1~7/3",
-        "en": "Jul 1–3"
-      },
-      "title": {
-        "ko": "기계공학부 2026 여름학기 해외집중강의 시리즈",
-        "en": "2026 Summer Intensive Overseas Lecture Series"
-      },
-      "body": {
-        "ko": "해외 석학을 초청해 3일간 진행하는 집중강의 시리즈입니다. 올여름은 마이크로 유체역학과 적층제조 특론 두 과목이 개설되며, 전 일정 영어로 진행됩니다.\n\n기간: 2026년 7월 1일(수) ~ 7월 3일(금)\n장소: 제4공학관 D504호\n신청: 학부 사무실 이메일 접수 (선착순 40명)",
-        "en": "A three-day intensive lecture series with invited scholars from abroad. This summer features two courses — Microfluidics and Advanced Additive Manufacturing — conducted entirely in English.\n\nPeriod: July 1 (Wed) – July 3 (Fri), 2026\nVenue: Engineering Hall IV, Room D504\nRegistration by email to the department office (first 40 students)."
-      }
-    },
-    {
-      "id": "evt-2",
-      "date": "2026-07-07",
-      "dateLabel": {
-        "ko": "7/7(화)",
-        "en": "Jul 7 (Tue)"
-      },
-      "title": {
-        "ko": "미래 모빌리티 기술 포럼: 자율 시스템의 내일",
-        "en": "Future Mobility Forum: The Next of Autonomous Systems"
-      },
-      "body": {
-        "ko": "산업계와 학계 연사가 함께 자율주행·도심항공모빌리티(UAM)의 기술 로드맵을 조망하는 포럼입니다. 패널 토론과 학생 포스터 세션이 함께 열립니다.\n\n일시: 2026년 7월 7일(화) 오후 1시~6시\n장소: 백양누리 그랜드볼룸\n참가: 사전 등록 필수 (무료)",
-        "en": "Industry and academic speakers survey the technology roadmap for autonomous driving and urban air mobility, with a panel discussion and a student poster session.\n\nDate: Tuesday, July 7, 2026, 1–6 PM\nVenue: Baekyang Nuri Grand Ballroom\nFree admission with advance registration."
-      }
-    },
-    {
-      "id": "evt-3",
-      "date": "2026-07-10",
-      "dateLabel": {
-        "ko": "7/10(금)",
-        "en": "Jul 10 (Fri)"
-      },
-      "title": {
-        "ko": "BK21 연구클러스터 워크숍 (에너지·바이오)",
-        "en": "BK21 Research Cluster Workshop (Energy · Bio)"
-      },
-      "body": {
-        "ko": "BK21 FOUR 교육연구단의 에너지·바이오 클러스터 합동 워크숍입니다. 참여 연구실의 최신 성과 발표와 대학원생 연구 교류 세션이 진행됩니다.\n\n일시: 2026년 7월 10일(금) 오전 10시~오후 5시\n장소: 제1공학관 국제회의실\n대상: 참여 연구실 구성원 및 대학원 진학 희망 학부생",
-        "en": "A joint workshop of the Energy and Bio clusters of the BK21 FOUR group, featuring latest results from participating labs and a graduate research exchange session.\n\nDate: Friday, July 10, 2026, 10 AM – 5 PM\nVenue: Engineering Hall I International Conference Room\nOpen to cluster members and undergraduates considering graduate study."
-      }
-    }
-  ],
+  "events": [],
   "noticesUndergrad": [],
   "noticesGraduate": [],
   "thesis": [
