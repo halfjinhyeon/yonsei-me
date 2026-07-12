@@ -1,54 +1,5 @@
 {
-  "seminars": [
-    {
-      "id": "sem-1",
-      "date": "2026-07-03",
-      "host": {
-        "ko": "이서연 교수 (연세대 기계공학부)",
-        "en": "Prof. Seoyeon Lee (Yonsei ME)"
-      },
-      "title": {
-        "ko": "[학부 세미나] 인간-로봇 협력 제어의 최신 동향",
-        "en": "[UG Seminar] Recent Advances in Human-Robot Collaborative Control"
-      },
-      "body": {
-        "ko": "인간과 로봇이 같은 공간에서 안전하게 협력하기 위한 제어 이론의 최신 동향을 소개합니다. 임피던스 제어와 학습 기반 의도 추정을 중심으로, 실제 협동로봇 적용 사례를 함께 다룹니다.\n\n일시: 2026년 7월 3일(금) 오후 4시\n장소: 제4공학관 D701호\n대상: 학부생 및 관심 있는 대학원생 누구나",
-        "en": "This seminar introduces recent advances in control theory for safe human-robot collaboration, focusing on impedance control and learning-based intent estimation with real collaborative-robot case studies.\n\nDate: Friday, July 3, 2026, 4 PM\nVenue: Engineering Hall IV, Room D701\nOpen to all undergraduate and graduate students."
-      }
-    },
-    {
-      "id": "sem-2",
-      "date": "2026-07-04",
-      "host": {
-        "ko": "정현우 교수 (연세대 기계공학부)",
-        "en": "Prof. Hyunwoo Jung (Yonsei ME)"
-      },
-      "title": {
-        "ko": "[BK세미나] 친환경 냉각 시스템과 열전달 설계",
-        "en": "[BK Seminar] Sustainable Cooling Systems and Heat Transfer Design"
-      },
-      "body": {
-        "ko": "데이터센터와 전기차 배터리 냉각을 중심으로, 저전력·친환경 냉각 시스템 설계의 핵심 열전달 문제를 살펴봅니다. 이상유동 비등 냉각과 히트파이프 최적 설계 사례를 소개합니다.\n\n일시: 2026년 7월 4일(토) 오전 10시\n장소: 제1공학관 A537호\n주관: BK21 FOUR 교육연구단",
-        "en": "Focusing on data-center and EV-battery thermal management, this talk examines key heat-transfer problems in low-power sustainable cooling design, including two-phase boiling cooling and heat-pipe optimization.\n\nDate: Saturday, July 4, 2026, 10 AM\nVenue: Engineering Hall I, Room A537\nHosted by the BK21 FOUR Education & Research Group."
-      }
-    },
-    {
-      "id": "sem-3",
-      "date": "2026-07-05",
-      "host": {
-        "ko": "최유나 교수 (연세대 기계공학부)",
-        "en": "Prof. Yuna Choi (Yonsei ME)"
-      },
-      "title": {
-        "ko": "[대학원 세미나] 웨어러블 재활 로봇의 바이오메카닉스",
-        "en": "[Graduate Seminar] Biomechanics of Wearable Rehabilitation Robots"
-      },
-      "body": {
-        "ko": "보행 재활을 위한 웨어러블 로봇 설계에서 인체 동역학 모델이 어떻게 활용되는지 다룹니다. 근골격 시뮬레이션과 착용형 센서 데이터를 결합한 최신 연구 결과를 공유합니다.\n\n일시: 2026년 7월 5일(일) 오후 2시\n장소: 제4공학관 세미나실\n대상: 대학원생 (학부생 청강 가능)",
-        "en": "This seminar covers how human-dynamics models drive the design of wearable robots for gait rehabilitation, sharing recent results that combine musculoskeletal simulation with wearable sensor data.\n\nDate: Sunday, July 5, 2026, 2 PM\nVenue: Engineering Hall IV Seminar Room\nFor graduate students; undergraduates welcome."
-      }
-    }
-  ],
+  "seminars": [],
   "events": [
     {
       "id": "evt-1",
