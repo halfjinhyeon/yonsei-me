@@ -30,8 +30,9 @@ export function BoardList({
   if (items.length === 0) {
     return (
       <div className="flex flex-col items-center gap-5 rounded-card border border-surface-border bg-surface-soft px-6 py-20 text-center">
-        {/* 독수리 마스코트 실루엣 (파란 계열 색조) — 빈 상태의 브랜드 마크 */}
-        <span aria-hidden="true" className="eagle-mask h-20 w-20 bg-yonsei-blue/35" />
+        {/* 빈 상태 마스코트 — eagle_empty 이미지 (뉴스 카드 미등록 상태와 동일 자산) */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src="/img/eagle_empty.png" alt="" aria-hidden="true" className="h-20 w-auto opacity-70" />
         <p className="max-w-sm text-content-soft">{emptyLabel}</p>
       </div>
     );

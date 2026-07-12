@@ -123,7 +123,7 @@ export default async function NewsPage({ params }: { params: { locale: string } 
   }));
 
   const tabs: TabItem[] = [
-    { key: 'notices', label: tMenu('news.items.notices'), markdown: null, content: <FilterableBoardList items={notices} categories={noticeCategories} locale={locale} emptyLabel={tStub('body')} /> },
+    { key: 'notices', label: tMenu('news.items.notices'), markdown: null, content: <FilterableBoardList items={notices} categories={noticeCategories} locale={locale} emptyLabel={tStub('empty')} /> },
     {
       key: 'news',
       label: tMenu('news.items.news'),
@@ -132,17 +132,17 @@ export default async function NewsPage({ params }: { params: { locale: string } 
         <NewsBoard
           items={newsItems}
           locale={locale}
-          emptyLabel={tStub('body')}
+          emptyLabel={tStub('empty')}
           cardLabel={tNews('view.card')}
           listLabel={tNews('view.list')}
         />
       ),
     },
-    { key: 'thesis', label: tMenu('news.items.thesis'), markdown: null, content: <FilterableBoardList items={thesisRows} locale={locale} emptyLabel={tStub('body')} /> },
-    { key: 'resources', label: tMenu('news.items.resources'), markdown: null, content: <FilterableBoardList items={resourceRows} locale={locale} emptyLabel={tStub('body')} /> },
-    { key: 'career', label: tMenu('news.items.career'), markdown: null, content: <FilterableBoardList items={careerRows} locale={locale} emptyLabel={tStub('body')} /> },
-    { key: 'events', label: tMenu('news.items.events'), markdown: null, content: <FilterableBoardList items={eventRows} locale={locale} emptyLabel={tStub('body')} /> },
-    { key: 'seminars', label: tMenu('news.items.seminars'), markdown: null, content: <FilterableBoardList items={seminarRows} locale={locale} emptyLabel={tStub('body')} /> },
+    { key: 'thesis', label: tMenu('news.items.thesis'), markdown: null, content: <FilterableBoardList items={thesisRows} locale={locale} emptyLabel={tStub('empty')} /> },
+    { key: 'resources', label: tMenu('news.items.resources'), markdown: null, content: <FilterableBoardList items={resourceRows} locale={locale} emptyLabel={tStub('empty')} /> },
+    { key: 'career', label: tMenu('news.items.career'), markdown: null, content: <FilterableBoardList items={careerRows} locale={locale} emptyLabel={tStub('empty')} /> },
+    { key: 'events', label: tMenu('news.items.events'), markdown: null, content: <FilterableBoardList items={eventRows} locale={locale} emptyLabel={tStub('empty')} /> },
+    { key: 'seminars', label: tMenu('news.items.seminars'), markdown: null, content: <FilterableBoardList items={seminarRows} locale={locale} emptyLabel={tStub('empty')} /> },
     { key: 'calendar', label: tMenu('news.items.calendar'), markdown: null, content: <EventCalendar entries={calendarEntries} locale={locale} /> },
   ];
 
@@ -153,7 +153,7 @@ export default async function NewsPage({ params }: { params: { locale: string } 
         subtitle={tNews('hero.subtitle')}
         breadcrumb={[{ label: tMenu('news.label') }]}
       />
-      <TabbedContent tabs={tabs} emptyLabel={tStub('body')} navTitle={tMenu('news.label')} />
+      <TabbedContent tabs={tabs} emptyLabel={tStub('empty')} navTitle={tMenu('news.label')} />
     </>
   );
 }

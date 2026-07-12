@@ -62,7 +62,7 @@ export default async function AlumniPage({ params }: { params: { locale: string 
         <NewsBoard
           items={newsItems}
           locale={locale}
-          emptyLabel={tStub('body')}
+          emptyLabel={tStub('empty')}
           cardLabel={tNews('view.card')}
           listLabel={tNews('view.list')}
         />
@@ -72,7 +72,7 @@ export default async function AlumniPage({ params }: { params: { locale: string 
       key: 'network',
       label: tMenu('alumni.items.network'),
       markdown: null,
-      content: <FilterableBoardList items={eventRows} locale={locale} emptyLabel={tStub('body')} />,
+      content: <FilterableBoardList items={eventRows} locale={locale} emptyLabel={tStub('empty')} />,
     },
   ];
 
@@ -83,7 +83,7 @@ export default async function AlumniPage({ params }: { params: { locale: string 
         subtitle={tAlumni('hero.subtitle')}
         breadcrumb={[{ label: tMenu('alumni.label') }]}
       />
-      <TabbedContent tabs={tabs} emptyLabel={tStub('body')} navTitle={tMenu('alumni.label')} />
+      <TabbedContent tabs={tabs} emptyLabel={tStub('empty')} navTitle={tMenu('alumni.label')} />
     </>
   );
 }

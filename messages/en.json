@@ -324,6 +324,7 @@
   "stub": {
     "badge": "Coming soon",
     "body": "This page is structured and its detailed content will be added shortly.",
+    "empty": "Nothing has been posted yet.",
     "back": "Back to home"
   },
   "faculty": {
