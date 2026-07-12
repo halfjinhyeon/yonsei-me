@@ -39,8 +39,29 @@ const ALLOWED_TYPES = [
   'application/vnd.openxmlformats-officedocument.presentationml.presentation',
   'application/haansofthwp',
   'application/x-hwp',
+  'application/vnd.hancom.hwp',
+  'application/vnd.hancom.hwpx',
   'application/octet-stream', // hwp 등 브라우저가 타입을 모르는 문서
 ];
+
+/** 브라우저가 실행·렌더할 수 있어 저장을 거부하는 타입 (blob 도메인 피싱·XSS 예방) */
+const BLOCKED_TYPES = new Set([
+  'text/html',
+  'application/xhtml+xml',
+  'image/svg+xml',
+  'application/xml',
+  'text/xml',
+  'application/javascript',
+  'text/javascript',
+]);
+
+/** 확장자 기반 안전목록 — 브라우저의 MIME 추정이 제각각인 문서·이미지·압축 파일.
+ *  특히 hwp/hwpx 는 시스템마다 빈 값·x-hwp·vnd.hancom.hwp 등으로 달라, 타입이
+ *  ALLOWED_TYPES 에 없어도 이 확장자면 octet-stream 으로 저장을 허용한다. */
+const SAFE_EXTENSIONS = new Set([
+  'hwp', 'hwpx', 'pdf', 'doc', 'docx', 'xls', 'xlsx', 'ppt', 'pptx',
+  'zip', 'txt', 'csv', 'jpg', 'jpeg', 'png', 'webp', 'gif',
+]);
 
 export async function POST(request: Request): Promise<Response> {
   try {
@@ -52,15 +73,32 @@ export async function POST(request: Request): Promise<Response> {
       }
     }
 
-    const pathname = request.headers.get('x-upload-pathname') ?? '';
+    // pathname 은 한글 파일명을 담을 수 있어 클라이언트가 퍼센트 인코딩해 보낸다(헤더는 Latin-1 전용)
+    let pathname: string;
+    try {
+      pathname = decodeURIComponent(request.headers.get('x-upload-pathname') ?? '');
+    } catch {
+      return Response.json({ error: '업로드 경로가 올바르지 않습니다.' }, { status: 400 });
+    }
     if (!pathname.startsWith('uploads/')) {
       return Response.json({ error: '허용되지 않은 업로드 경로입니다.' }, { status: 400 });
     }
 
-    const contentType = request.headers.get('content-type') || 'application/octet-stream';
-    if (!ALLOWED_TYPES.includes(contentType)) {
+    // MIME 검증 — html·svg 등 브라우저가 실행/렌더하는 타입만 확실히 막고(BLOCKED_TYPES),
+    // 나머지는 허용 타입이거나 안전한 확장자면 통과시킨다. hwp 처럼 브라우저가 타입을
+    // 비워 보내거나 제각각으로 보고하는 문서를 확장자로 구제한다.
+    const rawType = (request.headers.get('content-type') ?? '').split(';')[0].trim().toLowerCase();
+    if (BLOCKED_TYPES.has(rawType)) {
       return Response.json({ error: '허용되지 않은 파일 형식입니다.' }, { status: 415 });
     }
+    const ext = (pathname.match(/\.([a-z0-9]+)$/i)?.[1] ?? '').toLowerCase();
+    const typeAllowed = ALLOWED_TYPES.includes(rawType);
+    if (!typeAllowed && !SAFE_EXTENSIONS.has(ext)) {
+      return Response.json({ error: '허용되지 않은 파일 형식입니다.' }, { status: 415 });
+    }
+    // 명시적으로 허용된 타입만 그대로 저장하고, 확장자로 구제된 경우는 안전하게
+    // 다운로드되도록 octet-stream 으로 저장한다(브라우저가 임의 타입을 렌더하지 못하게).
+    const contentType = typeAllowed ? rawType : 'application/octet-stream';
 
     const bytes = await request.arrayBuffer();
     if (bytes.byteLength === 0) {

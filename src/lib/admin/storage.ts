@@ -118,7 +118,10 @@ function serverUpload(
 
     xhr.open('POST', '/api/upload-file', true);
     xhr.timeout = SERVER_UPLOAD_TIMEOUT_MS;
-    xhr.setRequestHeader('x-upload-pathname', pathname);
+    // HTTP 헤더 값은 Latin-1(ISO-8859-1)만 허용 — 한글이 든 pathname 을 그대로 넣으면
+    // 'non ISO-8859-1 code point' 로 던진다. 퍼센트 인코딩해 보내고 서버가 decodeURIComponent
+    // 로 복원한다(hwp 등 한글 파일명이 여기서 막히던 문제).
+    xhr.setRequestHeader('x-upload-pathname', encodeURIComponent(pathname));
     xhr.setRequestHeader('content-type', file.type || 'application/octet-stream');
 
     xhr.upload.onprogress = (e) => {
