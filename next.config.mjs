@@ -10,6 +10,12 @@ const nextConfig = {
   distDir: process.env.NODE_ENV === 'development' ? '.next-dev' : '.next',
   images: {
     formats: ['image/avif', 'image/webp'],
+    // CMS 첨부(썸네일 등)는 Vercel Blob 공개 스토어에 저장된다 — next/image 는
+    // 허용 목록에 없는 외부 도메인을 거부하므로 Blob 도메인을 열어 준다.
+    // 스토어를 다시 만들면 서브도메인(스토어 id)이 바뀌므로 와일드카드로 둔다.
+    remotePatterns: [
+      { protocol: 'https', hostname: '*.public.blob.vercel-storage.com' },
+    ],
   },
 };
 
