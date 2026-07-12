@@ -3,7 +3,10 @@
     {
       "id": "sem-1",
       "date": "2026-07-03",
-      "host": { "ko": "이서연 교수 (연세대 기계공학부)", "en": "Prof. Seoyeon Lee (Yonsei ME)" },
+      "host": {
+        "ko": "이서연 교수 (연세대 기계공학부)",
+        "en": "Prof. Seoyeon Lee (Yonsei ME)"
+      },
       "title": {
         "ko": "[학부 세미나] 인간-로봇 협력 제어의 최신 동향",
         "en": "[UG Seminar] Recent Advances in Human-Robot Collaborative Control"
@@ -16,7 +19,10 @@
     {
       "id": "sem-2",
       "date": "2026-07-04",
-      "host": { "ko": "정현우 교수 (연세대 기계공학부)", "en": "Prof. Hyunwoo Jung (Yonsei ME)" },
+      "host": {
+        "ko": "정현우 교수 (연세대 기계공학부)",
+        "en": "Prof. Hyunwoo Jung (Yonsei ME)"
+      },
       "title": {
         "ko": "[BK세미나] 친환경 냉각 시스템과 열전달 설계",
         "en": "[BK Seminar] Sustainable Cooling Systems and Heat Transfer Design"
@@ -29,7 +35,10 @@
     {
       "id": "sem-3",
       "date": "2026-07-05",
-      "host": { "ko": "최유나 교수 (연세대 기계공학부)", "en": "Prof. Yuna Choi (Yonsei ME)" },
+      "host": {
+        "ko": "최유나 교수 (연세대 기계공학부)",
+        "en": "Prof. Yuna Choi (Yonsei ME)"
+      },
       "title": {
         "ko": "[대학원 세미나] 웨어러블 재활 로봇의 바이오메카닉스",
         "en": "[Graduate Seminar] Biomechanics of Wearable Rehabilitation Robots"
@@ -44,7 +53,10 @@
     {
       "id": "evt-1",
       "date": "2026-07-01",
-      "dateLabel": { "ko": "7/1~7/3", "en": "Jul 1–3" },
+      "dateLabel": {
+        "ko": "7/1~7/3",
+        "en": "Jul 1–3"
+      },
       "title": {
         "ko": "기계공학부 2026 여름학기 해외집중강의 시리즈",
         "en": "2026 Summer Intensive Overseas Lecture Series"
@@ -57,7 +69,10 @@
     {
       "id": "evt-2",
       "date": "2026-07-07",
-      "dateLabel": { "ko": "7/7(화)", "en": "Jul 7 (Tue)" },
+      "dateLabel": {
+        "ko": "7/7(화)",
+        "en": "Jul 7 (Tue)"
+      },
       "title": {
         "ko": "미래 모빌리티 기술 포럼: 자율 시스템의 내일",
         "en": "Future Mobility Forum: The Next of Autonomous Systems"
@@ -70,7 +85,10 @@
     {
       "id": "evt-3",
       "date": "2026-07-10",
-      "dateLabel": { "ko": "7/10(금)", "en": "Jul 10 (Fri)" },
+      "dateLabel": {
+        "ko": "7/10(금)",
+        "en": "Jul 10 (Fri)"
+      },
       "title": {
         "ko": "BK21 연구클러스터 워크숍 (에너지·바이오)",
         "en": "BK21 Research Cluster Workshop (Energy · Bio)"
@@ -81,47 +99,7 @@
       }
     }
   ],
-  "noticesUndergrad": [
-    {
-      "id": "nu-1",
-      "date": "2026-06-29",
-      "title": {
-        "ko": "2026 여름계절학기 학부연구(3) 참여 신청서 제출 안내",
-        "en": "2026 Summer Undergraduate Research (3) Application Notice"
-      },
-      "body": {
-        "ko": "2026 여름계절학기 학부연구(3) 교과목 참여 신청을 받습니다. 지도교수와 사전 면담 후 신청서를 작성하여 학부 사무실로 제출해 주세요.\n\n제출 기한: 2026년 7월 6일(월) 오후 5시\n제출처: 학부 사무실 (제4공학관 D406호) 또는 이메일\n문의: 학사 담당 조교",
-        "en": "Applications are now open for the Summer 2026 Undergraduate Research (3) course. Meet with your advisor first, then submit the application form to the department office.\n\nDeadline: Monday, July 6, 2026, 5 PM\nSubmit to: Department Office (Engineering Hall IV, D406) or by email\nContact: academic affairs staff."
-      },
-      "attachments": [
-        { "label": { "ko": "안내문.pdf", "en": "Notice.pdf" }, "href": "#" }
-      ]
-    },
-    {
-      "id": "nu-2",
-      "date": "2026-06-24",
-      "title": {
-        "ko": "2026 여름학기 자율연구(VAR) 모집 안내",
-        "en": "2026 Summer Voluntary Autonomous Research (VAR) Recruitment"
-      },
-      "body": {
-        "ko": "방학 중 연구실에서 자기주도 연구를 경험하는 자율연구(VAR) 프로그램 참여자를 모집합니다. 참여 연구실 목록과 주제는 연구 탭의 연구실 목록에서 확인할 수 있습니다.\n\n모집 기간: 2026년 6월 24일 ~ 7월 3일\n활동 기간: 7월 중순 ~ 8월 말 (연구실별 상이)\n수료 시 활동확인서가 발급됩니다.",
-        "en": "The Voluntary Autonomous Research (VAR) summer program invites students to experience self-directed research in a lab. Participating labs and topics are listed on the Research page.\n\nApplication: June 24 – July 3, 2026\nProgram period: mid-July to late August (varies by lab)\nA certificate of participation is issued upon completion."
-      }
-    },
-    {
-      "id": "nu-3",
-      "date": "2026-06-23",
-      "title": {
-        "ko": "기계공학부 「홈페이지 구축 경진대회」 안내",
-        "en": "School of ME 'Homepage Design Competition' Notice"
-      },
-      "body": {
-        "ko": "학부 구성원의 아이디어로 새 홈페이지를 만드는 「홈페이지 구축 경진대회」를 개최합니다. 개인 또는 팀(3인 이내)으로 참가할 수 있으며, 수상작은 실제 학부 홈페이지 리뉴얼에 반영됩니다.\n\n접수 마감: 2026년 7월 31일(금)\n제출물: 배포 가능한 웹사이트와 소개 문서\n시상: 대상 1팀, 우수상 2팀",
-        "en": "The department hosts a Homepage Design Competition to rebuild its website with ideas from members. Enter individually or in teams of up to three; winning entries will inform the official renewal.\n\nDeadline: Friday, July 31, 2026\nDeliverables: a deployable website and a brief write-up\nAwards: one grand prize, two excellence prizes."
-      }
-    }
-  ],
+  "noticesUndergrad": [],
   "noticesGraduate": [
     {
       "id": "ng-1",
@@ -249,7 +227,13 @@
         "en": "The revised undergraduate graduation requirements guide, effective for students admitted in 2026, is now available. Major required/elective credit totals, design-course criteria, and English-lecture requirements have been partially adjusted.\n\nApplies to: students admitted 2026 onward\nContact: Undergraduate Affairs Team (Engineering Hall IV, Room D101)\nPlease review the attached guide carefully."
       },
       "attachments": [
-        { "label": { "ko": "졸업요건_안내문.pdf", "en": "Graduation_Requirements.pdf" }, "href": "#" }
+        {
+          "label": {
+            "ko": "졸업요건_안내문.pdf",
+            "en": "Graduation_Requirements.pdf"
+          },
+          "href": "#"
+        }
       ]
     },
     {
@@ -264,7 +248,13 @@
         "en": "The 2026 edition of the curriculum handbook — covering all undergraduate courses, prerequisites, and a year-by-year recommended roadmap — is now distributed. It includes recommended tracks (Design & Manufacturing, Energy & Thermofluids, Robotics & Control, Bio & Nano).\n\nUse: reference for course registration and advisor consultation\nContact: Undergraduate Affairs Team"
       },
       "attachments": [
-        { "label": { "ko": "교과과정_편람.pdf", "en": "Curriculum_Handbook.pdf" }, "href": "#" }
+        {
+          "label": {
+            "ko": "교과과정_편람.pdf",
+            "en": "Curriculum_Handbook.pdf"
+          },
+          "href": "#"
+        }
       ]
     },
     {
@@ -279,8 +269,20 @@
         "en": "Forms required to apply for fall-semester national and in-house merit/financial-aid scholarships are provided, including the advisor recommendation form and the personal-information consent form.\n\nApplication period: August 3–21, 2026\nSubmit to: Undergraduate Affairs Team or the portal scholarship system\nDownload, complete, and submit the attached forms."
       },
       "attachments": [
-        { "label": { "ko": "장학금_신청서.hwp", "en": "Scholarship_Application.hwp" }, "href": "#" },
-        { "label": { "ko": "추천서_양식.hwp", "en": "Recommendation_Form.hwp" }, "href": "#" }
+        {
+          "label": {
+            "ko": "장학금_신청서.hwp",
+            "en": "Scholarship_Application.hwp"
+          },
+          "href": "#"
+        },
+        {
+          "label": {
+            "ko": "추천서_양식.hwp",
+            "en": "Recommendation_Form.hwp"
+          },
+          "href": "#"
+        }
       ]
     },
     {
@@ -307,7 +309,13 @@
         "en": "The application form for requesting activity and event funding for department clubs and academic societies is now distributed. An activity plan and budget breakdown must be submitted; funding and amount are decided after review.\n\nSubmission: first two weeks of each semester\nSubmit to: the student council or the Undergraduate Affairs Team\nComplete and submit the attached form."
       },
       "attachments": [
-        { "label": { "ko": "학생활동_지원신청서.hwp", "en": "Activity_Support_Application.hwp" }, "href": "#" }
+        {
+          "label": {
+            "ko": "학생활동_지원신청서.hwp",
+            "en": "Activity_Support_Application.hwp"
+          },
+          "href": "#"
+        }
       ]
     }
   ],
@@ -316,7 +324,10 @@
       "id": "ae-1",
       "isEvent": true,
       "date": "2026-09-19",
-      "host": { "ko": "동문회 사무국", "en": "Alumni Association" },
+      "host": {
+        "ko": "동문회 사무국",
+        "en": "Alumni Association"
+      },
       "title": {
         "ko": "2026 동문회 정기총회 & 홈커밍데이 (졸업 20·30주년 기수 초청)",
         "en": "2026 General Assembly & Homecoming Day (20th/30th reunion classes)"
@@ -330,7 +341,10 @@
       "id": "ae-2",
       "isEvent": true,
       "date": "2026-08-28",
-      "host": { "ko": "모빌리티 산업 분과", "en": "Mobility Industry Chapter" },
+      "host": {
+        "ko": "모빌리티 산업 분과",
+        "en": "Mobility Industry Chapter"
+      },
       "title": {
         "ko": "모빌리티 산업 동문 네트워킹 나이트 (판교)",
         "en": "Mobility Industry Alumni Networking Night (Pangyo)"
@@ -344,7 +358,10 @@
       "id": "ae-3",
       "isEvent": true,
       "date": "2026-07-11",
-      "host": { "ko": "동문회 멘토링 위원회", "en": "Alumni Mentoring Committee" },
+      "host": {
+        "ko": "동문회 멘토링 위원회",
+        "en": "Alumni Mentoring Committee"
+      },
       "title": {
         "ko": "동문 멘토링 데이 — 재학생 진로 상담 멘토 모집",
         "en": "Alumni Mentoring Day — call for mentors for student career counseling"
@@ -357,7 +374,10 @@
     {
       "id": "ae-4",
       "date": "2026-06-30",
-      "host": { "ko": "동문 장학사업부", "en": "Alumni Scholarship Committee" },
+      "host": {
+        "ko": "동문 장학사업부",
+        "en": "Alumni Scholarship Committee"
+      },
       "title": {
         "ko": "동문 장학기금 2026 상반기 결산 및 장학생 선발 결과 안내",
         "en": "Alumni Scholarship Fund: H1 2026 report and scholarship recipients"
