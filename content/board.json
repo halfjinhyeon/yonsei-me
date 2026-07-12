@@ -4,44 +4,7 @@
   "noticesUndergrad": [],
   "noticesGraduate": [],
   "thesis": [],
-  "career": [
-    {
-      "id": "cr-1",
-      "date": "2026-07-02",
-      "title": {
-        "ko": "2026 하반기 채용연계형 인턴십 합동 설명회 안내",
-        "en": "2026 H2 Career-Track Internship Joint Info Session"
-      },
-      "body": {
-        "ko": "모빌리티·에너지·반도체 장비 분야 기업들이 참여하는 채용연계형 인턴십 합동 설명회를 개최합니다. 직무 소개와 현직 엔지니어 멘토링 부스가 운영됩니다.\n\n일시: 2026년 7월 9일(목) 오후 2시\n장소: 공학원 대강당\n참가 기업 목록은 추후 공지 예정입니다.",
-        "en": "A joint info session for career-track internships with companies in mobility, energy, and semiconductor equipment, featuring role introductions and mentoring booths with working engineers.\n\nDate: Thursday, July 9, 2026, 2 PM\nVenue: Engineering Research Park Auditorium\nThe participating-company list will be announced."
-      }
-    },
-    {
-      "id": "cr-2",
-      "date": "2026-06-27",
-      "title": {
-        "ko": "기계공학 전공자 대상 여름 현장실습(4주) 추가 모집",
-        "en": "Additional Recruitment: 4-Week Summer Field Practicum for ME Majors"
-      },
-      "body": {
-        "ko": "여름방학 4주 현장실습 프로그램의 추가 참여자를 모집합니다. 실습 기간 동안 실습지원비가 지급되며, 학점(현장실습 1) 인정이 가능합니다.\n\n모집 마감: 2026년 7월 4일(토)\n실습 기간: 7월 20일 ~ 8월 14일\n신청: 포털 현장실습 시스템",
-        "en": "Additional openings are available for the four-week summer field practicum. A stipend is provided and one practicum credit may be earned.\n\nDeadline: Saturday, July 4, 2026\nPracticum period: July 20 – August 14\nApply via the portal practicum system."
-      }
-    },
-    {
-      "id": "cr-3",
-      "date": "2026-06-20",
-      "title": {
-        "ko": "동문 멘토링 데이: 진로 상담 신청 안내 (7월)",
-        "en": "Alumni Mentoring Day: July Career Counseling Sign-up"
-      },
-      "body": {
-        "ko": "산업계와 연구소에서 활동 중인 동문 멘토와 1:1 진로 상담을 진행하는 멘토링 데이를 엽니다. 완성차, 항공우주, 로봇 스타트업, 정부출연연구소 등 다양한 분야의 멘토가 참여합니다.\n\n일시: 2026년 7월 11일(토) 오전 10시~오후 4시\n장소: 제4공학관 라운지\n신청: 구글폼 (선착순 30명)",
-        "en": "Mentoring Day offers one-on-one career counseling with alumni working in industry and research institutes — automotive, aerospace, robotics startups, and government labs.\n\nDate: Saturday, July 11, 2026, 10 AM – 4 PM\nVenue: Engineering Hall IV Lounge\nSign-up: Google Form (first 30 students)."
-      }
-    }
-  ],
+  "career": [],
   "resources": [],
   "alumniEvents": [
     {
