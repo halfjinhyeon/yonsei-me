@@ -1,0 +1,46 @@
+{
+  "sections": [
+    {
+      "num": "1",
+      "graphic": "logo",
+      "title": { "ko": "대학 입학", "en": "Undergraduate Admissions" },
+      "body": {
+        "ko": "연세대학교 기계공학부는 4년제 학부 과정으로, 창의적 사고와 견고한 공학 기초 위에서 미래 산업을 이끌 기계공학 인재를 선발합니다. 신입학은 연세대학교 입학처를 통해 수시·정시 전형으로 모집하며, 편입학 전형도 운영합니다.",
+        "en": "The School of Mechanical Engineering at Yonsei University is a four-year undergraduate program that selects future engineering leaders built on creative thinking and rigorous fundamentals. New students are admitted through the Yonsei Office of Admissions via early (Susi) and regular (Jeongsi) tracks, and a transfer track is also available."
+      },
+      "notes": [
+        {
+          "ko": "전형별 모집 인원과 지원 자격, 제출 서류는 해당 연도 모집요강을 기준으로 합니다. 자세한 내용은 연세대학교 입학처 홈페이지에서 확인할 수 있습니다.",
+          "en": "Admission quotas, eligibility, and required documents follow each year's official admissions guide. See the Yonsei Office of Admissions website for details."
+        }
+      ],
+      "buttons": [
+        { "label": { "ko": "수시입학 바로가기", "en": "Early Admission (Susi)" }, "href": "https://admission.yonsei.ac.kr/seoul/admission/html/rolling/" },
+        { "label": { "ko": "정시입학 바로가기", "en": "Regular Admission (Jeongsi)" }, "href": "https://admission.yonsei.ac.kr/seoul/admission/html/regular/" },
+        { "label": { "ko": "편입학 바로가기", "en": "Transfer Admission" }, "href": "https://admission.yonsei.ac.kr/seoul/admission/html/transfer/" }
+      ]
+    },
+    {
+      "num": "2",
+      "graphic": "eagle",
+      "title": { "ko": "대학원 입학", "en": "Graduate Admissions" },
+      "body": {
+        "ko": "일반대학원 기계공학과는 석사·박사·석박사통합 과정을 운영합니다. 끊임없는 탐구정신으로 학문 발전에 기여할 자기 주도적 연구 역량을 배양하고, 열·유체, 로보틱스, 바이오, 마이크로·나노, 설계·제조를 아우르는 33개 연구실에서 사회 변화에 대한 통찰력을 갖춘 전문 연구 인력을 양성합니다.",
+        "en": "The Graduate School's Department of Mechanical Engineering offers MS, PhD, and integrated MS-PhD programs. Across 33 laboratories spanning thermo-fluids, robotics, bio, micro/nano, and design & manufacturing, we cultivate self-directed researchers with insight into a changing society."
+      },
+      "notes": [
+        {
+          "ko": "모집은 전기·후기로 나누어 진행되며, 지원 절차와 제출 서류는 일반대학원 모집요강을 따릅니다.",
+          "en": "Admissions are held in spring and fall rounds; procedures and documents follow the Graduate School's official guide."
+        },
+        {
+          "ko": "지원 전 관심 분야 연구실의 지도교수와 미리 컨택하는 것을 권장합니다. 연구실 정보는 '연구' 메뉴의 연구실 소개에서 확인할 수 있습니다.",
+          "en": "Prospective students are encouraged to contact the advisor of a lab of interest before applying. Lab information is available under Research → Laboratories."
+        }
+      ],
+      "buttons": [
+        { "label": { "ko": "대학원입학 바로가기", "en": "Graduate Admission" }, "href": "https://graduate.yonsei.ac.kr/graduate/admission/" }
+      ]
+    }
+  ]
+}

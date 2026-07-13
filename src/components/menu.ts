@@ -21,6 +21,7 @@ export const menu: MenuGroup[] = [
       { key: 'faculty', href: '/about#faculty' },
       { key: 'staff', href: '/about#staff' },
       { key: 'directions', href: '/about#directions' },
+      { key: 'admission', href: '/about#admission' },
     ],
   },
   {

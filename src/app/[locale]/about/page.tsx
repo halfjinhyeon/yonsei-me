@@ -6,6 +6,7 @@ import { DirectionsInfo } from '@/components/DirectionsInfo';
 import { AboutIntro } from '@/components/AboutIntro';
 import { Prose } from '@/components/Prose';
 import { TabbedContent, type TabItem } from '@/components/TabbedContent';
+import { AdmissionGuide } from '@/components/AdmissionGuide';
 import { FacultyDirectoryGrid } from '@/components/FacultyDirectoryGrid';
 import { HistoryTimeline } from '@/components/HistoryTimeline';
 import { KakaoMap } from '@/components/KakaoMap';
@@ -124,6 +125,13 @@ export default async function AboutPage({ params }: { params: { locale: string }
           <DirectionsInfo locale={params.locale as Locale} />
         </>
       ),
+    },
+    {
+      key: 'admission',
+      label: tMenu('about.items.admission'),
+      markdown: null,
+      // 입학 안내 — 대학/대학원 2단 섹션(문안·버튼은 content/admission-guide.json)
+      content: <AdmissionGuide locale={params.locale as Locale} />,
     },
   ];
 
