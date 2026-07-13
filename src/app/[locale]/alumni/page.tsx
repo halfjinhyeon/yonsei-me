@@ -6,7 +6,11 @@ import { type BoardRow } from '@/components/BoardList';
 import { FilterableBoardList } from '@/components/FilterableBoardList';
 import { NewsBoard, type NewsCardItem } from '@/components/NewsBoard';
 import { AlumniGreeting } from '@/components/AlumniContent';
-import { alumniNews, alumniEvents, pick } from '@/lib/content';
+import { pick } from '@/lib/content';
+import { fetchAlumniNews, fetchAlumniEvents } from '@/lib/posts';
+
+// DB 소스 전환(Phase 2): 목록도 ISR — revalidateTag('posts') 가 즉시 갱신, 이 값은 안전망
+export const revalidate = 300;
 import type { Locale } from '@/i18n/routing';
 
 export async function generateMetadata({
@@ -25,6 +29,10 @@ export default async function AlumniPage({ params }: { params: { locale: string 
   const tNews = await getTranslations({ locale, namespace: 'news' });
   const tAlumni = await getTranslations({ locale, namespace: 'alumni' });
   const tStub = await getTranslations({ locale, namespace: 'stub' });
+
+  // 게시판 데이터 — 기존 매핑 코드 유지를 위해 모듈 상수와 같은 이름의 지역 변수로
+  const alumniNews = await fetchAlumniNews();
+  const alumniEvents = await fetchAlumniEvents();
 
   // 동문 뉴스: 카드형/목록형 토글 지원 — 동문 전용 상세 라우트로 이동
   const newsItems: NewsCardItem[] = alumniNews.map((item) => ({

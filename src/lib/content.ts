@@ -9,7 +9,7 @@ import staffData from '@content/staff.json';
 import type { Locale } from '@/i18n/routing';
 
 /** 한/영 문자열 쌍 → 현재 로케일 값으로 뽑아내는 헬퍼 */
-type Localized<T = string> = { ko: T; en: T };
+export type Localized<T = string> = { ko: T; en: T };
 export function pick<T>(value: Localized<T>, locale: Locale): T {
   return value[locale] ?? value.ko;
 }

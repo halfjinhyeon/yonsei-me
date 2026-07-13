@@ -1,6 +1,11 @@
 import type { MetadataRoute } from 'next';
 import { routing } from '@/i18n/routing';
-import { news, getAllBoardPosts, alumniNews, alumniEvents } from '@/lib/content';
+import {
+  fetchNews,
+  fetchAllBoardPosts,
+  fetchAlumniNews,
+  fetchAlumniEvents,
+} from '@/lib/posts';
 import { getClubs } from '@/lib/faculty';
 
 // 검색엔진용 XML 사이트맵 → /sitemap.xml 로 서빙된다(빌드 시 정적 생성).
@@ -22,7 +27,7 @@ const STATIC_PATHS = [
   'contact',
 ];
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const now = new Date();
   const entries: MetadataRoute.Sitemap = [];
 
@@ -36,12 +41,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   for (const p of STATIC_PATHS) addAll(p);
 
-  // 동적 페이지 — content 데이터에서 열거
-  for (const n of news) addAll(`news/${n.slug}`);
-  for (const post of getAllBoardPosts()) addAll(`news/post/${post.id}`);
+  // 동적 페이지 — 게시판 데이터 레이어(db/git)에서 열거
+  for (const n of await fetchNews()) addAll(`news/${n.slug}`);
+  for (const post of await fetchAllBoardPosts()) addAll(`news/post/${post.id}`);
   for (const club of getClubs()) addAll(`undergraduate/clubs/${club.slug}`);
-  for (const a of alumniNews) addAll(`alumni/news/${a.slug}`);
-  for (const e of alumniEvents) addAll(`alumni/post/${e.id}`);
+  for (const a of await fetchAlumniNews()) addAll(`alumni/news/${a.slug}`);
+  for (const e of await fetchAlumniEvents()) addAll(`alumni/post/${e.id}`);
 
   return entries;
 }

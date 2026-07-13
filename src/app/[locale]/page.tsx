@@ -1,5 +1,4 @@
-import { useTranslations } from 'next-intl';
-import { setRequestLocale } from 'next-intl/server';
+import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { AnimatedHero } from '@/components/AnimatedHero';
 import { BgFlow } from '@/components/BgFlow';
 import { ProgramTabs } from '@/components/ProgramTabs';
@@ -8,7 +7,8 @@ import { LabsSection } from '@/components/LabsSection';
 import { NewsEventsSection } from '@/components/NewsEventsSection';
 import { SectionDotNav } from '@/components/SectionDotNav';
 import { ResearchGallery } from '@/components/ResearchGallery';
-import { news, programs, board, pick } from '@/lib/content';
+import { programs, pick } from '@/lib/content';
+import { fetchNews, fetchBoardData } from '@/lib/posts';
 import galleryData from '@content/research-gallery.json';
 import { getLabsDirectory } from '@/lib/faculty';
 import type { Locale } from '@/i18n/routing';
@@ -22,14 +22,21 @@ type RawGalleryItem = {
   images: string[];
 };
 
-export default function HomePage({ params }: { params: { locale: string } }) {
+// DB 소스 전환(Phase 2): 홈의 뉴스&행사·공지 쇼케이스가 DB 를 읽는다 — ISR 안전망
+export const revalidate = 300;
+
+export default async function HomePage({ params }: { params: { locale: string } }) {
   setRequestLocale(params.locale);
   const locale = params.locale as Locale;
-  const t = useTranslations('home');
-  const tBoard = useTranslations('board');
-  const tMenu = useTranslations('menu');
-  const tNews = useTranslations('news');
+  const t = await getTranslations({ locale, namespace: 'home' });
+  const tBoard = await getTranslations({ locale, namespace: 'board' });
+  const tMenu = await getTranslations({ locale, namespace: 'menu' });
+  const tNews = await getTranslations({ locale, namespace: 'news' });
   const labs = getLabsDirectory();
+
+  // 게시판 데이터 — 기존 매핑 코드 유지를 위해 모듈 상수와 같은 이름의 지역 변수로
+  const news = await fetchNews();
+  const board = await fetchBoardData();
 
   // 연구 분야 갤러리 항목: 로케일 해석 후 클라이언트 컴포넌트로 전달
   const galleryItems = (galleryData as RawGalleryItem[]).map((g) => ({

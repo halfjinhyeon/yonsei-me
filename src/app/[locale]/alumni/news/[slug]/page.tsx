@@ -5,8 +5,12 @@ import { Hero } from '@/components/Hero';
 import { BoardShell, type BoardShellTab } from '@/components/BoardShell';
 import { PostArticle } from '@/components/PostArticle';
 import { Link } from '@/i18n/navigation';
-import { alumniNews, getAlumniNewsBySlug, pick } from '@/lib/content';
-import { routing, type Locale } from '@/i18n/routing';
+import { pick } from '@/lib/content';
+import { fetchAlumniNewsBySlug, postsBodyFormat } from '@/lib/posts';
+import type { Locale } from '@/i18n/routing';
+
+// DB 소스 전환(Phase 2): 요청 시 렌더 + ISR (revalidateTag('posts') 가 즉시 갱신)
+export const revalidate = 300;
 
 // 동문 페이지(/alumni)와 동일한 3개 탭 (key/label)
 async function getAlumniTabs(locale: Locale): Promise<BoardShellTab[]> {
@@ -18,19 +22,12 @@ async function getAlumniTabs(locale: Locale): Promise<BoardShellTab[]> {
   ];
 }
 
-// 모든 로케일 × 동문 뉴스 슬러그를 정적 생성
-export function generateStaticParams() {
-  return routing.locales.flatMap((locale) =>
-    alumniNews.map((item) => ({ locale, slug: item.slug })),
-  );
-}
-
 export async function generateMetadata({
   params,
 }: {
   params: { locale: string; slug: string };
 }): Promise<Metadata> {
-  const item = getAlumniNewsBySlug(params.slug);
+  const item = await fetchAlumniNewsBySlug(params.slug);
   if (!item) return {};
   return {
     title: pick(item.title, params.locale as Locale),
@@ -45,7 +42,7 @@ export default async function AlumniNewsDetailPage({
 }) {
   setRequestLocale(params.locale);
   const locale = params.locale as Locale;
-  const item = getAlumniNewsBySlug(params.slug);
+  const item = await fetchAlumniNewsBySlug(params.slug);
   const t = await getTranslations({ locale, namespace: 'news' });
   const tMenu = await getTranslations({ locale, namespace: 'menu' });
 
@@ -82,6 +79,7 @@ export default async function AlumniNewsDetailPage({
           date={item.date}
           metaValue={t(`categories.${item.category}`)}
           body={pick(item.body, locale)}
+          bodyFormat={postsBodyFormat()}
           attachments={item.attachments}
           attachmentLabels={item.attachments?.map((a) => pick(a.label, locale))}
           backHref="/alumni#news"

@@ -6,8 +6,12 @@ import { type BoardRow } from '@/components/BoardList';
 import { FilterableBoardList } from '@/components/FilterableBoardList';
 import { NewsBoard, type NewsCardItem } from '@/components/NewsBoard';
 import { EventCalendar, type CalendarEntry } from '@/components/EventCalendar';
-import { news, board, pick } from '@/lib/content';
+import { pick } from '@/lib/content';
+import { fetchNews, fetchBoardData } from '@/lib/posts';
 import type { Locale } from '@/i18n/routing';
+
+// DB 소스 전환(Phase 2): 목록도 ISR — revalidateTag('posts') 가 즉시 갱신, 이 값은 안전망
+export const revalidate = 300;
 
 export async function generateMetadata({
   params,
@@ -25,6 +29,11 @@ export default async function NewsPage({ params }: { params: { locale: string } 
   const tNews = await getTranslations({ locale, namespace: 'news' });
   const tBoard = await getTranslations({ locale, namespace: 'board' });
   const tStub = await getTranslations({ locale, namespace: 'stub' });
+
+  // 게시판 데이터 — 소스(db/git)는 lib/posts 가 판별. 기존 매핑 코드를 그대로 쓰기 위해
+  // 모듈 상수와 같은 이름(news/board)의 지역 변수로 받는다.
+  const news = await fetchNews();
+  const board = await fetchBoardData();
 
   // 공지사항: 학부 + 대학원 공지를 하나의 게시판으로 병합, 최신순 (클릭 → 상세).
   // category(undergrad/graduate)로 상단 필터 탭에서 구분한다.

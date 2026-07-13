@@ -5,8 +5,13 @@ import { Hero } from '@/components/Hero';
 import { BoardShell, type BoardShellTab } from '@/components/BoardShell';
 import { PostArticle } from '@/components/PostArticle';
 import { Link } from '@/i18n/navigation';
-import { news, getNewsBySlug, pick } from '@/lib/content';
-import { routing, type Locale } from '@/i18n/routing';
+import { pick } from '@/lib/content';
+import { fetchNewsBySlug, postsBodyFormat } from '@/lib/posts';
+import type { Locale } from '@/i18n/routing';
+
+// DB 소스 전환(Phase 2): 글이 DB 에 살므로 빌드 시 열거하지 않고 요청 시 렌더 + ISR.
+// CMS 쓰기의 revalidateTag('posts') 가 즉시 갱신하고, 이 값은 안전망이다.
+export const revalidate = 300;
 
 // 목록 페이지(/news)와 동일한 8개 탭 (key/label)
 async function getNewsTabs(locale: Locale): Promise<BoardShellTab[]> {
@@ -23,19 +28,12 @@ async function getNewsTabs(locale: Locale): Promise<BoardShellTab[]> {
   ];
 }
 
-// 모든 로케일 × 슬러그를 정적 생성
-export function generateStaticParams() {
-  return routing.locales.flatMap((locale) =>
-    news.map((item) => ({ locale, slug: item.slug })),
-  );
-}
-
 export async function generateMetadata({
   params,
 }: {
   params: { locale: string; slug: string };
 }): Promise<Metadata> {
-  const item = getNewsBySlug(params.slug);
+  const item = await fetchNewsBySlug(params.slug);
   if (!item) return {};
   return {
     title: pick(item.title, params.locale as Locale),
@@ -50,7 +48,7 @@ export default async function NewsDetailPage({
 }) {
   setRequestLocale(params.locale);
   const locale = params.locale as Locale;
-  const item = getNewsBySlug(params.slug);
+  const item = await fetchNewsBySlug(params.slug);
   const t = await getTranslations({ locale, namespace: 'news' });
   const tMenu = await getTranslations({ locale, namespace: 'menu' });
 
@@ -84,6 +82,7 @@ export default async function NewsDetailPage({
           date={item.date}
           metaValue={t(`categories.${item.category}`)}
           body={pick(item.body, locale)}
+          bodyFormat={postsBodyFormat()}
           attachments={item.attachments}
           attachmentLabels={item.attachments?.map((a) => pick(a.label, locale))}
           backHref="/news#news"

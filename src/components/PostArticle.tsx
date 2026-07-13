@@ -30,6 +30,7 @@ export function PostArticle({
   date,
   metaValue,
   body,
+  bodyFormat = 'markdown',
   attachments,
   attachmentLabels,
   backHref,
@@ -42,8 +43,10 @@ export function PostArticle({
   date: string;
   /** 세 번째 메타 행 값 — 카테고리 라벨 또는 작성자 */
   metaValue: string;
-  /** 본문 마크다운 원문 (CMS 에디터가 작성 — 문단·소제목·목록·이미지 등) */
+  /** 본문 원문 — bodyFormat 에 따라 마크다운 또는 정화된 HTML */
   body: string;
+  /** 'markdown'(기본, marked 로 렌더) | 'html'(DB 저장 산출물 — 서버 정화 전제) */
+  bodyFormat?: 'markdown' | 'html';
   attachments?: Attachment[];
   /** 각 첨부의 로케일 라벨 (부모에서 pick 처리해 전달) */
   attachmentLabels?: string[];
@@ -78,11 +81,14 @@ export function PostArticle({
         </dl>
       </header>
 
-      {/* 본문 — 마크다운 렌더(사이트 공통 prose 타이포), 가독 줄길이 제한 */}
+      {/* 본문 — 사이트 공통 prose 타이포, 가독 줄길이 제한.
+          markdown 은 marked 로 렌더, html 은 DB 저장 시 서버에서 정화된 산출물 그대로 */}
       <div
         className="prose-content mt-10 max-w-3xl"
-        // 관리자 작성 콘텐츠 = 신뢰 소스 (Prose 와 동일한 전제)
-        dangerouslySetInnerHTML={{ __html: marked.parse(body) as string }}
+        // 관리자 작성 + (html 인 경우) 서버 정화 콘텐츠 — Prose 와 동일한 신뢰 전제
+        dangerouslySetInnerHTML={{
+          __html: bodyFormat === 'html' ? body : (marked.parse(body) as string),
+        }}
       />
 
       {/* 첨부 (있을 때만) — 각진 박스 + 파일별 다운로드 아이콘 */}

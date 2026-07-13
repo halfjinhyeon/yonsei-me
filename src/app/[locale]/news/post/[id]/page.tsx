@@ -5,8 +5,12 @@ import { Hero } from '@/components/Hero';
 import { BoardShell, type BoardShellTab } from '@/components/BoardShell';
 import { PostArticle } from '@/components/PostArticle';
 import { Link } from '@/i18n/navigation';
-import { getAllBoardPosts, getBoardPost, pick } from '@/lib/content';
-import { routing, type Locale } from '@/i18n/routing';
+import { pick } from '@/lib/content';
+import { fetchBoardPost, postsBodyFormat } from '@/lib/posts';
+import type { Locale } from '@/i18n/routing';
+
+// DB 소스 전환(Phase 2): 요청 시 렌더 + ISR (revalidateTag('posts') 가 즉시 갱신)
+export const revalidate = 300;
 
 // 목록 페이지(/news)와 동일한 8개 탭 (key/label)
 async function getNewsTabs(locale: Locale): Promise<BoardShellTab[]> {
@@ -23,19 +27,12 @@ async function getNewsTabs(locale: Locale): Promise<BoardShellTab[]> {
   ];
 }
 
-// 모든 로케일 × 게시글을 정적 생성
-export function generateStaticParams() {
-  return routing.locales.flatMap((locale) =>
-    getAllBoardPosts().map((post) => ({ locale, id: post.id })),
-  );
-}
-
 export async function generateMetadata({
   params,
 }: {
   params: { locale: string; id: string };
 }): Promise<Metadata> {
-  const post = getBoardPost(params.id);
+  const post = await fetchBoardPost(params.id);
   if (!post) return {};
   return { title: pick(post.title, params.locale as Locale) };
 }
@@ -47,7 +44,7 @@ export default async function BoardPostPage({
 }) {
   setRequestLocale(params.locale);
   const locale = params.locale as Locale;
-  const post = getBoardPost(params.id);
+  const post = await fetchBoardPost(params.id);
   const t = await getTranslations({ locale, namespace: 'news' });
   const tMenu = await getTranslations({ locale, namespace: 'menu' });
 
@@ -82,6 +79,7 @@ export default async function BoardPostPage({
           date={post.date}
           metaValue={author}
           body={pick(post.body, locale)}
+          bodyFormat={postsBodyFormat()}
           attachments={post.attachments}
           attachmentLabels={post.attachments?.map((a) => pick(a.label, locale))}
           backHref={`/news#${post.boardKey}`}
