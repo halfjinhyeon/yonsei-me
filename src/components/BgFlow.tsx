@@ -8,93 +8,77 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 gsap.registerPlugin(ScrollTrigger);
 
 /**
- * 홈 상단(히어로·스테이트먼트·통계) 전용 "다크 그라디언트 배경" 레이어.
+ * 홈 상단(히어로·갤러리) 전용 "다크 그라디언트 배경" 레이어 — 성능 개편판.
  *
- * `position: fixed; inset: 0; z-index: -10` 그라디언트 한 장을 화면 뒤에 고정해 두고,
- * 위 섹션들의 배경을 transparent 로 두면 상단이 하나의 배경으로 이어져 보인다.
- * 각 `[data-flow]` 섹션마다 ScrollTrigger 로 스크롤 진행도에 맞춰 다음 정거장 색으로
- * `--bg-a`/`--bg-b` 를 hex 보간 → 스크롤에 따라 배경색이 부드럽게 흐른다.
+ * 이전 구현은 레이어 한 장의 그라디언트 색을 스크롤마다 CSS 변수로 보간했는데,
+ * 그라디언트 변경은 매 프레임 풀스크린 "리페인트"라 스크롤 트윈(섹션 페이징) 중
+ * 프레임이 툭툭 끊기는 주범이었다. 지금은 정거장(BG_SCENES)마다 미리 그려진
+ * 고정 레이어를 겹쳐 두고 opacity 만 스크럽한다 — opacity 는 컴포지터(GPU) 합성이라
+ * 리페인트가 없다(fullPage 류 사이트가 부드러운 것과 같은 원리).
  *
- * 그리고 `[data-flow-end]`(프로그램 "무브" 섹션)이 올라오면 레이어 opacity 를 1→0 으로
- * 스크럽 → 다크 배경이 흰색(body 표면)으로 **디졸브**된다. 이후 하단은 각 섹션 고유
- * 배경(흰색/네이비/블루 등) 위에 얹힌다. reduced-motion 시 정적.
+ * 동작은 이전과 동일:
+ *  - `[data-flow]` 섹션 진행에 따라 다음 정거장 레이어가 위로 크로스페이드.
+ *  - `[data-flow-end]`(프로그램 섹션)이 올라오면 래퍼 전체가 흰 배경으로 디졸브.
+ *  - reduced-motion: 중간 정거장 한 장만 고정 표시(스크럽 없음).
  */
 
-// data-flow 섹션 순서대로 [상단색 --bg-a, 하단색 --bg-b]. 히어로·스테이트먼트·통계 3구간.
-// 공지(로열블루) 톤에서 채도만 살짝 낮춘 밝은 블루. 상단(--bg-a)은 밝게, 하단(--bg-b)은
-// 흰 글자 대비를 위해 약간 더 깊게. 색만 바꾸면 되니 여기서 자유롭게 커스터마이즈.
+// data-flow 섹션 순서대로 [상단색, 하단색]. 색만 바꾸면 되니 자유롭게 커스터마이즈.
 const BG_SCENES: [string, string][] = [
   ['#3f7ad2', '#1d4a92'], // 0 히어로 (밝은 블루)
-  ['#3670c4', '#193f80'], // 1 컬러 스테이트먼트
-  ['#2d61b0', '#143570'], // 2 통계
+  ['#3670c4', '#193f80'], // 1 연구 갤러리
+  ['#2d61b0', '#143570'], // 2 (여분 — data-flow 섹션이 늘면 자동 사용)
 ];
 
-function hexToRgb(hex: string): [number, number, number] {
-  const n = parseInt(hex.slice(1), 16);
-  return [(n >> 16) & 255, (n >> 8) & 255, n & 255];
-}
-
-function lerpColor(from: string, to: string, t: number): string {
-  const a = hexToRgb(from);
-  const b = hexToRgb(to);
-  const r = Math.round(a[0] + (b[0] - a[0]) * t);
-  const g = Math.round(a[1] + (b[1] - a[1]) * t);
-  const bl = Math.round(a[2] + (b[2] - a[2]) * t);
-  return `rgb(${r}, ${g}, ${bl})`;
-}
-
 export function BgFlow() {
-  const layerRef = useRef<HTMLDivElement | null>(null);
+  const wrapRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    const layer = layerRef.current;
-    if (!layer) return;
+    const wrap = wrapRef.current;
+    if (!wrap) return;
+    const layers = Array.from(wrap.children) as HTMLElement[];
 
-    const setScene = (a: string, b: string) => {
-      layer.style.setProperty('--bg-a', a);
-      layer.style.setProperty('--bg-b', b);
-    };
-    setScene(BG_SCENES[0][0], BG_SCENES[0][1]); // 초기 = 첫 정거장
-
-    // 모션 최소화 선호 → 스크럽 없이 중간 정거장으로 고정(색 연결 유지, 애니메이션만 정지)
+    // 모션 최소화 선호 → 중간 정거장 한 장만 고정(색 연결 유지, 애니메이션 정지)
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      const mid = BG_SCENES[Math.floor(BG_SCENES.length / 2)];
-      setScene(mid[0], mid[1]);
+      const mid = Math.floor(layers.length / 2);
+      layers.forEach((l, i) => {
+        l.style.opacity = i === mid ? '1' : '0';
+      });
       return;
     }
 
     const sections = gsap.utils.toArray<HTMLElement>('[data-flow]');
     const ctx = gsap.context(() => {
-      // 상단 구간: 스크롤에 맞춰 색 보간
+      // 상단 구간: 섹션 i 를 지나는 동안 정거장 i 레이어가 위로 페이드인(크로스페이드).
+      // 인덱스는 이전 구현과 동일하게 클램프 — 섹션 수가 정거장 수와 달라도 안전.
       sections.forEach((sec, i) => {
-        if (i === 0) return; // 0번 섹션은 초기색 유지
-        const [fromA, fromB] = BG_SCENES[Math.min(i - 1, BG_SCENES.length - 1)];
-        const [toA, toB] = BG_SCENES[Math.min(i, BG_SCENES.length - 1)];
-        ScrollTrigger.create({
-          trigger: sec,
-          start: 'top center',
-          end: 'bottom center',
-          scrub: true,
-          onUpdate: (self) => {
-            const p = self.progress;
-            setScene(lerpColor(fromA, toA, p), lerpColor(fromB, toB, p));
+        if (i === 0) return; // 0번 섹션은 초기 레이어 그대로
+        const layer = layers[Math.min(i, layers.length - 1)];
+        if (!layer) return;
+        gsap.fromTo(
+          layer,
+          { opacity: 0 },
+          {
+            opacity: 1,
+            ease: 'none',
+            scrollTrigger: { trigger: sec, start: 'top center', end: 'bottom center', scrub: true },
           },
-        });
+        );
       });
 
-      // 디졸브: 무브 섹션이 올라오면 다크 레이어를 걷어내 흰 배경으로 전환
+      // 디졸브: 프로그램 섹션이 올라오면 래퍼 전체를 걷어 흰 배경으로 전환.
+      // (opacity 스크럽 — 이것도 컴포지터 합성이라 리페인트 없음)
       const endMarker = document.querySelector<HTMLElement>('[data-flow-end]');
       if (endMarker) {
         gsap.fromTo(
-          layer,
+          wrap,
           { autoAlpha: 1 },
           {
             autoAlpha: 0,
             ease: 'none',
             scrollTrigger: {
               trigger: endMarker,
-              start: 'top bottom', // 무브 섹션 상단이 뷰포트 하단에 닿을 때 시작
-              end: 'top center', //   무브 섹션 상단이 화면 중앙에 오면 완전히 흰색
+              start: 'top bottom', // 프로그램 섹션 상단이 뷰포트 하단에 닿을 때 시작
+              end: 'top center', //   화면 중앙에 오면 완전히 흰색
               scrub: true,
             },
           },
@@ -106,11 +90,15 @@ export function BgFlow() {
   }, []);
 
   return (
-    <div
-      ref={layerRef}
-      aria-hidden="true"
-      className="fixed inset-0 -z-10"
-      style={{ background: 'linear-gradient(160deg, var(--bg-a, #00285E), var(--bg-b, #2E86D6))' }}
-    />
+    <div ref={wrapRef} aria-hidden="true" className="fixed inset-0 -z-10">
+      {BG_SCENES.map(([a, b], i) => (
+        <div
+          key={i}
+          className="absolute inset-0"
+          // 각 정거장을 정적 그라디언트로 "미리" 그려 두고 opacity 만 움직인다.
+          style={{ background: `linear-gradient(160deg, ${a}, ${b})`, opacity: i === 0 ? 1 : 0 }}
+        />
+      ))}
+    </div>
   );
 }

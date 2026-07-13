@@ -182,23 +182,24 @@
   .prose-content blockquote {
     @apply my-6 max-w-2xl border-l-2 border-content py-1 pl-5 text-lg leading-relaxed text-content;
   }
-  /* 표: 에디토리얼(신문/잡지) 톤 — 컬러 블록·지브라 스트라이프·카드 그림자 없이
-     굵은 상단 룰과 헤어라인만으로 구분 (생성형 대시보드 느낌 배제) */
+  /* 표: 에디토리얼(신문/잡지) 톤 — 홍익대 레퍼런스 계열로 통일(교과목 편람과 동일 문법).
+     네이비 굵은 룰을 헤더 "위"에, 아래는 헤어라인만. 행은 널찍하게(py-5),
+     첫 컬럼(행 라벨)은 볼드로 강조해 시원시원하게 읽힌다. */
   .prose-content table {
-    @apply my-8 block w-full overflow-x-auto text-sm;
+    @apply my-8 block w-full overflow-x-auto text-[15px];
     border-collapse: collapse;
   }
   .prose-content thead {
-    @apply border-b-2 border-yonsei-navy;
+    @apply border-b border-t-2 border-surface-border border-t-yonsei-navy;
   }
   .prose-content th {
-    @apply whitespace-nowrap px-3 py-3 text-left text-xs font-bold uppercase tracking-wide text-content-faint;
+    @apply whitespace-nowrap px-3 py-3.5 text-left text-xs font-bold text-content-faint;
   }
   .prose-content td {
-    @apply border-b border-surface-border px-3 py-3.5 align-top text-content-soft;
+    @apply border-b border-surface-border px-3 py-5 align-top leading-relaxed text-content-soft;
   }
-  .prose-content tbody tr:last-child td {
-    @apply border-b-0;
+  .prose-content td:first-child {
+    @apply font-semibold text-content;
   }
 }
 
@@ -367,6 +368,22 @@
      - Cornell식 진입 애니메이션은 GSAP 대신 IO가 붙이는
        data-active 속성 + 기존 키프레임(heroTitleIn/panelFadeUp/navItemUp)으로 재현.
      ========================================================= */
+
+  /* 스크롤 고정 헤더 등장 — 위에서 살짝 슬라이드 다운(0.3s). scrolled 상태로
+     클래스가 붙는 순간 1회 재생되고, 최상단 복귀로 클래스가 떨어지면 다음 고정 때
+     다시 재생된다. (모바일 드로어 열림(open)에는 붙이지 않는다 — 제자리 반전만)
+     모션 최소화 선호는 아래 전역 reduced-motion 블록이 애니메이션을 무효화한다. */
+  .header-slide-in {
+    animation: header-slide-in 0.3s ease;
+  }
+  @keyframes header-slide-in {
+    from {
+      transform: translateY(-100%);
+    }
+    to {
+      transform: translateY(0);
+    }
+  }
 
   html.club-snap {
     scroll-snap-type: y mandatory;

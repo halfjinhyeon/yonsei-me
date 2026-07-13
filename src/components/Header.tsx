@@ -95,10 +95,21 @@ export function Header() {
     setExpanded(null);
   }, [pathname]);
 
-  // 스크롤 시 헤더를 흰 배경으로 반전 (히어로 위에서는 투명)
+  // 스크롤 시 헤더를 흰 배경으로 반전 (히어로 위에서는 투명).
+  // 임계값 80px, rAF 스로틀 — 스크롤마다 setState 하지 않고 프레임당 1회만 판정.
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40);
-    onScroll();
+    let ticking = false;
+    const update = () => {
+      ticking = false;
+      setScrolled(window.scrollY > 80);
+    };
+    const onScroll = () => {
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(update);
+      }
+    };
+    update();
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
@@ -131,6 +142,9 @@ export function Header() {
         solid
           ? 'border-b border-surface-border bg-surface text-content shadow-sm'
           : 'bg-transparent text-white',
+        // 슬라이드다운은 "스크롤로 고정"될 때만 — 드로어 열림(open)으로 solid 가 된
+        // 경우엔 헤더가 이미 제자리이므로 움직이면 어색하다.
+        scrolled && 'header-slide-in',
       )}
     >
       <Container>
@@ -277,9 +291,9 @@ export function Header() {
               <LocaleToggle tone={solid ? 'light' : 'dark'} />
             </div>
 
-            {/* CTA — Cornell 'Give →' 스타일 */}
+            {/* CTA — Cornell 'Give →' 스타일. 소개 페이지의 '입학 안내' 탭으로 연결 */}
             <Link
-              href="/admission"
+              href="/about#admission"
               className={cn(
                 'group hidden items-center gap-2 px-4 py-2 text-sm font-semibold transition-colors lg:inline-flex',
                 solid

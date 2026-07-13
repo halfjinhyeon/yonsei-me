@@ -52,6 +52,8 @@ const config: Config = {
         // 타이포 스케일
         'display-lg': ['clamp(2.5rem, 5vw, 4rem)', { lineHeight: '1.05', letterSpacing: '-0.02em', fontWeight: '800' }],
         'display': ['clamp(2rem, 4vw, 3rem)', { lineHeight: '1.1', letterSpacing: '-0.02em', fontWeight: '700' }],
+        // display 의 약 80% — 탭 섹션 제목(TabbedContent)이 본문 대비 과하지 않도록
+        'display-sm': ['clamp(1.6rem, 3.2vw, 2.4rem)', { lineHeight: '1.1', letterSpacing: '-0.02em', fontWeight: '700' }],
         'headline': ['clamp(1.5rem, 2.5vw, 2rem)', { lineHeight: '1.2', letterSpacing: '-0.01em', fontWeight: '700' }],
       },
       spacing: {

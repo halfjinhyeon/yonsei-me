@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef } from 'react';
 import { useTranslations } from 'next-intl';
 import type { LabDirectoryEntry } from '@/lib/faculty';
 import type { Locale } from '@/i18n/routing';
@@ -45,14 +45,12 @@ export function LabCarousel({
   const hiddenRef = useRef(false);
   const draggingRef = useRef(false);
   const reduceRef = useRef(false);
+  // 뷰포트 밖(다른 섹션 보는 중)에도 매 프레임 scrollLeft 를 만지면 섹션 페이징
+  // 트윈의 프레임 예산을 갉아먹는다 — IntersectionObserver 로 화면 안에서만 흐른다.
+  const inViewRef = useRef(true);
   // 사용자가 손으로 민 직후 잠깐 멈추는 타이머.
   const resumeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const pausedByUserRef = useRef(false);
-
-  // 토글 버튼 상태(사용자가 명시적으로 멈춘 경우).
-  const [manualPaused, setManualPaused] = useState(false);
-  const manualPausedRef = useRef(false);
-  manualPausedRef.current = manualPaused;
 
   const cards: LabCardData[] = labs.map((lab, i) => ({
     ...lab,
@@ -92,7 +90,7 @@ export function LabCarousel({
           hiddenRef.current ||
           draggingRef.current ||
           pausedByUserRef.current ||
-          manualPausedRef.current;
+          !inViewRef.current;
         if (!blocked) {
           node.scrollLeft -= FLOW_SPEED; // 감소 = 콘텐츠가 오른쪽으로 흐름.
           wrap();
@@ -112,6 +110,17 @@ export function LabCarousel({
     onVis();
     document.addEventListener('visibilitychange', onVis);
     return () => document.removeEventListener('visibilitychange', onVis);
+  }, []);
+
+  // 뷰포트 밖 감지 — 화면에 없으면 자동 흐름 정지(위 blocked 조건에 합류).
+  useEffect(() => {
+    const el = trackRef.current;
+    if (!el) return;
+    const io = new IntersectionObserver(([entry]) => {
+      inViewRef.current = entry.isIntersecting;
+    });
+    io.observe(el);
+    return () => io.disconnect();
   }, []);
 
   // 사용자가 손으로 민 뒤 잠깐 멈췄다가 재개.
@@ -178,15 +187,6 @@ export function LabCarousel({
         )}
       </div>
 
-      <div className="mx-auto mt-4 max-w-[1360px] px-6 sm:mt-6 sm:px-10 lg:px-16">
-        <button
-          type="button"
-          onClick={() => setManualPaused((v) => !v)}
-          className="inline-flex items-center gap-2 rounded-md border border-surface-border bg-surface px-4 py-2 text-xs font-medium text-content transition-colors hover:bg-surface-soft"
-        >
-          {manualPaused ? '▶' : '⏸'} {manualPaused ? t('play') : t('pause')}
-        </button>
-      </div>
     </div>
   );
 }

@@ -1,19 +1,16 @@
 import { useTranslations } from 'next-intl';
 import { setRequestLocale } from 'next-intl/server';
-import { Link } from '@/i18n/navigation';
 import { AnimatedHero } from '@/components/AnimatedHero';
 import { BgFlow } from '@/components/BgFlow';
-import { Section } from '@/components/Section';
 import { ProgramTabs } from '@/components/ProgramTabs';
 import { NoticeShowcase } from '@/components/NoticeShowcase';
-import { WeeklyCalendar } from '@/components/WeeklyCalendar';
-import { LabCarousel } from '@/components/LabCarousel';
+import { LabsSection } from '@/components/LabsSection';
+import { NewsEventsSection } from '@/components/NewsEventsSection';
+import { SectionDotNav } from '@/components/SectionDotNav';
 import { ResearchGallery } from '@/components/ResearchGallery';
-import { StatementReveal } from '@/components/StatementReveal';
-import { programs, board, pick, getCalendarEntries } from '@/lib/content';
+import { news, programs, board, pick } from '@/lib/content';
 import galleryData from '@content/research-gallery.json';
 import { getLabsDirectory } from '@/lib/faculty';
-import { formatDate } from '@/lib/utils';
 import type { Locale } from '@/i18n/routing';
 
 // 연구 분야 갤러리 데이터(content/research-gallery.json) 형태
@@ -58,51 +55,79 @@ export default function HomePage({ params }: { params: { locale: string } }) {
       groupLabel: n.groupLabel,
     }));
 
+  // 뉴스 & 행사 섹션 데이터: 뉴스(news.json)와 행사 게시판(board.events)을 합쳐
+  // 날짜 내림차순으로 상위 12건. 각 항목을 카드가 쓰는 단일 형태로 정규화한다.
+  const newsEventItems = [
+    ...news.map((n) => ({
+      date: n.date,
+      title: pick(n.title, locale),
+      image: n.image || undefined, // 빈 문자열이면 플레이스홀더로 처리되도록 undefined
+      href: `/news/${n.slug}`,
+      kind: 'news' as const,
+    })),
+    ...board.events.map((e) => ({
+      date: e.date,
+      title: pick(e.title, locale),
+      image: undefined, // 행사 게시판은 이미지 필드가 없어 항상 플레이스홀더
+      href: `/news/post/${e.id}`,
+      kind: 'event' as const,
+    })),
+  ]
+    .sort((a, b) => (a.date < b.date ? 1 : -1))
+    .slice(0, 12);
+
+  // 좌측 고정 섹션 내비 항목 — 스냅 구간(히어로~뉴스&행사)만. 캘린더·공지는 자유 구간.
+  const sectionNavItems = [
+    { id: 'sec-hero', label: t('sectionNav.hero') },
+    { id: 'sec-research', label: t('sectionNav.research') },
+    { id: 'sec-programs', label: t('sectionNav.programs') },
+    { id: 'sec-labs', label: t('sectionNav.labs') },
+    { id: 'sec-news', label: t('sectionNav.news') },
+  ];
+
   return (
     <>
       {/* 홈 단일 연속 배경(고정 그라디언트 레이어 + 섹션별 스크롤 색 전환) */}
       <BgFlow />
 
-      {/* 1. 애니메이션 히어로 (풀뷰포트) */}
-      <AnimatedHero />
+      {/* 좌측 고정 섹션 내비 + 섹션 고정스크롤(GSAP ScrollTrigger snap) 담당 */}
+      <SectionDotNav items={sectionNavItems} ariaLabel={t('sectionNav.label')} />
 
-      {/* 2. 컬러 스테이트먼트 — 스크롤 워드필(ScrollTrigger scrub + SplitText).
-          문장이 스크롤에 따라 단어 단위로 차오르고, 독수리는 우측 패럴랙스. */}
-      <StatementReveal />
+      {/* 1. 애니메이션 히어로 (풀뷰포트) — 로테이션 헤드라인(영문 타이틀 ↔ 한글 스테이트먼트)
+          + 독수리 마스코트 + 소개 링크를 한 화면에 통합. 페이지 최상단 스냅 지점. */}
+      <div id="sec-hero">
+        <AnimatedHero />
+      </div>
 
-      {/* 3. 연구 분야 갤러리 → 오버레이 (Osmo Flip). 배경 플로우 위 풀뷰포트 섹션.
-          data-flow 로 BgFlow 색 흐름·ProgramTabs 디졸브 여백 유지. */}
-      <div data-flow>
+      {/* 2. 연구 분야 갤러리 → 오버레이 (Osmo Flip). 배경 플로우 위 풀뷰포트 섹션.
+          data-flow 로 BgFlow 색 흐름·ProgramTabs 디졸브 여백 유지. 스냅은 고정 헤더
+          아래로 정렬(scroll-mt = 헤더 높이). */}
+      <div id="sec-research" data-flow className="scroll-mt-16 lg:scroll-mt-20">
         <ResearchGallery items={galleryItems} />
       </div>
 
-      {/* 4. 프로그램 탭 (이미지 스왑 + 학부/대학원) */}
-      <ProgramTabs
-        undergraduate={programs.undergraduate}
-        graduate={programs.graduate}
-        locale={locale}
-      />
+      {/* 3. 프로그램 탭 (이미지 스왑 + 학부/대학원) */}
+      <div id="sec-programs" className="scroll-mt-16 lg:scroll-mt-20">
+        <ProgramTabs
+          undergraduate={programs.undergraduate}
+          graduate={programs.graduate}
+          locale={locale}
+        />
+      </div>
 
-      {/* 5. 연구실 카드 캐러셀 (자동 흐름 + 스와이프) — 흰 배경(디졸브 이후 구간) */}
-      <section className="full-bleed pb-10 pt-10 sm:pb-14 sm:pt-14">
-        {/* 모바일: 헤더를 한 줄 컴팩트(작은 타이포·좁은 여백)로 */}
-        <div className="mx-auto mb-4 max-w-[1360px] px-6 sm:mb-8 sm:px-10 lg:px-16">
-          <div className="flex items-end justify-between gap-3 sm:gap-4">
-            <h2 className="text-lg font-bold text-content sm:text-headline">
-              {t.rich('people.heading', {
-                count: labs.length,
-                em: (c) => <em className="font-display font-normal not-italic text-yonsei-blue">{c}</em>,
-              })}
-            </h2>
-            <Link href="/research#labs" className="-mt-2 whitespace-nowrap pb-1 pt-2 text-xs font-semibold text-yonsei-blue hover:underline sm:text-sm">
-              {t('people.cta')}
-            </Link>
-          </div>
-        </div>
-        <LabCarousel labs={labs} locale={locale} />
-      </section>
+      {/* 4. 연구실 쇼케이스(네이비 라벨 + 마퀴 + 카드 캐러셀) — 풀뷰포트. */}
+      <div id="sec-labs" className="scroll-mt-16 lg:scroll-mt-20">
+        <LabsSection labs={labs} locale={locale} />
+      </div>
 
-      {/* 6. 공지 쇼케이스 (풀블리드) — 학부·대학원 공지를 밝은 로열블루 위에 지그재그로 */}
+      {/* 5. 뉴스 & 행사 — 마지막 스냅 섹션. 뉴스(news.json) + 행사(board.events) 카드. */}
+      <div id="sec-news" className="scroll-mt-16 lg:scroll-mt-20">
+        <NewsEventsSection items={newsEventItems} />
+      </div>
+
+      {/* ── 여기부터 자유 스크롤 구간(스냅 지점 없음) — 내비도 이 구간에선 숨는다 ── */}
+
+      {/* 6. 공지 쇼케이스 (풀블리드, 맨 아래) — 학부·대학원 공지를 로열블루 위에 지그재그로 */}
       <NoticeShowcase
         notices={showcaseNotices}
         locale={locale}
@@ -110,70 +135,6 @@ export default function HomePage({ params }: { params: { locale: string } }) {
         subtitle={tNews('hero.subtitle')}
         moreLabel={t('newsPreview.viewAll')}
       />
-
-      {/* 6-b. 세미나 (독립 풀폭 섹션 — 가로 카드 3장). 흰 배경 위 라이트 톤. */}
-      <Section size="sm" aria-labelledby="seminars-title">
-        <div className="mb-6 flex items-center justify-between border-b-2 border-yonsei-navy pb-2">
-          <h2 id="seminars-title" className="text-lg font-bold text-content">
-            {tBoard('seminars.title')}
-          </h2>
-          <Link href="/news#seminars" className="-my-1 py-1 text-sm font-semibold text-yonsei-blue hover:underline">
-            {tBoard('seminars.more')} →
-          </Link>
-        </div>
-        <ul className="grid gap-6 md:grid-cols-3">
-          {board.seminars.slice(0, 3).map((s) => (
-            <li key={s.id}>
-              <Link
-                href={`/news/post/${s.id}`}
-                className="group flex h-full flex-col gap-2 border border-surface-border bg-surface p-5 transition-all hover:-translate-y-1 hover:border-yonsei-blue/40 hover:shadow-card"
-              >
-                <time dateTime={s.date} className="text-sm font-semibold tabular-nums text-yonsei-blue">
-                  {formatDate(s.date, locale)}
-                </time>
-                <span className="line-clamp-3 font-medium text-content group-hover:text-yonsei-blue">
-                  {pick(s.title, locale)}
-                </span>
-                <span className="mt-auto pt-1 text-sm text-content-faint">
-                  {tBoard('seminars.hostLabel')}: {pick(s.host, locale)}
-                </span>
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </Section>
-
-      {/* 6-b-2. 행사 (독립 풀폭 섹션). 같은 보드 그룹인 세미나와 묶여 보이도록 상단 패딩 제거. */}
-      <Section size="sm" className="!pt-0" aria-labelledby="events-title">
-        <div className="mb-6 flex items-center justify-between border-b-2 border-yonsei-navy pb-2">
-          <h2 id="events-title" className="text-lg font-bold text-content">
-            {tBoard('events.title')}
-          </h2>
-          <Link href="/news#events" className="-my-1 py-1 text-sm font-semibold text-yonsei-blue hover:underline">
-            {tBoard('events.more')} →
-          </Link>
-        </div>
-        <ul className="grid gap-6 md:grid-cols-3">
-          {board.events.slice(0, 3).map((e) => (
-            <li key={e.id}>
-              <Link
-                href={`/news/post/${e.id}`}
-                className="group flex h-full flex-col gap-3 border border-surface-border bg-surface p-5 transition-all hover:-translate-y-1 hover:border-yonsei-blue/40 hover:shadow-card"
-              >
-                <span className="w-fit shrink-0 bg-yonsei-navy/5 px-2.5 py-1 text-xs font-bold text-yonsei-navy">
-                  {pick(e.dateLabel, locale)}
-                </span>
-                <span className="line-clamp-3 font-medium text-content group-hover:text-yonsei-blue">
-                  {pick(e.title, locale)}
-                </span>
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </Section>
-
-      {/* 6-d. 금주의 행사 캘린더 — 행사 게시판 + 동문(행사 표시분) 통합 */}
-      <WeeklyCalendar entries={getCalendarEntries()} locale={locale} />
     </>
   );
 }

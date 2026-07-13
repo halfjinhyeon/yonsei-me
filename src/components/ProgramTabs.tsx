@@ -72,7 +72,9 @@ export function ProgramTabs({
     <section
       data-flow-end
       aria-labelledby="programs-heading"
-      className="full-bleed relative isolate grid overflow-hidden text-content lg:grid-cols-2"
+      // 고정스크롤 "한 화면 = 한 섹션" — 디자인(사진 스왑)은 원본 그대로 두고
+      // 높이만 헤더를 뺀 한 화면으로 맞춘다(짧으면 스냅 정렬 시 다음 섹션이 삐져나옴).
+      className="full-bleed relative isolate grid min-h-[calc(100svh-4rem)] overflow-hidden text-content lg:min-h-[calc(100svh-5rem)] lg:grid-cols-2"
     >
       {/* 왼쪽: 사진 패널 (리스트 호버로 스왑) */}
       <div className="relative min-h-[11rem] overflow-hidden bg-surface-soft lg:min-h-[22rem]">
@@ -90,8 +92,8 @@ export function ProgramTabs({
         <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-t from-yonsei-navy/25 to-transparent" />
       </div>
 
-      {/* 오른쪽: 콘텐츠 */}
-      <div className="relative px-6 py-10 sm:px-10 sm:py-12 lg:px-14 lg:py-14">
+      {/* 오른쪽: 콘텐츠 — 풀높이 컬럼 안에서 세로 중앙 정렬 */}
+      <div className="relative flex flex-col justify-center px-6 py-10 sm:px-10 sm:py-12 lg:px-14 lg:py-14">
         {/* 물결 라인아트 배경 — 오른쪽 열 뒤로 흐른다 */}
         <div
           aria-hidden="true"

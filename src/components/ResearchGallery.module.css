@@ -8,14 +8,24 @@
 
 .gallery {
   position: relative;
-  min-height: 100svh;
+  /* 고정 헤더(4rem/lg 5rem)를 뺀 "한 화면" — 100svh 로 두면 스냅 정렬 시
+     하단이 정확히 헤더 높이만큼 다음 섹션 위로 삐져나온다 */
+  min-height: calc(100svh - 4rem);
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: clamp(2rem, 5vw, 5rem) clamp(1.5rem, 4vw, 4rem);
+  /* 상하 비대칭 패딩 — 위를 줄이고 아래를 늘려 콘텐츠 무게중심을 살짝 위로.
+     (flex 가운데 정렬은 패딩 안쪽 기준이라 이 차이의 절반만큼 올라간다) */
+  padding: clamp(1.25rem, 3vw, 3rem) clamp(1.5rem, 4vw, 4rem) clamp(3rem, 7vw, 7rem);
   color: #fff;
   font-size: clamp(8px, 1.05vw, 15px); /* em 기준값 — 화면폭 비례 */
   overflow: hidden;
+}
+
+@media (min-width: 1024px) {
+  .gallery {
+    min-height: calc(100svh - 5rem);
+  }
 }
 
 /* 하나의 콘텐츠 블록 — 뷰포트 중앙에 정렬 */

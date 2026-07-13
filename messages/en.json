@@ -30,7 +30,8 @@
         "history": "About",
         "faculty": "Faculty",
         "staff": "Staff",
-        "directions": "Directions"
+        "directions": "Directions",
+        "admission": "Admissions"
       }
     },
     "undergraduate": {
@@ -180,12 +181,19 @@
       "tabUg": "Undergraduate",
       "tabGrad": "Graduate",
       "exploreUg": "See all undergraduate programs →",
-      "exploreGrad": "See all graduate programs →"
+      "exploreGrad": "See all graduate programs →",
+      "viewItem": "View more →"
     },
     "people": {
       "heading": "<em>Our</em> {count} research labs",
+      "intro": {
+        "eyebrow": "RESEARCH LABS",
+        "label": "RESEARCH LABS",
+        "tagline": "Six branches of research, thirty-three labs — browse the cards and knock on the door of your field.",
+        "marquee": "ENGINEERING IN MOTION · MOVE THE WORLD FORWARD · "
+      },
       "detail": "View lab",
-      "cta": "See all labs →",
+      "cta": "See all labs",
       "professorLabel": "Advisor",
       "externalLabel": "Open external site",
       "pause": "Pause card flow",
@@ -245,6 +253,22 @@
     "newsPreview": {
       "title": "News",
       "viewAll": "View all"
+    },
+    "newsEvents": {
+      "title": "News & Events",
+      "more": "View more",
+      "prev": "Previous items",
+      "next": "Next items",
+      "kindNews": "News",
+      "kindEvent": "Event"
+    },
+    "sectionNav": {
+      "label": "Section shortcuts",
+      "hero": "Home",
+      "research": "Research fields",
+      "programs": "Programs",
+      "labs": "Research labs",
+      "news": "News & events"
     },
     "researchGallery": {
       "eyebrow": "RESEARCH FIELDS",
@@ -375,7 +399,13 @@
       "courses": "Search by course name or code",
       "labs": "Search labs or professors",
       "empty": "No results found. Try a different search term."
-    }
+    },
+    "kinds": {
+      "required": "Major Required",
+      "elective": "Major Elective",
+      "general": "General Education"
+    },
+    "commonGroup": "Core & Common Courses"
   },
   "news": {
     "hero": {

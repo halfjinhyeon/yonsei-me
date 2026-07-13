@@ -11,7 +11,7 @@
     "academics": "교육과정",
     "research": "연구",
     "news": "소식",
-    "admission": "입학·진로",
+    "admission": "입학 안내",
     "alumni": "동문·협력",
     "contact": "찾아오기",
     "menu": "메뉴 열기",
@@ -30,7 +30,8 @@
         "history": "학과 소개",
         "faculty": "교수진",
         "staff": "교직원",
-        "directions": "오시는 길"
+        "directions": "오시는 길",
+        "admission": "입학 안내"
       }
     },
     "undergraduate": {
@@ -180,12 +181,19 @@
       "tabUg": "학부",
       "tabGrad": "대학원",
       "exploreUg": "학부 과정 전체 보기 →",
-      "exploreGrad": "대학원 과정 전체 보기 →"
+      "exploreGrad": "대학원 과정 전체 보기 →",
+      "viewItem": "자세히 보기 →"
     },
     "people": {
       "heading": "<em>우리의</em> 연구실 {count}곳",
+      "intro": {
+        "eyebrow": "RESEARCH LABS",
+        "label": "우리의 연구실",
+        "tagline": "여섯 갈래의 연구, 서른세 곳의 연구실 — 카드를 넘기며 관심 분야의 문을 두드려 보세요.",
+        "marquee": "ENGINEERING IN MOTION · MOVE THE WORLD FORWARD · "
+      },
       "detail": "연구실 보기",
-      "cta": "모든 연구실 보기 →",
+      "cta": "모든 연구실 보기",
       "professorLabel": "지도교수",
       "externalLabel": "외부 사이트로 이동",
       "pause": "카드 흐름 일시정지",
@@ -245,6 +253,22 @@
     "newsPreview": {
       "title": "뉴스",
       "viewAll": "전체 보기"
+    },
+    "newsEvents": {
+      "title": "뉴스 & 행사",
+      "more": "자세히보기",
+      "prev": "이전 소식 보기",
+      "next": "다음 소식 보기",
+      "kindNews": "뉴스",
+      "kindEvent": "행사"
+    },
+    "sectionNav": {
+      "label": "섹션 바로가기",
+      "hero": "홈",
+      "research": "연구 분야",
+      "programs": "기계공학부의 체계",
+      "labs": "연구실",
+      "news": "뉴스 & 행사"
     },
     "researchGallery": {
       "eyebrow": "RESEARCH FIELDS",
@@ -375,7 +399,13 @@
       "courses": "과목명·학정번호 검색",
       "labs": "연구실·교수명 검색",
       "empty": "검색 결과가 없습니다. 다른 검색어를 입력해 보세요."
-    }
+    },
+    "kinds": {
+      "required": "전공필수",
+      "elective": "전공선택",
+      "general": "대학교양"
+    },
+    "commonGroup": "공통·기초 과목"
   },
   "news": {
     "hero": {

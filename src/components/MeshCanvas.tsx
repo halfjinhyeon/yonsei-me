@@ -79,9 +79,23 @@ export function MeshCanvas({ className }: { className?: string }) {
       raf = requestAnimationFrame(loop);
     }
 
+    // 화면 밖에선 페인팅 정지 — 히어로를 지나 스크롤 트윈 중에도 이 캔버스가 매 프레임
+    // 풀스크린을 다시 그리면 메인스레드 프레임 예산을 잡아먹는다(툭툭 끊김의 한 원인).
+    const io = new IntersectionObserver(([entry]) => {
+      if (reduce) return;
+      if (entry.isIntersecting) {
+        cancelAnimationFrame(raf); // 중복 루프 방지
+        raf = requestAnimationFrame(loop);
+      } else {
+        cancelAnimationFrame(raf);
+      }
+    });
+    io.observe(canvas);
+
     window.addEventListener('resize', resize);
     return () => {
       cancelAnimationFrame(raf);
+      io.disconnect();
       window.removeEventListener('resize', resize);
     };
   }, []);
