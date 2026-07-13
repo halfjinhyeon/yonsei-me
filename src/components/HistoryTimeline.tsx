@@ -19,15 +19,12 @@ const EN_MONTHS = [
   'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec',
 ];
 
-/** "1958-12" → ko "1958. 12." / en "Dec 1958" */
-function formatDate(date: string, locale: Locale): string {
-  const [year, month] = date.split('-');
+/** "1958-12" → 월 라벨: ko "12월" / en "Dec" (연도는 투톤 대형 표기로 별도 렌더) */
+function monthLabel(date: string, locale: Locale): string {
+  const month = date.split('-')[1];
   const m = Number(month);
-  if (locale === 'en') {
-    const label = EN_MONTHS[m - 1] ?? month;
-    return `${label} ${year}`;
-  }
-  return `${year}. ${m}.`;
+  if (locale === 'en') return EN_MONTHS[m - 1] ?? month;
+  return `${m}월`;
 }
 
 /** 연대 라벨: ko "1960년대" / en "1960s" */
@@ -165,7 +162,7 @@ export function HistoryTimeline({
         />
       </div>
 
-      <div className="space-y-16">
+      <div className="space-y-20">
         {groups.map((group) => (
           <DecadeSection
             key={group.decade}
@@ -199,7 +196,8 @@ function DecadeSection({
       <h3
         ref={header.ref}
         className={cn(
-          'relative mb-8 pl-10 font-display text-3xl font-bold text-yonsei-navy transition-all duration-700 ease-out-expo motion-reduce:transition-none sm:text-4xl lg:pl-0 lg:text-center',
+          // 연대 라벨 — 볼드 유지, 크기는 한 단계 축소(항목 연도 타이포에 주역을 양보)
+          'relative mb-10 pl-10 font-display text-2xl font-bold text-yonsei-navy transition-all duration-700 ease-out-expo motion-reduce:transition-none sm:text-3xl lg:pl-0 lg:text-center',
           header.visible ? 'translate-y-0 opacity-100' : 'translate-y-7 opacity-0',
         )}
       >
@@ -210,7 +208,7 @@ function DecadeSection({
         </span>
       </h3>
 
-      <ol className="space-y-8">
+      <ol className="space-y-12">
         {group.events.map((ev) => (
           <TimelineItem
             key={ev.date + ev.title.en}
@@ -248,11 +246,12 @@ function TimelineItem({
         visible ? 'translate-y-0 opacity-100' : 'translate-y-7 opacity-0',
       )}
     >
-      {/* 마름모 마커 — 스파인 위 (모바일 좌측 11px / 데스크톱 중앙) */}
+      {/* 마름모 마커 — 스파인 위 (모바일 좌측 11px / 데스크톱 중앙). 커진 연도
+          타이포의 첫 줄 시각 중심에 맞춰 살짝 내린다 */}
       <span
         aria-hidden="true"
         className={cn(
-          'absolute top-2 left-[11px] z-10 h-2 w-2 -translate-x-1/2 rotate-45 border transition-colors duration-500 motion-reduce:transition-none',
+          'absolute top-[15px] left-[11px] z-10 h-2 w-2 -translate-x-1/2 rotate-45 border transition-colors duration-500 motion-reduce:transition-none',
           'lg:left-1/2',
           visible
             ? 'border-yonsei-blue bg-yonsei-blue'
@@ -268,13 +267,19 @@ function TimelineItem({
             : 'lg:col-start-2 lg:pl-10 lg:text-left',
         )}
       >
+        {/* 연도 — 홍익대 레퍼런스의 투톤 표기: 세기(19/20)는 옅게, 뒤 두 자리는
+            진하게. 월은 작은 보조 표기로 뒤에 붙인다 */}
         <time
           dateTime={event.date}
-          className="block text-sm font-bold tracking-wide text-yonsei-blue"
+          className="block text-2xl font-bold leading-none tracking-tight sm:text-3xl"
         >
-          {formatDate(event.date, locale)}
+          <span className="text-content-faint">{event.date.slice(0, 2)}</span>
+          <span className="text-yonsei-navy">{event.date.slice(2, 4)}</span>
+          <span className="ml-2 align-middle text-sm font-semibold tracking-normal text-content-faint">
+            {monthLabel(event.date, locale)}
+          </span>
         </time>
-        <p className="mt-1.5 text-base leading-relaxed text-content">
+        <p className="mt-3 text-lg leading-relaxed text-content">
           {pick(event.title, locale)}
         </p>
       </div>

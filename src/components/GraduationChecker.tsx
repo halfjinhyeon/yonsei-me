@@ -393,6 +393,10 @@ export function GraduationChecker({ data, locale }: { data: CheckerData; locale:
           : 'Upload your Everytime timetable screenshots (one per semester). Courses are recognized on-device and checked against your cohort’s graduation requirements. You can edit the results below.'}
       </p>
 
+      {/* STEP 01·02(좌) / STEP 03(우) 2단 배치 — 우측 목차 제거로 넓어진 본문을 활용해
+          업로드→확인 흐름을 데스크톱에서 나란히 본다. 모바일은 기존 세로 순서(01→02→03). */}
+      <div className="grid gap-16 lg:grid-cols-2 lg:items-start lg:gap-x-14">
+      <div className="min-w-0 space-y-16">
       {/* STEP 01 — 학번 선택 */}
       <section>
         <StepLabel num="01" title={ko ? '학번 선택' : 'Cohort'} />
@@ -513,9 +517,10 @@ export function GraduationChecker({ data, locale }: { data: CheckerData; locale:
           </ul>
         )}
       </section>
+      </div>
 
-      {/* STEP 03 — 수강 과목 확인 */}
-      <section>
+      {/* STEP 03 — 수강 과목 확인 (우측 열) */}
+      <section className="min-w-0">
         <StepLabel num="03" title={ko ? '수강 과목 확인' : 'Review courses'} />
         <p className="mt-2 text-sm text-content-faint">
           {ko
@@ -708,6 +713,7 @@ export function GraduationChecker({ data, locale }: { data: CheckerData; locale:
           )}
         </div>
       </section>
+      </div>
 
       {/* STEP 04 — 결과 */}
       <section>

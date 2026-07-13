@@ -1,5 +1,6 @@
 import editorialTabs from '@content/editorial-tabs.json';
 import { pick } from '@/lib/content';
+import { EditorialShowcaseItems } from '@/components/EditorialShowcaseItems';
 import type { Locale } from '@/i18n/routing';
 
 /** 한/영 문자열 쌍 */
@@ -97,7 +98,17 @@ function CtaLink({ cta, locale }: { cta: EditorialCta; locale: Locale }) {
  * 카드·박스·그림자 없이 여백·헤어라인·번호(또는 지표)로만 위계를 만든다 (AboutIntro 계승).
  * 데이터는 content/editorial-tabs.json 에서 이중언어로 공급되며 pick(field, locale)로 해석한다.
  */
-export function EditorialTab({ data, locale }: { data: EditorialTabData; locale: Locale }) {
+export function EditorialTab({
+  data,
+  locale,
+  showcaseItems = false,
+}: {
+  data: EditorialTabData;
+  locale: Locale;
+  /** true 면 items 를 번호 그리드 대신 "쇼케이스"(초대형 영문 키워드가 스크롤마다
+   *  왼쪽에서 등장하는 세로 스택 — 홍익대 교육방침 레퍼런스)로 렌더 */
+  showcaseItems?: boolean;
+}) {
   const hasStat = data.items?.some((it) => it.stat);
   const itemCount = data.items?.length ?? 0;
   const itemGridCols = hasStat
@@ -120,9 +131,9 @@ export function EditorialTab({ data, locale }: { data: EditorialTabData; locale:
         </h3>
       )}
 
-      {/* slogan — 인용구형 디스플레이 */}
+      {/* slogan — 인용구형 디스플레이 (홍익대 레퍼런스처럼 크고 단단한 볼드 헤드라인) */}
       {data.slogan && (
-        <p className="mt-6 max-w-3xl font-display text-2xl font-medium leading-snug text-content sm:text-[1.75rem]">
+        <p className="mt-6 max-w-4xl text-[clamp(1.5rem,2.8vw,2.25rem)] font-bold leading-[1.35] tracking-tight text-content">
           <span className="text-yonsei-gold">&ldquo;</span>
           {pick(data.slogan, locale)}
           <span className="text-yonsei-gold">&rdquo;</span>
@@ -154,8 +165,10 @@ export function EditorialTab({ data, locale }: { data: EditorialTabData; locale:
         </figure>
       )}
 
-      {/* items — stat 인포그래픽 또는 번호 리스트 (구분선은 항목별 룰 하나만) */}
-      {data.items && data.items.length > 0 && (
+      {/* items — 쇼케이스(스크롤 등장 세로 스택) 또는 stat 인포그래픽/번호 그리드 */}
+      {data.items && data.items.length > 0 && showcaseItems ? (
+        <EditorialShowcaseItems items={data.items} locale={locale} />
+      ) : data.items && data.items.length > 0 && (
         <div className="mt-14">
           <ol className={`grid gap-10 ${itemGridCols}`}>
             {data.items.map((item, i) => (

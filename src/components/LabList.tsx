@@ -119,15 +119,16 @@ export function LabList({ items }: { items: LabDirectoryEntry[] }) {
       ) : (
       <div className="overflow-x-auto">
         <table className="w-full border-collapse text-sm">
-          <thead className="border-b-2 border-yonsei-navy">
+          {/* 에디토리얼 헤더 — 네이비 굵은 룰을 위에, 아래는 헤어라인(교과목 편람과 동일 문법) */}
+          <thead className="border-b border-t-2 border-surface-border border-t-yonsei-navy">
             <tr>
-              <th className="whitespace-nowrap px-3 py-3 text-left text-xs font-bold uppercase tracking-wide text-content-faint">
+              <th className="whitespace-nowrap py-3 pr-4 text-left text-xs font-bold text-content-faint">
                 연구실
               </th>
-              <th className="whitespace-nowrap px-3 py-3 text-left text-xs font-bold uppercase tracking-wide text-content-faint">
+              <th className="whitespace-nowrap px-3 py-3 text-left text-xs font-bold text-content-faint">
                 지도교수
               </th>
-              <th className="whitespace-nowrap px-3 py-3 text-left text-xs font-bold uppercase tracking-wide text-content-faint">
+              <th className="whitespace-nowrap px-3 py-3 text-left text-xs font-bold text-content-faint">
                 위치/연락처
               </th>
             </tr>
@@ -140,38 +141,40 @@ export function LabList({ items }: { items: LabDirectoryEntry[] }) {
                 className="anim-nav-item border-b border-surface-border last:border-b-0"
                 style={{ animationDelay: `${Math.min(i, 12) * 40}ms` }}
               >
-                <td className="px-3 py-4 align-top">
+                <td className="py-5 pr-4 align-top">
                   {lab.url ? (
                     <a
                       href={lab.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="font-medium text-yonsei-blue underline-offset-2 hover:underline"
+                      className="group/lab block"
                     >
-                      {lab.nameKo}
-                      <br />
-                      <span className="text-xs text-content-faint">{lab.nameEn}</span>
+                      <span className="block text-base font-bold leading-snug text-yonsei-blue underline-offset-2 group-hover/lab:underline">
+                        {lab.nameKo}
+                      </span>
+                      <span className="mt-1 block text-xs font-medium tracking-wide text-content-faint">
+                        {lab.nameEn}
+                      </span>
                     </a>
                   ) : (
                     <>
-                      <span className="font-medium text-content">{lab.nameKo}</span>
-                      <br />
-                      <span className="text-xs text-content-faint">{lab.nameEn}</span>
+                      <span className="block text-base font-bold leading-snug text-content">
+                        {lab.nameKo}
+                      </span>
+                      <span className="mt-1 block text-xs font-medium tracking-wide text-content-faint">
+                        {lab.nameEn}
+                      </span>
                     </>
                   )}
                 </td>
-                <td className="px-3 py-4 align-top text-content-soft">
-                  {lab.professorKo}
-                  <br />
-                  <span className="text-xs text-content-faint">{lab.professorEn}</span>
+                <td className="px-3 py-5 align-top">
+                  <span className="block font-semibold text-content">{lab.professorKo}</span>
+                  <span className="mt-0.5 block text-xs text-content-faint">{lab.professorEn}</span>
                 </td>
-                <td className="px-3 py-4 align-top text-content-soft">
+                <td className="px-3 py-5 align-top text-content-soft">
                   {lab.location}
                   {lab.phone && (
-                    <>
-                      <br />
-                      <span className="text-xs text-content-faint">{lab.phone}</span>
-                    </>
+                    <span className="mt-0.5 block text-xs text-content-faint">{lab.phone}</span>
                   )}
                 </td>
               </tr>

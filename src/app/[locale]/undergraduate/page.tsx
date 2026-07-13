@@ -64,7 +64,7 @@ export default async function UndergraduatePage({ params }: { params: { locale: 
     markdown: slug ? getPageMarkdown(slug) : null,
     content:
       key === 'goals' ? (
-        <EditorialTab data={getEditorialTab('undergraduate-goals')} locale={locale} />
+        <EditorialTab data={getEditorialTab('undergraduate-goals')} locale={locale} showcaseItems />
       ) : key === 'clubs' ? (
         <ClubGrid items={getClubs()} moreLabel={tFaculty('moreLabel')} />
       ) : key === 'requirements' ? (
@@ -77,6 +77,7 @@ export default async function UndergraduatePage({ params }: { params: { locale: 
           columns={COURSE_COLUMNS}
           ariaLabel="교과목 분야 필터"
           emptyLabel={tStub('body')}
+          grouped="semester"
         />
       ) : key === 'curriculum' ? (
         <CurriculumRoadmap locale={locale} />

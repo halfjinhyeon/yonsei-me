@@ -61,6 +61,7 @@ export default async function GraduatePage({ params }: { params: { locale: strin
           columns={COURSE_COLUMNS}
           ariaLabel="교과목 분야 필터"
           emptyLabel={tStub('body')}
+          grouped="field"
         />
       ) : undefined,
   }));
