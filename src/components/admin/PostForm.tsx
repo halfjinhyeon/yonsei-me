@@ -903,7 +903,7 @@ export function PostForm({ meta, initial, isEdit, busy, onCancel, onSubmit, onUp
         </button>
         {onUploadFile && (
           <p className="mt-2 text-xs text-content-faint">
-            파일은 외부 스토리지(Vercel Blob)에 저장되고 게시물에는 링크만 기록됩니다. 이미지 최대
+            파일은 외부 스토리지(Cloudflare R2)에 저장되고 게시물에는 링크만 기록됩니다. 이미지 최대
             20MB(자동 압축), 문서 20MB.
           </p>
         )}

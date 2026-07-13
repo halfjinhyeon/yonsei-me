@@ -11,7 +11,9 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@vercel/blob": "^2.6.1",
+    "@aws-sdk/client-s3": "^3.1085.0",
+    "@aws-sdk/s3-request-presigner": "^3.1085.0",
+    "@supabase/supabase-js": "^2.110.3",
     "gsap": "^3.15.0",
     "marked": "^14.1.4",
     "next": "14.2.35",
