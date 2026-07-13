@@ -14,6 +14,8 @@ create table if not exists posts (
   title_en      text,
   body_html_ko  text not null default '', -- 에디터 산출 HTML(서버에서 정화 후 저장)
   body_html_en  text,
+  body_md_ko    text,                     -- 마크다운 원문(텍스트 에디터 수정 왕복용)
+  body_md_en    text,
   excerpt_ko    text,
   excerpt_en    text,
   category      text,                     -- 뉴스: notice | seminar | achievement
@@ -28,6 +30,11 @@ create table if not exists posts (
   created_at    timestamptz not null default now(),
   updated_at    timestamptz not null default now()
 );
+
+-- (기존 설치 업그레이드) create table if not exists 는 이미 있는 테이블에 컬럼을
+-- 추가하지 않으므로, 새 컬럼은 alter 로도 보강한다 — 이 파일 재실행이 곧 업그레이드.
+alter table posts add column if not exists body_md_ko text;
+alter table posts add column if not exists body_md_en text;
 
 create index if not exists posts_board_created_idx on posts (board, created_at desc);
 create index if not exists posts_published_idx on posts (published);

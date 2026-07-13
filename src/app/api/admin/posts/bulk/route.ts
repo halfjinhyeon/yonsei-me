@@ -1,0 +1,73 @@
+// 게시글 admin API — 일괄 삭제·게시판 이동(POST). 백엔드 전환 Phase 3.
+// CMS 목록의 다중선택 기능이 사용한다. Git 시절의 "파일 두 번 커밋" 곡예가
+// SQL 업데이트 한 번으로 줄어드는 지점.
+
+import { revalidateTag } from 'next/cache';
+import { auth } from '@/auth';
+import { adminDb, isValidBoard } from '@/lib/admin/posts-server';
+
+export const runtime = 'nodejs';
+
+async function requireAdmin(): Promise<Response | null> {
+  if (process.env.NODE_ENV !== 'production') return null;
+  const session = await auth();
+  if (!session?.user) return Response.json({ error: '로그인이 필요합니다.' }, { status: 401 });
+  return null;
+}
+
+interface BulkBody {
+  action: 'delete' | 'move';
+  ids: (number | string)[];
+  targetBoard?: string;
+}
+
+export async function POST(request: Request): Promise<Response> {
+  const denied = await requireAdmin();
+  if (denied) return denied;
+
+  const body = (await request.json()) as BulkBody;
+  const ids = (body.ids ?? []).map(Number).filter((n) => Number.isInteger(n) && n > 0);
+  if (ids.length === 0) {
+    return Response.json({ error: '대상 글이 없습니다.' }, { status: 400 });
+  }
+
+  if (body.action === 'delete') {
+    const { error } = await adminDb().from('posts').delete().in('id', ids);
+    if (error) return Response.json({ error: error.message }, { status: 500 });
+    revalidateTag('posts');
+    return Response.json({ ok: true, count: ids.length });
+  }
+
+  if (body.action === 'move') {
+    const target = body.targetBoard ?? '';
+    if (!isValidBoard(target)) {
+      return Response.json({ error: '알 수 없는 대상 게시판입니다.' }, { status: 400 });
+    }
+    const isNewsTarget = target === 'news' || target === 'alumniNews';
+
+    // 대상 게시판 규칙에 맞춰 행별 보정 — 뉴스형은 slug·category 가 필요하고,
+    // 뉴스형이 아니면 slug 를 비워 unique 충돌 여지를 없앤다.
+    const { data: rows, error: selErr } = await adminDb()
+      .from('posts')
+      .select('id, slug, category, created_at')
+      .in('id', ids);
+    if (selErr) return Response.json({ error: selErr.message }, { status: 500 });
+
+    for (const r of rows ?? []) {
+      const patch: Record<string, unknown> = { board: target };
+      if (isNewsTarget) {
+        patch.slug = r.slug ?? `${String(r.created_at).slice(0, 10)}-post-${r.id}`;
+        patch.category = r.category ?? 'notice';
+      } else {
+        patch.slug = null;
+      }
+      const { error } = await adminDb().from('posts').update(patch).eq('id', r.id);
+      if (error) return Response.json({ error: error.message }, { status: 500 });
+    }
+
+    revalidateTag('posts');
+    return Response.json({ ok: true, count: ids.length });
+  }
+
+  return Response.json({ error: '알 수 없는 작업입니다.' }, { status: 400 });
+}
