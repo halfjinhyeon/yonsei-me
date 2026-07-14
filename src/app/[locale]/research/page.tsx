@@ -4,6 +4,7 @@ import { Hero } from '@/components/Hero';
 import { TabbedContent, type TabItem } from '@/components/TabbedContent';
 import { LabList } from '@/components/LabList';
 import { EditorialTab, getEditorialTab } from '@/components/EditorialTab';
+import { VisionInfographic } from '@/components/VisionInfographic';
 import { getPageMarkdown } from '@/lib/pages';
 import { getLabsDirectory } from '@/lib/faculty';
 import type { Locale } from '@/i18n/routing';
@@ -39,7 +40,11 @@ export default async function ResearchPage({ params }: { params: { locale: strin
       key === 'labs' ? (
         <LabList items={getLabsDirectory()} />
       ) : key === 'vision' ? (
-        <EditorialTab data={getEditorialTab('research-vision')} locale={locale} />
+        // 텍스트 도입부(EditorialTab) 아래에 구 이미지 대신 인포그래픽을 합성
+        <>
+          <EditorialTab data={getEditorialTab('research-vision')} locale={locale} />
+          <VisionInfographic locale={locale} />
+        </>
       ) : key === 'capacity' ? (
         <EditorialTab data={getEditorialTab('research-capacity')} locale={locale} />
       ) : key === 'social' ? (

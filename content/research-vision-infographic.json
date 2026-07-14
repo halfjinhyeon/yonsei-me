@@ -1,0 +1,45 @@
+{
+  "_comment": "연구 비전 탭 인포그래픽 데이터 — 구 이미지(/img/pages/research.jpg, 공과대학 비전과 교육목표 다이어그램)의 콘텐츠를 VisionInfographic 컴포넌트가 렌더한다. icon 은 컴포넌트에 정의된 라인아트 키(target/fusion/leader).",
+  "sections": {
+    "vision": { "label": { "ko": "공과대학 비전과 교육목표", "en": "College of Engineering Vision & Goals" } },
+    "purpose": { "label": { "ko": "교육목적", "en": "Educational Purpose" } },
+    "objective": { "label": { "ko": "세부 추진 목표", "en": "Key Objectives" } }
+  },
+  "visions": [
+    {
+      "icon": "target",
+      "title": { "ko": "미래를 선도하는 최고의 공학인 양성", "en": "Cultivating top engineers who lead the future" }
+    },
+    {
+      "icon": "fusion",
+      "title": { "ko": "세계 융합 연구를 주도하는 연구 대학", "en": "A research university driving global convergence research" }
+    },
+    {
+      "icon": "leader",
+      "title": { "ko": "섬기고 봉사하는 지도자 양성", "en": "Raising leaders who serve and give back" }
+    }
+  ],
+  "purposes": [
+    { "ko": "세계를 무대로 도전하는 국제적 공학인", "en": "Global engineers who take on the world stage" },
+    { "ko": "경영능력을 갖춘 지도자적 공학인", "en": "Engineer-leaders with management competence" },
+    { "ko": "문제해결 능력을 갖춘 창의적 공학인", "en": "Creative engineers with problem-solving ability" }
+  ],
+  "objectives": [
+    {
+      "title": { "ko": "선도 분야 육성", "en": "Fostering leading fields" },
+      "body": { "ko": "Global 3–5–10, 세계 100위권 공과대학 진입", "en": "Global 3–5–10 — into the world's top 100 engineering schools" }
+    },
+    {
+      "title": { "ko": "공학 교육 혁신 주도", "en": "Leading innovation in engineering education" },
+      "body": { "ko": "선도 모델 구축, 평생지도교수제도", "en": "Building pioneering models and lifelong faculty advising" }
+    },
+    {
+      "title": { "ko": "국내외 석학 초빙", "en": "Inviting distinguished scholars" },
+      "body": { "ko": "우수 과학기술 인재 양성의 산실", "en": "A cradle for outstanding talent in science and technology" }
+    },
+    {
+      "title": { "ko": "융합 연구·교육과 산학 협력", "en": "Convergence research, education & industry ties" },
+      "body": { "ko": "세계적 Leading Group으로 도약", "en": "Rising as a global leading group" }
+    }
+  ]
+}
