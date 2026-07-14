@@ -369,6 +369,48 @@
        data-active 속성 + 기존 키프레임(heroTitleIn/panelFadeUp/navItemUp)으로 재현.
      ========================================================= */
 
+  /* =========================================================
+     통합 글쓰기 에디터(Tiptap, admin/RichTextEditor) 전용
+     — 편집 영역은 prose-content 를 그대로 입어 사이트 본문과 동일 타이포.
+     여기엔 "편집기라서만" 필요한 최소 규칙만 둔다. */
+  .rte .rte-area {
+    min-height: 320px;
+    padding: 1rem 1.25rem;
+    outline: none; /* 포커스 링은 컨테이너(.rte)가 아닌 브라우저 기본 대신 border 로 */
+  }
+  .rte:focus-within {
+    border-color: rgb(var(--yonsei-blue, 0 87 168) / 1);
+    border-color: #0057a8;
+  }
+  /* 빈 문서 플레이스홀더 (Tiptap Placeholder 확장 규격) */
+  .rte .rte-area p.is-editor-empty:first-child::before {
+    content: attr(data-placeholder);
+    float: left;
+    height: 0;
+    pointer-events: none;
+    @apply text-content-faint;
+  }
+  /* 선택된 이미지/노드 표시 */
+  .rte .rte-area img.ProseMirror-selectednode {
+    outline: 2px solid #0057a8;
+    outline-offset: 2px;
+  }
+  /* 표 셀 다중 선택 하이라이트 (Tiptap table 규격 클래스) */
+  .rte .rte-area .selectedCell {
+    position: relative;
+  }
+  .rte .rte-area .selectedCell::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: rgb(0 87 168 / 0.12);
+  }
+  /* prose-content 의 table 이 block+overflow 인데, 편집 중에는 일반 표처럼 다룬다 */
+  .rte .rte-area table {
+    @apply my-6 table w-full overflow-visible;
+  }
+
   /* 스크롤 고정 헤더 등장 — 위에서 살짝 슬라이드 다운(0.3s). scrolled 상태로
      클래스가 붙는 순간 1회 재생되고, 최상단 복귀로 클래스가 떨어지면 다음 고정 때
      다시 재생된다. (모바일 드로어 열림(open)에는 붙이지 않는다 — 제자리 반전만)
