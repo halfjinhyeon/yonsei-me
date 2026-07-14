@@ -11,6 +11,7 @@ import { FacultyDirectoryGrid } from '@/components/FacultyDirectoryGrid';
 import { HistoryTimeline } from '@/components/HistoryTimeline';
 import { KakaoMap } from '@/components/KakaoMap';
 import { getFacultyDirectory } from '@/lib/faculty';
+import { getHistoryImages } from '@/lib/history-images';
 import { history, staff, pick } from '@/lib/content';
 import type { Locale } from '@/i18n/routing';
 
@@ -53,7 +54,11 @@ export default async function AboutPage({ params }: { params: { locale: string }
       content: (
         <>
           <AboutIntro locale={params.locale} />
-          <HistoryTimeline events={history} locale={params.locale as Locale} />
+          <HistoryTimeline
+            events={history}
+            locale={params.locale as Locale}
+            images={getHistoryImages()}
+          />
         </>
       ),
     },
@@ -67,14 +72,16 @@ export default async function AboutPage({ params }: { params: { locale: string }
       key: 'staff',
       label: tMenu('about.items.staff'),
       markdown: null,
-      // 행정 교직원 표 — 데이터는 content/staff.json (콘텐츠/코드 분리)
+      // 행정 교직원 표 — 데이터는 content/staff.json (콘텐츠/코드 분리).
+      // 에디토리얼 표 문법(prose-content table 과 동일): 네이비 상단 룰 + 헤어라인,
+      // 배경 없는 작은 헤더, 넉넉한 행(py-5), 첫 컬럼(구분) 볼드 행 라벨.
       content: (
         <div className="overflow-x-auto">
-          <table className="w-full min-w-[560px] text-center text-sm sm:text-base">
-            <thead>
-              <tr className="border-b-2 border-yonsei-navy bg-surface-soft">
+          <table className="w-full min-w-[560px] text-left text-[15px]">
+            <thead className="border-b border-t-2 border-surface-border border-t-yonsei-navy">
+              <tr>
                 {(['role', 'name', 'phone', 'location', 'email'] as const).map((col) => (
-                  <th key={col} scope="col" className="px-4 py-3 font-bold text-content">
+                  <th key={col} scope="col" className="whitespace-nowrap px-3 py-3.5 text-left text-xs font-bold text-content-faint">
                     {t(`staffTable.${col}`)}
                   </th>
                 ))}
@@ -83,12 +90,12 @@ export default async function AboutPage({ params }: { params: { locale: string }
             <tbody>
               {staff.map((s) => (
                 <tr key={s.email} className="border-b border-surface-border">
-                  <td className="whitespace-nowrap px-4 py-3 text-content-soft">{pick(s.role, params.locale as Locale)}</td>
-                  <td className="whitespace-nowrap px-4 py-3 font-medium text-content">{pick(s.name, params.locale as Locale)}</td>
-                  <td className="whitespace-nowrap px-4 py-3 tabular-nums text-content-soft">{s.phone}</td>
-                  <td className="whitespace-nowrap px-4 py-3 text-content-soft">{pick(s.location, params.locale as Locale)}</td>
-                  <td className="px-4 py-3">
-                    <a href={`mailto:${s.email}`} className="text-yonsei-blue hover:underline">
+                  <td className="whitespace-nowrap px-3 py-5 font-semibold text-content">{pick(s.role, params.locale as Locale)}</td>
+                  <td className="whitespace-nowrap px-3 py-5 font-medium text-content">{pick(s.name, params.locale as Locale)}</td>
+                  <td className="whitespace-nowrap px-3 py-5 tabular-nums text-content-soft">{s.phone}</td>
+                  <td className="whitespace-nowrap px-3 py-5 text-content-soft">{pick(s.location, params.locale as Locale)}</td>
+                  <td className="px-3 py-5">
+                    <a href={`mailto:${s.email}`} className="font-medium text-yonsei-blue underline-offset-2 hover:underline">
                       {s.email}
                     </a>
                   </td>
@@ -105,8 +112,9 @@ export default async function AboutPage({ params }: { params: { locale: string }
       markdown: null,
       content: (
         <>
-          {/* 연락처 패널과 지도를 한 카드로 합침 — 모서리는 rounded-lg로 각지게 */}
-          <div className="grid overflow-hidden rounded-lg border border-surface-border shadow-card lg:grid-cols-[1fr_1.5fr]">
+          {/* 연락처 패널과 지도를 한 카드로 합침 — 각진 톤(라운드 없이 테두리+그림자).
+              좌측 카드는 우측 지도보다 좁게(총폭은 컨테이너 고정이라 불변) */}
+          <div className="grid overflow-hidden border border-surface-border shadow-card lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.5fr)]">
             <ContactInfoPanel rows={contactRows} />
             {/* 지도 — 하단 링크 바 없이 카드 바닥까지 채우고, 약도 링크는 지도 위 배지로 */}
             <div className="relative flex flex-col">
@@ -115,7 +123,7 @@ export default async function AboutPage({ params }: { params: { locale: string }
                 href={KAKAO_MAP_LINK}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="absolute bottom-3 left-3 z-10 rounded-md bg-surface/90 px-3 py-1.5 text-xs font-semibold text-yonsei-blue shadow-card transition-colors hover:bg-surface"
+                className="absolute bottom-3 left-3 z-10 bg-surface/90 px-3 py-1.5 text-xs font-semibold text-yonsei-blue shadow-card transition-colors hover:bg-surface"
               >
                 {tContact('mapTitle')} ↗
               </a>

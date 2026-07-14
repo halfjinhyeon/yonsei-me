@@ -127,6 +127,16 @@ export function KakaoMap({ className }: { className?: string }) {
     };
     window.addEventListener('resize', onResize);
 
+    // 래퍼 실측 크기가 바뀔 때(탭 표시, 그리드 트랙 확정 등) 다시 그린다.
+    // 초기 마운트 draw()가 레이아웃 확정 전 폭으로 그려 컨테이너보다 넓게(clip)
+    // 렌더되는 경우를 바로잡는다. 지도 폭은 그리드가 정하므로 재렌더가 래퍼
+    // 크기를 바꾸지 않아 관찰 루프는 생기지 않는다.
+    let ro: ResizeObserver | undefined;
+    if (typeof ResizeObserver !== 'undefined' && wrapRef.current) {
+      ro = new ResizeObserver(onResize);
+      ro.observe(wrapRef.current);
+    }
+
     // 정리 대상 리스너를 한곳에 모아 unmount 시 해제
     const cleanups: (() => void)[] = [];
     const listen = (el: HTMLScriptElement, onLoad: () => void) => {
@@ -177,6 +187,7 @@ export function KakaoMap({ className }: { className?: string }) {
       clearTimeout(resizeTimer);
       dedupeTimers.forEach((id) => window.clearTimeout(id));
       window.removeEventListener('resize', onResize);
+      ro?.disconnect();
       cleanups.forEach((fn) => fn());
     };
   }, []);
