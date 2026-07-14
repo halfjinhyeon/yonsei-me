@@ -1,6 +1,7 @@
 'use client';
 
-import { useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
+import { createPortal } from 'react-dom';
 import { UnderlineTabs } from '@/components/UnderlineTabs';
 import { cn } from '@/lib/utils';
 import type { LabDirectoryEntry } from '@/lib/faculty';
@@ -9,7 +10,9 @@ import type { Locale } from '@/i18n/routing';
 /**
  * 연구실 소개 영상 갤러리 — 대학원 "연구실 소개 자료 및 영상" 탭.
  * YouTube / Google Drive 링크를 파사드(썸네일+재생 오버레이) 카드로 보여주고,
- * 클릭 시 그 자리에서 iframe으로 교체한다(초기 렌더에 iframe을 심지 않아 성능 확보).
+ * 재생 버튼 클릭 시 심플한 풀스크린 라이트박스에서 크게 재생한다.
+ * (라이트박스는 createPortal 로 body 직속 렌더 — 탭 패널의 anim-panel 이 남기는
+ *  transform 이 fixed 의 기준을 가로채 오버레이가 그리드 안에 갇히는 문제 방지.)
  * 데이터는 content/labs-directory.json → getLabsDirectory() 를 통해 주입받는다.
  */
 
@@ -20,7 +23,7 @@ interface ParsedVideo {
   source: VideoSource;
   /** 파사드에 깔 정지 썸네일 */
   thumbnail: string;
-  /** 재생 버튼 클릭 시 삽입할 iframe src (autoplay 포함) */
+  /** 재생 시 삽입할 iframe src (autoplay 포함) */
   embed: string;
 }
 
@@ -56,6 +59,13 @@ function parseVideo(url: string | undefined): ParsedVideo | null {
   return null;
 }
 
+/** 라이트박스로 재생 중인 영상 — trigger 는 닫을 때 포커스 복귀 대상 */
+interface ActiveVideo {
+  lab: LabDirectoryEntry;
+  parsed: ParsedVideo;
+  trigger: HTMLElement;
+}
+
 /** 필터 상태 — 기본은 영상 보유 연구실만, "전체"는 미보유 연구실까지 노출 */
 type Filter = 'withVideo' | 'all';
 
@@ -65,6 +75,7 @@ export function LabVideoGallery({ items, locale }: { items: LabDirectoryEntry[];
   const ko = locale === 'ko';
   const [filter, setFilter] = useState<Filter>('withVideo');
   const [page, setPage] = useState(1);
+  const [active, setActive] = useState<ActiveVideo | null>(null);
   const gridRef = useRef<HTMLDivElement>(null);
 
   // 요약 줄 숫자 — 하드코딩하지 않고 items에서 계산 (데이터가 늘면 자동 반영)
@@ -138,14 +149,20 @@ export function LabVideoGallery({ items, locale }: { items: LabDirectoryEntry[];
         ]}
       />
 
-      {/* 카드 그리드 — key로 필터·페이지 전환 시 애니메이션 재생 + 재생 중이던 iframe 초기화 */}
+      {/* 카드 그리드 — key로 필터·페이지 전환 시 진입 애니메이션 재생 */}
       <div
         ref={gridRef}
         key={`${filter}-${current}`}
         className="anim-panel grid gap-6 sm:grid-cols-2 xl:grid-cols-3"
       >
         {pageItems.map((lab, i) => (
-          <LabVideoCard key={lab.nameKo + lab.professorKo} lab={lab} locale={locale} index={i} />
+          <LabVideoCard
+            key={lab.nameKo + lab.professorKo}
+            lab={lab}
+            locale={locale}
+            index={i}
+            onPlay={setActive}
+          />
         ))}
       </div>
 
@@ -187,27 +204,31 @@ export function LabVideoGallery({ items, locale }: { items: LabDirectoryEntry[];
           </button>
         </nav>
       )}
+
+      {/* 풀스크린 재생 라이트박스 — 열려 있는 동안만 마운트 */}
+      {active && <VideoLightbox active={active} locale={locale} onClose={() => setActive(null)} />}
     </div>
   );
 }
 
 /**
- * 개별 연구실 카드. 영상이 있으면 파사드(썸네일+재생 버튼) → 클릭 시 iframe 교체,
- * 없으면 대표 이미지 + "영상 준비 중" 배지를 보여준다.
+ * 개별 연구실 카드. 영상이 있으면 파사드(썸네일+재생 버튼) → 클릭 시 풀스크린
+ * 라이트박스에서 크게 재생, 없으면 대표 이미지 + "영상 준비 중" 배지.
  * index는 진입 애니메이션 지연(anim-nav-item) 계산에 쓴다.
  */
 function LabVideoCard({
   lab,
   locale,
   index,
+  onPlay,
 }: {
   lab: LabDirectoryEntry;
   locale: Locale;
   index: number;
+  onPlay: (a: ActiveVideo) => void;
 }) {
   const ko = locale === 'ko';
   const parsed = parseVideo(lab.video);
-  const [playing, setPlaying] = useState(false);
   // 썸네일 로드 실패 시 lab.image로, 그것도 없으면 그라디언트 배경으로 폴백
   const [thumbFailed, setThumbFailed] = useState(false);
 
@@ -228,52 +249,45 @@ function LabVideoCard({
       {/* 미디어 영역 16:9 */}
       <div className="relative aspect-video w-full overflow-hidden bg-surface-soft">
         {parsed ? (
-          playing ? (
-            <iframe
-              title={name}
-              src={parsed.embed}
-              allow="autoplay; fullscreen"
-              allowFullScreen
-              className="h-full w-full"
-            />
-          ) : (
-            <button
-              type="button"
-              onClick={() => setPlaying(true)}
-              aria-label={ko ? `${name} 소개 영상 재생` : `Play ${name} intro video`}
-              className="group relative block h-full w-full focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-yonsei-blue"
+          <button
+            type="button"
+            aria-haspopup="dialog"
+            onClick={(e) =>
+              onPlay({ lab, parsed, trigger: e.currentTarget })
+            }
+            aria-label={ko ? `${name} 소개 영상 크게 재생` : `Play ${name} intro video`}
+            className="group relative block h-full w-full focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-yonsei-blue"
+          >
+            {thumbSrc ? (
+              <img
+                src={thumbSrc}
+                alt={name}
+                loading="lazy"
+                onError={() => setThumbFailed(true)}
+                className="h-full w-full object-cover"
+              />
+            ) : (
+              // 썸네일도 대표 이미지도 없을 때 최종 폴백
+              <span aria-hidden="true" className="anim-gradient absolute inset-0 block" />
+            )}
+
+            {/* 중앙 재생 버튼 오버레이 */}
+            <span
+              aria-hidden="true"
+              className="absolute inset-0 grid place-items-center"
             >
-              {thumbSrc ? (
-                <img
-                  src={thumbSrc}
-                  alt={name}
-                  loading="lazy"
-                  onError={() => setThumbFailed(true)}
-                  className="h-full w-full object-cover"
-                />
-              ) : (
-                // 썸네일도 대표 이미지도 없을 때 최종 폴백
-                <span aria-hidden="true" className="anim-gradient absolute inset-0 block" />
-              )}
-
-              {/* 중앙 재생 버튼 오버레이 */}
-              <span
-                aria-hidden="true"
-                className="absolute inset-0 grid place-items-center"
-              >
-                <span className="grid h-14 w-14 place-items-center rounded-full bg-gradient-to-br from-yonsei-navy to-yonsei-blue shadow-lg transition-transform group-hover:scale-110">
-                  <svg viewBox="0 0 24 24" fill="currentColor" className="ml-0.5 h-6 w-6 text-white">
-                    <path d="M8 5v14l11-7z" />
-                  </svg>
-                </span>
+              <span className="grid h-14 w-14 place-items-center rounded-full bg-gradient-to-br from-yonsei-navy to-yonsei-blue shadow-lg transition-transform group-hover:scale-110">
+                <svg viewBox="0 0 24 24" fill="currentColor" className="ml-0.5 h-6 w-6 text-white">
+                  <path d="M8 5v14l11-7z" />
+                </svg>
               </span>
+            </span>
 
-              {/* 우상단 출처 배지 */}
-              <span className="absolute right-2 top-2 rounded bg-black/70 px-2 py-0.5 text-[11px] font-semibold text-white">
-                {sourceLabel}
-              </span>
-            </button>
-          )
+            {/* 우상단 출처 배지 */}
+            <span className="absolute right-2 top-2 rounded bg-black/70 px-2 py-0.5 text-[11px] font-semibold text-white">
+              {sourceLabel}
+            </span>
+          </button>
         ) : (
           // 영상 미보유 카드 — 대표 이미지 + "영상 준비 중" 배지
           <>
@@ -312,5 +326,104 @@ function LabVideoCard({
       </div>
     </article>
     </div>
+  );
+}
+
+/**
+ * 심플 풀스크린 라이트박스 — 어두운 배경 위에 큰 16:9 영상 하나.
+ * 닫기: 우상단 ✕ / 배경 아무 데나 클릭 / ESC. 애니메이션 없음.
+ * body 직속 포털이라 조상 transform(anim-panel 등)의 영향을 받지 않는다.
+ */
+function VideoLightbox({
+  active,
+  locale,
+  onClose,
+}: {
+  active: ActiveVideo;
+  locale: Locale;
+  onClose: () => void;
+}) {
+  const ko = locale === 'ko';
+  const { lab, parsed } = active;
+  const closeBtnRef = useRef<HTMLButtonElement>(null);
+
+  const name = ko ? lab.nameKo || lab.nameEn : lab.nameEn || lab.nameKo;
+  const professor = ko ? `${lab.professorKo} 교수` : lab.professorEn;
+
+  // 열려 있는 동안: 배경 스크롤 잠금 + ESC 닫기 + 닫기 버튼 포커스,
+  // 닫힐 때 포커스를 원래 재생 버튼으로 복귀
+  useEffect(() => {
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    closeBtnRef.current?.focus({ preventScroll: true });
+
+    function onKey(e: KeyboardEvent) {
+      if (e.key === 'Escape') onClose();
+    }
+    document.addEventListener('keydown', onKey);
+    return () => {
+      document.removeEventListener('keydown', onKey);
+      document.body.style.overflow = prevOverflow;
+      active.trigger.focus({ preventScroll: true });
+    };
+    // active/onClose 는 마운트 단위로 고정(닫히면 언마운트)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  return createPortal(
+    // 배경 아무 데나 클릭해도 닫힌다 — 영상·캡션 영역만 전파 차단
+    <div
+      className="fixed inset-0 z-[100] flex items-center justify-center bg-[#0a1c3d]/95 p-4 sm:p-8"
+      role="dialog"
+      aria-modal="true"
+      aria-label={ko ? `${name} 소개 영상` : `${name} intro video`}
+      onClick={onClose}
+    >
+      {/* 우상단 ✕ — 크고 확실한 닫기 버튼 */}
+      <button
+        ref={closeBtnRef}
+        type="button"
+        onClick={onClose}
+        aria-label={ko ? '영상 닫기' : 'Close video'}
+        className="absolute right-4 top-4 z-10 grid h-12 w-12 place-items-center border border-white/40 bg-white/10 text-white transition-colors hover:border-white hover:bg-white/25 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white sm:right-6 sm:top-6"
+      >
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="h-6 w-6" aria-hidden="true">
+          <path d="M6 6l12 12M18 6L6 18" strokeLinecap="round" />
+        </svg>
+      </button>
+
+      {/* 영상 + 캡션 — 폭은 화면과 세로 여백 안에서 최대한 크게 */}
+      <div
+        className="w-full max-w-[min(76rem,calc((100svh_-_9rem)*16/9))]"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <iframe
+          title={name}
+          src={parsed.embed}
+          allow="autoplay; fullscreen"
+          allowFullScreen
+          className="aspect-video w-full bg-black shadow-2xl"
+        />
+        {/* 한 줄 캡션 — 연구실명 · 교수, 우측에 홈페이지 링크 */}
+        <div className="mt-3 flex flex-wrap items-center justify-between gap-x-6 gap-y-2">
+          <p className="text-sm text-white/85 sm:text-base">
+            <span className="font-bold text-white">{name}</span>
+            <span className="mx-2 text-white/40">·</span>
+            {professor}
+          </p>
+          {lab.url && (
+            <a
+              href={lab.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sm font-medium text-white/85 underline-offset-4 hover:text-white hover:underline"
+            >
+              {ko ? '연구실 홈페이지 ↗' : 'Lab website ↗'}
+            </a>
+          )}
+        </div>
+      </div>
+    </div>,
+    document.body,
   );
 }
