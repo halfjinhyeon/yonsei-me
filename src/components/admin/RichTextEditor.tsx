@@ -16,6 +16,7 @@
 
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { EditorContent, useEditor, type Editor } from '@tiptap/react';
+import { TextSelection } from '@tiptap/pm/state';
 import StarterKit from '@tiptap/starter-kit';
 import Image from '@tiptap/extension-image';
 import TextAlign from '@tiptap/extension-text-align';
@@ -82,6 +83,89 @@ function TBtn({
 
 function Divider() {
   return <span aria-hidden="true" className="mx-1 h-5 w-px self-center bg-surface-border" />;
+}
+
+/* ── 툴바 SVG 아이콘 — 이모지(플랫폼별 렌더 제각각) 대신 통일된 선 아이콘 ── */
+
+/** 표준 정렬 아이콘 — 길이가 다른 가로줄 4개 (좌/중/우 플러시) */
+function AlignIcon({ variant }: { variant: 'left' | 'center' | 'right' }) {
+  const rows: Record<typeof variant, [number, number][]> = {
+    left: [[3, 21], [3, 13], [3, 21], [3, 13]],
+    center: [[3, 21], [7, 17], [3, 21], [7, 17]],
+    right: [[3, 21], [11, 21], [3, 21], [11, 21]],
+  };
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true" className="h-4 w-4" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+      {rows[variant].map(([x1, x2], i) => (
+        <line key={i} x1={x1} x2={x2} y1={5 + i * 4.5} y2={5 + i * 4.5} />
+      ))}
+    </svg>
+  );
+}
+
+/** 사진 아이콘 — 액자 + 해 + 산 */
+function ImageIcon() {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2">
+      <rect x="3" y="4" width="18" height="16" rx="1.5" />
+      <circle cx="8.8" cy="9.5" r="1.6" fill="currentColor" stroke="none" />
+      <path d="M5 18l4.5-4.5 3 3L16 13l5 5" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+/** 링크(사슬) 아이콘 */
+function LinkIcon() {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
+      <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
+    </svg>
+  );
+}
+
+/**
+ * 블록 명령(문단·제목·정렬·인용)을 "선택한 글자"에만 적용하는 실행기.
+ * 한 문단 안의 부분 선택이면 선택 구간을 자체 블록으로 분리(split)한 뒤 명령을
+ * 실행한다 — 문단 전체가 아니라 선택한 문장만 제목/정렬/인용이 된다.
+ * 커서만 있거나(선택 없음) 여러 블록에 걸친 선택이면 기본 동작(닿은 블록 전체).
+ */
+function runOnSelection(
+  editor: Editor,
+  apply: (chain: ReturnType<Editor['chain']>) => ReturnType<Editor['chain']>,
+) {
+  const { selection, doc } = editor.state;
+  const { from, to, empty } = selection;
+  const $from = doc.resolve(from);
+  const $to = doc.resolve(to);
+  const partial =
+    !empty &&
+    $from.sameParent($to) &&
+    $from.parent.isTextblock &&
+    !($from.parentOffset === 0 && $to.parentOffset === $to.parent.content.size);
+
+  let chain = editor.chain().focus();
+  if (partial) {
+    chain = chain.command(({ tr }) => {
+      const selFrom = tr.selection.from;
+      const selTo = tr.selection.to;
+      // 뒤를 먼저 자른다 — 앞을 먼저 자르면 뒤 위치가 밀린다
+      const $t = tr.doc.resolve(selTo);
+      if ($t.parentOffset < $t.parent.content.size) tr.split(selTo);
+      const $f = tr.doc.resolve(selFrom);
+      let f = selFrom;
+      let t = selTo;
+      if ($f.parentOffset > 0) {
+        tr.split(selFrom);
+        // split 이 경계 토큰 2개를 끼워 넣어 선택 텍스트가 +2 밀린다
+        f += 2;
+        t += 2;
+      }
+      tr.setSelection(TextSelection.create(tr.doc, f, t));
+      return true;
+    });
+  }
+  apply(chain).run();
 }
 
 export function RichTextEditor({
@@ -228,10 +312,10 @@ export function RichTextEditor({
         aria-label="서식"
         className="flex flex-wrap items-stretch gap-0.5 border-b border-surface-border bg-surface-soft p-1"
       >
-        <TBtn title="문단" active={editor.isActive('paragraph')} onClick={() => editor.chain().focus().setParagraph().run()}>¶</TBtn>
-        <TBtn title="제목 2" active={editor.isActive('heading', { level: 2 })} onClick={() => editor.chain().focus().toggleHeading({ level: 2 }).run()}>H2</TBtn>
-        <TBtn title="제목 3" active={editor.isActive('heading', { level: 3 })} onClick={() => editor.chain().focus().toggleHeading({ level: 3 }).run()}>H3</TBtn>
-        <TBtn title="제목 4" active={editor.isActive('heading', { level: 4 })} onClick={() => editor.chain().focus().toggleHeading({ level: 4 }).run()}>H4</TBtn>
+        <TBtn title="문단" active={editor.isActive('paragraph')} onClick={() => runOnSelection(editor, (c) => c.setParagraph())}>¶</TBtn>
+        <TBtn title="제목 2" active={editor.isActive('heading', { level: 2 })} onClick={() => runOnSelection(editor, (c) => c.toggleHeading({ level: 2 }))}>H2</TBtn>
+        <TBtn title="제목 3" active={editor.isActive('heading', { level: 3 })} onClick={() => runOnSelection(editor, (c) => c.toggleHeading({ level: 3 }))}>H3</TBtn>
+        <TBtn title="제목 4" active={editor.isActive('heading', { level: 4 })} onClick={() => runOnSelection(editor, (c) => c.toggleHeading({ level: 4 }))}>H4</TBtn>
         <Divider />
         <TBtn title="굵게" active={editor.isActive('bold')} onClick={() => editor.chain().focus().toggleBold().run()}><b>B</b></TBtn>
         <TBtn title="기울임" active={editor.isActive('italic')} onClick={() => editor.chain().focus().toggleItalic().run()}><i>I</i></TBtn>
@@ -242,20 +326,20 @@ export function RichTextEditor({
           <span className="border-b-2 border-current px-0.5">A</span>
         </TBtn>
         <Divider />
-        <TBtn title="왼쪽 정렬" active={editor.isActive({ textAlign: 'left' })} onClick={() => editor.chain().focus().toggleTextAlign('left').run()}>⇤</TBtn>
-        <TBtn title="가운데 정렬" active={editor.isActive({ textAlign: 'center' })} onClick={() => editor.chain().focus().toggleTextAlign('center').run()}>⇔</TBtn>
-        <TBtn title="오른쪽 정렬" active={editor.isActive({ textAlign: 'right' })} onClick={() => editor.chain().focus().toggleTextAlign('right').run()}>⇥</TBtn>
+        <TBtn title="왼쪽 정렬" active={editor.isActive({ textAlign: 'left' })} onClick={() => runOnSelection(editor, (c) => c.toggleTextAlign('left'))}><AlignIcon variant="left" /></TBtn>
+        <TBtn title="가운데 정렬" active={editor.isActive({ textAlign: 'center' })} onClick={() => runOnSelection(editor, (c) => c.toggleTextAlign('center'))}><AlignIcon variant="center" /></TBtn>
+        <TBtn title="오른쪽 정렬" active={editor.isActive({ textAlign: 'right' })} onClick={() => runOnSelection(editor, (c) => c.toggleTextAlign('right'))}><AlignIcon variant="right" /></TBtn>
         <Divider />
         <TBtn title="글머리 목록" active={editor.isActive('bulletList')} onClick={() => editor.chain().focus().toggleBulletList().run()}>•≡</TBtn>
         <TBtn title="번호 목록" active={editor.isActive('orderedList')} onClick={() => editor.chain().focus().toggleOrderedList().run()}>1.</TBtn>
-        <TBtn title="인용" active={editor.isActive('blockquote')} onClick={() => editor.chain().focus().toggleBlockquote().run()}>&ldquo;</TBtn>
+        <TBtn title="인용" active={editor.isActive('blockquote')} onClick={() => runOnSelection(editor, (c) => c.toggleBlockquote())}>&ldquo;</TBtn>
         <TBtn title="구분선" onClick={() => editor.chain().focus().setHorizontalRule().run()}>—</TBtn>
         <Divider />
-        <TBtn title={editor.isActive('link') ? '링크 해제' : '링크'} active={editor.isActive('link')} onClick={setLink}>🔗</TBtn>
+        <TBtn title={editor.isActive('link') ? '링크 해제' : '링크'} active={editor.isActive('link')} onClick={setLink}><LinkIcon /></TBtn>
         {onUploadImage && (
-          <TBtn title="이미지 삽입" disabled={uploadingCount > 0} onClick={() => fileRef.current?.click()}>🖼</TBtn>
+          <TBtn title="이미지 삽입" disabled={uploadingCount > 0} onClick={() => fileRef.current?.click()}><ImageIcon /></TBtn>
         )}
-        <TBtn title="표 삽입" active={inTable} onClick={() => editor.chain().focus().insertTable({ rows: 3, cols: 3, withHeaderRow: true }).run()}>⊞</TBtn>
+        {/* 표 "삽입" 버튼은 제거 — 기존 글의 표를 편집하는 보조 툴바(inTable)만 유지 */}
         <Divider />
         <TBtn title="실행 취소" disabled={!editor.can().undo()} onClick={() => editor.chain().focus().undo().run()}>↺</TBtn>
         <TBtn title="다시 실행" disabled={!editor.can().redo()} onClick={() => editor.chain().focus().redo().run()}>↻</TBtn>
