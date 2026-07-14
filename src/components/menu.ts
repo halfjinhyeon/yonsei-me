@@ -41,7 +41,6 @@ export const menu: MenuGroup[] = [
     key: 'graduate',
     href: '/graduate',
     items: [
-      { key: 'admission', href: '/graduate#admission' },
       { key: 'requirements', href: '/graduate#requirements' },
       { key: 'courses', href: '/graduate#courses' },
       { key: 'labs', href: '/graduate#labs' },

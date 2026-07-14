@@ -5,7 +5,7 @@ import { TabbedContent, type TabItem } from '@/components/TabbedContent';
 import { getPageMarkdown } from '@/lib/pages';
 import { getLabsDirectory } from '@/lib/faculty';
 import { LabVideoGallery } from '@/components/LabVideoGallery';
-import { EditorialTab, getEditorialTab } from '@/components/EditorialTab';
+import { EditorialProse } from '@/components/EditorialProse';
 import {
   CourseCatalog,
   type CatalogColumn,
@@ -25,8 +25,8 @@ export async function generateMetadata({
 
 // labs 는 마크다운 대신 LabVideoGallery(연구실 소개 영상 갤러리)로,
 // courses 는 CourseCatalog(분야 필터 편람)로 렌더 → slug null 유지
+// (입학 안내는 /about#admission 통합 입학 안내로 일원화 — 대학원 탭에서 제거)
 const SECTION_SLUGS: Record<string, string | null> = {
-  admission: null,
   requirements: 'graduate-requirements',
   courses: null,
   labs: null,
@@ -51,10 +51,12 @@ export default async function GraduatePage({ params }: { params: { locale: strin
     label: tMenu(`graduate.items.${key}`),
     markdown: slug ? getPageMarkdown(slug) : null,
     content:
-      key === 'admission' ? (
-        <EditorialTab data={getEditorialTab('graduate-admission')} locale={params.locale as Locale} />
-      ) : key === 'labs' ? (
+      key === 'labs' ? (
         <LabVideoGallery items={getLabsDirectory()} locale={params.locale as Locale} />
+      ) : key === 'requirements' ? (
+        // 졸업 요건 — 밋밋한 기본 Prose 대신 에디토리얼 섹션(네이비 라벨 박스 +
+        // 풀폭 문단 + 배경 실선 도형)으로 렌더
+        <EditorialProse markdown={getPageMarkdown('graduate-requirements') ?? ''} />
       ) : key === 'courses' ? (
         <CourseCatalog
           courses={coursesGraduate as CatalogCourse[]}
