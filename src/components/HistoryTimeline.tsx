@@ -86,9 +86,13 @@ function useReveal<T extends HTMLElement>(reducedMotion: boolean) {
 export function HistoryTimeline({
   events,
   locale,
+  images,
 }: {
   events: HistoryEvent[];
   locale: Locale;
+  /** 연대 → 사진 경로 (public/img/history 매칭, getHistoryImages()). 있는 연대는
+   *  항목이 한쪽으로 모이고 반대편 빈 컬럼에 사진이 들어간다(좌우 교대). */
+  images?: Record<number, string>;
 }) {
   const groups = useMemo(() => groupByDecade(events), [events]);
 
@@ -147,6 +151,8 @@ export function HistoryTimeline({
 
   // 전역 항목 인덱스(좌우 교차 배치용)
   let itemIndex = -1;
+  // 사진 보유 연대끼리 좌우 교대 — 첫 사진은 오른쪽(레퍼런스와 동일)
+  let imageCount = -1;
 
   return (
     <div ref={containerRef} className="relative mx-auto max-w-4xl">
@@ -163,15 +169,23 @@ export function HistoryTimeline({
       </div>
 
       <div className="space-y-20">
-        {groups.map((group) => (
-          <DecadeSection
-            key={group.decade}
-            group={group}
-            locale={locale}
-            reducedMotion={reducedMotion}
-            nextIndex={() => (itemIndex += 1)}
-          />
-        ))}
+        {groups.map((group) => {
+          const image = images?.[group.decade];
+          const imageSide: 'left' | 'right' | undefined = image
+            ? ((imageCount += 1) % 2 === 0 ? 'right' : 'left')
+            : undefined;
+          return (
+            <DecadeSection
+              key={group.decade}
+              group={group}
+              locale={locale}
+              reducedMotion={reducedMotion}
+              nextIndex={() => (itemIndex += 1)}
+              image={image}
+              imageSide={imageSide}
+            />
+          );
+        })}
       </div>
     </div>
   );
@@ -182,16 +196,29 @@ function DecadeSection({
   locale,
   reducedMotion,
   nextIndex,
+  image,
+  imageSide,
 }: {
   group: DecadeGroup;
   locale: Locale;
   reducedMotion: boolean;
   nextIndex: () => number;
+  /** 이 연대 옆에 놓을 사진 (없으면 기존 좌우 교차 배치 그대로) */
+  image?: string;
+  /** 사진이 놓이는 쪽 — 항목들은 반대쪽으로 모인다 */
+  imageSide?: 'left' | 'right';
 }) {
   const header = useReveal<HTMLHeadingElement>(reducedMotion);
+  const figure = useReveal<HTMLElement>(reducedMotion);
+
+  // 사진 연대: 항목을 사진 반대쪽으로 강제 — 빈 컬럼이 사진 자리가 된다
+  const forcedSide: 'left' | 'right' | undefined =
+    imageSide === 'right' ? 'left' : imageSide === 'left' ? 'right' : undefined;
 
   return (
-    <section>
+    // 사진 연대는 사진 높이(4:3, 최대 26rem 폭)만큼 최소 높이 확보 —
+    // 항목이 적어도 사진이 다음 연대 위로 흘러넘치지 않는다
+    <section className={cn(image && 'lg:relative lg:min-h-[27rem]')}>
       {/* 연대 헤더 — 스파인 위 중앙(데스크톱), 좌측 들여쓰기(모바일) */}
       <h3
         ref={header.ref}
@@ -208,6 +235,31 @@ function DecadeSection({
         </span>
       </h3>
 
+      {/* 연대 사진 — 모바일: 헤더 아래 흐름 배치 / 데스크톱: 반대편 빈 컬럼 */}
+      {image && (
+        <figure
+          ref={figure.ref}
+          className={cn(
+            'mb-10 pl-10 transition-all duration-700 ease-out-expo motion-reduce:transition-none',
+            'lg:absolute lg:top-24 lg:mb-0 lg:w-[calc(50%-2.5rem)] lg:pl-0',
+            imageSide === 'right' ? 'lg:right-0' : 'lg:left-0',
+            figure.visible ? 'translate-y-0 opacity-100' : 'translate-y-7 opacity-0',
+          )}
+        >
+          {/* eslint-disable-next-line @next/next/no-img-element -- 정적 public 자산 */}
+          <img
+            src={image}
+            alt=""
+            loading="lazy"
+            className={cn(
+              // 각진 톤 — 라운드 없이 얇은 테두리 + 카드 그림자
+              'aspect-[4/3] w-full max-w-[26rem] border border-surface-border object-cover shadow-card',
+              imageSide === 'left' && 'lg:ml-auto',
+            )}
+          />
+        </figure>
+      )}
+
       <ol className="space-y-12">
         {group.events.map((ev) => (
           <TimelineItem
@@ -216,6 +268,7 @@ function DecadeSection({
             locale={locale}
             reducedMotion={reducedMotion}
             index={nextIndex()}
+            forcedSide={forcedSide}
           />
         ))}
       </ol>
@@ -228,14 +281,17 @@ function TimelineItem({
   locale,
   reducedMotion,
   index,
+  forcedSide,
 }: {
   event: HistoryEvent;
   locale: Locale;
   reducedMotion: boolean;
   index: number;
+  /** 지정 시 좌우 교차 대신 이쪽으로 고정 (연대 사진의 반대편) */
+  forcedSide?: 'left' | 'right';
 }) {
   const { ref, visible } = useReveal<HTMLLIElement>(reducedMotion);
-  const isLeft = index % 2 === 0;
+  const isLeft = forcedSide ? forcedSide === 'left' : index % 2 === 0;
 
   return (
     <li
