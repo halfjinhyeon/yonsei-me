@@ -1,5 +1,5 @@
 import { Link } from '@/i18n/navigation';
-import { formatDate } from '@/lib/utils';
+import { cn, formatDate } from '@/lib/utils';
 import type { Locale } from '@/i18n/routing';
 
 export interface BoardRow {
@@ -10,13 +10,17 @@ export interface BoardRow {
   subtitle?: string;
   tag?: string;
   href?: string;
+  /** 우측 썸네일 — 없으면 흰 공백(데스크톱)으로 레이아웃 유지 */
+  image?: string;
   /** 카테고리 필터용 식별자 (FilterableBoardList 의 categories 와 매칭). 표시엔 안 씀 */
   category?: string;
 }
 
 /**
- * 공지/세미나/행사 등 게시판 스타일 목록. 날짜 + 제목(+ 부제/태그) 행,
- * href가 있으면 링크로 감싼다. 목록형 카테고리 탭에서 공용으로 쓴다.
+ * 게시판 목록 — 에디토리얼 행 스타일 (홍익 조형대 뉴스 레퍼런스).
+ * 좌: 네이비 배지(tag) + 큰 볼드 제목 + 발췌 2줄(subtitle) + 하단 날짜,
+ * 우: 16:10 썸네일(없으면 흰 공백 유지). 행 사이는 헤어라인.
+ * 공지/뉴스/세미나/행사/학위논문/자료실/취업 등 모든 게시판 탭 공용.
  */
 export function BoardList({
   items,
@@ -42,22 +46,49 @@ export function BoardList({
     <ul className="divide-y divide-surface-border border-y border-surface-border">
       {items.map((item) => {
         const row = (
-          <div className="flex flex-col gap-1 py-5 sm:flex-row sm:items-center sm:gap-6">
-            {item.date && (
-              <time dateTime={item.date} className="shrink-0 text-sm tabular-nums text-content-faint sm:w-28">
-                {formatDate(item.date, locale)}
-              </time>
-            )}
-            <div className="min-w-0 flex-1">
-              <div className="flex flex-wrap items-center gap-2">
-                {item.tag && (
-                  <span className="rounded-full bg-yonsei-navy/10 px-2.5 py-0.5 text-xs font-semibold text-yonsei-navy">
-                    {item.tag}
-                  </span>
-                )}
-                <h3 className="text-base font-medium text-content">{item.title}</h3>
-              </div>
-              {item.subtitle && <p className="mt-1 text-sm text-content-soft">{item.subtitle}</p>}
+          <div className="grid gap-5 py-7 sm:grid-cols-[minmax(0,1fr)_15rem] sm:gap-10 sm:py-8">
+            {/* 좌: 배지 · 제목 · 발췌 · 날짜(하단 고정) */}
+            <div className="flex flex-col items-start">
+              {item.tag && (
+                <span className="mb-3 inline-block bg-yonsei-navy px-2.5 py-1 text-xs font-bold text-white">
+                  {item.tag}
+                </span>
+              )}
+              <h3 className="line-clamp-2 text-lg font-bold leading-snug tracking-tight text-content transition-colors group-hover:text-yonsei-blue sm:text-xl">
+                {item.title}
+              </h3>
+              {item.subtitle && (
+                <p className="mt-2.5 line-clamp-2 text-sm leading-relaxed text-content-soft">
+                  {item.subtitle}
+                </p>
+              )}
+              {item.date && (
+                <time
+                  dateTime={item.date}
+                  className="mt-auto block pt-4 text-sm tabular-nums text-content-faint"
+                >
+                  {formatDate(item.date, locale)}
+                </time>
+              )}
+            </div>
+
+            {/* 우: 썸네일 — 없으면 흰 공백(데스크톱만, 모바일은 통째로 생략) */}
+            <div
+              aria-hidden={item.image ? undefined : 'true'}
+              className={cn(
+                'aspect-[16/10] w-full overflow-hidden bg-surface',
+                !item.image && 'hidden sm:block',
+              )}
+            >
+              {item.image && (
+                // eslint-disable-next-line @next/next/no-img-element -- R2/외부 썸네일
+                <img
+                  src={item.image}
+                  alt=""
+                  loading="lazy"
+                  className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                />
+              )}
             </div>
           </div>
         );
@@ -65,10 +96,7 @@ export function BoardList({
         return (
           <li key={item.id}>
             {item.href ? (
-              <Link
-                href={item.href}
-                className="group -mx-2 block rounded-md px-2 transition-colors hover:bg-surface-soft/60"
-              >
+              <Link href={item.href} className="group block">
                 {row}
               </Link>
             ) : (

@@ -121,6 +121,19 @@ function attsOf(r: DbPost): Attachment[] | undefined {
   return list.map((a) => ({ label: loc(a.label_ko, a.label_en), href: a.url }));
 }
 
+/** 본문 HTML(정화 저장분)에서 첫 <img> 의 src 추출 — 썸네일 미지정 시 목록 폴백.
+ *  `<img` 바로 뒤 공백을 요구해 img 로 시작하는 다른 태그명 오탐을 차단한다. */
+const FIRST_IMG_RE = /<img\s[^>]*?src=["']([^"']+)["']/i;
+function firstBodyImage(r: DbPost): string | undefined {
+  const m = (r.body_html_ko ?? '').match(FIRST_IMG_RE) ?? (r.body_html_en ?? '').match(FIRST_IMG_RE);
+  return m?.[1];
+}
+
+/** 표시용 썸네일 — 지정 썸네일 우선, 없으면 본문 첫 사진(붙여넣기·드래그 포함) */
+function thumbOf(r: DbPost): string | undefined {
+  return r.thumbnail_url ?? firstBodyImage(r);
+}
+
 function toNews(r: DbPost): NewsItem {
   return {
     slug: r.slug ?? String(r.id),
@@ -129,17 +142,21 @@ function toNews(r: DbPost): NewsItem {
     title: loc(r.title_ko, r.title_en),
     excerpt: loc(r.excerpt_ko, r.excerpt_en),
     body: loc(r.body_html_ko, r.body_html_en),
-    image: r.thumbnail_url ?? '',
+    image: thumbOf(r) ?? '',
     ...(attsOf(r) ? { attachments: attsOf(r) } : {}),
   };
 }
 
 function toNotice(r: DbPost): Notice {
+  const thumb = thumbOf(r);
   return {
     id: String(r.id),
     date: dateOf(r),
     title: loc(r.title_ko, r.title_en),
     body: loc(r.body_html_ko, r.body_html_en),
+    // 에디토리얼 목록용 썸네일·발췌 — 값이 있을 때만 (모든 게시판 공통, toSeminar 등에 전파)
+    ...(thumb ? { image: thumb } : {}),
+    ...(r.excerpt_ko || r.excerpt_en ? { excerpt: loc(r.excerpt_ko, r.excerpt_en) } : {}),
     ...(attsOf(r) ? { attachments: attsOf(r) } : {}),
   };
 }

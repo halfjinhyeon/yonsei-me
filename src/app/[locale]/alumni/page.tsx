@@ -4,7 +4,6 @@ import { Hero } from '@/components/Hero';
 import { TabbedContent, type TabItem } from '@/components/TabbedContent';
 import { type BoardRow } from '@/components/BoardList';
 import { FilterableBoardList } from '@/components/FilterableBoardList';
-import { NewsBoard, type NewsCardItem } from '@/components/NewsBoard';
 import { AlumniGreeting } from '@/components/AlumniContent';
 import { pick } from '@/lib/content';
 import { fetchAlumniNews, fetchAlumniEvents } from '@/lib/posts';
@@ -34,16 +33,15 @@ export default async function AlumniPage({ params }: { params: { locale: string 
   const alumniNews = await fetchAlumniNews();
   const alumniEvents = await fetchAlumniEvents();
 
-  // 동문 뉴스: 카드형/목록형 토글 지원 — 동문 전용 상세 라우트로 이동
-  const newsItems: NewsCardItem[] = alumniNews.map((item) => ({
+  // 동문 뉴스 — 뉴스·공지와 동일한 에디토리얼 목록, 동문 전용 상세 라우트로 이동
+  const newsItems: BoardRow[] = alumniNews.map((item) => ({
     id: item.slug,
     date: item.date,
     title: pick(item.title, locale),
     subtitle: pick(item.excerpt, locale),
-    excerpt: pick(item.excerpt, locale),
     tag: tNews(`categories.${item.category}`),
     href: `/alumni/news/${item.slug}`,
-    image: item.image,
+    image: item.image || undefined,
   }));
 
   // 동문 소식·네트워크: 세미나형 게시판(alumniEvents) → 게시판 행
@@ -53,6 +51,7 @@ export default async function AlumniPage({ params }: { params: { locale: string 
     title: pick(e.title, locale),
     subtitle: pick(e.host, locale),
     href: `/alumni/post/${e.id}`,
+    image: e.image,
   }));
 
   const tabs: TabItem[] = [
@@ -66,15 +65,7 @@ export default async function AlumniPage({ params }: { params: { locale: string 
       key: 'news',
       label: tMenu('alumni.items.news'),
       markdown: null,
-      content: (
-        <NewsBoard
-          items={newsItems}
-          locale={locale}
-          emptyLabel={tStub('empty')}
-          cardLabel={tNews('view.card')}
-          listLabel={tNews('view.list')}
-        />
-      ),
+      content: <FilterableBoardList items={newsItems} locale={locale} emptyLabel={tStub('empty')} />,
     },
     {
       key: 'network',

@@ -518,17 +518,15 @@ export function PostForm({ meta, initial, isEdit, busy, onCancel, onSubmit, onUp
                 >
                   본문 삽입
                 </button>
-                {meta.isNews && (
-                  <button
-                    type="button"
-                    onClick={setThumbnailFromPool}
-                    disabled={poolChecked.size !== 1}
-                    title="체크한 사진 1장을 대표 이미지로 지정"
-                    className="btn-secondary px-3 py-2 text-xs disabled:opacity-50"
-                  >
-                    썸네일 지정
-                  </button>
-                )}
+                <button
+                  type="button"
+                  onClick={setThumbnailFromPool}
+                  disabled={poolChecked.size !== 1}
+                  title="체크한 사진 1장을 대표 이미지로 지정"
+                  className="btn-secondary px-3 py-2 text-xs disabled:opacity-50"
+                >
+                  썸네일 지정
+                </button>
                 <button
                   type="button"
                   onClick={removeCheckedFromPool}
@@ -550,15 +548,15 @@ export function PostForm({ meta, initial, isEdit, busy, onCancel, onSubmit, onUp
           )}
           {pool.length === 0 ? (
             <p className="mt-3 text-xs text-content-faint">
-              사진을 올린 뒤 체크하고 &lsquo;본문 삽입&rsquo;(커서 위치에 사진 배치)
-              {meta.isNews && ' 또는 ‘썸네일 지정’(대표 이미지)'} 을 누르세요. 이미지는 자동
+              사진을 올린 뒤 체크하고 &lsquo;본문 삽입&rsquo;(커서 위치에 사진 배치) 또는
+              &lsquo;썸네일 지정&rsquo;(대표 이미지)을 누르세요. 이미지는 자동
               압축(1600px·WebP)되어 외부 스토리지에 저장됩니다.
             </p>
           ) : (
             <ul className="mt-4 grid grid-cols-3 gap-3 sm:grid-cols-4 md:grid-cols-6">
               {pool.map((item, i) => {
                 const checked = poolChecked.has(i);
-                const isThumb = meta.isNews && rec.image === item.url;
+                const isThumb = rec.image === item.url;
                 return (
                   <li key={item.url}>
                     <label
@@ -592,9 +590,9 @@ export function PostForm({ meta, initial, isEdit, busy, onCancel, onSubmit, onUp
         </section>
       )}
 
-      {/* ── 대표 이미지 (뉴스) — 직접 업로드 또는 경로/링크 입력 ── */}
-      {meta.isNews && (
-        <section>
+      {/* ── 대표 이미지(썸네일) — 모든 게시판 공통. 직접 업로드 또는 경로/링크 입력.
+          비워 두면 본문 첫 사진이 목록 썸네일로 자동 사용된다(lib/posts 폴백) ── */}
+      <section>
           <SectionTitle>대표 이미지</SectionTitle>
           {onUploadFile && (
             <input
@@ -657,8 +655,12 @@ export function PostForm({ meta, initial, isEdit, busy, onCancel, onSubmit, onUp
               <p className="text-xs text-content-faint">미리보기 — 목록·상세 카드에 이 비율로 잘려 표시될 수 있습니다.</p>
             </div>
           )}
-        </section>
-      )}
+          {!rec.image?.trim() && (
+            <p className="mt-2 text-xs text-content-faint">
+              비워 두면 본문에 넣은 첫 번째 사진이 목록 썸네일로 자동 사용됩니다.
+            </p>
+          )}
+      </section>
 
       {/* ── 첨부파일 — 파일 업로드(href 자동 기입) 또는 외부 링크 직접 입력 ── */}
       <section>

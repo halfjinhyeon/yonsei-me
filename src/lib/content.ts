@@ -108,6 +108,10 @@ export interface Seminar {
   host: Localized;
   title: Localized;
   body: Localized;
+  /** 목록 썸네일(DB thumbnail_url) — 없으면 목록에서 흰 공백 */
+  image?: string;
+  /** 목록 발췌 — 없으면 목록에서 생략 */
+  excerpt?: Localized;
   attachments?: Attachment[];
 }
 
@@ -117,6 +121,10 @@ export interface EventItem {
   dateLabel: Localized;
   title: Localized;
   body: Localized;
+  /** 목록 썸네일(DB thumbnail_url) — 없으면 목록에서 흰 공백 */
+  image?: string;
+  /** 목록 발췌 — 없으면 목록에서 생략 */
+  excerpt?: Localized;
   attachments?: Attachment[];
 }
 
@@ -125,6 +133,10 @@ export interface Notice {
   date: string;
   title: Localized;
   body: Localized;
+  /** 목록 썸네일(DB thumbnail_url) — 없으면 목록에서 흰 공백 */
+  image?: string;
+  /** 목록 발췌 — 없으면 목록에서 생략 */
+  excerpt?: Localized;
   attachments?: Attachment[];
 }
 

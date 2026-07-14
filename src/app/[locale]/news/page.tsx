@@ -4,7 +4,6 @@ import { Hero } from '@/components/Hero';
 import { TabbedContent, type TabItem } from '@/components/TabbedContent';
 import { type BoardRow } from '@/components/BoardList';
 import { FilterableBoardList } from '@/components/FilterableBoardList';
-import { NewsBoard, type NewsCardItem } from '@/components/NewsBoard';
 import { EventCalendar, type CalendarEntry } from '@/components/EventCalendar';
 import { pick } from '@/lib/content';
 import { fetchNews, fetchBoardData } from '@/lib/posts';
@@ -42,16 +41,20 @@ export default async function NewsPage({ params }: { params: { locale: string } 
       id: n.id,
       date: n.date,
       title: pick(n.title, locale),
+      subtitle: n.excerpt ? pick(n.excerpt, locale) : undefined,
       tag: tBoard('noticesUndergrad.title'),
       href: `/news/post/${n.id}`,
+      image: n.image,
       category: 'undergrad',
     })),
     ...board.noticesGraduate.map((n) => ({
       id: n.id,
       date: n.date,
       title: pick(n.title, locale),
+      subtitle: n.excerpt ? pick(n.excerpt, locale) : undefined,
       tag: tBoard('noticesGraduate.title'),
       href: `/news/post/${n.id}`,
+      image: n.image,
       category: 'graduate',
     })),
   ].sort((a, b) => ((a.date ?? '') < (b.date ?? '') ? 1 : -1));
@@ -62,24 +65,25 @@ export default async function NewsPage({ params }: { params: { locale: string } 
     { id: 'graduate', label: tMenu('graduate.label') },
   ];
 
-  // 뉴스: 카드형/목록형 토글 지원 (이미지 포함)
-  const newsItems: NewsCardItem[] = news.map((item) => ({
+  // 뉴스 — 다른 게시판과 동일한 에디토리얼 목록 (구 NewsBoard 카드/목록 토글 폐지)
+  const newsItems: BoardRow[] = news.map((item) => ({
     id: item.slug,
     date: item.date,
     title: pick(item.title, locale),
     subtitle: pick(item.excerpt, locale),
-    excerpt: pick(item.excerpt, locale),
     tag: tNews(`categories.${item.category}`),
     href: `/news/${item.slug}`,
-    image: item.image,
+    image: item.image || undefined,
   }));
 
   const eventRows: BoardRow[] = board.events.map((e) => ({
     id: e.id,
     date: e.date,
     title: pick(e.title, locale),
+    subtitle: e.excerpt ? pick(e.excerpt, locale) : undefined,
     tag: pick(e.dateLabel, locale),
     href: `/news/post/${e.id}`,
+    image: e.image,
   }));
 
   const seminarRows: BoardRow[] = board.seminars.map((s) => ({
@@ -88,20 +92,25 @@ export default async function NewsPage({ params }: { params: { locale: string } 
     title: pick(s.title, locale),
     subtitle: `${tBoard('seminars.hostLabel')}: ${pick(s.host, locale)}`,
     href: `/news/post/${s.id}`,
+    image: s.image,
   }));
 
   const thesisRows: BoardRow[] = board.thesis.map((t) => ({
     id: t.id,
     date: t.date,
     title: pick(t.title, locale),
+    subtitle: t.excerpt ? pick(t.excerpt, locale) : undefined,
     href: `/news/post/${t.id}`,
+    image: t.image,
   }));
 
   const careerRows: BoardRow[] = board.career.map((c) => ({
     id: c.id,
     date: c.date,
     title: pick(c.title, locale),
+    subtitle: c.excerpt ? pick(c.excerpt, locale) : undefined,
     href: `/news/post/${c.id}`,
+    image: c.image,
   }));
 
   // 캘린더('일정' 탭)는 행사·세미나 게시판을 그대로 읽는다 — 관리자가 두 게시판에 글을
@@ -128,7 +137,9 @@ export default async function NewsPage({ params }: { params: { locale: string } 
     id: r.id,
     date: r.date,
     title: pick(r.title, locale),
+    subtitle: r.excerpt ? pick(r.excerpt, locale) : undefined,
     href: `/news/post/${r.id}`,
+    image: r.image,
   }));
 
   const tabs: TabItem[] = [
@@ -137,15 +148,7 @@ export default async function NewsPage({ params }: { params: { locale: string } 
       key: 'news',
       label: tMenu('news.items.news'),
       markdown: null,
-      content: (
-        <NewsBoard
-          items={newsItems}
-          locale={locale}
-          emptyLabel={tStub('empty')}
-          cardLabel={tNews('view.card')}
-          listLabel={tNews('view.list')}
-        />
-      ),
+      content: <FilterableBoardList items={newsItems} locale={locale} emptyLabel={tStub('empty')} />,
     },
     { key: 'thesis', label: tMenu('news.items.thesis'), markdown: null, content: <FilterableBoardList items={thesisRows} locale={locale} emptyLabel={tStub('empty')} /> },
     { key: 'resources', label: tMenu('news.items.resources'), markdown: null, content: <FilterableBoardList items={resourceRows} locale={locale} emptyLabel={tStub('empty')} /> },

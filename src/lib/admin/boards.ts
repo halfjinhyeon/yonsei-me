@@ -183,8 +183,9 @@ export function toEditRecord(meta: BoardMeta, raw: unknown): EditRecord {
     base.category = (r.category as NewsItem['category']) ?? 'notice';
     base.excerptKo = excerpt.ko ?? '';
     base.excerptEn = excerpt.en ?? '';
-    base.image = String(r.image ?? '');
   }
+  // 대표 이미지(썸네일)는 모든 게시판 공통 — 에디토리얼 목록의 우측 썸네일
+  base.image = String(r.image ?? '');
   return base;
 }
 
@@ -281,7 +282,8 @@ export function convertRecordForBoard(
     rec.category = src.category ?? 'notice';
     rec.excerptKo = src.excerptKo ?? '';
     rec.excerptEn = src.excerptEn ?? '';
-    rec.image = src.image ?? '';
   }
+  // 대표 이미지는 모든 게시판 공통 — 이동해도 항상 승계
+  rec.image = src.image ?? '';
   return rec;
 }
