@@ -37,8 +37,10 @@
     --content-soft: 71 85 105; /* slate-600 */
     --content-faint: 100 116 139; /* slate-500 */
 
-    --font-sans: 'Pretendard Variable', 'Pretendard';
-    --font-display: 'Pretendard Variable', 'Pretendard';
+    /* --font-sans 는 next/font(localFont)가 <html> 클래스로 주입한다
+       (자체 호스팅 Pretendard + 지표 보정 폴백). 여기서 문자열로 재정의하면
+       로드한 폰트를 덮어써 버리므로 정의하지 않는다. display 는 sans 와 동일. */
+    --font-display: var(--font-sans);
   }
 
   .dark {
@@ -198,8 +200,18 @@
   .prose-content td {
     @apply border-b border-surface-border px-3 py-5 align-top leading-relaxed text-content-soft;
   }
+  /* 첫 컬럼은 행 라벨(장학금명 등) — 옆 컬럼이 길어도 줄바꿈 없이 한 줄 유지.
+     넘치는 표는 이미 overflow-x-auto 로 가로 스크롤된다. */
   .prose-content td:first-child {
-    @apply font-semibold text-content;
+    @apply whitespace-nowrap font-semibold text-content;
+  }
+
+  /* 에디토리얼 프로즈 변형(EditorialProse) — 문단·목록의 한 줄 길이 제한을
+     해제해 페이지 폭에 꽉 차게 흐르도록 한다 */
+  .prose-wide p,
+  .prose-wide ul,
+  .prose-wide ol {
+    @apply max-w-none;
   }
 }
 
@@ -409,6 +421,10 @@
   /* prose-content 의 table 이 block+overflow 인데, 편집 중에는 일반 표처럼 다룬다 */
   .rte .rte-area table {
     @apply my-6 table w-full overflow-visible;
+  }
+  /* 편집 중에는 첫 컬럼도 자유롭게 줄바꿈 — 긴 입력으로 표가 옆으로 터지지 않게 */
+  .rte .rte-area td:first-child {
+    @apply whitespace-normal;
   }
 
   /* 스크롤 고정 헤더 등장 — 위에서 살짝 슬라이드 다운(0.3s). scrolled 상태로

@@ -5,6 +5,7 @@ import { notFound } from 'next/navigation';
 import { routing } from '@/i18n/routing';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
+import { pretendard } from '../fonts';
 import '../globals.css';
 
 // 모든 로케일을 정적으로 프리렌더 → 성능(SSG)
@@ -57,7 +58,7 @@ export default async function LocaleLayout({
   const t = await getTranslations({ locale, namespace: 'nav' });
 
   return (
-    <html lang={locale} suppressHydrationWarning>
+    <html lang={locale} className={pretendard.variable} suppressHydrationWarning>
       <body className="min-h-dvh bg-surface antialiased">
         <NextIntlClientProvider messages={messages}>
           <a href="#main" className="skip-link">
