@@ -6,15 +6,13 @@
 // (한국어 UI 문자열은 내부 운영 도구라 컴포넌트에 직접 둔다.)
 
 import { useRef, useState } from 'react';
-import { Marked } from 'marked';
+import type { Editor } from '@tiptap/react';
 import type { BoardMeta, EditRecord } from '@/lib/admin/boards';
 import { emptyAttachment } from '@/lib/admin/boards';
 import { UploadCancelledError, type UploadProgress, type UploadProgressHandler } from '@/lib/admin/storage';
+import { RichTextEditor } from './RichTextEditor';
 import { TranslateButton } from './TranslateButton';
 import { PostPreviewModal } from './PostPreviewModal';
-
-// 미리보기 렌더 — 사이트 게시물 렌더(PostArticle)와 동일 설정(breaks:true)
-const previewMarked = new Marked({ gfm: true, breaks: true });
 
 interface Props {
   meta: BoardMeta;
@@ -99,13 +97,12 @@ export function PostForm({ meta, initial, isEdit, busy, onCancel, onSubmit, onUp
   // 진행 중 업로드의 취소 컨트롤러 (취소 버튼이 abort)
   const abortRef = useRef<AbortController | null>(null);
 
-  // ── 이미지 풀 + 본문 커서 상태 ──
+  // ── 이미지 풀 + 본문 에디터(Tiptap) 상태 ──
   const [pool, setPool] = useState<PoolItem[]>([]);
   const [poolChecked, setPoolChecked] = useState<ReadonlySet<number>>(new Set());
-  const [bodyView, setBodyView] = useState<'write' | 'preview'>('write');
-  const bodyKoRef = useRef<HTMLTextAreaElement | null>(null);
-  const bodyEnRef = useRef<HTMLTextAreaElement | null>(null);
-  // 서식·본문 삽입이 적용될 입력칸 = 마지막으로 포커스한 본문 textarea
+  // 위지윅 에디터 인스턴스(ko/en) — 이미지 풀 '본문 삽입'이 명령을 내릴 대상
+  const editorsRef = useRef<{ ko: Editor | null; en: Editor | null }>({ ko: null, en: null });
+  // 본문 삽입이 적용될 에디터 = 마지막으로 포커스한 쪽
   const lastBodyRef = useRef<'ko' | 'en'>('ko');
 
   function set<K extends keyof EditRecord>(key: K, value: EditRecord[K]) {
@@ -233,102 +230,16 @@ export function PostForm({ meta, initial, isEdit, busy, onCancel, onSubmit, onUp
     set('image', pool[idx].url);
   }
 
-  /** 마지막으로 포커스한 본문 textarea 와 대응 필드 키 */
-  function activeBodyTa(): { ta: HTMLTextAreaElement | null; key: 'bodyKo' | 'bodyEn' } {
-    return lastBodyRef.current === 'en'
-      ? { ta: bodyEnRef.current, key: 'bodyEn' }
-      : { ta: bodyKoRef.current, key: 'bodyKo' };
-  }
-
-  /** 체크한 사진들을 참조식 이미지로 본문 커서 위치에 삽입.
-   *  본문에는 짧은 태그(![사진 N][img-N])만 넣고 실제 스토리지 URL 은 문서 맨 아래
-   *  참조 정의([img-N]: URL)로 모은다 — 정의 줄은 렌더링에 나타나지 않는 표준 마크다운.
-   *  긴 URL 이 본문 한가운데 박히지 않아 편집 중 글 흐름을 읽기 쉽다.
-   *  같은 사진을 다시 넣으면 기존 번호를 재사용하고, 새 번호는 최대값+1부터 잇는다.
-   *  태그 삽입(커서)과 정의 추가(문서 끝)를 한 번의 set 으로 처리한다(상태 클로버 방지). */
+  /** 체크한 사진들을 마지막에 포커스한 본문 에디터의 커서 위치에 삽입.
+   *  (Tiptap 전환으로 마크다운 참조식 우회가 필요 없어졌다 — 이미지 노드 직삽입) */
   function insertCheckedIntoBody() {
     const urls = pool.filter((_, i) => poolChecked.has(i)).map((p) => p.url);
     if (urls.length === 0) return;
-    const { ta, key } = activeBodyTa();
-    const cur = String(rec[key] ?? '');
-
-    // 이 본문 필드에 이미 있는 참조 정의 수집 (URL → id, 번호 최대값)
-    const byUrl = new Map<string, string>();
-    let maxN = 0;
-    for (const m of cur.matchAll(/^\[img-(\d+)\]:\s*(\S+)/gm)) {
-      const n = Number(m[1]);
-      if (n > maxN) maxN = n;
-      if (!byUrl.has(m[2])) byUrl.set(m[2], `img-${m[1]}`);
-    }
-
-    const tags: string[] = [];
-    const newDefs: string[] = [];
-    for (const url of urls) {
-      let id = byUrl.get(url);
-      if (!id) {
-        maxN += 1;
-        id = `img-${maxN}`;
-        byUrl.set(url, id);
-        newDefs.push(`[${id}]: ${url}`);
-      }
-      tags.push(`![사진 ${id.slice('img-'.length)}][${id}]`);
-    }
-
-    // 커서 위치에 태그 삽입(앞뒤 빈 줄 보정) + 새 정의는 문서 끝에 덧붙임
-    const snippet = tags.join('\n\n');
-    const pos = ta ? ta.selectionStart : cur.length;
-    const before = cur.slice(0, pos);
-    const after = cur.slice(pos);
-    const padL = before === '' || before.endsWith('\n\n') ? '' : before.endsWith('\n') ? '\n' : '\n\n';
-    const padR = after === '' || after.startsWith('\n\n') ? '' : after.startsWith('\n') ? '\n' : '\n\n';
-    let next = before + padL + snippet + padR + after;
-    if (newDefs.length > 0) {
-      // 정의 블록은 앞 문단과 빈 줄로 분리돼야 문단에 흡수되지 않는다
-      next = `${next.replace(/\n+$/, '')}\n\n${newDefs.join('\n')}\n`;
-    }
-    set(key, next);
-    requestAnimationFrame(() => {
-      if (!ta) return;
-      ta.focus();
-      const p = (before + padL + snippet).length;
-      ta.setSelectionRange(p, p);
-    });
-  }
-
-  /** 서식 툴바 — 선택 영역을 마크다운 문법으로 감싼다/바꾼다 */
-  function applyFormat(kind: 'bold' | 'heading' | 'list' | 'link') {
-    const { ta, key } = activeBodyTa();
-    if (!ta) return;
-    const cur = String(rec[key] ?? '');
-    const s = ta.selectionStart;
-    const e = ta.selectionEnd;
-    const sel = cur.slice(s, e);
-    let insert: string;
-    switch (kind) {
-      case 'bold':
-        insert = `**${sel || '굵은 텍스트'}**`;
-        break;
-      case 'heading':
-        insert = `### ${sel || '소제목'}`;
-        break;
-      case 'list':
-        insert = (sel || '항목').split('\n').map((l) => `- ${l}`).join('\n');
-        break;
-      case 'link':
-        insert = `[${sel || '링크 텍스트'}](https://)`;
-        break;
-    }
-    const before = cur.slice(0, s);
-    const after = cur.slice(e);
-    // 블록 서식(소제목·목록)은 줄 시작에서만 성립 → 필요 시 개행 보정
-    const needsLine = kind === 'heading' || kind === 'list';
-    const padL = needsLine && before !== '' && !before.endsWith('\n') ? '\n' : '';
-    set(key, before + padL + insert + after);
-    requestAnimationFrame(() => {
-      ta.focus();
-      const base = s + padL.length;
-      ta.setSelectionRange(base, base + insert.length);
-    });
+    const ed = editorsRef.current[lastBodyRef.current] ?? editorsRef.current.ko;
+    if (!ed) return;
+    const chain = ed.chain().focus();
+    for (const url of urls) chain.setImage({ src: url });
+    chain.run();
   }
 
   function handleSubmit(e: React.FormEvent) {
@@ -516,118 +427,43 @@ export function PostForm({ meta, initial, isEdit, busy, onCancel, onSubmit, onUp
           </div>
         )}
 
-        {/* 서식 툴바 + 작성/미리보기 토글 */}
-        <div className="mt-4 flex flex-wrap items-center justify-between gap-2">
-          <div className="flex items-center gap-1.5">
-            {(
-              [
-                ['bold', 'B', '굵게'],
-                ['heading', 'H', '소제목'],
-                ['list', '≡', '목록'],
-                ['link', '🔗', '링크'],
-              ] as const
-            ).map(([kind, glyph, label]) => (
-              <button
-                key={kind}
-                type="button"
-                onClick={() => applyFormat(kind)}
-                disabled={bodyView === 'preview'}
-                title={`${label} — 마지막에 클릭한 본문 칸에 적용`}
-                className="grid h-8 w-8 place-items-center border border-surface-border text-sm font-bold text-content-soft transition-colors hover:border-yonsei-blue hover:text-yonsei-blue disabled:opacity-40"
-              >
-                <span aria-hidden="true">{glyph}</span>
-                <span className="sr-only">{label}</span>
-              </button>
-            ))}
-            <span className="ml-1 text-xs text-content-faint">
-              서식·본문 삽입은 마지막에 클릭한 본문 칸에 적용됩니다
-            </span>
-          </div>
-          <div className="flex border border-surface-border text-xs font-semibold">
-            {(
-              [
-                ['write', '작성'],
-                ['preview', '미리보기'],
-              ] as const
-            ).map(([view, label]) => (
-              <button
-                key={view}
-                type="button"
-                onClick={() => setBodyView(view)}
-                className={`px-3 py-1.5 transition-colors ${
-                  bodyView === view ? 'bg-yonsei-navy text-white' : 'text-content-soft hover:text-content'
-                }`}
-              >
-                {label}
-              </button>
-            ))}
+        {/* 본문 (한국어) — 위지윅(Tiptap). 편집 화면 = 게시 화면(같은 prose 타이포).
+            사진은 툴바 🖼 버튼·드래그앤드롭·붙여넣기 모두 가능(자동 압축 후 스토리지 저장) */}
+        <div className="mt-4" onFocusCapture={() => { lastBodyRef.current = 'ko'; }}>
+          <label className="block text-sm font-semibold text-content">본문 (한국어)</label>
+          <div className="mt-1">
+            <RichTextEditor
+              value={rec.bodyKo}
+              onChange={(html) => set('bodyKo', html)}
+              onUploadImage={onUploadFile ? (file) => onUploadFile(file) : undefined}
+              onEditorReady={(ed) => { editorsRef.current.ko = ed; }}
+              placeholder="본문을 입력하세요 — 사진은 끌어다 놓거나 붙여넣어도 됩니다"
+              ariaLabel="본문 (한국어)"
+            />
           </div>
         </div>
 
-        {bodyView === 'write' ? (
-          <div className="mt-3 grid gap-4 sm:grid-cols-2">
-            <div>
-              <label htmlFor="pf-body-ko" className="block text-sm font-semibold text-content">
-                본문 (한국어)
-              </label>
-              <textarea
-                id="pf-body-ko"
-                ref={bodyKoRef}
-                rows={14}
-                value={rec.bodyKo}
-                onChange={(e) => set('bodyKo', e.target.value)}
-                onFocus={() => {
-                  lastBodyRef.current = 'ko';
-                }}
-                className={fieldClass}
-              />
-            </div>
-            <div>
-              <div className="flex flex-wrap items-center justify-between gap-2">
-                <label htmlFor="pf-body-en" className="block text-sm font-semibold text-content">
-                  본문 (English)
-                </label>
-                <TranslateButton source={rec.bodyKo} onTranslated={(v) => set('bodyEn', v)} />
-              </div>
-              <textarea
-                id="pf-body-en"
-                ref={bodyEnRef}
-                rows={14}
-                value={rec.bodyEn}
-                onChange={(e) => set('bodyEn', e.target.value)}
-                onFocus={() => {
-                  lastBodyRef.current = 'en';
-                }}
-                className={fieldClass}
-              />
-            </div>
+        <div className="mt-5" onFocusCapture={() => { lastBodyRef.current = 'en'; }}>
+          <div className="flex flex-wrap items-center justify-between gap-2">
+            <label className="block text-sm font-semibold text-content">본문 (English)</label>
+            {/* 위지윅 본문은 HTML — 태그 보존 번역(tag_handling) */}
+            <TranslateButton source={rec.bodyKo} html onTranslated={(v) => set('bodyEn', v)} />
           </div>
-        ) : (
-          /* 미리보기 — 실제 게시물 렌더(PostArticle)와 동일한 마크다운·타이포 */
-          <div className="mt-3 grid gap-4 sm:grid-cols-2">
-            {(
-              [
-                ['한국어', rec.bodyKo],
-                ['English', rec.bodyEn],
-              ] as const
-            ).map(([label, text]) => (
-              <div key={label} className="border border-surface-border">
-                <p className="border-b border-surface-border bg-surface-soft px-3 py-1.5 text-xs font-bold text-content-faint">
-                  {label}
-                </p>
-                <div
-                  className="prose-content min-h-[10rem] px-4 py-3 text-sm"
-                  dangerouslySetInnerHTML={{
-                    __html: previewMarked.parse(text || '_(내용 없음)_') as string,
-                  }}
-                />
-              </div>
-            ))}
+          <div className="mt-1">
+            <RichTextEditor
+              value={rec.bodyEn}
+              onChange={(html) => set('bodyEn', html)}
+              onUploadImage={onUploadFile ? (file) => onUploadFile(file) : undefined}
+              onEditorReady={(ed) => { editorsRef.current.en = ed; }}
+              placeholder="English body — 비워두면 저장 시 한국어 값이 복사됩니다"
+              ariaLabel="본문 (English)"
+            />
           </div>
-        )}
+        </div>
+
         <p className="mt-2 text-xs text-content-faint">
-          빈 줄 = 문단 구분 · **굵게** · ### 소제목 · - 목록 · [텍스트](링크) — 사진은 아래
-          이미지 풀에서 &lsquo;본문 삽입&rsquo;. English를 비우면 저장 시 한국어 값이 복사됩니다.
+          아래 &lsquo;이미지 풀&rsquo;의 &lsquo;본문 삽입&rsquo;은 마지막에 클릭한 본문(한국어/English)의
+          커서 위치에 들어갑니다. English를 비우면 저장 시 한국어 값이 복사됩니다.
         </p>
       </section>
 

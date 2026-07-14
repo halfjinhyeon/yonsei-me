@@ -13,12 +13,14 @@ interface Props {
   source: string;
   /** 번역 방향 (기본 EN = 한→영) */
   target?: 'EN' | 'KO';
+  /** 원문이 위지윅 HTML 이면 true — 태그를 보존하고 텍스트만 번역 */
+  html?: boolean;
   /** 번역 결과를 대상 칸에 채운다 */
   onTranslated: (text: string) => void;
   disabled?: boolean;
 }
 
-export function TranslateButton({ source, target = 'EN', onTranslated, disabled }: Props) {
+export function TranslateButton({ source, target = 'EN', html = false, onTranslated, disabled }: Props) {
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -33,7 +35,7 @@ export function TranslateButton({ source, target = 'EN', onTranslated, disabled 
     }
     setBusy(true);
     try {
-      onTranslated(await translate(text, target));
+      onTranslated(await translate(text, target, html));
     } catch (err) {
       setError(err instanceof Error ? err.message : '번역에 실패했습니다.');
     } finally {

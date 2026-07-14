@@ -27,7 +27,18 @@ const SANITIZE_OPTS: sanitizeHtml.IOptions = {
     img: ['src', 'alt', 'title', 'width', 'height'],
     th: ['colspan', 'rowspan', 'align'],
     td: ['colspan', 'rowspan', 'align'],
-    span: [],
+    // Tiptap 글자색(span style="color:…") + 정렬(p/h* style="text-align:…") 허용
+    span: ['style'],
+    p: ['style'],
+    h1: ['style'], h2: ['style'], h3: ['style'], h4: ['style'], h5: ['style'],
+  },
+  // style 은 아래 속성·값 패턴만 통과 — 그 외 스타일은 제거된다
+  allowedStyles: {
+    '*': {
+      color: [/^#[0-9a-fA-F]{3,8}$/, /^rgb\(/],
+      'background-color': [/^#[0-9a-fA-F]{3,8}$/, /^rgb\(/],
+      'text-align': [/^(left|right|center|justify)$/],
+    },
   },
   allowedSchemes: ['https', 'http', 'mailto'],
   // 외부 링크는 새 탭 + noopener 로 강제(에디터 산출물 신뢰하지 않음)
@@ -112,10 +123,12 @@ export function payloadToRow(p: AdminPostPayload) {
     slug: isNews ? nn(p.slug) : null,
     title_ko: (p.titleKo ?? '').trim(),
     title_en: nn(p.titleEn),
-    body_md_ko: nn(p.bodyKo),
-    body_md_en: nn(p.bodyEn),
-    body_html_ko: renderAndSanitize(p.bodyKo),
-    body_html_en: nn(p.bodyEn) ? renderAndSanitize(p.bodyEn) : null,
+    // Tiptap 전환(Phase 3b): 에디터 산출물이 HTML — 정화만 거쳐 저장한다.
+    // body_md_* 는 마크다운 시대의 원문 보관용이었고 이제 동결(신규 글은 null).
+    body_md_ko: null,
+    body_md_en: null,
+    body_html_ko: sanitizeEditorHtml(p.bodyKo),
+    body_html_en: nn(p.bodyEn) ? sanitizeEditorHtml(p.bodyEn) : null,
     excerpt_ko: nn(p.excerptKo),
     excerpt_en: nn(p.excerptEn),
     category: isNews ? (nn(p.category) ?? 'notice') : null,
@@ -140,8 +153,8 @@ export interface DbPostRow {
   is_event: boolean | null;
   title_ko: string | null;
   title_en: string | null;
-  body_md_ko: string | null;
-  body_md_en: string | null;
+  body_html_ko: string | null;
+  body_html_en: string | null;
   excerpt_ko: string | null;
   excerpt_en: string | null;
   category: string | null;
@@ -164,8 +177,9 @@ export function rowToEditRecord(r: DbPostRow) {
       : String(r.created_at).slice(0, 10)) as string,
     titleKo: r.title_ko ?? '',
     titleEn: r.title_en ?? '',
-    bodyKo: r.body_md_ko ?? '',
-    bodyEn: r.body_md_en ?? '',
+    // Tiptap 은 HTML 왕복 — 기존 글(마이그레이션분 포함)도 body_html 이 원본이다
+    bodyKo: r.body_html_ko ?? '',
+    bodyEn: r.body_html_en ?? '',
     excerptKo: r.excerpt_ko ?? '',
     excerptEn: r.excerpt_en ?? '',
     category: r.category ?? undefined,

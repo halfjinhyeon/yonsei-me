@@ -186,6 +186,7 @@ export function PostPreviewModal({ meta, rec, onClose }: Props) {
             date={rec.date}
             metaValue={metaValue}
             body={body}
+            bodyFormat="html" /* Tiptap 전환: rec.body* 는 위지윅 HTML */
             attachments={attachments}
             attachmentLabels={attachmentLabels}
             backHref="/news"

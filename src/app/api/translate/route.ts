@@ -16,6 +16,8 @@ const MAX_LEN = 6000;
 interface Body {
   text?: string;
   target?: 'EN' | 'KO';
+  /** true 면 위지윅 본문(HTML) — DeepL tag_handling 으로 태그를 보존한다 */
+  html?: boolean;
 }
 
 export async function POST(req: Request): Promise<Response> {
@@ -72,6 +74,8 @@ export async function POST(req: Request): Promise<Response> {
         text,
         source_lang: source,
         target_lang: target,
+        // HTML 본문은 태그 구조를 보존하며 텍스트 노드만 번역
+        ...(body.html ? { tag_handling: 'html' } : {}),
       }),
     });
 
