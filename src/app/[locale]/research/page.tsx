@@ -48,7 +48,8 @@ export default async function ResearchPage({ params }: { params: { locale: strin
       ) : key === 'capacity' ? (
         <EditorialTab data={getEditorialTab('research-capacity')} locale={locale} />
       ) : key === 'social' ? (
-        <EditorialTab data={getEditorialTab('research-social')} locale={locale} />
+        // 신문고 절차는 각진 정사각 상자 + 셰브런 인포그래픽으로
+        <EditorialTab data={getEditorialTab('research-social')} locale={locale} boxedSteps />
       ) : undefined,
   }));
 

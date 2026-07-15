@@ -102,12 +102,16 @@ export function EditorialTab({
   data,
   locale,
   showcaseItems = false,
+  boxedSteps = false,
 }: {
   data: EditorialTabData;
   locale: Locale;
   /** true 면 items 를 번호 그리드 대신 "쇼케이스"(초대형 영문 키워드가 스크롤마다
    *  왼쪽에서 등장하는 세로 스택 — 홍익대 교육방침 레퍼런스)로 렌더 */
   showcaseItems?: boolean;
+  /** true 면 steps 를 각진 아웃라인 정사각 상자 + 상자 사이 셰브런(다음 단계 화살)으로
+   *  렌더 — 홍익대 교과과정(학년 박스) 레퍼런스. 사회난제 신문고 절차에 사용 */
+  boxedSteps?: boolean;
 }) {
   const hasStat = data.items?.some((it) => it.stat);
   const itemCount = data.items?.length ?? 0;
@@ -195,9 +199,50 @@ export function EditorialTab({
         </div>
       )}
 
-      {/* steps — 01 → 02 → … 절차 (구분선은 항목별 룰 하나만) */}
+      {/* steps — 01 → 02 → … 절차. 기본은 룰+번호 그리드, boxedSteps 면
+          각진 아웃라인 정사각 상자 + 상자 사이 셰브런(홍익 교과과정 레퍼런스) */}
       {data.steps && data.steps.length > 0 && (
         <div className="mt-14">
+          {boxedSteps ? (
+            <ol className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+              {data.steps.map((step, i) => (
+                <li
+                  key={i}
+                  className="relative border-2 border-content p-6 sm:p-7 lg:aspect-square"
+                >
+                  <span
+                    aria-hidden="true"
+                    className="block text-6xl font-bold leading-none tracking-tight text-content"
+                  >
+                    {i + 1}
+                  </span>
+                  {step.actor && (
+                    <p className="mt-6 text-xs font-semibold uppercase tracking-wide text-yonsei-blue">
+                      {pick(step.actor, locale)}
+                    </p>
+                  )}
+                  <h4 className="mt-2 text-lg font-bold leading-snug text-content">
+                    {pick(step.title, locale)}
+                  </h4>
+                  {step.body && (
+                    <p className="mt-2 text-sm leading-relaxed text-content-soft">
+                      {pick(step.body, locale)}
+                    </p>
+                  )}
+                  {/* 다음 단계 셰브런 — 데스크톱 한 줄 배열에서 상자 사이 틈 중앙 */}
+                  {i < (data.steps?.length ?? 0) - 1 && (
+                    <svg
+                      viewBox="0 0 12 24"
+                      aria-hidden="true"
+                      className="absolute -right-4 top-1/2 hidden h-6 w-3 -translate-y-1/2 text-content lg:block"
+                    >
+                      <path d="M2 2l8 10-8 10" fill="none" stroke="currentColor" strokeWidth="2.5" />
+                    </svg>
+                  )}
+                </li>
+              ))}
+            </ol>
+          ) : (
           <ol
             className={`grid gap-8 ${
               data.steps.length >= 4 ? 'sm:grid-cols-2 lg:grid-cols-4' : 'md:grid-cols-3'
@@ -225,6 +270,7 @@ export function EditorialTab({
               </li>
             ))}
           </ol>
+          )}
 
           {/* 최종 결과 강조 — 절차의 귀결을 큰 타이포로 (원본 인포그래픽의 아래 화살표 흐름) */}
           {data.outcome && (
