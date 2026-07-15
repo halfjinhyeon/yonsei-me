@@ -116,6 +116,14 @@
       "title": "대학원 공지사항",
       "more": "더보기"
     },
+    "noticesExternal": {
+      "title": "외부기관 공지사항",
+      "more": "더보기"
+    },
+    "noticesScholarship": {
+      "title": "장학생 선발공고",
+      "more": "더보기"
+    },
     "weekly": {
       "title": "금주의 행사",
       "more": "더보기",
@@ -455,6 +463,10 @@
       "tagUg": "학부",
       "tagGrad": "대학원",
       "tagResearch": "연구"
+    },
+    "noticeCats": {
+      "external": "외부기관",
+      "scholarship": "장학생 선발"
     }
   },
   "admission": {

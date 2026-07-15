@@ -78,6 +78,9 @@ function boardRow(item, boardKey, extra = {}) {
       title_ko: item.title?.ko ?? '', title_en: item.title?.en ?? null,
       body_md_ko: item.body?.ko ?? null, body_md_en: item.body?.en ?? null,
       body_html_ko: html(item.body?.ko), body_html_en: item.body?.en ? html(item.body.en) : null,
+      // 에디토리얼 목록 썸네일·발췌 — 이제 모든 게시판 공통
+      excerpt_ko: item.excerpt?.ko ?? null, excerpt_en: item.excerpt?.en ?? null,
+      thumbnail_url: item.image?.trim() ? item.image.trim() : null,
       created_at: ts(item.date),
       ...extra,
     },
@@ -90,6 +93,8 @@ const entries = [
   ...alumniNews.map((n) => newsRow(n, 'alumniNews')),
   ...(board.noticesUndergrad ?? []).map((x) => boardRow(x, 'noticesUndergrad')),
   ...(board.noticesGraduate ?? []).map((x) => boardRow(x, 'noticesGraduate')),
+  ...(board.noticesExternal ?? []).map((x) => boardRow(x, 'noticesExternal')),
+  ...(board.noticesScholarship ?? []).map((x) => boardRow(x, 'noticesScholarship')),
   ...(board.thesis ?? []).map((x) => boardRow(x, 'thesis')),
   ...(board.career ?? []).map((x) => boardRow(x, 'career')),
   ...(board.resources ?? []).map((x) => boardRow(x, 'resources')),

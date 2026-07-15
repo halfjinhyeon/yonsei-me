@@ -34,35 +34,35 @@ export default async function NewsPage({ params }: { params: { locale: string } 
   const news = await fetchNews();
   const board = await fetchBoardData();
 
-  // 공지사항: 학부 + 대학원 공지를 하나의 게시판으로 병합, 최신순 (클릭 → 상세).
-  // category(undergrad/graduate)로 상단 필터 탭에서 구분한다.
-  const notices: BoardRow[] = [
-    ...board.noticesUndergrad.map((n) => ({
-      id: n.id,
-      date: n.date,
-      title: pick(n.title, locale),
-      subtitle: n.excerpt ? pick(n.excerpt, locale) : undefined,
-      tag: tBoard('noticesUndergrad.title'),
-      href: `/news/post/${n.id}`,
-      image: n.image,
-      category: 'undergrad',
-    })),
-    ...board.noticesGraduate.map((n) => ({
-      id: n.id,
-      date: n.date,
-      title: pick(n.title, locale),
-      subtitle: n.excerpt ? pick(n.excerpt, locale) : undefined,
-      tag: tBoard('noticesGraduate.title'),
-      href: `/news/post/${n.id}`,
-      image: n.image,
-      category: 'graduate',
-    })),
-  ].sort((a, b) => ((a.date ?? '') < (b.date ?? '') ? 1 : -1));
+  // 공지사항: 학부/대학원/외부기관/장학생 4개 공지 게시판을 하나로 병합, 최신순
+  // (클릭 → 상세). category 로 상단 필터 탭에서 구분한다.
+  const noticeBoards = [
+    { rows: board.noticesUndergrad, tagKey: 'noticesUndergrad.title', category: 'undergrad' },
+    { rows: board.noticesGraduate, tagKey: 'noticesGraduate.title', category: 'graduate' },
+    { rows: board.noticesExternal, tagKey: 'noticesExternal.title', category: 'external' },
+    { rows: board.noticesScholarship, tagKey: 'noticesScholarship.title', category: 'scholarship' },
+  ] as const;
+  const notices: BoardRow[] = noticeBoards
+    .flatMap(({ rows, tagKey, category }) =>
+      rows.map((n) => ({
+        id: n.id,
+        date: n.date,
+        title: pick(n.title, locale),
+        subtitle: n.excerpt ? pick(n.excerpt, locale) : undefined,
+        tag: tBoard(tagKey),
+        href: `/news/post/${n.id}`,
+        image: n.image,
+        category,
+      })),
+    )
+    .sort((a, b) => ((a.date ?? '') < (b.date ?? '') ? 1 : -1));
 
-  // 공지 필터 탭(전체/학부/대학원) — 짧은 메뉴 라벨 재사용
+  // 공지 필터 탭(전체/학부/대학원/외부기관/장학생 선발)
   const noticeCategories = [
     { id: 'undergrad', label: tMenu('undergraduate.label') },
     { id: 'graduate', label: tMenu('graduate.label') },
+    { id: 'external', label: tNews('noticeCats.external') },
+    { id: 'scholarship', label: tNews('noticeCats.scholarship') },
   ];
 
   // 뉴스 — 다른 게시판과 동일한 에디토리얼 목록 (구 NewsBoard 카드/목록 토글 폐지)

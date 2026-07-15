@@ -116,6 +116,14 @@
       "title": "Graduate Notices",
       "more": "More"
     },
+    "noticesExternal": {
+      "title": "External Notices",
+      "more": "More"
+    },
+    "noticesScholarship": {
+      "title": "Scholarship Calls",
+      "more": "More"
+    },
     "weekly": {
       "title": "This Week's Events",
       "more": "More",
@@ -455,6 +463,10 @@
       "tagUg": "Undergraduate",
       "tagGrad": "Graduate",
       "tagResearch": "Research"
+    },
+    "noticeCats": {
+      "external": "External",
+      "scholarship": "Scholarship"
     }
   },
   "admission": {

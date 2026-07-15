@@ -210,6 +210,8 @@ export async function fetchBoardData(): Promise<typeof gitBoard> {
     events: byDateDesc(of('events').map(toEvent)),
     noticesUndergrad: byDateDesc(of('noticesUndergrad').map(toNotice)),
     noticesGraduate: byDateDesc(of('noticesGraduate').map(toNotice)),
+    noticesExternal: byDateDesc(of('noticesExternal').map(toNotice)),
+    noticesScholarship: byDateDesc(of('noticesScholarship').map(toNotice)),
     thesis: byDateDesc(of('thesis').map(toNotice)),
     career: byDateDesc(of('career').map(toNotice)),
     resources: byDateDesc(of('resources').map(toNotice)),
@@ -227,6 +229,12 @@ export async function fetchAllBoardPosts(): Promise<BoardPost[]> {
     ),
     ...b.noticesGraduate.map(
       (n): BoardPost => ({ ...n, boardKey: 'notices', meta: { ko: '대학원 공지', en: 'Graduate' } }),
+    ),
+    ...b.noticesExternal.map(
+      (n): BoardPost => ({ ...n, boardKey: 'notices', meta: { ko: '외부기관 공지', en: 'External' } }),
+    ),
+    ...b.noticesScholarship.map(
+      (n): BoardPost => ({ ...n, boardKey: 'notices', meta: { ko: '장학생 선발공고', en: 'Scholarship' } }),
     ),
     ...b.seminars.map(
       (s): BoardPost => ({

@@ -151,6 +151,8 @@ export const board = boardData as {
   events: EventItem[];
   noticesUndergrad: Notice[];
   noticesGraduate: Notice[];
+  noticesExternal: Notice[];
+  noticesScholarship: Notice[];
   thesis: Notice[];
   career: Notice[];
   resources: Notice[];
@@ -181,6 +183,16 @@ export function getAllBoardPosts(): BoardPost[] {
       ...n,
       boardKey: 'notices',
       meta: { ko: '대학원 공지', en: 'Graduate' },
+    })),
+    ...board.noticesExternal.map((n): BoardPost => ({
+      ...n,
+      boardKey: 'notices',
+      meta: { ko: '외부기관 공지', en: 'External' },
+    })),
+    ...board.noticesScholarship.map((n): BoardPost => ({
+      ...n,
+      boardKey: 'notices',
+      meta: { ko: '장학생 선발공고', en: 'Scholarship' },
     })),
     ...board.seminars.map((s): BoardPost => ({
       id: s.id,

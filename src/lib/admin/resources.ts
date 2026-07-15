@@ -538,6 +538,8 @@ export const MENU_GROUPS: MenuGroup[] = [
       { type: 'board', boardKey: 'news' },
       { type: 'board', boardKey: 'noticesUndergrad' },
       { type: 'board', boardKey: 'noticesGraduate' },
+      { type: 'board', boardKey: 'noticesExternal' },
+      { type: 'board', boardKey: 'noticesScholarship' },
       { type: 'board', boardKey: 'seminars' },
       { type: 'board', boardKey: 'events' },
       { type: 'board', boardKey: 'thesis' },

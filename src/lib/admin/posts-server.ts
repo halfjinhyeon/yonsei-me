@@ -101,7 +101,8 @@ export interface AdminPostPayload {
 }
 
 const BOARDS = new Set([
-  'noticesUndergrad', 'noticesGraduate', 'news', 'seminars', 'events',
+  'noticesUndergrad', 'noticesGraduate', 'noticesExternal', 'noticesScholarship',
+  'news', 'seminars', 'events',
   'thesis', 'resources', 'career', 'alumniNews', 'alumniEvents',
 ]);
 

@@ -26,6 +26,8 @@ export interface BoardFile {
 export type BoardKey =
   | 'noticesUndergrad'
   | 'noticesGraduate'
+  | 'noticesExternal'
+  | 'noticesScholarship'
   | 'news'
   | 'seminars'
   | 'events'
@@ -88,6 +90,8 @@ export interface BoardMeta {
 export const BOARDS: BoardMeta[] = [
   { key: 'noticesUndergrad', label: '학부 공지', file: 'board.json', idPrefix: 'nu-', hasHost: false, hasDateLabel: false, isNews: false },
   { key: 'noticesGraduate', label: '대학원 공지', file: 'board.json', idPrefix: 'ng-', hasHost: false, hasDateLabel: false, isNews: false },
+  { key: 'noticesExternal', label: '외부기관 공지', file: 'board.json', idPrefix: 'nx-', hasHost: false, hasDateLabel: false, isNews: false },
+  { key: 'noticesScholarship', label: '장학생 선발공고', file: 'board.json', idPrefix: 'nsch-', hasHost: false, hasDateLabel: false, isNews: false },
   { key: 'news', label: '뉴스', file: 'news.json', idPrefix: '', hasHost: false, hasDateLabel: false, isNews: true },
   { key: 'seminars', label: '세미나', file: 'board.json', idPrefix: 'sem-', hasHost: true, hasDateLabel: false, isNews: false },
   { key: 'events', label: '행사', file: 'board.json', idPrefix: 'evt-', hasHost: false, hasDateLabel: true, isNews: false, dateIsEvent: true },
