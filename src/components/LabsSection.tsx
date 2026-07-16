@@ -1,12 +1,11 @@
 'use client';
 
-import { useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { useEffect, useLayoutEffect, useRef } from 'react';
 import { useTranslations } from 'next-intl';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Link } from '@/i18n/navigation';
 import { LabCarousel } from '@/components/LabCarousel';
-import { cn } from '@/lib/utils';
 import type { LabDirectoryEntry } from '@/lib/faculty';
 import type { Locale } from '@/i18n/routing';
 
@@ -19,24 +18,22 @@ const useIsoLayoutEffect = typeof window !== 'undefined' ? useLayoutEffect : use
 
 /**
  * 연구실 쇼케이스 — 홍익대 조형대학 사이트 레퍼런스를 연세 톤으로 옮긴 리디자인.
- * 흰 배경 위 네이비 미니멀 구성으로, 위→아래 3블록:
+ * 흰 배경 위 네이비 미니멀 구성으로, 위→아래 2블록:
  *  1) 컴팩트 헤더: 아이브로우 + 제목 + 한 줄 요약 + CTA(좌), 네이비 독수리 실루엣(우 포인트)
- *  2) 대형 영문 마퀴: 초대형 타이포가 우→좌로 끊임없이 흐른다(장식). '·'만 골드 포인트.
- *  3) 기존 LabCarousel(무변경): 연구실 카드 가로 캐러셀.
+ *  2) 기존 LabCarousel(무변경): 연구실 카드 가로 캐러셀.
+ *  (구 대형 영문 마퀴 "ENGINEERING IN MOTION" 은 삭제 — 사용자 지시. 자리에 새 섹션
+ *   추가 예정, 별도 지시 대기.)
  *
  * page.tsx(서버 컴포넌트)가 넘기던 labs/locale 을 그대로 받아 캐러셀에 전달한다.
  * LabCarousel 은 수정 금지 대상이라 여기서 감싸기만 한다.
  *
  * 진입 애니메이션(ScrollTrigger 1회): 섹션이 뷰포트 75% 에 닿으면 헤더 텍스트가
  * 아래에서 스태거로 솟아오르고([data-reveal]), 독수리 워터마크가 은은히 페이드인한다.
- * 마퀴는 진입과 무관하게 마운트 직후부터 흐른다. reduced-motion 시 전부 정지.
+ * reduced-motion 시 전부 정지.
  */
 export function LabsSection({ labs, locale }: { labs: LabDirectoryEntry[]; locale: Locale }) {
   const t = useTranslations('home');
   const rootRef = useRef<HTMLElement | null>(null);
-  const marqueeRef = useRef<HTMLDivElement | null>(null);
-  // 모션 최소화 선호 시 마퀴는 트윈 없이 1벌만 가운데 정렬로 정적 노출한다.
-  const [reduced, setReduced] = useState(false);
 
   // 헤더 진입 리빌 — 텍스트 스태거 + 독수리 페이드인(각진 사진 리빌 로직은 제거).
   useIsoLayoutEffect(() => {
@@ -69,22 +66,6 @@ export function LabsSection({ labs, locale }: { labs: LabDirectoryEntry[]; local
     return () => ctx.revert();
   }, []);
 
-  // 대형 마퀴 무한 흐름 — 동일 콘텐츠 2벌을 담은 트랙을 xPercent:-50 만큼 무한 반복하면
-  // 두 번째 벌이 정확히 첫 번째 자리로 들어와 이음매 없이 흐른다.
-  useIsoLayoutEffect(() => {
-    // reduced-motion: 흐름을 멈추고 1벌만 가운데 정렬(아래 렌더에서 clone 을 생략).
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      setReduced(true);
-      return;
-    }
-    const track = marqueeRef.current;
-    if (!track) return;
-    const ctx = gsap.context(() => {
-      gsap.to(track, { xPercent: -50, ease: 'none', duration: 48, repeat: -1 });
-    }, track);
-    return () => ctx.revert();
-  }, []);
-
   return (
     <section
       ref={rootRef}
@@ -105,15 +86,18 @@ export function LabsSection({ labs, locale }: { labs: LabDirectoryEntry[]; local
             className="eagle-mask pointer-events-none absolute -top-6 right-0 hidden h-44 w-44 bg-yonsei-navy/10 dark:bg-yonsei-blue/15 sm:block lg:h-56 lg:w-56"
           />
 
-          {/* 제목 — 뉴스&행사 섹션과 동일한 네이비 라벨 박스(각지게). 로케일별 텍스트:
-              KO "우리의 연구실" / EN "RESEARCH LABS". 골드 아이브로우는 이 박스로 대체. */}
-          <h2
-            id="labs-heading"
-            data-reveal
-            className="inline-block bg-yonsei-navy px-5 py-2.5 text-lg font-bold text-white"
-          >
-            {t('people.intro.label')}
-          </h2>
+          {/* 제목 — 뉴스&행사 섹션과 동일한 네이비 라벨 박스(각지게) + 오른쪽으로 뻗는
+              헤어라인(학과 목표 섹션과 동일한 선 문법, 박스 반대편을 채움). */}
+          <div className="flex items-center gap-6">
+            <h2
+              id="labs-heading"
+              data-reveal
+              className="inline-block bg-yonsei-navy px-5 py-2.5 text-lg font-bold text-white"
+            >
+              {t('people.intro.label')}
+            </h2>
+            <span aria-hidden="true" className="h-px flex-1 bg-surface-border" />
+          </div>
 
           {/* 한 줄 요약 — 본문 최소화(기존 2문단 → 1문장). CTA 는 캐러셀 하단으로 이동. */}
           <p data-reveal className="mt-5 max-w-2xl text-base text-content-soft">
@@ -122,17 +106,7 @@ export function LabsSection({ labs, locale }: { labs: LabDirectoryEntry[]; local
         </div>
       </div>
 
-      {/* 2) 대형 영문 마퀴(full-bleed, 헤더 아래) — 순수 장식이라 전체를 aria-hidden.
-          overflow-hidden 래퍼가 넘치는 트랙을 잘라낸다. */}
-      <div className="mt-10 overflow-hidden lg:mt-12" aria-hidden="true">
-        <div ref={marqueeRef} className={cn('flex w-max', reduced && 'w-full justify-center')}>
-          <MarqueeRun text={t('people.intro.marquee')} />
-          {/* 무한 루프용 2벌째 — reduced-motion 에선 생략(정적 1벌 가운데 정렬). */}
-          {!reduced && <MarqueeRun text={t('people.intro.marquee')} />}
-        </div>
-      </div>
-
-      {/* 3) 캐러셀 — 컴포넌트/props 변경 없음(카드 디자인 유지가 요구사항). */}
+      {/* 2) 캐러셀 — 컴포넌트/props 변경 없음(카드 디자인 유지가 요구사항). */}
       <div className="mt-8 lg:mt-10">
         <LabCarousel labs={labs} locale={locale} />
       </div>
@@ -151,28 +125,5 @@ export function LabsSection({ labs, locale }: { labs: LabDirectoryEntry[]; local
         </Link>
       </div>
     </section>
-  );
-}
-
-/**
- * 마퀴 한 벌 — 초대형 네이비 타이포. 슬로건을 '·' 로 나눠 문구 사이를
- * 넓은 여백(마진)으로만 구분한다(구분점 장식 없음 — 사용자 결정).
- * 마진은 문자열 공백에 의존하지 않아 flex 경계의 공백 트리밍과 무관하게 균일하고,
- * 마지막 문구에도 동일 마진을 붙여 벌과 벌 사이 이음매 간격도 같아진다.
- * 다크모드에선 네이비가 배경에 묻히므로 밝은 블루로 대체한다.
- */
-function MarqueeRun({ text }: { text: string }) {
-  const segments = text
-    .split('·')
-    .map((s) => s.trim())
-    .filter(Boolean);
-  return (
-    <span className="flex shrink-0 items-center whitespace-nowrap text-[clamp(3rem,8vw,7rem)] font-black uppercase leading-none tracking-tight text-yonsei-navy dark:text-yonsei-blue">
-      {segments.map((seg, i) => (
-        <span key={i} className="mr-[1em]">
-          {seg}
-        </span>
-      ))}
-    </span>
   );
 }

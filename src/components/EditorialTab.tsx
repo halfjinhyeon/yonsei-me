@@ -55,7 +55,7 @@ function renderWithEmailLinks(text: string) {
       <a
         key={i}
         href={`mailto:${part}`}
-        className="font-semibold text-yonsei-blue underline decoration-yonsei-gold underline-offset-4 hover:text-yonsei-navy"
+        className="font-semibold text-yonsei-blue underline decoration-yonsei-blue underline-offset-4 hover:text-yonsei-navy"
       >
         {part}
       </a>
@@ -138,9 +138,9 @@ export function EditorialTab({
       {/* slogan — 인용구형 디스플레이 (홍익대 레퍼런스처럼 크고 단단한 볼드 헤드라인) */}
       {data.slogan && (
         <p className="mt-6 max-w-4xl text-[clamp(1.5rem,2.8vw,2.25rem)] font-bold leading-[1.35] tracking-tight text-content">
-          <span className="text-yonsei-gold">&ldquo;</span>
+          <span className="text-yonsei-blue">&ldquo;</span>
           {pick(data.slogan, locale)}
-          <span className="text-yonsei-gold">&rdquo;</span>
+          <span className="text-yonsei-blue">&rdquo;</span>
         </p>
       )}
 
@@ -184,7 +184,6 @@ export function EditorialTab({
                 ) : (
                   <span className="block text-4xl font-light tabular-nums text-yonsei-blue/40">
                     {String(i + 1).padStart(2, '0')}
-                    <span className="text-yonsei-gold">.</span>
                   </span>
                 )}
                 <h4 className="mt-4 text-lg font-bold text-content">
@@ -252,7 +251,6 @@ export function EditorialTab({
               <li key={i} className="border-t border-surface-border pt-5">
                 <span className="block text-4xl font-light tabular-nums text-yonsei-blue/40">
                   {String(i + 1).padStart(2, '0')}
-                  <span className="text-yonsei-gold">.</span>
                 </span>
                 <h4 className="mt-4 text-lg font-bold text-content">
                   {pick(step.title, locale)}
@@ -281,13 +279,12 @@ export function EditorialTab({
                 fill="none"
                 stroke="currentColor"
                 strokeWidth="2"
-                className="mx-auto h-6 w-6 text-yonsei-gold"
+                className="mx-auto h-6 w-6 text-yonsei-blue"
               >
                 <path d="M12 4v15M5 12l7 7 7-7" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
               <p className="mt-4 text-2xl font-bold tracking-tight text-content sm:text-3xl">
                 {pick(data.outcome, locale)}
-                <span className="text-yonsei-gold">.</span>
               </p>
             </div>
           )}

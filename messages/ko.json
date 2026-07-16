@@ -182,7 +182,23 @@
     },
     "heroSlideshow": {
       "title": "연세대학교 기계공학부",
-      "navLabel": "연구 분야 선택"
+      "navLabel": "연구 분야 선택",
+      "fieldLink": "{field} 연구 분야 바로가기"
+    },
+    "instagram": {
+      "tagline": "기계공학부의 순간들 — 인스타그램에서 만나보세요",
+      "follow": "팔로우하기",
+      "external": "새 창에서 인스타그램 열기"
+    },
+    "goals": {
+      "label": "학과 목표",
+      "linksLabel": "주요 바로가기",
+      "links": {
+        "faculty": "분야를 선도하는 교수진의 연구 분야와 연락처를 확인합니다.",
+        "courses": "학부 개설 교과목과 학년별 이수 로드맵을 살펴봅니다.",
+        "checker": "이수 과목을 입력하면 졸업 요건 충족 여부를 자동으로 진단합니다.",
+        "labs": "여섯 연구 분야, 서른세 곳의 연구실을 분야별로 둘러봅니다."
+      }
     },
     "weAre": {
       "statement": "세상을 움직이는 <c2>공학</c2>, <br></br> 미래를 설계하는 <c2>사람들</c2>",
@@ -202,8 +218,7 @@
       "intro": {
         "eyebrow": "RESEARCH LABS",
         "label": "우리의 연구실",
-        "tagline": "여섯 갈래의 연구, 서른세 곳의 연구실 — 카드를 넘기며 관심 분야의 문을 두드려 보세요.",
-        "marquee": "ENGINEERING IN MOTION · MOVE THE WORLD FORWARD · "
+        "tagline": "여섯 갈래의 연구, 서른세 곳의 연구실 — 카드를 넘기며 관심 분야의 문을 두드려 보세요."
       },
       "detail": "연구실 보기",
       "cta": "모든 연구실 보기",
@@ -441,9 +456,12 @@
     "backToList": "목록으로",
     "notFound": "해당 소식을 찾을 수 없습니다.",
     "search": {
-      "placeholder": "제목 검색",
-      "fromLabel": "시작일",
-      "toLabel": "종료일",
+      "placeholder": "검색어를 입력해 주세요",
+      "scopeLabel": "검색 범위",
+      "scopeBoth": "제목+내용",
+      "scopeTitle": "제목",
+      "scopeContent": "내용",
+      "submit": "검색",
       "results": "검색 결과 {count}건",
       "empty": "조건에 맞는 게시물이 없습니다.",
       "clear": "초기화"

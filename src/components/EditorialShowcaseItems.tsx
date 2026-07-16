@@ -68,23 +68,23 @@ export function EditorialShowcaseItems({
           data-goal
           className="border-t border-surface-border py-12 first:border-t-2 first:border-t-yonsei-navy sm:py-14"
         >
-          {/* 번호 — 골드 아이브로우(사이트 번호 문법 유지) */}
+          {/* 번호 — 검정 아이브로우(금색 배제 — 사용자 지시) */}
           <span
             data-goal-text
             aria-hidden="true"
-            className="block text-sm font-bold tracking-[0.25em] text-yonsei-gold"
+            className="block text-sm font-bold tracking-[0.25em] text-content"
           >
             {String(i + 1).padStart(2, '0')}
           </span>
 
           {/* 초대형 영문 키워드 — 레퍼런스의 Fundamental/Flexible/… 위치.
-              en 제목이 그 역할(Design & Practice 등). 왼쪽에서 슬라이드인. */}
+              en 제목이 그 역할(Design & Practice 등). 왼쪽에서 슬라이드인.
+              (금색 마침표 삭제 — 금색 배제) */}
           <h4
             data-goal-keyword
             className="mt-3 text-[clamp(2rem,5.5vw,4.25rem)] font-black leading-[1.05] tracking-tight text-yonsei-navy"
           >
             {item.title.en}
-            <span className="text-yonsei-gold">.</span>
           </h4>
 
           {/* 한글 제목 + 설명 — 페이드업. ko 로케일에선 한글 제목이 부제 역할,

@@ -298,7 +298,7 @@ export function Header() {
                 'group hidden items-center gap-2 px-4 py-2 text-sm font-semibold transition-colors lg:inline-flex',
                 solid
                   ? 'bg-yonsei-navy text-white hover:bg-yonsei-blue'
-                  : 'bg-white text-yonsei-navy hover:bg-yonsei-gold',
+                  : 'bg-white text-yonsei-navy hover:bg-yonsei-blue hover:text-white',
               )}
             >
               {t('admission')}

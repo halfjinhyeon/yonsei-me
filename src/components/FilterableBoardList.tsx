@@ -15,7 +15,8 @@ export interface BoardCategory {
 }
 
 /**
- * BoardList를 검색어 + 날짜범위(+선택적 카테고리) 필터 바로 감싼 래퍼.
+ * BoardList를 검색 바(범위 셀렉트 + 검색어, +선택적 카테고리 탭)로 감싼 래퍼.
+ * 검색 범위는 제목/내용(발췌)/제목+내용 — BoardRow.title/subtitle 대상 클라이언트 필터.
  * props는 BoardList와 동일. 필터가 활성일 때만 결과 건수를 노출하고,
  * 필터 결과가 0건이면 검색 전용 empty 문구를 보여준다.
  *
@@ -47,7 +48,7 @@ export function FilterableBoardList({
     return list;
   }, [items, catActive, cat, searchActive, filter]);
 
-  // 검색·날짜 중 하나라도 활성이면 건수 노출(카테고리만으로는 목록이 곧 결과라 생략)
+  // 검색어가 적용돼 있으면 건수 노출(카테고리만으로는 목록이 곧 결과라 생략)
   const showCount = searchActive;
 
   return (

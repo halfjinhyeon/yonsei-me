@@ -182,7 +182,23 @@
     },
     "heroSlideshow": {
       "title": "Yonsei Mechanical Engineering",
-      "navLabel": "Select a research field"
+      "navLabel": "Select a research field",
+      "fieldLink": "Explore {field} research"
+    },
+    "instagram": {
+      "tagline": "Moments from Yonsei ME — follow us on Instagram",
+      "follow": "Follow",
+      "external": "Open Instagram in a new window"
+    },
+    "goals": {
+      "label": "Department Goals",
+      "linksLabel": "Quick links",
+      "links": {
+        "faculty": "Meet the professors leading each field, with research areas and contacts.",
+        "courses": "Browse undergraduate courses and the year-by-year roadmap.",
+        "checker": "Enter your courses to automatically check graduation requirements.",
+        "labs": "Explore thirty-three labs across six research fields."
+      }
     },
     "weAre": {
       "statement": "<c1>Engineering</c1> that moves the world, <c2>people</c2> who design the future",
@@ -202,8 +218,7 @@
       "intro": {
         "eyebrow": "RESEARCH LABS",
         "label": "RESEARCH LABS",
-        "tagline": "Six branches of research, thirty-three labs — browse the cards and knock on the door of your field.",
-        "marquee": "ENGINEERING IN MOTION · MOVE THE WORLD FORWARD · "
+        "tagline": "Six branches of research, thirty-three labs — browse the cards and knock on the door of your field."
       },
       "detail": "View lab",
       "cta": "See all labs",
@@ -441,9 +456,12 @@
     "backToList": "Back to list",
     "notFound": "The requested article could not be found.",
     "search": {
-      "placeholder": "Search titles",
-      "fromLabel": "From",
-      "toLabel": "To",
+      "placeholder": "Enter search terms",
+      "scopeLabel": "Search in",
+      "scopeBoth": "Title + content",
+      "scopeTitle": "Title",
+      "scopeContent": "Content",
+      "submit": "Search",
       "results": "{count} results",
       "empty": "No posts match your filters.",
       "clear": "Reset"

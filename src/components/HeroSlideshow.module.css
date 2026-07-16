@@ -17,11 +17,15 @@
 }
 
 /* 각 슬라이드 래퍼 = wipe 트랜스폼 대상(바깥). next/image 와 충돌하지 않도록
-   트랜스폼은 이 래퍼와 안쪽 parallax 래퍼에만 건다(이미지 자체엔 안 건다). */
+   트랜스폼은 이 래퍼와 안쪽 parallax 래퍼에만 건다(이미지 자체엔 안 건다).
+   overflow:hidden 필수(원본 slider-slide 동일) — 래퍼가 안쪽 패럴랙스(-75% 시프트)를
+   클리핑해야 들어오는 사진이 왼쪽 끝부터 닦아내듯(wipe) 드러난다. 없으면 밀린 이미지가
+   통째로 먼저 보였다가 슬쩍 이동하는 잘못된 전환이 된다. */
 .slide {
   position: absolute;
   inset: 0;
   opacity: 0;
+  overflow: hidden;
   pointer-events: none;
   will-change: transform;
 }
@@ -84,24 +88,32 @@
   right: 0;
   bottom: 0;
   z-index: 20;
-  padding: clamp(1rem, 3vw, 2.75rem);
+  padding: clamp(0.85rem, 2vw, 1.6rem);
   max-width: 100%;
 }
 .list {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  gap: 0.1em;
+  gap: 0.15em;
   margin: 0;
   padding: 0;
   list-style: none;
-  font-size: clamp(1.05rem, 2.6vw, 2.5rem);
+  /* 사용자 지시: 기존의 절반 정도 크기로 축소(기존 clamp 1.05~2.5rem) */
+  font-size: clamp(0.8rem, 1.4vw, 1.35rem);
   font-weight: 600;
-  line-height: 1.12;
+  line-height: 1.15;
 }
 .item {
   transition: opacity 0.2s ease;
   will-change: opacity;
+}
+/* 행 래퍼 — [바로가기 화살표][분야명 버튼]. 화살표가 왼쪽에 붙어 우측 정렬 유지. */
+.inner {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.45em;
 }
 .btn {
   display: inline-flex;
@@ -119,9 +131,10 @@
 .btn:hover {
   color: #fff;
 }
-/* 현재 슬라이드 항목 — 골드 강조 + 굵게 + 앞쪽 점 마커 */
+/* 현재 슬라이드 항목 — 블루 강조 + 굵게 + 앞쪽 점 마커
+   (사용자 지시: 금색 → 밝은 하늘블루. 어두운 사진 위 가독성 확보) */
 .current .btn {
-  color: #e6c879;
+  color: #5c9fe6;
   font-weight: 800;
 }
 .dot {
@@ -138,6 +151,53 @@
   opacity: 1;
   transform: scale(1);
 }
+/* 현재 항목의 점 마커는 '바로가기' 화살표 링크가 대신한다(마커 중복 방지) */
+.current .dot {
+  display: none;
+}
+
+/* --- '연구 분야 바로가기' 화살표 링크(현재 분야에만 표시) --- */
+.quick {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.32em;
+  border: 1px solid rgba(92, 159, 230, 0.55);
+  border-radius: 0; /* 각진 네모 테두리(사용자 지시 — 사이트 전반의 직각 엣지와 통일) */
+  color: #5c9fe6;
+  background: rgba(0, 0, 0, 0.18);
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  animation: quickIn 0.35s ease both;
+}
+.quick:hover {
+  background: #5c9fe6;
+  border-color: #5c9fe6;
+  color: #0b2545;
+}
+.quick:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 3px;
+}
+.quickIcon {
+  width: 0.95em;
+  height: 0.95em;
+  display: block;
+}
+@keyframes quickIn {
+  from {
+    opacity: 0;
+    transform: translateX(-0.35em) scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .quick {
+    animation: none;
+  }
+}
 /* :has() 호버 — 호버한 항목만 선명, 나머지 흐림(순수 CSS, gallery 규칙 이식) */
 .list:hover:has(.item:hover) .item:not(:hover) {
   opacity: 0.45;
@@ -149,11 +209,13 @@
   color: #fff;
 }
 
-/* --- 등장 로더 (crisp-loading) --- */
+/* --- 등장 로더 (crisp-loading) ---
+   body 로 portal 되므로 position:fixed + 매우 높은 z-index 로 헤더(z-50)까지 덮는다.
+   배경 그라디언트는 #sec-hero 래퍼와 동일하게 맞춰, 로더가 걷힐 때 배경이 튀지 않는다. */
 .loader {
-  position: absolute;
+  position: fixed;
   inset: 0;
-  z-index: 30;
+  z-index: 9999;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -162,32 +224,51 @@
   font-size: clamp(9px, 1.4vw, 15px);
   background-image: linear-gradient(#3f7ad2, #1d4a92);
 }
-.loaderRow {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 2em;
-}
-.tile {
+/* 중앙 창(원본 .crisp-loader__groups) — 폭 = main 열 폭(6×12em=72em), flex 로 항상
+   화면 중앙. 마스크가 ① 창 밖(대기 중·dup 열)을 숨기고 ② 창 가장자리 5em 페이드를
+   만든다(원본의 overflow:hidden + fade 요소 등가 — 그라디언트 배경 위에서도 동작).
+   확대 시 박스가 콘텐츠와 함께 커지므로 마스크 가장자리는 화면 밖으로 밀려나
+   자연히 사라진다. */
+.groups {
   position: relative;
+  will-change: transform;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 5em, #000 calc(100% - 5em), transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 5em, #000 calc(100% - 5em), transparent);
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+}
+/* 선두 열(원본 is--duplicate) — absolute 라 창 폭에 기여하지 않고, 기차의 앞칸 역할만 */
+.groupDup {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+}
+/* 정착 열(원본 is--relative) — left:100% 오프셋이 xPercent -600 종착값과 정확히 상쇄되어
+   창을 꽉 채운 채 멈춘다(확대 중에도 양쪽 다 pitch 에 비례해 계속 상쇄됨). */
+.groupMain {
+  position: relative;
+  left: 100%;
+  display: flex;
+}
+/* 타일 래퍼(원본 __single) = 스윕 트랜스폼 대상. 패딩 1.3em 포함 피치 12.6em
+   (사용자 지시: 사진 간격 1.3배 — 간격 2em → 2.6em). JS 쪽 반-피치 오프셋은
+   런타임 측정이라 이 값을 바꿔도 자동 적응한다. */
+.single {
   flex: 0 0 auto;
+  padding: 0 1.3em;
+  will-change: transform;
+}
+/* 타일(원본 __media) = 확대 트윈 대상(width/height). */
+.media {
+  position: relative;
   width: 10em;
   height: 10em;
   border-radius: 0.5em;
-  overflow: hidden;
-  will-change: transform;
-}
-/* 중앙에서 풀스크린으로 확대되는 타일 — 확대 후 slide0 배경과 동일 이미지라 매끄럽게 인계 */
-.scaleTile {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 10em;
-  height: 10em;
   overflow: hidden;
   will-change: width, height;
 }
 .tileImg {
   object-fit: cover;
+  will-change: transform;
 }

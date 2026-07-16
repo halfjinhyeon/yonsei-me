@@ -1,47 +1,54 @@
 'use client';
 
+import { useEffect, useState } from 'react';
 import { useTranslations } from 'next-intl';
 
+/** 검색 범위 — 제목 / 내용(발췌) / 제목+내용 */
+export type SearchScope = 'both' | 'title' | 'content';
+
 export interface BoardFilterState {
+  scope: SearchScope;
   query: string;
-  from: string;
-  to: string;
 }
 
-export const emptyFilter: BoardFilterState = { query: '', from: '', to: '' };
+export const emptyFilter: BoardFilterState = { scope: 'both', query: '' };
 
 /** 검색어 정규화: 소문자화 + 공백 접기 */
 function normalize(value: string): string {
   return value.toLowerCase().replace(/\s+/g, ' ').trim();
 }
 
-/** 필터가 하나라도 활성인지 */
+/** 필터가 활성인지(검색어가 있는지) */
 export function isFilterActive(f: BoardFilterState): boolean {
-  return normalize(f.query) !== '' || f.from !== '' || f.to !== '';
+  return normalize(f.query) !== '';
 }
 
 /**
- * 한 행(제목·날짜)이 필터 조건을 만족하는지 판정.
- * query: 공백 정규화·소문자 부분일치. from/to: date 문자열 비교(한쪽만 지정 가능).
- * 날짜 필터가 걸렸는데 행에 date가 없으면 제외한다.
+ * 한 행이 검색 조건을 만족하는지 판정.
+ * scope 에 따라 제목/내용(subtitle=발췌)/둘 다에서 공백 정규화·소문자 부분일치.
+ * '내용' 검색은 목록에 실려 있는 발췌(subtitle) 기준 — 전문 본문은 목록 페이로드에 없다.
  */
-export function matchesFilter(row: { title: string; date?: string | null }, f: BoardFilterState): boolean {
+export function matchesFilter(
+  row: { title: string; subtitle?: string | null },
+  f: BoardFilterState,
+): boolean {
   const q = normalize(f.query);
-  if (q && !normalize(row.title).includes(q)) return false;
-  if (f.from || f.to) {
-    if (!row.date) return false;
-    if (f.from && row.date < f.from) return false;
-    if (f.to && row.date > f.to) return false;
-  }
-  return true;
+  if (!q) return true;
+  const inTitle = () => normalize(row.title).includes(q);
+  const inContent = () => normalize(row.subtitle ?? '').includes(q);
+  if (f.scope === 'title') return inTitle();
+  if (f.scope === 'content') return inContent();
+  return inTitle() || inContent();
 }
 
 const inputClass =
-  'w-full border border-surface-border bg-surface px-3 py-2 text-sm text-content transition-colors placeholder:text-content-faint focus:border-yonsei-blue focus:outline-none';
+  'border border-surface-border bg-surface px-3 py-2 text-sm text-content transition-colors placeholder:text-content-faint focus:border-yonsei-blue focus:outline-none';
 
 /**
- * 단일 게시판용 검색어 + 날짜범위 필터 바 (제어형).
- * 결과 건수(resultCount)와 초기화 버튼은 필터가 활성일 때만 노출한다.
+ * 단일 게시판용 검색 바 — 실제 학부 사이트 게시판 UI 이식(사용자 캡처 기준).
+ * 목록 위 우측 정렬: [검색 범위 셀렉트(제목+내용/제목/내용)] [검색어 입력] [검색 버튼].
+ * 입력은 내부 초안(draft)으로 들고 있다가 폼 제출(버튼/Enter) 시에만 적용한다.
+ * 초기화 버튼과 결과 건수는 적용된 필터가 활성일 때만 노출.
  */
 export function BoardFilterBar({
   value,
@@ -55,82 +62,79 @@ export function BoardFilterBar({
   const t = useTranslations('news');
   const active = isFilterActive(value);
 
+  // 초안 상태 — 제출 전까지 목록에 반영하지 않는다(레퍼런스 게시판과 동일한 조작감).
+  const [draft, setDraft] = useState(value);
+  // 부모가 값을 바꾸면(초기화 등) 초안도 동기화.
+  useEffect(() => setDraft(value), [value]);
+
   return (
     <div className="mb-6">
-      <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-end">
+      <form
+        role="search"
+        onSubmit={(e) => {
+          e.preventDefault();
+          onChange(draft);
+        }}
+        className="flex flex-col gap-2 sm:flex-row sm:justify-end"
+      >
+        {/* 검색 범위 */}
+        <div>
+          <label htmlFor="board-filter-scope" className="sr-only">
+            {t('search.scopeLabel')}
+          </label>
+          <select
+            id="board-filter-scope"
+            value={draft.scope}
+            onChange={(e) => setDraft({ ...draft, scope: e.target.value as SearchScope })}
+            className={`${inputClass} w-full sm:w-36`}
+          >
+            <option value="both">{t('search.scopeBoth')}</option>
+            <option value="title">{t('search.scopeTitle')}</option>
+            <option value="content">{t('search.scopeContent')}</option>
+          </select>
+        </div>
+
         {/* 검색어 */}
-        <div className="min-w-0 flex-1 sm:min-w-[14rem]">
+        <div className="min-w-0 sm:w-[22rem] lg:w-[26rem]">
           <label htmlFor="board-filter-query" className="sr-only">
             {t('search.placeholder')}
           </label>
-          <div className="relative">
-            <span
-              aria-hidden="true"
-              className="pointer-events-none absolute inset-y-0 left-3 grid place-items-center text-content-faint"
-            >
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <circle cx="11" cy="11" r="7" />
-                <path d="m21 21-4.3-4.3" strokeLinecap="round" />
-              </svg>
-            </span>
-            <input
-              id="board-filter-query"
-              type="search"
-              value={value.query}
-              onChange={(e) => onChange({ ...value, query: e.target.value })}
-              placeholder={t('search.placeholder')}
-              className={`${inputClass} pl-9`}
-            />
-          </div>
-        </div>
-
-        {/* 시작일 */}
-        <div>
-          <label htmlFor="board-filter-from" className="sr-only">
-            {t('search.fromLabel')}
-          </label>
           <input
-            id="board-filter-from"
-            type="date"
-            value={value.from}
-            max={value.to || undefined}
-            onChange={(e) => onChange({ ...value, from: e.target.value })}
-            aria-label={t('search.fromLabel')}
-            className={`${inputClass} sm:w-44`}
+            id="board-filter-query"
+            type="search"
+            value={draft.query}
+            onChange={(e) => setDraft({ ...draft, query: e.target.value })}
+            placeholder={t('search.placeholder')}
+            className={`${inputClass} w-full`}
           />
         </div>
 
-        {/* 종료일 */}
-        <div>
-          <label htmlFor="board-filter-to" className="sr-only">
-            {t('search.toLabel')}
-          </label>
-          <input
-            id="board-filter-to"
-            type="date"
-            value={value.to}
-            min={value.from || undefined}
-            onChange={(e) => onChange({ ...value, to: e.target.value })}
-            aria-label={t('search.toLabel')}
-            className={`${inputClass} sm:w-44`}
-          />
-        </div>
+        {/* 검색 실행 */}
+        <button
+          type="submit"
+          className="bg-yonsei-navy px-6 py-2 text-sm font-bold text-white transition-colors hover:bg-yonsei-blue"
+        >
+          {t('search.submit')}
+        </button>
 
-        {/* 초기화 (조건 활성 시) */}
+        {/* 초기화 (적용된 조건이 있을 때) */}
         {active && (
           <button
             type="button"
-            onClick={() => onChange(emptyFilter)}
-            className="border border-surface-border px-3 py-2 text-sm font-medium text-content-soft transition-colors hover:border-yonsei-blue hover:text-yonsei-blue"
+            onClick={() => {
+              setDraft(emptyFilter);
+              onChange(emptyFilter);
+            }}
+            className="border border-surface-border px-4 py-2 text-sm font-medium text-content-soft transition-colors hover:border-yonsei-blue hover:text-yonsei-blue"
           >
             {t('search.clear')}
           </button>
         )}
-      </div>
+      </form>
 
-      {/* 결과 건수 (조건 활성 + 건수 전달 시) */}
+      {/* 결과 건수 (조건 활성 + 건수 전달 시) — 우측 정렬로 검색 바와 나란히 */}
       {active && resultCount !== null && (
-        <p className="mt-2 text-sm text-content-soft" aria-live="polite">
+        <p className="mt-2 text-right text-sm text-content-soft" aria-live="polite">
           {t('search.results', { count: resultCount })}
         </p>
       )}

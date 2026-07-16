@@ -113,8 +113,9 @@ export function NewsEventsSection({ items }: { items: NewsEventItem[] }) {
       className="full-bleed flex flex-col bg-surface py-section-lg"
     >
       <div className="mx-auto w-full max-w-[1360px] px-6 sm:px-10 lg:px-16">
-        {/* 헤더 행 — 좌: 네이비 라벨 박스(각지게) / 우: ← → 화살표 버튼 2개 */}
-        <div className="flex items-center justify-between gap-4">
+        {/* 헤더 행 — 좌: 네이비 라벨 박스(각지게) / 사이: 헤어라인(학과 목표 섹션과
+            동일한 선 문법) / 우: ← → 화살표 버튼 2개 */}
+        <div className="flex items-center gap-6">
           <h2
             id="news-events-heading"
             data-reveal
@@ -122,6 +123,7 @@ export function NewsEventsSection({ items }: { items: NewsEventItem[] }) {
           >
             {t('newsEvents.title')}
           </h2>
+          <span aria-hidden="true" className="h-px flex-1 bg-surface-border" />
 
           {/* 카드가 있을 때만 화살표 노출(빈 상태에선 조작 대상이 없음) */}
           {hasItems && (

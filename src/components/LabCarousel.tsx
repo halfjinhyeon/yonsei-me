@@ -225,8 +225,9 @@ function LabCardView({
           {professorLabel}: {professor}
         </span>
         <span className="text-[11px] text-white/70 sm:text-xs">{card.location}</span>
+        {/* 호버 라벨 — 네이비 그라디언트 위라 금색 배제 후 흰색으로 가독성 확보 */}
         {hasLink && (
-          <span className="mt-1 inline-flex items-center gap-1 text-xs font-semibold text-yonsei-gold opacity-0 transition-opacity group-hover:opacity-100">
+          <span className="mt-1 inline-flex items-center gap-1 text-xs font-semibold text-white opacity-0 transition-opacity group-hover:opacity-100">
             {externalLabel} ↗
           </span>
         )}
@@ -246,7 +247,7 @@ function LabCardView({
         rel="noopener noreferrer"
         aria-hidden={ariaHidden || undefined}
         tabIndex={ariaHidden ? -1 : undefined}
-        className={cn(shellClass, 'focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yonsei-gold')}
+        className={cn(shellClass, 'focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yonsei-blue')}
       >
         {inner}
       </a>
