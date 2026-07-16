@@ -18,7 +18,7 @@ const toneStyles: Record<NonNullable<SectionProps['tone']>, string> = {
   default: 'bg-surface text-content',
   soft: 'bg-surface-soft text-content',
   brand: 'bg-yonsei-navy text-white',
-  // 배경 없음 — 홈 "단일 연속 배경(BgFlow)" 위에 얹을 때. 텍스트 색은 사용처에서 지정.
+  // 배경 없음 — 상위에서 배경을 깔고 그 위에 얹을 때. 텍스트 색은 사용처에서 지정.
   transparent: '',
 };
 

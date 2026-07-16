@@ -1,11 +1,9 @@
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { AnimatedHero } from '@/components/AnimatedHero';
-import { BgFlow } from '@/components/BgFlow';
 import { ProgramTabs } from '@/components/ProgramTabs';
 import { NoticeShowcase } from '@/components/NoticeShowcase';
 import { LabsSection } from '@/components/LabsSection';
 import { NewsEventsSection } from '@/components/NewsEventsSection';
-import { SectionDotNav } from '@/components/SectionDotNav';
 import { ResearchGallery } from '@/components/ResearchGallery';
 import { programs, pick } from '@/lib/content';
 import { fetchNews, fetchBoardData } from '@/lib/posts';
@@ -83,65 +81,63 @@ export default async function HomePage({ params }: { params: { locale: string } 
     .sort((a, b) => (a.date < b.date ? 1 : -1))
     .slice(0, 12);
 
-  // 좌측 고정 섹션 내비 항목 — 스냅 구간(히어로~뉴스&행사)만. 캘린더·공지는 자유 구간.
-  const sectionNavItems = [
-    { id: 'sec-hero', label: t('sectionNav.hero') },
-    { id: 'sec-research', label: t('sectionNav.research') },
-    { id: 'sec-programs', label: t('sectionNav.programs') },
-    { id: 'sec-labs', label: t('sectionNav.labs') },
-    { id: 'sec-news', label: t('sectionNav.news') },
-  ];
-
   return (
     <>
-      {/* 홈 단일 연속 배경(고정 그라디언트 레이어 + 섹션별 스크롤 색 전환) */}
-      <BgFlow />
-
-      {/* 좌측 고정 섹션 내비 + 섹션 고정스크롤(GSAP ScrollTrigger snap) 담당 */}
-      <SectionDotNav items={sectionNavItems} ariaLabel={t('sectionNav.label')} />
-
-      {/* 1. 애니메이션 히어로 (풀뷰포트) — 로테이션 헤드라인(영문 타이틀 ↔ 한글 스테이트먼트)
-          + 독수리 마스코트 + 소개 링크를 한 화면에 통합. 페이지 최상단 스냅 지점. */}
-      <div id="sec-hero">
+      {/* 1. 애니메이션 히어로 — 고정 배경 레이어(hicoda 식 "fixed background reveal").
+          inset-0 으로 모바일 URL바 수축·확장에도 항상 뷰포트를 가득 채우고, 히어로
+          그라디언트(위→아래)를 이 래퍼가 직접 갖는다. -z-10(음수)이라 in-flow 인
+          푸터 아래로 깔려, 페이지 하단에서 푸터가 히어로를 덮는다. mt-[100svh] 콘텐츠
+          래퍼가 스크롤에 따라 이 위로 슬라이드해 덮는다(순수 CSS 레이어링, JS 스크롤
+          핸들러 없음). */}
+      <div
+        id="sec-hero"
+        className="fixed inset-0 -z-10"
+        style={{ backgroundImage: 'linear-gradient(#3f7ad2, #1d4a92)' }}
+      >
         <AnimatedHero />
       </div>
 
-      {/* 2. 연구 분야 갤러리 → 오버레이 (Osmo Flip). 배경 플로우 위 풀뷰포트 섹션.
-          data-flow 로 BgFlow 색 흐름·ProgramTabs 디졸브 여백 유지. 스냅은 고정 헤더
-          아래로 정렬(scroll-mt = 헤더 높이). */}
-      <div id="sec-research" data-flow className="scroll-mt-16 lg:scroll-mt-20">
-        <ResearchGallery items={galleryItems} />
-      </div>
+      {/* 콘텐츠 래퍼 — 고정 히어로 위로 슬라이드되어 덮는 흰 판(연구~공지 다섯 섹션).
+          mt(패딩 아님)여야 초기 화면에서 히어로가 보이고, 마진 영역은 히트테스트가 안 돼
+          히어로의 재생/일시정지·인디케이터 버튼을 클릭할 수 있다. 상단은 각진 직각 엣지로
+          히어로를 덮는다(그림자·둥근 모서리 없음 — 사용자 지시). ⚠️ transform/will-change/
+          filter 금지 — containing block 이 생기면 내부의 position:fixed 가 뷰포트 대신 이
+          래퍼 기준이 된다. */}
+      <div className="relative z-10 mt-[100svh] bg-surface">
+        {/* 2. 연구 분야 갤러리 → 오버레이 (Osmo Flip). 이제 흰 래퍼 위에 놓인다.
+            scroll-mt 는 앵커 딥링크(#sec-research) 이동 시 고정 헤더 아래로 정렬. */}
+        <div id="sec-research" className="scroll-mt-16 lg:scroll-mt-20">
+          <ResearchGallery items={galleryItems} />
+        </div>
 
-      {/* 3. 프로그램 탭 (이미지 스왑 + 학부/대학원) */}
-      <div id="sec-programs" className="scroll-mt-16 lg:scroll-mt-20">
-        <ProgramTabs
-          undergraduate={programs.undergraduate}
-          graduate={programs.graduate}
+        {/* 3. 프로그램 탭 (이미지 스왑 + 학부/대학원) */}
+        <div id="sec-programs" className="scroll-mt-16 lg:scroll-mt-20">
+          <ProgramTabs
+            undergraduate={programs.undergraduate}
+            graduate={programs.graduate}
+            locale={locale}
+          />
+        </div>
+
+        {/* 4. 연구실 쇼케이스(네이비 라벨 + 마퀴 + 카드 캐러셀) — 풀뷰포트. */}
+        <div id="sec-labs" className="scroll-mt-16 lg:scroll-mt-20">
+          <LabsSection labs={labs} locale={locale} />
+        </div>
+
+        {/* 5. 뉴스 & 행사 — 뉴스(news.json) + 행사(board.events) 카드. */}
+        <div id="sec-news" className="scroll-mt-16 lg:scroll-mt-20">
+          <NewsEventsSection items={newsEventItems} />
+        </div>
+
+        {/* 6. 공지 쇼케이스 (풀블리드, 맨 아래) — 학부·대학원 공지를 로열블루 위에 지그재그로 */}
+        <NoticeShowcase
+          notices={showcaseNotices}
           locale={locale}
+          heading={tMenu('news.items.notices')}
+          subtitle={tNews('hero.subtitle')}
+          moreLabel={t('newsPreview.viewAll')}
         />
       </div>
-
-      {/* 4. 연구실 쇼케이스(네이비 라벨 + 마퀴 + 카드 캐러셀) — 풀뷰포트. */}
-      <div id="sec-labs" className="scroll-mt-16 lg:scroll-mt-20">
-        <LabsSection labs={labs} locale={locale} />
-      </div>
-
-      {/* 5. 뉴스 & 행사 — 마지막 스냅 섹션. 뉴스(news.json) + 행사(board.events) 카드. */}
-      <div id="sec-news" className="scroll-mt-16 lg:scroll-mt-20">
-        <NewsEventsSection items={newsEventItems} />
-      </div>
-
-      {/* ── 여기부터 자유 스크롤 구간(스냅 지점 없음) — 내비도 이 구간에선 숨는다 ── */}
-
-      {/* 6. 공지 쇼케이스 (풀블리드, 맨 아래) — 학부·대학원 공지를 로열블루 위에 지그재그로 */}
-      <NoticeShowcase
-        notices={showcaseNotices}
-        locale={locale}
-        heading={tMenu('news.items.notices')}
-        subtitle={tNews('hero.subtitle')}
-        moreLabel={t('newsPreview.viewAll')}
-      />
     </>
   );
 }

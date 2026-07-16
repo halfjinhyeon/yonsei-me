@@ -1,5 +1,5 @@
 // 공지 쇼케이스 (풀블리드) — 연세 학부대학 학생공지 섹션 레퍼런스.
-// 밝은 로열블루 그라디언트(anim-gradient-notice) + 웨이브 라인(MeshCanvas) +
+// 로열블루 단색 배경(bg-blue-700) + 웨이브 라인(MeshCanvas) +
 // 대형 세로 워터마크 타이포 위에, 좌측 큰 타이틀 / 우측 흰색 공지 카드 2열 지그재그.
 // 카드는 Reveal(IntersectionObserver 1회 리빌)로 스크롤 시 하나씩 순차 상승 등장.
 // 서버 컴포넌트 — 상호작용/리빌은 자식(MeshCanvas·Reveal)이 담당.
@@ -7,7 +7,6 @@
 import { Link } from '@/i18n/navigation';
 import { MeshCanvas } from './MeshCanvas';
 import { Reveal } from './Reveal';
-import { ScrollVeil } from './ScrollVeil';
 import { formatDate } from '@/lib/utils';
 import type { Locale } from '@/i18n/routing';
 
@@ -39,13 +38,9 @@ export function NoticeShowcase({
   });
 
   return (
-    <section className="full-bleed anim-gradient-notice relative isolate overflow-hidden py-section text-white">
+    <section className="full-bleed relative isolate overflow-hidden bg-blue-700 py-section-lg text-white">
       {/* 흐르는 웨이브 라인 오버레이 */}
       <MeshCanvas className="pointer-events-none absolute inset-0 -z-10 h-full w-full opacity-50" />
-
-      {/* 이전 섹션에서 이 섹션(로열블루)으로의 스크롤 스크럽 배경 전환 —
-          섹션이 떠오르는 진행률에 맞춰 네이비 베일이 걷힌다 */}
-      <ScrollVeil className="pointer-events-none absolute inset-0 -z-[5] bg-yonsei-navy" />
 
       {/* 대형 세로 워터마크 타이포 — 왼쪽 가장자리, 잘려도 됨. lg 이상만 노출. */}
       <span
@@ -56,8 +51,8 @@ export function NoticeShowcase({
       </span>
 
       {/* 기계 독수리 마스코트 워터마크 — YONSEI 타이포와 같은 톤으로 희미하게.
-          public/img/eagle.png(투명 배경 흰색 아트). 베일(-z-[5])보다 뒤(-z-[6])라
-          배경 전환과 함께 드러난다. 모바일: 헤더 우상단에 작게(가장자리 살짝 잘림),
+          public/img/eagle.png(투명 배경 흰색 아트). 웨이브 라인(-z-10)보다 앞·콘텐츠보다
+          뒤(-z-[6]). 모바일: 헤더 우상단에 작게(가장자리 살짝 잘림),
           데스크톱: 좌하단에 크게. */}
       <div
         aria-hidden="true"

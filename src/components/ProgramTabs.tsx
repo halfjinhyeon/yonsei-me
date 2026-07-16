@@ -32,8 +32,7 @@ const WAVE_SVG =
 
 /**
  * 'How will you move the world forward?' 스타일 탭 섹션 (흰 배경, 2단).
- * 상단 다크 그라디언트(BgFlow)가 이 섹션에서 흰색으로 디졸브되며(`data-flow-end`),
- * 여기부터 흰 배경 + 어두운 텍스트.
+ * 홈 콘텐츠 래퍼(흰 판) 안의 한 섹션 — 흰 배경 + 어두운 텍스트.
  * - 왼쪽: 리스트 항목 호버 시 바뀌는 사진 패널
  * - 오른쪽: 세리프-이탤릭 혼합 헤드라인(강조어 네이비→스카이 그라데이션 텍스트) +
  *   학부/대학원 탭(활성 밑줄 ::after 그라데이션, CSS transition) +
@@ -70,30 +69,32 @@ export function ProgramTabs({
 
   return (
     <section
-      data-flow-end
       aria-labelledby="programs-heading"
-      // 고정스크롤 "한 화면 = 한 섹션" — 디자인(사진 스왑)은 원본 그대로 두고
-      // 높이만 헤더를 뺀 한 화면으로 맞춘다(짧으면 스냅 정렬 시 다음 섹션이 삐져나옴).
-      className="full-bleed relative isolate grid min-h-[calc(100svh-4rem)] overflow-hidden text-content lg:min-h-[calc(100svh-5rem)] lg:grid-cols-2"
+      // 자유 스크롤 홈 섹션 — 다른 섹션과 동일한 컨테이너·상하 리듬(py-section-lg) 안에
+      // 2단 그리드. 좌측 사진 패널은 뷰포트 엣지가 아니라 컨테이너 안에 들어오고,
+      // 우측 목록보다 살짝 큰 높이(lg:h-[34rem])로 items-center 정렬돼 위아래로 조금
+      // 더 크게 보인다. 사진 스왑·물결 배경·탭 로직은 그대로.
+      className="relative isolate overflow-hidden text-content"
     >
-      {/* 왼쪽: 사진 패널 (리스트 호버로 스왑) */}
-      <div className="relative min-h-[11rem] overflow-hidden bg-surface-soft lg:min-h-[22rem]">
-        {[...undergraduate, ...graduate].map((p) => (
-          <div
-            key={p.id}
-            aria-hidden="true"
-            className={cn(
-              'absolute inset-0 bg-cover bg-center transition-opacity duration-500',
-              activeItem && p.id === activeItem.id ? 'opacity-100' : 'opacity-0',
-            )}
-            style={{ backgroundImage: `url(${p.image})` }}
-          />
-        ))}
-        <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-t from-yonsei-navy/25 to-transparent" />
-      </div>
+      <div className="mx-auto grid w-full max-w-[1360px] items-center gap-10 px-6 py-section-lg sm:px-10 lg:grid-cols-2 lg:gap-14 lg:px-16">
+        {/* 왼쪽: 사진 패널 (리스트 호버로 스왑) — 각진 모서리 유지, 목록보다 살짝 큰 높이 */}
+        <div className="relative aspect-[16/10] w-full overflow-hidden bg-surface-soft lg:aspect-auto lg:h-[34rem]">
+          {[...undergraduate, ...graduate].map((p) => (
+            <div
+              key={p.id}
+              aria-hidden="true"
+              className={cn(
+                'absolute inset-0 bg-cover bg-center transition-opacity duration-500',
+                activeItem && p.id === activeItem.id ? 'opacity-100' : 'opacity-0',
+              )}
+              style={{ backgroundImage: `url(${p.image})` }}
+            />
+          ))}
+          <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-t from-yonsei-navy/25 to-transparent" />
+        </div>
 
-      {/* 오른쪽: 콘텐츠 — 풀높이 컬럼 안에서 세로 중앙 정렬 */}
-      <div className="relative flex flex-col justify-center px-6 py-10 sm:px-10 sm:py-12 lg:px-14 lg:py-14">
+        {/* 오른쪽: 콘텐츠 — 컨테이너 상하 패딩이 리듬을 담당하므로 열 자체 패딩은 없음 */}
+        <div className="relative">
         {/* 물결 라인아트 배경 — 오른쪽 열 뒤로 흐른다 */}
         <div
           aria-hidden="true"
@@ -123,7 +124,7 @@ export function ProgramTabs({
         </h2>
 
         {/* 탭바 — 활성 밑줄은 ::after 그라데이션(scaleX transition) */}
-        <div role="tablist" aria-labelledby="programs-heading" className="mt-6 flex gap-8">
+        <div role="tablist" aria-labelledby="programs-heading" className="mt-8 flex gap-8">
           {tabs.map((tb) => (
             <button
               key={tb.id}
@@ -148,7 +149,7 @@ export function ProgramTabs({
         </div>
 
         {/* 항목 리스트 — 화살표(→) + 그라데이션 행 구분선, 호버 시 왼쪽 사진 스왑 */}
-        <ul className="mt-5 max-w-xl">
+        <ul className="mt-6 max-w-xl">
           {list.map((p) => (
             <li
               key={p.id}
@@ -180,10 +181,11 @@ export function ProgramTabs({
 
         <Link
           href={tab === 'ug' ? '/undergraduate' : '/graduate'}
-          className="mt-5 inline-flex items-center gap-2 py-1 text-sm font-bold text-yonsei-blue hover:underline"
+          className="mt-6 inline-flex items-center gap-2 py-1 text-sm font-bold text-yonsei-blue hover:underline"
         >
           {tab === 'ug' ? t('exploreUg') : t('exploreGrad')}
         </Link>
+        </div>
       </div>
     </section>
   );

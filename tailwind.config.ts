@@ -60,6 +60,8 @@ const config: Config = {
         // 섹션 스페이싱 토큰
         'section': 'clamp(3.5rem, 8vw, 7rem)',
         'section-sm': 'clamp(2.5rem, 5vw, 4rem)',
+        // 홈 섹션 수직 리듬(자유 스크롤 전환 후) — 모든 홈 섹션 상하 패딩 통일(≈72–128px)
+        'section-lg': 'clamp(4.5rem, 10vh, 8rem)',
       },
       borderRadius: {
         // 사이트 공통 카드 곡률 — 각진 인상을 위해 0.5rem(8px)로 통일

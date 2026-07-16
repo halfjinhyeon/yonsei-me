@@ -14,8 +14,8 @@ gsap.registerPlugin(ScrollTrigger);
 // 막고, 서버 렌더 시 useLayoutEffect 경고를 피한다(LabsSection 동일 패턴).
 const useIsoLayoutEffect = typeof window !== 'undefined' ? useLayoutEffect : useEffect;
 
-// 카드 사이 gap(=gap-6, 24px). 화살표 스크롤 스텝(카드 1장 폭 + gap) 계산에 쓴다.
-const CARD_GAP = 24;
+// 카드 사이 gap(=gap-8, 32px). 화살표 스크롤 스텝(카드 1장 폭 + gap) 계산에 쓴다.
+const CARD_GAP = 32;
 
 export interface NewsEventItem {
   date: string; // 'YYYY-MM-DD'
@@ -109,8 +109,8 @@ export function NewsEventsSection({ items }: { items: NewsEventItem[] }) {
     <section
       ref={rootRef}
       aria-labelledby="news-events-heading"
-      // "한 화면 = 한 섹션": 고정 헤더(h-16/lg:h-20)를 뺀 높이로 잡아 한 페이지에 들어오게.
-      className="full-bleed flex min-h-[calc(100svh-4rem)] flex-col justify-center bg-surface py-10 lg:min-h-[calc(100svh-5rem)]"
+      // 자유 스크롤 홈 섹션 — 자연 높이 + 통일된 상하 리듬(py-section-lg).
+      className="full-bleed flex flex-col bg-surface py-section-lg"
     >
       <div className="mx-auto w-full max-w-[1360px] px-6 sm:px-10 lg:px-16">
         {/* 헤더 행 — 좌: 네이비 라벨 박스(각지게) / 우: ← → 화살표 버튼 2개 */}
@@ -154,13 +154,13 @@ export function NewsEventsSection({ items }: { items: NewsEventItem[] }) {
             <ul
               ref={trackRef}
               onScroll={updateArrows}
-              className="no-scrollbar mt-8 flex snap-x snap-mandatory gap-6 overflow-x-auto scroll-smooth"
+              className="no-scrollbar mt-10 flex snap-x snap-mandatory gap-8 overflow-x-auto scroll-smooth"
             >
               {items.map((item, i) => (
                 <li
                   key={`${item.href}-${i}`}
                   data-card
-                  className="snap-start w-[78%] shrink-0 sm:w-[46%] lg:w-[calc(25%-18px)]"
+                  className="snap-start w-[78%] shrink-0 sm:w-[46%] lg:w-[calc(25%-24px)]"
                 >
                   <NewsEventCard item={item} />
                 </li>
@@ -224,8 +224,8 @@ function NewsEventCard({ item }: { item: NewsEventItem }) {
         {item.title}
       </p>
 
-      {/* 이미지 — 각진 aspect-[10/9] 프레임. 없으면 단색 블록 + eagle_empty 중앙 배치. */}
-      <div className="relative mt-6 aspect-[10/9] w-full overflow-hidden bg-surface-soft">
+      {/* 이미지 — 각진 aspect-[4/3] 프레임. 없으면 단색 블록 + eagle_empty 중앙 배치. */}
+      <div className="relative mt-6 aspect-[4/3] w-full overflow-hidden bg-surface-soft">
         {item.image ? (
           <Image
             src={item.image}

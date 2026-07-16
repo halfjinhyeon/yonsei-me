@@ -62,6 +62,12 @@ export function ResearchGallery({ items }: { items: GalleryItem[] }) {
     const overlayNav = root.querySelector<HTMLElement>(`.${styles.overlayNav}`);
     const navItems = all('[data-rg="nav-item"]');
     const closeBtn = root.querySelector<HTMLElement>('[data-rg="close"]');
+    const closeControls = all('[data-rg="close"]'); // 좌상단 "목록으로" + 우상단 X
+    const closeX = root.querySelector<HTMLElement>(`.${styles.overlayClose}`);
+    // 오버레이(.overlayWrap z-90)는 콘텐츠 래퍼(relative z-10)의 쌓임맥락 안이라 root 기준으로는
+    // z-10 → 헤더(z-50)가 그 위에 그려져 상단 닫기 버튼이 가려진다. 오버레이가 열려 있는 동안
+    // 사이트 헤더를 숨겨(autoAlpha=visibility:hidden) 가림·클릭 가로채기를 함께 없앤다.
+    const siteHeader = document.querySelector<HTMLElement>('header');
     const arrows = root.querySelector<HTMLElement>('[data-rg="arrows"]');
     const prevBtn = root.querySelector<HTMLButtonElement>('[data-rg="prev"]');
     const nextBtn = root.querySelector<HTMLButtonElement>('[data-rg="next"]');
@@ -130,6 +136,7 @@ export function ResearchGallery({ items }: { items: GalleryItem[] }) {
 
       // 스크롤 잠금(스크롤바 제거 리플로우)을 Flip 측정 **이전**에 — 시작 좌표 어긋남 방지.
       lockScroll(true);
+      if (siteHeader) gsap.to(siteHeader, { autoAlpha: 0, duration: reduce ? 0 : 0.3 }); // 헤더 가림 회피
       overlayItem.scrollTop = 0; // 재오픈 시 이전 스크롤 위치 리셋(안전망 스크롤)
 
       const titleState = reduce ? null : Flip.getState(title, { props: 'fontSize' });
@@ -156,6 +163,10 @@ export function ResearchGallery({ items }: { items: GalleryItem[] }) {
       if (overlayNav) {
         gsap.set(overlayNav, { display: 'flex' });
         gsap.fromTo(navItems, { yPercent: 110 }, { yPercent: 0, stagger: reduce ? 0 : 0.1, duration: reduce ? 0 : 0.6, ease });
+      }
+      if (closeX) {
+        gsap.set(closeX, { display: 'grid' });
+        gsap.fromTo(closeX, { autoAlpha: 0 }, { autoAlpha: 1, duration: reduce ? 0 : 0.4, delay: reduce ? 0 : 0.15 });
       }
       closeBtn?.focus({ preventScroll: true }); // 키보드 사용자를 오버레이 안으로
 
@@ -191,6 +202,7 @@ export function ResearchGallery({ items }: { items: GalleryItem[] }) {
       const imageState = reduce ? null : Flip.getState(image);
 
       if (overlayNav) gsap.to(navItems, { yPercent: 110, duration: reduce ? 0 : 0.5, onComplete: () => { overlayNav.style.display = 'none'; } });
+      if (closeX) gsap.to(closeX, { autoAlpha: 0, duration: reduce ? 0 : 0.3, onComplete: () => { closeX.style.display = 'none'; gsap.set(closeX, { autoAlpha: 1 }); } });
       if (fades.length > 0) gsap.to(fades, { autoAlpha: 0, duration: reduce ? 0 : 0.25 });
       if (bg) {
         // 백드롭이 걷히며 카드로 돌아가는 Flip 비행이 보인다
@@ -220,6 +232,7 @@ export function ResearchGallery({ items }: { items: GalleryItem[] }) {
       const activeBtn = active.querySelector<HTMLElement>(`.${styles.cardButton}`);
       active = null;
       lockScroll(false);
+      if (siteHeader) gsap.to(siteHeader, { autoAlpha: 1, duration: reduce ? 0 : 0.3 }); // 헤더 복원
       activeBtn?.focus({ preventScroll: true }); // 포커스를 원래 카드로 복귀
 
       // 나머지 카드·화살표 복귀
@@ -236,12 +249,27 @@ export function ResearchGallery({ items }: { items: GalleryItem[] }) {
     const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') closeOverlay(); };
     document.addEventListener('keydown', onKey);
     const onClose = () => closeOverlay();
-    closeBtn?.addEventListener('click', onClose);
+    // 좌상단 "목록으로" + 우상단 X — 둘 다 data-rg="close"
+    closeControls.forEach((el) => {
+      el.addEventListener('click', onClose);
+      cleanups.push(() => el.removeEventListener('click', onClose));
+    });
+    // 배경(콘텐츠 밖) 클릭 닫기 — .overlayInner 안 클릭은 무시(영상 라이트박스와 동일)
+    overlayItems.forEach((item) => {
+      const inner = item.querySelector<HTMLElement>(`.${styles.overlayInner}`);
+      const onBackdrop = (e: MouseEvent) => {
+        if (!active) return;
+        if (inner && inner.contains(e.target as Node)) return;
+        closeOverlay();
+      };
+      item.addEventListener('click', onBackdrop);
+      cleanups.push(() => item.removeEventListener('click', onBackdrop));
+    });
 
     return () => {
       cleanups.forEach((fn) => fn());
       document.removeEventListener('keydown', onKey);
-      closeBtn?.removeEventListener('click', onClose);
+      if (siteHeader) gsap.set(siteHeader, { clearProps: 'opacity,visibility' }); // 언마운트 시 헤더 복원
       prevBtn?.removeEventListener('click', onPrev);
       nextBtn?.removeEventListener('click', onNext);
       track?.removeEventListener('scroll', updateArrows);
@@ -318,6 +346,12 @@ export function ResearchGallery({ items }: { items: GalleryItem[] }) {
               <span data-rg="nav-item" className={styles.backInner}>← {t('back')}</span>
             </button>
           </div>
+          {/* 우측 상단 X — 배경 클릭·ESC 와 함께 닫기(영상 라이트박스와 동일 UX) */}
+          <button type="button" data-rg="close" className={styles.overlayClose} aria-label={t('close')}>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} aria-hidden="true">
+              <path d="M6 6l12 12M18 6L6 18" strokeLinecap="round" />
+            </svg>
+          </button>
         </div>
       </div>
     </section>

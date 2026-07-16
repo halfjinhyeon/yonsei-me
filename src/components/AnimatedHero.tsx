@@ -127,8 +127,7 @@ export function AnimatedHero() {
 
   return (
     <section
-      data-flow
-      className="relative isolate flex min-h-[100svh] flex-col justify-end overflow-hidden pb-[14vh] text-white sm:pb-[16vh]"
+      className="relative isolate flex h-full flex-col justify-end overflow-hidden pb-[14vh] text-white sm:pb-[16vh]"
     >
       {/* 캔버스 웨이브 배경 */}
       <MeshCanvas className="pointer-events-none absolute inset-0 -z-10 h-full w-full [mask-image:linear-gradient(to_top,transparent,black_22%)]" />

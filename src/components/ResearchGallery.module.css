@@ -8,24 +8,18 @@
 
 .gallery {
   position: relative;
-  /* 고정 헤더(4rem/lg 5rem)를 뺀 "한 화면" — 100svh 로 두면 스냅 정렬 시
-     하단이 정확히 헤더 높이만큼 다음 섹션 위로 삐져나온다 */
-  min-height: calc(100svh - 4rem);
+  /* 자유 스크롤 전환 후 자연 높이 — min-height 강제 제거. 헤더/캐러셀만큼만 차지하고
+     다른 홈 섹션과 동일한 수직 리듬(≈72–128px)으로 상하 패딩을 통일한다.
+     (오버레이는 position:fixed 풀스크린이라 이 섹션 높이와 무관하다) */
   display: flex;
   align-items: center;
   justify-content: center;
-  /* 상하 비대칭 패딩 — 위를 줄이고 아래를 늘려 콘텐츠 무게중심을 살짝 위로.
-     (flex 가운데 정렬은 패딩 안쪽 기준이라 이 차이의 절반만큼 올라간다) */
-  padding: clamp(1.25rem, 3vw, 3rem) clamp(1.5rem, 4vw, 4rem) clamp(3rem, 7vw, 7rem);
-  color: #fff;
+  padding: clamp(4.5rem, 10vh, 8rem) clamp(1.5rem, 4vw, 4rem);
+  /* 흰 콘텐츠 래퍼 위에 놓이므로 캐러셀 본문은 네이비 텍스트가 기준. (풀스크린
+     오버레이는 자체 다크 백드롭 #0a1c3d 를 갖고 개별 요소가 흰색을 재지정한다) */
+  color: #00285e;
   font-size: clamp(8px, 1.05vw, 15px); /* em 기준값 — 화면폭 비례 */
   overflow: hidden;
-}
-
-@media (min-width: 1024px) {
-  .gallery {
-    min-height: calc(100svh - 5rem);
-  }
 }
 
 /* 하나의 콘텐츠 블록 — 뷰포트 중앙에 정렬 */
@@ -54,7 +48,8 @@
   font-weight: 700;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: #c8a96a;
+  /* 흰 배경 위 골드는 대비가 낮아(WCAG AA 미달) 어두운 골드로 조정 */
+  color: #8a6d2f;
 }
 
 .heading {
@@ -69,7 +64,7 @@
   margin: 0.9em 0 0;
   font-size: 1.15em;
   line-height: 1.4;
-  color: rgba(255, 255, 255, 0.72);
+  color: rgba(0, 40, 94, 0.66);
 }
 
 /* 캐러셀 화살표 — 각진 유리 버튼(오버레이 backBtn 과 동일 톤) */
@@ -85,9 +80,9 @@
   justify-content: center;
   width: 3em;
   height: 3em;
-  border: 1px solid rgba(255, 255, 255, 0.45);
-  background: rgba(255, 255, 255, 0.08);
-  color: #fff;
+  border: 1px solid rgba(0, 40, 94, 0.35);
+  background: rgba(0, 40, 94, 0.05);
+  color: #00285e;
   font: inherit;
   font-size: 1.15em;
   cursor: pointer;
@@ -95,8 +90,8 @@
 }
 
 .arrowBtn:hover:not(:disabled) {
-  background: rgba(255, 255, 255, 0.18);
-  border-color: #fff;
+  background: rgba(0, 40, 94, 0.12);
+  border-color: #00285e;
 }
 
 .arrowBtn:disabled {
@@ -167,7 +162,7 @@
   display: block;
   width: 19em;
   height: 24em;
-  background: rgba(255, 255, 255, 0.06);
+  background: rgba(0, 40, 94, 0.06);
 }
 
 .image {
@@ -185,14 +180,15 @@
   gap: 0.8em;
   margin-top: 1em;
   padding-top: 0.85em;
-  border-top: 1px solid rgba(255, 255, 255, 0.3);
+  border-top: 1px solid rgba(0, 40, 94, 0.22);
 }
 
 .cardNum {
   font-size: 1em;
   font-weight: 700;
   letter-spacing: 0.08em;
-  color: #c8a96a;
+  /* 흰 배경 대비를 위해 어두운 골드(AA) */
+  color: #8a6d2f;
   font-variant-numeric: tabular-nums;
 }
 
@@ -203,7 +199,9 @@
   line-height: 1.1;
   letter-spacing: -0.02em;
   white-space: nowrap;
-  color: #fff;
+  /* 카드(흰 배경) 맥락 기본색 — 네이비. Flip 으로 오버레이(다크)로 이동하면
+     .overlayTitleWrap .title 규칙이 흰색으로 덮는다. */
+  color: #00285e;
 }
 
 /* ── 오버레이 — 스크롤 없는 한 화면 (분야명 + 사진 + 설명 + CTA) ── */
@@ -270,9 +268,11 @@
   position: relative;
 }
 
-/* 절제된 타이틀 크기 — 압도하지 않게, 좁은 폭에선 vw 로 캡 */
+/* 절제된 타이틀 크기 — 압도하지 않게, 좁은 폭에선 vw 로 캡.
+   오버레이 다크 백드롭 위이므로 흰색으로 복원(카드 기본색 네이비를 덮음). */
 .overlayTitleWrap .title {
   font-size: min(4.6em, 8vw);
+  color: #fff;
 }
 
 .paragraph {
@@ -338,12 +338,45 @@
   gap: 0.5em;
 }
 
+/* 상단 우측 X 닫기 — 유리 버튼(배경 클릭·ESC 와 함께 명시적 닫기). overlayNav 와 좌우 대칭. */
+.overlayClose {
+  position: fixed;
+  top: clamp(1rem, 2.5vw, 2rem);
+  right: clamp(1rem, 4vw, 2.5rem);
+  display: none; /* 오버레이가 열릴 때 JS 가 grid 로 전환 */
+  place-items: center;
+  width: 3rem;
+  height: 3rem;
+  z-index: 95;
+  pointer-events: auto;
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+  cursor: pointer;
+  backdrop-filter: blur(4px);
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.overlayClose:hover {
+  background: rgba(255, 255, 255, 0.18);
+  border-color: #fff;
+}
+
+.overlayClose:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+}
+
+.overlayClose svg {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
 /* ── 반응형: 좁은 화면은 카드 축소 + 터치 스와이프(화살표 숨김), 오버레이는 세로 구성 ── */
 @media (max-width: 900px) {
   .gallery {
     font-size: clamp(11px, 2.7vw, 20px);
-    min-height: auto;
-    padding: 3em 1.25em;
+    padding: clamp(3.5rem, 8vh, 5rem) 1.25rem;
   }
   .header {
     flex-direction: column;

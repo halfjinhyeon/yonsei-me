@@ -89,9 +89,9 @@ export function LabsSection({ labs, locale }: { labs: LabDirectoryEntry[]; local
     <section
       ref={rootRef}
       aria-labelledby="labs-heading"
-      // "한 화면 = 한 섹션": 고정 헤더(h-16/lg:h-20)가 상단을 덮으므로 헤더를 뺀 높이로
-      // 잡아야 헤더+마퀴+캐러셀이 스크롤 없이 한 페이지에 들어온다.
-      className="full-bleed flex min-h-[calc(100svh-4rem)] flex-col justify-center bg-surface py-8 lg:min-h-[calc(100svh-5rem)] lg:py-10"
+      // 자유 스크롤 홈 섹션 — 자연 높이 + 통일된 상하 리듬(py-section-lg). full-bleed 는
+      // 마퀴/캐러셀이 뷰포트 폭을 쓰기 위해 유지하되, 헤더·CTA 는 내부 max-w 컨테이너 정렬.
+      className="full-bleed flex flex-col bg-surface py-section-lg"
     >
       {/* 1) 컴팩트 헤더 — 컨테이너 정렬. relative 는 우측 독수리 워터마크의 기준점. */}
       <div className="mx-auto w-full max-w-[1360px] px-6 sm:px-10 lg:px-16">
@@ -116,7 +116,7 @@ export function LabsSection({ labs, locale }: { labs: LabDirectoryEntry[]; local
           </h2>
 
           {/* 한 줄 요약 — 본문 최소화(기존 2문단 → 1문장). CTA 는 캐러셀 하단으로 이동. */}
-          <p data-reveal className="mt-5 max-w-2xl text-[15px] text-content-soft sm:text-base">
+          <p data-reveal className="mt-5 max-w-2xl text-base text-content-soft">
             {t('people.intro.tagline')}
           </p>
         </div>
@@ -124,7 +124,7 @@ export function LabsSection({ labs, locale }: { labs: LabDirectoryEntry[]; local
 
       {/* 2) 대형 영문 마퀴(full-bleed, 헤더 아래) — 순수 장식이라 전체를 aria-hidden.
           overflow-hidden 래퍼가 넘치는 트랙을 잘라낸다. */}
-      <div className="mt-5 overflow-hidden lg:mt-6" aria-hidden="true">
+      <div className="mt-10 overflow-hidden lg:mt-12" aria-hidden="true">
         <div ref={marqueeRef} className={cn('flex w-max', reduced && 'w-full justify-center')}>
           <MarqueeRun text={t('people.intro.marquee')} />
           {/* 무한 루프용 2벌째 — reduced-motion 에선 생략(정적 1벌 가운데 정렬). */}
@@ -133,12 +133,12 @@ export function LabsSection({ labs, locale }: { labs: LabDirectoryEntry[]; local
       </div>
 
       {/* 3) 캐러셀 — 컴포넌트/props 변경 없음(카드 디자인 유지가 요구사항). */}
-      <div className="mt-6 lg:mt-8">
+      <div className="mt-8 lg:mt-10">
         <LabCarousel labs={labs} locale={locale} />
       </div>
 
       {/* CTA — 캐러셀 하단 우측(뉴스&행사 섹션과 동일한 위치·정렬) */}
-      <div className="mx-auto mt-6 flex w-full max-w-[1360px] justify-end px-6 sm:px-10 lg:px-16">
+      <div className="mx-auto mt-8 flex w-full max-w-[1360px] justify-end px-6 sm:px-10 lg:px-16">
         <Link
           data-reveal
           href="/research#labs"
