@@ -173,6 +173,30 @@ export function CurriculumRoadmap({ locale }: { locale: Locale }) {
           ? 'Major Elective'
           : 'General Education';
 
+  // 과목 칩 — 데스크톱 그리드·모바일 세로 스택 공용 렌더
+  const renderChip = (course: RoadmapCourse) => {
+    const filled = isRequired(course.kind);
+    const isSel = selected === course.code;
+    return (
+      <button
+        key={course.code}
+        type="button"
+        onClick={() => selectCourse(course.code)}
+        aria-pressed={isSel}
+        title={`${course.code} · ${course.credits}${ko ? '학점' : ' cr'}`}
+        className={cn(
+          'rounded-[2px] border px-2 py-1.5 text-left text-xs font-semibold leading-tight outline-none transition-colors duration-150 focus-visible:ring-2 focus-visible:ring-yonsei-blue',
+          filled
+            ? 'border-yonsei-navy bg-yonsei-navy text-white hover:border-yonsei-blue hover:bg-yonsei-blue'
+            : 'border-yonsei-navy/35 bg-surface text-content hover:border-yonsei-navy hover:text-yonsei-navy',
+          isSel && 'border-yonsei-gold ring-2 ring-yonsei-gold/60 ring-offset-1 ring-offset-surface',
+        )}
+      >
+        {course.name}
+      </button>
+    );
+  };
+
   // 로드맵 그리드 열 = 트랙 라벨 열(고정) + 학기 열들
   const gridTemplate = `12rem repeat(${columns.length}, minmax(9.5rem, 1fr))`;
   // 그리드 최소 폭 = 라벨 열(12rem) + 학기 열들(각 9.5rem + 열 간격 gap-2 0.5rem).
@@ -224,14 +248,64 @@ export function CurriculumRoadmap({ locale }: { locale: Locale }) {
           </li>
         </ul>
         {canScroll && (
-          <p className="text-xs text-content-faint">
+          <p className="hidden text-xs text-content-faint lg:block">
             {ko ? '좌우로 스크롤하세요 →' : 'Scroll horizontally →'}
           </p>
         )}
       </div>
 
-      {/* 로드맵 — 가로 스크롤 래퍼. 평면 에디토리얼: 필 박스 대신 룰(선)과 타이포로 구조화 */}
-      <div ref={scrollRef} className="overflow-x-auto pb-2">
+      {/* ── 모바일·좁은 화면(< lg): 학기별 세로 스택 ──
+          넓은 2D 매트릭스는 좁은 세로 화면에서 학기 1개만 보이고 잘리므로,
+          학기(열)를 세로 섹션으로 풀고 각 섹션 안에서 분야 레인별로 칩을 묶는다.
+          두 축(학기·분야)을 모두 보존하면서 가로 스크롤 없이 위→아래로 읽힌다. */}
+      <div key={`m-${filter}`} className="border-t-2 border-yonsei-navy lg:hidden">
+        {columns.map((col, colIdx) => {
+          const lanesHere = lanes.filter((lane) => lane.cells[colIdx].length > 0);
+          if (lanesHere.length === 0) return null;
+          const label = columnLabel(col.year, col.semester, ko);
+          return (
+            <section
+              key={`${col.year}-${col.semester}-${colIdx}`}
+              className="anim-nav-item border-t border-surface-border py-5 first:border-t-0"
+              style={{ animationDelay: `${Math.min(colIdx, 8) * 60}ms` }}
+            >
+              <h4 className="text-sm font-bold text-content">
+                {label.top} <span className="text-content-faint">{label.bottom}</span>
+              </h4>
+              <div className="mt-3 space-y-3">
+                {lanesHere.map((lane) => (
+                  <div key={lane.key} className="flex flex-col gap-1.5">
+                    <div className="flex items-center gap-2">
+                      <span
+                        aria-hidden="true"
+                        className={cn(
+                          'h-3.5 w-0.5 shrink-0',
+                          lane.key === 'basics' ? 'bg-surface-border' : 'bg-yonsei-navy',
+                        )}
+                      />
+                      <span
+                        className={cn(
+                          'text-xs font-bold leading-tight',
+                          lane.key === 'basics' ? 'text-content-faint' : 'text-content-soft',
+                        )}
+                      >
+                        {t(`fieldFilter.${lane.key}`)}
+                      </span>
+                    </div>
+                    <div className="flex flex-wrap gap-1.5 pl-3.5">
+                      {lane.cells[colIdx].map(renderChip)}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </section>
+          );
+        })}
+      </div>
+
+      {/* ── 데스크톱(lg+): 스윔레인 로드맵 (가로 스크롤 래퍼) ──
+          평면 에디토리얼: 필 박스 대신 룰(선)과 타이포로 구조화 */}
+      <div ref={scrollRef} className="hidden overflow-x-auto pb-2 lg:block">
         {/* key={filter} 로 필터 전환 시 레인 스태거 등장을 재트리거.
             min-width 를 전체 열 폭에 맞춰 헤더 룰·레인 구분선이 마지막 열까지 이어지게 한다. */}
         <div key={filter} style={{ minWidth: gridMinWidth }}>
@@ -290,28 +364,7 @@ export function CurriculumRoadmap({ locale }: { locale: Locale }) {
                 {/* 셀: 학기별 과목 칩 세로 나열 */}
                 {lane.cells.map((cell, colIdx) => (
                   <div key={colIdx} className="flex flex-col justify-center gap-1.5 px-1 py-1">
-                    {cell.map((course) => {
-                      const filled = isRequired(course.kind);
-                      const isSel = selected === course.code;
-                      return (
-                        <button
-                          key={course.code}
-                          type="button"
-                          onClick={() => selectCourse(course.code)}
-                          aria-pressed={isSel}
-                          title={`${course.code} · ${course.credits}${ko ? '학점' : ' cr'}`}
-                          className={cn(
-                            'rounded-[2px] border px-2 py-1.5 text-left text-xs font-semibold leading-tight outline-none transition-colors duration-150 focus-visible:ring-2 focus-visible:ring-yonsei-blue',
-                            filled
-                              ? 'border-yonsei-navy bg-yonsei-navy text-white hover:border-yonsei-blue hover:bg-yonsei-blue'
-                              : 'border-yonsei-navy/35 bg-surface text-content hover:border-yonsei-navy hover:text-yonsei-navy',
-                            isSel && 'border-yonsei-gold ring-2 ring-yonsei-gold/60 ring-offset-1 ring-offset-surface',
-                          )}
-                        >
-                          {course.name}
-                        </button>
-                      );
-                    })}
+                    {cell.map(renderChip)}
                   </div>
                 ))}
               </div>
