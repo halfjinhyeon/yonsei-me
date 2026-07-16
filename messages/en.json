@@ -180,6 +180,10 @@
       "title2": "Mechanical Engineering",
       "tagline": "Find inspiration in everything that moves — Yonsei University."
     },
+    "heroSlideshow": {
+      "title": "Yonsei Mechanical Engineering",
+      "navLabel": "Select a research field"
+    },
     "weAre": {
       "statement": "<c1>Engineering</c1> that moves the world, <c2>people</c2> who design the future",
       "link": "What is mechanical engineering? →"

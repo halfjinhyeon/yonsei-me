@@ -1,13 +1,13 @@
 import { getTranslations, setRequestLocale } from 'next-intl/server';
-import { AnimatedHero } from '@/components/AnimatedHero';
-import { ProgramTabs } from '@/components/ProgramTabs';
+import { HeroSlideshow } from '@/components/HeroSlideshow';
 import { NoticeShowcase } from '@/components/NoticeShowcase';
 import { LabsSection } from '@/components/LabsSection';
 import { NewsEventsSection } from '@/components/NewsEventsSection';
 import { ResearchGallery } from '@/components/ResearchGallery';
-import { programs, pick } from '@/lib/content';
+import { pick } from '@/lib/content';
 import { fetchNews, fetchBoardData } from '@/lib/posts';
 import galleryData from '@content/research-gallery.json';
+import heroSlidesData from '@content/hero-slides.json';
 import { getLabsDirectory } from '@/lib/faculty';
 import type { Locale } from '@/i18n/routing';
 
@@ -44,6 +44,12 @@ export default async function HomePage({ params }: { params: { locale: string } 
     image: g.image,
     images: g.images,
   }));
+
+  // 히어로 슬라이드(content/hero-slides.json) — 로케일 라벨 해석 후 클라이언트로 전달.
+  // 라벨 문구는 research-gallery 와 동일 분야명 재사용(콘텐츠/코드 분리).
+  const heroSlides = (heroSlidesData as { field: string; title: { ko: string; en: string }; image: string }[]).map(
+    (s) => ({ field: s.field, label: pick(s.title, locale), image: s.image }),
+  );
 
   // 공지 쇼케이스 데이터: 학부·대학원 공지를 합쳐 날짜 내림차순, 상위 7건.
   // group 라벨은 기존 board 키를 재사용(신규 메시지 키 금지).
@@ -94,7 +100,11 @@ export default async function HomePage({ params }: { params: { locale: string } 
         className="fixed inset-0 -z-10"
         style={{ backgroundImage: 'linear-gradient(#3f7ad2, #1d4a92)' }}
       >
-        <AnimatedHero />
+        <HeroSlideshow
+          slides={heroSlides}
+          title={t('heroSlideshow.title')}
+          navLabel={t('heroSlideshow.navLabel')}
+        />
       </div>
 
       {/* 콘텐츠 래퍼 — 고정 히어로 위로 슬라이드되어 덮는 흰 판(연구~공지 다섯 섹션).
@@ -110,14 +120,9 @@ export default async function HomePage({ params }: { params: { locale: string } 
           <ResearchGallery items={galleryItems} />
         </div>
 
-        {/* 3. 프로그램 탭 (이미지 스왑 + 학부/대학원) */}
-        <div id="sec-programs" className="scroll-mt-16 lg:scroll-mt-20">
-          <ProgramTabs
-            undergraduate={programs.undergraduate}
-            graduate={programs.graduate}
-            locale={locale}
-          />
-        </div>
+        {/* 3. (구 프로그램 탭 "기계공학부의 체계" 삭제 — 새 디자인 삽입 예정, 현재 공백)
+            컴포넌트 src/components/ProgramTabs.tsx 는 보존되어 있으나 홈에서 미사용.
+            여기에 새 섹션을 넣으면 됨(연구 갤러리 ↔ 연구실 쇼케이스 사이). */}
 
         {/* 4. 연구실 쇼케이스(네이비 라벨 + 마퀴 + 카드 캐러셀) — 풀뷰포트. */}
         <div id="sec-labs" className="scroll-mt-16 lg:scroll-mt-20">

@@ -180,6 +180,10 @@
       "title2": "Mechanical Engineering",
       "tagline": "Find inspiration in everything that moves — Yonsei University."
     },
+    "heroSlideshow": {
+      "title": "연세대학교 기계공학부",
+      "navLabel": "연구 분야 선택"
+    },
     "weAre": {
       "statement": "세상을 움직이는 <c2>공학</c2>, <br></br> 미래를 설계하는 <c2>사람들</c2>",
       "link": "기계공학부란? →"

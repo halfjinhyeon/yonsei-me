@@ -1,0 +1,193 @@
+/* HeroSlideshow — Osmo "crisp-loading" 등장 + "gallery-to-overlay" 텍스트 목록 호버를
+   연세 기계공학부 히어로로 포팅. 슬라이드 current 상태 토글과 :has() 호버 대비는
+   JS 인라인 스타일로 표현하기 까다로워 CSS 모듈로 둔다(레이아웃은 Tailwind 병행). */
+
+.hero {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  color: #fff;
+}
+
+/* --- 슬라이드 스택 (crisp 슬라이드쇼) --- */
+.slides {
+  position: absolute;
+  inset: 0;
+}
+
+/* 각 슬라이드 래퍼 = wipe 트랜스폼 대상(바깥). next/image 와 충돌하지 않도록
+   트랜스폼은 이 래퍼와 안쪽 parallax 래퍼에만 건다(이미지 자체엔 안 건다). */
+.slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  pointer-events: none;
+  will-change: transform;
+}
+.slide.current {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* parallax 안쪽 래퍼 = 반대 방향 트랜스폼(패럴랙스). next/image fill 의 부모. */
+.parallax {
+  position: absolute;
+  inset: 0;
+  will-change: transform;
+}
+.image {
+  object-fit: cover;
+}
+
+/* --- 가독성 스크림 (그림자 금지 → 균일 다크 + 하단 그라디언트) --- */
+.scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  pointer-events: none;
+  background:
+    linear-gradient(to top, rgba(0, 0, 0, 0.55) 0%, rgba(0, 0, 0, 0) 55%),
+    rgba(0, 0, 0, 0.28);
+}
+
+/* --- 중앙 제목 --- */
+.center {
+  position: absolute;
+  inset: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  pointer-events: none;
+}
+.title {
+  margin: 0;
+  text-align: center;
+  color: #fff;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+  font-size: clamp(2rem, 6vw, 5.5rem);
+  /* 그림자 금지(사용자 지시) — 가독성은 스크림으로 확보 */
+}
+/* SplitText mask 리빌이 넘칠 때 클리핑되지 않도록 여유 */
+.title :global(.split-word) {
+  padding: 0.08em 0.04em;
+  margin: -0.08em -0.04em;
+}
+
+/* --- 우측 하단 분야 목록 (gallery-to-overlay) --- */
+.nav {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  z-index: 20;
+  padding: clamp(1rem, 3vw, 2.75rem);
+  max-width: 100%;
+}
+.list {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.1em;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: clamp(1.05rem, 2.6vw, 2.5rem);
+  font-weight: 600;
+  line-height: 1.12;
+}
+.item {
+  transition: opacity 0.2s ease;
+  will-change: opacity;
+}
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35em;
+  padding: 0.04em 0.06em;
+  border: 0;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.72);
+  font: inherit;
+  letter-spacing: -0.01em;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+.btn:hover {
+  color: #fff;
+}
+/* 현재 슬라이드 항목 — 골드 강조 + 굵게 + 앞쪽 점 마커 */
+.current .btn {
+  color: #e6c879;
+  font-weight: 800;
+}
+.dot {
+  width: 0.28em;
+  height: 0.28em;
+  border-radius: 9999px;
+  background: currentColor;
+  opacity: 0;
+  transform: scale(0);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+.current .dot,
+.item:hover .dot {
+  opacity: 1;
+  transform: scale(1);
+}
+/* :has() 호버 — 호버한 항목만 선명, 나머지 흐림(순수 CSS, gallery 규칙 이식) */
+.list:hover:has(.item:hover) .item:not(:hover) {
+  opacity: 0.45;
+}
+.btn:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 4px;
+  border-radius: 3px;
+  color: #fff;
+}
+
+/* --- 등장 로더 (crisp-loading) --- */
+.loader {
+  position: absolute;
+  inset: 0;
+  z-index: 30;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  /* em 단위 타일 크기를 뷰포트에 비례시키되 상·하한을 둔다 */
+  font-size: clamp(9px, 1.4vw, 15px);
+  background-image: linear-gradient(#3f7ad2, #1d4a92);
+}
+.loaderRow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2em;
+}
+.tile {
+  position: relative;
+  flex: 0 0 auto;
+  width: 10em;
+  height: 10em;
+  border-radius: 0.5em;
+  overflow: hidden;
+  will-change: transform;
+}
+/* 중앙에서 풀스크린으로 확대되는 타일 — 확대 후 slide0 배경과 동일 이미지라 매끄럽게 인계 */
+.scaleTile {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 10em;
+  height: 10em;
+  overflow: hidden;
+  will-change: width, height;
+}
+.tileImg {
+  object-fit: cover;
+}
