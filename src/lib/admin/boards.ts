@@ -19,6 +19,7 @@ export interface BoardFile {
   thesis: Notice[];
   career: Notice[];
   resources: Notice[];
+  internships: Notice[];
   alumniEvents: Seminar[];
 }
 
@@ -34,6 +35,7 @@ export type BoardKey =
   | 'thesis'
   | 'career'
   | 'resources'
+  | 'internships'
   | 'alumniNews'
   | 'alumniEvents';
 
@@ -98,6 +100,7 @@ export const BOARDS: BoardMeta[] = [
   { key: 'thesis', label: '학위논문심사', file: 'board.json', idPrefix: 'th-', hasHost: false, hasDateLabel: false, isNews: false },
   { key: 'resources', label: '자료실', file: 'board.json', idPrefix: 'res-', hasHost: false, hasDateLabel: false, isNews: false },
   { key: 'career', label: '취업 정보', file: 'board.json', idPrefix: 'cr-', hasHost: false, hasDateLabel: false, isNews: false },
+  { key: 'internships', label: '인턴 모집', file: 'board.json', idPrefix: 'int-', hasHost: false, hasDateLabel: false, isNews: false },
   { key: 'alumniNews', label: '동문 뉴스', file: 'news.json', idPrefix: '', hasHost: false, hasDateLabel: false, isNews: true, newsFile: 'content/alumni-news.json' },
   { key: 'alumniEvents', label: '동문 소식·네트워크', file: 'board.json', idPrefix: 'ae-', hasHost: true, hasDateLabel: false, isNews: false, hasEventFlag: true },
 ];

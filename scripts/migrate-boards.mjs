@@ -98,6 +98,7 @@ const entries = [
   ...(board.thesis ?? []).map((x) => boardRow(x, 'thesis')),
   ...(board.career ?? []).map((x) => boardRow(x, 'career')),
   ...(board.resources ?? []).map((x) => boardRow(x, 'resources')),
+  ...(board.internships ?? []).map((x) => boardRow(x, 'internships')),
   ...(board.seminars ?? []).map((x) =>
     boardRow(x, 'seminars', { host_ko: x.host?.ko ?? null, host_en: x.host?.en ?? null }),
   ),

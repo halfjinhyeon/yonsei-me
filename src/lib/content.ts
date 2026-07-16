@@ -156,6 +156,7 @@ export const board = boardData as {
   thesis: Notice[];
   career: Notice[];
   resources: Notice[];
+  internships: Notice[];
   alumniEvents: AlumniEvent[];
 };
 
@@ -166,7 +167,7 @@ export interface BoardPost {
   title: Localized;
   body: Localized;
   /** 소속 게시판 (뉴스 탭 key와 동일) */
-  boardKey: 'notices' | 'seminars' | 'events' | 'thesis' | 'career' | 'resources';
+  boardKey: 'notices' | 'seminars' | 'events' | 'thesis' | 'career' | 'resources' | 'internships';
   /** 부가 정보 한 줄 — 세미나 연사, 행사 기간, 공지 구분(학부/대학원) 등 */
   meta?: Localized;
   attachments?: Attachment[];
@@ -215,6 +216,7 @@ export function getAllBoardPosts(): BoardPost[] {
     ...board.thesis.map((t): BoardPost => ({ ...t, boardKey: 'thesis' })),
     ...board.career.map((c): BoardPost => ({ ...c, boardKey: 'career' })),
     ...board.resources.map((r): BoardPost => ({ ...r, boardKey: 'resources' })),
+    ...board.internships.map((n): BoardPost => ({ ...n, boardKey: 'internships' })),
   ];
 }
 

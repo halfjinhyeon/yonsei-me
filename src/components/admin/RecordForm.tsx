@@ -217,6 +217,27 @@ export function RecordForm({
       );
     }
 
+    if (f.kind === 'checkbox') {
+      const checked = form[f.key] === true;
+      return (
+        <label htmlFor={id} className="flex cursor-pointer items-start gap-2.5">
+          <input
+            id={id}
+            type="checkbox"
+            checked={checked}
+            onChange={(e) => setValue(f.key, e.target.checked)}
+            className="mt-0.5 h-4 w-4 shrink-0 accent-yonsei-blue"
+          />
+          <span className="text-sm leading-snug">
+            <span className="font-semibold text-content">{f.label}</span>
+            {f.hint && (
+              <span className="mt-0.5 block text-xs font-normal text-content-faint">{f.hint}</span>
+            )}
+          </span>
+        </label>
+      );
+    }
+
     const str = String(form[f.key] ?? '');
 
     const labelEl = (

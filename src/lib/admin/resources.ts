@@ -9,7 +9,7 @@ import type { BoardKey } from '@/lib/admin/boards';
 // RecordForm 이 다루는 평면 값: 필드 kind 에 따라 문자열 / 한·영 쌍 / 문자열 배열.
 
 export type LocalizedPair = { ko: string; en: string };
-export type FormValue = string | LocalizedPair | string[];
+export type FormValue = string | boolean | LocalizedPair | string[];
 export type FormRecord = Record<string, FormValue>;
 
 export interface SelectOption {
@@ -43,6 +43,7 @@ export type FieldDef =
   | (FieldBase & { kind: 'localized'; multiline?: boolean; rows?: number })
   | (FieldBase & { kind: 'select'; options: SelectOption[]; emptyOptionLabel?: string })
   | (FieldBase & { kind: 'month' })
+  | (FieldBase & { kind: 'checkbox' }) // 불리언 체크박스 (true/false 저장)
   | (FieldBase & { kind: 'image' }) // 경로 문자열 + 미리보기
   | (FieldBase & { kind: 'imageList' }) // 경로 문자열 배열
   // 파일 업로드 → 저장소 커밋 후 공개 URL 을 값으로 저장.
@@ -123,6 +124,8 @@ export function defaultToForm(fields: FieldDef[], raw: unknown): FormRecord {
     } else if (f.kind === 'imageList') {
       const v = r[f.key];
       form[f.key] = Array.isArray(v) ? v.map(String) : [];
+    } else if (f.kind === 'checkbox') {
+      form[f.key] = r[f.key] === true;
     } else {
       const v = r[f.key];
       form[f.key] = v == null ? '' : String(v);
@@ -141,6 +144,8 @@ export function defaultFromForm(fields: FieldDef[], form: FormRecord): Record<st
     } else if (f.kind === 'imageList') {
       const arr = ((form[f.key] ?? []) as string[]).map((s) => s.trim()).filter(Boolean);
       if (arr.length > 0 || f.emptyAs !== 'omit') out[f.key] = arr;
+    } else if (f.kind === 'checkbox') {
+      out[f.key] = form[f.key] === true;
     } else {
       const s = String(form[f.key] ?? '').trim();
       if (s === '') {
@@ -174,6 +179,7 @@ export function validateForm(fields: FieldDef[], form: FormRecord): string | nul
 export function cellText(form: FormRecord, key: string): string {
   const v = form[key];
   if (v == null) return '';
+  if (typeof v === 'boolean') return v ? '예' : '';
   if (typeof v === 'string') return v;
   if (Array.isArray(v)) return v.length > 0 ? `${v.length}개` : '';
   return v.ko || v.en || '';
@@ -445,36 +451,57 @@ const clubs: ResourceDef = {
   summarize: (f) => cellText(f, 'name'),
 };
 
+// 연구실: 인턴 모집 체크박스·인원은 fromForm 에서 후처리하므로 필드를 상수로 분리한다.
+const LABS_FIELDS: FieldDef[] = [
+  { kind: 'text', key: 'nameKo', label: '연구실명 (한국어)', required: true, width: 'half' },
+  { kind: 'text', key: 'nameEn', label: '연구실명 (English)', width: 'half' },
+  { kind: 'text', key: 'professorKo', label: '지도교수 (한국어)', required: true, width: 'half' },
+  { kind: 'text', key: 'professorEn', label: '지도교수 (English)', width: 'half' },
+  { kind: 'text', key: 'location', label: '위치', width: 'half', placeholder: '공학관 N204' },
+  { kind: 'text', key: 'phone', label: '전화', width: 'half', placeholder: '02-2123-0000' },
+  { kind: 'text', key: 'url', label: '연구실 홈페이지 URL', hint: '비우면 링크 없는 카드로 표시됩니다' },
+  { kind: 'image', key: 'image', label: '대표 이미지 경로', emptyAs: 'omit', placeholder: '/img/labs/lab-name.jpg', hint: '비우면 기본 이미지를 순환 사용합니다' },
+  {
+    kind: 'text', key: 'video', label: '소개 영상 URL', emptyAs: 'omit',
+    hint: 'YouTube watch 또는 Google Drive file 링크. 대학원 > 연구실 소개 영상 갤러리에 노출됩니다',
+  },
+  { kind: 'select', key: 'field', label: '연구 분야', required: true, width: 'third', options: FIELD_OPTIONS },
+  {
+    kind: 'checkbox', key: 'internRecruiting', label: '학부 인턴 모집 중', width: 'half',
+    hint: '체크하면 연구실 목록에 "학부 인턴 모집 중" 배지가 붙고, 목록 상단 필터로 모아볼 수 있습니다',
+  },
+  {
+    kind: 'text', key: 'internCount', label: '모집 인원', width: 'half', emptyAs: 'omit', placeholder: '2',
+    hint: '모집 인원 수(숫자만). "학부 인턴 모집 중"일 때만 저장되며, 비우면 인원 없이 배지만 표시됩니다',
+  },
+];
+
 const labs: ResourceDef = {
   key: 'labs',
   label: '연구실 · 소개 영상',
   description:
-    '연구 메뉴의 연구실 목록과 대학원 > 연구실 탭의 소개 영상 갤러리에 반영됩니다. 소개 영상 URL을 채우면 영상 갤러리에 노출됩니다.',
+    '연구 메뉴의 연구실 목록과 대학원 > 연구실 탭의 소개 영상 갤러리에 반영됩니다. 소개 영상 URL을 채우면 영상 갤러리에 노출됩니다. "학부 인턴 모집 중"을 체크하면 연구실 목록에 배지가 표시됩니다.',
   file: 'content/labs-directory.json',
   format: 'array',
   listColumns: [
     { key: 'nameKo', label: '연구실명' },
     { key: 'professorKo', label: '지도교수' },
     { key: 'field', label: '분야' },
-    { key: 'video', label: '영상' },
+    { key: 'internRecruiting', label: '인턴 모집' },
   ],
   searchKeys: ['nameKo', 'nameEn', 'professorKo', 'professorEn'],
-  fields: [
-    { kind: 'text', key: 'nameKo', label: '연구실명 (한국어)', required: true, width: 'half' },
-    { kind: 'text', key: 'nameEn', label: '연구실명 (English)', width: 'half' },
-    { kind: 'text', key: 'professorKo', label: '지도교수 (한국어)', required: true, width: 'half' },
-    { kind: 'text', key: 'professorEn', label: '지도교수 (English)', width: 'half' },
-    { kind: 'text', key: 'location', label: '위치', width: 'half', placeholder: '공학관 N204' },
-    { kind: 'text', key: 'phone', label: '전화', width: 'half', placeholder: '02-2123-0000' },
-    { kind: 'text', key: 'url', label: '연구실 홈페이지 URL', hint: '비우면 링크 없는 카드로 표시됩니다' },
-    { kind: 'image', key: 'image', label: '대표 이미지 경로', emptyAs: 'omit', placeholder: '/img/labs/lab-name.jpg', hint: '비우면 기본 이미지를 순환 사용합니다' },
-    {
-      kind: 'text', key: 'video', label: '소개 영상 URL', emptyAs: 'omit',
-      hint: 'YouTube watch 또는 Google Drive file 링크. 대학원 > 연구실 소개 영상 갤러리에 노출됩니다',
-    },
-    { kind: 'select', key: 'field', label: '연구 분야', required: true, width: 'third', options: FIELD_OPTIONS },
-  ],
+  fields: LABS_FIELDS,
   orderable: true,
+  fromForm: (form) => {
+    const out = defaultFromForm(LABS_FIELDS, form);
+    // 모집 인원: 숫자로 저장. "모집 중"이 아니거나 값이 없으면 생략한다.
+    const n = parseInt(String(form.internCount ?? '').trim(), 10);
+    if (out.internRecruiting === true && Number.isFinite(n) && n > 0) out.internCount = n;
+    else delete out.internCount;
+    // 모집 중이 아니면 플래그 자체를 생략(JSON 최소화 — 기본값 false)
+    if (out.internRecruiting !== true) delete out.internRecruiting;
+    return out;
+  },
   summarize: (f) => cellText(f, 'nameKo'),
 };
 
@@ -569,6 +596,7 @@ export const MENU_GROUPS: MenuGroup[] = [
     entries: [
       { type: 'collection', resourceKey: 'clubs' },
       { type: 'collection', resourceKey: 'labs' },
+      { type: 'board', boardKey: 'internships' },
     ],
   },
   {

@@ -54,6 +54,7 @@ export const menu: MenuGroup[] = [
       { key: 'vision', href: '/research#vision' },
       { key: 'capacity', href: '/research#capacity' },
       { key: 'labs', href: '/research#labs' },
+      { key: 'internships', href: '/research#internships' },
       { key: 'social', href: '/research#social' },
     ],
   },

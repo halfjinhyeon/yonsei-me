@@ -28,6 +28,7 @@ export function LabList({ items }: { items: LabDirectoryEntry[] }) {
   const t = useTranslations('research');
   const [filter, setFilter] = useState<Filter>('all');
   const [query, setQuery] = useState('');
+  const [internOnly, setInternOnly] = useState(false);
 
   // 홈 연구 분야 갤러리에서 /research?field=<분야>#labs 로 진입 시 해당 분야로 초기 필터.
   // (정적 페이지 유지를 위해 useSearchParams 대신 window 로 읽는다.)
@@ -45,17 +46,21 @@ export function LabList({ items }: { items: LabDirectoryEntry[] }) {
     return map;
   }, [items]);
 
-  // 분야 필터 + 검색어(연구실명·교수명 한/영, 대소문자 무시) AND 결합
+  // 학부 인턴 모집 중인 연구실 수 (상단 필터 노출·배지 카운트용)
+  const internTotal = useMemo(() => items.filter((lab) => lab.internRecruiting).length, [items]);
+
+  // 분야 필터 + 인턴 모집 필터 + 검색어(연구실명·교수명 한/영, 대소문자 무시) AND 결합
   const visible = useMemo(() => {
-    const byField = filter === 'all' ? items : items.filter((lab) => lab.field === filter);
+    let list = filter === 'all' ? items : items.filter((lab) => lab.field === filter);
+    if (internOnly) list = list.filter((lab) => lab.internRecruiting);
     const q = query.trim().toLowerCase();
-    if (!q) return byField;
-    return byField.filter((lab) =>
+    if (!q) return list;
+    return list.filter((lab) =>
       [lab.nameKo, lab.nameEn, lab.professorKo, lab.professorEn]
         .filter(Boolean)
         .some((v) => v!.toLowerCase().includes(q)),
     );
-  }, [items, filter, query]);
+  }, [items, filter, query, internOnly]);
 
   return (
     <div>
@@ -84,30 +89,60 @@ export function LabList({ items }: { items: LabDirectoryEntry[] }) {
         />
       </div>
 
-      {/* 연구실 검색 — 연구실명·교수명 (BoardFilterBar 와 동일한 돋보기 입력 패턴) */}
-      <div className="mb-6 sm:max-w-xs">
-        <label htmlFor="lab-search" className="sr-only">
-          {t('search.labs')}
-        </label>
-        <div className="relative">
-          <span
-            aria-hidden="true"
-            className="pointer-events-none absolute inset-y-0 left-3 grid place-items-center text-content-faint"
-          >
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <circle cx="11" cy="11" r="7" />
-              <path d="m21 21-4.3-4.3" strokeLinecap="round" />
-            </svg>
-          </span>
-          <input
-            id="lab-search"
-            type="search"
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-            placeholder={t('search.labs')}
-            className="w-full rounded-lg border border-surface-border bg-surface py-2 pl-9 pr-3 text-sm text-content transition-colors placeholder:text-content-faint focus:border-yonsei-blue focus:outline-none"
-          />
+      {/* 연구실 검색 + 학부 인턴 모집 필터 — 한 줄(좁은 화면은 세로 스택) */}
+      <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+        <div className="sm:w-72">
+          <label htmlFor="lab-search" className="sr-only">
+            {t('search.labs')}
+          </label>
+          <div className="relative">
+            <span
+              aria-hidden="true"
+              className="pointer-events-none absolute inset-y-0 left-3 grid place-items-center text-content-faint"
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <circle cx="11" cy="11" r="7" />
+                <path d="m21 21-4.3-4.3" strokeLinecap="round" />
+              </svg>
+            </span>
+            <input
+              id="lab-search"
+              type="search"
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              placeholder={t('search.labs')}
+              className="w-full rounded-lg border border-surface-border bg-surface py-2 pl-9 pr-3 text-sm text-content transition-colors placeholder:text-content-faint focus:border-yonsei-blue focus:outline-none"
+            />
+          </div>
         </div>
+
+        {/* 학부 인턴 모집 중인 연구실만 보기 — 모집 연구실이 있을 때만 노출 */}
+        {internTotal > 0 && (
+          <label
+            className={cn(
+              'inline-flex shrink-0 cursor-pointer select-none items-center gap-2 rounded-full border px-3.5 py-2 text-sm font-semibold transition-colors focus-within:ring-2 focus-within:ring-emerald-500/40',
+              internOnly
+                ? 'border-emerald-500 bg-emerald-50 text-emerald-800 dark:bg-emerald-950/40 dark:text-emerald-200'
+                : 'border-surface-border text-content-soft hover:border-emerald-500/60 hover:text-content',
+            )}
+          >
+            <input
+              type="checkbox"
+              checked={internOnly}
+              onChange={(e) => setInternOnly(e.target.checked)}
+              className="h-4 w-4 accent-emerald-600"
+            />
+            {t('intern.filter')}
+            <span
+              className={cn(
+                'text-xs font-medium tabular-nums',
+                internOnly ? 'text-emerald-700 dark:text-emerald-300' : 'text-content-faint',
+              )}
+            >
+              {internTotal}
+            </span>
+          </label>
+        )}
       </div>
 
       {visible.length === 0 ? (
@@ -165,6 +200,17 @@ export function LabList({ items }: { items: LabDirectoryEntry[] }) {
                         {lab.nameEn}
                       </span>
                     </>
+                  )}
+                  {lab.internRecruiting && (
+                    <span className="mt-2.5 inline-flex items-center gap-1.5 rounded-full bg-emerald-50 px-2.5 py-1 text-xs font-semibold text-emerald-700 dark:bg-emerald-950/40 dark:text-emerald-300">
+                      <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
+                      {t('intern.badge')}
+                      {lab.internCount ? (
+                        <span className="font-medium text-emerald-600 dark:text-emerald-400">
+                          · {t('intern.count', { n: lab.internCount })}
+                        </span>
+                      ) : null}
+                    </span>
                   )}
                 </td>
                 <td className="px-3 py-5 align-top">

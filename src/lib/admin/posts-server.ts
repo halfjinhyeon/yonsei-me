@@ -103,7 +103,7 @@ export interface AdminPostPayload {
 const BOARDS = new Set([
   'noticesUndergrad', 'noticesGraduate', 'noticesExternal', 'noticesScholarship',
   'news', 'seminars', 'events',
-  'thesis', 'resources', 'career', 'alumniNews', 'alumniEvents',
+  'thesis', 'resources', 'career', 'internships', 'alumniNews', 'alumniEvents',
 ]);
 
 export function isValidBoard(board: string): boolean {

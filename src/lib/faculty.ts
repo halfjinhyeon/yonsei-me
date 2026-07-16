@@ -64,6 +64,10 @@ export interface LabDirectoryEntry {
   video?: string;
   /** 6개 연구 분야 중 하나 (분야 필터용) */
   field: ResearchField;
+  /** 학부 인턴 모집 여부 — 연구실 목록의 "학부 인턴 모집 중" 배지 + 상단 필터에 사용 */
+  internRecruiting?: boolean;
+  /** 학부 인턴 모집 인원 (모집 중일 때만 의미). 없으면 인원 미표기 */
+  internCount?: number;
 }
 
 function readJson<T>(name: string): T {

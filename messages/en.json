@@ -62,6 +62,7 @@
         "vision": "Research Vision",
         "capacity": "Research Capacity",
         "labs": "Laboratories",
+        "internships": "Intern Positions",
         "social": "Social Challenge Board"
       }
     },
@@ -284,6 +285,7 @@
       "hint": "Swipe through the cards and pick a field to explore its labs",
       "cta": "Explore labs in this field",
       "back": "Back to list",
+      "close": "Close",
       "scroll": "Scroll to explore",
       "prev": "Previous field",
       "next": "Next field"
@@ -407,6 +409,11 @@
       "courses": "Search by course name or code",
       "labs": "Search labs or professors",
       "empty": "No results found. Try a different search term."
+    },
+    "intern": {
+      "badge": "Recruiting undergrad interns",
+      "count": "{n} openings",
+      "filter": "Recruiting interns"
     },
     "kinds": {
       "required": "Major Required",

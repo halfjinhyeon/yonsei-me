@@ -215,6 +215,7 @@ export async function fetchBoardData(): Promise<typeof gitBoard> {
     thesis: byDateDesc(of('thesis').map(toNotice)),
     career: byDateDesc(of('career').map(toNotice)),
     resources: byDateDesc(of('resources').map(toNotice)),
+    internships: byDateDesc(of('internships').map(toNotice)),
     alumniEvents: byDateDesc(of('alumniEvents').map(toAlumniEvent)),
   };
 }
@@ -251,6 +252,7 @@ export async function fetchAllBoardPosts(): Promise<BoardPost[]> {
     ...b.thesis.map((t): BoardPost => ({ ...t, boardKey: 'thesis' })),
     ...b.career.map((c): BoardPost => ({ ...c, boardKey: 'career' })),
     ...b.resources.map((r): BoardPost => ({ ...r, boardKey: 'resources' })),
+    ...b.internships.map((n): BoardPost => ({ ...n, boardKey: 'internships' })),
   ];
 }
 

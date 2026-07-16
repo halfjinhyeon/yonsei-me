@@ -27,6 +27,18 @@ async function getNewsTabs(locale: Locale): Promise<BoardShellTab[]> {
   ];
 }
 
+// 인턴 모집 상세는 연구 메뉴 소속 — 연구 탭(비전·역량·연구실·인턴·신문고)으로 셸을 구성
+async function getResearchTabs(locale: Locale): Promise<BoardShellTab[]> {
+  const tMenu = await getTranslations({ locale, namespace: 'menu' });
+  return [
+    { key: 'vision', label: tMenu('research.items.vision') },
+    { key: 'capacity', label: tMenu('research.items.capacity') },
+    { key: 'labs', label: tMenu('research.items.labs') },
+    { key: 'internships', label: tMenu('research.items.internships') },
+    { key: 'social', label: tMenu('research.items.social') },
+  ];
+}
+
 export async function generateMetadata({
   params,
 }: {
@@ -61,18 +73,25 @@ export default async function BoardPostPage({
     );
   }
 
-  const boardName = tMenu(`news.items.${post.boardKey}`);
-  const tabs = await getNewsTabs(locale);
+  // 인턴 모집은 연구 메뉴 소속 — 브레드크럼·목록 링크·셸을 연구 컨텍스트로 전환한다.
+  const isResearch = post.boardKey === 'internships';
+  const tResearch = await getTranslations({ locale, namespace: 'research' });
+  const boardName = isResearch
+    ? tMenu('research.items.internships')
+    : tMenu(`news.items.${post.boardKey}`);
+  const tabs = isResearch ? await getResearchTabs(locale) : await getNewsTabs(locale);
+  const sectionLabel = isResearch ? tMenu('research.label') : tMenu('news.label');
+  const sectionHref = isResearch ? '/research' : '/news';
   const author = post.meta ? pick(post.meta, locale) : t('detail.defaultAuthor');
 
   return (
     <>
       <Hero
-        title={t('hero.title')}
-        subtitle={t('hero.subtitle')}
-        breadcrumb={[{ label: tMenu('news.label'), href: '/news' }, { label: boardName }]}
+        title={isResearch ? tResearch('hero.title') : t('hero.title')}
+        subtitle={isResearch ? tResearch('hero.subtitle') : t('hero.subtitle')}
+        breadcrumb={[{ label: sectionLabel, href: sectionHref }, { label: boardName }]}
       />
-      <BoardShell tabs={tabs} activeKey={post.boardKey} navTitle={tMenu('news.label')}>
+      <BoardShell tabs={tabs} activeKey={post.boardKey} navTitle={sectionLabel} basePath={sectionHref}>
         <PostArticle
           boardName={boardName}
           title={pick(post.title, locale)}
@@ -82,7 +101,7 @@ export default async function BoardPostPage({
           bodyFormat={postsBodyFormat()}
           attachments={post.attachments}
           attachmentLabels={post.attachments?.map((a) => pick(a.label, locale))}
-          backHref={`/news#${post.boardKey}`}
+          backHref={`${sectionHref}#${post.boardKey}`}
           labels={{
             title: t('detail.titleLabel'),
             date: t('detail.dateLabel'),
