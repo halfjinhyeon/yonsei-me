@@ -189,7 +189,7 @@
       "tagline3": "글로벌 사회에 유익한 가치를 창출하는 인재 양성"
     },
     "instagram": {
-      "tagline": "기계공학부의 순간들 — 인스타그램에서 만나보세요",
+      "tagline": "CONNECT TO INSTAGRAM",
       "follow": "팔로우하기",
       "external": "새 창에서 인스타그램 열기"
     },
@@ -541,17 +541,16 @@
     "busTitle": "버스 노선"
   },
   "footer": {
-    "address": "서울특별시 서대문구 연세로 50 연세대학교 제4공학관",
-    "tel": "대표전화",
-    "quickLinks": "바로가기",
-    "related": "관련 링크",
+    "brandRoman": "YONSEI UNIVERSITY",
+    "address": "[03722] 서울특별시 서대문구 연세로 50 연세대학교 공과대학 기계공학부",
+    "phones": "대학원: 02-2123-2810 / 학부: 02-2123-4426 / BK21: 02-2123-7817, 02-2123-7815",
+    "privacy": "개인정보처리방침",
+    "legal": "법적고지",
     "sitemap": "사이트맵",
-    "university": "연세대학교",
-    "engineering": "공과대학",
-    "portal": "학사포털",
-    "library": "학술정보원",
-    "copyright": "연세대학교 기계공학부. All rights reserved.",
-    "tagline": "세상을 움직이는 공학, \n미래를 설계하는 사람들"
+    "relatedSites": "관련 사이트",
+    "relatedSitesOpen": "관련 사이트 목록 열기",
+    "siteExternal": "새 창에서 열기",
+    "copyright": "연세대학교 기계공학부. All rights reserved."
   },
   "breadcrumb": {
     "home": "홈"

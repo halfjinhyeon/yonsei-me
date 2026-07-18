@@ -224,6 +224,15 @@
   .prose-wide ol {
     @apply max-w-none;
   }
+
+  /* 대학원 졸업요건 STEP 본문(step-prose) — 마크다운 인용구를 '유의사항' 콜아웃 박스로
+     렌더한다(좌측 블루 룰 + 옅은 면). 인용구 첫 단락의 **유의사항** 이 박스 제목 역할. */
+  .prose-content.step-prose blockquote {
+    @apply my-8 max-w-none space-y-2 border-l-2 border-yonsei-blue bg-surface-soft px-6 py-5;
+  }
+  .prose-content.step-prose blockquote p {
+    @apply m-0 max-w-none text-base leading-relaxed text-content;
+  }
 }
 
 @layer utilities {
@@ -333,8 +342,10 @@
     from { opacity: 0; transform: translateY(10px); }
     to { opacity: 1; transform: translateY(0); }
   }
+  /* fill 을 두지 않는다(종료 키프레임 = 기본 상태라 시각 차이 없음). forwards 로 남는
+     transform 이 패널 내부 sticky(졸업요건 STEP 목차)의 고정을 깨뜨릴 수 있다. */
   .anim-panel {
-    animation: panelFadeUp 0.35s ease-out forwards;
+    animation: panelFadeUp 0.35s ease-out;
   }
 
   .anim-hero-title {

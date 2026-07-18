@@ -189,7 +189,7 @@
       "tagline3": "Nurturing talent that creates value for global society"
     },
     "instagram": {
-      "tagline": "Moments from Yonsei ME — follow us on Instagram",
+      "tagline": "CONNECT TO INSTAGRAM",
       "follow": "Follow",
       "external": "Open Instagram in a new window"
     },
@@ -541,17 +541,16 @@
     "busTitle": "Bus Routes"
   },
   "footer": {
-    "address": "4th Engineering Hall, Yonsei University, 50 Yonsei-ro, Seodaemun-gu, Seoul, Korea",
-    "tel": "Tel",
-    "quickLinks": "Quick Links",
-    "related": "Related",
+    "brandRoman": "YONSEI UNIVERSITY",
+    "address": "[03722] Dept. of Mechanical Engineering, College of Engineering, Yonsei University, 50 Yonsei-ro, Seodaemun-gu, Seoul, Korea",
+    "phones": "Graduate: 02-2123-2810 / Undergraduate: 02-2123-4426 / BK21: 02-2123-7817, 02-2123-7815",
+    "privacy": "Privacy Policy",
+    "legal": "Legal Notice",
     "sitemap": "Site Map",
-    "university": "Yonsei University",
-    "engineering": "College of Engineering",
-    "portal": "Academic Portal",
-    "library": "Library",
-    "copyright": "School of Mechanical Engineering, Yonsei University. All rights reserved.",
-    "tagline": "Engineering that moves the world, people who design the future"
+    "relatedSites": "Related Sites",
+    "relatedSitesOpen": "Open the related-sites list",
+    "siteExternal": "opens in a new tab",
+    "copyright": "School of Mechanical Engineering, Yonsei University. All rights reserved."
   },
   "breadcrumb": {
     "home": "Home"

@@ -82,7 +82,7 @@ export function EditorialShowcaseItems({
               (금색 마침표 삭제 — 금색 배제) */}
           <h4
             data-goal-keyword
-            className="mt-3 text-[clamp(2rem,5.5vw,4.25rem)] font-black leading-[1.05] tracking-tight text-yonsei-navy"
+            className="mt-3 text-[clamp(1.8rem,4.95vw,3.825rem)] font-black leading-[1.05] tracking-tight text-yonsei-navy"
           >
             {item.title.en}
           </h4>

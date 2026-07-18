@@ -5,7 +5,7 @@ import { TabbedContent, type TabItem } from '@/components/TabbedContent';
 import { getPageMarkdown } from '@/lib/pages';
 import { getLabsDirectory } from '@/lib/faculty';
 import { LabVideoGallery } from '@/components/LabVideoGallery';
-import { EditorialProse } from '@/components/EditorialProse';
+import { GraduateRequirementSteps } from '@/components/GraduateRequirementSteps';
 import {
   CourseCatalog,
   type CatalogColumn,
@@ -55,9 +55,9 @@ export default async function GraduatePage({ params }: { params: { locale: strin
       key === 'labs' ? (
         <LabVideoGallery items={getLabsDirectory()} locale={params.locale as Locale} />
       ) : key === 'requirements' ? (
-        // 졸업 요건 — 밋밋한 기본 Prose 대신 에디토리얼 섹션(네이비 라벨 박스 +
-        // 풀폭 문단 + 배경 실선 도형)으로 렌더
-        <EditorialProse markdown={getPageMarkdown('graduate-requirements') ?? ''} />
+        // 졸업 요건 — STEP 스크롤 문법: 좌측 sticky 단계 목차(스크롤스파이) +
+        // 좌우 교대 STEP 헤더 + 유의사항 콜아웃 (나열식 EditorialProse 대체)
+        <GraduateRequirementSteps markdown={getPageMarkdown('graduate-requirements') ?? ''} />
       ) : key === 'courses' ? (
         <CourseCatalog
           courses={coursesGraduate as CatalogCourse[]}

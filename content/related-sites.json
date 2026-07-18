@@ -1,0 +1,7 @@
+[
+  { "label": { "ko": "연세대학교", "en": "Yonsei University" }, "href": "https://www.yonsei.ac.kr" },
+  { "label": { "ko": "연세대학교 공과대학", "en": "College of Engineering" }, "href": "https://engineering.yonsei.ac.kr" },
+  { "label": { "ko": "연세포털서비스", "en": "Yonsei Portal" }, "href": "https://portal.yonsei.ac.kr" },
+  { "label": { "ko": "학술정보원", "en": "Yonsei University Library" }, "href": "https://library.yonsei.ac.kr" },
+  { "label": { "ko": "LearnUs", "en": "LearnUs" }, "href": "https://www.learnus.org" }
+]

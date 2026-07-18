@@ -88,9 +88,16 @@ function groupInfo(c: CatalogCourse): { order: number; label: string } {
   };
 }
 
+/** '2, 3, 4'·'3 & 4' 같은 복수 값 문자열에 선택 학년/학기가 포함되는지 — 숫자 나열 파싱 */
+function matchesNum(raw: string | undefined, sel: string): boolean {
+  if (sel === 'all') return true;
+  return (raw ?? '').match(/\d+/g)?.includes(sel) ?? false;
+}
+
 /**
  * 교과목 편람 표. 상단 언더라인 탭(전체 + 6개 분야, 건수 배지)으로 분야를 필터링하는
- * 에디토리얼 표(굵은 상단 룰 + 헤어라인, 헤더 셀만 옅은 면색). 기초/공통 과목
+ * 에디토리얼 표(굵은 상단 룰 + 헤어라인, 헤더 셀만 옅은 면색). 탭 아래 학년·학기
+ * select(데이터에 있을 때만)와 과목명·학정번호 검색으로 함께 좁힌다. 기초/공통 과목
  * (field: null)은 '전체'에서만 보이고, 필터 전환 시 tbody 리마운트로 행 스태거
  * 등장을 재생한다 (교수진 탭 FacultyDirectoryGrid 패턴).
  */
@@ -113,6 +120,8 @@ export function CourseCatalog({
   const t = useTranslations('research');
   const [filter, setFilter] = useState<Filter>('all');
   const [query, setQuery] = useState('');
+  const [year, setYear] = useState('all');
+  const [semester, setSemester] = useState('all');
 
   const counts = useMemo(() => {
     const map = { all: courses.length } as Record<Filter, number>;
@@ -121,15 +130,40 @@ export function CourseCatalog({
     return map;
   }, [courses]);
 
-  // 분야 필터 + 검색어(과목명·학정번호, 대소문자 무시) AND 결합
+  // select 옵션 — 데이터에 실제 존재하는 학년/학기만(복수 값 문자열 분해). 비면 미노출.
+  const yearOptions = useMemo(() => {
+    const s = new Set<string>();
+    for (const c of courses) for (const n of (c.year ?? '').match(/\d+/g) ?? []) s.add(n);
+    return [...s].sort((a, b) => Number(a) - Number(b));
+  }, [courses]);
+  const semesterOptions = useMemo(() => {
+    const s = new Set<string>();
+    for (const c of courses) {
+      const raw = (c.semester ?? '').trim();
+      // 복수 값 학기('2, 3, 4' 등)는 전학년 공통(개설 학기 구분 없음) — 옵션에 기여하지 않는다
+      if (/[,&]/.test(raw)) continue;
+      for (const n of raw.match(/\d+/g) ?? []) s.add(n);
+    }
+    return [...s].sort((a, b) => Number(a) - Number(b));
+  }, [courses]);
+
+  // 분야 필터 + 학년·학기 + 검색어(과목명·학정번호, 대소문자 무시) AND 결합
   const visible = useMemo(() => {
-    const byField = filter === 'all' ? courses : courses.filter((c) => c.field === filter);
+    let rows = filter === 'all' ? courses : courses.filter((c) => c.field === filter);
+    rows = rows.filter(
+      (c) =>
+        matchesNum(c.year, year) &&
+        // 복수 값 학기(전학년 공통)는 어느 학기를 골라도 노출 — groupInfo 해석과 동일
+        (semester === 'all' ||
+          /[,&]/.test((c.semester ?? '').trim()) ||
+          matchesNum(c.semester, semester)),
+    );
     const q = query.trim().toLowerCase();
-    if (!q) return byField;
-    return byField.filter(
+    if (!q) return rows;
+    return rows.filter(
       (c) => c.name.toLowerCase().includes(q) || c.code.toLowerCase().includes(q),
     );
-  }, [courses, filter, query]);
+  }, [courses, filter, query, year, semester]);
 
   // grouped 변형: 필터·검색을 통과한 과목을 그룹 기준(학기/분야)으로 묶어 정렬
   const groups = useMemo(() => {
@@ -182,12 +216,52 @@ export function CourseCatalog({
         />
       </div>
 
-      {/* 과목 검색 — 과목명·학정번호 (BoardFilterBar 와 동일한 돋보기 입력 패턴) */}
-      <div className="mb-6 sm:max-w-xs">
-        <label htmlFor="course-search" className="sr-only">
-          {t('search.courses')}
-        </label>
-        <div className="relative">
+      {/* 필터 행 — 학년·학기 select(데이터 존재 시) + 과목 검색(과목명·학정번호, BoardFilterBar 돋보기 입력 패턴) */}
+      <div className="mb-6 flex flex-wrap items-center gap-2">
+        {yearOptions.length > 0 && (
+          <>
+            <label htmlFor="course-year" className="sr-only">
+              학년 필터
+            </label>
+            <select
+              id="course-year"
+              value={year}
+              onChange={(e) => setYear(e.target.value)}
+              className="rounded-lg border border-surface-border bg-surface px-3 py-2 text-sm text-content transition-colors focus:border-yonsei-blue focus:outline-none"
+            >
+              <option value="all">전체 학년</option>
+              {yearOptions.map((n) => (
+                <option key={n} value={n}>
+                  {n}학년
+                </option>
+              ))}
+            </select>
+          </>
+        )}
+        {semesterOptions.length > 0 && (
+          <>
+            <label htmlFor="course-semester" className="sr-only">
+              학기 필터
+            </label>
+            <select
+              id="course-semester"
+              value={semester}
+              onChange={(e) => setSemester(e.target.value)}
+              className="rounded-lg border border-surface-border bg-surface px-3 py-2 text-sm text-content transition-colors focus:border-yonsei-blue focus:outline-none"
+            >
+              <option value="all">전체 학기</option>
+              {semesterOptions.map((n) => (
+                <option key={n} value={n}>
+                  {n}학기
+                </option>
+              ))}
+            </select>
+          </>
+        )}
+        <div className="relative w-full sm:max-w-xs">
+          <label htmlFor="course-search" className="sr-only">
+            {t('search.courses')}
+          </label>
           <span
             aria-hidden="true"
             className="pointer-events-none absolute inset-y-0 left-3 grid place-items-center text-content-faint"
@@ -213,14 +287,14 @@ export function CourseCatalog({
         <div className="flex flex-col items-center gap-5 rounded-card border border-surface-border bg-surface-soft px-6 py-20 text-center">
           <span aria-hidden="true" className="eagle-mask h-20 w-20 bg-yonsei-blue/35" />
           <p className="max-w-sm text-content-soft">
-            {query.trim() ? t('search.empty') : emptyLabel}
+            {query.trim() || year !== 'all' || semester !== 'all' ? t('search.empty') : emptyLabel}
           </p>
         </div>
       ) : grouped ? (
         /* ── 학년·학기 그룹 에디토리얼 표(홍익대 레퍼런스) ──
            대형 그룹 제목 + 종별 범례(배지) / 널찍한 행(과목명 볼드 + 학정번호 보조),
-           종별은 원형 배지. key={filter+query} 리마운트로 행 스태거 재생. */
-        <div key={`${filter}-${query}`} className="space-y-16">
+           종별은 원형 배지. key={filter+query+year+semester} 리마운트로 행 스태거 재생. */
+        <div key={`${filter}-${query}-${year}-${semester}`} className="space-y-16">
           {groups.map((g) => (
             <section key={g.label} aria-label={g.label}>
               <div className="flex flex-wrap items-end justify-between gap-x-6 gap-y-2">
@@ -242,8 +316,8 @@ export function CourseCatalog({
                 )}
               </div>
 
-              <div className="mt-4 overflow-x-auto">
-                <table className="w-full border-collapse text-sm">
+              {/* 이름 칸이 줄바꿈되는 좁은 4열 표 — 스크롤 래퍼 없이도 안 넘친다(불필요 스크롤바 방지) */}
+              <table className="mt-4 w-full border-collapse text-sm">
                   <thead>
                     <tr className="border-b border-t-2 border-surface-border border-t-yonsei-navy">
                       <th className="py-3 pr-4 text-left text-xs font-bold text-content-faint">
@@ -254,7 +328,8 @@ export function CourseCatalog({
                           {colLabel('kind')}
                         </th>
                       )}
-                      <th className="w-16 px-2 py-3 text-center text-xs font-bold text-content-faint">
+                      {/* 학점 헤더는 대학원 '학점(Credits)'처럼 길어도 한 줄 유지(줄바꿈 방지) */}
+                      <th className="w-20 whitespace-nowrap px-2 py-3 text-center text-xs font-bold text-content-faint">
                         {colLabel('credits')}
                       </th>
                       {hasHours && (
@@ -302,8 +377,7 @@ export function CourseCatalog({
                       );
                     })}
                   </tbody>
-                </table>
-              </div>
+              </table>
             </section>
           ))}
         </div>

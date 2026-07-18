@@ -1,4 +1,4 @@
-/* HeroSlideshow — Osmo "crisp-loading" 등장 + "gallery-to-overlay" 텍스트 목록 호버를
+/* HeroSlideshow — Osmo "crisp-slideshow" 전환 + "gallery-to-overlay" 텍스트 목록 호버를
    연세 기계공학부 히어로로 포팅. 슬라이드 current 상태 토글과 :has() 호버 대비는
    JS 인라인 스타일로 표현하기 까다로워 CSS 모듈로 둔다(레이아웃은 Tailwind 병행). */
 
@@ -97,11 +97,6 @@
   line-height: 1.45;
   font-size: clamp(1.05rem, 1.8vw, 1.45rem);
   will-change: transform;
-}
-/* SplitText mask 리빌이 넘칠 때 클리핑되지 않도록 여유 */
-.title :global(.split-word) {
-  padding: 0.08em 0.04em;
-  margin: -0.08em -0.04em;
 }
 
 /* --- 우측 하단 분야 목록 (gallery-to-overlay) --- */
@@ -249,7 +244,7 @@
   }
 }
 
-/* --- 하단 진행 바 — 다음 슬라이드까지 남은 시간(5초)을 좌→우로 채워 표시.
+/* --- 하단 진행 바 — 다음 슬라이드까지 남은 시간(6.5초)을 좌→우로 채워 표시.
    레퍼런스(hicoda) 하단 오렌지 바의 블루 버전. 전환 타이밍과 정확히 동기
    (바 트윈 완료가 곧 전환 트리거). --- */
 .progressTrack {
@@ -267,69 +262,5 @@
   background: #5c9fe6;
   transform: scaleX(0);
   transform-origin: left center;
-  will-change: transform;
-}
-
-/* --- 등장 로더 (crisp-loading) ---
-   body 로 portal 되므로 position:fixed + 매우 높은 z-index 로 헤더(z-50)까지 덮는다.
-   배경 그라디언트는 #sec-hero 래퍼와 동일하게 맞춰, 로더가 걷힐 때 배경이 튀지 않는다. */
-.loader {
-  position: fixed;
-  inset: 0;
-  z-index: 9999;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  /* em 단위 타일 크기를 뷰포트에 비례시키되 상·하한을 둔다 */
-  font-size: clamp(9px, 1.4vw, 15px);
-  background-image: linear-gradient(#3f7ad2, #1d4a92);
-}
-/* 중앙 창(원본 .crisp-loader__groups) — 폭 = main 열 폭(6×12em=72em), flex 로 항상
-   화면 중앙. 마스크가 ① 창 밖(대기 중·dup 열)을 숨기고 ② 창 가장자리 5em 페이드를
-   만든다(원본의 overflow:hidden + fade 요소 등가 — 그라디언트 배경 위에서도 동작).
-   확대 시 박스가 콘텐츠와 함께 커지므로 마스크 가장자리는 화면 밖으로 밀려나
-   자연히 사라진다. */
-.groups {
-  position: relative;
-  will-change: transform;
-  -webkit-mask-image: linear-gradient(90deg, transparent, #000 5em, #000 calc(100% - 5em), transparent);
-  mask-image: linear-gradient(90deg, transparent, #000 5em, #000 calc(100% - 5em), transparent);
-  -webkit-mask-repeat: no-repeat;
-  mask-repeat: no-repeat;
-}
-/* 선두 열(원본 is--duplicate) — absolute 라 창 폭에 기여하지 않고, 기차의 앞칸 역할만 */
-.groupDup {
-  position: absolute;
-  top: 0;
-  left: 0;
-  display: flex;
-}
-/* 정착 열(원본 is--relative) — left:100% 오프셋이 xPercent -600 종착값과 정확히 상쇄되어
-   창을 꽉 채운 채 멈춘다(확대 중에도 양쪽 다 pitch 에 비례해 계속 상쇄됨). */
-.groupMain {
-  position: relative;
-  left: 100%;
-  display: flex;
-}
-/* 타일 래퍼(원본 __single) = 스윕 트랜스폼 대상. 패딩 1.3em 포함 피치 12.6em
-   (사용자 지시: 사진 간격 1.3배 — 간격 2em → 2.6em). JS 쪽 반-피치 오프셋은
-   런타임 측정이라 이 값을 바꿔도 자동 적응한다. */
-.single {
-  flex: 0 0 auto;
-  padding: 0 1.3em;
-  will-change: transform;
-}
-/* 타일(원본 __media) = 확대 트윈 대상(width/height). */
-.media {
-  position: relative;
-  width: 10em;
-  height: 10em;
-  border-radius: 0.5em;
-  overflow: hidden;
-  will-change: width, height;
-}
-.tileImg {
-  object-fit: cover;
   will-change: transform;
 }

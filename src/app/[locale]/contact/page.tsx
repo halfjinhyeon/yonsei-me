@@ -29,7 +29,7 @@ export default function ContactPage({ params }: { params: { locale: string } }) 
   const tFooter = useTranslations('footer');
 
   const info = [
-    { label: t('addressLabel'), value: `${tFooter('address')} (03722)` },
+    { label: t('addressLabel'), value: tFooter('address') },
     { label: t('phoneLabel'), value: '02-2123-2810' },
     { label: t('emailLabel'), value: 'me@yonsei.ac.kr', href: 'mailto:me@yonsei.ac.kr' },
   ];
