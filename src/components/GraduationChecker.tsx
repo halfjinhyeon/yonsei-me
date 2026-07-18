@@ -1,7 +1,6 @@
 'use client';
 
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { UnderlineTabs } from '@/components/UnderlineTabs';
 import { cn } from '@/lib/utils';
 import {
   evaluate,
@@ -29,11 +28,71 @@ interface UploadedFile {
   hasChapel: boolean;
 }
 
+/** 스텝 라벨 — 사이트 공통 네이비 박스 문법을 체커 맥락에 맞게 축소한 버전 */
 function StepLabel({ num, title }: { num: string; title: string }) {
   return (
-    <p className="text-xs font-bold uppercase tracking-[0.22em] text-yonsei-blue">
-      STEP {num} <span className="mx-1 text-content-faint">·</span> {title}
-    </p>
+    <h3 className="inline-block bg-yonsei-navy px-3.5 py-1.5 text-sm font-bold text-white">
+      STEP {num} <span className="mx-1 opacity-60">·</span> {title}
+    </h3>
+  );
+}
+
+/**
+ * 슬라이드(세그먼트) 토글 — 선택 항목 밑으로 네이비 썸이 미끄러지는 각진 버튼 그룹.
+ * 학번 선택·막대형/도넛형 전환에 사용(구 UnderlineTabs 대체 — 사용자 지시).
+ * 균등 폭 세그먼트라 썸 이동은 translateX(index×100%) 만으로 정확하다.
+ */
+function SegmentedControl({
+  value,
+  onChange,
+  options,
+  ariaLabel,
+  className,
+}: {
+  value: string;
+  onChange: (id: string) => void;
+  options: { id: string; label: string }[];
+  ariaLabel: string;
+  className?: string;
+}) {
+  const idx = Math.max(
+    0,
+    options.findIndex((o) => o.id === value),
+  );
+  return (
+    <div
+      role="group"
+      aria-label={ariaLabel}
+      className={cn(
+        'relative inline-grid auto-cols-fr grid-flow-col border border-surface-border bg-surface-soft p-1',
+        className,
+      )}
+    >
+      {/* 썸 — 컨테이너 안쪽 폭(100%-패딩)을 옵션 수로 나눈 한 칸 크기로 슬라이드 */}
+      <span
+        aria-hidden="true"
+        className="absolute bottom-1 top-1 bg-yonsei-navy transition-transform duration-300 ease-out-expo motion-reduce:transition-none"
+        style={{
+          left: '0.25rem',
+          width: `calc((100% - 0.5rem) / ${options.length})`,
+          transform: `translateX(${idx * 100}%)`,
+        }}
+      />
+      {options.map((o) => (
+        <button
+          key={o.id}
+          type="button"
+          onClick={() => onChange(o.id)}
+          aria-pressed={value === o.id}
+          className={cn(
+            'relative z-10 px-4 py-1.5 text-sm font-bold transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yonsei-blue',
+            value === o.id ? 'text-white' : 'text-content-soft hover:text-content',
+          )}
+        >
+          {o.label}
+        </button>
+      ))}
+    </div>
   );
 }
 
@@ -393,19 +452,19 @@ export function GraduationChecker({ data, locale }: { data: CheckerData; locale:
           : 'Upload your Everytime timetable screenshots (one per semester). Courses are recognized on-device and checked against your cohort’s graduation requirements. You can edit the results below.'}
       </p>
 
-      {/* STEP 01·02(좌) / STEP 03(우) 2단 배치 — 우측 목차 제거로 넓어진 본문을 활용해
-          업로드→확인 흐름을 데스크톱에서 나란히 본다. 모바일은 기존 세로 순서(01→02→03). */}
-      <div className="grid gap-16 lg:grid-cols-2 lg:items-start lg:gap-x-14">
-      <div className="min-w-0 space-y-16">
+      {/* STEP 01→04 세로 단일 흐름 — 2단 병렬 배치를 해체해 스텝이 위→아래로
+          순서대로 이어진다(사용자 지시). */}
       {/* STEP 01 — 학번 선택 */}
       <section>
         <StepLabel num="01" title={ko ? '학번 선택' : 'Cohort'} />
-        <UnderlineTabs
-          className="mt-4"
-          active={cohortId}
-          onChange={setCohortId}
-          tabs={data.cohorts.map((c) => ({ id: c.id, label: c.label }))}
-        />
+        <div className="mt-4">
+          <SegmentedControl
+            value={cohortId}
+            onChange={setCohortId}
+            options={data.cohorts.map((c) => ({ id: c.id, label: c.label }))}
+            ariaLabel={ko ? '학번 선택' : 'Cohort'}
+          />
+        </div>
       </section>
 
       {/* STEP 02 — 시간표 업로드 */}
@@ -517,12 +576,11 @@ export function GraduationChecker({ data, locale }: { data: CheckerData; locale:
           </ul>
         )}
       </section>
-      </div>
 
-      {/* STEP 03 — 수강 과목 확인 (우측 열) */}
+      {/* STEP 03 — 수강 과목 확인 */}
       <section className="min-w-0">
         <StepLabel num="03" title={ko ? '수강 과목 확인' : 'Review courses'} />
-        <p className="mt-2 text-sm text-content-faint">
+        <p className="mt-4 text-sm text-content-faint">
           {ko
             ? '잘못 인식된 과목은 ✕로 지우고, 빠진 과목은 검색해서 추가하세요.'
             : 'Remove misread courses with ✕ and add missing ones via search.'}
@@ -713,22 +771,23 @@ export function GraduationChecker({ data, locale }: { data: CheckerData; locale:
           )}
         </div>
       </section>
-      </div>
 
       {/* STEP 04 — 결과 */}
       <section>
         <StepLabel num="04" title={ko ? '남은 졸업요건' : 'Remaining requirements'} />
 
-        {/* 뷰 전환 — 막대형 / 도넛형 */}
-        <UnderlineTabs
-          className="mt-4"
-          active={chartView}
-          onChange={(id) => setChartView(id as 'bar' | 'donut')}
-          tabs={[
-            { id: 'bar', label: ko ? '막대형' : 'Bars' },
-            { id: 'donut', label: ko ? '도넛형' : 'Donuts' },
-          ]}
-        />
+        {/* 뷰 전환 — 막대형 / 도넛형 (슬라이드 토글) */}
+        <div className="mt-4">
+          <SegmentedControl
+            value={chartView}
+            onChange={(id) => setChartView(id as 'bar' | 'donut')}
+            options={[
+              { id: 'bar', label: ko ? '막대형' : 'Bars' },
+              { id: 'donut', label: ko ? '도넛형' : 'Donuts' },
+            ]}
+            ariaLabel={ko ? '결과 표시 방식' : 'Result view'}
+          />
+        </div>
 
         {/* 총괄 */}
         <div className="mt-6 border-t-2 border-content pt-6">

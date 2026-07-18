@@ -482,7 +482,6 @@ function Dashboard({ onOpen }: { onOpen: (entry: MenuEntry) => void }) {
               <li key={i} className="border-t border-surface-border pt-4">
                 <span className="block text-3xl font-light tabular-nums text-yonsei-blue/40">
                   {String(i + 1).padStart(2, '0')}
-                  <span className="text-yonsei-gold">.</span>
                 </span>
                 <h4 className="mt-3 text-base font-bold text-content">{step.t}</h4>
                 <p className="mt-1.5 text-sm leading-relaxed text-content-soft">{step.b}</p>
@@ -530,7 +529,6 @@ function Dashboard({ onOpen }: { onOpen: (entry: MenuEntry) => void }) {
                 <li key={i} className="border-t border-surface-border pt-4">
                   <span className="block text-3xl font-light tabular-nums text-yonsei-blue/40">
                     {String(i + 1).padStart(2, '0')}
-                    <span className="text-yonsei-gold">.</span>
                   </span>
                   <h4 className="mt-3 text-base font-bold text-content">{step.t}</h4>
                   <p className="mt-1.5 text-sm leading-relaxed text-content-soft">{step.b}</p>

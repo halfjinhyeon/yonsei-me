@@ -3,7 +3,7 @@ import type { Metadata } from 'next';
 import { Hero } from '@/components/Hero';
 import { TabbedContent, type TabItem } from '@/components/TabbedContent';
 import { ClubGrid } from '@/components/ClubGrid';
-import { Accordion } from '@/components/Accordion';
+import { RequirementsAccordion } from '@/components/RequirementsAccordion';
 import { GraduationChecker } from '@/components/GraduationChecker';
 import { getPageMarkdown, getUndergraduateRequirementSections } from '@/lib/pages';
 import { getClubs } from '@/lib/faculty';
@@ -57,6 +57,23 @@ export default async function UndergraduatePage({ params }: { params: { locale: 
   const tPages = await getTranslations({ locale: params.locale, namespace: 'pages' });
   const tStub = await getTranslations({ locale: params.locale, namespace: 'stub' });
   const tFaculty = await getTranslations({ locale: params.locale, namespace: 'faculty' });
+  const tReq = await getTranslations({ locale: params.locale, namespace: 'requirements' });
+
+  // 졸업요건 B안 그룹 라벨 — '이전 학번' 범위(from~to)를 데이터에서 계산.
+  // RequirementsAccordion 과 동일 규칙(섹션별 대표연도 = 라벨 숫자의 최댓값, 내림차순
+  // 정렬 후 최신 4개 섹션만 개별 노출)으로 '이전' 섹션들을 골라 범위를 얻는다.
+  const reqSections = getUndergraduateRequirementSections();
+  const sectionNums = (label: string) => (label.match(/\d{2}/g) ?? []).map(Number);
+  const earlierSections = reqSections
+    .filter((s) => sectionNums(s.label).length > 0)
+    .sort((a, b) => Math.max(...sectionNums(b.label)) - Math.max(...sectionNums(a.label)))
+    .slice(4);
+  const earlierAll = earlierSections.flatMap((s) => sectionNums(s.label));
+  const pad = (n: number) => String(n).padStart(2, '0');
+  const earlierLabel = tReq('earlier', {
+    from: pad(Math.min(...earlierAll)),
+    to: pad(Math.max(...earlierAll)),
+  });
 
   const tabs: TabItem[] = Object.entries(SECTION_SLUGS).map(([key, slug]) => ({
     key,
@@ -68,7 +85,7 @@ export default async function UndergraduatePage({ params }: { params: { locale: 
       ) : key === 'clubs' ? (
         <ClubGrid items={getClubs()} moreLabel={tFaculty('moreLabel')} />
       ) : key === 'requirements' ? (
-        <Accordion items={getUndergraduateRequirementSections()} />
+        <RequirementsAccordion items={reqSections} earlierLabel={earlierLabel} />
       ) : key === 'checker' ? (
         <GraduationChecker data={getCheckerData()} locale={locale} />
       ) : key === 'courses' ? (

@@ -21,6 +21,9 @@ const useIsoLayoutEffect = typeof window !== 'undefined' ? useLayoutEffect : use
 // 자동 전환 간격(ms) — 사용자가 '슬라이드쇼'임을 인지하도록 천천히 순환한다.
 const AUTO_ADVANCE_MS = 5000;
 
+// 타이틀 아래 회전 카피 교체 간격(ms)
+const TAGLINE_MS = 4000;
+
 // 등장 애니메이션 1회 재생 플래그(sessionStorage) — 같은 탭 방문 중에는 홈 재진입·
 // 새로고침 시 등장을 건너뛰고 완성 상태를 즉시 보여준다. 탭을 닫고 새 방문이면 다시 재생.
 const INTRO_SEEN_KEY = 'ym-hero-intro-v1';
@@ -50,10 +53,12 @@ export type HeroSlide = {
 
 type Props = {
   slides: HeroSlide[];
-  /** 히어로 중앙 제목(예: "연세대학교 기계공학부") */
+  /** 히어로 제목(예: "연세대학교 기계공학부") */
   title: string;
   /** 분야 목록 nav 의 aria-label */
   navLabel: string;
+  /** 제목 아래에서 주기 교체되는 카피(로케일 해석 완료) */
+  taglines: string[];
 };
 
 /**
@@ -79,11 +84,12 @@ type Props = {
  * 완성 상태 즉시 노출(자동 전환은 바로 시작). reduced-motion / no-JS: 애니메이션 없이
  * 최종 상태(첫 슬라이드·제목·목록) 정적 노출.
  */
-export function HeroSlideshow({ slides, title, navLabel }: Props) {
+export function HeroSlideshow({ slides, title, navLabel, taglines }: Props) {
   const heroRef = useRef<HTMLElement | null>(null);
   const slideRefs = useRef<Array<HTMLDivElement | null>>([]);
   const parallaxRefs = useRef<Array<HTMLDivElement | null>>([]);
   const titleRef = useRef<HTMLHeadingElement | null>(null);
+  const taglineRef = useRef<HTMLParagraphElement | null>(null);
   const navRef = useRef<HTMLUListElement | null>(null);
   const loaderRef = useRef<HTMLDivElement | null>(null);
   const groupsRef = useRef<HTMLDivElement | null>(null);
@@ -96,6 +102,8 @@ export function HeroSlideshow({ slides, title, navLabel }: Props) {
   const animatingRef = useRef(false);
   const pausedRef = useRef(false); // nav 호버/포커스 시 자동 전환 일시정지
   const [entering, setEntering] = useState(false); // 등장 로더 오버레이 마운트 여부
+  // 회전 카피 인덱스 — 4초마다 교체(등장 완료 후 시작, reduced-motion 시 고정)
+  const [tagIdx, setTagIdx] = useState(0);
   // 시작 슬라이드 — 마운트 시 클라이언트에서 추첨(방문마다 다른 연구 분야로 시작).
   // SSR/첫 렌더는 0 으로 일치시키고 페인트 전 layout effect 에서 갱신 → 깜빡임·
   // hydration 불일치 없음. 6장 모두 어차피 로드되므로 추가 네트워크 비용도 없다.
@@ -202,6 +210,8 @@ export function HeroSlideshow({ slides, title, navLabel }: Props) {
     // 짝수(6장) 열 보정: 시작 슬라이드 타일(index 2)이 화면 정중앙에 서도록 열을
     // 반 피치(= 타일 10em/2 + 패딩) 이동.
     gsap.set(groups, { x: 5 * emPx() + padPx() });
+    // 카피는 클립 아래에 숨겨 두었다가 마스크 라이즈로 등장(원본 부제 애니메이션)
+    if (taglineRef.current) gsap.set(taglineRef.current, { yPercent: 115 });
     gsap.set(navInners, { yPercent: 150, autoAlpha: 0 });
 
     // 등장 동안 스크롤 잠금(원본과 동일) — 풀스크린 로더가 뷰포트를 완전히 덮는다.
@@ -262,8 +272,11 @@ export function HeroSlideshow({ slides, title, navLabel }: Props) {
       // 4) 확대 완료 → 로더 페이드(뒤의 slide0 은 동일 이미지 풀스크린 cover = 픽셀 일치)
       tl.to(loaderEl, { autoAlpha: 0, duration: 0.35, ease: 'power1.inOut' }, 5.45);
 
-      // 5) 제목 마스크 리빌 + 분야 목록 stagger 등장
+      // 5) 제목 마스크 리빌 + 회전 카피 + 분야 목록 stagger 등장
       tl.to(split.words, { yPercent: 0, duration: 1, stagger: 0.075, ease: 'expo.out' }, 5.5);
+      if (taglineRef.current) {
+        tl.to(taglineRef.current, { yPercent: 0, duration: 0.9, ease: 'expo.out' }, 5.75);
+      }
       tl.to(navInners, { yPercent: 0, autoAlpha: 1, duration: 1, stagger: 0.06, ease: 'expo.out' }, 5.6);
     });
 
@@ -287,6 +300,53 @@ export function HeroSlideshow({ slides, title, navLabel }: Props) {
     }, AUTO_ADVANCE_MS);
     return () => window.clearInterval(id);
   }, [entering, goTo, slides.length]);
+
+  // --- 회전 카피 — 4초마다 페이드아웃 → 교체(아래 layout effect 가 페이드인) ---
+  useEffect(() => {
+    if (entering || prefersReducedMotion() || taglines.length <= 1) return;
+    const id = window.setInterval(() => {
+      if (document.hidden) return;
+      const el = taglineRef.current;
+      if (!el) return;
+      // 학과목표 섹션과 동일한 전환: 짧은 페이드아웃 → 교체(아래 effect 가 글자 타이핑 인).
+      // 공백 시간을 최소화해 '글자 없는 구간'이 길어지지 않게 한다.
+      gsap.to(el, {
+        autoAlpha: 0,
+        duration: 0.25,
+        ease: 'power1.in',
+        onComplete: () => setTagIdx((i) => (i + 1) % taglines.length),
+      });
+    }, TAGLINE_MS);
+    return () => window.clearInterval(id);
+  }, [entering, taglines.length]);
+
+  // --- 교체된 카피 타이핑 인 — 학과목표 섹션과 동일(SplitText chars 마스크 라이즈,
+  // 글자 하나씩 왼쪽부터). 인덱스 0 복귀를 포함한 모든 교체에 걸린다(이전 구현은
+  // 0 복귀를 건너뛰어 한 사이클마다 빈 구간이 생기던 버그). 최초 마운트만 스킵
+  // (초기 카피는 등장 타임라인 또는 정적 노출이 담당). p 는 key={tagIdx} 로 매 교체
+  // 리마운트 — SplitText.revert 가 옛 텍스트 스냅샷으로 새 문구를 덮는 충돌 차단. ---
+  const tagFirstRender = useRef(true);
+  useIsoLayoutEffect(() => {
+    if (tagFirstRender.current) {
+      tagFirstRender.current = false;
+      return;
+    }
+    const el = taglineRef.current;
+    if (!el || prefersReducedMotion()) return;
+    const split = SplitText.create(el, { type: 'chars', mask: 'chars', aria: 'none' });
+    gsap.set(el, { autoAlpha: 1 });
+    gsap.set(split.chars, { yPercent: 110 });
+    const tween = gsap.to(split.chars, {
+      yPercent: 0,
+      duration: 0.5,
+      stagger: 0.03,
+      ease: 'power3.out',
+    });
+    return () => {
+      tween.kill();
+      split.revert();
+    };
+  }, [tagIdx]);
 
   // --- 언마운트 정리: 진행 중 트윈 kill(전역) ---
   useEffect(() => {
@@ -335,11 +395,19 @@ export function HeroSlideshow({ slides, title, navLabel }: Props) {
       {/* 가독성 스크림(그림자 금지 → 균일 다크 + 하단 그라디언트) */}
       <div className={styles.scrim} aria-hidden="true" />
 
-      {/* 중앙 제목 */}
-      <div className={styles.center}>
+      {/* 타이틀 블록 — 레퍼런스(홍익 조형대)식 좌측 하단 배치: 대형 제목 + 회전 카피 */}
+      <div className={styles.titleBlock}>
         <h1 ref={titleRef} className={styles.title}>
           {title}
         </h1>
+        {/* 회전 카피 — hicoda 식 라인 마스크(클립 안에서 솟아오름/빠져나감).
+            주기 교체는 SR 에 소음이라 aria-hidden, 전체 문구는 아래 sr-only 로 제공 */}
+        <div className={styles.taglineClip} aria-hidden="true">
+          <p key={tagIdx} ref={taglineRef} className={styles.tagline}>
+            {taglines[tagIdx] ?? ''}
+          </p>
+        </div>
+        <p className="sr-only">{taglines.join('. ')}</p>
       </div>
 
       {/* 우측 하단 분야 목록 — 항상 노출(모바일 포함, 크기만 축소).

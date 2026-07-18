@@ -41,7 +41,6 @@ export async function AboutIntro({ locale }: { locale: string }) {
             <li key={key} className="border-t border-surface-border pt-5">
               <span className="block text-4xl font-light tabular-nums text-yonsei-blue/40">
                 {String(i + 1).padStart(2, '0')}
-                <span className="text-yonsei-gold">.</span>
               </span>
               <h5 className="mt-4 text-lg font-bold text-content">
                 {t(`vision.items.${key}.title`)}

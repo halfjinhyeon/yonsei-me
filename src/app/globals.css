@@ -64,6 +64,10 @@
   html {
     scroll-behavior: smooth;
     -webkit-text-size-adjust: 100%;
+    /* .full-bleed(100vw) 가 클래식 스크롤바(Windows) 환경에서 세로 스크롤바 폭만큼
+       가로로 삐져나가는 것을 차단. clip 은 hidden 과 달리 스크롤 컨테이너를 만들지
+       않아 sticky/anchor 동작에 부작용이 없다. 풀블리드 배경은 양끝까지 그대로. */
+    overflow-x: clip;
   }
 
   body {
@@ -180,6 +184,13 @@
   }
   .prose-content img {
     @apply my-6 rounded-lg;
+  }
+  /* 동아리 상세 본문 오버라이드 — 사진을 85%로 줄인 만큼 글자를 키우고(17px),
+     흐린 회색 대신 진한 본문색으로 가독성 확보(동아리 페이지 한정, 사용자 지시) */
+  .club-prose p,
+  .club-prose ul,
+  .club-prose ol {
+    @apply text-[17px] text-content;
   }
   .prose-content blockquote {
     @apply my-6 max-w-2xl border-l-2 border-content py-1 pl-5 text-lg leading-relaxed text-content;

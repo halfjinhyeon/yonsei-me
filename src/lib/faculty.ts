@@ -58,6 +58,9 @@ export interface LabDirectoryEntry {
   phone: string;
   /** 연구실 외부 사이트 링크. 빈 문자열이면 링크 없는 카드로 처리한다. */
   url: string;
+  /** 연구실 소개 문단(로케일별) — 목록의 특색 홍보용. 없으면 소개 없이 렌더되며,
+   *  content/labs-directory.json 에 채우는 즉시 표시된다. */
+  description?: { ko: string; en: string };
   /** 연구실별 실제 이미지 경로(public 기준). 없으면 더미 이미지 3장을 순환 사용. */
   image?: string;
   /** 연구실 소개 영상 URL (YouTube watch 또는 Google Drive file 링크). 없으면 영상 미제공 */

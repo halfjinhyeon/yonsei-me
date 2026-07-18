@@ -1,10 +1,16 @@
 'use client';
 
-import { useCallback, useEffect, useRef } from 'react';
+import { forwardRef, useCallback, useEffect, useImperativeHandle, useRef } from 'react';
 import { useTranslations } from 'next-intl';
 import type { LabDirectoryEntry } from '@/lib/faculty';
 import type { Locale } from '@/i18n/routing';
 import { cn } from '@/lib/utils';
+
+/** 부모(LabsSection) 화살표 버튼이 쓰는 넘기기 핸들 */
+export interface LabCarouselHandle {
+  /** 카드 1장 폭만큼 좌(-1)/우(+1)로 부드럽게 이동(자동 흐름은 잠시 정지 후 재개) */
+  nudge: (dir: -1 | 1) => void;
+}
 
 /** 연구실별 이미지가 없을 때 순환 사용하는 더미 배경 3장. */
 const FALLBACK_IMAGES = [
@@ -29,13 +35,13 @@ interface LabCardData extends LabDirectoryEntry {
  * - 리스트를 2회 렌더하고 경계에서 scrollLeft 를 절반만큼 점프시켜 무한 루프.
  * - 호버·드래그·키보드 포커스·백그라운드 탭·prefers-reduced-motion 에서 일시정지.
  */
-export function LabCarousel({
-  labs,
-  locale,
-}: {
-  labs: LabDirectoryEntry[];
-  locale: Locale;
-}) {
+export const LabCarousel = forwardRef<
+  LabCarouselHandle,
+  {
+    labs: LabDirectoryEntry[];
+    locale: Locale;
+  }
+>(function LabCarousel({ labs, locale }, ref) {
   const t = useTranslations('home.people');
   const trackRef = useRef<HTMLDivElement | null>(null);
 
@@ -139,6 +145,27 @@ export function LabCarousel({
     [],
   );
 
+  // 부모 화살표 버튼용 넘기기 — 카드 1장 피치(카드 폭+간격)만큼 스무스 스크롤.
+  // 자동 흐름은 nudgeResume 로 잠시 멈췄다 재개하고, 스크롤이 끝난 뒤 wrap 으로
+  // 무한 루프 경계를 보정한다.
+  useImperativeHandle(
+    ref,
+    () => ({
+      nudge: (dir: -1 | 1) => {
+        const el = trackRef.current;
+        if (!el) return;
+        const first = el.querySelector<HTMLElement>(':scope > *');
+        const second = first?.nextElementSibling as HTMLElement | null;
+        const pitch =
+          first && second ? second.offsetLeft - first.offsetLeft : first?.offsetWidth ?? 300;
+        nudgeResume();
+        el.scrollBy({ left: dir * pitch, behavior: 'smooth' });
+        window.setTimeout(wrap, 450);
+      },
+    }),
+    [nudgeResume, wrap],
+  );
+
   return (
     <div
       role="group"
@@ -189,7 +216,7 @@ export function LabCarousel({
 
     </div>
   );
-}
+});
 
 function LabCardView({
   card,

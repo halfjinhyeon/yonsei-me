@@ -44,7 +44,8 @@ export default async function ClubDetailPage({
           { label: club.name },
         ]}
       />
-      {/* 카드뉴스가 풀블리드 다크 덱이므로 별도 Section 패딩/배경 없이 직접 렌더 */}
+      {/* 흰 배경 에디토리얼 본문(내부 Container 포함) — 마지막 Connect 블록만
+          그라데이션 풀블리드 */}
       {content.panels.length > 0 ? (
         <ClubCardNews content={content} images={club.images ?? []} clubName={club.name} />
       ) : null}

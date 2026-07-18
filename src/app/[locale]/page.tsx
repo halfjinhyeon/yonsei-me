@@ -5,6 +5,7 @@ import { LabsSection } from '@/components/LabsSection';
 import { NewsEventsSection } from '@/components/NewsEventsSection';
 import { InstagramSection } from '@/components/InstagramSection';
 import { GoalsSection } from '@/components/GoalsSection';
+// ⚠️ 임시 — 히어로 제목 폰트 시험 패널(선택 끝나면 이 import 와 아래 렌더 한 줄 삭제)
 import { pick } from '@/lib/content';
 import { fetchNews, fetchBoardData } from '@/lib/posts';
 import heroSlidesData from '@content/hero-slides.json';
@@ -121,6 +122,11 @@ export default async function HomePage({ params }: { params: { locale: string } 
           slides={heroSlides}
           title={t('heroSlideshow.title')}
           navLabel={t('heroSlideshow.navLabel')}
+          taglines={[
+            t('heroSlideshow.tagline1'),
+            t('heroSlideshow.tagline2'),
+            t('heroSlideshow.tagline3'),
+          ]}
         />
       </div>
 

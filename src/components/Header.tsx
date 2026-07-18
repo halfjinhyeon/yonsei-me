@@ -351,9 +351,18 @@ export function Header() {
         </div>
       </Container>
 
-      {/* 모바일 드로어 (아코디언) — 흰 배경 */}
+      {/* 모바일 드로어 (아코디언) — 흰 배경.
+          닫기는 pathname 변경 effect 만으로는 부족하다 — 메뉴 항목 대부분이 해시
+          링크(/undergraduate#checker 등)라 같은 페이지 내 이동은 pathname 이 안
+          바뀐다. 링크 클릭이면 무조건 닫는 클릭 위임을 함께 건다(버그 수정). */}
       <div
         id="mobile-menu"
+        onClick={(e) => {
+          if ((e.target as Element).closest('a')) {
+            setOpen(false);
+            setExpanded(null);
+          }
+        }}
         className={cn(
           'max-h-[calc(100dvh-4rem)] overflow-y-auto xl:hidden',
           open ? 'block' : 'hidden',

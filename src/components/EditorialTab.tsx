@@ -138,9 +138,7 @@ export function EditorialTab({
       {/* slogan — 인용구형 디스플레이 (홍익대 레퍼런스처럼 크고 단단한 볼드 헤드라인) */}
       {data.slogan && (
         <p className="mt-6 max-w-4xl text-[clamp(1.5rem,2.8vw,2.25rem)] font-bold leading-[1.35] tracking-tight text-content">
-          <span className="text-yonsei-blue">&ldquo;</span>
           {pick(data.slogan, locale)}
-          <span className="text-yonsei-blue">&rdquo;</span>
         </p>
       )}
 

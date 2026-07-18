@@ -8,9 +8,10 @@ import { type BoardRow } from '@/components/BoardList';
 import { EditorialTab, getEditorialTab } from '@/components/EditorialTab';
 import { VisionInfographic } from '@/components/VisionInfographic';
 import { getPageMarkdown } from '@/lib/pages';
-import { getLabsDirectory } from '@/lib/faculty';
+import { getLabsDirectory, type ResearchField } from '@/lib/faculty';
 import { pick } from '@/lib/content';
 import { fetchBoardData } from '@/lib/posts';
+import galleryData from '@content/research-gallery.json';
 import type { Locale } from '@/i18n/routing';
 
 export async function generateMetadata({
@@ -51,13 +52,24 @@ export default async function ResearchPage({ params }: { params: { locale: strin
     image: n.image,
   }));
 
+  // 분야 인트로 — research-gallery.json(분야명·설명·대표 이미지)을 로케일 해석해
+  // 연구실 목록의 분야 선택 헤더로 재사용(콘텐츠 단일 출처).
+  const fieldIntros = (
+    galleryData as { field: string; title: { ko: string; en: string }; description: { ko: string; en: string }; image: string }[]
+  ).map((g) => ({
+    field: g.field as ResearchField,
+    title: pick(g.title, locale),
+    description: pick(g.description, locale),
+    image: g.image,
+  }));
+
   const tabs: TabItem[] = Object.entries(SECTION_SLUGS).map(([key, slug]) => ({
     key,
     label: tMenu(`research.items.${key}`),
     markdown: slug ? getPageMarkdown(slug) : null,
     content:
       key === 'labs' ? (
-        <LabList items={getLabsDirectory()} />
+        <LabList items={getLabsDirectory()} fieldIntros={fieldIntros} />
       ) : key === 'internships' ? (
         <FilterableBoardList items={internItems} locale={locale} emptyLabel={tStub('empty')} />
       ) : key === 'vision' ? (

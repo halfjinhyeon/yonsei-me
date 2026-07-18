@@ -183,7 +183,10 @@
     "heroSlideshow": {
       "title": "연세대학교 기계공학부",
       "navLabel": "연구 분야 선택",
-      "fieldLink": "{field} 연구 분야 바로가기"
+      "fieldLink": "{field} 연구 분야 바로가기",
+      "tagline1": "세상을 움직이는 공학, 미래를 설계하는 사람들",
+      "tagline2": "폭넓은 분야, 세계적 수준의 교육과 연구",
+      "tagline3": "글로벌 사회에 유익한 가치를 창출하는 인재 양성"
     },
     "instagram": {
       "tagline": "기계공학부의 순간들 — 인스타그램에서 만나보세요",
@@ -374,6 +377,9 @@
       "sign": "기계공학부 학부장"
     }
   },
+  "requirements": {
+    "earlier": "이전 학번 보기 ({from}~{to} 학번)"
+  },
   "stub": {
     "badge": "준비 중인 페이지",
     "body": "이 페이지는 콘텐츠 구조가 잡혀 있으며, 세부 내용이 곧 채워집니다.",
@@ -394,6 +400,10 @@
     },
     "emailLabel": "이메일",
     "labLabel": "연구실",
+    "roomLabel": "주소",
+    "specialtyLabel": "전공",
+    "phoneLabel": "전화",
+    "labLink": "{lab} 바로가기",
     "moreLabel": "상세정보 보기",
     "directoryFilter": {
       "all": "전체",
@@ -414,6 +424,14 @@
     },
     "piLabel": "책임교수",
     "keywordsLabel": "키워드",
+    "fieldIntroLabel": "연구분야",
+    "labMeta": {
+      "professor": "지도교수",
+      "field": "분야",
+      "location": "위치",
+      "phone": "연락처"
+    },
+    "labVisit": "바로가기",
     "fieldFilter": {
       "all": "전체",
       "basics": "기초·공통",

@@ -183,7 +183,10 @@
     "heroSlideshow": {
       "title": "Yonsei Mechanical Engineering",
       "navLabel": "Select a research field",
-      "fieldLink": "Explore {field} research"
+      "fieldLink": "Explore {field} research",
+      "tagline1": "Engineering that moves the world, people who design the future",
+      "tagline2": "Broad fields, world-class education and research",
+      "tagline3": "Nurturing talent that creates value for global society"
     },
     "instagram": {
       "tagline": "Moments from Yonsei ME — follow us on Instagram",
@@ -374,6 +377,9 @@
       "sign": "Chair, School of Mechanical Engineering"
     }
   },
+  "requirements": {
+    "earlier": "Earlier cohorts ({from}–{to})"
+  },
   "stub": {
     "badge": "Coming soon",
     "body": "This page is structured and its detailed content will be added shortly.",
@@ -394,6 +400,10 @@
     },
     "emailLabel": "Email",
     "labLabel": "Lab",
+    "roomLabel": "Office",
+    "specialtyLabel": "Field",
+    "phoneLabel": "Phone",
+    "labLink": "Visit {lab}",
     "moreLabel": "View details",
     "directoryFilter": {
       "all": "All",
@@ -414,6 +424,14 @@
     },
     "piLabel": "PI",
     "keywordsLabel": "Keywords",
+    "fieldIntroLabel": "Research field",
+    "labMeta": {
+      "professor": "Advisor",
+      "field": "Field",
+      "location": "Location",
+      "phone": "Phone"
+    },
+    "labVisit": "Visit site",
     "fieldFilter": {
       "all": "All",
       "basics": "Foundations",

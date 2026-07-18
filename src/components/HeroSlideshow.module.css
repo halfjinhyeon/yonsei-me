@@ -55,26 +55,48 @@
     rgba(0, 0, 0, 0.28);
 }
 
-/* --- 중앙 제목 --- */
-.center {
+/* --- 타이틀 블록 (hicoda 레퍼런스 비율: 좌측 ~5.5vw 마진, 세로 중하단) --- */
+.titleBlock {
   position: absolute;
-  inset: 0;
+  left: 0;
+  right: 0;
+  top: 53%;
+  transform: translateY(-50%);
   z-index: 20;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 1.5rem;
+  padding: 0 clamp(1.5rem, 5.5vw, 5.5rem);
   pointer-events: none;
 }
 .title {
   margin: 0;
-  text-align: center;
+  text-align: left;
   color: #fff;
-  font-weight: 800;
+  /* 지마켓산스 Bold(사용자 확정) — next/font 가 --font-hero 로 주입(지표 보정 폴백 포함).
+     탑재 웨이트가 700 단일이라 가짜 볼드 합성을 피해 font-weight 도 700 로 맞춘다. */
+  font-family: var(--font-hero), var(--font-sans), sans-serif;
+  font-weight: 700;
   letter-spacing: -0.02em;
   line-height: 1.05;
-  font-size: clamp(2rem, 6vw, 5.5rem);
+  font-size: clamp(2.2rem, 6.2vw, 6rem);
   /* 그림자 금지(사용자 지시) — 가독성은 스크림으로 확보 */
+}
+/* 회전 카피 클립 — 원본(hicoda)식 라인 마스크: 이 박스가 잘라내는 안에서 텍스트가
+   아래에서 솟아오르고 위로 빠져나간다. 원본 부제처럼 제목보다 살짝 들여쓴다. */
+.taglineClip {
+  overflow: hidden;
+  /* 제목과 더 가깝게(사용자 지시) */
+  margin-top: clamp(0.7rem, 1.4vw, 1.3rem);
+  margin-left: clamp(0.25rem, 1vw, 1.25rem);
+  max-width: 46rem;
+}
+/* 회전 카피 — 본문 서체(Pretendard) 볼드, 원본 부제 비율(~1.8vw) */
+.tagline {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.94);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.45;
+  font-size: clamp(1.05rem, 1.8vw, 1.45rem);
+  will-change: transform;
 }
 /* SplitText mask 리빌이 넘칠 때 클리핑되지 않도록 여유 */
 .title :global(.split-word) {
@@ -99,8 +121,9 @@
   margin: 0;
   padding: 0;
   list-style: none;
-  /* 사용자 지시: 기존의 절반 정도 크기로 축소(기존 clamp 1.05~2.5rem) */
-  font-size: clamp(0.8rem, 1.4vw, 1.35rem);
+  /* 태블릿 세로(~768–834px)에서도 편히 읽히도록 중간 구간 확대.
+     vw 계수를 키워 태블릿 ≈18–20px, 데스크톱은 상한으로 ~22px(원본 40px의 절반대)유지. */
+  font-size: clamp(0.95rem, 2.4vw, 1.4rem);
   font-weight: 600;
   line-height: 1.15;
 }
@@ -158,6 +181,7 @@
 
 /* --- '연구 분야 바로가기' 화살표 링크(현재 분야에만 표시) --- */
 .quick {
+  position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -168,6 +192,12 @@
   background: rgba(0, 0, 0, 0.18);
   transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
   animation: quickIn 0.35s ease both;
+}
+/* 보이지 않는 히트 영역 확장 — 시각 24px 유지, 터치 타깃 44px(WCAG 2.5.8) */
+.quick::after {
+  content: '';
+  position: absolute;
+  inset: -10px;
 }
 .quick:hover {
   background: #5c9fe6;
@@ -207,6 +237,16 @@
   outline-offset: 4px;
   border-radius: 3px;
   color: #fff;
+}
+/* 모바일 전용: 분야 목록 행높이·행간 확대(터치 타깃 ~33px + 인접 간격 8px).
+   sm(640px) 이상 기준 화면 표현은 그대로. */
+@media (max-width: 639px) {
+  .list {
+    gap: 8px;
+  }
+  .btn {
+    padding: 0.5em 0.3em;
+  }
 }
 
 /* --- 등장 로더 (crisp-loading) ---

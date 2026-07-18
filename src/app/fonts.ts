@@ -20,3 +20,17 @@ export const pretendard = localFont({
   weight: '100 900',
   fallback: ['system-ui', 'sans-serif'],
 });
+
+/**
+ * 히어로 제목 전용 폰트 지마켓산스 Bold — 폰트 시험 후 사용자 확정(2026-07).
+ * 적용처는 홈 히어로 "연세대학교 기계공학부" 한 곳(HeroSlideshow.module.css .title,
+ * var(--font-hero) 참조). 전용 변수를 쓰는 이유: globals 의 --font-display 별칭
+ * (display=sans)과 충돌하지 않는 격리 경로. 원본 TTF(2.4MB)는 woff2(591KB)로 변환.
+ */
+export const gmarket = localFont({
+  src: './fonts/GmarketSansBold.woff2',
+  variable: '--font-hero',
+  display: 'swap',
+  weight: '700',
+  fallback: ['Pretendard', 'system-ui', 'sans-serif'],
+});

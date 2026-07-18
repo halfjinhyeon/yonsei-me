@@ -1,8 +1,8 @@
 'use client';
 
 import { useEffect, useMemo, useState } from 'react';
-import { useTranslations } from 'next-intl';
-import { UnderlineTabs } from '@/components/UnderlineTabs';
+import Image from 'next/image';
+import { useLocale, useTranslations } from 'next-intl';
 import { cn } from '@/lib/utils';
 import type { LabDirectoryEntry, ResearchField } from '@/lib/faculty';
 
@@ -16,16 +16,99 @@ const FIELDS: ResearchField[] = [
   'mechanicsMaterials',
 ];
 
+/** 연구실별 이미지가 없을 때 순환 사용하는 더미 배경 3장 (LabCarousel 과 동일 관례) */
+const FALLBACK_IMAGES = [
+  '/img/research/energy-conversion.jpg',
+  '/img/research/intelligent-robotics.jpg',
+  '/img/research/precision-manufacturing.jpg',
+];
+
 type Filter = 'all' | ResearchField;
 
+/** 분야 인트로(research-gallery.json 로케일 해석본) — 특정 분야 선택 시 상단 소개 블록 */
+export interface LabFieldIntro {
+  field: ResearchField;
+  title: string;
+  description: string;
+  image: string;
+}
+
 /**
- * 연구실 목록 표. 상단 언더라인 탭(전체 + 6개 분야, 건수 배지)으로 분야를 필터링하고
- * (교수진 탭 FacultyDirectoryGrid 패턴), 연구실명은 실제 연구실 사이트로 하이퍼링크 연결
- * (링크가 없는 경우 일반 텍스트로 표시). 에디토리얼 톤(굵은 상단 룰 +
- * 헤어라인만)으로 색 블록·지브라 스트라이프 없이 구성.
+ * 분야 필터 탭 — 레퍼런스 디자인 이식: 활성 항목의 위·아래에 굵은 바가 붙는
+ * 텍스트 탭(구 UnderlineTabs 대체). 좁은 화면은 가로 스크롤.
  */
-export function LabList({ items }: { items: LabDirectoryEntry[] }) {
+function FieldBarTabs({
+  active,
+  onChange,
+  tabs,
+  ariaLabel,
+}: {
+  active: string;
+  onChange: (id: Filter) => void;
+  tabs: { id: Filter; label: string; count: number }[];
+  ariaLabel: string;
+}) {
+  return (
+    <div role="group" aria-label={ariaLabel} className="flex items-stretch gap-5 overflow-x-auto sm:gap-9">
+      {tabs.map((tab) => {
+        const on = active === tab.id;
+        return (
+          <button
+            key={tab.id}
+            type="button"
+            onClick={() => onChange(tab.id)}
+            aria-pressed={on}
+            className={cn(
+              'relative whitespace-nowrap py-3.5 text-base font-bold transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yonsei-blue sm:text-lg',
+              on ? 'text-yonsei-blue' : 'text-content-soft hover:text-content',
+            )}
+          >
+            {/* 활성 표시 — 텍스트 위·아래의 굵은 바(레퍼런스 문법) */}
+            <span
+              aria-hidden="true"
+              className={cn('absolute inset-x-0 top-0 h-[3px] bg-yonsei-blue transition-opacity', on ? 'opacity-100' : 'opacity-0')}
+            />
+            <span
+              aria-hidden="true"
+              className={cn('absolute inset-x-0 bottom-0 h-[3px] bg-yonsei-blue transition-opacity', on ? 'opacity-100' : 'opacity-0')}
+            />
+            {tab.label}
+            <span
+              className={cn(
+                'ml-1.5 align-middle text-xs font-medium tabular-nums',
+                on ? 'text-yonsei-blue/70' : 'text-content-faint',
+              )}
+            >
+              {tab.count}
+            </span>
+          </button>
+        );
+      })}
+    </div>
+  );
+}
+
+/**
+ * 연구실 목록 — 나열식 표를 버리고 연구실별 특색이 드러나는 에디토리얼 행으로 개편.
+ *
+ * 구성: [분야 필터 탭(활성 위·아래 바)] → [특정 분야 선택 시 분야 인트로: 제목 +
+ * 설명 패널 + 대표 이미지 배너(fieldIntros, research-gallery.json 재사용)] →
+ * [연구실 행: 좌 = 큰 이름·영문·(소개문단)·라벨 메타(지도교수/분야/위치/연락처)·
+ * 바로가기 버튼 / 우 = 연구실 이미지(없으면 더미 3장 순환)].
+ * 소개문단은 labs-directory.json 의 description(옵션) — 채우는 즉시 표시된다.
+ *
+ * 기존 기능 유지: ?field= 딥링크 초기 필터, 검색(연구실·교수명), 학부 인턴 필터·배지,
+ * 필터 전환 시 스태거 재생(key), 빈 상태.
+ */
+export function LabList({
+  items,
+  fieldIntros = [],
+}: {
+  items: LabDirectoryEntry[];
+  fieldIntros?: LabFieldIntro[];
+}) {
   const t = useTranslations('research');
+  const locale = useLocale();
   const [filter, setFilter] = useState<Filter>('all');
   const [query, setQuery] = useState('');
   const [internOnly, setInternOnly] = useState(false);
@@ -62,35 +145,43 @@ export function LabList({ items }: { items: LabDirectoryEntry[] }) {
     );
   }, [items, filter, query, internOnly]);
 
+  const intro = filter === 'all' ? null : fieldIntros.find((g) => g.field === filter) ?? null;
+
   return (
     <div>
-      {/* 언더라인 분야 필터 탭 — 사이트 공통 UnderlineTabs (좁은 화면은 가로 스크롤) */}
-      <div className="mb-8 overflow-x-auto">
-        <UnderlineTabs
+      {/* 분야 필터 — 활성 항목 위·아래 굵은 바(레퍼런스 디자인) */}
+      <div className="mb-8">
+        <FieldBarTabs
           active={filter}
-          onChange={(id) => setFilter(id as Filter)}
+          onChange={setFilter}
           ariaLabel="연구실 분야 필터"
           tabs={(['all', ...FIELDS] as Filter[]).map((id) => ({
             id,
-            label: (
-              <>
-                <span className="whitespace-nowrap">{t(`fieldFilter.${id}`)}</span>
-                <span
-                  className={cn(
-                    'text-xs font-medium tabular-nums',
-                    filter === id ? 'text-yonsei-blue' : 'text-content-faint',
-                  )}
-                >
-                  {counts[id]}
-                </span>
-              </>
-            ),
+            label: t(`fieldFilter.${id}`),
+            count: counts[id],
           }))}
         />
       </div>
 
+      {/* 분야 인트로 — 특정 분야 선택 시: 분야명 + 설명(텍스트만, 박스·이미지 없이 —
+          사용자 지시). ⚠️ key 는 목록 ul(key=list-*)과 형제 레벨 — 접두사로 충돌을
+          막는다(동일 키였을 때 React 가 intro 제거를 누락하는 버그가 실제 발생). */}
+      {intro && (
+        <div key={`intro-${intro.field}`} className="anim-panel mb-10">
+          <p className="text-xs font-bold uppercase tracking-[0.22em] text-content-faint">
+            {t('fieldIntroLabel')}
+          </p>
+          <h3 className="mt-2 text-2xl font-bold tracking-tight text-content sm:text-3xl">
+            {intro.title}
+          </h3>
+          <p className="mt-4 max-w-3xl text-base leading-[1.8] text-content-soft">
+            {intro.description}
+          </p>
+        </div>
+      )}
+
       {/* 연구실 검색 + 학부 인턴 모집 필터 — 한 줄(좁은 화면은 세로 스택) */}
-      <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+      <div className="mb-2 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <div className="sm:w-72">
           <label htmlFor="lab-search" className="sr-only">
             {t('search.labs')}
@@ -111,7 +202,7 @@ export function LabList({ items }: { items: LabDirectoryEntry[] }) {
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               placeholder={t('search.labs')}
-              className="w-full rounded-lg border border-surface-border bg-surface py-2 pl-9 pr-3 text-sm text-content transition-colors placeholder:text-content-faint focus:border-yonsei-blue focus:outline-none"
+              className="w-full border border-surface-border bg-surface py-2 pl-9 pr-3 text-sm text-content transition-colors placeholder:text-content-faint focus:border-yonsei-blue focus:outline-none"
             />
           </div>
         </div>
@@ -147,60 +238,46 @@ export function LabList({ items }: { items: LabDirectoryEntry[] }) {
 
       {visible.length === 0 ? (
         /* 검색 결과 없음 — CourseCatalog 와 같은 독수리 빈 상태 */
-        <div className="flex flex-col items-center gap-5 rounded-card border border-surface-border bg-surface-soft px-6 py-20 text-center">
+        <div className="mt-6 flex flex-col items-center gap-5 rounded-card border border-surface-border bg-surface-soft px-6 py-20 text-center">
           <span aria-hidden="true" className="eagle-mask h-20 w-20 bg-yonsei-blue/35" />
           <p className="max-w-sm text-content-soft">{t('search.empty')}</p>
         </div>
       ) : (
-      <div className="overflow-x-auto">
-        <table className="w-full border-collapse text-sm">
-          {/* 에디토리얼 헤더 — 네이비 굵은 룰을 위에, 아래는 헤어라인(교과목 편람과 동일 문법) */}
-          <thead className="border-b border-t-2 border-surface-border border-t-yonsei-navy">
-            <tr>
-              <th className="whitespace-nowrap py-3 pr-4 text-left text-xs font-bold text-content-faint">
-                연구실
-              </th>
-              <th className="whitespace-nowrap px-3 py-3 text-left text-xs font-bold text-content-faint">
-                지도교수
-              </th>
-              <th className="whitespace-nowrap px-3 py-3 text-left text-xs font-bold text-content-faint">
-                위치/연락처
-              </th>
-            </tr>
-          </thead>
-          {/* key={filter} 로 필터 전환 시 행들을 리마운트해 스태거 등장을 재트리거한다. */}
-          <tbody key={filter}>
-            {visible.map((lab, i) => (
-              <tr
+        /* key 로 필터 전환 시 행들을 리마운트해 스태거 등장을 재트리거한다. */
+        <ul key={`list-${filter}`}>
+          {visible.map((lab, i) => {
+            const img = lab.image ?? FALLBACK_IMAGES[i % FALLBACK_IMAGES.length];
+            const desc = lab.description
+              ? locale === 'ko'
+                ? lab.description.ko
+                : lab.description.en
+              : null;
+            return (
+              <li
                 key={lab.nameKo}
-                className="anim-nav-item border-b border-surface-border last:border-b-0"
+                className="anim-nav-item grid gap-5 border-b border-surface-border py-7 last:border-b-0 md:grid-cols-[minmax(0,1fr)_15rem] md:gap-10"
                 style={{ animationDelay: `${Math.min(i, 12) * 40}ms` }}
               >
-                <td className="py-5 pr-4 align-top">
-                  {lab.url ? (
-                    <a
-                      href={lab.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="group/lab block"
-                    >
-                      <span className="block text-base font-bold leading-snug text-yonsei-blue underline-offset-2 group-hover/lab:underline">
+                {/* 좌: 이름·영문·(소개)·라벨 메타·바로가기 */}
+                <div className="flex min-w-0 flex-col items-start">
+                  <h3 className="text-xl font-bold leading-snug tracking-tight text-content sm:text-2xl">
+                    {lab.url ? (
+                      <a
+                        href={lab.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="transition-colors hover:text-yonsei-blue"
+                      >
                         {lab.nameKo}
-                      </span>
-                      <span className="mt-1 block text-xs font-medium tracking-wide text-content-faint">
-                        {lab.nameEn}
-                      </span>
-                    </a>
-                  ) : (
-                    <>
-                      <span className="block text-base font-bold leading-snug text-content">
-                        {lab.nameKo}
-                      </span>
-                      <span className="mt-1 block text-xs font-medium tracking-wide text-content-faint">
-                        {lab.nameEn}
-                      </span>
-                    </>
-                  )}
+                      </a>
+                    ) : (
+                      lab.nameKo
+                    )}
+                  </h3>
+                  <p className="mt-1 text-xs font-medium tracking-wide text-content-faint">
+                    {lab.nameEn}
+                  </p>
+
                   {lab.internRecruiting && (
                     <span className="mt-2.5 inline-flex items-center gap-1.5 rounded-full bg-emerald-50 px-2.5 py-1 text-xs font-semibold text-emerald-700 dark:bg-emerald-950/40 dark:text-emerald-300">
                       <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
@@ -212,22 +289,71 @@ export function LabList({ items }: { items: LabDirectoryEntry[] }) {
                       ) : null}
                     </span>
                   )}
-                </td>
-                <td className="px-3 py-5 align-top">
-                  <span className="block font-semibold text-content">{lab.professorKo}</span>
-                  <span className="mt-0.5 block text-xs text-content-faint">{lab.professorEn}</span>
-                </td>
-                <td className="px-3 py-5 align-top text-content-soft">
-                  {lab.location}
-                  {lab.phone && (
-                    <span className="mt-0.5 block text-xs text-content-faint">{lab.phone}</span>
+
+                  {/* 소개 문단 — labs-directory.json description 이 있을 때만 */}
+                  {desc && (
+                    <p className="mt-3 max-w-2xl text-sm leading-relaxed text-content-soft">{desc}</p>
                   )}
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+
+                  {/* 라벨 메타 — 레퍼런스의 2열 라벨 그리드(지도교수/분야/위치/연락처) */}
+                  <dl className="mt-4 grid w-full max-w-xl grid-cols-[auto_minmax(0,1fr)] gap-x-5 gap-y-1.5 text-sm sm:grid-cols-[auto_minmax(0,1fr)_auto_minmax(0,1fr)] sm:gap-x-6">
+                    <dt className="font-bold text-content">{t('labMeta.professor')}</dt>
+                    <dd className="min-w-0 text-content-soft">
+                      {lab.professorKo}
+                      {lab.professorEn && (
+                        <span className="ml-1.5 text-xs text-content-faint">{lab.professorEn}</span>
+                      )}
+                    </dd>
+                    <dt className="font-bold text-content">{t('labMeta.field')}</dt>
+                    <dd className="min-w-0 text-content-soft">{t(`fieldFilter.${lab.field}`)}</dd>
+                    <dt className="font-bold text-content">{t('labMeta.location')}</dt>
+                    <dd className="min-w-0 text-content-soft">{lab.location}</dd>
+                    {lab.phone ? (
+                      <>
+                        <dt className="font-bold text-content">{t('labMeta.phone')}</dt>
+                        <dd className="min-w-0 text-content-soft">{lab.phone}</dd>
+                      </>
+                    ) : null}
+                  </dl>
+
+                  {/* 바로가기 — 레퍼런스의 '바로가기 ↗' 보더 버튼 */}
+                  {lab.url && (
+                    <a
+                      href={lab.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`${lab.nameKo} ${t('labVisit')}`}
+                      className="mt-4 inline-flex items-center gap-2 border border-surface-border px-4 py-2 text-xs font-bold text-content transition-colors hover:border-yonsei-blue hover:bg-yonsei-blue hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yonsei-blue"
+                    >
+                      {t('labVisit')}
+                      <svg
+                        aria-hidden="true"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2.2"
+                        className="h-3 w-3"
+                      >
+                        <path d="M7 17 17 7M9 7h8v8" strokeLinecap="round" strokeLinejoin="round" />
+                      </svg>
+                    </a>
+                  )}
+                </div>
+
+                {/* 우: 연구실 이미지(없으면 더미 순환) — 레퍼런스 우측 박스, 높이 축소판 */}
+                <div className="relative aspect-[16/10] w-full overflow-hidden bg-surface-soft md:aspect-auto md:h-40 md:self-center">
+                  <Image
+                    src={img}
+                    alt=""
+                    fill
+                    sizes="(min-width: 768px) 240px, 100vw"
+                    className="object-cover"
+                  />
+                </div>
+              </li>
+            );
+          })}
+        </ul>
       )}
     </div>
   );

@@ -127,13 +127,13 @@ export function NewsEventsSection({ items }: { items: NewsEventItem[] }) {
 
           {/* 카드가 있을 때만 화살표 노출(빈 상태에선 조작 대상이 없음) */}
           {hasItems && (
-            <div data-reveal className="flex items-center gap-2">
+            <div data-reveal className="flex items-center gap-4">
               <button
                 type="button"
                 onClick={() => scrollByCard(-1)}
                 disabled={!canPrev}
                 aria-label={t('newsEvents.prev')}
-                className="grid h-10 w-10 place-items-center text-content transition-colors hover:text-yonsei-blue disabled:cursor-not-allowed disabled:text-content-faint disabled:opacity-40 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yonsei-blue"
+                className="grid h-11 w-14 place-items-center text-content transition-colors hover:text-yonsei-blue disabled:cursor-not-allowed disabled:text-content-faint disabled:opacity-40 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yonsei-blue"
               >
                 <ArrowIcon dir="left" />
               </button>
@@ -142,7 +142,7 @@ export function NewsEventsSection({ items }: { items: NewsEventItem[] }) {
                 onClick={() => scrollByCard(1)}
                 disabled={!canNext}
                 aria-label={t('newsEvents.next')}
-                className="grid h-10 w-10 place-items-center text-content transition-colors hover:text-yonsei-blue disabled:cursor-not-allowed disabled:text-content-faint disabled:opacity-40 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yonsei-blue"
+                className="grid h-11 w-14 place-items-center text-content transition-colors hover:text-yonsei-blue disabled:cursor-not-allowed disabled:text-content-faint disabled:opacity-40 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yonsei-blue"
               >
                 <ArrowIcon dir="right" />
               </button>
@@ -197,23 +197,22 @@ export function NewsEventsSection({ items }: { items: NewsEventItem[] }) {
 
 /**
  * 카드 한 장 — 카드 전체가 게시물로 가는 Link. 위→아래:
- * 대형 날짜(월 연회색 + 일 진하게) → 가는 구분선 → 분류 라벨(블루) → 제목(1줄 말줄임)
+ * 날짜(YYYY. MM. DD 한 줄) → 가는 구분선 → 분류 라벨(블루) → 제목(1줄 말줄임)
  * → 각진 이미지 프레임(없으면 단색 플레이스홀더 + eagle_empty). hover 시 제목만 블루로.
  */
 function NewsEventCard({ item }: { item: NewsEventItem }) {
   const t = useTranslations('home');
-  // 'YYYY-MM-DD' 에서 월/일 추출(시안의 대형 날짜 표기).
-  const month = item.date.slice(5, 7);
-  const day = item.date.slice(8, 10);
+  // 'YYYY-MM-DD' → 'YYYY. MM. DD' 한 줄 포맷(사용자 결정 — 같은 크기 숫자 두 개가
+  // 나란히 있던 대형 표기(07 07)는 중복처럼 읽혀 폐기).
+  const [year, month, day] = item.date.split('-');
   const kindLabel = item.kind === 'news' ? t('newsEvents.kindNews') : t('newsEvents.kindEvent');
 
   return (
     <Link href={item.href} className="group block">
-      {/* 대형 날짜 — 월(연회색) + 일(진하게) 나란히 */}
-      <div className="flex items-end gap-2 text-[2.2rem] font-bold leading-none tabular-nums">
-        <span className="text-content-faint">{month}</span>
-        <span className="text-content">{day}</span>
-      </div>
+      {/* 날짜 — 한 줄 포맷, 명료한 중간 크기 */}
+      <p className="text-lg font-semibold leading-none tabular-nums text-content">
+        {year}. {month}. {day}
+      </p>
 
       {/* 가는 수평 구분선 */}
       <div className="mt-3 border-b border-surface-border" />
@@ -247,23 +246,24 @@ function NewsEventCard({ item }: { item: NewsEventItem }) {
   );
 }
 
-/** 헤더 우측 화살표 아이콘 — 테두리 없는 큰 화살표(SVG). */
-function ArrowIcon({ dir }: { dir: 'left' | 'right' }) {
+/** 헤더 우측 화살표 아이콘 — 레퍼런스(홍익)식 길고 얇은 롱테일 화살표(SVG).
+ *  캐러셀 섹션 공용(뉴스&행사·연구실). */
+export function ArrowIcon({ dir }: { dir: 'left' | 'right' }) {
   return (
     <svg
-      viewBox="0 0 24 24"
-      className="h-6 w-6"
+      viewBox="0 0 48 16"
+      className="h-4 w-12"
       fill="none"
       stroke="currentColor"
-      strokeWidth={2}
+      strokeWidth={1.8}
       strokeLinecap="round"
       strokeLinejoin="round"
       aria-hidden="true"
     >
       {dir === 'left' ? (
-        <path d="M19 12H5M11 6l-6 6 6 6" />
+        <path d="M46 8H2M9 2 2 8l7 6" />
       ) : (
-        <path d="M5 12h14M13 6l6 6-6 6" />
+        <path d="M2 8h44M39 2l7 6-7 6" />
       )}
     </svg>
   );

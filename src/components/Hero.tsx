@@ -104,9 +104,10 @@ export function Hero({
           </ol>
         )}
         <div className={cn(isLanding ? 'max-w-4xl' : 'max-w-3xl')}>
+          {/* 아이브로우 — 금색 배제(사용자 정책): 네이비 배경 위 화이트 톤 */}
           {eyebrow && (
-            <p className="anim-hero-title mb-4 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.22em] text-yonsei-gold">
-              <span aria-hidden="true" className="h-px w-8 bg-yonsei-gold" />
+            <p className="anim-hero-title mb-4 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.22em] text-white/85">
+              <span aria-hidden="true" className="h-px w-8 bg-white/50" />
               {eyebrow}
             </p>
           )}

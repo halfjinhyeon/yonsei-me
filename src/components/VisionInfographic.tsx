@@ -175,7 +175,6 @@ export function VisionInfographic({ locale }: { locale: Locale }) {
             <li key={i} data-vi="fade" className="border-t border-surface-border pt-5">
               <span className="block text-4xl font-light tabular-nums text-yonsei-blue/40">
                 {String(i + 1).padStart(2, '0')}
-                <span className="text-yonsei-navy/40">.</span>
               </span>
               <h5 className="mt-4 text-lg font-bold text-content">{pick(o.title, locale)}</h5>
               <p className="mt-2 text-sm leading-relaxed text-content-soft">

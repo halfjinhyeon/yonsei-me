@@ -5,7 +5,8 @@ import { useTranslations } from 'next-intl';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Link } from '@/i18n/navigation';
-import { LabCarousel } from '@/components/LabCarousel';
+import { LabCarousel, type LabCarouselHandle } from '@/components/LabCarousel';
+import { ArrowIcon } from '@/components/NewsEventsSection';
 import type { LabDirectoryEntry } from '@/lib/faculty';
 import type { Locale } from '@/i18n/routing';
 
@@ -34,6 +35,8 @@ const useIsoLayoutEffect = typeof window !== 'undefined' ? useLayoutEffect : use
 export function LabsSection({ labs, locale }: { labs: LabDirectoryEntry[]; locale: Locale }) {
   const t = useTranslations('home');
   const rootRef = useRef<HTMLElement | null>(null);
+  // 헤더 화살표 → 캐러셀 넘기기(카드 1장 피치)
+  const carouselRef = useRef<LabCarouselHandle | null>(null);
 
   // 헤더 진입 리빌 — 텍스트 스태거 + 독수리 페이드인(각진 사진 리빌 로직은 제거).
   useIsoLayoutEffect(() => {
@@ -87,7 +90,7 @@ export function LabsSection({ labs, locale }: { labs: LabDirectoryEntry[]; local
           />
 
           {/* 제목 — 뉴스&행사 섹션과 동일한 네이비 라벨 박스(각지게) + 오른쪽으로 뻗는
-              헤어라인(학과 목표 섹션과 동일한 선 문법, 박스 반대편을 채움). */}
+              헤어라인 + 우측 캐러셀 화살표(뉴스&행사와 동일 문법). */}
           <div className="flex items-center gap-6">
             <h2
               id="labs-heading"
@@ -97,6 +100,24 @@ export function LabsSection({ labs, locale }: { labs: LabDirectoryEntry[]; local
               {t('people.intro.label')}
             </h2>
             <span aria-hidden="true" className="h-px flex-1 bg-surface-border" />
+            <div data-reveal className="flex items-center gap-4">
+              <button
+                type="button"
+                onClick={() => carouselRef.current?.nudge(-1)}
+                aria-label={t('newsEvents.prev')}
+                className="grid h-11 w-14 place-items-center text-content transition-colors hover:text-yonsei-blue focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yonsei-blue"
+              >
+                <ArrowIcon dir="left" />
+              </button>
+              <button
+                type="button"
+                onClick={() => carouselRef.current?.nudge(1)}
+                aria-label={t('newsEvents.next')}
+                className="grid h-11 w-14 place-items-center text-content transition-colors hover:text-yonsei-blue focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yonsei-blue"
+              >
+                <ArrowIcon dir="right" />
+              </button>
+            </div>
           </div>
 
           {/* 한 줄 요약 — 본문 최소화(기존 2문단 → 1문장). CTA 는 캐러셀 하단으로 이동. */}
@@ -106,9 +127,9 @@ export function LabsSection({ labs, locale }: { labs: LabDirectoryEntry[]; local
         </div>
       </div>
 
-      {/* 2) 캐러셀 — 컴포넌트/props 변경 없음(카드 디자인 유지가 요구사항). */}
+      {/* 2) 캐러셀 — 카드 디자인 무변경. ref 로 헤더 화살표의 넘기기만 연결. */}
       <div className="mt-8 lg:mt-10">
-        <LabCarousel labs={labs} locale={locale} />
+        <LabCarousel ref={carouselRef} labs={labs} locale={locale} />
       </div>
 
       {/* CTA — 캐러셀 하단 우측(뉴스&행사 섹션과 동일한 위치·정렬) */}
