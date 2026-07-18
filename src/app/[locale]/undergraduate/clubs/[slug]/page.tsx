@@ -18,7 +18,7 @@ export async function generateMetadata({
   params: { locale: string; slug: string };
 }): Promise<Metadata> {
   const club = getClubs().find((c) => c.slug === params.slug);
-  return { title: club?.name };
+  return { title: club?.name, description: club?.teaser };
 }
 
 export default async function ClubDetailPage({

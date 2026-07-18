@@ -12,7 +12,7 @@ export async function generateMetadata({
   params: { locale: string };
 }): Promise<Metadata> {
   const t = await getTranslations({ locale: params.locale, namespace: 'faculty' });
-  return { title: t('hero.title') };
+  return { title: t('hero.title'), description: t('hero.subtitle') };
 }
 
 export default function FacultyPage({ params }: { params: { locale: string } }) {

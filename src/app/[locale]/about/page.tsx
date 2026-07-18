@@ -21,7 +21,7 @@ export async function generateMetadata({
   params: { locale: string };
 }): Promise<Metadata> {
   const t = await getTranslations({ locale: params.locale, namespace: 'about' });
-  return { title: t('hero.title') };
+  return { title: t('hero.title'), description: t('hero.subtitle') };
 }
 
 // 연세대 신촌캠퍼스 제4공학관 좌표 기반 카카오맵 링크 (한글 포함 → encodeURI)

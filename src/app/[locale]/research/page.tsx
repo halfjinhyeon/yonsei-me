@@ -20,7 +20,8 @@ export async function generateMetadata({
   params: { locale: string };
 }): Promise<Metadata> {
   const t = await getTranslations({ locale: params.locale, namespace: 'menu' });
-  return { title: t('research.label') };
+  const tR = await getTranslations({ locale: params.locale, namespace: 'research' });
+  return { title: t('research.label'), description: tR('hero.subtitle') };
 }
 
 // 인턴 모집 게시판이 DB(posts)를 읽으므로 페이지를 ISR — revalidateTag('posts')가 즉시 갱신

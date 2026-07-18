@@ -2,8 +2,9 @@ import { cn } from '@/lib/utils';
 import type { ReactNode } from 'react';
 import { Container } from './Container';
 import { Link } from '@/i18n/navigation';
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import { MeshCanvas } from './MeshCanvas';
+import { SITE_URL } from '@/lib/site';
 
 interface HeroCrumb {
   label: string;
@@ -39,7 +40,24 @@ export function Hero({
   const lines = title.split('\n');
   const isLanding = variant === 'landing';
   const tCrumb = useTranslations('breadcrumb');
+  const locale = useLocale();
   const crumbs: HeroCrumb[] = breadcrumb ? [{ label: tCrumb('home'), href: '/' }, ...breadcrumb] : [];
+
+  // 브레드크럼 구조화 데이터(JSON-LD) — 검색결과에 경로 표기를 유도.
+  // 마지막(현재 페이지) 항목은 스펙상 item(URL) 생략 가능.
+  const breadcrumbJsonLd =
+    crumbs.length > 0
+      ? {
+          '@context': 'https://schema.org',
+          '@type': 'BreadcrumbList',
+          itemListElement: crumbs.map((c, i) => ({
+            '@type': 'ListItem',
+            position: i + 1,
+            name: c.label,
+            ...(c.href ? { item: `${SITE_URL}/${locale}${c.href === '/' ? '' : c.href}` } : {}),
+          })),
+        }
+      : null;
 
   return (
     <section
@@ -50,6 +68,13 @@ export function Hero({
           : 'min-h-[clamp(16rem,34vh,22rem)]',
       )}
     >
+      {breadcrumbJsonLd && (
+        <script
+          type="application/ld+json"
+          // 자체 생성 정적 데이터(메시지 파일 라벨) — XSS 벡터 없음
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+        />
+      )}
       {isLanding ? (
         <>
           {/* 배경 이미지 (장식) */}

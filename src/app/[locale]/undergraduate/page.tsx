@@ -24,7 +24,8 @@ export async function generateMetadata({
   params: { locale: string };
 }): Promise<Metadata> {
   const t = await getTranslations({ locale: params.locale, namespace: 'menu' });
-  return { title: t('undergraduate.label') };
+  const tP = await getTranslations({ locale: params.locale, namespace: 'pages' });
+  return { title: t('undergraduate.label'), description: tP('undergraduate.subtitle') };
 }
 
 // 학부 하위 섹션: key → 임포트 마크다운 슬러그 (없으면 준비 중)

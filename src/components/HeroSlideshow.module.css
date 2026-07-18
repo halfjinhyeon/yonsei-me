@@ -249,6 +249,27 @@
   }
 }
 
+/* --- 하단 진행 바 — 다음 슬라이드까지 남은 시간(5초)을 좌→우로 채워 표시.
+   레퍼런스(hicoda) 하단 오렌지 바의 블루 버전. 전환 타이밍과 정확히 동기
+   (바 트윈 완료가 곧 전환 트리거). --- */
+.progressTrack {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 4px;
+  z-index: 25;
+  background: rgba(255, 255, 255, 0.22);
+}
+.progressFill {
+  height: 100%;
+  width: 100%;
+  background: #5c9fe6;
+  transform: scaleX(0);
+  transform-origin: left center;
+  will-change: transform;
+}
+
 /* --- 등장 로더 (crisp-loading) ---
    body 로 portal 되므로 position:fixed + 매우 높은 z-index 로 헤더(z-50)까지 덮는다.
    배경 그라디언트는 #sec-hero 래퍼와 동일하게 맞춰, 로더가 걷힐 때 배경이 튀지 않는다. */

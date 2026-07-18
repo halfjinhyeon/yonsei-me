@@ -20,7 +20,8 @@ export async function generateMetadata({
   params: { locale: string };
 }): Promise<Metadata> {
   const t = await getTranslations({ locale: params.locale, namespace: 'menu' });
-  return { title: t('graduate.label') };
+  const tP = await getTranslations({ locale: params.locale, namespace: 'pages' });
+  return { title: t('graduate.label'), description: tP('graduate.subtitle') };
 }
 
 // labs 는 마크다운 대신 LabVideoGallery(연구실 소개 영상 갤러리)로,

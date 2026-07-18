@@ -91,6 +91,9 @@ export function HeroSlideshow({ slides, title, navLabel, taglines }: Props) {
   const titleRef = useRef<HTMLHeadingElement | null>(null);
   const taglineRef = useRef<HTMLParagraphElement | null>(null);
   const navRef = useRef<HTMLUListElement | null>(null);
+  // 하단 진행 바 — 채움 트윈의 완료가 곧 자동 전환 트리거(타이밍 완전 동기)
+  const barRef = useRef<HTMLDivElement | null>(null);
+  const barTweenRef = useRef<gsap.core.Tween | null>(null);
   const loaderRef = useRef<HTMLDivElement | null>(null);
   const groupsRef = useRef<HTMLDivElement | null>(null);
   const scaleMediaRef = useRef<HTMLDivElement | null>(null);
@@ -291,15 +294,36 @@ export function HeroSlideshow({ slides, title, navLabel, taglines }: Props) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [entering]);
 
-  // --- 자동 전환 — 등장 완료 후, 모션 허용 시 5초마다 다음 슬라이드로 ---
+  // --- 자동 전환 = 하단 진행 바 트윈 — 바가 좌→우로 다 차면(5초) 다음 슬라이드.
+  // setInterval 대신 바 자체가 타이머라 표시와 전환이 정확히 동기다.
+  // current 가 바뀔 때마다(자동·수동 모두) 0부터 다시 채운다.
   useEffect(() => {
     if (entering || prefersReducedMotion() || slides.length <= 1) return;
-    const id = window.setInterval(() => {
-      if (pausedRef.current || animatingRef.current || document.hidden) return;
-      goTo((currentRef.current + 1) % slides.length);
-    }, AUTO_ADVANCE_MS);
-    return () => window.clearInterval(id);
-  }, [entering, goTo, slides.length]);
+    const bar = barRef.current;
+    if (!bar) return;
+    const tween = gsap.fromTo(
+      bar,
+      { scaleX: 0 },
+      {
+        scaleX: 1,
+        duration: AUTO_ADVANCE_MS / 1000,
+        ease: 'none',
+        onComplete: () => goTo((currentRef.current + 1) % slides.length),
+      },
+    );
+    barTweenRef.current = tween;
+    if (pausedRef.current || document.hidden) tween.pause();
+    const onVis = () => {
+      if (document.hidden) tween.pause();
+      else if (!pausedRef.current) tween.play();
+    };
+    document.addEventListener('visibilitychange', onVis);
+    return () => {
+      document.removeEventListener('visibilitychange', onVis);
+      barTweenRef.current = null;
+      tween.kill();
+    };
+  }, [entering, current, goTo, slides.length]);
 
   // --- 회전 카피 — 4초마다 페이드아웃 → 교체(아래 layout effect 가 페이드인) ---
   useEffect(() => {
@@ -415,10 +439,22 @@ export function HeroSlideshow({ slides, title, navLabel, taglines }: Props) {
       <nav
         className={styles.nav}
         aria-label={navLabel}
-        onMouseEnter={() => (pausedRef.current = true)}
-        onMouseLeave={() => (pausedRef.current = false)}
-        onFocusCapture={() => (pausedRef.current = true)}
-        onBlurCapture={() => (pausedRef.current = false)}
+        onMouseEnter={() => {
+          pausedRef.current = true;
+          barTweenRef.current?.pause();
+        }}
+        onMouseLeave={() => {
+          pausedRef.current = false;
+          if (!document.hidden) barTweenRef.current?.play();
+        }}
+        onFocusCapture={() => {
+          pausedRef.current = true;
+          barTweenRef.current?.pause();
+        }}
+        onBlurCapture={() => {
+          pausedRef.current = false;
+          if (!document.hidden) barTweenRef.current?.play();
+        }}
       >
         <ul ref={navRef} className={styles.list}>
           {slides.map((s, i) => (
@@ -459,6 +495,14 @@ export function HeroSlideshow({ slides, title, navLabel, taglines }: Props) {
           ))}
         </ul>
       </nav>
+
+      {/* 하단 진행 바 — 다음 슬라이드까지 남은 시간 표시(장식, 전환과 완전 동기).
+          reduced-motion·단일 슬라이드에선 자동 전환이 없으므로 렌더하지 않는다. */}
+      {slides.length > 1 && (
+        <div className={styles.progressTrack} aria-hidden="true">
+          <div ref={barRef} className={styles.progressFill} />
+        </div>
+      )}
 
       {/* 등장 로더(crisp-loading) — body 로 portal 해 헤더(z-50)까지 덮는다.
           모션 허용 시에만 마운트, 완료 후 언마운트.

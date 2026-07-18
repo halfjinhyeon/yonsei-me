@@ -246,24 +246,28 @@ function NewsEventCard({ item }: { item: NewsEventItem }) {
   );
 }
 
-/** 헤더 우측 화살표 아이콘 — 레퍼런스(홍익)식 길고 얇은 롱테일 화살표(SVG).
- *  캐러셀 섹션 공용(뉴스&행사·연구실). */
+/** 헤더 우측 화살표 아이콘 — 레퍼런스식: 몸통 대비 머리가 큰(전체 높이) 각진 화살표.
+ *  캐러셀 섹션 공용(뉴스&행사·연구실). 모서리는 라운드 없이 날카롭게(미터 조인). */
 export function ArrowIcon({ dir }: { dir: 'left' | 'right' }) {
   return (
     <svg
-      viewBox="0 0 48 16"
-      className="h-4 w-12"
+      viewBox="0 0 44 24"
+      className="h-6 w-11"
       fill="none"
       stroke="currentColor"
-      strokeWidth={1.8}
-      strokeLinecap="round"
-      strokeLinejoin="round"
+      strokeWidth={2}
       aria-hidden="true"
     >
       {dir === 'left' ? (
-        <path d="M46 8H2M9 2 2 8l7 6" />
+        <>
+          <path d="M43 12H2" />
+          <path d="M13 2 2 12l11 10" />
+        </>
       ) : (
-        <path d="M2 8h44M39 2l7 6-7 6" />
+        <>
+          <path d="M1 12h41" />
+          <path d="M31 2l11 10-11 10" />
+        </>
       )}
     </svg>
   );

@@ -57,14 +57,14 @@ export function Footer() {
                   </Link>
                 </li>
               ))}
-              {/* XML 사이트맵 — 로케일 접두어가 없는 루트 파일이라 native <a> 로 링크 */}
+              {/* 사용자용 HTML 사이트맵 페이지(/sitemap) — 크롤러용 XML 과 별개 */}
               <li>
-                <a
-                  href="/sitemap.xml"
+                <Link
+                  href="/sitemap"
                   className="-my-1 inline-block py-1 text-content-soft transition-colors hover:text-yonsei-blue"
                 >
                   {t('sitemap')}
-                </a>
+                </Link>
               </li>
             </ul>
           </nav>

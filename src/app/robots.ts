@@ -1,8 +1,8 @@
 import type { MetadataRoute } from 'next';
+import { SITE_URL } from '@/lib/site';
 
 // 검색엔진용 robots.txt → /robots.txt 로 서빙된다.
 // 전 페이지 크롤 허용, 관리자 콘솔만 제외, 사이트맵 위치 명시.
-const SITE_URL = 'https://yonsei-me.vercel.app';
 
 export default function robots(): MetadataRoute.Robots {
   return {

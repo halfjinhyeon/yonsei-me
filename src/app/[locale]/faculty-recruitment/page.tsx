@@ -11,7 +11,8 @@ export async function generateMetadata({
   params: { locale: string };
 }): Promise<Metadata> {
   const t = await getTranslations({ locale: params.locale, namespace: 'menu' });
-  return { title: t('recruit.label') };
+  const tP = await getTranslations({ locale: params.locale, namespace: 'pages' });
+  return { title: t('recruit.label'), description: tP('recruit.subtitle') };
 }
 
 export default async function FacultyRecruitmentPage({ params }: { params: { locale: string } }) {
