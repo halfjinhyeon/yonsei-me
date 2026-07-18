@@ -48,12 +48,31 @@ export async function GET() {
   ];
   for (const p of STATIC_PATHS) addAll(p);
 
-  // 동적 페이지 — 게시판 데이터 레이어(db/git)에서 열거
-  for (const n of await fetchNews()) addAll(`news/${n.slug}`);
-  for (const post of await fetchAllBoardPosts()) addAll(`news/post/${post.id}`);
-  for (const club of getClubs()) addAll(`undergraduate/clubs/${club.slug}`);
-  for (const a of await fetchAlumniNews()) addAll(`alumni/news/${a.slug}`);
-  for (const e of await fetchAlumniEvents()) addAll(`alumni/post/${e.id}`);
+  // 동적 페이지 — 게시판 데이터 레이어(db/git)에서 열거.
+  // 페처는 DB 문제 시 throw 하므로 그룹별로 방어한다: 하나가 죽어도 사이트맵
+  // 전체가 500 이 되지 않고(과거 GSC '읽을 수 없음' 원인), 해당 그룹만 생략된다.
+  const safe = async (label: string, run: () => Promise<void>) => {
+    try {
+      await run();
+    } catch (err) {
+      console.error(`[sitemap] ${label} 열거 실패 — 해당 그룹 생략:`, err);
+    }
+  };
+  await safe('news', async () => {
+    for (const n of await fetchNews()) addAll(`news/${n.slug}`);
+  });
+  await safe('board', async () => {
+    for (const post of await fetchAllBoardPosts()) addAll(`news/post/${post.id}`);
+  });
+  await safe('clubs', async () => {
+    for (const club of getClubs()) addAll(`undergraduate/clubs/${club.slug}`);
+  });
+  await safe('alumni-news', async () => {
+    for (const a of await fetchAlumniNews()) addAll(`alumni/news/${a.slug}`);
+  });
+  await safe('alumni-events', async () => {
+    for (const e of await fetchAlumniEvents()) addAll(`alumni/post/${e.id}`);
+  });
 
   const body = [
     '<?xml version="1.0" encoding="UTF-8"?>',
