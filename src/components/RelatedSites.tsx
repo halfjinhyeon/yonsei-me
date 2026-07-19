@@ -60,6 +60,7 @@ export function RelatedSites({
 
   return (
     <div ref={rootRef} className="relative w-full sm:w-72">
+      {/* 알약형 트리거 — 레퍼런스(이화여대)의 라운드 필. 네이비 위 흰 알약 + 네이비 텍스트 */}
       <button
         ref={triggerRef}
         type="button"
@@ -68,7 +69,7 @@ export function RelatedSites({
         aria-expanded={open}
         aria-controls={panelId}
         aria-label={openLabel}
-        className="flex w-full items-center justify-between gap-4 border border-white/20 bg-white px-5 py-3 text-sm font-bold text-yonsei-navy transition-colors hover:border-white"
+        className="flex h-12 w-full items-center justify-between gap-4 rounded-full bg-white pl-6 pr-4 text-sm font-bold text-yonsei-navy transition-colors hover:bg-yonsei-blue hover:text-white"
       >
         <span>{triggerLabel}</span>
         <svg
@@ -77,7 +78,7 @@ export function RelatedSites({
           fill="none"
           stroke="currentColor"
           strokeWidth="2"
-          className={`h-4 w-4 text-yonsei-navy/50 transition-transform duration-200 ${open ? 'rotate-180' : ''}`}
+          className={`h-4 w-4 opacity-60 transition-transform duration-200 ${open ? 'rotate-180' : ''}`}
         >
           <path d="M6 9l6 6 6-6" strokeLinecap="round" strokeLinejoin="round" />
         </svg>
