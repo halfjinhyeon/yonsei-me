@@ -203,6 +203,25 @@
         "labs": "여섯 연구 분야, 서른세 곳의 연구실을 분야별로 둘러봅니다."
       }
     },
+    "calendar": {
+      "title": "학과 일정",
+      "viewMore": "VIEW MORE",
+      "prev": "이전 일정",
+      "next": "다음 일정",
+      "empty": "예정된 일정이 없습니다."
+    },
+    "notices": {
+      "title": "학과 공지",
+      "more": "MORE",
+      "empty": "등록된 공지가 없습니다.",
+      "filters": {
+        "all": "전체",
+        "undergrad": "학부",
+        "graduate": "대학원",
+        "external": "외부기관",
+        "scholarship": "장학"
+      }
+    },
     "weAre": {
       "statement": "세상을 움직이는 <c2>공학</c2>, <br></br> 미래를 설계하는 <c2>사람들</c2>",
       "link": "기계공학부란? →"

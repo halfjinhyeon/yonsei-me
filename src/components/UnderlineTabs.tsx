@@ -69,10 +69,10 @@ export function UnderlineTabs({
           </button>
         ))}
       </div>
-      {/* 슬라이딩 언더라인 (목차 세로 막대와 같은 브랜드 그라디언트) */}
+      {/* 슬라이딩 언더라인 — 네이비→블루 브랜드 그라디언트(금색 배제 — 사용자 지시) */}
       <span
         aria-hidden="true"
-        className="absolute -bottom-px h-0.5 rounded-full bg-gradient-to-r from-yonsei-navy via-yonsei-blue to-yonsei-gold transition-all duration-300 ease-out-expo motion-reduce:transition-none"
+        className="absolute -bottom-px h-0.5 rounded-full bg-gradient-to-r from-yonsei-navy to-yonsei-blue transition-all duration-300 ease-out-expo motion-reduce:transition-none"
         style={{ left: bar.left, width: bar.width }}
       />
     </div>

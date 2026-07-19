@@ -203,6 +203,25 @@
         "labs": "Explore thirty-three labs across six research fields."
       }
     },
+    "calendar": {
+      "title": "Calendar",
+      "viewMore": "VIEW MORE",
+      "prev": "Previous",
+      "next": "Next",
+      "empty": "No scheduled events."
+    },
+    "notices": {
+      "title": "Department Notices",
+      "more": "MORE",
+      "empty": "No notices posted.",
+      "filters": {
+        "all": "All",
+        "undergrad": "Undergraduate",
+        "graduate": "Graduate",
+        "external": "External",
+        "scholarship": "Scholarship"
+      }
+    },
     "weAre": {
       "statement": "<c1>Engineering</c1> that moves the world, <c2>people</c2> who design the future",
       "link": "What is mechanical engineering? →"

@@ -4,8 +4,10 @@ import { LabsSection } from '@/components/LabsSection';
 import { NewsEventsSection } from '@/components/NewsEventsSection';
 import { InstagramSection } from '@/components/InstagramSection';
 import { GoalsSection } from '@/components/GoalsSection';
-// ⚠️ 임시 — 히어로 제목 폰트 시험 패널(선택 끝나면 이 import 와 아래 렌더 한 줄 삭제)
+import { CalendarSection } from '@/components/CalendarSection';
+import { NoticeSection, type NoticeCategory } from '@/components/NoticeSection';
 import { pick } from '@/lib/content';
+import { formatDate } from '@/lib/utils';
 import { fetchNews, fetchBoardData } from '@/lib/posts';
 import heroSlidesData from '@content/hero-slides.json';
 import instagramData from '@content/instagram.json';
@@ -87,6 +89,68 @@ export default async function HomePage({ params }: { params: { locale: string } 
     .sort((a, b) => (a.date < b.date ? 1 : -1))
     .slice(0, 12);
 
+  // 학과 일정 — 행사 게시판(dateLabel 포함) + 동문 행사(isEvent) 를 합쳐 '예정→과거' 순.
+  // 대부분 데이터가 과거일 수 있어 하드 필터 대신 예정(오늘 이후) 오름차순 + 과거 내림차순으로
+  // 정렬해 항상 관련 항목을 노출한다. 날짜 pill 은 dateLabel(예: "7/20~7/24")을 쓰되,
+  // 비어 있으면 date 를 'YY.MM.DD' 로 폴백한다.
+  // ⚠️ 정렬·분류는 e.date 를 행사일로 간주한다 — board.json 의 event.date 가 게시일이 아닌
+  //    실제 행사일이어야 '예정/과거' 순서가 맞는다(dateLabel 은 자유형식이라 정렬 키로 못 씀).
+  // 로케일 값이 비어 있으면 기본 로케일(ko)로 폴백 — pick 은 빈 문자열("")을 폴백하지 않으므로
+  // 직접 처리해, 부분 번역 데이터에서 빈 제목 카드나 로케일 간 날짜 불일치를 막는다.
+  const orKo = (v: { ko: string; en: string }) => pick(v, locale).trim() || v.ko;
+  // '오늘'은 KST 기준(서버가 UTC 여도 한국 날짜 경계를 쓴다).
+  const calToday = new Intl.DateTimeFormat('en-CA', { timeZone: 'Asia/Seoul' }).format(new Date());
+  const calRaw = [
+    ...board.events.map((e) => ({
+      date: e.date,
+      label: orKo(e.dateLabel), // en 이 비면 ko dateLabel 로 폴백 → 로케일 간 동일 행사일 표기
+      title: orKo(e.title),
+      href: `/news/post/${e.id}`,
+    })),
+    ...board.alumniEvents
+      .filter((a) => a.isEvent && a.date)
+      .map((a) => ({
+        date: a.date,
+        label: '', // 동문 행사는 dateLabel 이 없어 아래에서 date 를 'YY.MM.DD' 로 표기
+        title: orKo(a.title),
+        href: `/alumni/post/${a.id}`,
+      })),
+  ];
+  const byDateAsc = (a: { date: string }, b: { date: string }) =>
+    a.date < b.date ? -1 : a.date > b.date ? 1 : 0;
+  const calendarItems = [
+    ...calRaw.filter((e) => e.date >= calToday).sort(byDateAsc),
+    ...calRaw.filter((e) => e.date < calToday).sort((a, b) => -byDateAsc(a, b)),
+  ]
+    .slice(0, 12)
+    .map((e) => {
+      const [y, m, d] = e.date.split('-');
+      return { href: e.href, dateLabel: e.label.trim() || `${y.slice(2)}.${m}.${d}`, title: e.title };
+    });
+
+  // 학과 공지 — 4개 공지 배열(학부/대학원/외부기관/장학)을 최신순으로 합쳐 카테고리 태그.
+  // 행 링크는 게시물 상세(/news/post/[id]). 탭 필터·2열 배치는 NoticeSection 이 담당.
+  const noticeSources: { key: NoticeCategory; list: typeof board.noticesUndergrad }[] = [
+    { key: 'undergrad', list: board.noticesUndergrad },
+    { key: 'graduate', list: board.noticesGraduate },
+    { key: 'external', list: board.noticesExternal },
+    { key: 'scholarship', list: board.noticesScholarship },
+  ];
+  const noticeItems = noticeSources
+    .flatMap(({ key, list }) =>
+      list.map((n) => ({
+        id: n.id,
+        date: n.date,
+        dateText: formatDate(n.date, locale),
+        title: orKo(n.title), // en 이 비면 ko 로 폴백(부분 번역 데이터에서 빈 제목 방지)
+        category: key,
+      })),
+    )
+    .sort((a, b) => (a.date < b.date ? 1 : a.date > b.date ? -1 : 0));
+  const noticeFilters = (['all', 'undergrad', 'graduate', 'external', 'scholarship'] as const).map(
+    (k) => ({ key: k, label: t(`notices.filters.${k}`) }),
+  );
+
   return (
     <>
       {/* 1. 애니메이션 히어로 — 고정 배경 레이어(hicoda 식 "fixed background reveal").
@@ -138,18 +202,45 @@ export default async function HomePage({ params }: { params: { locale: string } 
           />
         </div>
 
-        {/* 2. 뉴스 & 행사 — 뉴스(news.json) + 행사(board.events) 카드. */}
+        {/* 2. 학과 공지 — 레퍼런스(학과 공지 리스트) 구성 + 사이트 통일 디자인(네이비 박스 헤더,
+            UnderlineTabs 필터, 2열 리스트 + 카테고리 배지). 학과 목표 아래·학과 일정 위(사용자 지시). */}
+        <div id="sec-notices" className="scroll-mt-16 lg:scroll-mt-20">
+          <NoticeSection
+            items={noticeItems}
+            heading={t('notices.title')}
+            moreLabel={t('notices.more')}
+            moreHref="/news#notices"
+            emptyLabel={t('notices.empty')}
+            filters={noticeFilters}
+          />
+        </div>
+
+        {/* 3. 학과 일정 — 이화여대 'CALENDAR' 시안(대형 제목 + VIEW MORE + 날짜 pill 카드
+            가로 캐러셀 + 원형 화살표)을 연세 네이비로 이식. 학과 공지 아래(사용자 지시). */}
+        <div id="sec-calendar" className="scroll-mt-16 lg:scroll-mt-20">
+          <CalendarSection
+            items={calendarItems}
+            title={t('calendar.title')}
+            viewMoreLabel={t('calendar.viewMore')}
+            viewMoreHref="/news#calendar"
+            prevLabel={t('calendar.prev')}
+            nextLabel={t('calendar.next')}
+            emptyLabel={t('calendar.empty')}
+          />
+        </div>
+
+        {/* 4. 뉴스 & 행사 — 뉴스(news.json) + 행사(board.events) 카드. */}
         <div id="sec-news" className="scroll-mt-16 lg:scroll-mt-20">
           <NewsEventsSection items={newsEventItems} />
         </div>
 
-        {/* 3. 우리의 연구실 — 연구실 쇼케이스(네이비 라벨 + 마퀴 + 카드 캐러셀).
+        {/* 5. 우리의 연구실 — 연구실 쇼케이스(네이비 라벨 + 마퀴 + 카드 캐러셀).
             사용자 지시로 뉴스 & 행사 아래(인스타그램 밴드 위)로 이동. */}
         <div id="sec-labs" className="scroll-mt-16 lg:scroll-mt-20">
           <LabsSection labs={labs} locale={locale} />
         </div>
 
-        {/* 4. 인스타그램 밴드 (맨 아래) — 사진 그리드 없이 낮은 밴드 + 계정 버튼 하나.
+        {/* 6. 인스타그램 밴드 (맨 아래) — 사진 그리드 없이 낮은 밴드 + 계정 버튼 하나.
             실시간 피드 연동 불가(API 제약)를 반영한 정직한 구성. 핸들·URL 은
             content/instagram.json 에서 관리. */}
         <InstagramSection
