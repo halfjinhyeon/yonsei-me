@@ -42,7 +42,6 @@ export async function GET() {
     'news',
     'alumni',
     'faculty',
-    'faculty-recruitment',
     'contact',
     'sitemap',
   ];

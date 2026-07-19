@@ -12,11 +12,14 @@ export interface CalendarSectionItem {
 }
 
 /**
- * 학과 일정 섹션 — 이화여대 'CALENDAR' 시안을 연세 톤(네이비, 각진 스타일)으로 이식.
- * 위치: 홈 '학과 목표' 바로 아래(사용자 지시).
+ * 학과 일정 — 이화여대 'CALENDAR' 시안을 연세 톤(네이비, 각진 스타일)으로 이식한 카드 캐러셀.
+ *
+ * bare=true 면 자체 section/헤더 없이 본문(카드 트랙 + 화살표)만 반환한다 — 상위 '공지&일정'
+ * 통합 섹션(NoticeSection)에 구분선 아래로 임베드하기 위함(사용자 지시로 두 섹션 통합).
+ * standalone(bare=false)이면 네이비 박스 제목 헤더 + VIEW MORE 를 포함한 풀블리드 섹션.
  *
  * 구성(시안 그대로):
- *  - 헤더 행: 좌측 네이비 박스 제목(다른 홈 섹션과 통일) + 헤어라인 / 우측 'VIEW MORE ›'(행사 게시판으로 이동).
+ *  - 헤더 행(standalone 만): 좌측 네이비 박스 제목 + 헤어라인 / 우측 'VIEW MORE ›'(행사 게시판).
  *  - 카드 트랙: 가로 스크롤(스냅) — 각 카드 = 날짜 pill(시안의 빨강 대신 연세 네이비)
  *    → 제목(2줄 말줄임). 카드 사이 세로 구분선(border-l), 카드 전체가 게시물 Link.
  *  - 하단: 가로 헤어라인 + 우측 원형 이전/다음 화살표 버튼(양끝 도달 시 비활성).
@@ -33,6 +36,7 @@ export function CalendarSection({
   prevLabel,
   nextLabel,
   emptyLabel,
+  bare = false,
 }: {
   items: CalendarSectionItem[];
   title: string;
@@ -41,6 +45,8 @@ export function CalendarSection({
   prevLabel: string;
   nextLabel: string;
   emptyLabel: string;
+  /** true 면 자체 section/헤더 없이 본문만 반환(상위 '공지&일정' 섹션 임베드용) */
+  bare?: boolean;
 }) {
   const trackRef = useRef<HTMLUListElement | null>(null);
   // 트랙 양끝 도달 여부 → 화살표 disabled 갱신.
@@ -73,15 +79,12 @@ export function CalendarSection({
     return () => window.removeEventListener('resize', updateArrows);
   }, [updateArrows, hasItems]);
 
-  // 위 학과 공지 섹션과의 사이 여백을 60%로 축소 — pt 를 section-lg 의 60%(clamp)로(사용자 지시).
-  return (
-    <section
-      aria-labelledby="calendar-heading"
-      className="full-bleed bg-surface pt-[clamp(2.7rem,6vh,4.8rem)] pb-section-lg"
-    >
-      <div className="mx-auto w-full max-w-[1360px] px-6 sm:px-10 lg:px-16">
-        {/* 헤더 — 다른 홈 섹션(학과 목표·뉴스&행사)과 동일한 네이비 박스 제목 + 헤어라인 /
-            우측 VIEW MORE(시안) */}
+  // 본문(트랙 + 화살표 / 빈 상태) — bare·standalone 공통. standalone 은 위에 헤더가 붙는다.
+  const body = (
+    <>
+      {/* 헤더(standalone 만) — 네이비 박스 제목 + 헤어라인 / 우측 VIEW MORE(시안).
+          bare 모드는 상위 '공지&일정' 섹션의 헤더를 공유하므로 렌더하지 않는다. */}
+      {!bare && (
         <div className="flex items-center gap-6">
           <h2
             id="calendar-heading"
@@ -100,71 +103,89 @@ export function CalendarSection({
             </span>
           </Link>
         </div>
+      )}
 
-        {hasItems ? (
-          <>
-            {/* 카드 트랙 — 가로 스크롤 + 스냅. 카드 사이 세로 구분선(border-l), 첫 카드는 제외.
-                no-scrollbar 로 스크롤바 숨김(globals 유틸). items-stretch(flex 기본)로
-                구분선이 카드 높이만큼 균일하게 뻗는다. */}
-            <ul
-              ref={trackRef}
-              onScroll={updateArrows}
-              className="no-scrollbar mt-10 flex snap-x snap-mandatory overflow-x-auto scroll-smooth lg:mt-12"
-            >
-              {items.map((item, i) => (
-                <li
-                  key={`${item.href}-${i}`}
-                  data-card
-                  className="w-[70%] shrink-0 snap-start border-l border-surface-border pl-6 pr-6 first:border-l-0 first:pl-0 sm:w-[42%] lg:w-1/4"
+      {hasItems ? (
+        <>
+          {/* 카드 트랙 — 가로 스크롤 + 스냅. 카드 사이 세로 구분선(border-l), 첫 카드는 제외.
+              no-scrollbar 로 스크롤바 숨김(globals 유틸). items-stretch(flex 기본)로
+              구분선이 카드 높이만큼 균일하게 뻗는다.
+              ⚠️ overflow-x-auto 는 CSS 규칙상 overflow-y 도 auto(세로 클리핑)로 만든다.
+              hover 시 카드가 위로 떠오를 때 트랙 상단에 잘려 '흰색 마스킹'이 생기므로,
+              pt-2 로 클립 안쪽에 리프트 여유공간을 둔다(패딩 영역은 클립되지 않음).
+              mt 를 그만큼 줄여 구분선 아래 시각적 간격은 이전과 동일(mt-8+pt-2=40px 등). */}
+          <ul
+            ref={trackRef}
+            onScroll={updateArrows}
+            className="no-scrollbar mt-7 flex snap-x snap-mandatory overflow-x-auto scroll-smooth pt-3 lg:mt-9"
+          >
+            {items.map((item, i) => (
+              <li
+                key={`${item.href}-${i}`}
+                data-card
+                className="w-[70%] shrink-0 snap-start border-l border-surface-border pl-6 pr-6 first:border-l-0 first:pl-0 sm:w-[42%] lg:w-1/4"
+              >
+                {/* hover: 카드 내용이 약간 위로 떠오르며 색이 바뀐다(이화여대 CALENDAR 이식).
+                    트랙의 pt-2 여유공간 덕에 떠오를 때 위쪽이 잘리지 않는다(흰색 마스킹 해결). */}
+                <Link
+                  href={item.href}
+                  className="group block transition duration-300 ease-out hover:-translate-y-1.5"
                 >
-                  <Link href={item.href} className="group block">
-                    {/* 날짜 pill — 시안의 빨강 대신 연세 네이비. 기간 표기가 길어도 한 줄 유지. */}
-                    <span className="inline-block whitespace-nowrap rounded-full bg-yonsei-navy px-4 py-1.5 text-sm font-bold tabular-nums text-white">
-                      {item.dateLabel}
-                    </span>
-                    {/* 제목 — 2줄 말줄임, hover 시 블루 전환 */}
-                    <p className="mt-6 line-clamp-2 text-lg font-bold leading-snug text-content transition-colors group-hover:text-yonsei-blue">
-                      {item.title}
-                    </p>
-                  </Link>
-                </li>
-              ))}
-            </ul>
+                  {/* 날짜 pill — 네이비 → hover 시 블루로 색 변화. 기간 표기가 길어도 한 줄 유지. */}
+                  <span className="inline-block whitespace-nowrap rounded-full bg-yonsei-navy px-4 py-1.5 text-sm font-bold tabular-nums text-white transition-colors duration-300 group-hover:bg-yonsei-blue">
+                    {item.dateLabel}
+                  </span>
+                  {/* 제목 — 2줄 말줄임, hover 시 블루 전환 */}
+                  <p className="mt-6 line-clamp-2 text-lg font-bold leading-snug text-content transition-colors duration-300 group-hover:text-yonsei-blue">
+                    {item.title}
+                  </p>
+                </Link>
+              </li>
+            ))}
+          </ul>
 
-            {/* 하단 — 가로 헤어라인 + 우측 원형 화살표 2개(시안) */}
-            <div className="mt-8 flex items-center gap-6">
-              <span aria-hidden="true" className="h-px flex-1 bg-content/30" />
-              <div className="flex items-center gap-3">
-                <button
-                  type="button"
-                  onClick={() => scrollByCard(-1)}
-                  disabled={!canPrev}
-                  aria-label={prevLabel}
-                  className="grid h-11 w-11 place-items-center rounded-full border border-content/40 text-content transition-colors hover:border-yonsei-blue hover:text-yonsei-blue disabled:cursor-not-allowed disabled:opacity-30 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yonsei-blue"
-                >
-                  <ArrowSmall dir="left" />
-                </button>
-                <button
-                  type="button"
-                  onClick={() => scrollByCard(1)}
-                  disabled={!canNext}
-                  aria-label={nextLabel}
-                  className="grid h-11 w-11 place-items-center rounded-full border border-content/40 text-content transition-colors hover:border-yonsei-blue hover:text-yonsei-blue disabled:cursor-not-allowed disabled:opacity-30 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yonsei-blue"
-                >
-                  <ArrowSmall dir="right" />
-                </button>
-              </div>
+          {/* 하단 — 가로 헤어라인 + 우측 원형 화살표 2개(시안) */}
+          <div className="mt-8 flex items-center gap-6">
+            <span aria-hidden="true" className="h-px flex-1 bg-content/30" />
+            <div className="flex items-center gap-3">
+              <button
+                type="button"
+                onClick={() => scrollByCard(-1)}
+                disabled={!canPrev}
+                aria-label={prevLabel}
+                className="grid h-11 w-11 place-items-center rounded-full border border-content/40 text-content transition-colors hover:border-yonsei-blue hover:text-yonsei-blue disabled:cursor-not-allowed disabled:opacity-30 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yonsei-blue"
+              >
+                <ArrowSmall dir="left" />
+              </button>
+              <button
+                type="button"
+                onClick={() => scrollByCard(1)}
+                disabled={!canNext}
+                aria-label={nextLabel}
+                className="grid h-11 w-11 place-items-center rounded-full border border-content/40 text-content transition-colors hover:border-yonsei-blue hover:text-yonsei-blue disabled:cursor-not-allowed disabled:opacity-30 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yonsei-blue"
+              >
+                <ArrowSmall dir="right" />
+              </button>
             </div>
-          </>
-        ) : (
-          // 빈 상태 — 기존 빈 게시판 관례(eagle_empty 마스코트 + 안내 문구).
-          <div className="mt-10 flex flex-col items-center justify-center gap-4 py-16 text-center">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/img/eagle_empty.png" alt="" aria-hidden="true" className="h-16 w-auto opacity-70" />
-            <p className="text-sm font-medium text-content-faint">{emptyLabel}</p>
           </div>
-        )}
-      </div>
+        </>
+      ) : (
+        // 빈 상태 — 기존 빈 게시판 관례(eagle_empty 마스코트 + 안내 문구).
+        <div className="mt-10 flex flex-col items-center justify-center gap-4 py-16 text-center">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/img/eagle_empty.png" alt="" aria-hidden="true" className="h-16 w-auto opacity-70" />
+          <p className="text-sm font-medium text-content-faint">{emptyLabel}</p>
+        </div>
+      )}
+    </>
+  );
+
+  // bare: 상위 '공지&일정' 섹션에 구분선 아래로 임베드 — 자체 section/컨테이너 없이 본문만.
+  if (bare) return body;
+
+  return (
+    <section aria-labelledby="calendar-heading" className="full-bleed bg-surface py-section-lg">
+      <div className="mx-auto w-full max-w-[1360px] px-6 sm:px-10 lg:px-16">{body}</div>
     </section>
   );
 }

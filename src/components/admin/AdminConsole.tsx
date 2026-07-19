@@ -179,6 +179,7 @@ export function AdminConsole({ token, login }: Props) {
             잘리지 않도록 사이드바 자체에 스크롤(max-h + overflow)을 준다. */}
         <nav
           aria-label="콘텐츠 선택"
+          data-lenis-prevent
           className="lg:sticky lg:top-24 lg:max-h-[calc(100vh_-_7rem)] lg:self-start lg:overflow-y-auto lg:overscroll-contain lg:pr-1"
         >
           {/* 대시보드 — 카테고리 밖 독립 항목 */}

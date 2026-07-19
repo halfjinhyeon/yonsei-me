@@ -63,7 +63,8 @@
         "capacity": "연구 역량",
         "labs": "연구실",
         "internships": "인턴 모집",
-        "social": "사회난제 신문고"
+        "social": "사회난제 신문고",
+        "recruit": "교수 초빙"
       }
     },
     "news": {
@@ -77,13 +78,6 @@
         "events": "행사",
         "seminars": "세미나",
         "calendar": "일정"
-      }
-    },
-    "recruit": {
-      "label": "교수초빙",
-      "items": {
-        "info": "초빙안내",
-        "apply": "지원서작성"
       }
     },
     "alumni": {
@@ -139,9 +133,6 @@
     },
     "graduate": {
       "subtitle": "석·박사 입학, 교과, 연구실, BK21 FOUR 등 대학원 과정 안내."
-    },
-    "recruit": {
-      "subtitle": "기계공학부 전임교원 초빙 안내와 지원 절차."
     }
   },
   "home": {
@@ -211,7 +202,7 @@
       "empty": "예정된 일정이 없습니다."
     },
     "notices": {
-      "title": "학과 공지",
+      "title": "공지&일정",
       "more": "MORE",
       "empty": "등록된 공지가 없습니다.",
       "filters": {

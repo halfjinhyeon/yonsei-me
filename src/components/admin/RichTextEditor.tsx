@@ -39,7 +39,7 @@ interface Props {
 
 /** 글자색 팔레트 — 사이트 브랜드 + 기본색 (남용 방지를 위해 소수만) */
 const COLORS: { value: string; label: string }[] = [
-  { value: '#00285E', label: '네이비' },
+  { value: '#003377', label: '네이비' },
   { value: '#0057A8', label: '블루' },
   { value: '#C8A96A', label: '골드' },
   { value: '#C0392B', label: '레드' },

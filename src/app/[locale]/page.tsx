@@ -202,8 +202,8 @@ export default async function HomePage({ params }: { params: { locale: string } 
           />
         </div>
 
-        {/* 2. 학과 공지 — 레퍼런스(학과 공지 리스트) 구성 + 사이트 통일 디자인(네이비 박스 헤더,
-            UnderlineTabs 필터, 2열 리스트 + 카테고리 배지). 학과 목표 아래·학과 일정 위(사용자 지시). */}
+        {/* 2. 공지 & 일정 — 학과 공지와 학과 일정을 한 섹션으로 통합(사용자 지시). 헤더는 공지
+            것만("공지&일정"), 리스트 아래 구분선. 일정은 헤더 없는 bare 모드로 구분선 아래 임베드. */}
         <div id="sec-notices" className="scroll-mt-16 lg:scroll-mt-20">
           <NoticeSection
             items={noticeItems}
@@ -212,35 +212,32 @@ export default async function HomePage({ params }: { params: { locale: string } 
             moreHref="/news#notices"
             emptyLabel={t('notices.empty')}
             filters={noticeFilters}
-          />
+          >
+            <CalendarSection
+              bare
+              items={calendarItems}
+              title={t('calendar.title')}
+              viewMoreLabel={t('calendar.viewMore')}
+              viewMoreHref="/news#calendar"
+              prevLabel={t('calendar.prev')}
+              nextLabel={t('calendar.next')}
+              emptyLabel={t('calendar.empty')}
+            />
+          </NoticeSection>
         </div>
 
-        {/* 3. 학과 일정 — 이화여대 'CALENDAR' 시안(대형 제목 + VIEW MORE + 날짜 pill 카드
-            가로 캐러셀 + 원형 화살표)을 연세 네이비로 이식. 학과 공지 아래(사용자 지시). */}
-        <div id="sec-calendar" className="scroll-mt-16 lg:scroll-mt-20">
-          <CalendarSection
-            items={calendarItems}
-            title={t('calendar.title')}
-            viewMoreLabel={t('calendar.viewMore')}
-            viewMoreHref="/news#calendar"
-            prevLabel={t('calendar.prev')}
-            nextLabel={t('calendar.next')}
-            emptyLabel={t('calendar.empty')}
-          />
-        </div>
-
-        {/* 4. 뉴스 & 행사 — 뉴스(news.json) + 행사(board.events) 카드. */}
+        {/* 3. 뉴스 & 행사 — 뉴스(news.json) + 행사(board.events) 카드. */}
         <div id="sec-news" className="scroll-mt-16 lg:scroll-mt-20">
           <NewsEventsSection items={newsEventItems} />
         </div>
 
-        {/* 5. 우리의 연구실 — 연구실 쇼케이스(네이비 라벨 + 마퀴 + 카드 캐러셀).
+        {/* 4. 우리의 연구실 — 연구실 쇼케이스(네이비 라벨 + 마퀴 + 카드 캐러셀).
             사용자 지시로 뉴스 & 행사 아래(인스타그램 밴드 위)로 이동. */}
         <div id="sec-labs" className="scroll-mt-16 lg:scroll-mt-20">
           <LabsSection labs={labs} locale={locale} />
         </div>
 
-        {/* 6. 인스타그램 밴드 (맨 아래) — 사진 그리드 없이 낮은 밴드 + 계정 버튼 하나.
+        {/* 5. 인스타그램 밴드 (맨 아래) — 사진 그리드 없이 낮은 밴드 + 계정 버튼 하나.
             실시간 피드 연동 불가(API 제약)를 반영한 정직한 구성. 핸들·URL 은
             content/instagram.json 에서 관리. */}
         <InstagramSection

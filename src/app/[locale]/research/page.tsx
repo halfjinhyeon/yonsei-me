@@ -33,6 +33,7 @@ const SECTION_SLUGS: Record<string, string | null> = {
   labs: 'research-labs',
   internships: null,
   social: null,
+  recruit: null,
 };
 
 export default async function ResearchPage({ params }: { params: { locale: string } }) {
@@ -84,6 +85,9 @@ export default async function ResearchPage({ params }: { params: { locale: strin
       ) : key === 'social' ? (
         // 신문고 절차는 각진 정사각 상자 + 셰브런 인포그래픽으로
         <EditorialTab data={getEditorialTab('research-social')} locale={locale} boxedSteps />
+      ) : key === 'recruit' ? (
+        // 교수 초빙 안내 + 지원서 작성 CTA(맨 아래) — 구 /faculty-recruitment 통합 이전
+        <EditorialTab data={getEditorialTab('recruit-info')} locale={locale} />
       ) : undefined,
   }));
 

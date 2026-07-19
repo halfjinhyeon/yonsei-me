@@ -5,6 +5,7 @@ import { notFound } from 'next/navigation';
 import { routing } from '@/i18n/routing';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
+import { SmoothScroll } from '@/components/SmoothScroll';
 import { SITE_URL } from '@/lib/site';
 import { pretendard, gmarket } from '../fonts';
 import '../globals.css';
@@ -79,6 +80,8 @@ export default async function LocaleLayout({
   return (
     <html lang={locale} className={`${pretendard.variable} ${gmarket.variable}`} suppressHydrationWarning>
       <body className="min-h-dvh bg-surface antialiased">
+        {/* 전역 부드러운 스크롤(Lenis) — reduced-motion 시 자동 비활성 */}
+        <SmoothScroll />
         <script
           type="application/ld+json"
           // 자체 생성 정적 데이터(사용자 입력 미포함) — XSS 벡터 없음

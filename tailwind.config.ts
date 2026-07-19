@@ -22,7 +22,7 @@ const config: Config = {
       colors: {
         // 연세대 브랜드 톤 (네이비/블루 계열)
         yonsei: {
-          navy: '#00285E', // 메인 네이비 (Yonsei Blue)
+          navy: '#003377', // 메인 네이비 (Yonsei Blue)
           blue: '#0057A8', // 서브 블루
           sky: '#2E86D6', // 강조 라이트 블루
           gold: '#C8A96A', // 포인트 골드 (독수리/전통색)

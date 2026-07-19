@@ -5,8 +5,9 @@ import { StepRailNav } from '@/components/StepRailNav';
  * 대학원 졸업요건 — "STEP 스크롤" 문법 (참조 시안 + 사이트 공통 문법).
  *  - 좌측: 01~09 번호 목차가 sticky 로 화면을 따라오고(StepRailNav), 클릭 시 해당
  *    STEP 으로 부드럽게 스크롤·스크롤 위치에 따라 활성 항목이 갱신된다(스크롤스파이).
- *  - 우측: 각 STEP = 파란 eyebrow(STEP NN) + 큰 제목 + 리드 문장 + 본문(불릿/표/콜아웃).
- *    헤더 블록은 섹션마다 좌/우 교대 정렬(사용자 지시), 섹션 사이 헤어라인 구분.
+ *  - 우측: 각 STEP = 네이비 박스 헤더(STEP NN · 제목 — 학부 '나의 졸업요건' StepLabel 과
+ *    동일 디자인·폰트) + 리드 문장 + 본문(불릿/표/콜아웃). 헤더 블록은 섹션마다 좌/우 교대
+ *    정렬 + 좌우 여백 인셋(사용자 지시), 섹션 사이 헤어라인 구분.
  *  - 마크다운 규칙: '####' 헤딩 = STEP 경계, 헤딩 직후 첫 평문 단락 = 리드(헤더로 분리),
  *    인용구(>) = '유의사항' 콜아웃(step-prose 스코프, globals.css).
  * 콘텐츠 출처는 자체 자료(신뢰 소스) — Prose 와 동일하게 정적 인라인 렌더.
@@ -76,14 +77,14 @@ export function GraduateRequirementSteps({ markdown }: { markdown: string }) {
             aria-labelledby={`${s.id}-h`}
             className="scroll-mt-40 py-12 lg:scroll-mt-36 lg:py-16"
           >
-            {/* 헤더 블록 — 짝수(0-base) 왼쪽 / 홀수 오른쪽 교대(사용자 지시) */}
-            <div className={i % 2 === 1 ? 'flex flex-col items-end text-right' : ''}>
-              <p className="eyebrow">STEP {s.num}</p>
+            {/* 헤더 블록 — 학부 '나의 졸업요건' StepLabel 과 동일한 네이비 박스(STEP NN · 제목).
+                짝수(0-base) 왼쪽 / 홀수 오른쪽 교대 + 좌우 여백 인셋(사용자 지시). */}
+            <div className={i % 2 === 1 ? 'flex flex-col items-end text-right lg:pr-12' : 'lg:pl-12'}>
               <h3
                 id={`${s.id}-h`}
-                className="mt-3 text-2xl font-bold tracking-tight text-content sm:text-3xl"
+                className="inline-block bg-yonsei-navy px-3.5 py-1.5 text-sm font-bold text-white"
               >
-                {s.title}
+                STEP {s.num} <span className="mx-1 opacity-60">·</span> {s.title}
               </h3>
               {s.lead && (
                 <p className="mt-4 max-w-2xl text-base leading-relaxed text-content-soft sm:text-lg">

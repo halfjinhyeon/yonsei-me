@@ -77,7 +77,9 @@ export function FacultyDirectoryGrid({
   moreLabel: string;
 }) {
   const t = useTranslations('faculty');
-  const [filter, setFilter] = useState<Filter>('all');
+  // 기본 선택 = 첫 탭(교수). 탭 순서를 교수→명예·퇴임→전체로 두었으므로 로드 시
+  // 밑줄이 첫 탭에 오도록 초기값도 'active'로 맞춘다(사용자 지시).
+  const [filter, setFilter] = useState<Filter>('active');
 
   const counts = useMemo(() => {
     const emeritus = items.filter(isEmeritus).length;
@@ -90,10 +92,11 @@ export function FacultyDirectoryGrid({
     return items;
   }, [items, filter]);
 
+  // 탭 순서(사용자 지시): 교수(재직) → 명예·퇴임 → 전체(맨 뒤).
   const tabs: { id: Filter; label: string; count: number }[] = [
-    { id: 'all', label: t('directoryFilter.all'), count: counts.all },
     { id: 'active', label: t('directoryFilter.active'), count: counts.active },
     { id: 'emeritus', label: t('directoryFilter.emeritus'), count: counts.emeritus },
+    { id: 'all', label: t('directoryFilter.all'), count: counts.all },
   ];
 
   return (

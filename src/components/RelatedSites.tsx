@@ -89,6 +89,7 @@ export function RelatedSites({
       {open && (
         <ul
           id={panelId}
+          data-lenis-prevent
           className="absolute bottom-full left-0 right-0 z-20 mb-2 max-h-72 overflow-y-auto border border-yonsei-navy/10 bg-white shadow-xl"
         >
           {sites.map((s) => (

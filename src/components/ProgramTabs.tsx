@@ -9,7 +9,7 @@ import type { Locale } from '@/i18n/routing';
 
 // ── 커스터마이즈 상수 ────────────────────────────────────────────────
 // 밑줄·구분선·강조어 그라데이션(네이비→스카이). 흰 배경 위라 잘 보인다.
-const ACCENT_GRADIENT = 'linear-gradient(90deg,#00285E 39%,#2E86D6 100%)';
+const ACCENT_GRADIENT = 'linear-gradient(90deg,#003377 39%,#2E86D6 100%)';
 
 // 배경을 관통하는 물결 라인아트 곡선 — path 만 갈아끼우면 결이 바뀐다.
 const WAVE_PATHS = [

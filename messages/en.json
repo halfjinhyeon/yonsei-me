@@ -63,7 +63,8 @@
         "capacity": "Research Capacity",
         "labs": "Laboratories",
         "internships": "Intern Positions",
-        "social": "Social Challenge Board"
+        "social": "Social Challenge Board",
+        "recruit": "Faculty Recruitment"
       }
     },
     "news": {
@@ -77,13 +78,6 @@
         "events": "Events",
         "seminars": "Seminars",
         "calendar": "Calendar"
-      }
-    },
-    "recruit": {
-      "label": "Faculty Recruitment",
-      "items": {
-        "info": "Recruitment Info",
-        "apply": "Application"
       }
     },
     "alumni": {
@@ -139,9 +133,6 @@
     },
     "graduate": {
       "subtitle": "MS/PhD admissions, courses, labs, and the BK21 FOUR program."
-    },
-    "recruit": {
-      "subtitle": "Faculty recruitment information and the application process."
     }
   },
   "home": {
@@ -211,7 +202,7 @@
       "empty": "No scheduled events."
     },
     "notices": {
-      "title": "Department Notices",
+      "title": "Notices & Calendar",
       "more": "MORE",
       "empty": "No notices posted.",
       "filters": {

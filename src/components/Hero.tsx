@@ -14,6 +14,8 @@ interface HeroCrumb {
 interface HeroProps {
   eyebrow?: string;
   title: string;
+  /** @deprecated 더 이상 렌더하지 않는다(사용자 지시: 페이지 헤더 소개글 전체 삭제).
+   *  호출부 호환을 위해 프롭만 남겨 둔다. */
   subtitle?: string;
   children?: ReactNode;
   /** 큰 랜딩용(홈)인지, 작은 페이지 헤더인지 */
@@ -31,7 +33,6 @@ interface HeroProps {
 export function Hero({
   eyebrow,
   title,
-  subtitle,
   children,
   variant = 'page',
   image = '/img/hero.svg',
@@ -60,9 +61,10 @@ export function Hero({
       : null;
 
   return (
+    // 세부탭 히어로는 메인색 #003377 전환에서 제외(사용자 지시) — 기존 연세 네이비 #00285E 로 고정.
     <section
       className={cn(
-        'relative isolate flex items-end overflow-hidden bg-yonsei-navy text-white',
+        'relative isolate flex items-end overflow-hidden bg-[#00285E] text-white',
         isLanding
           ? 'min-h-[clamp(30rem,70vh,44rem)]'
           : 'min-h-[clamp(16rem,34vh,22rem)]',
@@ -86,7 +88,7 @@ export function Hero({
           {/* 가독성 확보용 그라디언트 오버레이 */}
           <div
             aria-hidden="true"
-            className="absolute inset-0 -z-10 bg-gradient-to-t from-yonsei-navy via-yonsei-navy/70 to-yonsei-navy/30"
+            className="absolute inset-0 -z-10 bg-gradient-to-t from-[#00285E] via-[#00285E]/70 to-[#00285E]/30"
           />
         </>
       ) : (
@@ -96,7 +98,7 @@ export function Hero({
           <MeshCanvas className="pointer-events-none absolute inset-0 -z-10 h-full w-full opacity-70 [mask-image:linear-gradient(to_bottom,transparent,black_35%)]" />
           <div
             aria-hidden="true"
-            className="absolute inset-0 -z-10 bg-gradient-to-t from-yonsei-navy via-yonsei-navy/40 to-transparent"
+            className="absolute inset-0 -z-10 bg-gradient-to-t from-[#00285E] via-[#00285E]/40 to-transparent"
           />
         </>
       )}
@@ -136,7 +138,10 @@ export function Hero({
               {eyebrow}
             </p>
           )}
+          {/* 페이지 제목 서체 = 지마켓 산스(홈 히어로 제목과 통일, 사용자 지시).
+              --font-hero 는 700 단일이라 font-bold(700)와 맞아 가짜 볼드 합성이 없다. */}
           <h1
+            style={{ fontFamily: 'var(--font-hero), var(--font-sans), sans-serif' }}
             className={cn(
               'anim-hero-title font-bold tracking-tight',
               isLanding ? 'text-display-lg' : 'text-display',
@@ -148,16 +153,7 @@ export function Hero({
               </span>
             ))}
           </h1>
-          {subtitle && (
-            <p
-              className={cn(
-                'anim-hero-subtitle mt-6 max-w-2xl leading-relaxed text-white/85',
-                isLanding ? 'text-lg sm:text-xl' : 'text-base sm:text-lg',
-              )}
-            >
-              {subtitle}
-            </p>
-          )}
+          {/* 제목 아래 소개글(subtitle)은 렌더하지 않는다 — 사용자 지시로 전체 삭제. */}
           {children && <div className="mt-8 flex flex-wrap gap-3">{children}</div>}
         </div>
       </Container>

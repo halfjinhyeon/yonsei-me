@@ -56,6 +56,7 @@ export const menu: MenuGroup[] = [
       { key: 'labs', href: '/research#labs' },
       { key: 'internships', href: '/research#internships' },
       { key: 'social', href: '/research#social' },
+      { key: 'recruit', href: '/research#recruit' },
     ],
   },
   {
@@ -79,14 +80,6 @@ export const menu: MenuGroup[] = [
       { key: 'greeting', href: '/alumni#greeting' },
       { key: 'news', href: '/alumni#news' },
       { key: 'network', href: '/alumni#network' },
-    ],
-  },
-  {
-    key: 'recruit',
-    href: '/faculty-recruitment',
-    items: [
-      { key: 'info', href: '/faculty-recruitment#info' },
-      { key: 'apply', href: '/faculty-recruitment#apply' },
     ],
   },
 ];

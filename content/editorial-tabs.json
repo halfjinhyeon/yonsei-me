@@ -200,14 +200,7 @@
           "en": "Bio · Medical · Nano · Micro · Optical technology"
         }
       }
-    ]
-  },
-  "recruit-apply": {
-    "eyebrow": "APPLICATION",
-    "lead": {
-      "ko": "지원서 작성은 아래 외부 페이지(Google Sites)에서 진행합니다.",
-      "en": "Applications are submitted through the external page (Google Sites) below."
-    },
+    ],
     "cta": {
       "label": { "ko": "지원서 작성 페이지 바로가기", "en": "Go to the application page" },
       "href": "https://sites.google.com/yonsei.ac.kr/me-faculty-application?usp=sharing"

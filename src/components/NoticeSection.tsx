@@ -1,6 +1,6 @@
 'use client';
 
-import { useMemo, useState } from 'react';
+import { useMemo, useState, type ReactNode } from 'react';
 import { Link } from '@/i18n/navigation';
 import { UnderlineTabs } from './UnderlineTabs';
 import { cn } from '@/lib/utils';
@@ -72,14 +72,16 @@ function NoticeRow({
 }
 
 /**
- * 학과 공지 섹션 — 레퍼런스(학과 공지 리스트) 구성 + 사이트 기존 디자인 문법으로 통일.
- * 위치: 홈 '학과 목표' 아래(학과 일정 위).
+ * '공지 & 일정' 통합 섹션 — 학과 공지 리스트 + (children 으로 받은) 학과 일정을 한 섹션에
+ * 담는다(사용자 지시로 두 섹션 통합). 헤더는 공지 것 하나만("공지&일정"), children 앞에
+ * 가로 구분선(border-t)을 둔다.
  *
  * 구성:
- *  - 헤더 행: 좌측 네이비 박스 제목(다른 홈 섹션과 통일) + 헤어라인 + 우측 'MORE ›'(공지 게시판).
+ *  - 헤더 행: 좌측 네이비 박스 제목 + 헤어라인 + 우측 'MORE ›'(공지 게시판).
  *  - 필터 탭: 사이트 공통 UnderlineTabs(전체 + 학부/대학원/외부기관/장학, 건수 배지).
  *  - 리스트: 2열 grid(모바일 1열). 좌열 = 최신 앞 절반, 우열 = 뒤 절반 — grid-cols-1 에선
  *    두 열이 세로로 쌓여 좌→우 순서가 그대로 보존된다(중복 렌더 없이 반응형 처리).
+ *  - children: 구분선 아래에 학과 일정(CalendarSection bare)을 임베드.
  *
  * 데이터(4개 공지 배열: 학부/대학원/외부기관/장학)는 page.tsx(서버)가 최신순으로 합쳐
  * props 로 넘긴다. 탭 전환은 클라이언트에서 필터링. reduced-motion: 정적 노출.
@@ -91,6 +93,7 @@ export function NoticeSection({
   moreHref,
   emptyLabel,
   filters,
+  children,
 }: {
   items: NoticeSectionItem[];
   heading: string;
@@ -99,6 +102,8 @@ export function NoticeSection({
   emptyLabel: string;
   /** [전체, 학부, 대학원, 외부기관, 장학] — key='all' 포함 */
   filters: NoticeFilter[];
+  /** 구분선 아래 임베드할 콘텐츠(학과 일정 CalendarSection bare 등) */
+  children?: ReactNode;
 }) {
   const [active, setActive] = useState('all');
 
@@ -121,12 +126,8 @@ export function NoticeSection({
   const half = Math.ceil(visible.length / 2);
   const columns = [visible.slice(0, half), visible.slice(half)];
 
-  // 아래 학과 일정 섹션과의 사이 여백을 60%로 축소 — pb 를 section-lg 의 60%(clamp)로(사용자 지시).
   return (
-    <section
-      aria-labelledby="notices-heading"
-      className="full-bleed bg-surface pt-section-lg pb-[clamp(2.7rem,6vh,4.8rem)]"
-    >
+    <section aria-labelledby="notices-heading" className="full-bleed bg-surface py-section-lg">
       <div className="mx-auto w-full max-w-[1360px] px-6 sm:px-10 lg:px-16">
         {/* 헤더 — 네이비 박스 제목(다른 홈 섹션과 통일) + 헤어라인 + MORE */}
         <div className="flex items-center gap-6">
@@ -196,6 +197,10 @@ export function NoticeSection({
             <p className="text-sm font-medium text-content-faint">{emptyLabel}</p>
           </div>
         )}
+
+        {/* 구분선 + 학과 일정(children = CalendarSection bare) — 두 섹션 통합(사용자 지시).
+            border-t 가 구분선; 일정 콘텐츠는 자체 상단 여백(mt-10)을 가져 선 아래로 떨어진다. */}
+        {children && <div className="mt-12 border-t border-surface-border">{children}</div>}
       </div>
     </section>
   );
