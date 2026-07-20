@@ -83,6 +83,7 @@ interface DbPost {
   is_event: boolean;
   event_date: string | null;
   end_date: string | null;
+  link_url: string | null;
   thumbnail_url: string | null;
   created_at: string;
   attachments: DbAttachment[] | null;
@@ -204,6 +205,31 @@ export async function fetchAlumniNews(): Promise<NewsItem[]> {
 
 export async function fetchNewsBySlug(slug: string): Promise<NewsItem | undefined> {
   return (await fetchNews()).find((n) => n.slug === slug);
+}
+
+/** 홈 인스타그램 그리드용 게시물 — CMS '인스타그램' 게시판(DB 전용, git 폴백은 빈 목록).
+ *  제목 = 캡션, thumbnail = 타일 사진, link_url = 실제 게시물(새 창). URL 없는 행은 제외. */
+export interface InstagramPost {
+  id: string;
+  date: string;
+  caption: Localized;
+  image?: string;
+  url: string;
+}
+
+export async function fetchInstagramPosts(): Promise<InstagramPost[]> {
+  if (postsSource() === 'git') return [];
+  return byDateDesc(
+    (await rowsOf('instagram'))
+      .filter((r) => (r.link_url ?? '').trim() !== '')
+      .map((r) => ({
+        id: String(r.id),
+        date: dateOf(r),
+        caption: loc(r.title_ko, r.title_en),
+        ...(thumbOf(r) ? { image: thumbOf(r) } : {}),
+        url: (r.link_url as string).trim(),
+      })),
+  );
 }
 
 export async function fetchAlumniNewsBySlug(slug: string): Promise<NewsItem | undefined> {

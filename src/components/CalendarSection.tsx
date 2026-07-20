@@ -171,7 +171,8 @@ export function CalendarSection({
               <li
                 key={`${item.href}-${i}`}
                 data-card
-                className="w-[70%] shrink-0 snap-start border-l border-surface-border pl-6 pr-6 first:border-l-0 first:pl-0 sm:w-[42%] lg:w-1/4"
+                // 모바일 카드 2장+다음 카드 살짝(46%) — 캐러셀임이 보이는 밀도(데스크톱 모드 재현)
+                className="w-[46%] shrink-0 snap-start border-l border-surface-border pl-3.5 pr-3.5 first:border-l-0 first:pl-0 sm:w-[42%] sm:pl-6 sm:pr-6 lg:w-1/4"
               >
                 {/* hover: 카드 내용이 약간 위로 떠오르며 색이 바뀐다(이화여대 CALENDAR 이식).
                     트랙의 pt-2 여유공간 덕에 떠오를 때 위쪽이 잘리지 않는다(흰색 마스킹 해결). */}
@@ -180,11 +181,11 @@ export function CalendarSection({
                   className="group block transition duration-300 ease-out hover:-translate-y-1.5"
                 >
                   {/* 날짜 pill — 네이비 → hover 시 블루로 색 변화. 기간 표기가 길어도 한 줄 유지. */}
-                  <span className="inline-block whitespace-nowrap rounded-full bg-yonsei-navy px-4 py-1.5 text-sm font-bold tabular-nums text-white transition-colors duration-300 group-hover:bg-yonsei-blue">
+                  <span className="inline-block whitespace-nowrap rounded-full bg-yonsei-navy px-2.5 py-1 text-xs font-bold tabular-nums text-white transition-colors duration-300 group-hover:bg-yonsei-blue sm:px-4 sm:py-1.5 sm:text-sm">
                     {item.dateLabel}
                   </span>
                   {/* 제목 — 2줄 말줄임, hover 시 블루 전환 */}
-                  <p className="mt-6 line-clamp-2 text-lg font-bold leading-snug text-content transition-colors duration-300 group-hover:text-yonsei-blue">
+                  <p className="mt-3 line-clamp-2 text-sm font-bold leading-snug text-content transition-colors duration-300 group-hover:text-yonsei-blue sm:mt-6 sm:text-lg">
                     {item.title}
                   </p>
                 </Link>
@@ -216,7 +217,7 @@ export function CalendarSection({
   if (bare) return body;
 
   return (
-    <section aria-labelledby="calendar-heading" className="full-bleed bg-surface py-section-lg">
+    <section aria-labelledby="calendar-heading" className="full-bleed bg-surface py-12 sm:py-section-lg">
       <div className="mx-auto w-full max-w-[1360px] px-6 sm:px-10 lg:px-16">{body}</div>
     </section>
   );

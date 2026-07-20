@@ -14,7 +14,7 @@ import {
   type CatalogColumn,
   type CatalogCourse,
 } from '@/components/CourseCatalog';
-import { CurriculumRoadmap } from '@/components/CurriculumRoadmap';
+import { CurriculumFlow } from '@/components/CurriculumFlow';
 import coursesUndergraduate from '@content/courses-undergraduate.json';
 import type { Locale } from '@/i18n/routing';
 
@@ -98,7 +98,8 @@ export default async function UndergraduatePage({ params }: { params: { locale: 
           grouped="semester"
         />
       ) : key === 'curriculum' ? (
-        <CurriculumRoadmap locale={locale} />
+        // 교과목 체계도 — 스윔레인 + 선수·연계 직각 화살표(구 CurriculumRoadmap 대체)
+        <CurriculumFlow locale={locale} />
       ) : undefined,
   }));
 

@@ -37,7 +37,8 @@ export type BoardKey =
   | 'resources'
   | 'internships'
   | 'alumniNews'
-  | 'alumniEvents';
+  | 'alumniEvents'
+  | 'instagram';
 
 /** 편집 폼이 다루는 통합 레코드. 게시판에 따라 일부 필드만 사용된다. */
 export interface EditRecord {
@@ -55,6 +56,8 @@ export interface EditRecord {
   dateLabelEn?: string;
   // 기간 게시판(행사·세미나·동문행사) 전용 — 종료일(YYYY-MM-DD). 빈 문자열이면 하루 일정
   endDate?: string;
+  // 인스타그램 전용 — 실제 게시물 URL(타일 클릭 시 새 창 이동)
+  linkUrl?: string;
   // 동문 소식·네트워크 전용 — 특정 날짜가 정해진 행사인지(체크 시 캘린더 '동문'에 표시)
   isEvent?: boolean;
   // 뉴스 전용
@@ -83,6 +86,10 @@ export interface BoardMeta {
   hasDateLabel: boolean;
   /** true면 종료일(end_date) 피커를 노출한다(비우면 하루). 기간 라벨은 저장 시 서버가 자동 생성 */
   hasDateRange?: boolean;
+  /** true면 게시물 링크(URL) 필드를 노출한다 — 인스타그램(타일 클릭 목적지) */
+  hasLink?: boolean;
+  /** true면 본문·첨부·이미지 풀 섹션을 숨긴다 — 링크형 게시판(인스타그램)은 캡션·이미지·URL만 */
+  noBody?: boolean;
   isNews: boolean;
   /** true면 '날짜' 필드를 "행사 일정"으로 안내한다(그 날짜로 금주 캘린더에 표시됨) */
   dateIsEvent?: boolean;
@@ -109,6 +116,8 @@ export const BOARDS: BoardMeta[] = [
   { key: 'internships', label: '인턴 모집', file: 'board.json', idPrefix: 'int-', hasHost: false, hasDateLabel: false, isNews: false },
   { key: 'alumniNews', label: '동문 뉴스', file: 'news.json', idPrefix: '', hasHost: false, hasDateLabel: false, isNews: true, newsFile: 'content/alumni-news.json' },
   { key: 'alumniEvents', label: '동문 소식·네트워크', file: 'board.json', idPrefix: 'ae-', hasHost: true, hasDateLabel: false, hasDateRange: true, isNews: false, hasEventFlag: true },
+  // 인스타그램 — 홈 하단 그리드에 노출. 캡션(제목)·대표 이미지·게시물 URL만 받는 링크형 게시판.
+  { key: 'instagram', label: '인스타그램', file: 'board.json', idPrefix: 'ig-', hasHost: false, hasDateLabel: false, isNews: false, hasLink: true, noBody: true },
 ];
 
 export function getBoard(key: BoardKey): BoardMeta {
@@ -191,6 +200,9 @@ export function toEditRecord(meta: BoardMeta, raw: unknown): EditRecord {
   if (meta.hasDateRange) {
     // 종료일 — git JSON 구 데이터엔 없어 항상 ''(하루)로 시작한다
     base.endDate = String(r.endDate ?? '');
+  }
+  if (meta.hasLink) {
+    base.linkUrl = String(r.linkUrl ?? '');
   }
   if (meta.hasEventFlag) {
     base.isEvent = r.isEvent === true;

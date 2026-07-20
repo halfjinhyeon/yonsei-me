@@ -284,6 +284,8 @@ export function GraduationChecker({ data, locale }: { data: CheckerData; locale:
   const [manualIds, setManualIds] = useState<string[]>([]);
   const [removedIds, setRemovedIds] = useState<string[]>([]);
   const [chapelCount, setChapelCount] = useState(0);
+  // 채플 직접 입력의 범위(0~4) 초과 오류 — 유효값 입력·버튼 조작 시 자동 해제
+  const [chapelError, setChapelError] = useState<string | null>(null);
   // RC자기주도활동(1)/(2) 각각 이수 여부 (독립 체크박스)
   const [selfDirected, setSelfDirected] = useState<Record<1 | 2, boolean>>({ 1: false, 2: false });
   const [query, setQuery] = useState('');
@@ -630,43 +632,86 @@ export function GraduationChecker({ data, locale }: { data: CheckerData; locale:
           )}
         </div>
 
-        {/* 채플 카운터 — 1학기 이상 이수 시 연한 파랑으로 강조 */}
-        <div className="mt-6 flex items-center gap-4 border-t border-surface-border pt-6">
-          <span className="text-sm font-semibold text-content">{ko ? '채플 이수 학기' : 'Chapel semesters'}</span>
-          <div
-            className={cn(
-              'inline-flex items-center overflow-hidden rounded-lg border transition-colors',
-              chapelCount >= 1 ? 'border-yonsei-blue bg-yonsei-blue/5' : 'border-surface-border',
-            )}
-          >
-            <button
-              type="button"
-              onClick={() => setChapelCount((n) => Math.max(0, n - 1))}
-              className="px-3 py-1.5 text-content-soft transition-colors hover:text-yonsei-navy"
-              aria-label="-"
-            >
-              −
-            </button>
-            <span
+        {/* 채플 카운터 — 1학기 이상 이수 시 연한 파랑으로 강조.
+            가운데는 "0 / 4" 분수 표기 대신 숫자만 있는 직접 입력(0~4) — 좁은 화면에서
+            분수 텍스트가 줄바꿈돼 세로로 쌓이던 문제 해결(사용자 지시). 4 초과 입력은
+            즉시 4로 클램프하고 아래에 오류 메시지를 띄운다. flex-wrap 으로 모바일에선
+            안내 문구가 자연스럽게 다음 줄로 내려간다. */}
+        <div className="mt-6 border-t border-surface-border pt-6">
+          <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
+            <label htmlFor="chapel-count" className="text-sm font-semibold text-content">
+              {ko ? '채플 이수 학기' : 'Chapel semesters'}
+              <span className="ml-1 font-normal text-content-faint">(0~4)</span>
+            </label>
+            <div
               className={cn(
-                'border-x px-4 py-1.5 text-sm font-bold tabular-nums transition-colors',
-                chapelCount >= 1 ? 'border-yonsei-blue/30 text-yonsei-blue' : 'border-surface-border text-content',
+                'inline-flex items-center overflow-hidden rounded-lg border transition-colors',
+                chapelCount >= 1 ? 'border-yonsei-blue bg-yonsei-blue/5' : 'border-surface-border',
               )}
             >
-              {chapelCount} / 4
+              <button
+                type="button"
+                onClick={() => {
+                  setChapelCount((n) => Math.max(0, n - 1));
+                  setChapelError(null);
+                }}
+                className="px-3 py-1.5 text-content-soft transition-colors hover:text-yonsei-navy"
+                aria-label="-"
+              >
+                −
+              </button>
+              <input
+                id="chapel-count"
+                type="number"
+                inputMode="numeric"
+                min={0}
+                max={4}
+                step={1}
+                value={chapelCount}
+                onChange={(e) => {
+                  const n = Number(e.target.value);
+                  if (!Number.isFinite(n)) {
+                    setChapelCount(0);
+                    setChapelError(null);
+                    return;
+                  }
+                  if (n > 4) {
+                    setChapelCount(4);
+                    setChapelError(
+                      ko ? '채플은 최대 4학기까지만 인정됩니다.' : 'Chapel is capped at 4 semesters.',
+                    );
+                    return;
+                  }
+                  setChapelCount(Math.max(0, Math.floor(n)));
+                  setChapelError(null);
+                }}
+                className={cn(
+                  // 네이티브 스핀 버튼 숨김 — 양옆 커스텀 −/+ 버튼과 중복되지 않게
+                  'w-12 border-x bg-transparent py-1.5 text-center text-sm font-bold tabular-nums outline-none transition-colors [appearance:textfield] focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-yonsei-blue [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none',
+                  chapelCount >= 1 ? 'border-yonsei-blue/30 text-yonsei-blue' : 'border-surface-border text-content',
+                )}
+              />
+              <button
+                type="button"
+                onClick={() => {
+                  setChapelCount((n) => Math.min(4, n + 1));
+                  setChapelError(null);
+                }}
+                className="px-3 py-1.5 text-content-soft transition-colors hover:text-yonsei-navy"
+                aria-label="+"
+              >
+                +
+              </button>
+            </div>
+            <span className="text-xs text-content-faint">
+              {ko ? '캡처에서 채플이 인식되면 자동 +1' : 'Auto +1 when chapel is detected'}
             </span>
-            <button
-              type="button"
-              onClick={() => setChapelCount((n) => Math.min(4, n + 1))}
-              className="px-3 py-1.5 text-content-soft transition-colors hover:text-yonsei-navy"
-              aria-label="+"
-            >
-              +
-            </button>
           </div>
-          <span className="text-xs text-content-faint">
-            {ko ? '캡처에서 채플이 인식되면 자동 +1' : 'Auto +1 when chapel is detected'}
-          </span>
+          {chapelError && (
+            <p role="alert" className="mt-2 text-xs font-semibold text-red-600">
+              {chapelError}
+            </p>
+          )}
         </div>
 
         {/* RC자기주도활동 — P/NP·각 0.5학점, 시간표에 안 잡히므로 직접 체크 */}

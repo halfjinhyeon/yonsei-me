@@ -259,6 +259,21 @@ export function PostForm({ meta, initial, isEdit, busy, onCancel, onSubmit, onUp
       setError('종료일은 시작일보다 빠를 수 없습니다.');
       return;
     }
+    if (meta.hasLink) {
+      const u = (rec.linkUrl ?? '').trim();
+      if (u === '') {
+        setError('게시물 링크(URL)를 입력하세요.');
+        return;
+      }
+      if (!/^https?:\/\//i.test(u)) {
+        setError('게시물 링크는 http(s):// 로 시작해야 합니다.');
+        return;
+      }
+      if ((rec.image ?? '').trim() === '') {
+        setError('대표 이미지를 업로드하세요 — 홈 그리드의 타일 사진으로 쓰입니다.');
+        return;
+      }
+    }
     // 종료일 피커가 숨겨진 상태(동문 '행사' 체크 해제 등)의 잔존값은 비워서 제출
     onSubmit(showEndDate ? rec : { ...rec, endDate: '' });
   }
@@ -355,6 +370,27 @@ export function PostForm({ meta, initial, isEdit, busy, onCancel, onSubmit, onUp
           </div>
         )}
 
+        {/* 게시물 링크(인스타그램) — 홈 그리드 타일 클릭 시 이동할 실제 게시물 URL */}
+        {meta.hasLink && (
+          <div className="mt-4">
+            <label htmlFor="pf-link" className="block text-sm font-semibold text-content">
+              게시물 링크 (URL)
+            </label>
+            <input
+              id="pf-link"
+              type="url"
+              value={rec.linkUrl ?? ''}
+              onChange={(e) => set('linkUrl', e.target.value)}
+              placeholder="https://www.instagram.com/p/…"
+              className={fieldClass}
+            />
+            <p className="mt-1 text-xs text-yonsei-blue">
+              홈 인스타그램 그리드의 타일이 됩니다 — 제목은 캡션으로, 아래 &lsquo;대표 이미지&rsquo;는
+              타일 사진으로, 클릭 시 이 링크(새 창)로 이동합니다.
+            </p>
+          </div>
+        )}
+
         {meta.isNews && (
           <div className="mt-4">
             <label htmlFor="pf-category" className="block text-sm font-semibold text-content">
@@ -417,7 +453,8 @@ export function PostForm({ meta, initial, isEdit, busy, onCancel, onSubmit, onUp
 
       </section>
 
-      {/* ── 본문 (+ 뉴스 요약) ── */}
+      {/* ── 본문 (+ 뉴스 요약) — noBody(인스타그램 등 링크형)는 본문이 없어 숨김 ── */}
+      {!meta.noBody && (
       <section>
         <SectionTitle>본문</SectionTitle>
 
@@ -480,9 +517,10 @@ export function PostForm({ meta, initial, isEdit, busy, onCancel, onSubmit, onUp
           커서 위치에 들어갑니다. English를 비우면 저장 시 한국어 값이 복사됩니다.
         </p>
       </section>
+      )}
 
       {/* ── 이미지 풀 — 여러 장 올려두고 체크해서 본문 삽입 / 썸네일 지정 ── */}
-      {onUploadFile && (
+      {onUploadFile && !meta.noBody && (
         <section>
           <SectionTitle>이미지</SectionTitle>
           <input
@@ -676,7 +714,8 @@ export function PostForm({ meta, initial, isEdit, busy, onCancel, onSubmit, onUp
           )}
       </section>
 
-      {/* ── 첨부파일 — 파일 업로드(href 자동 기입) 또는 외부 링크 직접 입력 ── */}
+      {/* ── 첨부파일 — noBody(인스타그램 등 링크형)는 첨부 개념이 없어 숨김 ── */}
+      {!meta.noBody && (
       <section>
         <SectionTitle>첨부파일</SectionTitle>
         {onUploadFile && (
@@ -760,6 +799,7 @@ export function PostForm({ meta, initial, isEdit, busy, onCancel, onSubmit, onUp
           </p>
         )}
       </section>
+      )}
 
       {error && (
         <p role="alert" className="border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-700 dark:border-red-900 dark:bg-red-950/40 dark:text-red-300">

@@ -120,14 +120,15 @@ export function GoalsSection({
   const goal = goals[idx];
 
   return (
-    <section aria-labelledby="goals-heading" className="full-bleed bg-surface py-section-lg">
+    // 모바일 밀도 최적화: 상하 패딩 py-12, sm+ 은 기존 리듬(py-section-lg) 유지
+    <section aria-labelledby="goals-heading" className="full-bleed bg-surface py-12 sm:py-section-lg">
       <div className="mx-auto w-full max-w-[1360px] px-6 sm:px-10 lg:px-16">
         {/* 헤더 행 — 왼쪽으로 길게 뻗는 헤어라인 + 우측 네이비 박스(선 디자인 ①) */}
         <div className="flex items-center gap-6">
           <span aria-hidden="true" className="h-px flex-1 bg-surface-border" />
           <h2
             id="goals-heading"
-            className="inline-block bg-yonsei-navy px-5 py-2.5 text-lg font-bold text-white"
+            className="inline-block bg-yonsei-navy px-4 py-2 text-base font-bold text-white sm:px-5 sm:py-2.5 sm:text-lg"
           >
             {heading}
           </h2>
@@ -141,7 +142,7 @@ export function GoalsSection({
             key={idx}
             ref={blockRef}
             aria-hidden="true"
-            className="min-h-[15rem] flex-1 sm:min-h-[16rem] lg:min-h-[17rem]"
+            className="min-h-[12rem] flex-1 sm:min-h-[16rem] lg:min-h-[17rem]"
           >
             {/* 번호 검정·금색 마침표 삭제 — 금색 배제(사용자 지시) */}
             <p data-goal-fade className="text-sm font-bold tracking-[0.35em] text-content">
@@ -158,7 +159,7 @@ export function GoalsSection({
                 {goal.sub}
               </p>
             )}
-            <p data-goal-fade className="mt-2 max-w-3xl text-base leading-relaxed text-content-soft">
+            <p data-goal-fade className="mt-2 max-w-3xl text-sm leading-relaxed text-content-soft sm:text-base">
               {goal.body}
             </p>
           </div>
@@ -190,14 +191,15 @@ export function GoalsSection({
           aria-label={linksLabel}
           className="mt-4 border-t border-surface-border pt-6 lg:mt-5 lg:pt-7"
         >
-          <ul className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4 lg:gap-4">
+          {/* 모바일 2×2(데스크톱 모드의 밀도를 반응형으로 재현 — 4줄 스택 해소), sm 2열 → lg 4열 */}
+          <ul className="grid grid-cols-2 gap-2.5 sm:gap-3 lg:grid-cols-4 lg:gap-4">
             {links.map((l) => (
               <li key={l.href} className="h-full">
                 <Link
                   href={l.href}
-                  className="group flex h-full flex-col justify-between gap-7 border border-surface-border bg-surface px-6 py-6 transition-colors hover:border-yonsei-navy hover:bg-yonsei-navy focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yonsei-blue sm:py-7"
+                  className="group flex h-full flex-col justify-between gap-4 border border-surface-border bg-surface px-4 py-4 transition-colors hover:border-yonsei-navy hover:bg-yonsei-navy focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yonsei-blue sm:gap-7 sm:px-6 sm:py-7"
                 >
-                  <span className="flex items-center justify-between gap-3 text-lg font-bold text-content transition-colors group-hover:text-white sm:text-xl">
+                  <span className="flex items-center justify-between gap-3 text-base font-bold text-content transition-colors group-hover:text-white sm:text-xl">
                     <span className="whitespace-nowrap">{l.label}</span>
                     <span
                       aria-hidden="true"
@@ -206,7 +208,7 @@ export function GoalsSection({
                       ↗
                     </span>
                   </span>
-                  <span className="text-sm leading-relaxed text-content-soft transition-colors group-hover:text-white/80">
+                  <span className="text-xs leading-snug text-content-soft transition-colors group-hover:text-white/80 sm:text-sm sm:leading-relaxed">
                     {l.desc}
                   </span>
                 </Link>

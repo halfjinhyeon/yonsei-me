@@ -96,6 +96,8 @@ export interface AdminPostPayload {
   hostEn?: string;
   /** 종료일(YYYY-MM-DD) — 행사·세미나·동문행사 전용. 없으면 하루(기간 라벨은 서버가 자동 생성) */
   endDate?: string | null;
+  /** 게시물 링크(URL) — 인스타그램 전용(타일 클릭 목적지) */
+  linkUrl?: string;
   isEvent?: boolean;
   image?: string;
   attachments?: { labelKo?: string; labelEn?: string; href: string }[];
@@ -105,6 +107,7 @@ const BOARDS = new Set([
   'noticesUndergrad', 'noticesGraduate', 'noticesExternal', 'noticesScholarship',
   'news', 'seminars', 'events',
   'thesis', 'resources', 'career', 'internships', 'alumniNews', 'alumniEvents',
+  'instagram',
 ]);
 
 export function isValidBoard(board: string): boolean {
@@ -162,6 +165,7 @@ export function payloadToRow(p: AdminPostPayload) {
     is_event: p.board === 'alumniEvents' ? p.isEvent === true : false,
     event_date: isEvent && p.date ? p.date : null,
     end_date: endDate,
+    link_url: p.board === 'instagram' ? nn(p.linkUrl) : null,
     thumbnail_url: nn(p.image),
     created_at: `${p.date}T00:00:00+09:00`,
   };
@@ -175,6 +179,7 @@ export interface DbPostRow {
   created_at: string;
   event_date: string | null;
   end_date: string | null;
+  link_url: string | null;
   is_event: boolean | null;
   title_ko: string | null;
   title_en: string | null;
@@ -222,6 +227,7 @@ export function rowToEditRecord(r: DbPostRow) {
     hostEn: r.host_en ?? '',
     dateLabelKo: r.date_label_ko ?? '',
     dateLabelEn: r.date_label_en ?? '',
+    linkUrl: r.link_url ?? '',
     isEvent: r.is_event === true,
     image: r.thumbnail_url ?? '',
     attachments: (r.attachments ?? [])

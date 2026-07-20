@@ -9,7 +9,7 @@ import { NoticeSection, type NoticeCategory } from '@/components/NoticeSection';
 import { pick } from '@/lib/content';
 import { formatPeriodLabel } from '@/lib/calendar';
 import { formatDate } from '@/lib/utils';
-import { fetchNews, fetchBoardData } from '@/lib/posts';
+import { fetchNews, fetchBoardData, fetchInstagramPosts } from '@/lib/posts';
 import heroSlidesData from '@content/hero-slides.json';
 import instagramData from '@content/instagram.json';
 import editorialTabs from '@content/editorial-tabs.json';
@@ -29,6 +29,12 @@ export default async function HomePage({ params }: { params: { locale: string } 
   // 게시판 데이터 — 기존 매핑 코드 유지를 위해 모듈 상수와 같은 이름의 지역 변수로
   const news = await fetchNews();
   const board = await fetchBoardData();
+  // 인스타그램 그리드 — CMS '인스타그램' 게시판(최신 8개). 캡션은 로케일 해석(빈 en 은 ko 폴백).
+  const instagramItems = (await fetchInstagramPosts()).slice(0, 8).map((p) => ({
+    href: p.url,
+    image: p.image,
+    caption: pick(p.caption, locale).trim() || p.caption.ko,
+  }));
 
   // 학과 목표(content/editorial-tabs.json 의 undergraduate-goals.items 재사용 —
   // 학부 페이지와 단일 출처 공유). 대형 타이포는 영문 제목, 부제는 ko 로케일만.
@@ -244,15 +250,17 @@ export default async function HomePage({ params }: { params: { locale: string } 
           <LabsSection labs={labs} locale={locale} />
         </div>
 
-        {/* 5. 인스타그램 밴드 (맨 아래) — 사진 그리드 없이 낮은 밴드 + 계정 버튼 하나.
-            실시간 피드 연동 불가(API 제약)를 반영한 정직한 구성. 핸들·URL 은
-            content/instagram.json 에서 관리. */}
+        {/* 5. 인스타그램 (맨 아래) — 밴드 + 실제 게시물 그리드. 게시물은 CMS
+            '인스타그램' 게시판(Supabase)에서 즉시 반영, 핸들·URL 은
+            content/instagram.json 에서 관리. 게시물이 없으면 밴드만 렌더. */}
         <InstagramSection
           handle={instagramData.handle}
           url={instagramData.url}
           tagline={t('instagram.tagline')}
           followLabel={t('instagram.follow')}
           externalLabel={t('instagram.external')}
+          openLabel={t('instagram.open')}
+          items={instagramItems}
         />
       </div>
     </>

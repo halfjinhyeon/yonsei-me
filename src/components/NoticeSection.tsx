@@ -48,19 +48,20 @@ function NoticeRow({
       className="anim-nav-item border-b border-surface-border"
       style={{ animationDelay: `${Math.min(delayIndex, 8) * 45}ms` }}
     >
+      {/* 모바일은 컴팩트 한 줄(날짜·제목 말줄임·배지) — 데스크톱 모드의 밀도를 읽히는 크기로 재현 */}
       <Link
         href={`/news/post/${item.id}`}
-        className="group flex items-center gap-4 py-4 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yonsei-blue"
+        className="group flex items-center gap-2.5 py-3 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yonsei-blue sm:gap-4 sm:py-4"
       >
-        <time dateTime={item.date} className="shrink-0 text-sm tabular-nums text-content-faint">
+        <time dateTime={item.date} className="shrink-0 text-xs tabular-nums text-content-faint sm:text-sm">
           {item.dateText}
         </time>
-        <span className="min-w-0 flex-1 truncate text-[15px] font-medium text-content transition-colors group-hover:text-yonsei-blue sm:text-base">
+        <span className="min-w-0 flex-1 truncate text-sm font-medium text-content transition-colors group-hover:text-yonsei-blue sm:text-base">
           {item.title}
         </span>
         <span
           className={cn(
-            'shrink-0 whitespace-nowrap px-2.5 py-1 text-xs font-bold',
+            'shrink-0 whitespace-nowrap px-2 py-0.5 text-xs font-bold sm:px-2.5 sm:py-1',
             BADGE[item.category],
           )}
         >
@@ -130,13 +131,14 @@ export function NoticeSection({
   const columns = [visible.slice(0, half), visible.slice(half)];
 
   return (
-    <section aria-labelledby="notices-heading" className="full-bleed bg-surface py-section-lg">
+    // 모바일 밀도 최적화: 상하 패딩 py-12, sm+ 은 기존 리듬(py-section-lg) 유지
+    <section aria-labelledby="notices-heading" className="full-bleed bg-surface py-12 sm:py-section-lg">
       <div className="mx-auto w-full max-w-[1360px] px-6 sm:px-10 lg:px-16">
         {/* 헤더 — 네이비 박스 제목(다른 홈 섹션과 통일) + 헤어라인 + MORE */}
         <div className="flex items-center gap-6">
           <h2
             id="notices-heading"
-            className="inline-block bg-yonsei-navy px-5 py-2.5 text-lg font-bold text-white"
+            className="inline-block bg-yonsei-navy px-4 py-2 text-base font-bold text-white sm:px-5 sm:py-2.5 sm:text-lg"
           >
             {heading}
           </h2>
@@ -154,7 +156,7 @@ export function NoticeSection({
 
         {/* 소제목 '공지사항' — 각진 네이비 사각 마커 + 볼드. 아래 학과 일정(CalendarSection
             bare) 소제목과 동일한 장치로, 한 섹션 안 두 반쪽이 형제임을 시각적으로 드러낸다. */}
-        <h3 className="mt-9 flex items-center gap-2.5 text-base font-bold text-content">
+        <h3 className="mt-7 flex items-center gap-2.5 text-base font-bold text-content sm:mt-9">
           <span aria-hidden="true" className="h-2 w-2 bg-yonsei-navy" />
           {listLabel}
         </h3>
@@ -211,7 +213,7 @@ export function NoticeSection({
         {/* 학과 일정(children = CalendarSection bare) — 두 섹션 통합(사용자 지시).
             별도 border-t 를 두지 않는다: 일정 쪽 소제목 행([마커+라벨 ─ 헤어라인 ─ 화살표])이
             구분선 역할을 겸해, 맨민한 선 하나로 붙어 있던 이질감을 없앤다. */}
-        {children && <div className="mt-14">{children}</div>}
+        {children && <div className="mt-10 sm:mt-14">{children}</div>}
       </div>
     </section>
   );

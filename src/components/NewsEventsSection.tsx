@@ -109,8 +109,8 @@ export function NewsEventsSection({ items }: { items: NewsEventItem[] }) {
     <section
       ref={rootRef}
       aria-labelledby="news-events-heading"
-      // 자유 스크롤 홈 섹션 — 자연 높이 + 통일된 상하 리듬(py-section-lg).
-      className="full-bleed flex flex-col bg-surface py-section-lg"
+      // 자유 스크롤 홈 섹션 — 자연 높이 + 통일된 상하 리듬(모바일 py-12, sm+ py-section-lg).
+      className="full-bleed flex flex-col bg-surface py-12 sm:py-section-lg"
     >
       <div className="mx-auto w-full max-w-[1360px] px-6 sm:px-10 lg:px-16">
         {/* 헤더 행 — 좌: 네이비 라벨 박스(각지게) / 사이: 헤어라인(학과 목표 섹션과
@@ -119,7 +119,7 @@ export function NewsEventsSection({ items }: { items: NewsEventItem[] }) {
           <h2
             id="news-events-heading"
             data-reveal
-            className="inline-block bg-yonsei-navy px-5 py-2.5 text-lg font-bold text-white"
+            className="inline-block bg-yonsei-navy px-4 py-2 text-base font-bold text-white sm:px-5 sm:py-2.5 sm:text-lg"
           >
             {t('newsEvents.title')}
           </h2>
@@ -156,13 +156,14 @@ export function NewsEventsSection({ items }: { items: NewsEventItem[] }) {
             <ul
               ref={trackRef}
               onScroll={updateArrows}
-              className="no-scrollbar mt-10 flex snap-x snap-mandatory gap-8 overflow-x-auto scroll-smooth"
+              className="no-scrollbar mt-6 flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-smooth sm:mt-10 sm:gap-8"
             >
               {items.map((item, i) => (
                 <li
                   key={`${item.href}-${i}`}
                   data-card
-                  className="snap-start w-[78%] shrink-0 sm:w-[46%] lg:w-[calc(25%-24px)]"
+                  // 모바일 카드 2장 보이게(48%) — 캐러셀 어포던스 확보(데스크톱 모드의 밀도 재현)
+                  className="snap-start w-[48%] shrink-0 sm:w-[46%] lg:w-[calc(25%-24px)]"
                 >
                   <NewsEventCard item={item} />
                 </li>
@@ -170,7 +171,7 @@ export function NewsEventsSection({ items }: { items: NewsEventItem[] }) {
             </ul>
 
             {/* 하단 우측 — 자세히보기 → /news */}
-            <div data-reveal className="mt-8 flex justify-end">
+            <div data-reveal className="mt-6 flex justify-end sm:mt-8">
               <Link
                 href="/news"
                 className="group inline-flex items-center gap-2 text-sm font-bold text-content transition-colors hover:text-yonsei-blue"
@@ -209,8 +210,8 @@ function NewsEventCard({ item }: { item: NewsEventItem }) {
 
   return (
     <Link href={item.href} className="group block">
-      {/* 날짜 — 한 줄 포맷, 명료한 중간 크기 */}
-      <p className="text-lg font-semibold leading-none tabular-nums text-content">
+      {/* 날짜 — 한 줄 포맷, 명료한 중간 크기(모바일은 카드 2장 밀도에 맞춰 축소) */}
+      <p className="text-sm font-semibold leading-none tabular-nums text-content sm:text-lg">
         {year}. {month}. {day}
       </p>
 
@@ -218,21 +219,21 @@ function NewsEventCard({ item }: { item: NewsEventItem }) {
       <div className="mt-3 border-b border-surface-border" />
 
       {/* 분류 라벨 — 시안의 주황 대신 연세 블루 */}
-      <p className="mt-6 text-sm font-bold text-yonsei-blue">{kindLabel}</p>
+      <p className="mt-3 text-xs font-bold text-yonsei-blue sm:mt-6 sm:text-sm">{kindLabel}</p>
 
       {/* 제목 — 한 줄 말줄임, hover 시 블루 전환 */}
-      <p className="mt-2 truncate text-lg font-medium text-content transition-colors group-hover:text-yonsei-blue">
+      <p className="mt-1.5 truncate text-sm font-medium text-content transition-colors group-hover:text-yonsei-blue sm:mt-2 sm:text-lg">
         {item.title}
       </p>
 
       {/* 이미지 — 각진 aspect-[4/3] 프레임. 없으면 단색 블록 + eagle_empty 중앙 배치. */}
-      <div className="relative mt-6 aspect-[4/3] w-full overflow-hidden bg-surface-soft">
+      <div className="relative mt-3 aspect-[4/3] w-full overflow-hidden bg-surface-soft sm:mt-6">
         {item.image ? (
           <Image
             src={item.image}
             alt=""
             fill
-            sizes="(min-width: 1024px) 25vw, (min-width: 640px) 46vw, 78vw"
+            sizes="(min-width: 1024px) 25vw, (min-width: 640px) 46vw, 48vw"
             className="object-cover"
           />
         ) : (

@@ -73,9 +73,9 @@ export function LabsSection({ labs, locale }: { labs: LabDirectoryEntry[]; local
     <section
       ref={rootRef}
       aria-labelledby="labs-heading"
-      // 자유 스크롤 홈 섹션 — 자연 높이 + 통일된 상하 리듬(py-section-lg). full-bleed 는
-      // 마퀴/캐러셀이 뷰포트 폭을 쓰기 위해 유지하되, 헤더·CTA 는 내부 max-w 컨테이너 정렬.
-      className="full-bleed flex flex-col bg-surface py-section-lg"
+      // 자유 스크롤 홈 섹션 — 자연 높이 + 통일된 상하 리듬(모바일 py-12, sm+ py-section-lg).
+      // full-bleed 는 마퀴/캐러셀이 뷰포트 폭을 쓰기 위해 유지하되, 헤더·CTA 는 내부 max-w 컨테이너 정렬.
+      className="full-bleed flex flex-col bg-surface py-12 sm:py-section-lg"
     >
       {/* 1) 컴팩트 헤더 — 컨테이너 정렬. relative 는 우측 독수리 워터마크의 기준점. */}
       <div className="mx-auto w-full max-w-[1360px] px-6 sm:px-10 lg:px-16">
@@ -95,7 +95,7 @@ export function LabsSection({ labs, locale }: { labs: LabDirectoryEntry[]; local
             <h2
               id="labs-heading"
               data-reveal
-              className="inline-block bg-yonsei-navy px-5 py-2.5 text-lg font-bold text-white"
+              className="inline-block bg-yonsei-navy px-4 py-2 text-base font-bold text-white sm:px-5 sm:py-2.5 sm:text-lg"
             >
               {t('people.intro.label')}
             </h2>
@@ -121,19 +121,19 @@ export function LabsSection({ labs, locale }: { labs: LabDirectoryEntry[]; local
           </div>
 
           {/* 한 줄 요약 — 본문 최소화(기존 2문단 → 1문장). CTA 는 캐러셀 하단으로 이동. */}
-          <p data-reveal className="mt-5 max-w-2xl text-base text-content-soft">
+          <p data-reveal className="mt-4 max-w-2xl text-sm text-content-soft sm:mt-5 sm:text-base">
             {t('people.intro.tagline')}
           </p>
         </div>
       </div>
 
-      {/* 2) 캐러셀 — 카드 디자인 무변경. ref 로 헤더 화살표의 넘기기만 연결. */}
-      <div className="mt-8 lg:mt-10">
+      {/* 2) 캐러셀 — 카드 디자인 무변경(모바일 185px 고정폭이 이미 2장+ 밀도). */}
+      <div className="mt-6 sm:mt-8 lg:mt-10">
         <LabCarousel ref={carouselRef} labs={labs} locale={locale} />
       </div>
 
       {/* CTA — 캐러셀 하단 우측(뉴스&행사 섹션과 동일한 위치·정렬) */}
-      <div className="mx-auto mt-8 flex w-full max-w-[1360px] justify-end px-6 sm:px-10 lg:px-16">
+      <div className="mx-auto mt-6 flex w-full max-w-[1360px] justify-end px-6 sm:mt-8 sm:px-10 lg:px-16">
         <Link
           data-reveal
           href="/research#labs"
