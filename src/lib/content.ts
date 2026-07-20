@@ -105,6 +105,8 @@ export const programs = programsData as {
 export interface Seminar {
   id: string;
   date: string;
+  /** 종료일(YYYY-MM-DD, DB end_date) — 없으면 하루 일정 */
+  endDate?: string;
   host: Localized;
   title: Localized;
   body: Localized;
@@ -118,6 +120,8 @@ export interface Seminar {
 export interface EventItem {
   id: string;
   date: string;
+  /** 종료일(YYYY-MM-DD, DB end_date) — 없으면 하루 행사(구 데이터는 dateLabel 파싱 폴백) */
+  endDate?: string;
   dateLabel: Localized;
   title: Localized;
   body: Localized;

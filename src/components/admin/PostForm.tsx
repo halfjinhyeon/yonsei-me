@@ -9,6 +9,7 @@ import { useRef, useState } from 'react';
 import type { Editor } from '@tiptap/react';
 import type { BoardMeta, EditRecord } from '@/lib/admin/boards';
 import { emptyAttachment } from '@/lib/admin/boards';
+import { formatPeriodLabel } from '@/lib/calendar';
 import { UploadCancelledError, type UploadProgress, type UploadProgressHandler } from '@/lib/admin/storage';
 import { RichTextEditor } from './RichTextEditor';
 import { TranslateButton } from './TranslateButton';
@@ -254,12 +255,21 @@ export function PostForm({ meta, initial, isEdit, busy, onCancel, onSubmit, onUp
       setError('제목(한국어)을 입력하세요.');
       return;
     }
-    onSubmit(rec);
+    if (showEndDate && rec.endDate && rec.date && rec.endDate < rec.date) {
+      setError('종료일은 시작일보다 빠를 수 없습니다.');
+      return;
+    }
+    // 종료일 피커가 숨겨진 상태(동문 '행사' 체크 해제 등)의 잔존값은 비워서 제출
+    onSubmit(showEndDate ? rec : { ...rec, endDate: '' });
   }
 
   const idLabel = meta.isNews ? 'slug' : 'id';
   // 행사 게시판, 또는 동문에서 '행사'로 체크된 글 → '날짜'를 행사 일정으로 안내(캘린더 연동)
   const dateIsEvent = meta.dateIsEvent || (meta.hasEventFlag && !!rec.isEvent);
+  // 종료일 피커 노출: 행사·세미나는 항상, 동문은 '행사' 체크 시에만.
+  // 기간 라벨은 수동 입력 대신 시작/종료일로 서버가 자동 생성한다(아래 미리보기와 동일 함수).
+  const showEndDate = !!meta.hasDateRange && (!meta.hasEventFlag || !!rec.isEvent);
+  const labelPreview = showEndDate && rec.date ? formatPeriodLabel(rec.date, rec.endDate) : null;
 
   return (
     <form onSubmit={handleSubmit} className="space-y-8" noValidate>
@@ -289,7 +299,7 @@ export function PostForm({ meta, initial, isEdit, busy, onCancel, onSubmit, onUp
           </div>
           <div>
             <label htmlFor="pf-date" className="block text-sm font-semibold text-content">
-              {dateIsEvent ? '행사 일정 (날짜)' : '날짜'}
+              {showEndDate ? (dateIsEvent ? '행사 시작일' : '날짜 (시작일)') : dateIsEvent ? '행사 일정 (날짜)' : '날짜'}
             </label>
             <input
               id="pf-date"
@@ -320,6 +330,29 @@ export function PostForm({ meta, initial, isEdit, busy, onCancel, onSubmit, onUp
               </span>
             </span>
           </label>
+        )}
+
+        {/* 종료일 — 며칠짜리 일정은 캘린더 피커로 종료일을 고른다(비우면 하루).
+            기간 라벨("7/20~7/24")은 저장 시 서버가 ko/en 자동 생성 — 미리보기로 확인만. */}
+        {showEndDate && (
+          <div className="mt-4 sm:max-w-xs">
+            <label htmlFor="pf-end-date" className="block text-sm font-semibold text-content">
+              종료일 <span className="ml-1 font-normal text-content-faint">(선택 — 하루 일정이면 비워두세요)</span>
+            </label>
+            <input
+              id="pf-end-date"
+              type="date"
+              min={rec.date || undefined}
+              value={rec.endDate ?? ''}
+              onChange={(e) => set('endDate', e.target.value)}
+              className={fieldClass}
+            />
+            {labelPreview && labelPreview.ko && (
+              <p className="mt-1 text-xs text-yonsei-blue">
+                표시 라벨(자동 생성): {labelPreview.ko} · EN {labelPreview.en}
+              </p>
+            )}
+          </div>
         )}
 
         {meta.isNews && (
@@ -382,25 +415,6 @@ export function PostForm({ meta, initial, isEdit, busy, onCancel, onSubmit, onUp
           </div>
         )}
 
-        {meta.hasDateLabel && (
-          <div className="mt-4 grid gap-4 sm:grid-cols-2">
-            <div>
-              <label htmlFor="pf-dl-ko" className="block text-sm font-semibold text-content">
-                기간 라벨 (한국어)
-              </label>
-              <input id="pf-dl-ko" type="text" value={rec.dateLabelKo ?? ''} onChange={(e) => set('dateLabelKo', e.target.value)} placeholder="7/7(화)" className={fieldClass} />
-            </div>
-            <div>
-              <div className="flex flex-wrap items-center justify-between gap-2">
-                <label htmlFor="pf-dl-en" className="block text-sm font-semibold text-content">
-                  기간 라벨 (English)
-                </label>
-                <TranslateButton source={rec.dateLabelKo ?? ''} onTranslated={(v) => set('dateLabelEn', v)} />
-              </div>
-              <input id="pf-dl-en" type="text" value={rec.dateLabelEn ?? ''} onChange={(e) => set('dateLabelEn', e.target.value)} placeholder="Jul 7 (Tue)" className={fieldClass} />
-            </div>
-          </div>
-        )}
       </section>
 
       {/* ── 본문 (+ 뉴스 요약) ── */}

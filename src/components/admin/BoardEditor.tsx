@@ -55,6 +55,7 @@ function blankRecord(key: BoardKey, suggestedId: string): EditRecord {
     bodyEn: '',
     ...(meta.hasHost ? { hostKo: '', hostEn: '' } : {}),
     ...(meta.hasDateLabel ? { dateLabelKo: '', dateLabelEn: '' } : {}),
+    ...(meta.hasDateRange ? { endDate: '' } : {}),
     ...(meta.hasEventFlag ? { isEvent: false } : {}),
     ...(meta.isNews ? { category: 'notice' as const, excerptKo: '', excerptEn: '', image: '' } : {}),
     attachments: [emptyAttachment()],
@@ -201,8 +202,8 @@ export function BoardEditor({ config, boardKey, onDirtyChange }: Props) {
       category: rec.category,
       hostKo: rec.hostKo,
       hostEn: rec.hostEn,
-      dateLabelKo: rec.dateLabelKo,
-      dateLabelEn: rec.dateLabelEn,
+      // 기간 라벨은 서버가 시작/종료일로 자동 생성 — 수동 라벨은 더 이상 보내지 않는다
+      endDate: rec.endDate || undefined,
       isEvent: rec.isEvent,
       image: rec.image,
       attachments: rec.attachments.filter((a) => a.href.trim() !== '' || a.labelKo.trim() !== ''),

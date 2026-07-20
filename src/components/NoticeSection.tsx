@@ -89,6 +89,7 @@ function NoticeRow({
 export function NoticeSection({
   items,
   heading,
+  listLabel,
   moreLabel,
   moreHref,
   emptyLabel,
@@ -97,12 +98,14 @@ export function NoticeSection({
 }: {
   items: NoticeSectionItem[];
   heading: string;
+  /** 공지 리스트 소제목(예: "공지사항") — 일정 소제목과 같은 장치로 두 반쪽의 위계를 통일 */
+  listLabel: string;
   moreLabel: string;
   moreHref: string;
   emptyLabel: string;
   /** [전체, 학부, 대학원, 외부기관, 장학] — key='all' 포함 */
   filters: NoticeFilter[];
-  /** 구분선 아래 임베드할 콘텐츠(학과 일정 CalendarSection bare 등) */
+  /** 소제목 행 아래 임베드할 콘텐츠(학과 일정 CalendarSection bare 등) */
   children?: ReactNode;
 }) {
   const [active, setActive] = useState('all');
@@ -149,8 +152,15 @@ export function NoticeSection({
           </Link>
         </div>
 
+        {/* 소제목 '공지사항' — 각진 네이비 사각 마커 + 볼드. 아래 학과 일정(CalendarSection
+            bare) 소제목과 동일한 장치로, 한 섹션 안 두 반쪽이 형제임을 시각적으로 드러낸다. */}
+        <h3 className="mt-9 flex items-center gap-2.5 text-base font-bold text-content">
+          <span aria-hidden="true" className="h-2 w-2 bg-yonsei-navy" />
+          {listLabel}
+        </h3>
+
         {/* 필터 탭 — 사이트 공통 UnderlineTabs(건수 배지). 좁은 화면은 가로 스크롤. */}
-        <div className="mt-8 overflow-x-auto">
+        <div className="mt-3 overflow-x-auto">
           <UnderlineTabs
             active={active}
             onChange={setActive}
@@ -198,9 +208,10 @@ export function NoticeSection({
           </div>
         )}
 
-        {/* 구분선 + 학과 일정(children = CalendarSection bare) — 두 섹션 통합(사용자 지시).
-            border-t 가 구분선; 일정 콘텐츠는 자체 상단 여백(mt-10)을 가져 선 아래로 떨어진다. */}
-        {children && <div className="mt-12 border-t border-surface-border">{children}</div>}
+        {/* 학과 일정(children = CalendarSection bare) — 두 섹션 통합(사용자 지시).
+            별도 border-t 를 두지 않는다: 일정 쪽 소제목 행([마커+라벨 ─ 헤어라인 ─ 화살표])이
+            구분선 역할을 겸해, 맨민한 선 하나로 붙어 있던 이질감을 없앤다. */}
+        {children && <div className="mt-14">{children}</div>}
       </div>
     </section>
   );

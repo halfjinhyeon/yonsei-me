@@ -50,9 +50,11 @@ export interface EditRecord {
   // 세미나 전용
   hostKo?: string;
   hostEn?: string;
-  // 행사 전용
+  // 행사 전용 — 레거시 수동 기간 라벨(폼·페이로드에서는 폐지, 내부 변환 함수들이 참조해 필드는 유지)
   dateLabelKo?: string;
   dateLabelEn?: string;
+  // 기간 게시판(행사·세미나·동문행사) 전용 — 종료일(YYYY-MM-DD). 빈 문자열이면 하루 일정
+  endDate?: string;
   // 동문 소식·네트워크 전용 — 특정 날짜가 정해진 행사인지(체크 시 캘린더 '동문'에 표시)
   isEvent?: boolean;
   // 뉴스 전용
@@ -79,6 +81,8 @@ export interface BoardMeta {
   idPrefix: string;
   hasHost: boolean;
   hasDateLabel: boolean;
+  /** true면 종료일(end_date) 피커를 노출한다(비우면 하루). 기간 라벨은 저장 시 서버가 자동 생성 */
+  hasDateRange?: boolean;
   isNews: boolean;
   /** true면 '날짜' 필드를 "행사 일정"으로 안내한다(그 날짜로 금주 캘린더에 표시됨) */
   dateIsEvent?: boolean;
@@ -95,14 +99,16 @@ export const BOARDS: BoardMeta[] = [
   { key: 'noticesExternal', label: '외부기관 공지', file: 'board.json', idPrefix: 'nx-', hasHost: false, hasDateLabel: false, isNews: false },
   { key: 'noticesScholarship', label: '장학생 선발공고', file: 'board.json', idPrefix: 'nsch-', hasHost: false, hasDateLabel: false, isNews: false },
   { key: 'news', label: '뉴스', file: 'news.json', idPrefix: '', hasHost: false, hasDateLabel: false, isNews: true },
-  { key: 'seminars', label: '세미나', file: 'board.json', idPrefix: 'sem-', hasHost: true, hasDateLabel: false, isNews: false },
-  { key: 'events', label: '행사', file: 'board.json', idPrefix: 'evt-', hasHost: false, hasDateLabel: true, isNews: false, dateIsEvent: true },
+  { key: 'seminars', label: '세미나', file: 'board.json', idPrefix: 'sem-', hasHost: true, hasDateLabel: false, hasDateRange: true, isNews: false },
+  // events: 기간 라벨 수동 입력(hasDateLabel)을 폐지하고 시작–종료일 피커(hasDateRange)로 전환 —
+  // 라벨은 저장 시 서버(formatPeriodLabel)가 자동 생성한다.
+  { key: 'events', label: '행사', file: 'board.json', idPrefix: 'evt-', hasHost: false, hasDateLabel: false, hasDateRange: true, isNews: false, dateIsEvent: true },
   { key: 'thesis', label: '학위논문심사', file: 'board.json', idPrefix: 'th-', hasHost: false, hasDateLabel: false, isNews: false },
   { key: 'resources', label: '자료실', file: 'board.json', idPrefix: 'res-', hasHost: false, hasDateLabel: false, isNews: false },
   { key: 'career', label: '취업 정보', file: 'board.json', idPrefix: 'cr-', hasHost: false, hasDateLabel: false, isNews: false },
   { key: 'internships', label: '인턴 모집', file: 'board.json', idPrefix: 'int-', hasHost: false, hasDateLabel: false, isNews: false },
   { key: 'alumniNews', label: '동문 뉴스', file: 'news.json', idPrefix: '', hasHost: false, hasDateLabel: false, isNews: true, newsFile: 'content/alumni-news.json' },
-  { key: 'alumniEvents', label: '동문 소식·네트워크', file: 'board.json', idPrefix: 'ae-', hasHost: true, hasDateLabel: false, isNews: false, hasEventFlag: true },
+  { key: 'alumniEvents', label: '동문 소식·네트워크', file: 'board.json', idPrefix: 'ae-', hasHost: true, hasDateLabel: false, hasDateRange: true, isNews: false, hasEventFlag: true },
 ];
 
 export function getBoard(key: BoardKey): BoardMeta {
@@ -181,6 +187,10 @@ export function toEditRecord(meta: BoardMeta, raw: unknown): EditRecord {
     const dl = loc(r.dateLabel);
     base.dateLabelKo = dl.ko ?? '';
     base.dateLabelEn = dl.en ?? '';
+  }
+  if (meta.hasDateRange) {
+    // 종료일 — git JSON 구 데이터엔 없어 항상 ''(하루)로 시작한다
+    base.endDate = String(r.endDate ?? '');
   }
   if (meta.hasEventFlag) {
     base.isEvent = r.isEvent === true;

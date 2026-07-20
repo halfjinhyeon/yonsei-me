@@ -6,6 +6,7 @@ import { revalidateTag } from 'next/cache';
 import { auth } from '@/auth';
 import {
   adminDb,
+  endDateError,
   isValidBoard,
   payloadToRow,
   rowToEditRecord,
@@ -51,6 +52,9 @@ export async function POST(request: Request): Promise<Response> {
   if (!payload.titleKo?.trim() || !payload.date?.trim()) {
     return Response.json({ error: '제목과 날짜는 필수입니다.' }, { status: 400 });
   }
+  // 종료일(기간 일정) 검증 — 형식·순서(종료 ≥ 시작)
+  const endErr = endDateError(payload);
+  if (endErr) return Response.json({ error: endErr }, { status: 400 });
 
   const row = payloadToRow(payload);
   const { data, error } = await adminDb().from('posts').insert(row).select('id').single();

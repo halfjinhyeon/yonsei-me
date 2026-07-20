@@ -177,7 +177,8 @@
       "fieldLink": "Explore {field} research",
       "tagline1": "Engineering that moves the world, people who design the future",
       "tagline2": "Broad fields, world-class education and research",
-      "tagline3": "Nurturing talent that creates value for global society"
+      "tagline3": "Nurturing talent that creates value for global society",
+      "about": "About →"
     },
     "instagram": {
       "tagline": "CONNECT TO INSTAGRAM",
@@ -203,6 +204,7 @@
     },
     "notices": {
       "title": "Notices & Calendar",
+      "listLabel": "Notices",
       "more": "MORE",
       "empty": "No notices posted.",
       "filters": {

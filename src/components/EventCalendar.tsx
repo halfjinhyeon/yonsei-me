@@ -3,44 +3,68 @@
 import { useMemo, useState } from 'react';
 import { Link } from '@/i18n/navigation';
 import { cn } from '@/lib/utils';
+import { civilFromDays, daysFromCivil, daysInMonth, isoToDays, toIso } from '@/lib/calendar';
 import type { Locale } from '@/i18n/routing';
 
 /**
- * 뉴스 페이지 '일정' 탭의 월간 캘린더.
+ * 뉴스 페이지 '일정' 탭의 월간 캘린더 (POSTECH 학사일정 스타일).
  *
  * 데이터 소스는 별도 콘텐츠 파일이 아니라 기존 board.json 의 행사(events)·세미나(seminars)
- * 게시판이다. 관리자 콘솔(/ko/contentmanagement)이 이미 이 두 게시판을 편집하므로, 관리자가 행사·세미나
- * 글을 올리기만 하면 그 글의 date 필드가 이 캘린더에 자동으로 표시된다(별도 일정 관리 불필요).
- * 서버(news/page.tsx)에서 두 게시판을 CalendarEntry[] 로 가공해 넘긴다.
+ * 게시판이다. 서버(news/page.tsx)에서 두 게시판을 CalendarEntry[] 로 가공해 넘긴다. 행사는
+ * dateLabel(사람이 적은 실제 기간)을 parseDateLabelRange 로 파싱한 [date, endDate] 범위를,
+ * 세미나는 date 하루(date === endDate)를 갖는다.
+ *
+ * 레이아웃: 좌측 월간 그리드(멀티데이 이어진 바) + 우측 월간 일정 패널(실질 접근성 목록).
+ * 그리드의 날짜 셀은 더 이상 버튼이 아니며, 각 이벤트 바가 게시물 상세로 가는 <Link> 다.
  */
 export interface CalendarEntry {
   id: string;
-  date: string; // YYYY-MM-DD
+  date: string; // 시작일 YYYY-MM-DD
+  endDate: string; // 종료일 YYYY-MM-DD (하루면 date 와 동일)
   title: string; // 서버에서 pick() 완료된 문자열
   kind: 'event' | 'seminar';
   href: string; // /news/post/<id>
 }
 
-/** 로컬 기준 YYYY-MM-DD 문자열 (timezone 함정 회피 — 문자열 비교로만 날짜를 다룬다) */
-function isoOf(year: number, month0: number, day: number): string {
-  return `${year}-${String(month0 + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
-}
-
+// 종류별 색: 행사=네이비, 세미나=블루 (골드 액센트는 제거). 바는 각지고 그림자 없음.
 const KIND_STYLES: Record<
   CalendarEntry['kind'],
-  { pill: string; dot: string; badge: string }
+  { bar: string; accent: string; dot: string; badge: string }
 > = {
   event: {
-    pill: 'bg-yonsei-navy/5 text-yonsei-navy hover:bg-yonsei-navy/15',
+    bar: 'bg-yonsei-navy/[0.08] text-yonsei-navy hover:bg-yonsei-navy/15',
+    accent: 'border-yonsei-navy',
     dot: 'bg-yonsei-navy',
-    badge: 'bg-yonsei-navy/5 text-yonsei-navy',
+    badge: 'bg-yonsei-navy/10 text-yonsei-navy',
   },
   seminar: {
-    pill: 'bg-yonsei-gold/15 text-yonsei-gold hover:bg-yonsei-gold/25',
-    dot: 'bg-yonsei-gold',
-    badge: 'bg-yonsei-gold/15 text-yonsei-gold',
+    bar: 'bg-yonsei-blue/[0.08] text-yonsei-blue hover:bg-yonsei-blue/15',
+    accent: 'border-yonsei-blue',
+    dot: 'bg-yonsei-blue',
+    badge: 'bg-yonsei-blue/10 text-yonsei-blue',
   },
 };
+
+/** 엔트리가 해당 날짜를 포함하는가 — 멀티데이는 시작~종료 사이 모든 날에 참(ISO 사전순 비교) */
+const coversDay = (e: CalendarEntry, iso: string) => e.date <= iso && iso <= e.endDate;
+
+/** 한 주 안에 배치되는 이벤트 바 세그먼트(레인 패킹 완료 후) */
+interface Segment {
+  entry: CalendarEntry;
+  colStart: number; // 0..6 (주 내 시작 열, 0=일요일)
+  span: number; // 1..7 (열 개수)
+  isStart: boolean; // 실제 행사 시작일이 이 세그먼트에 포함되는가(좌측 액센트 표시)
+  lane: number; // 0-based 레인(그리드 행)
+}
+
+interface WeekRow {
+  cells: { iso: string; day: number; inMonth: boolean }[]; // 항상 7개(일→토)
+  segments: Segment[];
+  laneCount: number;
+}
+
+/** "2026-07-01" → "2026.07.01" (점 구분, 타임존 무관 문자열 치환) */
+const dotDate = (iso: string) => iso.split('-').join('.');
 
 export function EventCalendar({
   entries,
@@ -52,40 +76,28 @@ export function EventCalendar({
   const ko = locale === 'ko';
   const intlLocale = ko ? 'ko-KR' : 'en-US';
 
-  // 오늘 (로컬 기준) — 렌더 시점 고정, 서버/클라이언트 hydration 이후 클라이언트 값 사용
+  // 오늘(로컬) — 로컬 getter 로 읽어 ISO 파싱 UTC 버그를 피한다.
   const today = useMemo(() => new Date(), []);
-  const todayIso = isoOf(today.getFullYear(), today.getMonth(), today.getDate());
+  const todayIso = toIso(today.getFullYear(), today.getMonth() + 1, today.getDate());
 
   const [viewYear, setViewYear] = useState(today.getFullYear());
   const [viewMonth, setViewMonth] = useState(today.getMonth()); // 0-11
+  // 선택한 날짜 — 그리드 아래 '그날 일정' 목록의 기준(초기값 오늘). 멀티데이 행사는
+  // 기간 중 어느 날을 골라도 목록에 잡힌다(coversDay — 구버전의 시작일 매칭보다 개선).
   const [selectedIso, setSelectedIso] = useState<string>(todayIso);
 
-  // 일정 → 날짜별 그룹 (YYYY-MM-DD → entries), 각 날짜는 종류·제목순 안정 정렬
-  const byDate = useMemo(() => {
-    const map = new Map<string, CalendarEntry[]>();
-    for (const e of entries) {
-      const list = map.get(e.date);
-      if (list) list.push(e);
-      else map.set(e.date, [e]);
-    }
-    for (const list of map.values()) {
-      list.sort((a, b) =>
-        a.kind === b.kind ? a.title.localeCompare(b.title) : a.kind === 'event' ? -1 : 1,
-      );
-    }
-    return map;
-  }, [entries]);
-
-  // 연도 선택 범위: min(일정 최소 연도, 올해)−1 ~ max(일정 최대 연도, 올해)+1
+  // 연도 선택 범위: 일정 min/max 연도(시작·종료 모두 고려) ±1, 올해 포함.
   const yearOptions = useMemo(() => {
     const cur = today.getFullYear();
     let min = cur;
     let max = cur;
     for (const e of entries) {
-      const y = Number(e.date.slice(0, 4));
-      if (!Number.isNaN(y)) {
-        if (y < min) min = y;
-        if (y > max) max = y;
+      for (const iso of [e.date, e.endDate]) {
+        const y = Number(iso.slice(0, 4));
+        if (!Number.isNaN(y)) {
+          if (y < min) min = y;
+          if (y > max) max = y;
+        }
       }
     }
     min -= 1;
@@ -98,69 +110,165 @@ export function EventCalendar({
     return Array.from({ length: 12 }, (_, m) => fmt.format(new Date(2020, m, 1)));
   }, [intlLocale]);
 
-  // 요일 헤더 (일~토, locale short)
+  // 요일 헤더 (일~토, locale short) — 2024-01-07 이 일요일
   const weekdayNames = useMemo(() => {
     const fmt = new Intl.DateTimeFormat(intlLocale, { weekday: 'short' });
-    // 2024-01-07 = 일요일 기준으로 7일
     return Array.from({ length: 7 }, (_, i) => fmt.format(new Date(2024, 0, 7 + i)));
   }, [intlLocale]);
-
-  // 월간 그리드: 1일의 요일에 맞춘 앞 빈 칸 + 날짜 셀, 마지막 주 뒤 빈 칸 (7의 배수 맞춤)
-  const cells = useMemo(() => {
-    const firstWeekday = new Date(viewYear, viewMonth, 1).getDay(); // 0=일
-    const daysInMonth = new Date(viewYear, viewMonth + 1, 0).getDate();
-    const list: (number | null)[] = [];
-    for (let i = 0; i < firstWeekday; i++) list.push(null);
-    for (let d = 1; d <= daysInMonth; d++) list.push(d);
-    while (list.length % 7 !== 0) list.push(null);
-    return list;
-  }, [viewYear, viewMonth]);
 
   const monthLabel = ko
     ? `${viewYear}년 ${viewMonth + 1}월`
     : `${monthNames[viewMonth]} ${viewYear}`;
 
-  // 이 달에 일정이 하나라도 있는지 (빈 상태 안내용)
-  const monthHasEntries = useMemo(() => {
-    const prefix = `${viewYear}-${String(viewMonth + 1).padStart(2, '0')}-`;
-    for (const date of byDate.keys()) if (date.startsWith(prefix)) return true;
-    return false;
-  }, [byDate, viewYear, viewMonth]);
+  // ── 월 경계(일련번호) — 그리드/세그먼트 클램프의 기준 ──
+  const monthFirstOrd = daysFromCivil(viewYear, viewMonth + 1, 1);
+  const monthDayCount = daysInMonth(viewYear, viewMonth + 1);
+  const monthLastOrd = monthFirstOrd + monthDayCount - 1;
+  const monthFirstIso = toIso(viewYear, viewMonth + 1, 1);
+  const monthLastIso = toIso(viewYear, viewMonth + 1, monthDayCount);
 
-  const selectedEntries = selectedIso ? byDate.get(selectedIso) ?? [] : [];
+  // ── 주 행 구성 + 주별 세그먼트 계산 + greedy 레인 패킹 ──
+  // 바는 view 월 범위로 클램프한다(이전/다음 달로 넘어가는 부분은 이 달 1일/말일에서 끊김).
+  const weeks = useMemo<WeekRow[]>(() => {
+    // 그리드 첫 칸 = 그 달 1일이 속한 주의 일요일. (일련번호 0=1970-01-01=목요일 기준 산술 요일)
+    const firstDow = ((monthFirstOrd + 4) % 7 + 7) % 7; // 0=일 … 6=토
+    const gridStartOrd = monthFirstOrd - firstDow;
+    const weekCount = Math.ceil((firstDow + monthDayCount) / 7);
+
+    // 이 달과 겹치는 엔트리를 월 범위로 클램프한 [startOrd, endOrd] 로 사전 계산.
+    // trueStart 는 클램프 전 실제 시작일(세그먼트의 좌측 액센트 판정용).
+    const clamped = entries
+      .map((e) => {
+        const rawStart = isoToDays(e.date);
+        const rawEnd = isoToDays(e.endDate);
+        if (Number.isNaN(rawStart) || Number.isNaN(rawEnd)) return null;
+        const s = Math.max(rawStart, monthFirstOrd);
+        const en = Math.min(Math.max(rawEnd, rawStart), monthLastOrd);
+        if (s > en) return null; // 이 달에 걸치지 않음
+        return { entry: e, startOrd: s, endOrd: en, trueStart: rawStart, totalSpan: en - s + 1 };
+      })
+      .filter((x): x is NonNullable<typeof x> => x !== null);
+
+    const rows: WeekRow[] = [];
+    for (let w = 0; w < weekCount; w += 1) {
+      const weekStartOrd = gridStartOrd + w * 7;
+      const weekEndOrd = weekStartOrd + 6;
+      // 이 주에서 바가 그려질 수 있는 범위(월 내부로 클램프)
+      const renderStart = Math.max(weekStartOrd, monthFirstOrd);
+      const renderEnd = Math.min(weekEndOrd, monthLastOrd);
+
+      const cells = Array.from({ length: 7 }, (_, i) => {
+        const ord = weekStartOrd + i;
+        const { y, m, d } = civilFromDays(ord);
+        return {
+          iso: toIso(y, m, d),
+          day: d,
+          inMonth: ord >= monthFirstOrd && ord <= monthLastOrd,
+        };
+      });
+
+      // 이 주에 걸치는 세그먼트: [start..end] ∩ [이 주의 렌더 가능 날짜들]
+      const segs: (Omit<Segment, 'lane'> & { totalSpan: number })[] = [];
+      if (renderStart <= renderEnd) {
+        for (const c of clamped) {
+          const segStart = Math.max(c.startOrd, renderStart);
+          const segEnd = Math.min(c.endOrd, renderEnd);
+          if (segStart > segEnd) continue;
+          segs.push({
+            entry: c.entry,
+            colStart: segStart - weekStartOrd,
+            span: segEnd - segStart + 1,
+            isStart: segStart === c.trueStart,
+            totalSpan: c.totalSpan,
+          });
+        }
+      }
+
+      // 정렬: 전체 span 내림차순 → 시작 열 오름차순 → id (안정). 긴 이벤트가 낮은 레인을
+      // 차지해 여러 주에 걸쳐도 대체로 같은 높이로 이어져 보이게 한다.
+      segs.sort(
+        (a, b) =>
+          b.totalSpan - a.totalSpan ||
+          a.colStart - b.colStart ||
+          a.entry.id.localeCompare(b.entry.id),
+      );
+
+      // greedy 레인 패킹: 각 세그먼트를 겹치지 않는 가장 낮은 레인에 배치(레인 수 제한 없음).
+      const laneEnds: number[] = []; // laneEnds[lane] = 그 레인 마지막 세그먼트의 colEnd
+      const placed: Segment[] = [];
+      for (const s of segs) {
+        const colEnd = s.colStart + s.span - 1;
+        let lane = 0;
+        while (lane < laneEnds.length && laneEnds[lane] >= s.colStart) lane += 1;
+        laneEnds[lane] = colEnd;
+        placed.push({ entry: s.entry, colStart: s.colStart, span: s.span, isStart: s.isStart, lane });
+      }
+      rows.push({ cells, segments: placed, laneCount: laneEnds.length });
+    }
+    return rows;
+  }, [entries, monthFirstOrd, monthLastOrd, monthDayCount]);
+
+  // 우측 패널 목록: 이 달과 겹치는(start<=월말 && end>=월초) 엔트리를 시작일 오름차순.
+  // ISO(YYYY-MM-DD) 는 사전순 == 시간순이라 문자열 비교로 안전.
+  const monthEntries = useMemo(
+    () =>
+      entries
+        .filter((e) => e.date <= monthLastIso && e.endDate >= monthFirstIso)
+        .slice()
+        .sort((a, b) => (a.date < b.date ? -1 : a.date > b.date ? 1 : a.title.localeCompare(b.title))),
+    [entries, monthFirstIso, monthLastIso],
+  );
+
+  // 선택 날짜의 일정 — 기간 포함 매칭, 행사 우선 → 제목순(구버전 정렬 관례 유지)
+  const selectedEntries = useMemo(
+    () =>
+      entries
+        .filter((e) => coversDay(e, selectedIso))
+        .sort((a, b) =>
+          a.kind === b.kind ? a.title.localeCompare(b.title) : a.kind === 'event' ? -1 : 1,
+        ),
+    [entries, selectedIso],
+  );
+
+  // 선택 날짜 표시 라벨(목록 헤더) — 로컬 생성자 사용(ISO 문자열 파싱의 UTC 함정 없음)
+  const selectedLabel = useMemo(() => {
+    const [y, m, d] = selectedIso.split('-').map(Number);
+    return new Intl.DateTimeFormat(intlLocale, {
+      year: 'numeric',
+      month: ko ? 'long' : 'short',
+      day: 'numeric',
+      weekday: 'long',
+    }).format(new Date(y, m - 1, d));
+  }, [selectedIso, intlLocale, ko]);
 
   function goToMonth(deltaMonths: number) {
     const base = new Date(viewYear, viewMonth + deltaMonths, 1);
     setViewYear(base.getFullYear());
     setViewMonth(base.getMonth());
   }
+  function goToToday() {
+    setViewYear(today.getFullYear());
+    setViewMonth(today.getMonth());
+  }
 
   const kindLabel = (kind: CalendarEntry['kind']) =>
     kind === 'event' ? (ko ? '행사' : 'Event') : ko ? '세미나' : 'Seminar';
 
-  // 선택된 날짜의 표시용 라벨 (리스트 헤더)
-  const selectedLabel = useMemo(() => {
-    if (!selectedIso) return '';
-    const [y, m, d] = selectedIso.split('-').map(Number);
-    const date = new Date(y, m - 1, d);
-    return new Intl.DateTimeFormat(intlLocale, {
-      year: 'numeric',
-      month: ko ? 'long' : 'short',
-      day: 'numeric',
-      weekday: 'long',
-    }).format(date);
-  }, [selectedIso, intlLocale, ko]);
+  const periodText = (e: CalendarEntry) =>
+    e.date === e.endDate ? dotDate(e.date) : `${dotDate(e.date)} ~ ${dotDate(e.endDate)}`;
+
+  const barAria = (e: CalendarEntry) => `${e.title}, ${periodText(e)}, ${kindLabel(e.kind)}`;
 
   const selectClass =
-    'appearance-none rounded-lg border border-surface-border bg-surface px-3 py-1.5 text-sm font-semibold text-content outline-none transition-colors hover:border-yonsei-blue focus:border-yonsei-blue';
+    'appearance-none rounded-none border border-surface-border bg-surface px-3 py-1.5 text-sm font-semibold text-content outline-none transition-colors hover:border-yonsei-blue focus:border-yonsei-blue';
   const navBtnClass =
-    'grid h-8 w-8 place-items-center rounded-lg border border-surface-border text-content-soft transition-colors hover:border-yonsei-blue hover:text-yonsei-navy';
+    'grid h-8 w-8 place-items-center rounded-none border border-surface-border text-content-soft transition-colors hover:border-yonsei-blue hover:text-yonsei-navy';
 
   return (
     <div>
-      {/* 헤더: 이전/다음 달 + 년/월 선택 + 범례 */}
+      {/* 헤더: 이전/다음 달 + 오늘 + 년/월 선택 + 범례 */}
       <div className="flex flex-wrap items-center justify-between gap-4">
-        <div className="flex items-center gap-2">
+        <div className="flex flex-wrap items-center gap-2">
           <button
             type="button"
             onClick={() => goToMonth(-1)}
@@ -176,6 +284,13 @@ export function EventCalendar({
             aria-label={ko ? '다음 달' : 'Next month'}
           >
             <span aria-hidden="true">›</span>
+          </button>
+          <button
+            type="button"
+            onClick={goToToday}
+            className="rounded-none border border-yonsei-navy px-3 py-1.5 text-sm font-semibold text-yonsei-navy transition-colors hover:bg-yonsei-navy hover:text-white"
+          >
+            {ko ? '오늘' : 'Today'}
           </button>
 
           <div className="ml-1 flex items-center gap-2">
@@ -222,7 +337,7 @@ export function EventCalendar({
           </div>
         </div>
 
-        {/* 범례 */}
+        {/* 범례 — 행사=네이비 점, 세미나=블루 점 (골드 없음) */}
         <ul className="flex items-center gap-4 text-xs text-content-soft">
           <li className="flex items-center gap-1.5">
             <span className={cn('h-2.5 w-2.5 rounded-full', KIND_STYLES.event.dot)} aria-hidden="true" />
@@ -235,165 +350,201 @@ export function EventCalendar({
         </ul>
       </div>
 
-      {/* 월간 그리드 */}
-      <div className="mt-5 overflow-hidden rounded-lg border border-surface-border">
-        <table className="w-full table-fixed border-collapse">
-          <caption className="sr-only">{ko ? `${monthLabel} 일정` : `Schedule for ${monthLabel}`}</caption>
-          <thead>
-            <tr className="bg-surface-soft">
+      {/* 본문: 좌 캘린더 그리드 / 우 월간 일정 패널 (모바일·태블릿은 세로 스택) */}
+      <div className="mt-6 lg:grid lg:grid-cols-[minmax(0,1fr)_320px] lg:gap-10">
+        {/* ── 좌: 월간 그리드 ── */}
+        <div className="min-w-0">
+          <h3 className="sr-only">{ko ? `${monthLabel} 일정` : `${monthLabel} schedule`}</h3>
+
+          {/* 그리드 프레임: 좌·상 테두리는 컨테이너가, 우·하 hairline 은 각 셀이 그린다.
+              바 높이(--cal-bar-h)는 브레이크포인트별로 달라 인라인 grid-template-rows 에서 참조. */}
+          <div className="border-l border-t border-surface-border [--cal-bar-h:0.375rem] sm:[--cal-bar-h:1.5rem]">
+            {/* 요일 헤더 */}
+            <div className="grid grid-cols-7" aria-hidden="true">
               {weekdayNames.map((name, i) => (
-                <th
+                <div
                   key={i}
-                  scope="col"
                   className={cn(
-                    'border-b border-surface-border py-2 text-center text-xs font-semibold',
+                    'border-b border-r border-surface-border py-2 text-center text-xs font-semibold',
                     i === 0 ? 'text-red-500/70' : i === 6 ? 'text-yonsei-blue' : 'text-content-soft',
                   )}
                 >
                   {name}
-                </th>
+                </div>
               ))}
-            </tr>
-          </thead>
-          <tbody>
-            {Array.from({ length: cells.length / 7 }, (_, week) => (
-              <tr key={week}>
-                {cells.slice(week * 7, week * 7 + 7).map((day, dow) => {
-                  if (day === null) {
-                    return (
-                      <td
-                        key={dow}
-                        className="h-20 border-b border-r border-surface-border last:border-r-0 bg-surface-soft/40 align-top sm:h-28"
-                      />
-                    );
-                  }
-                  const iso = isoOf(viewYear, viewMonth, day);
-                  const dayEntries = byDate.get(iso) ?? [];
-                  const isToday = iso === todayIso;
-                  const isSelected = iso === selectedIso;
-                  const isSunday = dow === 0;
-                  const isSaturday = dow === 6;
-                  const extra = dayEntries.length - 2;
-                  return (
-                    <td
-                      key={dow}
-                      className={cn(
-                        'h-20 border-b border-r border-surface-border p-0 align-top last:border-r-0 sm:h-28',
-                      )}
-                    >
-                      <button
-                        type="button"
-                        onClick={() => setSelectedIso(iso)}
-                        aria-current={isToday ? 'date' : undefined}
-                        aria-pressed={isSelected}
-                        aria-label={
-                          ko
-                            ? `${viewMonth + 1}월 ${day}일, 일정 ${dayEntries.length}건`
-                            : `${monthNames[viewMonth]} ${day}, ${dayEntries.length} event(s)`
-                        }
-                        className={cn(
-                          'flex h-full w-full flex-col gap-1 p-1.5 text-left outline-none transition-colors focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-yonsei-blue sm:p-2',
-                          isSelected
-                            ? 'ring-2 ring-inset ring-yonsei-blue'
-                            : 'hover:bg-surface-soft',
-                        )}
-                      >
-                        <span
-                          className={cn(
-                            'inline-grid h-6 w-6 shrink-0 place-items-center text-xs font-semibold tabular-nums sm:text-sm',
-                            isToday
-                              ? 'rounded-full bg-yonsei-navy text-white'
-                              : isSunday
-                                ? 'text-red-500/70'
-                                : isSaturday
-                                  ? 'text-yonsei-blue'
-                                  : 'text-content',
-                          )}
-                        >
-                          {day}
-                        </span>
+            </div>
 
-                        {dayEntries.length > 0 && (
-                          <>
-                            {/* 모바일: 색 점만 */}
-                            <span className="mt-0.5 flex flex-wrap gap-1 sm:hidden" aria-hidden="true">
-                              {dayEntries.slice(0, 4).map((e) => (
-                                <span
-                                  key={e.id}
-                                  className={cn('h-1.5 w-1.5 rounded-full', KIND_STYLES[e.kind].dot)}
-                                />
-                              ))}
-                            </span>
-                            {/* sm+: 파스텔 필 (최대 2개 + 초과분) */}
-                            <span className="hidden min-w-0 flex-col gap-1 sm:flex" aria-hidden="true">
-                              {dayEntries.slice(0, 2).map((e) => (
-                                <span
-                                  key={e.id}
-                                  className={cn(
-                                    'truncate rounded-md px-1.5 py-0.5 text-[0.7rem] font-medium leading-snug',
-                                    KIND_STYLES[e.kind].pill,
-                                  )}
-                                >
-                                  {e.title}
-                                </span>
-                              ))}
-                              {extra > 0 && (
-                                <span className="px-1.5 text-[0.7rem] font-semibold text-content-faint">
-                                  +{extra}
-                                </span>
-                              )}
-                            </span>
-                          </>
-                        )}
-                      </button>
-                    </td>
+            {/* 주 행 — 각 주는 하나의 CSS 그리드: row1=날짜 숫자, row2+=레인, 마지막=여백 필러.
+                열 배경 셀은 1/-1 전체 높이를 차지해 테두리·월외 음영을 그린다. */}
+            {weeks.map((week, wi) => (
+              <div
+                key={wi}
+                className="relative grid min-h-14 sm:min-h-24 lg:min-h-28"
+                style={{
+                  gridTemplateColumns: 'repeat(7, minmax(0, 1fr))',
+                  gridTemplateRows:
+                    week.laneCount > 0
+                      ? `auto repeat(${week.laneCount}, var(--cal-bar-h)) 1fr`
+                      : 'auto 1fr',
+                  rowGap: '2px',
+                }}
+              >
+                {/* 열 배경 셀(전체 높이) — 테두리 + 월외 음영 + 날짜 선택 버튼.
+                    클릭하면 그리드 아래 '그날 일정' 목록이 그 날짜로 바뀐다(선택=파란 인셋 링).
+                    이벤트 바(z-10 Link)는 이 버튼 위에 떠 있어 바 클릭은 게시물로 간다. */}
+                {week.cells.map((c, i) => {
+                  const isSelected = c.iso === selectedIso;
+                  const count = entries.filter((e) => coversDay(e, c.iso)).length;
+                  const [, mm, dd] = c.iso.split('-').map(Number);
+                  return (
+                    <button
+                      key={`bg-${i}`}
+                      type="button"
+                      onClick={() => setSelectedIso(c.iso)}
+                      aria-pressed={isSelected}
+                      aria-label={
+                        ko ? `${mm}월 ${dd}일, 일정 ${count}건` : `${mm}/${dd}, ${count} event(s)`
+                      }
+                      className={cn(
+                        'border-b border-r border-surface-border text-left outline-none transition-colors focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-yonsei-blue',
+                        !c.inMonth && 'bg-surface-soft/40',
+                        isSelected ? 'ring-2 ring-inset ring-yonsei-blue' : 'hover:bg-surface-soft/60',
+                      )}
+                      style={{ gridColumn: i + 1, gridRow: '1 / -1' }}
+                    />
                   );
                 })}
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
 
-      {/* 빈 상태 */}
-      {!monthHasEntries && (
-        <p className="mt-4 text-sm text-content-faint">
-          {ko ? '이 달에는 등록된 일정이 없습니다.' : 'No scheduled events this month.'}
-        </p>
-      )}
+                {/* 날짜 숫자(row 1) — 오늘=네이비 원형 배지, 일=빨강/토=파랑, 월외=옅게.
+                    pointer-events-none: 숫자 레이어가 아래 날짜 선택 버튼의 클릭을 막지 않게. */}
+                {week.cells.map((c, i) => {
+                  const isToday = c.iso === todayIso;
+                  return (
+                    <div
+                      key={`num-${i}`}
+                      aria-hidden="true"
+                      className="pointer-events-none px-1 pt-1 sm:px-1.5 sm:pt-1.5"
+                      style={{ gridColumn: i + 1, gridRow: 1 }}
+                    >
+                      <span
+                        className={cn(
+                          'inline-grid h-6 w-6 place-items-center text-xs font-semibold tabular-nums sm:text-sm',
+                          isToday
+                            ? 'rounded-full bg-yonsei-navy text-white'
+                            : !c.inMonth
+                              ? 'text-content-faint'
+                              : i === 0
+                                ? 'text-red-500/70'
+                                : i === 6
+                                  ? 'text-yonsei-blue'
+                                  : 'text-content',
+                        )}
+                      >
+                        {c.day}
+                      </span>
+                    </div>
+                  );
+                })}
 
-      {/* 선택된 날짜의 일정 리스트 */}
-      <div className="mt-6">
-        <h3 className="text-sm font-bold tracking-tight text-content">{selectedLabel}</h3>
-        {selectedEntries.length > 0 ? (
-          <ul className="mt-3 divide-y divide-surface-border border-y border-surface-border">
-            {selectedEntries.map((e) => (
-              <li key={e.id}>
-                <Link
-                  href={e.href}
-                  className="flex items-center gap-3 py-3 transition-colors hover:bg-surface-soft"
-                >
-                  <span
+                {/* 이벤트 바 — 주 세그먼트를 7열 grid overlay 에 grid-column 스팬으로 배치.
+                    모바일(sm 미만)은 텍스트를 숨긴 얇은 스트립, sm+ 는 제목 표시. */}
+                {week.segments.map((seg) => (
+                  <Link
+                    key={`${seg.entry.id}-${seg.colStart}`}
+                    href={seg.entry.href}
+                    aria-label={barAria(seg.entry)}
+                    title={seg.entry.title}
                     className={cn(
-                      'shrink-0 rounded-md px-2 py-0.5 text-xs font-semibold',
-                      KIND_STYLES[e.kind].badge,
+                      'z-10 mx-[3px] flex items-center overflow-hidden rounded-none leading-none outline-none transition-colors focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-yonsei-blue',
+                      KIND_STYLES[seg.entry.kind].bar,
+                      seg.isStart && cn('border-l-2', KIND_STYLES[seg.entry.kind].accent),
                     )}
+                    style={{
+                      gridColumn: `${seg.colStart + 1} / span ${seg.span}`,
+                      gridRow: seg.lane + 2,
+                    }}
                   >
-                    {kindLabel(e.kind)}
-                  </span>
-                  <span className="min-w-0 flex-1 truncate text-sm font-medium text-content">
-                    {e.title}
-                  </span>
-                  <span className="shrink-0 text-xs tabular-nums text-content-faint">{e.date}</span>
-                </Link>
-              </li>
+                    <span className="hidden truncate px-1.5 text-[0.72rem] font-medium sm:block">
+                      {seg.entry.title}
+                    </span>
+                  </Link>
+                ))}
+              </div>
             ))}
-          </ul>
-        ) : (
-          <p className="mt-3 text-sm text-content-faint">
-            {ko ? '선택한 날짜에 일정이 없습니다.' : 'No events on the selected date.'}
-          </p>
-        )}
+          </div>
+
+          {/* 선택 날짜의 일정 — 날짜 셀 클릭으로 갱신(구버전 기능 복원). 멀티데이 행사는
+              기간 중 어느 날짜를 선택해도 나타나고, 우측 기간 표기로 전체 일정을 보인다. */}
+          <div className="mt-6" aria-live="polite">
+            <h4 className="text-sm font-bold tracking-tight text-content">{selectedLabel}</h4>
+            {selectedEntries.length > 0 ? (
+              <ul className="mt-3 divide-y divide-surface-border border-y border-surface-border">
+                {selectedEntries.map((e) => (
+                  <li key={e.id}>
+                    <Link
+                      href={e.href}
+                      className="flex items-center gap-3 py-3 transition-colors hover:bg-surface-soft"
+                    >
+                      <span
+                        className={cn(
+                          'shrink-0 whitespace-nowrap px-2.5 py-1 text-xs font-bold',
+                          KIND_STYLES[e.kind].badge,
+                        )}
+                      >
+                        {kindLabel(e.kind)}
+                      </span>
+                      <span className="min-w-0 flex-1 truncate text-sm font-medium text-content">
+                        {e.title}
+                      </span>
+                      <span className="shrink-0 text-xs tabular-nums text-content-faint">
+                        {periodText(e)}
+                      </span>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <p className="mt-3 text-sm text-content-faint">
+                {ko ? '선택한 날짜에 일정이 없습니다.' : 'No events on the selected date.'}
+              </p>
+            )}
+          </div>
+        </div>
+
+        {/* ── 우: 월간 일정 패널(실질 접근성 목록) ── */}
+        <aside className="mt-8 lg:mt-0">
+          <div className="border border-surface-border p-6 lg:sticky lg:top-36">
+            <h3 className="inline-block bg-yonsei-navy px-3.5 py-1.5 text-sm font-bold text-white">
+              {ko ? `${viewYear}년 ${viewMonth + 1}월 일정` : `${monthNames[viewMonth]} ${viewYear} Schedule`}
+            </h3>
+
+            {monthEntries.length > 0 ? (
+              <ul className="mt-5 space-y-4">
+                {monthEntries.map((e) => (
+                  <li key={e.id} className="flex gap-2.5">
+                    <span
+                      className={cn('mt-1.5 h-2 w-2 shrink-0 rounded-full', KIND_STYLES[e.kind].dot)}
+                      aria-hidden="true"
+                    />
+                    <div className="min-w-0">
+                      <Link
+                        href={e.href}
+                        className="block text-sm font-semibold leading-snug text-content transition-colors hover:text-yonsei-blue"
+                      >
+                        {e.title}
+                      </Link>
+                      <p className="mt-0.5 text-xs tabular-nums text-content-faint">{periodText(e)}</p>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <p className="mt-5 text-sm text-content-faint">
+                {ko ? '이 달에는 등록된 일정이 없습니다.' : 'No scheduled events this month.'}
+              </p>
+            )}
+          </div>
+        </aside>
       </div>
     </div>
   );

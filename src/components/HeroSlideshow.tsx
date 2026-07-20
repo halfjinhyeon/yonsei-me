@@ -46,6 +46,8 @@ type Props = {
   navLabel: string;
   /** 제목 아래에서 주기 교체되는 카피(로케일 해석 완료) */
   taglines: string[];
+  /** 좌상단 학부 소개 링크 라벨(예: "기계공학부란? →" — 화살표 포함·로케일 해석 완료) */
+  aboutLabel: string;
 };
 
 /**
@@ -63,7 +65,7 @@ type Props = {
  * 불변 조건: 부모 #sec-hero(fixed inset-0 -z-10, 그라디언트 배경)는 이미지 로드 전 폴백.
  * reduced-motion: 자동 전환·카피/전환 애니메이션 없이 정적 노출(수동 전환은 가능).
  */
-export function HeroSlideshow({ slides, title, navLabel, taglines }: Props) {
+export function HeroSlideshow({ slides, title, navLabel, taglines, aboutLabel }: Props) {
   const heroRef = useRef<HTMLElement | null>(null);
   const slideRefs = useRef<Array<HTMLDivElement | null>>([]);
   const parallaxRefs = useRef<Array<HTMLDivElement | null>>([]);
@@ -259,6 +261,11 @@ export function HeroSlideshow({ slides, title, navLabel, taglines }: Props) {
 
       {/* 타이틀 블록 — 레퍼런스(홍익 조형대)식 좌측 하단 배치: 대형 제목 + 회전 카피 */}
       <div className={styles.titleBlock}>
+        {/* 제목 바로 위 학부 소개 링크 — 히어로 개편 때 사라진 (구)AnimatedHero 흰 밑줄 링크 복원.
+            제목 좌측선에 맞춰 그 위에 얹는다(titleBlock 이 pointer-events:none 이라 링크만 auto). */}
+        <Link href="/about" className={styles.about}>
+          {aboutLabel}
+        </Link>
         <h1 className={styles.title}>
           {title}
         </h1>

@@ -8,6 +8,7 @@
 import { createClient, type SupabaseClient } from '@supabase/supabase-js';
 import { Marked } from 'marked';
 import sanitizeHtml from 'sanitize-html';
+import { formatPeriodLabel, isoToDays, parseDateLabelRange } from '@/lib/calendar';
 
 // 사이트 렌더와 동일 설정(breaks: 단일 개행도 줄바꿈 — 게시판 본문 관례)
 const marked = new Marked({ gfm: true, breaks: true });
@@ -93,8 +94,8 @@ export interface AdminPostPayload {
   category?: string;
   hostKo?: string;
   hostEn?: string;
-  dateLabelKo?: string;
-  dateLabelEn?: string;
+  /** 종료일(YYYY-MM-DD) — 행사·세미나·동문행사 전용. 없으면 하루(기간 라벨은 서버가 자동 생성) */
+  endDate?: string | null;
   isEvent?: boolean;
   image?: string;
   attachments?: { labelKo?: string; labelEn?: string; href: string }[];
@@ -115,10 +116,31 @@ const nn = (s: string | undefined | null) => {
   return v === '' ? null : v;
 };
 
+/** 종료일 페이로드 검증 — 오류 메시지 반환(정상이면 null). 라우트 400 응답용(POST/PUT 공용) */
+export function endDateError(p: AdminPostPayload): string | null {
+  const e = (p.endDate ?? '').trim();
+  if (!e) return null;
+  if (Number.isNaN(isoToDays(e))) return '종료일 형식이 올바르지 않습니다.';
+  if (p.date && e < p.date) return '종료일은 시작일보다 빠를 수 없습니다.';
+  return null;
+}
+
 /** 페이로드 → posts 행 (본문은 md 보관 + 정화 HTML 동시 저장) */
 export function payloadToRow(p: AdminPostPayload) {
   const isNews = p.board === 'news' || p.board === 'alumniNews';
   const isEvent = p.board === 'alumniEvents' ? p.isEvent === true : p.board === 'events';
+  // 종료일·자동 라벨 대상: 행사 + 세미나 + 동문(행사 체크 시). 그 외 게시판은 항상 null.
+  // is_event/event_date 의 기존 의미는 불변(세미나는 event_date null 유지 — dateOf 가
+  // created_at 으로 폴백해 표시 날짜가 동일하다).
+  const hasSchedule =
+    p.board === 'events' || p.board === 'seminars' ||
+    (p.board === 'alumniEvents' && p.isEvent === true);
+  // end==start(하루)는 null 로 정규화 — "end_date null = 하루" 단일 의미를 DB 레벨에서 유지
+  const e = nn(p.endDate);
+  const endDate = hasSchedule && e && e > p.date ? e : null;
+  // 기간 라벨은 시작/종료일에서 ko/en 자동 생성(수동 입력 폐지) — 홈 pill 등 기존 라벨
+  // 소비자는 무변경으로 동작하고, 그간 전부 공백이던 EN 라벨 문제도 함께 해결된다.
+  const label = hasSchedule && p.date ? formatPeriodLabel(p.date, endDate) : null;
   return {
     board: p.board,
     slug: isNews ? nn(p.slug) : null,
@@ -135,10 +157,11 @@ export function payloadToRow(p: AdminPostPayload) {
     category: isNews ? (nn(p.category) ?? 'notice') : null,
     host_ko: nn(p.hostKo),
     host_en: nn(p.hostEn),
-    date_label_ko: nn(p.dateLabelKo),
-    date_label_en: nn(p.dateLabelEn),
+    date_label_ko: label ? nn(label.ko) : null,
+    date_label_en: label ? nn(label.en) : null,
     is_event: p.board === 'alumniEvents' ? p.isEvent === true : false,
     event_date: isEvent && p.date ? p.date : null,
+    end_date: endDate,
     thumbnail_url: nn(p.image),
     created_at: `${p.date}T00:00:00+09:00`,
   };
@@ -151,6 +174,7 @@ export interface DbPostRow {
   slug: string | null;
   created_at: string;
   event_date: string | null;
+  end_date: string | null;
   is_event: boolean | null;
   title_ko: string | null;
   title_en: string | null;
@@ -169,13 +193,23 @@ export interface DbPostRow {
 
 /** DB 행 → CMS 편집 레코드(마크다운 우선, 없으면 빈 문자열 — 구 데이터 호환) */
 export function rowToEditRecord(r: DbPostRow) {
+  const date = (r.event_date && (r.board === 'events' || r.is_event)
+    ? r.event_date
+    : String(r.created_at).slice(0, 10)) as string;
+  // 종료일: end_date 우선. 없으면(구 데이터) 수동 기간 라벨을 파싱해 폼에 프리필한다 —
+  // 라벨이 저장 시 자동 재생성되므로, 프리필 없이는 구 행사 글을 수정·저장하는 순간
+  // "7/20~7/24" 같은 기간 정보가 하루짜리 라벨로 덮어써져 소실된다(프리필 → end_date 승격).
+  let endDate = r.end_date ?? '';
+  if (!endDate && r.date_label_ko) {
+    const parsedEnd = parseDateLabelRange(date, r.date_label_ko).end;
+    if (parsedEnd > date) endDate = parsedEnd;
+  }
   return {
     id: String(r.id),
     board: r.board as string,
     slug: r.slug ?? null,
-    date: (r.event_date && (r.board === 'events' || r.is_event)
-      ? r.event_date
-      : String(r.created_at).slice(0, 10)) as string,
+    date,
+    endDate,
     titleKo: r.title_ko ?? '',
     titleEn: r.title_en ?? '',
     // Tiptap 은 HTML 왕복 — 기존 글(마이그레이션분 포함)도 body_html 이 원본이다

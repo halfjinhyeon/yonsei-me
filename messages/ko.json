@@ -177,7 +177,8 @@
       "fieldLink": "{field} 연구 분야 바로가기",
       "tagline1": "세상을 움직이는 공학, 미래를 설계하는 사람들",
       "tagline2": "폭넓은 분야, 세계적 수준의 교육과 연구",
-      "tagline3": "글로벌 사회에 유익한 가치를 창출하는 인재 양성"
+      "tagline3": "글로벌 사회에 유익한 가치를 창출하는 인재 양성",
+      "about": "기계공학부란? →"
     },
     "instagram": {
       "tagline": "CONNECT TO INSTAGRAM",
@@ -203,6 +204,7 @@
     },
     "notices": {
       "title": "공지&일정",
+      "listLabel": "공지사항",
       "more": "MORE",
       "empty": "등록된 공지가 없습니다.",
       "filters": {

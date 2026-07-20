@@ -6,6 +6,7 @@ import { type BoardRow } from '@/components/BoardList';
 import { FilterableBoardList } from '@/components/FilterableBoardList';
 import { EventCalendar, type CalendarEntry } from '@/components/EventCalendar';
 import { pick } from '@/lib/content';
+import { parseDateLabelRange } from '@/lib/calendar';
 import { fetchNews, fetchBoardData } from '@/lib/posts';
 import type { Locale } from '@/i18n/routing';
 
@@ -115,17 +116,26 @@ export default async function NewsPage({ params }: { params: { locale: string } 
 
   // 캘린더('일정' 탭)는 행사·세미나 게시판을 그대로 읽는다 — 관리자가 두 게시판에 글을
   // 등록하면 그 date 필드가 월간 캘린더에 자동 반영된다(별도 일정 데이터 불필요).
+  // 기간: 구조화된 endDate(DB end_date, CMS 시작–종료 피커)가 있으면 그것을 신뢰하고,
+  // 없으면(구 데이터) 수동 dateLabel 을 파싱하던 기존 폴백을 유지한다.
   const calendarEntries: CalendarEntry[] = [
-    ...board.events.map((e) => ({
-      id: e.id,
-      date: e.date,
-      title: pick(e.title, locale),
-      kind: 'event' as const,
-      href: `/news/post/${e.id}`,
-    })),
+    ...board.events.map((e) => {
+      const r = e.endDate
+        ? { start: e.date, end: e.endDate }
+        : parseDateLabelRange(e.date, pick(e.dateLabel, locale).trim() || e.dateLabel.ko);
+      return {
+        id: e.id,
+        date: r.start,
+        endDate: r.end,
+        title: pick(e.title, locale),
+        kind: 'event' as const,
+        href: `/news/post/${e.id}`,
+      };
+    }),
     ...board.seminars.map((s) => ({
       id: s.id,
       date: s.date,
+      endDate: s.endDate ?? s.date, // 종료일 없으면 하루
       title: pick(s.title, locale),
       kind: 'seminar' as const,
       href: `/news/post/${s.id}`,

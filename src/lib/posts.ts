@@ -82,6 +82,7 @@ interface DbPost {
   date_label_en: string | null;
   is_event: boolean;
   event_date: string | null;
+  end_date: string | null;
   thumbnail_url: string | null;
   created_at: string;
   attachments: DbAttachment[] | null;
@@ -162,11 +163,20 @@ function toNotice(r: DbPost): Notice {
 }
 
 function toSeminar(r: DbPost): Seminar {
-  return { ...toNotice(r), host: loc(r.host_ko, r.host_en) };
+  // end_date(종료일) — 세미나·동문행사(toAlumniEvent 가 스프레드로 상속)도 기간을 가질 수 있다
+  return {
+    ...toNotice(r),
+    host: loc(r.host_ko, r.host_en),
+    ...(r.end_date ? { endDate: r.end_date } : {}),
+  };
 }
 
 function toEvent(r: DbPost): EventItem {
-  return { ...toNotice(r), dateLabel: loc(r.date_label_ko, r.date_label_en) };
+  return {
+    ...toNotice(r),
+    dateLabel: loc(r.date_label_ko, r.date_label_en),
+    ...(r.end_date ? { endDate: r.end_date } : {}),
+  };
 }
 
 function toAlumniEvent(r: DbPost): AlumniEvent {

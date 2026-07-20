@@ -7,6 +7,7 @@ import { GoalsSection } from '@/components/GoalsSection';
 import { CalendarSection } from '@/components/CalendarSection';
 import { NoticeSection, type NoticeCategory } from '@/components/NoticeSection';
 import { pick } from '@/lib/content';
+import { formatPeriodLabel } from '@/lib/calendar';
 import { formatDate } from '@/lib/utils';
 import { fetchNews, fetchBoardData } from '@/lib/posts';
 import heroSlidesData from '@content/hero-slides.json';
@@ -109,12 +110,16 @@ export default async function HomePage({ params }: { params: { locale: string } 
     })),
     ...board.alumniEvents
       .filter((a) => a.isEvent && a.date)
-      .map((a) => ({
-        date: a.date,
-        label: '', // 동문 행사는 dateLabel 이 없어 아래에서 date 를 'YY.MM.DD' 로 표기
-        title: orKo(a.title),
-        href: `/alumni/post/${a.id}`,
-      })),
+      .map((a) => {
+        // 종료일(end_date)이 있으면 기간 라벨을 렌더 시 생성, 없으면 '' → 아래 'YY.MM.DD' 폴백
+        const pl = a.endDate ? formatPeriodLabel(a.date, a.endDate) : null;
+        return {
+          date: a.date,
+          label: pl ? pl[locale] : '',
+          title: orKo(a.title),
+          href: `/alumni/post/${a.id}`,
+        };
+      }),
   ];
   const byDateAsc = (a: { date: string }, b: { date: string }) =>
     a.date < b.date ? -1 : a.date > b.date ? 1 : 0;
@@ -173,6 +178,7 @@ export default async function HomePage({ params }: { params: { locale: string } 
             t('heroSlideshow.tagline2'),
             t('heroSlideshow.tagline3'),
           ]}
+          aboutLabel={t('heroSlideshow.about')}
         />
       </div>
 
@@ -208,6 +214,7 @@ export default async function HomePage({ params }: { params: { locale: string } 
           <NoticeSection
             items={noticeItems}
             heading={t('notices.title')}
+            listLabel={t('notices.listLabel')}
             moreLabel={t('notices.more')}
             moreHref="/news#notices"
             emptyLabel={t('notices.empty')}

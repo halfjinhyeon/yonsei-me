@@ -21,10 +21,11 @@ create table if not exists posts (
   category      text,                     -- 뉴스: notice | seminar | achievement
   host_ko       text,                     -- 세미나형: 연사/주최
   host_en       text,
-  date_label_ko text,                     -- 행사형: 표시용 일정 라벨
+  date_label_ko text,                     -- 행사형: 표시용 일정 라벨(저장 시 서버가 시작/종료일로 자동 생성)
   date_label_en text,
   is_event      boolean not null default false,
-  event_date    date,                     -- 캘린더용(있으면)
+  event_date    date,                     -- 캘린더용 시작일(있으면)
+  end_date      date,                     -- 행사·세미나·동문행사 종료일(null = 하루)
   thumbnail_url text,
   published     boolean not null default true,
   created_at    timestamptz not null default now(),
@@ -35,6 +36,7 @@ create table if not exists posts (
 -- 추가하지 않으므로, 새 컬럼은 alter 로도 보강한다 — 이 파일 재실행이 곧 업그레이드.
 alter table posts add column if not exists body_md_ko text;
 alter table posts add column if not exists body_md_en text;
+alter table posts add column if not exists end_date date;
 
 create index if not exists posts_board_created_idx on posts (board, created_at desc);
 create index if not exists posts_published_idx on posts (published);

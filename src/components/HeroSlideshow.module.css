@@ -55,6 +55,36 @@
     rgba(0, 0, 0, 0.28);
 }
 
+/* --- '기계공학부란?' 링크 — (구)AnimatedHero 의 흰 밑줄 링크 디자인 이식.
+   titleBlock 내부·제목 h1 바로 위에 흐름 배치(제목 좌측선에 정렬). width:fit-content 로
+   밑줄이 글자 폭만큼만, margin-bottom 으로 제목과의 간격. titleBlock 이 pointer-events:none
+   이라 링크만 auto 로 복구한다. --- */
+.about {
+  display: flex;
+  width: fit-content;
+  align-items: center;
+  gap: 0.5rem;
+  margin-left: 15px;
+  margin-bottom: clamp(0.8rem, 1.6vw, 1.45rem);
+  padding-bottom: 0.25rem;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.7);
+  color: #fff;
+  font-family: var(--font-sans), sans-serif;
+  font-weight: 600;
+  font-size: 1rem;
+  line-height: 1;
+  white-space: nowrap;
+  pointer-events: auto;
+  transition: opacity 0.2s ease;
+}
+.about:hover {
+  opacity: 0.7;
+}
+.about:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 4px;
+}
+
 /* --- 타이틀 블록 (hicoda 레퍼런스 비율: 좌측 ~5.5vw 마진, 세로 중하단) --- */
 .titleBlock {
   position: absolute;
