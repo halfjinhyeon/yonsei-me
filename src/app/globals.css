@@ -267,6 +267,29 @@
     background-size: 100% 88%;
   }
 
+  /* 온보딩 힌트 펄스 — 교과목 체계도 기본형↔트리형 토글 최초 안내(빛나는 링).
+     색은 --brand-muted(라이트 블루 계열, 다크모드 자동 전환). reduced-motion 은 정적 링. */
+  @keyframes hintPulse {
+    0% {
+      box-shadow: 0 0 0 0 rgb(var(--brand-muted) / 0.55);
+    }
+    70% {
+      box-shadow: 0 0 0 12px rgb(var(--brand-muted) / 0);
+    }
+    100% {
+      box-shadow: 0 0 0 0 rgb(var(--brand-muted) / 0);
+    }
+  }
+  .hint-pulse {
+    animation: hintPulse 1.8s ease-out infinite;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .hint-pulse {
+      animation: none;
+      box-shadow: 0 0 0 3px rgb(var(--brand-muted) / 0.35);
+    }
+  }
+
   /* 부모 컨테이너 폭을 벗어나 뷰포트 전체로 확장 (풀블리드) */
   .full-bleed {
     width: 100vw;

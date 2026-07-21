@@ -70,14 +70,19 @@ const FIELD_TABS: ResearchField[] = [
   'mechanicsMaterials',
 ];
 
-/** 레인 표시 순서(위→아래) — 기존 체계도와 동일 */
+/** 레인 표시 순서(위→아래) — 기초·공통은 항상 맨 위(사용자 지정).
+ *  화살표 꼬임 최소화 재배치(2026-07-22 사용자 승인 2건):
+ *  ① 생산·설계 ↔ 열·유체 교환 — 레인 통과 총합 10→7, 열·유체 레인 관통 제거
+ *  ② 계산·해석을 생산·설계-열·유체 사이로 — 총합 7→3, 컴퓨터응용기계설계→
+ *     컴퓨터해석기반설계가 인접 레인화(통과 0)
+ *  이 배열이 기본형·트리형·모바일 스택의 유일한 순서 출처다. */
 const LANES: { key: LaneKey }[] = [
   { key: 'basics' },
   { key: 'mechanicsMaterials' },
-  { key: 'computation' },
   { key: 'dynamicsControl' },
-  { key: 'thermoFluid' },
   { key: 'manufacturingDesign' },
+  { key: 'computation' },
+  { key: 'thermoFluid' },
   { key: 'bioNano' },
 ];
 
@@ -108,6 +113,28 @@ export function CurriculumFlow({ locale }: { locale: Locale }) {
   // 기본값은 기본형(사용자 지정).
   const [mode, setMode] = useState<'basic' | 'tree'>('basic');
   const isTree = mode === 'tree';
+
+  // ── 온보딩 힌트(사용자 지시) — 토글 버튼 펄스 글로우 + 안내 말풍선.
+  // 매 진입마다 표시하되(탭 재진입 = 리마운트 → 재초기화), '다시 보지 않기'를 누른
+  // 사용자에게만 영구 해제(localStorage). '닫기'와 토글 클릭은 이번 표시만 끈다.
+  const HINT_KEY = 'cf-tree-hint-v1';
+  const [hint, setHint] = useState(false);
+  useEffect(() => {
+    try {
+      if (!window.localStorage.getItem(HINT_KEY)) setHint(true);
+    } catch {
+      /* 사생활 보호 모드 등 localStorage 불가 → 힌트 생략 */
+    }
+  }, []);
+  const closeHint = () => setHint(false);
+  const neverHint = () => {
+    setHint(false);
+    try {
+      window.localStorage.setItem(HINT_KEY, '1');
+    } catch {
+      /* 무시 */
+    }
+  };
   const detailRef = useRef<HTMLDivElement | null>(null);
 
   // ── 데이터 파생(기존 체계도와 동일한 열·레인 계산) ─────────────────────
@@ -394,11 +421,38 @@ export function CurriculumFlow({ locale }: { locale: Locale }) {
     // 좌표를 하드코딩하지 않고 '피해야 할 칩'의 실측 rect 로 계산한다(화면 폭·언어 무관).
     //  - trunkRightOf: 세로 줄기가 이 칩(자기보다 넓은 칩)을 관통하면 그 오른쪽으로 이동
     //  - runBetween: 가로 주행 y 를 [위 칩 bottom ~ 아래 칩 top] 틈 중앙(한 칩이면 bottom+7)으로
-    const BEND_FIX: Record<string, { trunkRightOf?: string; runBetween?: [string] | [string, string] }> = {
-      // 고체역학 → 기계요소설계: 줄기가 컴퓨터응용기계설계를, 주행이 메카니즘설계를 관통
-      'MEU2600->MEU3630': { trunkRightOf: 'MEU2620', runBetween: ['MEU3002', 'MEU3620'] },
+    //  - straight: 출발·도착이 같은 행일 때 FAN·조그 없이 출발 cy 로 직진
+    //  - noJog: 도착 높이(y2)는 유지하되 claimRun 밀림·조그 없이 y 꺾임 한 번으로 직행
+    //  - raiseTo: 도착 칩 상단 + n(px)로 진입 높이를 올린다(두 번째 꺾임을 위로)
+    //  - trunkExtra: trunkRightOf 로 옮긴 트렁크를 추가로 n(px) 더 오른쪽에(다른 트렁크 뒤로)
+    //  - trunkShift: 참조 칩 없이 공유 트렁크에서 이 간선만 n(px) 이동(첫 꺾임 위치 미세 조정)
+    const BEND_FIX: Record<
+      string,
+      {
+        trunkRightOf?: string;
+        trunkExtra?: number;
+        trunkShift?: number;
+        runBetween?: [string] | [string, string];
+        straight?: boolean;
+        noJog?: boolean;
+        raiseTo?: number;
+      }
+    > = {
+      // 고체역학 → 기계요소설계: 줄기가 컴퓨터응용기계설계를, 주행이 메카니즘설계를 관통.
+      // trunkExtra 30 — 첫 꺾임을 오른쪽으로 30px(사용자 지정, 응용고체역학 트렁크보다는 앞)
+      'MEU2600->MEU3630': { trunkRightOf: 'MEU2620', trunkExtra: 30, runBetween: ['MEU3002', 'MEU3620'] },
+      // 고체역학 → 응용고체역학: 첫 꺾임(트렁크)을 기계요소설계 트렁크보다 더 오른쪽(뒤)으로
+      'MEU2600->MEU3600': { trunkRightOf: 'MEU2620', trunkExtra: 66 },
       // 컴퓨터응용기계설계 → 컴퓨터해석기반설계: 주행이 같은 행의 공학수치해석을 관통
       'MEU2620->MEU3801': { runBetween: ['MEU3003'] },
+      // 동역학 → 기계진동: 같은 행 → 직진(계단·조그 제거)
+      'MEU2650->MEU3670': { straight: true },
+      // 동역학 → 기계시스템제어: 첫 꺾임(공유 트렁크)을 이 간선만 40px 오른쪽으로
+      'MEU2650->MEU3680': { trunkShift: 40 },
+      // 재료거동학 → 공학재료: 계단(밀림+조그) 제거 — 도착 높이 유지, y 꺾임 한 번만
+      'MEU3301->MEU3660': { noJog: true },
+      // 공학수학(4) → 기계진동: 두 번째 꺾임(가로 주행)을 조금 위로 올려 동역학 직진선과 분리
+      'MAT2017->MEU3670': { raiseTo: 6 },
     };
 
     // 패스2: 가지 주행 배치
@@ -407,10 +461,31 @@ export function CurriculumFlow({ locale }: { locale: Locale }) {
       let sx = trunkX.get(edge.from)!;
       if (fix?.trunkRightOf) {
         const block = rectOf(fix.trunkRightOf);
-        if (block && sx > block.left - 4 && sx < block.right + 4) sx = block.right + 8;
+        if (block) {
+          const target = block.right + 8 + (fix.trunkExtra ?? 0);
+          // trunkExtra 지정 시엔 항상 그 위치로(뒤 배치 목적). 아니면 관통할 때만 이동.
+          if (fix.trunkExtra != null || (sx > block.left - 4 && sx < block.right + 4)) sx = target;
+        }
       }
-      const y2 = b.cy + (endOff.get(idx) ?? 0);
-      let runY = claimRun(y2, sx, b.left - 14, true);
+      if (fix?.trunkShift) sx += fix.trunkShift;
+      // 진입 높이 y2 — 기본은 도착 cy + FAN 오프셋. straight/raiseTo 는 고정 높이로 덮어써
+      // claimRun 밀림·조그 없이 지정 높이로 곧장 들어간다(다른 주행엔 회피 대상으로만 등록).
+      let y2 = b.cy + (endOff.get(idx) ?? 0);
+      let runY: number;
+      if (fix?.straight) {
+        y2 = a.cy; // 같은 행 → 출발 높이로 직진
+        runY = y2;
+        claimRun(runY, sx, b.left - 14, false);
+      } else if (fix?.noJog) {
+        runY = y2; // 도착 높이 유지, 밀림·조그 없이 직행
+        claimRun(runY, sx, b.left - 14, false);
+      } else if (fix?.raiseTo != null) {
+        y2 = b.top + fix.raiseTo; // 도착 칩 상단 기준으로 위로 올림
+        runY = y2;
+        claimRun(runY, sx, b.left - 14, false);
+      } else {
+        runY = claimRun(y2, sx, b.left - 14, true);
+      }
       if (fix?.runBetween) {
         const r1 = rectOf(fix.runBetween[0]);
         const r2 = fix.runBetween[1] ? rectOf(fix.runBetween[1]) : null;
@@ -524,7 +599,11 @@ export function CurriculumFlow({ locale }: { locale: Locale }) {
       return;
     }
     const left = Math.max(0, Math.min(r.left - g.left, g.width - POP_W));
-    const up = r.top + r.height / 2 - g.top > g.height / 2;
+    // 위 플립은 '위 공간이 아래보다 넓고 팝오버가 들어갈 만큼(≥240px) 충분할 때'만 —
+    // 분야 필터로 그리드가 낮아졌을 때 위로 뒤집혀 상단이 잘리는 문제 방지.
+    const spaceAbove = r.top - g.top;
+    const spaceBelow = g.height - (r.bottom - g.top);
+    const up = spaceAbove > spaceBelow && spaceAbove >= 240;
     const top = up ? r.top - g.top - 6 : r.bottom - g.top + 6;
     setPop({ left, top, up });
   }, [selected]);
@@ -540,14 +619,20 @@ export function CurriculumFlow({ locale }: { locale: Locale }) {
   // 비쳐 보이게 한다(사용자 지시). 렌더 후 박스 실측 → 연결 칩 rect 교차 검사.
   const popBoxRef = useRef<HTMLDivElement | null>(null);
   const [popDim, setPopDim] = useState(false);
+  // 아래로 열린 팝오버가 그리드 바닥을 넘는 만큼 스페이서 높이 — 분야 필터로 그리드가
+  // 낮을 때 스크롤 래퍼(overflow-x-auto → 세로도 클립)에 설명이 잘리는 문제 해결.
+  const [padBottom, setPadBottom] = useState(0);
   useIsoLayoutEffect(() => {
     if (!pop || !selected) {
       setPopDim(false);
+      setPadBottom(0);
       return;
     }
     const box = popBoxRef.current;
-    if (!box) {
+    const grid = gridRef.current;
+    if (!box || !grid) {
       setPopDim(false);
+      setPadBottom(0);
       return;
     }
     const b = box.getBoundingClientRect();
@@ -564,6 +649,9 @@ export function CurriculumFlow({ locale }: { locale: Locale }) {
       }
     }
     setPopDim(overlap);
+    setPadBottom(
+      pop.up ? 0 : Math.max(0, Math.ceil(pop.top + b.height + 8 - grid.getBoundingClientRect().height)),
+    );
   }, [pop, linked, selected]);
 
   // 로드맵 그리드 열 — 레인 라벨(7rem) + 학기 열(유동 폭: 컨테이너에 맞춰 횡스크롤 없음)
@@ -597,13 +685,22 @@ export function CurriculumFlow({ locale }: { locale: Locale }) {
         />
         </div>
 
-        {/* 보기 전환 — 순환(두 화살표) 픽토그램 + 현재 모드명. 기본값 기본형(사용자 지정) */}
+        {/* 보기 전환 — 순환(두 화살표) 픽토그램 + 현재 모드명. 기본값 기본형(사용자 지정).
+            최초 방문(hint)엔 버튼이 펄스로 빛나고 아래 안내 말풍선이 뜬다 — 트리형의
+            존재를 알리는 온보딩. relative 래퍼가 말풍선 앵커. */}
+        <div className="relative shrink-0">
         <button
           type="button"
-          onClick={() => setMode(isTree ? 'basic' : 'tree')}
+          onClick={() => {
+            if (hint) closeHint();
+            setMode(isTree ? 'basic' : 'tree');
+          }}
           aria-pressed={isTree}
           title={ko ? '기본형·트리형 보기 전환' : 'Toggle basic / tree view'}
-          className="inline-flex shrink-0 items-center gap-1.5 border border-yonsei-navy px-2.5 py-1.5 text-xs font-bold text-yonsei-navy transition-colors hover:bg-yonsei-navy hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yonsei-blue"
+          className={cn(
+            'inline-flex shrink-0 items-center gap-1.5 border border-yonsei-navy px-2.5 py-1.5 text-xs font-bold text-yonsei-navy transition-colors hover:bg-yonsei-navy hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yonsei-blue',
+            hint && 'hint-pulse',
+          )}
         >
           <svg
             viewBox="0 0 24 24"
@@ -620,6 +717,37 @@ export function CurriculumFlow({ locale }: { locale: Locale }) {
           </svg>
           {ko ? (isTree ? '트리형' : '기본형') : isTree ? 'Tree' : 'Basic'}
         </button>
+
+        {/* 온보딩 말풍선 — 네이비 박스(사이트 제목 문법) + 각진 사각 캐럿. role=status 로
+            스크린리더에도 안내. '닫기'=이번만 / '다시 보지 않기'=영구(localStorage). */}
+        {hint && (
+          <div
+            role="status"
+            className="absolute right-0 top-full z-30 mt-3 w-64 bg-yonsei-navy p-3 text-xs font-medium leading-relaxed text-white"
+          >
+            <span aria-hidden="true" className="absolute -top-1 right-7 h-2 w-2 rotate-45 bg-yonsei-navy" />
+            {ko
+              ? '트리형으로 전환하면 선수과목·선수권장과목 관계를 화살표로 한눈에 볼 수 있어요.'
+              : 'Switch to Tree view to see prerequisite and recommended-course links at a glance.'}
+            <span className="mt-2.5 flex justify-end gap-4 border-t border-white/20 pt-2">
+              <button
+                type="button"
+                onClick={closeHint}
+                className="font-bold text-white/75 transition-colors hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-white"
+              >
+                {ko ? '닫기' : 'Close'}
+              </button>
+              <button
+                type="button"
+                onClick={neverHint}
+                className="font-bold text-white underline underline-offset-2 transition-colors hover:text-white/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-white"
+              >
+                {ko ? '다시 보지 않기' : "Don't show again"}
+              </button>
+            </span>
+          </div>
+        )}
+        </div>
       </div>
 
       {/* 범례 — 칩 문법(기존) + 화살표 문법(트리형 lg+ 전용) */}
@@ -851,6 +979,9 @@ export function CurriculumFlow({ locale }: { locale: Locale }) {
               </div>
             )}
           </div>
+
+          {/* 팝오버 하단 여유 스페이서 — 그리드가 낮을 때(분야 필터) 설명 잘림 방지 */}
+          {padBottom > 0 && <div aria-hidden="true" style={{ height: padBottom }} />}
         </div>
         </div>
       </div>

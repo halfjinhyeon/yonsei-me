@@ -4,6 +4,7 @@ import { useState } from 'react';
 import Image from 'next/image';
 import { Prose } from '@/components/Prose';
 import { Container } from '@/components/Container';
+import { MeshCanvas } from '@/components/MeshCanvas';
 import { cn } from '@/lib/utils';
 import type { ClubContent, ClubPanel, ClubLink } from '@/lib/pages';
 
@@ -29,21 +30,27 @@ interface ClubCardNewsProps {
 export function ClubCardNews({ content, images, clubName }: ClubCardNewsProps) {
   const { panels, links } = content;
 
+  const hasLinks = links.length > 0;
   return (
-    <Container className="space-y-16 py-14 lg:space-y-24 lg:py-20">
-      {panels.map((panel, i) => (
-        <PanelSection
-          key={i}
-          panel={panel}
-          // 사진을 순환 재탕하지 않고, 소진되면 데코(팀명 타이포) 패널로 대체
-          image={images[i]}
-          imageFirst={i % 2 === 0}
-          clubName={clubName}
-        />
-      ))}
+    <>
+      {/* 본문 패널 Container — 링크(Connect)가 있으면 하단 패딩을 제거해, 뒤따르는
+          full-bleed Connect 섹션이 흰 여백 없이 붙게 한다(패널 간격은 space-y 유지). */}
+      <Container className={cn('space-y-16 py-14 lg:space-y-24 lg:py-20', hasLinks && '!pb-0')}>
+        {panels.map((panel, i) => (
+          <PanelSection
+            key={i}
+            panel={panel}
+            // 사진을 순환 재탕하지 않고, 소진되면 데코(팀명 타이포) 패널로 대체
+            image={images[i]}
+            imageFirst={i % 2 === 0}
+            clubName={clubName}
+          />
+        ))}
+      </Container>
 
-      {links.length > 0 && <LinksSection links={links} clubName={clubName} />}
-    </Container>
+      {/* Connect 피날레 — Container 밖 형제(full-bleed). 다음 형제가 없어 푸터에 바로 붙는다. */}
+      {hasLinks && <LinksSection links={links} clubName={clubName} />}
+    </>
   );
 }
 
@@ -178,20 +185,34 @@ function hostOf(href: string): string | null {
 }
 
 /**
- * links 섹션 — 마지막 "Connect" 피날레. 이 블록만 브랜드 그라데이션 + 흐름
- * 애니메이션(anim-gradient)을 유지한다(사용자 지시 — 나머지 본문은 흰 배경).
- * full-bleed 각진 다크 블록 안에 중앙 정렬 헤딩 + 글래스 톤 링크 카드.
+ * links 섹션 — 마지막 "Connect" 피날레. 배경은 세부탭 히어로와 동일한 흐름 애니메이션
+ * (anim-gradient-radial + MeshCanvas 웨이브, 사용자 지시)로 통일한다. full-bleed 각진
+ * 다크 블록 안에 중앙 정렬 헤딩 + 글래스 톤 링크 카드.
+ * -mb 로 부모 Container 의 하단 패딩을 상쇄해 이 섹션이 푸터에 바로 붙는다(흰 여백 제거).
  */
 function LinksSection({ links, clubName }: { links: ClubLink[]; clubName: string }) {
   return (
-    <section className="anim-gradient full-bleed px-6 py-16 text-center sm:px-10 lg:py-20">
+    <section className="full-bleed relative isolate overflow-hidden bg-[#00285E] px-6 py-16 text-center sm:px-10 lg:py-20">
+      {/* 히어로와 통일된 애니메이션 그라디언트 + 웨이브 배경.
+          ⚠️ MeshCanvas 는 parentElement 의 clientHeight 로 캔버스를 사이징한다. 이 섹션은
+          내용 기반 auto-height 라 마운트 타이밍에 따라 부모를 과대 측정(→ 캔버스가 섹션보다
+          커져 푸터를 침범)하는 문제가 있다. inset-0 로 '섹션 크기에 고정된' 래퍼로 감싸,
+          부모 높이를 항상 현재 섹션 높이로 못박고 overflow-hidden 으로 초과분을 클립한다. */}
+      <div aria-hidden="true" className="anim-gradient-radial absolute inset-0 -z-20" />
+      <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden [mask-image:linear-gradient(to_bottom,transparent,black_35%)]">
+        <MeshCanvas className="h-full w-full opacity-70" />
+      </div>
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 -z-10 bg-gradient-to-t from-[#00285E] via-[#00285E]/40 to-transparent"
+      />
       <p className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.22em] text-white/75">
         <span aria-hidden="true" className="h-px w-8 bg-white/50" />
         Connect
         <span aria-hidden="true" className="h-px w-8 bg-white/50" />
       </p>
       <h2 className="mt-3 text-2xl font-bold tracking-tight text-white sm:text-3xl">
-        {clubName}, 더 가까이에서 만나보세요
+        SNS로 보는 {clubName}
       </h2>
       <ul className="mt-10 flex flex-wrap justify-center gap-4">
         {links.map((link, i) => {

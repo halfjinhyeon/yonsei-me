@@ -39,7 +39,14 @@ export function ClubGrid({ items, moreLabel }: { items: ClubSummary[]; moreLabel
               )}
 
               <div className="relative min-w-0">
-                <h3 className="text-2xl font-bold sm:text-3xl">{c.name}</h3>
+                {/* 동아리명 서체 = Paperlogy 6 SemiBold(사용자 지정) — font-semibold(600)가
+                    600 파일을 물린다(세부탭 제목과 동일 방식, 가짜 볼드 없음). */}
+                <h3
+                  style={{ fontFamily: 'var(--font-subhead), var(--font-sans), sans-serif' }}
+                  className="text-2xl font-semibold sm:text-3xl"
+                >
+                  {c.name}
+                </h3>
                 {/* hover 시 teaser 노출 */}
                 <p className="mt-2 max-w-xl text-sm leading-relaxed text-white/0 transition-colors duration-300 group-hover:text-white/85 sm:text-base">
                   {c.teaser}
