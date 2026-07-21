@@ -509,11 +509,11 @@ export function CurriculumFlow({ locale }: { locale: Locale }) {
           onClick={() => setMode(isTree ? 'basic' : 'tree')}
           aria-pressed={isTree}
           title={ko ? '기본형·트리형 보기 전환' : 'Toggle basic / tree view'}
-          className="inline-flex shrink-0 items-center gap-2 border border-yonsei-navy px-3.5 py-2 text-sm font-bold text-yonsei-navy transition-colors hover:bg-yonsei-navy hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yonsei-blue"
+          className="inline-flex shrink-0 items-center gap-1.5 border border-yonsei-navy px-2.5 py-1.5 text-xs font-bold text-yonsei-navy transition-colors hover:bg-yonsei-navy hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yonsei-blue"
         >
           <svg
             viewBox="0 0 24 24"
-            className="h-4 w-4"
+            className="h-3.5 w-3.5"
             fill="none"
             stroke="currentColor"
             strokeWidth="2"

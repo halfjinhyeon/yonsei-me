@@ -4,6 +4,7 @@ import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { Link } from '@/i18n/navigation';
 import gsap from 'gsap';
 import { SplitText } from 'gsap/SplitText';
+import { FlowLines } from './FlowLines';
 
 // SplitText 는 무료 public gsap 패키지에 포함(Club 토큰 불필요) — 히어로와 동일.
 gsap.registerPlugin(SplitText);
@@ -121,8 +122,20 @@ export function GoalsSection({
 
   return (
     // 모바일 밀도 최적화: 상하 패딩 py-12, sm+ 은 기존 리듬(py-section-lg) 유지
-    <section aria-labelledby="goals-heading" className="full-bleed bg-surface py-12 sm:py-section-lg">
-      <div className="mx-auto w-full max-w-[1360px] px-6 sm:px-10 lg:px-16">
+    <section
+      aria-labelledby="goals-heading"
+      className="full-bleed relative overflow-hidden bg-surface py-12 sm:py-section-lg"
+    >
+      {/* 배경 유선 장식(Cornell CHE 참조) — 우측 여백(엠블럼 존)을 스윕 번들이 채운다.
+          좌측은 마스크로 페이드아웃해 회전 타이포 가독성 보존. 콘텐츠 컨테이너가
+          relative(아래)라 선은 항상 텍스트 뒤 레이어. 모바일은 밀도 우선 — 숨김. */}
+      <FlowLines
+        variant="sweep"
+        gid="flow-goals"
+        preserve="xMaxYMin slice"
+        className="absolute right-0 top-0 hidden h-full w-[68%] opacity-20 [-webkit-mask-image:linear-gradient(to_right,transparent,black_28%)] [mask-image:linear-gradient(to_right,transparent,black_28%)] sm:block"
+      />
+      <div className="relative mx-auto w-full max-w-[1360px] px-6 sm:px-10 lg:px-16">
         {/* 헤더 행 — 왼쪽으로 길게 뻗는 헤어라인 + 우측 네이비 박스(선 디자인 ①) */}
         <div className="flex items-center gap-6">
           <span aria-hidden="true" className="h-px flex-1 bg-surface-border" />

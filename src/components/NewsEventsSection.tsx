@@ -6,6 +6,7 @@ import { useTranslations } from 'next-intl';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Link } from '@/i18n/navigation';
+import { FlowLines } from './FlowLines';
 
 // ScrollTrigger 는 무료 public gsap 패키지에 포함(Club 멤버십 불필요).
 gsap.registerPlugin(ScrollTrigger);
@@ -110,9 +111,23 @@ export function NewsEventsSection({ items }: { items: NewsEventItem[] }) {
       ref={rootRef}
       aria-labelledby="news-events-heading"
       // 자유 스크롤 홈 섹션 — 자연 높이 + 통일된 상하 리듬(모바일 py-12, sm+ py-section-lg).
-      className="full-bleed flex flex-col bg-surface py-12 sm:py-section-lg"
+      className="full-bleed relative flex flex-col bg-surface py-12 sm:py-section-lg"
     >
-      <div className="mx-auto w-full max-w-[1360px] px-6 sm:px-10 lg:px-16">
+      {/* 배경 유선 장식(Cornell CHE) — 상단 패딩·헤더 행의 '기존' 여백에만 겹치는 0-높이
+          absolute 레이어(자체 높이를 가지는 스트립 금지 — 사용자 지시). 카드 텍스트에
+          닿기 전에 아래로 마스크 소멸. 콘텐츠 컨테이너가 relative 라 항상 텍스트 뒤. */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-x-0 top-0 hidden h-56 overflow-hidden sm:block lg:h-64"
+      >
+        <FlowLines
+          variant="sweep"
+          gid="flow-news"
+          viewBox="0 150 1512 380"
+          className="absolute inset-0 h-full w-full -scale-x-100 opacity-10 [-webkit-mask-image:linear-gradient(to_bottom,black_55%,transparent_100%)] [mask-image:linear-gradient(to_bottom,black_55%,transparent_100%)]"
+        />
+      </div>
+      <div className="relative mx-auto w-full max-w-[1360px] px-6 sm:px-10 lg:px-16">
         {/* 헤더 행 — 좌: 네이비 라벨 박스(각지게) / 사이: 헤어라인(학과 목표 섹션과
             동일한 선 문법) / 우: ← → 화살표 버튼 2개 */}
         <div className="flex items-center gap-6">
@@ -156,7 +171,7 @@ export function NewsEventsSection({ items }: { items: NewsEventItem[] }) {
             <ul
               ref={trackRef}
               onScroll={updateArrows}
-              className="no-scrollbar mt-6 flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-smooth sm:mt-10 sm:gap-8"
+              className="no-scrollbar mt-6 flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-smooth sm:mt-[35px] sm:gap-8"
             >
               {items.map((item, i) => (
                 <li
@@ -216,10 +231,10 @@ function NewsEventCard({ item }: { item: NewsEventItem }) {
       </p>
 
       {/* 가는 수평 구분선 */}
-      <div className="mt-3 border-b border-surface-border" />
+      <div className="mt-3 border-b border-surface-border sm:mt-[7px]" />
 
       {/* 분류 라벨 — 시안의 주황 대신 연세 블루 */}
-      <p className="mt-3 text-xs font-bold text-yonsei-blue sm:mt-6 sm:text-sm">{kindLabel}</p>
+      <p className="mt-3 text-xs font-bold text-yonsei-blue sm:mt-[19px] sm:text-sm">{kindLabel}</p>
 
       {/* 제목 — 한 줄 말줄임, hover 시 블루 전환 */}
       <p className="mt-1.5 truncate text-sm font-medium text-content transition-colors group-hover:text-yonsei-blue sm:mt-2 sm:text-lg">

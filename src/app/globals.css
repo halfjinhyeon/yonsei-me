@@ -44,6 +44,10 @@
        (자체 호스팅 Pretendard + 지표 보정 폴백). 여기서 문자열로 재정의하면
        로드한 폰트를 덮어써 버리므로 정의하지 않는다. display 는 sans 와 동일. */
     --font-display: var(--font-sans);
+
+    /* 유선 라인아트(FlowLines) 그라디언트 — 흰 여백 위 블루→네이비 스트로크 */
+    --flow-a: #0057a8;
+    --flow-b: #003377;
   }
 
   .dark {
@@ -58,6 +62,10 @@
     --content: 237 242 249;
     --content-soft: 186 197 214;
     --content-faint: 148 163 184;
+
+    /* 다크 표면에선 밝은 블루 계열로 반전(네이비는 배경에 묻힘) */
+    --flow-a: #60a5fa;
+    --flow-b: #93c5fd;
   }
 
   * {

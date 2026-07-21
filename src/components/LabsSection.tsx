@@ -5,6 +5,7 @@ import { useTranslations } from 'next-intl';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Link } from '@/i18n/navigation';
+import { FlowLines } from '@/components/FlowLines';
 import { LabCarousel, type LabCarouselHandle } from '@/components/LabCarousel';
 import { ArrowIcon } from '@/components/NewsEventsSection';
 import type { LabDirectoryEntry } from '@/lib/faculty';
@@ -75,10 +76,22 @@ export function LabsSection({ labs, locale }: { labs: LabDirectoryEntry[]; local
       aria-labelledby="labs-heading"
       // 자유 스크롤 홈 섹션 — 자연 높이 + 통일된 상하 리듬(모바일 py-12, sm+ py-section-lg).
       // full-bleed 는 마퀴/캐러셀이 뷰포트 폭을 쓰기 위해 유지하되, 헤더·CTA 는 내부 max-w 컨테이너 정렬.
-      className="full-bleed flex flex-col bg-surface py-12 sm:py-section-lg"
+      className="full-bleed relative flex flex-col bg-surface py-12 sm:py-section-lg"
     >
+      {/* 배경 유선 장식(Cornell CHE, 소용돌이) — 하단 패딩·CTA 행의 '기존' 여백 좌측 모서리를
+          채우는 0-높이 absolute 레이어(신규 여백 금지 — 사용자 지시). 위·오른쪽으로 마스크
+          소멸. 섹션 overflow 는 캐러셀 보호를 위해 건드리지 않고 래퍼에서만 클립. */}
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0 hidden overflow-hidden sm:block">
+        <FlowLines
+          variant="swirl"
+          gid="flow-labs"
+          viewBox="-180 230 900 520"
+          preserve="xMinYMax slice"
+          className="absolute left-0 bottom-[-40px] h-[430px] w-[54%] max-w-[660px] opacity-30 [-webkit-mask-image:linear-gradient(to_right,black_45%,transparent_88%)] [mask-image:linear-gradient(to_right,black_45%,transparent_88%)] lg:h-[470px]"
+        />
+      </div>
       {/* 1) 컴팩트 헤더 — 컨테이너 정렬. relative 는 우측 독수리 워터마크의 기준점. */}
-      <div className="mx-auto w-full max-w-[1360px] px-6 sm:px-10 lg:px-16">
+      <div className="relative mx-auto w-full max-w-[1360px] px-6 sm:px-10 lg:px-16">
         <div className="relative">
           {/* 우측 포인트: 대형 네이비 독수리 워터마크(장식). 옅음은 배경 알파로,
               등장은 [data-reveal-eagle] 페이드인으로. 좁은 화면에선 숨겨 여백을 아낀다.
@@ -127,13 +140,14 @@ export function LabsSection({ labs, locale }: { labs: LabDirectoryEntry[]; local
         </div>
       </div>
 
-      {/* 2) 캐러셀 — 카드 디자인 무변경(모바일 185px 고정폭이 이미 2장+ 밀도). */}
-      <div className="mt-6 sm:mt-8 lg:mt-10">
+      {/* 2) 캐러셀 — 카드 디자인 무변경(모바일 185px 고정폭이 이미 2장+ 밀도).
+          relative: 배경 유선 장식 위에 그려지도록(장식은 항상 콘텐츠 뒤). */}
+      <div className="relative mt-6 sm:mt-8 lg:mt-10">
         <LabCarousel ref={carouselRef} labs={labs} locale={locale} />
       </div>
 
       {/* CTA — 캐러셀 하단 우측(뉴스&행사 섹션과 동일한 위치·정렬) */}
-      <div className="mx-auto mt-6 flex w-full max-w-[1360px] justify-end px-6 sm:mt-8 sm:px-10 lg:px-16">
+      <div className="relative mx-auto mt-6 flex w-full max-w-[1360px] justify-end px-6 sm:mt-8 sm:px-10 lg:px-16">
         <Link
           data-reveal
           href="/research#labs"
