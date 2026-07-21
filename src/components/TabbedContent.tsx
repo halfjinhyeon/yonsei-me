@@ -275,9 +275,12 @@ export function TabbedContent({
               aria-hidden="true"
               className="eagle-mask pointer-events-none absolute -left-2 -top-12 -z-10 h-[230px] w-[230px] bg-yonsei-navy opacity-[0.08]"
             />
+            {/* 탭 큰 제목 서체 = Paperlogy 6 SemiBold(사용자 지정) — font-semibold(600)가
+                text-display-sm 내장 굵기(700)를 덮어 600 파일이 물린다(가짜 볼드 없음). */}
             <h2
               id={`${active?.key}-title`}
-              className="mb-10 scroll-mt-24 text-display-sm tracking-tight text-content"
+              style={{ fontFamily: 'var(--font-subhead), var(--font-sans), sans-serif' }}
+              className="mb-10 scroll-mt-24 text-display-sm font-semibold tracking-tight text-content"
             >
               {active?.label}
             </h2>

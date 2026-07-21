@@ -7,7 +7,7 @@ import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { SmoothScroll } from '@/components/SmoothScroll';
 import { SITE_URL } from '@/lib/site';
-import { pretendard, gmarket } from '../fonts';
+import { pretendard, gmarket, paperlogy } from '../fonts';
 import '../globals.css';
 
 // 모든 로케일을 정적으로 프리렌더 → 성능(SSG)
@@ -78,7 +78,7 @@ export default async function LocaleLayout({
   };
 
   return (
-    <html lang={locale} className={`${pretendard.variable} ${gmarket.variable}`} suppressHydrationWarning>
+    <html lang={locale} className={`${pretendard.variable} ${gmarket.variable} ${paperlogy.variable}`} suppressHydrationWarning>
       <body className="min-h-dvh bg-surface antialiased">
         {/* 전역 부드러운 스크롤(Lenis) — reduced-motion 시 자동 비활성 */}
         <SmoothScroll />

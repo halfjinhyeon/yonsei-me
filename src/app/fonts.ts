@@ -34,3 +34,21 @@ export const gmarket = localFont({
   weight: '700',
   fallback: ['Pretendard', 'system-ui', 'sans-serif'],
 });
+
+/**
+ * 세부탭 제목 전용 폰트 Paperlogy(사용자 지정, 2026-07-21).
+ * 한 변수(--font-subhead)에 두 굵기를 실어 사용처의 font-weight 로 파일이 갈린다:
+ *  - 600(6SemiBold): TabbedContent 탭 큰 제목("학과 소개" 등) — font-semibold
+ *  - 700(7Bold): EditorialTab 제목·슬로건, AboutIntro 인트로 제목 — font-bold
+ * 원본 TTF(public/fonts/Paperlogy-1.000)는 fontTools 로 woff2(각 ~160KB) 변환해
+ * 자체 호스팅. 지정 굵기 파일이 그대로 쓰여 가짜 볼드 합성이 없다.
+ */
+export const paperlogy = localFont({
+  src: [
+    { path: './fonts/Paperlogy-6SemiBold.woff2', weight: '600' },
+    { path: './fonts/Paperlogy-7Bold.woff2', weight: '700' },
+  ],
+  variable: '--font-subhead',
+  display: 'swap',
+  fallback: ['Pretendard', 'system-ui', 'sans-serif'],
+});

@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { cn } from '@/lib/utils';
+import { FlowLines } from '@/components/FlowLines';
 
 export interface StepRailItem {
   id: string;
@@ -105,6 +106,21 @@ export function StepRailNav({
               );
             })}
           </ul>
+
+          {/* 장식 유선 소용돌이(Cornell CHE, FlowLines 재사용) — 목차 아래 빈 열을 채운다
+              (사용자 지시, opacity 0.3). absolute 라 레이아웃 높이 불변(신규 여백 없음)이고,
+              sticky 목차와 함께 따라와 목차 밑 여백을 항상 채운다. 색은 --flow 변수(블루 계열). */}
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute left-0 right-2 top-[calc(100%+1.5rem)] h-[440px] overflow-hidden opacity-30"
+          >
+            <FlowLines
+              variant="swirl"
+              gid="flow-gradreq"
+              preserve="xMidYMin slice"
+              className="absolute inset-0 h-full w-full"
+            />
+          </div>
         </nav>
       </aside>
 

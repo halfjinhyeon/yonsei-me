@@ -247,6 +247,26 @@
 }
 
 @layer utilities {
+  /* =========================================================
+     멀티라인 형광 밑줄 — CodePen BdmpVx 원본 그대로 이식(사용자 지시).
+     인라인 요소의 배경은 줄바꿈된 각 줄 조각마다 그려져 여러 줄을 따라가고,
+     호버 시 background-size 세로값이 커지며 밑줄→형광펜 채움으로 변한다.
+     작은 글씨엔 부적합(디테일·애니 불안정) — 세부탭의 큰 소제목 전용.
+     ========================================================= */
+  .underline-magical {
+    /* 그라디언트만 원본에서 교체: 네이비 → 하늘색 계열(사용자 지정).
+       알파 0.6 — 진네이비가 검정 글자 하단을 가리지 않게 반투명화(사용자 지시) */
+    background-image: linear-gradient(120deg, rgb(0 51 119 / 0.6) 0%, rgb(143 211 244 / 0.6) 100%);
+    background-repeat: no-repeat;
+    /* 평상시 두께 = 원본 0.2em + 3px(사용자 지정) */
+    background-size: 100% calc(0.2em + 3px);
+    background-position: 0 88%;
+    transition: background-size 0.25s ease-in;
+  }
+  .underline-magical:hover {
+    background-size: 100% 88%;
+  }
+
   /* 부모 컨테이너 폭을 벗어나 뷰포트 전체로 확장 (풀블리드) */
   .full-bleed {
     width: 100vw;

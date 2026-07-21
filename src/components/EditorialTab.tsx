@@ -47,6 +47,23 @@ export function getEditorialTab(key: string): EditorialTabData {
   return tabs[key];
 }
 
+/** 제목·슬로건 속 "<u>…</u>" 마커를 멀티라인 형광 밑줄 span 으로 렌더 —
+ *  어느 구절에 밑줄을 칠지는 콘텐츠(JSON/메시지)가 결정한다(콘텐츠/코드 분리).
+ *  마커가 없으면 문자열 그대로 반환. AboutIntro 의 t.rich(<u>) 와 동일한 시각 장치. */
+function renderWithUnderline(text: string) {
+  const parts = text.split(/<u>(.*?)<\/u>/g);
+  if (parts.length === 1) return text;
+  return parts.map((seg, i) =>
+    i % 2 === 1 ? (
+      <span key={i} className="underline-magical">
+        {seg}
+      </span>
+    ) : (
+      seg
+    ),
+  );
+}
+
 /** 문단 속 이메일 주소를 mailto 링크로 감싸 렌더 (그 외 텍스트는 그대로) */
 function renderWithEmailLinks(text: string) {
   const emailRe = /([\w.+-]+@[\w-]+(?:\.[\w-]+)+)/g;
@@ -130,15 +147,23 @@ export function EditorialTab({
       {/* eyebrow (+ 탭 라벨과 다른 제목이 있을 때만 큰 디스플레이 제목) */}
       <p className="eyebrow">{data.eyebrow}</p>
       {data.title && (
-        <h3 className="mt-4 max-w-3xl text-[clamp(1.8rem,4vw,3rem)] font-bold leading-[1.1] tracking-tight text-content">
-          {pick(data.title, locale)}
+        /* 세부탭 소제목 서체 = Paperlogy 7 Bold(사용자 지정) — 700 단일이라 가짜 볼드 없음 */
+        <h3
+          style={{ fontFamily: 'var(--font-subhead), var(--font-sans), sans-serif' }}
+          className="mt-4 max-w-3xl text-[clamp(1.8rem,4vw,3rem)] font-bold leading-[1.1] tracking-tight text-content"
+        >
+          {renderWithUnderline(pick(data.title, locale))}
         </h3>
       )}
 
-      {/* slogan — 인용구형 디스플레이 (홍익대 레퍼런스처럼 크고 단단한 볼드 헤드라인) */}
+      {/* slogan — 인용구형 디스플레이 (홍익대 레퍼런스처럼 크고 단단한 볼드 헤드라인).
+          실질적인 세부탭 소제목이라 서체도 Paperlogy 7 Bold(제목과 동일 지정). */}
       {data.slogan && (
-        <p className="mt-6 max-w-4xl text-[clamp(1.5rem,2.8vw,2.25rem)] font-bold leading-[1.35] tracking-tight text-content">
-          {pick(data.slogan, locale)}
+        <p
+          style={{ fontFamily: 'var(--font-subhead), var(--font-sans), sans-serif' }}
+          className="mt-6 max-w-4xl text-[clamp(1.5rem,2.8vw,2.25rem)] font-bold leading-[1.35] tracking-tight text-content"
+        >
+          {renderWithUnderline(pick(data.slogan, locale))}
         </p>
       )}
 
@@ -197,7 +222,9 @@ export function EditorialTab({
       )}
 
       {/* steps — 01 → 02 → … 절차. 기본은 룰+번호 그리드, boxedSteps 면
-          각진 아웃라인 정사각 상자 + 상자 사이 셰브런(홍익 교과과정 레퍼런스) */}
+          각진 아웃라인 상자 + 상자 사이 셰브런(홍익 교과과정 레퍼런스).
+          상자 높이는 콘텐츠 맞춤 — 구 정사각(lg:aspect-square, ~320px)에서 밑변 기준
+          약 120px 축소(사용자 지시). grid 기본 stretch 로 한 줄 상자들 높이는 서로 같다. */}
       {data.steps && data.steps.length > 0 && (
         <div className="mt-14">
           {boxedSteps ? (
@@ -205,7 +232,8 @@ export function EditorialTab({
               {data.steps.map((step, i) => (
                 <li
                   key={i}
-                  className="relative border-2 border-content p-6 sm:p-7 lg:aspect-square"
+                  // lg:pb-12(48px) = 기존 하단 패딩 28px + 20px — 콘텐츠 맞춤 축소 후 밑부분 소폭 복원(사용자 지시)
+                  className="relative border-2 border-content p-6 sm:p-7 lg:pb-12"
                 >
                   <span
                     aria-hidden="true"

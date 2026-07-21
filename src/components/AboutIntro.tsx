@@ -22,8 +22,16 @@ export async function AboutIntro({ locale }: { locale: string }) {
       {/* 소개 문구 — 큰 디스플레이 제목 + 왼쪽 정렬 본문 */}
       <div>
         <p className="eyebrow">ABOUT</p>
-        <h3 className="mt-4 max-w-3xl text-[clamp(1.8rem,4vw,3rem)] font-bold leading-[1.1] tracking-tight text-content">
-          {t('intro.title')}
+        {/* 세부탭 소제목 서체 = Paperlogy 7 Bold(사용자 지정) — EditorialTab 제목과 통일 */}
+        <h3
+          style={{ fontFamily: 'var(--font-subhead), var(--font-sans), sans-serif' }}
+          className="mt-4 max-w-3xl text-[clamp(1.8rem,4vw,3rem)] font-bold leading-[1.1] tracking-tight text-content"
+        >
+          {/* <u> 태그(ko 메시지의 "기계공학부")를 멀티라인 형광 밑줄 span 으로 렌더 —
+              CodePen 원본 그대로 시범(사용자 지시). en 메시지는 태그 없음(그대로 통과). */}
+          {t.rich('intro.title', {
+            u: (chunks) => <span className="underline-magical">{chunks}</span>,
+          })}
         </h3>
         <p className="mt-6 max-w-prose text-lg leading-relaxed text-content-soft">
           {t('intro.body')}

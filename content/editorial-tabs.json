@@ -2,8 +2,8 @@
   "undergraduate-goals": {
     "eyebrow": "ABOUT",
     "slogan": {
-      "ko": "창의적 사고와 도전정신을 바탕으로 종합 설계 능력을 갖추고 글로벌 사회에 유익한 가치를 창출할 수 있는 인재 양성",
-      "en": "Cultivating talent who — grounded in creative thinking and a spirit of challenge — master integrated design and create value beneficial to global society."
+      "ko": "<u>창의적 사고와 도전정신</u>을 바탕으로 종합 설계 능력을 갖추고 글로벌 사회에 유익한 가치를 창출할 수 있는 인재 양성",
+      "en": "Cultivating talent who — grounded in <u>creative thinking and a spirit of challenge</u> — master integrated design and create value beneficial to global society."
     },
     "lead": {
       "ko": "기독교 정신에 기하여 학술의 심오한 이론과 광범 정치한 응용방법을 교수·연구하며, 국가와 인류 사회 발전에 공헌할 지도적 인격을 도야함을 목적으로 한다.",
@@ -50,8 +50,8 @@
   "research-vision": {
     "eyebrow": "OUR VISION",
     "slogan": {
-      "ko": "멈추지 않는 50년, 100년을 향한 도전!",
-      "en": "Fifty years unbroken — the challenge toward a hundred!"
+      "ko": "멈추지 않는 50년, <u>100년을 향한 도전</u>!",
+      "en": "Fifty years unbroken — <u>the challenge toward a hundred</u>!"
     },
     "body": [
       {
