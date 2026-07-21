@@ -50,7 +50,8 @@ export async function AboutIntro({ locale }: { locale: string }) {
               <span className="block text-4xl font-light tabular-nums text-yonsei-blue/40">
                 {String(i + 1).padStart(2, '0')}
               </span>
-              <h5 className="mt-4 text-lg font-bold text-content">
+              {/* 제목 1.5배(18→27px) — 사용자 지시 */}
+              <h5 className="mt-4 text-[1.6875rem] font-bold leading-snug text-content">
                 {t(`vision.items.${key}.title`)}
               </h5>
               <p className="mt-2 text-sm leading-relaxed text-content-soft">
@@ -71,7 +72,8 @@ export async function AboutIntro({ locale }: { locale: string }) {
             <dd className="text-5xl font-bold leading-none text-yonsei-navy tabular-nums">
               {stat.value}
             </dd>
-            <dt className="mt-3 text-sm font-semibold text-content-soft sm:text-base">
+            {/* 라벨 1.5배(14/16→21/24px) — 사용자 지시 */}
+            <dt className="mt-3 text-[1.3125rem] font-semibold text-content-soft sm:text-2xl">
               {pick(stat.label, locale as Locale)}
             </dt>
           </div>

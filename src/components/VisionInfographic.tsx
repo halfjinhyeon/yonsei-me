@@ -176,7 +176,8 @@ export function VisionInfographic({ locale }: { locale: Locale }) {
               <span className="block text-4xl font-light tabular-nums text-yonsei-blue/40">
                 {String(i + 1).padStart(2, '0')}
               </span>
-              <h5 className="mt-4 text-lg font-bold text-content">{pick(o.title, locale)}</h5>
+              {/* 제목 1.5배(18→27px) — 사용자 지시 */}
+              <h5 className="mt-4 text-[1.6875rem] font-bold leading-snug text-content">{pick(o.title, locale)}</h5>
               <p className="mt-2 text-sm leading-relaxed text-content-soft">
                 {pick(o.body, locale)}
               </p>

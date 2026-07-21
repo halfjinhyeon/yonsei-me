@@ -68,9 +68,10 @@ export function StepRailNav({
 
   return (
     <>
-      {/* 데스크톱 — 좌측 sticky 목차. top-36 = sticky 스택(헤더 5rem + 남색 탭 바 3rem)
-          아래 1rem 여유. aside 의 border-r 가 시안의 세로 구분선(열 전체 높이). */}
-      <aside className="hidden lg:block lg:border-r lg:border-surface-border lg:pr-8">
+      {/* 데스크톱·태블릿(tab+) — 좌측 sticky 목차. top-36 = sticky 스택(헤더 5rem + 남색
+          탭 바 3rem) 아래 1rem 여유. aside 의 border-r 가 시안의 세로 구분선(열 전체 높이).
+          아이패드 미니·갤럭시 탭 세로에서도 PC 레이아웃(사용자 지시). */}
+      <aside className="hidden tab:block tab:border-r tab:border-surface-border tab:pr-8">
         <nav aria-label={ariaLabel} className="sticky top-36 py-10">
           <ul>
             {items.map((it) => {
@@ -126,7 +127,7 @@ export function StepRailNav({
 
       {/* 모바일 — 상단 sticky 칩 행. top-28(=7rem)은 헤더 4rem + 남색 탭 바 3rem 바로
           아래, z-20 은 탭 바(z-30)보다 아래 층이다. */}
-      <div className="sticky top-28 z-20 border-b border-surface-border bg-surface/95 backdrop-blur lg:hidden">
+      <div className="sticky top-28 z-20 border-b border-surface-border bg-surface/95 backdrop-blur tab:hidden">
         <nav aria-label={ariaLabel} className="flex gap-1 overflow-x-auto">
           {items.map((it) => {
             const active = it.id === activeId;

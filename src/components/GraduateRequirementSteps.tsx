@@ -67,7 +67,8 @@ export function GraduateRequirementSteps({ markdown }: { markdown: string }) {
   const sections = parseSteps(markdown);
 
   return (
-    <div className="mt-2 border-t border-surface-border lg:grid lg:grid-cols-[12.5rem_minmax(0,1fr)] lg:gap-x-12">
+    // tab(700px)+: 좌측 레일 그리드 — 아이패드 미니·갤럭시 탭 세로에서도 PC 레이아웃(사용자 지시)
+    <div className="mt-2 border-t border-surface-border tab:grid tab:grid-cols-[12.5rem_minmax(0,1fr)] tab:gap-x-8 lg:gap-x-12">
       <StepRailNav items={sections.map(({ id, num, title }) => ({ id, num, title }))} />
       <div className="divide-y divide-surface-border">
         {sections.map((s, i) => (
@@ -75,11 +76,11 @@ export function GraduateRequirementSteps({ markdown }: { markdown: string }) {
             key={s.id}
             id={s.id}
             aria-labelledby={`${s.id}-h`}
-            className="scroll-mt-40 py-12 lg:scroll-mt-36 lg:py-16"
+            className="scroll-mt-40 py-12 tab:scroll-mt-36 tab:py-16"
           >
             {/* 헤더 블록 — 학부 '나의 졸업요건' StepLabel 과 동일한 네이비 박스(STEP NN · 제목).
                 짝수(0-base) 왼쪽 / 홀수 오른쪽 교대 + 좌우 여백 인셋(사용자 지시). */}
-            <div className={i % 2 === 1 ? 'flex flex-col items-end text-right lg:pr-12' : 'lg:pl-12'}>
+            <div className={i % 2 === 1 ? 'flex flex-col items-end text-right tab:pr-12' : 'tab:pl-12'}>
               <h3
                 id={`${s.id}-h`}
                 className="inline-block bg-yonsei-navy px-3.5 py-1.5 text-sm font-bold text-white"

@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { UnderlineTabs } from '@/components/UnderlineTabs';
 import { cn } from '@/lib/utils';
@@ -57,6 +57,9 @@ const FLOW = courseFlow as unknown as { edges: FlowEdge[] };
 
 type LaneKey = 'basics' | ResearchField;
 type Filter = 'all' | ResearchField;
+
+// SSR 안전 layout effect — 서버 렌더 시 useLayoutEffect 경고 회피(사이트 공통 패턴)
+const useIsoLayoutEffect = typeof window !== 'undefined' ? useLayoutEffect : useEffect;
 
 const FIELD_TABS: ResearchField[] = [
   'bioNano',
@@ -387,11 +390,35 @@ export function CurriculumFlow({ locale }: { locale: Locale }) {
       }
     }
 
+    // ── 수기 꺾임 보정(사용자 지정) — 몸통이 다른 칩을 관통하는 두 간선만 예외 처리.
+    // 좌표를 하드코딩하지 않고 '피해야 할 칩'의 실측 rect 로 계산한다(화면 폭·언어 무관).
+    //  - trunkRightOf: 세로 줄기가 이 칩(자기보다 넓은 칩)을 관통하면 그 오른쪽으로 이동
+    //  - runBetween: 가로 주행 y 를 [위 칩 bottom ~ 아래 칩 top] 틈 중앙(한 칩이면 bottom+7)으로
+    const BEND_FIX: Record<string, { trunkRightOf?: string; runBetween?: [string] | [string, string] }> = {
+      // 고체역학 → 기계요소설계: 줄기가 컴퓨터응용기계설계를, 주행이 메카니즘설계를 관통
+      'MEU2600->MEU3630': { trunkRightOf: 'MEU2620', runBetween: ['MEU3002', 'MEU3620'] },
+      // 컴퓨터응용기계설계 → 컴퓨터해석기반설계: 주행이 같은 행의 공학수치해석을 관통
+      'MEU2620->MEU3801': { runBetween: ['MEU3003'] },
+    };
+
     // 패스2: 가지 주행 배치
     const crossLines: Line[] = crossEdges.map(({ edge, idx, a, b }) => {
-      const sx = trunkX.get(edge.from)!;
+      const fix = BEND_FIX[`${edge.from}->${edge.to}`];
+      let sx = trunkX.get(edge.from)!;
+      if (fix?.trunkRightOf) {
+        const block = rectOf(fix.trunkRightOf);
+        if (block && sx > block.left - 4 && sx < block.right + 4) sx = block.right + 8;
+      }
       const y2 = b.cy + (endOff.get(idx) ?? 0);
-      const runY = claimRun(y2, sx, b.left - 14, true);
+      let runY = claimRun(y2, sx, b.left - 14, true);
+      if (fix?.runBetween) {
+        const r1 = rectOf(fix.runBetween[0]);
+        const r2 = fix.runBetween[1] ? rectOf(fix.runBetween[1]) : null;
+        if (r1) {
+          runY = r2 ? (r1.bottom + r2.top) / 2 : r1.bottom + 7;
+          claimRun(runY, sx, b.left - 14, false); // 다른 주행의 중복 회피 대상으로 등록
+        }
+      }
       let d: string;
       if (Math.abs(runY - y2) < 0.5) {
         d = `M ${a.right} ${a.cy} L ${sx} ${a.cy} L ${sx} ${y2} L ${b.left - 2} ${y2}`;
@@ -472,6 +499,73 @@ export function CurriculumFlow({ locale }: { locale: Locale }) {
 
   const edgeDim = (idx: number) => (selected ? !linked.edges.has(idx) : false);
 
+  // ── 칩 아래 미니 상세 팝오버(사용자 지시) — 하단 상세 패널은 그대로 유지 ──────
+  // 그리드(tab+) 전용: 선택 칩의 rect 를 gridRef 기준으로 실측해 절대 배치한다.
+  // 하반부 칩은 위로 뒤집어(translateY(-100%)) 그리드 밖 세로 넘침(스크롤 래퍼의
+  // 세로 스크롤바 유발)을 막는다. 모바일 스택은 칩 rect 가 0(그리드 hidden)이라
+  // 자동 스킵 — 기존 하이라이트 + 하단 패널 문법 유지.
+  const POP_W = 320;
+  const [pop, setPop] = useState<{ left: number; top: number; up: boolean } | null>(null);
+  const placePop = useCallback(() => {
+    if (!selected) {
+      setPop(null);
+      return;
+    }
+    const grid = gridRef.current;
+    const el = chipRefs.current.get(selected);
+    if (!grid || !el || !el.isConnected) {
+      setPop(null);
+      return;
+    }
+    const g = grid.getBoundingClientRect();
+    const r = el.getBoundingClientRect();
+    if (g.width === 0 || r.width === 0) {
+      setPop(null);
+      return;
+    }
+    const left = Math.max(0, Math.min(r.left - g.left, g.width - POP_W));
+    const up = r.top + r.height / 2 - g.top > g.height / 2;
+    const top = up ? r.top - g.top - 6 : r.bottom - g.top + 6;
+    setPop({ left, top, up });
+  }, [selected]);
+  useIsoLayoutEffect(() => {
+    placePop();
+  }, [placePop, mode, filter]);
+  useEffect(() => {
+    window.addEventListener('resize', placePop);
+    return () => window.removeEventListener('resize', placePop);
+  }, [placePop]);
+
+  // 팝오버가 '연결된 과목 칩'을 가리면 배경을 30% 반투명으로 — 가려진 연결 칩이
+  // 비쳐 보이게 한다(사용자 지시). 렌더 후 박스 실측 → 연결 칩 rect 교차 검사.
+  const popBoxRef = useRef<HTMLDivElement | null>(null);
+  const [popDim, setPopDim] = useState(false);
+  useIsoLayoutEffect(() => {
+    if (!pop || !selected) {
+      setPopDim(false);
+      return;
+    }
+    const box = popBoxRef.current;
+    if (!box) {
+      setPopDim(false);
+      return;
+    }
+    const b = box.getBoundingClientRect();
+    let overlap = false;
+    for (const code of linked.nodes) {
+      if (code === selected) continue;
+      const el = chipRefs.current.get(code);
+      if (!el || !el.isConnected) continue;
+      const r = el.getBoundingClientRect();
+      if (r.width === 0) continue;
+      if (r.left < b.right && r.right > b.left && r.top < b.bottom && r.bottom > b.top) {
+        overlap = true;
+        break;
+      }
+    }
+    setPopDim(overlap);
+  }, [pop, linked, selected]);
+
   // 로드맵 그리드 열 — 레인 라벨(7rem) + 학기 열(유동 폭: 컨테이너에 맞춰 횡스크롤 없음)
   const gridTemplate = `7rem repeat(${columns.length}, minmax(0, 1fr))`;
 
@@ -540,14 +634,14 @@ export function CurriculumFlow({ locale }: { locale: Locale }) {
         </span>
         {isTree && (
           <>
-            <span className="hidden items-center gap-1.5 lg:flex">
+            <span className="hidden items-center gap-1.5 tab:flex">
               <svg width="24" height="8" viewBox="0 0 24 8" aria-hidden="true">
                 <line x1="1" y1="4" x2="18" y2="4" stroke="rgb(35 35 35 / 0.55)" strokeWidth="1.2" />
                 <path d="M17 1.6 L21.5 4 L17 6.4 Z" fill="rgb(35 35 35 / 0.7)" />
               </svg>
               {ko ? '실선 — 선수·직결' : 'Solid — prerequisite'}
             </span>
-            <span className="hidden items-center gap-1.5 lg:flex">
+            <span className="hidden items-center gap-1.5 tab:flex">
               <svg width="24" height="8" viewBox="0 0 24 8" aria-hidden="true">
                 <line x1="1" y1="4" x2="18" y2="4" stroke="rgb(35 35 35 / 0.55)" strokeWidth="1.2" strokeDasharray="3 3" />
                 <path d="M17 1.6 L21.5 4 L17 6.4 Z" fill="rgb(35 35 35 / 0.7)" />
@@ -559,7 +653,7 @@ export function CurriculumFlow({ locale }: { locale: Locale }) {
       </div>
 
       {/* ── 모바일·좁은 화면(< lg): 학기별 세로 스택 + 레인 그룹(기존 문법 유지) ── */}
-      <div key={`m-${filter}`} className="border-t-2 border-yonsei-navy lg:hidden">
+      <div key={`m-${filter}`} className="border-t-2 border-yonsei-navy tab:hidden">
         {columns.map((col, colIdx) => {
           const lanesHere = lanes.filter((lane) => lane.cells[colIdx].length > 0);
           if (lanesHere.length === 0) return null;
@@ -604,8 +698,11 @@ export function CurriculumFlow({ locale }: { locale: Locale }) {
         })}
       </div>
 
-      {/* ── 데스크톱(lg+): 스윔레인 + 직각 화살표 오버레이(유동 열 폭 — 횡스크롤 없음) ── */}
-      <div className="hidden lg:block">
+      {/* ── 데스크톱·태블릿(tab+): 스윔레인 + 직각 화살표 오버레이.
+          태블릿(700~1024px)에서도 PC 레이아웃 유지(사용자 지시) — min-w 로 자연폭을
+          강제하고 넘치는 만큼 이 래퍼에서 횡스크롤. lg+ 는 기존처럼 스크롤 없음. ── */}
+      <div className="hidden tab:block overflow-x-auto">
+        <div className="min-w-[960px]">
         {/* 헤더 행 — 기존 thead 문법(굵은 네이비 상단 룰) */}
         <div
           className="grid gap-x-2 border-b-2 border-yonsei-navy pb-2"
@@ -704,7 +801,57 @@ export function CurriculumFlow({ locale }: { locale: Locale }) {
                 ))}
               </div>
             ))}
+
+            {/* 칩 아래 미니 상세 팝오버 — 맨 위 [과목명 · 학정번호], 구분선, 설명(사용자 지시 구성).
+                흰 각진 박스(그림자 금지 정책 → 네이비 테두리). 칩 재클릭 또는 하단 패널
+                '닫기'로 닫힌다. 상세 전문은 아래 패널이 계속 제공(aria-live).
+                위 플립은 transform 이 아니라 0-높이 앵커 + bottom-0 정렬로 처리한다 —
+                anim-panel keyframe·reduced-motion 의 transform 재정의와 충돌하지 않는다. */}
+            {pop && selectedCourse && (
+              <div
+                key={`pop-${selectedCourse.code}`}
+                className="absolute z-20 h-0"
+                style={{ left: pop.left, top: pop.top }}
+              >
+                <div
+                  ref={popBoxRef}
+                  className={cn(
+                    'anim-panel absolute w-80 border-2 border-yonsei-navy p-4',
+                    pop.up ? 'bottom-0' : 'top-0',
+                    // 연결 칩을 가릴 때만 배경 30% 반투명 — 뒤의 칩이 비쳐 보인다
+                    popDim ? 'bg-surface/30' : 'bg-surface',
+                  )}
+                >
+                  <div className="flex items-start justify-between gap-2">
+                    {/* 과목명 바로 옆에 학정번호(사용자 지시) */}
+                    <p className="text-sm font-bold leading-snug text-content">
+                      {selectedCourse.name}
+                      <span className="ml-2 text-xs font-semibold tabular-nums text-yonsei-navy">
+                        {selectedCourse.code}
+                      </span>
+                    </p>
+                    <button
+                      type="button"
+                      onClick={() => setSelected(null)}
+                      aria-label={ko ? '닫기' : 'Close'}
+                      className="-m-1 shrink-0 p-1 text-content-faint transition-colors hover:text-yonsei-navy focus-visible:outline focus-visible:outline-2 focus-visible:outline-yonsei-blue"
+                    >
+                      <svg viewBox="0 0 12 12" className="h-3 w-3" fill="none" stroke="currentColor" strokeWidth="1.6" aria-hidden="true">
+                        <path d="M1 1l10 10M11 1L1 11" />
+                      </svg>
+                    </button>
+                  </div>
+                  <div className="mt-2.5 border-t border-surface-border pt-2.5">
+                    <p className="max-h-40 overflow-y-auto text-xs leading-relaxed text-content-soft">
+                      {DESCRIPTIONS[selectedCourse.code]?.desc ??
+                        (ko ? '설명 준비 중입니다.' : 'Description coming soon.')}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
+        </div>
         </div>
       </div>
 
