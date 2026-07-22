@@ -1,5 +1,6 @@
 import guide from '@content/admission-guide.json';
 import { pick } from '@/lib/content';
+import { LandingScope } from '@/components/LandingScope';
 import type { Locale } from '@/i18n/routing';
 
 /** content/admission-guide.json 의 형태 */
@@ -25,21 +26,34 @@ const sections = (guide as { sections: GuideSection[] }).sections;
  */
 export function AdmissionGuide({ locale }: { locale: Locale }) {
   return (
-    <div className="space-y-24">
-      {sections.map((sec) => (
+    <LandingScope name="admission-guide">
+      <div className="space-y-24">
+        {/* 랜딩 순서(data-land-order) — 섹션마다 10단위로 띄워 학부 → 대학원이 각각
+            "룰이 그어지며 번호 노출 → 제목 → 엠블럼이 차오름 → 본문 → 버튼"으로 전개된다.
+            둘째 섹션은 대개 화면 밖이라 훅이 알아서 ScrollTrigger 로 넘긴다. */}
+        {sections.map((sec, si) => (
         <section key={sec.num} aria-label={pick(sec.title, locale)}>
           {/* 번호 + 전폭 네이비 룰 (레퍼런스의 1/2 헤어라인) */}
-          <div className="border-b-2 border-yonsei-navy pb-2 text-sm font-bold text-content">
+          <div
+            data-land="wipe"
+            data-land-order={si * 10}
+            className="border-b-2 border-yonsei-navy pb-2 text-sm font-bold text-content"
+          >
             {sec.num}
           </div>
 
           <div className="mt-10 grid gap-10 lg:grid-cols-[minmax(0,2fr)_minmax(0,3fr)] lg:gap-16">
             {/* 좌: 대형 제목 + 그래픽 */}
             <div>
-              <h3 className="text-3xl font-black tracking-tight text-content sm:text-4xl">
+              <h3
+                data-land="rise"
+                data-land-order={si * 10 + 1}
+                className="text-3xl font-black tracking-tight text-content sm:text-4xl"
+              >
                 {pick(sec.title, locale)}
               </h3>
-              <div className="mt-10">
+              {/* 학부 엠블럼 / 대학원 독수리 — 아래에서 위로 차오르며 등장 */}
+              <div className="mt-10" data-land="wipe" data-land-from="bottom" data-land-order={si * 10 + 3}>
                 {sec.graphic === 'logo' ? (
                   // eslint-disable-next-line @next/next/no-img-element
                   <img src="/logo.svg" alt="" aria-hidden="true" className="h-24 w-auto sm:h-28" />
@@ -54,12 +68,21 @@ export function AdmissionGuide({ locale }: { locale: Locale }) {
 
             {/* 우: 본문 + 보조 문단 + 버튼 */}
             <div>
-              <p className="text-base leading-[1.9] text-content sm:text-lg">
+              <p
+                data-land="rise"
+                data-land-order={si * 10 + 2}
+                className="text-base leading-[1.9] text-content sm:text-lg"
+              >
                 {pick(sec.body, locale)}
               </p>
               <div className="mt-8 space-y-3">
                 {sec.notes.map((note, i) => (
-                  <p key={i} className="text-[15px] leading-relaxed text-content-faint">
+                  <p
+                    key={i}
+                    data-land="rise"
+                    data-land-order={si * 10 + 3}
+                    className="text-[15px] leading-relaxed text-content-faint"
+                  >
                     {pick(note, locale)}
                   </p>
                 ))}
@@ -74,6 +97,9 @@ export function AdmissionGuide({ locale }: { locale: Locale }) {
                     {...(btn.href.startsWith('http')
                       ? { target: '_blank', rel: 'noopener noreferrer' }
                       : {})}
+                    // 클릭 대상이라 이동 없이 페이드만 — 누르려는 순간 움직이면 미스클릭이 난다
+                    data-land="fade"
+                    data-land-order={si * 10 + 4}
                     className="group inline-flex items-center gap-3 border border-content/70 px-7 py-4 text-sm font-bold text-content transition-colors hover:border-yonsei-navy hover:bg-yonsei-navy hover:text-white"
                   >
                     {pick(btn.label, locale)}
@@ -93,7 +119,8 @@ export function AdmissionGuide({ locale }: { locale: Locale }) {
             </div>
           </div>
         </section>
-      ))}
-    </div>
+        ))}
+      </div>
+    </LandingScope>
   );
 }

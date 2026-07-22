@@ -1,0 +1,382 @@
+{
+  "_comment": "졸업 후 진로 탭 데이터 — Claude Design 시안(졸업 후 진로.dc.html / Career Paths.dc.html) 이식. 비개발자는 이 파일만 수정하면 된다. 모든 문자열은 {ko,en} 쌍.",
+  "timeline": {
+    "years": [
+      { "ko": "1학년", "en": "Year 1" },
+      { "ko": "2학년", "en": "Year 2" },
+      { "ko": "3학년", "en": "Year 3" },
+      { "ko": "4학년", "en": "Year 4" }
+    ],
+    "decision": {
+      "title": { "ko": "의사결정 분기점", "en": "Decision point" },
+      "detail": {
+        "ko": "학·석사 연계 · 연구실 컨택 · 산학장학생",
+        "en": "BS–MS track · Lab contact · Industry scholarship"
+      }
+    },
+    "tracks": [
+      {
+        "key": "industry",
+        "label": { "ko": "기업 취업", "en": "Industry Employment" },
+        "sub": { "ko": "7개 직무 · 선발 4종", "en": "7 roles · 4 hiring tracks" },
+        "marks": [
+          { "at": 62.5, "solid": true, "label": { "ko": "산학장학생 · 인턴", "en": "Scholarship · Internship" } },
+          { "at": 87.5, "solid": false, "label": { "ko": "공채 · 수시 · 전환", "en": "Open · Rolling · Conversion" } }
+        ]
+      },
+      {
+        "key": "graduate",
+        "label": { "ko": "대학원 진학", "en": "Graduate School" },
+        "sub": { "ko": "자대 · 타대 · 해외", "en": "Home · Other · Overseas" },
+        "marks": [
+          { "at": 62.5, "solid": true, "label": { "ko": "연구실 컨택 · 랩 인턴", "en": "Lab contact · Lab intern" } },
+          { "at": 87.5, "solid": false, "label": { "ko": "서류 → 면접", "en": "Documents → Interview" } }
+        ]
+      },
+      {
+        "key": "public",
+        "label": { "ko": "공공·전문직", "en": "Public · Professional" },
+        "sub": { "ko": "4갈래 · 자격은 전학년", "en": "4 paths · Certifications anytime" },
+        "marks": [
+          { "at": 12.5, "solid": false, "label": { "ko": "기사 자격", "en": "Engineer license" } },
+          { "at": 62.5, "solid": true, "label": { "ko": "NCS · 전공(4역학)", "en": "NCS · Major (4 mechanics)" } },
+          { "at": 87.5, "solid": false, "label": { "ko": "공채 · 시험", "en": "Open hiring · Exam" } }
+        ]
+      }
+    ]
+  },
+  "fields": [
+    { "key": "industry", "label": { "ko": "기업 취업", "en": "Industry" }, "sub": { "ko": "직무 7", "en": "7 roles" } },
+    { "key": "graduate", "label": { "ko": "대학원 진학", "en": "Graduate School" }, "sub": { "ko": "경로 3", "en": "3 paths" } },
+    { "key": "public", "label": { "ko": "공공·전문직", "en": "Public Sector" }, "sub": { "ko": "직렬 4", "en": "4 tracks" } }
+  ],
+  "jobs": [
+    {
+      "name": { "ko": "연구개발 (R&D)", "en": "R&D" },
+      "degree": { "ko": "석·박사 우대", "en": "MS/PhD preferred" },
+      "masters": true,
+      "intro": {
+        "ko": "신기술 검증, 선행 기술 연구, 차세대 제품의 원천기술 개발을 담당하는 분야입니다.",
+        "en": "Verifies new technologies and develops the core, next-generation product technologies."
+      },
+      "tasks": {
+        "ko": "신기술 아이디어 도출 · 선행 시제품 제작 및 성능 평가 · 선행 메커니즘 검증",
+        "en": "Idea generation · Prototype build & performance testing · Mechanism validation"
+      },
+      "skills": {
+        "ko": ["4대 역학 전반", "실험 계획법(DOE)", "논문·특허 분석"],
+        "en": ["Four mechanics", "Design of Experiments (DOE)", "Paper·patent analysis"]
+      },
+      "industries": { "ko": "전자 · 모빌리티 · 항공 · 에너지", "en": "Electronics · Mobility · Aerospace · Energy" },
+      "logos": [
+        { "src": "rnd-hyundai.svg", "name": { "ko": "현대자동차", "en": "Hyundai Motor" } },
+        { "src": "rnd-samsung.svg", "name": { "ko": "삼성전자 SAIT", "en": "Samsung SAIT" } },
+        { "src": "rnd-hanwha.svg", "name": { "ko": "한화에어로스페이스", "en": "Hanwha Aerospace" } },
+        { "src": "rnd-lg.svg", "name": { "ko": "LG전자", "en": "LG Electronics" } }
+      ]
+    },
+    {
+      "name": { "ko": "제품설계", "en": "Product Design" },
+      "degree": { "ko": "학사 적합", "en": "BS-level" },
+      "masters": false,
+      "intro": {
+        "ko": "양산형 제품의 구조·양산성·작동 메커니즘을 3D CAD로 구체화하는 분야입니다.",
+        "en": "Turns mass-production structures, manufacturability and mechanisms into 3D CAD."
+      },
+      "tasks": {
+        "ko": "3D/2D 구조 설계 · 메커니즘 기하 설계 · 공차 분석 · GD&T 적용 · BOM 작성",
+        "en": "3D/2D structural design · Mechanism geometry · Tolerance analysis · GD&T · BOM"
+      },
+      "skills": {
+        "ko": ["CATIA", "SolidWorks", "NX", "정역학·동역학", "재료역학"],
+        "en": ["CATIA", "SolidWorks", "NX", "Statics·Dynamics", "Solid mechanics"]
+      },
+      "industries": { "ko": "자동차 부품 · 가전 · 방산 · 로보틱스", "en": "Auto parts · Home appliances · Defense · Robotics" },
+      "logos": [
+        { "src": "design-mobis.svg", "name": { "ko": "현대모비스", "en": "Hyundai Mobis" } },
+        { "src": "design-hlmando.png", "name": { "ko": "HL만도", "en": "HL Mando" } },
+        { "src": "design-lignex1.svg", "name": { "ko": "LIG넥스원", "en": "LIG Nex1" } },
+        { "src": "design-doosanrobo.svg", "name": { "ko": "두산로보틱스", "en": "Doosan Robotics" } }
+      ]
+    },
+    {
+      "name": { "ko": "해석 (CAE)", "en": "Analysis (CAE)" },
+      "degree": { "ko": "석사 우대", "en": "MS preferred" },
+      "masters": true,
+      "intro": {
+        "ko": "시제품 제작 전, 시뮬레이션으로 구조 안전성·열유동·진동을 예측하고 개선합니다.",
+        "en": "Predicts and improves structural safety, thermal-flow and vibration via simulation before prototyping."
+      },
+      "tasks": {
+        "ko": "구조 해석(FEA) · 열유체 해석(CFD) · NVH 해석 · 충돌 시뮬레이션",
+        "en": "Structural analysis (FEA) · Thermal-fluid (CFD) · NVH · Crash simulation"
+      },
+      "skills": {
+        "ko": ["ANSYS", "Abaqus", "HyperMesh", "FLUENT", "유체·열역학"],
+        "en": ["ANSYS", "Abaqus", "HyperMesh", "FLUENT", "Fluid·Thermal"]
+      },
+      "industries": { "ko": "완성차 · 항공우주 · 조선 · 엔지니어링", "en": "Automotive · Aerospace · Shipbuilding · Engineering" },
+      "logos": [
+        { "src": "cae-kia.svg", "name": { "ko": "기아", "en": "Kia" } },
+        { "src": "cae-kai.svg", "name": { "ko": "한국항공우주(KAI)", "en": "KAI" } },
+        { "src": "cae-hdhi.svg", "name": { "ko": "HD현대중공업", "en": "HD Hyundai Heavy" } },
+        { "src": "cae-samsungheavy.svg", "name": { "ko": "삼성중공업", "en": "Samsung Heavy" } }
+      ]
+    },
+    {
+      "name": { "ko": "생산기술", "en": "Manufacturing Engineering" },
+      "degree": { "ko": "학사 적합", "en": "BS-level" },
+      "masters": false,
+      "intro": {
+        "ko": "설계된 제품을 공장에서 불량 없이 대량 생산하도록 공정과 설비를 구축합니다.",
+        "en": "Builds processes and equipment to mass-produce designs without defects."
+      },
+      "tasks": {
+        "ko": "생산 라인 설계 · 자동화 설비 도입 · 공정 최적화 · 양산성 검증 · 설비 셋업",
+        "en": "Line design · Automation equipment · Process optimization · Mass-production validation · Setup"
+      },
+      "skills": {
+        "ko": ["PLC·로보틱스", "기계가공·용접·성형", "공정 설계", "생산성 제고"],
+        "en": ["PLC·Robotics", "Machining·Welding·Forming", "Process design", "Productivity"]
+      },
+      "industries": { "ko": "반도체 · 2차전지 · 완성차 · 철강", "en": "Semiconductors · Batteries · Automotive · Steel" },
+      "logos": [
+        { "src": "prod-samsungsdi.svg", "name": { "ko": "삼성SDI", "en": "Samsung SDI" } },
+        { "src": "prod-lges.svg", "name": { "ko": "LG에너지솔루션", "en": "LG Energy Solution" } },
+        { "src": "prod-skon.jpg", "name": { "ko": "SK온", "en": "SK On" } },
+        { "src": "prod-posco.svg", "name": { "ko": "포스코", "en": "POSCO" } }
+      ]
+    },
+    {
+      "name": { "ko": "품질·신뢰성", "en": "Quality · Reliability" },
+      "degree": { "ko": "학사 적합", "en": "BS-level" },
+      "masters": false,
+      "intro": {
+        "ko": "제품이 요구 사양을 충족하는지 검증하고, 내구성과 신뢰성을 확보·관리합니다.",
+        "en": "Verifies products meet spec and secures durability and reliability."
+      },
+      "tasks": {
+        "ko": "수입·공정·출하 품질 관리 · 신뢰성 시험(내구 테스트) · 불량 원인 분석(FMEA)",
+        "en": "Incoming·in-process·outgoing QC · Reliability testing · Failure analysis (FMEA)"
+      },
+      "skills": {
+        "ko": ["통계적 품질관리(SQC)", "6 Sigma", "파괴·비파괴 검사", "3차원 측정"],
+        "en": ["Statistical QC (SQC)", "6 Sigma", "Destructive·NDT", "CMM measurement"]
+      },
+      "industries": {
+        "ko": "완성차·부품사 · 반도체 장비 · 가전 · 방산 전반",
+        "en": "OEM·suppliers · Semiconductor equipment · Appliances · Defense"
+      },
+      "logos": []
+    },
+    {
+      "name": { "ko": "플랜트·프로젝트 엔지니어링", "en": "Plant · Project Engineering" },
+      "degree": { "ko": "학사 적합", "en": "BS-level" },
+      "masters": false,
+      "intro": {
+        "ko": "발전소·석유화학·반도체 팹 등 대형 산업 설비의 배관·회전기기·구조물을 종합 관리합니다.",
+        "en": "Manages piping, rotating machinery and structures of large industrial facilities such as power, petrochemical and semiconductor plants."
+      },
+      "tasks": {
+        "ko": "배관 설계(P&ID) · 회전기기 사양 검토 · 시공·공정 관리(PM) · EPC 시공 감독",
+        "en": "Piping design (P&ID) · Rotating-equipment specs · Construction·PM · EPC supervision"
+      },
+      "skills": {
+        "ko": ["유체·열역학", "배관·압력용기 규격(ASME)", "프로젝트 관리", "영어 소통"],
+        "en": ["Fluid·Thermal", "Piping·Vessel codes (ASME)", "Project management", "English"]
+      },
+      "industries": { "ko": "발전 · 석유화학 · 조선 · 플랜트 EPC", "en": "Power · Petrochemical · Shipbuilding · Plant EPC" },
+      "logos": [
+        { "src": "plant-doosan.svg", "name": { "ko": "두산에너빌리티", "en": "Doosan Enerbility" } },
+        { "src": "plant-samsungena.svg", "name": { "ko": "삼성E&A", "en": "Samsung E&A" } },
+        { "src": "plant-hyundaieng.svg", "name": { "ko": "현대엔지니어링", "en": "Hyundai Engineering" } },
+        { "src": "plant-kepco.svg", "name": { "ko": "한국전력공사", "en": "KEPCO" } },
+        { "src": "plant-hanwhaocean.svg", "name": { "ko": "한화오션", "en": "Hanwha Ocean" } }
+      ]
+    },
+    {
+      "name": { "ko": "기술영업·SCM", "en": "Technical Sales · SCM" },
+      "degree": { "ko": "학사 적합", "en": "BS-level" },
+      "masters": false,
+      "intro": {
+        "ko": "기계공학 전문 지식으로 B2B 기술 솔루션을 제안하거나, 부품 공급망을 관리합니다.",
+        "en": "Proposes B2B technical solutions with mechanical expertise, or manages the parts supply chain."
+      },
+      "tasks": {
+        "ko": "B2B 기술 스펙 제안 · 고객사 기술 대응 · 공급망(SCM) 수급 계획 · 외주 관리",
+        "en": "B2B spec proposals · Customer technical support · SCM planning · Vendor management"
+      },
+      "skills": {
+        "ko": ["기계 메커니즘 이해", "데이터 분석(Excel/SAP)", "협상·커뮤니케이션", "외국어"],
+        "en": ["Mechanism understanding", "Data analysis (Excel/SAP)", "Negotiation·Communication", "Foreign language"]
+      },
+      "industries": { "ko": "반도체 장비 · 부품 · 산업 자동화", "en": "Semiconductor equipment · Components · Industrial automation" },
+      "logos": [
+        { "src": "sales-asml.svg", "name": { "ko": "ASML", "en": "ASML" } },
+        { "src": "sales-bosch.svg", "name": { "ko": "Bosch", "en": "Bosch" } }
+      ]
+    }
+  ],
+  "graduate": {
+    "steps": [
+      {
+        "title": { "ko": "연구실 컨택", "en": "Lab contact" },
+        "body": { "ko": "관심 교수·연구실에 메일, 주제 확인", "en": "Email professors and confirm research topics" }
+      },
+      {
+        "title": { "ko": "인턴 · 랩미팅", "en": "Internship · Lab meeting" },
+        "body": { "ko": "학부 인턴으로 상호 적합성 확인", "en": "Confirm mutual fit via undergraduate internship" }
+      },
+      {
+        "title": { "ko": "서류", "en": "Application" },
+        "body": { "ko": "지원서·성적·연구계획서 제출", "en": "Submit application, transcript, research plan" }
+      },
+      {
+        "title": { "ko": "면접", "en": "Interview" },
+        "body": { "ko": "지도교수 면담·구술 평가로 확정", "en": "Advisor interview and oral evaluation" }
+      }
+    ],
+    "columns": [
+      { "key": "home", "label": { "ko": "자대 (연세)", "en": "Home (Yonsei)" } },
+      { "key": "other", "label": { "ko": "국내 타대 · 과기원", "en": "Other domestic · KAIST-type" } },
+      { "key": "overseas", "label": { "ko": "해외 (미국)", "en": "Overseas (US)" } }
+    ],
+    "rows": [
+      {
+        "label": { "ko": "지원 시기", "en": "Timing" },
+        "cells": [
+          { "ko": "일반대학원 <b>전기·후기</b> 모집", "en": "General grad <b>Spring·Fall</b> intakes" },
+          { "ko": "학교별 모집 일정 <b>상이</b>", "en": "Schedule <b>varies by school</b>" },
+          { "ko": "가을 입학 · 마감 <b>통상 12–1월</b>", "en": "Fall entry · deadlines <b>usually Dec–Jan</b>" }
+        ]
+      },
+      {
+        "label": { "ko": "재정 구조", "en": "Funding" },
+        "highlight": true,
+        "cells": [
+          { "ko": "연구과제 기반 <b>인건비</b>", "en": "Stipend from <b>research projects</b>" },
+          { "ko": "과기원 <b>등록금·인건비</b> 지원", "en": "<b>Tuition·stipend</b> support" },
+          { "ko": "PhD <b>RA·TA 펀딩</b> / MS <b>자비</b>", "en": "PhD <b>RA·TA funding</b> / MS <b>self-funded</b>" }
+        ]
+      },
+      {
+        "label": { "ko": "학위 과정", "en": "Degree track" },
+        "cells": [
+          { "ko": "학·석사 연계과정 운영", "en": "BS–MS combined track offered" },
+          { "ko": "특별법 근거 이공계 특화 대학원", "en": "STEM-focused grad school by special act" },
+          { "ko": "영어 공인성적 요구", "en": "Standardized English scores required" }
+        ]
+      }
+    ],
+    "linkedTrack": {
+      "tag": { "ko": "자대 고유", "en": "Yonsei-specific" },
+      "note": { "ko": "3학년 판단 · 타임라인 연결", "en": "Year-3 decision · linked to timeline" },
+      "title": { "ko": "학·석사 연계과정", "en": "BS–MS Combined Program" },
+      "body": {
+        "ko": "학부 3학년에 신청, 학사·석사를 단축 연계.",
+        "en": "Apply in year 3 to combine and shorten the BS and MS."
+      },
+      "linkLabel": { "ko": "학사 규정 바로가기 →", "en": "Academic regulations →" },
+      "href": "/undergraduate#requirements"
+    },
+    "military": {
+      "tag": { "ko": "독립 제도", "en": "Separate system" },
+      "note": { "ko": "제도 변동 잦음", "en": "Rules change often" },
+      "title": { "ko": "전문연구요원 (병역)", "en": "Research Personnel (military service)" },
+      "body": {
+        "ko": "석·박사 과정 중 연구기관 복무로 병역 대체.",
+        "en": "Serve at a research institute during MS/PhD as alternative military service."
+      },
+      "sourceLabel": { "ko": "병무청", "en": "MMA" },
+      "sourceUrl": "https://www.mma.go.kr",
+      "updatedAt": "2026.07"
+    }
+  },
+  "branches": [
+    {
+      "name": { "ko": "공기업", "en": "Public Enterprises" },
+      "body": {
+        "ko": "한전·한수원·발전5사·가스공사·코레일·도로공사 등의 기계직에 진출합니다. 전공(4역학)을 중심으로 한 블라인드 채용이 일반적입니다.",
+        "en": "Mechanical roles at KEPCO, KHNP, the five gencos, KOGAS, KORAIL, the Expressway Corp and more. Blind hiring centered on the major (four mechanics) is common."
+      },
+      "metaLabel": { "ko": "선발 축 · 직렬", "en": "Hiring axis · Series" },
+      "chips": {
+        "ko": ["NCS 직업기초", "전공(4역학)", "블라인드 채용"],
+        "en": ["NCS basics", "Major (4 mechanics)", "Blind hiring"]
+      },
+      "linksGrad": false,
+      "sourceLabel": { "ko": "잡알리오 채용정보", "en": "JobAlio postings" },
+      "sourceUrl": "https://job.alio.go.kr",
+      "updatedAt": "2026.07"
+    },
+    {
+      "name": { "ko": "공무원", "en": "Civil Service" },
+      "body": {
+        "ko": "기술직 공무원으로 진출합니다. 시험 체계에 따라 직렬·직류가 나뉩니다.",
+        "en": "Enter as a technical civil servant; series and class split by the exam track."
+      },
+      "metaLabel": { "ko": "직렬 · 직류", "en": "Series · Class" },
+      "chips": {
+        "ko": ["5급 공채 공업직렬 기계직류", "7·9급 기계직", "지방직 시설직(기계)"],
+        "en": ["Grade-5 industrial series, mechanical class", "Grade 7·9 mechanical", "Local facilities (mechanical)"]
+      },
+      "linksGrad": false,
+      "sourceLabel": { "ko": "사이버국가고시센터", "en": "Gosi (civil-exam center)" },
+      "sourceUrl": "https://www.gosi.kr",
+      "updatedAt": "2026.07"
+    },
+    {
+      "name": { "ko": "정부출연연구기관", "en": "Government Research Institutes" },
+      "body": {
+        "ko": "기계연·원자력연·항우연·에너지기술연·생산기술연 등에서 연구를 수행합니다.",
+        "en": "Conduct research at KIMM, KAERI, KARI, KIER, KITECH and similar institutes."
+      },
+      "metaLabel": { "ko": "주요 기관", "en": "Key institutes" },
+      "chips": {
+        "ko": ["한국기계연구원", "원자력연구원", "항공우주연구원"],
+        "en": ["KIMM", "KAERI", "KARI"]
+      },
+      "linksGrad": true
+    },
+    {
+      "name": { "ko": "전문자격", "en": "Professional Licenses" },
+      "body": {
+        "ko": "자격 기반의 전문직 경로입니다. 기계 분야의 수요가 꾸준합니다.",
+        "en": "License-based professional paths; demand stays steady in mechanical fields."
+      },
+      "metaLabel": { "ko": "대표 자격", "en": "Key licenses" },
+      "chips": {
+        "ko": ["변리사(기계)", "기사 → 기술사", "기술장교·군무원"],
+        "en": ["Patent attorney (mech.)", "Engineer → PE", "Tech officer·Civilian mil."]
+      },
+      "linksGrad": false
+    }
+  ],
+  "degrees": {
+    "levels": [
+      { "label": { "ko": "학사", "en": "Bachelor's" }, "abbr": "B.S." },
+      { "label": { "ko": "석사", "en": "Master's" }, "abbr": "M.S." },
+      { "label": { "ko": "박사", "en": "Doctorate" }, "abbr": "Ph.D." }
+    ],
+    "columnTitles": [
+      { "ko": "학사에서 열림", "en": "Opens at BS" },
+      { "ko": "＋ 석사에서 추가", "en": "＋ Added at MS" },
+      { "ko": "＋ 박사에서 추가", "en": "＋ Added at PhD" }
+    ],
+    "roles": [
+      { "level": 0, "name": { "ko": "제품설계", "en": "Product Design" } },
+      { "level": 0, "name": { "ko": "생산기술", "en": "Manufacturing" } },
+      { "level": 0, "name": { "ko": "품질·신뢰성", "en": "Quality·Reliability" } },
+      { "level": 0, "name": { "ko": "플랜트·PE", "en": "Plant·PE" } },
+      { "level": 0, "name": { "ko": "공기업 기계직", "en": "Public-enterprise mech." } },
+      { "level": 0, "name": { "ko": "공무원 기계직류", "en": "Civil-service mech." } },
+      { "level": 1, "name": { "ko": "연구개발(R&D)", "en": "R&D" } },
+      { "level": 1, "name": { "ko": "해석(CAE)", "en": "Analysis (CAE)" } },
+      { "level": 1, "name": { "ko": "정부출연연", "en": "Gov. research inst." } },
+      { "level": 1, "name": { "ko": "전문연구요원", "en": "Research personnel" } },
+      { "level": 2, "name": { "ko": "연구책임(PI)", "en": "Principal Investigator" } },
+      { "level": 2, "name": { "ko": "교수", "en": "Professor" } },
+      { "level": 2, "name": { "ko": "출연연 책임급", "en": "Senior researcher" } }
+    ]
+  }
+}

@@ -7,6 +7,7 @@ import { AboutIntro } from '@/components/AboutIntro';
 import { Prose } from '@/components/Prose';
 import { TabbedContent, type TabItem } from '@/components/TabbedContent';
 import { AdmissionGuide } from '@/components/AdmissionGuide';
+import { CareerPaths } from '@/components/CareerPaths';
 import { FacultyDirectoryGrid } from '@/components/FacultyDirectoryGrid';
 import { HistoryTimeline } from '@/components/HistoryTimeline';
 import { KakaoMap } from '@/components/KakaoMap';
@@ -140,6 +141,13 @@ export default async function AboutPage({ params }: { params: { locale: string }
       markdown: null,
       // 입학 안내 — 대학/대학원 2단 섹션(문안·버튼은 content/admission-guide.json)
       content: <AdmissionGuide locale={params.locale as Locale} />,
+    },
+    {
+      key: 'careers',
+      label: tMenu('about.items.careers'),
+      markdown: null,
+      // 졸업 후 진로 — 타임라인 + 진로 분야(직무/경로/직렬) + 학위 요건 인포그래픽
+      content: <CareerPaths locale={params.locale as Locale} />,
     },
   ];
 

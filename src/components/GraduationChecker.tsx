@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { cn } from '@/lib/utils';
+import { useLandingAnimation } from '@/components/LandingScope';
 import {
   evaluate,
   matchCourses,
@@ -31,7 +32,13 @@ interface UploadedFile {
 /** 스텝 라벨 — 사이트 공통 네이비 박스 문법을 체커 맥락에 맞게 축소한 버전 */
 function StepLabel({ num, title }: { num: string; title: string }) {
   return (
-    <h3 className="inline-block bg-yonsei-navy px-3.5 py-1.5 text-sm font-bold text-white">
+    // 랜딩에선 라벨 박스만 STEP 순서대로 채워진다 — 폼·업로드 UI 가 본체인 탭이라
+    // 입력 요소는 일부러 건드리지 않는다(누르려는 순간 움직이면 미스클릭).
+    <h3
+      data-land="wipe"
+      data-land-order={Number(num)}
+      className="inline-block bg-yonsei-navy px-3.5 py-1.5 text-sm font-bold text-white"
+    >
       STEP {num} <span className="mx-1 opacity-60">·</span> {title}
     </h3>
   );
@@ -279,6 +286,8 @@ function darkCellMask(bitmap: ImageBitmap, darkThreshold: number, scale = 2): HT
  */
 export function GraduationChecker({ data, locale }: { data: CheckerData; locale: Locale }) {
   const ko = locale === 'ko';
+  // 탭 진입 랜딩 — 리드 문단 → STEP 01~04 라벨이 차례로 채워진다(아래 스텝은 스크롤 시)
+  const landingRef = useLandingAnimation<HTMLDivElement>('graduation-checker');
   const [cohortId, setCohortId] = useState(data.cohorts[0].id);
   const [files, setFiles] = useState<UploadedFile[]>([]);
   const [manualIds, setManualIds] = useState<string[]>([]);
@@ -447,8 +456,8 @@ export function GraduationChecker({ data, locale }: { data: CheckerData; locale:
   const pct = Math.min(100, Math.round((result.totalEarned / result.totalRequired) * 100));
 
   return (
-    <div className="space-y-16">
-      <p className="max-w-2xl text-base leading-[1.8] text-content-soft">
+    <div ref={landingRef} className="space-y-16">
+      <p data-land="rise" data-land-order="0" className="max-w-2xl text-base leading-[1.8] text-content-soft">
         {ko
           ? '에브리타임 시간표 캡처를 학기별로 업로드하면, 과목을 자동 인식해 학번별 졸업요건과 대조합니다. 인식 결과는 아래에서 직접 수정할 수 있습니다.'
           : 'Upload your Everytime timetable screenshots (one per semester). Courses are recognized on-device and checked against your cohort’s graduation requirements. You can edit the results below.'}

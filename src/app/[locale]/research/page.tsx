@@ -81,13 +81,20 @@ export default async function ResearchPage({ params }: { params: { locale: strin
           <VisionInfographic locale={locale} />
         </>
       ) : key === 'capacity' ? (
-        <EditorialTab data={getEditorialTab('research-capacity')} locale={locale} />
+        // landing = GSAP 탭 진입 애니메이션 옵트인. 연구 비전은 "빨리 읽히는" 탭이라
+        // 내용을 즉시 보여주는 쪽을 택해 일부러 켜지 않았다(사용자 지시).
+        <EditorialTab data={getEditorialTab('research-capacity')} locale={locale} landing="research-capacity" />
       ) : key === 'social' ? (
         // 신문고 절차는 각진 정사각 상자 + 셰브런 인포그래픽으로
-        <EditorialTab data={getEditorialTab('research-social')} locale={locale} boxedSteps />
+        <EditorialTab
+          data={getEditorialTab('research-social')}
+          locale={locale}
+          boxedSteps
+          landing="research-social"
+        />
       ) : key === 'recruit' ? (
         // 교수 초빙 안내 + 지원서 작성 CTA(맨 아래) — 구 /faculty-recruitment 통합 이전
-        <EditorialTab data={getEditorialTab('recruit-info')} locale={locale} />
+        <EditorialTab data={getEditorialTab('recruit-info')} locale={locale} landing="recruit-info" />
       ) : undefined,
   }));
 

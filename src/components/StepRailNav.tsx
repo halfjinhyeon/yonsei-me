@@ -77,7 +77,9 @@ export function StepRailNav({
             {items.map((it) => {
               const active = it.id === activeId;
               return (
-                <li key={it.id}>
+                // 랜딩: 목차가 위→아래로 짧게 스태거(이동량 6px). sticky 는 조상(nav)에
+                // 걸려 있고 여기 transform 은 끝나면 clearProps 로 지워지므로 안전하다.
+                <li key={it.id} data-land="rise" data-land-y="6" data-land-order="0">
                   <button
                     type="button"
                     onClick={() => goTo(it.id)}
@@ -113,6 +115,9 @@ export function StepRailNav({
               sticky 목차와 함께 따라와 목차 밑 여백을 항상 채운다. 색은 --flow 변수(블루 계열). */}
           <div
             aria-hidden="true"
+            // 랜딩에선 유선이 stroke-dashoffset 으로 "그려진다"(라인아트에 가장 어울리는 장치)
+            data-land="draw"
+            data-land-order="1"
             className="pointer-events-none absolute left-0 right-2 top-[calc(100%+1.5rem)] h-[440px] overflow-hidden opacity-30"
           >
             <FlowLines

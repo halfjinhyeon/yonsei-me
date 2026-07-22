@@ -1,6 +1,7 @@
 import editorialTabs from '@content/editorial-tabs.json';
 import { pick } from '@/lib/content';
 import { EditorialShowcaseItems } from '@/components/EditorialShowcaseItems';
+import { LandingScope } from '@/components/LandingScope';
 import type { Locale } from '@/i18n/routing';
 
 /** 한/영 문자열 쌍 */
@@ -55,7 +56,7 @@ function renderWithUnderline(text: string) {
   if (parts.length === 1) return text;
   return parts.map((seg, i) =>
     i % 2 === 1 ? (
-      <span key={i} className="underline-magical">
+      <span key={i} data-land="underline" data-land-order="2" className="underline-magical">
         {seg}
       </span>
     ) : (
@@ -93,6 +94,8 @@ function CtaLink({ cta, locale }: { cta: EditorialCta; locale: Locale }) {
     <a
       href={cta.href}
       {...external}
+      data-land="wipe"
+      data-land-order="22"
       className="group mt-10 inline-flex items-center gap-3 bg-yonsei-navy px-8 py-4 text-base font-semibold text-white transition-colors hover:bg-yonsei-blue"
     >
       {pick(cta.label, locale)}
@@ -120,9 +123,14 @@ export function EditorialTab({
   locale,
   showcaseItems = false,
   boxedSteps = false,
+  landing,
 }: {
   data: EditorialTabData;
   locale: Locale;
+  /** 지정하면 탭 진입 시 GSAP 랜딩 애니메이션을 켠다(값 = 재방문 감쇠 키).
+   *  옵트인인 이유: 연구 비전·교육 목표처럼 "빨리 읽히는" 탭은 내용을 즉시 보여주는 게
+   *  우선이라 애니메이션을 넣지 않는다(사용자 지시). */
+  landing?: string;
   /** true 면 items 를 번호 그리드 대신 "쇼케이스"(초대형 영문 키워드가 스크롤마다
    *  왼쪽에서 등장하는 세로 스택 — 홍익대 교육방침 레퍼런스)로 렌더 */
   showcaseItems?: boolean;
@@ -142,13 +150,19 @@ export function EditorialTab({
 
   const firstBodyMargin = data.lead ? 'mt-5' : 'mt-6';
 
-  return (
+  // data-land / data-land-order = 랜딩 애니메이션 표식(LandingScope 훅이 읽는다).
+  // landing 이 없으면 그냥 무의미한 속성이라 다른 탭에는 아무 영향이 없다.
+  const body = (
     <div>
       {/* eyebrow (+ 탭 라벨과 다른 제목이 있을 때만 큰 디스플레이 제목) */}
-      <p className="eyebrow">{data.eyebrow}</p>
+      <p data-land="rise" data-land-order="0" className="eyebrow">
+        {data.eyebrow}
+      </p>
       {data.title && (
         /* 세부탭 소제목 서체 = Paperlogy 7 Bold(사용자 지정) — 700 단일이라 가짜 볼드 없음 */
         <h3
+          data-land="rise"
+          data-land-order="1"
           style={{ fontFamily: 'var(--font-subhead), var(--font-sans), sans-serif' }}
           className="mt-4 max-w-3xl text-[clamp(1.8rem,4vw,3rem)] font-bold leading-[1.1] tracking-tight text-content"
         >
@@ -160,6 +174,8 @@ export function EditorialTab({
           실질적인 세부탭 소제목이라 서체도 Paperlogy 7 Bold(제목과 동일 지정). */}
       {data.slogan && (
         <p
+          data-land="rise"
+          data-land-order="1"
           style={{ fontFamily: 'var(--font-subhead), var(--font-sans), sans-serif' }}
           className="mt-6 max-w-4xl text-[clamp(1.5rem,2.8vw,2.25rem)] font-bold leading-[1.35] tracking-tight text-content"
         >
@@ -169,7 +185,11 @@ export function EditorialTab({
 
       {/* lead 문단 */}
       {data.lead && (
-        <p className="mt-6 max-w-prose text-lg leading-relaxed text-content-soft">
+        <p
+          data-land="rise"
+          data-land-order="3"
+          className="mt-6 max-w-prose text-lg leading-relaxed text-content-soft"
+        >
           {renderWithEmailLinks(pick(data.lead, locale))}
         </p>
       )}
@@ -178,6 +198,8 @@ export function EditorialTab({
       {data.body?.map((para, i) => (
         <p
           key={i}
+          data-land="rise"
+          data-land-order="4"
           className={`${i === 0 ? firstBodyMargin : 'mt-5'} max-w-prose text-lg leading-relaxed text-content-soft`}
         >
           {renderWithEmailLinks(pick(para, locale))}
@@ -186,7 +208,7 @@ export function EditorialTab({
 
       {/* image */}
       {data.image && (
-        <figure className="mt-10 overflow-hidden rounded-lg">
+        <figure data-land="rise" data-land-order="5" className="mt-10 overflow-hidden rounded-lg">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src={data.image} alt="" className="w-full" />
         </figure>
@@ -199,9 +221,9 @@ export function EditorialTab({
         <div className="mt-14">
           <ol className={`grid gap-10 ${itemGridCols}`}>
             {data.items.map((item, i) => (
-              <li key={i} className="border-t border-surface-border pt-5">
+              <li key={i} data-land="rise" data-land-order="6" className="border-t border-surface-border pt-5">
                 {item.stat ? (
-                  <span className="block text-4xl font-light text-yonsei-blue">
+                  <span data-land="count" data-land-order="7" className="block text-4xl font-light text-yonsei-blue">
                     {pick(item.stat, locale)}
                   </span>
                 ) : (
@@ -232,6 +254,10 @@ export function EditorialTab({
               {data.steps.map((step, i) => (
                 <li
                   key={i}
+                  // 절차 인포그래픽 — 상자들이 좌→우로 한 칸씩 "그려진" 뒤 셰브런이 붙는다.
+                  // (상자 4개가 한 그룹이라 그룹 내부 스태거 0.12s 로 순차 진행)
+                  data-land="wipe"
+                  data-land-order="10"
                   // lg:pb-12(48px) = 기존 하단 패딩 28px + 20px — 콘텐츠 맞춤 축소 후 밑부분 소폭 복원(사용자 지시)
                   className="relative border-2 border-content p-6 sm:p-7 lg:pb-12"
                 >
@@ -259,6 +285,10 @@ export function EditorialTab({
                     <svg
                       viewBox="0 0 12 24"
                       aria-hidden="true"
+                      // 상자(부모)의 clip-path 리빌이 끝난 뒤 붙는다 — 이동 없이 페이드만
+                      // (상자 바깥에 걸쳐 있어 부모 클립에 가려지므로 순서가 자연히 뒤가 된다)
+                      data-land="fade"
+                      data-land-order="11"
                       className="absolute -right-4 top-1/2 hidden h-6 w-3 -translate-y-1/2 text-content lg:block"
                     >
                       <path d="M2 2l8 10-8 10" fill="none" stroke="currentColor" strokeWidth="2.5" />
@@ -305,11 +335,17 @@ export function EditorialTab({
                 fill="none"
                 stroke="currentColor"
                 strokeWidth="2"
+                data-land="draw"
+                data-land-order="20"
                 className="mx-auto h-6 w-6 text-yonsei-blue"
               >
                 <path d="M12 4v15M5 12l7 7 7-7" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
-              <p className="mt-4 text-2xl font-bold tracking-tight text-content sm:text-3xl">
+              <p
+                data-land="rise"
+                data-land-order="21"
+                className="mt-4 text-2xl font-bold tracking-tight text-content sm:text-3xl"
+              >
                 {pick(data.outcome, locale)}
               </p>
             </div>
@@ -321,4 +357,7 @@ export function EditorialTab({
       {data.cta && <CtaLink cta={data.cta} locale={locale} />}
     </div>
   );
+
+  // LandingScope 는 display:contents 라 레이아웃에 영향이 없다
+  return landing ? <LandingScope name={landing}>{body}</LandingScope> : body;
 }

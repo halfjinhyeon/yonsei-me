@@ -1,5 +1,6 @@
 import { Marked } from 'marked';
 import { StepRailNav } from '@/components/StepRailNav';
+import { LandingScope } from '@/components/LandingScope';
 
 /**
  * 대학원 졸업요건 — "STEP 스크롤" 문법 (참조 시안 + 사이트 공통 문법).
@@ -68,6 +69,9 @@ export function GraduateRequirementSteps({ markdown }: { markdown: string }) {
 
   return (
     // tab(700px)+: 좌측 레일 그리드 — 아이패드 미니·갤럭시 탭 세로에서도 PC 레이아웃(사용자 지시)
+    // 탭 진입 랜딩 — 좌측 목차가 먼저 서고 → 장식 유선이 그려지고 → 첫 STEP 헤더가 채워진다.
+    // (LandingScope 는 display:contents 라 아래 grid 배치에 영향이 없다)
+    <LandingScope name="graduate-requirements">
     <div className="mt-2 border-t border-surface-border tab:grid tab:grid-cols-[12.5rem_minmax(0,1fr)] tab:gap-x-8 lg:gap-x-12">
       <StepRailNav items={sections.map(({ id, num, title }) => ({ id, num, title }))} />
       <div className="divide-y divide-surface-border">
@@ -83,12 +87,18 @@ export function GraduateRequirementSteps({ markdown }: { markdown: string }) {
             <div className={i % 2 === 1 ? 'flex flex-col items-end text-right tab:pr-12' : 'tab:pl-12'}>
               <h3
                 id={`${s.id}-h`}
+                data-land="wipe"
+                data-land-order={10 + i}
                 className="inline-block bg-yonsei-navy px-3.5 py-1.5 text-sm font-bold text-white"
               >
                 STEP {s.num} <span className="mx-1 opacity-60">·</span> {s.title}
               </h3>
               {s.lead && (
-                <p className="mt-4 max-w-2xl text-base leading-relaxed text-content-soft sm:text-lg">
+                <p
+                  data-land="rise"
+                  data-land-order={10 + i}
+                  className="mt-4 max-w-2xl text-base leading-relaxed text-content-soft sm:text-lg"
+                >
                   {s.lead}
                 </p>
               )}
@@ -101,5 +111,6 @@ export function GraduateRequirementSteps({ markdown }: { markdown: string }) {
         ))}
       </div>
     </div>
+    </LandingScope>
   );
 }
