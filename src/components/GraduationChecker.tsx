@@ -939,7 +939,14 @@ export function GraduationChecker({ data, locale }: { data: CheckerData; locale:
                               key={it.name}
                               className="border border-yonsei-navy/30 bg-surface px-2.5 py-1 text-xs font-semibold text-yonsei-navy"
                             >
-                              {it.name} ({it.credits})
+                              {/* 과목명에 이미 "(1)" 같은 편수 괄호가 있어, 학점까지 괄호로 붙이면
+                                  "공학수학(3) (3)" 처럼 같은 숫자가 두 번 나온 오류로 보인다.
+                                  괄호를 걷어내고 학점을 단위와 함께 흐리게 표기해 구분한다. */}
+                              {it.name}
+                              <span className="ml-1.5 font-medium text-yonsei-navy/55">
+                                {it.credits}
+                                {ko ? '학점' : ' cr.'}
+                              </span>
                             </li>
                           ))}
                         </ul>
@@ -1081,7 +1088,14 @@ export function GraduationChecker({ data, locale }: { data: CheckerData; locale:
                               key={it.name}
                               className="border border-yonsei-navy/30 bg-surface px-2.5 py-1 text-xs font-semibold text-yonsei-navy"
                             >
-                              {it.name} ({it.credits})
+                              {/* 과목명에 이미 "(1)" 같은 편수 괄호가 있어, 학점까지 괄호로 붙이면
+                                  "공학수학(3) (3)" 처럼 같은 숫자가 두 번 나온 오류로 보인다.
+                                  괄호를 걷어내고 학점을 단위와 함께 흐리게 표기해 구분한다. */}
+                              {it.name}
+                              <span className="ml-1.5 font-medium text-yonsei-navy/55">
+                                {it.credits}
+                                {ko ? '학점' : ' cr.'}
+                              </span>
                             </li>
                           ))}
                         </ul>

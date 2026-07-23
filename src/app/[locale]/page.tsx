@@ -75,24 +75,16 @@ export default async function HomePage({ params }: { params: { locale: string } 
     }),
   );
 
-  // 뉴스 & 행사 섹션 데이터: 뉴스(news.json)와 행사 게시판(board.events)을 합쳐
-  // 날짜 내림차순으로 상위 12건. 각 항목을 카드가 쓰는 단일 형태로 정규화한다.
-  const newsEventItems = [
-    ...news.map((n) => ({
+  // 뉴스 섹션 데이터: 뉴스(news.json)만 날짜 내림차순 상위 12건(사용자 지시로 행사 제외 —
+  // 행사는 아래 '학사 일정' 섹션이 이미 담당한다). 카드가 쓰는 단일 형태로 정규화한다.
+  const newsEventItems = news
+    .map((n) => ({
       date: n.date,
       title: pick(n.title, locale),
       image: n.image || undefined, // 빈 문자열이면 플레이스홀더로 처리되도록 undefined
       href: `/news/${n.slug}`,
       kind: 'news' as const,
-    })),
-    ...board.events.map((e) => ({
-      date: e.date,
-      title: pick(e.title, locale),
-      image: undefined, // 행사 게시판은 이미지 필드가 없어 항상 플레이스홀더
-      href: `/news/post/${e.id}`,
-      kind: 'event' as const,
-    })),
-  ]
+    }))
     .sort((a, b) => (a.date < b.date ? 1 : -1))
     .slice(0, 12);
 
@@ -239,7 +231,7 @@ export default async function HomePage({ params }: { params: { locale: string } 
           </NoticeSection>
         </div>
 
-        {/* 3. 뉴스 & 행사 — 뉴스(news.json) + 행사(board.events) 카드. */}
+        {/* 3. 뉴스 — 뉴스(news.json) 카드만(행사 제외, 사용자 지시). */}
         <div id="sec-news" className="scroll-mt-16 lg:scroll-mt-20">
           <NewsEventsSection items={newsEventItems} />
         </div>

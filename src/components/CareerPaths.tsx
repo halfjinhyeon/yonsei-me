@@ -114,6 +114,224 @@ function MetaLabel({ children }: { children: React.ReactNode }) {
   );
 }
 
+/* ─────────────────────────────────────────────────────────────
+ * 모바일(md 미만) 전용 폴백 3종.
+ * 데스크톱은 픽셀 불변 — 각 데스크톱 블록에 hidden md:block 만 더하고, 아래 컴포넌트들은
+ * md:hidden 으로 붙인다. display:none 이라 데스크톱에선 zero-rect → LandingScope 가
+ * 그룹째 건너뛰므로(gsap.set 미호출) 랜딩 타이밍도 바이트 단위로 동일하다.
+ * ⚠️ data-land order 대역 분리 필수: ① 모바일 10번대 / ③ 모바일 70번대.
+ *    데스크톱(①=0~5, ③=60~62)과 order 를 공유하면 회전 시 콘텐츠 실종 + 타이밍 변형.
+ * ───────────────────────────────────────────────────────────── */
+
+/** ① 모바일 세로 타임라인 — 학년을 세로축으로(위 1학년 → 아래 4학년) 뒤집는다.
+ *  마크의 at 값(12.5/62.5/87.5%)이 학년 중앙에 대응하므로 floor(at/25)로 학년별로 묶는다.
+ *  각 마크는 버튼이라 누르면 아래 '진로 분야' 패널이 해당 트랙으로 전환된다(데스크톱과 동일). */
+function MobileTimeline({ ko, setField }: { ko: boolean; setField: (n: number) => void }) {
+  const t = (v: L) => (ko ? v.ko : v.en);
+  // 학년(0~3) → 그 학년에 놓이는 { 트랙 인덱스, 마크 } 목록. floor(at/25)를 0~3으로 클램프.
+  const byYear: { ti: number; m: { at: number; label: L; solid?: boolean } }[][] = [[], [], [], []];
+  DATA.timeline.tracks.forEach((track, ti) =>
+    track.marks.forEach((m) => {
+      const yi = Math.min(3, Math.max(0, Math.floor(m.at / 25)));
+      byYear[yi].push({ ti, m });
+    }),
+  );
+
+  return (
+    <ol className="mt-4 md:hidden">
+      {DATA.timeline.years.map((year, yIdx) => {
+        const items = byYear[yIdx];
+        const fork = yIdx === 2; // 3학년 = 의사결정 분기점
+        return (
+          <li
+            key={yIdx}
+            data-land="rise"
+            data-land-order="10"
+            className="relative grid grid-cols-[3rem_minmax(0,1fr)] gap-x-3 pb-6 last:pb-0"
+          >
+            {/* 세로 스파인 — 마지막 학년 빼고 다음 노드까지 이어진다 */}
+            {yIdx < 3 && (
+              <span
+                aria-hidden="true"
+                className="absolute left-[5px] top-3 bottom-0 w-px bg-surface-border"
+              />
+            )}
+            {/* 학년 노드 + 라벨 */}
+            <div className="flex flex-col items-start">
+              <span
+                aria-hidden="true"
+                className={cn(
+                  'ml-[1px]',
+                  fork ? 'h-2.5 w-2.5 rotate-45 bg-yonsei-navy' : 'mt-0.5 h-2 w-2 rounded-full bg-yonsei-navy',
+                )}
+              />
+              <span
+                className={cn('mt-1.5 text-[13px] font-bold', fork ? 'text-yonsei-navy' : 'text-content')}
+              >
+                {t(year)}
+              </span>
+            </div>
+            {/* 우측 — 분기점 문구 + 마크 버튼(트랙 색) */}
+            <div className="min-w-0">
+              {fork && (
+                <p className="mb-2.5 text-[13px] font-bold leading-snug text-yonsei-navy">
+                  {t(DATA.timeline.decision.title)}
+                  <span className="mt-0.5 block break-keep text-[11.5px] font-semibold text-content-faint">
+                    {t(DATA.timeline.decision.detail)}
+                  </span>
+                </p>
+              )}
+              {items.length === 0 ? (
+                <p className="py-1.5 text-[13px] text-content-faint">
+                  {ko ? '전공 기초 · 진로 탐색' : 'Foundations · exploration'}
+                </p>
+              ) : (
+                <ul className="flex flex-col gap-2">
+                  {items.map(({ ti, m }, k) => {
+                    const tone = TRACK_TONE[ti];
+                    return (
+                      <li key={k}>
+                        <button
+                          type="button"
+                          onClick={() => setField(ti)}
+                          className={cn(
+                            'flex min-h-[44px] w-full items-center gap-2.5 border px-3 py-2 text-left transition-opacity hover:opacity-90',
+                            m.solid ? cn(tone.bg, 'border-transparent') : cn('bg-surface', tone.border),
+                          )}
+                        >
+                          <span
+                            aria-hidden="true"
+                            className={cn('h-2.5 w-2.5 shrink-0 rounded-full', m.solid ? 'bg-white' : tone.bg)}
+                          />
+                          <span className="min-w-0 flex-1">
+                            <span
+                              className={cn(
+                                'block text-[10.5px] font-bold uppercase tracking-wide',
+                                m.solid ? 'text-white/80' : tone.text,
+                              )}
+                            >
+                              {t(DATA.timeline.tracks[ti].label)}
+                            </span>
+                            <span
+                              className={cn(
+                                'block break-keep text-[14px] font-semibold',
+                                m.solid ? 'text-white' : 'text-content',
+                              )}
+                            >
+                              {t(m.label)}
+                            </span>
+                          </span>
+                        </button>
+                      </li>
+                    );
+                  })}
+                </ul>
+              )}
+            </div>
+          </li>
+        );
+      })}
+    </ol>
+  );
+}
+
+/** ③-1 모바일 중첩 프레임(벤다이어그램) — 데스크톱의 '단계형 막대 + 학위별 신규 진로 열'을
+ *  대체한다. 박사(바깥) ⊃ 석사 ⊃ 학사(안쪽) 중첩으로 "상위 학위가 하위 진로를 포함"을
+ *  도형 자체로 표현. 각 프레임의 칩 = 그 학위에서 새로 열리는 진로(데스크톱 열과 동일 집합). */
+const NEST_STYLE = [
+  // level 0 학사 — 스카이 테두리 + 아주 연한 면
+  { box: 'border-yonsei-sky bg-surface-soft', label: 'bg-yonsei-sky', chip: 'border-yonsei-sky text-yonsei-sky' },
+  // level 1 석사 — 블루
+  { box: 'border-yonsei-blue', label: 'bg-yonsei-blue', chip: 'border-yonsei-blue text-yonsei-blue' },
+  // level 2 박사 — 네이비
+  { box: 'border-yonsei-navy', label: 'bg-yonsei-navy', chip: 'border-yonsei-navy text-yonsei-navy' },
+] as const;
+
+function DegreeNestFrame({ level, ko }: { level: number; ko: boolean }) {
+  const t = (v: L) => (ko ? v.ko : v.en);
+  const s = NEST_STYLE[level];
+  const lv = DATA.degrees.levels[level];
+  const roles = DATA.degrees.roles.filter((r) => r.level === level);
+  return (
+    // 바깥(박사, order 70)이 먼저, 안쪽(학사, order 72)이 나중에 리빌 → 펼쳐지는 인상.
+    // 중첩된 wipe 는 자식이 부모 clip 안에 있어도 각자 clip 을 가져 순차 등장한다.
+    <div data-land="wipe" data-land-order={72 - level} className={cn('border-2 p-2.5', s.box)}>
+      <div className="flex items-baseline gap-2">
+        <span
+          style={{ fontFamily: 'var(--font-subhead), var(--font-sans), sans-serif' }}
+          className={cn('px-2.5 py-1 text-[15px] font-bold text-white', s.label)}
+        >
+          {t(lv.label)}
+        </span>
+        <span className="text-[11px] font-semibold text-content-faint">{lv.abbr}</span>
+      </div>
+      <ul className="mt-2 flex flex-wrap gap-1.5">
+        {roles.map((r) => (
+          <li
+            key={t(r.name)}
+            className={cn('break-keep border bg-surface px-2 py-1 text-[12.5px] font-semibold', s.chip)}
+          >
+            {t(r.name)}
+          </li>
+        ))}
+      </ul>
+      {level > 0 && (
+        <div className="mt-2.5">
+          <DegreeNestFrame level={level - 1} ko={ko} />
+        </div>
+      )}
+    </div>
+  );
+}
+
+function DegreeNest({ ko }: { ko: boolean }) {
+  return (
+    <div
+      className="mt-2 md:hidden"
+      role="group"
+      aria-label={
+        ko
+          ? '학위 포함 구조 — 박사가 석사를, 석사가 학사의 진로를 모두 포함합니다.'
+          : 'Degree containment — a Doctorate includes all Master’s paths, which include all Bachelor’s paths.'
+      }
+    >
+      <DegreeNestFrame level={2} ko={ko} />
+    </div>
+  );
+}
+
+/** ③-2 모바일 '진로별 필요 학위' 목록 — 데스크톱 매트릭스(39점 격자)의 역방향 조회.
+ *  셀 값이 c>=r.level 이라 각 행은 level 하나로 완전히 결정된다 → 39점을 13배지로 무손실 압축.
+ *  가로 스크롤(min-w-520px) 문제를 없애고 스크린리더 발화도 39→13회로 줄인다. */
+function MobileDegreeList({ ko }: { ko: boolean }) {
+  const t = (v: L) => (ko ? v.ko : v.en);
+  const badge = ['bg-yonsei-sky', 'bg-yonsei-blue', 'bg-yonsei-navy'];
+  return (
+    <div data-land="rise" data-land-order="73" className="mt-12 md:hidden">
+      <p className="mb-3 text-sm font-bold text-content">
+        {ko ? '진로별 필요 학위' : 'Minimum degree by path'}
+      </p>
+      <ul className="border-t border-surface-border">
+        {DATA.degrees.roles.map((r) => (
+          <li
+            key={t(r.name)}
+            className="flex min-h-[44px] items-center justify-between gap-3 border-b border-surface-border py-2"
+          >
+            <span className="break-keep text-[15px] font-semibold text-content">{t(r.name)}</span>
+            <span
+              className={cn('shrink-0 px-2 py-[3px] text-[11.5px] font-bold text-white', badge[r.level])}
+            >
+              {ko
+                ? `${DATA.degrees.levels[r.level].label.ko}부터`
+                : `${DATA.degrees.levels[r.level].abbr}+`}
+            </span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
 /**
  * 졸업 후 진로 — 학부 탭 인포그래픽 (Claude Design 시안 이식).
  *
@@ -150,8 +368,12 @@ export function CareerPaths({ locale }: { locale: Locale }) {
           {ko ? '학년별 진로 준비 타임라인' : 'Career preparation timeline by year'}
         </h4>
 
-        {/* 좁은 화면은 가로 스크롤(시안 min-width 820px 유지) */}
-        <div className="mt-5 overflow-x-auto">
+        {/* 모바일(md 미만): 가로 시간축을 세로로 뒤집는다(사용자 지시). */}
+        <MobileTimeline ko={ko} setField={setFieldWrapped} />
+
+        {/* md 이상: 기존 가로 타임라인 그대로(시안 min-width 820px). 래퍼에 hidden md:block 만
+            더해 모바일에서 감춘다 — 데스크톱 픽셀·랜딩 타이밍 불변. */}
+        <div className="mt-5 hidden overflow-x-auto md:block">
           <div className="relative min-w-[820px]">
             {/* 3학년 의사결정 구간 밴드 */}
             <div
@@ -674,7 +896,12 @@ export function CareerPaths({ locale }: { locale: Locale }) {
             : 'Each higher degree includes all the paths of the degrees below it.'}
         </p>
 
-        <div className="overflow-x-auto">
+        {/* 모바일(md 미만): 계단 막대 + 학위별 신규 진로 열을 중첩 프레임(벤다이어그램)으로
+            대체(사용자 지시). 박사 ⊃ 석사 ⊃ 학사 중첩이 "포함"을 도형으로 표현. */}
+        <DegreeNest ko={ko} />
+
+        {/* md 이상: 기존 막대+칩 그리드 그대로. 래퍼에 hidden md:block. */}
+        <div className="hidden overflow-x-auto md:block">
           <div className="min-w-[700px]">
             {/* 단계형 막대 — 학위 상승에 따라 도달 범위 증가 */}
             <div className="grid grid-cols-3 items-end">
@@ -741,8 +968,12 @@ export function CareerPaths({ locale }: { locale: Locale }) {
           </div>
         </div>
 
-        {/* 진로 × 학위 매트릭스 */}
-        <div className="mt-14">
+        {/* 모바일(md 미만): 매트릭스(39점 격자)를 '진로별 필요 학위' 목록으로 무손실 압축.
+            벤다이어그램(도형)의 역방향 조회(진로→학위)를 담당한다. */}
+        <MobileDegreeList ko={ko} />
+
+        {/* md 이상: 진로 × 학위 매트릭스 그대로. 래퍼에 hidden md:block. */}
+        <div className="mt-14 hidden md:block">
           <p className="mb-4 max-w-[72ch] text-sm text-content-faint">
             {ko ? '학위 매트릭스' : 'Degree matrix'}
           </p>
