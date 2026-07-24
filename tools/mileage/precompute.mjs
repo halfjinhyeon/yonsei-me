@@ -15,8 +15,31 @@
  *    산출물(precomputed_curves.json)은 쓰지 않는다. 원자료(이력 DB)만 활용한다.
  */
 import { DatabaseSync } from 'node:sqlite';
-import { writeFileSync, mkdirSync } from 'node:fs';
-import { dirname } from 'node:path';
+import { writeFileSync, mkdirSync, readFileSync, existsSync } from 'node:fs';
+import { dirname, join } from 'node:path';
+import { fileURLToPath } from 'node:url';
+
+/**
+ * 과거 학기 담당 교수 보강표(tools/mileage/professor-history.csv).
+ *
+ * 크롤링 원본에는 현재 학기 교수만 있어, 분반-교수 교체가 잦은 과목은 분반 번호로 이력을
+ * 묶으면 서로 다른 교수의 컷이 섞인다. 이 표가 있는 (과목·분반·학기)는 실제 교수를 붙여
+ * 교수 기준으로 재배치한다. 표에 없으면 기존대로 분반 계보를 따른다.
+ */
+function loadProfessorHistory() {
+  const p = join(dirname(fileURLToPath(import.meta.url)), 'professor-history.csv');
+  const map = new Map(); // "code|division|year|semester" -> professor
+  if (!existsSync(p)) return map;
+  for (const line of readFileSync(p, 'utf8').split(/\r?\n/)) {
+    const t = line.trim();
+    if (!t || t.startsWith('#') || t.startsWith('year,')) continue;
+    const [year, semester, code, division, professor] = t.split(',').map((x) => x.trim());
+    if (!year || !code || !division || !professor) continue;
+    map.set(`${code}|${division.padStart(2, '0')}|${year}|${semester}`, professor);
+  }
+  return map;
+}
+const profHistory = loadProfessorHistory();
 
 const dbPath = process.argv[2];
 const outPath = process.argv[3] ?? 'public/data/mileage-2026-20.json';
@@ -82,6 +105,8 @@ for (const [k, s] of summaryMap) {
     cutoff: Number(cutoff),
     capacity: s.capacity ?? null,
     applicants: s.applicants ?? null,
+    // 그 학기의 실제 담당 교수(알 수 있는 과목만) — 이력을 교수 기준으로 재배치하는 근거
+    professor: profHistory.get(`${code}|${division}|${year}|${semester}`),
   });
 }
 
@@ -356,6 +381,7 @@ for (const p of predictions) byBasis[p.basis] = (byBasis[p.basis] ?? 0) + 1;
 const size = (JSON.stringify(bundle).length / 1024).toFixed(0);
 console.log(`✔ ${outPath}  (${size} KB)`);
 console.log(`  분반 ${sections.length}개 · 이력 보유 ${histories.length}개`);
+console.log(`  교수 이력 보강: ${profHistory.size}건 (과거 학기 담당 교수 확인분)`);
 console.log(`  추정 근거:`, byBasis);
 console.log(
   `  학년 동점 합격률:`,

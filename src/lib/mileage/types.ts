@@ -42,6 +42,12 @@ export interface SectionMeta extends SectionKey {
 export interface HistoryPoint {
   year: string;
   semester: SemesterCode;
+  /**
+   * 그 학기의 실제 담당 교수. 분반-교수 교체가 잦은 과목(예: 공학수학)에서 이력을
+   * 교수 기준으로 재배치하기 위해 쓴다. 자료가 없으면 undefined —
+   * 이 경우 "분반 계보"(같은 분반 번호 = 같은 흐름)로 취급한다.
+   */
+  professor?: string;
   /** 합격자 중 최저 배점(= 컷). 미달(전원 수용)이면 0 */
   cutoff: number;
   /** 정원. 미상이면 null */

@@ -183,10 +183,23 @@ export function predictAll({ sections, histories, target, tuning }: PredictInput
     if (cur) cur.push(...pts);
     else m.set(k, [...pts]);
   };
+  /**
+   * 이력 한 점의 담당 교수. 자료가 있으면 그 학기의 실제 교수를, 없으면 그 분반의
+   * (현재) 교수를 쓴다 — 후자는 "분반 계보" 가정이며 담당이 안정적인 대부분의 과목에서 무해하다.
+   */
+  const profOf = (h: SectionHistory, p: HistoryPoint) => p.professor ?? h.professor;
+
   for (const h of histories) {
-    push(byCourseProfDiv, `${h.code}|${h.professor}|${h.division}`, h.points);
-    push(byCourseProf, `${h.code}|${h.professor}`, h.points);
-    push(byCourse, h.code, h.points);
+    for (const p of h.points) {
+      const prof = profOf(h, p);
+      // L1(분반): 같은 분반이면서 그 학기 담당 교수까지 같은 관측만 넣는다.
+      //   분반 번호가 같아도 교수가 바뀌었다면 다른 흐름이므로 여기서 제외된다(사용자 지시).
+      push(byCourseProfDiv, `${h.code}|${prof}|${h.division}`, [p]);
+      // L2(교수): 분반이 달라도 같은 교수가 가르친 이력은 그 교수를 따라간다.
+      push(byCourseProf, `${h.code}|${prof}`, [p]);
+      // L3(과목): 교수 무관
+      push(byCourse, h.code, [p]);
+    }
   }
 
   // L4 그룹(학과 + 학년대) 평균 — cold start 기준선

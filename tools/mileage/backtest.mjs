@@ -13,6 +13,26 @@
  *   Brier    확률 예측의 정확도(낮을수록 좋음). 실제 합격/불합격을 맞혔는지까지 본다
  */
 import { DatabaseSync } from 'node:sqlite';
+import { readFileSync, existsSync } from 'node:fs';
+import { dirname, join } from 'node:path';
+import { fileURLToPath } from 'node:url';
+
+/** 과거 담당 교수 보강표 — precompute 와 동일 자료 */
+function loadProfessorHistory() {
+  const p = join(dirname(fileURLToPath(import.meta.url)), 'professor-history.csv');
+  const m = new Map();
+  if (!existsSync(p) || process.env.NO_PROF_HISTORY) return m;
+  for (const line of readFileSync(p, 'utf8').split(/\r?\n/)) {
+    const t = line.trim();
+    if (!t || t.startsWith('#') || t.startsWith('year,')) continue;
+    const [y, s, c, d, prof] = t.split(',').map(x => x.trim());
+    if (!y || !c || !d || !prof) continue;
+    m.set(`${c}|${d.padStart(2,'0')}|${y}|${s}`, prof);
+  }
+  return m;
+}
+const profHistory = loadProfessorHistory();
+const ONLY = process.env.ONLY_COURSE || null;
 
 const dbPath = process.argv[2];
 const target = process.argv[3] ?? '2026-10';
@@ -61,6 +81,7 @@ for (const s of summary) {
     cutoff: Number(cut),
     capacity: null,
     applicants: null,
+    professor: profHistory.get(`${s.course_code}|${s.division}|${s.year}|${s.semester}`),
   });
 }
 
@@ -73,6 +94,7 @@ for (const s of summary) {
   if (s.year !== TY || s.semester !== TS) continue;
   const truth = cutMap.get(`${s.course_code}|${s.division}|${TY}|${TS}`);
   if (truth === null || truth === undefined) continue;
+  if (ONLY && s.course_code !== ONLY) continue;
   evalSet.push({ code: s.course_code, division: s.division, truth: Number(truth) });
 }
 
