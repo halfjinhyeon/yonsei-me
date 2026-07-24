@@ -889,7 +889,7 @@ function SectionDetailPanel({ section, ko }: { section: Section; ko: boolean }) 
     return <p className="mt-2 text-[11.5px] text-content-faint">{ko ? '이 분반의 과거 자료가 없습니다.' : 'No records.'}</p>;
   }
 
-  const { stats, rules, history, perGrade, tieCredit } = detail;
+  const { stats, rules, perGrade, tieCredit } = detail;
   const profHist = detail.professorHistory ?? [];
   const majorN = majorQuotaCount(rules.majorQuota);
   const rate =
@@ -1031,69 +1031,6 @@ function SectionDetailPanel({ section, ko }: { section: Section; ko: boolean }) 
         )}
       </div>
 
-      {/* 이 분반 자체의 기록(담당이 달랐던 학기 포함) — 정원 변화 등 맥락용 보조 자료 */}
-      <div>
-        <DetailHead>{ko ? '이 분반의 기록 (참고)' : 'This section (reference)'}</DetailHead>
-        {history.length ? (
-          <div className="mt-1.5 overflow-x-auto">
-            <table className="w-full min-w-[300px] border-collapse text-[11.5px]">
-              <thead>
-                <tr className="border-b border-t border-surface-border text-content-faint">
-                  <th scope="col" className="py-1 text-left font-semibold">{ko ? '학기' : 'Term'}</th>
-                  <th scope="col" className="py-1 text-left font-semibold">{ko ? '담당' : 'Prof.'}</th>
-                  <th scope="col" className="py-1 text-right font-semibold">{ko ? '컷' : 'Cut'}</th>
-                  <th scope="col" className="py-1 text-right font-semibold">{ko ? '정원' : 'Cap.'}</th>
-                  <th scope="col" className="py-1 text-right font-semibold">{ko ? '신청' : 'Applied'}</th>
-                </tr>
-              </thead>
-              <tbody>
-                {history.map(([term, cut, cap, app, prof], i) => {
-                  // 담당 교수가 확인되고 지금 교수와 다르면 "남의 기록"이다 — 흐리게 처리하고 표시한다
-                  const other = !!prof && !!section.professor && prof !== section.professor;
-                  return (
-                    <tr key={term} className="border-b border-surface-border">
-                      <td className={cn('py-1', other && 'text-content-faint')}>
-                        {fmtTerm(term, ko)}
-                        {i === 0 && (
-                          <span className="ml-1 bg-yonsei-navy px-1 py-px text-[9px] font-bold text-white">
-                            {ko ? '최신' : 'latest'}
-                          </span>
-                        )}
-                      </td>
-                      <td className={cn('py-1', other ? 'text-content-faint' : 'font-semibold text-content')}>
-                        {prof ?? '—'}
-                        {other && (
-                          <span className="ml-1 text-[9.5px]" style={{ color: WARN_AMBER }}>
-                            {ko ? '(다른 교수)' : '(other)'}
-                          </span>
-                        )}
-                      </td>
-                      <td
-                        className={cn(
-                          'py-1 text-right tabular-nums',
-                          other ? 'text-content-faint' : 'font-bold text-content',
-                        )}
-                      >
-                        {cut}mp
-                      </td>
-                      <td className="py-1 text-right tabular-nums text-content-faint">{cap ?? '—'}</td>
-                      <td className="py-1 text-right tabular-nums text-content-faint">{app ?? '—'}</td>
-                    </tr>
-                  );
-                })}
-              </tbody>
-            </table>
-
-            <p className="mt-1.5 text-[10.5px] leading-relaxed text-content-faint">
-              {ko
-                ? '이 분반 자리의 변화(정원·경쟁)를 보는 용도입니다. 예측에는 위 담당 교수 이력을 씁니다.'
-                : 'Shown for seat/demand context only — the forecast uses the professor history above.'}
-            </p>
-          </div>
-        ) : (
-          <p className="mt-1 text-[11px] text-content-faint">{ko ? '기록 없음' : 'No history'}</p>
-        )}
-      </div>
     </div>
   );
 }

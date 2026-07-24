@@ -186,9 +186,6 @@ export interface SectionDetail {
     /** 학년별 정원. 전부 0이면 null(학년 제한 없음) */
     yearQuotas: Record<string, number> | null;
   };
-  /** ③ 과거 이력 — [학기, 컷, 정원, 신청자, 그 학기 담당 교수] 최신순.
-   *  교수를 함께 실어야 "이 컷이 누구 것인지"를 구분할 수 있다(분반 번호가 같아도 담당은 바뀐다). */
-  history: [string, number, number | null, number | null, string | null][];
   /**
    * 현재 담당 교수의 이 과목 이력 — 분반을 옮겼어도 전부 따라온다.
    * 학생은 분반 번호가 아니라 담당 교수를 보고 고르므로 화면의 '과거 이력'은 이것이 주가 된다.

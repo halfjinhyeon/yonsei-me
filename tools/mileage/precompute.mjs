@@ -392,19 +392,6 @@ for (const s of sections) {
       majorQuota: lastSum?.major_ratio ?? null,
       yearQuotas: quotas,
     },
-    // ③ 과거 이력 (최신순) — [학기, 컷, 정원, 신청, 그 학기 담당 교수]
-    //    담당 교수를 함께 실어야 "이 컷이 누구 것인지"를 화면에서 구분할 수 있다.
-    //    분반 번호가 같아도 교수가 바뀌면 다른 사람의 기록이다(사용자 지적).
-    history: pts.map((p) => {
-      const sm = summaryByKey.get(`${s.code}|${s.division}|${p.year}|${p.semester}`);
-      return [
-        `${p.year}-${p.semester}`,
-        p.cutoff,
-        sm?.capacity ?? null,
-        sm?.applicants ?? null,
-        p.professor ?? null,
-      ];
-    }),
     /**
      * **현재 담당 교수의 이 과목 이력** — 분반을 옮겼어도 전부 따라온다.
      *
