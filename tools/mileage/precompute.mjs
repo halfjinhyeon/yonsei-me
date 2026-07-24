@@ -46,7 +46,7 @@ const cutRows = db
 const summaryRows = db
   .prepare(
     `SELECT course_code, division, year, semester, capacity, applicants,
-            min_mileage, max_allowed
+            min_mileage, avg_mileage, max_mileage, max_allowed, major_ratio, year_quotas
        FROM mileage_summary`,
   )
   .all();
@@ -192,7 +192,7 @@ for (const [sk, pts] of histBySection) {
 
 // ── 예측 적합 (엔진 재사용) ────────────────────────────────────
 const { predictAll } = await import('../../src/lib/mileage/predict.ts');
-const predictions = predictAll({ sections, histories, latestYear: 2026 });
+const predictions = predictAll({ sections, histories, target: { year: TARGET_YEAR, semester: TARGET_SEM } });
 
 // 분반별 상한 반영
 for (const p of predictions) {
@@ -224,6 +224,130 @@ const bundle = {
 
 mkdirSync(dirname(outPath), { recursive: true });
 writeFileSync(outPath, JSON.stringify(bundle));
+
+// ── ⑤ 상세 데이터(지연 로딩용 별도 파일) ───────────────────────
+// 기본 통계·정원&규정·과거 이력 세 가지를 담는다(사용자 지시 4). 초기 로딩을 무겁게 하지
+// 않으려고 본 번들과 분리해, 사용자가 과목 상세를 처음 열 때만 받는다.
+const detailPath = outPath.replace(/\.json$/, '-detail.json');
+
+/** 학년별 컷 — 학년 정원이 걸린 과목은 학년마다 컷이 다르다(사용자 지시 3) */
+const gradeCutRows = db
+  .prepare(
+    `SELECT course_code, division, year, semester, grade,
+            MIN(CASE WHEN success='Y' THEN mileage END) AS cut,
+            COUNT(*) AS applied,
+            SUM(CASE WHEN success='Y' THEN 1 ELSE 0 END) AS won
+       FROM mileage_bids
+      WHERE grade IN ('1','2','3','4')
+      GROUP BY course_code, division, year, semester, grade`,
+  )
+  .all();
+
+/** 동점(배점=컷)에서 갈린 총이수학점 비율 — 같은 학년 안에서 순위를 가르는 실질 기준 */
+const tieCreditRows = db
+  .prepare(
+    `SELECT b.course_code, b.division, b.year, b.semester,
+            MIN(CASE WHEN b.success='Y' THEN
+                CAST(substr(b.earned_ratio,1,instr(b.earned_ratio,'/')-1) AS REAL)
+              / NULLIF(CAST(substr(b.earned_ratio,instr(b.earned_ratio,'/')+1) AS REAL),0) END) AS winMin,
+            MAX(CASE WHEN b.success<>'Y' THEN
+                CAST(substr(b.earned_ratio,1,instr(b.earned_ratio,'/')-1) AS REAL)
+              / NULLIF(CAST(substr(b.earned_ratio,instr(b.earned_ratio,'/')+1) AS REAL),0) END) AS loseMax
+       FROM mileage_bids b
+       JOIN (SELECT course_code, division, year, semester,
+                    MIN(CASE WHEN success='Y' THEN mileage END) AS cut
+               FROM mileage_bids GROUP BY course_code, division, year, semester) t
+         ON t.course_code=b.course_code AND t.division=b.division
+        AND t.year=b.year AND t.semester=b.semester
+      WHERE t.cut IS NOT NULL AND b.mileage = t.cut
+        AND b.earned_ratio LIKE '%/%'
+      GROUP BY b.course_code, b.division, b.year, b.semester`,
+  )
+  .all();
+
+const latestOf = (k) => {
+  // 그 분반의 가장 최근 학기 키
+  const pts = histBySection.get(k) ?? [];
+  let best = null;
+  for (const p of pts) {
+    const o = Number(p.year) * 2 + (p.semester === '10' ? 0 : 1);
+    if (!best || o > best.o) best = { o, year: p.year, semester: p.semester };
+  }
+  return best;
+};
+
+const gradeCutIdx = new Map();
+for (const r of gradeCutRows) {
+  gradeCutIdx.set(`${r.course_code}|${r.division}|${r.year}|${r.semester}|${r.grade}`, r);
+}
+const tieCreditIdx = new Map(
+  tieCreditRows.map((r) => [`${r.course_code}|${r.division}|${r.year}|${r.semester}`, r]),
+);
+const summaryByKey = new Map(summaryRows.map((r) => [sumKey(r), r]));
+
+const detail = {};
+for (const s of sections) {
+  const k = `${s.code}|${s.division}`;
+  const pts = (histBySection.get(k) ?? [])
+    .slice()
+    .sort((a, b) => Number(b.year) * 2 + (b.semester === '10' ? 0 : 1) - (Number(a.year) * 2 + (a.semester === '10' ? 0 : 1)));
+  const last = latestOf(k);
+  const lastSum = last ? summaryByKey.get(`${s.code}|${s.division}|${last.year}|${last.semester}`) : null;
+
+  // 학년별 컷(가장 최근 학기 기준)
+  const perGrade = {};
+  if (last) {
+    for (const g of ['1', '2', '3', '4']) {
+      const r = gradeCutIdx.get(`${s.code}|${s.division}|${last.year}|${last.semester}|${g}`);
+      if (r && r.cut !== null && r.applied > 0) {
+        perGrade[g] = { cut: r.cut, applied: r.applied, won: r.won };
+      }
+    }
+  }
+  const tc = last ? tieCreditIdx.get(`${s.code}|${s.division}|${last.year}|${last.semester}`) : null;
+
+  let quotas = null;
+  try {
+    quotas = lastSum?.year_quotas ? JSON.parse(lastSum.year_quotas) : null;
+    if (quotas && Object.values(quotas).every((v) => !v)) quotas = null; // 전부 0이면 학년 제한 없음
+  } catch {
+    quotas = null;
+  }
+
+  detail[`${s.code}-${s.division}`] = {
+    // ① 기본 통계
+    stats: lastSum
+      ? {
+          semester: `${last.year}-${last.semester}`,
+          capacity: lastSum.capacity ?? null,
+          applicants: lastSum.applicants ?? null,
+          avg: lastSum.avg_mileage ?? null,
+          max: lastSum.max_mileage ?? null,
+        }
+      : null,
+    // ② 정원 & 규정
+    rules: {
+      maxAllowed: lastSum?.max_allowed ?? null,
+      majorQuota: lastSum?.major_ratio ?? null,
+      yearQuotas: quotas,
+    },
+    // ③ 과거 이력 (최신순)
+    history: pts.map((p) => {
+      const sm = summaryByKey.get(`${s.code}|${s.division}|${p.year}|${p.semester}`);
+      return [
+        `${p.year}-${p.semester}`,
+        p.cutoff,
+        sm?.capacity ?? null,
+        sm?.applicants ?? null,
+      ];
+    }),
+    // 학년별 컷 + 동점 시 총이수학점 비율 경계
+    perGrade: Object.keys(perGrade).length ? perGrade : null,
+    tieCredit: tc && tc.winMin !== null ? { winMin: +tc.winMin.toFixed(3), loseMax: tc.loseMax !== null ? +tc.loseMax.toFixed(3) : null } : null,
+  };
+}
+
+writeFileSync(detailPath, JSON.stringify({ v: 1, detail }));
 
 // ── 리포트 ────────────────────────────────────────────────────
 const byBasis = {};

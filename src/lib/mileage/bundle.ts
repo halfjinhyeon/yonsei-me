@@ -164,6 +164,67 @@ export function confidenceReason(s: Pick<Section, 'basis' | 'samples'>, ko = tru
   }
 }
 
+/* ────────────────────────────────────────────────────────────────
+ * 분반 상세 — 기본 통계 / 정원·규정 / 과거 이력 (지연 로딩)
+ * 본 번들(286KB)과 분리해 두고, 사용자가 상세를 처음 열 때만 받는다(1MB).
+ * ──────────────────────────────────────────────────────────────── */
+
+export interface SectionDetail {
+  /** ① 기본 통계 — 가장 최근 학기 기준 */
+  stats: {
+    semester: string;
+    capacity: number | null;
+    applicants: number | null;
+    avg: number | null;
+    max: number | null;
+  } | null;
+  /** ② 정원 & 규정 */
+  rules: {
+    maxAllowed: number | null;
+    /** "30(Y)" 형태 — 앞은 전공자 정원, 괄호는 제한 여부 */
+    majorQuota: string | null;
+    /** 학년별 정원. 전부 0이면 null(학년 제한 없음) */
+    yearQuotas: Record<string, number> | null;
+  };
+  /** ③ 과거 이력 — [학기, 컷, 정원, 신청자] 최신순 */
+  history: [string, number, number | null, number | null][];
+  /** 학년별 컷(최근 학기) — 학년 정원이 걸린 과목은 학년마다 컷이 다르다 */
+  perGrade: Record<string, { cut: number; applied: number; won: number }> | null;
+  /** 동점(배점=컷) 시 갈린 총이수학점 비율 경계 */
+  tieCredit: { winMin: number; loseMax: number | null } | null;
+}
+
+let detailCache: Record<string, SectionDetail> | null = null;
+let detailPromise: Promise<Record<string, SectionDetail>> | null = null;
+
+/** 상세 데이터를 한 번만 받아 캐시한다. */
+export function fetchDetails(
+  url = '/data/mileage-2026-20-detail.json',
+): Promise<Record<string, SectionDetail>> {
+  if (detailCache) return Promise.resolve(detailCache);
+  detailPromise ??= fetch(url)
+    .then((r) => {
+      if (!r.ok) throw new Error(`상세 데이터를 불러오지 못했습니다 (${r.status})`);
+      return r.json();
+    })
+    .then((j: { detail: Record<string, SectionDetail> }) => {
+      detailCache = j.detail;
+      return detailCache;
+    })
+    .catch((e) => {
+      detailPromise = null; // 실패는 캐시하지 않는다 — 다시 열면 재시도
+      throw e;
+    });
+  return detailPromise;
+}
+
+/** "30(Y)" → 전공자 정원 숫자. 파싱 실패 시 null */
+export function majorQuotaCount(raw: string | null): number | null {
+  if (!raw) return null;
+  const m = raw.match(/^(\d+)/);
+  return m ? Number(m[1]) : null;
+}
+
 /** 검색 — 과목명·학정번호·교수명으로 찾는다. 전 학과가 대상(교양·타전공 포함). */
 export function searchSections(data: MileageData, query: string, limit = 30): Section[] {
   const q = query.trim().toLowerCase();

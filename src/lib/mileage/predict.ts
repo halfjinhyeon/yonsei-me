@@ -56,10 +56,26 @@ function stdev(xs: number[]): number | null {
   return Math.sqrt(v);
 }
 
-/** 오래된 학기일수록 가중치를 낮춘다(최근 경향 반영). 반감기 2학기. */
-function recencyWeight(p: HistoryPoint, latestYear: number): number {
-  const age = Math.max(0, latestYear - Number(p.year)) * 2 + (p.semester === '10' ? 1 : 0);
-  return Math.pow(0.5, age / 2);
+/** 학기 서수 — 2025-1학기 < 2025-2학기 < 2026-1학기 순으로 정렬되는 정수 */
+export function semesterOrdinal(year: string | number, semester: string): number {
+  // 여름(11)·겨울(21) 계절학기는 각각 직전 정규학기와 같은 자리에 둔다(수강신청 경쟁이 별개)
+  const half = semester === '10' || semester === '11' ? 0 : 1;
+  return Number(year) * 2 + half;
+}
+
+/**
+ * 최신성 가중치 — 오래된 학기일수록 낮춘다.
+ *
+ * 컷은 담당 교수·정원·학과 사정에 따라 학기마다 움직이고, 무엇보다 **과거 담당 교수 정보가
+ * 데이터에 없다**(courses 테이블에 학기 구분이 없어 현재 학기 교수만 안다). 분반 번호가 같아도
+ * 교수가 바뀌었을 수 있으므로, 오래된 관측을 평등하게 섞으면 지금과 무관한 값을 끌어온다.
+ * 그래서 최신 학기에 강하게 무게를 싣는다(사용자 지시: "제일 최신 컷에 근거").
+ *
+ * halfLife = 가중치가 절반이 되는 학기 수. 작을수록 최신 관측만 본다.
+ */
+function recencyWeight(p: HistoryPoint, targetOrd: number, halfLife: number): number {
+  const dist = Math.max(0, targetOrd - semesterOrdinal(p.year, p.semester));
+  return Math.pow(0.5, dist / halfLife);
 }
 
 /** 가중 평균 */
@@ -76,11 +92,31 @@ interface Level {
   n: number;
 }
 
-function summarize(points: HistoryPoint[], latestYear: number): Level | null {
+/**
+ * 최신성 가중을 적용한 표준편차.
+ *
+ * μ 를 최신 가중평균으로 구하면서 σ 는 전 학기 균등 편차로 구하면 둘이 어긋난다 —
+ * "최근 두 학기는 일치하는데 3년 전이 달랐다"는 경우 불확실성이 과대평가되고,
+ * 그 결과 확률 곡선이 실제보다 완만해져 보정(Brier)이 나빠진다. 같은 가중으로 맞춘다.
+ *
+ * 유효 표본수 n_eff = (Σw)² / Σw² 로 불편보정한다(가중이 한 점에 쏠릴수록 n_eff → 1).
+ */
+function weightedStdev(values: number[], weights: number[], mu: number): number | null {
+  const sw = weights.reduce((a, b) => a + b, 0);
+  const sw2 = weights.reduce((a, b) => a + b * b, 0);
+  if (sw <= 0 || sw2 <= 0) return null;
+  const nEff = (sw * sw) / sw2;
+  if (nEff <= 1.000001) return null; // 사실상 한 점 — 편차를 말할 수 없다
+  const varW = values.reduce((a, v, i) => a + weights[i] * (v - mu) * (v - mu), 0) / sw;
+  return Math.sqrt(varW * (nEff / (nEff - 1)));
+}
+
+function summarize(points: HistoryPoint[], targetOrd: number, halfLife: number): Level | null {
   if (points.length === 0) return null;
   const cuts = points.map((p) => p.cutoff);
-  const ws = points.map((p) => recencyWeight(p, latestYear));
-  return { mu: weightedMean(cuts, ws), sigma: stdev(cuts), n: points.length };
+  const ws = points.map((p) => recencyWeight(p, targetOrd, halfLife));
+  const mu = weightedMean(cuts, ws);
+  return { mu, sigma: weightedStdev(cuts, ws, mu), n: points.length };
 }
 
 /** 계층 하나를 상위 추정치 쪽으로 축소 */
@@ -95,15 +131,49 @@ export interface PredictInput {
   sections: SectionMeta[];
   /** 과거 이력 전체 */
   histories: SectionHistory[];
-  /** 이력의 최신 연도(가중치 계산 기준) */
-  latestYear: number;
+  /** 예측 대상 학기 — 최신성 가중치의 기준점 */
+  target: { year: string | number; semester: string };
+  /** 튜닝 모수(백테스트로 고른다) */
+  tuning?: Partial<Tuning>;
 }
+
+export interface Tuning {
+  /** 최신성 반감기(학기). 작을수록 최신 컷만 본다 */
+  halfLife: number;
+  /** 계층 축소 상수 — 클수록 상위 계층으로 강하게 끌어당긴다 */
+  tauSection: number;
+  tauProfessor: number;
+  tauCourse: number;
+}
+
+/**
+ * 백테스트(2026-1학기, 평가 1,187분반)로 고른 값.
+ *
+ *   halfLife   MAE    중앙값   Hit±3    Brier
+ *   99(균등)   4.34   2.00    58.3%   0.0953   ← 최신성 미적용
+ *   1.0        4.10   1.70    61.6%   0.0919
+ *   0.5        4.11   1.40    65.7%   0.0938   ← 채택
+ *   0.3        4.17   1.10    65.3%   0.0965
+ *
+ * 0.5 를 고른 이유: 학생 체감에 가장 가까운 "예측이 3점 이내였나"(Hit±3)가 최고이고
+ * MAE 도 최상위권이다. Brier(확률 보정)는 1.0 대비 0.002 나쁘지만, 그 차이보다
+ * 적중률 4pp 가 더 크다고 판단했다. 이 값에서 최신 학기가 전체 가중의 약 73% 를 차지한다
+ * (사용자 지시: "제일 최신 컷에 근거").
+ */
+export const DEFAULT_TUNING: Tuning = {
+  halfLife: 0.5,
+  tauSection: TAU.section,
+  tauProfessor: TAU.professor,
+  tauCourse: TAU.course,
+};
 
 /**
  * 전체 분반에 대해 컷 분포 모수를 추정한다.
  * 이력이 없는 분반도 상위 계층/그룹 평균으로 반드시 값을 갖는다(빠지는 과목 없음).
  */
-export function predictAll({ sections, histories, latestYear }: PredictInput): SectionPrediction[] {
+export function predictAll({ sections, histories, target, tuning }: PredictInput): SectionPrediction[] {
+  const T = { ...DEFAULT_TUNING, ...tuning };
+  const targetOrd = semesterOrdinal(target.year, target.semester);
   // 계층별 인덱스 구성
   const byCourseProfDiv = new Map<string, HistoryPoint[]>();
   const byCourseProf = new Map<string, HistoryPoint[]>();
@@ -129,21 +199,21 @@ export function predictAll({ sections, histories, latestYear }: PredictInput): S
     if (s) push(byGroup, groupKeyOf(s), h.points);
   }
   const globalPoints = histories.flatMap((h) => h.points);
-  const globalMu = globalPoints.length ? summarize(globalPoints, latestYear)!.mu : COLD_MU;
+  const globalMu = globalPoints.length ? summarize(globalPoints, targetOrd, T.halfLife)!.mu : COLD_MU;
 
   return sections.map((s) => {
     const kSec = `${s.code}|${s.professor}|${s.division}`;
     const kProf = `${s.code}|${s.professor}`;
-    const lSec = summarize(byCourseProfDiv.get(kSec) ?? [], latestYear);
-    const lProf = summarize(byCourseProf.get(kProf) ?? [], latestYear);
-    const lCourse = summarize(byCourse.get(s.code) ?? [], latestYear);
-    const lGroup = summarize(byGroup.get(groupKeyOf(s)) ?? [], latestYear);
+    const lSec = summarize(byCourseProfDiv.get(kSec) ?? [], targetOrd, T.halfLife);
+    const lProf = summarize(byCourseProf.get(kProf) ?? [], targetOrd, T.halfLife);
+    const lCourse = summarize(byCourse.get(s.code) ?? [], targetOrd, T.halfLife);
+    const lGroup = summarize(byGroup.get(groupKeyOf(s)) ?? [], targetOrd, T.halfLife);
 
     // 상위 → 하위로 순차 축소: 전체 → 그룹 → 과목 → 교수 → 분반
-    const muGroup = shrink(lGroup, globalMu, TAU.course);
-    const muCourse = shrink(lCourse, muGroup, TAU.course);
-    const muProf = shrink(lProf, muCourse, TAU.professor);
-    const mu = shrink(lSec, muProf, TAU.section);
+    const muGroup = shrink(lGroup, globalMu, T.tauCourse);
+    const muCourse = shrink(lCourse, muGroup, T.tauCourse);
+    const muProf = shrink(lProf, muCourse, T.tauProfessor);
+    const mu = shrink(lSec, muProf, T.tauSection);
 
     // 불확실성: 가장 구체적인 계층의 표준편차를 쓰되, 표본이 적으면 넓힌다.
     //

@@ -16,11 +16,14 @@ import {
   confidenceOf,
   confidenceReason,
   fetchBundle,
+  fetchDetails,
   findConflicts,
+  majorQuotaCount,
   searchSections,
   siblingSections,
   type MileageData,
   type Section,
+  type SectionDetail,
 } from '@/lib/mileage/bundle';
 import type { Locale } from '@/i18n/routing';
 
@@ -108,6 +111,8 @@ export function MileagePlanner({ locale }: { locale: Locale }) {
   const [target, setTarget] = useState(9);
   const [fromChecker, setFromChecker] = useState(false);
   const [advancedOpen, setAdvancedOpen] = useState(false);
+  /** 상세 패널을 펼친 과목 id (한 번에 하나만) */
+  const [openDetail, setOpenDetail] = useState<string | null>(null);
 
   // 번들 로드
   useEffect(() => {
@@ -575,6 +580,18 @@ export function MileagePlanner({ locale }: { locale: Locale }) {
                       <div className="mt-2 h-1.5 w-full bg-surface-border">
                         <div className="h-1.5" style={{ width: `${p * 100}%`, background: lv.color }} />
                       </div>
+
+                      {/* 상세 — 기본 통계 / 정원·규정 / 과거 이력 (열 때만 1MB 상세 데이터를 받는다) */}
+                      <button
+                        type="button"
+                        onClick={() => setOpenDetail((v) => (v === plan.id ? null : plan.id))}
+                        aria-expanded={openDetail === plan.id}
+                        className="mt-2.5 flex min-h-[36px] w-full items-center justify-between text-left text-[11.5px] font-semibold text-content-faint hover:text-yonsei-blue"
+                      >
+                        {ko ? '정원 · 규정 · 과거 이력 보기' : 'Quotas, rules & history'}
+                        <span aria-hidden="true">{openDetail === plan.id ? '−' : '+'}</span>
+                      </button>
+                      {openDetail === plan.id && <SectionDetailPanel section={section} ko={ko} />}
                     </li>
                   );
                 })}
@@ -837,6 +854,190 @@ function monotonePath(pts: { x: number; y: number }[]): string {
     d += ` C${c1x.toFixed(2)},${c1y.toFixed(2)} ${c2x.toFixed(2)},${c2y.toFixed(2)} ${pts[i + 1].x.toFixed(2)},${pts[i + 1].y.toFixed(2)}`;
   }
   return d;
+}
+
+/**
+ * 분반 상세 — 기본 통계 / 정원·규정 / 과거 이력 (사용자 지시 4).
+ * 상세 데이터(1MB)는 이 패널을 처음 열 때만 받는다.
+ */
+function SectionDetailPanel({ section, ko }: { section: Section; ko: boolean }) {
+  const [detail, setDetail] = useState<SectionDetail | null>(null);
+  const [state, setState] = useState<'idle' | 'loading' | 'error'>('idle');
+
+  useEffect(() => {
+    let alive = true;
+    setState('loading');
+    fetchDetails()
+      .then((all) => {
+        if (!alive) return;
+        setDetail(all[section.id] ?? null);
+        setState('idle');
+      })
+      .catch(() => alive && setState('error'));
+    return () => {
+      alive = false;
+    };
+  }, [section.id]);
+
+  if (state === 'loading') {
+    return <p className="mt-2 text-[11.5px] text-content-faint">{ko ? '불러오는 중…' : 'Loading…'}</p>;
+  }
+  if (state === 'error') {
+    return <p className="mt-2 text-[11.5px] text-content-faint">{ko ? '상세를 불러오지 못했습니다.' : 'Failed to load.'}</p>;
+  }
+  if (!detail) {
+    return <p className="mt-2 text-[11.5px] text-content-faint">{ko ? '이 분반의 과거 자료가 없습니다.' : 'No records.'}</p>;
+  }
+
+  const { stats, rules, history, perGrade, tieCredit } = detail;
+  const majorN = majorQuotaCount(rules.majorQuota);
+  const rate =
+    stats?.applicants && stats?.capacity ? (stats.applicants / stats.capacity).toFixed(2) : null;
+
+  return (
+    <div className="mt-3 space-y-3 border-t border-surface-border pt-3">
+      {/* ① 기본 통계 */}
+      <div>
+        <DetailHead>{ko ? '기본 통계' : 'Statistics'}</DetailHead>
+        {stats ? (
+          <dl className="mt-1.5 grid grid-cols-2 gap-x-3 gap-y-1 text-[11.5px] sm:grid-cols-4">
+            <Stat label={ko ? '정원' : 'Cap.'} value={stats.capacity} />
+            <Stat label={ko ? '신청' : 'Applied'} value={stats.applicants} />
+            <Stat label={ko ? '경쟁률' : 'Ratio'} value={rate ? `${rate}:1` : null} />
+            <Stat label={ko ? '평균 배점' : 'Avg'} value={stats.avg} />
+            <Stat label={ko ? '최고 배점' : 'Max bid'} value={stats.max} />
+            <Stat label={ko ? '기준 학기' : 'Term'} value={fmtTerm(stats.semester, ko)} />
+          </dl>
+        ) : (
+          <p className="mt-1 text-[11px] text-content-faint">{ko ? '자료 없음' : 'No data'}</p>
+        )}
+      </div>
+
+      {/* ② 정원 & 규정 */}
+      <div>
+        <DetailHead>{ko ? '정원 & 규정' : 'Quotas & rules'}</DetailHead>
+        <dl className="mt-1.5 grid grid-cols-2 gap-x-3 gap-y-1 text-[11.5px] sm:grid-cols-4">
+          <Stat label={ko ? '배점 상한' : 'Max mileage'} value={rules.maxAllowed ? `${rules.maxAllowed}mp` : null} />
+          <Stat label={ko ? '전공자 정원' : 'Major seats'} value={majorN !== null ? (majorN > 0 ? `${majorN}석` : ko ? '없음' : 'none') : null} />
+        </dl>
+        {rules.yearQuotas ? (
+          <div className="mt-2">
+            <p className="text-[11px] font-semibold text-content-faint">
+              {ko ? '학년별 정원' : 'Seats by year'}
+            </p>
+            <ul className="mt-1 flex flex-wrap gap-1.5">
+              {['1', '2', '3', '4'].map((g) => {
+                const seats = rules.yearQuotas?.[g] ?? 0;
+                const pg = perGrade?.[g];
+                return (
+                  <li
+                    key={g}
+                    className={cn(
+                      'border px-2 py-1 text-[11px]',
+                      seats > 0 ? 'border-surface-border bg-surface' : 'border-surface-border bg-surface-soft text-content-faint',
+                    )}
+                  >
+                    <b className="font-bold">{g}{ko ? '학년' : 'Y'}</b>{' '}
+                    {seats > 0 ? `${seats}${ko ? '석' : ''}` : ko ? '배정 없음' : '—'}
+                    {pg && <span className="ml-1 text-yonsei-blue">· {ko ? '컷' : 'cut'} {pg.cut}mp</span>}
+                  </li>
+                );
+              })}
+            </ul>
+            <p className="mt-1.5 text-[10.5px] leading-relaxed text-content-faint">
+              {ko
+                ? '학년별로 정원을 따로 채우므로 같은 분반이어도 학년마다 컷이 다릅니다.'
+                : 'Seats fill per year, so the cutoff differs by year.'}
+            </p>
+          </div>
+        ) : (
+          <p className="mt-1.5 text-[11px] text-content-faint">
+            {ko ? '학년 제한 없음 — 전 학년이 같은 정원에서 경쟁합니다.' : 'No per-year quota.'}
+          </p>
+        )}
+        {tieCredit && (
+          <p className="mt-1.5 text-[10.5px] leading-relaxed text-content-faint">
+            {ko
+              ? `동점(컷과 같은 배점)에서 갈린 총이수학점 비율: 합격 최저 ${(tieCredit.winMin * 100).toFixed(0)}%`
+              : `Tie broken at earned-credit ratio ≥ ${(tieCredit.winMin * 100).toFixed(0)}%`}
+            {tieCredit.loseMax !== null &&
+              (ko
+                ? ` · 탈락 최고 ${(tieCredit.loseMax * 100).toFixed(0)}%`
+                : ` (lost up to ${(tieCredit.loseMax * 100).toFixed(0)}%)`)}
+          </p>
+        )}
+      </div>
+
+      {/* ③ 과거 이력 */}
+      <div>
+        <DetailHead>{ko ? '과거 이력' : 'History'}</DetailHead>
+        {history.length ? (
+          <div className="mt-1.5 overflow-x-auto">
+            <table className="w-full min-w-[260px] border-collapse text-[11.5px]">
+              <thead>
+                <tr className="border-b border-t border-surface-border text-content-faint">
+                  <th scope="col" className="py-1 text-left font-semibold">{ko ? '학기' : 'Term'}</th>
+                  <th scope="col" className="py-1 text-right font-semibold">{ko ? '컷' : 'Cut'}</th>
+                  <th scope="col" className="py-1 text-right font-semibold">{ko ? '정원' : 'Cap.'}</th>
+                  <th scope="col" className="py-1 text-right font-semibold">{ko ? '신청' : 'Applied'}</th>
+                </tr>
+              </thead>
+              <tbody>
+                {history.map(([term, cut, cap, app], i) => (
+                  <tr key={term} className="border-b border-surface-border">
+                    <td className="py-1">
+                      {fmtTerm(term, ko)}
+                      {i === 0 && (
+                        <span className="ml-1 bg-yonsei-navy px-1 py-px text-[9px] font-bold text-white">
+                          {ko ? '최신' : 'latest'}
+                        </span>
+                      )}
+                    </td>
+                    <td className="py-1 text-right font-bold tabular-nums text-content">{cut}mp</td>
+                    <td className="py-1 text-right tabular-nums text-content-faint">{cap ?? '—'}</td>
+                    <td className="py-1 text-right tabular-nums text-content-faint">{app ?? '—'}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+            <p className="mt-1.5 text-[10.5px] leading-relaxed text-content-faint">
+              {ko
+                ? '예측은 최신 학기에 가장 큰 무게를 둡니다. 담당 교수가 바뀌었다면 오래된 컷은 참고만 하세요.'
+                : 'The forecast weights the latest term most. Older cuts may reflect a different professor.'}
+            </p>
+          </div>
+        ) : (
+          <p className="mt-1 text-[11px] text-content-faint">{ko ? '기록 없음' : 'No history'}</p>
+        )}
+      </div>
+    </div>
+  );
+}
+
+function DetailHead({ children }: { children: React.ReactNode }) {
+  return (
+    <p className="text-[11.5px] font-bold text-content">
+      <span aria-hidden="true" className="mr-1.5 inline-block h-2 w-[3px] translate-y-px bg-yonsei-navy" />
+      {children}
+    </p>
+  );
+}
+
+function Stat({ label, value }: { label: string; value: string | number | null }) {
+  return (
+    <div>
+      <dt className="text-content-faint">{label}</dt>
+      <dd className="font-semibold tabular-nums text-content">{value ?? '—'}</dd>
+    </div>
+  );
+}
+
+/** "2025-20" → "2025년 2학기" */
+function fmtTerm(t: string, ko: boolean): string {
+  const [y, s] = t.split('-');
+  const n = s === '10' ? 1 : s === '11' ? 0 : s === '21' ? 0 : 2;
+  if (!n) return ko ? `${y} 계절` : `${y} season`;
+  return ko ? `${y}년 ${n}학기` : `${y} S${n}`;
 }
 
 /** 시간표 칸 색 — 브랜드 블루 계열만 쓴다(금색 금지). 담은 순서대로 순환. */
