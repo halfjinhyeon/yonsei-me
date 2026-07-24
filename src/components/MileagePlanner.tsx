@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { Fragment, useCallback, useEffect, useMemo, useState } from 'react';
 import { cn } from '@/lib/utils';
 import { SegmentedControl } from '@/components/SegmentedControl';
 import {
@@ -355,6 +355,17 @@ export function MileagePlanner({ locale }: { locale: Locale }) {
                 </ul>
               )}
             </div>
+
+            {/* 미니 시간표 — 담은 과목이 있을 때만 */}
+            {rows.length > 0 && (
+              <div className="mt-7">
+                <SectionLabel>{ko ? '미니 시간표' : 'Timetable'}</SectionLabel>
+                <MiniTimetable rows={rows} ko={ko} />
+                <p className="mt-1.5 text-[10.5px] leading-relaxed text-content-faint">
+                  {ko ? '겹치는 칸은 ! 로 표시됩니다' : 'Overlaps are marked with !'}
+                </p>
+              </div>
+            )}
           </section>
 
           {/* ─────────── 중: 배분 ─────────── */}
@@ -696,13 +707,11 @@ export function MileagePlanner({ locale }: { locale: Locale }) {
 
             {frontier.length > 1 && (
               <div className="mt-4 border border-surface-border px-3.5 py-4">
-                <p className="text-[11.5px] font-semibold text-content-faint">
-                  {ko ? '효율적 프론티어' : 'Efficient frontier'}
+                {/* "효율적 프론티어"는 경제학 용어라 학생에게 읽히지 않는다 — 평범한 질문으로 */}
+                <p className="text-[12.5px] font-bold text-content">
+                  {ko ? '마일리지를 더 걸면 이득일까?' : 'Is spending more worth it?'}
                 </p>
-                <p className="mt-0.5 text-[10.5px] leading-relaxed text-content-faint">
-                  {ko ? '예산을 늘릴수록 기대 확보 학점이 어떻게 오르는지' : 'Expected credits vs budget'}
-                </p>
-                <Frontier points={frontier} budget={budget} used={used} />
+                <BudgetCurve points={frontier} budget={budget} used={used} ko={ko} />
               </div>
             )}
           </section>
@@ -769,37 +778,235 @@ function WarnBadge({
   );
 }
 
-/** 효율적 프론티어 꺾은선 */
-function Frontier({
+/** 시간표 칸 색 — 브랜드 블루 계열만 쓴다(금색 금지). 담은 순서대로 순환. */
+const SLOT_COLORS = [
+  { bg: '#003377', fg: '#FFFFFF' },
+  { bg: '#0057A8', fg: '#FFFFFF' },
+  { bg: '#2E86D6', fg: '#FFFFFF' },
+  { bg: '#5AA0DE', fg: '#FFFFFF' },
+  { bg: '#9CC4E9', fg: '#003377' },
+  { bg: '#C9DDF2', fg: '#003377' },
+];
+
+/**
+ * 미니 주간 시간표.
+ *
+ * 담은 과목의 강의시간(원문 파싱 결과)을 요일×교시 격자에 얹어, 시간이 겹치는 칸을
+ * 빨간 테두리로 드러낸다. 충돌 "판정"은 이미 카드의 경고 배지가 하지만, 어디가 어떻게
+ * 겹치는지는 격자로 봐야 납득이 된다.
+ *
+ * 강의시간 표기가 제각각이라 파싱에 실패하는 과목이 있다 — 그런 과목은 조용히 빠뜨리지 않고
+ * 아래에 따로 명시한다(빠뜨리면 "내 과목이 시간표에 없다"는 혼란이 생긴다).
+ */
+function MiniTimetable({
+  rows,
+  ko,
+}: {
+  rows: { plan: Planned; section: Section }[];
+  ko: boolean;
+}) {
+  const DAY_LABELS = ko ? ['월', '화', '수', '목', '금'] : ['M', 'T', 'W', 'T', 'F'];
+  const withSlots = rows.filter((r) => r.section.slots.length > 0);
+  const noSlots = rows.filter((r) => r.section.slots.length === 0);
+
+  if (rows.length === 0) return null;
+
+  // 실제 쓰이는 교시 범위만 그린다(1~9 를 통째로 그리면 대부분 빈칸이라 읽기 나쁘다)
+  const periods = withSlots.flatMap((r) => r.section.slots.map((s) => s.period));
+  const minP = periods.length ? Math.min(...periods) : 1;
+  const maxP = periods.length ? Math.max(...periods) : 6;
+
+  /** cell[day][period] = 그 칸을 점유한 과목 인덱스들 */
+  const cell = new Map<string, number[]>();
+  withSlots.forEach((r, i) => {
+    for (const s of r.section.slots) {
+      if (s.day > 4) continue; // 주말은 격자에서 생략(드물고 폭만 먹는다)
+      const k = `${s.day}:${s.period}`;
+      const cur = cell.get(k);
+      if (cur) cur.push(i);
+      else cell.set(k, [i]);
+    }
+  });
+
+  return (
+    <div className="mt-3">
+      <div className="grid grid-cols-[18px_repeat(5,minmax(0,1fr))] gap-px border border-surface-border bg-surface-border">
+        {/* 헤더 */}
+        <div className="bg-surface" />
+        {DAY_LABELS.map((d, i) => (
+          <div key={i} className="bg-surface py-1 text-center text-[10px] font-bold text-content-faint">
+            {d}
+          </div>
+        ))}
+        {/* 교시 행 */}
+        {Array.from({ length: maxP - minP + 1 }, (_, r) => minP + r).map((p) => (
+          <Fragment key={p}>
+            <div className="grid place-items-center bg-surface text-[9px] tabular-nums text-content-faint">
+              {p}
+            </div>
+            {[0, 1, 2, 3, 4].map((d) => {
+              const owners = cell.get(`${d}:${p}`) ?? [];
+              const clash = owners.length > 1;
+              const first = owners[0];
+              const tone = first === undefined ? null : SLOT_COLORS[first % SLOT_COLORS.length];
+              return (
+                <div
+                  key={d}
+                  title={owners.map((i) => withSlots[i].section.name).join(' / ')}
+                  className="min-h-[19px] truncate px-[3px] py-[2px] text-[8.5px] font-semibold leading-tight"
+                  style={
+                    tone
+                      ? {
+                          background: clash ? '#FDECEC' : tone.bg,
+                          color: clash ? WARN_RED : tone.fg,
+                          boxShadow: clash ? `inset 0 0 0 1.5px ${WARN_RED}` : undefined,
+                        }
+                      : { background: '#FFFFFF' }
+                  }
+                >
+                  {clash ? '!' : (withSlots[first]?.section.name ?? '')}
+                </div>
+              );
+            })}
+          </Fragment>
+        ))}
+      </div>
+      {noSlots.length > 0 && (
+        <p className="mt-1.5 text-[10.5px] leading-relaxed" style={{ color: WARN_AMBER }}>
+          {ko
+            ? `시간 정보를 읽지 못한 과목: ${noSlots.map((r) => r.section.name).join(', ')} — 시간표에 표시되지 않으니 직접 확인하세요.`
+            : `Time not parsed: ${noSlots.map((r) => r.section.name).join(', ')}`}
+        </p>
+      )}
+    </div>
+  );
+}
+
+/**
+ * 예산-성과 곡선.
+ *
+ * 원래 "효율적 프론티어"라는 경제학 용어로 축도 없이 선만 그렸더니, 무엇을 보는 그래프인지
+ * 읽히지 않고 끝점이 테두리에 잘렸다. 그래서 ① 이름을 평범한 말로 바꾸고 ② 양축에 눈금과
+ * 단위를 달고 ③ 선·점이 잘리지 않도록 안쪽 여백을 두고 ④ 이 곡선의 진짜 메시지인
+ * "어느 지점부터는 더 걸어도 거의 늘지 않는다"를 문장으로 뽑아 준다.
+ */
+function BudgetCurve({
   points,
   budget,
   used,
+  ko,
 }: {
   points: { budget: number; expected: number }[];
   budget: number;
   used: number;
+  ko: boolean;
 }) {
-  const W = 240;
-  const H = 90;
+  const W = 268;
+  const H = 132;
+  // 눈금 글자와 점 반지름이 잘리지 않도록 안쪽 여백을 확보한다
+  const PAD = { l: 30, r: 12, t: 12, b: 24 };
+  const innerW = W - PAD.l - PAD.r;
+  const innerH = H - PAD.t - PAD.b;
   const maxY = Math.max(1, ...points.map((p) => p.expected));
-  const x = (b: number) => (b / Math.max(1, budget)) * W;
-  const y = (e: number) => H - (e / maxY) * H;
-  const path = points.map((p, i) => `${i === 0 ? 'M' : 'L'}${x(p.budget).toFixed(1)},${y(p.expected).toFixed(1)}`).join(' ');
-  const cur = points.reduce((a, p) => (Math.abs(p.budget - used) < Math.abs(a.budget - used) ? p : a), points[0]);
+  const x = (b: number) => PAD.l + (b / Math.max(1, budget)) * innerW;
+  const y = (e: number) => PAD.t + innerH - (e / maxY) * innerH;
+
+  const path = points
+    .map((p, i) => `${i === 0 ? 'M' : 'L'}${x(p.budget).toFixed(1)},${y(p.expected).toFixed(1)}`)
+    .join(' ');
+  const cur = points.reduce(
+    (a, p) => (Math.abs(p.budget - used) < Math.abs(a.budget - used) ? p : a),
+    points[0],
+  );
+  // 최대치의 95% 에 처음 도달하는 예산 = 사실상 포화 지점
+  const sat = points.find((p) => p.expected >= maxY * 0.95);
+
   return (
     <>
       <svg
         viewBox={`0 0 ${W} ${H}`}
-        className="mt-2 h-[90px] w-full"
+        className="mt-2 w-full"
         role="img"
-        aria-label={`예산 ${used}mp에서 기대 확보 ${cur.expected.toFixed(1)}학점`}
+        aria-label={
+          ko
+            ? `가로축 마일리지 0부터 ${budget}, 세로축 기대 확보 학점 0부터 ${maxY.toFixed(1)}. 현재 ${used}mp에서 ${cur.expected.toFixed(1)}학점.`
+            : `Budget 0–${budget}mp vs expected credits 0–${maxY.toFixed(1)}. Now ${cur.expected.toFixed(1)} at ${used}mp.`
+        }
       >
-        <path d={path} fill="none" stroke="#0057A8" strokeWidth="2" />
+        {/* 축 */}
+        <line x1={PAD.l} y1={PAD.t} x2={PAD.l} y2={PAD.t + innerH} stroke="#E0E6ED" strokeWidth="1" />
+        <line
+          x1={PAD.l}
+          y1={PAD.t + innerH}
+          x2={PAD.l + innerW}
+          y2={PAD.t + innerH}
+          stroke="#E0E6ED"
+          strokeWidth="1"
+        />
+        {/* 세로 눈금 — 0 / 최대 */}
+        <text x={PAD.l - 5} y={PAD.t + innerH + 3} textAnchor="end" fontSize="8.5" fill="#6E6E6E">
+          0
+        </text>
+        <text x={PAD.l - 5} y={PAD.t + 4} textAnchor="end" fontSize="8.5" fill="#6E6E6E">
+          {maxY.toFixed(1)}
+        </text>
+        {/* 가로 눈금 — 0 / 예산 */}
+        <text x={PAD.l} y={H - 4} textAnchor="middle" fontSize="8.5" fill="#6E6E6E">
+          0
+        </text>
+        <text x={PAD.l + innerW} y={H - 4} textAnchor="middle" fontSize="8.5" fill="#6E6E6E">
+          {budget}mp
+        </text>
+        {/* 포화 지점 안내선 */}
+        {sat && sat.budget > 0 && sat.budget < budget && (
+          <line
+            x1={x(sat.budget)}
+            y1={PAD.t}
+            x2={x(sat.budget)}
+            y2={PAD.t + innerH}
+            stroke="#A16207"
+            strokeWidth="1"
+            strokeDasharray="3 3"
+          />
+        )}
+        {/* 곡선 */}
+        <path d={path} fill="none" stroke="#0057A8" strokeWidth="2" strokeLinejoin="round" />
+        {/* 현재 위치 */}
+        <line
+          x1={x(cur.budget)}
+          y1={y(cur.expected)}
+          x2={x(cur.budget)}
+          y2={PAD.t + innerH}
+          stroke="#003377"
+          strokeWidth="1"
+          strokeDasharray="2 2"
+        />
         <circle cx={x(cur.budget)} cy={y(cur.expected)} r="3.5" fill="#003377" />
       </svg>
-      <p className="text-[11px] text-content-faint">
-        현재 {used}mp에서 기대 확보 <b className="text-content">{cur.expected.toFixed(1)}학점</b>
+      {/* 축 설명 — 그래프만 봐서는 무엇인지 모르므로 반드시 글로 남긴다 */}
+      <p className="mt-1 text-[10.5px] leading-relaxed text-content-faint">
+        {ko
+          ? '가로 = 쓰는 마일리지 · 세로 = 기대 확보 학점'
+          : 'x = mileage spent · y = expected credits'}
       </p>
+      <p className="mt-1.5 text-[11.5px] leading-relaxed text-content">
+        {ko ? (
+          <>
+            지금 <b>{used}mp</b>를 걸면 평균 <b>{cur.expected.toFixed(1)}학점</b>을 확보합니다.
+          </>
+        ) : (
+          <>
+            At <b>{used}mp</b> you secure about <b>{cur.expected.toFixed(1)}</b> credits.
+          </>
+        )}
+      </p>
+      {sat && sat.budget > 0 && sat.budget < budget && (
+        <p className="mt-1 text-[11px] leading-relaxed" style={{ color: WARN_AMBER }}>
+          {ko
+            ? `${sat.budget}mp를 넘기면 더 걸어도 거의 늘지 않습니다.`
+            : `Beyond ${sat.budget}mp, extra mileage barely helps.`}
+        </p>
+      )}
     </>
   );
 }

@@ -70,8 +70,12 @@ export function parseTimeSlots(text: string): TimeSlot[] {
   if (!text) return [];
   const out: TimeSlot[] = [];
   let lastDay = -1;
+  // 괄호는 실습·분반 시간을 묶는 표기다(예: "(화3,4)", "월3 (수7,8)"). 괄호를 구분자로
+  // 바꿔 두지 않으면 "(화3" 토큰이 앵커 정규식에 걸리지 않아 그 과목이 통째로 누락된다
+  // (실데이터 3,086건 중 237건이 이 형태였다).
+  const cleaned = text.replace(/[()[\]{}]/g, ' ');
   // "월3", "3", "월3-4" 같은 토큰들을 훑는다
-  const tokens = text.split(/[,\s/]+/).filter(Boolean);
+  const tokens = cleaned.split(/[,\s/]+/).filter(Boolean);
   for (const tk of tokens) {
     const m = tk.match(/^([월화수목금토일])?\s*(\d+)(?:-(\d+))?/);
     if (!m) continue;
