@@ -184,8 +184,10 @@ export function MileagePlanner({ locale }: { locale: Locale }) {
     [rows],
   );
 
+  // step 2 — 표본을 촘촘히 떠야 보간이 실제 곡률을 따라간다(4는 계단이 눈에 띄었다).
+  // 예산 76 기준 39회 배분 계산이라 수 ms 로 끝난다.
   const frontier = useMemo(
-    () => (rows.length ? efficientFrontier(allocEntries, budget, gradeShift, 4) : []),
+    () => (rows.length ? efficientFrontier(allocEntries, budget, gradeShift, 2) : []),
     [allocEntries, budget, gradeShift, rows.length],
   );
 
@@ -778,6 +780,65 @@ function WarnBadge({
   );
 }
 
+/**
+ * 단조 3차 에르미트 보간(Fritsch–Carlson)으로 부드러운 SVG path 를 만든다.
+ *
+ * 왜 일반 스플라인(Catmull–Rom 등)을 쓰지 않는가: 예산-성과 곡선은 정의상 단조 증가다
+ * (예산을 더 줘서 기대 학점이 줄 수는 없다). 일반 스플라인은 구간에 따라 오버슛이 생겨
+ * 곡선이 잠깐 내려갔다 올라오는데, 그러면 "예산을 늘렸더니 손해"라는 없는 사실을 그리게 된다.
+ * Fritsch–Carlson 은 접선 크기를 제한해 오버슛을 원천 차단하므로 부드러우면서도 거짓말하지 않는다.
+ */
+function monotonePath(pts: { x: number; y: number }[]): string {
+  const n = pts.length;
+  if (n === 0) return '';
+  if (n === 1) return `M${pts[0].x},${pts[0].y}`;
+  if (n === 2) return `M${pts[0].x},${pts[0].y} L${pts[1].x},${pts[1].y}`;
+
+  // 구간 기울기
+  const dx: number[] = [];
+  const delta: number[] = [];
+  for (let i = 0; i < n - 1; i++) {
+    const h = pts[i + 1].x - pts[i].x;
+    dx.push(h);
+    delta.push(h === 0 ? 0 : (pts[i + 1].y - pts[i].y) / h);
+  }
+
+  // 초기 접선 = 인접 구간 기울기의 평균
+  const m: number[] = new Array(n);
+  m[0] = delta[0];
+  m[n - 1] = delta[n - 2];
+  for (let i = 1; i < n - 1; i++) m[i] = (delta[i - 1] + delta[i]) / 2;
+
+  // Fritsch–Carlson 제한 — 평평한 구간은 접선을 0으로 눕히고, 나머지는 반지름 3 안으로 축소
+  for (let i = 0; i < n - 1; i++) {
+    if (delta[i] === 0) {
+      m[i] = 0;
+      m[i + 1] = 0;
+      continue;
+    }
+    const a = m[i] / delta[i];
+    const b = m[i + 1] / delta[i];
+    const s = a * a + b * b;
+    if (s > 9) {
+      const t = 3 / Math.sqrt(s);
+      m[i] = t * a * delta[i];
+      m[i + 1] = t * b * delta[i];
+    }
+  }
+
+  // 에르미트 접선을 3차 베지에 제어점으로 변환
+  let d = `M${pts[0].x.toFixed(2)},${pts[0].y.toFixed(2)}`;
+  for (let i = 0; i < n - 1; i++) {
+    const h = dx[i] / 3;
+    const c1x = pts[i].x + h;
+    const c1y = pts[i].y + m[i] * h;
+    const c2x = pts[i + 1].x - h;
+    const c2y = pts[i + 1].y - m[i + 1] * h;
+    d += ` C${c1x.toFixed(2)},${c1y.toFixed(2)} ${c2x.toFixed(2)},${c2y.toFixed(2)} ${pts[i + 1].x.toFixed(2)},${pts[i + 1].y.toFixed(2)}`;
+  }
+  return d;
+}
+
 /** 시간표 칸 색 — 브랜드 블루 계열만 쓴다(금색 금지). 담은 순서대로 순환. */
 const SLOT_COLORS = [
   { bg: '#003377', fg: '#FFFFFF' },
@@ -853,7 +914,9 @@ function MiniTimetable({
                 <div
                   key={d}
                   title={owners.map((i) => withSlots[i].section.name).join(' / ')}
-                  className="min-h-[19px] truncate px-[3px] py-[2px] text-[8.5px] font-semibold leading-tight"
+                  // 한 칸 높이 19→49px(사용자 지시). 높아진 만큼 이름을 잘라내지 않고
+                  // 줄바꿈해 보여 준다(break-keep 으로 단어 중간 끊김 방지).
+                  className="min-h-[49px] overflow-hidden break-keep px-[3px] py-[3px] text-[9px] font-semibold leading-tight"
                   style={
                     tone
                       ? {
@@ -911,9 +974,8 @@ function BudgetCurve({
   const x = (b: number) => PAD.l + (b / Math.max(1, budget)) * innerW;
   const y = (e: number) => PAD.t + innerH - (e / maxY) * innerH;
 
-  const path = points
-    .map((p, i) => `${i === 0 ? 'M' : 'L'}${x(p.budget).toFixed(1)},${y(p.expected).toFixed(1)}`)
-    .join(' ');
+  // 꺾인 폴리라인 대신 단조 3차 보간 — 부드럽되 오버슛(예산↑인데 학점↓)은 생기지 않는다
+  const path = monotonePath(points.map((p) => ({ x: x(p.budget), y: y(p.expected) })));
   const cur = points.reduce(
     (a, p) => (Math.abs(p.budget - used) < Math.abs(a.budget - used) ? p : a),
     points[0],
