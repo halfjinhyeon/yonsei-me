@@ -5,6 +5,7 @@ import { TabbedContent, type TabItem } from '@/components/TabbedContent';
 import { ClubGrid } from '@/components/ClubGrid';
 import { RequirementsAccordion } from '@/components/RequirementsAccordion';
 import { GraduationChecker } from '@/components/GraduationChecker';
+import { MileagePlanner } from '@/components/MileagePlanner';
 import { getPageMarkdown, getUndergraduateRequirementSections } from '@/lib/pages';
 import { getClubs } from '@/lib/faculty';
 import { getCheckerData } from '@/lib/checker';
@@ -34,6 +35,7 @@ const SECTION_SLUGS: Record<string, string | null> = {
   goals: null,
   requirements: null,
   checker: null,
+  mileage: null,
   courses: null,
   curriculum: null,
   clubs: 'undergraduate-clubs',
@@ -89,6 +91,9 @@ export default async function UndergraduatePage({ params }: { params: { locale: 
         <RequirementsAccordion items={reqSections} earlierLabel={earlierLabel} />
       ) : key === 'checker' ? (
         <GraduationChecker data={getCheckerData()} locale={locale} />
+      ) : key === 'mileage' ? (
+        // 마일리지 전략 플래너 — 졸업요건 결과에서 넘어오거나(자동 담기) 이 탭으로 바로 진입
+        <MileagePlanner locale={locale} />
       ) : key === 'courses' ? (
         <CourseCatalog
           courses={coursesUndergraduate as CatalogCourse[]}

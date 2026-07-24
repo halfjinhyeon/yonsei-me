@@ -1,0 +1,805 @@
+'use client';
+
+import { useCallback, useEffect, useMemo, useState } from 'react';
+import { cn } from '@/lib/utils';
+import { SegmentedControl } from '@/components/SegmentedControl';
+import {
+  admitProbability,
+  allocate,
+  distributionFor,
+  efficientFrontier,
+  histogramBars,
+  probabilityAtLeast,
+  type AllocEntry,
+} from '@/lib/mileage';
+import {
+  confidenceOf,
+  confidenceReason,
+  fetchBundle,
+  findConflicts,
+  searchSections,
+  siblingSections,
+  type MileageData,
+  type Section,
+} from '@/lib/mileage/bundle';
+import type { Locale } from '@/i18n/routing';
+
+/** 졸업요건 체커 → 마일리지 플래너 인수인계 키(사용자 지시 4) */
+export const MILEAGE_HANDOFF_KEY = 'me-mileage-handoff';
+
+export interface MileageHandoff {
+  /** 체커가 계산한 "남은 과목" — 과목명 기준으로 이번 학기 개설분을 찾는다 */
+  courses: { name: string; credits?: number; required?: boolean }[];
+}
+
+/** 담은 과목 하나의 계획 상태 */
+interface Planned {
+  /** Section.id ("CODE-DIV") */
+  id: string;
+  mileage: number;
+  /** 졸업 필수도 1=선택 2=권장 3=필수 */
+  weight: number;
+}
+
+const WEIGHT_LABELS: Record<number, { ko: string; en: string }> = {
+  3: { ko: '필수', en: 'Required' },
+  2: { ko: '권장', en: 'Recommended' },
+  1: { ko: '선택', en: 'Elective' },
+};
+
+/** 합격 가능성 구간 — 색과 라벨 */
+function levelOf(p: number, ko: boolean) {
+  if (p >= 0.8) return { color: '#0F7B3E', label: ko ? '안정' : 'Safe' };
+  if (p >= 0.5) return { color: '#0057A8', label: ko ? '적정' : 'Likely' };
+  if (p >= 0.25) return { color: '#A16207', label: ko ? '불안' : 'Risky' };
+  return { color: '#DC2626', label: ko ? '위험' : 'Unlikely' };
+}
+
+/** 데이터 부족 경고색 — 흰 배경 대비 4.82:1 로 11px 글씨에서도 WCAG AA 통과 */
+const WARN_AMBER = '#A16207';
+const WARN_RED = '#DC2626';
+
+/**
+ * 마일리지가 같을 때 적용되는 우선순위 기준(연세대 안내 기준).
+ *
+ * ⚠️ 흔한 오해 두 가지를 문구로 못박는다.
+ *   · 학년은 "높을수록 유리"가 아니다 — 학년별 정원이 있는 과목에서 정원을 채우는 장치다.
+ *   · 5·6번은 학점의 '양'이 아니라 '비율'이다.
+ * 실제로 과거 기록에서도 컷 지점의 학년별 합격률이 2·3·4학년 73.5/72.5/72.1%로 평평해
+ * 학년 효과가 식별되지 않았고, 그래서 예측 모델에 학년 보정을 넣지 않았다.
+ */
+const TIEBREAKERS_KO = [
+  { title: '전공자 여부', body: '전공자 정원이 있는 과목에 한합니다. 전공자 자리와 비전공자 자리를 따로 채웁니다.' },
+  { title: '신청 과목 수', body: '최대 6과목까지 인정. 4과목만 들을 예정이어도 6과목을 채우는 편이 유리합니다.' },
+  { title: '졸업 신청 여부', body: '막학기에 졸업(수료)을 신청한 학생이 우선합니다.' },
+  { title: '초수강 여부', body: '재수강생은 처음 듣는 학생에게 밀립니다.' },
+  { title: '졸업학점 대비 이수학점', body: '양이 아니라 비율입니다. 졸업학점이 낮은 전공이 같은 이수학점에서 유리합니다.' },
+  { title: '수강가능학점 대비 직전학기 이수학점', body: '초과 수강분은 인정되지 않아 최대 1까지만 반영됩니다.' },
+  { title: '학년', body: '학년별 정원이 있는 과목에 한합니다. 학년이 높다고 유리한 것이 아니라, 학년별 정원을 채우기 위한 기준입니다.' },
+];
+
+const TIEBREAKERS_EN = [
+  { title: 'Major status', body: 'Only where a major quota exists; major and non-major seats fill separately.' },
+  { title: 'Number of applied courses', body: 'Up to 6 counted — filling all 6 helps even if you plan to take fewer.' },
+  { title: 'Graduation application', body: 'Students applying to graduate take priority.' },
+  { title: 'First attempt', body: 'Retakers rank below first-time takers.' },
+  { title: 'Earned / required credits', body: 'A ratio, not a raw amount.' },
+  { title: 'Last term credits / allowed', body: 'Capped at 1 — extra credits do not count.' },
+  { title: 'Year', body: 'Only where per-year quotas exist. A higher year is NOT itself an advantage.' },
+];
+
+/**
+ * 마일리지 전략 플래너.
+ *
+ * 진입 경로 두 가지(사용자 지시 4):
+ *   ① 졸업요건 체커 결과에서 넘어오기 — sessionStorage 로 "남은 과목"을 받아 자동으로 담는다.
+ *   ② 이 탭으로 바로 들어오기 — 빈 상태에서 직접 검색해 담는다.
+ *
+ * 계산은 전부 브라우저에서 돈다(정적 번들 + 자체 엔진). 서버 호출 없음.
+ */
+export function MileagePlanner({ locale }: { locale: Locale }) {
+  const ko = locale === 'ko';
+  const [data, setData] = useState<MileageData | null>(null);
+  const [loadError, setLoadError] = useState<string | null>(null);
+  const [grade, setGrade] = useState(3);
+  const [budget, setBudget] = useState(76);
+  const [planned, setPlanned] = useState<Planned[]>([]);
+  const [query, setQuery] = useState('');
+  const [target, setTarget] = useState(9);
+  const [fromChecker, setFromChecker] = useState(false);
+  const [advancedOpen, setAdvancedOpen] = useState(false);
+
+  // 번들 로드
+  useEffect(() => {
+    let alive = true;
+    fetchBundle()
+      .then((d) => alive && setData(d))
+      .catch((e: unknown) =>
+        alive ? setLoadError(e instanceof Error ? e.message : String(e)) : undefined,
+      );
+    return () => {
+      alive = false;
+    };
+  }, []);
+
+  // 진입 경로 ① — 졸업요건 체커에서 넘어온 과목 자동 담기
+  useEffect(() => {
+    if (!data) return;
+    let payload: MileageHandoff | null = null;
+    try {
+      const raw = sessionStorage.getItem(MILEAGE_HANDOFF_KEY);
+      if (raw) payload = JSON.parse(raw) as MileageHandoff;
+    } catch {
+      payload = null;
+    }
+    if (!payload?.courses?.length) return;
+
+    const picked: Planned[] = [];
+    for (const want of payload.courses) {
+      const norm = want.name.replace(/\s+/g, '');
+      // 이번 학기 개설분 중 이름이 일치하는 분반. 여러 교수면 예측 컷이 가장 낮은 분반을 기본 제시
+      const matches = data.sections.filter((s) => s.name.replace(/\s+/g, '') === norm);
+      if (matches.length === 0) continue;
+      const best = matches.reduce((a, b) => (b.mu < a.mu ? b : a));
+      if (picked.some((p) => p.id === best.id)) continue;
+      picked.push({ id: best.id, mileage: 0, weight: want.required === false ? 2 : 3 });
+    }
+    if (picked.length) {
+      setPlanned(picked.slice(0, 10));
+      setFromChecker(true);
+    }
+    sessionStorage.removeItem(MILEAGE_HANDOFF_KEY);
+  }, [data]);
+
+  const gradeShift = data?.gradeShift?.[String(grade)] ?? 0;
+
+  /** 담은 과목의 Section + 계획을 합친 뷰 */
+  const rows = useMemo(() => {
+    if (!data) return [];
+    return planned
+      .map((p) => {
+        const s = data.byId.get(p.id);
+        return s ? { plan: p, section: s } : null;
+      })
+      .filter((x): x is { plan: Planned; section: Section } => x !== null);
+  }, [planned, data]);
+
+  const conflicts = useMemo(() => findConflicts(rows.map((r) => r.section)), [rows]);
+  const used = planned.reduce((a, p) => a + p.mileage, 0);
+  const over = used > budget;
+
+  const dist = useMemo(
+    () =>
+      distributionFor(
+        rows.map((r) => ({ pred: r.section, mileage: r.plan.mileage, credits: r.section.credits })),
+        gradeShift,
+      ),
+    [rows, gradeShift],
+  );
+  const pTarget = probabilityAtLeast(dist, target);
+  const bars = useMemo(() => histogramBars(dist, target), [dist, target]);
+
+  const allocEntries: AllocEntry[] = useMemo(
+    () => rows.map((r) => ({ pred: r.section, credits: r.section.credits, weight: r.plan.weight })),
+    [rows],
+  );
+
+  const frontier = useMemo(
+    () => (rows.length ? efficientFrontier(allocEntries, budget, gradeShift, 4) : []),
+    [allocEntries, budget, gradeShift, rows.length],
+  );
+
+  const results = useMemo(() => searchSections(data ?? ({ sections: [] } as never), query), [data, query]);
+
+  // ── 조작 ────────────────────────────────────────────────
+  const add = useCallback((s: Section) => {
+    setPlanned((prev) => (prev.some((p) => p.id === s.id) ? prev : [...prev, { id: s.id, mileage: 0, weight: 2 }]));
+    setQuery('');
+  }, []);
+  const remove = (id: string) => setPlanned((prev) => prev.filter((p) => p.id !== id));
+  const setMileage = (id: string, v: number) =>
+    setPlanned((prev) => prev.map((p) => (p.id === id ? { ...p, mileage: Math.max(0, v) } : p)));
+  const setWeight = (id: string, w: number) =>
+    setPlanned((prev) => prev.map((p) => (p.id === id ? { ...p, weight: w } : p)));
+  /** 교수 변경 — 같은 과목의 다른 분반으로 교체(사용자 지시 2) */
+  const switchSection = (oldId: string, newId: string) =>
+    setPlanned((prev) => prev.map((p) => (p.id === oldId ? { ...p, id: newId } : p)));
+
+  const autoAllocate = () => {
+    const r = allocate(allocEntries, budget, gradeShift);
+    setPlanned((prev) => {
+      const next = [...prev];
+      rows.forEach((row, i) => {
+        const idx = next.findIndex((p) => p.id === row.section.id);
+        if (idx >= 0) next[idx] = { ...next[idx], mileage: r.mileages[i] };
+      });
+      return next;
+    });
+  };
+  const resetAll = () => setPlanned((prev) => prev.map((p) => ({ ...p, mileage: 0 })));
+
+  if (loadError) {
+    return (
+      <p className="border border-surface-border bg-surface-soft px-5 py-8 text-sm text-content-soft">
+        {ko ? '마일리지 데이터를 불러오지 못했습니다. 새로고침해 주세요.' : 'Failed to load data.'}
+      </p>
+    );
+  }
+
+  return (
+    <div>
+      {/* 면책 — 상시 노출 */}
+      <div className="mb-6 flex flex-wrap items-center gap-x-3 gap-y-1.5 border-l-2 border-yonsei-navy bg-surface-soft px-4 py-3">
+        <span className="bg-yonsei-navy px-2 py-0.5 text-[11px] font-bold text-white">BETA</span>
+        <span className="text-[13px] font-semibold text-content">
+          {ko ? '예측이며 합격을 보장하지 않습니다' : 'Predictions only — not a guarantee'}
+        </span>
+        <span className="text-[12px] text-content-faint">
+          {ko ? '학생 제작 · 과거 수강신청 기록 기반' : 'Student-built · based on past registration records'}
+        </span>
+      </div>
+
+      {/* 진입 경로 ① 안내 */}
+      {fromChecker && (
+        <p className="mb-5 border border-yonsei-blue/30 bg-yonsei-blue/[0.06] px-4 py-3 text-[13px] text-content">
+          {ko
+            ? `졸업요건 결과에서 남은 과목 ${rows.length}개를 불러왔습니다. 필요 없으면 ✕ 로 빼세요.`
+            : `Imported ${rows.length} remaining course(s) from your graduation audit.`}
+        </p>
+      )}
+
+      {!data ? (
+        <p className="px-1 py-10 text-sm text-content-faint">{ko ? '데이터 불러오는 중…' : 'Loading…'}</p>
+      ) : (
+        // 좌측(내 프로필) 폭을 줄여 그만큼 가운데 배분 열을 넓혔다(사용자 지시).
+        // 합을 3.0 으로 유지해 우측 리스크 열 폭은 그대로 둔다 — 1440px 기준 좌 374→304px,
+        // 가운데 520→590px.
+        <div className="grid gap-8 lg:grid-cols-[minmax(0,0.73fr)_minmax(0,1.42fr)_minmax(0,0.85fr)] lg:gap-6">
+          {/* ─────────── 좌: 계획 담기 ─────────── */}
+          <section aria-label={ko ? '과목 담기' : 'Add courses'} className="min-w-0">
+            <SectionLabel>{ko ? '내 프로필' : 'Profile'}</SectionLabel>
+            {/* 졸업요건 체커의 '학번 선택'과 동일한 세그먼트 토글(사용자 지시) */}
+            <div className="mt-3">
+              <SegmentedControl
+                value={String(grade)}
+                onChange={(id) => setGrade(Number(id))}
+                options={[1, 2, 3, 4].map((g) => ({
+                  id: String(g),
+                  label: ko ? `${g}학년` : `Y${g}`,
+                }))}
+                ariaLabel={ko ? '학년 선택' : 'Year'}
+                className="w-full"
+              />
+            </div>
+            <p className="mb-1.5 mt-4 text-[11px] font-semibold text-content-faint">
+              {ko ? '학기 예산' : 'Budget'}
+            </p>
+            <SegmentedControl
+              value={String(budget)}
+              onChange={(id) => setBudget(Number(id))}
+              options={[72, 76].map((b) => ({ id: String(b), label: `${b}mp` }))}
+              ariaLabel={ko ? '학기 예산 선택' : 'Budget'}
+              className="w-full"
+            />
+
+            <button
+              type="button"
+              onClick={() => setAdvancedOpen((v) => !v)}
+              aria-expanded={advancedOpen}
+              className="mt-4 flex min-h-[44px] w-full items-center justify-between border-t border-surface-border pt-3 text-left text-[12px] font-semibold text-content-faint"
+            >
+              {ko ? '고급 · 동점자 세부조건' : 'Advanced · tie-breakers'}
+              <span aria-hidden="true">{advancedOpen ? '−' : '+'}</span>
+            </button>
+            {advancedOpen && (
+              <div className="mt-2">
+                <ol className="space-y-1.5 text-[11.5px] leading-relaxed text-content-faint">
+                  {(ko ? TIEBREAKERS_KO : TIEBREAKERS_EN).map((t, i) => (
+                    <li key={i}>
+                      <span className="font-semibold text-content">
+                        {i + 1}. {t.title}
+                      </span>
+                      <br />
+                      {t.body}
+                    </li>
+                  ))}
+                </ol>
+                <p className="mt-3 border-t border-surface-border pt-2 text-[11px] leading-relaxed text-content-faint">
+                  {ko
+                    ? '※ 마일리지가 같을 때 위 순서로 우선순위가 정해지고, 마지막에 전공자·학년 정원에 맞춰 위에서부터 확정됩니다. 과거 기록에서도 컷 지점의 학년 효과가 나타나지 않아, 예측에 학년 보정을 넣지 않았습니다.'
+                    : '※ Ties are broken in this order, then major/grade quotas are applied. No grade adjustment is used — consistent with the rule that a higher year is not itself an advantage.'}
+                </p>
+              </div>
+            )}
+
+            <div className="mt-7">
+              <SectionLabel>{ko ? '과목 담기' : 'Add courses'}</SectionLabel>
+              <input
+                type="search"
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
+                placeholder={ko ? '과목명 · 학정번호 · 교수명' : 'Course, code, or professor'}
+                aria-label={ko ? '과목 검색' : 'Search courses'}
+                className="mt-3 h-11 w-full border border-surface-border bg-surface px-3 text-[14px] text-content outline-none focus:border-yonsei-blue"
+              />
+              <p className="mt-1.5 text-[11px] text-content-faint">
+                {ko
+                  ? `${data.sections.length.toLocaleString()}개 분반 · 교양·타전공 포함`
+                  : `${data.sections.length.toLocaleString()} sections · all departments`}
+              </p>
+
+              {query.trim() && (
+                <ul className="mt-2 max-h-[300px] divide-y divide-surface-border overflow-y-auto border border-surface-border">
+                  {results.length === 0 && (
+                    <li className="px-3 py-4 text-[12.5px] text-content-faint">
+                      {ko ? '검색 결과가 없습니다.' : 'No results.'}
+                    </li>
+                  )}
+                  {results.map((s) => (
+                    <li key={s.id}>
+                      <button
+                        type="button"
+                        onClick={() => add(s)}
+                        className="flex min-h-[44px] w-full flex-col items-start gap-0.5 px-3 py-2 text-left hover:bg-surface-soft"
+                      >
+                        <span className="text-[13.5px] font-semibold text-content">
+                          {s.name}
+                          <span className="ml-1.5 font-medium text-content-faint">{s.credits}학점</span>
+                        </span>
+                        <span className="text-[11.5px] text-content-faint">
+                          {s.code}-{s.division} · {s.professor || (ko ? '미배정' : 'TBA')} · {s.deptName}
+                        </span>
+                      </button>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
+          </section>
+
+          {/* ─────────── 중: 배분 ─────────── */}
+          <section aria-label={ko ? '마일리지 배분' : 'Allocation'} className="min-w-0">
+            <div className="flex items-center justify-between gap-3">
+              <SectionLabel>{ko ? '마일리지 배분' : 'Allocation'}</SectionLabel>
+              <button
+                type="button"
+                onClick={resetAll}
+                className="min-h-[36px] px-2 text-[12px] font-semibold text-content-faint hover:text-yonsei-blue"
+              >
+                ↺ {ko ? '초기화' : 'Reset'}
+              </button>
+            </div>
+
+            {/* 예산 바 — 모바일에서는 하단 고정 */}
+            <div className="sticky bottom-0 z-10 mt-3 border border-surface-border bg-surface px-3 py-2.5 lg:static">
+              <div className="flex items-baseline justify-between">
+                <span className="text-[11.5px] font-semibold text-content-faint">
+                  {ko ? '배분 합계 / 학기 예산' : 'Allocated / Budget'}
+                </span>
+                <span
+                  className="text-[15px] font-bold tabular-nums"
+                  style={{ color: over ? WARN_RED : '#232323' }}
+                >
+                  {used} / {budget}mp
+                </span>
+              </div>
+              <div className="mt-1.5 h-2 w-full bg-surface-border">
+                <div
+                  className="h-2"
+                  style={{
+                    width: `${Math.min(100, (used / budget) * 100)}%`,
+                    background: over ? WARN_RED : '#003377',
+                  }}
+                />
+              </div>
+              {over && (
+                <p className="mt-1.5 text-[11.5px] font-semibold" style={{ color: WARN_RED }}>
+                  {ko ? `예산을 ${used - budget}mp 초과했습니다.` : `Over budget by ${used - budget}mp.`}
+                </p>
+              )}
+            </div>
+
+            {rows.length === 0 ? (
+              <div className="mt-4 border border-dashed border-surface-border px-5 py-12 text-center">
+                <p className="text-[13.5px] font-semibold text-content">
+                  {ko ? '담은 과목이 없습니다' : 'No courses yet'}
+                </p>
+                <p className="mt-1.5 text-[12.5px] leading-relaxed text-content-faint">
+                  {ko
+                    ? '왼쪽에서 과목을 검색해 담으면 여기에 배분 슬라이더와 실시간 확률이 나타납니다.'
+                    : 'Search on the left to add courses.'}
+                </p>
+              </div>
+            ) : (
+              <ul className="mt-4 space-y-3">
+                {rows.map(({ plan, section }) => {
+                  const p = admitProbability(section, plan.mileage, gradeShift);
+                  const lv = levelOf(p, ko);
+                  const conf = confidenceOf(section);
+                  const reason = confidenceReason(section, ko);
+                  const conflictWith = conflicts.get(section.id);
+                  const siblings = siblingSections(data, section.code);
+                  return (
+                    <li key={plan.id} className="border border-surface-border px-3.5 py-3">
+                      <div className="flex items-start justify-between gap-3">
+                        <div className="min-w-0">
+                          <p className="text-[14px] font-bold text-content">
+                            {section.name}
+                            <span className="ml-1.5 text-[12px] font-medium text-content-faint">
+                              {section.credits}학점
+                            </span>
+                          </p>
+                          <p className="mt-0.5 text-[11.5px] text-content-faint">
+                            {section.code}-{section.division} · {section.deptName}
+                          </p>
+
+                          {/* 담당 교수 — 여러 분반이면 선택 가능(사용자 지시 2) */}
+                          <div className="mt-2 flex flex-wrap items-center gap-2">
+                            <span className="text-[11px] font-semibold text-content-faint">
+                              {ko ? '담당 교수' : 'Professor'}
+                            </span>
+                            {siblings.length > 1 ? (
+                              <select
+                                value={section.id}
+                                onChange={(e) => switchSection(section.id, e.target.value)}
+                                aria-label={`${section.name} ${ko ? '분반 선택' : 'section'}`}
+                                className="min-h-[36px] max-w-[220px] border border-surface-border bg-surface px-2 text-[12px] text-content"
+                              >
+                                {siblings.map((sb) => (
+                                  <option key={sb.id} value={sb.id}>
+                                    {sb.division} · {sb.professor || (ko ? '미배정' : 'TBA')}
+                                  </option>
+                                ))}
+                              </select>
+                            ) : (
+                              <span className="text-[12px] font-semibold text-content">
+                                {section.professor || (ko ? '미배정' : 'TBA')}
+                              </span>
+                            )}
+                            {siblings.length > 1 && (
+                              <span className="text-[10.5px] text-content-faint">
+                                {ko ? '교수별로 예측이 다릅니다' : 'Predictions differ by professor'}
+                              </span>
+                            )}
+                          </div>
+
+                          {/* 졸업 필수도 */}
+                          <div className="mt-2 flex flex-wrap items-center gap-1.5">
+                            <span className="text-[11px] font-semibold text-content-faint">
+                              {ko ? '졸업 필수도' : 'Priority'}
+                            </span>
+                            {[3, 2, 1].map((w) => (
+                              <button
+                                key={w}
+                                type="button"
+                                onClick={() => setWeight(plan.id, w)}
+                                aria-pressed={plan.weight === w}
+                                className={cn(
+                                  'min-h-[32px] border px-2 text-[11.5px] font-semibold',
+                                  plan.weight === w
+                                    ? 'border-yonsei-navy bg-yonsei-navy text-white'
+                                    : 'border-surface-border bg-surface text-content-faint',
+                                )}
+                              >
+                                {ko ? WEIGHT_LABELS[w].ko : WEIGHT_LABELS[w].en}
+                              </button>
+                            ))}
+                          </div>
+                        </div>
+                        <button
+                          type="button"
+                          onClick={() => remove(plan.id)}
+                          aria-label={`${section.name} ${ko ? '제거' : 'remove'}`}
+                          className="grid h-[30px] w-[30px] shrink-0 place-items-center border border-surface-border bg-surface text-[13px] text-content-faint hover:text-content"
+                        >
+                          ✕
+                        </button>
+                      </div>
+
+                      {/* 경고 배지 — 같은 형태, 색만 다름 */}
+                      {(conflictWith || conf !== 'high') && (
+                        <div className="mt-2.5 flex flex-wrap gap-[7px]">
+                          {conflictWith && (
+                            <WarnBadge color={WARN_RED} icon="calendar">
+                              {ko ? '시간 충돌' : 'Time conflict'} · {conflictWith.join(', ')}
+                            </WarnBadge>
+                          )}
+                          {conf !== 'high' && reason && (
+                            <WarnBadge color={WARN_AMBER} icon="alert">
+                              {ko ? '데이터 부족' : 'Limited data'} · {reason}
+                            </WarnBadge>
+                          )}
+                        </div>
+                      )}
+
+                      {/* 슬라이더 + 확률 */}
+                      <div className="mt-3 flex items-center gap-4">
+                        <div className="min-w-0 flex-1">
+                          <div className="mb-1 flex items-baseline justify-between">
+                            <span className="text-[11px] text-content-faint">{ko ? '마일리지' : 'Mileage'}</span>
+                            <span className="text-[11px] text-content-faint">
+                              {ko ? '예측 컷' : 'Est. cutoff'} ~{Math.round(section.mu)}mp
+                            </span>
+                          </div>
+                          <input
+                            type="range"
+                            min={0}
+                            max={section.maxMileage}
+                            value={plan.mileage}
+                            onChange={(e) => setMileage(plan.id, Number(e.target.value))}
+                            aria-label={`${section.name} ${ko ? '마일리지' : 'mileage'}`}
+                            aria-valuetext={`${plan.mileage}mp, ${Math.round(p * 100)}%`}
+                            className="h-11 w-full accent-yonsei-navy"
+                          />
+                        </div>
+                        <div className="w-[62px] shrink-0 text-right">
+                          <span
+                            style={{ fontFamily: 'var(--font-subhead), var(--font-sans), sans-serif' }}
+                            className="text-[24px] font-bold text-content"
+                          >
+                            {plan.mileage}
+                          </span>
+                          <span className="text-[11px] text-content-faint"> mp</span>
+                        </div>
+                        <div className="w-[92px] shrink-0 text-right">
+                          <div
+                            style={{
+                              color: lv.color,
+                              fontFamily: 'var(--font-subhead), var(--font-sans), sans-serif',
+                            }}
+                            className="text-[24px] font-bold leading-none"
+                          >
+                            {Math.round(p * 100)}%
+                          </div>
+                          <div className="mt-1 inline-flex items-center gap-1">
+                            <span aria-hidden="true" className="inline-block h-[7px] w-[7px]" style={{ background: lv.color }} />
+                            <span className="text-[11px] font-semibold" style={{ color: lv.color }}>
+                              {lv.label}
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="mt-2 h-1.5 w-full bg-surface-border">
+                        <div className="h-1.5" style={{ width: `${p * 100}%`, background: lv.color }} />
+                      </div>
+                    </li>
+                  );
+                })}
+              </ul>
+            )}
+            {rows.length > 0 && (
+              <>
+                {/* 실전 조언 — 담은 과목이 6개 미만이면 알린다.
+                    전공 과목은 상한(18·12)이 낮아 "모두가 상한을 걸어" 상한이 곧 컷이 되는 일이
+                    잦은데, 그때 승부는 마일리지가 아니라 신청 과목 수에서 갈린다. */}
+                {rows.length < 6 && (
+                  <div
+                    className="mt-4 border-l-2 bg-surface-soft px-3.5 py-3"
+                    style={{ borderColor: WARN_AMBER }}
+                  >
+                    <p className="text-[12.5px] font-bold" style={{ color: WARN_AMBER }}>
+                      {ko ? `신청 과목이 ${rows.length}개입니다 — 6개를 채우세요` : `Only ${rows.length} courses — fill all 6`}
+                    </p>
+                    <p className="mt-1 text-[11.5px] leading-relaxed text-content-soft">
+                      {ko
+                        ? '전공 과목은 상한(18·12mp)이 낮아 모두가 상한을 걸면 상한이 곧 컷이 됩니다. 이때는 마일리지가 아니라 신청 과목 수로 순위가 갈리므로, 실제로 4과목만 들을 계획이어도 6과목을 채워 두는 편이 유리합니다.'
+                        : 'When everyone bids the cap, the tie is broken by how many courses you applied to — fill all 6 even if you plan to take fewer.'}
+                    </p>
+                  </div>
+                )}
+                <p className="mt-4 text-[12px] leading-relaxed text-content-faint">
+                  {ko
+                    ? '슬라이더를 움직이면 확률과 예산 바가 즉시 반응합니다 · 자동 배분 후에도 언제든 다시 조정할 수 있어요.'
+                    : 'Move a slider and everything updates instantly.'}
+                </p>
+              </>
+            )}
+          </section>
+
+          {/* ─────────── 우: 리스크 ─────────── */}
+          <section aria-label={ko ? '리스크' : 'Risk'} className="min-w-0">
+            <SectionLabel>{ko ? '리스크' : 'Risk'}</SectionLabel>
+
+            <div className="mt-3 border border-surface-border px-3.5 py-4">
+              <div className="flex items-baseline justify-between gap-2">
+                <span className="text-[11.5px] font-semibold text-content-faint">
+                  {ko ? `목표 ${target}학점 이상 확보 확률` : `P(≥ ${target} credits)`}
+                </span>
+              </div>
+              <p
+                style={{ fontFamily: 'var(--font-subhead), var(--font-sans), sans-serif' }}
+                className="mt-1 text-[38px] font-bold leading-none text-yonsei-navy"
+              >
+                {Math.round(pTarget * 100)}%
+              </p>
+              <div className="mt-3 flex flex-wrap items-center gap-1.5">
+                <span className="text-[11px] font-semibold text-content-faint">
+                  {ko ? '목표 학점' : 'Target'}
+                </span>
+                {[6, 9, 12, 15].map((t) => (
+                  <button
+                    key={t}
+                    type="button"
+                    onClick={() => setTarget(t)}
+                    aria-pressed={target === t}
+                    className={cn(
+                      'min-h-[32px] border px-2 text-[11.5px] font-semibold',
+                      target === t
+                        ? 'border-yonsei-navy bg-yonsei-navy text-white'
+                        : 'border-surface-border bg-surface text-content-faint',
+                    )}
+                  >
+                    {t}
+                  </button>
+                ))}
+              </div>
+              <p className="mt-2.5 text-[11px] text-content-faint">
+                {ko
+                  ? `기대 확보 ${dist.expected.toFixed(1)}학점 · 가장 그럴듯한 결과 ${dist.mode}학점`
+                  : `Expected ${dist.expected.toFixed(1)} · most likely ${dist.mode}`}
+              </p>
+              {/* 목표가 담은 과목 총 학점을 넘으면 0%가 당연한데, 안내가 없으면 오해를 부른다 */}
+              {rows.length > 0 && target > dist.totalCredits && (
+                <p className="mt-1.5 text-[11px] font-semibold" style={{ color: WARN_AMBER }}>
+                  {ko
+                    ? `담은 과목이 총 ${dist.totalCredits}학점이라 목표 ${target}학점에는 도달할 수 없습니다. 과목을 더 담아 보세요.`
+                    : `Only ${dist.totalCredits} credits added — the ${target}-credit target is unreachable.`}
+                </p>
+              )}
+            </div>
+
+            {/* 확보 학점 분포 */}
+            {bars.length > 0 && (
+              <div className="mt-4 border border-surface-border px-3.5 py-4">
+                <p className="text-[11.5px] font-semibold text-content-faint">
+                  {ko ? '확보 학점 분포' : 'Credit distribution'}
+                </p>
+                {/* li 에 h-full 을 주어야 자식 막대의 height:% 가 해소된다
+                    (부모 높이가 확정되지 않으면 백분율 높이가 0으로 접힌다) */}
+                <ul className="mt-3 flex h-[110px] gap-[3px]">
+                  {bars.map((b) => {
+                    const peak = Math.max(...bars.map((x) => x.p));
+                    return (
+                      <li
+                        key={b.credits}
+                        className="flex h-full min-w-0 flex-1 flex-col justify-end"
+                        title={`${b.credits}${ko ? '학점' : ' cr'} ${Math.round(b.p * 100)}%`}
+                      >
+                        <div
+                          style={{
+                            height: `${Math.max(3, (b.p / (peak || 1)) * 88)}%`,
+                            background: b.meetsTarget ? '#003377' : '#C9D4E2',
+                          }}
+                        />
+                        <span className="mt-1 block truncate text-center text-[9.5px] text-content-faint">
+                          {b.credits}
+                        </span>
+                      </li>
+                    );
+                  })}
+                </ul>
+                <p className="mt-1.5 text-[10.5px] text-content-faint">
+                  {ko ? '진한 막대 = 목표 이상' : 'Dark = meets target'}
+                </p>
+              </div>
+            )}
+
+            {/* 자동 배분 + 프론티어 */}
+            <button
+              type="button"
+              onClick={autoAllocate}
+              disabled={rows.length === 0}
+              className="mt-4 min-h-[48px] w-full bg-yonsei-navy px-4 text-[14px] font-bold text-white transition-colors hover:bg-yonsei-blue disabled:bg-surface-border disabled:text-content-faint"
+            >
+              {ko ? '예산 자동 배분' : 'Auto-allocate budget'}
+            </button>
+
+            {frontier.length > 1 && (
+              <div className="mt-4 border border-surface-border px-3.5 py-4">
+                <p className="text-[11.5px] font-semibold text-content-faint">
+                  {ko ? '효율적 프론티어' : 'Efficient frontier'}
+                </p>
+                <p className="mt-0.5 text-[10.5px] leading-relaxed text-content-faint">
+                  {ko ? '예산을 늘릴수록 기대 확보 학점이 어떻게 오르는지' : 'Expected credits vs budget'}
+                </p>
+                <Frontier points={frontier} budget={budget} used={used} />
+              </div>
+            )}
+          </section>
+        </div>
+      )}
+    </div>
+  );
+}
+
+/** 섹션 라벨 — 사이트 공통 네이비 사각 라벨 + 헤어라인 */
+function SectionLabel({ children }: { children: React.ReactNode }) {
+  return (
+    <div className="flex items-center gap-3">
+      <h3
+        style={{ fontFamily: 'var(--font-subhead), var(--font-sans), sans-serif' }}
+        className="inline-block shrink-0 bg-yonsei-navy px-3.5 py-1.5 text-sm font-semibold text-white"
+      >
+        {children}
+      </h3>
+      <span aria-hidden="true" className="h-px flex-1 bg-surface-border" />
+    </div>
+  );
+}
+
+
+/** 경고 배지 — 시간 충돌(빨강)과 데이터 부족(노랑)이 같은 형태를 공유한다 */
+function WarnBadge({
+  color,
+  icon,
+  children,
+}: {
+  color: string;
+  icon: 'calendar' | 'alert';
+  children: React.ReactNode;
+}) {
+  return (
+    <span
+      className="inline-flex items-center gap-[5px] border bg-surface px-[9px] py-1 text-[11px] font-semibold"
+      style={{ borderColor: color, color }}
+    >
+      <svg
+        width="12"
+        height="12"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2.4"
+        aria-hidden="true"
+      >
+        {icon === 'calendar' ? (
+          <>
+            <rect x="4" y="5" width="16" height="16" />
+            <path d="M4 10h16M9 3v4M15 3v4" strokeLinecap="round" />
+          </>
+        ) : (
+          <>
+            <path d="M12 3 2 20h20L12 3z" strokeLinejoin="round" />
+            <path d="M12 9v5M12 17.5v.5" strokeLinecap="round" />
+          </>
+        )}
+      </svg>
+      {children}
+    </span>
+  );
+}
+
+/** 효율적 프론티어 꺾은선 */
+function Frontier({
+  points,
+  budget,
+  used,
+}: {
+  points: { budget: number; expected: number }[];
+  budget: number;
+  used: number;
+}) {
+  const W = 240;
+  const H = 90;
+  const maxY = Math.max(1, ...points.map((p) => p.expected));
+  const x = (b: number) => (b / Math.max(1, budget)) * W;
+  const y = (e: number) => H - (e / maxY) * H;
+  const path = points.map((p, i) => `${i === 0 ? 'M' : 'L'}${x(p.budget).toFixed(1)},${y(p.expected).toFixed(1)}`).join(' ');
+  const cur = points.reduce((a, p) => (Math.abs(p.budget - used) < Math.abs(a.budget - used) ? p : a), points[0]);
+  return (
+    <>
+      <svg
+        viewBox={`0 0 ${W} ${H}`}
+        className="mt-2 h-[90px] w-full"
+        role="img"
+        aria-label={`예산 ${used}mp에서 기대 확보 ${cur.expected.toFixed(1)}학점`}
+      >
+        <path d={path} fill="none" stroke="#0057A8" strokeWidth="2" />
+        <circle cx={x(cur.budget)} cy={y(cur.expected)} r="3.5" fill="#003377" />
+      </svg>
+      <p className="text-[11px] text-content-faint">
+        현재 {used}mp에서 기대 확보 <b className="text-content">{cur.expected.toFixed(1)}학점</b>
+      </p>
+    </>
+  );
+}

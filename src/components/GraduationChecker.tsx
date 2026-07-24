@@ -3,6 +3,8 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { cn } from '@/lib/utils';
 import { useLandingAnimation } from '@/components/LandingScope';
+import { MILEAGE_HANDOFF_KEY } from '@/components/MileagePlanner';
+import { SegmentedControl } from '@/components/SegmentedControl';
 import {
   evaluate,
   matchCourses,
@@ -41,65 +43,6 @@ function StepLabel({ num, title }: { num: string; title: string }) {
     >
       STEP {num} <span className="mx-1 opacity-60">·</span> {title}
     </h3>
-  );
-}
-
-/**
- * 슬라이드(세그먼트) 토글 — 선택 항목 밑으로 네이비 썸이 미끄러지는 각진 버튼 그룹.
- * 학번 선택·막대형/도넛형 전환에 사용(구 UnderlineTabs 대체 — 사용자 지시).
- * 균등 폭 세그먼트라 썸 이동은 translateX(index×100%) 만으로 정확하다.
- */
-function SegmentedControl({
-  value,
-  onChange,
-  options,
-  ariaLabel,
-  className,
-}: {
-  value: string;
-  onChange: (id: string) => void;
-  options: { id: string; label: string }[];
-  ariaLabel: string;
-  className?: string;
-}) {
-  const idx = Math.max(
-    0,
-    options.findIndex((o) => o.id === value),
-  );
-  return (
-    <div
-      role="group"
-      aria-label={ariaLabel}
-      className={cn(
-        'relative inline-grid auto-cols-fr grid-flow-col border border-surface-border bg-surface-soft p-1',
-        className,
-      )}
-    >
-      {/* 썸 — 컨테이너 안쪽 폭(100%-패딩)을 옵션 수로 나눈 한 칸 크기로 슬라이드 */}
-      <span
-        aria-hidden="true"
-        className="absolute bottom-1 top-1 bg-yonsei-navy transition-transform duration-300 ease-out-expo motion-reduce:transition-none"
-        style={{
-          left: '0.25rem',
-          width: `calc((100% - 0.5rem) / ${options.length})`,
-          transform: `translateX(${idx * 100}%)`,
-        }}
-      />
-      {options.map((o) => (
-        <button
-          key={o.id}
-          type="button"
-          onClick={() => onChange(o.id)}
-          aria-pressed={value === o.id}
-          className={cn(
-            'relative z-10 px-4 py-1.5 text-sm font-bold transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yonsei-blue',
-            value === o.id ? 'text-white' : 'text-content-soft hover:text-content',
-          )}
-        >
-          {o.label}
-        </button>
-      ))}
-    </div>
   );
 }
 
@@ -454,6 +397,20 @@ export function GraduationChecker({ data, locale }: { data: CheckerData; locale:
   const chipTotalCredits = sumCredits(takenCourses);
 
   const pct = Math.min(100, Math.round((result.totalEarned / result.totalRequired) * 100));
+
+  // 마일리지 플래너로 넘길 "남은 과목" — 섹션별 미이수 항목을 중복 없이 모은다.
+  const remainingForMileage = (() => {
+    const seen = new Set<string>();
+    const out: { name: string; credits?: number; required?: boolean }[] = [];
+    for (const sec of result.sections) {
+      for (const it of sec.items ?? []) {
+        if (it.done || seen.has(it.name)) continue;
+        seen.add(it.name);
+        out.push({ name: it.name, credits: it.credits, required: true });
+      }
+    }
+    return out.slice(0, 12);
+  })();
 
   return (
     <div ref={landingRef} className="space-y-16">
@@ -1112,6 +1069,41 @@ export function GraduationChecker({ data, locale }: { data: CheckerData; locale:
               );
             })}
           </ul>
+        )}
+
+        {/* 마일리지 전략으로 이어가기 — 남은 과목을 그대로 넘겨 재입력을 없앤다(사용자 지시 4).
+            sessionStorage 로 건네고 해시를 바꾸면 TabbedContent 가 탭을 전환한다. */}
+        {remainingForMileage.length > 0 && (
+          <div className="mt-8 border border-yonsei-navy/25 bg-surface-soft px-5 py-4">
+            <p className="text-sm font-bold text-content">
+              {ko ? '이 결과로 마일리지 전략 세우기' : 'Plan your mileage with this result'}
+            </p>
+            <p className="mt-1 text-xs leading-relaxed text-content-soft">
+              {ko
+                ? `남은 과목 ${remainingForMileage.length}개를 마일리지 플래너로 그대로 가져갑니다. 다시 입력할 필요 없어요.`
+                : `Carries your ${remainingForMileage.length} remaining course(s) over — no re-entry needed.`}
+            </p>
+            <button
+              type="button"
+              onClick={() => {
+                try {
+                  sessionStorage.setItem(
+                    MILEAGE_HANDOFF_KEY,
+                    JSON.stringify({ courses: remainingForMileage }),
+                  );
+                } catch {
+                  /* 저장이 막혀 있어도 이동은 시킨다(빈 상태로 시작) */
+                }
+                window.location.hash = 'mileage';
+              }}
+              className="group mt-3 inline-flex min-h-[44px] items-center gap-2 bg-yonsei-navy px-5 text-sm font-bold text-white transition-colors hover:bg-yonsei-blue"
+            >
+              {ko ? '마일리지 전략 플래너로' : 'Go to Mileage Planner'}
+              <span aria-hidden="true" className="transition-transform group-hover:translate-x-1">
+                →
+              </span>
+            </button>
+          </div>
         )}
 
         <p className="mt-6 max-w-2xl text-xs leading-relaxed text-content-faint">

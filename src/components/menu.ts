@@ -32,6 +32,7 @@ export const menu: MenuGroup[] = [
       { key: 'goals', href: '/undergraduate#goals' },
       { key: 'requirements', href: '/undergraduate#requirements' },
       { key: 'checker', href: '/undergraduate#checker' },
+      { key: 'mileage', href: '/undergraduate#mileage' },
       { key: 'courses', href: '/undergraduate#courses' },
       { key: 'curriculum', href: '/undergraduate#curriculum' },
       { key: 'clubs', href: '/undergraduate#clubs' },
