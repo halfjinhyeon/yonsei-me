@@ -357,7 +357,9 @@ for (const s of sections) {
       majorQuota: lastSum?.major_ratio ?? null,
       yearQuotas: quotas,
     },
-    // ③ 과거 이력 (최신순)
+    // ③ 과거 이력 (최신순) — [학기, 컷, 정원, 신청, 그 학기 담당 교수]
+    //    담당 교수를 함께 실어야 "이 컷이 누구 것인지"를 화면에서 구분할 수 있다.
+    //    분반 번호가 같아도 교수가 바뀌면 다른 사람의 기록이다(사용자 지적).
     history: pts.map((p) => {
       const sm = summaryByKey.get(`${s.code}|${s.division}|${p.year}|${p.semester}`);
       return [
@@ -365,8 +367,24 @@ for (const s of sections) {
         p.cutoff,
         sm?.capacity ?? null,
         sm?.applicants ?? null,
+        p.professor ?? null,
       ];
     }),
+    /**
+     * 현재 담당 교수가 **이 과목을 다른 분반에서** 맡았던 이력.
+     * 이 분반을 처음 맡는 교수라면 위 history 는 남의 기록이므로, 대신 이걸 봐야 한다.
+     * [학기, 분반, 컷]
+     */
+    professorHistory: s.professor
+      ? [...histBySection.entries()]
+          .filter(([k]) => k.startsWith(`${s.code}|`) && k !== `${s.code}|${s.division}`)
+          .flatMap(([k, ps]) =>
+            ps
+              .filter((p) => p.professor && p.professor === s.professor)
+              .map((p) => [`${p.year}-${p.semester}`, k.split('|')[1], p.cutoff]),
+          )
+          .sort((a, b) => b[0].localeCompare(a[0]))
+      : [],
     // 학년별 컷 + 동점 시 총이수학점 비율 경계
     perGrade: Object.keys(perGrade).length ? perGrade : null,
     tieCredit: tc && tc.winMin !== null ? { winMin: +tc.winMin.toFixed(3), loseMax: tc.loseMax !== null ? +tc.loseMax.toFixed(3) : null } : null,

@@ -973,37 +973,95 @@ function SectionDetailPanel({ section, ko }: { section: Section; ko: boolean }) 
         <DetailHead>{ko ? '과거 이력' : 'History'}</DetailHead>
         {history.length ? (
           <div className="mt-1.5 overflow-x-auto">
-            <table className="w-full min-w-[260px] border-collapse text-[11.5px]">
+            <table className="w-full min-w-[300px] border-collapse text-[11.5px]">
               <thead>
                 <tr className="border-b border-t border-surface-border text-content-faint">
                   <th scope="col" className="py-1 text-left font-semibold">{ko ? '학기' : 'Term'}</th>
+                  <th scope="col" className="py-1 text-left font-semibold">{ko ? '담당' : 'Prof.'}</th>
                   <th scope="col" className="py-1 text-right font-semibold">{ko ? '컷' : 'Cut'}</th>
                   <th scope="col" className="py-1 text-right font-semibold">{ko ? '정원' : 'Cap.'}</th>
                   <th scope="col" className="py-1 text-right font-semibold">{ko ? '신청' : 'Applied'}</th>
                 </tr>
               </thead>
               <tbody>
-                {history.map(([term, cut, cap, app], i) => (
-                  <tr key={term} className="border-b border-surface-border">
-                    <td className="py-1">
-                      {fmtTerm(term, ko)}
-                      {i === 0 && (
-                        <span className="ml-1 bg-yonsei-navy px-1 py-px text-[9px] font-bold text-white">
-                          {ko ? '최신' : 'latest'}
-                        </span>
-                      )}
-                    </td>
-                    <td className="py-1 text-right font-bold tabular-nums text-content">{cut}mp</td>
-                    <td className="py-1 text-right tabular-nums text-content-faint">{cap ?? '—'}</td>
-                    <td className="py-1 text-right tabular-nums text-content-faint">{app ?? '—'}</td>
-                  </tr>
-                ))}
+                {history.map(([term, cut, cap, app, prof], i) => {
+                  // 담당 교수가 확인되고 지금 교수와 다르면 "남의 기록"이다 — 흐리게 처리하고 표시한다
+                  const other = !!prof && !!section.professor && prof !== section.professor;
+                  return (
+                    <tr key={term} className="border-b border-surface-border">
+                      <td className={cn('py-1', other && 'text-content-faint')}>
+                        {fmtTerm(term, ko)}
+                        {i === 0 && (
+                          <span className="ml-1 bg-yonsei-navy px-1 py-px text-[9px] font-bold text-white">
+                            {ko ? '최신' : 'latest'}
+                          </span>
+                        )}
+                      </td>
+                      <td className={cn('py-1', other ? 'text-content-faint' : 'font-semibold text-content')}>
+                        {prof ?? '—'}
+                        {other && (
+                          <span className="ml-1 text-[9.5px]" style={{ color: WARN_AMBER }}>
+                            {ko ? '(다른 교수)' : '(other)'}
+                          </span>
+                        )}
+                      </td>
+                      <td
+                        className={cn(
+                          'py-1 text-right tabular-nums',
+                          other ? 'text-content-faint' : 'font-bold text-content',
+                        )}
+                      >
+                        {cut}mp
+                      </td>
+                      <td className="py-1 text-right tabular-nums text-content-faint">{cap ?? '—'}</td>
+                      <td className="py-1 text-right tabular-nums text-content-faint">{app ?? '—'}</td>
+                    </tr>
+                  );
+                })}
               </tbody>
             </table>
+
+            {/* 이 분반을 처음 맡는 교수라면 위 표는 전부 남의 기록이다 — 분명히 알린다 */}
+            {section.professor &&
+              history.some(([, , , , p]) => p) &&
+              !history.some(([, , , , p]) => p === section.professor) && (
+                <p
+                  className="mt-1.5 border-l-2 bg-surface-soft px-2.5 py-1.5 text-[11px] leading-relaxed"
+                  style={{ borderColor: WARN_AMBER, color: WARN_AMBER }}
+                >
+                  {ko
+                    ? `${section.professor} 교수는 이 분반을 처음 맡습니다. 위 기록은 다른 교수의 것이라 예측에 반영되지 않았습니다.`
+                    : `${section.professor} teaches this section for the first time — the rows above belong to other professors and are excluded from the forecast.`}
+                </p>
+              )}
+
+            {/* 현재 교수가 이 과목을 다른 분반에서 맡았던 이력 — 처음 맡는 분반일 때 특히 중요 */}
+            {detail.professorHistory && detail.professorHistory.length > 0 && (
+              <div className="mt-2.5">
+                <p className="text-[11px] font-semibold text-content">
+                  {ko
+                    ? `${section.professor} 교수의 이 과목 이력 (다른 분반)`
+                    : `${section.professor}'s record for this course (other sections)`}
+                </p>
+                <ul className="mt-1 flex flex-wrap gap-1.5">
+                  {detail.professorHistory.map(([term, div, cut]) => (
+                    <li
+                      key={`${term}-${div}`}
+                      className="border border-surface-border bg-surface px-2 py-1 text-[11px]"
+                    >
+                      {fmtTerm(term, ko)} · {div}
+                      {ko ? '분반' : ''}{' '}
+                      <b className="font-bold text-yonsei-blue">{cut}mp</b>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+
             <p className="mt-1.5 text-[10.5px] leading-relaxed text-content-faint">
               {ko
-                ? '예측은 최신 학기에 가장 큰 무게를 둡니다. 담당 교수가 바뀌었다면 오래된 컷은 참고만 하세요.'
-                : 'The forecast weights the latest term most. Older cuts may reflect a different professor.'}
+                ? '예측은 최신 학기에 가장 큰 무게를 두고, 담당 교수가 다른 학기는 제외합니다.'
+                : 'The forecast weights the latest term most and excludes terms taught by a different professor.'}
             </p>
           </div>
         ) : (

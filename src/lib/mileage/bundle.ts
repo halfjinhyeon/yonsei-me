@@ -186,8 +186,11 @@ export interface SectionDetail {
     /** 학년별 정원. 전부 0이면 null(학년 제한 없음) */
     yearQuotas: Record<string, number> | null;
   };
-  /** ③ 과거 이력 — [학기, 컷, 정원, 신청자] 최신순 */
-  history: [string, number, number | null, number | null][];
+  /** ③ 과거 이력 — [학기, 컷, 정원, 신청자, 그 학기 담당 교수] 최신순.
+   *  교수를 함께 실어야 "이 컷이 누구 것인지"를 구분할 수 있다(분반 번호가 같아도 담당은 바뀐다). */
+  history: [string, number, number | null, number | null, string | null][];
+  /** 현재 담당 교수가 이 과목을 **다른 분반**에서 맡았던 이력 — [학기, 분반, 컷] */
+  professorHistory?: [string, string, number][];
   /** 학년별 컷(최근 학기) — 학년 정원이 걸린 과목은 학년마다 컷이 다르다 */
   perGrade: Record<string, { cut: number; applied: number; won: number }> | null;
   /** 동점(배점=컷) 시 갈린 총이수학점 비율 경계 */
