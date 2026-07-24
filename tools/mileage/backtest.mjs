@@ -33,6 +33,7 @@ function loadProfessorHistory() {
 }
 const profHistory = loadProfessorHistory();
 const ONLY = process.env.ONLY_COURSE || null;
+const ONLY_PREFIX = process.env.ONLY_PREFIX || null;
 
 const dbPath = process.argv[2];
 const target = process.argv[3] ?? '2026-10';
@@ -95,17 +96,22 @@ for (const s of summary) {
   const truth = cutMap.get(`${s.course_code}|${s.division}|${TY}|${TS}`);
   if (truth === null || truth === undefined) continue;
   if (ONLY && s.course_code !== ONLY) continue;
+  if (ONLY_PREFIX && !s.course_code.startsWith(ONLY_PREFIX)) continue;
   evalSet.push({ code: s.course_code, division: s.division, truth: Number(truth) });
 }
 
 // predictAll 에 넘길 sections — 평가 대상 + 계층 통계용 메타
 const sections = evalSet.map((e) => {
   const m = metaByKey.get(`${e.code}|${e.division}`) ?? {};
+  // ⚠️ courses 테이블의 교수는 "현재 학기(2026-2)" 기준이다. 과거 학기를 평가할 때 그 값을
+  //    쓰면 그 학기의 실제 담당자와 어긋나 평가가 부정확해진다. 보강표가 있으면
+  //    목표 학기의 실제 교수를 쓴다.
+  const trueProf = profHistory.get(`${e.code}|${e.division}|${TY}|${TS}`);
   return {
     code: e.code,
     division: e.division,
     name: m.title ?? '',
-    professor: (m.professor ?? '').trim(),
+    professor: (trueProf ?? m.professor ?? '').trim(),
     credits: Number(m.credits ?? 3),
     deptCode: m.dept ?? '',
     deptName: '',
