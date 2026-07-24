@@ -406,18 +406,30 @@ for (const s of sections) {
       ];
     }),
     /**
-     * 현재 담당 교수가 **이 과목을 다른 분반에서** 맡았던 이력.
-     * 이 분반을 처음 맡는 교수라면 위 history 는 남의 기록이므로, 대신 이걸 봐야 한다.
-     * [학기, 분반, 컷]
+     * **현재 담당 교수의 이 과목 이력** — 분반을 옮겼어도 전부 따라온다.
+     *
+     * 학생은 분반 번호가 아니라 "누가 가르치는가"를 보고 고르므로, 화면의 '과거 이력'은
+     * 이것이 주(主)가 되어야 한다(사용자 지시). 예측 모델이 실제로 쓰는 자료와도 일치한다.
+     * [학기, 그때의 분반, 컷, 정원, 신청자]
      */
     professorHistory: s.professor
       ? [...histBySection.entries()]
-          .filter(([k]) => k.startsWith(`${s.code}|`) && k !== `${s.code}|${s.division}`)
-          .flatMap(([k, ps]) =>
-            ps
+          .filter(([k]) => k.startsWith(`${s.code}|`))
+          .flatMap(([k, ps]) => {
+            const div = k.split('|')[1];
+            return ps
               .filter((p) => p.professor && p.professor === s.professor)
-              .map((p) => [`${p.year}-${p.semester}`, k.split('|')[1], p.cutoff]),
-          )
+              .map((p) => {
+                const sm = summaryByKey.get(`${s.code}|${div}|${p.year}|${p.semester}`);
+                return [
+                  `${p.year}-${p.semester}`,
+                  div,
+                  p.cutoff,
+                  sm?.capacity ?? null,
+                  sm?.applicants ?? null,
+                ];
+              });
+          })
           .sort((a, b) => b[0].localeCompare(a[0]))
       : [],
     // 학년별 컷 + 동점 시 총이수학점 비율 경계

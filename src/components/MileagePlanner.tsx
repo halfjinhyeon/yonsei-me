@@ -890,6 +890,7 @@ function SectionDetailPanel({ section, ko }: { section: Section; ko: boolean }) 
   }
 
   const { stats, rules, history, perGrade, tieCredit } = detail;
+  const profHist = detail.professorHistory ?? [];
   const majorN = majorQuotaCount(rules.majorQuota);
   const rate =
     stats?.applicants && stats?.capacity ? (stats.applicants / stats.capacity).toFixed(2) : null;
@@ -968,9 +969,71 @@ function SectionDetailPanel({ section, ko }: { section: Section; ko: boolean }) 
         )}
       </div>
 
-      {/* ③ 과거 이력 */}
+      {/* ③ 과거 이력 — 학생은 분반 번호가 아니라 담당 교수를 보고 고르므로,
+             "이 교수의 이 과목 이력"이 주가 된다(예측 모델이 쓰는 자료와도 일치). */}
       <div>
-        <DetailHead>{ko ? '과거 이력' : 'History'}</DetailHead>
+        <DetailHead>
+          {ko ? `과거 이력 · ${section.professor || '담당 미정'}` : `History · ${section.professor || 'TBA'}`}
+        </DetailHead>
+        {profHist.length > 0 ? (
+          <div className="mt-1.5 overflow-x-auto">
+            <table className="w-full min-w-[300px] border-collapse text-[11.5px]">
+              <thead>
+                <tr className="border-b border-t border-surface-border text-content-faint">
+                  <th scope="col" className="py-1 text-left font-semibold">{ko ? '학기' : 'Term'}</th>
+                  <th scope="col" className="py-1 text-left font-semibold">{ko ? '분반' : 'Sec.'}</th>
+                  <th scope="col" className="py-1 text-right font-semibold">{ko ? '컷' : 'Cut'}</th>
+                  <th scope="col" className="py-1 text-right font-semibold">{ko ? '정원' : 'Cap.'}</th>
+                  <th scope="col" className="py-1 text-right font-semibold">{ko ? '신청' : 'Applied'}</th>
+                </tr>
+              </thead>
+              <tbody>
+                {profHist.map(([term, div, cut, cap, app], i) => (
+                  <tr key={`${term}-${div}`} className="border-b border-surface-border">
+                    <td className="py-1">
+                      {fmtTerm(term, ko)}
+                      {i === 0 && (
+                        <span className="ml-1 bg-yonsei-navy px-1 py-px text-[9px] font-bold text-white">
+                          {ko ? '최신' : 'latest'}
+                        </span>
+                      )}
+                    </td>
+                    <td className="py-1">
+                      {div}
+                      {ko ? '분반' : ''}
+                      {div !== section.division && (
+                        <span className="ml-1 text-[9.5px] text-content-faint">
+                          {ko ? '(당시)' : '(then)'}
+                        </span>
+                      )}
+                    </td>
+                    <td className="py-1 text-right font-bold tabular-nums text-content">{cut}mp</td>
+                    <td className="py-1 text-right tabular-nums text-content-faint">{cap ?? '—'}</td>
+                    <td className="py-1 text-right tabular-nums text-content-faint">{app ?? '—'}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+            {profHist.some(([, d]) => d !== section.division) && (
+              <p className="mt-1.5 text-[10.5px] leading-relaxed text-content-faint">
+                {ko
+                  ? '분반을 옮긴 학기도 함께 봅니다 — 담당 교수가 같으면 경쟁 양상이 이어지는 편입니다.'
+                  : 'Terms in other sections are included — the same professor tends to draw similar demand.'}
+              </p>
+            )}
+          </div>
+        ) : (
+          <p className="mt-1.5 text-[11.5px] leading-relaxed" style={{ color: WARN_AMBER }}>
+            {ko
+              ? `${section.professor || '이 교수'}는 이 과목을 처음 맡습니다 — 과거 기록이 없어 같은 과목의 평균으로 추정했습니다.`
+              : `First time teaching this course — estimated from the course average.`}
+          </p>
+        )}
+      </div>
+
+      {/* 이 분반 자체의 기록(담당이 달랐던 학기 포함) — 정원 변화 등 맥락용 보조 자료 */}
+      <div>
+        <DetailHead>{ko ? '이 분반의 기록 (참고)' : 'This section (reference)'}</DetailHead>
         {history.length ? (
           <div className="mt-1.5 overflow-x-auto">
             <table className="w-full min-w-[300px] border-collapse text-[11.5px]">
@@ -1021,47 +1084,10 @@ function SectionDetailPanel({ section, ko }: { section: Section; ko: boolean }) 
               </tbody>
             </table>
 
-            {/* 이 분반을 처음 맡는 교수라면 위 표는 전부 남의 기록이다 — 분명히 알린다 */}
-            {section.professor &&
-              history.some(([, , , , p]) => p) &&
-              !history.some(([, , , , p]) => p === section.professor) && (
-                <p
-                  className="mt-1.5 border-l-2 bg-surface-soft px-2.5 py-1.5 text-[11px] leading-relaxed"
-                  style={{ borderColor: WARN_AMBER, color: WARN_AMBER }}
-                >
-                  {ko
-                    ? `${section.professor} 교수는 이 분반을 처음 맡습니다. 위 기록은 다른 교수의 것이라 예측에 반영되지 않았습니다.`
-                    : `${section.professor} teaches this section for the first time — the rows above belong to other professors and are excluded from the forecast.`}
-                </p>
-              )}
-
-            {/* 현재 교수가 이 과목을 다른 분반에서 맡았던 이력 — 처음 맡는 분반일 때 특히 중요 */}
-            {detail.professorHistory && detail.professorHistory.length > 0 && (
-              <div className="mt-2.5">
-                <p className="text-[11px] font-semibold text-content">
-                  {ko
-                    ? `${section.professor} 교수의 이 과목 이력 (다른 분반)`
-                    : `${section.professor}'s record for this course (other sections)`}
-                </p>
-                <ul className="mt-1 flex flex-wrap gap-1.5">
-                  {detail.professorHistory.map(([term, div, cut]) => (
-                    <li
-                      key={`${term}-${div}`}
-                      className="border border-surface-border bg-surface px-2 py-1 text-[11px]"
-                    >
-                      {fmtTerm(term, ko)} · {div}
-                      {ko ? '분반' : ''}{' '}
-                      <b className="font-bold text-yonsei-blue">{cut}mp</b>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )}
-
             <p className="mt-1.5 text-[10.5px] leading-relaxed text-content-faint">
               {ko
-                ? '예측은 최신 학기에 가장 큰 무게를 두고, 담당 교수가 다른 학기는 제외합니다.'
-                : 'The forecast weights the latest term most and excludes terms taught by a different professor.'}
+                ? '이 분반 자리의 변화(정원·경쟁)를 보는 용도입니다. 예측에는 위 담당 교수 이력을 씁니다.'
+                : 'Shown for seat/demand context only — the forecast uses the professor history above.'}
             </p>
           </div>
         ) : (
