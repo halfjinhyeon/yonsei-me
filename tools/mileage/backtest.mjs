@@ -47,6 +47,7 @@ const db = new DatabaseSync(dbPath);
 const TUNING = {};
 if (process.env.HALF_LIFE) TUNING.halfLife = Number(process.env.HALF_LIFE);
 if (process.env.TAU_SECTION) TUNING.tauSection = Number(process.env.TAU_SECTION);
+if (process.env.ASSUME_LINEAGE) TUNING.assumeLineage = true;
 
 const { predictAll, admitProbability } = await import('../../src/lib/mileage/predict.ts');
 

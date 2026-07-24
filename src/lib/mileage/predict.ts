@@ -144,6 +144,15 @@ export interface Tuning {
   tauSection: number;
   tauProfessor: number;
   tauCourse: number;
+  /**
+   * 교수 미상 관측을 현재 교수 것으로 가정할지.
+   *
+   * false(=가정하지 않음)가 이론적으로는 더 안전해 보이지만, 백테스트에서 이득이 없었다
+   * (공학수학·전교 동일, 기계공학은 Hit±3 50.0%→46.9% 로 오히려 하락). 미상 관측을 버리면
+   * 표본이 줄어 상위 계층으로 과하게 축소되는 쪽이 손해였다. 그래서 기본은 가정을 유지한다.
+   * 교체가 확인된 학기는 어차피 실제 교수로 정확히 귀속되므로 오염은 제한적이다.
+   */
+  assumeLineage: boolean;
 }
 
 /**
@@ -165,6 +174,7 @@ export const DEFAULT_TUNING: Tuning = {
   tauSection: TAU.section,
   tauProfessor: TAU.professor,
   tauCourse: TAU.course,
+  assumeLineage: false,
 };
 
 /**
@@ -184,20 +194,25 @@ export function predictAll({ sections, histories, target, tuning }: PredictInput
     else m.set(k, [...pts]);
   };
   /**
-   * 이력 한 점의 담당 교수. 자료가 있으면 그 학기의 실제 교수를, 없으면 그 분반의
-   * (현재) 교수를 쓴다 — 후자는 "분반 계보" 가정이며 담당이 안정적인 대부분의 과목에서 무해하다.
+   * 담당 교수 자료가 하나라도 있는 과목 — 이런 과목은 "분반 계보" 가정을 쓰지 않는다.
+   *
+   * 교수가 분반을 서로 맞바꾸는 과목(공학수학이 대표적)에서는, 담당 교수를 모르는 관측을
+   * 현재 교수 것으로 가정하면 남의 컷을 그 교수에게 붙이게 된다. 이 과목이 교수를 바꾼다는
+   * 사실 자체를 자료가 말해 주고 있으므로, 모르는 관측은 교수 계층에 넣지 않고
+   * 과목 계층(L3)에만 기여시킨다 — 즉 "모르면 가정하지 않는다".
    */
-  const profOf = (h: SectionHistory, p: HistoryPoint) => p.professor ?? h.professor;
-
   for (const h of histories) {
     for (const p of h.points) {
-      const prof = profOf(h, p);
-      // L1(분반): 같은 분반이면서 그 학기 담당 교수까지 같은 관측만 넣는다.
-      //   분반 번호가 같아도 교수가 바뀌었다면 다른 흐름이므로 여기서 제외된다(사용자 지시).
-      push(byCourseProfDiv, `${h.code}|${prof}|${h.division}`, [p]);
-      // L2(교수): 분반이 달라도 같은 교수가 가르친 이력은 그 교수를 따라간다.
-      push(byCourseProf, `${h.code}|${prof}`, [p]);
-      // L3(과목): 교수 무관
+      // 그 학기의 실제 담당 교수. 자료가 없으면 이 분반의 (현재) 교수로 본다.
+      //
+      // ⚠️ 교수가 분반을 옮기는 과목은 **전처리 단계에서 이미 교수 기준으로 이력이 재구성**돼
+      //    들어온다(tools/mileage/precompute.mjs). 즉 여기 h.points 는 "이 분반의 기록"이
+      //    아니라 "이 담당 교수의 기록"이다. 모델은 그걸 그대로 계층에 넣기만 하면 된다.
+      const prof = p.professor ?? h.professor;
+      if (prof) {
+        push(byCourseProfDiv, `${h.code}|${prof}|${h.division}`, [p]);
+        push(byCourseProf, `${h.code}|${prof}`, [p]);
+      }
       push(byCourse, h.code, [p]);
     }
   }

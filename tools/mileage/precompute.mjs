@@ -200,10 +200,45 @@ const sections = courses.map((c) => ({
   capacity: null,
 }));
 
+/**
+ * 담당 교수 자료가 있는 과목 — 이 과목들은 이력을 **교수 소유로 재구성**한다.
+ *
+ * 교수가 분반을 서로 맞바꾸는 과목(공학수학이 대표적)에서는 "분반 번호"가 흐름의 단위가
+ * 아니다. 김재우 교수가 23-2 01분반 → 24-2 07분반 → 26-2 02분반으로 옮겼다면,
+ * 02분반의 예측 근거는 "02분반의 과거 기록"(= 남의 것)이 아니라 "김재우 교수의 과거 기록"이다.
+ * 모델에 특례를 넣어 우회하는 대신, 데이터 단계에서 소유권을 바로잡는다(사용자 지시).
+ */
+const coursesWithProfData = new Set();
+for (const key of profHistory.keys()) coursesWithProfData.add(key.split('|')[0]);
+
+/** 과목별 전체 이력 포인트(분반 무관) — 교수 소유 재구성의 원천 */
+const pointsByCourse = new Map();
+for (const [sk, pts] of histBySection) {
+  const code = sk.split('|')[0];
+  if (!pointsByCourse.has(code)) pointsByCourse.set(code, []);
+  pointsByCourse.get(code).push(...pts);
+}
+
 const histories = [];
+let rekeyed = 0;
 for (const s of sections) {
-  const pts = histBySection.get(`${s.code}|${s.division}`);
-  if (pts && pts.length) {
+  let pts;
+  if (coursesWithProfData.has(s.code) && s.professor) {
+    // 이 교수가 이 과목에서 실제로 맡았던 학기 전부(어느 분반이든)
+    const own = (pointsByCourse.get(s.code) ?? []).filter((p) => p.professor === s.professor);
+    if (own.length) {
+      pts = own;
+      rekeyed++;
+    } else {
+      // 이 과목을 처음 맡는 교수 — 분반 기록은 남의 것이므로 쓰지 않는다.
+      // 상위 계층(과목/학과)으로 자연히 폴백된다.
+      pts = [];
+    }
+  } else {
+    // 교수 자료가 없는 과목은 기존대로 분반 계보를 따른다(담당이 안정적이라 대부분 무해)
+    pts = histBySection.get(`${s.code}|${s.division}`) ?? [];
+  }
+  if (pts.length) {
     histories.push({ code: s.code, division: s.division, professor: s.professor, points: pts });
   }
 }
@@ -399,7 +434,7 @@ for (const p of predictions) byBasis[p.basis] = (byBasis[p.basis] ?? 0) + 1;
 const size = (JSON.stringify(bundle).length / 1024).toFixed(0);
 console.log(`✔ ${outPath}  (${size} KB)`);
 console.log(`  분반 ${sections.length}개 · 이력 보유 ${histories.length}개`);
-console.log(`  교수 이력 보강: ${profHistory.size}건 (과거 학기 담당 교수 확인분)`);
+console.log(`  교수 이력 보강: ${profHistory.size}건 · 교수 소유로 재구성한 분반 ${rekeyed}개`);
 console.log(`  추정 근거:`, byBasis);
 console.log(
   `  학년 동점 합격률:`,
