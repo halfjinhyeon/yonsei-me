@@ -36,7 +36,7 @@ const db = new DatabaseSync(dbPath);
 const cutRows = db
   .prepare(
     `SELECT course_code, division, year, semester,
-            MIN(CASE WHEN success='Y' THEN mileage END) AS cut,
+            MIN(CASE WHEN success='Y' AND (remark IS NULL OR TRIM(remark)='') THEN mileage END) AS cut,
             COUNT(*) AS bids
        FROM mileage_bids
       GROUP BY course_code, division, year, semester`,
@@ -72,7 +72,7 @@ for (const [k, s] of summaryMap) {
   if (year === TARGET_YEAR && semester === TARGET_SEM) continue;
   const c = cutMap.get(k);
   // 컷: 합격자 최저 → 없으면 summary.min_mileage → 그래도 없으면 스킵
-  const cutoff = c?.cut ?? s.min_mileage;
+  const cutoff = c?.cut ?? c?.cutAny ?? s.min_mileage;
   if (cutoff === null || cutoff === undefined) continue;
   const sk = `${code}|${division}`;
   if (!histBySection.has(sk)) histBySection.set(sk, []);
@@ -94,8 +94,9 @@ const tieRows = db
             COUNT(*) AS total
        FROM mileage_bids b
        JOIN (SELECT course_code, division, year, semester,
-                    MIN(CASE WHEN success='Y' THEN mileage END) AS cut
-               FROM mileage_bids GROUP BY course_code, division, year, semester) t
+                    MIN(CASE WHEN success='Y' AND (remark IS NULL OR TRIM(remark)='') THEN mileage END) AS cut
+               FROM mileage_bids WHERE remark IS NULL OR TRIM(remark)=''
+              GROUP BY course_code, division, year, semester) t
          ON t.course_code=b.course_code AND t.division=b.division
         AND t.year=b.year AND t.semester=b.semester
       WHERE t.cut IS NOT NULL AND b.mileage = t.cut AND b.grade IN ('1','2','3','4')
@@ -234,7 +235,7 @@ const detailPath = outPath.replace(/\.json$/, '-detail.json');
 const gradeCutRows = db
   .prepare(
     `SELECT course_code, division, year, semester, grade,
-            MIN(CASE WHEN success='Y' THEN mileage END) AS cut,
+            MIN(CASE WHEN success='Y' AND (remark IS NULL OR TRIM(remark)='') THEN mileage END) AS cut,
             COUNT(*) AS applied,
             SUM(CASE WHEN success='Y' THEN 1 ELSE 0 END) AS won
        FROM mileage_bids
@@ -255,7 +256,7 @@ const tieCreditRows = db
               / NULLIF(CAST(substr(b.earned_ratio,instr(b.earned_ratio,'/')+1) AS REAL),0) END) AS loseMax
        FROM mileage_bids b
        JOIN (SELECT course_code, division, year, semester,
-                    MIN(CASE WHEN success='Y' THEN mileage END) AS cut
+                    MIN(CASE WHEN success='Y' AND (remark IS NULL OR TRIM(remark)='') THEN mileage END) AS cut
                FROM mileage_bids GROUP BY course_code, division, year, semester) t
          ON t.course_code=b.course_code AND t.division=b.division
         AND t.year=b.year AND t.semester=b.semester

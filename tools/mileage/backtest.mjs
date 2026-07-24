@@ -33,7 +33,7 @@ const { predictAll, admitProbability } = await import('../../src/lib/mileage/pre
 const cutRows = db
   .prepare(
     `SELECT course_code, division, year, semester,
-            MIN(CASE WHEN success='Y' THEN mileage END) AS cut
+            MIN(CASE WHEN success='Y' AND (remark IS NULL OR TRIM(remark)='') THEN mileage END) AS cut
        FROM mileage_bids GROUP BY course_code, division, year, semester`,
   )
   .all();
