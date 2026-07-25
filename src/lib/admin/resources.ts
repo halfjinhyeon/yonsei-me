@@ -84,6 +84,12 @@ export interface ResourceDef {
   fields: FieldDef[];
   /** 배열 순서가 사이트 노출 순서일 때 ▲▼ 이동·순서 저장 노출 */
   orderable: boolean;
+  /**
+   * 목록을 표 대신 카드 그리드로 — 사진이 있는 리소스에서 "보면서 바로 고치는" 흐름을 만든다.
+   * 카드에서 즉시 편집할 필드 키를 적는다(그 외 필드는 '자세히' 폼에서 편집).
+   * 지금은 교수진에만 켠다(사용자 지시).
+   */
+  cardList?: { inlineKeys: string[]; filterKey?: string };
   /** 항목별 연결 마크다운 (동아리 소개 본문) */
   linkedMarkdown?: LinkedMarkdown;
   /** 도메인 레코드 → 폼 값 (기본: defaultToForm) */
@@ -263,6 +269,8 @@ const facultyDirectory: ResourceDef = {
   searchKeys: ['name', 'title', 'email', 'specialty'],
   fields: [...FACULTY_BASE_FIELDS, ...FACULTY_LAB_FIELDS],
   orderable: true,
+  // 카드에서 바로 고치는 값 = 자주 손대는 것들. 직급은 필터로만 쓴다(사용자 지시).
+  cardList: { inlineKeys: ['name', 'email', 'phone', 'room', 'photo'], filterKey: 'title' },
   toForm: (raw) => {
     const r = (raw ?? {}) as Record<string, unknown>;
     const lab = (r.lab ?? null) as { nameKo?: string; nameEn?: string; url?: string } | null;

@@ -29,6 +29,7 @@ import {
   type ResourceDef,
 } from '@/lib/admin/resources';
 import { RecordForm } from './RecordForm';
+import { FacultyCardsEditor } from './FacultyCardsEditor';
 import { CommitBanner } from './CommitBanner';
 
 interface Props {
@@ -95,8 +96,12 @@ export function CollectionEditor({ config, resource, onDirtyChange }: Props) {
   const [saveError, setSaveError] = useState<string | null>(null);
   const [success, setSuccess] = useState<{ message: string; url: string } | null>(null);
 
+  /** 카드에서 고친 값 (미저장) — index → { 필드: 값 }. 원본과 다른 것만 담는다. */
+  const [cardEdits, setCardEdits] = useState<Record<number, Record<string, string>>>({});
+  const cardDirty = Object.keys(cardEdits).length > 0;
+
   const orderDirty = orderedRaw !== null;
-  const dirty = editing !== null || orderDirty;
+  const dirty = editing !== null || orderDirty || cardDirty;
 
   useEffect(() => {
     onDirtyChange?.(dirty);
@@ -138,15 +143,21 @@ export function CollectionEditor({ config, resource, onDirtyChange }: Props) {
   // 표시용 배열: 순서 변경 중이면 orderedRaw, 아니면 raw
   const displayRaw = orderedRaw ?? raw;
 
+  // 카드에서 고친 값을 얹은 표시용 배열 — 목록·폼 진입 모두 이 값을 본다
+  const sourceRaw = useMemo(
+    () => (cardDirty ? displayRaw.map((item, i) => (cardEdits[i] ? { ...item, ...cardEdits[i] } : item)) : displayRaw),
+    [displayRaw, cardEdits, cardDirty],
+  );
+
   // 원본 인덱스를 유지한 채 폼으로 파생 + 검색 필터
   const rows = useMemo(() => {
-    const all = displayRaw.map((r, index) => ({ index, form: toForm(r) }));
+    const all = sourceRaw.map((r, index) => ({ index, form: toForm(r) }));
     const q = search.trim().toLowerCase();
     if (q === '') return all;
     return all.filter((row) =>
       resource.searchKeys.some((k) => cellText(row.form, k).toLowerCase().includes(q)),
     );
-  }, [displayRaw, search, toForm, resource.searchKeys]);
+  }, [sourceRaw, search, toForm, resource.searchKeys]);
 
   // 커밋 후 재로드 (커밋 sha 는 blob sha 가 아니므로 새 sha 확보 필수)
   function finishSave(commitSha: string) {
@@ -182,7 +193,7 @@ export function CollectionEditor({ config, resource, onDirtyChange }: Props) {
   async function startEdit(index: number) {
     setSuccess(null);
     setSaveError(null);
-    const form = toForm(displayRaw[index]);
+    const form = toForm(sourceRaw[index]);
     setEditing({ index, form });
 
     if (!resource.linkedMarkdown) {
@@ -286,7 +297,7 @@ export function CollectionEditor({ config, resource, onDirtyChange }: Props) {
   // ---- 삭제 ----
 
   async function handleDelete(index: number) {
-    const form = toForm(displayRaw[index]);
+    const form = toForm(sourceRaw[index]);
     if (!window.confirm(`정말 삭제할까요?\n\n${resource.summarize(form)}`)) return;
     setSaving(true);
     setSaveError(null);
@@ -307,6 +318,77 @@ export function CollectionEditor({ config, resource, onDirtyChange }: Props) {
       finishSave(result.sha);
     } catch (err) {
       handleSaveError(err, '삭제에 실패했습니다.');
+    } finally {
+      setSaving(false);
+    }
+  }
+
+  // ---- 카드 인라인 편집 (미저장) ----
+  //
+  // 카드에서 고친 값은 곧바로 커밋하지 않고 여기 모았다가 "변경 저장"에서 한 번에 올린다.
+  // 50명을 훑으며 여러 곳을 고치는 흐름이라, 필드마다 커밋하면 커밋이 지저분해지고 느리다.
+
+
+
+  function patchCard(index: number, key: string, value: string) {
+    setSuccess(null);
+    setCardEdits((prev) => {
+      const original = displayRaw[index] as Record<string, unknown>;
+      const nextForIndex = { ...(prev[index] ?? {}), [key]: value };
+      // 원본과 같아졌으면 그 키는 뺀다 — 안 바뀐 값으로 더티 표시가 남지 않게
+      const originalVal = original?.[key];
+      if ((originalVal ?? '') === value || (originalVal === null && value === '')) {
+        delete nextForIndex[key];
+      }
+      const next = { ...prev };
+      if (Object.keys(nextForIndex).length === 0) delete next[index];
+      else next[index] = nextForIndex;
+      return next;
+    });
+  }
+
+  function resetCardEdits() {
+    setCardEdits({});
+    setSuccess(null);
+  }
+
+  /** 카드에서 고친 값들을 한 번에 커밋 */
+  async function saveCardEdits() {
+    const indices = Object.keys(cardEdits).map(Number);
+    if (indices.length === 0) return;
+    setSaving(true);
+    setSaveError(null);
+    setSuccess(null);
+    try {
+      // 저장 기준은 로드 시점 배열(raw) — 순서 변경과 겹치면 sha 충돌로 방어된다
+      const next = raw.slice();
+      for (const i of indices) {
+        const patch = cardEdits[i];
+        const cur = { ...(next[i] as Record<string, unknown>) };
+        for (const [k, v] of Object.entries(patch)) {
+          // 빈 문자열은 null 로 — 이 리소스의 선택 필드는 null 이 "없음"이다
+          cur[k] = v.trim() === '' ? null : v;
+        }
+        next[i] = cur;
+      }
+      const payload =
+        resource.format === 'record' ? arrayToRecord(next, resource.idField!) : next;
+      const names = indices
+        .map((i) => cellText(toForm(next[i]), 'name') || `#${i + 1}`)
+        .slice(0, 3)
+        .join(', ');
+      const more = indices.length > 3 ? ` 외 ${indices.length - 3}명` : '';
+      const result = await commitJson(
+        config,
+        resource.file,
+        payload,
+        sha,
+        `content: ${resource.label} 수정 — ${names}${more}`,
+      );
+      setCardEdits({});
+      finishSave(result.sha);
+    } catch (err) {
+      handleSaveError(err, '저장에 실패했습니다.');
     } finally {
       setSaving(false);
     }
@@ -471,6 +553,34 @@ export function CollectionEditor({ config, resource, onDirtyChange }: Props) {
         </div>
       )}
 
+      {/* 카드에서 고친 값 저장 — 여러 카드를 훑으며 고친 뒤 한 번에 커밋한다 */}
+      {cardDirty && (
+        <div className="sticky top-2 z-10 mb-4 flex flex-wrap items-center gap-3 rounded-lg border border-yonsei-blue bg-yonsei-blue/[0.06] px-4 py-3">
+          <span className="text-sm font-bold text-content">
+            {Object.keys(cardEdits).length}명 수정됨
+          </span>
+          <button
+            type="button"
+            onClick={() => void saveCardEdits()}
+            disabled={saving || orderDirty}
+            className="btn-primary px-4 py-2 text-sm disabled:opacity-60"
+          >
+            {saving ? '저장 중…' : '변경 저장'}
+          </button>
+          <button
+            type="button"
+            onClick={resetCardEdits}
+            disabled={saving}
+            className="btn-secondary px-4 py-2 text-sm disabled:opacity-60"
+          >
+            되돌리기
+          </button>
+          {orderDirty && (
+            <p className="text-xs text-content-faint">순서 변경을 먼저 저장하거나 되돌리세요.</p>
+          )}
+        </div>
+      )}
+
       {loading && <p className="text-sm text-content-soft">불러오는 중…</p>}
 
       {!loading && !listError && displayRaw.length === 0 && (
@@ -481,7 +591,24 @@ export function CollectionEditor({ config, resource, onDirtyChange }: Props) {
         <p className="text-sm text-content-faint">검색 결과가 없습니다.</p>
       )}
 
-      {!loading && rows.length > 0 && (
+      {/* 카드 모드 — 사진이 있는 리소스(교수진)는 실제 카드 모양으로 보면서 그 자리에서 고친다 */}
+      {!loading && rows.length > 0 && resource.cardList && (
+        <FacultyCardsEditor
+          resource={resource}
+          rows={rows}
+          total={sourceRaw.length}
+          busy={saving}
+          locked={orderDirty}
+          orderable={resource.orderable && search.trim() === ''}
+          onEditDetail={(i) => void startEdit(i)}
+          onDelete={(i) => void handleDelete(i)}
+          onMove={move}
+          onPatch={patchCard}
+          onUploadPhoto={uploadImage}
+        />
+      )}
+
+      {!loading && rows.length > 0 && !resource.cardList && (
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
             <thead>
