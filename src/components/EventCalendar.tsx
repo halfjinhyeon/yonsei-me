@@ -9,41 +9,87 @@ import type { Locale } from '@/i18n/routing';
 /**
  * 뉴스 페이지 '일정' 탭의 월간 캘린더 (POSTECH 학사일정 스타일).
  *
- * 데이터 소스는 별도 콘텐츠 파일이 아니라 기존 board.json 의 행사(events)·세미나(seminars)
- * 게시판이다. 서버(news/page.tsx)에서 두 게시판을 CalendarEntry[] 로 가공해 넘긴다. 행사는
- * dateLabel(사람이 적은 실제 기간)을 parseDateLabelRange 로 파싱한 [date, endDate] 범위를,
- * 세미나는 date 하루(date === endDate)를 갖는다.
+ * 데이터 소스는 두 갈래이고 서버(news/page.tsx)에서 CalendarEntry[] 로 합쳐 넘긴다.
+ *  1) 게시판 글 — 행사(events)·세미나(seminars). 행사는 구조화된 endDate 가 없으면
+ *     dateLabel(사람이 적은 실제 기간)을 parseDateLabelRange 로 파싱한 범위를 쓴다.
+ *  2) CMS '일정 (캘린더)' 게시판 — 본문 없는 학사일정/모집·신청/시험. 분류가 그대로
+ *     kind 가 되고(단, CMS 의 '행사'는 행사 게시판과 같은 event 로 접는다 — 학생에겐
+ *     둘 다 그냥 행사다), 링크가 없을 수 있어 href 는 선택이다.
  *
  * 레이아웃: 좌측 월간 그리드(멀티데이 이어진 바) + 우측 월간 일정 패널(실질 접근성 목록).
- * 그리드의 날짜 셀은 더 이상 버튼이 아니며, 각 이벤트 바가 게시물 상세로 가는 <Link> 다.
+ * 그리드의 날짜 셀은 더 이상 버튼이 아니며, href 가 있는 이벤트 바만 <Link> 다.
  */
 export interface CalendarEntry {
   id: string;
   date: string; // 시작일 YYYY-MM-DD
   endDate: string; // 종료일 YYYY-MM-DD (하루면 date 와 동일)
   title: string; // 서버에서 pick() 완료된 문자열
-  kind: 'event' | 'seminar';
-  href: string; // /news/post/<id>
+  kind: 'event' | 'seminar' | 'academic' | 'recruit' | 'exam';
+  /** 상세 링크. 캘린더 전용 일정은 볼 본문이 없어 비어 있고, 그때는 링크가 아닌 바로 렌더된다. */
+  href?: string;
 }
 
-// 종류별 색: 행사=네이비, 세미나=블루 (골드 액센트는 제거). 바는 각지고 그림자 없음.
+// 종류별 색 (골드 액센트는 금지). 바는 각지고 그림자 없음 — 면은 8% 틴트, 좌측 액센트 보더.
+// hover 를 bar 에서 분리한 이유: href 없는 일정은 클릭할 곳이 없으므로 hover 강조를 주면
+// 안 된다. 링크로 렌더될 때만 barHover 를 덧붙인다.
 const KIND_STYLES: Record<
   CalendarEntry['kind'],
-  { bar: string; accent: string; dot: string; badge: string }
+  { bar: string; barHover: string; accent: string; dot: string; badge: string }
 > = {
   event: {
-    bar: 'bg-yonsei-navy/[0.08] text-yonsei-navy hover:bg-yonsei-navy/15',
+    bar: 'bg-yonsei-navy/[0.08] text-yonsei-navy',
+    barHover: 'hover:bg-yonsei-navy/15',
     accent: 'border-yonsei-navy',
     dot: 'bg-yonsei-navy',
     badge: 'bg-yonsei-navy/10 text-yonsei-navy',
   },
   seminar: {
-    bar: 'bg-yonsei-blue/[0.08] text-yonsei-blue hover:bg-yonsei-blue/15',
+    bar: 'bg-yonsei-blue/[0.08] text-yonsei-blue',
+    barHover: 'hover:bg-yonsei-blue/15',
     accent: 'border-yonsei-blue',
     dot: 'bg-yonsei-blue',
     badge: 'bg-yonsei-blue/10 text-yonsei-blue',
   },
+  academic: {
+    bar: 'bg-yonsei-sky/[0.08] text-yonsei-sky',
+    barHover: 'hover:bg-yonsei-sky/15',
+    accent: 'border-yonsei-sky',
+    dot: 'bg-yonsei-sky',
+    badge: 'bg-yonsei-sky/10 text-yonsei-sky',
+  },
+  recruit: {
+    bar: 'bg-[#166534]/[0.08] text-[#166534]',
+    barHover: 'hover:bg-[#166534]/15',
+    accent: 'border-[#166534]',
+    dot: 'bg-[#166534]',
+    badge: 'bg-[#166534]/10 text-[#166534]',
+  },
+  exam: {
+    bar: 'bg-[#b42318]/[0.08] text-[#b42318]',
+    barHover: 'hover:bg-[#b42318]/15',
+    accent: 'border-[#b42318]',
+    dot: 'bg-[#b42318]',
+    badge: 'bg-[#b42318]/10 text-[#b42318]',
+  },
 };
+
+// 종류별 라벨 — 배지·스크린리더는 단수(en), 범례는 복수(enPlural). 한국어는 둘이 같다.
+// 삼항을 겹치지 않고 맵으로 둔 이유: 종류가 5개로 늘어 삼항 사슬은 읽을 수 없다.
+const KIND_LABELS: Record<
+  CalendarEntry['kind'],
+  { ko: string; en: string; enPlural: string }
+> = {
+  event: { ko: '행사', en: 'Event', enPlural: 'Events' },
+  seminar: { ko: '세미나', en: 'Seminar', enPlural: 'Seminars' },
+  academic: { ko: '학사일정', en: 'Academic', enPlural: 'Academic' },
+  recruit: { ko: '모집·신청', en: 'Application', enPlural: 'Applications' },
+  exam: { ko: '시험', en: 'Exam', enPlural: 'Exams' },
+};
+
+// 목록 정렬용 종류 우선순위. 예전 비교자는 'event 면 -1, 아니면 1' 이라 종류가 둘일 때만
+// 성립했다(academic vs seminar 가 양쪽 다 1 을 돌려주는 비대칭 비교자가 된다).
+const KIND_ORDER = Object.keys(KIND_STYLES) as CalendarEntry['kind'][];
+const kindRank = (k: CalendarEntry['kind']) => KIND_ORDER.indexOf(k);
 
 /** 엔트리가 해당 날짜를 포함하는가 — 멀티데이는 시작~종료 사이 모든 날에 참(ISO 사전순 비교) */
 const coversDay = (e: CalendarEntry, iso: string) => e.date <= iso && iso <= e.endDate;
@@ -219,14 +265,12 @@ export function EventCalendar({
     [entries, monthFirstIso, monthLastIso],
   );
 
-  // 선택 날짜의 일정 — 기간 포함 매칭, 행사 우선 → 제목순(구버전 정렬 관례 유지)
+  // 선택 날짜의 일정 — 기간 포함 매칭, 종류순(행사 우선) → 제목순(구버전 정렬 관례 유지)
   const selectedEntries = useMemo(
     () =>
       entries
         .filter((e) => coversDay(e, selectedIso))
-        .sort((a, b) =>
-          a.kind === b.kind ? a.title.localeCompare(b.title) : a.kind === 'event' ? -1 : 1,
-        ),
+        .sort((a, b) => kindRank(a.kind) - kindRank(b.kind) || a.title.localeCompare(b.title)),
     [entries, selectedIso],
   );
 
@@ -252,7 +296,7 @@ export function EventCalendar({
   }
 
   const kindLabel = (kind: CalendarEntry['kind']) =>
-    kind === 'event' ? (ko ? '행사' : 'Event') : ko ? '세미나' : 'Seminar';
+    ko ? KIND_LABELS[kind].ko : KIND_LABELS[kind].en;
 
   const periodText = (e: CalendarEntry) =>
     e.date === e.endDate ? dotDate(e.date) : `${dotDate(e.date)} ~ ${dotDate(e.endDate)}`;
@@ -337,16 +381,14 @@ export function EventCalendar({
           </div>
         </div>
 
-        {/* 범례 — 행사=네이비 점, 세미나=블루 점 (골드 없음) */}
-        <ul className="flex items-center gap-4 text-xs text-content-soft">
-          <li className="flex items-center gap-1.5">
-            <span className={cn('h-2.5 w-2.5 rounded-full', KIND_STYLES.event.dot)} aria-hidden="true" />
-            {ko ? '행사' : 'Events'}
-          </li>
-          <li className="flex items-center gap-1.5">
-            <span className={cn('h-2.5 w-2.5 rounded-full', KIND_STYLES.seminar.dot)} aria-hidden="true" />
-            {ko ? '세미나' : 'Seminars'}
-          </li>
+        {/* 범례 — 종류 5종의 점 + 라벨. 좁은 폭에서는 줄바꿈(5개가 한 줄에 안 들어간다) */}
+        <ul className="flex flex-wrap items-center gap-x-4 gap-y-1.5 text-xs text-content-soft">
+          {KIND_ORDER.map((k) => (
+            <li key={k} className="flex items-center gap-1.5">
+              <span className={cn('h-2.5 w-2.5 rounded-full', KIND_STYLES[k].dot)} aria-hidden="true" />
+              {ko ? KIND_LABELS[k].ko : KIND_LABELS[k].enPlural}
+            </li>
+          ))}
         </ul>
       </div>
 
@@ -448,27 +490,49 @@ export function EventCalendar({
 
                 {/* 이벤트 바 — 주 세그먼트를 7열 grid overlay 에 grid-column 스팬으로 배치.
                     모바일(sm 미만)은 텍스트를 숨긴 얇은 스트립, sm+ 는 제목 표시. */}
-                {week.segments.map((seg) => (
-                  <Link
-                    key={`${seg.entry.id}-${seg.colStart}`}
-                    href={seg.entry.href}
-                    aria-label={barAria(seg.entry)}
-                    title={seg.entry.title}
-                    className={cn(
-                      'z-10 mx-[3px] flex items-center overflow-hidden rounded-none leading-none outline-none transition-colors focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-yonsei-blue',
-                      KIND_STYLES[seg.entry.kind].bar,
-                      seg.isStart && cn('border-l-2', KIND_STYLES[seg.entry.kind].accent),
-                    )}
-                    style={{
-                      gridColumn: `${seg.colStart + 1} / span ${seg.span}`,
-                      gridRow: seg.lane + 2,
-                    }}
-                  >
+                {week.segments.map((seg) => {
+                  const style = {
+                    gridColumn: `${seg.colStart + 1} / span ${seg.span}`,
+                    gridRow: seg.lane + 2,
+                  };
+                  const barClass = cn(
+                    'z-10 mx-[3px] flex items-center overflow-hidden rounded-none leading-none',
+                    KIND_STYLES[seg.entry.kind].bar,
+                    seg.isStart && cn('border-l-2', KIND_STYLES[seg.entry.kind].accent),
+                  );
+                  const label = (
                     <span className="hidden truncate px-1.5 text-[0.72rem] font-medium sm:block">
                       {seg.entry.title}
                     </span>
-                  </Link>
-                ))}
+                  );
+                  // 상세가 없는 일정(캘린더 전용)은 <div> 로 그린다. pointer-events-none 을 주는
+                  // 이유: 바가 날짜 선택 버튼 위에 떠 있어서, 링크가 아닌데도 클릭을 가로채면
+                  // 그 날은 아예 선택할 수 없게 된다. 통과시켜 날짜 선택을 살린다.
+                  return seg.entry.href ? (
+                    <Link
+                      key={`${seg.entry.id}-${seg.colStart}`}
+                      href={seg.entry.href}
+                      aria-label={barAria(seg.entry)}
+                      title={seg.entry.title}
+                      className={cn(
+                        barClass,
+                        'outline-none transition-colors focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-yonsei-blue',
+                        KIND_STYLES[seg.entry.kind].barHover,
+                      )}
+                      style={style}
+                    >
+                      {label}
+                    </Link>
+                  ) : (
+                    <div
+                      key={`${seg.entry.id}-${seg.colStart}`}
+                      className={cn(barClass, 'pointer-events-none')}
+                      style={style}
+                    >
+                      {label}
+                    </div>
+                  );
+                })}
               </div>
             ))}
           </div>
@@ -479,12 +543,11 @@ export function EventCalendar({
             <h4 className="text-sm font-bold tracking-tight text-content">{selectedLabel}</h4>
             {selectedEntries.length > 0 ? (
               <ul className="mt-3 divide-y divide-surface-border border-y border-surface-border">
-                {selectedEntries.map((e) => (
-                  <li key={e.id}>
-                    <Link
-                      href={e.href}
-                      className="flex items-center gap-3 py-3 transition-colors hover:bg-surface-soft"
-                    >
+                {selectedEntries.map((e) => {
+                  // 배지·제목·기간 배치는 링크 여부와 무관하게 같다. 상세가 없는 일정만
+                  // hover 강조 없는 <div> 가 된다(누를 곳이 없는데 눌릴 것처럼 보이면 안 된다).
+                  const row = (
+                    <>
                       <span
                         className={cn(
                           'shrink-0 whitespace-nowrap px-2.5 py-1 text-xs font-bold',
@@ -499,9 +562,23 @@ export function EventCalendar({
                       <span className="shrink-0 text-xs tabular-nums text-content-faint">
                         {periodText(e)}
                       </span>
-                    </Link>
-                  </li>
-                ))}
+                    </>
+                  );
+                  return (
+                    <li key={e.id}>
+                      {e.href ? (
+                        <Link
+                          href={e.href}
+                          className="flex items-center gap-3 py-3 transition-colors hover:bg-surface-soft"
+                        >
+                          {row}
+                        </Link>
+                      ) : (
+                        <div className="flex items-center gap-3 py-3">{row}</div>
+                      )}
+                    </li>
+                  );
+                })}
               </ul>
             ) : (
               <p className="mt-3 text-sm text-content-faint">
@@ -527,12 +604,19 @@ export function EventCalendar({
                       aria-hidden="true"
                     />
                     <div className="min-w-0">
-                      <Link
-                        href={e.href}
-                        className="block text-sm font-semibold leading-snug text-content transition-colors hover:text-yonsei-blue"
-                      >
-                        {e.title}
-                      </Link>
+                      {/* 상세가 없는 캘린더 전용 일정은 링크 색·hover 없이 제목만 */}
+                      {e.href ? (
+                        <Link
+                          href={e.href}
+                          className="block text-sm font-semibold leading-snug text-content transition-colors hover:text-yonsei-blue"
+                        >
+                          {e.title}
+                        </Link>
+                      ) : (
+                        <span className="block text-sm font-semibold leading-snug text-content">
+                          {e.title}
+                        </span>
+                      )}
                       <p className="mt-0.5 text-xs tabular-nums text-content-faint">{periodText(e)}</p>
                     </div>
                   </li>

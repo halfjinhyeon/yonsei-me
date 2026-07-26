@@ -7,11 +7,21 @@ import { FilterableBoardList } from '@/components/FilterableBoardList';
 import { EventCalendar, type CalendarEntry } from '@/components/EventCalendar';
 import { pick } from '@/lib/content';
 import { parseDateLabelRange } from '@/lib/calendar';
-import { fetchNews, fetchBoardData } from '@/lib/posts';
+import { fetchNews, fetchBoardData, fetchCalendarPosts } from '@/lib/posts';
 import type { Locale } from '@/i18n/routing';
 
 // DB 소스 전환(Phase 2): 목록도 ISR — revalidateTag('posts') 가 즉시 갱신, 이 값은 안전망
 export const revalidate = 300;
+
+// CMS '일정 (캘린더)' 게시판의 분류 → 캘린더 kind. CMS 의 '행사'는 행사 게시판과 같은
+// 'event' 로 접는다 — 학생에게는 둘 다 그냥 행사라 범례가 '행사'로 두 줄 나오면 안 된다.
+// 모르는 값(분류가 늘어난 경우)은 학사일정으로 떨어뜨려 최소한 달력에는 뜨게 한다.
+const CALENDAR_KIND: Record<string, CalendarEntry['kind']> = {
+  academic: 'academic',
+  event: 'event',
+  recruit: 'recruit',
+  exam: 'exam',
+};
 
 export async function generateMetadata({
   params,
@@ -114,10 +124,17 @@ export default async function NewsPage({ params }: { params: { locale: string } 
     image: c.image,
   }));
 
-  // 캘린더('일정' 탭)는 행사·세미나 게시판을 그대로 읽는다 — 관리자가 두 게시판에 글을
-  // 등록하면 그 date 필드가 월간 캘린더에 자동 반영된다(별도 일정 데이터 불필요).
+  // 캘린더('일정' 탭)는 행사·세미나 게시판 + CMS '일정 (캘린더)' 게시판을 함께 읽는다.
+  // 앞의 둘은 글이 있는 일정이고, 뒤는 본문 없이 달력에만 올리는 학사일정·모집·시험이다
+  // (홈 캘린더는 이미 셋을 합쳐 보여주는데 이 탭만 빠져 있었다).
   // 기간: 구조화된 endDate(DB end_date, CMS 시작–종료 피커)가 있으면 그것을 신뢰하고,
   // 없으면(구 데이터) 수동 dateLabel 을 파싱하던 기존 폴백을 유지한다.
+  // 배열 리터럴의 spread 안에서 await 하지 않도록 미리 받아 둔다(홈 page.tsx 와 같은 관례).
+  const calendarPosts = await fetchCalendarPosts();
+  // pick 은 빈 문자열을 폴백하지 않는다(`??` 기반). 영문 제목을 비워 둔 글이 많아
+  // 영어 화면 캘린더에 날짜만 있고 제목이 빈칸인 바가 뜨고 있었다 — 홈 page.tsx 의
+  // orKo 와 같은 규칙으로 한국어에 떨어뜨린다.
+  const orKo = (v: { ko: string; en: string }) => pick(v, locale).trim() || v.ko;
   const calendarEntries: CalendarEntry[] = [
     ...board.events.map((e) => {
       const r = e.endDate
@@ -127,7 +144,7 @@ export default async function NewsPage({ params }: { params: { locale: string } 
         id: e.id,
         date: r.start,
         endDate: r.end,
-        title: pick(e.title, locale),
+        title: orKo(e.title),
         kind: 'event' as const,
         href: `/news/post/${e.id}`,
       };
@@ -136,9 +153,18 @@ export default async function NewsPage({ params }: { params: { locale: string } 
       id: s.id,
       date: s.date,
       endDate: s.endDate ?? s.date, // 종료일 없으면 하루
-      title: pick(s.title, locale),
+      title: orKo(s.title),
       kind: 'seminar' as const,
       href: `/news/post/${s.id}`,
+    })),
+    ...calendarPosts.map((ev) => ({
+      id: `cal-${ev.id}`, // 게시판 글과 id 공간이 겹치므로(둘 다 DB 연번) 접두사로 분리
+      date: ev.start,
+      endDate: ev.end ?? ev.start, // 종료일 없으면 하루
+      title: orKo(ev.title),
+      kind: CALENDAR_KIND[ev.category] ?? 'academic',
+      // 링크가 없으면 키 자체를 빼서 EventCalendar 가 비링크 바로 그리게 한다
+      ...(ev.href ? { href: ev.href } : {}),
     })),
   ];
 
