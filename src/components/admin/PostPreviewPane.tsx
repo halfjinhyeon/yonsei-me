@@ -26,7 +26,10 @@ function resolve(ko: string, en: string, locale: 'ko' | 'en'): string {
 }
 
 // 뉴스형 게시판의 카테고리 라벨(메타 행에 표시)
-const CATEGORY_LABELS: Record<'ko' | 'en', Record<'notice' | 'seminar' | 'achievement', string>> = {
+// (키를 자유 문자열로 두는 이유: EditRecord.category 는 뉴스 분류와 일정 분류가
+//  같은 칼럼을 나눠 쓰느라 string 이다. 여기서는 뉴스형에서만 읽고, 모르는 값이면
+//  아래에서 '공지'로 폴백한다.)
+const CATEGORY_LABELS: Record<'ko' | 'en', Record<string, string>> = {
   ko: { notice: '공지', seminar: '세미나', achievement: '성과' },
   en: { notice: 'Notice', seminar: 'Seminar', achievement: 'Achievement' },
 };
@@ -41,7 +44,8 @@ export function PostPreviewPane({ meta, rec }: Props) {
   // 메타 행 값: 뉴스형은 카테고리 라벨, 그 외는 주최(있으면) 또는 학부 기본값
   let metaValue: string;
   if (meta.isNews) {
-    metaValue = CATEGORY_LABELS[previewLocale][rec.category ?? 'notice'];
+    const labels = CATEGORY_LABELS[previewLocale];
+    metaValue = labels[rec.category ?? 'notice'] ?? labels.notice;
   } else {
     const host = resolve(rec.hostKo ?? '', rec.hostEn ?? '', previewLocale);
     if (meta.hasHost && host.trim() !== '') {

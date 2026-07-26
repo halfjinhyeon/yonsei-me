@@ -80,12 +80,7 @@ export type ListView =
   /** 행을 펼쳐 긴 텍스트를 고친다 — 교과목 설명 */
   | { kind: 'expandRows'; summaryKeys: string[]; expandKeys: string[] }
   /** 연월 타임라인 — 연혁 */
-  | { kind: 'timeline'; dateKey: string; bodyKey: string }
-  /**
-   * 월 그리드 캘린더 — 일정. 다른 화면과 달리 "목록을 훑는" 화면이 아니라
-   * "달을 보며 그 날짜에 만든다"가 기본 동작이라 검색·순서 이동을 두지 않는다.
-   */
-  | { kind: 'calendar' };
+  | { kind: 'timeline'; dateKey: string; bodyKey: string };
 
 export interface LinkedMarkdown {
   label: string;
@@ -130,7 +125,6 @@ export interface ResourceDef {
 }
 
 export type ResourceKey =
-  | 'calendar'
   | 'history'
   | 'facultyDirectory'
   | 'staff'
@@ -576,56 +570,7 @@ const labs: ResourceDef = {
   summarize: (f) => cellText(f, 'nameKo'),
 };
 
-/** 일정 분류 4종 — content.ts 의 CalendarEventCategory 와 같은 값 집합 */
-export const CALENDAR_CATEGORY_OPTIONS: SelectOption[] = [
-  { value: 'academic', label: '학사일정' },
-  { value: 'event', label: '행사' },
-  { value: 'recruit', label: '모집·신청' },
-  { value: 'exam', label: '시험' },
-];
-
-const calendar: ResourceDef = {
-  key: 'calendar',
-  label: '일정 (캘린더)',
-  description:
-    '홈 "공지&일정"의 캘린더에 게시글 없이 노출되는 학사일정입니다. 개강·수강신청 변경·시험 기간처럼 본문이 필요 없는 일정을 여기서 관리하세요. 행사 게시판 글은 자동으로 캘린더에 오르므로 여기에 다시 적지 않아도 됩니다.',
-  file: 'content/calendar.json',
-  format: 'array',
-  listColumns: [
-    { key: 'start', label: '시작일' },
-    { key: 'end', label: '종료일' },
-    { key: 'category', label: '분류' },
-    { key: 'title', label: '일정명' },
-  ],
-  searchKeys: ['title', 'start'],
-  fields: [
-    {
-      kind: 'text', key: 'id', label: '식별자', required: true, width: 'third', readOnlyOnEdit: true,
-      hint: '캘린더 화면에서 자동 생성됩니다',
-    },
-    { kind: 'localized', key: 'title', label: '일정명', required: true },
-    { kind: 'text', key: 'start', label: '시작일', required: true, width: 'third', placeholder: 'YYYY-MM-DD' },
-    {
-      kind: 'text', key: 'end', label: '종료일', width: 'third', emptyAs: 'omit', placeholder: 'YYYY-MM-DD',
-      hint: '하루 일정이면 비웁니다',
-    },
-    {
-      kind: 'select', key: 'category', label: '분류', required: true, width: 'third',
-      options: CALENDAR_CATEGORY_OPTIONS,
-    },
-    {
-      kind: 'text', key: 'href', label: '연결 링크', emptyAs: 'omit',
-      hint: '비우면 링크 없는 정적 카드로 표시됩니다',
-    },
-  ],
-  // 사이트가 날짜순으로 정렬하므로 배열 순서에 의미가 없다.
-  orderable: false,
-  listView: { kind: 'calendar' },
-  summarize: (f) => `${cellText(f, 'start')} ${cellText(f, 'title')}`,
-};
-
 export const RESOURCES: Record<ResourceKey, ResourceDef> = {
-  calendar,
   history,
   facultyDirectory,
   staff,
@@ -681,9 +626,10 @@ export interface MenuGroup {
 export const MENU_GROUPS: MenuGroup[] = [
   // 일정은 게시판·데이터 어느 묶음에도 속하지 않는 별도 축(달력)이라 독립 그룹으로
   // 맨 위에 둔다 — "이번 달에 무엇이 있나"는 콘솔에 들어와 가장 먼저 보는 화면이다.
+  // 저장처는 다른 게시판과 같은 Supabase posts(board='calendar') 다.
   {
     label: '일정',
-    entries: [{ type: 'collection', resourceKey: 'calendar' }],
+    entries: [{ type: 'board', boardKey: 'calendar' }],
   },
   {
     label: '뉴스·공지 게시판',

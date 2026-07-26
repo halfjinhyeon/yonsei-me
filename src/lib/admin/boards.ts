@@ -25,6 +25,7 @@ export interface BoardFile {
 
 /** 어드민에서 선택 가능한 게시판 키 */
 export type BoardKey =
+  | 'calendar'
   | 'noticesUndergrad'
   | 'noticesGraduate'
   | 'noticesExternal'
@@ -60,8 +61,13 @@ export interface EditRecord {
   linkUrl?: string;
   // 동문 소식·네트워크 전용 — 특정 날짜가 정해진 행사인지(체크 시 캘린더 '동문'에 표시)
   isEvent?: boolean;
-  // 뉴스 전용
-  category?: NewsItem['category'];
+  // 뉴스 전용 + 일정(캘린더) 전용.
+  // ⚠️ 타입을 string 으로 넓힌 이유: 뉴스는 notice|seminar|achievement 를, 캘린더는
+  // academic|event|recruit|exam 을 쓰는데 저장처가 posts.category 한 칼럼으로 같다.
+  // 두 집합은 board 값으로 스코프가 갈리므로 한 칼럼을 공유해도 충돌하지 않는다.
+  // 여기서 유니온으로 좁히면 게시판이 늘 때마다 이 자리를 고쳐야 하고, 실제 판정은
+  // BoardMeta.categories 가 하므로 편집 레코드는 자유 문자열로 둔다.
+  category?: string;
   excerptKo?: string;
   excerptEn?: string;
   image?: string;
@@ -97,10 +103,35 @@ export interface BoardMeta {
   hasEventFlag?: boolean;
   /** isNews 게시판이 읽고 쓰는 뉴스 파일 경로 (기본 'content/news.json'). 동문 뉴스처럼 별도 파일을 쓰는 뉴스형 게시판에서 지정 */
   newsFile?: string;
+  /**
+   * 분류 선택지 — 값은 posts.category 칼럼에 저장한다. 뉴스의
+   * notice|seminar|achievement 와는 board 로 스코프가 갈리므로 같은 칼럼을 써도
+   * 충돌하지 않는다. 화면은 이 목록만 보고 버튼을 그린다(상수를 직접 참조하지 않는다).
+   */
+  categories?: { value: string; label: string }[];
+  /** true 면 목록을 표·카드가 아니라 월 그리드(달력)로 그린다 — 일정. */
+  calendarGrid?: boolean;
 }
+
+/** 일정 분류 4종 — posts.category 에 저장되는 값 집합 */
+export const CALENDAR_CATEGORIES: { value: string; label: string }[] = [
+  { value: 'academic', label: '학사일정' },
+  { value: 'event', label: '행사' },
+  { value: 'recruit', label: '모집·신청' },
+  { value: 'exam', label: '시험' },
+];
 
 /** content/*.json 실제 id·slug 컨벤션에 맞춘 게시판 목록 */
 export const BOARDS: BoardMeta[] = [
+  // 일정(캘린더)은 사이드바 최상단 그룹이라 여기서도 맨 앞에 둔다 — 목록 어순이
+  // 화면 어순과 어긋나면 "이동할 게시판" 셀렉트 같은 곳에서 순서가 따로 논다.
+  //
+  // ⚠️ hasLink 를 켜지 않는다. 인스타그램의 hasLink 는 PostForm.handleSubmit 에서
+  // "URL 필수 + 대표 이미지 필수" 검증을 유발한다(그 게시판은 링크가 목적지 자체다).
+  // 캘린더의 링크는 선택이고 전용 편집 패널에서 다루므로, 그 검증을 물려받으면
+  // 링크 없는 학사일정을 저장할 수 없게 된다. 패널이 EditRecord.linkUrl 을 직접
+  // 채우고 toPayload 가 그대로 보낸다.
+  { key: 'calendar', label: '일정 (캘린더)', file: 'board.json', idPrefix: 'cal-', hasHost: false, hasDateLabel: false, hasDateRange: true, noBody: true, isNews: false, dateIsEvent: true, calendarGrid: true, categories: CALENDAR_CATEGORIES },
   { key: 'noticesUndergrad', label: '학부 공지', file: 'board.json', idPrefix: 'nu-', hasHost: false, hasDateLabel: false, isNews: false },
   { key: 'noticesGraduate', label: '대학원 공지', file: 'board.json', idPrefix: 'ng-', hasHost: false, hasDateLabel: false, isNews: false },
   { key: 'noticesExternal', label: '외부기관 공지', file: 'board.json', idPrefix: 'nx-', hasHost: false, hasDateLabel: false, isNews: false },
@@ -209,7 +240,7 @@ export function toEditRecord(meta: BoardMeta, raw: unknown): EditRecord {
   }
   if (meta.isNews) {
     const excerpt = loc(r.excerpt);
-    base.category = (r.category as NewsItem['category']) ?? 'notice';
+    base.category = String(r.category ?? 'notice');
     base.excerptKo = excerpt.ko ?? '';
     base.excerptEn = excerpt.en ?? '';
   }
@@ -260,7 +291,9 @@ export function toNewsEntry(rec: EditRecord): NewsItem {
   const attachments = editToAtts(rec.attachments);
   return {
     slug: rec.id.trim(),
-    category: rec.category ?? 'notice',
+    // 편집 레코드의 category 는 자유 문자열(캘린더 분류와 칼럼을 공유)이라, 뉴스
+    // 파일로 내보낼 때만 뉴스 분류 유니온으로 되돌린다.
+    category: (rec.category as NewsItem['category']) ?? 'notice',
     date: rec.date,
     title: localized(rec.titleKo, rec.titleEn),
     excerpt: localized(rec.excerptKo ?? '', rec.excerptEn ?? ''),

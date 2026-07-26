@@ -30,6 +30,7 @@ import {
 import type { RepoConfig } from '@/lib/admin/github';
 import { clearPostDraft, postDraftKey } from '@/lib/admin/post-draft';
 import { uploadAttachment } from '@/lib/admin/storage';
+import { CalendarEditor } from './CalendarEditor';
 import { CmsModal } from './CmsModal';
 import { CmsPanelHead } from './CmsPanelHead';
 import { CmsSkeleton } from './CmsSkeleton';
@@ -37,8 +38,10 @@ import { CommitBanner } from './CommitBanner';
 import { PostForm } from './PostForm';
 import { useAdminShell } from './AdminShellContext';
 
-/** admin API 가 돌려주는 레코드 — EditRecord + DB 식별자/slug */
-type ApiRecord = EditRecord & { board: string; slug: string | null };
+/** admin API 가 돌려주는 레코드 — EditRecord + DB 식별자/slug.
+ *  월 그리드(CalendarEditor)가 같은 목록을 그대로 받아 쓰므로 export 한다 —
+ *  같은 모양을 두 곳에 선언해 두면 API 응답이 바뀔 때 한쪽만 고치게 된다. */
+export type ApiRecord = EditRecord & { board: string; slug: string | null };
 
 /** 게시판별 목록 항목(공용 표시용) */
 interface ListItem {
@@ -53,13 +56,15 @@ interface ListItem {
 }
 
 /** 목록 모양 — BoardMeta 플래그로만 결정한다 */
-type ListVariant = 'rows' | 'cards' | 'tiles';
+type ListVariant = 'rows' | 'cards' | 'tiles' | 'calendar';
 
 /**
  * 게시판이 사이트 어디에 노출되는지 한 줄 설명.
  * boards.ts 는 스키마 파일이라 UI 문구를 넣지 않기로 했으므로(4단계 지시) 화면 쪽에 둔다.
  */
 const BOARD_NOTES: Record<BoardKey, string> = {
+  calendar:
+    '홈 ‘공지 & 일정’ 캘린더에 게시글 없이 노출되는 학사일정입니다. 개강·수강신청 변경·시험 기간처럼 본문이 필요 없는 일정을 여기서 관리합니다.',
   noticesUndergrad: '학부 공지 목록과 홈 ‘공지 & 일정’ 영역에 노출됩니다.',
   noticesGraduate: '대학원 공지 목록에 노출됩니다.',
   noticesExternal: '외부기관 공지 목록에 노출됩니다.',
@@ -138,7 +143,13 @@ export function BoardEditor({ config, boardKey, onDirtyChange }: Props) {
   const { showToast, setWriteDenied } = useAdminShell();
 
   const meta = useMemo(() => getBoard(boardKey), [boardKey]);
-  const variant: ListVariant = meta.isNews ? 'cards' : meta.hasLink && meta.noBody ? 'tiles' : 'rows';
+  const variant: ListVariant = meta.calendarGrid
+    ? 'calendar'
+    : meta.isNews
+      ? 'cards'
+      : meta.hasLink && meta.noBody
+        ? 'tiles'
+        : 'rows';
 
   const [records, setRecords] = useState<ApiRecord[]>([]);
   const [loading, setLoading] = useState(false);
@@ -321,6 +332,36 @@ export function BoardEditor({ config, boardKey, onDirtyChange }: Props) {
     }
   }
 
+  /**
+   * 캘린더 전용 저장 — 월 그리드는 PostForm(전체화면)을 쓰지 않고 자기 편집 패널에서
+   * 바로 저장한다. 나가는 요청은 다른 게시판과 완전히 같은 POST/PUT 이다.
+   *
+   * 실패를 삼키지 않고 다시 던지는 이유: 부르는 쪽(CalendarEditor)이 await 후 편집
+   * 패널을 닫기 때문이다. 조용히 성공한 척하면 저장되지 않은 일정의 패널이 닫혀
+   * 방금 친 내용이 사라진 것처럼 보인다.
+   */
+  async function saveCalendarRecord(rec: EditRecord, dbId?: string) {
+    setSaving(true);
+    setSaveError(null);
+    try {
+      if (dbId) {
+        await api(`/api/admin/posts/${dbId}`, {
+          method: 'PUT',
+          body: JSON.stringify(toPayload(rec)),
+        });
+        finishSave('수정되었습니다');
+      } else {
+        await api('/api/admin/posts', { method: 'POST', body: JSON.stringify(toPayload(rec)) });
+        finishSave('등록되었습니다');
+      }
+    } catch (err) {
+      failSave(err, '저장에 실패했습니다.');
+      throw err;
+    } finally {
+      setSaving(false);
+    }
+  }
+
   // 확인은 콘솔 공용 모달로 받는다. window.confirm 은 사이트 시각 언어와 동떨어지고
   // 파괴적 동작(삭제)과 단순 이동을 구분해 보여줄 수 없다.
   function handleDelete(dbId: string) {
@@ -481,6 +522,56 @@ export function BoardEditor({ config, boardKey, onDirtyChange }: Props) {
 
   const busy = saving || loading;
   const searching = search.trim() !== '';
+
+  // ── 일정(캘린더): 아래 목록 UI 를 통째로 월 그리드로 갈아 끼운다 ──
+  //
+  // 검색창·전체선택·일괄 삭제/이동 툴바·빈 상태 카드·`+ 새 글 쓰기` 를 전부 건너뛴다.
+  // 일정은 "훑어 고르는" 화면이 아니라 "달을 보며 그 자리에 만드는" 화면이라 검색과
+  // 다중선택이 의미가 없고, 무엇보다 항목이 0건일 때 빈 상태 카드로 대체되면 날짜
+  // 칸의 `+ 일정` 이 사라져 새 일정을 만들 방법 자체가 없어진다. 그래서 0건이어도
+  // 달력은 언제나 그린다. 삭제 확인 모달은 여기서도 필요하므로 함께 렌더한다.
+  if (variant === 'calendar') {
+    return (
+      <div className="min-w-0">
+        <CmsPanelHead
+          kind="board"
+          file={`Supabase · posts (board=${boardKey})`}
+          title={meta.label}
+          description={`${BOARD_NOTES[boardKey]} 행사 게시판 글은 자동으로 캘린더에 오르므로 여기에 다시 적지 않아도 됩니다.`}
+        />
+
+        {success && <CommitBanner message={success} url="" />}
+
+        {listError && (
+          <p role="alert" className="mb-4 border border-[#b42318]/30 bg-[#b42318]/[0.06] px-3.5 py-2.5 text-[13px] text-[#b42318]">
+            {listError}
+          </p>
+        )}
+        {saveError && !loading && (
+          <p role="alert" className="mb-4 border border-[#b42318]/30 bg-[#b42318]/[0.06] px-3.5 py-2.5 text-[13px] text-[#b42318]">
+            {saveError}
+          </p>
+        )}
+
+        {/* 뼈대는 첫 로드에서만 그린다 — 저장·삭제 뒤 재조회 때마다 달력을 뼈대로
+            갈아 끼우면 CalendarEditor 가 다시 마운트되어 보고 있던 달이 이번 달로
+            돌아가고 열어 둔 패널도 사라진다. 갱신 중이라는 사실은 busy 로 전한다. */}
+        {loading && records.length === 0 ? (
+          <CmsSkeleton shape="calendar" />
+        ) : (
+          <CalendarEditor
+            meta={meta}
+            items={records}
+            busy={busy}
+            onSave={saveCalendarRecord}
+            onDelete={handleDelete}
+          />
+        )}
+
+        {renderConfirm()}
+      </div>
+    );
+  }
 
   return (
     <div className="min-w-0">

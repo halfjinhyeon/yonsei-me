@@ -232,6 +232,39 @@ export async function fetchInstagramPosts(): Promise<InstagramPost[]> {
   );
 }
 
+/** 홈 캘린더용 '캘린더 전용 일정' — CMS '일정 (캘린더)' 게시판(DB 전용, git 폴백은 빈 목록).
+ *  게시글 본문이 없는 학사일정이라 event_date(시작)·end_date(종료)·category 만 쓴다.
+ *  link_url 은 선택 — 없으면 홈에서 링크 없는 정적 카드가 된다. */
+export interface CalendarPost {
+  id: string;
+  /** 시작일 YYYY-MM-DD */
+  start: string;
+  /** 종료일. 없으면 하루 일정 */
+  end?: string;
+  title: Localized;
+  category: string;
+  /** 선택 링크 — 비면 홈 카드가 <div> 로 렌더된다 */
+  href?: string;
+}
+
+export async function fetchCalendarPosts(): Promise<CalendarPost[]> {
+  if (postsSource() === 'git') return [];
+  return (await rowsOf('calendar'))
+    // 시작일이 없는 행은 달력에 놓을 자리가 없다 — 조용히 뺀다.
+    .filter((r) => (r.event_date ?? '').trim() !== '')
+    .map((r) => ({
+      id: String(r.id),
+      start: r.event_date as string,
+      ...(r.end_date ? { end: r.end_date } : {}),
+      title: loc(r.title_ko, r.title_en),
+      category: r.category ?? 'academic',
+      ...((r.link_url ?? '').trim() !== '' ? { href: (r.link_url as string).trim() } : {}),
+    }))
+    // 시작일 오름차순 — 소비하는 쪽이 다시 정렬하지만, 순서가 매번 흔들리면
+    // 같은 날짜끼리의 배열이 요청마다 달라져 정적 렌더 결과가 불안정해진다.
+    .sort((a, b) => (a.start < b.start ? -1 : a.start > b.start ? 1 : 0));
+}
+
 export async function fetchAlumniNewsBySlug(slug: string): Promise<NewsItem | undefined> {
   return (await fetchAlumniNews()).find((n) => n.slug === slug);
 }

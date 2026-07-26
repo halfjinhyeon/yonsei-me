@@ -104,6 +104,7 @@ export interface AdminPostPayload {
 }
 
 const BOARDS = new Set([
+  'calendar',
   'noticesUndergrad', 'noticesGraduate', 'noticesExternal', 'noticesScholarship',
   'news', 'seminars', 'events',
   'thesis', 'resources', 'career', 'internships', 'alumniNews', 'alumniEvents',
@@ -131,12 +132,19 @@ export function endDateError(p: AdminPostPayload): string | null {
 /** 페이로드 → posts 행 (본문은 md 보관 + 정화 HTML 동시 저장) */
 export function payloadToRow(p: AdminPostPayload) {
   const isNews = p.board === 'news' || p.board === 'alumniNews';
-  const isEvent = p.board === 'alumniEvents' ? p.isEvent === true : p.board === 'events';
-  // 종료일·자동 라벨 대상: 행사 + 세미나 + 동문(행사 체크 시). 그 외 게시판은 항상 null.
+  // 캘린더 전용 일정은 "그 날짜에 일어나는 일"이 본체라 행사와 똑같이 event_date 에
+  // 시작일을 박는다. created_at 은 timestamptz 라 표시일로 쓰면 시간대에 휘둘린다.
+  const isEvent =
+    p.board === 'alumniEvents'
+      ? p.isEvent === true
+      : p.board === 'events' || p.board === 'calendar';
+  // 종료일·자동 라벨 대상: 행사 + 세미나 + 일정 + 동문(행사 체크 시). 그 외 게시판은 항상 null.
+  // 일정을 여기 넣는 이유는 홈 캘린더의 날짜 pill 표기다 — 행사 글과 같은
+  // formatPeriodLabel 을 타야 "7/20~7/24" 같은 기간 표기가 한 문법으로 나온다.
   // is_event/event_date 의 기존 의미는 불변(세미나는 event_date null 유지 — dateOf 가
   // created_at 으로 폴백해 표시 날짜가 동일하다).
   const hasSchedule =
-    p.board === 'events' || p.board === 'seminars' ||
+    p.board === 'events' || p.board === 'seminars' || p.board === 'calendar' ||
     (p.board === 'alumniEvents' && p.isEvent === true);
   // end==start(하루)는 null 로 정규화 — "end_date null = 하루" 단일 의미를 DB 레벨에서 유지
   const e = nn(p.endDate);
@@ -144,6 +152,12 @@ export function payloadToRow(p: AdminPostPayload) {
   // 기간 라벨은 시작/종료일에서 ko/en 자동 생성(수동 입력 폐지) — 홈 pill 등 기존 라벨
   // 소비자는 무변경으로 동작하고, 그간 전부 공백이던 EN 라벨 문제도 함께 해결된다.
   const label = hasSchedule && p.date ? formatPeriodLabel(p.date, endDate) : null;
+  // 분류 — 뉴스와 캘린더가 같은 category 칼럼을 쓰되 값 집합이 다르다. board 로
+  // 스코프가 갈리므로 섞이지 않고, 기본값만 각자의 것으로 준다(뉴스 '공지',
+  // 일정 '학사일정'). 분류가 없는 게시판은 예전처럼 null 이다.
+  let category: string | null = null;
+  if (isNews) category = nn(p.category) ?? 'notice';
+  else if (p.board === 'calendar') category = nn(p.category) ?? 'academic';
   return {
     board: p.board,
     slug: isNews ? nn(p.slug) : null,
@@ -157,7 +171,7 @@ export function payloadToRow(p: AdminPostPayload) {
     body_html_en: nn(p.bodyEn) ? sanitizeEditorHtml(p.bodyEn) : null,
     excerpt_ko: nn(p.excerptKo),
     excerpt_en: nn(p.excerptEn),
-    category: isNews ? (nn(p.category) ?? 'notice') : null,
+    category,
     host_ko: nn(p.hostKo),
     host_en: nn(p.hostEn),
     date_label_ko: label ? nn(label.ko) : null,
@@ -165,7 +179,9 @@ export function payloadToRow(p: AdminPostPayload) {
     is_event: p.board === 'alumniEvents' ? p.isEvent === true : false,
     event_date: isEvent && p.date ? p.date : null,
     end_date: endDate,
-    link_url: p.board === 'instagram' ? nn(p.linkUrl) : null,
+    // 링크 — 같은 칼럼이지만 성격이 다르다. 인스타그램은 타일이 반드시 가야 할
+    // 필수 목적지고, 캘린더는 있으면 좋은 선택 링크(비면 홈에서 링크 없는 카드).
+    link_url: p.board === 'instagram' || p.board === 'calendar' ? nn(p.linkUrl) : null,
     thumbnail_url: nn(p.image),
     created_at: `${p.date}T00:00:00+09:00`,
   };
@@ -198,7 +214,10 @@ export interface DbPostRow {
 
 /** DB 행 → CMS 편집 레코드(마크다운 우선, 없으면 빈 문자열 — 구 데이터 호환) */
 export function rowToEditRecord(r: DbPostRow) {
-  const date = (r.event_date && (r.board === 'events' || r.is_event)
+  // 캘린더를 여기 넣는 이유: created_at 은 timestamptz(+09:00) 라 UTC 로 돌아오면
+  // slice(0,10) 이 하루 앞당겨질 수 있다. 일정은 날짜가 곧 내용이므로 그 하루가
+  // 그대로 오답이 된다 — 시작일의 진실은 언제나 event_date 다.
+  const date = (r.event_date && (r.board === 'events' || r.board === 'calendar' || r.is_event)
     ? r.event_date
     : String(r.created_at).slice(0, 10)) as string;
   // 종료일: end_date 우선. 없으면(구 데이터) 수동 기간 라벨을 파싱해 폼에 프리필한다 —

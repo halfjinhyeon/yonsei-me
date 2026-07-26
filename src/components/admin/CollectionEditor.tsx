@@ -45,14 +45,7 @@ import {
   type InlineValue,
 } from '@/lib/admin/inline';
 import { invalidInlinePaths, invalidReason } from '@/lib/admin/validate-inline';
-import {
-  calendarChanges,
-  calendarPayload,
-  itemId as calendarItemId,
-  revertCalendarChange,
-} from '@/lib/admin/calendar-draft';
 import { RecordForm } from './RecordForm';
-import { CalendarEditor } from './CalendarEditor';
 import { ClubRowsEditor } from './ClubRowsEditor';
 import { ExpandRowsEditor } from './ExpandRowsEditor';
 import { FacultyCardsEditor } from './FacultyCardsEditor';
@@ -154,33 +147,8 @@ export function CollectionEditor({ config, resource, onDirtyChange }: Props) {
   const [inlineEdits, setInlineEdits] = useState<Record<number, InlinePatch>>({});
   const cardDirty = Object.keys(inlineEdits).length > 0;
 
-  // ---- 캘린더 전용 초안 ----
-  //
-  // 캘린더만 인덱스가 아니라 항목 id 를 키로 삼고, 추가·삭제까지 트레이에 담는다.
-  // 달력 화면은 "그 자리에서 만들고 지운다"가 기본 동작이라 삭제마다 커밋이 나가면
-  // 흐름이 끊기기 때문이다. 대신 인덱스 기반 편집(inlineEdits/orderedRaw)과 섞지 않고
-  // **배열 전체를 새로 직렬화해 커밋**하는 별도 경로를 쓴다 — 자세한 근거는
-  // lib/admin/calendar-draft.ts 머리말.
-  const isCalendar = resource.listView?.kind === 'calendar';
-  const [calDraft, setCalDraft] = useState<FormRecord[] | null>(null);
-  const calOriginal = useMemo(
-    () => (isCalendar ? raw.map((r) => toForm(r)) : []),
-    [isCalendar, raw, toForm],
-  );
-  const calItems = calDraft ?? calOriginal;
-  const calChanges = useMemo(
-    () => (isCalendar ? calendarChanges(resource.fields, calOriginal, calItems) : []),
-    [isCalendar, resource.fields, calOriginal, calItems],
-  );
-  // 되돌리기로 원본과 같아지면 초안이 남아 있어도 "변경 없음"이다(더티 판정은 diff 로).
-  const calDirty = calChanges.length > 0;
-  const calDirtyIds = useMemo(
-    () => new Set(calChanges.map((c) => c.id.split(':')[1])),
-    [calChanges],
-  );
-
   const orderDirty = orderedRaw !== null;
-  const dirty = editing !== null || orderDirty || cardDirty || calDirty;
+  const dirty = editing !== null || orderDirty || cardDirty;
 
   useEffect(() => {
     onDirtyChange?.(dirty);
@@ -214,7 +182,6 @@ export function CollectionEditor({ config, resource, onDirtyChange }: Props) {
     setDeleting(null);
     setMd(null);
     setOrderedRaw(null);
-    setCalDraft(null);
     setSearch('');
     setSuccess(null);
     setSaveError(null);
@@ -266,26 +233,8 @@ export function CollectionEditor({ config, resource, onDirtyChange }: Props) {
     [resource.fields, invalidPaths],
   );
 
-  /**
-   * 캘린더의 같은 이유 한 줄.
-   * 캘린더는 인덱스가 아니라 초안 배열 전체를 커밋하므로 inlineEdits 검사가 닿지
-   * 않는다. 검사 대상도 "내가 건드린 항목"이 아니라 초안 전체다 — saveCalendar 의
-   * 기존 throw 가 이미 배열 전체를 보고 있어서, 여기서 범위를 좁히면 버튼은 열려
-   * 있는데 누르면 실패하는 더 나쁜 상태가 된다. (throw 는 최후 방어선으로 남긴다.)
-   */
-  const calInvalidMsg = useMemo(() => {
-    if (!isCalendar || !calDirty) return null;
-    const n = calItems.filter(
-      (f) =>
-        !((f.title as { ko: string } | undefined)?.ko ?? '').trim() ||
-        String(f.start ?? '').trim() === '',
-    ).length;
-    if (n === 0) return null;
-    return `일정 ${n}건에 일정명(한국어) 또는 시작일이 비어 있습니다. 채워야 저장할 수 있습니다.`;
-  }, [isCalendar, calDirty, calItems]);
-
   /** 지금 저장하면 안 되는 이유 — 트레이가 이 값으로 저장 버튼을 잠근다 */
-  const saveBlockReason = isCalendar ? calInvalidMsg : invalidMsg;
+  const saveBlockReason = invalidMsg;
 
   // ---- 변경 트레이 연결 ----
   //
@@ -298,10 +247,6 @@ export function CollectionEditor({ config, resource, onDirtyChange }: Props) {
   const ORDER_CHANGE_ID = `${resource.key}:__order__`;
 
   const trayChanges = useMemo<PendingChange[]>(() => {
-    // 캘린더는 자기 diff 를 그대로 트레이 줄로 쓴다(영역 라벨만 붙인다)
-    if (isCalendar) {
-      return calChanges.map((c) => ({ ...c, scopeLabel: resource.label }));
-    }
     const list: PendingChange[] = [];
     if (orderedRaw) {
       // 순서는 필드 단위로 쪼갤 수 없어 한 건으로 묶는다
@@ -334,16 +279,9 @@ export function CollectionEditor({ config, resource, onDirtyChange }: Props) {
       }
     }
     return list;
-  }, [
-    ORDER_CHANGE_ID, inlineEdits, orderedRaw, raw, displayRaw, formOf, resource,
-    isCalendar, calChanges,
-  ]);
+  }, [ORDER_CHANGE_ID, inlineEdits, orderedRaw, raw, displayRaw, formOf, resource]);
 
   function revertTrayChange(id: string) {
-    if (isCalendar) {
-      setCalDraft(revertCalendarChange(resource.fields, calOriginal, calItems, id));
-      return;
-    }
     if (id === ORDER_CHANGE_ID) {
       resetOrder();
       return;
@@ -366,71 +304,17 @@ export function CollectionEditor({ config, resource, onDirtyChange }: Props) {
   }
 
   function revertAllTray() {
-    setCalDraft(null);
     resetOrder();
     resetInlineEdits();
   }
 
   /** 트레이의 "저장 (커밋)" — 대기 중인 쪽 하나를 기존 커밋 경로로 그대로 넘긴다 */
   async function saveTray() {
-    if (isCalendar) {
-      await saveCalendar();
-      return;
-    }
     if (orderDirty) {
       await saveOrder();
       return;
     }
     await saveInlineEdits();
-  }
-
-  /**
-   * 캘린더 저장 — 초안 배열 전체를 다시 직렬화해 한 번에 커밋한다.
-   * 다른 리소스처럼 "바뀐 인덱스만 교체"하지 않는 이유: 추가·삭제가 섞이면 인덱스가
-   * 밀려 어느 항목의 변경인지 잃는다. 항목이 수십 건 규모라 디프 최소화를 포기하고
-   * 단순함을 택했다(sha 는 그대로 로드 시점 것을 써서 충돌 방어는 동일하다).
-   */
-  async function saveCalendar() {
-    // 커밋 직전 필수값 검증 — 빈 제목/날짜가 파일에 들어가면 사이트에서 빈 카드가 된다
-    const invalid = calItems.find(
-      (f) =>
-        !((f.title as { ko: string } | undefined)?.ko ?? '').trim() ||
-        String(f.start ?? '').trim() === '',
-    );
-    if (invalid) {
-      throw new Error('일정명(한국어)과 시작일은 모두 채워야 저장할 수 있습니다.');
-    }
-    setSaving(true);
-    setSaveError(null);
-    setSuccess(null);
-    try {
-      const payload = calendarPayload(resource.fields, calItems);
-      const added = calChanges.filter((c) => c.id.startsWith('add:')).length;
-      const removed = calChanges.filter((c) => c.id.startsWith('del:')).length;
-      const edited = new Set(
-        calChanges.filter((c) => c.id.startsWith('set:')).map((c) => c.id.split(':')[1]),
-      ).size;
-      const parts = [
-        added > 0 ? `추가 ${added}` : '',
-        edited > 0 ? `수정 ${edited}` : '',
-        removed > 0 ? `삭제 ${removed}` : '',
-      ].filter(Boolean);
-      const result = await commitJson(
-        config,
-        resource.file,
-        payload,
-        sha,
-        `content: ${resource.label} ${parts.join(' · ')}`,
-      );
-      setCalDraft(null);
-      finishSave(result.sha);
-    } catch (err) {
-      // 오류 문구는 트레이가 띄운다 — 409/422 재로드만 하고 다시 던진다
-      handleSaveError(err, '저장에 실패했습니다.', true);
-      throw err;
-    } finally {
-      setSaving(false);
-    }
   }
 
   // 상세 폼을 연 동안에는 트레이를 내린다 — 폼 저장은 로드 시점 raw 로 커밋하므로
@@ -458,7 +342,6 @@ export function CollectionEditor({ config, resource, onDirtyChange }: Props) {
     setEditing(null);
     setMd(null);
     setOrderedRaw(null);
-    setCalDraft(null);
     setSuccess(savedBanner(config, commitSha));
     // 쓰기가 통했으니 권한 배너를 내린다 — 토큰 권한은 나중에 부여될 수 있고,
     // 한 번 뜬 배너가 남아 있으면 이미 되는 일을 안 된다고 말하게 된다.
@@ -802,7 +685,6 @@ export function CollectionEditor({ config, resource, onDirtyChange }: Props) {
           setConflict(null);
           setInlineEdits({});
           setOrderedRaw(null);
-          setCalDraft(null);
           void load();
         }}
         onCancel={() => setConflict(null)}
@@ -905,18 +787,14 @@ export function CollectionEditor({ config, resource, onDirtyChange }: Props) {
         title={resource.label}
         description={resource.description}
         actions={
-          // 캘린더는 "+ 새 항목"을 두지 않는다 — 일정은 날짜가 있어야 의미가 있어
-          // 빈 폼이 아니라 달력 칸의 `+ 일정` 이 만들기 동작이다.
-          isCalendar ? undefined : (
-            <button
-              type="button"
-              onClick={startNew}
-              disabled={loading || saving || orderDirty}
-              className="cms-btn cms-btn-primary cms-btn-sm"
-            >
-              + 새 항목
-            </button>
-          )
+          <button
+            type="button"
+            onClick={startNew}
+            disabled={loading || saving || orderDirty}
+            className="cms-btn cms-btn-primary cms-btn-sm"
+          >
+            + 새 항목
+          </button>
         }
       />
 
@@ -958,9 +836,7 @@ export function CollectionEditor({ config, resource, onDirtyChange }: Props) {
           "무엇이 로딩 중인지"를 오히려 잃는다. 흔들리는 것은 목록뿐이어야 한다. */}
       {loading && <CmsSkeleton shape={skeletonShape} />}
 
-      {/* 캘린더는 항목이 0건이어도 달력 자체를 그려야 한다 — 빈 안내로 대체하면
-          새 일정을 만들 `+ 일정` 버튼까지 사라진다 */}
-      {!loading && !listError && displayRaw.length === 0 && !isCalendar && (
+      {!loading && !listError && displayRaw.length === 0 && (
         <CmsEmptyState
           variant="empty"
           title="아직 항목이 없습니다"
@@ -973,17 +849,8 @@ export function CollectionEditor({ config, resource, onDirtyChange }: Props) {
       {/* 목록 화면 — 어떤 모양으로 보여줄지는 resource.listView 가 정한다.
           rows 가 0이어도(검색 결과 없음) 화면을 그린다 — 검색창까지 사라지면
           입력을 지울 방법이 없어진다. */}
-      {!loading && !listError && (displayRaw.length > 0 || isCalendar) && (
+      {!loading && !listError && displayRaw.length > 0 && (
         <>
-          {view?.kind === 'calendar' && (
-            <CalendarEditor
-              resource={resource}
-              items={calItems}
-              dirtyIds={calDirtyIds}
-              busy={saving}
-              onChange={setCalDraft}
-            />
-          )}
           {view?.kind === 'cards' && view.variant === 'faculty' && (
             <FacultyCardsEditor
               {...viewProps}

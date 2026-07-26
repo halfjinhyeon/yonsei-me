@@ -6,10 +6,15 @@ import { InstagramSection } from '@/components/InstagramSection';
 import { GoalsSection } from '@/components/GoalsSection';
 import { CalendarSection } from '@/components/CalendarSection';
 import { NoticeSection, type NoticeCategory } from '@/components/NoticeSection';
-import { getCalendarEvents, pick } from '@/lib/content';
+import { pick } from '@/lib/content';
 import { formatPeriodLabel } from '@/lib/calendar';
 import { formatDate } from '@/lib/utils';
-import { fetchNews, fetchBoardData, fetchInstagramPosts } from '@/lib/posts';
+import {
+  fetchNews,
+  fetchBoardData,
+  fetchInstagramPosts,
+  fetchCalendarPosts,
+} from '@/lib/posts';
 import heroSlidesData from '@content/hero-slides.json';
 import instagramData from '@content/instagram.json';
 import editorialTabs from '@content/editorial-tabs.json';
@@ -29,6 +34,8 @@ export default async function HomePage({ params }: { params: { locale: string } 
   // 게시판 데이터 — 기존 매핑 코드 유지를 위해 모듈 상수와 같은 이름의 지역 변수로
   const news = await fetchNews();
   const board = await fetchBoardData();
+  // 캘린더 전용 일정 — 아래 calRaw 는 배열 리터럴이라 spread 안에서 await 할 수 없다.
+  const calendarPosts = await fetchCalendarPosts();
   // 인스타그램 그리드 — CMS '인스타그램' 게시판(최신 8개). 캡션은 로케일 해석(빈 en 은 ko 폴백).
   const instagramItems = (await fetchInstagramPosts()).slice(0, 8).map((p) => ({
     href: p.url,
@@ -118,11 +125,14 @@ export default async function HomePage({ params }: { params: { locale: string } 
           href: `/alumni/post/${a.id}`,
         };
       }),
-    // 캘린더 전용 일정(content/calendar.json) — 개강·수강신청 변경·시험 기간처럼
-    // 게시글 없이 캘린더에만 올려야 하는 학사일정. 게시판 기반 항목과 같은 모양으로
-    // 만들어 아래 정렬에 그대로 섞인다(별도 구역을 두지 않는다 — 학생에게는 둘 다
-    // 그냥 "다가오는 일정"이다). href 가 비면 링크 없는 정적 카드가 된다.
-    ...getCalendarEvents().map((ev) => {
+    // 캘린더 전용 일정 — 개강·수강신청 변경·시험 기간처럼 게시글 없이 캘린더에만
+    // 올려야 하는 학사일정. 저장처는 위 두 항목과 같은 Supabase posts 테이블이고
+    // (board='calendar', CMS '일정 (캘린더)' 게시판), CMS 저장이 revalidateTag('posts')
+    // 를 부르므로 재배포 없이 수 초 내 반영된다 — 한 달력 안에서 두 종류가 다른
+    // 속도로 갱신되던 문제를 이렇게 없앴다. 모양도 게시판 기반 항목과 같게 만들어
+    // 아래 정렬에 그대로 섞는다(별도 구역을 두지 않는다 — 학생에게는 둘 다 그냥
+    // "다가오는 일정"이다). href 가 비면 링크 없는 정적 카드가 된다.
+    ...calendarPosts.map((ev) => {
       const pl = ev.end ? formatPeriodLabel(ev.start, ev.end) : null;
       return {
         date: ev.start,

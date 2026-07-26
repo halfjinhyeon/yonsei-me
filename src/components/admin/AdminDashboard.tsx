@@ -238,10 +238,16 @@ function TaskSection({ config, onOpen }: Props) {
 
         // (1) 글이 한 건도 없는 게시판. board.json 에 사는 게시판만 대상
         //     (뉴스류는 별도 파일이라 여기서 세지 않는다).
+        //
+        // ⚠️ 이 집계는 Supabase 가 아니라 레거시 content/board.json 을 본다. 그래서
+        //    그 파일에 아예 배열이 없는 게시판(일정·인스타그램 — 처음부터 DB 전용)은
+        //    "비었다"가 아니라 "판단 근거가 없다"가 맞다. 배열 부재를 0건으로 세면
+        //    글을 아무리 올려도 영원히 "글 없는 게시판"으로 잡힌다.
         const emptyBoards = BOARDS.filter((b) => {
           if (b.file !== 'board.json') return false;
           const rows = board.data[b.key];
-          return !Array.isArray(rows) || rows.length === 0;
+          if (!Array.isArray(rows)) return false;
+          return rows.length === 0;
         });
         if (emptyBoards.length > 0) {
           next.push({
