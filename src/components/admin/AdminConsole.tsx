@@ -31,6 +31,8 @@ import {
   type DeployState,
 } from './AdminShellContext';
 import { BoardEditor } from './BoardEditor';
+import { ChangeTray } from './ChangeTray';
+import { ChangeTrayProvider, useChangeTray } from './ChangeTrayContext';
 import { CmsModal } from './CmsModal';
 import { CollectionEditor } from './CollectionEditor';
 import { entryId, entryKind, entryLabel, isEditable, pushRecent } from './entries';
@@ -45,7 +47,18 @@ interface Props {
 
 const SITE_URL = 'https://yonsei-me.vercel.app/ko';
 
-export function AdminConsole({ token, login }: Props) {
+// 트레이 컨텍스트를 셸 자신도 읽어야 해서(이동 가드가 대기 변경을 봐야 한다)
+// Provider 와 본문을 한 겹 나눈다 — Provider 를 렌더하는 컴포넌트는 그 컨텍스트를
+// 구독할 수 없기 때문이다.
+export function AdminConsole(props: Props) {
+  return (
+    <ChangeTrayProvider>
+      <AdminConsoleBody {...props} />
+    </ChangeTrayProvider>
+  );
+}
+
+function AdminConsoleBody({ token, login }: Props) {
   // 저장소 설정은 세션 토큰으로 자동 구성한다(PAT 수동 입력 제거).
   const config = useMemo<RepoConfig>(
     () => ({ token, owner: 'halfjinhyeon', repo: 'yonsei-me', branch: 'main' }),
@@ -62,8 +75,7 @@ export function AdminConsole({ token, login }: Props) {
   // lg 미만에서 사이드바를 드로어로 연다
   const [navOpen, setNavOpen] = useState(false);
 
-  // 셸 컨텍스트 — 배포 상태 칩과 토스트. 실제로 값을 바꾸는 쪽(변경 트레이)은
-  // 2단계에서 붙는다. 지금은 자리와 표시만 확정해 둔다.
+  // 셸 컨텍스트 — 배포 상태 칩과 토스트. 값을 바꾸는 쪽은 변경 트레이다.
   const [deploy, setDeploy] = useState<DeployState>('idle');
   const [toast, setToast] = useState<string | null>(null);
   const showToast = useCallback((msg: string) => setToast(msg), []);
@@ -74,23 +86,47 @@ export function AdminConsole({ token, login }: Props) {
     [config, login, deploy, toast, showToast, dismissToast],
   );
 
-  const go = useCallback((next: MenuEntry | null) => {
-    setDirty(false);
-    setActive(next);
-    setNavOpen(false);
-    if (next && isEditable(next)) pushRecent(entryId(next));
-  }, []);
+  // 트레이의 대기 변경도 "저장 안 된 편집"이다 — 에디터가 onDirtyChange 를 주지
+  // 않더라도 트레이에 쌓인 게 있으면 그냥 넘어가면 안 된다.
+  const { source: traySource, saving: traySaving, clearTray } = useChangeTray();
+  const pendingCount = traySource?.changes.length ?? 0;
 
-  // 이동 가드: 편집 중이면 모달로 확인한 뒤 전환한다.
+  // 커밋이 도는 동안 배포 중 칩을 띄웠다가 스스로 내린다. Vercel 빌드가 대략
+  // 1~2분이라 90초를 근사치로 잡았다(성공 여부를 폴링할 경로가 없다).
+  // 타이머를 셸에 두는 이유: 저장이 끝나면 트레이가 곧바로 언마운트돼 트레이 안에
+  // 타이머를 두면 즉시 정리돼 버린다.
+  useEffect(() => {
+    if (deploy !== 'deploying') return;
+    const t = window.setTimeout(() => setDeploy('idle'), 90_000);
+    return () => window.clearTimeout(t);
+  }, [deploy]);
+
+  const go = useCallback(
+    (next: MenuEntry | null) => {
+      setDirty(false);
+      clearTray();
+      setActive(next);
+      setNavOpen(false);
+      if (next && isEditable(next)) pushRecent(entryId(next));
+    },
+    [clearTray],
+  );
+
+  // 이동 가드: 편집 중이거나 트레이에 대기 변경이 있으면 모달로 확인한 뒤 전환한다.
   const navigate = useCallback(
     (next: MenuEntry | null) => {
-      if (dirty) {
+      // 커밋 도중 에디터가 언마운트되면 결과를 알 수 없다 — 저장 중에는 붙잡는다.
+      if (traySaving) {
+        showToast('저장 중입니다. 잠시 후 이동해 주세요.');
+        return;
+      }
+      if (dirty || pendingCount > 0) {
         setPending({ next });
         return;
       }
       go(next);
     },
-    [dirty, go],
+    [dirty, pendingCount, traySaving, showToast, go],
   );
 
   // 드로어는 Esc 로도 닫는다(모달과 같은 규칙 — 열린 오버레이는 Esc 로 나간다)
@@ -181,7 +217,8 @@ export function AdminConsole({ token, login }: Props) {
 
           {/* 레이아웃이 이미 <main id="main"> 을 두고 있어 여기서는 div 로 둔다
               (main 중첩은 스크린리더의 랜드마크 탐색을 망가뜨린다).
-              아래 pb-36 은 2단계 변경 트레이가 덮을 자리를 미리 비워 둔 것이다. */}
+              아래 pb-36 은 하단 고정 변경 트레이가 덮는 자리다 — 이걸 줄이면
+              대기 변경이 있을 때 목록 마지막 항목이 트레이에 가린다. */}
           <div className="min-w-0 px-6 py-8 pb-36 lg:px-10">
             {active === null ? (
               <AdminDashboard config={config} onOpen={navigate} />
@@ -211,11 +248,16 @@ export function AdminConsole({ token, login }: Props) {
         </div>
 
         <AdminToast />
+        <ChangeTray />
 
         {pending && (
           <CmsModal
             title="편집 중인 내용이 저장되지 않았습니다"
-            body="지금 이동하면 저장하지 않은 변경은 사라집니다. 그래도 이동할까요?"
+            body={
+              pendingCount > 0
+                ? `지금 이동하면 저장하지 않은 변경 ${pendingCount}건이 사라집니다. 그래도 이동할까요?`
+                : '지금 이동하면 저장하지 않은 변경은 사라집니다. 그래도 이동할까요?'
+            }
             confirmLabel="이동"
             cancelLabel="여기 머무르기"
             tone="danger"
@@ -233,7 +275,7 @@ export function AdminConsole({ token, login }: Props) {
 }
 
 /** 배포 상태 칩 — 저장(커밋) 후 Vercel 재배포가 도는 동안을 알린다.
- *  값을 'deploying' 으로 바꾸는 쪽은 2단계의 변경 트레이다. */
+ *  값을 'deploying' 으로 올리는 쪽은 변경 트레이, 90초 뒤 내리는 쪽은 셸이다. */
 function DeployChip({ state }: { state: DeployState }) {
   const deploying = state === 'deploying';
   return (

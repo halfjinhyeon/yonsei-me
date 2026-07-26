@@ -19,6 +19,7 @@ import {
 } from '@/lib/admin/boards';
 import type { RepoConfig } from '@/lib/admin/github';
 import { uploadAttachment } from '@/lib/admin/storage';
+import { CmsModal } from './CmsModal';
 import { CommitBanner } from './CommitBanner';
 import { PostForm } from './PostForm';
 
@@ -95,6 +96,15 @@ export function BoardEditor({ config, boardKey, onDirtyChange }: Props) {
   const [saving, setSaving] = useState(false);
   const [saveError, setSaveError] = useState<string | null>(null);
   const [success, setSuccess] = useState<string | null>(null);
+
+  /** 확인 모달 (window.confirm 대체) — 확정 시 실행할 동작을 함께 들고 있는다 */
+  const [confirm, setConfirm] = useState<{
+    title: string;
+    body: React.ReactNode;
+    confirmLabel: string;
+    tone?: 'default' | 'danger';
+    run: () => void;
+  } | null>(null);
 
   // 편집 폼이 열려 있으면 dirty — 셸이 다른 항목으로 이동할 때 확인창을 띄운다.
   useEffect(() => {
@@ -233,9 +243,20 @@ export function BoardEditor({ config, boardKey, onDirtyChange }: Props) {
     }
   }
 
-  async function handleDelete(dbId: string) {
+  // 확인은 콘솔 공용 모달로 받는다. window.confirm 은 사이트 시각 언어와 동떨어지고
+  // 파괴적 동작(삭제)과 단순 이동을 구분해 보여줄 수 없다.
+  function handleDelete(dbId: string) {
     const item = listItems.find((i) => i.id === dbId);
-    if (!window.confirm(`정말 삭제할까요?\n\n${item?.titleKo ?? dbId}`)) return;
+    setConfirm({
+      title: '이 글을 삭제할까요?',
+      tone: 'danger',
+      confirmLabel: '삭제',
+      body: <span className="font-semibold text-content">{item?.titleKo ?? dbId}</span>,
+      run: () => void doDelete(dbId),
+    });
+  }
+
+  async function doDelete(dbId: string) {
     setSaving(true);
     setSaveError(null);
     setSuccess(null);
@@ -249,10 +270,23 @@ export function BoardEditor({ config, boardKey, onDirtyChange }: Props) {
     }
   }
 
-  async function handleBulkDelete() {
+  function handleBulkDelete() {
     if (selected.size === 0) return;
     const ids = Array.from(selected);
-    if (!window.confirm(`${ids.length}건을 삭제할까요?\n\n${selectionSummary(ids)}`)) return;
+    setConfirm({
+      title: `${ids.length}건을 삭제할까요?`,
+      tone: 'danger',
+      confirmLabel: `${ids.length}건 삭제`,
+      body: (
+        <span className="whitespace-pre-line font-semibold text-content">
+          {selectionSummary(ids)}
+        </span>
+      ),
+      run: () => void doBulkDelete(ids),
+    });
+  }
+
+  async function doBulkDelete(ids: string[]) {
     setSaving(true);
     setSaveError(null);
     setSuccess(null);
@@ -269,23 +303,27 @@ export function BoardEditor({ config, boardKey, onDirtyChange }: Props) {
     }
   }
 
-  async function handleBulkMove() {
+  function handleBulkMove() {
     if (selected.size === 0 || moveTarget === '') return;
     const target = getBoard(moveTarget);
     const ids = Array.from(selected);
-    if (
-      !window.confirm(
-        `${ids.length}건을 '${target.label}'(으)로 이동할까요?\n\n대상 게시판에 없는 항목(주최·분류 등)은 그 게시판에서 표시되지 않습니다.`,
-      )
-    )
-      return;
+    setConfirm({
+      title: `${ids.length}건을 '${target.label}'(으)로 이동할까요?`,
+      confirmLabel: '이동',
+      body: '대상 게시판에 없는 항목(주최·분류 등)은 그 게시판에서 표시되지 않습니다.',
+      run: () => void doBulkMove(moveTarget, ids),
+    });
+  }
+
+  async function doBulkMove(targetKey: BoardKey, ids: string[]) {
+    const target = getBoard(targetKey);
     setSaving(true);
     setSaveError(null);
     setSuccess(null);
     try {
       await api('/api/admin/posts/bulk', {
         method: 'POST',
-        body: JSON.stringify({ action: 'move', ids, targetBoard: moveTarget }),
+        body: JSON.stringify({ action: 'move', ids, targetBoard: targetKey }),
       });
       finishSave(`${ids.length}건을 '${target.label}'(으)로 이동했습니다`);
     } catch (err) {
@@ -445,6 +483,21 @@ export function BoardEditor({ config, boardKey, onDirtyChange }: Props) {
             </>
           )}
         </div>
+      )}
+
+      {confirm && (
+        <CmsModal
+          title={confirm.title}
+          body={confirm.body}
+          confirmLabel={confirm.confirmLabel}
+          tone={confirm.tone}
+          onConfirm={() => {
+            const run = confirm.run;
+            setConfirm(null);
+            run();
+          }}
+          onCancel={() => setConfirm(null)}
+        />
       )}
     </div>
   );

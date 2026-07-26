@@ -7,6 +7,10 @@
 // 디프 최소화 원칙: 저장 시 전체를 재직렬화하지 않고, 원본 배열(raw)에서
 // 수정=해당 인덱스만 교체 / 추가=push / 삭제=splice 만 적용해 나머지 항목의
 // 바이트를 그대로 유지한다. (record 포맷은 커밋 직전 arrayToRecord 로 변환.)
+//
+// 미저장 변경(카드 인라인 편집·순서 변경)의 표시와 되돌리기는 화면 하단의 변경
+// 트레이가 맡는다(useRegisterTray). 커밋 자체는 여기 있는 기존 전략을 그대로 쓰고,
+// 트레이는 그 위에 얹는 표시 계층일 뿐이다.
 // (한국어 UI 문자열은 내부 운영 도구라 컴포넌트에 직접 둔다.)
 
 import { useCallback, useEffect, useMemo, useState } from 'react';
@@ -31,6 +35,8 @@ import {
 import { RecordForm } from './RecordForm';
 import { FacultyCardsEditor } from './FacultyCardsEditor';
 import { CommitBanner } from './CommitBanner';
+import { CmsModal } from './CmsModal';
+import { useRegisterTray, type PendingChange } from './ChangeTrayContext';
 
 interface Props {
   config: RepoConfig;
@@ -87,6 +93,8 @@ export function CollectionEditor({ config, resource, onDirtyChange }: Props) {
 
   const [search, setSearch] = useState('');
   const [editing, setEditing] = useState<EditState | null>(null);
+  /** 삭제 확인 모달의 대상 인덱스 (null = 닫힘) — window.confirm 대체 */
+  const [deleting, setDeleting] = useState<number | null>(null);
   const [md, setMd] = useState<MdState | null>(null);
 
   // 로컬 순서 변경 상태 (미저장). null 이면 순서 변경 없음.
@@ -132,6 +140,7 @@ export function CollectionEditor({ config, resource, onDirtyChange }: Props) {
   // 마운트 / resource 전환 시 로드 및 상태 초기화
   useEffect(() => {
     setEditing(null);
+    setDeleting(null);
     setMd(null);
     setOrderedRaw(null);
     setSearch('');
@@ -159,6 +168,97 @@ export function CollectionEditor({ config, resource, onDirtyChange }: Props) {
     );
   }, [sourceRaw, search, toForm, resource.searchKeys]);
 
+  // ---- 변경 트레이 연결 ----
+  //
+  // ⚠️ 카드 편집과 순서 변경은 "같이 대기"시키지 않는다. 둘 다 로드 시점 sha 로
+  // 커밋하므로 한 번의 저장에서 두 커밋을 내면 두 번째가 409 로 반드시 실패하고,
+  // 하나로 합치려 해도 cardEdits 의 키가 인덱스라 순서가 바뀌는 순간 어느 항목의
+  // 편집인지 특정할 수 없다(다른 사람 값을 덮어쓸 위험). 그래서 기존 locked 규칙을
+  // 유지해 애초에 공존하지 못하게 막고(순서 변경 중 카드 편집 잠금 + 카드 편집 중
+  // 순서 이동 잠금), 저장은 둘 중 대기 중인 쪽 하나만 실행한다.
+  const ORDER_CHANGE_ID = `${resource.key}:__order__`;
+
+  const trayChanges = useMemo<PendingChange[]>(() => {
+    const list: PendingChange[] = [];
+    if (orderedRaw) {
+      // 순서는 필드 단위로 쪼갤 수 없어 한 건으로 묶는다
+      const moved = orderedRaw.reduce((n, item, i) => (item === raw[i] ? n : n + 1), 0);
+      list.push({
+        id: ORDER_CHANGE_ID,
+        scopeLabel: resource.label,
+        itemLabel: '목록 순서',
+        fieldLabel: '순서',
+        before: '원래 순서',
+        after: `${moved}개 이동`,
+      });
+    }
+    for (const [key, patch] of Object.entries(cardEdits)) {
+      const index = Number(key);
+      const original = displayRaw[index] as Record<string, unknown> | undefined;
+      const itemLabel = resource.summarize(toForm(sourceRaw[index] ?? {})) || `#${index + 1}`;
+      for (const [fieldKey, value] of Object.entries(patch)) {
+        list.push({
+          id: `${resource.key}:${index}:${fieldKey}`,
+          scopeLabel: resource.label,
+          itemLabel,
+          fieldLabel: resource.fields.find((f) => f.key === fieldKey)?.label ?? fieldKey,
+          before: String(original?.[fieldKey] ?? ''),
+          after: value,
+        });
+      }
+    }
+    return list;
+  }, [ORDER_CHANGE_ID, cardEdits, orderedRaw, raw, displayRaw, sourceRaw, resource, toForm]);
+
+  function revertTrayChange(id: string) {
+    if (id === ORDER_CHANGE_ID) {
+      resetOrder();
+      return;
+    }
+    // id = `${resource.key}:${index}:${fieldKey}` — 리소스 키에는 ':' 이 없다
+    const parts = id.split(':');
+    const index = Number(parts[1]);
+    const fieldKey = parts.slice(2).join(':');
+    setCardEdits((prev) => {
+      const forIndex = prev[index];
+      if (!forIndex) return prev;
+      const nextForIndex = { ...forIndex };
+      delete nextForIndex[fieldKey];
+      const next = { ...prev };
+      // patchCard 와 같은 규칙 — 남은 편집이 없으면 인덱스 자체를 뺀다
+      if (Object.keys(nextForIndex).length === 0) delete next[index];
+      else next[index] = nextForIndex;
+      return next;
+    });
+  }
+
+  function revertAllTray() {
+    resetOrder();
+    resetCardEdits();
+  }
+
+  /** 트레이의 "저장 (커밋)" — 대기 중인 쪽 하나를 기존 커밋 경로로 그대로 넘긴다 */
+  async function saveTray() {
+    if (orderDirty) {
+      await saveOrder();
+      return;
+    }
+    await saveCardEdits();
+  }
+
+  // 상세 폼을 연 동안에는 트레이를 내린다 — 폼 저장은 로드 시점 raw 로 커밋하므로
+  // 트레이의 대기 변경과 sha 를 다투게 되고, 화면에 저장 버튼이 둘이 되어 헷갈린다.
+  useRegisterTray(
+    editing
+      ? null
+      : {
+          changes: trayChanges,
+          revert: revertTrayChange,
+          revertAll: revertAllTray,
+          save: saveTray,
+        },
+  );
+
   // 커밋 후 재로드 (커밋 sha 는 blob sha 가 아니므로 새 sha 확보 필수)
   function finishSave(commitSha: string) {
     setEditing(null);
@@ -168,9 +268,10 @@ export function CollectionEditor({ config, resource, onDirtyChange }: Props) {
     void load();
   }
 
-  function handleSaveError(err: unknown, fallback: string) {
+  /** silent: 트레이가 자기 자리에 오류를 띄우는 경우 — 같은 문구를 두 번 보여주지 않는다 */
+  function handleSaveError(err: unknown, fallback: string, silent = false) {
     const msg = err instanceof Error ? err.message : fallback;
-    setSaveError(msg);
+    if (!silent) setSaveError(msg);
     if (msg.includes('409') || msg.includes('422')) {
       void load();
     }
@@ -296,9 +397,14 @@ export function CollectionEditor({ config, resource, onDirtyChange }: Props) {
 
   // ---- 삭제 ----
 
+  // ⚠️ 삭제는 트레이에 쌓지 않고 확인 즉시 커밋한다. 삭제를 배칭하면 대기 중인
+  // 다른 변경의 인덱스가 앞으로 밀려 엉뚱한 항목을 지우거나 덮어쓸 수 있다
+  // (cardEdits 의 키가 배열 인덱스다). 같은 이유로 삭제를 확정할 때는 대기 중인
+  // 변경을 먼저 버린다 — 아래 모달이 그 사실을 미리 알린다.
   async function handleDelete(index: number) {
     const form = toForm(sourceRaw[index]);
-    if (!window.confirm(`정말 삭제할까요?\n\n${resource.summarize(form)}`)) return;
+    setCardEdits({});
+    setOrderedRaw(null);
     setSaving(true);
     setSaveError(null);
     setSuccess(null);
@@ -388,7 +494,10 @@ export function CollectionEditor({ config, resource, onDirtyChange }: Props) {
       setCardEdits({});
       finishSave(result.sha);
     } catch (err) {
-      handleSaveError(err, '저장에 실패했습니다.');
+      // 오류 문구는 트레이가 띄운다. 여기서는 409/422 재로드만 하고 다시 던져
+      // 트레이가 "실패했으니 변경을 지우지 않는다"를 판단할 수 있게 한다.
+      handleSaveError(err, '저장에 실패했습니다.', true);
+      throw err;
     } finally {
       setSaving(false);
     }
@@ -397,6 +506,9 @@ export function CollectionEditor({ config, resource, onDirtyChange }: Props) {
   // ---- 순서 변경 (로컬) ----
 
   function move(index: number, dir: -1 | 1) {
+    // 값 편집이 대기 중이면 순서를 바꾸지 않는다 — cardEdits 의 키가 인덱스라
+    // 순서가 바뀌면 어느 항목의 편집인지 특정할 수 없게 된다.
+    if (cardDirty) return;
     const target = index + dir;
     const cur = orderedRaw ?? raw;
     if (target < 0 || target >= cur.length) return;
@@ -425,7 +537,8 @@ export function CollectionEditor({ config, resource, onDirtyChange }: Props) {
       );
       finishSave(result.sha);
     } catch (err) {
-      handleSaveError(err, '순서 저장에 실패했습니다.');
+      handleSaveError(err, '순서 저장에 실패했습니다.', true);
+      throw err;
     } finally {
       setSaving(false);
     }
@@ -528,57 +641,17 @@ export function CollectionEditor({ config, resource, onDirtyChange }: Props) {
         </button>
       </div>
 
-      {/* 순서 미저장 안내 */}
+      {/* 저장·되돌리기 버튼은 하단 변경 트레이가 맡는다. 여기 남는 것은 트레이가
+          대신 말해 줄 수 없는 "제약 안내"뿐이다. */}
       {orderDirty && (
-        <div className="mb-4 flex flex-wrap items-center gap-3">
-          <button
-            type="button"
-            onClick={saveOrder}
-            disabled={saving}
-            className="btn-primary px-4 py-2 text-sm disabled:opacity-60"
-          >
-            {saving ? '저장 중…' : '순서 저장'}
-          </button>
-          <button
-            type="button"
-            onClick={resetOrder}
-            disabled={saving}
-            className="btn-secondary px-4 py-2 text-sm disabled:opacity-60"
-          >
-            되돌리기
-          </button>
-          <p className="text-xs text-content-faint">
-            순서 변경 중에는 항목 추가·수정·삭제가 잠깁니다. 먼저 저장하거나 되돌리세요.
-          </p>
-        </div>
+        <p className="mb-4 text-xs text-content-faint">
+          순서 변경 중에는 항목 추가·수정·삭제가 잠깁니다. 아래 트레이에서 저장하거나 되돌리세요.
+        </p>
       )}
-
-      {/* 카드에서 고친 값 저장 — 여러 카드를 훑으며 고친 뒤 한 번에 커밋한다 */}
       {cardDirty && (
-        <div className="sticky top-2 z-10 mb-4 flex flex-wrap items-center gap-3 rounded-lg border border-yonsei-blue bg-yonsei-blue/[0.06] px-4 py-3">
-          <span className="text-sm font-bold text-content">
-            {Object.keys(cardEdits).length}명 수정됨
-          </span>
-          <button
-            type="button"
-            onClick={() => void saveCardEdits()}
-            disabled={saving || orderDirty}
-            className="btn-primary px-4 py-2 text-sm disabled:opacity-60"
-          >
-            {saving ? '저장 중…' : '변경 저장'}
-          </button>
-          <button
-            type="button"
-            onClick={resetCardEdits}
-            disabled={saving}
-            className="btn-secondary px-4 py-2 text-sm disabled:opacity-60"
-          >
-            되돌리기
-          </button>
-          {orderDirty && (
-            <p className="text-xs text-content-faint">순서 변경을 먼저 저장하거나 되돌리세요.</p>
-          )}
-        </div>
+        <p className="mb-4 text-xs text-content-faint">
+          수정한 값은 아래 트레이에 모입니다. 저장 전까지 순서 변경은 잠깁니다.
+        </p>
       )}
 
       {loading && <p className="text-sm text-content-soft">불러오는 중…</p>}
@@ -599,9 +672,10 @@ export function CollectionEditor({ config, resource, onDirtyChange }: Props) {
           total={sourceRaw.length}
           busy={saving}
           locked={orderDirty}
+          orderLocked={cardDirty}
           orderable={resource.orderable && search.trim() === ''}
           onEditDetail={(i) => void startEdit(i)}
-          onDelete={(i) => void handleDelete(i)}
+          onDelete={(i) => setDeleting(i)}
           onMove={move}
           onPatch={patchCard}
           onUploadPhoto={uploadImage}
@@ -679,7 +753,7 @@ export function CollectionEditor({ config, resource, onDirtyChange }: Props) {
                       </button>
                       <button
                         type="button"
-                        onClick={() => handleDelete(index)}
+                        onClick={() => setDeleting(index)}
                         disabled={saving || orderDirty}
                         className="btn-secondary px-3 py-1.5 text-xs text-red-600 hover:border-red-400 hover:text-red-600 disabled:opacity-60"
                       >
@@ -692,6 +766,37 @@ export function CollectionEditor({ config, resource, onDirtyChange }: Props) {
             </tbody>
           </table>
         </div>
+      )}
+
+      {/* 삭제 확인 — window.confirm 대신 콘솔 공용 모달(문구를 두 줄 이상 다듬고
+          파괴적 동작을 시각적으로 구분하기 위해) */}
+      {deleting !== null && (
+        <CmsModal
+          title={`${resource.label} 항목을 삭제할까요?`}
+          tone="danger"
+          confirmLabel="삭제"
+          cancelLabel="취소"
+          body={
+            <>
+              <p className="font-semibold text-content">
+                {resource.summarize(toForm(sourceRaw[deleting] ?? {}))}
+              </p>
+              <p className="mt-2">삭제는 즉시 커밋되며 되돌리려면 저장소에서 복구해야 합니다.</p>
+              {trayChanges.length > 0 && (
+                <p className="mt-2 text-[#b42318]">
+                  저장 대기 중인 변경 {trayChanges.length}건은 함께 사라집니다 — 삭제하면 항목
+                  위치가 밀려 그 변경을 그대로 적용할 수 없기 때문입니다.
+                </p>
+              )}
+            </>
+          }
+          onConfirm={() => {
+            const index = deleting;
+            setDeleting(null);
+            void handleDelete(index);
+          }}
+          onCancel={() => setDeleting(null)}
+        />
       )}
     </div>
   );

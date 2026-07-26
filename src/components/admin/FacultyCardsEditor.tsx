@@ -32,8 +32,14 @@ export interface FacultyCardsEditorProps {
   /** 전체 항목 수 — 순서 이동 가능 여부 판정 */
   total: number;
   busy: boolean;
-  /** 순서 변경 중이면 편집을 잠근다 */
+  /** 순서 변경 중이면 값 편집을 잠근다 */
   locked: boolean;
+  /**
+   * 반대 방향 잠금 — 저장 대기 중인 값 편집이 있으면 순서 이동을 잠근다.
+   * 값 편집은 배열 인덱스를 키로 들고 있어서, 저장 전에 순서가 바뀌면 그 편집이
+   * 어느 항목의 것인지 특정할 수 없다(남의 값을 덮어쓸 위험).
+   */
+  orderLocked: boolean;
   onEditDetail: (index: number) => void;
   onDelete: (index: number) => void;
   onMove: (index: number, dir: -1 | 1) => void;
@@ -57,6 +63,7 @@ export function FacultyCardsEditor({
   total,
   busy,
   locked,
+  orderLocked,
   onEditDetail,
   onDelete,
   onMove,
@@ -114,6 +121,7 @@ export function FacultyCardsEditor({
               total={total}
               busy={busy}
               locked={locked}
+              orderLocked={orderLocked}
               orderable={orderable}
               onEditDetail={onEditDetail}
               onDelete={onDelete}
@@ -160,6 +168,7 @@ function FacultyCard({
   total,
   busy,
   locked,
+  orderLocked,
   orderable,
   onEditDetail,
   onDelete,
@@ -173,6 +182,7 @@ function FacultyCard({
   total: number;
   busy: boolean;
   locked: boolean;
+  orderLocked: boolean;
   orderable: boolean;
   onEditDetail: (i: number) => void;
   onDelete: (i: number) => void;
@@ -343,11 +353,13 @@ function FacultyCard({
           </button>
           {orderable && (
             <>
+              {/* 순서 이동은 locked(=순서 변경 중)를 보지 않는다 — 그렇지 않으면
+                  첫 이동 직후 버튼이 잠겨 두 칸 이상 옮길 수 없다. */}
               <button
                 type="button"
                 aria-label="위로"
                 onClick={() => onMove(index, -1)}
-                disabled={disabled || index === 0}
+                disabled={busy || orderLocked || index === 0}
                 className="btn-secondary px-2 py-1 text-xs disabled:opacity-40"
               >
                 ▲
@@ -356,7 +368,7 @@ function FacultyCard({
                 type="button"
                 aria-label="아래로"
                 onClick={() => onMove(index, 1)}
-                disabled={disabled || index === total - 1}
+                disabled={busy || orderLocked || index === total - 1}
                 className="btn-secondary px-2 py-1 text-xs disabled:opacity-40"
               >
                 ▼
