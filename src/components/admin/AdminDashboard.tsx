@@ -24,6 +24,7 @@ import {
   ALL_ENTRIES,
   entryGroupLabel,
   entryId,
+  entryKind,
   entryLabel,
   entryDescription,
   entryWhere,
@@ -356,15 +357,20 @@ function AllEntriesSection({ onOpen }: { onOpen: (entry: MenuEntry) => void }) {
   return (
     <section className="mt-14">
       <SectionHead title="전체 항목" caption={`${ALL_ENTRIES.length}개 · 사이트 메뉴 순서`} />
-      <div className="grid grid-cols-1 gap-x-11 md:grid-cols-2 xl:grid-cols-3">
+      {/* 그리드가 아니라 CSS 다단(columns) 이다. 그리드는 그룹 하나가 한 칸을 통째로
+          차지해, 항목이 1개인 '일정'과 11개인 '뉴스·공지'가 같은 행에 놓이면 짧은 쪽
+          아래로 화면 절반이 빈다. 다단은 그룹이 열을 따라 흘러 내려가 그 구멍이 없다.
+          (break-inside-avoid 는 다단에서만 실제로 동작한다 — 그리드에서는 무시된다.) */}
+      <div className="columns-1 [column-gap:2.75rem] md:columns-2 xl:columns-3">
         {MENU_GROUPS.map((group) => (
-          <div key={group.label} className="break-inside-avoid">
-            <p className="mb-0.5 mt-6 text-xs font-bold tracking-[0.1em] text-yonsei-blue">
+          <div key={group.label} className="mb-8 break-inside-avoid">
+            <p className="mb-1 text-xs font-bold tracking-[0.1em] text-yonsei-blue">
               {group.label}
             </p>
             {group.entries.map((entry) => {
               const editable = isEditable(entry);
               const where = entryWhere(entry);
+              const kind = entryKind(entry);
               return (
                 <button
                   key={entryId(entry)}
@@ -372,21 +378,39 @@ function AllEntriesSection({ onOpen }: { onOpen: (entry: MenuEntry) => void }) {
                   disabled={!editable}
                   onClick={() => editable && onOpen(entry)}
                   className={cn(
-                    'flex w-full items-center justify-between gap-3 border-b border-surface-border px-1 py-3.5 text-left transition-colors',
+                    'flex w-full items-start justify-between gap-3 border-b border-surface-border px-1 py-3 text-left transition-colors',
                     editable ? 'hover:bg-surface-soft' : 'cursor-not-allowed',
                   )}
                 >
-                  <span
-                    className={cn(
-                      'text-sm font-semibold',
-                      editable ? 'text-content' : 'text-content-faint',
+                  <span className="min-w-0">
+                    <span
+                      className={cn(
+                        'block text-sm font-semibold',
+                        editable ? 'text-content' : 'text-content-faint',
+                      )}
+                    >
+                      {entryLabel(entry)}
+                    </span>
+                    {/* 노출 위치는 제목 아래 한 줄로 — 오른쪽에 두면 항목마다 길이가
+                        달라 줄 끝이 들쭉날쭉하고, 잘린 문장이 말줄임으로 남는다. */}
+                    {where !== '' && (
+                      <span
+                        title={where}
+                        className="mt-0.5 line-clamp-1 text-[11px] text-content-faint"
+                      >
+                        {where}
+                      </span>
                     )}
-                  >
-                    {entryLabel(entry)}
                   </span>
-                  <span className="shrink-0 whitespace-nowrap text-[11px] text-content-faint">
-                    {editable ? (where === '' ? '→' : `${where} →`) : '준비 중'}
-                  </span>
+                  {/* 오른쪽은 유형 배지로 통일 — 사이드바와 같은 표기라 두 화면이 같은
+                      어휘를 쓰고, 모든 행의 오른쪽 끝이 한 줄로 정렬된다. */}
+                  {editable && kind ? (
+                    <span className={cn('cms-badge mt-0.5 shrink-0', kind.cls)}>{kind.label}</span>
+                  ) : (
+                    <span className="mt-0.5 shrink-0 bg-surface-soft px-1.5 py-0.5 text-[10px] font-bold text-content-faint">
+                      준비 중
+                    </span>
+                  )}
                 </button>
               );
             })}

@@ -466,47 +466,52 @@ function SidebarBody({
       {MENU_GROUPS.map((group) => (
         <div key={group.label} className="mb-6">
           <p className="mb-2.5 text-[13px] font-extrabold text-content">{group.label}</p>
-          <div className="relative pl-[18px]">
-            {/* 그룹 막대 — 사이트 목차(TabbedContent)와 같은 문법.
-                꼬리 색은 금색 금지 규칙에 따라 sky 로 둔다. */}
-            <span
-              aria-hidden="true"
-              className="absolute inset-y-0 left-0 w-[3px] bg-gradient-to-b from-yonsei-navy via-yonsei-blue to-[#2E86D6]"
-            />
-            <ul>
-              {group.entries.map((entry) => {
-                const id = entryId(entry);
-                const selected = id === activeId;
-                const editable = isEditable(entry);
-                const kind = entryKind(entry);
-                return (
-                  <li key={id} className="relative border-b border-surface-border last:border-b-0">
-                    {selected && (
-                      <span aria-hidden="true" className="absolute inset-y-0 left-0 w-0.5 bg-yonsei-navy" />
+          {/* 장식용 그룹 그라디언트 막대는 뒀다가 뺐다. 선택 항목을 알리는 막대와 둘 다
+              왼쪽 끝 세로선이라 겹쳐 보였고, 겹치는 순간 "지금 어디에 있는지"라는 정보가
+              장식에 묻힌다. 정보 쪽을 남기고 장식을 지운다. */}
+          <ul>
+            {group.entries.map((entry) => {
+              const id = entryId(entry);
+              const selected = id === activeId;
+              const editable = isEditable(entry);
+              const kind = entryKind(entry);
+              return (
+                <li key={id} className="border-b border-surface-border last:border-b-0">
+                  <button
+                    type="button"
+                    onClick={() => editable && onNavigate(entry)}
+                    disabled={!editable}
+                    aria-current={selected ? 'page' : undefined}
+                    title={entry.type === 'placeholder' ? entry.note : undefined}
+                    className={cn(
+                      'flex w-full items-center justify-between gap-2 px-2.5 py-2.5 text-left text-[13px] transition-colors',
+                      // 선택은 2px 막대 대신 네이비 면으로 — 목록 옆 얇은 선은 스크롤 중에
+                      // 놓치기 쉽다. 각진 채움은 콘솔의 필터 칩(FilterChip) 활성 상태와
+                      // 같은 문법이라 화면끼리 어휘가 어긋나지 않는다.
+                      selected
+                        ? 'bg-yonsei-navy font-bold text-white'
+                        : editable
+                          ? 'font-medium text-content hover:bg-surface-soft hover:text-yonsei-blue'
+                          : 'cursor-not-allowed font-medium text-content-faint',
                     )}
-                    <button
-                      type="button"
-                      onClick={() => editable && onNavigate(entry)}
-                      disabled={!editable}
-                      aria-current={selected ? 'page' : undefined}
-                      title={entry.type === 'placeholder' ? entry.note : undefined}
-                      className={cn(
-                        'flex w-full items-center justify-between gap-2 py-2.5 pl-2 pr-1 text-left text-[13px] transition-colors',
-                        selected
-                          ? 'font-bold text-yonsei-navy'
-                          : editable
-                            ? 'font-medium text-content hover:text-yonsei-blue'
-                            : 'cursor-not-allowed font-medium text-content-faint',
-                      )}
-                    >
-                      <span className="min-w-0 truncate">{entryLabel(entry)}</span>
-                      {kind && <span className={cn('cms-badge shrink-0', kind.cls)}>{kind.label}</span>}
-                    </button>
-                  </li>
-                );
-              })}
-            </ul>
-          </div>
+                  >
+                    <span className="min-w-0 truncate">{entryLabel(entry)}</span>
+                    {kind && (
+                      <span
+                        className={cn(
+                          'cms-badge shrink-0',
+                          // 네이비 면 위에서는 원래 배지 색이 묻힌다 — 반투명 흰색으로 뒤집는다
+                          selected ? 'bg-white/20 text-white' : kind.cls,
+                        )}
+                      >
+                        {kind.label}
+                      </span>
+                    )}
+                  </button>
+                </li>
+              );
+            })}
+          </ul>
         </div>
       ))}
 
