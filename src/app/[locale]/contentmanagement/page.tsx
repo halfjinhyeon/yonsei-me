@@ -3,7 +3,6 @@ import { setRequestLocale } from 'next-intl/server';
 import { routing } from '@/i18n/routing';
 import { auth } from '@/auth';
 import { Hero } from '@/components/Hero';
-import { Container } from '@/components/Container';
 import { AdminConsole } from '@/components/admin/AdminConsole';
 import { SignInCard } from '@/components/admin/SignInCard';
 
@@ -41,6 +40,11 @@ export default async function ContentManagementPage({
     login = 'dev';
   }
 
+  // 콘솔도 다른 세부 페이지와 똑같이 사이트 히어로 아래에서 시작한다.
+  // 관리 도구라고 별세계처럼 보이면 "학생이 보는 화면 그대로 고친다"는 원칙이
+  // 첫 화면부터 깨지기 때문이다. 다만 본문은 Container 없이 풀블리드로 두고
+  // 좌우 여백은 콘솔 내부(상단 바·사이드바·본문)가 각자 책임진다 —
+  // 사이드바가 화면 왼쪽 끝에 붙어야 편집 화면에서 목록과 메뉴가 함께 보인다.
   return (
     <>
       <Hero
@@ -49,13 +53,13 @@ export default async function ContentManagementPage({
         subtitle="연혁·교수진·교과목·게시판 등 사이트의 모든 콘텐츠를 한곳에서 편집하고 저장소에 바로 반영합니다."
         breadcrumb={[{ label: '콘텐츠 관리' }]}
       />
-      <Container className="py-12 lg:py-16">
-        {token !== undefined ? (
-          <AdminConsole token={token} login={login} />
-        ) : (
+      {token !== undefined ? (
+        <AdminConsole token={token} login={login} />
+      ) : (
+        <div className="mx-auto w-full max-w-md px-6 py-20">
           <SignInCard locale={params.locale} />
-        )}
-      </Container>
+        </div>
+      )}
     </>
   );
 }
