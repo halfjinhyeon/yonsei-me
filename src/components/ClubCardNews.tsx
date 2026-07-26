@@ -33,9 +33,20 @@ export function ClubCardNews({ content, images, clubName }: ClubCardNewsProps) {
   const hasLinks = links.length > 0;
   return (
     <>
-      {/* 본문 패널 Container — 링크(Connect)가 있으면 하단 패딩을 제거해, 뒤따르는
-          full-bleed Connect 섹션이 흰 여백 없이 붙게 한다(패널 간격은 space-y 유지). */}
-      <Container className={cn('space-y-16 py-14 lg:space-y-24 lg:py-20', hasLinks && '!pb-0')}>
+      {/* 본문 패널 Container.
+          ⚠️ 예전엔 링크(Connect)가 있으면 하단 패딩을 0 으로 없애 네이비 섹션이 흰 여백
+          없이 붙게 했는데, 마지막 패널의 사진·글이 네이비 면에 그대로 맞닿아 숨 쉴 틈이
+          없었다. 본문에서 피날레로 넘어가는 자리는 오히려 가장 큰 쉼표가 필요하다.
+          사이트 공통 섹션 리듬(section 토큰)을 그대로 써 다른 페이지의 섹션 전환과
+          같은 간격으로 둔다. */}
+      <Container
+        className={cn(
+          'space-y-16 pt-14 lg:space-y-24 lg:pt-20',
+          // py 와 pb 를 한 요소에 겹치면 어느 쪽이 이기는지가 Tailwind 의 출력 순서에
+          // 달린다(예전 코드가 !pb-0 로 강제해야 했던 이유다). 아예 pt/pb 로 갈라 둔다.
+          hasLinks ? 'pb-section' : 'pb-14 lg:pb-20',
+        )}
+      >
         {panels.map((panel, i) => (
           <PanelSection
             key={i}
