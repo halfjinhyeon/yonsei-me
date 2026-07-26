@@ -1,22 +1,31 @@
 'use client';
 
-// 교수진 "카드 편집" 모드 — 실제 사이트의 교수 카드와 같은 모양으로 보면서 그 자리에서 고친다.
+// 교수진 "카드 편집" — 실제 사이트의 교수 카드와 같은 모양으로 보면서 그 자리에서 고친다.
 //
 // 설계(사용자 지시):
 //   · 카드 위에서 바로 고치는 것 : 이름 · 이메일 · 전화 · 호실 · 사진   (자주 고치는 값)
 //   · 카드 위 필터                : 직급
-//   · 그 외 11개 필드 전부        : 카드의 "자세히"로 우측 패널을 열어 편집
+//   · 그 외 11개 필드 전부        : 카드의 "자세히"로 폼을 열어 편집
 // 표 + 화면 전환 왕복 대신, 목록을 보면서 즉시 수정하는 흐름을 만든다.
 //
-// 상태: 편집 중인 값은 이 컴포넌트가 배열로 들고 있다가 "저장"에서 한 번에 커밋한다.
-// 사진 업로드만은 즉시 저장소에 커밋된다(이미지 바이너리는 JSON 커밋과 별개 경로).
+// 값 편집은 트레이에 모였다가 한 번에 커밋된다. 사진 업로드만은 즉시 저장소에
+// 커밋된다(이미지 바이너리는 JSON 커밋과 별개 경로라 배칭할 수 없다).
 // (한국어 UI 문자열은 내부 운영 도구라 컴포넌트에 직접 둔다.)
 
 import { useEffect, useMemo, useRef, useState } from 'react';
+import { cn } from '@/lib/utils';
 import { cellText, type FormRecord, type ResourceDef } from '@/lib/admin/resources';
-
-const fieldClass =
-  'w-full rounded border border-transparent bg-transparent px-1.5 py-1 text-sm text-content outline-none transition-colors hover:border-surface-border focus:border-yonsei-blue focus:bg-surface';
+import { formInlineValue } from '@/lib/admin/inline';
+import {
+  CardFootBar,
+  DirtyBar,
+  FilterChip,
+  InlineRow,
+  InlineText,
+  InlineToolbar,
+  MoveButtons,
+  type InlineEditorProps,
+} from './InlineFields';
 
 /** 사진이 없을 때 쓰는 이름 첫 글자 아바타 색 — 이름 해시로 고정(사이트 카드와 같은 방식) */
 function accentFor(name: string): string {
@@ -25,37 +34,15 @@ function accentFor(name: string): string {
   return ['#003377', '#0057A8', '#2E86D6', '#00285E'][hash % 4];
 }
 
-export interface FacultyCardsEditorProps {
-  resource: ResourceDef;
-  /** 표시·편집 대상 (index = 원본 배열 위치) */
-  rows: { index: number; form: FormRecord }[];
-  /** 전체 항목 수 — 순서 이동 가능 여부 판정 */
-  total: number;
-  busy: boolean;
-  /** 순서 변경 중이면 값 편집을 잠근다 */
-  locked: boolean;
-  /**
-   * 반대 방향 잠금 — 저장 대기 중인 값 편집이 있으면 순서 이동을 잠근다.
-   * 값 편집은 배열 인덱스를 키로 들고 있어서, 저장 전에 순서가 바뀌면 그 편집이
-   * 어느 항목의 것인지 특정할 수 없다(남의 값을 덮어쓸 위험).
-   */
-  orderLocked: boolean;
-  onEditDetail: (index: number) => void;
-  onDelete: (index: number) => void;
-  onMove: (index: number, dir: -1 | 1) => void;
-  orderable: boolean;
-  /** 인라인 편집 결과를 상위로 — 저장은 상위가 일괄 처리 */
-  onPatch: (index: number, key: string, value: string) => void;
+export interface FacultyCardsEditorProps extends InlineEditorProps {
+  inlineKeys: string[];
+  filterKey?: string;
   /** 사진 업로드 — repoPath 로 즉시 커밋 */
   onUploadPhoto: (repoPath: string, file: File) => Promise<void>;
 }
 
-/** 카드에서 바로 고치는 필드 */
-const INLINE_FIELDS: { key: string; label: string; placeholder: string }[] = [
-  { key: 'email', label: '이메일', placeholder: 'name@yonsei.ac.kr' },
-  { key: 'phone', label: '전화', placeholder: '02-2123-0000' },
-  { key: 'room', label: '호실', placeholder: '제4공학관 000호' },
-];
+/** 카드에서 바로 고치는 연락 필드 (라벨은 resources.ts 정의를 따른다) */
+const CONTACT_KEYS = ['email', 'phone', 'room'] as const;
 
 export function FacultyCardsEditor({
   resource,
@@ -64,54 +51,73 @@ export function FacultyCardsEditor({
   busy,
   locked,
   orderLocked,
+  orderable,
+  dirtyIndices,
+  search,
+  onSearch,
   onEditDetail,
   onDelete,
   onMove,
-  orderable,
   onPatch,
+  filterKey,
   onUploadPhoto,
 }: FacultyCardsEditorProps) {
   // 직급 필터 — 값은 데이터에서 뽑는다(직급 표기가 바뀌어도 따라간다)
+  const key = filterKey ?? 'title';
   const titles = useMemo(() => {
     const set = new Set<string>();
     for (const r of rows) {
-      const t = cellText(r.form, 'title').trim();
+      const t = cellText(r.form, key).trim();
       if (t) set.add(t);
     }
     return [...set].sort();
-  }, [rows]);
-  const [titleFilter, setTitleFilter] = useState<string>('');
+  }, [rows, key]);
+  const [titleFilter, setTitleFilter] = useState('');
 
   const visible = titleFilter
-    ? rows.filter((r) => cellText(r.form, 'title').trim() === titleFilter)
+    ? rows.filter((r) => cellText(r.form, key).trim() === titleFilter)
     : rows;
 
   return (
     <div>
-      {/* 직급 필터 */}
-      {titles.length > 1 && (
-        <div className="mb-4 flex flex-wrap items-center gap-1.5">
-          <span className="mr-1 text-xs font-bold uppercase tracking-wide text-content-faint">
-            직급
-          </span>
-          <FilterChip active={titleFilter === ''} onClick={() => setTitleFilter('')}>
-            전체 {rows.length}
-          </FilterChip>
-          {titles.map((t) => {
-            const n = rows.filter((r) => cellText(r.form, 'title').trim() === t).length;
-            return (
-              <FilterChip key={t} active={titleFilter === t} onClick={() => setTitleFilter(t)}>
-                {t} {n}
+      <InlineToolbar
+        search={search}
+        onSearch={onSearch}
+        placeholder="이름 · 이메일 · 전공 검색"
+        shown={visible.length}
+        total={total}
+        unit="명"
+      >
+        {titles.length > 1 && (
+          <>
+            <FilterChip active={titleFilter === ''} onClick={() => setTitleFilter('')}>
+              전체
+            </FilterChip>
+            {titles.map((t) => (
+              <FilterChip
+                key={t}
+                active={titleFilter === t}
+                count={rows.filter((r) => cellText(r.form, key).trim() === t).length}
+                onClick={() => setTitleFilter((p) => (p === t ? '' : t))}
+              >
+                {t}
               </FilterChip>
-            );
-          })}
-        </div>
-      )}
+            ))}
+          </>
+        )}
+      </InlineToolbar>
 
       {visible.length === 0 ? (
-        <p className="text-sm text-content-faint">해당 조건의 교수가 없습니다.</p>
+        <div className="border border-dashed border-surface-border bg-[#fcfdfe] px-6 py-16 text-center">
+          <p className="text-[17px] font-bold text-content">해당 조건의 교수가 없습니다</p>
+          <p className="mt-2.5 text-[13px] text-content-faint">
+            이름 일부만 입력해 보거나, 필터를 ‘전체’로 바꿔 보세요.
+          </p>
+        </div>
       ) : (
-        <ul className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
+        // 사이트 교수진 목록(FacultyDirectoryGrid)과 같은 2열 가로 카드.
+        // 열을 더 늘리면 카드 폭이 좁아져 사진 왼쪽 / 설명 오른쪽 배치가 무너진다.
+        <ul className="grid grid-cols-1 gap-5 md:grid-cols-2 2xl:grid-cols-3">
           {visible.map(({ index, form }) => (
             <FacultyCard
               key={index}
@@ -123,6 +129,7 @@ export function FacultyCardsEditor({
               locked={locked}
               orderLocked={orderLocked}
               orderable={orderable}
+              dirty={dirtyIndices.has(index)}
               onEditDetail={onEditDetail}
               onDelete={onDelete}
               onMove={onMove}
@@ -136,31 +143,6 @@ export function FacultyCardsEditor({
   );
 }
 
-function FilterChip({
-  active,
-  onClick,
-  children,
-}: {
-  active: boolean;
-  onClick: () => void;
-  children: React.ReactNode;
-}) {
-  return (
-    <button
-      type="button"
-      onClick={onClick}
-      aria-pressed={active}
-      className={
-        active
-          ? 'rounded border border-yonsei-navy bg-yonsei-navy px-2.5 py-1 text-xs font-bold text-white'
-          : 'rounded border border-surface-border bg-surface px-2.5 py-1 text-xs font-semibold text-content-soft hover:border-yonsei-blue'
-      }
-    >
-      {children}
-    </button>
-  );
-}
-
 function FacultyCard({
   resource,
   index,
@@ -170,6 +152,7 @@ function FacultyCard({
   locked,
   orderLocked,
   orderable,
+  dirty,
   onEditDetail,
   onDelete,
   onMove,
@@ -184,17 +167,24 @@ function FacultyCard({
   locked: boolean;
   orderLocked: boolean;
   orderable: boolean;
+  dirty: boolean;
   onEditDetail: (i: number) => void;
   onDelete: (i: number) => void;
   onMove: (i: number, d: -1 | 1) => void;
-  onPatch: (i: number, key: string, value: string) => void;
+  onPatch: (i: number, path: string, value: string) => void;
   onUploadPhoto: (repoPath: string, file: File) => Promise<void>;
 }) {
   const name = cellText(form, 'name');
   const title = cellText(form, 'title');
+  const role = cellText(form, 'role');
   const photo = cellText(form, 'photo');
+  const labLine = [cellText(form, 'labNameKo'), cellText(form, 'labNameEn')]
+    .filter(Boolean)
+    .join(' · ');
+
   const fileRef = useRef<HTMLInputElement>(null);
   const [uploading, setUploading] = useState(false);
+  const [uploadPath, setUploadPath] = useState('');
   const [uploadError, setUploadError] = useState<string | null>(null);
   // 업로드 직후 같은 경로 이미지를 새로 받기 위한 캐시버스터
   const [bust, setBust] = useState(0);
@@ -230,6 +220,7 @@ function FacultyCard({
     const ext = (file.name.split('.').pop() ?? 'jpg').toLowerCase();
     const repoPath = `${folder}/${name.trim()}.${ext}`;
     setUploading(true);
+    setUploadPath(repoPath);
     setUploadError(null);
     try {
       await onUploadPhoto(repoPath, file);
@@ -244,12 +235,17 @@ function FacultyCard({
   }
 
   const disabled = busy || locked;
+  const labelOf = (k: string) => resource.fields.find((f) => f.key === k)?.label ?? k;
 
   return (
     <li
-      className={`relative flex gap-3 rounded-lg border p-3 transition-colors ${
-        dragOver ? 'border-yonsei-blue bg-yonsei-blue/5' : 'border-surface-border bg-surface'
-      }`}
+      className={cn(
+        // 사이트 교수 카드와 같은 골격: 가로 배치, 사진 왼쪽 / 설명 오른쪽.
+        // 관리 화면이 실제 카드와 다른 모양이면 "보이는 그대로 고친다"가 깨진다.
+        'relative flex gap-4 border bg-surface p-4 transition-colors duration-200 ease-out-expo sm:gap-5',
+        dragOver ? 'border-yonsei-blue' : 'border-surface-border hover:border-yonsei-blue',
+        dirty && 'bg-yonsei-blue/[0.04]',
+      )}
       onDragOver={(e) => {
         if (disabled) return;
         e.preventDefault();
@@ -264,14 +260,17 @@ function FacultyCard({
         if (f && f.type.startsWith('image/')) void upload(f);
       }}
     >
-      {/* 사진 — 클릭하거나 카드에 드래그해 교체 */}
-      <div className="shrink-0">
+      {dirty && <DirtyBar />}
+
+      {/* 사진 — 사이트 카드와 같은 3:4 세로 비율로 왼쪽에 세운다.
+          클릭하거나 카드에 이미지를 끌어다 놓으면 교체된다. */}
+      <div className="relative aspect-[3/4] w-28 flex-none self-start bg-[#eef1f5] sm:w-32">
         <button
           type="button"
           onClick={() => fileRef.current?.click()}
           disabled={disabled || uploading}
           title="클릭하거나 이미지를 카드에 끌어다 놓아 사진을 교체합니다"
-          className="group relative block h-[86px] w-[68px] overflow-hidden rounded border border-surface-border bg-surface-soft disabled:opacity-60"
+          className="group block h-full w-full overflow-hidden disabled:cursor-not-allowed"
         >
           {photoSrc ? (
             // 관리자 화면이라 최적화보다 즉시 반영이 중요 — next/image 대신 일반 img
@@ -284,16 +283,28 @@ function FacultyCard({
             />
           ) : (
             <span
-              className="flex h-full w-full items-center justify-center text-2xl font-bold text-white/30"
+              className="flex h-full w-full items-center justify-center text-4xl font-bold text-white/30"
               style={{ background: accentFor(name || '?') }}
             >
               {(name || '?').charAt(0)}
             </span>
           )}
-          <span className="absolute inset-x-0 bottom-0 bg-black/55 py-0.5 text-center text-[10px] font-semibold text-white opacity-0 transition-opacity group-hover:opacity-100">
-            {uploading ? '올리는 중…' : '사진 교체'}
+          <span className="absolute inset-x-0 bottom-0 bg-black/55 py-1 text-center text-[11px] font-semibold text-white opacity-0 transition-opacity group-hover:opacity-100">
+            사진 교체
           </span>
         </button>
+
+        {/* 업로드 중 오버레이 — 진행률을 알 수 없는 API 라 불확정 막대를 쓴다 */}
+        {uploading && (
+          <div className="absolute inset-0 flex flex-col items-center justify-center gap-2.5 bg-white/90 px-5">
+            <span className="text-xs font-bold text-yonsei-navy">사진 업로드 중…</span>
+            <span className="block h-1 w-full bg-surface-border">
+              <span className="block h-full w-1/3 animate-pulse bg-yonsei-blue" />
+            </span>
+            <span className="truncate text-[10px] text-content-faint">{uploadPath}</span>
+          </div>
+        )}
+
         <input
           ref={fileRef}
           type="file"
@@ -307,83 +318,69 @@ function FacultyCard({
         />
       </div>
 
-      {/* 인라인 편집 영역 */}
-      <div className="min-w-0 flex-1">
-        <div className="flex items-start gap-1.5">
-          <input
-            value={name}
-            onChange={(e) => onPatch(index, 'name', e.target.value)}
+      {/* 오른쪽 — 이름·직급부터 액션까지. 사이트 카드의 세로 리듬을 그대로 따른다 */}
+      <div className="flex min-w-0 flex-1 flex-col">
+        <div className="flex flex-wrap items-center gap-1.5">
+          <InlineText
+            value={String(formInlineValue(resource.fields, form, 'name'))}
+            onChange={(v) => onPatch(index, 'name', v)}
             disabled={disabled}
             placeholder="이름"
-            aria-label="이름"
-            className={`${fieldClass} -ml-1.5 text-base font-bold`}
+            ariaLabel="이름"
+            className="-ml-2 w-auto min-w-[88px] max-w-[132px] py-0.5 text-lg font-bold tracking-tight"
           />
+          {/* 보직 배지 — 사이트 카드와 같은 블루 톤(시안의 금색은 이 프로젝트에서 금지) */}
+          {role && (
+            <span className="bg-yonsei-blue/10 px-2 py-0.5 text-xs font-semibold text-yonsei-blue">
+              {role}
+            </span>
+          )}
+          {orderable && (
+            <span className="ml-auto flex items-center">
+              <MoveButtons
+                index={index}
+                total={total}
+                disabled={busy || orderLocked}
+                onMove={onMove}
+              />
+            </span>
+          )}
         </div>
-        {title && <p className="mb-1 px-1.5 text-xs text-content-faint">{title}</p>}
+        {/* 직급·연구실은 읽기 전용 — 카드에서 고치는 값이 아니라 '자세히' 폼 소관이다 */}
+        <p className="mt-0.5 text-sm text-content-soft">{title || '직급 없음'}</p>
+        <p className="mt-0.5 truncate text-xs text-content-faint" title={labLine}>
+          {labLine || '연구실 정보 없음'}
+        </p>
 
-        <dl className="space-y-0.5">
-          {INLINE_FIELDS.map((f) => (
-            <div key={f.key} className="flex items-center gap-1">
-              <dt className="w-11 shrink-0 px-1.5 text-[11px] text-content-faint">{f.label}</dt>
-              <dd className="min-w-0 flex-1">
-                <input
-                  value={cellText(form, f.key)}
-                  onChange={(e) => onPatch(index, f.key, e.target.value)}
-                  disabled={disabled}
-                  placeholder={f.placeholder}
-                  aria-label={`${name} ${f.label}`}
-                  className={`${fieldClass} text-[13px]`}
-                />
-              </dd>
-            </div>
+        <dl className="mt-3 flex flex-col gap-0.5 border-t border-surface-border pt-2.5">
+          {CONTACT_KEYS.map((k) => (
+            <InlineRow key={k} label={k === 'room' ? '연구실' : labelOf(k)} labelWidth="52px">
+              <InlineText
+                value={String(formInlineValue(resource.fields, form, k))}
+                onChange={(v) => onPatch(index, k, v)}
+                disabled={disabled}
+                placeholder="없음"
+                ariaLabel={`${name} ${labelOf(k)}`}
+                numeric={k === 'phone'}
+                className="py-1 text-[13px]"
+              />
+            </InlineRow>
           ))}
         </dl>
 
-        {uploadError && <p className="mt-1 px-1.5 text-[11px] text-red-600">{uploadError}</p>}
+        {uploadError && (
+          <p role="alert" className="mt-1.5 text-[11px] text-[#b42318]">
+            {uploadError}
+          </p>
+        )}
 
-        {/* 카드 액션 */}
-        <div className="mt-2 flex flex-wrap items-center gap-1">
-          <button
-            type="button"
-            onClick={() => onEditDetail(index)}
-            disabled={disabled}
-            className="btn-secondary px-2 py-1 text-xs disabled:opacity-40"
-          >
-            자세히
-          </button>
-          {orderable && (
-            <>
-              {/* 순서 이동은 locked(=순서 변경 중)를 보지 않는다 — 그렇지 않으면
-                  첫 이동 직후 버튼이 잠겨 두 칸 이상 옮길 수 없다. */}
-              <button
-                type="button"
-                aria-label="위로"
-                onClick={() => onMove(index, -1)}
-                disabled={busy || orderLocked || index === 0}
-                className="btn-secondary px-2 py-1 text-xs disabled:opacity-40"
-              >
-                ▲
-              </button>
-              <button
-                type="button"
-                aria-label="아래로"
-                onClick={() => onMove(index, 1)}
-                disabled={busy || orderLocked || index === total - 1}
-                className="btn-secondary px-2 py-1 text-xs disabled:opacity-40"
-              >
-                ▼
-              </button>
-            </>
-          )}
-          <button
-            type="button"
-            onClick={() => onDelete(index)}
-            disabled={disabled}
-            className="ml-auto px-2 py-1 text-xs font-semibold text-red-600 hover:underline disabled:opacity-40"
-          >
-            삭제
-          </button>
-        </div>
+        <CardFootBar
+          dirty={dirty}
+          disabled={disabled}
+          onDetail={() => onEditDetail(index)}
+          onDelete={() => onDelete(index)}
+          className="mt-3 border-surface-border bg-transparent px-0 pb-0 pt-2.5"
+        />
       </div>
     </li>
   );

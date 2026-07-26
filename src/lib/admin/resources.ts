@@ -57,6 +57,31 @@ export interface ListColumn {
   label: string;
 }
 
+/**
+ * 목록을 어떤 모양으로 보여줄지 — **표시 전용** 서술자.
+ *
+ * 데이터 스키마(fields·키·toForm/fromForm)와는 완전히 분리된 계층이다. 여기 적는
+ * 것은 "이 리소스를 관리자에게 어떤 화면으로 내밀까"뿐이고, 어떤 값이 어떻게
+ * 저장되는지는 전부 FieldDef.kind 가 결정한다(lib/admin/inline.ts).
+ *
+ * inlineKeys/summaryKeys 등에 적는 key 는 fields 의 key 다. localized 필드는 화면이
+ * 알아서 한·영 두 줄로 펼친다(경로는 'role.ko' / 'role.en').
+ */
+export type ListView =
+  /** 표 셀을 그 자리에서 고친다 — 학부/대학원 교과목, 교직원 */
+  | { kind: 'table'; inlineKeys: string[]; filterKeys?: string[] }
+  /** 카드 그리드 — 교수진(4:3 사진), 연구실(16:9), 동아리(가로 카드) */
+  | {
+      kind: 'cards';
+      variant: 'faculty' | 'labs' | 'clubs';
+      inlineKeys: string[];
+      filterKey?: string;
+    }
+  /** 행을 펼쳐 긴 텍스트를 고친다 — 교과목 설명 */
+  | { kind: 'expandRows'; summaryKeys: string[]; expandKeys: string[] }
+  /** 연월 타임라인 — 연혁 */
+  | { kind: 'timeline'; dateKey: string; bodyKey: string };
+
 export interface LinkedMarkdown {
   label: string;
   hint?: string;
@@ -85,11 +110,10 @@ export interface ResourceDef {
   /** 배열 순서가 사이트 노출 순서일 때 ▲▼ 이동·순서 저장 노출 */
   orderable: boolean;
   /**
-   * 목록을 표 대신 카드 그리드로 — 사진이 있는 리소스에서 "보면서 바로 고치는" 흐름을 만든다.
-   * 카드에서 즉시 편집할 필드 키를 적는다(그 외 필드는 '자세히' 폼에서 편집).
-   * 지금은 교수진에만 켠다(사용자 지시).
+   * 목록 화면 모양. 없으면 읽기 전용 기본 표(수정/삭제 버튼)로 폴백한다.
+   * "보면서 그 자리에서 고친다"를 리소스 성격에 맞는 모양으로 바꿔 주는 자리다.
    */
-  cardList?: { inlineKeys: string[]; filterKey?: string };
+  listView?: ListView;
   /** 항목별 연결 마크다운 (동아리 소개 본문) */
   linkedMarkdown?: LinkedMarkdown;
   /** 도메인 레코드 → 폼 값 (기본: defaultToForm) */
@@ -270,7 +294,12 @@ const facultyDirectory: ResourceDef = {
   fields: [...FACULTY_BASE_FIELDS, ...FACULTY_LAB_FIELDS],
   orderable: true,
   // 카드에서 바로 고치는 값 = 자주 손대는 것들. 직급은 필터로만 쓴다(사용자 지시).
-  cardList: { inlineKeys: ['name', 'email', 'phone', 'room', 'photo'], filterKey: 'title' },
+  listView: {
+    kind: 'cards',
+    variant: 'faculty',
+    inlineKeys: ['name', 'email', 'phone', 'room', 'photo'],
+    filterKey: 'title',
+  },
   toForm: (raw) => {
     const r = (raw ?? {}) as Record<string, unknown>;
     const lab = (r.lab ?? null) as { nameKo?: string; nameEn?: string; url?: string } | null;
@@ -311,6 +340,8 @@ const history: ResourceDef = {
     { kind: 'localized', key: 'title', label: '내용', required: true, multiline: true, rows: 2 },
   ],
   orderable: false,
+  // 사이트가 연월 내림차순으로 자동 정렬하므로 순서 이동을 두지 않는다(orderable:false).
+  listView: { kind: 'timeline', dateKey: 'date', bodyKey: 'title' },
   summarize: (f) => `${cellText(f, 'date')} ${cellText(f, 'title')}`,
 };
 
@@ -335,6 +366,8 @@ const staff: ResourceDef = {
     { kind: 'localized', key: 'location', label: '위치', required: true },
   ],
   orderable: true,
+  // 한·영 쌍이 많아 표 한 셀에 위아래로 겹쳐 보여준다(화면이 InlineTable 에서 처리).
+  listView: { kind: 'table', inlineKeys: ['role', 'name', 'phone', 'email', 'location'] },
   summarize: (f) => cellText(f, 'name'),
 };
 
@@ -374,6 +407,11 @@ const coursesUndergraduate: ResourceDef = {
     },
   ],
   orderable: true,
+  listView: {
+    kind: 'table',
+    inlineKeys: ['year', 'semester', 'kind', 'code', 'name', 'credits', 'hours', 'field'],
+    filterKeys: ['kind', 'year'],
+  },
   summarize: (f) => `${cellText(f, 'code')} ${cellText(f, 'name')}`,
 };
 
@@ -396,6 +434,8 @@ const courseDescriptions: ResourceDef = {
     { kind: 'textarea', key: 'desc', label: '과목 설명', rows: 6, required: true },
   ],
   orderable: false,
+  // 설명이 길어 표 셀에 담기지 않는다 — 요약 행을 눌러 펼친 뒤 고친다.
+  listView: { kind: 'expandRows', summaryKeys: ['code', 'nameEn'], expandKeys: ['nameEn', 'desc'] },
   summarize: (f) => cellText(f, 'code'),
 };
 
@@ -421,6 +461,7 @@ const coursesGraduate: ResourceDef = {
     },
   ],
   orderable: true,
+  listView: { kind: 'table', inlineKeys: ['code', 'name', 'credits', 'field'], filterKeys: ['field'] },
   summarize: (f) => `${cellText(f, 'code')} ${cellText(f, 'name')}`,
 };
 
@@ -450,6 +491,9 @@ const clubs: ResourceDef = {
     },
   ],
   orderable: true,
+  // 이름·카드 문구만 목록에서 고친다. 상세 카드뉴스(마크다운)는 별도 파일이라
+  // 커밋 묶음이 달라 '자세히' 폼의 기존 경로(linkedMarkdown)를 그대로 쓴다.
+  listView: { kind: 'cards', variant: 'clubs', inlineKeys: ['name', 'teaser'] },
   linkedMarkdown: {
     label: '소개 카드뉴스',
     hint: '각 카드(팀 소개)를 직접 편집합니다. SNS 링크도 아래에서 관리하세요.',
@@ -500,6 +544,19 @@ const labs: ResourceDef = {
   searchKeys: ['nameKo', 'nameEn', 'professorKo', 'professorEn'],
   fields: LABS_FIELDS,
   orderable: true,
+  listView: {
+    kind: 'cards',
+    variant: 'labs',
+    inlineKeys: [
+      'nameKo',
+      'nameEn',
+      'professorKo',
+      'location',
+      'phone',
+      'internRecruiting',
+    ],
+    filterKey: 'field',
+  },
   fromForm: (form) => {
     const out = defaultFromForm(LABS_FIELDS, form);
     // 모집 인원: 숫자로 저장. "모집 중"이 아니거나 값이 없으면 생략한다.

@@ -14,6 +14,7 @@
 // (한국어 UI 문자열은 내부 운영 도구라 컴포넌트에 직접 둔다.)
 
 import { useCallback, useEffect, useMemo, useState } from 'react';
+import { cn } from '@/lib/utils';
 import {
   commitJson,
   commitText,
@@ -32,8 +33,26 @@ import {
   type FormRecord,
   type ResourceDef,
 } from '@/lib/admin/resources';
+import {
+  applyInlinePatch,
+  applyInlineToForm,
+  displayInline,
+  findInlineField,
+  inlineFieldLabel,
+  isInlineUnchanged,
+  readInline,
+  type InlinePatch,
+  type InlineValue,
+} from '@/lib/admin/inline';
 import { RecordForm } from './RecordForm';
+import { ClubRowsEditor } from './ClubRowsEditor';
+import { ExpandRowsEditor } from './ExpandRowsEditor';
 import { FacultyCardsEditor } from './FacultyCardsEditor';
+import { HistoryTimelineEditor } from './HistoryTimelineEditor';
+import { InlineTable } from './InlineTable';
+import { MoveButtons } from './InlineFields';
+import { LabCardsEditor } from './LabCardsEditor';
+import { CmsPanelHead } from './CmsPanelHead';
 import { CommitBanner } from './CommitBanner';
 import { CmsModal } from './CmsModal';
 import { useRegisterTray, type PendingChange } from './ChangeTrayContext';
@@ -104,9 +123,13 @@ export function CollectionEditor({ config, resource, onDirtyChange }: Props) {
   const [saveError, setSaveError] = useState<string | null>(null);
   const [success, setSuccess] = useState<{ message: string; url: string } | null>(null);
 
-  /** 카드에서 고친 값 (미저장) — index → { 필드: 값 }. 원본과 다른 것만 담는다. */
-  const [cardEdits, setCardEdits] = useState<Record<number, Record<string, string>>>({});
-  const cardDirty = Object.keys(cardEdits).length > 0;
+  /**
+   * 목록에서 고친 값 (미저장) — index → { 편집 경로: 값 }. 원본과 다른 것만 담는다.
+   * 경로는 'email' 또는 localized 의 한쪽 'role.ko' 다. 값의 타입(문자열/불리언)과
+   * 저장 규칙은 lib/admin/inline.ts 가 FieldDef.kind 를 보고 정한다.
+   */
+  const [inlineEdits, setInlineEdits] = useState<Record<number, InlinePatch>>({});
+  const cardDirty = Object.keys(inlineEdits).length > 0;
 
   const orderDirty = orderedRaw !== null;
   const dirty = editing !== null || orderDirty || cardDirty;
@@ -152,27 +175,39 @@ export function CollectionEditor({ config, resource, onDirtyChange }: Props) {
   // 표시용 배열: 순서 변경 중이면 orderedRaw, 아니면 raw
   const displayRaw = orderedRaw ?? raw;
 
-  // 카드에서 고친 값을 얹은 표시용 배열 — 목록·폼 진입 모두 이 값을 본다
-  const sourceRaw = useMemo(
-    () => (cardDirty ? displayRaw.map((item, i) => (cardEdits[i] ? { ...item, ...cardEdits[i] } : item)) : displayRaw),
-    [displayRaw, cardEdits, cardDirty],
+  /**
+   * 표시용 폼 — 원본을 폼으로 편 뒤 대기 중인 인라인 편집을 얹는다.
+   * ⚠️ 원본 raw 에 얹지 않는 이유: 편집 경로가 'role.ko' 처럼 중첩 키를 가리킬 수
+   * 있어 얕은 병합으로는 표현되지 않고, raw 에 얹으면 빈 값 규칙(null/생략)이 화면
+   * 표시에까지 새어 들어와 입력 중인 칸이 사라진 것처럼 보인다.
+   */
+  const formOf = useCallback(
+    (index: number): FormRecord =>
+      applyInlineToForm(resource.fields, toForm(displayRaw[index] ?? {}), inlineEdits[index]),
+    [displayRaw, inlineEdits, resource.fields, toForm],
   );
 
   // 원본 인덱스를 유지한 채 폼으로 파생 + 검색 필터
   const rows = useMemo(() => {
-    const all = sourceRaw.map((r, index) => ({ index, form: toForm(r) }));
+    const all = displayRaw.map((_, index) => ({ index, form: formOf(index) }));
     const q = search.trim().toLowerCase();
     if (q === '') return all;
     return all.filter((row) =>
       resource.searchKeys.some((k) => cellText(row.form, k).toLowerCase().includes(q)),
     );
-  }, [sourceRaw, search, toForm, resource.searchKeys]);
+  }, [displayRaw, formOf, search, resource.searchKeys]);
+
+  /** 좌측 파란 막대를 붙일 인덱스 */
+  const dirtyIndices = useMemo(
+    () => new Set(Object.keys(inlineEdits).map(Number)),
+    [inlineEdits],
+  );
 
   // ---- 변경 트레이 연결 ----
   //
   // ⚠️ 카드 편집과 순서 변경은 "같이 대기"시키지 않는다. 둘 다 로드 시점 sha 로
   // 커밋하므로 한 번의 저장에서 두 커밋을 내면 두 번째가 409 로 반드시 실패하고,
-  // 하나로 합치려 해도 cardEdits 의 키가 인덱스라 순서가 바뀌는 순간 어느 항목의
+  // 하나로 합치려 해도 inlineEdits 의 키가 인덱스라 순서가 바뀌는 순간 어느 항목의
   // 편집인지 특정할 수 없다(다른 사람 값을 덮어쓸 위험). 그래서 기존 locked 규칙을
   // 유지해 애초에 공존하지 못하게 막고(순서 변경 중 카드 편집 잠금 + 카드 편집 중
   // 순서 이동 잠금), 저장은 둘 중 대기 중인 쪽 하나만 실행한다.
@@ -192,40 +227,43 @@ export function CollectionEditor({ config, resource, onDirtyChange }: Props) {
         after: `${moved}개 이동`,
       });
     }
-    for (const [key, patch] of Object.entries(cardEdits)) {
+    for (const [key, patch] of Object.entries(inlineEdits)) {
       const index = Number(key);
       const original = displayRaw[index] as Record<string, unknown> | undefined;
-      const itemLabel = resource.summarize(toForm(sourceRaw[index] ?? {})) || `#${index + 1}`;
-      for (const [fieldKey, value] of Object.entries(patch)) {
+      const itemLabel = resource.summarize(formOf(index)) || `#${index + 1}`;
+      for (const [path, value] of Object.entries(patch)) {
+        // 트레이 문구는 사람이 읽는 표시값으로 — select 는 옵션 라벨, checkbox 는 예/아니오,
+        // localized 는 어느 쪽(한국어/English)을 고쳤는지까지 밝힌다.
+        const field = findInlineField(resource.fields, path);
         list.push({
-          id: `${resource.key}:${index}:${fieldKey}`,
+          id: `${resource.key}:${index}:${path}`,
           scopeLabel: resource.label,
           itemLabel,
-          fieldLabel: resource.fields.find((f) => f.key === fieldKey)?.label ?? fieldKey,
-          before: String(original?.[fieldKey] ?? ''),
-          after: value,
+          fieldLabel: inlineFieldLabel(field, path),
+          before: displayInline(field, readInline(resource.fields, original, path)),
+          after: displayInline(field, value),
         });
       }
     }
     return list;
-  }, [ORDER_CHANGE_ID, cardEdits, orderedRaw, raw, displayRaw, sourceRaw, resource, toForm]);
+  }, [ORDER_CHANGE_ID, inlineEdits, orderedRaw, raw, displayRaw, formOf, resource]);
 
   function revertTrayChange(id: string) {
     if (id === ORDER_CHANGE_ID) {
       resetOrder();
       return;
     }
-    // id = `${resource.key}:${index}:${fieldKey}` — 리소스 키에는 ':' 이 없다
+    // id = `${resource.key}:${index}:${path}` — 리소스 키·경로에는 ':' 이 없다
     const parts = id.split(':');
     const index = Number(parts[1]);
-    const fieldKey = parts.slice(2).join(':');
-    setCardEdits((prev) => {
+    const path = parts.slice(2).join(':');
+    setInlineEdits((prev) => {
       const forIndex = prev[index];
       if (!forIndex) return prev;
       const nextForIndex = { ...forIndex };
-      delete nextForIndex[fieldKey];
+      delete nextForIndex[path];
       const next = { ...prev };
-      // patchCard 와 같은 규칙 — 남은 편집이 없으면 인덱스 자체를 뺀다
+      // patchInline 과 같은 규칙 — 남은 편집이 없으면 인덱스 자체를 뺀다
       if (Object.keys(nextForIndex).length === 0) delete next[index];
       else next[index] = nextForIndex;
       return next;
@@ -234,7 +272,7 @@ export function CollectionEditor({ config, resource, onDirtyChange }: Props) {
 
   function revertAllTray() {
     resetOrder();
-    resetCardEdits();
+    resetInlineEdits();
   }
 
   /** 트레이의 "저장 (커밋)" — 대기 중인 쪽 하나를 기존 커밋 경로로 그대로 넘긴다 */
@@ -243,7 +281,7 @@ export function CollectionEditor({ config, resource, onDirtyChange }: Props) {
       await saveOrder();
       return;
     }
-    await saveCardEdits();
+    await saveInlineEdits();
   }
 
   // 상세 폼을 연 동안에는 트레이를 내린다 — 폼 저장은 로드 시점 raw 로 커밋하므로
@@ -294,7 +332,9 @@ export function CollectionEditor({ config, resource, onDirtyChange }: Props) {
   async function startEdit(index: number) {
     setSuccess(null);
     setSaveError(null);
-    const form = toForm(sourceRaw[index]);
+    // 대기 중인 인라인 편집이 얹힌 값으로 폼을 연다 — 목록에서 방금 고친 값이
+    // 상세 화면에서 사라져 보이면 같은 값을 두 번 고치게 된다.
+    const form = formOf(index);
     setEditing({ index, form });
 
     if (!resource.linkedMarkdown) {
@@ -399,11 +439,11 @@ export function CollectionEditor({ config, resource, onDirtyChange }: Props) {
 
   // ⚠️ 삭제는 트레이에 쌓지 않고 확인 즉시 커밋한다. 삭제를 배칭하면 대기 중인
   // 다른 변경의 인덱스가 앞으로 밀려 엉뚱한 항목을 지우거나 덮어쓸 수 있다
-  // (cardEdits 의 키가 배열 인덱스다). 같은 이유로 삭제를 확정할 때는 대기 중인
+  // (inlineEdits 의 키가 배열 인덱스다). 같은 이유로 삭제를 확정할 때는 대기 중인
   // 변경을 먼저 버린다 — 아래 모달이 그 사실을 미리 알린다.
   async function handleDelete(index: number) {
-    const form = toForm(sourceRaw[index]);
-    setCardEdits({});
+    const form = formOf(index);
+    setInlineEdits({});
     setOrderedRaw(null);
     setSaving(true);
     setSaveError(null);
@@ -429,22 +469,22 @@ export function CollectionEditor({ config, resource, onDirtyChange }: Props) {
     }
   }
 
-  // ---- 카드 인라인 편집 (미저장) ----
+  // ---- 목록 인라인 편집 (미저장) ----
   //
-  // 카드에서 고친 값은 곧바로 커밋하지 않고 여기 모았다가 "변경 저장"에서 한 번에 올린다.
-  // 50명을 훑으며 여러 곳을 고치는 흐름이라, 필드마다 커밋하면 커밋이 지저분해지고 느리다.
+  // 목록에서 고친 값은 곧바로 커밋하지 않고 여기 모았다가 "변경 저장"에서 한 번에 올린다.
+  // 50명(또는 200과목)을 훑으며 여러 곳을 고치는 흐름이라, 필드마다 커밋하면 커밋이
+  // 지저분해지고 느리다.
 
-
-
-  function patchCard(index: number, key: string, value: string) {
+  /** path = 'email' 또는 localized 의 한쪽 'role.ko'. 값은 문자열 또는 불리언 */
+  function patchInline(index: number, path: string, value: InlineValue) {
     setSuccess(null);
-    setCardEdits((prev) => {
-      const original = displayRaw[index] as Record<string, unknown>;
-      const nextForIndex = { ...(prev[index] ?? {}), [key]: value };
-      // 원본과 같아졌으면 그 키는 뺀다 — 안 바뀐 값으로 더티 표시가 남지 않게
-      const originalVal = original?.[key];
-      if ((originalVal ?? '') === value || (originalVal === null && value === '')) {
-        delete nextForIndex[key];
+    setInlineEdits((prev) => {
+      const original = displayRaw[index] as Record<string, unknown> | undefined;
+      const nextForIndex: InlinePatch = { ...(prev[index] ?? {}), [path]: value };
+      // 원본과 같아졌으면 그 경로는 뺀다 — 안 바뀐 값으로 더티 표시가 남지 않게.
+      // 비교는 필드 종류를 아는 readInline 에 맡긴다(null 과 빈 문자열, 불리언의 부재).
+      if (isInlineUnchanged(resource.fields, original, path, value)) {
+        delete nextForIndex[path];
       }
       const next = { ...prev };
       if (Object.keys(nextForIndex).length === 0) delete next[index];
@@ -453,37 +493,37 @@ export function CollectionEditor({ config, resource, onDirtyChange }: Props) {
     });
   }
 
-  function resetCardEdits() {
-    setCardEdits({});
+  function resetInlineEdits() {
+    setInlineEdits({});
     setSuccess(null);
   }
 
-  /** 카드에서 고친 값들을 한 번에 커밋 */
-  async function saveCardEdits() {
-    const indices = Object.keys(cardEdits).map(Number);
+  /** 목록에서 고친 값들을 한 번에 커밋 */
+  async function saveInlineEdits() {
+    const indices = Object.keys(inlineEdits).map(Number);
     if (indices.length === 0) return;
     setSaving(true);
     setSaveError(null);
     setSuccess(null);
     try {
-      // 저장 기준은 로드 시점 배열(raw) — 순서 변경과 겹치면 sha 충돌로 방어된다
+      // 저장 기준은 로드 시점 배열(raw) — 순서 변경과 겹치면 sha 충돌로 방어된다.
+      // 직렬화는 전부 applyInlinePatch 가 맡는다(필드 종류별 빈 값 규칙·localized
+      // en 폴백·checkbox 키 생략). 여기서 값 모양을 다시 판단하지 않는다.
       const next = raw.slice();
       for (const i of indices) {
-        const patch = cardEdits[i];
-        const cur = { ...(next[i] as Record<string, unknown>) };
-        for (const [k, v] of Object.entries(patch)) {
-          // 빈 문자열은 null 로 — 이 리소스의 선택 필드는 null 이 "없음"이다
-          cur[k] = v.trim() === '' ? null : v;
-        }
-        next[i] = cur;
+        next[i] = applyInlinePatch(
+          resource.fields,
+          next[i] as Record<string, unknown>,
+          inlineEdits[i],
+        );
       }
       const payload =
         resource.format === 'record' ? arrayToRecord(next, resource.idField!) : next;
       const names = indices
-        .map((i) => cellText(toForm(next[i]), 'name') || `#${i + 1}`)
+        .map((i) => resource.summarize(toForm(next[i])) || `#${i + 1}`)
         .slice(0, 3)
         .join(', ');
-      const more = indices.length > 3 ? ` 외 ${indices.length - 3}명` : '';
+      const more = indices.length > 3 ? ` 외 ${indices.length - 3}건` : '';
       const result = await commitJson(
         config,
         resource.file,
@@ -491,7 +531,7 @@ export function CollectionEditor({ config, resource, onDirtyChange }: Props) {
         sha,
         `content: ${resource.label} 수정 — ${names}${more}`,
       );
-      setCardEdits({});
+      setInlineEdits({});
       finishSave(result.sha);
     } catch (err) {
       // 오류 문구는 트레이가 띄운다. 여기서는 409/422 재로드만 하고 다시 던져
@@ -506,7 +546,7 @@ export function CollectionEditor({ config, resource, onDirtyChange }: Props) {
   // ---- 순서 변경 (로컬) ----
 
   function move(index: number, dir: -1 | 1) {
-    // 값 편집이 대기 중이면 순서를 바꾸지 않는다 — cardEdits 의 키가 인덱스라
+    // 값 편집이 대기 중이면 순서를 바꾸지 않는다 — inlineEdits 의 키가 인덱스라
     // 순서가 바뀌면 어느 항목의 편집인지 특정할 수 없게 된다.
     if (cardDirty) return;
     const target = index + dir;
@@ -553,15 +593,28 @@ export function CollectionEditor({ config, resource, onDirtyChange }: Props) {
   if (editing) {
     const isNew = editing.index < 0;
     return (
-      <div className="rounded-card border border-surface-border bg-surface p-5 shadow-card sm:p-6">
-        <h2 className="mb-4 text-lg font-bold text-content">
-          {resource.label} · {isNew ? '새 항목' : '수정'}
-        </h2>
+      <div className="anim-panel">
+        <CmsPanelHead
+          kind="collection"
+          file={resource.file}
+          title={`${resource.label} · ${isNew ? '새 항목' : '수정'}`}
+          description={resource.description}
+          actions={
+            <button
+              type="button"
+              onClick={() => {
+                setEditing(null);
+                setMd(null);
+                setSaveError(null);
+              }}
+              className="cms-btn cms-btn-sm"
+            >
+              ← 목록으로
+            </button>
+          }
+        />
         {saveError && (
-          <p
-            role="alert"
-            className="mb-4 rounded-lg bg-red-50 px-3 py-2 text-sm text-red-700 dark:bg-red-950/40 dark:text-red-300"
-          >
+          <p role="alert" className="mb-4 border border-[#b42318]/30 bg-[#b42318]/[0.06] px-3.5 py-2.5 text-sm text-[#b42318]">
             {saveError}
           </p>
         )}
@@ -594,52 +647,59 @@ export function CollectionEditor({ config, resource, onDirtyChange }: Props) {
     );
   }
 
+  // 목록 화면 서술자와, 모든 인라인 화면이 공유하는 입력 묶음.
+  // 화면 컴포넌트는 "무엇을 보여줄까"만 알고, 편집·저장 규칙은 전부 여기에 있다.
+  const view = resource.listView;
+  const viewProps = {
+    resource,
+    rows,
+    total: displayRaw.length,
+    busy: saving,
+    locked: orderDirty,
+    orderLocked: cardDirty,
+    // 검색 중에는 순서를 옮기지 않는다 — 화면에 안 보이는 이웃과 자리를 바꾸면
+    // 무엇이 어디로 갔는지 확인할 방법이 없다.
+    orderable: resource.orderable && search.trim() === '',
+    dirtyIndices,
+    search,
+    onSearch: setSearch,
+    onEditDetail: (i: number) => void startEdit(i),
+    onDelete: (i: number) => setDeleting(i),
+    onMove: move,
+    onPatch: patchInline,
+  };
+
   return (
-    <div className="rounded-card border border-surface-border bg-surface p-5 shadow-card sm:p-6">
-      <div className="mb-4">
-        <h2 className="text-lg font-bold text-content">{resource.label}</h2>
-        <p className="mt-1 text-sm text-content-soft">{resource.description}</p>
-        <p className="mt-0.5 text-xs text-content-faint">{resource.file}</p>
-      </div>
+    <div className="anim-panel">
+      <CmsPanelHead
+        kind="collection"
+        file={resource.file}
+        title={resource.label}
+        description={resource.description}
+        actions={
+          <button
+            type="button"
+            onClick={startNew}
+            disabled={loading || saving || orderDirty}
+            className="cms-btn cms-btn-primary cms-btn-sm"
+          >
+            + 새 항목
+          </button>
+        }
+      />
 
       {success && <CommitBanner message={success.message} url={success.url} />}
 
       {listError && (
-        <p
-          role="alert"
-          className="mb-3 rounded-lg bg-red-50 px-3 py-2 text-sm text-red-700 dark:bg-red-950/40 dark:text-red-300"
-        >
+        <p role="alert" className="mb-3 border border-[#b42318]/30 bg-[#b42318]/[0.06] px-3.5 py-2.5 text-sm text-[#b42318]">
           {listError}
         </p>
       )}
       {saveError && !loading && (
-        <p
-          role="alert"
-          className="mb-3 rounded-lg bg-red-50 px-3 py-2 text-sm text-red-700 dark:bg-red-950/40 dark:text-red-300"
-        >
+        <p role="alert" className="mb-3 border border-[#b42318]/30 bg-[#b42318]/[0.06] px-3.5 py-2.5 text-sm text-[#b42318]">
           {saveError}
         </p>
       )}
-
-      <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
-        <input
-          type="text"
-          aria-label="검색"
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-          placeholder="검색…"
-          disabled={orderDirty}
-          className="w-full max-w-xs rounded-lg border border-surface-border bg-surface-soft px-3 py-2 text-sm text-content outline-none focus:border-yonsei-blue disabled:opacity-60 sm:w-64"
-        />
-        <button
-          type="button"
-          onClick={startNew}
-          disabled={loading || saving || orderDirty}
-          className="btn-primary px-4 py-2 text-sm disabled:opacity-60"
-        >
-          새 항목
-        </button>
-      </div>
 
       {/* 저장·되돌리기 버튼은 하단 변경 트레이가 맡는다. 여기 남는 것은 트레이가
           대신 말해 줄 수 없는 "제약 안내"뿐이다. */}
@@ -657,115 +717,147 @@ export function CollectionEditor({ config, resource, onDirtyChange }: Props) {
       {loading && <p className="text-sm text-content-soft">불러오는 중…</p>}
 
       {!loading && !listError && displayRaw.length === 0 && (
-        <p className="text-sm text-content-faint">항목이 없습니다.</p>
+        <p className="border border-dashed border-surface-border bg-[#fcfdfe] px-6 py-16 text-center text-sm text-content-faint">
+          항목이 없습니다. 위 “+ 새 항목”으로 첫 항목을 만드세요.
+        </p>
       )}
 
-      {!loading && !listError && displayRaw.length > 0 && rows.length === 0 && (
-        <p className="text-sm text-content-faint">검색 결과가 없습니다.</p>
-      )}
+      {/* 목록 화면 — 어떤 모양으로 보여줄지는 resource.listView 가 정한다.
+          rows 가 0이어도(검색 결과 없음) 화면을 그린다 — 검색창까지 사라지면
+          입력을 지울 방법이 없어진다. */}
+      {!loading && !listError && displayRaw.length > 0 && (
+        <>
+          {view?.kind === 'cards' && view.variant === 'faculty' && (
+            <FacultyCardsEditor
+              {...viewProps}
+              inlineKeys={view.inlineKeys}
+              filterKey={view.filterKey}
+              onUploadPhoto={uploadImage}
+            />
+          )}
+          {view?.kind === 'cards' && view.variant === 'labs' && (
+            <LabCardsEditor
+              {...viewProps}
+              inlineKeys={view.inlineKeys}
+              filterKey={view.filterKey}
+            />
+          )}
+          {view?.kind === 'cards' && view.variant === 'clubs' && (
+            <ClubRowsEditor {...viewProps} />
+          )}
+          {view?.kind === 'table' && (
+            <InlineTable
+              {...viewProps}
+              inlineKeys={view.inlineKeys}
+              filterKeys={view.filterKeys}
+            />
+          )}
+          {view?.kind === 'expandRows' && (
+            <ExpandRowsEditor
+              {...viewProps}
+              summaryKeys={view.summaryKeys}
+              expandKeys={view.expandKeys}
+            />
+          )}
+          {view?.kind === 'timeline' && (
+            <HistoryTimelineEditor
+              {...viewProps}
+              dateKey={view.dateKey}
+              bodyKey={view.bodyKey}
+            />
+          )}
 
-      {/* 카드 모드 — 사진이 있는 리소스(교수진)는 실제 카드 모양으로 보면서 그 자리에서 고친다 */}
-      {!loading && rows.length > 0 && resource.cardList && (
-        <FacultyCardsEditor
-          resource={resource}
-          rows={rows}
-          total={sourceRaw.length}
-          busy={saving}
-          locked={orderDirty}
-          orderLocked={cardDirty}
-          orderable={resource.orderable && search.trim() === ''}
-          onEditDetail={(i) => void startEdit(i)}
-          onDelete={(i) => setDeleting(i)}
-          onMove={move}
-          onPatch={patchCard}
-          onUploadPhoto={uploadImage}
-        />
-      )}
-
-      {!loading && rows.length > 0 && !resource.cardList && (
-        <div className="overflow-x-auto">
-          <table className="w-full text-sm">
-            <thead>
-              <tr className="border-b border-surface-border text-left">
-                {resource.listColumns.map((c) => (
-                  <th
-                    key={c.key}
-                    className="whitespace-nowrap px-3 py-2 text-xs font-bold uppercase tracking-wide text-content-faint"
-                  >
-                    {c.label}
-                  </th>
-                ))}
-                <th className="px-3 py-2" />
-              </tr>
-            </thead>
-            <tbody>
-              {rows.map(({ index, form }) => (
-                <tr
-                  key={index}
-                  className="border-b border-surface-border align-top transition-colors hover:bg-surface-soft"
-                >
-                  {resource.listColumns.map((c) => {
-                    const val = cellText(form, c.key);
-                    // 영상 등 URL 셀은 값 유무만 표시
-                    const display =
-                      c.key === 'video' || c.key === 'url' ? (val ? '✓' : '') : val;
-                    return (
-                      <td key={c.key} className="max-w-[16rem] truncate px-3 py-2.5 text-content-soft">
-                        {display}
-                      </td>
-                    );
-                  })}
-                  <td className="whitespace-nowrap px-3 py-2.5 text-right">
-                    <div className="inline-flex items-center gap-1.5">
-                      {resource.orderable && (
-                        <>
+          {/* 폴백 — listView 가 없는 리소스는 읽기 전용 표 + 수정/삭제 */}
+          {!view && (
+            <>
+              <div className="mb-4 flex flex-wrap items-center gap-2">
+                <input
+                  type="search"
+                  aria-label="검색"
+                  value={search}
+                  onChange={(e) => setSearch(e.target.value)}
+                  placeholder="검색…"
+                  disabled={orderDirty}
+                  className="cms-input-sm w-full sm:w-[250px]"
+                />
+                <span className="ml-auto text-xs tabular-nums text-content-faint">
+                  {rows.length}개 · 총 {displayRaw.length}개
+                </span>
+              </div>
+              <div className="overflow-x-auto border-t-2 border-yonsei-navy" data-lenis-prevent>
+                <table className="w-full border-collapse text-[13px]">
+                  <thead>
+                    <tr>
+                      {resource.listColumns.map((c) => (
+                        <th
+                          key={c.key}
+                          scope="col"
+                          className="whitespace-nowrap border-b border-surface-border px-2 py-3 text-left text-xs font-bold text-content-faint"
+                        >
+                          {c.label}
+                        </th>
+                      ))}
+                      <th className="border-b border-surface-border px-2 py-3">
+                        <span className="sr-only">동작</span>
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {rows.map(({ index, form }) => (
+                      <tr key={index} className="align-top transition-colors hover:bg-surface-soft">
+                        {resource.listColumns.map((c, col) => {
+                          const val = cellText(form, c.key);
+                          // 영상 등 URL 셀은 값 유무만 표시
+                          const display =
+                            c.key === 'video' || c.key === 'url' ? (val ? '✓' : '') : val;
+                          return (
+                            <td
+                              key={c.key}
+                              className={cn(
+                                'max-w-[16rem] truncate border-b border-[#f1f4f8] px-2 py-2.5',
+                                col === 0 ? 'font-semibold text-content' : 'text-content-soft',
+                              )}
+                            >
+                              {display}
+                            </td>
+                          );
+                        })}
+                        <td className="whitespace-nowrap border-b border-[#f1f4f8] px-2 py-2 text-right">
+                          {resource.orderable && (
+                            <MoveButtons
+                              index={index}
+                              total={displayRaw.length}
+                              disabled={saving || search.trim() !== ''}
+                              onMove={move}
+                            />
+                          )}
                           <button
                             type="button"
-                            aria-label="위로"
-                            onClick={() => move(index, -1)}
-                            disabled={saving || search.trim() !== '' || index === 0}
-                            className="btn-secondary px-2 py-1 text-xs disabled:opacity-40"
+                            onClick={() => startEdit(index)}
+                            disabled={saving || orderDirty}
+                            className="px-1.5 text-[11px] font-semibold text-yonsei-blue transition-colors hover:text-yonsei-navy disabled:opacity-40"
                           >
-                            ▲
+                            자세히
                           </button>
                           <button
                             type="button"
-                            aria-label="아래로"
-                            onClick={() => move(index, 1)}
-                            disabled={
-                              saving ||
-                              search.trim() !== '' ||
-                              index === displayRaw.length - 1
-                            }
-                            className="btn-secondary px-2 py-1 text-xs disabled:opacity-40"
+                            onClick={() => setDeleting(index)}
+                            disabled={saving || orderDirty}
+                            aria-label="삭제"
+                            title="삭제"
+                            className="px-1 text-xs font-bold text-[#b42318] transition-opacity hover:opacity-70 disabled:opacity-40"
                           >
-                            ▼
+                            ✕
                           </button>
-                        </>
-                      )}
-                      <button
-                        type="button"
-                        onClick={() => startEdit(index)}
-                        disabled={saving || orderDirty}
-                        className="btn-secondary px-3 py-1.5 text-xs disabled:opacity-60"
-                      >
-                        수정
-                      </button>
-                      <button
-                        type="button"
-                        onClick={() => setDeleting(index)}
-                        disabled={saving || orderDirty}
-                        className="btn-secondary px-3 py-1.5 text-xs text-red-600 hover:border-red-400 hover:text-red-600 disabled:opacity-60"
-                      >
-                        삭제
-                      </button>
-                    </div>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </>
+          )}
+        </>
       )}
 
       {/* 삭제 확인 — window.confirm 대신 콘솔 공용 모달(문구를 두 줄 이상 다듬고
@@ -779,7 +871,7 @@ export function CollectionEditor({ config, resource, onDirtyChange }: Props) {
           body={
             <>
               <p className="font-semibold text-content">
-                {resource.summarize(toForm(sourceRaw[deleting] ?? {}))}
+                {resource.summarize(formOf(deleting))}
               </p>
               <p className="mt-2">삭제는 즉시 커밋되며 되돌리려면 저장소에서 복구해야 합니다.</p>
               {trayChanges.length > 0 && (
