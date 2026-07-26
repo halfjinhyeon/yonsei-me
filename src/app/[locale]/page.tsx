@@ -6,7 +6,7 @@ import { InstagramSection } from '@/components/InstagramSection';
 import { GoalsSection } from '@/components/GoalsSection';
 import { CalendarSection } from '@/components/CalendarSection';
 import { NoticeSection, type NoticeCategory } from '@/components/NoticeSection';
-import { pick } from '@/lib/content';
+import { getCalendarEvents, pick } from '@/lib/content';
 import { formatPeriodLabel } from '@/lib/calendar';
 import { formatDate } from '@/lib/utils';
 import { fetchNews, fetchBoardData, fetchInstagramPosts } from '@/lib/posts';
@@ -118,6 +118,19 @@ export default async function HomePage({ params }: { params: { locale: string } 
           href: `/alumni/post/${a.id}`,
         };
       }),
+    // 캘린더 전용 일정(content/calendar.json) — 개강·수강신청 변경·시험 기간처럼
+    // 게시글 없이 캘린더에만 올려야 하는 학사일정. 게시판 기반 항목과 같은 모양으로
+    // 만들어 아래 정렬에 그대로 섞인다(별도 구역을 두지 않는다 — 학생에게는 둘 다
+    // 그냥 "다가오는 일정"이다). href 가 비면 링크 없는 정적 카드가 된다.
+    ...getCalendarEvents().map((ev) => {
+      const pl = ev.end ? formatPeriodLabel(ev.start, ev.end) : null;
+      return {
+        date: ev.start,
+        label: pl ? pl[locale] : '',
+        title: orKo(ev.title),
+        href: ev.href ?? '',
+      };
+    }),
   ];
   const byDateAsc = (a: { date: string }, b: { date: string }) =>
     a.date < b.date ? -1 : a.date > b.date ? 1 : 0;

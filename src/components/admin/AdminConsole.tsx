@@ -86,11 +86,6 @@ function AdminConsoleBody({ token, login }: Props) {
   // 쪽은 폼 자신이라 여기서는 상태만 들고 있는다.
   const [focusMode, setFocusMode] = useState(false);
 
-  const shell = useMemo<AdminShellValue>(
-    () => ({ config, login, deploy, setDeploy, toast, showToast, dismissToast, focusMode, setFocusMode }),
-    [config, login, deploy, toast, showToast, dismissToast, focusMode],
-  );
-
   // 트레이의 대기 변경도 "저장 안 된 편집"이다 — 에디터가 onDirtyChange 를 주지
   // 않더라도 트레이에 쌓인 게 있으면 그냥 넘어가면 안 된다.
   const { source: traySource, saving: traySaving, clearTray } = useChangeTray();
@@ -132,6 +127,16 @@ function AdminConsoleBody({ token, login }: Props) {
       go(next);
     },
     [dirty, pendingCount, traySaving, showToast, go],
+  );
+
+  // 셸 컨텍스트 — 배포 상태 칩·토스트·집중 모드, 그리고 화면 안 이동(openEntry).
+  // navigate 를 참조하므로 그 선언 뒤에 둔다(이동 가드를 그대로 물려받기 위함).
+  const shell = useMemo<AdminShellValue>(
+    () => ({
+      config, login, deploy, setDeploy, toast, showToast, dismissToast,
+      focusMode, setFocusMode, openEntry: navigate,
+    }),
+    [config, login, deploy, toast, showToast, dismissToast, focusMode, navigate],
   );
 
   // 드로어는 Esc 로도 닫는다(모달과 같은 규칙 — 열린 오버레이는 Esc 로 나간다)

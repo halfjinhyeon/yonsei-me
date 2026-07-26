@@ -15,6 +15,7 @@
 import { createContext, useContext, useEffect } from 'react';
 import { cn } from '@/lib/utils';
 import type { RepoConfig } from '@/lib/admin/github';
+import type { MenuEntry } from '@/lib/admin/resources';
 
 export type DeployState = 'idle' | 'deploying';
 
@@ -30,6 +31,13 @@ export interface AdminShellValue {
   /** 전체화면 집중 모드 — 켜지면 셸이 사이드바와 자체 상단 바를 내린다(글쓰기 화면) */
   focusMode: boolean;
   setFocusMode: (v: boolean) => void;
+  /**
+   * 다른 편집 화면으로 이동 — 사이드바를 거치지 않는 화면 안 이동용(5단계).
+   * 캘린더의 "게시판 연동 일정"은 여기서 고칠 수 없고 해당 게시판에서 고쳐야 하는데,
+   * 안내만 하고 사용자가 사이드바에서 그 게시판을 다시 찾게 두면 안내가 무의미하다.
+   * 셸의 이동 가드(미저장 확인)를 그대로 타므로 대기 변경이 조용히 사라지지 않는다.
+   */
+  openEntry: (entry: MenuEntry) => void;
 }
 
 const AdminShellContext = createContext<AdminShellValue | null>(null);

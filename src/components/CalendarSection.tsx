@@ -6,7 +6,11 @@ import { cn } from '@/lib/utils';
 
 /** 로케일 해석이 끝난 학과 일정 한 건 */
 export interface CalendarSectionItem {
-  href: string;
+  /**
+   * 게시물 링크. 캘린더 전용 일정(content/calendar.json)은 연결할 글이 없을 수 있어
+   * 선택 값이다 — 비면 카드가 Link 가 아니라 정적 div 로 렌더된다.
+   */
+  href?: string;
   /** 날짜/기간 표기(예: "7/20~7/24", "26.09.15") — 이미 로케일 해석·폴백 완료 */
   dateLabel: string;
   title: string;
@@ -167,19 +171,11 @@ export function CalendarSection({
               bare ? 'mt-4 lg:mt-5' : 'mt-7 lg:mt-9',
             )}
           >
-            {items.map((item, i) => (
-              <li
-                key={`${item.href}-${i}`}
-                data-card
-                // 모바일 카드 2장+다음 카드 살짝(46%) — 캐러셀임이 보이는 밀도(데스크톱 모드 재현)
-                className="w-[46%] shrink-0 snap-start border-l border-surface-border pl-3.5 pr-3.5 first:border-l-0 first:pl-0 sm:w-[42%] sm:pl-6 sm:pr-6 lg:w-1/4"
-              >
-                {/* hover: 카드 내용이 약간 위로 떠오르며 색이 바뀐다(이화여대 CALENDAR 이식).
-                    트랙의 pt-2 여유공간 덕에 떠오를 때 위쪽이 잘리지 않는다(흰색 마스킹 해결). */}
-                <Link
-                  href={item.href}
-                  className="group block transition duration-300 ease-out hover:-translate-y-1.5"
-                >
+            {items.map((item, i) => {
+              // 카드 내용은 링크 여부와 무관하게 동일하다 — 디자인·날짜 표기 규칙은
+              // 그대로 두고 감싸는 요소만 Link / div 로 갈린다.
+              const card = (
+                <>
                   {/* 날짜 pill — 네이비 → hover 시 블루로 색 변화. 기간 표기가 길어도 한 줄 유지. */}
                   <span className="inline-block whitespace-nowrap rounded-full bg-yonsei-navy px-2.5 py-1 text-xs font-bold tabular-nums text-white transition-colors duration-300 group-hover:bg-yonsei-blue sm:px-4 sm:py-1.5 sm:text-sm">
                     {item.dateLabel}
@@ -188,9 +184,32 @@ export function CalendarSection({
                   <p className="mt-3 line-clamp-2 text-sm font-bold leading-snug text-content transition-colors duration-300 group-hover:text-yonsei-blue sm:mt-6 sm:text-lg">
                     {item.title}
                   </p>
-                </Link>
-              </li>
-            ))}
+                </>
+              );
+              return (
+                <li
+                  key={`${item.href ?? ''}-${i}`}
+                  data-card
+                  // 모바일 카드 2장+다음 카드 살짝(46%) — 캐러셀임이 보이는 밀도(데스크톱 모드 재현)
+                  className="w-[46%] shrink-0 snap-start border-l border-surface-border pl-3.5 pr-3.5 first:border-l-0 first:pl-0 sm:w-[42%] sm:pl-6 sm:pr-6 lg:w-1/4"
+                >
+                  {/* hover: 카드 내용이 약간 위로 떠오르며 색이 바뀐다(이화여대 CALENDAR 이식).
+                      트랙의 pt-2 여유공간 덕에 떠오를 때 위쪽이 잘리지 않는다(흰색 마스킹 해결). */}
+                  {item.href ? (
+                    <Link
+                      href={item.href}
+                      className="group block transition duration-300 ease-out hover:-translate-y-1.5"
+                    >
+                      {card}
+                    </Link>
+                  ) : (
+                    // 연결할 글이 없는 일정 — 누를 곳이 없으니 떠오름·색 전환도 걷어낸다.
+                    // (tabIndex 를 넣어 포커스 대상으로 만들지 않는다: 눌러도 갈 곳이 없다)
+                    <div className="block">{card}</div>
+                  )}
+                </li>
+              );
+            })}
           </ul>
 
           {/* 하단 행(standalone 만) — 가로 헤어라인 + 우측 원형 화살표(시안).

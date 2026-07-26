@@ -6,6 +6,7 @@ import programsData from '@content/programs.json';
 import boardData from '@content/board.json';
 import historyData from '@content/history.json';
 import staffData from '@content/staff.json';
+import calendarData from '@content/calendar.json';
 import type { Locale } from '@/i18n/routing';
 
 /** 한/영 문자열 쌍 → 현재 로케일 값으로 뽑아내는 헬퍼 */
@@ -266,6 +267,38 @@ export function getCalendarEntries(): CalendarEntry[] {
     .filter((a) => a.isEvent && a.date)
     .map((a) => ({ id: a.id, date: a.date, title: a.title, category: 'alumni' }));
   return [...events, ...alumni];
+}
+
+// ---- 캘린더 전용 일정 (content/calendar.json) ----
+//
+// 위 getCalendarEntries() 는 "게시글이 있는" 일정만 모은다. 그런데 개강·수강신청
+// 변경·시험 기간 같은 학사일정은 본문이 있는 게시글로 올릴 성격이 아니면서도
+// 홈 '공지&일정' 캘린더에는 반드시 떠야 한다. 그래서 게시판과 무관한 전용 파일을
+// 따로 두고, 홈에서 게시판 기반 일정과 날짜순으로 합친다.
+//
+// 다른 content/*.json 리소스와 같은 빌드 타임 인라인 방식이다(별도 API 없음) —
+// 관리 콘솔의 커밋·트레이·충돌 처리 경로를 그대로 물려받기 위함.
+
+/** 일정 분류 — 색과 범례만 다르고 동작은 같다 */
+export type CalendarEventCategory = 'academic' | 'event' | 'recruit' | 'exam';
+
+export interface CalendarEvent {
+  id: string;
+  title: Localized;
+  /** 시작일 "YYYY-MM-DD" */
+  start: string;
+  /** 종료일. 없으면(키 생략) 하루 일정 */
+  end?: string;
+  category: CalendarEventCategory;
+  /** 선택 — 비거나 없으면 링크 없는 정적 카드로 렌더된다 */
+  href?: string;
+}
+
+/** 캘린더 전용 일정 전체 (시작일 오름차순). 정렬·필터는 소비하는 쪽이 다시 한다 */
+export function getCalendarEvents(): CalendarEvent[] {
+  return (calendarData as CalendarEvent[])
+    .slice()
+    .sort((a, b) => (a.start < b.start ? -1 : a.start > b.start ? 1 : 0));
 }
 
 // ---- 연혁 ----
