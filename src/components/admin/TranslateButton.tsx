@@ -44,12 +44,13 @@ export function TranslateButton({ source, target = 'EN', html = false, onTransla
   }
 
   return (
-    <span className="inline-flex items-center gap-2">
+    <span className="inline-flex shrink-0 items-center gap-2">
+      {/* 각진 엣지 + 줄바꿈 금지 — 좁은 칸에서 "한→영 / 번역" 두 줄로 접히던 것을 막는다 */}
       <button
         type="button"
         onClick={run}
         disabled={disabled || busy}
-        className="rounded-md border border-surface-border px-2 py-0.5 text-xs font-semibold text-yonsei-blue transition-colors hover:border-yonsei-blue disabled:opacity-50"
+        className="whitespace-nowrap border border-surface-border px-2.5 py-1.5 text-xs font-semibold text-yonsei-blue transition-colors hover:border-yonsei-blue disabled:opacity-50"
       >
         {busy ? '번역 중…' : label}
       </button>

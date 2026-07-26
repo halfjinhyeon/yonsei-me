@@ -18,7 +18,7 @@ export function SignInCard({ locale }: Props) {
       <div className="rounded-card border border-surface-border bg-surface p-8 text-center shadow-card">
         <div
           aria-hidden
-          className="mx-auto mb-6 h-16 w-16 bg-yonsei-navy eagle-mask dark:bg-yonsei-gold"
+          className="mx-auto mb-6 h-16 w-16 bg-yonsei-navy eagle-mask dark:bg-yonsei-sky"
         />
         <p className="eyebrow">콘텐츠 관리</p>
         <h1 className="mt-2 text-2xl font-bold text-content">관리자 로그인</h1>

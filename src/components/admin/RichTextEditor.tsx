@@ -37,11 +37,13 @@ interface Props {
   ariaLabel?: string;
 }
 
-/** 글자색 팔레트 — 사이트 브랜드 + 기본색 (남용 방지를 위해 소수만) */
+/** 글자색 팔레트 — 사이트 브랜드 + 기본색 (남용 방지를 위해 소수만).
+ *  금색(#C8A96A)은 디자인 언어에서 빠져 선택지에서 제거했다. 이미 그 색으로
+ *  저장된 본문은 그대로 렌더된다 — 저장 포맷·렌더는 건드리지 않고 고를 수만 없게 한다. */
 const COLORS: { value: string; label: string }[] = [
   { value: '#003377', label: '네이비' },
   { value: '#0057A8', label: '블루' },
-  { value: '#C8A96A', label: '골드' },
+  { value: '#2E86D6', label: '스카이' },
   { value: '#C0392B', label: '레드' },
   { value: '#6B7280', label: '그레이' },
 ];

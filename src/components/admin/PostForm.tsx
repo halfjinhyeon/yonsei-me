@@ -1,19 +1,38 @@
 'use client';
 
-// 새 글/수정 공용 편집 폼. 게시판 종류에 따라 추가 필드(세미나 주최, 행사 기간,
-// 뉴스 slug/category/요약/이미지)를 조건부로 노출한다.
-// 본 사이트와 통일감 있는 에디토리얼 톤: 각진 흰 입력 필드 + 섹션별 헤어라인 구분.
+// 새 글/수정 공용 편집 폼 — 4단계에서 "전체화면 단일 컬럼"으로 바뀌었다.
+//
+// 왜 전체화면인가: 글쓰기는 목록을 곁눈질하며 하는 일이 아니다. 좌측 내비와 콘솔
+// 상단 바가 함께 떠 있으면 본문 폭이 좁아지고, 편집기 툴바와 사이드바가 시선을
+// 나눠 가진다. 그래서 폼이 마운트되는 동안만 셸에 집중 모드를 켜 두고
+// (AdminShellContext.setFocusMode), 화면 위쪽에는 폼 자신의 고정 바 하나만 남긴다.
+// 사이트 헤더·히어로·푸터는 그대로 둔다 — 콘솔은 별도 앱이 아니라 관리자용
+// 세부 페이지라는 원칙은 여기서도 유지된다.
+//
+// 게시판 종류에 따라 추가 필드(세미나 주최, 행사 기간, 인스타그램 URL,
+// 뉴스 분류/요약/대표 이미지)를 조건부로 노출한다 — 판정은 전부 BoardMeta 플래그다.
 // (한국어 UI 문자열은 내부 운영 도구라 컴포넌트에 직접 둔다.)
 
-import { useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import type { Editor } from '@tiptap/react';
+import { cn } from '@/lib/utils';
 import type { BoardMeta, EditRecord } from '@/lib/admin/boards';
 import { emptyAttachment } from '@/lib/admin/boards';
+import {
+  clearPostDraft,
+  draftAgeLabel,
+  postDraftKey,
+  readPostDraft,
+  writePostDraft,
+  type PostDraft,
+} from '@/lib/admin/post-draft';
 import { formatPeriodLabel } from '@/lib/calendar';
 import { UploadCancelledError, type UploadProgress, type UploadProgressHandler } from '@/lib/admin/storage';
+import { useAdminShell } from './AdminShellContext';
+import { CmsModal } from './CmsModal';
 import { RichTextEditor } from './RichTextEditor';
 import { TranslateButton } from './TranslateButton';
-import { PostPreviewModal } from './PostPreviewModal';
+import { PostPreviewPane } from './PostPreviewPane';
 
 interface Props {
   meta: BoardMeta;
@@ -22,6 +41,8 @@ interface Props {
   /** 수정 모드면 id 읽기 전용 */
   isEdit: boolean;
   busy: boolean;
+  /** 서버가 돌려준 저장 실패 사유 — 상단 바 아래 경고 줄에 함께 표시한다 */
+  submitError?: string | null;
   onCancel: () => void;
   onSubmit: (rec: EditRecord) => void;
   /** 첨부·이미지 파일을 외부 스토리지에 올리고 URL 을 반환 (config 를 가진 상위가 주입) */
@@ -34,17 +55,41 @@ interface Props {
 
 // 사이트 공통 입력 문법(BoardFilterBar 와 동일): 각진 흰 필드 + 파랑 포커스 보더
 const fieldClass =
-  'mt-1 w-full border border-surface-border bg-surface px-3 py-2 text-sm text-content outline-none transition-colors placeholder:text-content-faint focus:border-yonsei-blue';
-const attFieldClass =
-  'border border-surface-border bg-surface px-3 py-2 text-sm text-content outline-none transition-colors placeholder:text-content-faint focus:border-yonsei-blue';
+  'w-full border border-surface-border bg-surface px-3 py-2 text-[13px] text-content outline-none transition-colors placeholder:text-[#a8b0ba] focus:border-yonsei-blue';
 
-/** 섹션 제목 — 본 사이트 게시판 헤더 문법(굵은 글자 + 네이비 언더라인) 축소판 */
-function SectionTitle({ children }: { children: React.ReactNode }) {
+/** 메타 영역의 라벨–입력 한 줄. full 이면 2열 그리드에서 한 줄을 다 쓴다 */
+function MetaField({
+  label,
+  htmlFor,
+  full,
+  hint,
+  children,
+}: {
+  label: string;
+  htmlFor?: string;
+  full?: boolean;
+  hint?: React.ReactNode;
+  children: React.ReactNode;
+}) {
   return (
-    <h4 className="border-b-2 border-yonsei-navy pb-2 text-sm font-bold tracking-tight text-content">
-      {children}
-    </h4>
+    <div className={cn('border-b border-[#f1f4f8] py-3', full && 'md:col-span-2')}>
+      <div className="flex flex-wrap items-center gap-x-3 gap-y-1.5">
+        <label
+          htmlFor={htmlFor}
+          className="w-[74px] shrink-0 text-[12px] font-semibold text-content-faint"
+        >
+          {label}
+        </label>
+        <div className="min-w-0 flex-1">{children}</div>
+      </div>
+      {hint && <p className="mt-1.5 pl-[86px] text-[11px] leading-relaxed text-yonsei-blue">{hint}</p>}
+    </div>
   );
+}
+
+/** 첨부·이미지 묶음 안의 소제목 */
+function DropTitle({ children }: { children: React.ReactNode }) {
+  return <p className="text-[12px] font-bold text-content">{children}</p>;
 }
 
 /** 파일 업로드 대상: 첨부 행 인덱스, 대표 이미지, 또는 이미지 풀(다중) */
@@ -82,11 +127,24 @@ function uploadBarWidth(p: UploadProgress): number {
   return 6;
 }
 
-export function PostForm({ meta, initial, isEdit, busy, onCancel, onSubmit, onUploadFile }: Props) {
+export function PostForm({
+  meta,
+  initial,
+  isEdit,
+  busy,
+  submitError,
+  onCancel,
+  onSubmit,
+  onUploadFile,
+}: Props) {
+  const { setFocusMode, showToast } = useAdminShell();
+
   const [rec, setRec] = useState<EditRecord>(initial);
   const [error, setError] = useState<string | null>(null);
-  // 저장 전 팝업 미리보기(실제 게시물과 동일 렌더) 표시 여부
-  const [showPreview, setShowPreview] = useState(false);
+  // 저장 전 미리보기 — 본문 자리를 그대로 바꿔 끼우는 토글(팝업 아님)
+  const [preview, setPreview] = useState(false);
+  // 미저장 이탈 확인 모달
+  const [confirmLeave, setConfirmLeave] = useState(false);
   // 파일 업로드 진행 상태(대상 + 단계 + 퍼센트 + 다중 업로드 순번 note)
   const [uploading, setUploading] = useState<
     (UploadProgress & { target: UploadTarget; note?: string }) | null
@@ -97,6 +155,7 @@ export function PostForm({ meta, initial, isEdit, busy, onCancel, onSubmit, onUp
   const pendingTargetRef = useRef<UploadTarget>(0);
   // 진행 중 업로드의 취소 컨트롤러 (취소 버튼이 abort)
   const abortRef = useRef<AbortController | null>(null);
+  const errorRef = useRef<HTMLParagraphElement | null>(null);
 
   // ── 이미지 풀 + 본문 에디터(Tiptap) 상태 ──
   const [pool, setPool] = useState<PoolItem[]>([]);
@@ -105,6 +164,34 @@ export function PostForm({ meta, initial, isEdit, busy, onCancel, onSubmit, onUp
   const editorsRef = useRef<{ ko: Editor | null; en: Editor | null }>({ ko: null, en: null });
   // 본문 삽입이 적용될 에디터 = 마지막으로 포커스한 쪽
   const lastBodyRef = useRef<'ko' | 'en'>('ko');
+
+  // 폼이 살아 있는 동안만 집중 모드 — 언마운트 정리를 빠뜨리면 목록으로 돌아와도
+  // 사이드바가 영영 사라진다.
+  useEffect(() => {
+    setFocusMode(true);
+    return () => setFocusMode(false);
+  }, [setFocusMode]);
+
+  // ── 임시저장(초안) — localStorage 전용, 저장소에는 커밋하지 않는다 ──
+  const draftKey = useMemo(
+    () => postDraftKey(meta.key, isEdit ? initial.id : 'new'),
+    [meta.key, isEdit, initial.id],
+  );
+  const initialJson = useMemo(() => JSON.stringify(initial), [initial]);
+  const dirty = JSON.stringify(rec) !== initialJson;
+  // 열 때 발견한 초안 — 내용이 지금 값과 다를 때만 안내한다
+  const [foundDraft, setFoundDraft] = useState<PostDraft | null>(null);
+  useEffect(() => {
+    const d = readPostDraft(draftKey);
+    if (d && JSON.stringify(d.rec) !== initialJson) setFoundDraft(d);
+    // 초안 확인은 폼을 열 때 한 번뿐이다 — 타이핑 중에 다시 물으면 방해가 된다.
+  }, [draftKey, initialJson]);
+
+  // 오류가 뜨면 그 자리로 데려간다 — 저장 버튼이 상단 고정 바에 있어서
+  // 아래쪽에서 눌렀을 때 "아무 일도 안 일어난 것"처럼 보이기 때문이다.
+  useEffect(() => {
+    if (error) errorRef.current?.scrollIntoView({ block: 'center' });
+  }, [error]);
 
   function set<K extends keyof EditRecord>(key: K, value: EditRecord[K]) {
     setRec((prev) => ({ ...prev, [key]: value }));
@@ -243,16 +330,29 @@ export function PostForm({ meta, initial, isEdit, busy, onCancel, onSubmit, onUp
     chain.run();
   }
 
+  /** 임시저장 — 이 브라우저에만 남는다(커밋 아님) */
+  function saveDraft() {
+    writePostDraft(draftKey, rec);
+    setFoundDraft(null);
+    showToast('임시저장했습니다 (이 브라우저에만 보관됩니다)');
+  }
+
+  /** ← 목록으로 / 취소 — 고친 게 있으면 한 번 붙잡는다 */
+  function requestLeave() {
+    if (dirty) setConfirmLeave(true);
+    else onCancel();
+  }
+
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setError(null);
     // id/slug 는 자동 부여(작성자 미입력) → 검증 대상 아님
-    if (rec.date.trim() === '') {
-      setError('날짜를 입력하세요.');
+    if (rec.titleKo.trim() === '') {
+      setError('제목을 입력하세요. 저장하려면 반드시 필요합니다.');
       return;
     }
-    if (rec.titleKo.trim() === '') {
-      setError('제목(한국어)을 입력하세요.');
+    if (rec.date.trim() === '') {
+      setError('게시일을 입력하세요.');
       return;
     }
     if (showEndDate && rec.endDate && rec.date && rec.endDate < rec.date) {
@@ -285,37 +385,101 @@ export function PostForm({ meta, initial, isEdit, busy, onCancel, onSubmit, onUp
   // 기간 라벨은 수동 입력 대신 시작/종료일로 서버가 자동 생성한다(아래 미리보기와 동일 함수).
   const showEndDate = !!meta.hasDateRange && (!meta.hasEventFlag || !!rec.isEvent);
   const labelPreview = showEndDate && rec.date ? formatPeriodLabel(rec.date, rec.endDate) : null;
+  const shownError = error ?? submitError ?? null;
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-8" noValidate>
-      {/* ── 기본 정보 ── */}
-      <section>
-        <SectionTitle>기본 정보</SectionTitle>
-        <div className="mt-4 grid gap-4 sm:grid-cols-[2fr_1fr]">
-          <div>
-            <label htmlFor="pf-id" className="block text-sm font-semibold text-content">
-              {idLabel}
-              {!isEdit && <span className="ml-1 font-normal text-content-faint">(자동 부여)</span>}
-            </label>
-            <input
-              id="pf-id"
-              type="text"
-              value={rec.id}
-              readOnly
-              tabIndex={-1}
-              aria-readonly="true"
-              className={`${fieldClass} cursor-not-allowed bg-surface-soft opacity-70`}
-            />
-            <p className="mt-1 text-xs text-content-faint">
-              {isEdit
-                ? `수정 모드에서는 ${idLabel}를 변경할 수 없습니다.`
-                : `${idLabel}는 저장 시 자동으로 부여됩니다.`}
+    <form onSubmit={handleSubmit} noValidate className="anim-panel min-h-[70vh] bg-surface">
+      {/* ── 상단 고정 바 — 콘솔 상단 바를 대신한다(집중 모드). 사이트 헤더 바로 아래 ── */}
+      <div className="sticky top-16 z-30 flex flex-wrap items-center gap-x-3.5 gap-y-2 border-b border-surface-border bg-surface px-6 py-3 lg:top-20 lg:px-8">
+        <button type="button" onClick={requestLeave} className="cms-btn cms-btn-sm">
+          ← 목록으로
+        </button>
+        <span className="flex min-w-0 items-baseline gap-2.5">
+          <strong className="truncate text-sm font-bold text-content">{meta.label}</strong>
+          <span className="shrink-0 text-[11px] text-content-faint">{isEdit ? '수정' : '새 글'}</span>
+        </span>
+        <span className="ml-auto flex shrink-0 items-center gap-2">
+          <button
+            type="button"
+            onClick={() => setPreview((v) => !v)}
+            aria-pressed={preview}
+            className={cn('cms-btn cms-btn-sm', preview && 'border-yonsei-blue text-yonsei-blue')}
+          >
+            {preview ? '편집으로' : '미리보기'}
+          </button>
+          <button
+            type="button"
+            onClick={saveDraft}
+            title="저장소에 커밋하지 않습니다 — 이 브라우저에만 보관되는 초안입니다"
+            className="cms-btn cms-btn-sm"
+          >
+            임시저장
+          </button>
+          <button type="submit" disabled={busy} className="cms-btn-primary cms-btn-sm">
+            {busy ? '저장 중…' : '저장'}
+          </button>
+        </span>
+      </div>
+
+      {/* ── 본문 단일 컬럼 ── */}
+      <div className="mx-auto max-w-[1000px] px-6 py-9 pb-24 lg:px-8">
+        {/* 초안 안내 — 쓰다 만 글이 남아 있을 때만 */}
+        {foundDraft && (
+          <div className="anim-panel mb-6 flex flex-wrap items-center gap-x-4 gap-y-2 border border-yonsei-blue/40 bg-yonsei-blue/[0.05] px-4 py-3">
+            <p className="min-w-0 flex-1 text-[13px] text-content">
+              이 브라우저에 임시저장된 초안이 있습니다
+              {draftAgeLabel(foundDraft.savedAt) && (
+                <span className="ml-1.5 text-content-faint">({draftAgeLabel(foundDraft.savedAt)})</span>
+              )}
             </p>
+            <span className="flex shrink-0 gap-2">
+              <button
+                type="button"
+                onClick={() => {
+                  setRec(foundDraft.rec);
+                  setFoundDraft(null);
+                }}
+                className="cms-btn cms-btn-sm"
+              >
+                초안 불러오기
+              </button>
+              <button
+                type="button"
+                onClick={() => {
+                  clearPostDraft(draftKey);
+                  setFoundDraft(null);
+                }}
+                className="cms-btn cms-btn-sm"
+              >
+                버리기
+              </button>
+            </span>
           </div>
-          <div>
-            <label htmlFor="pf-date" className="block text-sm font-semibold text-content">
-              {showEndDate ? (dateIsEvent ? '행사 시작일' : '날짜 (시작일)') : dateIsEvent ? '행사 일정 (날짜)' : '날짜'}
-            </label>
+        )}
+
+        {/* 대형 제목 — 테두리 없이 아래 1px, 포커스에서 네이비로 선다 */}
+        <input
+          type="text"
+          value={rec.titleKo}
+          onChange={(e) => set('titleKo', e.target.value)}
+          placeholder="제목을 입력하세요"
+          aria-label="제목 (한국어)"
+          aria-invalid={shownError !== null || undefined}
+          className="w-full border-0 border-b border-surface-border bg-transparent pb-3 text-[30px] font-bold leading-tight tracking-tight text-content outline-none transition-colors placeholder:text-[#a8b0ba] focus:border-yonsei-navy"
+        />
+        {shownError && (
+          <p ref={errorRef} role="alert" className="mt-2 text-[12px] font-semibold text-[#b42318]">
+            ⚠ {shownError}
+          </p>
+        )}
+
+        {/* ── 메타 — 게시일·영문 제목 + 게시판별 조건 필드 ── */}
+        <div className="mt-4 grid gap-x-8 border-b border-surface-border md:grid-cols-2">
+          <MetaField
+            label={showEndDate ? (dateIsEvent ? '행사 시작일' : '시작일') : '게시일'}
+            htmlFor="pf-date"
+            hint={dateIsEvent ? '이 날짜로 금주 캘린더(일정)에 표시됩니다.' : undefined}
+          >
             <input
               id="pf-date"
               type="date"
@@ -323,341 +487,214 @@ export function PostForm({ meta, initial, isEdit, busy, onCancel, onSubmit, onUp
               onChange={(e) => set('date', e.target.value)}
               className={fieldClass}
             />
-            {dateIsEvent && (
-              <p className="mt-1 text-xs text-yonsei-blue">이 날짜로 금주 캘린더(일정)에 표시됩니다.</p>
-            )}
-          </div>
-        </div>
+          </MetaField>
 
-        {/* 동문 소식·네트워크: 특정 날짜가 정해진 행사인지 체크 → 캘린더 '동문'에 표시 */}
-        {meta.hasEventFlag && (
-          <label className="mt-4 flex items-start gap-2.5 border border-surface-border bg-surface-soft px-3 py-2.5 text-sm text-content">
-            <input
-              type="checkbox"
-              checked={!!rec.isEvent}
-              onChange={(e) => set('isEvent', e.target.checked)}
-              className="mt-0.5 h-4 w-4 shrink-0 accent-yonsei-blue"
-            />
-            <span>
-              <span className="font-semibold">특정 날짜가 정해진 행사입니다</span>
-              <span className="mt-0.5 block text-xs text-content-faint">
-                체크하면 위 &lsquo;날짜&rsquo;가 행사일이 되어 금주 캘린더(일정)의 <b>동문</b> 카테고리에 표시됩니다. 체크하지 않으면 일반 게시물로 저장되고 캘린더에는 나오지 않습니다.
-              </span>
-            </span>
-          </label>
-        )}
-
-        {/* 종료일 — 며칠짜리 일정은 캘린더 피커로 종료일을 고른다(비우면 하루).
-            기간 라벨("7/20~7/24")은 저장 시 서버가 ko/en 자동 생성 — 미리보기로 확인만. */}
-        {showEndDate && (
-          <div className="mt-4 sm:max-w-xs">
-            <label htmlFor="pf-end-date" className="block text-sm font-semibold text-content">
-              종료일 <span className="ml-1 font-normal text-content-faint">(선택 — 하루 일정이면 비워두세요)</span>
-            </label>
-            <input
-              id="pf-end-date"
-              type="date"
-              min={rec.date || undefined}
-              value={rec.endDate ?? ''}
-              onChange={(e) => set('endDate', e.target.value)}
-              className={fieldClass}
-            />
-            {labelPreview && labelPreview.ko && (
-              <p className="mt-1 text-xs text-yonsei-blue">
-                표시 라벨(자동 생성): {labelPreview.ko} · EN {labelPreview.en}
-              </p>
-            )}
-          </div>
-        )}
-
-        {/* 게시물 링크(인스타그램) — 홈 그리드 타일 클릭 시 이동할 실제 게시물 URL */}
-        {meta.hasLink && (
-          <div className="mt-4">
-            <label htmlFor="pf-link" className="block text-sm font-semibold text-content">
-              게시물 링크 (URL)
-            </label>
-            <input
-              id="pf-link"
-              type="url"
-              value={rec.linkUrl ?? ''}
-              onChange={(e) => set('linkUrl', e.target.value)}
-              placeholder="https://www.instagram.com/p/…"
-              className={fieldClass}
-            />
-            <p className="mt-1 text-xs text-yonsei-blue">
-              홈 인스타그램 그리드의 타일이 됩니다 — 제목은 캡션으로, 아래 &lsquo;대표 이미지&rsquo;는
-              타일 사진으로, 클릭 시 이 링크(새 창)로 이동합니다.
-            </p>
-          </div>
-        )}
-
-        {meta.isNews && (
-          <div className="mt-4">
-            <label htmlFor="pf-category" className="block text-sm font-semibold text-content">
-              카테고리
-            </label>
-            <select
-              id="pf-category"
-              value={rec.category ?? 'notice'}
-              onChange={(e) => set('category', e.target.value as EditRecord['category'])}
-              className={fieldClass}
-            >
-              <option value="notice">공지 (notice)</option>
-              <option value="seminar">세미나 (seminar)</option>
-              <option value="achievement">성과 (achievement)</option>
-            </select>
-          </div>
-        )}
-      </section>
-
-      {/* ── 제목·부가 정보 ── */}
-      <section>
-        <SectionTitle>제목</SectionTitle>
-        <div className="mt-4 grid gap-4 sm:grid-cols-2">
-          <div>
-            <label htmlFor="pf-title-ko" className="block text-sm font-semibold text-content">
-              제목 (한국어)
-            </label>
-            <input id="pf-title-ko" type="text" value={rec.titleKo} onChange={(e) => set('titleKo', e.target.value)} className={fieldClass} />
-          </div>
-          <div>
-            <div className="flex flex-wrap items-center justify-between gap-2">
-              <label htmlFor="pf-title-en" className="block text-sm font-semibold text-content">
-                제목 (English)
-              </label>
+          <MetaField label="영문 제목" htmlFor="pf-title-en">
+            <div className="flex items-center gap-2">
+              <input
+                id="pf-title-en"
+                type="text"
+                value={rec.titleEn}
+                onChange={(e) => set('titleEn', e.target.value)}
+                placeholder="비우면 한국어 제목이 그대로 노출됩니다"
+                className={fieldClass}
+              />
               <TranslateButton source={rec.titleKo} onTranslated={(v) => set('titleEn', v)} />
             </div>
-            <input id="pf-title-en" type="text" value={rec.titleEn} onChange={(e) => set('titleEn', e.target.value)} className={fieldClass} />
-          </div>
-        </div>
+          </MetaField>
 
-        {meta.hasHost && (
-          <div className="mt-4 grid gap-4 sm:grid-cols-2">
-            <div>
-              <label htmlFor="pf-host-ko" className="block text-sm font-semibold text-content">
-                주최 (한국어)
+          {/* 동문 소식·네트워크: 특정 날짜가 정해진 행사인지 — 체크 시 캘린더 '동문'에 표시 */}
+          {meta.hasEventFlag && (
+            <MetaField label="행사 여부" full>
+              <label className="flex items-start gap-2.5 text-[13px] text-content">
+                <input
+                  type="checkbox"
+                  checked={!!rec.isEvent}
+                  onChange={(e) => set('isEvent', e.target.checked)}
+                  className="mt-0.5 h-4 w-4 shrink-0 accent-yonsei-blue"
+                />
+                <span>
+                  <span className="font-semibold">특정 날짜가 정해진 행사입니다</span>
+                  <span className="mt-0.5 block text-[11px] leading-relaxed text-content-faint">
+                    체크하면 위 &lsquo;시작일&rsquo;이 행사일이 되어 금주 캘린더(일정)의 <b>동문</b>{' '}
+                    카테고리에 표시됩니다. 체크하지 않으면 일반 게시물로 저장되고 캘린더에는 나오지 않습니다.
+                  </span>
+                </span>
               </label>
-              <input id="pf-host-ko" type="text" value={rec.hostKo ?? ''} onChange={(e) => set('hostKo', e.target.value)} className={fieldClass} />
-            </div>
-            <div>
-              <div className="flex flex-wrap items-center justify-between gap-2">
-                <label htmlFor="pf-host-en" className="block text-sm font-semibold text-content">
-                  주최 (English)
-                </label>
-                <TranslateButton source={rec.hostKo ?? ''} onTranslated={(v) => set('hostEn', v)} />
-              </div>
-              <input id="pf-host-en" type="text" value={rec.hostEn ?? ''} onChange={(e) => set('hostEn', e.target.value)} className={fieldClass} />
-            </div>
-          </div>
-        )}
+            </MetaField>
+          )}
 
-      </section>
-
-      {/* ── 본문 (+ 뉴스 요약) — noBody(인스타그램 등 링크형)는 본문이 없어 숨김 ── */}
-      {!meta.noBody && (
-      <section>
-        <SectionTitle>본문</SectionTitle>
-
-        {meta.isNews && (
-          <div className="mt-4 grid gap-4 sm:grid-cols-2">
-            <div>
-              <label htmlFor="pf-excerpt-ko" className="block text-sm font-semibold text-content">
-                요약 (한국어)
-              </label>
-              <textarea id="pf-excerpt-ko" rows={2} value={rec.excerptKo ?? ''} onChange={(e) => set('excerptKo', e.target.value)} className={fieldClass} />
-            </div>
-            <div>
-              <div className="flex flex-wrap items-center justify-between gap-2">
-                <label htmlFor="pf-excerpt-en" className="block text-sm font-semibold text-content">
-                  요약 (English)
-                </label>
-                <TranslateButton source={rec.excerptKo ?? ''} onTranslated={(v) => set('excerptEn', v)} />
-              </div>
-              <textarea id="pf-excerpt-en" rows={2} value={rec.excerptEn ?? ''} onChange={(e) => set('excerptEn', e.target.value)} className={fieldClass} />
-            </div>
-          </div>
-        )}
-
-        {/* 본문 (한국어) — 위지윅(Tiptap). 편집 화면 = 게시 화면(같은 prose 타이포).
-            사진은 툴바 🖼 버튼·드래그앤드롭·붙여넣기 모두 가능(자동 압축 후 스토리지 저장) */}
-        <div className="mt-4" onFocusCapture={() => { lastBodyRef.current = 'ko'; }}>
-          <label className="block text-sm font-semibold text-content">본문 (한국어)</label>
-          <div className="mt-1">
-            <RichTextEditor
-              value={rec.bodyKo}
-              onChange={(html) => set('bodyKo', html)}
-              onUploadImage={onUploadFile ? (file) => onUploadFile(file) : undefined}
-              onEditorReady={(ed) => { editorsRef.current.ko = ed; }}
-              placeholder="본문을 입력하세요 — 사진은 끌어다 놓거나 붙여넣어도 됩니다"
-              ariaLabel="본문 (한국어)"
-            />
-          </div>
-        </div>
-
-        <div className="mt-5" onFocusCapture={() => { lastBodyRef.current = 'en'; }}>
-          <div className="flex flex-wrap items-center justify-between gap-2">
-            <label className="block text-sm font-semibold text-content">본문 (English)</label>
-            {/* 위지윅 본문은 HTML — 태그 보존 번역(tag_handling) */}
-            <TranslateButton source={rec.bodyKo} html onTranslated={(v) => set('bodyEn', v)} />
-          </div>
-          <div className="mt-1">
-            <RichTextEditor
-              value={rec.bodyEn}
-              onChange={(html) => set('bodyEn', html)}
-              onUploadImage={onUploadFile ? (file) => onUploadFile(file) : undefined}
-              onEditorReady={(ed) => { editorsRef.current.en = ed; }}
-              placeholder="English body — 비워두면 저장 시 한국어 값이 복사됩니다"
-              ariaLabel="본문 (English)"
-            />
-          </div>
-        </div>
-
-        <p className="mt-2 text-xs text-content-faint">
-          아래 &lsquo;이미지 풀&rsquo;의 &lsquo;본문 삽입&rsquo;은 마지막에 클릭한 본문(한국어/English)의
-          커서 위치에 들어갑니다. English를 비우면 저장 시 한국어 값이 복사됩니다.
-        </p>
-      </section>
-      )}
-
-      {/* ── 이미지 풀 — 여러 장 올려두고 체크해서 본문 삽입 / 썸네일 지정 ── */}
-      {onUploadFile && !meta.noBody && (
-        <section>
-          <SectionTitle>이미지</SectionTitle>
-          <input
-            ref={poolInputRef}
-            type="file"
-            accept="image/*"
-            multiple
-            className="hidden"
-            aria-hidden="true"
-            tabIndex={-1}
-            onChange={(e) => void handlePoolPicked(e.target.files)}
-          />
-          <div className="mt-4 flex flex-wrap items-center gap-2">
-            <button
-              type="button"
-              onClick={() => poolInputRef.current?.click()}
-              disabled={uploading !== null}
-              className="btn-secondary px-4 py-2 text-xs disabled:opacity-60"
+          {/* 종료일 — 며칠짜리 일정은 캘린더 피커로 종료일을 고른다(비우면 하루).
+              기간 라벨("7/20~7/24")은 저장 시 서버가 ko/en 자동 생성 — 미리보기로 확인만. */}
+          {showEndDate && (
+            <MetaField
+              label="종료일"
+              htmlFor="pf-end-date"
+              hint={
+                labelPreview && labelPreview.ko
+                  ? `표시 라벨(자동 생성): ${labelPreview.ko} · EN ${labelPreview.en}`
+                  : undefined
+              }
             >
-              {uploading?.target === 'pool'
-                ? `${uploadLabel(uploading)}${uploading.note ? ` (${uploading.note})` : ''}`
-                : '사진 업로드 (여러 장 가능)'}
-            </button>
-            {uploading?.target === 'pool' && (
-              <button
-                type="button"
-                onClick={cancelUpload}
-                className="border border-surface-border px-3 py-2 text-xs font-medium text-content-soft transition-colors hover:border-red-400 hover:text-red-600"
-              >
-                취소
-              </button>
-            )}
-            {pool.length > 0 && (
-              <>
-                <span className="mx-1 h-5 w-px bg-surface-border" aria-hidden="true" />
-                <button type="button" onClick={() => setPoolChecked(new Set(pool.map((_, i) => i)))} className="btn-secondary px-3 py-2 text-xs">
-                  전체 선택
-                </button>
-                <button type="button" onClick={() => setPoolChecked(new Set())} className="btn-secondary px-3 py-2 text-xs">
-                  전체 해제
-                </button>
-                <button
-                  type="button"
-                  onClick={insertCheckedIntoBody}
-                  disabled={poolChecked.size === 0}
-                  className="btn-primary px-3 py-2 text-xs disabled:opacity-50"
-                >
-                  본문 삽입
-                </button>
-                <button
-                  type="button"
-                  onClick={setThumbnailFromPool}
-                  disabled={poolChecked.size !== 1}
-                  title="체크한 사진 1장을 대표 이미지로 지정"
-                  className="btn-secondary px-3 py-2 text-xs disabled:opacity-50"
-                >
-                  썸네일 지정
-                </button>
-                <button
-                  type="button"
-                  onClick={removeCheckedFromPool}
-                  disabled={poolChecked.size === 0}
-                  className="btn-secondary px-3 py-2 text-xs disabled:opacity-50"
-                >
-                  선택 삭제
-                </button>
-              </>
-            )}
-          </div>
-          {uploading?.target === 'pool' && (
-            <div className="mt-2 h-1 w-full overflow-hidden bg-surface-soft" aria-hidden="true">
-              <div
-                className={`h-full bg-yonsei-blue transition-[width] duration-200 ${isIndeterminate(uploading) ? 'animate-pulse' : ''}`}
-                style={{ width: `${uploadBarWidth(uploading)}%` }}
+              <input
+                id="pf-end-date"
+                type="date"
+                min={rec.date || undefined}
+                value={rec.endDate ?? ''}
+                onChange={(e) => set('endDate', e.target.value)}
+                className={fieldClass}
               />
-            </div>
+              <p className="mt-1 text-[11px] text-content-faint">하루 일정이면 비워두세요.</p>
+            </MetaField>
           )}
-          {pool.length === 0 ? (
-            <p className="mt-3 text-xs text-content-faint">
-              사진을 올린 뒤 체크하고 &lsquo;본문 삽입&rsquo;(커서 위치에 사진 배치) 또는
-              &lsquo;썸네일 지정&rsquo;(대표 이미지)을 누르세요. 이미지는 자동
-              압축(1600px·WebP)되어 외부 스토리지에 저장됩니다.
-            </p>
-          ) : (
-            <ul className="mt-4 grid grid-cols-3 gap-3 sm:grid-cols-4 md:grid-cols-6">
-              {pool.map((item, i) => {
-                const checked = poolChecked.has(i);
-                const isThumb = rec.image === item.url;
-                return (
-                  <li key={item.url}>
-                    <label
-                      className={`relative block cursor-pointer border transition-colors ${
-                        checked ? 'border-yonsei-blue ring-2 ring-yonsei-blue/40' : 'border-surface-border hover:border-yonsei-blue/50'
-                      }`}
-                    >
-                      <input
-                        type="checkbox"
-                        checked={checked}
-                        onChange={() => togglePoolCheck(i)}
-                        className="absolute left-1.5 top-1.5 z-10 h-4 w-4 accent-yonsei-blue"
-                        aria-label={`${item.name} 선택`}
-                      />
-                      {isThumb && (
-                        <span className="absolute right-0 top-0 z-10 bg-yonsei-gold px-1.5 py-0.5 text-[10px] font-bold text-yonsei-navy">
-                          썸네일
-                        </span>
-                      )}
-                      {/* eslint-disable-next-line @next/next/no-img-element -- 관리자 풀 미리보기 */}
-                      <img src={item.url} alt="" className="h-20 w-full object-cover" />
-                      <span className="block truncate px-1.5 py-1 text-[11px] text-content-faint">
-                        {item.name}
-                      </span>
-                    </label>
-                  </li>
-                );
-              })}
-            </ul>
-          )}
-        </section>
-      )}
 
-      {/* ── 대표 이미지(썸네일) — 모든 게시판 공통. 직접 업로드 또는 경로/링크 입력.
-          비워 두면 본문 첫 사진이 목록 썸네일로 자동 사용된다(lib/posts 폴백) ── */}
-      <section>
-          <SectionTitle>대표 이미지</SectionTitle>
-          {onUploadFile && (
-            <input
-              ref={imgInputRef}
-              type="file"
-              accept="image/*"
-              className="hidden"
-              aria-hidden="true"
-              tabIndex={-1}
-              onChange={(e) => void handleFilePicked(e.target.files?.[0])}
-            />
+          {/* 주최 (세미나·동문 소식) */}
+          {meta.hasHost && (
+            <>
+              <MetaField label="주최" htmlFor="pf-host-ko">
+                <input
+                  id="pf-host-ko"
+                  type="text"
+                  value={rec.hostKo ?? ''}
+                  onChange={(e) => set('hostKo', e.target.value)}
+                  className={fieldClass}
+                />
+              </MetaField>
+              <MetaField label="주최 (EN)" htmlFor="pf-host-en">
+                <div className="flex items-center gap-2">
+                  <input
+                    id="pf-host-en"
+                    type="text"
+                    value={rec.hostEn ?? ''}
+                    onChange={(e) => set('hostEn', e.target.value)}
+                    className={fieldClass}
+                  />
+                  <TranslateButton source={rec.hostKo ?? ''} onTranslated={(v) => set('hostEn', v)} />
+                </div>
+              </MetaField>
+            </>
           )}
-          <div className="mt-4 flex flex-col gap-2 sm:flex-row">
+
+          {/* 뉴스형 — 분류 */}
+          {meta.isNews && (
+            <MetaField label="분류" htmlFor="pf-category">
+              <select
+                id="pf-category"
+                value={rec.category ?? 'notice'}
+                onChange={(e) => set('category', e.target.value as EditRecord['category'])}
+                className={cn(fieldClass, 'cursor-pointer')}
+              >
+                <option value="notice">공지 (notice)</option>
+                <option value="seminar">세미나 (seminar)</option>
+                <option value="achievement">성과 (achievement)</option>
+              </select>
+            </MetaField>
+          )}
+
+          {/* 인스타그램 — 홈 그리드 타일이 이동할 실제 게시물 URL */}
+          {meta.hasLink && (
+            <MetaField
+              label="게시물 URL"
+              htmlFor="pf-link"
+              full
+              hint="홈 인스타그램 그리드의 타일이 됩니다 — 제목은 캡션으로, 아래 ‘대표 이미지’는 타일 사진으로, 클릭 시 이 링크(새 창)로 이동합니다."
+            >
+              <input
+                id="pf-link"
+                type="url"
+                value={rec.linkUrl ?? ''}
+                onChange={(e) => set('linkUrl', e.target.value)}
+                placeholder="https://www.instagram.com/p/…"
+                className={fieldClass}
+              />
+            </MetaField>
+          )}
+
+          {/* 뉴스형 — 요약(목록 카드에 2줄로 노출) */}
+          {meta.isNews && (
+            <>
+              <MetaField label="요약" htmlFor="pf-excerpt-ko">
+                <textarea
+                  id="pf-excerpt-ko"
+                  rows={2}
+                  value={rec.excerptKo ?? ''}
+                  onChange={(e) => set('excerptKo', e.target.value)}
+                  className={cn(fieldClass, 'resize-y')}
+                />
+              </MetaField>
+              <MetaField label="요약 (EN)" htmlFor="pf-excerpt-en">
+                <div className="flex items-start gap-2">
+                  <textarea
+                    id="pf-excerpt-en"
+                    rows={2}
+                    value={rec.excerptEn ?? ''}
+                    onChange={(e) => set('excerptEn', e.target.value)}
+                    className={cn(fieldClass, 'resize-y')}
+                  />
+                  <TranslateButton source={rec.excerptKo ?? ''} onTranslated={(v) => set('excerptEn', v)} />
+                </div>
+              </MetaField>
+            </>
+          )}
+        </div>
+
+        {/* ── 본문 ↔ 미리보기 (같은 자리를 토글로 바꿔 낀다) ── */}
+        {preview ? (
+          <div className="mt-7">
+            <PostPreviewPane meta={meta} rec={rec} />
+          </div>
+        ) : (
+          !meta.noBody && (
+            <div className="mt-7">
+              {/* 본문 (한국어) — 위지윅(Tiptap). 편집 화면 = 게시 화면(같은 prose 타이포).
+                  사진은 툴바 🖼 버튼·드래그앤드롭·붙여넣기 모두 가능(자동 압축 후 스토리지 저장) */}
+              <div onFocusCapture={() => { lastBodyRef.current = 'ko'; }}>
+                <p className="mb-1.5 text-[12px] font-semibold text-content-faint">본문 (한국어)</p>
+                <RichTextEditor
+                  value={rec.bodyKo}
+                  onChange={(html) => set('bodyKo', html)}
+                  onUploadImage={onUploadFile ? (file) => onUploadFile(file) : undefined}
+                  onEditorReady={(ed) => { editorsRef.current.ko = ed; }}
+                  placeholder="본문을 입력하세요 — 사진은 끌어다 놓거나 붙여넣어도 됩니다"
+                  ariaLabel="본문 (한국어)"
+                />
+              </div>
+
+              <div className="mt-6" onFocusCapture={() => { lastBodyRef.current = 'en'; }}>
+                <div className="mb-1.5 flex flex-wrap items-center justify-between gap-2">
+                  <p className="text-[12px] font-semibold text-content-faint">본문 (English)</p>
+                  {/* 위지윅 본문은 HTML — 태그 보존 번역(tag_handling) */}
+                  <TranslateButton source={rec.bodyKo} html onTranslated={(v) => set('bodyEn', v)} />
+                </div>
+                <RichTextEditor
+                  value={rec.bodyEn}
+                  onChange={(html) => set('bodyEn', html)}
+                  onUploadImage={onUploadFile ? (file) => onUploadFile(file) : undefined}
+                  onEditorReady={(ed) => { editorsRef.current.en = ed; }}
+                  placeholder="English body — 비워두면 저장 시 한국어 값이 복사됩니다"
+                  ariaLabel="본문 (English)"
+                />
+              </div>
+            </div>
+          )
+        )}
+
+        {/* ── 첨부 · 대표 이미지 — 본문 아래 점선 묶음 한 덩어리 ── */}
+        <div className="mt-6 border border-dashed border-surface-border bg-[#fcfdfe] px-5 py-4">
+          {/* 대표 이미지 (모든 게시판 공통) */}
+          <div className="flex flex-wrap items-center gap-x-4 gap-y-2.5">
+            <DropTitle>대표 이미지</DropTitle>
+            {onUploadFile && (
+              <input
+                ref={imgInputRef}
+                type="file"
+                accept="image/*"
+                className="hidden"
+                aria-hidden="true"
+                tabIndex={-1}
+                onChange={(e) => void handleFilePicked(e.target.files?.[0])}
+              />
+            )}
             <input
               id="pf-image"
               type="text"
@@ -665,163 +702,287 @@ export function PostForm({ meta, initial, isEdit, busy, onCancel, onSubmit, onUp
               value={rec.image ?? ''}
               onChange={(e) => set('image', e.target.value)}
               placeholder="/img/programs/bk21.jpg 또는 https://… — 업로드 시 자동 기입"
-              className={`${attFieldClass} min-w-0 flex-1`}
+              className={cn(fieldClass, 'min-w-[200px] flex-1')}
             />
             {onUploadFile && (
               <button
                 type="button"
                 onClick={() => pickFile('image')}
                 disabled={uploading !== null}
-                className="btn-secondary shrink-0 px-4 py-2 text-xs disabled:opacity-60"
+                className="cms-btn cms-btn-sm shrink-0"
               >
                 {uploading?.target === 'image' ? uploadLabel(uploading) : '이미지 업로드'}
               </button>
             )}
             {uploading?.target === 'image' && (
-              <button
-                type="button"
-                onClick={cancelUpload}
-                className="shrink-0 border border-surface-border px-3 py-2 text-xs font-medium text-content-soft transition-colors hover:border-red-400 hover:text-red-600"
-              >
+              <button type="button" onClick={cancelUpload} className="cms-btn-danger cms-btn-sm shrink-0">
                 취소
               </button>
+            )}
+            {rec.image?.trim() && (
+              /* eslint-disable-next-line @next/next/no-img-element -- 관리자 미리보기(임의 외부 URL 허용) */
+              <img
+                src={rec.image}
+                alt="대표 이미지 미리보기"
+                className="h-[34px] w-[52px] shrink-0 border border-surface-border object-cover"
+              />
             )}
           </div>
           {/* 진행 바 — 단계·퍼센트를 시각화 (불확정 단계는 얇은 펄스) */}
           {uploading?.target === 'image' && (
             <div className="mt-2 h-1 w-full overflow-hidden bg-surface-soft" aria-hidden="true">
               <div
-                className={`h-full bg-yonsei-blue transition-[width] duration-200 ${isIndeterminate(uploading) ? 'animate-pulse' : ''}`}
+                className={cn('h-full bg-yonsei-blue transition-[width] duration-200', isIndeterminate(uploading) && 'animate-pulse')}
                 style={{ width: `${uploadBarWidth(uploading)}%` }}
               />
             </div>
           )}
-          {rec.image?.trim() && (
-            <div className="mt-3 flex items-end gap-3">
-              {/* eslint-disable-next-line @next/next/no-img-element -- 관리자 미리보기(임의 외부 URL 허용) */}
-              <img
-                src={rec.image}
-                alt="대표 이미지 미리보기"
-                className="h-24 w-36 border border-surface-border object-cover"
-              />
-              <p className="text-xs text-content-faint">미리보기 — 목록·상세 카드에 이 비율로 잘려 표시될 수 있습니다.</p>
-            </div>
-          )}
           {!rec.image?.trim() && (
-            <p className="mt-2 text-xs text-content-faint">
+            <p className="mt-1.5 text-[11px] text-content-faint">
               비워 두면 본문에 넣은 첫 번째 사진이 목록 썸네일로 자동 사용됩니다.
             </p>
           )}
-      </section>
 
-      {/* ── 첨부파일 — noBody(인스타그램 등 링크형)는 첨부 개념이 없어 숨김 ── */}
-      {!meta.noBody && (
-      <section>
-        <SectionTitle>첨부파일</SectionTitle>
-        {onUploadFile && (
-          <input
-            ref={attInputRef}
-            type="file"
-            accept="image/*,.pdf,.zip,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.hwp,.hwpx"
-            className="hidden"
-            aria-hidden="true"
-            tabIndex={-1}
-            onChange={(e) => void handleFilePicked(e.target.files?.[0])}
-          />
-        )}
-        <div className="mt-4 space-y-3">
-          {rec.attachments.length === 0 && <p className="text-xs text-content-faint">첨부파일이 없습니다.</p>}
-          {rec.attachments.map((att, i) => (
-            <div key={i}>
-              <div className="grid gap-2 sm:grid-cols-[1fr_1fr_1.5fr_auto_auto]">
-                <input
-                  type="text"
-                  aria-label={`첨부 ${i + 1} 라벨 한국어`}
-                  value={att.labelKo}
-                  onChange={(e) => updateAtt(i, 'labelKo', e.target.value)}
-                  placeholder="라벨(한)"
-                  className={attFieldClass}
-                />
-                <input
-                  type="text"
-                  aria-label={`첨부 ${i + 1} 라벨 영어`}
-                  value={att.labelEn}
-                  onChange={(e) => updateAtt(i, 'labelEn', e.target.value)}
-                  placeholder="Label (en)"
-                  className={attFieldClass}
-                />
-                <input
-                  type="text"
-                  aria-label={`첨부 ${i + 1} 링크`}
-                  value={att.href}
-                  onChange={(e) => updateAtt(i, 'href', e.target.value)}
-                  placeholder="href — 파일 업로드 시 자동 기입"
-                  className={attFieldClass}
-                />
-                {onUploadFile && (
-                  <button
-                    type="button"
-                    onClick={() => (uploading?.target === i ? cancelUpload() : pickFile(i))}
-                    disabled={uploading !== null && uploading.target !== i}
-                    className={`whitespace-nowrap px-3 py-2 text-xs disabled:opacity-60 ${
-                      uploading?.target === i
-                        ? 'border border-surface-border font-medium text-content-soft transition-colors hover:border-red-400 hover:text-red-600'
-                        : 'btn-secondary'
-                    }`}
-                    title={uploading?.target === i ? '클릭하면 업로드를 취소합니다' : undefined}
-                  >
-                    {uploading?.target === i ? `${uploadLabel(uploading)} ✕` : '파일'}
+          {/* 이미지 풀 — 여러 장 올려두고 체크해서 본문 삽입 / 썸네일 지정 */}
+          {onUploadFile && !meta.noBody && (
+            <div className="mt-4 border-t border-[#f1f4f8] pt-4">
+              <input
+                ref={poolInputRef}
+                type="file"
+                accept="image/*"
+                multiple
+                className="hidden"
+                aria-hidden="true"
+                tabIndex={-1}
+                onChange={(e) => void handlePoolPicked(e.target.files)}
+              />
+              <div className="flex flex-wrap items-center gap-2">
+                <DropTitle>본문 사진</DropTitle>
+                <button
+                  type="button"
+                  onClick={() => poolInputRef.current?.click()}
+                  disabled={uploading !== null}
+                  className="cms-btn cms-btn-sm"
+                >
+                  {uploading?.target === 'pool'
+                    ? `${uploadLabel(uploading)}${uploading.note ? ` (${uploading.note})` : ''}`
+                    : '+ 사진 추가 (여러 장 가능)'}
+                </button>
+                {uploading?.target === 'pool' && (
+                  <button type="button" onClick={cancelUpload} className="cms-btn-danger cms-btn-sm">
+                    취소
                   </button>
                 )}
-                <button type="button" onClick={() => removeAtt(i)} className="btn-secondary px-3 py-2 text-xs">
-                  삭제
-                </button>
+                {pool.length > 0 && (
+                  <>
+                    <span className="mx-1 h-5 w-px bg-surface-border" aria-hidden="true" />
+                    <button type="button" onClick={() => setPoolChecked(new Set(pool.map((_, i) => i)))} className="cms-btn cms-btn-sm">
+                      전체 선택
+                    </button>
+                    <button type="button" onClick={() => setPoolChecked(new Set())} className="cms-btn cms-btn-sm">
+                      전체 해제
+                    </button>
+                    <button
+                      type="button"
+                      onClick={insertCheckedIntoBody}
+                      disabled={poolChecked.size === 0}
+                      className="cms-btn-primary cms-btn-sm"
+                    >
+                      본문 삽입
+                    </button>
+                    <button
+                      type="button"
+                      onClick={setThumbnailFromPool}
+                      disabled={poolChecked.size !== 1}
+                      title="체크한 사진 1장을 대표 이미지로 지정"
+                      className="cms-btn cms-btn-sm"
+                    >
+                      썸네일 지정
+                    </button>
+                    <button
+                      type="button"
+                      onClick={removeCheckedFromPool}
+                      disabled={poolChecked.size === 0}
+                      className="cms-btn cms-btn-sm"
+                    >
+                      선택 삭제
+                    </button>
+                  </>
+                )}
               </div>
-              {/* 진행 바 — 업로드 중인 행 아래에만 표시 */}
-              {uploading?.target === i && (
-                <div className="mt-1.5 h-1 w-full overflow-hidden bg-surface-soft" aria-hidden="true">
+              {uploading?.target === 'pool' && (
+                <div className="mt-2 h-1 w-full overflow-hidden bg-surface-soft" aria-hidden="true">
                   <div
-                    className={`h-full bg-yonsei-blue transition-[width] duration-200 ${isIndeterminate(uploading) ? 'animate-pulse' : ''}`}
+                    className={cn('h-full bg-yonsei-blue transition-[width] duration-200', isIndeterminate(uploading) && 'animate-pulse')}
                     style={{ width: `${uploadBarWidth(uploading)}%` }}
                   />
                 </div>
               )}
+              {pool.length === 0 ? (
+                <p className="mt-2 text-[11px] leading-relaxed text-content-faint">
+                  사진을 올린 뒤 체크하고 &lsquo;본문 삽입&rsquo;(커서 위치에 사진 배치) 또는
+                  &lsquo;썸네일 지정&rsquo;(대표 이미지)을 누르세요. 이미지는 자동 압축(1600px·WebP)되어
+                  외부 스토리지에 저장됩니다.
+                </p>
+              ) : (
+                <ul className="mt-3 grid grid-cols-3 gap-3 sm:grid-cols-4 md:grid-cols-6">
+                  {pool.map((item, i) => {
+                    const checked = poolChecked.has(i);
+                    const isThumb = rec.image === item.url;
+                    return (
+                      <li key={item.url}>
+                        <label
+                          className={cn(
+                            'relative block cursor-pointer border bg-surface transition-colors',
+                            checked
+                              ? 'border-yonsei-blue ring-2 ring-yonsei-blue/40'
+                              : 'border-surface-border hover:border-yonsei-blue/50',
+                          )}
+                        >
+                          <input
+                            type="checkbox"
+                            checked={checked}
+                            onChange={() => togglePoolCheck(i)}
+                            className="absolute left-1.5 top-1.5 z-10 h-4 w-4 accent-yonsei-blue"
+                            aria-label={`${item.name} 선택`}
+                          />
+                          {isThumb && (
+                            <span className="absolute right-0 top-0 z-10 bg-yonsei-blue px-1.5 py-0.5 text-[10px] font-bold text-white">
+                              썸네일
+                            </span>
+                          )}
+                          {/* eslint-disable-next-line @next/next/no-img-element -- 관리자 풀 미리보기 */}
+                          <img src={item.url} alt="" className="h-20 w-full object-cover" />
+                          <span className="block truncate px-1.5 py-1 text-[11px] text-content-faint">
+                            {item.name}
+                          </span>
+                        </label>
+                      </li>
+                    );
+                  })}
+                </ul>
+              )}
             </div>
-          ))}
+          )}
+
+          {/* 첨부파일 — noBody(인스타그램 등 링크형)는 첨부 개념이 없어 숨김 */}
+          {!meta.noBody && (
+            <div className="mt-4 border-t border-[#f1f4f8] pt-4">
+              {onUploadFile && (
+                <input
+                  ref={attInputRef}
+                  type="file"
+                  accept="image/*,.pdf,.zip,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.hwp,.hwpx"
+                  className="hidden"
+                  aria-hidden="true"
+                  tabIndex={-1}
+                  onChange={(e) => void handleFilePicked(e.target.files?.[0])}
+                />
+              )}
+              <div className="flex flex-wrap items-center gap-3">
+                <DropTitle>첨부파일</DropTitle>
+                {rec.attachments.length === 0 && (
+                  <span className="text-[11px] text-content-faint">첨부파일이 없습니다.</span>
+                )}
+                <button type="button" onClick={addAtt} className="cms-btn cms-btn-sm ml-auto">
+                  + 파일 추가
+                </button>
+              </div>
+              <div className="mt-3 space-y-2.5">
+                {rec.attachments.map((att, i) => (
+                  <div key={i}>
+                    <div className="grid gap-2 sm:grid-cols-[1fr_1fr_1.5fr_auto_auto]">
+                      <input
+                        type="text"
+                        aria-label={`첨부 ${i + 1} 라벨 한국어`}
+                        value={att.labelKo}
+                        onChange={(e) => updateAtt(i, 'labelKo', e.target.value)}
+                        placeholder="라벨(한)"
+                        className={fieldClass}
+                      />
+                      <input
+                        type="text"
+                        aria-label={`첨부 ${i + 1} 라벨 영어`}
+                        value={att.labelEn}
+                        onChange={(e) => updateAtt(i, 'labelEn', e.target.value)}
+                        placeholder="Label (en)"
+                        className={fieldClass}
+                      />
+                      <input
+                        type="text"
+                        aria-label={`첨부 ${i + 1} 링크`}
+                        value={att.href}
+                        onChange={(e) => updateAtt(i, 'href', e.target.value)}
+                        placeholder="href — 파일 업로드 시 자동 기입"
+                        className={fieldClass}
+                      />
+                      {onUploadFile && (
+                        <button
+                          type="button"
+                          onClick={() => (uploading?.target === i ? cancelUpload() : pickFile(i))}
+                          disabled={uploading !== null && uploading.target !== i}
+                          className={cn(
+                            'whitespace-nowrap',
+                            uploading?.target === i ? 'cms-btn-danger cms-btn-sm' : 'cms-btn cms-btn-sm',
+                          )}
+                          title={uploading?.target === i ? '클릭하면 업로드를 취소합니다' : undefined}
+                        >
+                          {uploading?.target === i ? `${uploadLabel(uploading)} ✕` : '파일'}
+                        </button>
+                      )}
+                      <button type="button" onClick={() => removeAtt(i)} className="cms-btn cms-btn-sm">
+                        삭제
+                      </button>
+                    </div>
+                    {/* 진행 바 — 업로드 중인 행 아래에만 표시 */}
+                    {uploading?.target === i && (
+                      <div className="mt-1.5 h-1 w-full overflow-hidden bg-surface-soft" aria-hidden="true">
+                        <div
+                          className={cn('h-full bg-yonsei-blue transition-[width] duration-200', isIndeterminate(uploading) && 'animate-pulse')}
+                          style={{ width: `${uploadBarWidth(uploading)}%` }}
+                        />
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+              {onUploadFile && (
+                <p className="mt-2 text-[11px] text-content-faint">
+                  파일은 외부 스토리지(Cloudflare R2)에 저장되고 게시물에는 링크만 기록됩니다. 이미지
+                  최대 20MB(자동 압축), 문서 20MB.
+                </p>
+              )}
+            </div>
+          )}
         </div>
-        <button type="button" onClick={addAtt} className="btn-secondary mt-3 px-4 py-2 text-xs">
-          첨부 추가
-        </button>
-        {onUploadFile && (
-          <p className="mt-2 text-xs text-content-faint">
-            파일은 외부 스토리지(Cloudflare R2)에 저장되고 게시물에는 링크만 기록됩니다. 이미지 최대
-            20MB(자동 압축), 문서 20MB.
-          </p>
-        )}
-      </section>
-      )}
 
-      {error && (
-        <p role="alert" className="border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-700 dark:border-red-900 dark:bg-red-950/40 dark:text-red-300">
-          {error}
-        </p>
-      )}
-
-      <div className="flex gap-3 border-t border-surface-border pt-6">
-        <button type="submit" disabled={busy} className="btn-primary disabled:opacity-60">
-          {busy ? '저장 중…' : '저장 (커밋)'}
-        </button>
-        <button type="button" onClick={onCancel} disabled={busy} className="btn-secondary disabled:opacity-60">
-          취소
-        </button>
-        {/* 미리보기는 저장과 무관하므로 업로드/저장 중(busy)에도 활성. ml-auto 로 우측 분리 */}
-        <button type="button" onClick={() => setShowPreview(true)} className="btn-secondary ml-auto">
-          미리보기
-        </button>
+        {/* ── 하단 — 네이비 2px 룰 위에 취소/저장 반복 + id 캡션 ── */}
+        <div className="mt-7 flex flex-wrap items-center gap-3 border-t-2 border-yonsei-navy pt-5">
+          <button type="button" onClick={requestLeave} disabled={busy} className="cms-btn">
+            취소
+          </button>
+          <button type="submit" disabled={busy} className="cms-btn-primary px-10">
+            {busy ? '저장 중…' : '저장'}
+          </button>
+          <span className="ml-auto text-[11px] tabular-nums text-content-faint">
+            {idLabel} {isEdit ? rec.id : '저장 시 자동 부여'}
+          </span>
+        </div>
       </div>
 
-      {showPreview && (
-        <PostPreviewModal meta={meta} rec={rec} onClose={() => setShowPreview(false)} />
+      {confirmLeave && (
+        <CmsModal
+          title="작성 중인 내용이 저장되지 않았습니다"
+          body="지금 목록으로 돌아가면 고친 내용이 사라집니다. 남겨 두려면 ‘임시저장’을 먼저 누르세요(이 브라우저에만 보관됩니다)."
+          confirmLabel="나가기"
+          cancelLabel="계속 쓰기"
+          tone="danger"
+          onConfirm={() => {
+            setConfirmLeave(false);
+            onCancel();
+          }}
+          onCancel={() => setConfirmLeave(false)}
+        />
       )}
     </form>
   );

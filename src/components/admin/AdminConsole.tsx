@@ -81,9 +81,14 @@ function AdminConsoleBody({ token, login }: Props) {
   const showToast = useCallback((msg: string) => setToast(msg), []);
   const dismissToast = useCallback(() => setToast(null), []);
 
+  // 집중 모드 — 글쓰기 화면(PostForm)이 마운트되는 동안만 참. 켜지면 사이드바와
+  // 콘솔 상단 바를 내려 본문을 전체화면 단일 컬럼으로 비운다. 값을 올리고 내리는
+  // 쪽은 폼 자신이라 여기서는 상태만 들고 있는다.
+  const [focusMode, setFocusMode] = useState(false);
+
   const shell = useMemo<AdminShellValue>(
-    () => ({ config, login, deploy, setDeploy, toast, showToast, dismissToast }),
-    [config, login, deploy, toast, showToast, dismissToast],
+    () => ({ config, login, deploy, setDeploy, toast, showToast, dismissToast, focusMode, setFocusMode }),
+    [config, login, deploy, toast, showToast, dismissToast, focusMode],
   );
 
   // 트레이의 대기 변경도 "저장 안 된 편집"이다 — 에디터가 onDirtyChange 를 주지
@@ -144,6 +149,9 @@ function AdminConsoleBody({ token, login }: Props) {
   return (
     <AdminShellProvider value={shell}>
       <div className="bg-surface text-content">
+        {/* 콘솔 상단 바 — 집중 모드(글쓰기)에서는 폼 자신의 고정 바가 그 자리를
+            대신하므로 렌더하지 않는다. 사이트 헤더·히어로·푸터는 그대로 둔다. */}
+        {!focusMode && (
         <header className="sticky top-16 z-30 flex h-[var(--cms-bar)] items-center justify-between gap-4 border-y border-surface-border bg-surface px-6 lg:top-20 lg:px-10">
           <div className="flex min-w-0 items-center gap-3.5">
             <button
@@ -183,11 +191,13 @@ function AdminConsoleBody({ token, login }: Props) {
             </a>
           </div>
         </header>
+        )}
 
-        <div className="grid lg:grid-cols-[248px_minmax(0,1fr)]">
+        <div className={cn(!focusMode && 'grid lg:grid-cols-[248px_minmax(0,1fr)]')}>
           {/* 데스크톱 사이드바 — 헤더+상단 바 아래에 붙어 화면 끝까지 자체 스크롤.
               data-lenis-prevent 가 없으면 전역 Lenis 부드러운 스크롤이 휠 이벤트를
               가로채 사이드바 안쪽이 스크롤되지 않는다(항목이 화면보다 길다). */}
+          {!focusMode && (
           <nav
             aria-label="콘텐츠 선택"
             data-lenis-prevent
@@ -195,9 +205,10 @@ function AdminConsoleBody({ token, login }: Props) {
           >
             <SidebarBody activeId={activeId} onNavigate={navigate} isDashboard={active === null} />
           </nav>
+          )}
 
           {/* 모바일 드로어 — 같은 목록을 상단 바 아래에서 덮어 띄운다 */}
-          {navOpen && (
+          {navOpen && !focusMode && (
             <>
               <button
                 type="button"
@@ -218,8 +229,10 @@ function AdminConsoleBody({ token, login }: Props) {
           {/* 레이아웃이 이미 <main id="main"> 을 두고 있어 여기서는 div 로 둔다
               (main 중첩은 스크린리더의 랜드마크 탐색을 망가뜨린다).
               아래 pb-36 은 하단 고정 변경 트레이가 덮는 자리다 — 이걸 줄이면
-              대기 변경이 있을 때 목록 마지막 항목이 트레이에 가린다. */}
-          <div className="min-w-0 px-6 py-8 pb-36 lg:px-10">
+              대기 변경이 있을 때 목록 마지막 항목이 트레이에 가린다.
+              집중 모드에서는 트레이가 뜨지 않고 폼이 자기 여백을 직접 잡으므로
+              래퍼의 여백을 모두 걷어 전체화면 단일 컬럼으로 둔다. */}
+          <div className={cn('min-w-0', !focusMode && 'px-6 py-8 pb-36 lg:px-10')}>
             {active === null ? (
               <AdminDashboard config={config} onOpen={navigate} />
             ) : active.type === 'board' ? (
