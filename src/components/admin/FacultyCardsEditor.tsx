@@ -26,6 +26,7 @@ import {
   MoveButtons,
   type InlineEditorProps,
 } from './InlineFields';
+import { CmsEmptyState } from './CmsEmptyState';
 
 /** 사진이 없을 때 쓰는 이름 첫 글자 아바타 색 — 이름 해시로 고정(사이트 카드와 같은 방식) */
 function accentFor(name: string): string {
@@ -53,6 +54,7 @@ export function FacultyCardsEditor({
   orderLocked,
   orderable,
   dirtyIndices,
+  invalidPaths,
   search,
   onSearch,
   onEditDetail,
@@ -73,6 +75,12 @@ export function FacultyCardsEditor({
     return [...set].sort();
   }, [rows, key]);
   const [titleFilter, setTitleFilter] = useState('');
+
+  /** 0건 안내의 "초기화" — 검색어와 직급 칩을 함께 비운다. 하나만 지우면 여전히 0건이다 */
+  function resetQuery() {
+    onSearch('');
+    setTitleFilter('');
+  }
 
   const visible = titleFilter
     ? rows.filter((r) => cellText(r.form, key).trim() === titleFilter)
@@ -108,12 +116,18 @@ export function FacultyCardsEditor({
       </InlineToolbar>
 
       {visible.length === 0 ? (
-        <div className="border border-dashed border-surface-border bg-[#fcfdfe] px-6 py-16 text-center">
-          <p className="text-[17px] font-bold text-content">해당 조건의 교수가 없습니다</p>
-          <p className="mt-2.5 text-[13px] text-content-faint">
-            이름 일부만 입력해 보거나, 필터를 ‘전체’로 바꿔 보세요.
-          </p>
-        </div>
+        <CmsEmptyState
+          variant="search"
+          compact
+          title={
+            search.trim() !== ''
+              ? `‘${search.trim()}’ 에 해당하는 교수가 없습니다`
+              : '선택한 조건에 해당하는 교수가 없습니다'
+          }
+          body="검색어를 지우거나 다른 직급을 골라 보세요."
+          actionLabel="검색 초기화"
+          onAction={resetQuery}
+        />
       ) : (
         // 사이트 교수진 목록(FacultyDirectoryGrid)과 같은 2열 가로 카드.
         // 열을 더 늘리면 카드 폭이 좁아져 사진 왼쪽 / 설명 오른쪽 배치가 무너진다.
@@ -130,6 +144,7 @@ export function FacultyCardsEditor({
               orderLocked={orderLocked}
               orderable={orderable}
               dirty={dirtyIndices.has(index)}
+              invalidPaths={invalidPaths}
               onEditDetail={onEditDetail}
               onDelete={onDelete}
               onMove={onMove}
@@ -153,6 +168,7 @@ function FacultyCard({
   orderLocked,
   orderable,
   dirty,
+  invalidPaths,
   onEditDetail,
   onDelete,
   onMove,
@@ -168,6 +184,8 @@ function FacultyCard({
   orderLocked: boolean;
   orderable: boolean;
   dirty: boolean;
+  /** 'index:path' — 이 카드에서 비운 필수 칸 */
+  invalidPaths: Set<string>;
   onEditDetail: (i: number) => void;
   onDelete: (i: number) => void;
   onMove: (i: number, d: -1 | 1) => void;
@@ -327,6 +345,7 @@ function FacultyCard({
             disabled={disabled}
             placeholder="이름"
             ariaLabel="이름"
+            invalid={invalidPaths.has(`${index}:name`)}
             className="-ml-2 w-auto min-w-[88px] max-w-[132px] py-0.5 text-lg font-bold tracking-tight"
           />
           {/* 보직 배지 — 사이트 카드와 같은 블루 톤(시안의 금색은 이 프로젝트에서 금지) */}
@@ -362,6 +381,7 @@ function FacultyCard({
                 placeholder="없음"
                 ariaLabel={`${name} ${labelOf(k)}`}
                 numeric={k === 'phone'}
+                invalid={invalidPaths.has(`${index}:${k}`)}
                 className="py-1 text-[13px]"
               />
             </InlineRow>

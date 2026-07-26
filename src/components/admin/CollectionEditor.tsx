@@ -44,6 +44,7 @@ import {
   type InlinePatch,
   type InlineValue,
 } from '@/lib/admin/inline';
+import { invalidInlinePaths, invalidReason } from '@/lib/admin/validate-inline';
 import {
   calendarChanges,
   calendarPayload,
@@ -62,6 +63,9 @@ import { LabCardsEditor } from './LabCardsEditor';
 import { CmsPanelHead } from './CmsPanelHead';
 import { CommitBanner } from './CommitBanner';
 import { CmsModal } from './CmsModal';
+import { CmsEmptyState } from './CmsEmptyState';
+import { CmsSkeleton, type SkeletonShape } from './CmsSkeleton';
+import { useAdminShell } from './AdminShellContext';
 import { useRegisterTray, type PendingChange } from './ChangeTrayContext';
 
 interface Props {
@@ -92,6 +96,11 @@ function withTrailingNewline(text: string): string {
 }
 
 export function CollectionEditor({ config, resource, onDirtyChange }: Props) {
+  // 저장 결과를 화면 한 곳(상단 토스트·배포 칩·권한 배너)에서만 말하게 한다.
+  // 트레이 저장은 ChangeTray 가 이미 토스트를 띄우므로, 여기서는 트레이를 거치지
+  // 않는 경로(폼 저장·삭제)만 직접 알린다 — 아래 finishSave 의 notify 인자 참고.
+  const { showToast, setDeploy, setWriteDenied } = useAdminShell();
+
   const toForm = useCallback(
     (r: unknown): FormRecord =>
       resource.toForm ? resource.toForm(r) : defaultToForm(resource.fields, r),
@@ -129,6 +138,13 @@ export function CollectionEditor({ config, resource, onDirtyChange }: Props) {
   const [saving, setSaving] = useState(false);
   const [saveError, setSaveError] = useState<string | null>(null);
   const [success, setSuccess] = useState<{ message: string; url: string } | null>(null);
+
+  /**
+   * 저장 충돌(409/422) 안내 — null 이 아니면 모달을 띄운다. pending 은 이 선택으로
+   * 잃게 될 대기 변경 건수다. 상태로 두는 이유는 "재로드할지"를 사용자가 정해야
+   * 하기 때문이다 — 아래 handleSaveError 주석 참고.
+   */
+  const [conflict, setConflict] = useState<{ pending: number } | null>(null);
 
   /**
    * 목록에서 고친 값 (미저장) — index → { 편집 경로: 값 }. 원본과 다른 것만 담는다.
@@ -235,6 +251,41 @@ export function CollectionEditor({ config, resource, onDirtyChange }: Props) {
     () => new Set(Object.keys(inlineEdits).map(Number)),
     [inlineEdits],
   );
+
+  // ---- 필수값 누락 ----
+  //
+  // 목록에서 필수 칸을 비우면 커밋 자체는 성공하고 사이트에 빈 카드가 뜬다. 저장
+  // 이후에 발견되는 실패라 되돌리려면 다시 저장소를 건드려야 한다. 그래서 커밋
+  // 직전에 던지지 않고, 대기 단계에서 트레이의 저장 버튼을 잠그고 이유를 말한다.
+  const invalidPaths = useMemo(
+    () => invalidInlinePaths(resource.fields, inlineEdits),
+    [resource.fields, inlineEdits],
+  );
+  const invalidMsg = useMemo(
+    () => invalidReason(resource.fields, invalidPaths),
+    [resource.fields, invalidPaths],
+  );
+
+  /**
+   * 캘린더의 같은 이유 한 줄.
+   * 캘린더는 인덱스가 아니라 초안 배열 전체를 커밋하므로 inlineEdits 검사가 닿지
+   * 않는다. 검사 대상도 "내가 건드린 항목"이 아니라 초안 전체다 — saveCalendar 의
+   * 기존 throw 가 이미 배열 전체를 보고 있어서, 여기서 범위를 좁히면 버튼은 열려
+   * 있는데 누르면 실패하는 더 나쁜 상태가 된다. (throw 는 최후 방어선으로 남긴다.)
+   */
+  const calInvalidMsg = useMemo(() => {
+    if (!isCalendar || !calDirty) return null;
+    const n = calItems.filter(
+      (f) =>
+        !((f.title as { ko: string } | undefined)?.ko ?? '').trim() ||
+        String(f.start ?? '').trim() === '',
+    ).length;
+    if (n === 0) return null;
+    return `일정 ${n}건에 일정명(한국어) 또는 시작일이 비어 있습니다. 채워야 저장할 수 있습니다.`;
+  }, [isCalendar, calDirty, calItems]);
+
+  /** 지금 저장하면 안 되는 이유 — 트레이가 이 값으로 저장 버튼을 잠근다 */
+  const saveBlockReason = isCalendar ? calInvalidMsg : invalidMsg;
 
   // ---- 변경 트레이 연결 ----
   //
@@ -392,25 +443,54 @@ export function CollectionEditor({ config, resource, onDirtyChange }: Props) {
           revert: revertTrayChange,
           revertAll: revertAllTray,
           save: saveTray,
+          blockReason: saveBlockReason,
         },
   );
 
-  // 커밋 후 재로드 (커밋 sha 는 blob sha 가 아니므로 새 sha 확보 필수)
-  function finishSave(commitSha: string) {
+  /**
+   * 커밋 후 재로드 (커밋 sha 는 blob sha 가 아니므로 새 sha 확보 필수).
+   *
+   * notice: 트레이를 거치지 않은 저장(폼 저장·삭제)만 문구를 넘긴다. 트레이 경로는
+   * ChangeTray.handleSave 가 이미 토스트와 배포 칩을 올리므로 여기서 또 올리면
+   * 같은 말이 두 번 뜬다.
+   */
+  function finishSave(commitSha: string, notice?: string) {
     setEditing(null);
     setMd(null);
     setOrderedRaw(null);
     setCalDraft(null);
     setSuccess(savedBanner(config, commitSha));
+    // 쓰기가 통했으니 권한 배너를 내린다 — 토큰 권한은 나중에 부여될 수 있고,
+    // 한 번 뜬 배너가 남아 있으면 이미 되는 일을 안 된다고 말하게 된다.
+    setWriteDenied(false);
+    if (notice) {
+      showToast(notice);
+      // content/*.json 커밋은 재배포를 거쳐야 사이트에 반영된다(게시판과 다르다).
+      setDeploy('deploying');
+    }
     void load();
   }
 
-  /** silent: 트레이가 자기 자리에 오류를 띄우는 경우 — 같은 문구를 두 번 보여주지 않는다 */
+  /**
+   * silent: 트레이가 자기 자리에 오류를 띄우는 경우 — 같은 문구를 두 번 보여주지 않는다.
+   *
+   * ⚠️ 409/422(다른 사람이 먼저 저장)에서 **조용히 재로드하지 않는다.** 재로드는
+   * 남의 최신본으로 내 화면을 덮는 파괴적 동작이다. 조용히 실행하면 사용자는 방금
+   * 친 값이 왜 사라졌는지 알 수 없다. 그래서 여기서는 모달을 띄우기만 하고, 무엇을
+   * 잃는지 밝힌 뒤 사용자가 고르게 한다. 자동 재시도도 하지 않는다 — 재시도는
+   * 결국 남의 변경을 덮어쓰는 방향으로만 성공한다.
+   */
   function handleSaveError(err: unknown, fallback: string, silent = false) {
     const msg = err instanceof Error ? err.message : fallback;
     if (!silent) setSaveError(msg);
     if (msg.includes('409') || msg.includes('422')) {
-      void load();
+      // 폼 편집 중이면 잃는 것은 지금 폼 1건, 목록이면 트레이의 대기 변경 전부다
+      setConflict({ pending: editing ? 1 : trayChanges.length });
+    }
+    // 권한 부족은 이 화면이 판정하지 않는다 — github.ts 가 만든 문구를 신호로만
+    // 올리고, 배너와 저장 잠금은 셸이 한 곳에서 그린다.
+    if (msg.includes('403') || msg.includes('권한이 부족합니다') || msg.includes('권한이 없습니다')) {
+      setWriteDenied(true);
     }
   }
 
@@ -526,7 +606,7 @@ export function CollectionEditor({ config, resource, onDirtyChange }: Props) {
         }
       }
 
-      finishSave(result.sha);
+      finishSave(result.sha, '저장했습니다 — 1~2분 내 사이트에 반영됩니다.');
     } catch (err) {
       handleSaveError(err, '저장에 실패했습니다.');
     } finally {
@@ -560,7 +640,7 @@ export function CollectionEditor({ config, resource, onDirtyChange }: Props) {
         sha,
         `content: ${resource.label} 삭제 — ${resource.summarize(form)}`,
       );
-      finishSave(result.sha);
+      finishSave(result.sha, '삭제했습니다 — 1~2분 내 사이트에 반영됩니다.');
     } catch (err) {
       handleSaveError(err, '삭제에 실패했습니다.');
     } finally {
@@ -689,6 +769,47 @@ export function CollectionEditor({ config, resource, onDirtyChange }: Props) {
 
   // ---- 렌더 ----
 
+  /**
+   * 저장 충돌 안내 — 목록과 폼 양쪽에서 같은 모양으로 뜬다.
+   * 폼 저장(handleSubmit)에서도 409 가 나므로 목록 쪽에만 두면 폼에서는 아무 일도
+   * 일어나지 않은 것처럼 보인다.
+   */
+  function renderConflict() {
+    if (conflict === null) return null;
+    return (
+      <CmsModal
+        title="다른 사람이 먼저 저장했습니다"
+        tone="danger"
+        confirmLabel="최신본 불러오기"
+        cancelLabel="그대로 두기"
+        body={
+          <>
+            <p>
+              지금 화면의 내용은 최신본이 아닙니다. 최신본을 다시 불러오면 저장 대기 중이던
+              변경 {conflict.pending}건은 사라집니다.
+            </p>
+            <p className="mt-2">
+              값을 잃고 싶지 않다면 <strong className="text-content">그대로 두기</strong>를 고르고,
+              고친 내용을 어딘가에 옮겨 적은 뒤 최신본을 불러와 다시 입력하세요.
+            </p>
+          </>
+        }
+        onConfirm={() => {
+          // 대기 변경은 모두 배열 인덱스 기준이라, 최신본을 받으면 그 편집이 어느
+          // 항목의 것인지 보장할 수 없다. 그래서 재로드와 함께 반드시 비운다.
+          // ⚠️ 폼은 닫지 않는다 — 사용자가 방금 입력한 긴 본문을 잃으면 안 된다.
+          //    갱신 대상은 목록 데이터뿐이다.
+          setConflict(null);
+          setInlineEdits({});
+          setOrderedRaw(null);
+          setCalDraft(null);
+          void load();
+        }}
+        onCancel={() => setConflict(null)}
+      />
+    );
+  }
+
   if (editing) {
     const isNew = editing.index < 0;
     return (
@@ -742,6 +863,7 @@ export function CollectionEditor({ config, resource, onDirtyChange }: Props) {
               : null
           }
         />
+        {renderConflict()}
       </div>
     );
   }
@@ -749,6 +871,12 @@ export function CollectionEditor({ config, resource, onDirtyChange }: Props) {
   // 목록 화면 서술자와, 모든 인라인 화면이 공유하는 입력 묶음.
   // 화면 컴포넌트는 "무엇을 보여줄까"만 알고, 편집·저장 규칙은 전부 여기에 있다.
   const view = resource.listView;
+
+  // 뼈대는 도착할 화면과 같은 모양이어야 의미가 있다 — 표가 올 자리에 카드 뼈대를
+  // 깔면 데이터가 들어오는 순간 레이아웃이 통째로 튀어 없느니만 못하다.
+  // listView 가 없는 리소스는 폴백 표를 그리므로 'table'.
+  const skeletonShape: SkeletonShape = view?.kind ?? 'table';
+
   const viewProps = {
     resource,
     rows,
@@ -756,6 +884,7 @@ export function CollectionEditor({ config, resource, onDirtyChange }: Props) {
     busy: saving,
     locked: orderDirty,
     orderLocked: cardDirty,
+    invalidPaths,
     // 검색 중에는 순서를 옮기지 않는다 — 화면에 안 보이는 이웃과 자리를 바꾸면
     // 무엇이 어디로 갔는지 확인할 방법이 없다.
     orderable: resource.orderable && search.trim() === '',
@@ -816,15 +945,29 @@ export function CollectionEditor({ config, resource, onDirtyChange }: Props) {
           수정한 값은 아래 트레이에 모입니다. 저장 전까지 순서 변경은 잠깁니다.
         </p>
       )}
+      {/* 왜 저장이 잠겼는지 — 트레이 버튼만 흐려지면 사용자는 이유를 찾지 못한다.
+          잠금 판단과 같은 값(saveBlockReason)을 쓰므로 둘이 어긋날 수 없다. */}
+      {saveBlockReason && (
+        <p role="alert" className="mb-4 text-xs font-semibold text-[#b42318]">
+          {saveBlockReason}
+        </p>
+      )}
 
-      {loading && <p className="text-sm text-content-soft">불러오는 중…</p>}
+      {/* 불러오는 동안에도 화면 제목(CmsPanelHead)은 그대로 둔다 — 어느 화면을 여는
+          중인지는 사용자가 방금 눌러서 이미 알고 있다. 제목까지 뼈대로 바꾸면
+          "무엇이 로딩 중인지"를 오히려 잃는다. 흔들리는 것은 목록뿐이어야 한다. */}
+      {loading && <CmsSkeleton shape={skeletonShape} />}
 
       {/* 캘린더는 항목이 0건이어도 달력 자체를 그려야 한다 — 빈 안내로 대체하면
           새 일정을 만들 `+ 일정` 버튼까지 사라진다 */}
       {!loading && !listError && displayRaw.length === 0 && !isCalendar && (
-        <p className="border border-dashed border-surface-border bg-[#fcfdfe] px-6 py-16 text-center text-sm text-content-faint">
-          항목이 없습니다. 위 “+ 새 항목”으로 첫 항목을 만드세요.
-        </p>
+        <CmsEmptyState
+          variant="empty"
+          title="아직 항목이 없습니다"
+          body={`${resource.description} 첫 항목을 만들면 사이트에 바로 반영됩니다.`}
+          actionLabel="+ 새 항목"
+          onAction={startNew}
+        />
       )}
 
       {/* 목록 화면 — 어떤 모양으로 보여줄지는 resource.listView 가 정한다.
@@ -1004,6 +1147,8 @@ export function CollectionEditor({ config, resource, onDirtyChange }: Props) {
           onCancel={() => setDeleting(null)}
         />
       )}
+
+      {renderConflict()}
     </div>
   );
 }

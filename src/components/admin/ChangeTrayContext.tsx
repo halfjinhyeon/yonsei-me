@@ -51,6 +51,13 @@ export interface TraySource {
   save: () => Promise<void>;
   /** 저장 버튼 라벨 접미사 등에 쓸 수 있는 요약 (선택) */
   saveLabel?: string;
+  /**
+   * 지금 저장하면 안 되는 이유 (필수값 누락 등). 있으면 트레이가 저장 버튼을 잠근다.
+   * 셸이 아는 잠금 사유(오프라인·권한)와 달리 이건 화면 안의 데이터를 봐야만 알 수
+   * 있어 에디터가 올려보낸다. 문자열은 그대로 사용자에게 보이므로 "무엇이 왜
+   * 잘못됐는지"를 담아야 한다("입력 오류" 같은 말은 도움이 되지 않는다).
+   */
+  blockReason?: string | null;
 }
 
 interface ChangeTrayValue {
@@ -135,6 +142,10 @@ export function useRegisterTray(source: TraySource | null): void {
 
   const changes = source?.changes;
   const saveLabel = source?.saveLabel;
+  // blockReason 도 의존성에 넣는다 — 필수값을 채워 잠금이 풀렸는데 changes 참조가
+  // 그대로면 트레이는 옛 사유를 계속 들고 저장 버튼을 잠근 채로 남는다.
+  // 값 타입(문자열)이라 매 렌더 새 참조가 생기지 않아 무한 루프를 만들지 않는다.
+  const blockReason = source?.blockReason ?? null;
 
   useEffect(() => {
     if (!changes || changes.length === 0) {
@@ -144,11 +155,12 @@ export function useRegisterTray(source: TraySource | null): void {
     register({
       changes,
       saveLabel,
+      blockReason,
       revert: (id) => latest.current?.revert(id),
       revertAll: () => latest.current?.revertAll(),
       save: () => latest.current?.save() ?? Promise.resolve(),
     });
-  }, [changes, saveLabel, register]);
+  }, [changes, saveLabel, blockReason, register]);
 
   // 언마운트 해제는 별도 effect 로 — 위 effect 의 클린업으로 두면 changes 가 바뀔
   // 때마다 null 등록이 한 번 끼어들어 트레이가 깜빡인다.

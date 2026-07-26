@@ -22,6 +22,7 @@ import {
   MoveButtons,
   type InlineEditorProps,
 } from './InlineFields';
+import { CmsEmptyState } from './CmsEmptyState';
 
 /** 열 폭 — 값의 성격에 맞춘 고정폭. 여기 없는 키는 남은 폭을 나눠 갖는다(교과목명 등) */
 const COLUMN_WIDTH: Record<string, number> = {
@@ -56,6 +57,7 @@ export function InlineTable({
   orderLocked,
   orderable,
   dirtyIndices,
+  invalidPaths,
   search,
   onSearch,
   onEditDetail,
@@ -67,6 +69,14 @@ export function InlineTable({
 }: Props) {
   // 필터 값은 데이터에서 뽑는다 — 표기가 바뀌어도 칩이 따라간다
   const [filters, setFilters] = useState<Record<string, string>>({});
+
+  /** 0건 안내의 "초기화" — 검색어와 칩을 함께 비운다. 둘 중 하나만 지우면 화면은
+   *  여전히 0건이고, 사용자는 무엇이 더 남았는지 알 수 없다. */
+  function resetQuery() {
+    onSearch('');
+    setFilters({});
+  }
+  const filtered = Object.values(filters).some((v) => v);
 
   const columns = useMemo(
     () =>
@@ -155,9 +165,24 @@ export function InlineTable({
       </InlineToolbar>
 
       {visible.length === 0 ? (
-        <p className="border border-dashed border-surface-border bg-[#fcfdfe] px-6 py-16 text-center text-sm text-content-faint">
-          조건에 맞는 항목이 없습니다.
-        </p>
+        <CmsEmptyState
+          variant="search"
+          compact
+          title={
+            search.trim() !== ''
+              ? `‘${search.trim()}’ 에 해당하는 항목이 없습니다`
+              : '선택한 조건에 해당하는 항목이 없습니다'
+          }
+          body={
+            filtered && search.trim() !== ''
+              ? '검색어를 지우거나 다른 조건을 골라 보세요.'
+              : search.trim() !== ''
+                ? '검색어의 일부만 남겨 보세요.'
+                : '위 칩에서 다른 조건을 골라 보세요.'
+          }
+          actionLabel="검색 초기화"
+          onAction={resetQuery}
+        />
       ) : (
         // 네이비 2px 룰은 헤더 "위" — 사이트 본문 표와 같은 문법이다.
         // 전역 Lenis 부드러운 스크롤이 휠을 가로채면 표 안쪽이 스크롤되지 않는다.
@@ -202,6 +227,7 @@ export function InlineTable({
                           index={index}
                           disabled={cellDisabled}
                           bold={col === 0 || f.key === 'code' || f.key === 'name'}
+                          invalidPaths={invalidPaths}
                           onPatch={onPatch}
                         />
                       </td>
@@ -257,6 +283,7 @@ function Cell({
   index,
   disabled,
   bold,
+  invalidPaths,
   onPatch,
 }: {
   field: FieldDef;
@@ -264,18 +291,22 @@ function Cell({
   index: number;
   disabled: boolean;
   bold: boolean;
+  invalidPaths: Set<string>;
   onPatch: (index: number, path: string, value: string) => void;
 }) {
   const numeric = field.key === 'phone' || field.key === 'code' || field.key === 'credits';
+  const isInvalid = (path: string) => invalidPaths.has(`${index}:${path}`);
 
   if (field.kind === 'localized') {
     return (
       <div className="px-0.5 py-1">
+        {/* 위험색은 한국어 칸에만 — 영문은 비어도 localizedValue 가 한국어를 복사한다 */}
         <InlineText
           value={String(formInlineValue([field], form, `${field.key}.ko`))}
           onChange={(v) => onPatch(index, `${field.key}.ko`, v)}
           disabled={disabled}
           ariaLabel={`${field.label} (한국어)`}
+          invalid={isInvalid(`${field.key}.ko`)}
           className={cn('py-1', bold && 'font-bold')}
         />
         <InlineText
@@ -299,6 +330,7 @@ function Cell({
         onChange={(v) => onPatch(index, field.key, v)}
         disabled={disabled}
         ariaLabel={field.label}
+        invalid={isInvalid(field.key)}
         className="py-2.5"
       />
     );
@@ -312,6 +344,7 @@ function Cell({
       placeholder={field.placeholder}
       ariaLabel={field.label}
       numeric={numeric}
+      invalid={isInvalid(field.key)}
       className={cn('py-3', bold && 'font-semibold')}
     />
   );

@@ -32,6 +32,12 @@ export interface InlineEditorProps {
   orderable: boolean;
   /** 저장 대기 중인 편집이 있는 원본 인덱스 — 좌측 파란 막대 표시용 */
   dirtyIndices: Set<number>;
+  /**
+   * 비워 버린 필수 칸 — 'index:path' 키 (예: '3:name', '7:role.ko').
+   * 화면은 해당 셀에 위험색 테두리만 얹는다. 저장을 잠그는 판단은 CollectionEditor 가
+   * blockReason 으로 트레이에 올린다(화면마다 저장 규칙이 갈리면 안 된다).
+   */
+  invalidPaths: Set<string>;
   search: string;
   onSearch: (v: string) => void;
   onEditDetail: (index: number) => void;
@@ -144,6 +150,18 @@ export function InlineToolbar({
   );
 }
 
+/**
+ * 필수인데 비어 버린 셀의 표시.
+ *
+ * ⚠️ 저장을 막되 입력을 되돌리지는 않는다 — 사용자가 지운 이유가 있을 수 있고,
+ * 값을 강제로 복원하면 무엇이 원래 값이었는지 더 헷갈린다. 그래서 화면은 "여기가
+ * 비었다"만 말하고, 다시 채우는 일은 사용자에게 남긴다.
+ *
+ * `.cms-cell` 은 components 레이어라 utilities 레이어인 아래 클래스가 이긴다
+ * (평상시 border-transparent, 포커스 시 파란 테두리를 모두 덮는다).
+ */
+const INVALID_CELL = 'border-[#b42318] bg-[#b42318]/[0.04] focus:border-[#b42318]';
+
 /** 인라인 텍스트 셀 — 평소엔 표에 녹아 있다가 포커스에서 파란 테두리가 선다 */
 export function InlineText({
   value,
@@ -153,6 +171,7 @@ export function InlineText({
   ariaLabel,
   className,
   numeric,
+  invalid,
 }: {
   value: string;
   onChange: (v: string) => void;
@@ -161,6 +180,8 @@ export function InlineText({
   ariaLabel: string;
   className?: string;
   numeric?: boolean;
+  /** 필수인데 비었다 — 위험색 테두리 + aria-invalid */
+  invalid?: boolean;
 }) {
   return (
     <input
@@ -170,7 +191,8 @@ export function InlineText({
       disabled={disabled}
       placeholder={placeholder}
       aria-label={ariaLabel}
-      className={cn('cms-cell', numeric && 'tabular-nums', className)}
+      aria-invalid={invalid ? 'true' : undefined}
+      className={cn('cms-cell', numeric && 'tabular-nums', className, invalid && INVALID_CELL)}
     />
   );
 }
@@ -184,6 +206,7 @@ export function InlineSelect({
   disabled,
   ariaLabel,
   className,
+  invalid,
 }: {
   value: string;
   options: SelectOption[];
@@ -192,6 +215,8 @@ export function InlineSelect({
   disabled?: boolean;
   ariaLabel: string;
   className?: string;
+  /** 필수인데 "없음"으로 비웠다 — 위험색 테두리 + aria-invalid */
+  invalid?: boolean;
 }) {
   return (
     <select
@@ -199,7 +224,8 @@ export function InlineSelect({
       onChange={(e) => onChange(e.target.value)}
       disabled={disabled}
       aria-label={ariaLabel}
-      className={cn('cms-cell cursor-pointer', className)}
+      aria-invalid={invalid ? 'true' : undefined}
+      className={cn('cms-cell cursor-pointer', className, invalid && INVALID_CELL)}
     >
       {emptyOptionLabel !== undefined && <option value="">{emptyOptionLabel}</option>}
       {options.map((o) => (

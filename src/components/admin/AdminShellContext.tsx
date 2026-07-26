@@ -16,6 +16,7 @@ import { createContext, useContext, useEffect } from 'react';
 import { cn } from '@/lib/utils';
 import type { RepoConfig } from '@/lib/admin/github';
 import type { MenuEntry } from '@/lib/admin/resources';
+import type { CmsBannerData } from './CmsBanner';
 
 export type DeployState = 'idle' | 'deploying';
 
@@ -36,8 +37,31 @@ export interface AdminShellValue {
    * 캘린더의 "게시판 연동 일정"은 여기서 고칠 수 없고 해당 게시판에서 고쳐야 하는데,
    * 안내만 하고 사용자가 사이드바에서 그 게시판을 다시 찾게 두면 안내가 무의미하다.
    * 셸의 이동 가드(미저장 확인)를 그대로 타므로 대기 변경이 조용히 사라지지 않는다.
+   * null 을 넘기면 대시보드로 돌아간다(권한 배너의 "권한 안내 보기"가 그 경로를 쓴다).
    */
-  openEntry: (entry: MenuEntry) => void;
+  openEntry: (entry: MenuEntry | null) => void;
+
+  // ---- 운영 상태 (12종) ----
+  // 아래 값들이 개별 에디터가 아니라 셸에 있는 이유는 하나다: 전부 "지금 보고 있는
+  // 화면과 무관하게 참인 상태"이기 때문이다. 에디터마다 따로 감지하면 화면을 옮길
+  // 때마다 상태가 초기화되고, 같은 조건을 화면마다 다른 말로 설명하게 된다.
+
+  /** 마운트 후에만 갱신되는 온라인 여부.
+   *  ⚠️ navigator.onLine 은 SSR 에 없다 — 초기값은 항상 true 로 두고
+   *     마운트 뒤에만 실제 값을 읽어야 하이드레이션 불일치가 나지 않는다. */
+  online: boolean;
+  /** 저장소 쓰기 권한 없음(403). 에디터가 실패 응답을 보고 켠다.
+   *  인증·권한 판정 자체는 여기서 하지 않는다 — 실패를 화면에서 어떻게 말할지만 다룬다. */
+  writeDenied: boolean;
+  setWriteDenied: (v: boolean) => void;
+  /** 그 외 임시 배너 (오프라인·권한 배너는 셸이 직접 계산하므로 여기 담지 않는다).
+   *  화면 쪽에서 "이 상태를 상단에 계속 띄워 달라"고 올려보내는 통로다. */
+  banner: CmsBannerData | null;
+  setBanner: (b: CmsBannerData | null) => void;
+  /** 저장이 막혀 있으면 그 이유, 아니면 null. 변경 트레이가 저장 버튼을 잠근다.
+   *  잠금 판정을 트레이가 아니라 셸이 하는 이유: 잠그는 조건(오프라인·권한)이
+   *  트레이의 관심사가 아니라 콘솔 전체의 상태이기 때문이다. */
+  saveBlock: string | null;
 }
 
 const AdminShellContext = createContext<AdminShellValue | null>(null);

@@ -23,6 +23,7 @@ import {
   InlineToolbar,
   type InlineEditorProps,
 } from './InlineFields';
+import { CmsEmptyState } from './CmsEmptyState';
 
 interface Props extends InlineEditorProps {
   inlineKeys: string[];
@@ -36,6 +37,7 @@ export function LabCardsEditor({
   busy,
   locked,
   dirtyIndices,
+  invalidPaths,
   search,
   onSearch,
   onEditDetail,
@@ -45,6 +47,13 @@ export function LabCardsEditor({
 }: Props) {
   const [fieldFilter, setFieldFilter] = useState('');
   const [internOnly, setInternOnly] = useState(false);
+
+  /** 0건 안내의 "초기화" — 검색어와 이 화면의 칩 둘(분야·인턴 모집)을 함께 비운다 */
+  function resetQuery() {
+    onSearch('');
+    setFieldFilter('');
+    setInternOnly(false);
+  }
 
   const filterField = filterKey
     ? resource.fields.find((f) => f.key === filterKey)
@@ -97,9 +106,18 @@ export function LabCardsEditor({
       </InlineToolbar>
 
       {visible.length === 0 ? (
-        <p className="border border-dashed border-surface-border bg-[#fcfdfe] px-6 py-16 text-center text-sm text-content-faint">
-          조건에 맞는 연구실이 없습니다.
-        </p>
+        <CmsEmptyState
+          variant="search"
+          compact
+          title={
+            search.trim() !== ''
+              ? `‘${search.trim()}’ 에 해당하는 연구실이 없습니다`
+              : '선택한 조건에 해당하는 연구실이 없습니다'
+          }
+          body="검색어를 지우거나 다른 조건을 골라 보세요."
+          actionLabel="검색 초기화"
+          onAction={resetQuery}
+        />
       ) : (
         // auto-fill — 넓은 화면에서는 열이 더 늘어난다(33개를 훑는 화면이라 밀도가 중요)
         <ul className="grid gap-5 [grid-template-columns:repeat(auto-fill,minmax(288px,1fr))]">
@@ -146,6 +164,7 @@ export function LabCardsEditor({
                     onChange={(v) => onPatch(index, 'nameKo', v)}
                     disabled={disabled}
                     ariaLabel="연구실명 (한국어)"
+                    invalid={invalidPaths.has(`${index}:nameKo`)}
                     className="mt-2 py-1 text-[15px] font-bold tracking-tight"
                   />
                   <InlineText
@@ -154,6 +173,7 @@ export function LabCardsEditor({
                     disabled={disabled}
                     placeholder="영문명 없음 — 영문 페이지에 한국어가 노출됩니다"
                     ariaLabel="연구실명 (English)"
+                    invalid={invalidPaths.has(`${index}:nameEn`)}
                     className="py-1 text-xs text-content-faint"
                   />
                 </div>
@@ -173,6 +193,7 @@ export function LabCardsEditor({
                           placeholder="없음"
                           ariaLabel={`${name} ${def?.label ?? key}`.trim()}
                           numeric={key === 'phone'}
+                          invalid={invalidPaths.has(`${index}:${key}`)}
                           className="py-1.5 text-xs"
                         />
                       </InlineRow>

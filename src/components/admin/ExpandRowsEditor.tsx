@@ -14,11 +14,16 @@ import { cn } from '@/lib/utils';
 import { cellText, type FieldDef } from '@/lib/admin/resources';
 import { formInlineValue } from '@/lib/admin/inline';
 import { DIRTY_SURFACE, InlineToolbar, type InlineEditorProps } from './InlineFields';
+import { CmsEmptyState } from './CmsEmptyState';
 
 interface Props extends InlineEditorProps {
   summaryKeys: string[];
   expandKeys: string[];
 }
+
+/** 필수인데 비운 칸 — 이 화면은 cms-input 계열 입력을 직접 쓰므로 같은 색을 여기에 둔다.
+ *  utilities 레이어라 components 레이어의 .cms-input* 테두리를 덮는다. */
+const INVALID_INPUT = 'border-[#b42318] bg-[#b42318]/[0.04] focus:border-[#b42318]';
 
 export function ExpandRowsEditor({
   resource,
@@ -27,6 +32,7 @@ export function ExpandRowsEditor({
   busy,
   locked,
   dirtyIndices,
+  invalidPaths,
   search,
   onSearch,
   onEditDetail,
@@ -53,10 +59,20 @@ export function ExpandRowsEditor({
         unit="개"
       />
 
+      {/* 이 화면은 필터 칩이 없어 0건의 원인이 검색어 하나뿐이다 — 초기화도 검색어만 비운다 */}
       {rows.length === 0 ? (
-        <p className="border border-dashed border-surface-border bg-[#fcfdfe] px-6 py-16 text-center text-sm text-content-faint">
-          조건에 맞는 항목이 없습니다.
-        </p>
+        <CmsEmptyState
+          variant="search"
+          compact
+          title={
+            search.trim() !== ''
+              ? `‘${search.trim()}’ 에 해당하는 교과목이 없습니다`
+              : '선택한 조건에 해당하는 교과목이 없습니다'
+          }
+          body="검색어를 지우거나 학정번호 일부만 남겨 보세요."
+          actionLabel="검색 초기화"
+          onAction={() => onSearch('')}
+        />
       ) : (
         // 목록 첫 행 위에 네이비 2px 룰 (표 헤더와 같은 문법)
         <div className="border-t-2 border-yonsei-navy">
@@ -138,7 +154,13 @@ export function ExpandRowsEditor({
                               onChange={(e) => onPatch(index, f.key, e.target.value)}
                               disabled={disabled}
                               placeholder={f.placeholder}
-                              className="cms-input-sm"
+                              aria-invalid={
+                                invalidPaths.has(`${index}:${f.key}`) ? 'true' : undefined
+                              }
+                              className={cn(
+                                'cms-input-sm',
+                                invalidPaths.has(`${index}:${f.key}`) && INVALID_INPUT,
+                              )}
                             />
                           </label>
                         ))}
@@ -158,7 +180,13 @@ export function ExpandRowsEditor({
                             onChange={(e) => onPatch(index, f.key, e.target.value)}
                             disabled={disabled}
                             placeholder="이 과목에서 다루는 내용을 2~4문장으로 적습니다."
-                            className="cms-input resize-y leading-[1.8]"
+                            aria-invalid={
+                              invalidPaths.has(`${index}:${f.key}`) ? 'true' : undefined
+                            }
+                            className={cn(
+                              'cms-input resize-y leading-[1.8]',
+                              invalidPaths.has(`${index}:${f.key}`) && INVALID_INPUT,
+                            )}
                           />
                         </label>
                       ))}

@@ -13,11 +13,15 @@ import { cn } from '@/lib/utils';
 import { cellText } from '@/lib/admin/resources';
 import { formInlineValue } from '@/lib/admin/inline';
 import { DIRTY_SURFACE, InlineText, InlineToolbar, type InlineEditorProps } from './InlineFields';
+import { CmsEmptyState } from './CmsEmptyState';
 
 interface Props extends InlineEditorProps {
   dateKey: string;
   bodyKey: string;
 }
+
+/** 연월 입력은 cms-cell 을 직접 쓰므로(InlineText 가 아니다) 같은 색을 여기에 둔다 */
+const INVALID_CELL = 'border-[#b42318] bg-[#b42318]/[0.04] focus:border-[#b42318]';
 
 export function HistoryTimelineEditor({
   resource,
@@ -26,6 +30,7 @@ export function HistoryTimelineEditor({
   busy,
   locked,
   dirtyIndices,
+  invalidPaths,
   search,
   onSearch,
   onDelete,
@@ -61,10 +66,20 @@ export function HistoryTimelineEditor({
             className="absolute bottom-1.5 left-[5px] top-1.5 w-0.5 bg-gradient-to-b from-yonsei-navy via-yonsei-blue to-[#2E86D6]"
           />
 
+          {/* 필터 칩이 없는 화면이라 0건의 원인은 검색어뿐 — 초기화도 검색어만 비운다 */}
           {rows.length === 0 ? (
-            <p className="border border-dashed border-surface-border bg-[#fcfdfe] px-6 py-16 text-center text-sm text-content-faint">
-              조건에 맞는 항목이 없습니다.
-            </p>
+            <CmsEmptyState
+              variant="search"
+              compact
+              title={
+                search.trim() !== ''
+                  ? `‘${search.trim()}’ 에 해당하는 항목이 없습니다`
+                  : '선택한 조건에 해당하는 항목이 없습니다'
+              }
+              body="검색어를 지우거나 연월(예: 1958-12)만 남겨 보세요."
+              actionLabel="검색 초기화"
+              onAction={() => onSearch('')}
+            />
           ) : (
             rows.map(({ index, form }) => {
               const dirty = dirtyIndices.has(index);
@@ -87,7 +102,13 @@ export function HistoryTimelineEditor({
                       onChange={(e) => onPatch(index, dateKey, e.target.value)}
                       disabled={disabled}
                       aria-label={dateField?.label ?? '연월'}
-                      className="cms-cell w-[150px] py-1 text-[13px] font-bold tabular-nums text-yonsei-blue"
+                      aria-invalid={
+                        invalidPaths.has(`${index}:${dateKey}`) ? 'true' : undefined
+                      }
+                      className={cn(
+                        'cms-cell w-[150px] py-1 text-[13px] font-bold tabular-nums text-yonsei-blue',
+                        invalidPaths.has(`${index}:${dateKey}`) && INVALID_CELL,
+                      )}
                     />
                     {/* 형식 안내를 따로 적지 않는다 — type=month 입력이 이미 자기
                         형식으로 값을 보여줘서 "YYYY-MM" 문구가 오히려 어긋나 보인다 */}
@@ -104,11 +125,13 @@ export function HistoryTimelineEditor({
                     </button>
                   </div>
 
+                  {/* 위험 표시는 한국어 칸에만 — 영문은 비어도 한국어가 폴백된다 */}
                   <InlineText
                     value={String(formInlineValue(resource.fields, form, `${bodyKey}.ko`))}
                     onChange={(v) => onPatch(index, `${bodyKey}.ko`, v)}
                     disabled={disabled}
                     ariaLabel={`${bodyField?.label ?? '내용'} (한국어)`}
+                    invalid={invalidPaths.has(`${index}:${bodyKey}.ko`)}
                     className="mt-1 py-1 text-[15px] font-semibold tracking-tight"
                   />
                   <InlineText

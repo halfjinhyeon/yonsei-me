@@ -14,14 +14,26 @@ import { useChangeTray, type PendingChange } from './ChangeTrayContext';
 
 export function ChangeTray() {
   const { source, saving, error, runSave } = useChangeTray();
-  const { showToast, setDeploy } = useAdminShell();
+  const { showToast, setDeploy, saveBlock } = useAdminShell();
 
   // 등록된 소스가 없거나 대기 변경이 없으면 트레이 자체를 그리지 않는다
   if (!source || source.changes.length === 0) return null;
 
   const changes = source.changes;
 
+  // 저장 잠금 — 셸이 아는 사유(오프라인·권한 없음)를 먼저 보고, 없으면 화면이
+  // 올려보낸 사유(필수값 누락 등)를 쓴다. 셸 쪽이 우선인 이유는 그 상태에서는
+  // 필수값을 다 채워도 커밋이 어차피 실패하기 때문이다.
+  //
+  // 왜 아예 잠그는가: 오프라인/권한 없음/필수값 누락 상태에서 커밋을 시도하면
+  // 실패가 확정인데, 실패해도 대기 변경은 남으므로 사용자는 같은 실패를 반복하게
+  // 된다. 누르기 전에 이유를 말하고 막는다.
+  const blocked = saveBlock ?? source.blockReason ?? null;
+
   async function handleSave() {
+    // 버튼이 이미 disabled 지만, 잠금 사유가 생기는 순간 진행 중이던 클릭이
+    // 통과하지 않도록 실행 직전에 한 번 더 막는다.
+    if (blocked) return;
     const ok = await runSave();
     if (!ok) return;
     showToast('저장했습니다 — 1~2분 내 사이트에 반영됩니다.');
@@ -42,6 +54,18 @@ export function ChangeTray() {
           className="border-b border-surface-border bg-[#fdf3f2] px-6 py-2 text-[12px] font-semibold leading-relaxed text-[#b42318] lg:px-10"
         >
           {error} — 변경은 그대로 두었습니다. 다시 저장하거나 되돌릴 수 있습니다.
+        </p>
+      )}
+
+      {/* 잠금 사유 — 실패한 사건(error)이 아니라 지금 계속되고 있는 조건이라
+          role="status" 로 조용히 알린다. 문구를 "저장할 수 없습니다 —" 로 열어
+          바로 위 error 줄("저장에 실패했습니다…")과 눈으로도 구분되게 했다. */}
+      {blocked && (
+        <p
+          role="status"
+          className="border-b border-surface-border bg-[#fdf3f2] px-6 py-2 text-[12px] font-semibold leading-relaxed text-[#b42318] lg:px-10"
+        >
+          저장할 수 없습니다 — {blocked}
         </p>
       )}
 
@@ -71,6 +95,8 @@ export function ChangeTray() {
         </div>
 
         <span className="ml-auto flex flex-none items-center gap-2.5">
+          {/* 되돌리기는 잠겨도 계속 눌러야 한다 — 저장이 막힌 상태에서 유일하게
+              남는 빠져나갈 길이라, 이것까지 잠그면 사용자가 갇힌다. */}
           <button
             type="button"
             onClick={source.revertAll}
@@ -82,7 +108,8 @@ export function ChangeTray() {
           <button
             type="button"
             onClick={() => void handleSave()}
-            disabled={saving}
+            disabled={saving || blocked !== null}
+            title={blocked ?? undefined}
             className="cms-btn-primary"
           >
             {saving ? '저장 중…' : `저장 (커밋)${source.saveLabel ? ` · ${source.saveLabel}` : ''}`}

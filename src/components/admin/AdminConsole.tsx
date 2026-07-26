@@ -18,7 +18,7 @@
 // 콘텐츠/코드 분리 원칙은 "사이트 콘텐츠"(content/*)에 적용된다.
 // 이 관리자 도구는 내부 운영용이라 한국어 UI 문자열을 컴포넌트에 직접 둔다.
 
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { cn } from '@/lib/utils';
 import { type BoardKey } from '@/lib/admin/boards';
 import { type RepoConfig } from '@/lib/admin/github';
@@ -33,6 +33,7 @@ import {
 import { BoardEditor } from './BoardEditor';
 import { ChangeTray } from './ChangeTray';
 import { ChangeTrayProvider, useChangeTray } from './ChangeTrayContext';
+import { CmsBanner, type CmsBannerData } from './CmsBanner';
 import { CmsModal } from './CmsModal';
 import { CollectionEditor } from './CollectionEditor';
 import { entryId, entryKind, entryLabel, isEditable, pushRecent } from './entries';
@@ -86,6 +87,56 @@ function AdminConsoleBody({ token, login }: Props) {
   // 쪽은 폼 자신이라 여기서는 상태만 들고 있는다.
   const [focusMode, setFocusMode] = useState(false);
 
+  // ---- 운영 상태: 오프라인 / 쓰기 권한 없음 / 임시 배너 ----
+  // 셋 다 "지금 보고 있는 화면과 무관하게 참인 조건"이라 셸이 들고 상단 한 자리에서
+  // 말한다. 에디터마다 따로 감지하면 화면을 옮길 때마다 상태가 초기화된다.
+
+  // ⚠️ navigator.onLine 은 서버에 없다. 초기값을 그걸로 두면 SSR 이 터지거나
+  // 하이드레이션이 어긋나므로 항상 true 로 시작하고 마운트 뒤에 실제 값을 읽는다.
+  const [online, setOnline] = useState(true);
+  // 저장소 쓰기 권한 없음(403) — 커밋을 실제로 시도한 에디터가 실패 응답을 보고 켠다.
+  const [writeDenied, setWriteDenied] = useState(false);
+  // 화면 쪽이 올려보내는 임시 배너 (오프라인·권한 배너는 아래에서 셸이 직접 만든다)
+  const [banner, setBanner] = useState<CmsBannerData | null>(null);
+  // 대시보드에서 자동으로 펼쳐 둘 안내 제목 — 권한 배너의 "권한 안내 보기"가 쓴다.
+  // 안내로 보내 놓고 사용자가 그 긴 목록에서 항목을 다시 찾게 두면 안내가 무의미하다.
+  const [openGuide, setOpenGuide] = useState<string | undefined>(undefined);
+
+  useEffect(() => {
+    setOnline(navigator.onLine);
+    const goOnline = () => setOnline(true);
+    const goOffline = () => setOnline(false);
+    window.addEventListener('online', goOnline);
+    window.addEventListener('offline', goOffline);
+    return () => {
+      window.removeEventListener('online', goOnline);
+      window.removeEventListener('offline', goOffline);
+    };
+  }, []);
+
+  // 연결 복구 알림 — 끊긴 동안 저장을 포기하고 기다리던 사용자에게 "이제 된다"를
+  // 말해 준다. 첫 마운트에서는 뜨면 안 되므로 "이전에 끊겼던 적이 있는지"를 ref 로
+  // 기억한다. (오프라인으로 마운트한 경우에도 online 초기값이 true 라 첫 패스에는
+  // 토스트가 뜨지 않고, 실제 값이 반영된 다음 패스에서 비로소 ref 가 선다.)
+  const wasOffline = useRef(false);
+  useEffect(() => {
+    if (!online) {
+      wasOffline.current = true;
+      return;
+    }
+    if (!wasOffline.current) return;
+    wasOffline.current = false;
+    showToast('인터넷 연결이 돌아왔습니다 — 이제 저장할 수 있습니다.');
+  }, [online, showToast]);
+
+  // 저장 잠금 사유 — 트레이가 이 문자열을 그대로 사용자에게 보여준다.
+  // 우선순위는 배너와 같다(연결이 없으면 권한 여부는 확인조차 할 수 없다).
+  const saveBlock = !online
+    ? '인터넷 연결이 끊겨 저장할 수 없습니다.'
+    : writeDenied
+      ? '이 계정은 저장소에 쓸 권한이 없습니다.'
+      : null;
+
   // 트레이의 대기 변경도 "저장 안 된 편집"이다 — 에디터가 onDirtyChange 를 주지
   // 않더라도 트레이에 쌓인 게 있으면 그냥 넘어가면 안 된다.
   const { source: traySource, saving: traySaving, clearTray } = useChangeTray();
@@ -107,6 +158,10 @@ function AdminConsoleBody({ token, login }: Props) {
       clearTray();
       setActive(next);
       setNavOpen(false);
+      // 대시보드를 떠나면 "자동으로 펼쳐 둘 안내"는 소임을 다한 것이라 지운다.
+      // 목적지가 대시보드(null)일 때는 지우지 않는다 — 그 이동이 바로 안내를
+      // 펼치러 가는 길이기 때문이다.
+      if (next !== null) setOpenGuide(undefined);
       if (next && isEditable(next)) pushRecent(entryId(next));
     },
     [clearTray],
@@ -129,14 +184,64 @@ function AdminConsoleBody({ token, login }: Props) {
     [dirty, pendingCount, traySaving, showToast, go],
   );
 
-  // 셸 컨텍스트 — 배포 상태 칩·토스트·집중 모드, 그리고 화면 안 이동(openEntry).
+  // 지금 띄울 배너 하나 — 오프라인 > 권한 없음 > 화면이 올려보낸 배너 순.
+  // 여러 개를 쌓지 않는 이유: 배너가 두 줄 세 줄로 늘면 본문을 그만큼 밀어내
+  // "잠깐 뜬 알림"이 아니라 레이아웃 변화가 되고, 정작 가장 급한 조건이 묻힌다.
+  const activeBanner = useMemo<CmsBannerData | null>(() => {
+    if (!online) {
+      return {
+        id: 'offline',
+        tone: 'danger',
+        title: '인터넷 연결이 끊겼습니다',
+        body: '저장은 연결이 돌아온 뒤에 됩니다.',
+        // 연결 상태는 스스로 사라지는 조건이라 닫기를 주지 않는다. 닫아 놓고
+        // 저장이 왜 안 되는지 모르게 되는 편이 더 나쁘다.
+        dismissible: false,
+      };
+    }
+    if (writeDenied) {
+      return {
+        id: 'forbidden',
+        tone: 'danger',
+        title: '이 계정은 저장소에 쓸 권한이 없습니다',
+        body: '관리자에게 Write 권한을 요청하세요.',
+        dismissible: true,
+        action: {
+          label: '권한 안내 보기',
+          onClick: () => {
+            // 안내 항목을 먼저 지정하고 대시보드로 보낸다. 순서가 반대면 이동
+            // 가드가 확인 모달을 띄우는 경우 지정이 뒤늦게 씻겨 나간다.
+            setOpenGuide('새 관리자 등록');
+            navigate(null);
+          },
+        },
+      };
+    }
+    return banner;
+  }, [online, writeDenied, banner, navigate]);
+
+  // 닫기 — 배너를 지우는 게 아니라 그 배너를 띄운 상태를 끈다(오프라인은 닫을 수 없다)
+  const dismissBanner = useCallback(() => {
+    if (writeDenied) {
+      setWriteDenied(false);
+      return;
+    }
+    setBanner(null);
+  }, [writeDenied]);
+
+  // 셸 컨텍스트 — 배포 상태 칩·토스트·집중 모드, 화면 안 이동(openEntry),
+  // 그리고 운영 상태(온라인·권한·배너·저장 잠금).
   // navigate 를 참조하므로 그 선언 뒤에 둔다(이동 가드를 그대로 물려받기 위함).
   const shell = useMemo<AdminShellValue>(
     () => ({
       config, login, deploy, setDeploy, toast, showToast, dismissToast,
       focusMode, setFocusMode, openEntry: navigate,
+      online, writeDenied, setWriteDenied, banner, setBanner, saveBlock,
     }),
-    [config, login, deploy, toast, showToast, dismissToast, focusMode, navigate],
+    [
+      config, login, deploy, toast, showToast, dismissToast, focusMode, navigate,
+      online, writeDenied, banner, saveBlock,
+    ],
   );
 
   // 드로어는 Esc 로도 닫는다(모달과 같은 규칙 — 열린 오버레이는 Esc 로 나간다)
@@ -198,6 +303,24 @@ function AdminConsoleBody({ token, login }: Props) {
         </header>
         )}
 
+        {/* 운영 상태 배너 — 상단 바 바로 아래 한 자리에 sticky 로 붙는다.
+            집중 모드(글쓰기)에서도 렌더한다: 긴 글을 쓰는 동안 연결이 끊긴 걸
+            모르고 있다가 저장에서 처음 알게 되는 상황이 가장 나쁘다. 다만 그때는
+            콘솔 상단 바가 없으므로 --cms-bar 만큼 기준선을 올린다.
+            z-[31] 은 사이드바(sticky)보다 위, 드로어 오버레이(z-30/40)와 겹치지 않는 값. */}
+        {activeBanner && (
+          <div
+            className={cn(
+              'sticky z-[31]',
+              focusMode
+                ? 'top-16 lg:top-20'
+                : 'top-[calc(4rem+var(--cms-bar))] lg:top-[calc(5rem+var(--cms-bar))]',
+            )}
+          >
+            <CmsBanner banner={activeBanner} onDismiss={dismissBanner} />
+          </div>
+        )}
+
         <div className={cn(!focusMode && 'grid lg:grid-cols-[248px_minmax(0,1fr)]')}>
           {/* 데스크톱 사이드바 — 헤더+상단 바 아래에 붙어 화면 끝까지 자체 스크롤.
               data-lenis-prevent 가 없으면 전역 Lenis 부드러운 스크롤이 휠 이벤트를
@@ -239,7 +362,7 @@ function AdminConsoleBody({ token, login }: Props) {
               래퍼의 여백을 모두 걷어 전체화면 단일 컬럼으로 둔다. */}
           <div className={cn('min-w-0', !focusMode && 'px-6 py-8 pb-36 lg:px-10')}>
             {active === null ? (
-              <AdminDashboard config={config} onOpen={navigate} />
+              <AdminDashboard config={config} onOpen={navigate} openGuide={openGuide} />
             ) : active.type === 'board' ? (
               <BoardEditor
                 key={activeId ?? undefined}

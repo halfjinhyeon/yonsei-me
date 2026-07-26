@@ -32,8 +32,10 @@ import { clearPostDraft, postDraftKey } from '@/lib/admin/post-draft';
 import { uploadAttachment } from '@/lib/admin/storage';
 import { CmsModal } from './CmsModal';
 import { CmsPanelHead } from './CmsPanelHead';
+import { CmsSkeleton } from './CmsSkeleton';
 import { CommitBanner } from './CommitBanner';
 import { PostForm } from './PostForm';
+import { useAdminShell } from './AdminShellContext';
 
 /** admin API 가 돌려주는 레코드 — EditRecord + DB 식별자/slug */
 type ApiRecord = EditRecord & { board: string; slug: string | null };
@@ -131,6 +133,10 @@ interface Props {
 }
 
 export function BoardEditor({ config, boardKey, onDirtyChange }: Props) {
+  // 저장 완료는 화면 안 배너(CommitBanner)만으로는 눈에 잘 띄지 않는다 — 목록 상단은
+  // 방금 누른 버튼에서 멀다. 다른 화면과 같은 상단 토스트로도 한 번 말한다.
+  const { showToast, setWriteDenied } = useAdminShell();
+
   const meta = useMemo(() => getBoard(boardKey), [boardKey]);
   const variant: ListVariant = meta.isNews ? 'cards' : meta.hasLink && meta.noBody ? 'tiles' : 'rows';
 
@@ -309,7 +315,7 @@ export function BoardEditor({ config, boardKey, onDirtyChange }: Props) {
         finishSave('등록되었습니다');
       }
     } catch (err) {
-      setSaveError(err instanceof Error ? err.message : '저장에 실패했습니다.');
+      failSave(err, '저장에 실패했습니다.');
     } finally {
       setSaving(false);
     }
@@ -336,7 +342,7 @@ export function BoardEditor({ config, boardKey, onDirtyChange }: Props) {
       await api(`/api/admin/posts/${dbId}`, { method: 'DELETE' });
       finishSave('삭제되었습니다');
     } catch (err) {
-      setSaveError(err instanceof Error ? err.message : '삭제에 실패했습니다.');
+      failSave(err, '삭제에 실패했습니다.');
     } finally {
       setSaving(false);
     }
@@ -369,7 +375,7 @@ export function BoardEditor({ config, boardKey, onDirtyChange }: Props) {
       });
       finishSave(`${ids.length}건 삭제되었습니다`);
     } catch (err) {
-      setSaveError(err instanceof Error ? err.message : '삭제에 실패했습니다.');
+      failSave(err, '삭제에 실패했습니다.');
     } finally {
       setSaving(false);
     }
@@ -399,7 +405,7 @@ export function BoardEditor({ config, boardKey, onDirtyChange }: Props) {
       });
       finishSave(`${ids.length}건을 '${target.label}'(으)로 이동했습니다`);
     } catch (err) {
-      setSaveError(err instanceof Error ? err.message : '이동에 실패했습니다.');
+      failSave(err, '이동에 실패했습니다.');
     } finally {
       setSaving(false);
     }
@@ -407,8 +413,30 @@ export function BoardEditor({ config, boardKey, onDirtyChange }: Props) {
 
   function finishSave(message: string) {
     setEditing(null);
-    setSuccess(`${message} — 사이트에 수 초 내 반영됩니다.`);
+    const full = `${message} — 사이트에 수 초 내 반영됩니다.`;
+    setSuccess(full);
+    showToast(full);
+    // 쓰기가 통했으니 권한 배너를 내린다 (권한은 나중에 부여될 수 있다)
+    setWriteDenied(false);
+    // ⚠️ 여기서 setDeploy('deploying') 를 부르지 않는다. 게시판 글은 Supabase 에
+    // 들어가고 서버가 revalidateTag('posts') 를 호출해 **재배포 없이** 즉시 반영된다.
+    // 배포 칩은 "배포 중 · 1~2분"이라고 말하므로, 이미 반영이 끝난 변경을 두고
+    // 1~2분을 더 기다리라는 거짓 안내가 된다. 배포 칩은 content/*.json 을 커밋하는
+    // CollectionEditor 쪽 저장에만 붙는다.
     void loadEntries(boardKey);
+  }
+
+  /**
+   * 쓰기 실패 문구 처리 — 문구를 화면에 띄우고, 권한 부족이면 셸에 신호만 올린다.
+   * 권한 판정 자체는 서버(admin API)와 github.ts 가 한다. 여기서 다시 판단하지 않고
+   * 이미 만들어진 문구를 읽기만 한다.
+   */
+  function failSave(err: unknown, fallback: string) {
+    const msg = err instanceof Error ? err.message : fallback;
+    setSaveError(msg);
+    if (msg.includes('403') || msg.includes('권한이 부족합니다') || msg.includes('권한이 없습니다')) {
+      setWriteDenied(true);
+    }
   }
 
   /** 확인 모달 — 목록과 글쓰기 화면 양쪽에서 같은 모양으로 뜬다 */
@@ -483,7 +511,10 @@ export function BoardEditor({ config, boardKey, onDirtyChange }: Props) {
         </p>
       )}
 
-      {loading && <p className="py-16 text-center text-[13px] text-content-faint">불러오는 중…</p>}
+      {/* 불러오는 동안에도 화면 제목(CmsPanelHead)은 그대로 둔다 — 어느 게시판을 여는
+          중인지는 방금 눌러서 이미 알고 있다. 흔들려야 하는 것은 목록뿐이다.
+          뼈대 모양은 목록 모양(variant)과 같아야 데이터 도착 시 높이가 튀지 않는다. */}
+      {loading && <CmsSkeleton shape={variant} />}
 
       {/* ── 빈 게시판 ── */}
       {!loading && !listError && allItems.length === 0 && (

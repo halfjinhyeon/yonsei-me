@@ -15,6 +15,10 @@ import { cn } from '@/lib/utils';
 import { cellText } from '@/lib/admin/resources';
 import { formInlineValue } from '@/lib/admin/inline';
 import { DirtyBar, InlineText, InlineToolbar, MoveButtons, type InlineEditorProps } from './InlineFields';
+import { CmsEmptyState } from './CmsEmptyState';
+
+/** 카드 문구는 cms-input-sm textarea 를 직접 쓰므로 같은 위험색을 여기에 둔다 */
+const INVALID_INPUT = 'border-[#b42318] bg-[#b42318]/[0.04] focus:border-[#b42318]';
 
 export function ClubRowsEditor({
   resource,
@@ -25,6 +29,7 @@ export function ClubRowsEditor({
   orderLocked,
   orderable,
   dirtyIndices,
+  invalidPaths,
   search,
   onSearch,
   onEditDetail,
@@ -46,10 +51,20 @@ export function ClubRowsEditor({
         unit="개"
       />
 
+      {/* 필터 칩이 없는 화면이라 0건의 원인은 검색어뿐 — 초기화도 검색어만 비운다 */}
       {rows.length === 0 ? (
-        <p className="border border-dashed border-surface-border bg-[#fcfdfe] px-6 py-16 text-center text-sm text-content-faint">
-          조건에 맞는 동아리가 없습니다.
-        </p>
+        <CmsEmptyState
+          variant="search"
+          compact
+          title={
+            search.trim() !== ''
+              ? `‘${search.trim()}’ 에 해당하는 동아리가 없습니다`
+              : '선택한 조건에 해당하는 동아리가 없습니다'
+          }
+          body="검색어를 지우거나 이름 일부만 남겨 보세요."
+          actionLabel="검색 초기화"
+          onAction={() => onSearch('')}
+        />
       ) : (
         <ul className="flex flex-col gap-4">
           {rows.map(({ index, form }) => {
@@ -90,6 +105,7 @@ export function ClubRowsEditor({
                         onChange={(v) => onPatch(index, 'name', v)}
                         disabled={disabled}
                         ariaLabel="이름"
+                        invalid={invalidPaths.has(`${index}:name`)}
                         className="w-auto min-w-[200px] flex-1 py-1 text-[18px] font-bold tracking-tight"
                       />
                       <span className="text-[11px] tabular-nums text-content-faint">/{slug}</span>
@@ -125,7 +141,11 @@ export function ClubRowsEditor({
                         value={String(formInlineValue(resource.fields, form, 'teaser'))}
                         onChange={(e) => onPatch(index, 'teaser', e.target.value)}
                         disabled={disabled}
-                        className="cms-input-sm resize-y leading-[1.75]"
+                        aria-invalid={invalidPaths.has(`${index}:teaser`) ? 'true' : undefined}
+                        className={cn(
+                          'cms-input-sm resize-y leading-[1.75]',
+                          invalidPaths.has(`${index}:teaser`) && INVALID_INPUT,
+                        )}
                       />
                     </label>
 

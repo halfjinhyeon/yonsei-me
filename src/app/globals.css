@@ -519,6 +519,15 @@
     }
   }
 
+  /* 스켈레톤 펄스 — Tailwind 의 animate-pulse 는 reduced-motion 을 스스로 존중하지
+     않는다. 불러오는 동안 화면 전체가 계속 깜빡이면 전정 감각에 민감한 사용자에게
+     가장 부담이 큰 순간이라, 여기서 명시적으로 멈춘다. */
+  @media (prefers-reduced-motion: reduce) {
+    .animate-pulse {
+      animation: none;
+    }
+  }
+
   /* =========================================================
      동아리 카드뉴스 "풀스크린 덱" (ClubCardNews)
      - 모든 화면 폭에서 스크롤 스냅으로 패널을 한 장씩 넘긴다.

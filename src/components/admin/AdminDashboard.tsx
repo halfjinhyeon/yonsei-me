@@ -34,6 +34,9 @@ import {
 interface Props {
   config: RepoConfig;
   onOpen: (entry: MenuEntry) => void;
+  /** 이 제목의 접이식 안내를 펼친 채로 연다 — 셸이 배너에서 여기로 보낼 때 쓴다.
+   *  안내로 보내 놓고 사용자가 하단의 접힌 목록을 다시 찾게 두면 안내가 아니라 숙제다. */
+  openGuide?: string;
 }
 
 /** "지금 할 일" 카드 하나 — 숫자 + 제목 + 설명 + 눌렀을 때 열 항목 */
@@ -45,14 +48,14 @@ interface TaskCard {
   entry: MenuEntry;
 }
 
-export function AdminDashboard({ config, onOpen }: Props) {
+export function AdminDashboard({ config, onOpen, openGuide }: Props) {
   return (
     <div className="anim-panel">
       <Intro />
       <SearchAndRecents onOpen={onOpen} />
       <TaskSection config={config} onOpen={onOpen} />
       <AllEntriesSection onOpen={onOpen} />
-      <GuideSection />
+      <GuideSection openGuide={openGuide} />
     </div>
   );
 }
@@ -423,10 +426,14 @@ const NEW_ADMIN_STEPS = [
 ];
 
 /** 처음 한 번만 필요한 내용이라 접이식으로 하단에 — 반복 방문자의 동선을 가리지 않는다 */
-function GuideSection() {
+function GuideSection({ openGuide }: { openGuide?: string }) {
   return (
     <section className="mt-14 border-t border-surface-border">
-      <GuideDetails title="처음이신가요?" note="— 사용 방법 4단계">
+      <GuideDetails
+        title="처음이신가요?"
+        note="— 사용 방법 4단계"
+        defaultOpen={openGuide === '처음이신가요?'}
+      >
         <ol className="grid gap-8 pb-8 pt-2 sm:grid-cols-2 lg:grid-cols-4">
           {FIRST_TIME_STEPS.map((step, i) => (
             <NumberedStep key={step.t} i={i} title={step.t} body={step.b} />
@@ -434,7 +441,11 @@ function GuideSection() {
         </ol>
       </GuideDetails>
 
-      <GuideDetails title="새 관리자 등록" note="— GitHub 계정 허용 절차">
+      <GuideDetails
+        title="새 관리자 등록"
+        note="— GitHub 계정 허용 절차"
+        defaultOpen={openGuide === '새 관리자 등록'}
+      >
         <div className="pb-8 pt-2">
           <p className="max-w-prose text-[13px] leading-[1.8] text-content-soft">
             이 콘솔은 GitHub 로그인으로 접근합니다. 새 담당자를 추가하려면 아래 세 가지가
@@ -459,14 +470,28 @@ function GuideSection() {
 function GuideDetails({
   title,
   note,
+  defaultOpen,
   children,
 }: {
   title: string;
   note: string;
+  /** 처음 한 번 펼친 채로 연다(그 뒤 접고 펴는 건 온전히 사용자 몫) */
+  defaultOpen?: boolean;
   children: React.ReactNode;
 }) {
+  // <details open={...}> 로 제어하면 React 가 매 렌더 열림 상태를 되돌려 놓아
+  // 사용자가 직접 접을 수 없게 된다. 그래서 비제어로 두고 DOM 속성만 한 번 켠다.
+  // 이어서 화면 가운데로 스크롤 — 안내는 페이지 맨 아래라 펴 놓기만 하면
+  // 사용자는 자기가 어디로 보내졌는지 알지 못한다.
+  const ref = useRef<HTMLDetailsElement>(null);
+  useEffect(() => {
+    if (!defaultOpen || !ref.current) return;
+    ref.current.open = true;
+    ref.current.scrollIntoView({ block: 'center' });
+  }, [defaultOpen]);
+
   return (
-    <details className="group border-b border-surface-border">
+    <details ref={ref} className="group border-b border-surface-border">
       <summary className="flex cursor-pointer list-none items-center justify-between gap-3 py-5 text-base font-bold text-content transition-colors hover:text-yonsei-blue [&::-webkit-details-marker]:hidden">
         <span>
           {title} <span className="font-medium text-content-soft">{note}</span>
