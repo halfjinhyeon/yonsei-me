@@ -2,6 +2,7 @@ import Image from 'next/image';
 import { getTranslations } from 'next-intl/server';
 import { Link } from '@/i18n/navigation';
 import { LandingScope } from '@/components/LandingScope';
+import { formatPhone } from '@/lib/utils';
 import { AiResearchSummary } from '@/components/AiResearchSummary';
 import {
   FacultyActivityTabs,
@@ -144,6 +145,11 @@ export async function FacultyProfileArticle({
     rows: rows[id],
   }));
 
+  // 전화번호는 교수진 목록과 같은 값을 우선한다 — 디렉터리 쪽이 사람이 정리한 표기라
+  // 목록과 상세가 어긋나지 않는다. 없으면(디렉터리에 비어 있는 5명) 크롤 값을 같은
+  // 꼴로 정규화한다. 크롤 원문은 내선만("2819") 오는 경우가 있어 그대로 쓰면 깨져 보인다.
+  const phone = formatPhone(record?.phone ?? profile.phone);
+
   const lab = record?.lab;
   const labName = lab?.nameKo
     ? lab.nameEn
@@ -209,13 +215,13 @@ export async function FacultyProfileArticle({
           {record?.title && <p className="mt-1 text-[17px] text-content-soft">{record.title}</p>}
 
           {/* 연락처 행 — 전화·이메일 픽토그램(교수진 목록 카드와 같은 문법) */}
-          {(profile.phone || profile.email) && (
+          {(phone || profile.email) && (
             <div className="mt-4 flex flex-wrap items-center gap-x-6 gap-y-2 border-t border-surface-border pt-4 text-sm">
-              {profile.phone && (
+              {phone && (
                 <span className="inline-flex items-center gap-1.5 text-content-soft">
                   <PhoneIcon />
                   <span className="sr-only">{t('phoneLabel')}: </span>
-                  {profile.phone}
+                  {phone}
                 </span>
               )}
               {profile.email && (
