@@ -125,6 +125,9 @@ export interface FacultyProfile {
   homepage: string | null;
   sourceUrl: string | null;
   crawledAt: string | null;
+  /** AI 연구요약 — 학술활동 데이터를 바탕으로 미리 생성해 둔 문단(실시간 생성 아님).
+   *  없으면 상세 페이지에서 요약 버튼 자체를 그리지 않는다. */
+  aiSummary?: string | null;
   /** 배열 5종은 항상 존재한다(빈 배열일 수는 있다) */
   articles: FacultyProfileArticleRow[];
   awards: FacultyProfileAwardRow[];

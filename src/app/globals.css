@@ -458,6 +458,26 @@
     animation: panelFadeUp 0.35s ease-out;
   }
 
+  /* AI 연구요약 — 버튼 아이콘의 반짝임 두 개(엇갈린 딜레이)와 타이핑 캐럿.
+     교수 상세의 AI 요약 토글에서만 쓴다. */
+  @keyframes aiSparkle {
+    0%, 100% { opacity: 0.35; transform: scale(0.6) rotate(0deg); }
+    50% { opacity: 1; transform: scale(1.1) rotate(20deg); }
+  }
+  .ai-sparkle {
+    animation: aiSparkle 1.6s ease-in-out infinite;
+  }
+  .ai-sparkle-delay {
+    animation-delay: 0.8s;
+  }
+  @keyframes caretBlink {
+    0%, 45% { opacity: 1; }
+    50%, 100% { opacity: 0; }
+  }
+  .ai-caret {
+    animation: caretBlink 0.9s step-end infinite;
+  }
+
   /* 푸터 대형 마퀴 — 학부 영문명이 오른쪽→왼쪽으로 무한히 흐르는 브랜드 밴드
      (이화여대 레퍼런스, 구 LabsSection 마퀴 기법 재사용). 트랙에 동일 문구 2벌을
      이어 붙이고 -50%(= 정확히 한 벌 폭)씩 이동시켜 이음새 없이 루프한다. */
@@ -512,7 +532,9 @@
     .anim-hero-subtitle,
     .anim-crumb,
     .anim-nav-item,
-    .anim-panel {
+    .anim-panel,
+    .ai-sparkle,
+    .ai-caret {
       opacity: 1;
       animation: none;
       transform: none;

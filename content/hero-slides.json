@@ -1,32 +1,56 @@
 [
   {
     "field": "bioNano",
-    "title": { "ko": "바이오·나노", "en": "Bio · Nano" },
-    "image": "/img/hero/바이오나노.jpg"
+    "title": {
+      "ko": "바이오·나노",
+      "en": "Bio · Nano"
+    },
+    "image": "/img/hero/바이오나노.jpg",
+    "imageMobile": "/img/hero-mobile/바이오나노.jpg"
   },
   {
     "field": "thermoFluid",
-    "title": { "ko": "열·유체", "en": "Thermal · Fluids" },
-    "image": "/img/hero/열유체.jpg"
+    "title": {
+      "ko": "열·유체",
+      "en": "Thermal · Fluids"
+    },
+    "image": "/img/hero/열유체.jpg",
+    "imageMobile": "/img/hero-mobile/열유체.jpg"
   },
   {
     "field": "dynamicsControl",
-    "title": { "ko": "동역학·제어", "en": "Dynamics · Control" },
-    "image": "/img/hero/동역학제어.jpg"
+    "title": {
+      "ko": "동역학·제어",
+      "en": "Dynamics · Control"
+    },
+    "image": "/img/hero/동역학제어.jpg",
+    "imageMobile": "/img/hero-mobile/동역학제어.jpg"
   },
   {
     "field": "manufacturingDesign",
-    "title": { "ko": "생산·설계", "en": "Manufacturing · Design" },
-    "image": "/img/hero/생산설계.jpg"
+    "title": {
+      "ko": "생산·설계",
+      "en": "Manufacturing · Design"
+    },
+    "image": "/img/hero/생산설계.jpg",
+    "imageMobile": "/img/hero-mobile/생산설계.jpg"
   },
   {
     "field": "computation",
-    "title": { "ko": "계산·해석", "en": "Computation · Analysis" },
-    "image": "/img/hero/계산해석.jpg"
+    "title": {
+      "ko": "계산·해석",
+      "en": "Computation · Analysis"
+    },
+    "image": "/img/hero/계산해석.jpg",
+    "imageMobile": "/img/hero-mobile/계산해석.jpg"
   },
   {
     "field": "mechanicsMaterials",
-    "title": { "ko": "역학·재료", "en": "Mechanics · Materials" },
-    "image": "/img/hero/역학재료.jpg"
+    "title": {
+      "ko": "역학·재료",
+      "en": "Mechanics · Materials"
+    },
+    "image": "/img/hero/역학재료.jpg",
+    "imageMobile": "/img/hero-mobile/역학재료.jpg"
   }
 ]

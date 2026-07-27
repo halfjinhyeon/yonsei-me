@@ -2,7 +2,6 @@
   { "year": "1", "semester": "1", "kind": "대교", "code": "MAT1011", "name": "공학수학(1)", "credits": "3", "hours": "3(1)", "field": null },
   { "year": "1", "semester": "1", "kind": "대교", "code": "PHY1011", "name": "공학물리학및실험(1)", "credits": "3", "hours": "2(2)", "field": null },
   { "year": "1", "semester": "1", "kind": "대교", "code": "CHE1011", "name": "공학화학및실험(1)", "credits": "3", "hours": "2(2)", "field": null },
-  { "year": "1", "semester": "1", "kind": "전필", "code": "MEU2300", "name": "기계공학창의설계", "credits": "3", "hours": "2(2)", "field": "manufacturingDesign" },
   { "year": "1", "semester": "2", "kind": "대교", "code": "MAT1012", "name": "공학수학(2)", "credits": "3", "hours": "3(1)", "field": null },
   { "year": "1", "semester": "2", "kind": "대교", "code": "PHY1012", "name": "공학물리학및실험(2)", "credits": "3", "hours": "2(2)", "field": null },
   { "year": "1", "semester": "2", "kind": "대교", "code": "CHE1012", "name": "공학화학및실험(2)", "credits": "3", "hours": "2(2)", "field": null },

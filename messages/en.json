@@ -438,6 +438,10 @@
       "activitiesEyebrow": "Academic Activities",
       "activitiesTitle": "Academic Activities",
       "activitiesNav": "Academic activity categories",
+      "aiButton": "AI Research Summary",
+      "aiPanelLabel": "AI Research Summary",
+      "aiBeta": "BETA",
+      "aiDisclaimer": "※ Generated in advance from publicly available academic activity data.",
       "tabs": {
         "articles": "Journal Articles",
         "fundings": "Research Projects",
@@ -566,12 +570,6 @@
       "downloadAll": "Download all",
       "attachCount": "{count} files",
       "formatEtc": "{format} and more",
-      "selectMode": "Select multiple",
-      "selected": "{count} selected",
-      "selectedTotal": "{size} total",
-      "selectRow": "Select {title}",
-      "clearSelection": "Clear selection",
-      "batchDownload": "Download selected (ZIP)",
       "attachmentsZip": "Download all attachments (ZIP)",
       "zipPreparing": "Preparing…",
       "zipFailed": "The download failed. Please try again in a moment."

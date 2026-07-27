@@ -7,6 +7,7 @@
   "homepage": "http://mfdl.yonsei.ac.kr",
   "sourceUrl": "https://me.yonsei.ac.kr/faculty/name_search.do?mode=view&userId=b2q9%2FrsniLTpqoJPWYQWVA%3D%3D&sosokcd=",
   "crawledAt": "2026-07-27",
+  "aiSummary": "유체와 입자가 아주 작은 규모에서 어떻게 움직이는지를 격자볼츠만법 같은 전산모사로 풀어냅니다. 액적의 증발과 입자 침착, 다공성 재료 안의 기체·액체 이동처럼 눈으로 보기 어려운 현상을 계산으로 재현하고, 그 결과를 의료와 에너지 장치 설계로 연결합니다.\n\n최근에는 딥러닝을 해석에 결합하는 연구가 빠르게 늘고 있습니다. CT 영상으로 환자별 관상동맥 혈류를 예측하는 4D CT-FFR, 물리 법칙을 넣은 신경망으로 혈액 점성을 추정하는 연구가 대표적입니다. 리튬 배터리 안의 이온 거동과 덴드라이트 성장 예측, 연료전지 기체확산층의 물 수송처럼 에너지 소자 쪽 주제도 함께 다룹니다.",
   "articles": [
     {
       "date": "2026-08",

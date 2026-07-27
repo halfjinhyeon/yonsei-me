@@ -73,14 +73,21 @@ export default async function HomePage({ params }: { params: { locale: string } 
   // 히어로 슬라이드(content/hero-slides.json) — 로케일 라벨 해석 후 클라이언트로 전달.
   // 라벨 문구는 research-gallery 와 동일 분야명 재사용(콘텐츠/코드 분리).
   // linkLabel = 분야 목록의 '연구 분야 바로가기' 화살표 링크 접근성 라벨(ICU 보간).
-  const heroSlides = (heroSlidesData as { field: string; title: { ko: string; en: string }; image: string }[]).map(
-    (s) => ({
-      field: s.field,
-      label: pick(s.title, locale),
-      image: s.image,
-      linkLabel: t('heroSlideshow.fieldLink', { field: pick(s.title, locale) }),
-    }),
-  );
+  const heroSlides = (
+    heroSlidesData as {
+      field: string;
+      title: { ko: string; en: string };
+      image: string;
+      /** 세로(9:16) 크롭본 — 세로로 긴 화면에서만 쓴다. 없으면 가로 원본으로 폴백 */
+      imageMobile?: string;
+    }[]
+  ).map((s) => ({
+    field: s.field,
+    label: pick(s.title, locale),
+    image: s.image,
+    ...(s.imageMobile ? { imageMobile: s.imageMobile } : {}),
+    linkLabel: t('heroSlideshow.fieldLink', { field: pick(s.title, locale) }),
+  }));
 
   // 뉴스 섹션 데이터: 뉴스(news.json)만 날짜 내림차순 상위 12건(사용자 지시로 행사 제외 —
   // 행사는 아래 '학사 일정' 섹션이 이미 담당한다). 카드가 쓰는 단일 형태로 정규화한다.

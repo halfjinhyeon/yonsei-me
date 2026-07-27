@@ -7,6 +7,7 @@
   "homepage": "https://sites.google.com/view/damislab",
   "sourceUrl": "https://me.yonsei.ac.kr/faculty/name_search.do?mode=view&userId=foH0i4BlWWcsEx6j%2B0Dwqg%3D%3D&sosokcd=0000405",
   "crawledAt": "2026-07-27",
+  "aiSummary": "물체 표면에 줄무늬 패턴을 비추고 그 일그러짐을 읽어 삼차원 형상을 재는 구조광 측정 기술을 연구합니다. 패턴의 위상을 정확히 풀어내는 알고리즘, 카메라와 프로젝터를 손쉽게 정렬하는 보정 방법, 움직이는 물체에서 생기는 오차를 줄이는 방법이 핵심 주제입니다.\n\n최근에는 한 장만 찍어도 형상을 복원하는 단일 촬영 기법과 딥러닝을 결합한 위상 복원, 어안 렌즈와 곡면 거울로 주변을 한 번에 훑는 전방향 측정으로 범위를 넓히고 있습니다. 비정형 환경에서 실시간으로 형상을 읽는 로봇 비전, 표면을 만져 읽는 촉각 센서, 가스터빈 블레이드 보수 검사 같은 제조 현장 응용으로 이어집니다.",
   "articles": [
     {
       "date": "2026-06",

@@ -34,13 +34,20 @@
   pointer-events: auto;
 }
 
-/* parallax 안쪽 래퍼 = 반대 방향 트랜스폼(패럴랙스). next/image fill 의 부모. */
+/* parallax 안쪽 래퍼 = 반대 방향 트랜스폼(패럴랙스). 사진의 위치 기준 박스. */
 .parallax {
   position: absolute;
   inset: 0;
   will-change: transform;
 }
+/* next/image 의 fill 이 넣어 주던 배치를 직접 갖는다 — 세로/가로 크롭을 화면비에 따라
+   갈라 쓰려면 <picture>+media 가 필요한데 next/image 는 그걸 지원하지 않아 plain <img>
+   로 바꿨다. cover 는 사진 비율을 지킨 채 박스를 덮고 넘치는 부분을 잘라낸다. */
 .image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
 }
 

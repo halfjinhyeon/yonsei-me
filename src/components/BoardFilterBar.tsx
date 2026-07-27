@@ -69,16 +69,19 @@ export function BoardFilterBar({
 
   return (
     <div className="mb-6">
+      {/* 모바일도 한 줄 — 전폭 블록 3층(범위/입력/버튼) 세로 스택은 게시판 검색이 아니라
+          가입 폼처럼 읽힌다. 좁은 화면에선 셀렉트·버튼을 내용 폭으로 줄이고 입력이
+          남는 폭을 전부 가져간다. 초기화만 자리가 모자라면 flex-wrap 으로 다음 줄. */}
       <form
         role="search"
         onSubmit={(e) => {
           e.preventDefault();
           onChange(draft);
         }}
-        className="flex flex-col gap-2 sm:flex-row sm:justify-end"
+        className="flex flex-wrap items-center gap-2 sm:justify-end"
       >
-        {/* 검색 범위 */}
-        <div>
+        {/* 검색 범위 — 내용 폭 고정(줄어들면 라벨이 잘려 의미를 잃는다) */}
+        <div className="shrink-0">
           <label htmlFor="board-filter-scope" className="sr-only">
             {t('search.scopeLabel')}
           </label>
@@ -86,7 +89,7 @@ export function BoardFilterBar({
             id="board-filter-scope"
             value={draft.scope}
             onChange={(e) => setDraft({ ...draft, scope: e.target.value as SearchScope })}
-            className={`${inputClass} w-full sm:w-36`}
+            className={`${inputClass} w-auto sm:w-36`}
           >
             <option value="both">{t('search.scopeBoth')}</option>
             <option value="title">{t('search.scopeTitle')}</option>
@@ -94,8 +97,8 @@ export function BoardFilterBar({
           </select>
         </div>
 
-        {/* 검색어 */}
-        <div className="min-w-0 sm:w-[22rem] lg:w-[26rem]">
+        {/* 검색어 — 남는 폭 전부 */}
+        <div className="min-w-0 flex-1 sm:w-[22rem] sm:flex-none lg:w-[26rem]">
           <label htmlFor="board-filter-query" className="sr-only">
             {t('search.placeholder')}
           </label>
@@ -109,10 +112,10 @@ export function BoardFilterBar({
           />
         </div>
 
-        {/* 검색 실행 */}
+        {/* 검색 실행 — 입력 오른쪽에 붙인다(일반적인 검색 바 문법) */}
         <button
           type="submit"
-          className="bg-yonsei-navy px-6 py-2 text-sm font-bold text-white transition-colors hover:bg-yonsei-blue"
+          className="shrink-0 bg-yonsei-navy px-4 py-2 text-sm font-bold text-white transition-colors hover:bg-yonsei-blue sm:px-6"
         >
           {t('search.submit')}
         </button>
@@ -125,7 +128,7 @@ export function BoardFilterBar({
               setDraft(emptyFilter);
               onChange(emptyFilter);
             }}
-            className="border border-surface-border px-4 py-2 text-sm font-medium text-content-soft transition-colors hover:border-yonsei-blue hover:text-yonsei-blue"
+            className="shrink-0 border border-surface-border px-4 py-2 text-sm font-medium text-content-soft transition-colors hover:border-yonsei-blue hover:text-yonsei-blue"
           >
             {t('search.clear')}
           </button>

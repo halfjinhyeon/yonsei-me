@@ -36,6 +36,8 @@ export function TabbedContent({
   // 드롭다운 열림 상태 — aria 및 GSAP 열기/닫기 애니메이션의 단일 소스
   const [open, setOpen] = useState(false);
   const barRef = useRef<HTMLDivElement>(null);
+  /** sticky 바 바로 앞의 0높이 앵커 — 바의 "원래 자리"를 재는 기준점 */
+  const barAnchorRef = useRef<HTMLSpanElement>(null);
   const triggerRef = useRef<HTMLButtonElement>(null);
   const panelRef = useRef<HTMLDivElement>(null);
   const chevronRef = useRef<HTMLSpanElement>(null);
@@ -74,6 +76,25 @@ export function TabbedContent({
     setActiveKey(key);
     setOpen(false);
     window.history.replaceState(null, '', `#${key}`);
+    // 탭을 바꾸면 새 내용의 첫 줄부터 보여 준다. 스크롤을 그대로 두면 이전 탭 길이
+    // 기준의 위치가 남아, 짧은 탭으로 옮겼을 때 그 탭의 맨 아래에 떨어진다
+    // (드롭다운으로 탭을 바꿨을 때 "맨 밑에서 시작"하던 문제).
+    scrollToBar();
+  }
+
+  /** 바가 헤더 밑에 딱 붙는 지점으로 이동 — 탭 내용이 화면 맨 위에서 시작한다.
+   *  바 자체는 sticky 라 위치 계산에 쓸 수 없어, 바로 앞에 둔 앵커의 문서 좌표를 쓴다.
+   *  Lenis 가 있으면 내부 위치까지 함께 맞춘다(안 그러면 다음 휠에서 옛 위치로 튄다). */
+  function scrollToBar() {
+    const anchor = barAnchorRef.current;
+    if (!anchor) return;
+    // 헤더 높이 = 바의 sticky top (모바일 64 / lg 이상 80)
+    const headerH = window.matchMedia('(min-width: 1024px)').matches ? 80 : 64;
+    const top = Math.max(0, anchor.getBoundingClientRect().top + window.scrollY - headerH);
+    const lenis = (window as unknown as { lenis?: { scrollTo: (t: number, o?: object) => void } })
+      .lenis;
+    if (lenis) lenis.scrollTo(top, { immediate: true });
+    else window.scrollTo(0, top);
   }
 
   // ── 바 진입 애니메이션 ── 마운트 시 바가 살짝 위에서 내려오고 내부 요소가 스태거.
@@ -177,6 +198,8 @@ export function TabbedContent({
     <>
       {/* 히어로 하단 풀와이드 남색 내비게이션 바 (모바일·데스크톱 공용, sticky) —
           부모 <main> 이 폭 제한을 두지 않아 이 div 는 뷰포트 전폭을 채운다 */}
+      {/* 바의 원래 위치를 재기 위한 앵커(sticky 인 바 자신은 기준이 될 수 없다) */}
+      <span ref={barAnchorRef} aria-hidden="true" className="block h-0" />
       <div
         ref={barRef}
         className="sticky top-16 z-30 w-full border-b border-white/10 bg-yonsei-navy lg:top-20"

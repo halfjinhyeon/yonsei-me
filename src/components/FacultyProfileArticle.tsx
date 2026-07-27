@@ -2,6 +2,7 @@ import Image from 'next/image';
 import { getTranslations } from 'next-intl/server';
 import { Link } from '@/i18n/navigation';
 import { LandingScope } from '@/components/LandingScope';
+import { AiResearchSummary } from '@/components/AiResearchSummary';
 import {
   FacultyActivityTabs,
   type FacultyActivityRow,
@@ -61,11 +62,6 @@ function ExternalIcon({ className }: { className: string }) {
     </svg>
   );
 }
-
-// ── 연도 블록 파싱 ────────────────────────────────────────────────────────────
-// 크롤 원문의 날짜 표기가 분류마다 다르다. 좌측 연도 블록은 "연.월 한 줄" 또는
-// "시작 · 틱 · 끝 3단"만 그리므로, 여기서 두 형태 중 하나로 정규화한다.
-// 파싱에 실패하면 원문을 그대로 한 줄로 흘려 정보 손실을 만들지 않는다.
 
 /** "2025-12" → "2025.12", "2024-04-18" → "2024.04". 형식이 다르면 원문 한 줄. */
 function monthStamp(raw: string | null): string[] {
@@ -157,6 +153,19 @@ export async function FacultyProfileArticle({
 
   return (
     <LandingScope name="faculty-profile">
+      {/* 상단 목록 버튼 — 하단의 것과 같은 버튼을 본문 맨 앞에도 둔다. 이력이 수백 행이라
+          하단 버튼만으로는 돌아가려고 끝까지 스크롤해야 한다. 탈출구는 즉시 보여야 하므로
+          data-land 를 붙이지 않는다(랜딩 애니메이션 동안 숨지 않게). */}
+      <div className="mb-[30px]">
+        <Link
+          href="/faculty"
+          className="inline-flex items-center gap-2 border border-surface-border px-6 py-3 text-sm font-semibold text-content transition-colors hover:border-yonsei-blue hover:text-yonsei-blue focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yonsei-blue"
+        >
+          <span aria-hidden="true">←</span>
+          {t('profile.backToList')}
+        </Link>
+      </div>
+
       {/* ── 프로필 카드 ── 사진(좌) + 정보(우). 좁은 화면에서는 줄바꿈으로 세로 적층 */}
       <div
         data-land="rise"
@@ -280,13 +289,27 @@ export async function FacultyProfileArticle({
         <p data-land="rise" data-land-order="1" className="eyebrow">
           {t('profile.activitiesEyebrow')}
         </p>
-        <h2
-          data-land="rise"
-          data-land-order="1"
-          className="mt-3 text-2xl font-bold text-content sm:text-[2rem]"
-        >
-          {t('profile.activitiesTitle')}
-        </h2>
+        {/* 제목 옆에 AI 연구요약 토글 — 요약문이 있는 교수만 */}
+        <div className="mt-3 flex flex-wrap items-center gap-5">
+          <h2
+            data-land="rise"
+            data-land-order="1"
+            className="text-2xl font-bold text-content sm:text-[2rem]"
+          >
+            {t('profile.activitiesTitle')}
+          </h2>
+          {/* 버튼과 패널은 형제다 — 패널이 basis-full 이라 flex-wrap 이 다음 줄로 내려
+              제목 행 아래 전폭으로 펼쳐진다 */}
+          {profile.aiSummary && (
+            <AiResearchSummary
+              summary={profile.aiSummary}
+              buttonLabel={t('profile.aiButton')}
+              panelLabel={t('profile.aiPanelLabel')}
+              betaLabel={t('profile.aiBeta')}
+              disclaimer={t('profile.aiDisclaimer')}
+            />
+          )}
+        </div>
         <div className="mt-6">
           <FacultyActivityTabs
             tabs={tabs}

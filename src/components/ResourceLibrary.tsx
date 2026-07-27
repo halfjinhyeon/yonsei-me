@@ -4,19 +4,19 @@ import { useEffect, useMemo, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { Link } from '@/i18n/navigation';
 import { cn, formatDate } from '@/lib/utils';
-import { filenameFromDisposition, formatBytes, formatTotalBytes } from '@/lib/files';
+import { filenameFromDisposition, formatBytes } from '@/lib/files';
 import type { Locale } from '@/i18n/routing';
 
 /**
  * 자료실 전용 목록 — 다른 게시판(BoardList)과 달리 "읽는 글"이 아니라 "받아 가는 파일"이라
  * 행의 무게중심을 썸네일이 아닌 다운로드 버튼과 파일 메타(형식·용량)에 둔다.
  *
- * 구성(디자인 시안 "자료실 - 최종"):
- *  - 상단 한 줄에 분류 탭(전체·행정 서식·규정·내규, 옆에 건수)과 [여러 개 선택]·검색을 같이 놓는다.
+ * 구성(디자인 시안 "자료실 - 최종" — 이후 사용자 지시로 '여러 개 선택'(일괄 다운로드)은 삭제):
+ *  - 상단 한 줄에 분류 탭(전체·행정 서식·규정·내규, 옆에 건수)과 검색을 같이 놓는다.
  *    분류가 지정된 글이 하나도 없으면 0건 탭만 두 개 뜨므로 탭 그룹 자체를 렌더하지 않는다.
  *  - 검색은 제출 버튼 없는 실시간 필터. 대상은 서버에서 만들어 준 searchText
  *    (제목+발췌+본문 평문+첨부 파일명)라 "파일명으로 찾기"가 그대로 동작한다.
- *  - 첨부가 2개 이상인 행과 여러 행을 골라 받는 일괄 다운로드는 POST /api/download-zip 을 쓴다
+ *  - 첨부가 2개 이상인 행의 전체 다운로드는 POST /api/download-zip 을 쓴다
  *    (본문은 zip 바이트, 실패 시 JSON {error}). 진행 중에는 해당 버튼만 잠근다.
  *
  * 주의: 제목은 버튼이 아니라 Link 다 — 상세는 별도 라우트(/news/post/{id})이고 접근성상
@@ -52,8 +52,6 @@ export interface ResourceAttachment {
 
 /** NEW 배지 기준 — 발행일이 최근 30일 이내 */
 const NEW_DAYS = 30;
-/** ZIP API 가 받는 최대 건수(계약) */
-const ZIP_MAX = 30;
 
 export function ResourceLibrary({
   items,
@@ -66,11 +64,9 @@ export function ResourceLibrary({
 
   const [cat, setCat] = useState<'all' | 'form' | 'rule'>('all');
   const [query, setQuery] = useState('');
-  const [selectMode, setSelectMode] = useState(false);
-  const [selected, setSelected] = useState<string[]>([]);
-  /** 진행 중인 ZIP 요청 키 — 행이면 item.id, 하단 선택 바면 'batch' */
+  /** 진행 중인 ZIP 요청의 행 id (행별 전체 다운로드) */
   const [zipBusy, setZipBusy] = useState<string | null>(null);
-  /** 실패 메시지를 붙일 키 (같은 규칙) */
+  /** 실패 메시지를 붙일 행 id */
   const [zipError, setZipError] = useState<string | null>(null);
 
   // 오늘 기준 NEW 판정은 클라이언트에서만 (서버 렌더 결과와 어긋나면 하이드레이션 경고)
@@ -100,34 +96,14 @@ export function ResourceLibrary({
     [searched, cat, hasCategories],
   );
 
-  const selectedItems = useMemo(
-    () => items.filter((it) => selected.includes(it.id)),
-    [items, selected],
-  );
-  const selectedTotal = useMemo(
-    () => formatTotalBytes(selectedItems.flatMap((it) => it.attachments.map((a) => a.size))),
-    [selectedItems],
-  );
-
-  const toggleSelectMode = () => {
-    setSelectMode((prev) => {
-      if (prev) setSelected([]); // 모드를 끄면 선택도 비운다
-      return !prev;
-    });
-    setZipError(null);
-  };
-
-  const toggleRow = (id: string) =>
-    setSelected((prev) => (prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id]));
-
-  const runZip = async (key: string, postIds: string[]) => {
-    setZipBusy(key);
+  const runZip = async (id: string) => {
+    setZipBusy(id);
     setZipError(null);
     try {
       const res = await fetch('/api/download-zip', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ postIds: postIds.slice(0, ZIP_MAX) }),
+        body: JSON.stringify({ postIds: [id] }),
       });
       if (!res.ok) throw new Error('zip failed');
       const blob = await res.blob();
@@ -143,7 +119,7 @@ export function ResourceLibrary({
       a.remove();
       URL.revokeObjectURL(url);
     } catch {
-      setZipError(key);
+      setZipError(id);
     } finally {
       setZipBusy(null);
     }
@@ -188,22 +164,9 @@ export function ResourceLibrary({
           <span aria-hidden="true" className="hidden tab:block" />
         )}
 
-        <div className="flex flex-col gap-2 pb-2.5 sm:flex-row sm:items-center sm:gap-3">
-          <button
-            type="button"
-            onClick={toggleSelectMode}
-            aria-pressed={selectMode}
-            className={cn(
-              'shrink-0 self-start border px-4 py-[0.5625rem] text-sm font-semibold transition-colors sm:self-auto',
-              selectMode
-                ? 'border-yonsei-navy bg-yonsei-navy text-white'
-                : 'border-surface-border bg-surface text-content-faint hover:text-yonsei-navy',
-            )}
-          >
-            {t('library.selectMode')}
-          </button>
-
-          <div className="relative w-full tab:w-[21.25rem]">
+        {/* 검색 — 모바일은 남는 폭 전부, tab 이상은 시안의 고정 폭 */}
+        <div className="pb-2.5">
+          <div className="relative min-w-0 flex-1 tab:w-[21.25rem] tab:flex-none">
             <SearchIcon />
             <input
               type="search"
@@ -239,64 +202,22 @@ export function ResourceLibrary({
               key={item.id}
               item={item}
               locale={locale}
-              selectMode={selectMode}
-              checked={selected.includes(item.id)}
-              onToggle={() => toggleRow(item.id)}
               isNew={today !== null && isRecent(item.date, today)}
               busy={zipBusy === item.id}
               failed={zipError === item.id}
-              onZip={() => runZip(item.id, [item.id])}
+              onZip={() => runZip(item.id)}
             />
           ))}
         </ul>
-      )}
-
-      {/* 5) 선택 바 — 1건 이상 골랐을 때만. 그림자 금지 규칙에 따라 시안의 box-shadow 는 뺐다 */}
-      {selectMode && selected.length > 0 && (
-        <div className="sticky bottom-6 z-10 mt-6 flex flex-col gap-3 bg-yonsei-navy px-6 py-4 text-white sm:flex-row sm:items-center sm:justify-between">
-          <p className="text-sm tabular-nums">
-            {t('library.selected', { count: selected.length })}
-            {selectedTotal ? ` · ${t('library.selectedTotal', { size: selectedTotal })}` : ''}
-          </p>
-          <div className="flex flex-wrap items-center gap-2">
-            {zipError === 'batch' && (
-              <span role="alert" className="text-sm text-white/90">
-                {t('library.zipFailed')}
-              </span>
-            )}
-            <button
-              type="button"
-              onClick={() => {
-                setSelected([]);
-                setZipError(null);
-              }}
-              className="border border-white/40 px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-white/10"
-            >
-              {t('library.clearSelection')}
-            </button>
-            <button
-              type="button"
-              onClick={() => runZip('batch', selected)}
-              disabled={zipBusy === 'batch'}
-              className="inline-flex items-center gap-2 bg-white px-4 py-2.5 text-sm font-bold text-yonsei-navy transition-colors hover:bg-white/90 disabled:opacity-60"
-            >
-              <DownloadIcon />
-              {zipBusy === 'batch' ? t('library.zipPreparing') : t('library.batchDownload')}
-            </button>
-          </div>
-        </div>
       )}
     </div>
   );
 }
 
-/** 목록 한 행 — 체크박스(선택 모드) · 배지/제목/발췌/메타 · 다운로드 */
+/** 목록 한 행 — 배지/제목/발췌/메타 · 다운로드 */
 function ResourceRow({
   item,
   locale,
-  selectMode,
-  checked,
-  onToggle,
   isNew,
   busy,
   failed,
@@ -304,9 +225,6 @@ function ResourceRow({
 }: {
   item: ResourceItem;
   locale: Locale;
-  selectMode: boolean;
-  checked: boolean;
-  onToggle: () => void;
   isNew: boolean;
   busy: boolean;
   failed: boolean;
@@ -318,26 +236,7 @@ function ResourceRow({
 
   return (
     <li className="border-b border-surface-border last:border-b-0">
-      <div
-        className={cn(
-          'grid items-start gap-x-8 gap-y-4 py-6 tab:items-center tab:py-[1.625rem]',
-          selectMode
-            ? 'grid-cols-[1.75rem_minmax(0,1fr)] tab:grid-cols-[1.75rem_minmax(0,1fr)_13.75rem]'
-            : 'grid-cols-1 tab:grid-cols-[minmax(0,1fr)_13.75rem]',
-        )}
-      >
-        {selectMode && (
-          <div className="pt-1 tab:pt-0">
-            <input
-              type="checkbox"
-              checked={checked}
-              onChange={onToggle}
-              aria-label={t('library.selectRow', { title: item.title })}
-              className="h-[1.125rem] w-[1.125rem] accent-yonsei-navy"
-            />
-          </div>
-        )}
-
+      <div className="grid grid-cols-1 items-start gap-x-8 gap-y-4 py-6 tab:grid-cols-[minmax(0,1fr)_13.75rem] tab:items-center tab:py-[1.625rem]">
         <div className="flex min-w-0 flex-col items-start">
           {item.category && (
             <span
@@ -373,12 +272,7 @@ function ResourceRow({
         </div>
 
         {/* 우: 다운로드 — 첨부 1개는 직접 링크, 2개 이상은 ZIP API, 0개면 비운다 */}
-        <div
-          className={cn(
-            'flex flex-col items-start gap-1.5 tab:items-end',
-            selectMode && 'col-start-2 tab:col-start-auto',
-          )}
-        >
+        <div className="flex flex-col items-start gap-1.5 tab:items-end">
           {files.length === 1 && (
             <a
               href={files[0].href}

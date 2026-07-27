@@ -6,6 +6,7 @@ import { routing } from '@/i18n/routing';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { SmoothScroll } from '@/components/SmoothScroll';
+import { ScrollRestoration } from '@/components/ScrollRestoration';
 import { SITE_URL } from '@/lib/site';
 import { pretendard, gmarket, paperlogy } from '../fonts';
 import '../globals.css';
@@ -82,6 +83,8 @@ export default async function LocaleLayout({
       <body className="min-h-dvh bg-surface antialiased">
         {/* 전역 부드러운 스크롤(Lenis) — reduced-motion 시 자동 비활성 */}
         <SmoothScroll />
+        {/* 새로고침 시 이전 스크롤 위치 복원을 끈다(맨 아래에서 시작하는 문제) */}
+        <ScrollRestoration />
         <script
           type="application/ld+json"
           // 자체 생성 정적 데이터(사용자 입력 미포함) — XSS 벡터 없음

@@ -7,6 +7,7 @@
   "homepage": "http://boilab.wordpress.com/",
   "sourceUrl": "https://me.yonsei.ac.kr/faculty/name_search.do?mode=view&userId=bhaCBRF5otdK3WVWoRHYiw%3D%3D&sosokcd=0000405",
   "crawledAt": "2026-07-27",
+  "aiSummary": "빛으로 눈에 보이지 않는 것을 정량적으로 들여다보는 광학 계측·현미경 기술을 개발합니다. 염색 없이 세포의 굴절률과 편광 특성을 재는 정량 위상 현미경, 조직 내부를 단층으로 찍는 광간섭 단층촬영이 축이며, 광학계 설계와 영상 복원 알고리즘을 함께 다루는 것이 특징입니다.\n\n최근에는 계산광학과 딥러닝을 결합해 초점 심도를 넓히거나 적은 빛으로도 넓은 영역을 빠르게 찍는 연구가 늘었습니다. 중적외선으로 조직의 분자 성분까지 구분하는 삼차원 영상, 반도체 소자의 나노 구조를 극자외선으로 들여다보는 계측, 종양 스페로이드와 오가노이드의 약물 반응 관찰이 대표 응용처입니다.",
   "articles": [
     {
       "date": "2026-02",

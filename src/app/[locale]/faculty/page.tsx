@@ -3,6 +3,7 @@ import { getTranslations, setRequestLocale } from 'next-intl/server';
 import type { Metadata } from 'next';
 import { Hero } from '@/components/Hero';
 import { Section } from '@/components/Section';
+import { DetailNavBar } from '@/components/DetailNavBar';
 import { FacultyDirectoryGrid } from '@/components/FacultyDirectoryGrid';
 import { getFacultyDirectory, getFacultyProfileNames } from '@/lib/faculty';
 
@@ -19,6 +20,7 @@ export default function FacultyPage({ params }: { params: { locale: string } }) 
   setRequestLocale(params.locale);
   const t = useTranslations('faculty');
   const tNav = useTranslations('nav');
+  const tCrumb = useTranslations('breadcrumb');
   const faculty = getFacultyDirectory();
 
   return (
@@ -28,6 +30,9 @@ export default function FacultyPage({ params }: { params: { locale: string } }) 
         subtitle={t('hero.subtitle')}
         breadcrumb={[{ label: tNav('faculty') }]}
       />
+      {/* 다른 페이지와 같은 상단 바 — 교수 상세에서 "목록으로" 돌아왔을 때
+          바가 사라져 길을 잃는 문제를 막는다(이 페이지는 세부탭이 없어 드롭다운 없이 표기만) */}
+      <DetailNavBar homeLabel={tCrumb('home')} currentLabel={tNav('faculty')} />
       <Section>
         <FacultyDirectoryGrid
           items={faculty}

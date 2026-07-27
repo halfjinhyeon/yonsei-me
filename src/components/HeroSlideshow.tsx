@@ -1,7 +1,6 @@
 'use client';
 
 import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
-import Image from 'next/image';
 import { Link, useRouter } from '@/i18n/navigation';
 import gsap from 'gsap';
 import { SplitText } from 'gsap/SplitText';
@@ -20,6 +19,28 @@ const useIsoLayoutEffect = typeof window !== 'undefined' ? useLayoutEffect : use
 // 자동 전환 간격(ms) — 사용자가 '슬라이드쇼'임을 인지하도록 천천히 순환한다.
 const AUTO_ADVANCE_MS = 6500;
 
+// ── 히어로 사진 서빙 ────────────────────────────────────────────────────
+// next/image 를 쓰지 않고 <picture> 를 직접 짜는 이유: 화면비에 따라 가로본/세로본이라는
+// 서로 다른 크롭을 내려줘야 하는데(아트디렉션), next/image 는 한 소스만 다룬다.
+// 최적화는 그대로 Next 이미지 라우트가 한다 — URL 형식만 손으로 만든다.
+//
+// ⚠️ w 는 next.config 의 deviceSizes 목록에 있는 값만 허용된다(그 외는 400).
+const OPT_WIDTHS = [640, 750, 828, 1080, 1200, 1920, 2048] as const;
+const OPT_QUALITY = 75;
+
+function optimized(src: string, width: number): string {
+  return `/_next/image?url=${encodeURIComponent(src)}&w=${width}&q=${OPT_QUALITY}`;
+}
+
+function buildSrcSet(src: string): string {
+  return OPT_WIDTHS.map((w) => `${optimized(src, w)} ${w}w`).join(', ');
+}
+
+// 세로 크롭본(9:16)이 세로 화면을 cover 로 덮으면 폭이 화면보다 최대 1.35배까지 커진다
+// (높이에 맞춰 확대되므로). 100vw 로 알리면 그만큼 모자란 파일을 받아 뿌옇게 나온다.
+// 원본이 1620px 이라 과요청해도 그 이상은 안 나가므로 넉넉히 잡는다.
+const PORTRAIT_SIZES = '135vw';
+
 function prefersReducedMotion() {
   return (
     typeof window !== 'undefined' &&
@@ -34,6 +55,8 @@ export type HeroSlide = {
   label: string;
   /** /img/hero/*.jpg 원본 경로(next/image 가 최적화 서빙) */
   image: string;
+  /** /img/hero-mobile/*.jpg — 세로(9:16) 크롭본. 없으면 가로 원본으로 폴백한다. */
+  imageMobile?: string;
   /** '연구 분야 바로가기' 화살표 링크의 접근성 라벨(로케일 해석 완료) — 없으면 링크 미표시 */
   linkLabel?: string;
 };
@@ -242,15 +265,29 @@ export function HeroSlideshow({ slides, title, navLabel, taglines, aboutLabel }:
               }}
               className={styles.parallax}
             >
-              <Image
-                src={s.image}
-                alt=""
-                fill
-                sizes="100vw"
-                priority={i === 0}
-                className={styles.image}
-                draggable={false}
-              />
+              {/* 아트디렉션 — 세로로 긴 화면(≤3:4)에서는 세로 크롭본을 쓴다.
+                  <source> 는 조건에 맞는 하나만 내려받으므로 두 벌을 다 받지 않는다. */}
+              <picture>
+                {s.imageMobile && (
+                  <source
+                    media="(max-aspect-ratio: 3/4)"
+                    srcSet={buildSrcSet(s.imageMobile)}
+                    sizes={PORTRAIT_SIZES}
+                  />
+                )}
+                {/* eslint-disable-next-line @next/next/no-img-element -- <picture> 아트디렉션은 next/image 로 표현할 수 없다 */}
+                <img
+                  src={optimized(s.image, 1200)}
+                  srcSet={buildSrcSet(s.image)}
+                  sizes="100vw"
+                  alt=""
+                  className={styles.image}
+                  draggable={false}
+                  decoding="async"
+                  loading={i === 0 ? 'eager' : 'lazy'}
+                  fetchPriority={i === 0 ? 'high' : 'auto'}
+                />
+              </picture>
             </div>
           </div>
         ))}

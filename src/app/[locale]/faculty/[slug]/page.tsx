@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { Hero } from '@/components/Hero';
 import { Section } from '@/components/Section';
+import { DetailNavBar } from '@/components/DetailNavBar';
 import { FacultyProfileArticle } from '@/components/FacultyProfileArticle';
 import { getFacultyDirectory, getFacultyProfile, getFacultyProfileNames } from '@/lib/faculty';
 import { routing } from '@/i18n/routing';
@@ -43,6 +44,8 @@ export default async function FacultyProfilePage({
 
   const t = await getTranslations({ locale: params.locale, namespace: 'faculty' });
   const tNav = await getTranslations({ locale: params.locale, namespace: 'nav' });
+  // 홈 라벨은 히어로 브레드크럼과 같은 출처를 쓴다(nav 에는 home 키가 없다)
+  const tCrumb = await getTranslations({ locale: params.locale, namespace: 'breadcrumb' });
 
   return (
     <>
@@ -50,7 +53,18 @@ export default async function FacultyProfilePage({
         title={t('hero.title')}
         breadcrumb={[{ label: tNav('faculty'), href: '/faculty' }, { label: profile.name }]}
       />
-      <Section>
+      {/* 히어로 아래 sticky 바 — 이력이 수백 행이라 상단에 탈출구가 없으면
+          맨 아래 버튼까지 스크롤해야만 목록으로 돌아갈 수 있다 */}
+      <DetailNavBar
+        homeLabel={tCrumb('home')}
+        sectionLabel={tNav('faculty')}
+        sectionHref="/faculty"
+        currentLabel={profile.name}
+      />
+      {/* 상단 여백을 30px 로 줄인다 — 본문 첫 요소가 "목록으로" 버튼이라 섹션 기본
+          리듬(py-section)만큼 띄우면 탈출구가 화면 밖으로 밀려난다.
+          cn 은 tailwind-merge 가 아니라 단순 join 이므로 ! 로 확실히 덮는다. */}
+      <Section className="!pt-[30px]">
         <FacultyProfileArticle profile={profile} record={record} locale={params.locale} />
       </Section>
     </>

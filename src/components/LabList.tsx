@@ -180,9 +180,10 @@ export function LabList({
         </div>
       )}
 
-      {/* 연구실 검색 + 학부 인턴 모집 필터 — 한 줄(좁은 화면은 세로 스택) */}
-      <div className="mb-2 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-        <div className="sm:w-72">
+      {/* 연구실 검색(좌) + 학부 인턴 모집 필터(우) — 모바일도 한 줄.
+          전폭 검색창 아래 전폭 필터를 쌓으면 검색 바가 아니라 폼처럼 읽힌다. */}
+      <div className="mb-2 flex items-center gap-2 sm:justify-between sm:gap-3">
+        <div className="min-w-0 flex-1 sm:w-72 sm:flex-none">
           <label htmlFor="lab-search" className="sr-only">
             {t('search.labs')}
           </label>
