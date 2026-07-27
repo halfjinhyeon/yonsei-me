@@ -1,0 +1,2325 @@
+{
+  "name": "이창훈",
+  "nameEn": "Lee, Changhoon",
+  "email": "clee@yonsei.ac.kr",
+  "phone": "02)2123-2846, 6131",
+  "office": "ASTC 611a, Engineering I 590",
+  "homepage": "http://euler.yonsei.ac.kr",
+  "sourceUrl": "https://me.yonsei.ac.kr/faculty/name_search.do?mode=view&userId=DRg2MLLATF8Kat2jhI9Ziw%3D%3D&sosokcd=0000405",
+  "crawledAt": "2026-07-27",
+  "articles": [
+    {
+      "date": "2026-04",
+      "title": "Director-based simulations of spheroid clustering and alignment in turbulence",
+      "journal": "Physical Review Fluids"
+    },
+    {
+      "date": "2026-04",
+      "title": "Inertial spheroids in turbulence: Director-vector reduced-order theory of anisotropy-induced drift, turbophoresis, settling, and clustering",
+      "journal": "Physical Review Fluids"
+    },
+    {
+      "date": "2025-11",
+      "title": "Simulating the Cahn–Hilliard–Hele–Shaw system via a deep neural operator framework",
+      "journal": "Journal of Mechanical Science and Technology"
+    },
+    {
+      "date": "2025-09",
+      "title": "Extension of the Oseledets theorem and preferential concentration of particles that sediment in turbulence",
+      "journal": "Physica Scripta"
+    },
+    {
+      "date": "2025-09",
+      "title": "Polygonal cell structures in particle-laden turbulent Rayleigh-Bénard convection",
+      "journal": "Journal of Fluid Mechanics"
+    },
+    {
+      "date": "2025-07",
+      "title": "CPrecNet: Enhanced Nowcast of High-Resolution Short-Term Precipitation Using Deep Learning",
+      "journal": "Geophysical Research Letters"
+    },
+    {
+      "date": "2024-12",
+      "title": "Computational fluid dynamics-enhanced prediction of flow rates in a multi-zone indoor environment",
+      "journal": "Journal of Mechanical Science and Technology"
+    },
+    {
+      "date": "2024-08",
+      "title": "TPTNet: A Data-Driven Temperature Prediction Model Based on Turbulent Potential Temperature",
+      "journal": "Earth and Space Science"
+    },
+    {
+      "date": "2024-06",
+      "title": "Optimization of a nozzle vane of gas turbine pre-swirl system",
+      "journal": "JOURNAL OF MECHANICAL SCIENCE AND TECHNOLOGY"
+    },
+    {
+      "date": "2024-05",
+      "title": "Large-eddy simulation for indoor flow in a multizone environment",
+      "journal": "Journal of Mechanical Science and Technology"
+    },
+    {
+      "date": "2024-02",
+      "title": "Prediction and control of two-dimensional decaying turbulence using generative adversarial networks",
+      "journal": "Journal of Fluid Mechanics"
+    },
+    {
+      "date": "2023-02",
+      "title": "Turbulence control for drag reduction through deep reinforcement learning",
+      "journal": "Physical Review Fluids"
+    },
+    {
+      "date": "2023-01",
+      "title": "Interpretable deep learning for prediction of Prandtl number effect in turbulent heat transfer",
+      "journal": "Journal of Fluid Mechanics"
+    },
+    {
+      "date": "2023-01",
+      "title": "Identification of a particle collision as a finite-time blowup in turbulence",
+      "journal": "Scientific Reports"
+    },
+    {
+      "date": "2022-12",
+      "title": "Effect of fillet radius of receiver hole on the performance of gas turbine pre-swirl system",
+      "journal": "JOURNAL OF MECHANICAL SCIENCE AND TECHNOLOGY"
+    },
+    {
+      "date": "2022-12",
+      "title": "Intermittency and collisions of fast sedimenting droplets in turbulence",
+      "journal": "Physical Review Fluids"
+    },
+    {
+      "date": "2022-10",
+      "title": "Deep reinforcement learning for large-eddy simulation modeling in wall-bounded turbulence",
+      "journal": "Physics of Fluids"
+    },
+    {
+      "date": "2022-08",
+      "title": "Effect of gravity-induced fluid inertia on the accumulation and dispersion of motile plankton settling weakly in turbulence",
+      "journal": "PHYSICS OF FLUIDS"
+    },
+    {
+      "date": "2022-06",
+      "title": "Symmetry-breaking natural convection of water in an infinite vertical channel maintained at different temperatures",
+      "journal": "INTERNATIONAL COMMUNICATIONS IN HEAT AND MASS TRANSFER"
+    },
+    {
+      "date": "2022-06",
+      "title": "Effect of Weissenberg number on polymer-laden turbulence",
+      "journal": "Physical Review Fluids"
+    },
+    {
+      "date": "2022-04",
+      "title": "An immersed boundary method for complex terrain flow analysis",
+      "journal": "JOURNAL OF MECHANICAL SCIENCE AND TECHNOLOGY"
+    },
+    {
+      "date": "2021-10",
+      "title": "Real-time prediction of urban flow and dispersion",
+      "journal": "JOURNAL OF MECHANICAL SCIENCE AND TECHNOLOGY"
+    },
+    {
+      "date": "2021-09",
+      "title": "Deep particulate matter forecasting model using correntropy-induced loss",
+      "journal": "JOURNAL OF MECHANICAL SCIENCE AND TECHNOLOGY"
+    },
+    {
+      "date": "2021-09",
+      "title": "Effect of the aspect ratio on the dynamics of air bubbles within Rayleigh-Benard convection",
+      "journal": "PHYSICS OF FLUIDS"
+    },
+    {
+      "date": "2021-07",
+      "title": "Path instability of a no-slip spheroidal bubble in isotropic turbulence",
+      "journal": "Physical Review Fluids"
+    },
+    {
+      "date": "2021-04",
+      "title": "Two-way interaction between isotropic turbulence and dispersed bubbles",
+      "journal": "JOURNAL OF MECHANICAL SCIENCE AND TECHNOLOGY"
+    },
+    {
+      "date": "2021-01",
+      "title": "Unsupervised deep learning for super-resolution reconstruction of turbulence",
+      "journal": "JOURNAL OF FLUID MECHANICS"
+    },
+    {
+      "date": "2020-10",
+      "title": "Behavior of settling particles in homogeneous shear turbulence",
+      "journal": "PHYSICAL REVIEW FLUIDS"
+    },
+    {
+      "date": "2020-07",
+      "title": "Behavior of microbubbles in homogeneous stratified turbulence",
+      "journal": "Physical Review Fluids"
+    },
+    {
+      "date": "2020-06",
+      "title": "Simulation of the mushroom cloud generated from a high-energy explosion using large-eddy simulation",
+      "journal": "JOURNAL OF MECHANICAL SCIENCE AND TECHNOLOGY"
+    },
+    {
+      "date": "2020-06",
+      "title": "관성 입자와 성층화 난류 사이의 상호작용에 대한 직접수치모사",
+      "journal": "한국전산유체공학회지"
+    },
+    {
+      "date": "2020-06",
+      "title": "Large deviations, singularity, and lognormality of energy dissipation in turbulence",
+      "journal": "PHYSICAL REVIEW E"
+    },
+    {
+      "date": "2020-06",
+      "title": "An immersed boundary formulation incorporating a two-layer wall model approach for RANS simulations with complex geometry",
+      "journal": "COMPUTERS & FLUIDS"
+    },
+    {
+      "date": "2020-05",
+      "title": "On the dynamics of air bubbles in Rayleigh-Benard convection",
+      "journal": "JOURNAL OF FLUID MECHANICS"
+    },
+    {
+      "date": "2020-04",
+      "title": "Deep unsupervised learning of turbulence for inflow generation at various Reynolds numbers",
+      "journal": "JOURNAL OF COMPUTATIONAL PHYSICS"
+    },
+    {
+      "date": "2020-01",
+      "title": "Prediction of turbulent heat transfer using convolutional neural networks",
+      "journal": "JOURNAL OF FLUID MECHANICS"
+    },
+    {
+      "date": "2019-10",
+      "title": "Sedimentation of a small sphere in stratified fluid",
+      "journal": "Physical Review Fluids"
+    },
+    {
+      "date": "2019-10",
+      "title": "Flow modification by inertial particles in a differentially heated cubic cavity",
+      "journal": "INTERNATIONAL JOURNAL OF HEAT AND FLUID FLOW"
+    },
+    {
+      "date": "2019-08",
+      "title": "The effect of wall-normal gravity on particle-laden near-wall turbulence",
+      "journal": "JOURNAL OF FLUID MECHANICS"
+    },
+    {
+      "date": "2018-12",
+      "title": "Modification of turbulence and stratification of stably stratified turbulent channel flows by finite-size particles",
+      "journal": "Physical Review Fluids"
+    },
+    {
+      "date": "2018-12",
+      "title": "Multifractality of fine bubbles in turbulence due to lift",
+      "journal": "Physical Review Fluids"
+    },
+    {
+      "date": "2018-09",
+      "title": "Efficient monolithic projection method for time-dependent conjugate heat transfer problems",
+      "journal": "JOURNAL OF COMPUTATIONAL PHYSICS"
+    },
+    {
+      "date": "2018-07",
+      "title": "Behavior of settling inertial particles in a differentially heated cubic cavity at moderate Rayleigh number",
+      "journal": "JOURNAL OF MECHANICAL SCIENCE AND TECHNOLOGY"
+    },
+    {
+      "date": "2017-11",
+      "title": "Drag and torque acting on a sphere rotating in the streamwise direction for the Reynolds number range of 0.02 ≤ Re ≤ 200",
+      "journal": "JOURNAL OF MECHANICAL SCIENCE AND TECHNOLOGY"
+    },
+    {
+      "date": "2017-07",
+      "title": "An immersed boundary method for nonuniform grids",
+      "journal": "JOURNAL OF COMPUTATIONAL PHYSICS"
+    },
+    {
+      "date": "2017-05",
+      "title": "Numerical study of non-Newtonian fluid flow over an exponentially stretching surface: an optimal HAM validation",
+      "journal": "JOURNAL OF THE BRAZILIAN SOCIETY OF MECHANICAL SCIENCES AND ENGINEERING"
+    },
+    {
+      "date": "2017-04",
+      "title": "Fully decoupled monolithic projection method for natural convection problems",
+      "journal": "JOURNAL OF COMPUTATIONAL PHYSICS"
+    },
+    {
+      "date": "2016-12",
+      "title": "등방성 난류에서의 마이크로버블 거동",
+      "journal": "한국전산유체공학회지"
+    },
+    {
+      "date": "2016-09",
+      "title": "Effect of surface conditions on blast wave propagation",
+      "journal": "JOURNAL OF MECHANICAL SCIENCE AND TECHNOLOGY"
+    },
+    {
+      "date": "2016-06",
+      "title": "Entropy generation analysis for non-Newtonian nanofluid with zero normal flux of nanoparticles at the stretching surface",
+      "journal": "JOURNAL OF THE TAIWAN INSTITUTE OF CHEMICAL ENGINEERS"
+    },
+    {
+      "date": "2016-06",
+      "title": "A pre-conditioned implicit direct forcing based immersed boundary method for incompressible viscous flows",
+      "journal": "JOURNAL OF COMPUTATIONAL PHYSICS"
+    },
+    {
+      "date": "2016-06",
+      "title": "A decoupled monolithic projection method for natural convection problems",
+      "journal": "JOURNAL OF COMPUTATIONAL PHYSICS"
+    },
+    {
+      "date": "2016-04",
+      "title": "Analysis of velocity-components decoupled projection method for the incompressible Navier-Stokes equations",
+      "journal": "COMPUTERS & MATHEMATICS WITH APPLICATIONS"
+    },
+    {
+      "date": "2016-02",
+      "title": "Series solution of magneto-hydrodynamic boundary layer flow over bi-directional exponentially stretching surfaces",
+      "journal": "JOURNAL OF THE BRAZILIAN SOCIETY OF MECHANICAL SCIENCES AND ENGINEERING"
+    },
+    {
+      "date": "2016-01",
+      "title": "Interparticle collision mechanism in turbulence",
+      "journal": "PHYSICAL REVIEW E"
+    },
+    {
+      "date": "2015-12",
+      "title": "Analysis of coherent structures in Rayleigh-Benard convection",
+      "journal": "JOURNAL OF TURBULENCE"
+    },
+    {
+      "date": "2015-11",
+      "title": "Numerical simulation of mixed convection in vertical concentric cylinders",
+      "journal": "JOURNAL OF MECHANICAL SCIENCE AND TECHNOLOGY"
+    },
+    {
+      "date": "2015-09",
+      "title": "Inhomogeneous distribution of water droplets in cloud turbulence",
+      "journal": "PHYSICAL REVIEW E"
+    },
+    {
+      "date": "2015-07",
+      "title": "MHD boundary layer flow over an unsteady shrinking sheet: analytical and numerical approach",
+      "journal": "JOURNAL OF THE BRAZILIAN SOCIETY OF MECHANICAL SCIENCES AND ENGINEERING"
+    },
+    {
+      "date": "2015-02",
+      "title": "Modification of particle-laden near-wall turbulence: Effect of Stokes number",
+      "journal": "PHYSICS OF FLUIDS"
+    },
+    {
+      "date": "2014-12",
+      "title": "핵폭발 초기 화구에 대한 수치해석",
+      "journal": "한국전산유체공학회지"
+    },
+    {
+      "date": "2014-12",
+      "title": "Behavior of particles in turbulence over a wavy boundary",
+      "journal": "INTERNATIONAL JOURNAL OF MULTIPHASE FLOW"
+    },
+    {
+      "date": "2014-12",
+      "title": "Large-eddy simulation of turbulent flow and dispersion over a complex urban street canyon",
+      "journal": "ENVIRONMENTAL FLUID MECHANICS"
+    },
+    {
+      "date": "2014-06",
+      "title": "Gravity-driven clustering of inertial particles in turbulence",
+      "journal": "PHYSICAL REVIEW E"
+    },
+    {
+      "date": "2014-06",
+      "title": "Exponentially Stagnation Point Flow of Non-Newtonian Nanofluid over an Exponentially Stretching Surface",
+      "journal": "INTERNATIONAL JOURNAL OF NONLINEAR SCIENCES AND NUMERICAL SIMULATION"
+    },
+    {
+      "date": "2013-12",
+      "title": "Numerical Simulation of Nanoparticle Fraction for the Peristaltic Flow of a Six Constant Jeffrey&apos;s Fluid Model",
+      "journal": "CURRENT NANOSCIENCE"
+    },
+    {
+      "date": "2013-10",
+      "title": "Biomechanical Analysis of Eyring Prandtl Fluid Model for Blood Flow in Stenosed Arteries",
+      "journal": "INTERNATIONAL JOURNAL OF NONLINEAR SCIENCES AND NUMERICAL SIMULATION"
+    },
+    {
+      "date": "2013-09",
+      "title": "Numerical study of Williamson nano fluid flow in an asymmetric channel",
+      "journal": "RESULTS IN PHYSICS"
+    },
+    {
+      "date": "2013-09",
+      "title": "Characteristics of Jeffrey fluid model for peristaltic flow of chyme in small intestine with magnetic field",
+      "journal": "RESULTS IN PHYSICS"
+    },
+    {
+      "date": "2013-09",
+      "title": "저 레이놀즈수에 적용 가능한 가상경계기법",
+      "journal": "한국전산유체공학회지"
+    },
+    {
+      "date": "2013-08",
+      "title": "Numerical Study of Boundary Layer Flow and Heat Transfer of Oldroyd-B Nanofluid towards a Stretching Sheet",
+      "journal": "PLOS ONE"
+    },
+    {
+      "date": "2013-07",
+      "title": "FLOW OF A WILLIAMSON FLUID OVER A STRETCHING SHEET",
+      "journal": "BRAZILIAN JOURNAL OF CHEMICAL ENGINEERING"
+    },
+    {
+      "date": "2013-06",
+      "title": "Peristaltic Flow of Hyperbolic Tangent Fluid in a Diverging Tube with Heat and Mass Transfer",
+      "journal": "JOURNAL OF ENERGY ENGINEERING"
+    },
+    {
+      "date": "2013-05",
+      "title": "A numerical method for the calculation of drag and lift of a deformable droplet in shear flow",
+      "journal": "JOURNAL OF COMPUTATIONAL PHYSICS"
+    },
+    {
+      "date": "2013-03",
+      "title": "Decaying versus stationary turbulence in particle-laden isotropic turbulence: Heavy particle statistics modifications",
+      "journal": "PHYSICS OF FLUIDS"
+    },
+    {
+      "date": "2012-12",
+      "title": "MHD flow of a Casson fluid over an exponentially shrinking sheet",
+      "journal": "SCIENTIA IRANICA"
+    },
+    {
+      "date": "2012-12",
+      "title": "에어컨 실내기의 공력소음 예측을 위한 RANS 난류모델의 성능 평가",
+      "journal": "한국전산유체공학회지"
+    },
+    {
+      "date": "2012-12",
+      "title": "Source of acceleration intermittency in isotropic turbulence",
+      "journal": "JOURNAL OF MECHANICAL SCIENCE AND TECHNOLOGY"
+    },
+    {
+      "date": "2012-12",
+      "title": "Peristaltic transport of a Williamson fluid in asymmetric channels with permeable walls",
+      "journal": "NONLINEAR ANALYSIS-REAL WORLD APPLICATIONS"
+    },
+    {
+      "date": "2012-09",
+      "title": "벽 근접 효과에 의한 물체의 항력 양력 변화",
+      "journal": "한국전산유체공학회지"
+    },
+    {
+      "date": "2012-07",
+      "title": "Boundary Layer Flow of Second Grade Fluid in a Cylinder with Heat Transfer",
+      "journal": "MATHEMATICAL PROBLEMS IN ENGINEERING"
+    },
+    {
+      "date": "2012-07",
+      "title": "Peristaltic flow of a Jeffrey-six constant fluid in a uniform inclined tube",
+      "journal": "INTERNATIONAL JOURNAL FOR NUMERICAL METHODS IN FLUIDS"
+    },
+    {
+      "date": "2012-06",
+      "title": "Influence of heat transfer and chemical reactions on williamson fluid model for blood flow through a tapered artery with a stenosis",
+      "journal": "ASIAN JOURNAL OF CHEMISTRY"
+    },
+    {
+      "date": "2012-03",
+      "title": "Axisymmetric Stagnation Flow of a Micropolar Nanofluid in a Moving Cylinder",
+      "journal": "MATHEMATICAL PROBLEMS IN ENGINEERING"
+    },
+    {
+      "date": "2012-01",
+      "title": "Peristaltic flow of a Prandtl fluid model in an asymmetric channel",
+      "journal": "INTERNATIONAL JOURNAL OF THE PHYSICAL SCIENCES"
+    },
+    {
+      "date": "2012-01",
+      "title": "Decaying versus stationary turbulence in particle-laden isotropic turbulence: Turbulence modulation mechanism",
+      "journal": "PHYSICS OF FLUIDS"
+    },
+    {
+      "date": "2012-01",
+      "title": "Boundary layer flow of nanofluid over an exponentially stretching surface",
+      "journal": "NANOSCALE RESEARCH LETTERS"
+    },
+    {
+      "date": "2011-06",
+      "title": "In-situ observation of phase transformation in amorphous silicon during Joule-heating induced crystallization process",
+      "journal": "THIN SOLID FILMS"
+    },
+    {
+      "date": "2011-06",
+      "title": "Estimation of Roughness Parameters Within Sparse Urban-Like Obstacle Arrays",
+      "journal": "BOUNDARY-LAYER METEOROLOGY"
+    },
+    {
+      "date": "2011-05",
+      "title": "Convective heat transfer in the flow of viscous Ag-water and Cu-water nanofluids over a stretching surface",
+      "journal": "International Journal of Thermal Science"
+    },
+    {
+      "date": "2010-09",
+      "title": "On the near-wall characteristics of acceleration in turbulence",
+      "journal": "JOURNAL OF FLUID MECHANICS"
+    },
+    {
+      "date": "2010-07",
+      "title": "등방성 난류에서 입자의 회전에 의한 분산 특성의 변화",
+      "journal": "대한기계학회논문집 B"
+    },
+    {
+      "date": "2010-06",
+      "title": "Helicity and geometric nature of particle trajectories in homogeneous isotropic turbulence",
+      "journal": "INTERNATIONAL JOURNAL OF HEAT AND FLUID FLOW"
+    },
+    {
+      "date": "2009-11",
+      "title": "Lagrangian stochastic model for buoyant gas dispersion in a simple geometric chamber",
+      "journal": "JOURNAL OF LOSS PREVENTION IN THE PROCESS INDUSTRIES"
+    },
+    {
+      "date": "2009-07",
+      "title": "Eulerian and Lagrangian statistics in stably stratified turbulent channel flows",
+      "journal": "JOURNAL OF TURBULENCE"
+    },
+    {
+      "date": "2009-07",
+      "title": "Alignment of velocity and vorticity and the intermittent distribution of helicity in isotropic turbulence",
+      "journal": "Physical Review E"
+    },
+    {
+      "date": "2008-10",
+      "title": "Stability of a channel flow subject to wall blowing and suction in the form of a traveling wave",
+      "journal": "PHYSICS OF FLUIDS"
+    },
+    {
+      "date": "2008-01",
+      "title": "Behavior of heavy particles in isotropic turbulence",
+      "journal": "Physical Review E"
+    },
+    {
+      "date": "2007-11",
+      "title": "A new Lagrangian stochastic model for the gravity-slumping/spreading motion of a dense gas",
+      "journal": "ATMOSPHERIC ENVIRONMENT"
+    },
+    {
+      "date": "2006-08",
+      "title": "벽 근처 전단 유동 내의 입자의 운동",
+      "journal": "대한기계학회논문집 B"
+    },
+    {
+      "date": "2005-10",
+      "title": "이상적 중립대기경계층에서 고밀도가스의 확산예측을 위한 라그랑지안 확산모델",
+      "journal": "한국대기환경학회지"
+    },
+    {
+      "date": "2005-01",
+      "title": "Intermittency of acceleration in isotropic turbulence",
+      "journal": "PHYSICAL REVIEW E"
+    },
+    {
+      "date": "2004-07",
+      "title": "Anisotropy of acceleration in turbulent flows",
+      "journal": "PHYSICAL REVIEW E"
+    },
+    {
+      "date": "2004-01",
+      "title": "난류 경계층 유동에서 입자의 확산과 스핀의 영향",
+      "journal": "대한기계학회논문집 B"
+    },
+    {
+      "date": "2004-01",
+      "title": "Intermittent nature of acceleration in near wall turbulence",
+      "journal": "PHYSICAL REVIEW LETTERS"
+    },
+    {
+      "date": "2004-01",
+      "title": "Lagrangian statistics in turbulent channel flow",
+      "journal": "PHYSICS OF FLUIDS"
+    },
+    {
+      "date": "2003-07",
+      "title": "난류채널유동의 라그란지안 해석 (Ⅱ) - 라그란지안 통계분석 -",
+      "journal": "대한기계학회 논문집B"
+    },
+    {
+      "date": "2003-07",
+      "title": "난류채널유동의 라그란지안 해석 (I) - 입자추적 알고리즘 평가 -",
+      "journal": "대한기계학회 논문집B"
+    },
+    {
+      "date": "2003-05",
+      "title": "VORTEX DYNAMICS AND ZONAL FLOWS",
+      "journal": "PHYSICS OF PLASMAS"
+    },
+    {
+      "date": "2003-05",
+      "title": "TURBULENT BOUNDARY LAYER CONTROL UTILIZING THELORENTZ FORCE",
+      "journal": "PHYSICS OF FLUIDS"
+    },
+    {
+      "date": "2003-05",
+      "title": "Appication of the Goore Scheme to turbulence contrl for drag reduction (Ⅱ) Appication to turbulence",
+      "journal": "KSME international journal"
+    },
+    {
+      "date": "2003-05",
+      "title": "A SIMPLE LAGRANGIAN PDF MODEL FOR WALL-BOUNDEDTURBULENT FLOWS",
+      "journal": "KSME international journal"
+    },
+    {
+      "date": "2003-01",
+      "title": "Large-Eddy Simulation of Rough-Wall Turbulent Boundary Layers",
+      "journal": "AIAA JOURNAL"
+    },
+    {
+      "date": "2003-01",
+      "title": "Stability characteristics of the virtual boundary method in three-dimensional applications",
+      "journal": "JOURNAL OF COMPUTATIONAL PHYSICS"
+    },
+    {
+      "date": "2002-12",
+      "title": "A new compact spectral scheme for turbulence simulations",
+      "journal": "JOURNAL OF COMPUTATIONAL PHYSICS"
+    },
+    {
+      "date": "2002-11",
+      "title": "SUBOPTIMAL CONTROL OF TURBULENT CHANNEL FLOW FORDRAG REDUCTION",
+      "journal": "JOURNAL OF FLUID MECHANICS"
+    },
+    {
+      "date": "2002-11",
+      "title": "ASYMMETRIES IN EASTWARD AND WESTWARD JETS IN AMODEL PLANETARY ATMOSPHERE",
+      "journal": "SEMI-ANALYTIC METHODS FOR THE NAVIER-STOKES"
+    },
+    {
+      "date": "2002-11",
+      "title": "APPLICATION OF NEURAL NETWORKS TO TURBULENCECONTROL FOR DRAG REDUCTION",
+      "journal": "PHYSICS OF FLUIDS"
+    },
+    {
+      "date": "2002-11",
+      "title": "A MODEL FOR EASTWARD AND WESTWARD JETS INLABORATORY EXPERIMENTS AND PLANETARY ATMOSPHERE",
+      "journal": "PHYSICS OF FLUIDS"
+    },
+    {
+      "date": "2002-07",
+      "title": "Control of the viscous sublayer for drag reduction",
+      "journal": "PHYSICS OF FLUIDS"
+    },
+    {
+      "date": "2002-00",
+      "title": "Large-eddy simulation of rough-wall turbulent boundary layers",
+      "journal": "AIAA JOURNAL"
+    },
+    {
+      "date": "2001-12",
+      "title": "A Lagrangian stochastic model for turbulent dispersion",
+      "journal": "KSME international journal"
+    },
+    {
+      "date": "2001-11",
+      "title": "Appication of the Goore Scheme to turbulence control for drag reduction (Ⅰ) Improvement of the Goore Scheme",
+      "journal": "KSME International Journal"
+    },
+    {
+      "date": "2001-11",
+      "title": "Appication of the Goore Scheme to turbulence contrl for drag reduction (Ⅱ) Appication to turbulence control",
+      "journal": "KSME international journal"
+    },
+    {
+      "date": "2001-07",
+      "title": "전단 증진된 난류확산의 수치적 연구",
+      "journal": "대한기계학회논문집 B"
+    },
+    {
+      "date": "2000-08",
+      "title": "A simple Lagrangian pdf model for wall-bounded turbulent flows",
+      "journal": "KSME International Journal"
+    },
+    {
+      "date": "2000-06",
+      "title": "Turbulent boundary layer control utilizing the Lorentz force",
+      "journal": "PHYSICS OF FLUIDS"
+    },
+    {
+      "date": "2000-03",
+      "title": "Vortex dynamics and zonal flows",
+      "journal": "PHYSICS OF PLASMAS"
+    },
+    {
+      "date": "1999-05",
+      "title": "Asymmetries in eastward and westward jets in a model planetary atmosphere",
+      "journal": "Semi-Analytic Methods for the Navier-Stokes Equation"
+    },
+    {
+      "date": "1999-05",
+      "title": "난류확산에 관하여",
+      "journal": "Journal of the Institute of Industrial Technology"
+    },
+    {
+      "date": "1998-05",
+      "title": "Suboptimal control of turbulent channel flow for drag reduction",
+      "journal": "JOURNAL OF FLUID MECHANICS"
+    },
+    {
+      "date": "1998-05",
+      "title": "A model for eastward and westward jets in laboratory experiments and planetary atmosphere",
+      "journal": "PHYSICS OF FLUIDS"
+    },
+    {
+      "date": "1997-05",
+      "title": "Neural networks for active drag reduction in fully turbulent airflows",
+      "journal": "IEE Proceedings of Fifth International Conference on Artificial Neural Networks"
+    },
+    {
+      "date": "1997-05",
+      "title": "Application of neural networks to turbulence control for drag reduction",
+      "journal": "PHYSICS OF FLUIDS"
+    },
+    {
+      "date": "1997-05",
+      "title": "Suboptimal control of turbulent channel flow",
+      "journal": "Journal of the Institute of Industrial Technology"
+    },
+    {
+      "date": "1996-05",
+      "title": "Active drag reduction using neural networks",
+      "journal": "IEEE International Workshop on Neural Networks for Identification Control Robotics and Signal/Image Processing"
+    },
+    {
+      "date": "1994-07",
+      "title": "Jupiter&apos;s Great Red Spot and zonal winds as a self-consistent one-layer quasigeostrophic flow",
+      "journal": "CHAOS"
+    },
+    {
+      "date": "1989-01",
+      "title": "Viscous flows through screens normal to the uniform stream",
+      "journal": "KSME Journal"
+    },
+    {
+      "date": "1987-01",
+      "title": "Numerical calculation of flow and heat transfer in an axisymmetric reciprocating engine at its suction and compression stage",
+      "journal": "Transactions of KSME"
+    }
+  ],
+  "awards": [
+    {
+      "title": "우수강의교수상",
+      "contents": null,
+      "date": "2026-04-19"
+    },
+    {
+      "title": "우수강의교수상",
+      "contents": null,
+      "date": "2025-04-22"
+    },
+    {
+      "title": "우수강의교수상",
+      "contents": null,
+      "date": "2024-04-22"
+    },
+    {
+      "title": "대한기계학회 학술상",
+      "contents": "우수연구업적에 대한 수상",
+      "date": "2023-11-02"
+    },
+    {
+      "title": "대한기계학회 유체공학학술상",
+      "contents": "유체공학 분야 우수업적에 대한 상",
+      "date": "2023-05-18"
+    },
+    {
+      "title": "우수업적교수상(연구부문)",
+      "contents": "연구과제수주",
+      "date": "2020-02-01"
+    },
+    {
+      "title": "우수업적교수상(연구부문)",
+      "contents": "연구과제수주",
+      "date": "2019-02-01"
+    },
+    {
+      "title": "최우수 교육자상",
+      "contents": "우수 강의",
+      "date": "2018-02-01"
+    },
+    {
+      "title": "NCFE 학술상",
+      "contents": "제9회 한국유체공학학술대회에서 그동안의 논문발표성과의 탁월성에 대한 시상",
+      "date": "2016-11-09"
+    },
+    {
+      "title": "우수업적교수상(교육부문)",
+      "contents": "우수한 교육실적에 대한 포상",
+      "date": "2015-02-02"
+    },
+    {
+      "title": "대한기계학회 공로상",
+      "contents": "기계학회 이사, 편집장 봉사에 대한 포상",
+      "date": "2014-11-06"
+    },
+    {
+      "title": "우수업적교수상(교육부문)",
+      "contents": "공학부문",
+      "date": "2013-02-01"
+    },
+    {
+      "title": "우수강의교수상",
+      "contents": "2008년도 강의평가 우수교원 수상",
+      "date": "2009-03-23"
+    },
+    {
+      "title": "남헌학술상",
+      "contents": "유체공학부문에서 우수한 연구업적 달성",
+      "date": "2007-11-01"
+    },
+    {
+      "title": "과학기술우수논문상",
+      "contents": "기계학회 대표로 수상",
+      "date": "2005-05-19"
+    },
+    {
+      "title": "국비유학생선발",
+      "contents": "해외유학 정부장학생 선발",
+      "date": "1987-05-01"
+    },
+    {
+      "title": "준최우등졸업",
+      "contents": "Magna Cum Laude",
+      "date": "1985-02-28"
+    }
+  ],
+  "conferences": [
+    {
+      "title": "프리스월 시스템의 형상 변화에 따른 가스터빈 이차유로의 냉각 성능 평가",
+      "conference": "한국추진공학회 2020년 추계학술대회",
+      "period": "2020.11.25~2020.11.27"
+    },
+    {
+      "title": "Path instability of a spheroidal bubble in weak turbulence",
+      "conference": "73rd Annual Meeting of the APS Division of Fluid Dynamics",
+      "period": "2020.11.22~2020.11.24"
+    },
+    {
+      "title": "Behavior of settling ellipoidal micropaticles in homogeneous isotropic turbulence",
+      "conference": "73rd Annual Meeting of the APS Division of Fluid Dynamics",
+      "period": "2020.11.22~2020.11.24"
+    },
+    {
+      "title": "Numerical investigation of finite-time singularity of particle-laden flow",
+      "conference": "73rd Annual Meeting of the APS Division of Fluid Dynamics",
+      "period": "2020.11.22~2020.11.24"
+    },
+    {
+      "title": "Super-resolution reconstruction of turbulence using unsupervised deep learning",
+      "conference": "73rd Annual Meeting of the APS Division of Fluid Dynamics",
+      "period": "2020.11.22~2020.11.24"
+    },
+    {
+      "title": "Modeling wall-shear stress of turbulent flows through deep reinforcement learning",
+      "conference": "73rd Annual Meeting of the APS Division of Fluid Dynamics",
+      "period": "2020.11.22~2020.11.24"
+    },
+    {
+      "title": "Symmetry-breaking transition in natural convection flow between parallel vertical walls maintained at different temperatures",
+      "conference": "73rd Annual Meeting of the APS Division of Fluid Dynamics",
+      "period": "2020.11.22~2020.11.24"
+    },
+    {
+      "title": "Finite-time blowup in particle-laden turbulence",
+      "conference": "The 24th Online Frontier Scientists Workshop",
+      "period": "2020.11.06~2020.11.06"
+    },
+    {
+      "title": "Singularity of particles suspended in turbulent flow",
+      "conference": "2020년?한국계산과학공학회 추계학술대회",
+      "period": "2020.09.24~2020.09.24"
+    },
+    {
+      "title": "Super-resolution reconstruction of turbulence through unsupervised deep learning",
+      "conference": "2020년 한국계산과학공학회 추계학술대회",
+      "period": "2020.09.24~2020.09.24"
+    },
+    {
+      "title": "Turbulence modeling via deep reinforcement learning",
+      "conference": "2020년 한국계산과학공학회 추계학술대회",
+      "period": "2020.09.24~2020.09.24"
+    },
+    {
+      "title": "Deep learning of turbulence",
+      "conference": "제 11회 한국유체공학학술대회",
+      "period": "2020.08.12~2020.08.14"
+    },
+    {
+      "title": "Real-time prediction of urban flow and terrain flow",
+      "conference": "제 11회 한국유체공학학술대회",
+      "period": "2020.08.12~2020.08.14"
+    },
+    {
+      "title": "Finite-time singularity in particle-laden turbulence",
+      "conference": "제 11회 한국유체공학학술대회",
+      "period": "2020.08.12~2020.08.14"
+    },
+    {
+      "title": "Super-resolution reconstruction of turbulence using deep learning",
+      "conference": "제 11회 한국유체공학학술대회",
+      "period": "2020.08.12~2020.08.14"
+    },
+    {
+      "title": "Application of deep reinforcement learning to turbulent flows",
+      "conference": "제 11회 한국유체공학학술대회",
+      "period": "2020.08.12~2020.08.14"
+    },
+    {
+      "title": "On the physical mechanism of the two-way interaction between polymers and near-wall turbulence",
+      "conference": "72nd Annual Meeting of the APS Division of Fluid Dynamics",
+      "period": "2019.11.23~2019.11.26"
+    },
+    {
+      "title": "Turbulence inflow generation using generative adversarial network",
+      "conference": "72nd Annual Meeting of the APS Division of Fluid Dynamics",
+      "period": "2019.11.23~2019.11.26"
+    },
+    {
+      "title": "신경회로망을 이용한 초미세먼지 PM2.5의 농도 예측",
+      "conference": "대한기계학회 2019년 학술대회?",
+      "period": "2019.11.13~2019.11.15"
+    },
+    {
+      "title": "머신러닝 기반의 미세먼지 장기 예측 모델 개발",
+      "conference": "대한기계학회 2019년 학술대회",
+      "period": "2019.11.13~2019.11.15"
+    },
+    {
+      "title": "회전하는 난류에서 무거운 입자의 직접수치모사",
+      "conference": "대한기계학회 2019년 학술대회",
+      "period": "2019.11.13~2019.11.15"
+    },
+    {
+      "title": "균일전단난류에서 중력으로 인한 관성입자 침전 연구",
+      "conference": "대한기계학회 2019년 학술대회",
+      "period": "2019.11.13~2019.11.15"
+    },
+    {
+      "title": "Direct numerical simulation of turbulence modification by microbubbles in homogeneous isotropic turbulence",
+      "conference": "대한기계학회 2019년 학술대회",
+      "period": "2019.11.13~2019.11.15"
+    },
+    {
+      "title": "Real-time urban flow analysis using LES, IBM and GPU parallelization",
+      "conference": "2019년 한국계산과학공학회 추계학술대회",
+      "period": "2019.09.06~2019.09.06"
+    },
+    {
+      "title": "Simulation of heavy explosion on stratified atmospheric boundary layer with Lagrangian particle tracking method",
+      "conference": "2019년 한국계산과학공학회 추계학술대회",
+      "period": "2019.09.06~2019.09.06"
+    },
+    {
+      "title": "A direct numerical simulation study of polymers in near-wall turbulence",
+      "conference": "Eleventh International Symposium on Turbulence and Shear Flow Phenomena (TSFP11)?",
+      "period": "2019.07.30~2019.08.02"
+    },
+    {
+      "title": "Unsupervised Learning for Turbulent Inflow Generation",
+      "conference": "ASME-JSME-KSME Joint Fluids Engineering Conference 2019 (AJK FLUIDS 2019)",
+      "period": "2019.07.28~2019.08.01"
+    },
+    {
+      "title": "성층화된 난류에 부유된 입자 거동에 관한 직접수치모사",
+      "conference": "2019년 한국유체기계학회 하계학술대회",
+      "period": "2019.07.03~2019.07.05"
+    },
+    {
+      "title": "난류의 딥러닝",
+      "conference": "한국입자에어로졸학회 2019년 춘계학술대회",
+      "period": "2019.07.03~2019.07.05"
+    },
+    {
+      "title": "적대적 생성신경망을 이용한 채널 유동의 입구 경계 조건 생성",
+      "conference": "2019년 한국계산과학공학회 춘계학술대회?",
+      "period": "2019.05.24~2019.05.24"
+    },
+    {
+      "title": "Predicting Concentration of Atmospheric Aerosol Particles using ML Technique",
+      "conference": "2019년 한국계산과학공학회 춘계학술대회",
+      "period": "2019.05.24~2019.05.24"
+    },
+    {
+      "title": "RANS 해석을 위한 난류 벽 모델 기반 가상경계기법 개발",
+      "conference": "2019년도 대한기계학회 유체공학부문 춘계학술대회",
+      "period": "2019.04.18~2019.04.19"
+    },
+    {
+      "title": "입자 부유 난류 유동속의 회전타원체 거동에 관한 수치해석",
+      "conference": "대한기계학회 유체공학부문 2019년도 춘계학술대회",
+      "period": "2019.04.18~2019.04.19"
+    },
+    {
+      "title": "3차원 난류채널 해석의 GPU 병렬화",
+      "conference": "대한기계학회 2018년도 학술대회",
+      "period": "2018.12.12~2018.12.15"
+    },
+    {
+      "title": "비대칭으로 가열된 수직 평행 판에서 유체 구조와 벽 사이의 열전달의 관찰",
+      "conference": "대한기계학회 2018년도 학술대회",
+      "period": "2018.12.12~2018.12.15"
+    },
+    {
+      "title": "유입 난류 생성을 위한 난류의 비지도 학습",
+      "conference": "대한기계학회 2018년도 학술대회",
+      "period": "2018.12.12~2018.12.15"
+    },
+    {
+      "title": "Behavior of heavy particles in shear turbulence under gravity",
+      "conference": "71st Annual Meeting of the American Physical Society Division of Fluid Dynamics",
+      "period": "2018.11.18~2018.11.20"
+    },
+    {
+      "title": "The interaction between the finite-size particles and stably stratified turbulent channel flow",
+      "conference": "71st Annual Meeting of the American Physical Society Division of Fluid Dynamics",
+      "period": "2018.11.18~2018.11.20"
+    },
+    {
+      "title": "Deep learning of turbulent heat transfer in channel flow",
+      "conference": "71st Annual Meeting of the American Physical Society Division of Fluid Dynamics",
+      "period": "2018.11.18~2018.11.20"
+    },
+    {
+      "title": "Lagrangian behavior of polymers in near-wall turbulence",
+      "conference": "2018 한국계산과학공학회 추계학술대회",
+      "period": "2018.10.05~2018.10.05"
+    },
+    {
+      "title": "Investigation for the behavior of finite-size particles in stably stratified turbulent channel flows",
+      "conference": "2018 한국계산과학공학회 추계학술대회",
+      "period": "2018.10.05~2018.10.05"
+    },
+    {
+      "title": "Statistics of particles in homogeneous shear turbulence under gravity",
+      "conference": "2018 한국계산과학공학회 추계학술대회",
+      "period": "2018.10.05~2018.10.05"
+    },
+    {
+      "title": "GPU parallelization of 3D turbulent channel simulation",
+      "conference": "2018 한국계산과학공학회 추계학술대회",
+      "period": "2018.10.05~2018.10.05"
+    },
+    {
+      "title": "적대적 생성신경망을 이용한 난류 생성",
+      "conference": "2018 한국계산과학공학회 추계학술대회",
+      "period": "2018.10.05~2018.10.05"
+    },
+    {
+      "title": "라그란지안 폴리머와 채널 난류의 상호작용에 관한 연구",
+      "conference": "제10회 한국유체공학학술대회",
+      "period": "2018.08.22~2018.08.24"
+    },
+    {
+      "title": "선형 성층유체가 버블 입자 주위 낮은 레이놀즈 수 유동에 미치는 영향에 대한 수치 연구",
+      "conference": "제10회 한국유체공학학술대회",
+      "period": "2018.08.22~2018.08.24"
+    },
+    {
+      "title": "유한한 크기의 입자에 의한 성층화된 채널 난류의 변조",
+      "conference": "제10회 한국유체공학학술대회",
+      "period": "2018.08.22~2018.08.24"
+    },
+    {
+      "title": "난류 열전달의 딥러닝",
+      "conference": "제10회 한국유체공학학술대회",
+      "period": "2018.08.22~2018.08.24"
+    },
+    {
+      "title": "Effect of Weissenberg number on polymer-laden turbulence",
+      "conference": "제10회 한국유체공학학술대회",
+      "period": "2018.08.22~2018.08.24"
+    },
+    {
+      "title": "Numerical study of particle-laden turbulence",
+      "conference": "Emerging Technologies in Mechanical Engineering 2018",
+      "period": "2018.08.19~2018.08.22"
+    },
+    {
+      "title": "RANS 열유동 해석을 위한 난류 모델 기반 가상경계기법",
+      "conference": "한국전산유체공학회 2018년도 춘계학술대회",
+      "period": "2018.05.03~2018.05.04"
+    },
+    {
+      "title": "딥러닝을 이용한 벽 근처 난류 예측",
+      "conference": "2018년도 유체공학부문 춘계학술대회",
+      "period": "2018.04.19~2018.04.20"
+    },
+    {
+      "title": "딥러닝을 이용한 채널 유동의 난류 열전달 예측",
+      "conference": "2018년도 유체공학부문 춘계학술대회",
+      "period": "2018.04.19~2018.04.20"
+    },
+    {
+      "title": "An immersed boundary formulation with two layer based turbulent wall model for RANS simulation",
+      "conference": "The 4th International Conference on Computational Design in Engineering",
+      "period": "2018.04.01~2018.04.05"
+    },
+    {
+      "title": "Finite-size particle laden, stably stratified turbulent channel flow",
+      "conference": "2018년 한국계산과학공학회 춘계학술대회",
+      "period": "2018.03.29~2018.03.29"
+    },
+    {
+      "title": "Effect of gravitational settling of small heavy particles on two-way interactions in near-wall turbulence",
+      "conference": "70th Annual Meeting of the American Physical Society Division of Fluid Dynamics",
+      "period": "2017.11.19~2017.11.21"
+    },
+    {
+      "title": "A numerical study of flow around a sedimenting particle in a linearlyt stratified fluid at small Reynolds numbers",
+      "conference": "70th Annual Meeting of the American Physical Society Division of Fluid Dynamics",
+      "period": "2017.11.19~2017.11.21"
+    },
+    {
+      "title": "복합 열전달에 대한 효율적인 Projection기반 수치기법",
+      "conference": "2017년 한국전산유체공학회 추계학술대회",
+      "period": "2017.11.09~2017.11.10"
+    },
+    {
+      "title": "Fully decoupled monolithic projection method for conjugate heat transfer problems",
+      "conference": "KSIAM 2017 Annual Meeting",
+      "period": "2017.11.03~2017.11.05"
+    },
+    {
+      "title": "선형 성층유체가 구 주위 낮은 레이놀즈 수 유동에 미치는 영향에 대한 수치연구",
+      "conference": "대한기계학회 2017년도 학술대회",
+      "period": "2017.11.01~2017.11.03"
+    },
+    {
+      "title": "딥러닝을 이용한 난류 열전달 예측",
+      "conference": "대한기계학회 2017년도 학술대회",
+      "period": "2017.11.01~2017.11.03"
+    },
+    {
+      "title": "An efficient monolithic projection method for Rayleigh-Benard Convection",
+      "conference": "The 9th JSME-KSME Thermal and Fluids Engineering Conference",
+      "period": "2017.10.28~2017.10.30"
+    },
+    {
+      "title": "Immersed boundary method for finite-size particle-laden channel flow with heat transfer",
+      "conference": "The 9th JSME-KSME Thermal and Fluids Engineering Conference",
+      "period": "2017.10.27~2017.10.30"
+    },
+    {
+      "title": "Numerical investigation of stably stratified turbulent channel flow using large eddy simulation",
+      "conference": "The 9th JSME-KSME Thermal and Fluids Engineering Conference",
+      "period": "2017.10.27~2017.10.30"
+    },
+    {
+      "title": "Direct numerical simulations of particle-turbulence interactions",
+      "conference": "Tenth International Symposium on Turbulence and Shear Flow Phenomena",
+      "period": "2017.07.06~2017.07.09"
+    },
+    {
+      "title": "A fully decoupled monolithic projection method for solving natural convection problems",
+      "conference": "The 12th SIAM: East Asian Section Conference",
+      "period": "2017.06.22~2017.06.25"
+    },
+    {
+      "title": "Modification of turbulenc in stably stratified temperature distribution",
+      "conference": "International Conference on Computational Heat, Mass and Momentum Transfer",
+      "period": "2017.05.28~2017.06.01"
+    },
+    {
+      "title": "Numerical simulation of stratified flow past a sphere",
+      "conference": "International Conference on Computational Heat, Mass and Momentum Transfer",
+      "period": "2017.05.28~2017.06.01"
+    },
+    {
+      "title": "벽 근처 난류에 미치는 입자 중력 침강의 효과",
+      "conference": "2017년도 유체공학부문 춘계학술대회",
+      "period": "2017.05.25~2017.05.26"
+    },
+    {
+      "title": "유한한 크기 입자의 열전달 문제를 위한 가상경계기법",
+      "conference": "2017년도 유체공학부문 춘계학술대회",
+      "period": "2017.05.25~2017.05.26"
+    },
+    {
+      "title": "An immersed boundary method for nonuniform Cartesian grids",
+      "conference": "American Physical Society Division of Fluid Dynamics Annual Meeting",
+      "period": "2016.11.20~2016.11.22"
+    },
+    {
+      "title": "Cell structures caused by settling particles in turbulent Rayleigh-Benard convection",
+      "conference": "American Physical Society Division of Fluid Dynamics Annual Meeting",
+      "period": "2016.11.20~2016.11.22"
+    },
+    {
+      "title": "Modification of particle-laden horizontal channel turbulence",
+      "conference": "American Physical Society Division of Fluid Dynamics Annual Meeting",
+      "period": "2016.11.20~2016.11.22"
+    },
+    {
+      "title": "난류 열유동 해석을 위한 난류모델 기반 가상경계기법",
+      "conference": "2016년 한국전산유체공학회 추계학술대회",
+      "period": "2016.11.10~2016.11.11"
+    },
+    {
+      "title": "Clustering of micro bubbles in isotropic turbulence",
+      "conference": "The 7th International Symposium on Fluid Machinery and Fluids Engineering",
+      "period": "2016.10.18~2016.10.22"
+    },
+    {
+      "title": "Effect of particles on critical Rayleigh number in partile-laden Rayleigh-Benard convection",
+      "conference": "The 7th International Symposium on Fluid Machinery and Fluids Engineering",
+      "period": "2016.10.18~2016.10.22"
+    },
+    {
+      "title": "An immersed boundary formulation in a RANS closure for simulating turbulent flow and heat transfer",
+      "conference": "The 7th International Symposium on Fluid Machinery and Fluids Engineering",
+      "period": "2016.10.18~2016.10.22"
+    },
+    {
+      "title": "Understanding turbulence through direct numerical simulation of particle-laden turbulence",
+      "conference": "The 7th International Symposium on Fluid Machinery and Fluids Engineering",
+      "period": "2016.10.18~2016.10.22"
+    },
+    {
+      "title": "An Immersed Boundary Formulation in a RANS Closure for Simulating Turbulent Flow and Heat Transfer",
+      "conference": "The 7th International Symposium on Fluid Machinery and Fluids Engineering",
+      "period": "2016.10.18~2016.10.22"
+    },
+    {
+      "title": "Interaction between finite-size particles and fluid in the near-wall region",
+      "conference": "제9회 한국유체공학학술대회",
+      "period": "2016.08.10~2016.08.12"
+    },
+    {
+      "title": "Flow modification by inertial particles in a differentially heated cubic cavity",
+      "conference": "제9회 한국유체공학학술대회",
+      "period": "2016.08.10~2016.08.12"
+    },
+    {
+      "title": "Numerical analysis of the gravitational effect on the two-way coupled particle-laden turbulence",
+      "conference": "제9회 한국유체공학학술대회",
+      "period": "2016.08.10~2016.08.12"
+    },
+    {
+      "title": "Numerical simulation of low Reynolds number flow past a sphere rotating in the streamwise direction",
+      "conference": "제9회 한국유체공학학술대회",
+      "period": "2016.08.10~2016.08.12"
+    },
+    {
+      "title": "Effect of mechanically coupled particles on Rayleigh-Benard convection",
+      "conference": "제9회 한국유체공학학술대회",
+      "period": "2016.08.10~2016.08.12"
+    },
+    {
+      "title": "Effect of Stokes number on turbulence modification in a particle-laden horizontal channel flow",
+      "conference": "제9회 한국유체공학학술대회",
+      "period": "2016.08.10~2016.08.12"
+    },
+    {
+      "title": "Numerical simulation of micro bubble-laden turbulence",
+      "conference": "제9회 한국유체공학학술대회",
+      "period": "2016.08.10~2016.08.12"
+    },
+    {
+      "title": "Effects of particles on the large-scale-eddies in turbulent Couette flow",
+      "conference": "제9회 한국유체공학학술대회",
+      "period": "2016.08.10~2016.08.12"
+    },
+    {
+      "title": "Modification of flow structures by inertial particles in Rayleigh-Benard convection",
+      "conference": "제9회 한국유체공학학술대회",
+      "period": "2016.08.10~2016.08.12"
+    },
+    {
+      "title": "Investigation of particle-laden shear turbulence using direct numerical simulation",
+      "conference": "제9회 한국유체공학학술대회",
+      "period": "2016.08.10~2016.08.12"
+    },
+    {
+      "title": "A New Decoupled Monolithic Projection Method for Natural Convection Problems",
+      "conference": "제9회 유체공학 학술대회",
+      "period": "2016.08.10~2016.08.12"
+    },
+    {
+      "title": "Immersed Boundary Method for Thermal Flow Problem based on RANS Equations",
+      "conference": "제9회 유체공학 학술대회",
+      "period": "2016.08.10~2016.08.12"
+    },
+    {
+      "title": "A New Decoupled Monolithic Projection Method for Natural Convection Problems",
+      "conference": "KSIAM 2016 Spring Conference",
+      "period": "2016.05.19~2016.05.21"
+    },
+    {
+      "title": "Near-wall turbulence modification by small, heavy particles in a horizontal channel flow",
+      "conference": "68th Annual Meeting of the APS Division of Fluid Dynamics",
+      "period": "2015.11.22~2015.11.24"
+    },
+    {
+      "title": "Motions of particles falling under gravity in a weakly turbulent Rayleigh-B?nard convection",
+      "conference": "68th Annual Meeting of the APS Division of Fluid Dynamics",
+      "period": "2015.11.22~2015.11.24"
+    },
+    {
+      "title": "A semi-implicit fully decoupled method for natural convection problems",
+      "conference": "KSIAM 2015 Annual Meeting",
+      "period": "2015.11.20~2015.11.20"
+    },
+    {
+      "title": "유동방향으로 회전하는 구체가 후류에 미치는 영향에 대한 수치연구",
+      "conference": "대한기계학회 창립 70주년 기념학술대회",
+      "period": "2015.11.10~2015.11.13"
+    },
+    {
+      "title": "비 균일 격자에서의 가상 경계 기법",
+      "conference": "대한기계학회 창립 70주년 기념학술대회",
+      "period": "2015.11.10~2015.11.13"
+    },
+    {
+      "title": "직접 수치 모사를 이용한 자연 대류에서의 입자 거동 해석",
+      "conference": "대한기계학회 창립 70주년 기념학술대회",
+      "period": "2015.11.10~2015.11.13"
+    },
+    {
+      "title": "수평 채널에서 입자에 의한 난류의 변화",
+      "conference": "대한기계학회 창립 70주년 기념학술대회",
+      "period": "2015.11.10~2015.11.13"
+    },
+    {
+      "title": "균일전단난류에서 입자 축적에 미치는 와 구조의 영향",
+      "conference": "2015년 한국전산유체공학회 제5차 추계학술대회",
+      "period": "2015.10.29~2015.10.30"
+    },
+    {
+      "title": "Stability and temporal accuracy of semi-implicit projection methods for the time-dependent incompressible Navier-Stokes equations",
+      "conference": "The 8th International Congress on Industrial and Applied Mathematics",
+      "period": "2015.08.10~2015.08.14"
+    },
+    {
+      "title": "The effect of surface obstacles on blast wave propagation",
+      "conference": "ASME-JSME-KSME Joint Fluids Engineering Conference 2015",
+      "period": "2015.07.26~2015.07.31"
+    },
+    {
+      "title": "Numerical investigation of vortex motion using vortex filament method",
+      "conference": "ASME-JSME-KSME Joint Fluids Engineering Conference 2015",
+      "period": "2015.07.26~2015.07.31"
+    },
+    {
+      "title": "Effect of gravity on particle behavior in horizontal turbulent channel flow",
+      "conference": "ASME-JSME-KSME Joint Fluids Engineering Conference 2015",
+      "period": "2015.07.26~2015.07.31"
+    },
+    {
+      "title": "Clustering of particles in homogeneous shear turbulence",
+      "conference": "ASME-JSME-KSME Joint Fluids Engineering Conference 2015",
+      "period": "2015.07.26~2015.07.31"
+    },
+    {
+      "title": "Large eddy simulation of stably stratified turbulent channel flow",
+      "conference": "ASME-JSME-KSME Joint Fluids Engineering Conference 2015",
+      "period": "2015.07.26~2015.07.31"
+    },
+    {
+      "title": "Particle motion in the quiescent fluid and turbulent channel flow",
+      "conference": "ASME-JSME-KSME Joint Fluids Engineering Conference 2015",
+      "period": "2015.07.26~2015.07.31"
+    },
+    {
+      "title": "A semi-implicit fully decoupled method for time-dependent natural convection flows in enclosures",
+      "conference": "ASME-JSME-KSME Joint Fluids Engineering Conference 2015",
+      "period": "2015.07.26~2015.07.31"
+    },
+    {
+      "title": "Behavior of inertial particles in the natural convection flow",
+      "conference": "ASME-JSME-KSME Joint Fluids Engineering Conference 2015",
+      "period": "2015.07.26~2015.07.31"
+    },
+    {
+      "title": "Effect of gravity on the finite-size particle in isotropic turbulence",
+      "conference": "ASME-JSME-KSME Joint Fluids Engineering Conference 2015",
+      "period": "2015.07.26~2015.07.31"
+    },
+    {
+      "title": "Interaction between solid particles and fine scale motions in Rayleigh-B?nard convection",
+      "conference": "ASME-JSME-KSME Joint Fluids Engineering Conference 2015",
+      "period": "2015.07.26~2015.07.31"
+    },
+    {
+      "title": "Lagrangian statistics of inertial particles in near-wall turbulence",
+      "conference": "Ninth International Symposium on Turbulence and Shear Flow Phenomena",
+      "period": "2015.06.30~2015.07.03"
+    },
+    {
+      "title": "Implicit direct forcing for low Reynolds number flows",
+      "conference": "Ninth International Symposium on Turbulence and Shear Flow Phenomena",
+      "period": "2015.06.30~2015.07.03"
+    },
+    {
+      "title": "Vortical structures and particles in Rayleigh-B?nard convecton",
+      "conference": "Ninth International Symposium on Turbulence and Shear Flow Phenomena",
+      "period": "2015.06.30~2015.07.03"
+    },
+    {
+      "title": "Stability analysis of projection methods for the incompressible Navier-Stokes equations",
+      "conference": "KSIAM 2015 Spring Conference",
+      "period": "2015.05.29~2015.05.29"
+    },
+    {
+      "title": "핵폭발 초기 화구 및 폭풍파에 대한 수치 연구",
+      "conference": "2014 추계 화생방 심포지엄",
+      "period": "2014.12.03~2014.12.03"
+    },
+    {
+      "title": "Effect of gravity on the finite-size particle within spectral resolution",
+      "conference": "67th Annual Meeting of the American Physical Society Division of Fluid Dynamics",
+      "period": "2014.11.23~2014.11.25"
+    },
+    {
+      "title": "Analysis of vortical structures in turbulent natural convection",
+      "conference": "67th Annual Meeting of the American Physical Society Division of Fluid Dynamics",
+      "period": "2014.11.23~2014.11.25"
+    },
+    {
+      "title": "Lagrangian statistics of inertial particles in near-wall turbulence",
+      "conference": "67th Annual Meeting of the American Physical Society Division of Fluid Dynamics",
+      "period": "2014.11.23~2014.11.25"
+    },
+    {
+      "title": "An immersed boundary method with implicit direct forcing for incompressible flows",
+      "conference": "2014 한국산업응용수학회 정기총회 및 가을학술대회",
+      "period": "2014.11.20~2014.11.23"
+    },
+    {
+      "title": "Direct Simulation of Sedimenting Droplets in the Air",
+      "conference": "1st Joint Conference of A3 Foresight Program",
+      "period": "2014.11.21~2014.11.23"
+    },
+    {
+      "title": "중력장 내에서의 두 액적 충돌에 관한 수치 시뮬레이션에 관한 연구",
+      "conference": "대한기계학회 2014년도 추계학술대회",
+      "period": "2014.11.11~2014.11.14"
+    },
+    {
+      "title": "부유입자가 있는 균일전단난류에 대한 직접수치모사",
+      "conference": "대한기계학회 2014년도 추계학술대회",
+      "period": "2014.11.11~2014.11.14"
+    },
+    {
+      "title": "가상경계기법을 적용한 입자부유난류의 직접수치모사",
+      "conference": "대한기계학회 2014년도 추계학술대회",
+      "period": "2014.11.11~2014.11.14"
+    },
+    {
+      "title": "구 주위에서의 저레이놀즈 유동에 대한 수치적 연구",
+      "conference": "대한기계학회 2014년도 추계학술대회",
+      "period": "2014.11.11~2014.11.14"
+    },
+    {
+      "title": "자연 대류에서 나타나는 난류 구조",
+      "conference": "대한기계학회 2014년도 추계학술대회",
+      "period": "2014.11.11~2014.11.14"
+    },
+    {
+      "title": "난류 채널 유동에서 관성 입자의 라그란지안 통계",
+      "conference": "대한기계학회 2014년도 추계학술대회",
+      "period": "2014.11.11~2014.11.14"
+    },
+    {
+      "title": "Direct simulation approach for sedimenting droplets in the air",
+      "conference": "2014 KIAPS International Symposium",
+      "period": "2014.10.27~2014.10.28"
+    },
+    {
+      "title": "Direct Numerical Simulation of Droplets Sedimenting in Cloud Turbulence",
+      "conference": "The 10th Asian Computational Fluid Dynamics Conference",
+      "period": "2014.10.19~2014.10.23"
+    },
+    {
+      "title": "An implicit immersed boundary method for low Reynolds number incompressible flows",
+      "conference": "2014 한국계산과학공학회 추계학술대회",
+      "period": "2014.10.21~2014.10.21"
+    },
+    {
+      "title": "Numerical investigation of vortex motion using vortex filament method",
+      "conference": "제8회 한국유체공학학술대회",
+      "period": "2014.08.27~2014.08.29"
+    },
+    {
+      "title": "DNS of homogeneous shear turbulent flow with suspended particles",
+      "conference": "2014 International Aerosol Conference",
+      "period": "2014.08.28~2014.09.02"
+    },
+    {
+      "title": "Direct numerical simulation of a finite particle motion in quiescent channel with the virtual boundary method",
+      "conference": "2014 International Aerosol Conference",
+      "period": "2014.08.28~2014.09.02"
+    },
+    {
+      "title": "Immersed boundary method for small-size particles in isotropic turbulence",
+      "conference": "2014 International Aerosol Conference",
+      "period": "2014.08.28~2014.09.02"
+    },
+    {
+      "title": "Reconstruction method for blood flow tracking in the left ventricle",
+      "conference": "제8회 한국유체공학 학술대회",
+      "period": "2014.08.27~2014.08.29"
+    },
+    {
+      "title": "Numerical simulation of turbulent natural convection in a cubic cavity",
+      "conference": "제8회 한국유체공학학술대회",
+      "period": "2014.08.27~2014.08.29"
+    },
+    {
+      "title": "Application of the immersed boundary method applying a falling sphere on the quiescent fluid with the wall",
+      "conference": "제8회 한국유체공학학술대회",
+      "period": "2014.08.27~2014.08.29"
+    },
+    {
+      "title": "Numerical simulation of fireball and blast wave dynamics",
+      "conference": "제8회 한국유체공학학술대회",
+      "period": "2014.08.27~2014.08.29"
+    },
+    {
+      "title": "The numerical investigation on collision between two droplets within effects of gravity force",
+      "conference": "제8회 한국유체공학학술대회",
+      "period": "2014.08.27~2014.08.29"
+    },
+    {
+      "title": "Analysis of a second-order accurate projection methods for the incompressible Navier-Stokes equations",
+      "conference": "International Congress of Women Mathematicians 2014",
+      "period": "2014.08.12~2014.08.14"
+    },
+    {
+      "title": "Numerical simulation of natural convection in a cubic cavity",
+      "conference": "International Congress of Women Mathematicians 2014",
+      "period": "2014.08.12~2014.08.14"
+    },
+    {
+      "title": "Reconstuction model for blood flow tracking in the left ventricle",
+      "conference": "KSIAM 2014 Spring conference",
+      "period": "2014.05.23~2014.05.24"
+    },
+    {
+      "title": "Analysis of a second-order accurate projection method for the incompressible Navier-Stokes equations",
+      "conference": "KSIAM 2014 Spring Conference",
+      "period": "2014.05.23~2014.05.24"
+    },
+    {
+      "title": "내제직접가진 가상경계법",
+      "conference": "2014년도 유체공학부분 춘계학술대회",
+      "period": "2014.05.15~2014.05.16"
+    },
+    {
+      "title": "등방성 난류에 부유된 유한한 크기의 입자에 미치는 중력의 영향",
+      "conference": "2014년도 유체공학부문 춘계학술대회",
+      "period": "2014.05.15~2014.05.16"
+    },
+    {
+      "title": "Coherent structures in turbulent Rayleigh-Benard convection",
+      "conference": "2014년도 유체공학부문 춘계학술대회",
+      "period": "2014.05.15~2014.05.16"
+    },
+    {
+      "title": "부유입자가 있는 균일난류전단유동에 대한 직접수치모사",
+      "conference": "2014년도 유체공학부문 춘계학술대회",
+      "period": "2014.05.15~2014.05.16"
+    },
+    {
+      "title": "입자 부유 채널 유동에서 입자에 의한 난류 변화",
+      "conference": "2014년도 유체공학부문 춘계학술대회",
+      "period": "2014.05.15~2014.05.16"
+    },
+    {
+      "title": "Numerical simulations of mixed convection between coaxial vertical cylinders",
+      "conference": "대한기계학회 2013년도 학술대회",
+      "period": "2013.12.18~2013.12.20"
+    },
+    {
+      "title": "Nature of acceleration in convective turbulence",
+      "conference": "대한기계학회 2013년도 학술대회",
+      "period": "2013.12.18~2013.12.20"
+    },
+    {
+      "title": "An Implicit Immersed Boundary Method for Low Reynolds Number Incompressible Flows",
+      "conference": "66th APS annual DFD meeting",
+      "period": "2013.11.24~2013.11.26"
+    },
+    {
+      "title": "Segregation of heavy particles by gravitational force",
+      "conference": "66th Annual Meeting of the American Physical Society Division of Fluid Dynamics",
+      "period": "2013.11.24~2013.11.26"
+    },
+    {
+      "title": "Effects of small particles on coherent structures in particle-laden near-wall turbulence",
+      "conference": "66th Annual Meeting of the American Physical Society Division of Fluid Dynamics",
+      "period": "2013.11.24~2013.11.26"
+    },
+    {
+      "title": "Numerical simulations of blast/shock wave propagations after nuclear explosions",
+      "conference": "66th APS annual DFD meeting",
+      "period": "2013.11.24~2013.11.26"
+    },
+    {
+      "title": "핵폭발 초기 화구 및 폭풍파 수치해석",
+      "conference": "2013년도 한국전산유체공학회 추계학술대회",
+      "period": "2013.10.31~2013.11.01"
+    },
+    {
+      "title": "Particle-turbulence interaction in near-wall turbulence",
+      "conference": "Eighth International Symposium on Turbulence and Shear Flow Phenomena",
+      "period": "2013.08.28~2013.08.30"
+    },
+    {
+      "title": "Stationary and decaying turbulence modulation by finite-size fully resolved particles",
+      "conference": "International Conference on Multiphase Flow 2013",
+      "period": "2013.05.26~2013.05.31"
+    },
+    {
+      "title": "Effect of gravity on the dispersion of heavy particles",
+      "conference": "International Conference on Multiphase Flow 2013",
+      "period": "2013.05.26~2013.05.31"
+    },
+    {
+      "title": "Particle-turbulence interaction in near-wall turbulence",
+      "conference": "International Conference on Multiphase Flow 2013",
+      "period": "2013.05.26~2013.05.31"
+    },
+    {
+      "title": "session chair",
+      "conference": "International Conference on Multiphase Flow 2013",
+      "period": "2013.05.26~2013.05.31"
+    },
+    {
+      "title": "Fully Implicit Immersed Boundary Method",
+      "conference": "2013년도 KSIAM 춘계학술대회",
+      "period": "2013.05.24~2013.05.25"
+    },
+    {
+      "title": "완전음해 가상경계법",
+      "conference": "2013년도 대한기계학회 유체공학부문 춘계학술대회",
+      "period": "2013.05.09~2013.05.10"
+    },
+    {
+      "title": "부유입자에 의한 난류의 변화 연구",
+      "conference": "2013년도 대한기계학회 유체공학부문 춘계학술대회",
+      "period": "2013.05.09~2013.05.10"
+    },
+    {
+      "title": "Behavior of particles in turbulence over a wavy wall",
+      "conference": "65th APS Annual Meeting of the Division of Fluid Dynamics",
+      "period": "2012.11.18~2012.11.20"
+    },
+    {
+      "title": "Four-way coupling simulation of particle-laden turbulent channel flow",
+      "conference": "65th APS Annual Meeting of the Division of Fluid Dynamics",
+      "period": "2012.11.18~2012.11.20"
+    },
+    {
+      "title": "A new explicit projection method for incompressible flows",
+      "conference": "65th APS Annual Meeting of the Division of Fluid Dynamics",
+      "period": "2012.11.18~2012.11.20"
+    },
+    {
+      "title": "Effect of gravity on the preferential concentration of heavy particles",
+      "conference": "65th APS Annual Meeting of the Division of Fluid Dynamics",
+      "period": "2012.11.18~2012.11.20"
+    },
+    {
+      "title": "Near-Wall Modeling for Large Eddy Simulation of Convective Heat Transfer in Turbulent Boundary Layers",
+      "conference": "65th Annual Meeting of the Division of Fluid Dynamics",
+      "period": "2012.11.18~2012.11.20"
+    },
+    {
+      "title": "중력 하에서의 액적충돌 시뮬레이션",
+      "conference": "대한기계학회 2012년도 추계학술대회",
+      "period": "2012.11.08~2012.11.09"
+    },
+    {
+      "title": "거친 경계면을 지나는 난류 내 입자의 거동",
+      "conference": "대한기계학회 2012년도 추계학술대회",
+      "period": "2012.11.07~2012.11.09"
+    },
+    {
+      "title": "입자부유 난류채널유동의 Two-way coupling 시뮬레이션",
+      "conference": "대한기계학회 2012년도 추계학술대회",
+      "period": "2012.11.07~2012.11.09"
+    },
+    {
+      "title": "등방성 난류에서 입자간 충돌에 의한 확산의 변화",
+      "conference": "대한기계학회 2012년도 추계학술대회",
+      "period": "2012.11.07~2012.11.09"
+    },
+    {
+      "title": "난류유동에서 벽 모델을 적용한 열전달 대와류수치모사",
+      "conference": "대한기계학회 2012년도 추계학술대회",
+      "period": "2012.11.07~2012.11.09"
+    },
+    {
+      "title": "EDISON_CFD 포탈의 기계·토목공학 분야 교육·연구용 소프트웨어 및 콘텐츠 개발",
+      "conference": "제7회 한국유체공학학술대회",
+      "period": "2012.08.29~2012.08.31"
+    },
+    {
+      "title": "중력이 무거운 입자의 확산과 기하학적 궤적에 미치는 영향",
+      "conference": "제7회 한국유체공학학술대회",
+      "period": "2012.08.29~2012.08.31"
+    },
+    {
+      "title": "입자가 부유하고 있는 벽 근처 난류에서 입자와 유동 역학",
+      "conference": "제7회 한국유체공학학술대회",
+      "period": "2012.08.29~2012.08.31"
+    },
+    {
+      "title": "기계토목 유체관련 교육/연구 EDISON_CFD 응용",
+      "conference": "제7회 한국유체공학학술대회",
+      "period": "2012.08.29~2012.08.31"
+    },
+    {
+      "title": "2차정확도 가상경계기법을 위한 열전달 모델",
+      "conference": "제7회 한국유체공학학술대회",
+      "period": "2012.08.29~2012.08.31"
+    },
+    {
+      "title": "Explicit Method for Unsteady Incompressible Flows",
+      "conference": "제7회 한국유체공학학술대회",
+      "period": "2012.08.29~2012.08.31"
+    },
+    {
+      "title": "LES를 이용한 실제 도시 협곡 내 유동 및 풍하중 해석",
+      "conference": "제15회 한국 풍공학회 학술발표회 및 정기총회",
+      "period": "2012.05.31~2012.05.31"
+    },
+    {
+      "title": "Effect of wall proximity on drag and lift forces on a circular cylinder",
+      "conference": "2012 KSIAM 춘계학술대회",
+      "period": "2012.05.18~2012.05.19"
+    },
+    {
+      "title": "한국형 산악지형에서의 풍력발전 최적지 선정을 위한 2차원 유동분석",
+      "conference": "2012 KSAS 춘계학술대회 (제1회 첨단 사이언스 교육허브 개발 사업 경진대회 - 열유체분야)",
+      "period": "2012.04.11~2012.04.13"
+    },
+    {
+      "title": "정사각 실린더 주위 비정상 난류 유동에 대한 수치적 연구",
+      "conference": "2012 KSAS 춘계학술대회 (제1회 첨단 사이언스 교육허브 개발 사업 경진대회 - 열유체분야)",
+      "period": "2012.04.11~2012.04.13"
+    },
+    {
+      "title": "Acceleration modification of near-wall turbulence by heavy particles",
+      "conference": "The 8th KSME-JSME Thermal and Fluids Engineering Conference",
+      "period": "2012.03.18~2012.03.21"
+    },
+    {
+      "title": "Effect of Wall Proximity on Drag and Lift Forces on a Circular Cylinder",
+      "conference": "The 8th KSME-JSME Thermal and Fluids Engineering Conference",
+      "period": "2012.03.18~2012.03.21"
+    },
+    {
+      "title": "Large Eddy Simulation of Turbulent Flow over Urban Like Obstacle Using Immersed Boundary Method",
+      "conference": "The 8th KSME-JSME Thermal and Fluids Engineering Conference",
+      "period": "2012.03.18~2012.03.21"
+    },
+    {
+      "title": "Particle Re-suspension due to Human Walking",
+      "conference": "The 8th KSME-JSME Thermal and Fluids Engineering",
+      "period": "2012.03.18~2012.03.21"
+    },
+    {
+      "title": "A new projection method with no iteration for Poisson equation for incompressible flows",
+      "conference": "The 8th KSME-JSME Thermal and Fluids Engineering Conference",
+      "period": "2012.03.18~2012.03.21"
+    },
+    {
+      "title": "ffect of gravity on the dispersion of heavy particles",
+      "conference": "The 8th KSME-JSME Thermal and Fluids Engineering Conference",
+      "period": "2012.03.18~2012.03.21"
+    },
+    {
+      "title": "Calculation of drag and lift acting on a deformable droplet in a shear flow",
+      "conference": "The 8th KSME-JSME Thermal and Fluids Engineering Conference",
+      "period": "2012.03.18~2012.03.21"
+    },
+    {
+      "title": "Vortices and particles in turbulent flows",
+      "conference": "International Conference on Boundary and Interior Layers",
+      "period": "2012.02.06~2012.02.10"
+    },
+    {
+      "title": "EDISON_CFD 포탈의 유체공학 교육 연구용 시뮬레이션 소프트웨어 및 콘텐츠 개발",
+      "conference": "2011 유체기계 연구개발 발표회",
+      "period": "2011.11.30~2011.12.02"
+    },
+    {
+      "title": "Acceleration modification of near-wall turbulence by heavy particles",
+      "conference": "2011 KSCSE Fall Meeting",
+      "period": "2011.12.01~2011.12.01"
+    },
+    {
+      "title": "A new numerical method for Poisson equation",
+      "conference": "2011 KSCSE Fall Meeting",
+      "period": "2011.12.01~2011.12.01"
+    },
+    {
+      "title": "Industrail Applications of Computational Science and Engineerinig Session",
+      "conference": "2011 한국 슈퍼컴퓨팅 컨퍼런스/KSCSE Fall Meeting",
+      "period": "2011.12.01~2011.12.02"
+    },
+    {
+      "title": "A new fully explicit algorithm for incompressible flows",
+      "conference": "64th APS Annual DFD Meeting",
+      "period": "2011.11.20~2011.11.22"
+    },
+    {
+      "title": "Effect of gravity on the dispersion of heavy particles",
+      "conference": "64th APS Annual DFD Meeting",
+      "period": "2011.11.20~2011.11.22"
+    },
+    {
+      "title": "Physical perspectives on the investigation of two-way interaction in particle-laden isotropic turbulence",
+      "conference": "64th APS Annual DFD Meeting",
+      "period": "2011.11.20~2011.11.22"
+    }
+  ],
+  "fundings": [
+    {
+      "title": "[산통부 산하/참여] 핵융합로 액체형 증식블랑켓 통합 설계코드 개발(1/2)",
+      "org": "한국수력원자력㈜",
+      "period": "2026-04-01~2027-03-31"
+    },
+    {
+      "title": "(통합Ezbaro)딥러닝 기반 난류 유동의 기초적 이해 및 고성능 모델 개발(5/5)(2022.3.1~2027.2.28)",
+      "org": "한국연구재단",
+      "period": "2026-03-01~2027-02-28"
+    },
+    {
+      "title": "[7차년도]사회지향 기계기술 글로벌 리더 양성 교육연구단",
+      "org": "한국연구재단",
+      "period": "2026-03-01~2027-02-28"
+    },
+    {
+      "title": "(통합Ezbaro)딥러닝 기반 난류 유동의 기초적 이해 및 고성능 모델 개발(4/5)(2022.3.1~2027.2.28)",
+      "org": "한국연구재단",
+      "period": "2025-03-01~2026-02-28"
+    },
+    {
+      "title": "[6차년도] 사회지향 기계기술 글로벌 리더 양성 교육연구단",
+      "org": "한국연구재단",
+      "period": "2025-03-01~2026-02-28"
+    },
+    {
+      "title": "[포닥]이창훈(이슬기)-난류-입자 상호작용에 대한 오일러리안 접근 기반 해석",
+      "org": "연세대학교",
+      "period": "2024-09-01~2025-08-31"
+    },
+    {
+      "title": "(통합Ezbaro)딥러닝 기반 난류 유동의 기초적 이해 및 고성능 모델 개발(3/5)(2022.3.1~2027.2.28)",
+      "org": "한국연구재단",
+      "period": "2024-03-01~2025-02-28"
+    },
+    {
+      "title": "[5차년도] 사회지향 기계기술 글로벌 리더 양성 교육연구단",
+      "org": "한국연구재단",
+      "period": "2024-03-01~2025-02-28"
+    },
+    {
+      "title": "(통합Ezbaro)딥러닝 기반 난류 유동의 기초적 이해 및 고성능 모델 개발(2/5)(2022.3.1~2027.2.28)",
+      "org": "한국연구재단",
+      "period": "2023-03-01~2024-02-29"
+    },
+    {
+      "title": "[4차년도] 사회지향 기계기술 글로벌 리더 양성 교육연구단",
+      "org": "한국연구재단",
+      "period": "2023-03-01~2024-02-29"
+    },
+    {
+      "title": "[ADD/소액용역과제] 소형풍동(경계층) fetch 영역 설계를 위한 난류유동 수치해석",
+      "org": "국방부",
+      "period": "2022-08-24~2022-10-23"
+    },
+    {
+      "title": "[ADD/무인기용 고효율 터빈기술 특화연구센터(2단계)/T-23] 터빈 냉각공기 공급 계통 특성 및 손실 개선 기술 개발",
+      "org": "산하기관",
+      "period": "2022-06-17~2025-03-31"
+    },
+    {
+      "title": "[ADD/소액용역과제] 소형풍동 설계조건 도출을 위한 수치해석",
+      "org": "국방부",
+      "period": "2022-06-01~2022-08-31"
+    },
+    {
+      "title": "[통합이지바로]난류의 딥러닝(6/6)(2017.09.01 ~ 2022.08.31)",
+      "org": "한국연구재단",
+      "period": "2022-03-01~2022-08-31"
+    },
+    {
+      "title": "(통합Ezbaro)딥러닝 기반 난류 유동의 기초적 이해 및 고성능 모델 개발(1/5)(2022.3.1~2027.2.28)",
+      "org": "한국연구재단",
+      "period": "2022-03-01~2023-02-28"
+    },
+    {
+      "title": "[3차년도] 사회지향 기계기술 글로벌 리더 양성 교육연구단",
+      "org": "한국연구재단",
+      "period": "2022-03-01~2023-02-28"
+    },
+    {
+      "title": "[국방부/방위사업청 용역] 첨단 항공엔진 연구개발 추진방안 연구",
+      "org": "방위사업청",
+      "period": "2021-12-23~2022-05-23"
+    },
+    {
+      "title": "[민간/(주)케이에스시스템] 장거리레이더 플랫폼 및 구동장치 구조적 안정성 분석 연구",
+      "org": "국내",
+      "period": "2021-10-27~2025-08-25"
+    },
+    {
+      "title": "[ADD/(주)볼트시뮬레이션 하도급] LES IBM GPU CFD 코드개발",
+      "org": "산하기관",
+      "period": "2021-04-05~2026-12-31"
+    },
+    {
+      "title": "[통합이지바로]난류의 딥러닝(5/6)",
+      "org": "한국연구재단",
+      "period": "2021-03-01~2022-02-28"
+    },
+    {
+      "title": "[2차년도] 사회지향 기계기술 글로벌 리더 양성 교육연구단",
+      "org": "한국연구재단",
+      "period": "2021-03-01~2022-02-28"
+    },
+    {
+      "title": "[통합이지바로]난류의 딥러닝(4/6)",
+      "org": "한국연구재단",
+      "period": "2020-03-01~2021-02-28"
+    },
+    {
+      "title": "[8차년도]계산과학공학",
+      "org": "한국연구재단",
+      "period": "2020-03-01~2020-08-31"
+    },
+    {
+      "title": "난류의 딥러닝(3/6)",
+      "org": "한국연구재단",
+      "period": "2019-03-01~2020-02-29"
+    },
+    {
+      "title": "[7차년도]계산과학공학",
+      "org": "한국연구재단",
+      "period": "2019-03-01~2020-02-29"
+    },
+    {
+      "title": "[용역/국방과학연구소]다중격자와 병렬연산을 위한 시가지 확산모델 기법 연구",
+      "org": "산하기관",
+      "period": "2018-12-21~2022-02-28"
+    },
+    {
+      "title": "[T-23]터빈 냉각공기 공급 계통 특성 및 손실 개선 기술 개발(1/2단계 1~4/4차년도)",
+      "org": "산하기관",
+      "period": "2018-12-18~2021-12-15"
+    },
+    {
+      "title": "(전략과제)난류의 딥러닝(2/6)",
+      "org": "한국연구재단",
+      "period": "2018-03-01~2019-02-28"
+    },
+    {
+      "title": "[6차년도]계산과학공학",
+      "org": "한국연구재단",
+      "period": "2018-03-01~2019-02-28"
+    },
+    {
+      "title": "[용역/국방과학연구소]핵폭발 낙진피해예측을 위한 입자유입모델 개발",
+      "org": "산하기관",
+      "period": "2017-12-01~2020-06-15"
+    },
+    {
+      "title": "(재)삼성미래기술육성재단/입자난류 특이성의 수치적 연구(Numerical study of particle turbulenc singularity)",
+      "org": "국내",
+      "period": "2017-12-01~2022-11-30"
+    },
+    {
+      "title": "난류의 딥러닝",
+      "org": "한국연구재단",
+      "period": "2017-09-01~2018-02-28"
+    },
+    {
+      "title": "Ezbaro_성층조건에서 미세입자의 거동해석(1/1)",
+      "org": "한국연구재단",
+      "period": "2017-06-01~2018-05-31"
+    },
+    {
+      "title": "[5차년도]계산과학공학",
+      "org": "한국연구재단",
+      "period": "2017-03-01~2018-02-28"
+    },
+    {
+      "title": "코너스톤/자문계약서",
+      "org": "국내",
+      "period": "2016-12-01~2017-04-30"
+    },
+    {
+      "title": "난류가시화를 위한 크로스 플랫폼 교육용 뷰어개발",
+      "org": "중소기업청",
+      "period": "2016-11-11~2017-10-31"
+    },
+    {
+      "title": "유한크기입자 부유난류 유동의 수치모형 개발(3/3)",
+      "org": "한국연구재단",
+      "period": "2016-05-01~2017-04-30"
+    },
+    {
+      "title": "(4차년도) 계산과학공학",
+      "org": "한국연구재단",
+      "period": "2016-03-01~2017-02-28"
+    },
+    {
+      "title": "유한크기입자 부유난류 유동의 수치모형 개발(2/3)",
+      "org": "한국연구재단",
+      "period": "2015-05-01~2016-04-30"
+    },
+    {
+      "title": "(주)볼트시뮬레이션/도심지 확산예측을 위한 대와류모사 연구",
+      "org": "국내",
+      "period": "2015-05-01~2019-12-31"
+    },
+    {
+      "title": "(3차년도)계산과학공학",
+      "org": "한국연구재단",
+      "period": "2015-03-01~2016-02-29"
+    },
+    {
+      "title": "유한크기입자 부유난류 유동의 수치모형 개발(1/3)",
+      "org": "한국연구재단",
+      "period": "2014-05-01~2015-04-30"
+    },
+    {
+      "title": "계산과학공학(2차년도)",
+      "org": "한국연구재단",
+      "period": "2014-03-01~2015-02-28"
+    },
+    {
+      "title": "[차세대도시농림융합스마트기상서비스개발사업] 온실기체 및 열배출량, 증발량 실시간 감시시스템의 선행사례 연구 : 차세대 도시 대기 환경 서비스시스템의 시범 개발",
+      "org": "기상청",
+      "period": "2013-09-17~2013-12-31"
+    },
+    {
+      "title": "계산과학공학",
+      "org": "한국연구재단",
+      "period": "2013-09-01~2014-02-28"
+    },
+    {
+      "title": "[글로벌] 계산수학 기반 과학·공학 사업단",
+      "org": "연세대학교",
+      "period": "2013-03-01~2014-03-31"
+    },
+    {
+      "title": "충돌이 고려된 고체 및 액체입자 부유난류의 수치모형 개발(3/3)",
+      "org": "한국연구재단",
+      "period": "2012-09-01~2013-08-31"
+    },
+    {
+      "title": "서진근/WCU 5차년도/계산과학공학",
+      "org": "한국연구재단",
+      "period": "2012-09-01~2013-11-30"
+    },
+    {
+      "title": "핵폭발에 따른 비압축성 유동현상 및 폭풍충격파 해석 모델 개발",
+      "org": "국방부",
+      "period": "2012-06-01~2015-05-31"
+    },
+    {
+      "title": "[글로벌] 계산수학 기반 과학·공학 사업단",
+      "org": "연세대학교",
+      "period": "2012-05-01~2013-05-31"
+    },
+    {
+      "title": "서진근/WCU 4차년도/계산과학공학/R31-10049",
+      "org": "한국연구재단",
+      "period": "2011-09-01~2012-08-31"
+    },
+    {
+      "title": "충돌이 고려된 고체 및 액체입자 부유난류의 수치모형 개발 (2/3)",
+      "org": "한국과학재단",
+      "period": "2011-09-01~2012-08-31"
+    },
+    {
+      "title": "[과제발굴연구회]수치예보 원천기술개발 연구회",
+      "org": "기상지진기술개발사업단",
+      "period": "2011-06-08~2011-09-30"
+    },
+    {
+      "title": "볼트시뮬레이션 / 입자와 유동사이의 상호작용",
+      "org": "국내",
+      "period": "2010-12-20~2016-05-27"
+    },
+    {
+      "title": "WCU/계산과학공학(3차년도) R31-10049",
+      "org": "한국과학재단",
+      "period": "2010-10-01~2011-08-31"
+    },
+    {
+      "title": "충돌이 고려된 고체 및 액체입자 부유난류의 수치모형 개발 (1/3)",
+      "org": "한국과학재단",
+      "period": "2010-09-01~2011-08-31"
+    },
+    {
+      "title": "입자확산예측을 위한 스토케스틱 모델 개발",
+      "org": "한국과학재단",
+      "period": "2010-03-01~2011-02-28"
+    },
+    {
+      "title": "서진근/WCU(2차) 계산과학공학 R31-100490",
+      "org": "한국과학재단",
+      "period": "2009-11-01~2010-09-30"
+    },
+    {
+      "title": "G5-5-10/나노마이크로응용기계기술인력양성사업",
+      "org": "연세대학교",
+      "period": "2009-03-02~2010-06-30"
+    },
+    {
+      "title": "입자확산예측을 위한 스토케스틱 모델 개발",
+      "org": "한국과학재단",
+      "period": "2009-03-01~2010-02-28"
+    },
+    {
+      "title": "계산과학공학",
+      "org": "한국과학재단",
+      "period": "2008-12-01~2009-10-31"
+    },
+    {
+      "title": "입자확산예측을 위한 스토케스틱 모델 개발",
+      "org": "한국과학재단",
+      "period": "2008-05-01~2009-02-28"
+    },
+    {
+      "title": "나노마이크로응용기계기술인력양성사업단",
+      "org": "학술진흥재단",
+      "period": "2008-03-01~2009-02-28"
+    },
+    {
+      "title": "이공계교육과정개발 4유형",
+      "org": "학술진흥재단",
+      "period": "2007-11-01~2008-10-31"
+    },
+    {
+      "title": "실무교육 중심의 창의적 종합설계 교육모델 개발",
+      "org": "연세대학교산학단_간접비",
+      "period": "2007-07-01~2008-06-30"
+    },
+    {
+      "title": "나노/마이크로 응용 기계기술 인력양성사업단",
+      "org": "학술진흥재단",
+      "period": "2007-03-01~2008-02-29"
+    },
+    {
+      "title": "나노/마이크로 응용 기계기술 인력양성사업단",
+      "org": "연세대학교",
+      "period": "2007-03-01~2008-02-29"
+    },
+    {
+      "title": "G5-5-10/나노마이크로응용기계기술인력양성사업",
+      "org": "연세대학교",
+      "period": "2007-03-01~2008-05-31"
+    },
+    {
+      "title": "기계공학에서의 창의적 종합설게 교육 모델 개발",
+      "org": "학술진흥재단",
+      "period": "2006-11-01~2007-10-31"
+    },
+    {
+      "title": "도시지역 확산모델 설계",
+      "org": "국방과학연구소",
+      "period": "2006-09-08~2008-09-07"
+    },
+    {
+      "title": "BK21 관리 메뉴얼 작성",
+      "org": "연세대학교산학단_간접비",
+      "period": "2006-05-01~2006-06-30"
+    },
+    {
+      "title": "나노 마이크로 응용기계기술 인력양성사업단",
+      "org": "학술진흥재단",
+      "period": "2006-03-01~2007-02-28"
+    },
+    {
+      "title": "나노마이크로응용기계기술인역양성사업단",
+      "org": "연세대학교",
+      "period": "2006-03-01~2007-02-28"
+    },
+    {
+      "title": "풍동모형 확산모델기술개발용역",
+      "org": "(주)티이솔루션",
+      "period": "2006-03-01~2006-05-30"
+    },
+    {
+      "title": "신진연구자(최연택)연수지원사업",
+      "org": "학술진흥재단",
+      "period": "2005-12-30~2006-12-29"
+    },
+    {
+      "title": "공기부유 미세먼지 확산 수치모형 개발",
+      "org": "학술진흥재단",
+      "period": "2005-12-01~2006-11-30"
+    },
+    {
+      "title": "2005년도 이공계교육과정개발 대응자금",
+      "org": "연세대학교",
+      "period": "2005-11-01~2006-10-31"
+    },
+    {
+      "title": "기계공학에서의 창의적 종합설계 교육 모델 개발 (4유형)",
+      "org": "학술진흥재단",
+      "period": "2005-11-01~2006-10-31"
+    },
+    {
+      "title": "창의적 공학교육 사업",
+      "org": "삼성전자(주)",
+      "period": "2005-09-01~2006-02-28"
+    },
+    {
+      "title": "초정밀 기계공학기반 복합기술사업단(2단계 BK21 SEED2차 BK21 SEED MONEY 지원 1단계 1,700,000원",
+      "org": "연세대학교",
+      "period": "2005-08-01~2006-03-31"
+    },
+    {
+      "title": "주행자동차배출나노PM실시간측정/분석및초소형극미량 나노-PM검출측정기법연구",
+      "org": "산업기술평가원",
+      "period": "2005-07-31~2006-07-30"
+    },
+    {
+      "title": "주행자동차배출나노PM실시간측정/분석및초소형극미량 나노-PM검출측정기법연구",
+      "org": "산업기술평가원",
+      "period": "2005-07-31~2006-07-30"
+    },
+    {
+      "title": "창의적 공학교육 프로그램 개발 및 확산 지원 사업",
+      "org": "한국산업기술재단",
+      "period": "2005-05-01~2006-02-28"
+    },
+    {
+      "title": "공기부유 나노/마이크로 입자의 벽근처 거동특성연구",
+      "org": "과학재단",
+      "period": "2004-09-01~2005-08-31"
+    },
+    {
+      "title": "주행자동차 배출 나노 PM 실시간 측정/분석 및 초소",
+      "org": "한국과학재단",
+      "period": "2004-08-02~2005-07-30"
+    },
+    {
+      "title": "공기부유 나노/마이크로 입자의 벽근처 거동특성연구",
+      "org": "과학재단",
+      "period": "2003-09-01~2004-08-31"
+    },
+    {
+      "title": "대기확산 및 피해예측모델을 위한 도심지에서의 DENSE GAS 확산예측알고리즘 개발",
+      "org": "국방과학연구소",
+      "period": "2003-08-01~2004-12-31"
+    },
+    {
+      "title": "한국형 실시간 확산모델 개발",
+      "org": "한국환경기술진흥원",
+      "period": "2003-06-01~2004-05-31"
+    },
+    {
+      "title": "청정생산 전문인 양성을 위한 교육과정 개설을 위한 기획",
+      "org": "한국생산기술연구원",
+      "period": "2002-10-01~2003-09-30"
+    },
+    {
+      "title": "복잡한 지형 주위의 대기경계층 수치모사기법 개발",
+      "org": "학술진흥재단",
+      "period": "2002-10-01~2003-09-30"
+    },
+    {
+      "title": "반응성 난류의 LAGRANGIAN 해석기법 개발",
+      "org": "과학재단",
+      "period": "2002-09-01~2003-08-31"
+    },
+    {
+      "title": "대기경계층 모사를 위한 대와류모사법 개발",
+      "org": "(주)라이다텍",
+      "period": "2002-05-01~2002-10-31"
+    },
+    {
+      "title": "복잡한 지형 주위의 대기경계층 수치모사기법 개발",
+      "org": "학술진흥재단",
+      "period": "2001-10-01~2002-09-30"
+    },
+    {
+      "title": "반응성 난류의 LAGRANGIAN 해석 기법 개발",
+      "org": "과학재단",
+      "period": "2001-09-01~2002-08-31"
+    },
+    {
+      "title": "유해화학물질사고 국가비상대응정보시스템 개발",
+      "org": "한국과학기술연구원",
+      "period": "2001-08-01~2002-06-20"
+    },
+    {
+      "title": "LARGE EDDY SIMULATION OF ROUGH-WALL BOUNDARY METHOD의 개발",
+      "org": "연세대학교산학단_간접비",
+      "period": "2001-08-01~2002-07-31"
+    },
+    {
+      "title": "난류확산의 예측기법의 개발",
+      "org": "한국과학재단",
+      "period": "2001-06-01~2002-05-31"
+    },
+    {
+      "title": "복잡한 지형주위의 비정상 3차원 유동계산 코드 개발",
+      "org": "(주)라이다텍",
+      "period": "2000-12-01~2001-05-30"
+    },
+    {
+      "title": "반응성 난류의 LAGRANGIAN 해석기법 개발",
+      "org": "과학재단",
+      "period": "2000-09-01~2001-08-31"
+    },
+    {
+      "title": "난류확산의 예측기법의 개발(미국)",
+      "org": "한국과학재단",
+      "period": "2000-06-01~2001-05-31"
+    },
+    {
+      "title": "정확한 고차미분을 위한 COMPACT SPECTRAL SCHEME의 개발",
+      "org": "학술진흥재단",
+      "period": "1999-12-01~2000-11-30"
+    }
+  ],
+  "patents": [
+    {
+      "title": "3차원 가상경계기법 기반 임의의 형상 물체 이동 추적 SW",
+      "type": "소프트웨어",
+      "applicant": "연세대학교 산학협력단",
+      "date": null
+    },
+    {
+      "title": "2차원 다중물체 자유이동 및 충돌 해석 SW",
+      "type": "소프트웨어",
+      "applicant": "연세대학교 산학렵력단",
+      "date": null
+    },
+    {
+      "title": "2차원 가상경계기법 기반 임의의 형상 물체 이동 추적 SW",
+      "type": "소프트웨어",
+      "applicant": "연세대학교 산학협력단",
+      "date": null
+    },
+    {
+      "title": "2차원 가상경계기법 기반 복잡형상 난류 열유동 해석 SW",
+      "type": "소프트웨어",
+      "applicant": "연세대학교 산학협력단",
+      "date": null
+    },
+    {
+      "title": "교차 유동을 이용한 에어 포일 구조를 갖는 가스 터빈",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 국방과학연구소",
+      "date": "2022-04-19"
+    }
+  ]
+}

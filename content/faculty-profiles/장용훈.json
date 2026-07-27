@@ -1,0 +1,1762 @@
+{
+  "name": "장용훈",
+  "nameEn": "Jang, Yong Hoon",
+  "email": "jyh@yonsei.ac.kr",
+  "phone": "02)2123-5812",
+  "office": "Engineering Hall 1, A591",
+  "homepage": "http://mcmclab.yonsei.ac.kr/",
+  "sourceUrl": "https://me.yonsei.ac.kr/faculty/name_search.do?mode=view&userId=DotpS%2BViSxK%2FWL4BBUofsA%3D%3D&sosokcd=",
+  "crawledAt": "2026-07-27",
+  "articles": [
+    {
+      "date": "2026-02",
+      "title": "Dual utilization of CO2 in polymethyl methacrylate: A predictive solubility model for microcellular foaming and controlled drug release",
+      "journal": "Polymer Testing"
+    },
+    {
+      "date": "2025-12",
+      "title": "A Remotely Actuated Multifunctional Nitinol–PMMA Smart Biocomposite: Microcellular Foaming, Shape Morphing, and Controlled Drug Release",
+      "journal": "ACS Applied Materials & Interfaces"
+    },
+    {
+      "date": "2025-12",
+      "title": "PREDICTION OF CONTACT DISTRIBUTION ON ROUGH SURFACES USING DEEP LEARNING ALGORITHMS",
+      "journal": "FACTA UNIVERSITATIS-SERIES MECHANICAL ENGINEERING"
+    },
+    {
+      "date": "2025-10",
+      "title": "Al-Driven Interfacial Gap Prediction in Overlapped Al/Cu Laser Weld Joint for Battery Applications",
+      "journal": "IEEE Access"
+    },
+    {
+      "date": "2025-03",
+      "title": "Effect of wear on thermoelastic instability in multidimensional geometries",
+      "journal": "Journal of Thermal Stresses"
+    },
+    {
+      "date": "2025-01",
+      "title": "Status and prospects of tribology in Republic of Korea",
+      "journal": "Friction"
+    },
+    {
+      "date": "2024-12",
+      "title": "Effect of Adhesion on a Beam with Surface Effects Interacting with an Elastic Foundation",
+      "journal": "Tribology and Lubricants"
+    },
+    {
+      "date": "2024-12",
+      "title": "완전접촉 상태의 프레팅피로 균열 진전조건 해석",
+      "journal": "Tribology and Lubricants"
+    },
+    {
+      "date": "2024-08",
+      "title": "Spectrometer as a quantitative sensor for predicting the weld depth in laser welding",
+      "journal": "Optics and Laser Technology"
+    },
+    {
+      "date": "2024-05",
+      "title": "Methodology for predicting optimal friction support location to attenuate vibrational energy in piping systems",
+      "journal": "Nuclear Engineering and Technology"
+    },
+    {
+      "date": "2024-04",
+      "title": "저주파 방진시스템의 스프링 댐퍼 설치 각도 최적화",
+      "journal": "한국소음진동공학회논문집"
+    },
+    {
+      "date": "2024-02",
+      "title": "Mixing behavior of Ti–Al interface during the ultrasonic welding process and its welding strength: Molecular dynamics study",
+      "journal": "Heliyon"
+    },
+    {
+      "date": "2023-08",
+      "title": "A Variance Analysis on the Porosity Distribution of Laser Welded A365 Casting with a Dual Beam Laser Under Various Oscillation Conditions",
+      "journal": "대한용접접합학회지"
+    },
+    {
+      "date": "2023-06",
+      "title": "Finite Element Model for Wear Analysis of Conventional Friction Stir Welding Tool",
+      "journal": "Tribology and Lubricants"
+    },
+    {
+      "date": "2023-06",
+      "title": "Weld-penetration-depth estimation using deep learning models and multisensor signals in Al/Cu laser overlap welding",
+      "journal": "Optics and Laser Technology"
+    },
+    {
+      "date": "2022-11",
+      "title": "배관 진동저감 마찰 지지대 최적 위치 선정",
+      "journal": "Journal of the Acoustical Society of Korea"
+    },
+    {
+      "date": "2022-11",
+      "title": "Deep learning-based penetration depth prediction in Al/Cu laser welding using spectrometer signal and CCD image",
+      "journal": "Journal of Laser Applications"
+    },
+    {
+      "date": "2022-11",
+      "title": "Stability of thermoelastic sliding problem with contact pressure-dependent thermal contact resistance",
+      "journal": "International Journal of Solids and Structures"
+    },
+    {
+      "date": "2022-10",
+      "title": "Critical wedging coefficient in planar frictional system",
+      "journal": "International Journal of Solids and Structures"
+    },
+    {
+      "date": "2021-08",
+      "title": "체결력을 고려한 내부 및 외부연결형 임플란트의 반복 하중에 대한 풀림 연구",
+      "journal": "한국트라이볼로지학회지"
+    },
+    {
+      "date": "2021-05",
+      "title": "Characteristics of Microcellular Foamed Ceramic Urethane",
+      "journal": "POLYMERS"
+    },
+    {
+      "date": "2020-12",
+      "title": "분리 상태를 고려한 탄성마찰시스템의 임계 쐐기 계수",
+      "journal": "한국트라이볼로지학회지"
+    },
+    {
+      "date": "2020-10",
+      "title": "마모해석을 위한 고유치해석과 Adaptive Meshing 알고리듬을 이용한 수치해석 비교",
+      "journal": "한국트라이볼로지학회지"
+    },
+    {
+      "date": "2020-10",
+      "title": "Molecular Dynamic Simulation for Penetrationof Carbon Nanotubes into an Array of Carbon Nnantotubes",
+      "journal": "한국트라이볼로지학회지"
+    },
+    {
+      "date": "2020-08",
+      "title": "Droplet transfer and spatter generation in DC–AC pulse tandem gas metal arc welding",
+      "journal": "SCIENCE AND TECHNOLOGY OF WELDING AND JOINING"
+    },
+    {
+      "date": "2020-07",
+      "title": "Determination of critical wedging coefficient for full-contact frictional systems using positive spanning",
+      "journal": "INTERNATIONAL JOURNAL OF MECHANICAL SCIENCES"
+    },
+    {
+      "date": "2019-07",
+      "title": "WEDGING OF FRICTIONAL ELASTIC SYSTEMS",
+      "journal": "Facta Universitatis, Series: Mechanical Engineering"
+    },
+    {
+      "date": "2019-06",
+      "title": "Frictional energy dissipation for coupled systems subjected to harmonically varying loads",
+      "journal": "TRIBOLOGY INTERNATIONAL"
+    },
+    {
+      "date": "2018-12",
+      "title": "Linear Micro-patterned Drug Eluting Balloon (LMDEB) for Enhanced Endovascular Drug Delivery",
+      "journal": "SCIENTIFIC REPORTS"
+    },
+    {
+      "date": "2018-10",
+      "title": "침식 해석을 이용한 월 블로워 노즐의 성능 예측",
+      "journal": "한국윤활학회지"
+    },
+    {
+      "date": "2017-12",
+      "title": "Magneto-electro interaction of two offset indenters in frictionless contact with magnetoelectroelastic materials",
+      "journal": "APPLIED MATHEMATICAL MODELLING"
+    },
+    {
+      "date": "2017-10",
+      "title": "Frictional contact behaviors between beam and cylinder under cyclic loading",
+      "journal": "INTERNATIONAL JOURNAL OF MECHANICAL SCIENCES"
+    },
+    {
+      "date": "2017-08",
+      "title": "The multiple fields created by two perfectly-conducting punches on piezoelectric/piezomagnetic materials with anisotropy",
+      "journal": "ZAMM-ZEITSCHRIFT FUR ANGEWANDTE MATHEMATIK UND MECHANIK"
+    },
+    {
+      "date": "2016-12",
+      "title": "Effects of carbon nanotubes on electrical contact resistance of a conductive Velcro system under low frequency vibration",
+      "journal": "TRIBOLOGY INTERNATIONAL"
+    },
+    {
+      "date": "2016-11",
+      "title": "Thermal boundary conditions in sliding contact problem",
+      "journal": "TRIBOLOGY INTERNATIONAL"
+    },
+    {
+      "date": "2016-02",
+      "title": "Thermal considerations during transient asperity contact",
+      "journal": "TRIBOLOGY INTERNATIONAL"
+    },
+    {
+      "date": "2015-04",
+      "title": "Conductive Fiber-Based Ultrasensitive Textile Pressure Sensor for Wearable Electronics",
+      "journal": "ADVANCED MATERIALS"
+    },
+    {
+      "date": "2014-12",
+      "title": "Contact problems involving beams",
+      "journal": "INTERNATIONAL JOURNAL OF SOLIDS AND STRUCTURES"
+    },
+    {
+      "date": "2014-12",
+      "title": "Electrical contact resistance for a conductive Velcro system",
+      "journal": "TRIBOLOGY INTERNATIONAL"
+    },
+    {
+      "date": "2014-01",
+      "title": "Indentation theory on orthotropic materials subjected to a frictional moving punch",
+      "journal": "ARCHIVES OF MECHANICS"
+    },
+    {
+      "date": "2014-01",
+      "title": "Finite element implementation of an eigenfunction solution for the contact pressure variation due to wear",
+      "journal": "WEAR"
+    },
+    {
+      "date": "2014-01",
+      "title": "Frictional Hertzian contact problems under cyclic loading using static reduction",
+      "journal": "INTERNATIONAL JOURNAL OF SOLIDS AND STRUCTURES"
+    },
+    {
+      "date": "2013-07",
+      "title": "Estimation of the weldability of single-sided resistance spot welding",
+      "journal": "JOURNAL OF MANUFACTURING SYSTEMS"
+    },
+    {
+      "date": "2013-06",
+      "title": "Influences of the moving velocity and material property on frictionless contact problem of orthotropic materials indented by a moving punch",
+      "journal": "Archives of Mechanics"
+    },
+    {
+      "date": "2013-06",
+      "title": "Explicit solution of the frictional contact problem of anisotropic materials indented by a moving stamp with a triangular or parabolic profile",
+      "journal": "ZEITSCHRIFT FUR ANGEWANDTE MATHEMATIK UND PHYSIK"
+    },
+    {
+      "date": "2012-12",
+      "title": "Spatial distributions of islands in fractal surfaces and natural surfaces",
+      "journal": "CHAOS SOLITONS & FRACTALS"
+    },
+    {
+      "date": "2012-11",
+      "title": "Genetic-Algorithm-Based Controlling of Microcontact Distributions to Minimize Electrical Contact Resistance",
+      "journal": "IEEE Transactions on Components Packaging and Manufacturing Technology"
+    },
+    {
+      "date": "2012-11",
+      "title": "Numerical analysis of quasistatic frictional contact of an elastic block under combined normal and tangential cyclic loading",
+      "journal": "INTERNATIONAL JOURNAL OF MECHANICAL SCIENCES"
+    },
+    {
+      "date": "2012-08",
+      "title": "Effect of unsymmetrical spiro dianhydride structure on properties of fully aliphatic polyimides",
+      "journal": "HIGH PERFORMANCE POLYMERS"
+    },
+    {
+      "date": "2012-06",
+      "title": "Multiscale Electrical Contact Resistance Between Gas Diffusion Layer and Bipolar Plate in Proton Exchange Membrane Fuel Cells",
+      "journal": "Journal of Fuel Cell Science and Technology"
+    },
+    {
+      "date": "2012-05",
+      "title": "Effect of the volume of a functionally graded material layer on frictionally excited thermoelastic instability",
+      "journal": "TRIBOLOGY INTERNATIONAL"
+    },
+    {
+      "date": "2011-09",
+      "title": "Structure-property relationships for partially aliphatic polyimides",
+      "journal": "JOURNAL OF POLYMER RESEARCH"
+    },
+    {
+      "date": "2011-05",
+      "title": "Effect of phase on the frictional dissipation in systems subjected to harmonically varying loads",
+      "journal": "EUROPEAN JOURNAL OF MECHANICS A-SOLIDS"
+    },
+    {
+      "date": "2011-04",
+      "title": "Micro-Mechanical Behavior of a Unidirectional Composite Subjected to Transverse Shear Loading",
+      "journal": "APPLIED COMPOSITE MATERIALS"
+    },
+    {
+      "date": "2011-03",
+      "title": "Frictional energy dissipation in materials containing cracks",
+      "journal": "JOURNAL OF THE MECHANICS AND PHYSICS OF SOLIDS"
+    },
+    {
+      "date": "2010-09",
+      "title": "Bondline strength evaluation of cocure/precured honeycomb sandwich structures under aircraft hygro and repair environments",
+      "journal": "COMPOSITES PART A-APPLIED SCIENCE AND MANUFACTURING"
+    },
+    {
+      "date": "2010-09",
+      "title": "Multiscale analysis of moving clusters of microcontacts",
+      "journal": "International Journal of Heat and Mass Transfer"
+    },
+    {
+      "date": "2010-06",
+      "title": "Molecular dynamics simulation of a nanoscale sliding layer system",
+      "journal": "Wear"
+    },
+    {
+      "date": "2010-04",
+      "title": "Frictionally excited thermo-elastoplastic instability",
+      "journal": "Tribology International"
+    },
+    {
+      "date": "2009-11",
+      "title": "Multiscale electrical contact resistance in clustered contact distribution",
+      "journal": "Journal of Physics D-Applied Physics"
+    },
+    {
+      "date": "2009-11",
+      "title": "The thermoelastic Hertzian contact problem",
+      "journal": "International Journal Of Solids And Structures"
+    },
+    {
+      "date": "2009-09",
+      "title": "Frictionally excited thermoelastic instability in a thin layer of functionally graded material sliding between two half-planes",
+      "journal": "Wear"
+    },
+    {
+      "date": "2009-01",
+      "title": "Effect of functionally graded material on frictionally excited thermoelastic instability",
+      "journal": "Wear"
+    },
+    {
+      "date": "2008-04",
+      "title": "Effects of nanosized contact spots on thermal contact resistance",
+      "journal": "Journal of Applied Physics"
+    },
+    {
+      "date": "2007-11",
+      "title": "Analytical model development for the prediction of the frictional resistance of a capsule endoscope inside an intestine",
+      "journal": "PROCEEDINGS OF THE INSTITUTION OF MECHANICAL ENGINEERS PART H-JOURNAL OF ENGINEERING IN MEDICINE"
+    },
+    {
+      "date": "2007-05",
+      "title": "Dynamic analysis of flexible media by dynamic elastica theory with aerodynamic effect",
+      "journal": "MICROSYSTEM TECHNOLOGIES-MICRO-AND NANOSYSTEMS-INFORMATION STORAGE AND PROCESSING SYSTEMS"
+    },
+    {
+      "date": "2007-04",
+      "title": "Frictionally-excited thermoelastic instability in functionally graded material",
+      "journal": "WEAR"
+    },
+    {
+      "date": "2006-08",
+      "title": "온도 의존성 물성치를 가지는 유한한 전도층에서의 전기/열하중을 받는 균열의 해석",
+      "journal": "대한기계학회논문집 A"
+    },
+    {
+      "date": "2006-07",
+      "title": "탄성기반에서 과도 열탄성 접촉에 대한 열 접촉 저항의 영향",
+      "journal": "대한기계학회논문집 A"
+    },
+    {
+      "date": "2006-05",
+      "title": "경사기능재료에서의 열탄성 불안정성",
+      "journal": "한국자동차공학회 논문집"
+    },
+    {
+      "date": "2006-05",
+      "title": "Experimental investigation of frictional and viscoelastic properties of intestine for microendoscope application",
+      "journal": "TRIBOLOGY LETTERS"
+    },
+    {
+      "date": "2005-11",
+      "title": "Effects of thermal contact resistance on transient thermoelastic contacts for an elastic foundation",
+      "journal": "JOURNAL OF APPLIED MECHANICS-TRANSACTIONS OF THE ASME"
+    },
+    {
+      "date": "2005-07",
+      "title": "Electrothermal crack analysis in a finite conductive layer with temperature-dependent material properties",
+      "journal": "Journal of Physics D: Applied Physics"
+    },
+    {
+      "date": "2005-02",
+      "title": "Dynamic Elastica에 의한 유연매체의 거동해석",
+      "journal": "한국소음진동공학회논문집"
+    },
+    {
+      "date": "2004-05",
+      "title": "Distribution of three-dimensional islands from two-dimensional line segment length distribution",
+      "journal": "WEAR"
+    },
+    {
+      "date": "2003-12",
+      "title": "Effect of contact statistics on electrical contact resistance",
+      "journal": "JOURNAL OF APPLIED PHYSICS"
+    },
+    {
+      "date": "1998-11",
+      "title": "Electrical conductance between conductors with dissimilar temperature-dependent material properties",
+      "journal": "Journal of Physics D: Applied Physics"
+    },
+    {
+      "date": "1993-11",
+      "title": "Thermal Stress Analysis of an Infinite Plate Containing a Rigid Inclusion of Arbitrary Shape",
+      "journal": "Engineering Fracture Mechanics"
+    },
+    {
+      "date": "1993-02",
+      "title": "Thermal Stress Intensity Factors for an Interfacial Crack on a Cusp-Type Inclusion",
+      "journal": "Engineering Fracture Mechanics"
+    }
+  ],
+  "awards": [
+    {
+      "title": "GM Powertrain Achievement award",
+      "contents": null,
+      "date": null
+    },
+    {
+      "title": "Ivor K. McIvor Award",
+      "contents": null,
+      "date": null
+    },
+    {
+      "title": "Ragnar Holm Plaguette",
+      "contents": null,
+      "date": null
+    },
+    {
+      "title": "2025년 우수강의교수상",
+      "contents": null,
+      "date": "2026-02-28"
+    },
+    {
+      "title": "2022년 우수강의교수상",
+      "contents": "2021학년도 연세대학교의 우수강의교수로 선정됨",
+      "date": "2022-04-20"
+    },
+    {
+      "title": "2021년 제31회 과학기술우수논문상",
+      "contents": ": 창의적인 연구활동을 통하여 우수한 논문을 발표한 과학기술자를 선정하여 시상함으로써 연구의욕과 사기를 높이고 연구 분위기 제고 및 과학기술 수준 향상과 선진화에 기여",
+      "date": "2021-09-10"
+    },
+    {
+      "title": "2021년도 공학대학원 우수강의교수상",
+      "contents": "2021학년도 1학기 공학대학원 우수강의교수로 선정됨",
+      "date": "2021-08-27"
+    },
+    {
+      "title": "2021년 우수강의교수상",
+      "contents": "2020학년도 연세대학교의 우수강의교수로 선정됨",
+      "date": "2021-02-28"
+    },
+    {
+      "title": "석현학술상",
+      "contents": "트라이볼로지 분야 학술발전 에 기여한 업적",
+      "date": "2020-09-25"
+    },
+    {
+      "title": "우수업적교수상",
+      "contents": "2014년도 연구에 탁월한 업적을 성취함",
+      "date": "2015-01-29"
+    },
+    {
+      "title": "우수논문상",
+      "contents": "대한기계학회 2006년도 추계학술대회에 개제한 논문의 독창성 및 우수성을 인정받음",
+      "date": "2007-05-31"
+    }
+  ],
+  "conferences": [
+    {
+      "title": "Al/Cu 이종 금속 레이저 용접에서 딥러닝 기반 피드백 제어를 통한 실시간 용입 깊이 제어",
+      "conference": "2024 한국자동차공학회 추계학술대회",
+      "period": "2024.11.20~2024.11.23"
+    },
+    {
+      "title": "딥러닝 기법을 이용한 누적 마모 거동 예측 연구",
+      "conference": "2024년도 제76회 추계학술대회",
+      "period": "2024.10.16~2024.10.18"
+    },
+    {
+      "title": "Al/Cu 레이저 용접에서 피드백 제어 시스템을 활용한 용입깊이 제어: 이미지 데이터와 딥러닝을 통한 레이저 출력 제어",
+      "conference": "2024 대한용접접합회 추계학술대회",
+      "period": "2024.10.16~2024.10.18"
+    },
+    {
+      "title": "원자력발전소 1차측 주배관 Thermal Sleeve 제거를 위한 접촉해석",
+      "conference": "2024년도 제76회 추계학술대회",
+      "period": "2024.10.16~2024.10.18"
+    },
+    {
+      "title": "배터리 셀 다층 초 박판 Al 1050 소재의 초음파 용접 특성에 대한 마찰에너지의 영향",
+      "conference": "2024년도 제76회 추계학술대회",
+      "period": "2024.10.16~2024.10.18"
+    },
+    {
+      "title": "CONTACT BEHAVIOR OF A SUPERSONIC SLIDING INDENTER",
+      "conference": "the 26 th International Congress of Theoretical and Applied Mechanics (ICTAM 2024)",
+      "period": "2024.08.25~2024.08.30"
+    },
+    {
+      "title": "멀티빔 레이저를 이용한 Al/Cu 용접 안정성 평가",
+      "conference": "2024 대한용접접합회 춘계학술대회",
+      "period": "2024.05.09~2024.05.10"
+    },
+    {
+      "title": "차단기 접점의 표면 형상에 따른 전기접촉저항 분석",
+      "conference": "2024년도 제75회 춘계학술대회",
+      "period": "2024.04.17~2024.04.19"
+    },
+    {
+      "title": "딥러닝을 활용한 시편 표면 마모 진행 예측",
+      "conference": "2024년도 제75회 춘계학술대회",
+      "period": "2024.04.17~2024.04.19"
+    },
+    {
+      "title": "다중 센서와 deep learning 알고리즘을 이용한 레이저 용접의 용입깊이 예측",
+      "conference": "2024년도 제75회 춘계학술대회",
+      "period": "2024.04.17~2024.04.19"
+    },
+    {
+      "title": "평판과 핀 모델에서 하중형태에 따른 Receding Contact에 관한 연구",
+      "conference": "2024년도 제75회 춘계학술대회",
+      "period": "2024.04.17~2024.04.19"
+    },
+    {
+      "title": "Contact behavior of a sliding spherical indenter at supersonic speed",
+      "conference": "The 16th IFToMM World Congress [WC2023]",
+      "period": "2023.11.05~2023.11.09"
+    },
+    {
+      "title": "거시적 슬라이딩 속도 기반의 마모 예측 방법",
+      "conference": "한국트라이볼로지학회 2023년도 제74회 추계학술대회",
+      "period": "2023.10.18~2023.10.20"
+    },
+    {
+      "title": "Stretchable strain sensor의 마모량에 따른 전기저항 변화",
+      "conference": "한국트라이볼로지학회 2023년도 제74회 추계학술대회",
+      "period": "2023.10.18~2023.10.20"
+    },
+    {
+      "title": "Al/Cu 겹치기 레이저 용접에서 다중센서와 딥러닝을 이용한 표면 간극 예측 기법",
+      "conference": "한국트라이볼로지학회 2023년도 제74회 추계학술대회",
+      "period": "2023.10.18~2023.10.20"
+    },
+    {
+      "title": "가스터빈 Dovetail부 주기하중 유형에 따른 접촉거동과 프레팅 피로에 대한 영향",
+      "conference": "한국트라이볼로지학회 2023년도 제74회 추계학술대회",
+      "period": "2023.10.18~2023.10.20"
+    },
+    {
+      "title": "변위/힘 제어 왕복 슬라이딩에 대한 접촉과 마모 거동 비교",
+      "conference": "한국트라이볼로지학회 2023년도 제74회 추계학술대회",
+      "period": "2023.10.18~2023.10.20"
+    },
+    {
+      "title": "고정어깨 마찰교반용접의 마모 해석을 위한 유한요소해석",
+      "conference": "한국트라이볼로지학회 2023년도 제74회 추계학술대회",
+      "period": "2023.10.18~2023.10.20"
+    },
+    {
+      "title": "SSFSW tool 마모에 대한 수치해석적 분석",
+      "conference": "대한용접접합학회 2023년도 춘계 학술발표대회",
+      "period": "2023.05.11~2023.05.11"
+    },
+    {
+      "title": "A Molecular Dynamics Study on Mixing behavior of Ti-Al Interface during Ultrasonic Welding Process and Selding Strength",
+      "conference": "3rd Korea Tribology International Symposium (K-TRIB2023)",
+      "period": "2023.04.02~2023.04.05"
+    },
+    {
+      "title": "Vibration Analysis of Pipe System with Friction Support",
+      "conference": "3rd Korea Tribology International Symposium (K-TRIB2023)",
+      "period": "2023.04.02~2023.04.05"
+    },
+    {
+      "title": "Frictional Contact Behavior and Fretting Fatigue on Gas Turbine Dovetail subjected to Cyclic Loading",
+      "conference": "3rd Korea Tribology International Symposium (K-TRIB2023)",
+      "period": "2023.04.02~2023.04.05"
+    },
+    {
+      "title": "Frictional Contact behaviors on the Abutment of Conical Internal Connection Dental Implants under Cyclic Loading",
+      "conference": "3rd Korea Tribology International Symposium (K-TRIB2023)",
+      "period": "2023.04.02~2023.04.05"
+    },
+    {
+      "title": "Electrical contact resistance under cyclic force-controlled modes",
+      "conference": "3rd Korea Tribology International Symposium (K-TRIB2023)",
+      "period": "2023.04.02~2023.04.05"
+    },
+    {
+      "title": "Friction and Wear Characteristics of Nano Cellulose Modified by Microcellular Foaming Process",
+      "conference": "3rd Korea Tribology International Symposium (K-TRIB2023)",
+      "period": "2023.04.02~2023.04.05"
+    },
+    {
+      "title": "Numerical Wear Analysis of Tools for Friction Stir Welding",
+      "conference": "3rd Korea Tribology International Symposium (K-TRIB2023)",
+      "period": "2023.04.02~2023.04.05"
+    },
+    {
+      "title": "Evaluation of Friction Behavior and Weldability According to the Number of Foil Layers on Ultrasonic Welding",
+      "conference": "3rd Korea Tribology International Symposium (K-TRIB2023)",
+      "period": "2023.04.02~2023.04.05"
+    },
+    {
+      "title": "Contact analysis of Rough Surfaces Using Deep Learning",
+      "conference": "3rd Korea Tribology International Symposium (K-TRIB2023)",
+      "period": "2023.04.02~2023.04.05"
+    },
+    {
+      "title": "누적 마모량을 고려한 마찰교반용접 툴 형상 최적화",
+      "conference": "한국트라이볼로지학회 2022년도 제73회 추계학술대회",
+      "period": "2022.10.26~2022.10.28"
+    },
+    {
+      "title": "반복전단하중 및 반복수직하중에 따른 마찰 슬라이딩 및 전기접촉저항",
+      "conference": "한국트라이볼로지학회 2022년도 제73회 추계학술대회",
+      "period": "2022.10.26~2022.10.28"
+    },
+    {
+      "title": "Wedging Condition and Critical Wedging Coefficient of Frictional Elastic Systems",
+      "conference": "4th Korea-Japan Tribology Symposium",
+      "period": "2022.10.26~2022.10.26"
+    },
+    {
+      "title": "Machine Learning 방법을 이용한 트라이볼로지 연구분야",
+      "conference": "한국트라이볼로지학회 2022년도 제72회 춘계학술대회",
+      "period": "2022.04.20~2022.04.22"
+    },
+    {
+      "title": "증기터빈 Dovetail부 주기하중과 탄소성 조건에서 접촉거동과 피로수평 평가에 대한 연구",
+      "conference": "한국트라이볼로지학회 2022년도 제72회 춘계학술대회",
+      "period": "2022.04.20~2022.04.22"
+    },
+    {
+      "title": "미끄러지는 경계면의 접촉모드에 따른 마모 변화",
+      "conference": "한국트라이볼로지학회 2022년도 제72회 춘계학술대회",
+      "period": "2022.04.20~2022.04.22"
+    },
+    {
+      "title": "운전유형에 따른 증기터빈 로터 잔여수명평가",
+      "conference": "한국유체기계학회 학술대회",
+      "period": "2021.12.02~2021.12.03"
+    },
+    {
+      "title": "Al/Cu 레이저 용접에서 spectrometer를 이용한 용접성 예측",
+      "conference": "대한용접접합학회 학술대회",
+      "period": "2021.11.26~2021.11.27"
+    },
+    {
+      "title": "힘 제어 미동마멸에서 전기접촉저항 내구성 평가",
+      "conference": "한국트라이볼로지 학술대회",
+      "period": "2021.10.20~2021.10.22"
+    },
+    {
+      "title": "증기터빈 Dovetail부 결함 존재 시 접촉 거동",
+      "conference": "한국트라이볼로지 학술대회",
+      "period": "2021.10.20~2021.10.22"
+    },
+    {
+      "title": "브레이크 시스템의 마찰야기 열탄성불안정성에 대한 진동실험분석",
+      "conference": "한국트라이볼로지 학술대회",
+      "period": "2021.10.20~2021.10.22"
+    },
+    {
+      "title": "탄소강의 침탄질화층이 충격에 미치는 영향",
+      "conference": "한국트라이볼로지 학술대회",
+      "period": "2021.10.20~2021.10.22"
+    },
+    {
+      "title": "Al/Cu Laser Weld Penetration Depth Prediction using CNN Model based on Molten Pool Image and Photodiode Signal",
+      "conference": "International Symposium on Precision Engineering and Sustainable Manufacturing",
+      "period": "2021.07.20~2021.07.22"
+    },
+    {
+      "title": "Al/Cu 레이저 용접에서 Multi-sensor CNN 모델을 이용한 용입깊이 예측",
+      "conference": "대한용접접합학회 학술대회",
+      "period": "2021.05.26~2021.05.27"
+    },
+    {
+      "title": "초음파용접에서 상판 겹수에 따른 거동 및 용접성 평가",
+      "conference": "한국트라이볼로지 학술대회",
+      "period": "2021.04.22~2021.04.23"
+    },
+    {
+      "title": "엔진밸브시트 마모예측을 위한 시뮬레이션 모델",
+      "conference": "한국트라이볼로지 학술대회",
+      "period": "2021.04.22~2021.04.23"
+    },
+    {
+      "title": "힘 제어 미동마멸에서 스프링 타입 커넥터의 동저항 거동",
+      "conference": "한국트라이볼로지 학술대회",
+      "period": "2021.04.22~2021.04.23"
+    },
+    {
+      "title": "Effect of Adhesion on a Beam with Surface Effects Lifted from the Ground",
+      "conference": "K-TRIB2020",
+      "period": "2020.11.29~2020.12.01"
+    },
+    {
+      "title": "Estimation of Real Contact Spot Distribution Using Deep Learning",
+      "conference": "K-TRIB2020",
+      "period": "2020.11.29~2020.12.02"
+    },
+    {
+      "title": "Al/Cu 이종금속 겹치기 레이저용접에서 용융풀 형성 정보와 용입 깊이의 상관관계",
+      "conference": "대한용접접합학회 학술대회",
+      "period": "2020.11.26~2020.11.27"
+    },
+    {
+      "title": "탄성 지면 위의 표면 효과를 가진 보에 대한 접착의 영향",
+      "conference": "한국트라이볼로지 학술대회",
+      "period": "2020.09.23~2020.09.25"
+    },
+    {
+      "title": "접촉점 분포에서의 군집 영향",
+      "conference": "한국트라이볼로지 학술대회",
+      "period": "2020.09.23~2020.09.25"
+    },
+    {
+      "title": "주기하중과 탄소성 조건에서 리시딩 접촉 거동에 대한 연구",
+      "conference": "한국트라이볼로지 학술대회",
+      "period": "2020.09.23~2020.09.25"
+    },
+    {
+      "title": "초기체결력을 고려한 내부 및 외부 연결형 임플란트 의 반복하중에 대한 풀림 거동",
+      "conference": "한국트라이볼로지 학술대회",
+      "period": "2020.09.23~2020.09.25"
+    },
+    {
+      "title": "Metal Transfer in Accordance with Arc Modes in Asynchronous Tandem GMA Welding",
+      "conference": "Visual-JW 2019 & WSE 2019",
+      "period": "2019.11.21~2019.11.22"
+    },
+    {
+      "title": "프로젝션 용접에서 용접 변수가 전극과 모재사이에서 발생하는 Expulsion 에 미치는 영향 분석",
+      "conference": "한국정밀공학회 2019 추계학술발표대회",
+      "period": "2019.10.30~2019.11.01"
+    },
+    {
+      "title": "지면 위의 보 변형에 대한 표면 탄성학의 영향",
+      "conference": "한국트라이볼로지 학술대회",
+      "period": "2019.10.23~2019.10.25"
+    },
+    {
+      "title": "열접촉저항을 고려한 슬라이딩 열탄성 접촉 문제의 수치 해석",
+      "conference": "한국트라이볼로지학회 추계학술대회",
+      "period": "2019.10.23~2019.10.25"
+    },
+    {
+      "title": "On Necessary and Sufficient Conditions for Wedging in Two Contact Node System",
+      "conference": "15th IFToMM A World Congress on Mechanism and Machine Science",
+      "period": "2019.06.30~2019.07.04"
+    },
+    {
+      "title": "Green laser와 multi-beam laser를 활용한 무산소동의 용접특성 비교",
+      "conference": "대한용접접합학회 학술대회",
+      "period": "2019.05.16~2019.05.17"
+    },
+    {
+      "title": "여러 계면 형상을 갖는 이종 재료의 주기하중에 따른 나노스케일상의 접촉 거동",
+      "conference": "한국트라이볼로지 학술대회",
+      "period": "2019.04.17~2019.04.19"
+    },
+    {
+      "title": "마찰 시스템의 Wedging 조건",
+      "conference": "한국트라이볼로지 학술대회",
+      "period": "2019.04.17~2019.04.19"
+    },
+    {
+      "title": "조화 하중을 받는 마찰 연성 문제의 에너지 소산",
+      "conference": "한국트라이볼로지 학술대회",
+      "period": "2018.10.31~2018.11.01"
+    },
+    {
+      "title": "마멸 및 마찰 손실 저감 해석 기술",
+      "conference": "한국트라이볼로지 학술대회",
+      "period": "2018.10.31~2018.11.01"
+    },
+    {
+      "title": "접촉점의 군집 분포에 따른 전기접촉저항",
+      "conference": "한국트라이볼로지 학술대회",
+      "period": "2018.10.31~2018.11.02"
+    },
+    {
+      "title": "초음속으로 미끄러지는 탄성동역학 문제",
+      "conference": "한국트라이볼로지 학술대회",
+      "period": "2018.04.26~2018.04.27"
+    },
+    {
+      "title": "침식 해석을 이용한 월 블로어 노즐의 성능 예측",
+      "conference": "한국트라이볼로지 학회 학술대회",
+      "period": "2018.04.26~2018.04.27"
+    },
+    {
+      "title": "커피 부산물이 첨가된 폴리프로필렌 사출 성형 복합재의 휨과 수축",
+      "conference": "한국정밀공학회 락술대회",
+      "period": "2017.12.13~2017.12.15"
+    },
+    {
+      "title": "빔과 실린더의 지지조건에 따른 마찰 접촉면 거동",
+      "conference": "한국윤활학회 2017년도 추계학술대회",
+      "period": "2017.10.18~2017.10.20"
+    },
+    {
+      "title": "군을 이루는 접촉면 분포에 따른 전기접촉저항",
+      "conference": "한국윤활학회 2017년도 추계학술대회",
+      "period": "2017.10.18~2017.10.20"
+    },
+    {
+      "title": "Numerical investigation for a transient thermoelastic sliding contact problem",
+      "conference": "4th International Tribology Symposium of IFToMM 2017",
+      "period": "2017.03.19~2017.03.22"
+    },
+    {
+      "title": "Frictional contact behaviors of beam under cyclic loading",
+      "conference": "4th International Tribology Symposium of IFToMM 2017",
+      "period": "2017.03.19~2017.03.22"
+    },
+    {
+      "title": "Effects of clustering distribution of contact area on electrical contact resistance",
+      "conference": "4th International Tribology Symposium of IFToMM 2017",
+      "period": "2017.03.19~2017.03.22"
+    },
+    {
+      "title": "슬라이딩하는 돌기의 열접촉조건 규명",
+      "conference": "한국윤활학회 제63회 추계학술대회",
+      "period": "2016.10.05~2016.10.07"
+    },
+    {
+      "title": "Thermal considerations during transient asperity contact",
+      "conference": "11th International Congress on Thermal Stresses 2016",
+      "period": "2016.06.05~2016.06.09"
+    },
+    {
+      "title": "Wall-blower 성능 향상을 위한 노즐 형상 변수 결정에 관한 연구",
+      "conference": "한국정밀공학회 2015년도 추계학술대회",
+      "period": "2015.12.16~2015.12.18"
+    },
+    {
+      "title": "리튬 이온(Li-ion Battery) 배터리의 초음파 용접",
+      "conference": "대한기계학회 창립 70주년 기념 학술대회",
+      "period": "2015.11.10~2015.11.12"
+    },
+    {
+      "title": "NANOSCALED CONTACT BETWEEN ELASTIC BODIES WITH WAVY SURFACES",
+      "conference": "Proceedings of the 42 th Leeds-Lyon Symposium on Tribology",
+      "period": "2015.09.07~2015.09.10"
+    },
+    {
+      "title": "탄소 나노튜브 다발의 삽입",
+      "conference": "2014년 대한기계학회 추계학술대회",
+      "period": "2014.11.11~2014.11.14"
+    },
+    {
+      "title": "반복하중을 받는 피스톤링의 마모에 의한 접촉압력 변화",
+      "conference": "2014년도 한국정밀공학회 춘계학술대회",
+      "period": "2014.05.14~2014.05.16"
+    },
+    {
+      "title": "Ruthenium (Ru) peeling and predicting robustness of the capping layer using finite element method (FEM) modeling",
+      "conference": "Photomask Japan 2014",
+      "period": "2014.04.15~2014.04.18"
+    },
+    {
+      "title": "전도성 벨크로 시스템의 전기접촉저항 거동",
+      "conference": "2013년 대한기계학회 추계학술대회",
+      "period": "2013.12.18~2013.12.20"
+    },
+    {
+      "title": "반복하중 하의 Hertzian 접촉 문제에 대한 수치해석",
+      "conference": "2011년도 제53회 추계학술대회 및 정기총회",
+      "period": "2013.12.18~2013.12.20"
+    },
+    {
+      "title": "Estimation of the Weldability of Single-Sided Resistance Spot Welding",
+      "conference": "4th CIRP Conference on Assembly technologies and Systems",
+      "period": "2012.05.21~2012.05.23"
+    },
+    {
+      "title": "변위 하중을 받는 시스템의 마찰 손실",
+      "conference": "대한기계학회 추계학술대회",
+      "period": "2011.11.02~2011.11.04"
+    },
+    {
+      "title": "열탄소성 불안정성 상태에서 변태소성을 고려한 Hot spot 해석",
+      "conference": "한국윤활학회 추계학술대회",
+      "period": "2011.10.21~2011.10.21"
+    },
+    {
+      "title": "균열을 갖는 재료의 마찰에너지 소산",
+      "conference": "2010년도 재료 및 파괴부문 춘계학술대회",
+      "period": "2010.04.22~2010.04.23"
+    },
+    {
+      "title": "PEM 연료전지 내에서의 양극판과 기체확산층 사이의 전기접촉저항 해석",
+      "conference": "2010년도 재료 및 파괴 부문 춘계학술대회",
+      "period": "2010.04.22~2010.04.23"
+    },
+    {
+      "title": "Numerical simulation of residual stress distribution in rolled joint of CANDU pressure tube",
+      "conference": "The 12th international conference on pressure vessel technology",
+      "period": "2009.09.20~2009.09.23"
+    },
+    {
+      "title": "Frictionally excited thermoelastoplastic instability",
+      "conference": "Thermal stresses 2009",
+      "period": "2009.06.01~2009.06.04"
+    },
+    {
+      "title": "중수형 원전 압력관 지연수소균열 평가를 위한 압연연결부 표면 잔류응력 해석",
+      "conference": "2009년도 대한기계학회 재료 및 파괴부문 춘계학술대회",
+      "period": "2009.04.22~2009.04.24"
+    },
+    {
+      "title": "탄소성접촉면의 나노스케일 열접촉저항",
+      "conference": "2008 추계학술대회",
+      "period": "2008.11.05~2008.11.07"
+    },
+    {
+      "title": "미끄러짐 마찰접촉하는 시스템에서의 열탄소성 불안정성 연구",
+      "conference": "2008 추계학술대회",
+      "period": "2008.11.05~2008.11.07"
+    },
+    {
+      "title": "두 개의 반무함 평판과 유한층사이에서의 동적열탄성 불안정성",
+      "conference": "2008년도 대한기계학회 재료 및 파괴부문 춘계학술대회",
+      "period": "2008.05.21~2008.05.23"
+    },
+    {
+      "title": "CAE 기법을 활용한 저항점용접성 평가",
+      "conference": "2008년 한국자동차공학회 창립30주년 기년 학술대회",
+      "period": "2008.04.16~2008.04.18"
+    },
+    {
+      "title": "실차의 구동조건을 이용한 변속기 습식 클러치 시스템의 열기계적 해석",
+      "conference": "2008년도 한국자동차공학회 창립 30주녕 기념 학술대회",
+      "period": "2008.04.16~2008.04.18"
+    },
+    {
+      "title": "분자동력학 시뮬레이션을 이용한 나노층의 미끄러짐 시스템에 대한 연구",
+      "conference": "2008년도 대한기계학회 CAE 및 응용역학부문 춘계학술대회",
+      "period": "2008.04.16~2008.04.18"
+    },
+    {
+      "title": "거친표면에서의 전기접촉저항에 대한 멀티스케일 해석",
+      "conference": "대한기계학회 2007년도 추계학술대회",
+      "period": "2007.10.17~2007.10.19"
+    },
+    {
+      "title": "편방향전극 저항 점용접 용접성 평가와 CAE 해석",
+      "conference": "대한기계학회 2007년도 추계학술대회",
+      "period": "2007.10.17~2007.10.19"
+    },
+    {
+      "title": "유한두께를 갖는 경사기능재료에서의 열탄성불안정성",
+      "conference": "한국자동차공학회 2007년도 구동 및 제동 부문 심포지움",
+      "period": "2007.09.12~2007.09.13"
+    },
+    {
+      "title": "Analysis of Flexible Media Using Arbitrary Largrangian-Eulerian Finite Element Method",
+      "conference": "ISPS&apos;07",
+      "period": "2007.06.18~2007.06.19"
+    },
+    {
+      "title": "경사기능재료에서의 열탄성 불안정성",
+      "conference": "한국자동차공학회 2007년도 춘계학술대회",
+      "period": "2007.06.06~2007.06.08"
+    },
+    {
+      "title": "EFFECT OF FUNCTIONALLY GRADED MATERIAL ON THERMOELASTIC INSTABILITY",
+      "conference": "7th International Congress on Thermal Stresses",
+      "period": "2007.06.04~2007.06.07"
+    },
+    {
+      "title": "ALE 유한요소법을 이용한 유연매체의 거동해석",
+      "conference": "한국소음진동공학회 2007년도",
+      "period": "2007.05.24~2007.05.25"
+    },
+    {
+      "title": "Thermoelastic Instability in Functionally Graded Materials",
+      "conference": "IPC-13",
+      "period": "2006.11.23~2006.11.25"
+    },
+    {
+      "title": "마찰에 의한 열탄성불안정성에 대한 경사기능재료의 영향",
+      "conference": "한국자동차공확회 2006년도 추계학술대회",
+      "period": "2006.11.15~2006.11.17"
+    },
+    {
+      "title": "동적유한요소법을 이용한 유연매체의 기하비선형해석",
+      "conference": "한국소음진동공학회2006년도추계학술대회",
+      "period": "2006.11.16~2006.11.17"
+    },
+    {
+      "title": "브레이트 열탄성 불안정성 해석을 위한 알고리듬",
+      "conference": "한국자동차 공학회 006년도 구동 및 제동 부문 Symposium",
+      "period": "2006.11.15~2006.11.16"
+    },
+    {
+      "title": "탄성 self affine 프랙탈 면에서의 전기접촉저항",
+      "conference": "대한기계학회 추계학술대회(무주)",
+      "period": "2006.11.01~2006.11.03"
+    },
+    {
+      "title": "전기 접촉 저항의 멀티스케일 특징",
+      "conference": "대한기계학회 추계학술대회(무주)",
+      "period": "2006.11.01~2006.11.03"
+    },
+    {
+      "title": "CAE를 활용한 3겹 고장력강 저항 점용접 변수의 최적화",
+      "conference": "대한기계학회 추계학술대회(무주)",
+      "period": "2006.11.01~2006.11.03"
+    },
+    {
+      "title": "고속의 출구속도를 가지는 유연매체의 거동해석 및 실험",
+      "conference": "정보저장시스템학회 2006년도 하계학술대회",
+      "period": "2006.07.06~2006.07.07"
+    },
+    {
+      "title": "THE SIMULATION AND EXPERIMENT OF FLEXIBLE MEDIA BY DYNAMIC ELASTICA THEORY WITH AERODYNAMIC EFFECT",
+      "conference": "WESPAC IX 2006",
+      "period": "2006.06.26~2006.06.28"
+    },
+    {
+      "title": "DYNAMIC ANALYSIS OF FLEXIBLE MEDIA BY DYNAMIC ELASTICA THEORY WITH AERODYNAMIC EFFECT",
+      "conference": "ASME / JSME JOINT CONFERENCE ON MICROMECHATRONICS FOR INFORMATION AND PRECISION EQUIPMENT",
+      "period": "2006.06.21~2006.06.23"
+    },
+    {
+      "title": "Multiscale Characteristics of Electrical Contact Resistance",
+      "conference": "ICEC2006",
+      "period": "2006.06.06~2006.06.09"
+    },
+    {
+      "title": "MULTISCALE CHARACTERISTICS OF ELECTRICAL CONTACT RESISTANCE",
+      "conference": "INTERNATIONAL CONFERENCE ON ELECTRICAL CONTACTS",
+      "period": "2006.06.06~2006.06.09"
+    },
+    {
+      "title": "수평가이드에 충돌하는 유연매체의 거동에 관한 연구",
+      "conference": "한국소음진동공학회 2006년도 춘계학술대회",
+      "period": "2006.05.25~2006.05.26"
+    },
+    {
+      "title": "고속의 출구속도를 가지는 유연매체의 거동해석 및 실험",
+      "conference": "한국소음진동공학회 2006년도 춘계학술대회",
+      "period": "2006.05.25~2006.05.26"
+    },
+    {
+      "title": "해석/측정기반 창의적 종합설계 교과목 개발",
+      "conference": "공학교육 학술대회",
+      "period": "2005.10.12~2005.10.13"
+    },
+    {
+      "title": "기계공학전공을 위한 기초 창의설계프로젝트 교과목 개발",
+      "conference": "공학교육 학술대회",
+      "period": "2005.10.12~2005.10.13"
+    },
+    {
+      "title": "해석/측정기반 창의적 종합설계 교과목 개발",
+      "conference": "공학교육 학술대회",
+      "period": "2005.10.12~2005.10.13"
+    },
+    {
+      "title": "기계공학전공을 위한 기초 창의설계프로젝트 교과목 개발",
+      "conference": "공학교육 학술대회",
+      "period": "2005.10.12~2005.10.13"
+    },
+    {
+      "title": "THERMOELASTIC INSTABILITY IN FUNCTIONALLY GRADED MATERIALS",
+      "conference": "THE 13TH INTERNATIONAL PACIFIC CONFERENCE ON AUTOMOTIVE ENGINEERING",
+      "period": "2005.08.22~2005.08.24"
+    },
+    {
+      "title": "DYNAMIC BEHAVIOR OF FLEXIBLE MEDIA WITH FRICTIONAL SLIP",
+      "conference": "ISPS 2005",
+      "period": "2005.06.28~2005.06.29"
+    },
+    {
+      "title": "공기저항이 고려된 DYNAMIC ELASTICA 이론을 통한 유연매체의 거동해석",
+      "conference": "한국소음진동공학회 2005년도 춘계학술대회",
+      "period": "2005.05.19~2005.05.20"
+    },
+    {
+      "title": "C1보요소를 이용한 유연매체의 기하비선형 해석",
+      "conference": "한국소음진동공학회 2005년도 춘계학술대회",
+      "period": "2005.05.19~2005.05.20"
+    },
+    {
+      "title": "EFFECTS OF THERMAL CONTACT RESISTANCE ON TRANSIENT THERMOELASTIC CONTACTS FOR AN ELASTIC FOUNDATION",
+      "conference": "2005년 춘계학술대회",
+      "period": "2005.05.19~2005.05.20"
+    },
+    {
+      "title": "유연매체의 동적안정성해석",
+      "conference": "한국소음진동공학회 2004년 추계학술대회",
+      "period": "2004.11.18~2004.11.19"
+    },
+    {
+      "title": "유연매체의 동적 안정성 해석",
+      "conference": "한국소음진동공학회 2004년도 추계학술대회",
+      "period": "2004.11.18~2004.11.19"
+    },
+    {
+      "title": "DYNAMIC EALSTICA에의한 유연매체의 거동해석",
+      "conference": "한국소음진동공학회 2004년도 추계학술대회",
+      "period": "2004.11.18~2004.11.19"
+    },
+    {
+      "title": "유연매체의 동적안정성해석",
+      "conference": "한국소음진동공학회 2004년 추계학술대회",
+      "period": "2004.11.18~2004.11.19"
+    },
+    {
+      "title": "DYNAMIC ELASTICA에 의한 유연매체의 거동해석",
+      "conference": "한국소음진동공학회 2004년 추계학술대회",
+      "period": "2004.11.18~2004.11.19"
+    },
+    {
+      "title": "섬유금속적층판 연결접합 부위의 하중전달 거동 연구",
+      "conference": "2003년도 추계학술대회",
+      "period": "2003.11.05~2003.11.07"
+    },
+    {
+      "title": "섬유금속적층판 연결접합 부위의 하중전달 거동 연구",
+      "conference": "2003년도 추계학술대회",
+      "period": "2003.11.05~2003.11.07"
+    },
+    {
+      "title": "EFFECT OF CONTACT STATISTICS ON ELECTRICAL CONTACT RESISTANCE",
+      "conference": "2003년도 추계학술대회",
+      "period": "2003.11.05~2003.11.07"
+    }
+  ],
+  "fundings": [
+    {
+      "title": "[민간/에이치디현대일렉트릭(주)]진공차단기 접점 융착 방지를 위한 접점 거동 분석 및 예측 기술 개발",
+      "org": "국내",
+      "period": "2026-03-01~2027-02-28"
+    },
+    {
+      "title": "(통합Ezbaro/IRIS) 물리 제약 내재화 트라이볼로지 신경연산자 기반 초고속 접촉 해석 시스템 개발(1/5)(2026.03.01~2031.02.28)",
+      "org": "한국연구재단",
+      "period": "2026-03-01~2027-02-28"
+    },
+    {
+      "title": "[7차년도]사회지향 기계기술 글로벌 리더 양성 교육연구단",
+      "org": "한국연구재단",
+      "period": "2026-03-01~2027-02-28"
+    },
+    {
+      "title": "[민간/현대기아] 모빌리티시스템융합협동과정(계약학과 13기) 위탁 운영",
+      "org": "국내",
+      "period": "2025-09-01~2028-02-29"
+    },
+    {
+      "title": "[6차년도] 사회지향 기계기술 글로벌 리더 양성 교육연구단",
+      "org": "한국연구재단",
+      "period": "2025-03-01~2026-02-28"
+    },
+    {
+      "title": "[민간/펜타드] 교량 내진보강 앵커형 전단키 접촉 응력 검토",
+      "org": "국내",
+      "period": "2024-08-01~2026-11-30"
+    },
+    {
+      "title": "[한전KPS/용역] 가스터빈 열차폐 코팅부 접합강도 해석평가 모델 개발",
+      "org": "산하기관",
+      "period": "2024-07-03~2024-12-02"
+    },
+    {
+      "title": "[민간/현대엔지비] 현대자동차 계약학과 12기 위탁 운영",
+      "org": "국내",
+      "period": "2024-03-04~2027-02-28"
+    },
+    {
+      "title": "[민간/HD현대일렉트릭]소전류 접점 개폐 통전 신뢰성 평가기법 정립 및 개선안 도출",
+      "org": "국내",
+      "period": "2024-03-01~2026-12-31"
+    },
+    {
+      "title": "[5차년도] 사회지향 기계기술 글로벌 리더 양성 교육연구단",
+      "org": "한국연구재단",
+      "period": "2024-03-01~2025-02-28"
+    },
+    {
+      "title": "[민간/에스케이넥실리스] 메인 Bus-bar Line 체결 저항 관련 해석모델 개발/검증 연구",
+      "org": "국내",
+      "period": "2023-12-20~2026-12-31"
+    },
+    {
+      "title": "[민간/LG에너지솔루션] 저항 프로젝션 용접의 용접봉 마모 예측 기법",
+      "org": "국내",
+      "period": "2023-11-17~2026-12-31"
+    },
+    {
+      "title": "[민간/오스템임플란트㈜ ] 임플란트 시스템의 접촉 유한요소해석에 대한 자문용역",
+      "org": "국내",
+      "period": "2023-08-01~2024-12-31"
+    },
+    {
+      "title": "(통합Ezbaro)트라이볼로지 현상에 대한 딥러닝 예측(3/3)(2021.3.1~2024.2.29)",
+      "org": "한국연구재단",
+      "period": "2023-03-01~2024-02-29"
+    },
+    {
+      "title": "[4차년도] 사회지향 기계기술 글로벌 리더 양성 교육연구단",
+      "org": "한국연구재단",
+      "period": "2023-03-01~2024-02-29"
+    },
+    {
+      "title": "[민간/현대일렉트릭]중저압 차단기 접점현상에 따른 접촉 및 온도 특성 연구",
+      "org": "국내",
+      "period": "2023-02-01~2026-11-30"
+    },
+    {
+      "title": "[RCMS]엠디티㈜/친환경차 배터리 조립을 위한 내압성능 8 kN급 로봇 기반 마찰교반 용접 시스템 국산화 개발(3/3)",
+      "org": "한국산업기술기획평가원",
+      "period": "2023-01-01~2023-12-31"
+    },
+    {
+      "title": "(통합Ezbaro)트라이볼로지 현상에 대한 딥러닝 예측(2/3)(2021.3.1~2024.2.29)",
+      "org": "한국연구재단",
+      "period": "2022-03-01~2023-02-28"
+    },
+    {
+      "title": "[RCMS]엠디티㈜/친환경차 배터리 조립을 위한 내압성능 8 kN급 로봇 기반 마찰교반 용접 시스템 국산화 개발(2/3)",
+      "org": "한국산업기술평가관리원",
+      "period": "2022-01-01~2022-12-31"
+    },
+    {
+      "title": "[민간/한화시스템] EOTS 적용을 위한 Softride vibration isolation system 개발",
+      "org": "국내",
+      "period": "2021-12-01~2026-02-28"
+    },
+    {
+      "title": "[산통부 산하/한국전력기술] 진동에너지 저감장치를 적용한 배관시스템의 설계 최적화",
+      "org": "산하기관",
+      "period": "2021-05-13~2021-12-15"
+    },
+    {
+      "title": "[RCMS]엠디티(주)/친환경차 배터리 조립을 위한 내압성능 8 kN급 로봇 기반 마찰교반 용접 시스템 국산화 개발(1/3)",
+      "org": "한국산업기술기획평가원",
+      "period": "2021-04-01~2021-12-31"
+    },
+    {
+      "title": "(통합Ezbaro)트라이볼로지 현상에 대한 딥러닝 예측(1/3)(2021.3.1~2024.2.29)",
+      "org": "한국연구재단",
+      "period": "2021-03-01~2022-07-28"
+    },
+    {
+      "title": "(통합Ezbaro)마찰 셰이크다운을 적용한 차세대 전기 접촉부 시스템 개발(3/3)(2018.3.1~2021.2.28)",
+      "org": "한국연구재단",
+      "period": "2020-03-01~2021-02-28"
+    },
+    {
+      "title": "[민간/(주)리빙키친]리빙키친 스테인리스강 기술자문",
+      "org": "국내",
+      "period": "2019-10-28~2019-11-28"
+    },
+    {
+      "title": "[민간/두산인프라코어(주)]Tappet/Cam의 마모 예측을 위한 연구",
+      "org": "국내",
+      "period": "2019-09-01~2021-11-30"
+    },
+    {
+      "title": "[민간/기가산업(주)]자문",
+      "org": "국내",
+      "period": "2019-09-01~2019-10-31"
+    },
+    {
+      "title": "마찰 셰이크다운을 적용한 차세대 전기 접촉부 시스템 개발(2/3)(2018.3.1~2021.2.28)",
+      "org": "한국연구재단",
+      "period": "2019-03-01~2020-02-29"
+    },
+    {
+      "title": "[7차년도]사회지향 기계기술 글로벌 리더 양성 사업단",
+      "org": "한국연구재단",
+      "period": "2019-03-01~2020-02-29"
+    },
+    {
+      "title": "[민간 두산인프라코어] Cylinder Linear/Piston Ring의 마모 개선을 위한 연구",
+      "org": "국내",
+      "period": "2018-04-01~2020-06-30"
+    },
+    {
+      "title": "마찰 셰이크다운을 적용한 차세대 전기 접촉부 시스템 개발(1/3)(2018.3.1~2021.2.28)",
+      "org": "한국연구재단",
+      "period": "2018-03-01~2019-02-28"
+    },
+    {
+      "title": "[6차년도]사회지향 기계기술 글로벌 리더 양성 사업단",
+      "org": "한국연구재단",
+      "period": "2018-03-01~2019-02-28"
+    },
+    {
+      "title": "커피찌꺼기 재생자원을 활용한 친환경 플라스틱 복합재료 펠릿 개발",
+      "org": "중소기업청",
+      "period": "2017-06-01~2018-05-31"
+    },
+    {
+      "title": "[5차년도]사회지향 기계기술 글로벌 리더 양성 사업단",
+      "org": "한국연구재단",
+      "period": "2017-03-01~2018-02-28"
+    },
+    {
+      "title": "[RCMS](주)대영기계공업/표준화력 500MW Retrofit를 위한 Fan 용량증대 및 Smart Soot-Blower 개발(2/3)",
+      "org": "한국에너지기술평가원",
+      "period": "2016-06-01~2017-11-30"
+    },
+    {
+      "title": "삼성디스플레이/초음파 본딩을 이용한 이종 메탈 결합 연구",
+      "org": "국내",
+      "period": "2016-04-01~2019-06-30"
+    },
+    {
+      "title": "(4차년도) 사회지향 기계기술 글로벌 리더 양성 사업단",
+      "org": "한국연구재단",
+      "period": "2016-03-01~2017-02-28"
+    },
+    {
+      "title": "LS전선(주)/부스닥트 시스템 접촉부의 발열 및 방열 성능 향상",
+      "org": "국내",
+      "period": "2016-03-01~2019-08-30"
+    },
+    {
+      "title": "다중의료영상을 활용한 3차원 초정밀 시뮬레이션 기반 심·혈관 질환 진단-치료지원 통합소프트웨어 시스템 개발",
+      "org": "정보통신기술진흥센터(NIPA산하)",
+      "period": "2016-03-01~2017-02-28"
+    },
+    {
+      "title": "[RCMS](주)대영기계공업/표준화력 500MW Retrofit를 위한 Fan 용량증대 및 Smart Soot-Blower 개발(1/3)(2015.06.01~2018.05.31)",
+      "org": "한국에너지기술평가원",
+      "period": "2015-06-01~2016-05-31"
+    },
+    {
+      "title": "다중의료영상을 활용한 3차원 초정밀 시뮬레이션 기반 심·혈관 질환 진단-치료지원 통합소프트웨어 시스템 개발",
+      "org": "정보통신기술진흥센터(NIPA산하)",
+      "period": "2015-03-01~2016-02-29"
+    },
+    {
+      "title": "초고속영역에서의 차륜/레일 상호작용에 관한 기초이론연구",
+      "org": "한국철도기술연구원",
+      "period": "2015-03-01~2015-10-31"
+    },
+    {
+      "title": "전도성 벨크로를 이용한 이차전지 전극구조의 접합성능에 대한 연구(3/3)",
+      "org": "한국연구재단(교과부)",
+      "period": "2014-09-01~2015-08-31"
+    },
+    {
+      "title": "(주)아이스기술/BRAZING 코팅 공정조건과 수명예측 전산모사(2/2)(2013.06.20~2015.06.19)",
+      "org": "중소기업청",
+      "period": "2014-06-20~2015-06-19"
+    },
+    {
+      "title": "SK이노베이션(주)/Belt와 Drum의 정렬 상태에 따른 부하계산 및 내구성 예측에 대한 시뮬레이션에 관한 연구",
+      "org": "국내",
+      "period": "2014-06-09~2016-08-31"
+    },
+    {
+      "title": "초고속영역에서의 차륜/레일 상호작용에 관한 기초이론연구",
+      "org": "국토교통과학기술진흥원",
+      "period": "2014-04-16~2014-10-31"
+    },
+    {
+      "title": "솔라플러스/태양광 패널 세정장비 개발",
+      "org": "중소기업청",
+      "period": "2013-12-01~2014-11-30"
+    },
+    {
+      "title": "전도성 벨크로를 이용한 이차전지 전극구조의 접합성능에 대한 연구(2/3)",
+      "org": "한국연구재단",
+      "period": "2013-09-01~2014-08-31"
+    },
+    {
+      "title": "SEMICONDUCTOR RESEARCH CORPORATION",
+      "org": "국외",
+      "period": "2013-07-01~2016-08-30"
+    },
+    {
+      "title": "(주)아이스기술/BRAZING 코팅 공정조건과 수명예측 전산모사(1/2)(2013.06.20~2015.06.19)",
+      "org": "중소기업청",
+      "period": "2013-06-20~2014-06-19"
+    },
+    {
+      "title": "현대엔지비/윤활계를 고려한 자동변속기 클러치/브레이크 발열 및 냉각 모델 개발",
+      "org": "국내",
+      "period": "2013-05-01~2016-08-31"
+    },
+    {
+      "title": "전도성 벨크로를 이용한 이차전지 전극구조의 접합성능에 대한 연구(1/3)",
+      "org": "한국연구재단",
+      "period": "2012-09-01~2013-08-31"
+    },
+    {
+      "title": "나노마이크로응용기계기술인력양성사업단",
+      "org": "연세대학교",
+      "period": "2012-03-01~2014-02-28"
+    },
+    {
+      "title": "나노 마이크로 응용기계기술 인력양성사업",
+      "org": "학술진흥재단",
+      "period": "2012-03-01~2013-04-30"
+    },
+    {
+      "title": "고온형 PEM 연료전지 전해질 막 개발 및 multi-physics 모델링을 통한 조립과 성능의 최적화 (3/3)",
+      "org": "한국연구재단(과학재단)",
+      "period": "2011-09-01~2012-08-31"
+    },
+    {
+      "title": "나노 마이크로 응용기계기술 인력양성사업",
+      "org": "학술진흥재단",
+      "period": "2011-03-01~2012-02-29"
+    },
+    {
+      "title": "(주)두산인프라코어 / 연세대학교산학협력협의회 (2011.03.01~2012.06.30->2011.03.01~2013.02.28)",
+      "org": "민간기업",
+      "period": "2011-03-01~2013-02-28"
+    },
+    {
+      "title": "나노마이크로응용기계기술인력양성사업단",
+      "org": "연세대학교",
+      "period": "2011-03-01~2012-02-29"
+    },
+    {
+      "title": "고온형 PEM 연료전지 전해질 막 개발 및 multi-physics 모델링을 통한 조립과 성능의 최적화",
+      "org": "한국연구재단(과학재단)",
+      "period": "2010-09-01~2011-08-31"
+    },
+    {
+      "title": "G-5-5-10나노마이크로응용기계기술인력양성사업단",
+      "org": "연세대학교",
+      "period": "2010-03-02~2011-06-30"
+    },
+    {
+      "title": "나노마이크로응용기계기술인력양성사업단",
+      "org": "연세대학교",
+      "period": "2010-03-01~2011-02-28"
+    },
+    {
+      "title": "나노 마이크로 응용기계기술 인력양성사업단",
+      "org": "학술진흥재단",
+      "period": "2010-03-01~2011-02-28"
+    },
+    {
+      "title": "고온형 PEM 연료전지 전해질 막 개발 및 multi-physics 모델링을 통한 조립과 성능의 최적화",
+      "org": "한국연구재단(과학재단)",
+      "period": "2009-09-01~2010-08-31"
+    },
+    {
+      "title": "나노마이크로응용기계기술인력양성사업단",
+      "org": "학술진흥재단",
+      "period": "2009-03-01~2010-02-28"
+    },
+    {
+      "title": "현대모비스(주) 변태소성을 고려한 브레이크 마찰면의 변화",
+      "org": "현대모비스(주)",
+      "period": "2009-02-28~2011-08-31"
+    },
+    {
+      "title": "(주)캐프스-연료펌프내의 전기모터 브러쉬 마모현상",
+      "org": "(주)캐프스",
+      "period": "2008-07-01~2011-08-31"
+    },
+    {
+      "title": "브레이크 시스템의 열탄성불안정성을 이용한 디스크 구조 개선",
+      "org": "중소기업청",
+      "period": "2008-07-01~2009-06-30"
+    },
+    {
+      "title": "나노마이크로응용기계기술인력양성사업단",
+      "org": "학술진흥재단",
+      "period": "2008-03-01~2009-02-28"
+    },
+    {
+      "title": "G5-5-10/나노마이크로응용기계기술인력양성사업",
+      "org": "연세대학교",
+      "period": "2008-03-01~2009-02-28"
+    },
+    {
+      "title": "나노마이크로응용기계기술인력양성사업단",
+      "org": "연세대학교",
+      "period": "2008-03-01~2009-02-28"
+    },
+    {
+      "title": "월성1호기 계속운전 안전성평가를 위한 압력관 압연연결부 잔류응역 특성평가",
+      "org": "한국전력기술(주)",
+      "period": "2008-02-01~2011-08-31"
+    },
+    {
+      "title": "(주)현대파워텍 자동변속기 습식마찰클러치의 핫스팟분석 분석 프로그램개발",
+      "org": "민간기업",
+      "period": "2008-02-01~2009-04-09"
+    },
+    {
+      "title": "한국전력기술(주) 초기응력을 고려한 J 적분 계산 포스트 프로그램 개발및 검증 실험 용역",
+      "org": "민간기업",
+      "period": "2008-01-18~2008-02-28"
+    },
+    {
+      "title": "이공계교육과정개발 4유형",
+      "org": "학술진흥재단",
+      "period": "2007-11-01~2008-10-31"
+    },
+    {
+      "title": "현대모비스(주) 브레이크 열탄성불안정성 예측을 위한 해석 알고리듬 개발",
+      "org": "민간기업",
+      "period": "2007-10-01~2009-02-28"
+    },
+    {
+      "title": "중소기업청-산학공동컨소시엄사업-공동운영비",
+      "org": "중소기업청",
+      "period": "2007-07-01~2008-06-30"
+    },
+    {
+      "title": "실무교육 중심의 창의적 종합설계 교육모델 개발",
+      "org": "연세대학교산학단_간접비",
+      "period": "2007-07-01~2008-06-30"
+    },
+    {
+      "title": "FIBER OPTICAL 케이블 컨넥터의 접촉성능향상을 위한 연구",
+      "org": "중소기업청",
+      "period": "2007-07-01~2007-12-31"
+    },
+    {
+      "title": "GM대우 저항접용접 CAE 해석기법개발 위한 SIMULATION 프로그램 개발",
+      "org": "민간기업",
+      "period": "2007-03-30~2008-11-30"
+    },
+    {
+      "title": "나노/마이크로 응용 기계기술 인력양성사업단",
+      "org": "학술진흥재단",
+      "period": "2007-03-01~2008-02-29"
+    },
+    {
+      "title": "나노/마이크로 응용 기계기술 인력양성사업단",
+      "org": "연세대학교",
+      "period": "2007-03-01~2008-02-29"
+    },
+    {
+      "title": "G5-5-10/나노마이크로응용기계기술인력양성사업",
+      "org": "연세대학교",
+      "period": "2007-03-01~2008-05-31"
+    },
+    {
+      "title": "(주)현대파워텍 통합해석자동화 프로그램 내에서 클러치열용량 계산을위한 SIMULATION 프로그램 개발",
+      "org": "민간기업",
+      "period": "2007-01-01~2008-10-30"
+    },
+    {
+      "title": "한국전력기술(주) 용접재 거동해석 및 측정시험용역",
+      "org": "민간기업",
+      "period": "2006-11-14~2007-02-15"
+    },
+    {
+      "title": "기계공학에서의 창의적 종합설게 교육 모델 개발",
+      "org": "학술진흥재단",
+      "period": "2006-11-01~2007-10-31"
+    },
+    {
+      "title": "문제해결형인력양성을 위한 효과적 사업 방안",
+      "org": "교육부",
+      "period": "2006-04-24~2006-06-23"
+    },
+    {
+      "title": "나노 마이크로 응용기계기술 인력양성사업단",
+      "org": "학술진흥재단",
+      "period": "2006-03-01~2007-02-28"
+    },
+    {
+      "title": "나노마이크로응용기계기술인역양성사업단",
+      "org": "연세대학교",
+      "period": "2006-03-01~2007-02-28"
+    },
+    {
+      "title": "ON/OFF-ROAD VEHICLE를 위한 고성능 TRACTION-ADDING DIFFERENTIAL 개발",
+      "org": "한국생산기술연구원",
+      "period": "2006-01-01~2006-12-31"
+    },
+    {
+      "title": "(주)엔지비 편방향 저항 점용접 CAE 해석 기법 개발",
+      "org": "민간기업",
+      "period": "2006-01-01~2006-12-31"
+    },
+    {
+      "title": "현대파워텍(성균관대) 초기설계단계에서 클러치구조거동 해석 자동화 프로그램 개발",
+      "org": "민간기업",
+      "period": "2005-12-15~2006-12-14"
+    },
+    {
+      "title": "탄성 접촉하는 프랙탈 표면간의 전기접촉저항",
+      "org": "학술진흥재단",
+      "period": "2005-12-01~2006-11-30"
+    },
+    {
+      "title": "현대모비스(주) 브레이크 열탄성 불안정성 예측을 위한 해석 알고리듬개발",
+      "org": "민간기업",
+      "period": "2005-11-25~2006-11-24"
+    },
+    {
+      "title": "기계공학에서의 창의적 종합설계 교육 모델 개발 (4유형)",
+      "org": "학술진흥재단",
+      "period": "2005-11-01~2006-10-31"
+    },
+    {
+      "title": "창의적 공학교육 사업",
+      "org": "삼성전자(주)",
+      "period": "2005-09-01~2006-02-28"
+    },
+    {
+      "title": "브레이크 혹은 변속기 클러치의 내구성 향상을 위한",
+      "org": "중소기업청",
+      "period": "2005-07-01~2006-04-30"
+    },
+    {
+      "title": "창의적 공학교육 프로그램 개발 및 확산 지원 사업",
+      "org": "한국산업기술재단",
+      "period": "2005-05-01~2006-02-28"
+    },
+    {
+      "title": "멀티스케일/통계적 방법을 이용한 전기접촉저항 연구",
+      "org": "학술진흥재단",
+      "period": "2005-05-01~2006-04-30"
+    },
+    {
+      "title": "환류식 지폐 입출금 장치 개발",
+      "org": "노틸러스효성",
+      "period": "2005-02-01~2006-08-31"
+    },
+    {
+      "title": "멀티스케일/통계적 방법을 이용한 전기접촉저항 연구",
+      "org": "한국과학재단",
+      "period": "2004-07-01~2005-04-30"
+    },
+    {
+      "title": "경사기능재료의 마찰에 의한 열탄성 불안정성에 대한 연구",
+      "org": "학술진흥재단",
+      "period": "2004-07-01~2005-06-30"
+    },
+    {
+      "title": "치아교정용 MINI-SCREW의 체결력 향상을 위한 연구",
+      "org": "중소기업청",
+      "period": "2004-05-01~2005-02-28"
+    },
+    {
+      "title": "멀티스케일/통계적 방법을 이용한 전기접촉저항 연구",
+      "org": "한국과학재단",
+      "period": "2003-07-01~2004-06-30"
+    },
+    {
+      "title": "FUNCTIONAL GRADIENT MATERIAL의 열탄성 불안정성에 대한 연구",
+      "org": "연세대학교산학단_간접비",
+      "period": "2003-07-01~2004-06-30"
+    },
+    {
+      "title": "변속기 핵심 해석 절차 개발",
+      "org": "(주)현대자동차",
+      "period": "2003-06-01~2003-11-30"
+    }
+  ],
+  "patents": [
+    {
+      "title": "자가 굽힘 거동을 나타내는 가스 용해형 고분자 구조체 및 이의 제조 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2026-01-27"
+    },
+    {
+      "title": "맥신, 폴리머 그리고 약물의 복합재의 초미세발포 기술을 이용한 약물 방출 스위치 구현 및 암 재발 억제 기술",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2025-12-12"
+    },
+    {
+      "title": "시공간 데이터 학습을 통한 표면 마모 예측 장치 및 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2025-08-11"
+    },
+    {
+      "title": "접촉압력 분포 산출 장치 및 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2025-07-28"
+    },
+    {
+      "title": "접촉 분포 예측 장치 및 그 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2021-12-16"
+    },
+    {
+      "title": "접촉 분포 예측 장치 및 그 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2020-12-16"
+    },
+    {
+      "title": "표시 장치 및 이의 제조 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 삼성디스플레이 주식회사",
+      "date": "2017-11-06"
+    },
+    {
+      "title": "핵 연료봉 지지격자",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2017-09-18"
+    },
+    {
+      "title": "파노라마 선루프 유리패널의 파손 방지용 버퍼층, 이를 포함하는 유리패널 및 이의 제조방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2015-09-11"
+    },
+    {
+      "title": "전기접촉저항 감소를 위한 탄소나노튜브를 포함하는 전도성 벨크로 및 이의 제조 장치 및 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2015-02-04"
+    },
+    {
+      "title": "전기접촉저항 감소를 위한 탄소나노튜브를 포함하는 전도성 벨크로 및 이의 제조 장치 및 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2015-02-04"
+    },
+    {
+      "title": "파노라마 선루프 유리패널의 파손 방지용 버퍼층, 이를 포함하는 유리패널 및 이의 제조방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2014-09-12"
+    },
+    {
+      "title": "파노라마 선루프 유리패널의 파손 방지용 버퍼층, 이를 포함하는 유리패널 및 이의 제조방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2014-09-12"
+    },
+    {
+      "title": "배터리 셀의 전기결합장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2010-02-26"
+    },
+    {
+      "title": "경사 기능 재료를 이용한 마찰식 기계장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2008-01-02"
+    },
+    {
+      "title": "납땜 부위 내구성 강화를 위한 납땜 재료 및 납땜 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2007-11-07"
+    },
+    {
+      "title": "경사 기능 재료를 적용한 마찰식 브레이크 장치",
+      "type": "특허",
+      "applicant": "연세대학교산학협력단",
+      "date": "2005-09-23"
+    }
+  ]
+}

@@ -424,6 +424,27 @@
       "all": "전체",
       "active": "교수",
       "emeritus": "명예·퇴임 교수"
+    },
+    "profile": {
+      "campusLabel": "캠퍼스",
+      "campusValue": "신촌캠퍼스",
+      "deptLabel": "소속",
+      "deptValue": "기계공학부",
+      "officeLabel": "오피스",
+      "labLabel": "연구실",
+      "homepage": "개인 홈페이지",
+      "backToList": "교수진 목록으로",
+      "emptySection": "등록된 자료가 없습니다.",
+      "activitiesEyebrow": "Academic Activities",
+      "activitiesTitle": "학술활동",
+      "activitiesNav": "학술활동 분류",
+      "tabs": {
+        "articles": "논문 (Journal Articles)",
+        "fundings": "연구과제 (Research Projects)",
+        "patents": "지적재산권 (Intellectual Property)",
+        "awards": "수상 (Awards)",
+        "conferences": "학술활동 (Conference Papers)"
+      }
     }
   },
   "academics": {

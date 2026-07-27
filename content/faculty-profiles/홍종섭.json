@@ -1,0 +1,2722 @@
+{
+  "name": "홍종섭",
+  "nameEn": "Hong Jongsup",
+  "email": "jongsup.hong@yonsei.ac.kr",
+  "phone": "4465",
+  "office": null,
+  "homepage": "http://mes.yonsei.ac.kr/",
+  "sourceUrl": "https://me.yonsei.ac.kr/faculty/name_search.do?mode=view&userId=OqCjCitbqY9SNaY%2FMELsJg%3D%3D&sosokcd=0000405",
+  "crawledAt": "2026-07-27",
+  "articles": [
+    {
+      "date": "2026-06",
+      "title": "Early hydrogen gas detection as a predictive strategy for thermal runaway mitigation in lithium-ion batteries under variable heating conditions",
+      "journal": "Journal of Energy Storage"
+    },
+    {
+      "date": "2026-05",
+      "title": "Comparative performance analysis of hydrogen-, methane-, and ammonia-fueled solid oxide fuel cell systems considering anode off-gas recirculation",
+      "journal": "Energy Conversion and Management: X"
+    },
+    {
+      "date": "2026-04",
+      "title": "Intermediate-temperature direct ammonia solid oxide fuel cell engineered by surface modification with cobalt and gadolinium-doped ceria",
+      "journal": "Chemical Engineering Journal"
+    },
+    {
+      "date": "2026-04",
+      "title": "Modeling lithium methyl carbonate decomposition kinetics in the lithium-ion battery SEI under thermal runaway",
+      "journal": "Chemical Engineering Journal"
+    },
+    {
+      "date": "2026-04",
+      "title": "Achieving energy autonomy in smart farm systems through renewable thermal energy: A scenario-based environmental and economic assessment",
+      "journal": "Renewable Energy"
+    },
+    {
+      "date": "2026-03",
+      "title": "Elucidating the proton-coupled oxygen reduction pathway in protonic ceramic fuel cells",
+      "journal": "Energy & Environmental Science"
+    },
+    {
+      "date": "2026-03",
+      "title": "Large-scale protonic ceramic electrochemical cells fabricated by inkjet printing",
+      "journal": "Chemical Engineering Journal"
+    },
+    {
+      "date": "2026-03",
+      "title": "Dynamic polarization behavior in a commercial-scale pouch-type lithium-ion battery examined by a three-dimensional electrochemical-thermal modeling framework",
+      "journal": "Journal of Power Sources"
+    },
+    {
+      "date": "2026-02",
+      "title": "A charger-free electrostatic precipitator for collecting triboelectrically charged brake wear particles",
+      "journal": "Tribology International"
+    },
+    {
+      "date": "2026-01",
+      "title": "Catastrophic Degradation in Solid Oxide Fuel Cells Caused by Air Supply Interruption in Real-World Operations: Fundamental Mechanisms and Mitigation Strategies",
+      "journal": "Advanced Science"
+    },
+    {
+      "date": "2025-12",
+      "title": "Thermodynamic analysis of internal and external ammonia decomposition strategies for ammonia-fueled solid oxide fuel cell systems",
+      "journal": "Journal of Power Sources"
+    },
+    {
+      "date": "2025-12",
+      "title": "Analysis of the thermal behavior of a large format lithium-ion battery cell in a constant-power discharge process",
+      "journal": "International Journal of Heat and Mass Transfer"
+    },
+    {
+      "date": "2025-11",
+      "title": "Flameless combustion characteristics using representative pyrolysis gas derived from plastic waste via the Hamburg process",
+      "journal": "Chemical Engineering Journal"
+    },
+    {
+      "date": "2025-10",
+      "title": "Medium-Entropy Alloy/Oxide Nano Composite for High-Performing High-Temperature CO2 Electrolysis with Remarkable Carbon Deposition Resistance",
+      "journal": "Advanced Science"
+    },
+    {
+      "date": "2025-10",
+      "title": "수정 확장 칼만 필터(M-EKF)를 이용한 건물용 연료전지 성능 예측 및 열화 원인 진단",
+      "journal": "한국수소및신에너지학회논문집"
+    },
+    {
+      "date": "2025-10",
+      "title": "Scenario-based profitability analysis of a commercial biomethane-based hydrogen refueling station using practical operational data",
+      "journal": "International Journal of Hydrogen Energy"
+    },
+    {
+      "date": "2025-09",
+      "title": "Primary exothermic reaction pathways between solid electrolyte interphases and electrolytes during the onset of thermal runaway in lithium-ion batteries",
+      "journal": "Energy Storage Materials"
+    },
+    {
+      "date": "2025-09",
+      "title": "Electrochemical–thermal correlation for assessing potential thermal runaway in automotive pouch cells via 3D numerical simulations",
+      "journal": "eTransportation"
+    },
+    {
+      "date": "2025-07",
+      "title": "The effect of internal manifold configuration on thermal and electrochemical distributions in commercial scale solid oxide fuel cell stacks fueled by hydrogen and hydrocarbon",
+      "journal": "Journal of Power Sources"
+    },
+    {
+      "date": "2025-06",
+      "title": "Ni-based alloy catalysts for cost-effective hydrogen production from ammonia decomposition",
+      "journal": "Applied Surface Science Advances"
+    },
+    {
+      "date": "2025-05",
+      "title": "Mechanistic Analysis of Lithium Ethylene Monocarbonate Decomposition Reaction in Battery Thermal Runaway",
+      "journal": "ACS Energy Letters"
+    },
+    {
+      "date": "2025-05",
+      "title": "Analysis of electrochemical degradation phenomena of a 60-cell SOC stack operated in reversible SOFC/SOEC cycling mode",
+      "journal": "Applied Energy"
+    },
+    {
+      "date": "2025-04",
+      "title": "Contactless external manifold design of a kW-scale solid oxide electrolysis cell stack and analysis of its impact on the internal stack environment",
+      "journal": "Energy Conversion and Management: X"
+    },
+    {
+      "date": "2025-04",
+      "title": "Controlling the internal pressure drops of a kW-scale solid oxide electrolysis cell stack for the uniformity of flow distribution and reaction environment",
+      "journal": "APPLIED ENERGY"
+    },
+    {
+      "date": "2025-03",
+      "title": "Enhancing uniformity and performance in Solid Oxide Fuel Cells with double symmetry interconnect design",
+      "journal": "APPLIED ENERGY"
+    },
+    {
+      "date": "2025-02",
+      "title": "Significant suppression of exothermic heat flow in silicon anodes <i>via in situ</i> polymerization of phosphonium ionic liquids",
+      "journal": "Journal of Materials Chemistry A"
+    },
+    {
+      "date": "2024-11",
+      "title": "In situ synthesis of cobalt-embedded gadolinia-doped ceria nanocatalysts for high-temperature solid oxide cells",
+      "journal": "Journal of Materials Chemistry A"
+    },
+    {
+      "date": "2024-08",
+      "title": "Designing the Solid Oxide Electrochemical Cell for Superior Thermal Shock Resistance",
+      "journal": "ACS Energy Letters"
+    },
+    {
+      "date": "2024-08",
+      "title": "Assessment of energy self-sufficiency of a smart farm through integrated modeling of air-source heat pumps and solar power generation",
+      "journal": "Applied Energy"
+    },
+    {
+      "date": "2024-07",
+      "title": "Parametric evaluation of the operating conditions for NO reduction in flameless combustion of an H&lt;inf&gt;2&lt;/inf&gt;/NH&lt;inf&gt;3&lt;/inf&gt;/N&lt;inf&gt;2&lt;/inf&gt; fuel mixture",
+      "journal": "International Journal of Hydrogen Energy"
+    },
+    {
+      "date": "2024-06",
+      "title": "Thermal decomposition mechanism of lithium methyl carbonate in solid electrolyte interphase layer of lithium-ion battery",
+      "journal": "Energy Storage Materials"
+    },
+    {
+      "date": "2024-04",
+      "title": "Dehydration kinetics of the synthesis of high-nickel cathode materials used in lithium ion batteries",
+      "journal": "Journal of Materials Chemistry A"
+    },
+    {
+      "date": "2024-04",
+      "title": "Elucidating the dynamic transport phenomena of solid oxide fuel cells according to rapid electrical load change operation",
+      "journal": "Applied Energy"
+    },
+    {
+      "date": "2024-03",
+      "title": "Engineering the heterogeneous catalyst of protonic ceramic electrochemical cells for CO&lt;inf&gt;2&lt;/inf&gt;/H&lt;inf&gt;2&lt;/inf&gt;O co-electrolysis",
+      "journal": "Journal of Materials Chemistry A"
+    },
+    {
+      "date": "2024-02",
+      "title": "Characteristics of combustion and ash deposition for pulverized coal combustion under various thermal loads: An experimental study in an 80 kWth combustion system",
+      "journal": "JOURNAL OF MECHANICAL SCIENCE AND TECHNOLOGY"
+    },
+    {
+      "date": "2024-02",
+      "title": "Highly efficient, coke-free electrolysis of dry CO2 in solid oxide electrolysis cells",
+      "journal": "Chemical Engineering Journal"
+    },
+    {
+      "date": "2024-02",
+      "title": "Electrochemical performance analysis of a commercial-scale planar solid oxide fuel cell stack and its sensitivity to operating parameters",
+      "journal": "Journal of Power Sources"
+    },
+    {
+      "date": "2024-01",
+      "title": "Effective diffusional limitation modeling of a heterogeneous reaction system for computational fluid dynamics application",
+      "journal": "Chemical Engineering Journal"
+    },
+    {
+      "date": "2023-12",
+      "title": "Atomically dispersed platinum electrocatalysts supported on gadolinia-doped ceria nanoparticles for practical high-temperature solid oxide cells",
+      "journal": "Journal of Materials Chemistry A"
+    },
+    {
+      "date": "2023-12",
+      "title": "Versatile thermodynamic design of a solid oxide electrolysis cell system and its sensitivity to operating conditions",
+      "journal": "Energy Conversion and Management"
+    },
+    {
+      "date": "2023-11",
+      "title": "Analysis of Electrochemical Degradation Phenomena of SOC Stacks Operated in Reversible SOFC/SOEC Cycling Mode",
+      "journal": "Journal of the Electrochemical Society"
+    },
+    {
+      "date": "2023-11",
+      "title": "Direct methane protonic ceramic fuel cells with self-assembled Ni-Rh bimetallic catalyst",
+      "journal": "Nature Communications"
+    },
+    {
+      "date": "2023-09",
+      "title": "Reaction mechanism study and modeling of thermal runaway inside a high nickel-based lithium-ion battery through component combination analysis",
+      "journal": "Chemical Engineering Journal"
+    },
+    {
+      "date": "2023-05",
+      "title": "Elucidating the sensitivity to key operating parameters of a commercial-scale solid oxide fuel cell stack with open cathode manifolds",
+      "journal": "Energy Conversion and Management"
+    },
+    {
+      "date": "2023-05",
+      "title": "Optimal method for the anode exhaust gas recycling of atmospheric solid oxide fuel cell-combined heat and power systems",
+      "journal": "Journal of Power Sources"
+    },
+    {
+      "date": "2023-04",
+      "title": "Carbon-neutral conversion of methane supported by Ni-(Rh, Co) bimetallic catalysts for low-temperature proton-conducting ceramic fuel cells",
+      "journal": "Chemical Engineering Journal"
+    },
+    {
+      "date": "2022-12",
+      "title": "A review of solid oxide steam-electrolysis cell systems: Thermodynamics and thermal integration",
+      "journal": "Applied Energy"
+    },
+    {
+      "date": "2022-10",
+      "title": "Enhancement of surface morphology and catalytic kinetics of NiAl2O4 spinel-derived Ni catalyst to promote dry reforming of methane at low temperature for the direct application to a solid oxide fuel cell",
+      "journal": "CHEMICAL ENGINEERING JOURNAL"
+    },
+    {
+      "date": "2022-09",
+      "title": "Chemkin 기반의 1차원 대향류 확산 화염 모델을 활용한 재순환율 및 수소 함량에 따른 메탄-수소 무화염 연소 특성 해석 연구",
+      "journal": "Clean Technology"
+    },
+    {
+      "date": "2022-09",
+      "title": "A comprehensive investigation of direct ammonia-fueled thin-film solid-oxide fuel cells: Performance, limitation, and prospects",
+      "journal": "Iscience"
+    },
+    {
+      "date": "2022-06",
+      "title": "Comparative evaluation of Ni-based bimetallic catalysts for dry reforming of methane at low temperature: the effect of alloy itself on performance",
+      "journal": "INTERNATIONAL JOURNAL OF ENERGY RESEARCH"
+    },
+    {
+      "date": "2022-06",
+      "title": "Construction of high-temperature electronic conduction paths for the scale-up of solid oxide fuel cell technology",
+      "journal": "JOURNAL OF MATERIALS CHEMISTRY A"
+    },
+    {
+      "date": "2021-12",
+      "title": "Sensitivity analysis of a solid oxide co-electrolysis cell system with respect to its key operating parameters and optimization with its performance map",
+      "journal": "ENERGY CONVERSION AND MANAGEMENT"
+    },
+    {
+      "date": "2021-12",
+      "title": "Hybrid diagnosis method for initial faults of air supply systems in proton exchange membrane fuel cells",
+      "journal": "RENEWABLE ENERGY"
+    },
+    {
+      "date": "2021-12",
+      "title": "Thermodynamic analysis of the 2nd generation pressurized fluidized-bed combustion cycle utilizing an oxy-coal boiler and a gasifier",
+      "journal": "ENERGY"
+    },
+    {
+      "date": "2021-11",
+      "title": "Effect of Tensile Stress on the Oxide Properties of a Nickel-Based Alloy 600 in Simulated PWR Secondary Water",
+      "journal": "MATERIALS"
+    },
+    {
+      "date": "2021-10",
+      "title": "Operational guidelines for a residential solid oxide fuel cell-combined heat and power system with an optimal system layout design",
+      "journal": "ENERGY CONVERSION AND MANAGEMENT"
+    },
+    {
+      "date": "2021-10",
+      "title": "A novel interconnect design for thermal management of a commercial-scale planar solid oxide fuel cell stack",
+      "journal": "ENERGY CONVERSION AND MANAGEMENT"
+    },
+    {
+      "date": "2021-08",
+      "title": "건물용 고분자 전해질 연료전지 금속분리판 유동장 형상 변화에 따른 산소 확산 특성에 대한 연구",
+      "journal": "한국수소및신에너지학회논문집"
+    },
+    {
+      "date": "2021-07",
+      "title": "Low-temperature processing technique of Ruddlesden-Popper cathode for high-performance solid oxide fuel cells",
+      "journal": "JOURNAL OF ALLOYS AND COMPOUNDS"
+    },
+    {
+      "date": "2021-03",
+      "title": "Ni-based bimetallic nano-catalysts anchored on BaZr0.4Ce0.4Y0.1Yb0.1O3 for internal steam reforming of methane in a low-temperature proton-conducting ceramic fuel cell",
+      "journal": "JOURNAL OF MATERIALS CHEMISTRY A"
+    },
+    {
+      "date": "2021-02",
+      "title": "가스터빈 초기 설계 단계의 시스템 타당성 평가를 위한 공력 성능, 이차 유로 및 열전달 통합 해석 프로그램 개발",
+      "journal": "Transactions of the Korean Society of Mechanical Engineers, B"
+    },
+    {
+      "date": "2020-12",
+      "title": "Highly active and thermally stable single-atom catalysts for high-temperature electrochemical devices",
+      "journal": "Energy & Environmental Science"
+    },
+    {
+      "date": "2020-12",
+      "title": "Thermodynamic analysis of a solid oxide co-electrolysis cell system for its optimal thermal integration with external heat supply",
+      "journal": "ENERGY CONVERSION AND MANAGEMENT"
+    },
+    {
+      "date": "2020-10",
+      "title": "Thermal analysis of a 1-kW hydrogen-fueled solid oxide fuel cell stack by three-dimensional numerical simulation",
+      "journal": "ENERGY CONVERSION AND MANAGEMENT"
+    },
+    {
+      "date": "2020-04",
+      "title": "1D thermodynamic modeling for a solid oxide fuel cell stack and parametric study for its optimal operating conditions",
+      "journal": "ENERGY CONVERSION AND MANAGEMENT"
+    },
+    {
+      "date": "2019-12",
+      "title": "The effect of anode microstructure and fuel utilization on current relaxation and concentration polarization of solid oxide fuel cell under electrical load change",
+      "journal": "ENERGY CONVERSION AND MANAGEMENT"
+    },
+    {
+      "date": "2019-07",
+      "title": "Effect of Fe infiltration to Ni/YSZ solid-oxide-cell fuel-electrode on steam/CO2 co-electrolysis",
+      "journal": "INTERNATIONAL JOURNAL OF ENERGY RESEARCH"
+    },
+    {
+      "date": "2019-02",
+      "title": "Comparative study of solid oxide fuel cell-combined heat and power system designs for optimal thermal integration",
+      "journal": "ENERGY CONVERSION AND MANAGEMENT"
+    },
+    {
+      "date": "2018-10",
+      "title": "Key characteristics of a hydrocarbon-fueled solid oxide fuel cell examined by local thermodynamic states",
+      "journal": "ENERGY CONVERSION AND MANAGEMENT"
+    },
+    {
+      "date": "2018-09",
+      "title": "Degradation of anode-supported solid oxide fuel cells under load trip and cycle conditions and their degradation prevention operating logic",
+      "journal": "JOURNAL OF THE ELECTROCHEMICAL SOCIETY"
+    },
+    {
+      "date": "2018-08",
+      "title": "Highly durable solid oxide fuel cells: suppressing chemical degradation via rational design of a diffusion-blocking layer",
+      "journal": "JOURNAL OF MATERIALS CHEMISTRY A"
+    },
+    {
+      "date": "2018-06",
+      "title": "Three-dimensional dynamic modeling and transport analysis of solid oxide fuel cells under electrical load change",
+      "journal": "ENERGY CONVERSION AND MANAGEMENT"
+    },
+    {
+      "date": "2018-02",
+      "title": "High-temperature electrolysis of CO2-enriched mixtures by using fuel-electrode supported La0.6Sr0.4CoO3/YSZ/Ni-YSZ solid oxide cells",
+      "journal": "JOURNAL OF POWER SOURCES"
+    },
+    {
+      "date": "2018-01",
+      "title": "Long-Term Stability for Co-Electrolysis of CO2/Steam Assisted by Catalyst-Infiltrated Solid Oxide Cells",
+      "journal": "Journal of the Korean Ceramic Society"
+    },
+    {
+      "date": "2017-11",
+      "title": "High-temperature current collection enabled by in-situ phase transformation of cobalt-nickel foam for solid oxide fuel cells",
+      "journal": "ACS APPLIED MATERIALS & INTERFACES"
+    },
+    {
+      "date": "2017-08",
+      "title": "Fabrication of dense and defect-free diffusion barrier layer via constrained sintering for solid oxide fuel cells",
+      "journal": "JOURNAL OF THE EUROPEAN CERAMIC SOCIETY"
+    },
+    {
+      "date": "2017-06",
+      "title": "Nano-tailoring of infiltrated catalysts for high-temperature solid oxide regenerative fuel cells",
+      "journal": "NANO ENERGY"
+    },
+    {
+      "date": "2017-05",
+      "title": "Highly controlled thermal behavior of a conjugated gadolinia-doped ceria nanoparticles synthesized by particle-dispersed glycine-nitrate process",
+      "journal": "JOURNAL OF THE EUROPEAN CERAMIC SOCIETY"
+    },
+    {
+      "date": "2017-04",
+      "title": "Incorporation of a Pd catalyst at the fuel electrode of a thin-film-based solid oxide cell by multi-layer deposition and its impact on low-temperature co-electrolysis",
+      "journal": "JOURNAL OF MATERIALS CHEMISTRY A"
+    },
+    {
+      "date": "2017-02",
+      "title": "Demonstrating the potential of yttrium-doped barium zirconate electrolyte for high-performance fuel cells",
+      "journal": "NATURE COMMUNICATIONS"
+    },
+    {
+      "date": "2017-02",
+      "title": "Thermal conditions and heat transfer characteristics of high-temperature solid oxide fuel cells investigated by three-dimensional numerical simulations",
+      "journal": "ENERGY"
+    },
+    {
+      "date": "2017-01",
+      "title": "Catalytic behavior of metal catalysts in high-temperature RWGS reaction: In-situ FT-IR experiments and first-principles calculations",
+      "journal": "SCIENTIFIC REPORTS"
+    },
+    {
+      "date": "2017-01",
+      "title": "In-situ nano-alloying Pd-Ni for economical control of syngas production from high-temperature thermo-electrochemical reduction of steam/CO2",
+      "journal": "APPLIED CATALYSIS B-ENVIRONMENTAL"
+    },
+    {
+      "date": "2016-12",
+      "title": "On the sol-gel synthesis and characterization of (BaSr)(CeZr)O<inf>3</inf>-based fuel cell electrolytes",
+      "journal": "IONICS"
+    },
+    {
+      "date": "2016-11",
+      "title": "Degradation of hydration kinetics of proton-conducting Ba(Zr<inf>0.84</inf>Y<inf>0.15</inf>Cu<inf>0.01</inf>)O<inf>3?δ</inf> during conductivity-relaxation experiment",
+      "journal": "JOURNAL OF POWER SOURCES"
+    },
+    {
+      "date": "2016-10",
+      "title": "Investigation of the electrochemical reactions at a limited-contact La1-xSrxMnO3/Y-doped ZrO2 interface with a rod-type ionic-probe",
+      "journal": "JOURNAL OF POWER SOURCES"
+    },
+    {
+      "date": "2016-09",
+      "title": "Thermal Evolution of BaO-CuO Flux as Sintering Aid for Proton Conducting Ceramic Fuel Cells",
+      "journal": "Journal of the Korean Ceramic Society"
+    },
+    {
+      "date": "2016-08",
+      "title": "Constrained Sintering in Fabrication of Solid Oxide Fuel Cells",
+      "journal": "MATERIALS"
+    },
+    {
+      "date": "2016-08",
+      "title": "Catalytic Effect of Pd-Ni Bimetallic Catalysts on High-Temperature Co-Electrolysis of Steam/CO2 Mixtures",
+      "journal": "JOURNAL OF THE ELECTROCHEMICAL SOCIETY"
+    },
+    {
+      "date": "2016-07",
+      "title": "Record-low sintering-temperature (600 degrees C) of solid-oxide fuel cell electrolyte",
+      "journal": "JOURNAL OF ALLOYS AND COMPOUNDS"
+    },
+    {
+      "date": "2016-07",
+      "title": "Panoscopic alloying of cobalt in CeO2?ZrO2 solid solutions for superior oxygen-storage capacity",
+      "journal": "ACTA MATERIALIA"
+    },
+    {
+      "date": "2016-06",
+      "title": "Optical absorption and XPS studies of (Ba1-xSrx)(Ce0.75Zr0.10Y0.15)O3-delta electrolytes for protonic ceramic fuel cells",
+      "journal": "CERAMICS INTERNATIONAL"
+    },
+    {
+      "date": "2016-06",
+      "title": "The effect of fuel utilization on heat and mass transfer within solid oxide fuel cells examined by three-dimensional numerical simulations",
+      "journal": "INTERNATIONAL JOURNAL OF HEAT AND MASS TRANSFER"
+    },
+    {
+      "date": "2016-05",
+      "title": "Impact of nanostructured anode on low-temperature performance of thin-film-based anode-supported solid oxide fuel cells",
+      "journal": "JOURNAL OF POWER SOURCES"
+    },
+    {
+      "date": "2016-05",
+      "title": "High-performance thin-film protonic ceramic fuel cells fabricated on anode supports with a non-proton-conducting ceramic matrix",
+      "journal": "JOURNAL OF MATERIALS CHEMISTRY A"
+    },
+    {
+      "date": "2016-05",
+      "title": "High-performance and robust operation of anode-supported solid oxide fuel cells in mixed-gas atmosphere",
+      "journal": "INTERNATIONAL JOURNAL OF ENERGY RESEARCH"
+    },
+    {
+      "date": "2016-04",
+      "title": "Scale-Up of Thin-Film Deposition-Based Solid Oxide Fuel Cell by Sputtering, a Commercially Viable Thin-Film Technology",
+      "journal": "JOURNAL OF THE ELECTROCHEMICAL SOCIETY"
+    },
+    {
+      "date": "2016-01",
+      "title": "Low-temperature co-sintering technique for the fabrication of multi-layer functional ceramics for solid oxide fuel cells",
+      "journal": "JOURNAL OF THE EUROPEAN CERAMIC SOCIETY"
+    }
+  ],
+  "awards": [
+    {
+      "title": "최우수젊은공학교수상",
+      "contents": null,
+      "date": "2023-04-20"
+    },
+    {
+      "title": "우수강의교수상",
+      "contents": null,
+      "date": "2023-02-27"
+    },
+    {
+      "title": "건강한 연구실",
+      "contents": "2022년도 건강한 연구실",
+      "date": "2022-12-15"
+    },
+    {
+      "title": "우수논문상",
+      "contents": "2022년 한국수소및신에너지학회 우수 학술논문상",
+      "date": "2022-11-25"
+    },
+    {
+      "title": "우수논문상",
+      "contents": "2021년 대한기계학회 열공학부문 춘계학술대회 우수논문상",
+      "date": "2022-04-21"
+    },
+    {
+      "title": "우수강의교수상",
+      "contents": null,
+      "date": "2022-02-28"
+    },
+    {
+      "title": "Best poster session award",
+      "contents": "6th Asian SOFC symposium and exhibition",
+      "date": "2021-11-01"
+    },
+    {
+      "title": "우수강의교수상",
+      "contents": "2020학년도 연세대학교 우수강의교수",
+      "date": "2021-02-28"
+    },
+    {
+      "title": "우수강의교수상",
+      "contents": "2019학년도 연세대학교 우수강의교수",
+      "date": "2020-03-09"
+    },
+    {
+      "title": "우수업적교수상 (연구부문)",
+      "contents": "2019학년도 연세대학교 우수업적교수 (연구부문-연구비)",
+      "date": "2020-02-04"
+    },
+    {
+      "title": "우수논문상",
+      "contents": "2019년 한국수소및신에너지학회 우수 학술논문상",
+      "date": "2019-11-15"
+    },
+    {
+      "title": "Best poster award",
+      "contents": "Joint KHNES-IPHE innovation award at the 14th International Partnership for Hydrogen and Fuel Cells in the Economy (IPHE) Education & Outreach Event",
+      "date": "2019-10-22"
+    },
+    {
+      "title": "SOFC 포스터 발표상",
+      "contents": "2019 1st Korean SOFC Symposium 우수포스터발표상",
+      "date": "2019-01-19"
+    },
+    {
+      "title": "우수논문상",
+      "contents": "한국수소및에너지학회 2018 추계학술대회 우수논문상",
+      "date": "2018-10-12"
+    },
+    {
+      "title": "젊은공학자상",
+      "contents": "젊은공학자상",
+      "date": "2017-12-07"
+    },
+    {
+      "title": "우수포스터발표상",
+      "contents": "한국전기화학회 2017년도 춘계총회 및 학술발표회 우수포스터발표상",
+      "date": "2017-11-02"
+    }
+  ],
+  "conferences": [
+    {
+      "title": "Design and Optimization of a Solid Oxide Electrolysis Cell System and Its Behavior under Load Following Conditions",
+      "conference": "19th International Symposium on Solid Oxide Fuel Cells (SOFC-XIX)",
+      "period": "2025.07.13~2025.07.18"
+    },
+    {
+      "title": "리튬 이온 배터리 충전 상태에 따른 산소 방출 및 열폭주 반응 모델링",
+      "conference": "2025년도 한국자동차공학회 춘계 학술대회",
+      "period": "2025.05.21~2025.05.24"
+    },
+    {
+      "title": "물리 기반 등가 회로 모델과 앙상블 칼만 필터를 활용한 배터리 SOC 추정",
+      "conference": "2025년도 한국자동차공학회 춘계 학술대회",
+      "period": "2025.05.21~2025.05.24"
+    },
+    {
+      "title": "Correlation between location-specific low-temperature degradation and thermal runaway in commercial large-format pouch lithium-ion batteries",
+      "conference": "2025년도 한국자동차공학회 춘계 학술대회",
+      "period": "2025.05.21~2025.05.24"
+    },
+    {
+      "title": "M-EKF 기반 건물용 연료전지 열화 예측 및 운전 조건별 열화율 분석",
+      "conference": "2025년도 한국 수소 및 신에너지학회 춘게 학술대회",
+      "period": "2025.05.14~2025.05.16"
+    },
+    {
+      "title": "코발트-가돌리늄 도핑 세리아 촉매를 활용한 중온 직접 암모니아 고체산화물 연료전지의 성능 및 내구성 향상",
+      "conference": "2025년도 대한기계학회 열공학부문 춘계 학술대회",
+      "period": "2025.04.23~2025.04.26"
+    },
+    {
+      "title": "잉크젯 촉매 침투를 이용한 Ni-GDC 기반 전극의 성능 향상",
+      "conference": "2025년도 대한기계학회 열공학부문 춘계 학술대회",
+      "period": "2025.04.23~2025.04.26"
+    },
+    {
+      "title": "연료극 지지층 수전해 반응 활성화를 통한 고체산화물 수전해전지 성능 및 내구성 개선",
+      "conference": "2025년도 대한기계학회 열공학부문 춘계 학술대회",
+      "period": "2025.04.23~2025.04.26"
+    },
+    {
+      "title": "고체산화물 수전해용 Sr-free 공기극 소재의 Cr 열화 내구성 분석",
+      "conference": "2025 한국세라믹학회 춘계학술대회",
+      "period": "2025.04.16~2025.04.18"
+    },
+    {
+      "title": "50kW급 고체 산화물 연료전지(SOFC) 시스템 최적 설계",
+      "conference": "2025 한국세라믹학회 춘계학술대회",
+      "period": "2025.04.16~2025.04.18"
+    },
+    {
+      "title": "디지털 트윈 기반 SOFC/SOEC 시스템 설계 및 실시간 진단·제어 기술",
+      "conference": "2025 한국세라믹학회 춘계학술대회",
+      "period": "2025.04.16~2025.04.18"
+    },
+    {
+      "title": "Thermodynamic Design and Optimization of a 450kW-Scale Solid Oxide Electrolysis Cell Module System",
+      "conference": "2025 한국세라믹학회 춘계학술대회",
+      "period": "2025.04.16~2025.04.18"
+    },
+    {
+      "title": "Ni-rich 양극재의 Lithiation 상태에 따른 산소 방출 및 열폭주 반응 모델링",
+      "conference": "2025년도 한국전기화학회 춘계 학술대회",
+      "period": "2025.04.02~2025.04.04"
+    },
+    {
+      "title": "상용 대면적 배터리의 위치별 저온 열화와 열폭주 반응 간 상관관계",
+      "conference": "2025년도 한국전기화학회 춘계 학술대회",
+      "period": "2025.04.02~2025.04.04"
+    },
+    {
+      "title": "고니켈계 양극재 소성 반응 모델 개발 및 기작 분석",
+      "conference": "2025년도 한국전기화학회 춘계 학술대회",
+      "period": "2025.04.02~2025.04.04"
+    },
+    {
+      "title": "Work-in Progress : Dynamic modeling and real-time simulation for performance analysis of electric vehicle powertrain",
+      "conference": "45th IEEE Real-Time Systems Symposium",
+      "period": "2024.12.10~2024.12.13"
+    },
+    {
+      "title": "수소 무화염 연소 기반 열 회수에 의해 응축된 증류수에 관한 분석 연구",
+      "conference": "2024년도 한국수소및신에너지학회 추계 학술대회",
+      "period": "2024.12.04~2024.12.06"
+    },
+    {
+      "title": "축열식 무촉매 열분해 기반 청록수소 생산 시스템의 동특성 연구",
+      "conference": "2024년도 한국수소및신에너지학회 추계 학술대회",
+      "period": "2024.12.04~2024.12.06"
+    },
+    {
+      "title": "메탄 열분해 연계 저탄소 무화염 연소 특성에 관한 수치해석 연구",
+      "conference": "2024년도 한국수소및신에너지학회 추계 학술대회",
+      "period": "2024.12.04~2024.12.06"
+    },
+    {
+      "title": "외부 기준 전극을 이용한 고분자전해질 수전해 셀 열화 현상 이해",
+      "conference": "2024년도 한국수소및신에너지학회 추계 학술대회",
+      "period": "2024.12.04~2024.12.06"
+    },
+    {
+      "title": "확장 칼만필터를 이용한 건물용 연료전지 시스템 수명 예측 모델 개발",
+      "conference": "2024년도 한국 에너지 학회 추계 학술 발표회",
+      "period": "2024.10.30~2024.11.01"
+    },
+    {
+      "title": "브레이크 패드 마모입자의 마찰하전 특성을 이용한 전기집진장치",
+      "conference": "2024년 한국대기환경학회 정기학술대회",
+      "period": "2024.10.22~2024.10.25"
+    },
+    {
+      "title": "Reaction Environment Analysis for Commercial-Scale SOFCs Based on Surface Chemistry and Reaction Kinetics",
+      "conference": "7th Asian SOFC symposium",
+      "period": "2024.10.22~2024.10.25"
+    },
+    {
+      "title": "축열식 열분해 반응 기반 청록수소 생산의 동특성 해석 연구",
+      "conference": "한국화학공학회2024년도가을총회및국제학술대회",
+      "period": "2024.10.16~2024.10.18"
+    },
+    {
+      "title": "Sr-free 공기극 소재를 활용한 고체산화수전해 내구성 향상",
+      "conference": "2024년도 한국세라믹학회 추계학술대회",
+      "period": "2024.10.16~2024.10.18"
+    },
+    {
+      "title": "Alloying in Ni/YSZ Electrodes: investigating Ni-< (M: Cu, Fe, and Co) influence for CO2 electrolysis",
+      "conference": "2024년도 한국세라믹학회 추계학술대회",
+      "period": "2024.10.16~2024.10.18"
+    },
+    {
+      "title": "마모 미세먼지의 마찰하전 특성을 이용한 저감 방식",
+      "conference": "2024년 한국실내환경학회 연차학술대회",
+      "period": "2024.09.25~2024.09.27"
+    },
+    {
+      "title": "Experimental studies in flameless combustion with low-or non-carbon-containing gaseous fuels",
+      "conference": "27th International Congress of Chemical and Process Engineering (CHISA 2024)",
+      "period": "2024.08.25~2024.08.29"
+    },
+    {
+      "title": "브레이크 패드 마모입자의 하전 특성을 이용한 집진 시스템 개발",
+      "conference": "2024년 한국입자에어로졸학회 학술대회",
+      "period": "2024.07.03~2024.07.05"
+    },
+    {
+      "title": "Overcoming the performance degradation of a SOEC stack by controlling the steam supply and electrochemical reaction zone : A novel design approach",
+      "conference": "EFCF 2024: 16th European SOFC & SOE Forum",
+      "period": "2024.07.02~2024.07.05"
+    },
+    {
+      "title": "Efficient and stable anode for direct ammonia solid oxide fuel cell in intermediate temperature operation assisted by non-precious metal catalyst",
+      "conference": "EFCF 2024: 16th European SOFC & SOE Forum",
+      "period": "2024.07.02~2024.07.05"
+    },
+    {
+      "title": "3D Electrochemical-thermal modeling for predicting the performance of Lithium ion batteries for electric vehicles",
+      "conference": "2024년도 한국자동차공학회 춘계학술대회",
+      "period": "2024.06.19~2024.06.21"
+    },
+    {
+      "title": "Matlab/Simulink를 활용한 전기자동차 파워시스템 동적 모델링 및 성능 분석",
+      "conference": "2024년도 한국자동차공학회 춘계학술대회",
+      "period": "2024.06.19~2024.06.21"
+    },
+    {
+      "title": "Detailed Mechanism Study of the Decomposition Process of Lithium Methyl Carbonate with the Electrolyte in the Solid Electrolyte Interphase to Elucidate the Early Stages of Thermal Runaway in Lithium-ion Batteries.",
+      "conference": "245th The Electrochemical Society Meeting",
+      "period": "2024.05.26~2024.05.30"
+    },
+    {
+      "title": "축열식 열분해 반응 기반 청록수소 생산의 동특성 해석 연구",
+      "conference": "한국연소학회 2024년도 제67회 춘계학술대회",
+      "period": "2024.05.23~2024.05.25"
+    },
+    {
+      "title": "수소-암모니아 연료의 질소산화물 배출 저감 및 암모니아 열분해를 위한 무화염 연소의 실험적 연구",
+      "conference": "한국연소학회 2024년도 제67회 춘계학술대회",
+      "period": "2024.05.23~2024.05.25"
+    },
+    {
+      "title": "Studying on electro-chemical reduction of CO2 on Ni-alloy catalyst in SOEC",
+      "conference": "2024년도 한국공업화학회 춘계 총회 및 학술대회",
+      "period": "2024.05.08~2024.05.10"
+    },
+    {
+      "title": "3D 전산해석 모델링을 통한 고체 산회물 전지 스택의 비접촉식 외부 매니폴드 효과 분석",
+      "conference": "2024년도 대한기계학회 열공학부문 춘계 학술대회",
+      "period": "2024.04.24~2024.04.27"
+    },
+    {
+      "title": "수소 및 메탄운전조건에서 SOFC 스택 매니폴드 배치 구조에따른 전기화학적 효과 분석",
+      "conference": "2024년도 대한기계학회 열공학부문 춘계 학술대회",
+      "period": "2024.04.24~2024.04.27"
+    },
+    {
+      "title": "외부 열원 활용 가능성을 고려한 고체 산화물 수전해전지 시스템의 열역학적 설계 및 분석",
+      "conference": "2024년도 대한기계학회 열공학부문 춘계 학술대회",
+      "period": "2024.04.24~2024.04.27"
+    },
+    {
+      "title": "Dynamic simulation of Non-catalytic Methane Decomposition in Pre-heated Reactors for Hydrogen",
+      "conference": "13th China-Korea Clean Energy Workshop",
+      "period": "2024.04.17~2024.04.20"
+    },
+    {
+      "title": "수소-암모니아 연소에서의 질소산화물 제어 및 암모니아 열분해를 위한 무화염 연소의 적용에 관한 연구",
+      "conference": "2024 한국수소및신에너지학회 춘계학술대회",
+      "period": "2024.04.17~2024.04.19"
+    },
+    {
+      "title": "축열식 무촉매 메탄 열분해 반응 기반 청록 수소 생산동특성 해석 연구",
+      "conference": "2024 한국수소및신에너지학회 춘계학술대회",
+      "period": "2024.04.17~2024.04.19"
+    },
+    {
+      "title": "Development of a thermal & power analysis platform for EV performance and safetyusing a virtual battery model",
+      "conference": "2023 AABC(Advanced Automotive Battery Conference)",
+      "period": "2023.12.11~2023.12.14"
+    },
+    {
+      "title": "H2-NH3 Flameless combustion for NO reduction using lab-scale flameless combustor",
+      "conference": "7th Asian Conference on Innovative Energy and Environmental Chemical Engineering",
+      "period": "2023.12.04~2023.12.07"
+    },
+    {
+      "title": "수소-암모니아의 무화염 연소 특성 및 질소산화물 배출 거동에 관한 실험적 연구",
+      "conference": "2023 한국수소및신에너지학회 추계학술대회",
+      "period": "2023.11.27~2023.11.29"
+    },
+    {
+      "title": "신뢰성 높은 물성치를 적용한 리튬 이온 배터리 모델 활용 전기화학-열적 특성 분석",
+      "conference": "2023년 한국자동차공학회 추계학술대회",
+      "period": "2023.11.15~2023.11.18"
+    },
+    {
+      "title": "하이 니켈 기반 리튬 이온 배터리 내부 소재 조합을 통한 열폭주 반응 메커니즘 및 모델 연구",
+      "conference": "2023년 한국자동차공학회 추계학술대회",
+      "period": "2023.11.15~2023.11.18"
+    },
+    {
+      "title": "버추얼 배터리 모델을 활용한 전기차 통합 성능/안전성 해석 환경 구축",
+      "conference": "2023년 한국자동차공학회 추계학술대회",
+      "period": "2023.11.15~2023.11.18"
+    },
+    {
+      "title": "축열방식 기반 무촉매 메탄 열분해 반응기의 수소생산 동특성 해석 연구",
+      "conference": "제 66회 2023년도 한국연소학회 추계학술대회",
+      "period": "2023.11.09~2023.11.11"
+    },
+    {
+      "title": "Understanding the degradation mechanism of proton exchange memebrane water electrolysis in dynamic operation by external reference electrode",
+      "conference": "2023년도 한국전기화학회 추계총회 및 학술발표회",
+      "period": "2023.11.01~2023.11.03"
+    },
+    {
+      "title": "Development of a numerical model for analyzing chemically induced stress inside a fuel electrode in a solid oxide fuel cell",
+      "conference": "KSME Annual meeting International Session",
+      "period": "2023.11.01~2023.11.04"
+    },
+    {
+      "title": "Reaction mechanism study and modeling of thermal runaway inside a high nickel based lithium ion battery through component combination",
+      "conference": "KSME Annual meeting International Session",
+      "period": "2023.11.01~2023.11.04"
+    },
+    {
+      "title": "고체 산화물 수전해 안정성 향상을 위한 Sr-free 공기극 개발",
+      "conference": "2023년도 한국세라믹학회 추계학술대회",
+      "period": "2023.10.18~2023.10.20"
+    },
+    {
+      "title": "Fuel Electrode Tuning for CO2 electrolysis in SOEC via Catalyst Engineering",
+      "conference": "2023년도 한국세라믹학회 추계학술대회",
+      "period": "2023.10.18~2023.10.20"
+    },
+    {
+      "title": "Energy optimization of smart farm according to utilization of solar power and biomass",
+      "conference": "2nd FERIA conference",
+      "period": "2023.09.04~2023.09.06"
+    },
+    {
+      "title": "Comparative study of thermodynamic performance and system characteristics of solid oxide fuel cell system with three different fuels",
+      "conference": "243rd ECS Meeting with the 18th International Symposium on Solid Oxide Fuel Cells (SOFC-XVIII)",
+      "period": "2023.05.28~2023.06.02"
+    },
+    {
+      "title": "Thermal integration of SOEC systems with external heat sources to maximize heat recuperation and exergy efficiency",
+      "conference": "243rd ECS Meeting with the 18th International Symposium on Solid Oxide Fuel Cells (SOFC-XVIII)",
+      "period": "2023.05.28~2023.06.02"
+    },
+    {
+      "title": "Novel SOFC Repeating Unit Design for the Uniform Distribution of Temperature and Thermo-electrochemical Reaction Zone in a Commercial Scale Stack",
+      "conference": "243rd ECS Meeting with the 18th International Symposium on Solid Oxide Fuel Cells (SOFC-XVIII)",
+      "period": "2023.05.28~2023.06.02"
+    },
+    {
+      "title": "리튬 이온 배터리의 전기화학적-열적 특성 분석을 위한 물리 기반 등가 회로 모델",
+      "conference": "2023년도 한국자동차공학회 춘계학술대회",
+      "period": "2023.05.24~2023.05.27"
+    },
+    {
+      "title": "리튬 이온 배터리 내부 소재 조합 실험을 통한 열폭주 반응 메커니즘 분석 및 모델링",
+      "conference": "2023년도 한국자동차공학회 춘계학술대회",
+      "period": "2023.05.24~2023.05.27"
+    },
+    {
+      "title": "모델 예측 제어 적용을 통한 연료전지 자동차 스택 열관리 시스템의 최적 제어 연구",
+      "conference": "2023년도 한국자동차공학회 춘계학술대회",
+      "period": "2023.05.24~2023.05.27"
+    },
+    {
+      "title": "LIB 열폭주 초기 단계 분석을 위한 SEI 층을 구성하는 Lithium-methyl carbonate의 상세 반응 메커니즘 연구",
+      "conference": "2023년도 한국자동차공학회 춘계학술대회",
+      "period": "2023.05.24~2023.05.27"
+    },
+    {
+      "title": "무화염 연소 조건에서 무탄소 연료의 NO 배출 특성에 대한 실험적 연구",
+      "conference": "2023 한국수소및신에너지학회 춘계학술대회",
+      "period": "2023.05.24~2023.05.26"
+    },
+    {
+      "title": "Evaluation of optimal operation based on the utilization of renewable energy in smart farm",
+      "conference": "14th Asia-Pacific Conference on Combustion (ASPACC)",
+      "period": "2023.05.14~2023.05.18"
+    },
+    {
+      "title": "Experimental study on combustion and NO characteristics of ammonia-hydrogen mixture in lab-scale flameless combustion system",
+      "conference": "14th Asia-Pacific Conference on Combustion (ASPACC)",
+      "period": "2023.05.14~2023.05.18"
+    },
+    {
+      "title": "환경 및 경제성을 고려한 태양광 발전 기반 스마트팜의 에너지 최적화 관련 해석적 연구",
+      "conference": "제 65회 한국연소학회 2023년 춘계학술대회",
+      "period": "2023.05.11~2023.05.13"
+    },
+    {
+      "title": "An Efficient Catalyst Diffusional Limitation Model for CFD Application: Theory, Verification, and Implementation",
+      "conference": "2023년도 대한기계학회 열공학부문 춘계 학술대회",
+      "period": "2023.04.19~2023.04.22"
+    },
+    {
+      "title": "암모니아 분해 방식에 따른 암모니아 연료 고체산화물 연료전지시스템의 열역학적 실현 가능성 및 시스템 성능 분석",
+      "conference": "2023년도 대한기계학회 열공학부문 춘계 학술대회",
+      "period": "2023.04.19~2023.04.22"
+    },
+    {
+      "title": "SOEC의 3D-Multiphysics 전산해석을 통한 운전 조건 별 내부 변수 분포 특성 분석",
+      "conference": "2023년도 대한기계학회 열공학부문 춘계 학술대회",
+      "period": "2023.04.19~2023.04.22"
+    },
+    {
+      "title": "3D 전산해석 모델링을 통한 SOFC 스택의 매니폴드 배치 효과 분석",
+      "conference": "2023년도 대한기계학회 열공학부문 춘계 학술대회",
+      "period": "2023.04.19~2023.04.22"
+    },
+    {
+      "title": "활성화 에너지 관점에서의 중저온 암모니아 개질용 비귀금속 및 니켈 기반 이종 합금 촉매 적용성 평가",
+      "conference": "2023년도 대한기계학회 열공학부문 춘계 학술대회",
+      "period": "2023.04.19~2023.04.22"
+    },
+    {
+      "title": "Investigating High-Temperature Electrochemical Reduction of CO2 using Nickel-Based Catalyst in Solid Oxide Electrolysis Cells",
+      "conference": "2023년도 한국세라믹학회 춘계학술대회",
+      "period": "2023.04.12~2023.04.14"
+    },
+    {
+      "title": "Study of oxygen electrode delamination in solid oxide electrolysis cell",
+      "conference": "2023년도 한국세라믹학회 춘계학술대회",
+      "period": "2023.04.12~2023.04.14"
+    },
+    {
+      "title": "Ni-based Bimetallic Catalysts for Internal Reforming of Methane with Steam and Carbon Dioxide at Low-Temperature Proton-Conducting Ceramic Fuel Cells",
+      "conference": "Global Engagement & Empowerment Forum on Sustainable Development (GEEF2023)",
+      "period": "2023.02.02~2023.02.03"
+    },
+    {
+      "title": "암모니아 혼합연료 활용 무화염 연소 기반 암모니아 분해 기술 접목 가능성에 관한 연구",
+      "conference": "2022 한국수소및신에너지학회 추계학술대회",
+      "period": "2022.11.23~2022.11.25"
+    },
+    {
+      "title": "Parametric optimization of solid oxide fuel cell system for installation in army battalion",
+      "conference": "2022 한국수소및신에너지학회 추계학술대회",
+      "period": "2022.11.23~2022.11.25"
+    },
+    {
+      "title": "실험 및 수치해석을 활용한 암모니아 혼합에 따른 무화염 연소 특성에 대한 기초 연구",
+      "conference": "한국연소학회 2022년도 제64회 추계학술대회",
+      "period": "2022.11.10~2022.11.12"
+    },
+    {
+      "title": "Thermodynamic analysis on efficiency and operability of anode exhaust gas recycling solid oxide fuel cell-combined heat and power system designs",
+      "conference": "2022년도 대한기계학회 열공학부문 추계 학술대회",
+      "period": "2022.11.09~2022.11.12"
+    },
+    {
+      "title": "Energy analysis and parametric optimization of solid oxide fuel cell system for installation in army battalion",
+      "conference": "2022년도 대한기계학회 열공학부문 추계 학술대회",
+      "period": "2022.11.09~2022.11.12"
+    },
+    {
+      "title": "System level effect of operating condition of solid oxide electrolysis cell",
+      "conference": "2022년도 대한기계학회 열공학부문 추계 학술대회",
+      "period": "2022.11.09~2022.11.12"
+    },
+    {
+      "title": "Comparative study of thermodynamic performance and system characteristics of solid oxide fuel cell system with three different fuels",
+      "conference": "2022년도 대한기계학회 열공학부문 추계 학술대회",
+      "period": "2022.11.09~2022.11.12"
+    },
+    {
+      "title": "암모니아 연료 고체산화물 연료전지 시스템의 열역학적 분석",
+      "conference": "2022년도 대한기계학회 열공학부문 추계 학술대회",
+      "period": "2022.11.09~2022.11.12"
+    },
+    {
+      "title": "리튬 이온 배터리 양극재의 소성 공정 내 탈수 반응 모델 개발",
+      "conference": "2022년도 대한기계학회 열공학부문 추계 학술대회",
+      "period": "2022.11.09~2022.11.12"
+    },
+    {
+      "title": "소재 별 조합 실험에 따른 리튬 이온 배터리의 비정상 반응 메커니즘 분석 및 모델링",
+      "conference": "2022년도 대한기계학회 열공학부문 추계 학술대회",
+      "period": "2022.11.09~2022.11.12"
+    },
+    {
+      "title": "리튬 이온 전지의 리튬 플레이팅과 내부 단락에 대한 수치 해석 분석",
+      "conference": "2022년도 대한기계학회 열공학부문 추계 학술대회",
+      "period": "2022.11.09~2022.11.12"
+    },
+    {
+      "title": "Studying on electrochemical reduction of CO2 on Ni-based catalyst using high temperature solid oxide electrolysis cell",
+      "conference": "2022년도 한국전기화학회 추계총회 및 학술발표회",
+      "period": "2022.11.03~2022.11.05"
+    },
+    {
+      "title": "태양광 발전 연계 스마트팜의 에너지 최적 운영을 위한 해석적 연구",
+      "conference": "2022년도 한국화학공학회 가을 총회 및 국제 학술대회",
+      "period": "2022.10.26~2022.10.29"
+    },
+    {
+      "title": "수치해석적 분석을 통한 암모니아 직접 사용 박막 고체산화물전지의 성능 특성 연구",
+      "conference": "2022년도 한국세라믹학회 추계학술대회",
+      "period": "2022.10.26~2022.10.28"
+    },
+    {
+      "title": "Modeling of dehydration reactions in a synthesis process of high Ni-based cathode in Li ion battery",
+      "conference": "2022 IBA conference",
+      "period": "2022.10.02~2022.10.07"
+    },
+    {
+      "title": "Analysis and modeling of side reaction mechanism inside a lithium-ion battery during thermal runaway through the design of experiment with combination of battery components",
+      "conference": "2022 IBA conference",
+      "period": "2022.10.02~2022.10.07"
+    },
+    {
+      "title": "Ni based Bimetallic Catalysts for Internal Reforming of Methane with Steam and Carbon Dioxide at Low-temperature Proton-Conducting Ceramic Fuel Cells",
+      "conference": "23rd International Conference on Solid State Ionics (2022SSI)",
+      "period": "2022.07.17~2022.07.22"
+    },
+    {
+      "title": "메탄-수소의 MILD 연소에 대한 화염 구조 및 열방출 특성에 관한 수치해석 연구",
+      "conference": "한국연소학회 2022년도 제63회 춘계학술대회",
+      "period": "2022.05.19~2022.05.21"
+    },
+    {
+      "title": "스마트팜 내 신재생에너지 최적화 도입을 위한 해석적 연구",
+      "conference": "한국연소학회 2022년도 제63회 춘계학술대회",
+      "period": "2022.05.19~2022.05.21"
+    },
+    {
+      "title": "저온 양성자 전도성 세라믹 연료전지의 내부 건식 메탄 개질용 이종 합금 촉매",
+      "conference": "2022년도 대한기계학회 열공학부문 춘계 학술대회",
+      "period": "2022.04.20~2022.04.22"
+    },
+    {
+      "title": "고체 산화물 수전해 전지의 촉매를 통한 Ni-YSZ 전극 성능 향상",
+      "conference": "2022년도 대한기계학회 열공학부문 춘계 학술대회",
+      "period": "2022.04.20~2022.04.22"
+    },
+    {
+      "title": "Study of electro-chemical performance of direct NH3 fueled Thin-Film SOFC",
+      "conference": "2022년도 대한기계학회 열공학부문 춘계 학술대회",
+      "period": "2022.04.20~2022.04.22"
+    },
+    {
+      "title": "Gas channel pattern Optimization in Interconnect of SOFC stack for Uniform Electrochemical Reaction Distribution",
+      "conference": "2022년도 대한기계학회 열공학부문 춘계 학술대회",
+      "period": "2022.04.20~2022.04.22"
+    },
+    {
+      "title": "고체산화물 수전해 전지의 3차원 멀티피직스 모델링 및 내부 반응 환경 분석",
+      "conference": "2022년도 대한기계학회 열공학부문 춘계 학술대회",
+      "period": "2022.04.20~2022.04.22"
+    },
+    {
+      "title": "다양한 작동 조건에서 증기 연료를 사용하는 고체 산화물 전기분해 스택의 3차원 다중물리 모델링 및 분석",
+      "conference": "2022년도 대한기계학회 열공학부문 춘계 학술대회",
+      "period": "2022.04.20~2022.04.22"
+    },
+    {
+      "title": "직접 암모니아 고체산화물 연료전지용 비귀금속 연료극 촉매 소재 및 단전지 적용 평가 실험 연구",
+      "conference": "2022년도 대한기계학회 열공학부문 춘계 학술대회",
+      "period": "2022.04.20~2022.04.22"
+    },
+    {
+      "title": "1kW 급 고체산화물연료전지에 대한 메탄 운전조건의 영향성 분석",
+      "conference": "2022년도 대한기계학회 열공학부문 춘계 학술대회",
+      "period": "2022.04.20~2022.04.22"
+    },
+    {
+      "title": "Thermodynamic optimization of solid oxide co-electrolysis cell system for an effective power-to-X conversion: potential application to the military bases",
+      "conference": "2022년도 대한기계학회 열공학부문 춘계 학술대회",
+      "period": "2022.04.20~2022.04.22"
+    },
+    {
+      "title": "박막 고체산화물전지에서 암모니아 직접 사용에 의한 성능 저하와 개질 이론식을 통한 고찰",
+      "conference": "2022년도 한국세라믹학회 춘계학술대회",
+      "period": "2022.04.13~2022.04.15"
+    },
+    {
+      "title": "High Ni 계 양극재의 소성 공정 분석 및 수분 발생 반응 모델 개발",
+      "conference": "2022년도 한국전기화학회 춘계 총회 및 학술발표회",
+      "period": "2022.04.07~2022.04.09"
+    },
+    {
+      "title": "열 폭주 상황에서의 리튬 이온 배터리 내부 부반응 발생 메커니즘 분석 및 모델링",
+      "conference": "2022년도 한국전기화학회 춘계 총회 및 학술발표회",
+      "period": "2022.04.07~2022.04.09"
+    },
+    {
+      "title": "리튬 이온 배터리의 내부 단락 실험과 전산 해석 모사",
+      "conference": "2022년도 한국전기화학회 춘계 총회 및 학술발표회",
+      "period": "2022.04.07~2022.04.09"
+    },
+    {
+      "title": "Comparative study of solid oxide fuel cell-combined heat and power system layout designs depending on anode exhaust gas recycling components",
+      "conference": "6th Asian SOFC Symposium and Exhibition",
+      "period": "2021.11.07~2021.11.10"
+    },
+    {
+      "title": "Thermodynamic optimization of SOEC system focusing on thermal integration with a reliable high-temperature heat source",
+      "conference": "6th Asian SOFC Symposium and Exhibition",
+      "period": "2021.11.07~2021.11.10"
+    },
+    {
+      "title": "A novel SOFC interconnect for mitigating thermal and chemical stresses investigated by three-dimensional numerical simulation",
+      "conference": "6th Asian SOFC Symposium and Exhibition",
+      "period": "2021.11.07~2021.11.10"
+    },
+    {
+      "title": "A new interconnect design of a commercial-scale planar solid oxide fuel cell stack for thermal management",
+      "conference": "6th Asian SOFC Symposium and Exhibition",
+      "period": "2021.11.07~2021.11.10"
+    },
+    {
+      "title": "Electrochemical-thermal behavior analysis of lithium-ion battery under electric vehicle operating condition",
+      "conference": "2021 International Conference on Electrical Machines and Systems (ICEMS 2021)",
+      "period": "2021.10.31~2021.11.03"
+    },
+    {
+      "title": "CO2 electrolysis on Ni-YSZ symmetrical half-cell",
+      "conference": "2021년 한국세라믹학회 춘계학술대회",
+      "period": "2021.06.16~2021.06.18"
+    },
+    {
+      "title": "활성화 에너지 및 에너지 효율 관점에서의 저온 메탄 건식 개질용 니켈 기반 이종 합금 촉매 적용성 평가",
+      "conference": "2021년도 대한기계학회 열공학부문 춘계 학술대회",
+      "period": "2021.05.26~2021.05.28"
+    },
+    {
+      "title": "수치 해석을 이용한 고방전율 하에서 리튬 이온 배터리의 전기화학적-열적 및 성능 저하 분석",
+      "conference": "2021년도 대한기계학회 열공학부문 춘계 학술대회",
+      "period": "2021.05.26~2021.05.28"
+    },
+    {
+      "title": "비정상 상황에서의 리튬 이온 배터리 내부 가스 발생 메커니즘 분석 및 모델링",
+      "conference": "2021년도 대한기계학회 열공학부문 춘계 학술대회",
+      "period": "2021.05.26~2021.05.28"
+    },
+    {
+      "title": "효율적인 전기화학-열 연성 해석을 위한 리튬 이온 배터리 셀의 차수 축소 모델 개발",
+      "conference": "2021년도 대한기계학회 열공학부문 춘계 학술대회",
+      "period": "2021.05.26~2021.05.28"
+    },
+    {
+      "title": "1kW 급 평판형 고체산화물 연료전지 내부 열전달 메커니즘에 대한 디자인의 영향성 분석",
+      "conference": "2021년도 대한기계학회 열공학부문 춘계 학술대회",
+      "period": "2021.05.26~2021.05.28"
+    },
+    {
+      "title": "저온 양성자 전도성 세라믹 연료전지의 내부 습식 메탄 개질용 이종 합금 촉매",
+      "conference": "2021년도 대한기계학회 열공학부문 춘계 학술대회",
+      "period": "2021.05.26~2021.05.28"
+    },
+    {
+      "title": "배기가스 조성에서의 블랙카본 산화 반응 촉매의 성능 향상",
+      "conference": "2021년도 대한기계학회 열공학부문 춘계 학술대회",
+      "period": "2021.05.26~2021.05.28"
+    },
+    {
+      "title": "고체산화물연료전지 스택 온도 균일화를 위한 신규 분리판 설계",
+      "conference": "2021년도 대한기계학회 열공학부문 춘계 학술대회",
+      "period": "2021.05.26~2021.05.28"
+    },
+    {
+      "title": "저온 양성자 전도상 세라믹 연료전지에서 메탄의 증기 개질에 대한 sluggish kinetics를 개선하는 이중합금 촉매",
+      "conference": "2020년도 한국세라믹학회 추계학술대회",
+      "period": "2020.11.23~2020.11.25"
+    },
+    {
+      "title": "배기가스 조성에서의 반응성 향상을 위한 ceria 담지 단일 금속 촉매와 산화물 촉매",
+      "conference": "2020년도 한국세라믹학회 추계학술대회",
+      "period": "2020.11.23~2020.11.25"
+    },
+    {
+      "title": "Reaction kinetics of catalytic dry reforming of methane on spinel-derived nickel catalyst at low-temperature using an in-situ stagnation-flow reactor",
+      "conference": "PRiME 2020 (PACIFIC RIM MEETING ON ELECTROCHEMICAL AND SOLID STATE SCIENCE 2020)",
+      "period": "2020.10.04~2020.10.09"
+    },
+    {
+      "title": "Thermo-fluid analysis of a planar solid oxide fuel cell with an improved uniformity by manifold and flow-channel design",
+      "conference": "한국수소및신에너지학회 2019년 추계학술대회",
+      "period": "2019.11.14~2019.11.15"
+    },
+    {
+      "title": "동적 부하 하에서의 고체 산화물 연료전지의 동적 응답에 관한 통합적 분석",
+      "conference": "한국수소및신에너지학회 2019년 추계학술대회",
+      "period": "2019.11.14~2019.11.15"
+    },
+    {
+      "title": "Surface reaction kinetics of dry reforming of methane on Ni/Al2O3 catalyst at low-temperature using an in-situ stagnation-flow reactor",
+      "conference": "13th Pacific Rim Conference of Ceramic Societies",
+      "period": "2019.10.27~2019.11.01"
+    },
+    {
+      "title": "1D thermodynamic modeling for a solid oxide fuel cell stack and parametric study for its optimal operating conditions",
+      "conference": "32nd International Partnership for Hydrogen and Fuel Cells in the Economy Outreach Event",
+      "period": "2019.10.22~2019.10.22"
+    },
+    {
+      "title": "Feasibility of Ni-based bimetallic catalysts anchored on ceramic supports for dry reforming of methane at low-temperature",
+      "conference": "32nd International Partnership for Hydrogen and Fuel Cells in the Economy Outreach Event",
+      "period": "2019.10.22~2019.10.22"
+    },
+    {
+      "title": "Comparative Study of SOFC-CHP System Employing an In-House Numerical Simulator",
+      "conference": "32nd International Partnership for Hydrogen and Fuel Cells in the Economy Outreach Event",
+      "period": "2019.10.22~2019.10.22"
+    },
+    {
+      "title": "Long-time scale voltage response upon electrical current change using three-dimensional SOFC dynamic simulations",
+      "conference": "32nd International Partnership for Hydrogen and Fuel Cells in the Economy Outreach Event",
+      "period": "2019.10.22~2019.10.22"
+    },
+    {
+      "title": "Methane steam reforming at low-temperature supported by bimetallic alloy catalysts for high fuel utilization of proton-conducting ceramic fuel cells",
+      "conference": "32nd International Partnership for Hydrogen and Fuel Cells in the Economy Outreach Event",
+      "period": "2019.10.22~2019.10.22"
+    },
+    {
+      "title": "Investigation of surface reaction kinetics of dry reforming of methane on Ni/Al2O3 catalyst at low temperature using an in-situ stagnation flow reactor",
+      "conference": "32nd International Partnership for Hydrogen and Fuel Cells in the Economy Outreach Event",
+      "period": "2019.10.22~2019.10.22"
+    },
+    {
+      "title": "Thermodynamic optimization of a SOFC-CHP system with exhaust gas recirculation employing an in-house numerical simulator",
+      "conference": "16th International Symposium on Solid Oxide Fuel Cells (SOFC-XVI)",
+      "period": "2019.09.08~2019.09.13"
+    },
+    {
+      "title": "Parametric Analysis of Solid Oxide Co-Electrolysis Cell Systems: Relationship between System Performance, External Heat and Parasitic Power",
+      "conference": "16th International Symposium on Solid Oxide Fuel Cells (SOFC-XVI)",
+      "period": "2019.09.08~2019.09.13"
+    },
+    {
+      "title": "Reaction mechanism analysis of dry reforming of methane on Ni/Al2O3 catalyst at low temperature using an in-situ stagnation flow reactor",
+      "conference": "6th International Conference on Structured Catalysts and Reactors (ICOSCAR 6)",
+      "period": "2019.09.11~2019.09.13"
+    },
+    {
+      "title": "Bimetallic Catalysts for Internal Steam Reforming of Methane at Low-Temperature for High Fuel Utilization of Proton-Conducting Ceramic Fuel Cells",
+      "conference": "6th International Conference on Structured Catalysts and Reactors (ICOSCAR 6)",
+      "period": "2019.09.11~2019.09.13"
+    },
+    {
+      "title": "Characterization and feasibility of Ni-based bimetallic catalysts anchored on ceramic supports for dry reforming of methane at low-temperature",
+      "conference": "6th International Conference on Structured Catalysts and Reactors (ICOSCAR 6)",
+      "period": "2019.09.11~2019.09.13"
+    },
+    {
+      "title": "Thermo-Fluid Analysis of a Planar Solid Oxide Fuel Cell with an Improved Flow Field by Manifold and Flow Channel Design",
+      "conference": "16th International Symposium on Solid Oxide Fuel Cells (SOFC-XVI)",
+      "period": "2019.09.08~2019.09.13"
+    },
+    {
+      "title": "Surface reaction characteristics of dry reforming of methane supported by Ni/Al2O3 catalyst at low temperature using an in-situ stagnation flow reactor",
+      "conference": "6th International Symposium on Modeling of Exhaust-Gas After-Treatment (MODEGAT VI)",
+      "period": "2019.09.08~2019.09.10"
+    },
+    {
+      "title": "Bimetallic Catalysts for Internal Steam Reforming of Methane at Low-Temperature for High Fuel Utilization of Proton-Conducting Ceramic Fuel Cells",
+      "conference": "6th International Symposium on Modeling of Exhaust-Gas After-Treatment (MODEGAT VI)",
+      "period": "2019.09.08~2019.09.10"
+    },
+    {
+      "title": "Performance evaluation of Ni-based bimetallic catalysts for dry reforming of methane at low-temperature",
+      "conference": "6th International Symposium on Modeling of Exhaust-Gas After-Treatment (MODEGAT VI)",
+      "period": "2019.09.08~2019.09.10"
+    },
+    {
+      "title": "Reaction kinetics of catalytic dry reforming of methane on Ni/Al2O3 at low-temperature using an in-situ stagnation-flow reactor",
+      "conference": "22th International Conference on Solid State Ionics (SSI-22)",
+      "period": "2019.06.16~2019.06.21"
+    },
+    {
+      "title": "Steam reforming of methane at low-temperature supported by bimetallic catalysts for high fuel utilization of proton-conducting ceramic fuel cells",
+      "conference": "22th International Conference on Solid State Ionics (SSI-22)",
+      "period": "2019.06.16~2019.06.21"
+    },
+    {
+      "title": "Feasibility of Ni-based bimetallic catalysts anchored on ceramic supports for dry reforming of methane at low-temperature",
+      "conference": "22th International Conference on Solid State Ionics (SSI-22)",
+      "period": "2019.06.16~2019.06.21"
+    },
+    {
+      "title": "Reacting environment of a planar, hydrocarbon-fueled SOFC stack resolved by a three-dimensional multiphysics model",
+      "conference": "22th International Conference on Solid State Ionics (SSI-22)",
+      "period": "2019.06.16~2019.06.21"
+    },
+    {
+      "title": "Thermal management for a solid oxide fuel cell stack assisted by 3-dimensional computational fluid dynamics modeling",
+      "conference": "22th International Conference on Solid State Ionics (SSI-22)",
+      "period": "2019.06.16~2019.06.21"
+    },
+    {
+      "title": "In-situ stagnation flow reactor 를 이용한 Ni/Al2O3 촉매의 저온 건식 메탄 개질 반응 메커니즘 개발",
+      "conference": "2019년도 대한기계학회 열공학부문 춘계 학술대회",
+      "period": "2019.05.22~2019.05.24"
+    },
+    {
+      "title": "저온 양성자 전도성 세라믹 연료 전지의 직접 메탄 습식 개질용 이종 합금 촉매",
+      "conference": "2019년도 대한기계학회 열공학부문 춘계 학술대회",
+      "period": "2019.05.22~2019.05.24"
+    },
+    {
+      "title": "20 kW 급 고체산화물 연료전지 열병합발전 시스템의 열역학적 설계 최적화",
+      "conference": "2019년도 대한기계학회 열공학부문 춘계 학술대회",
+      "period": "2019.05.22~2019.05.24"
+    },
+    {
+      "title": "Parametric study of an optimal CO2 dissociation condition for solid oxide co- electrolysis cell systems",
+      "conference": "2019년도 대한기계학회 열공학부문 춘계 학술대회",
+      "period": "2019.05.22~2019.05.24"
+    },
+    {
+      "title": "연료/공기 주입 방식에 따른 순산소 연소 기반 초임계 CO2 동력 사이클의 열역학적 분석",
+      "conference": "2019년도 대한기계학회 열공학부문 춘계 학술대회",
+      "period": "2019.05.22~2019.05.24"
+    },
+    {
+      "title": "평판형 고체산화물연료전지 스택 전력량에 따른 열화원인 예측",
+      "conference": "2019년도 대한기계학회 열공학부문 춘계 학술대회",
+      "period": "2019.05.22~2019.05.24"
+    },
+    {
+      "title": "고체산화물 연료전지 스택 내부 열전달 특성 해석",
+      "conference": "2019년도 대한기계학회 열공학부문 춘계 학술대회",
+      "period": "2019.05.22~2019.05.24"
+    },
+    {
+      "title": "대용량 리튬 이온 파우치 셀의 전기화학-열적 모델링",
+      "conference": "2019년도 대한기계학회 열공학부문 춘계 학술대회",
+      "period": "2019.05.22~2019.05.24"
+    },
+    {
+      "title": "Thermal -Flow Analysis for Optimizing Thermal Management of Lithium-ion Battery",
+      "conference": "9th International Advanced Automotive Battery Conference EUROPE",
+      "period": "2019.01.27~2019.01.31"
+    },
+    {
+      "title": "Analysis of Heat Generation from a Pouch-Type Lithium-Ion Battery Cell Considering Its Electrochemical Characteristics",
+      "conference": "9th International Advanced Automotive Battery Conference EUROPE",
+      "period": "2019.01.27~2019.01.31"
+    },
+    {
+      "title": "Multiphysics and Thermodynamic analysis of SOFC stacks and systems for optimal design and operation with high durability and efficiency",
+      "conference": "2019 1st Korean SOFC Symposium",
+      "period": "2019.01.18~2019.01.19"
+    },
+    {
+      "title": "Dynamic Response of Solid Oxide Fuel Cell : The Effect of Transport Phenomena on Polarization Losses under Electrical Load Change",
+      "conference": "2019 1st Korean SOFC Symposium",
+      "period": "2019.01.18~2019.01.19"
+    },
+    {
+      "title": "Steam reforming of methane at low-temperature supported by bimetallic catalysts for the anode material of proton-conducting ceramic fuel cells",
+      "conference": "2019 1st Korean SOFC Symposium",
+      "period": "2019.01.18~2019.01.19"
+    },
+    {
+      "title": "Quantification of overpotentials and voltage response upon electrical current change using three-dimensional SOFC dynamic simulations",
+      "conference": "2019 1st Korean SOFC Symposium",
+      "period": "2019.01.18~2019.01.19"
+    },
+    {
+      "title": "Comparative study of solid oxide fuel cell-combined heat and power system designs for optimal thermal integration",
+      "conference": "2019 1st Korean SOFC Symposium",
+      "period": "2019.01.18~2019.01.19"
+    },
+    {
+      "title": "Equation-based solid oxide fuel cell (SOFC) 1-D modeling and parametric study for estimating optimal operating condition",
+      "conference": "2019 1st Korean SOFC Symposium",
+      "period": "2019.01.18~2019.01.19"
+    },
+    {
+      "title": "Transient thermal analysis of an anode-supported, planar solid oxide fuel cell stack under dynamic operating conditions",
+      "conference": "2019 1st Korean SOFC Symposium",
+      "period": "2019.01.18~2019.01.19"
+    },
+    {
+      "title": "Thermo-fluid analysis of a planar SOFC stack using three-dimensional multiphysics simulations",
+      "conference": "2019 1st Korean SOFC Symposium",
+      "period": "2019.01.18~2019.01.19"
+    },
+    {
+      "title": "Investigation of heat transfer characteristics inside a SOFCs stack by 3-dimensional modeling",
+      "conference": "2019 1st Korean SOFC Symposium",
+      "period": "2019.01.18~2019.01.19"
+    },
+    {
+      "title": "저온 양성자 전도성 세라믹 연료 전지의 메탄 내부 증기 개질용 이중 금속 촉매",
+      "conference": "2018년도 대한기계학회 본부 학술대회",
+      "period": "2018.12.12~2018.12.15"
+    },
+    {
+      "title": "Stagnation-flow reactor 를 이용한 Rh/Al2O3 촉매의 저온 건식 메탄 개질 반응 속도론적 분석",
+      "conference": "2018년도 대한기계학회 본부 학술대회",
+      "period": "2018.12.12~2018.12.15"
+    },
+    {
+      "title": "수치해석을 이용한 탄화수소연료 고체산화물연료전지 스택의 열 및 물질 전달 분석",
+      "conference": "2018년도 대한기계학회 본부 학술대회",
+      "period": "2018.12.12~2018.12.15"
+    },
+    {
+      "title": "리튬 이온 배터리 모듈의 열유동 분석을 통한 열관리 방법 고찰",
+      "conference": "2018년도 대한기계학회 본부 학술대회",
+      "period": "2018.12.12~2018.12.15"
+    },
+    {
+      "title": "전기화학적 특성을 고려한 파우치형 리튬 이온 전지 열 모델링",
+      "conference": "2018년도 대한기계학회 본부 학술대회",
+      "period": "2018.12.12~2018.12.15"
+    },
+    {
+      "title": "Ni+M bimetallic alloys for low temperature, hydrocarbon-fueled protonic ceramic fuel cells",
+      "conference": "2018 한국세라믹학회 추계학술대회",
+      "period": "2018.11.14~2018.11.16"
+    },
+    {
+      "title": "Reaction kinetics of low temperature catalytic dry reforming of methane on Rh/Al2O3 catalysts using stagnation-flow reactor",
+      "conference": "2018년도 한국세라믹학회 추계 학술대회",
+      "period": "2018.11.14~2018.11.16"
+    },
+    {
+      "title": "Thermo-fluidic analysis of solid oxide fuel cell stacks by numerical approach",
+      "conference": "The 5th International Conference on Electronic Materials and Nanotechnology for Green Environment (ENGE 2018)",
+      "period": "2018.11.11~2018.11.14"
+    },
+    {
+      "title": "3차원 전산모사를 통한 고체산화물 연료전지 스택 내부 열전달 특성 분석",
+      "conference": "2018년도 한국수소및신에너지학회 추계 학술대회",
+      "period": "2018.10.11~2018.10.12"
+    },
+    {
+      "title": "수치해석 기법을 이용한 대면적 평판형 고체산화물연료전지 스택 내부의 복잡한 열 및 물질전달현상 관찰",
+      "conference": "2018년도 한국수소및신에너지학회 추계 학술대회",
+      "period": "2018.10.11~2018.10.12"
+    },
+    {
+      "title": "고체산화물 연료전지의 동적 응답성 해석: 동적 전기부하 조건 하에서 연료극의 미세구조 및 작동 조건에 따른 전달 현상 해석",
+      "conference": "2018년도 한국수소및신에너지학회 추계 학술대회",
+      "period": "2018.10.11~2018.10.12"
+    },
+    {
+      "title": "Dynamic response of solid oxide fuel cell: the effect of anode microstructure on transport phenomena under electrical load change",
+      "conference": "2018 Materials Challenges in Alternative and Renewable Energy (MCARE2018)",
+      "period": "2018.08.20~2018.08.23"
+    },
+    {
+      "title": "Dynamic Characteristics of Solid Oxide Fuel Cells under Electrical Load Change",
+      "conference": "13th European SOFC & SOE Forum",
+      "period": "2018.07.03~2018.07.06"
+    },
+    {
+      "title": "Mechanistic study on CO2 conversion reaction in heterogeneous alloy catalysts for solid co-electrolysis cell",
+      "conference": "2018 European Materials Research Society (spring)",
+      "period": "2018.06.18~2018.06.22"
+    },
+    {
+      "title": "Improved co-electrolysis efficiency of solid oxide cell by in-situ nano-alloying of Pd catalyst on Ni-based fuel electrodes",
+      "conference": "2018 European Materials Research Society (spring)",
+      "period": "2018.06.18~2018.06.22"
+    },
+    {
+      "title": "수치해석 기법을 통한 탄화수소연료 사용시 고체산화물연료전지 내부 열유동 해석",
+      "conference": "2018년도 대한기계학회 열공학부문 춘계 학술대회",
+      "period": "2018.04.25~2018.04.27"
+    },
+    {
+      "title": "고체산화물 연료전지 스택 연료 이용률 및 채널 사이즈 최적화를 위한 열유동 해석",
+      "conference": "2018년도 대한기계학회 열공학부문 춘계 학술대회",
+      "period": "2018.04.25~2018.04.27"
+    },
+    {
+      "title": "고체산화물 연료전지의 동적 응답성 해석: 동적 전기부하 조건 하에서 연료극의 미세구조에 따른 전달 현상 해석",
+      "conference": "2018년도 대한기계학회 열공학부문 춘계 학술대회",
+      "period": "2018.04.25~2018.04.27"
+    },
+    {
+      "title": "메탄 운전시 고체산화물 연료전지 내부 열유동 분석",
+      "conference": "대한기계학회 2017년도 학술대회",
+      "period": "2017.11.01~2017.11.03"
+    },
+    {
+      "title": "Bimetallic catalyst impregnated fuel-electrode for CO2 conversion",
+      "conference": "The 9th Asian Conference on Electrochemical Power Sources",
+      "period": "2017.08.20~2017.08.23"
+    },
+    {
+      "title": "Characterization of local reacting environment within SOFC stacks by three-dimensional numerical simulations",
+      "conference": "The 9th Asian Conference on Electrochemical Power Sources",
+      "period": "2017.08.20~2017.08.23"
+    },
+    {
+      "title": "동적 전기부하 조건 하에서의 고체산화물연료전지 내부 열기계적 특성 변화 해석",
+      "conference": "대한기계학회 열공학부문 춘계학술대회 2017",
+      "period": "2017.05.24~2017.05.26"
+    },
+    {
+      "title": "수치해석 기법을 통한 고체산화물 연료전지 내부개질율에 따른 열화학 및 전기화학 반응에 의한 열기계적 거동 관찰 및 열화현상 예측",
+      "conference": "대한기계학회 열공학부문 춘계학술대회 2017",
+      "period": "2017.05.24~2017.05.26"
+    },
+    {
+      "title": "Diffuser shaped fuel channel design study in solid oxide fuel cell stacks",
+      "conference": "The 5th International Conference on Thermophysical Properties and Transfer Processes of Refrigerants",
+      "period": "2017.04.23~2017.04.26"
+    },
+    {
+      "title": "The influence of Ni-Fe bimetallic catalysts on the performance of high-temperature Solid Oxide Electrolysis Cells",
+      "conference": "2017년도 한국전기화학회 춘계 학술대회",
+      "period": "2017.04.06~2017.04.08"
+    },
+    {
+      "title": "동적 전기부하 조건 하에서의 고체산화물연료전지 내부 열기계적 특성 변화 해석",
+      "conference": "2017년도 한국전기화학회 춘계 학술대회",
+      "period": "2017.04.06~2017.04.08"
+    },
+    {
+      "title": "Thermo-electrochemical reaction in the wet environment using solid oxide electrolysis cells (SOEC)",
+      "conference": "2017년도 한국전기화학회 춘계 학술대회",
+      "period": "2017.04.06~2017.04.08"
+    },
+    {
+      "title": "수치해석 기법을 이용한 고온 고체산화물 연료전지 내의 열기계적 거동 해석 및 금속 분리판에 의한 내부 열적 변화양상 해석",
+      "conference": "2017년도 한국전기화학회 춘계 학술대회",
+      "period": "2017.04.06~2017.04.08"
+    },
+    {
+      "title": "이산화탄소 전환율 향상을 위한 고온 동시전해용 이종 합금 촉매를 담지한 연료극 제작 및 반응 메커니즘 연구",
+      "conference": "2016년도 한국화학공학회 추계 학술대회",
+      "period": "2016.10.19~2016.10.21"
+    },
+    {
+      "title": "Local reacting environment within SOFC stacks examined by three-dimensional numerical simulations",
+      "conference": "12th European SOFC & SOE Forum",
+      "period": "2016.07.05~2016.07.08"
+    },
+    {
+      "title": "분리판 물질과 형상에 따른 고체산화물연료전지 스택의 열적 거동 수치해석",
+      "conference": "2016년도 한국생산제조시스템학회 춘계 학술대회",
+      "period": "2016.04.27~2016.04.29"
+    },
+    {
+      "title": "이산화탄소/수증기 고온 동시전기분해 기반 합성가스 생산을 위한 고체산화물전지의 나노 구조화 연료극 제조 및 평가",
+      "conference": "2016년도 한국화학공학회 춘계 학술대회",
+      "period": "2016.04.27~2016.04.29"
+    },
+    {
+      "title": "수치해석 기법을 이용한 고체산화물 연료전지 내부의 열전달 특성 분석",
+      "conference": "2016년도 대한기계학회 열공학부문 춘계 학술대회",
+      "period": "2016.04.19~2016.04.22"
+    },
+    {
+      "title": "열?유동 해석을 기반으로 한 고체산화물연료전지 스택 개발 및 고온 동시전기분해 반응성 개선을 통한 합성가스 생산성 증대",
+      "conference": "2016 전기화학회 춘계학술대회",
+      "period": "2016.04.07~2016.04.09"
+    }
+  ],
+  "fundings": [
+    {
+      "title": "[민간/에이치디한국조선해양(주)]kW SOFC 급 상용 스택 적용을 위한 가역운전 기반 열화 복구 프로토콜 개발 및 검증",
+      "org": "국내",
+      "period": "2026-07-01~2026-12-31"
+    },
+    {
+      "title": "[통합이지바로/글로벌TOP/공동] 지능형 센서 및 자가보호 소재 융합형 초고안전 스마트 배터리 개발(1/2단계, 2/2)",
+      "org": "국가과학기술연구회",
+      "period": "2026-05-01~2027-04-30"
+    },
+    {
+      "title": "[통합이지바로/IRIS]열폭주/열확산 메커니즘 규명을 통한 배터리 팩 안전 상태 진단 플랫폼 개발 및 활용(3/3)(1/2단계)",
+      "org": "한국연구재단",
+      "period": "2026-04-01~2027-03-31"
+    },
+    {
+      "title": "[RCMS]첨단산업특성화대학원지원(배터리)(3/3, 1/2단계)",
+      "org": "한국산업기술진흥원",
+      "period": "2026-03-01~2027-02-28"
+    },
+    {
+      "title": "[통합이지바로](선도연구센터/ERC)다상소재 혁신 생산공정 연구센터(4/4,1단계)(2023.6.1.~2027.2.28.)",
+      "org": "한국연구재단",
+      "period": "2026-03-01~2027-02-28"
+    },
+    {
+      "title": "[7차년도]사회지향 기계기술 글로벌 리더 양성 교육연구단",
+      "org": "한국연구재단",
+      "period": "2026-03-01~2027-02-28"
+    },
+    {
+      "title": "[민간/삼성전기] 천연가스 연료기반 고체산화물 연료전지 스택의 전기적 특성 평가 자문",
+      "org": "국내",
+      "period": "2026-01-15~2026-08-31"
+    },
+    {
+      "title": "[RCMS]아이티사이언스/세라믹 열계면소재부품이 적용된 배터리 팩의 방열/방폭 안전성·검증기술 개발(3/3, 1/2단계)",
+      "org": "한국산업기술기획평가원",
+      "period": "2026-01-01~2026-12-31"
+    },
+    {
+      "title": "[RCMS]한국과학기술원/(공동)고효율 발전용 연료전지 시스템 설계 및 고도화 혁신연구센터(1/1, 2/3단계)",
+      "org": "한국에너지기술평가원",
+      "period": "2026-01-01~2026-12-31"
+    },
+    {
+      "title": "[RCMS]한국에너지기술연구원/장기 작전 운용을 위한 고에너지밀도연료 직접주입형 대형 잠수정 동력원 개발(2/4)",
+      "org": "국방과학연구소",
+      "period": "2026-01-01~2026-12-31"
+    },
+    {
+      "title": "[통합이지바로/공동] 고온 에너지 변환 소자의 작동 중 실시간 성능 복원 기술 개발(1/2단계)(3/3)",
+      "org": "한국연구재단",
+      "period": "2026-01-01~2026-12-31"
+    },
+    {
+      "title": "[민간/현대모비스] 급속충전(LFP) 제어 알고리즘 개발",
+      "org": "국내",
+      "period": "2025-12-23~2027-03-31"
+    },
+    {
+      "title": "[민간/HD한국조선해양] 가역운전 기반 SOFC 스택 열화 복구 원천기술 개발",
+      "org": "국내",
+      "period": "2025-10-01~2026-10-31"
+    },
+    {
+      "title": "[RCMS]한국에너지기술연구원/장기 작전 운용을 위한 고에너지밀도연료 직접주입형 대형 잠수정 동력원 개발(1/4)",
+      "org": "국방과학연구소",
+      "period": "2025-08-22~2025-12-31"
+    },
+    {
+      "title": "[민간/현대기아]아키텍처 단계 배터리 출력 목표 검토를 위한 경쟁차 배터리 셀 성능 모델 개발[1차년]",
+      "org": "국내",
+      "period": "2025-05-12~2025-12-31"
+    },
+    {
+      "title": "[통합이지바로/글로벌TOP/공동] 지능형 센서 및 자가보호 소재 융합형 초고안전 스마트 배터리 개발(1/2단계, 1/2)",
+      "org": "국가과학기술연구회",
+      "period": "2025-05-01~2026-04-30"
+    },
+    {
+      "title": "[RCMS]한국과학기술원/(공동)고효율 발전용 연료전지 시스템 설계 및 고도화 혁신연구센터(1/1, 1/3단계)",
+      "org": "한국에너지기술평가원",
+      "period": "2025-05-01~2025-12-31"
+    },
+    {
+      "title": "[민간/포스코홀딩스(주)] 양극재 소성 반응가스 배출 모델 구축 및 해석",
+      "org": "국내",
+      "period": "2025-04-30~2025-12-31"
+    },
+    {
+      "title": "[통합이지바로/RS/위탁] 고체산화물 수전해전지의 내구성 향상을 위한 글로벌 협력 연구 체계 구축(1/2단계)(1/3)",
+      "org": "한국연구재단",
+      "period": "2025-04-01~2025-12-31"
+    },
+    {
+      "title": "[민간/HD한국조선해양] 암모니아 개질 촉매 Kinetics 도출 및 성능/내구평가",
+      "org": "국내",
+      "period": "2025-04-01~2026-06-30"
+    },
+    {
+      "title": "[통합이지바로/IRIS]열폭주/열확산 메커니즘 규명을 통한 배터리 팩 안전 상태 진단 플랫폼 개발 및 활용(2/3)(1/2단계)(2024.4.1~2029.3.31)",
+      "org": "한국연구재단",
+      "period": "2025-04-01~2026-03-31"
+    },
+    {
+      "title": "[통합이지바로](선도연구센터/ERC)다상소재 혁신 생산공정 연구센터(3/4,1단계)(2023.6.1.~2027.2.28.)",
+      "org": "한국연구재단",
+      "period": "2025-03-01~2026-02-28"
+    },
+    {
+      "title": "[RCMS]첨단산업특성화대학원지원(배터리)(2/3, 1/2단계)",
+      "org": "한국산업기술진흥원",
+      "period": "2025-03-01~2026-02-28"
+    },
+    {
+      "title": "[6차년도] 사회지향 기계기술 글로벌 리더 양성 교육연구단",
+      "org": "한국연구재단",
+      "period": "2025-03-01~2026-02-28"
+    },
+    {
+      "title": "[통합이지바로/RS/위탁] 이상 멀티레이어 구조 기반 고효율 고내구성 중온 수전해 PCEC 수소생산 시스템 개발 (3/3단계)(1/2)",
+      "org": "한국연구재단",
+      "period": "2025-01-01~2025-12-31"
+    },
+    {
+      "title": "[통합이지바로/RS/위탁] 중온형(700℃) 고체산화물수전해 내구성, 효율 향상 및 스케일업을 위한 소재, 셀, 스택 및 6Nm3/h_H2 급 시스템 개발(1/3단계)(2/2)",
+      "org": "한국연구재단",
+      "period": "2025-01-01~2025-12-31"
+    },
+    {
+      "title": "[RCMS]씨에스에너텍/세라믹 열계면소재부품이 적용된 배터리 팩의 방열/방폭 안전성·검증기술 개발(2/3, 1/2단계)",
+      "org": "한국산업기술기획평가원",
+      "period": "2025-01-01~2025-12-31"
+    },
+    {
+      "title": "[RCMS]그린수소 생산을 위한 고성능, 고신뢰성 고체산화물 수전해 단전지 및 스택 개발(4/4)",
+      "org": "한국산업기술진흥원",
+      "period": "2025-01-01~2025-05-31"
+    },
+    {
+      "title": "[통합이지바로/RS/공동] 고온 에너지 변환 소자의 작동 중 실시간 성능 복원 기술 개발(1/2단계)(2/3)",
+      "org": "한국연구재단",
+      "period": "2025-01-01~2025-12-31"
+    },
+    {
+      "title": "[한국기계연구원/용역]고온형 암모니아 연료전지의 성능 및 장기 내구성 평가",
+      "org": "한국기계연구원",
+      "period": "2024-10-07~2024-12-23"
+    },
+    {
+      "title": "[한국수력원자력/용역] 태양광 직접연계 사례조사 및 수전해 운영비용 분석 학술용역",
+      "org": "산하기관",
+      "period": "2024-07-22~2025-01-21"
+    },
+    {
+      "title": "[통합이지바로/RS/공동] 고온 에너지 변환 소자의 작동 중 실시간 성능 복원 기술 개발(1/2단계)(1/3)",
+      "org": "한국연구재단",
+      "period": "2024-07-01~2024-12-31"
+    },
+    {
+      "title": "[민간/LG에너지솔루션] 연세대학교 계약학과 이차전지 산학협동연구 2단계",
+      "org": "국내",
+      "period": "2024-07-01~2027-06-30"
+    },
+    {
+      "title": "[민간/삼성전기]고체산화물 수전해 스택의 전기적 특성평가",
+      "org": "국내",
+      "period": "2024-07-01~2024-10-31"
+    },
+    {
+      "title": "[민간/현대기아]전기차 배터리 비정상 거동 성능 예측을 위한 해석 모델 및 분석 기법 개발 3차년도",
+      "org": "국내",
+      "period": "2024-06-15~2026-03-31"
+    },
+    {
+      "title": "[민간/현대기아]버추얼 배터리 모델을 활용한 전기차 통합 성능 해석 환경 구축 (3차년도)",
+      "org": "국내",
+      "period": "2024-06-15~2026-03-31"
+    },
+    {
+      "title": "[통합이지바로]이차전지 신뢰성 향상을 위한 열안정성 분석 인프라 구축(1/1)",
+      "org": "한국기초과학지원연구원",
+      "period": "2024-05-01~2025-04-30"
+    },
+    {
+      "title": "[RCMS]씨에스에너텍/세라믹 열계면소재부품이 적용된 배터리 팩의 방열/방폭 안전성·검증기술 개발(1/3, 1/2단계)",
+      "org": "한국산업기술기획평가원",
+      "period": "2024-04-01~2024-12-31"
+    },
+    {
+      "title": "[통합이지바로/IRIS]열폭주/열확산 메커니즘 규명을 통한 배터리 팩 안전 상태 진단 플랫폼 개발 및 활용(1/3)(1/2단계)(2024.4.1~2029.3.31)",
+      "org": "한국연구재단",
+      "period": "2024-04-01~2025-03-31"
+    },
+    {
+      "title": "[RCMS]첨단산업특성화대학원지원(배터리)(1/3, 1/2단계)",
+      "org": "한국산업기술진흥원",
+      "period": "2024-03-01~2025-02-28"
+    },
+    {
+      "title": "[통합이지바로](선도연구센터/ERC)다상소재 혁신 생산공정 연구센터(2/4,1단계)(2023.6.1.~2027.2.28.)",
+      "org": "한국연구재단",
+      "period": "2024-03-01~2025-02-28"
+    },
+    {
+      "title": "[5차년도] 사회지향 기계기술 글로벌 리더 양성 교육연구단",
+      "org": "한국연구재단",
+      "period": "2024-03-01~2025-02-28"
+    },
+    {
+      "title": "[민간/HD한국조선해양] 150kW급 SOEC 단위 시스템 상세설계",
+      "org": "국내",
+      "period": "2024-02-01~2026-02-28"
+    },
+    {
+      "title": "[민간/삼성전기]수증기 공급 및 반응 분포 개선을 위한 SOEC 스택 분리판 개발",
+      "org": "국내",
+      "period": "2024-02-01~2025-05-31"
+    },
+    {
+      "title": "[민간/포스코 홀딩스] [이차전지_L iB소재_용역]소성반응 열전달 모델 구축 및 해석",
+      "org": "국내",
+      "period": "2024-02-01~2024-12-31"
+    },
+    {
+      "title": "[통합이지바로/위탁] 다중물리 전산해석을 활용한 건물용 중저온 고체산화물연료전지 스택 디자인 및 운전 프로토콜 최적화(3/3)",
+      "org": "한국연구재단",
+      "period": "2024-01-24~2025-01-23"
+    },
+    {
+      "title": "[RCMS]그린수소 생산을 위한 고성능, 고신뢰성 고체산화물 수전해 단전지 및 스택 개발(3/4)",
+      "org": "한국산업기술진흥원",
+      "period": "2024-01-01~2024-12-31"
+    },
+    {
+      "title": "[통합이지바로](위탁/과세)중온 프로톤 수전해 전지용 스팀 전극 촉매 개발(2/2단계)(2/2)",
+      "org": "한국연구재단",
+      "period": "2024-01-01~2024-12-31"
+    },
+    {
+      "title": "[민간/현대엔지비]수소 생산량 확대를 위한 대면적 셀 촉매 소재 적용 및 평가",
+      "org": "국내",
+      "period": "2023-12-24~2025-07-31"
+    },
+    {
+      "title": "[민간/HD한국조선해양(주)] 고체산화물 연료전지 시스템 공급업체의 실사 및 자문",
+      "org": "국내",
+      "period": "2023-12-15~2024-01-31"
+    },
+    {
+      "title": "[민간/HD한국조선해양]50kW 급 직접 암모니아 SOFC 시스템 기본설계",
+      "org": "국내",
+      "period": "2023-12-01~2025-10-31"
+    },
+    {
+      "title": "[통합이지바로](선도연구센터/ERC)다상소재 혁신 생산공정 연구센터(1/4,1단계)(2023.6.1.~2027.2.28.)",
+      "org": "한국연구재단",
+      "period": "2023-06-01~2024-02-29"
+    },
+    {
+      "title": "[민간/현대엔지비]전기차 배터리 비정상 거동 성능 예측을 위한 해석 모델 및 분석 기법 개발(2차년도)",
+      "org": "국내",
+      "period": "2023-04-15~2024-10-31"
+    },
+    {
+      "title": "[민간/현대엔지비]버추얼 배터리 모델을 활용한 전기차 통합 성능 해석 환경 구축(2차년도)",
+      "org": "국내",
+      "period": "2023-04-15~2025-01-31"
+    },
+    {
+      "title": "[민간/현대엔지비] 현대자동차그룹 10기 계약학과 운영",
+      "org": "국내",
+      "period": "2023-03-02~2027-02-28"
+    },
+    {
+      "title": "[민간/삼성전기]고체산화물 수전해 전지의 전기적 특성평가",
+      "org": "국내",
+      "period": "2023-03-01~2024-03-31"
+    },
+    {
+      "title": "[4차년도] 사회지향 기계기술 글로벌 리더 양성 교육연구단",
+      "org": "한국연구재단",
+      "period": "2023-03-01~2024-02-29"
+    },
+    {
+      "title": "[민간/한국조선해양] 150kW급 SOEC 단위 시스템 기본설계",
+      "org": "국내",
+      "period": "2023-02-01~2024-08-31"
+    },
+    {
+      "title": "[통합이지바로/위탁] 다중물리 전산해석을 활용한 건물용 중저온 고체산화물연료전지 스택 디자인 및 운전 프로토콜 최적화(1/2)",
+      "org": "한국연구재단",
+      "period": "2023-01-24~2024-01-23"
+    },
+    {
+      "title": "[RCMS](주)이엔코아/한-독 수소 생산성 및 활용성 강화를 위한 1kW급 가역 고체산화물 전지 스택 핵심 부품 기술 개발(4/4)",
+      "org": "한국에너지기술평가원",
+      "period": "2023-01-01~2023-11-30"
+    },
+    {
+      "title": "[통합이지바로](위탁/과세)중온 프로톤 수전해 전지용 스팀 전극 촉매 개발(2/2단계)(1/2)",
+      "org": "한국연구재단",
+      "period": "2023-01-01~2023-12-31"
+    },
+    {
+      "title": "[RCMS]피엔피에너지텍주식회사/전원 독립형 파워 패키지용 고품질 고온 연료전지 시스템 및 핵심소재부품 개발(2/2, 2/2단계)",
+      "org": "한국산업기술기획평가원",
+      "period": "2023-01-01~2023-12-31"
+    },
+    {
+      "title": "[RCMS]그린수소 생산을 위한 고성능, 고신뢰성 고체산화물 수전해 단전지 및 스택 개발(2/4)",
+      "org": "한국산업기술진흥원",
+      "period": "2023-01-01~2023-12-31"
+    },
+    {
+      "title": "[민간/현대엔지비]수소생산시스템의 효율 향상을 위한 연료극 촉매 소재 개발",
+      "org": "국내",
+      "period": "2022-12-01~2024-03-31"
+    },
+    {
+      "title": "[민간/포항산업과학연구원(RIST)] 냉각분리 소성로 모델 구축 및 연산",
+      "org": "국내",
+      "period": "2022-11-18~2023-09-30"
+    },
+    {
+      "title": "[민간/현대엔지비(주)] H-모빌리티 클래스 연료전지 분야 교육 프로그램 자문",
+      "org": "국내",
+      "period": "2022-07-18~2022-12-02"
+    },
+    {
+      "title": "[민간/HD현대] 고체산화물 연료전지 셀/스택 공급업체의 실사 및 자문",
+      "org": "국내",
+      "period": "2022-06-20~2022-08-31"
+    },
+    {
+      "title": "[ADD/무인기용 고효율 터빈기술 특화연구센터(2단계)/T-32] 고온 터빈 냉각/구조 성능 통합해석 모델 개발 연구",
+      "org": "산하기관",
+      "period": "2022-06-17~2025-03-31"
+    },
+    {
+      "title": "[민간/RIST] 소성로 열유동 모사모델 구축 및 연산",
+      "org": "국내",
+      "period": "2022-06-13~2023-04-30"
+    },
+    {
+      "title": "[RCMS]그린수소 생산을 위한 고성능, 고신뢰성 고체산화물 수전해 단전지 및 스택 개발(1/4)",
+      "org": "한국산업기술진흥원",
+      "period": "2022-06-01~2022-12-31"
+    },
+    {
+      "title": "[용역/한국과학기술연구원] 다중물리 전산해석을 활용한 건물용 중저온 고체산화물연료전지 스택 디자인 및 운전 프로토콜 최적화(1/1)",
+      "org": "한국연구재단",
+      "period": "2022-05-24~2023-01-23"
+    },
+    {
+      "title": "[민간/현대엔지비] H-모빌리티 클래스 연료전지 분야 교육 프로그램 자문",
+      "org": "국내",
+      "period": "2022-04-18~2022-06-30"
+    },
+    {
+      "title": "[민간/현대엔지비/1차년도] 버추얼 배터리 모델을 활용한 전기차 통합 성능 해석 환경 구축",
+      "org": "국내",
+      "period": "2022-03-15~2023-10-31"
+    },
+    {
+      "title": "[민간/현대엔지비/1차년도] 전기차 배터리 비정상 거동 성능 예측을 위한 해석 모델 및 분석 기법 개발",
+      "org": "국내",
+      "period": "2022-03-15~2024-03-31"
+    },
+    {
+      "title": "[민간/현대엔지비] 현대자동차그룹 9기 계약학과 운영",
+      "org": "국내",
+      "period": "2022-03-02~2027-02-28"
+    },
+    {
+      "title": "[3차년도] 사회지향 기계기술 글로벌 리더 양성 교육연구단",
+      "org": "한국연구재단",
+      "period": "2022-03-01~2023-02-28"
+    },
+    {
+      "title": "[RCMS]피엔피에너지텍주식회사/전원 독립형 파워 패키지용 고품질 고온 연료전지 시스템 및 핵심소재부품 개발(1/2,1/2)",
+      "org": "한국산업기술기획평가원",
+      "period": "2022-01-01~2022-12-31"
+    },
+    {
+      "title": "[RCMS]에이치앤파워(주)/발전용 확장이 가능한 고효율 모듈형 SOFC 시스템 개발(4/4, 1단계)",
+      "org": "한국에너지기술평가원",
+      "period": "2022-01-01~2023-06-30"
+    },
+    {
+      "title": "[통합이지바로](위탁)중온 프로톤 수전해 전지용 스팀 전극 촉매 개발 (1/2단계)(2/2)",
+      "org": "한국연구재단",
+      "period": "2022-01-01~2022-12-31"
+    },
+    {
+      "title": "[RCMS](주)이엔코아/한-독 수소 생산성 및 활용성 강화를 위한 1kW급 가역 고체산화물 전지 스택 핵심 부품 기술 개발(3/4)",
+      "org": "한국에너지기술평가원",
+      "period": "2022-01-01~2022-12-31"
+    },
+    {
+      "title": "[민간/LG에너지솔루션] 차세대 하이브리드 고체전해질 플랫폼 기술 개발",
+      "org": "국내",
+      "period": "2022-01-01~2025-12-31"
+    },
+    {
+      "title": "[민간/현대엔지비] 리튬 이온 배터리 셀의 내부 소재 상태 변화에 따른 전기 화학적-열적 거동 분석 모델 개발",
+      "org": "국내",
+      "period": "2021-11-15~2023-12-31"
+    },
+    {
+      "title": "[민간/현대엔지비] 고온형 전기화학 수소 생산 시스템용 신소재 연구",
+      "org": "국내",
+      "period": "2021-10-15~2023-07-31"
+    },
+    {
+      "title": "[민간/포항산업과학연구원(RIST)] 양극재 dehydration 패턴 분석 및 반응상수 측정",
+      "org": "국내",
+      "period": "2021-07-16~2022-02-28"
+    },
+    {
+      "title": "[민간/현대엔지비] H-모빌리티 클래스 교육 프로그램 자문 (기본/심화)",
+      "org": "국내",
+      "period": "2021-07-01~2021-12-31"
+    },
+    {
+      "title": "[통합이지바로](위탁)중온 프로톤 수전해 전지용 스팀 전극 촉매 개발 (1/2단계)(1/2)",
+      "org": "한국연구재단",
+      "period": "2021-07-01~2021-12-31"
+    },
+    {
+      "title": "[민간/현대엔지비] 전기차 배터리 열적 비정상 거동 예측을 위한 해석 모델 및 분석 기법 개발",
+      "org": "국내",
+      "period": "2021-06-07~2022-07-31"
+    },
+    {
+      "title": "[RCMS](주)이엔코아/한-독 수소 생산성 및 활용성 강화를 위한 1kW급 가역 고체산화물 전지 스택 핵심 부품 기술 개발(2/4)",
+      "org": "한국에너지기술평가원",
+      "period": "2021-06-01~2021-12-31"
+    },
+    {
+      "title": "[민간/LG에너지솔루션] 내부 단락 조건에서 부반응 및 열폭주 거동 예측 모델 개발",
+      "org": "국내",
+      "period": "2021-05-01~2022-10-31"
+    },
+    {
+      "title": "[민간/현대엔지비] 현대자동차그룹 8기 계약학과 운영",
+      "org": "국내",
+      "period": "2021-03-02~2024-02-29"
+    },
+    {
+      "title": "[통합이지바로] 고수율/고선택성/고안정성 이종합금촉매 기반 탄소중립형 건식 개질 반응 메커니즘 규명 (3/3)(2019.03.01.~2022.02.28.)",
+      "org": "한국연구재단",
+      "period": "2021-03-01~2022-02-28"
+    },
+    {
+      "title": "[2차년도] 사회지향 기계기술 글로벌 리더 양성 교육연구단",
+      "org": "한국연구재단",
+      "period": "2021-03-01~2022-02-28"
+    },
+    {
+      "title": "[통합이지바로/연세-KIST융합연구사업] 700℃ 이상에서 안정한 고온 전기분해소자용 단일원자촉매 개발(3/3)",
+      "org": "한국과학기술연구원",
+      "period": "2021-01-01~2021-12-31"
+    },
+    {
+      "title": "[RCMS]피엔피에너지텍주식회사/전원 독립형 파워 패키지용 고품질 고온 연료전지 시스템 및 핵심소재부품 개발(3/3)",
+      "org": "한국산업기술기획평가원",
+      "period": "2021-01-01~2021-12-31"
+    },
+    {
+      "title": "[통합이지바로](위탁) Multiphysics 현상의 종합적인 해석을 통한 열/전기 복합추종 운전조건 대응형 고체산화물연료전지 (2/2단계)(3/3)",
+      "org": "한국연구재단",
+      "period": "2021-01-01~2021-12-31"
+    },
+    {
+      "title": "[RCMS]고등기술연구원연구조합/CO2 원료기반 고온 공전해 시스템을 적용한 합성가스 생산 공정기술 개발(4/4)",
+      "org": "한국에너지기술평가원",
+      "period": "2021-01-01~2022-03-31"
+    },
+    {
+      "title": "[RCMS]에이치앤파워(주)/발전용 확장이 가능한 고효율 모듈형 SOFC 시스템 개발(3/4, 1단계)",
+      "org": "한국에너지기술평가원",
+      "period": "2021-01-01~2021-12-31"
+    },
+    {
+      "title": "[RCMS](주)이엔코아/한-독 수소 생산성 및 활용성 강화를 위한 1kW급 가역 고체산화물 전지 스택 핵심 부품 기술 개발(1/4)",
+      "org": "한국에너지기술평가원",
+      "period": "2020-12-01~2021-05-31"
+    },
+    {
+      "title": "[1차년도] 사회지향 기계기술 글로벌 리더 양성 교육연구단",
+      "org": "한국연구재단",
+      "period": "2020-09-01~2021-02-28"
+    },
+    {
+      "title": "[민간/현대엔지비]배터리 성능/내구 통합 예측 모델 개발",
+      "org": "국내",
+      "period": "2020-07-01~2022-05-31"
+    },
+    {
+      "title": "[민간/동일브레이징] 판형 열교환기 열유동 분포 해석에 따른 내외부 유설 진단",
+      "org": "국내",
+      "period": "2020-05-01~2020-10-31"
+    },
+    {
+      "title": "[연세-KIST 융합연구사업] 700℃ 이상에서 안정한 고온 전기분해소자용 단일원자촉매 개발(2/3)",
+      "org": "한국과학기술연구원",
+      "period": "2020-04-01~2020-12-31"
+    },
+    {
+      "title": "[민간/현대엔지비]현대자동차그룹 7기 계약학과 운영",
+      "org": "국내",
+      "period": "2020-03-02~2023-02-28"
+    },
+    {
+      "title": "[RCMS] 고려대학교산학협력단/300~500C 저온 1 W/cm2 이상 고안정 대면적 다층나노구조 프로톤 전도성 세라믹 연료전지 원천기술 개발(4/4, 1단계)",
+      "org": "한국에너지기술평가원",
+      "period": "2020-03-01~2020-11-30"
+    },
+    {
+      "title": "[통합이지바로] 고수율/고선택성/고안정성 이종합금촉매 기반 탄소중립형 건식 개질 반응 메커니즘 규명 (2/3)",
+      "org": "한국연구재단",
+      "period": "2020-03-01~2021-02-28"
+    },
+    {
+      "title": "[8차년도]사회지향 기계기술 글로벌 리더 양성 사업단",
+      "org": "한국연구재단",
+      "period": "2020-03-01~2020-08-31"
+    },
+    {
+      "title": "[RCMS] 에이치앤파워(주)/발전용 확장이 가능한 고효율 모듈형 SOFC 시스템 개발(2/4, 1단계)",
+      "org": "한국에너지기술평가원",
+      "period": "2020-02-01~2020-12-31"
+    },
+    {
+      "title": "[민간/(주)LG화학]리튬 이차 전지의 외부 단락과 Venting 진단 기술 개발",
+      "org": "국내",
+      "period": "2020-02-01~2021-08-31"
+    },
+    {
+      "title": "[민간/한국조선해양] 선박용 블랙카본 저감 시스템 개발",
+      "org": "국내",
+      "period": "2020-01-01~2023-03-31"
+    },
+    {
+      "title": "[RCMS]피엔피에너지텍주식회사/전원 독립형 파워 패키지용 고품질 고온 연료전지 시스템 및 핵심소재부품 개발(2/3)",
+      "org": "한국산업기술기획평가원",
+      "period": "2020-01-01~2020-12-31"
+    },
+    {
+      "title": "[RCMS]고등기술연구원연구조합/CO2 원료기반 고온 공전해 시스템을 적용한 합성가스 생산 공정기술 개발(3/4)",
+      "org": "한국에너지기술평가원",
+      "period": "2020-01-01~2020-12-31"
+    },
+    {
+      "title": "[통합이지바로] Multiphysics 현상의 종합적인 해석을 통한 열/전기 복합추종 운전조건 대응형 고체산화물연료전지 repeating unit 스마트디자인 확보(2_2/3)",
+      "org": "한국연구재단",
+      "period": "2020-01-01~2020-12-31"
+    },
+    {
+      "title": "순산소 가압 연소기반 복합발전 공정 특성 정립 및 경제성평가",
+      "org": "산하기관",
+      "period": "2019-06-11~2020-08-10"
+    },
+    {
+      "title": "[RCMS] 에이치앤파워(주)/발전용 확장이 가능한 고효율 모듈형 SOFC 시스템 개발(1/4, 1단계)",
+      "org": "한국에너지기술평가원",
+      "period": "2019-05-01~2020-01-31"
+    },
+    {
+      "title": "[RCMS] 고려대학교산학협력단/300~500C 저온 1 W/cm2 이상 고안정 대면적 다층나노구조 프로톤 전도성 세라믹 연료전지 원천기술 개발(3/4)",
+      "org": "한국에너지기술평가원",
+      "period": "2019-05-01~2020-02-29"
+    },
+    {
+      "title": "[2019-1 신임교원 3차년도]순산소 연료변환 및 CO2 자원화 공정을 융합한 지속가능 에너지변환시스템의 핵심원천기술 및 플랫폼 개발",
+      "org": "연세대학교",
+      "period": "2019-05-01~2020-04-30"
+    },
+    {
+      "title": "[대형사업운영비]연세-KIST 융합연구",
+      "org": "연세대학교",
+      "period": "2019-04-01~2020-08-31"
+    },
+    {
+      "title": "[RCMS]전원 독립형 파워 패키지용 고품질 고온 연료전지 시스템 및 핵심소재부품 개발(1/5)",
+      "org": "한국산업기술기획평가원",
+      "period": "2019-04-01~2019-12-31"
+    },
+    {
+      "title": "[연세-KIST 융합연구사업] 700℃ 이상에서 안정한 고온 전기분해소자용 단일원자촉매 개발 (1/3)",
+      "org": "한국과학기술연구원",
+      "period": "2019-04-01~2020-03-31"
+    },
+    {
+      "title": "[RCMS]고등기술연구원연구조합/CO2 원료기반 고온 공전해 시스템을 적용한 합성가스 생산 공정기술 개발(2/4)",
+      "org": "한국에너지기술평가원",
+      "period": "2019-04-01~2019-12-31"
+    },
+    {
+      "title": "[민간/LG화학(주)]3차원 Multiphysics 해석을 통한 열관리형, 고신뢰성 SOFC 분리판 및 스택 스마트 디자인 창출",
+      "org": "국내",
+      "period": "2019-03-01~2019-11-30"
+    },
+    {
+      "title": "[Ezbaro] 고수율/고선택성/고안정성 이종합금촉매 기반 탄소중립형 건식 개질 반응 메커니즘 규명 (1/3)",
+      "org": "한국연구재단",
+      "period": "2019-03-01~2020-02-29"
+    },
+    {
+      "title": "[Ezbaro] Multiphysics 현상의 종합적인 해석을 통한 열/전기 복합추종 운전조건 대응형 고체산화물 연료전지 repeating unit 스마트디자인 확보 (2_1/3)",
+      "org": "한국연구재단",
+      "period": "2019-03-01~2019-12-31"
+    },
+    {
+      "title": "[7차년도]사회지향 기계기술 글로벌 리더 양성 사업단",
+      "org": "한국연구재단",
+      "period": "2019-03-01~2020-02-29"
+    },
+    {
+      "title": "[RCMS]주식회사 EG/운전사이클 대응력을 보유한 고신뢰성 SOFC 스택모듈 개발(5/5)",
+      "org": "한국에너지기술평가원",
+      "period": "2019-02-01~2019-05-31"
+    },
+    {
+      "title": "[T-32]고온터빈 냉각/구조 성능 통합 해석 모델 개발(1/2단계)",
+      "org": "산하기관",
+      "period": "2018-12-18~2021-12-15"
+    },
+    {
+      "title": "[RCMS]고등기술연구원연구조합/CO2 원료기반 고온 공전해 시스템을 적용한 합성가스 생산 공정기술 개발(1/4)",
+      "org": "한국에너지기술평가원",
+      "period": "2018-10-01~2019-03-31"
+    },
+    {
+      "title": "[RCMS] 고려대학교산학협력단/300~500C 저온 1 W/cm2 이상 고안정 대면적 다층나노구조 프로톤 전도성 세라믹 연료전지 원천기술 개발(2/4)",
+      "org": "한국에너지기술평가원",
+      "period": "2018-07-01~2019-04-30"
+    },
+    {
+      "title": "[RCMS]엘지퓨얼셀시스템즈코리아 주식회사/발전용 SOFC 대용량 모듈 개발 및 시스템 개발(1/4)",
+      "org": "한국에너지기술평가원",
+      "period": "2018-06-01~2018-12-31"
+    },
+    {
+      "title": "순산소 연료변환 및 CO2 자원화 공정을 융합한 지속가능 에너지변환시스템의 핵심 소재/공정기술 개발",
+      "org": "한국연구재단",
+      "period": "2018-06-01~2019-05-31"
+    },
+    {
+      "title": "[Ezbaro] (2위탁)Multiphysics 현상의 종합적인 해석을 통한 열/전기 복합추종 운전조건 대응형 고체산화물 연료전지 repeating unit 스마트디자인 확보",
+      "org": "한국연구재단",
+      "period": "2018-05-01~2019-02-28"
+    },
+    {
+      "title": "[2018-1신임교원]순산소 연료변환 및 CO2 자원화 공정을 융합한 지속가능 에너지변환시스템의 핵심원천기술 및 플랫폼 개발",
+      "org": "연세대학교",
+      "period": "2018-05-01~2019-04-30"
+    },
+    {
+      "title": "[RCMS]주식회사 EG/운전사이클 대응력을 보유한 고신뢰성 SOFC 스택모듈 개발(4/5)",
+      "org": "한국에너지기술평가원",
+      "period": "2018-04-01~2019-01-31"
+    },
+    {
+      "title": "[6차년도]사회지향 기계기술 글로벌 리더 양성 사업단",
+      "org": "한국연구재단",
+      "period": "2018-03-01~2019-02-28"
+    },
+    {
+      "title": "[RCMS]고려대학교산학협력단/300~500C 저온 1 W/cm2 이상 고안정 대면적 다층나노구조 프로톤 전도성 세라믹 연료전지 원천기술 개발(1/4)",
+      "org": "한국에너지기술평가원",
+      "period": "2017-12-01~2018-06-30"
+    },
+    {
+      "title": "[KIST위탁]Multiphysics 현상의 종합적인 해석을 통한 열/전기 복합추종 운전조건 대응형 고체산화물연료전지 repeating unit 스마트디자인 확보(1/2,1단계)(2017.8.1~2021.12.31)",
+      "org": "한국연구재단",
+      "period": "2017-08-01~2018-04-30"
+    },
+    {
+      "title": "[RCMS]ENG그룹/운전사이클 대응력을 보유한 고신뢰성SOFC 스택모듈 개발(3/5)",
+      "org": "한국에너지기술평가원",
+      "period": "2017-06-01~2018-03-31"
+    },
+    {
+      "title": "[2017-1 신임교원]순산소 연료변환 및 CO2 자원화 공정을 융합한 지속가능 에너지변환시스템의 핵심원천기술 및 플랫폼 개발",
+      "org": "연세대학교",
+      "period": "2017-05-01~2018-04-30"
+    },
+    {
+      "title": "[신임] 신임교원 연구정착금 지원",
+      "org": "연세대학교",
+      "period": "2017-03-01~2018-02-28"
+    }
+  ],
+  "patents": [
+    {
+      "title": "배터리 열폭주 조기 억제 기능을 보유한 자가소화 캡슐 소재 및 이를 포함하는 배터리",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2026-07-08"
+    },
+    {
+      "title": "션트 저항, 회로 제어를 통한 리튬이온배터리 SOC 조정 및 이를 이용한 열폭주 억제 장치 및 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2026-06-18"
+    },
+    {
+      "title": "배터리 내부 전류 및 온도 분포 균일화를 위한 고전도성 나노소재 집전체 코팅 및 이를 포함하는 배터리",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2026-05-18"
+    },
+    {
+      "title": "배터리 물리현상 연산 장치 및 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2026-05-15"
+    },
+    {
+      "title": "능동 소화, 냉각 및 가스 방출을 포함하는 배터리 캡 어셈블리 기반 안전 제어 시스템",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2026-05-06"
+    },
+    {
+      "title": "암모니아 활용 고체산화물 연료전지 시스템 PID 제어 기술",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2026-03-24"
+    },
+    {
+      "title": "전기화학 디바이스용 분리판 및 전기화학 디바이스",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 삼성전기",
+      "date": "2026-03-12"
+    },
+    {
+      "title": "전기화학 디바이스용 분리판 및 전기화학 디바이스",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 삼성전기",
+      "date": "2026-03-09"
+    },
+    {
+      "title": "가스, 온도 조기 감지 및 능동 소화, 냉각, 가스 방출을 포함하는 리튬 이온 배터리 cap assembly",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2026-01-22"
+    },
+    {
+      "title": "고온 수전해 효율 및 안정성이 개선된 고체산화물 수전해전지용 연료극 및 이의 제조방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 현대자동차주식회사, 기아 주식회사",
+      "date": "2025-11-27"
+    },
+    {
+      "title": "슬라이딩형 체결구조를 가진 일체형 핫박스",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2025-11-27"
+    },
+    {
+      "title": "암모니아 활용 고체산화물 연료전지 시스템 PID 제어 기술",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2025-11-24"
+    },
+    {
+      "title": "고온 수전해 효율 및 안정성이 개선된 고체산화물 수전해전지용 연료극 및 이의 제조방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 현대자동차주식회사, 기아 주식회사",
+      "date": "2025-11-13"
+    },
+    {
+      "title": "고체산화물 수전해전지용 연료극 및 이의 제조방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 현대자동차주식회사, 기아 주식회사",
+      "date": "2025-09-12"
+    },
+    {
+      "title": "교차형 중앙 급배기 구조를 활용한 열원 집중형 전기화학셀 핫박스",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2025-08-01"
+    },
+    {
+      "title": "전기화학 디바이스용 분리판 및 전기화학 디바이스",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 삼성전기주식회사",
+      "date": "2025-06-25"
+    },
+    {
+      "title": "스택과 매니폴드의 전기적 접촉이 없는 전기화학적 반응 시스템",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 세종대학교산학협력단",
+      "date": "2025-04-02"
+    },
+    {
+      "title": "전기화학 디바이스용 분리판 및 전기화학 디바이스",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 삼성전기주식회사",
+      "date": "2025-04-01"
+    },
+    {
+      "title": "고온 수전해 효율 및 안정성이 개선된 고체산화물 수전해전지용 연료극 및 이의 제조방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 현대자동차주식회사, 기아 주식회사",
+      "date": "2024-12-13"
+    },
+    {
+      "title": "외부에서 가스 공급이 가능한 전기화학 반응용 절연성 매니폴드 및 스택과 매니폴드의 전기적 접촉이 없는 전기화학적 반응 시스템",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 세종대학교 산학협력단",
+      "date": "2024-12-10"
+    },
+    {
+      "title": "연료전지 및 수전해 스택 모듈 내부 공기 유량 균일 분배를 위한 가변형 구조물",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 에이치디한국조선해양 주식회사",
+      "date": "2024-10-14"
+    },
+    {
+      "title": "적층 결합된 챔버 내부에 유로제어 격벽부가 구비된 연료전지 후연소기 및 후연소기가 구비된 연료전지 핫박스",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2024-10-04"
+    },
+    {
+      "title": "고체 산화물 전기분해 셀 및 이의 제조방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 현대자동차주식회사, 기아 주식회사, 한국과학기술연구원",
+      "date": "2024-06-27"
+    },
+    {
+      "title": "암모니아 활용 고체산화물 연료전지 시스템 제어 기술",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 에이치디한국조선해양 주식회사",
+      "date": "2024-06-13"
+    },
+    {
+      "title": "고체 산화물 전기분해 셀 및 이의 제조방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 현대자동차주식회사, 기아 주식회사, 한국과학기술연구원",
+      "date": "2024-04-30"
+    },
+    {
+      "title": "고체 산화물 전기분해 셀 및 이의 제조방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 한국과학기술연구원, 현대자동차주식회사, 기아 주식회사",
+      "date": "2024-04-30"
+    },
+    {
+      "title": "고체 산화물 전기분해 셀 및 이의 제조방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 현대자동차주식회사, 기아 주식회사, 한국과학기술연구원",
+      "date": "2024-04-25"
+    },
+    {
+      "title": "스택과 매니폴드의 전기적 접촉이 없는 전기화학적 반응 시스템",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 세종대학교산학협력단",
+      "date": "2024-04-23"
+    },
+    {
+      "title": "나노소재 집전체의 위치선택적 분포제어를 통한 코팅 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2024-04-11"
+    },
+    {
+      "title": "마이크로 캡슐의 위치선택적 분포 제어 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 재단법인대구경북과학기술원",
+      "date": "2024-04-11"
+    },
+    {
+      "title": "전기 화학 장치용 가변형 핫박스",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 에이치디한국조선해양 주식회사",
+      "date": "2024-02-28"
+    },
+    {
+      "title": "유체의 균일한 출입이 가능한 방사형 수전해 전지 반응 모듈",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 에이치디한국조선해양 주식회사",
+      "date": "2024-02-28"
+    },
+    {
+      "title": "외부에서 가스 공급이 가능한 전기화학 반응용 절연성 매니폴드 및 스택과 매니폴드의 전기적 접촉이 없는 전기화학적 반응 시스템",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 세종대학교 산학협력단",
+      "date": "2023-12-13"
+    },
+    {
+      "title": "분리판 및 커버 부재가 구비된 연료전지 스택",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2023-11-15"
+    },
+    {
+      "title": "적층 결합된 챔버 내부에 유로제어 격벽부가 구비된 연료전지 후연소기 및 후연소기가 구비된 연료전지 핫박스",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2023-10-18"
+    },
+    {
+      "title": "고체산화물 수전해 전지(SOEC) 시스템 온도 안정화 시스템",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 에이치디한국조선해양 주식회사",
+      "date": "2023-09-26"
+    },
+    {
+      "title": "고체산화물 수전해 전지(SOEC) 시스템 열적 결합의 검증 및 설계 방법 및 SOEC 시스템",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 에이치디한국조선해양 주식회사",
+      "date": "2023-09-26"
+    },
+    {
+      "title": "고체산화물 수전해 전지(SOEC) 제어시스템",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2023-09-26"
+    },
+    {
+      "title": "고온 수전해 효율이 개선된 고체산화물 수전해전지용 연료극 및 이의 제조방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 현대자동차주식회사, 기아주식회사",
+      "date": "2023-09-18"
+    },
+    {
+      "title": "고온 수전해 효율이 개선된 고체산화물 수전해전지용 연료극 및 이의 제조방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 현대자동차주식회사, 기아주식회사",
+      "date": "2023-08-03"
+    },
+    {
+      "title": "연료전지 스택 다차원 해석 시스템 및 해석 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2023-07-06"
+    },
+    {
+      "title": "연료전지 시스템의 시뮬레이션을 위한 유체 물성치 산출 장치 및 산출 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2023-06-16"
+    },
+    {
+      "title": "연료전지 시스템 해석을 위한 순차 모듈 시뮬레이션 장치 및 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2023-06-16"
+    },
+    {
+      "title": "리튬이온전지 소화캡슐의 균일 분포 및 위치선택적 분포제어 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2023-04-11"
+    },
+    {
+      "title": "나노소재 집전체의 위치선택적 분포제어 코팅 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2023-04-11"
+    },
+    {
+      "title": "가스균등 분배구조를 포함하는 연료전지용 분리판 및 이를 포함하는 연료전지스택",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2022-12-12"
+    },
+    {
+      "title": "가스 균등 분배 구조가 구비된 분리판을 포함하는 연료전지 스택",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2022-11-11"
+    },
+    {
+      "title": "고온 수전해 효율이 개선된 고체산화물 수전해전지용 연료극 및 이의 제조방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 현대자동차주식회사, 기아 주식회사",
+      "date": "2022-11-09"
+    },
+    {
+      "title": "배터리 팩 열관리 시스템",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2022-05-27"
+    },
+    {
+      "title": "배터리 팩 열관리 시스템",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2022-05-17"
+    },
+    {
+      "title": "교차 유동을 이용한 가이드 플레이트 구조를 갖는 가스 터빈",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 국방과학연구소",
+      "date": "2022-04-19"
+    },
+    {
+      "title": "가스 균등 분배 구조가 구비된 분리판을 포함하는 연료전지 스택",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2022-03-28"
+    },
+    {
+      "title": "연료전지용 매니폴드 및 이를 포함하는 연료전지 스택",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 한국과학기술연구원",
+      "date": "2021-12-07"
+    },
+    {
+      "title": "연료전지 스택 구조체",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2021-11-11"
+    },
+    {
+      "title": "열교환 면적 제어가 가능한 열 관리형 연료전지 핫박스",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2021-09-10"
+    },
+    {
+      "title": "열교환 면적 제어가 가능한 열 관리형 연료전지 핫박스",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2021-09-10"
+    },
+    {
+      "title": "열량 제어가 가능한 열 관리형 연료전지 핫박스",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2021-07-01"
+    },
+    {
+      "title": "열량 제어가 가능한 열 관리형 연료전지 핫박스",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2021-06-30"
+    },
+    {
+      "title": "연료전지용 매니폴드 및 이를 포함하는 연료전지 스택",
+      "type": "특허",
+      "applicant": "한국과학기술연구원, 연세대학교 산학협력단",
+      "date": "2021-06-16"
+    },
+    {
+      "title": "배터리 팩 열관리 시스템",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2021-05-28"
+    },
+    {
+      "title": "배터리 팩 하우징",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2021-04-07"
+    },
+    {
+      "title": "열교환 면적 제어가 가능한 열 관리형 연료전지 핫박스",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2020-09-10"
+    },
+    {
+      "title": "열량 제어가 가능한 열 관리형 연료전지 핫박스",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2020-07-01"
+    },
+    {
+      "title": "배터리 팩 하우징",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2020-04-08"
+    },
+    {
+      "title": "스택 내부의 열분포가 개선된 연료전지",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 한국과학기술연구원",
+      "date": "2019-08-30"
+    },
+    {
+      "title": "스택 내부의 열분포가 개선된 연료전지",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 한국과학기술연구원",
+      "date": "2019-08-29"
+    },
+    {
+      "title": "가이드 패턴을 포함하는 연료전지용 분리판 및 이를 포함하는 연료전지 스택",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 한국과학기술연구원",
+      "date": "2019-03-07"
+    },
+    {
+      "title": "가이드 패턴을 포함하는 연료전지용 분리판 및 이를 포함하는 연료전지 스택",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 한국과학기술연구원",
+      "date": "2019-02-27"
+    },
+    {
+      "title": "스택 내부의 열분포가 개선된 연료전지",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 한국과학기술연구원",
+      "date": "2018-12-26"
+    },
+    {
+      "title": "연료전지용 분리판 및 이를 포함하는 연료전지 스택",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 한국과학기술연구원",
+      "date": "2018-10-25"
+    },
+    {
+      "title": "가이드 패턴을 포함하는 연료전지용 분리판 및 이를 포함하는 연료전지 스택",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 한국과학기술연구원",
+      "date": "2018-09-05"
+    },
+    {
+      "title": "연료전지용 분리판 및 이를 포함하는 연료전지 스택",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 한국과학기술연구원",
+      "date": "2018-03-30"
+    }
+  ]
+}

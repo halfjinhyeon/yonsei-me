@@ -1,0 +1,2077 @@
+{
+  "name": "송순호",
+  "nameEn": "Song Soonho",
+  "email": "soonhosong@yonsei.ac.kr",
+  "phone": "02)2123-2811",
+  "office": null,
+  "homepage": null,
+  "sourceUrl": "https://me.yonsei.ac.kr/faculty/name_search.do?mode=view&userId=EMeDFsg7ezICnj1V655kTw%3D%3D&sosokcd=",
+  "crawledAt": "2026-07-27",
+  "articles": [
+    {
+      "date": "2026-03",
+      "title": "Feasibility of plasma-assisted CO2 conversion of biomass with enhanced conversion and efficiency in a rotating gliding arc-spouted bed system",
+      "journal": "Fuel Processing Technology"
+    },
+    {
+      "date": "2023-10",
+      "title": "Study on the Combustion Characteristics of Ethanol Nanofuel",
+      "journal": "Aerospace"
+    },
+    {
+      "date": "2023-09",
+      "title": "E-fuel 기반 OME2 첨가를 통한 SI 엔진의 성능 개선 및 배출물 저감 연구",
+      "journal": "Transactions of the Korean Society of Automotive Engineers"
+    },
+    {
+      "date": "2023-04",
+      "title": "Dry reforming of methane in a rotating gliding arc plasma: Improving efficiency and syngas cost by quenching product gas",
+      "journal": "Journal of CO2 Utilization"
+    },
+    {
+      "date": "2022-06",
+      "title": "Atomization characteristics of slurry fuels using a pressure swirl atomizer",
+      "journal": "Journal of Non-Newtonian Fluid Mechanics"
+    },
+    {
+      "date": "2021-09",
+      "title": "Thermal efficiency improvement of a range extender based on the T-GDI engine for a medium-size electric bus using on-board gasoline fuel reforming with steam addition",
+      "journal": "FUEL"
+    },
+    {
+      "date": "2021-03",
+      "title": "Hydrogen effects on ignition delay time of methyl butanoate in a rapid compression machine",
+      "journal": "INTERNATIONAL JOURNAL OF ENERGY RESEARCH"
+    },
+    {
+      "date": "2021-01",
+      "title": "Numerical investigation on a dual loop EGR optimization of a light duty diesel engine based on water condensation analysis",
+      "journal": "APPLIED THERMAL ENGINEERING"
+    },
+    {
+      "date": "2021-01",
+      "title": "Experiment on the flammability variation of micron-sized aluminum powder depending on combustion environment for burning of aluminum-diluted oxygen",
+      "journal": "ACTA ASTRONAUTICA"
+    },
+    {
+      "date": "2021-01",
+      "title": "Infrared signature of NEPE, HTPB rocket plume under varying flight conditions and motor size",
+      "journal": "INFRARED PHYSICS & TECHNOLOGY"
+    },
+    {
+      "date": "2020-12",
+      "title": "파장가변형 흡수분광법을 이용한 질산암모늄 생성 과정에서의 NO와 NH3 농도 실시간 변동 측정",
+      "journal": "에너지기후변화학회지"
+    },
+    {
+      "date": "2020-11",
+      "title": "Prediction of hydrogen-added combustion process in T-GDI engine using artificial neural network",
+      "journal": "APPLIED THERMAL ENGINEERING"
+    },
+    {
+      "date": "2020-08",
+      "title": "Improving the thermal efficiency of a T-GDI engine using hydrogen from combined steam and partial oxidation exhaust gas reforming of gasoline under low-load stoichiometric conditions",
+      "journal": "FUEL"
+    },
+    {
+      "date": "2020-04",
+      "title": "DMA 내 막대형 시스 유동 층류화 장치에 의한 샘플 유동 정렬 및 입자 분류 효율 향상",
+      "journal": "Transactions of the Korean Society of Mechanical Engineers, B"
+    },
+    {
+      "date": "2020-04",
+      "title": "A rapid compression machine study of hydrogen effects on the ignition delay times of n-butane at low-to-intermediate temperatures",
+      "journal": "FUEL"
+    },
+    {
+      "date": "2020-04",
+      "title": "Carbon dioxide conversion in an atmospheric pressure microwave plasma reactor: Improving efficiencies by enhancing afterglow quenching",
+      "journal": "Journal of CO2 Utilization"
+    },
+    {
+      "date": "2020-03",
+      "title": "Concept design of a novel reformer producing hydrogen for internal combustion engines using fuel decomposition method: Performance evaluation of coated monolith suitable for on-board applications",
+      "journal": "INTERNATIONAL JOURNAL OF HYDROGEN ENERGY"
+    },
+    {
+      "date": "2019-11",
+      "title": "An agglomeration model: Influence of proximity of particles on agglomeration",
+      "journal": "JOURNAL OF MECHANICAL SCIENCE AND TECHNOLOGY"
+    },
+    {
+      "date": "2019-11",
+      "title": "The effects of the air-fuel ratio on a stationary diesel engine under dual-fuel conditions and multi-objective optimization",
+      "journal": "ENERGY"
+    },
+    {
+      "date": "2018-10",
+      "title": "Numerical simulation on high speed impact behavior of Al-W and Al-Ni mixture",
+      "journal": "JOURNAL OF MECHANICAL SCIENCE AND TECHNOLOGY"
+    },
+    {
+      "date": "2018-10",
+      "title": "Hydrogen effects on the combustion stability, performance and emissions of a turbo gasoline direct injection engine in various air/fuel ratios",
+      "journal": "APPLIED ENERGY"
+    },
+    {
+      "date": "2018-07",
+      "title": "Molecular dynamics study of Hugoniot relation in shocked nickel single crystal",
+      "journal": "JOURNAL OF MECHANICAL SCIENCE AND TECHNOLOGY"
+    },
+    {
+      "date": "2017-11",
+      "title": "Efficient methane reforming at proper reaction environment for the highly active and stable fibrous perovskite catalyst",
+      "journal": "FUEL"
+    },
+    {
+      "date": "2017-11",
+      "title": "Diesel Engine의 1D 모델링을 통한 파일럿 분사시기와주 분사시기 최적화에 따른 엔진 효율 분석",
+      "journal": "한국자동차공학회 논문집"
+    },
+    {
+      "date": "2017-09",
+      "title": "The effects of hydrogen on the combustion, performance and emissions of a turbo gasoline direct-injection engine with exhaust gas recirculation",
+      "journal": "INTERNATIONAL JOURNAL OF HYDROGEN ENERGY"
+    },
+    {
+      "date": "2017-07",
+      "title": "Numerical study on the effects of intake valve timing on performance of a natural gas-diesel dual-fuel engine and multi-objective Pareto optimization",
+      "journal": "APPLIED THERMAL ENGINEERING"
+    },
+    {
+      "date": "2017-04",
+      "title": "Numerical study of the performance and NO<inf>x</inf> emission of a diesel-methanol dual-fuel engine using multi-objective Pareto optimization",
+      "journal": "ENERGY"
+    },
+    {
+      "date": "2017-03",
+      "title": "Model-based multi-objective Pareto optimization of the BSFC and NO<inf>x</inf> emission of a dual-fuel engine using a variable valve strategy",
+      "journal": "JOURNAL OF NATURAL GAS SCIENCE AND ENGINEERING"
+    },
+    {
+      "date": "2016-11",
+      "title": "Rapid compression machine studies on ignition delay changes in a methyl butanoate/n-heptane mixture by hydrogen addition",
+      "journal": "INTERNATIONAL JOURNAL OF HYDROGEN ENERGY"
+    },
+    {
+      "date": "2016-06",
+      "title": "발전용 천연가스-디젤 혼소 엔진의 흡기밸브 개폐시기에 따른 연소 및 배출 특성에 대한 수치 해석적 연구",
+      "journal": "에너지공학"
+    },
+    {
+      "date": "2016-03",
+      "title": "1D-3D 연동해석을 통한 흡기 매니폴드 형상이실린더별 유동 분배에 미치는 영향 평가",
+      "journal": "한국자동차공학회 논문집"
+    },
+    {
+      "date": "2016-03",
+      "title": "발전용 대형 디젤 엔진의 천연가스-디젤/부생유(Hi-sene) 혼합연소 시엔진 성능변화에 미치는 영향",
+      "journal": "에너지공학"
+    },
+    {
+      "date": "2015-12",
+      "title": "메탄을 이용한 매체 순환 개질 시스템을 위한 Ni-YSZ 촉매에서의Y에 따른 촉매 반응 특성 연구",
+      "journal": "한국수소및신에너지학회논문집"
+    },
+    {
+      "date": "2015-12",
+      "title": "Rapid-compression Machine Studies on Two-stage Ignition Characteristics of Hydrocarbon Autoignition and an Investigation of New Gasoline Surrogates",
+      "journal": "ENERGY"
+    },
+    {
+      "date": "2015-12",
+      "title": "Predicting performance of a methane-fueled HCCI engine with hydrogen addition considering knock resistance",
+      "journal": "INTERNATIONAL JOURNAL OF HYDROGEN ENERGY"
+    },
+    {
+      "date": "2015-12",
+      "title": "Real-time light transmission spectroscopy (RTLTS): A real-time and in situ particle size distribution measurement for fractal-like diesel exhaust particles",
+      "journal": "JOURNAL OF AEROSOL SCIENCE"
+    },
+    {
+      "date": "2015-10",
+      "title": "메탄/합성가스 혼합물에 의한 발전용 SI 가스엔진의 성능에 관한 연구",
+      "journal": "한국가스학회지"
+    },
+    {
+      "date": "2015-10",
+      "title": "Comparative Study on Infrared Irradiance Emitted from Standard and Real Rocket Motor Plumes",
+      "journal": "PROPELLANTS EXPLOSIVES PYROTECHNICS"
+    },
+    {
+      "date": "2015-10",
+      "title": "The effects of hydrogen addition on the auto-ignition delay of homogeneous primary reference fuel/air mixtures in a rapid compression machine",
+      "journal": "INTERNATIONAL JOURNAL OF HYDROGEN ENERGY"
+    },
+    {
+      "date": "2015-08",
+      "title": "The effects of hydrogen on the efficiency of NOx reduction via hydrocarbon-selective catalytic reduction (HC-SCR) at low temperature using various reductants",
+      "journal": "INTERNATIONAL JOURNAL OF HYDROGEN ENERGY"
+    },
+    {
+      "date": "2015-06",
+      "title": "Performance and NOx emissions of a biogas-fueled turbocharged internal combustion engine",
+      "journal": "ENERGY"
+    },
+    {
+      "date": "2015-04",
+      "title": "발전용 대형 디젤 엔진의 천연가스-디젤혼소 운전 특성에 대한수치해석 연구",
+      "journal": "한국가스학회지"
+    },
+    {
+      "date": "2015-03",
+      "title": "5MW 바이오가스 터빈의 바이오가스와 도시가스 혼합용 정적 혼합기의 성능에 관한 수치해석 및 실증 연구",
+      "journal": "에너지공학"
+    },
+    {
+      "date": "2015-03",
+      "title": "An experimental study on the fuel conversion efficiency and NOx emissions of a spark-ignition gas engine for power generation by fuel mixture of methane and model syngas (H2/CO)",
+      "journal": "JOURNAL OF NATURAL GAS SCIENCE AND ENGINEERING"
+    },
+    {
+      "date": "2015-03",
+      "title": "Study on the filtration behavior of a metal fiber filter as a function of filter pore size and fiber diameter",
+      "journal": "JOURNAL OF AEROSOL SCIENCE"
+    },
+    {
+      "date": "2015-03",
+      "title": "Numerical investigation of a dual-loop EGR split strategy using a split index and multi-objective Pareto optimization",
+      "journal": "APPLIED ENERGY"
+    },
+    {
+      "date": "2015-02",
+      "title": "Infrared Irradiance Reduction in Minimum Smoke Propellants by Addition of Potassium Salt",
+      "journal": "PROPELLANTS EXPLOSIVES PYROTECHNICS"
+    },
+    {
+      "date": "2014-11",
+      "title": "An empirical study of the dry soot filtration behavior of a metal foam filter on a particle number concentration basis",
+      "journal": "ENERGY"
+    },
+    {
+      "date": "2014-10",
+      "title": "고체로켓모터의 적외선 신호에 관한 수치적, 실험적 연구",
+      "journal": "한국추진공학회지"
+    },
+    {
+      "date": "2014-05",
+      "title": "Predicting the performance and NOx emissions of a turbocharged spark-ignition engine generator fueled with biogases and hydrogen addition under down-boosting condition",
+      "journal": "INTERNATIONAL JOURNAL OF HYDROGEN ENERGY"
+    },
+    {
+      "date": "2014-04",
+      "title": "Effects of H2 on the number concentration of particulate matter in diesel engines using a low-pressure loop exhaust-gas recirculation system",
+      "journal": "INTERNATIONAL JOURNAL OF HYDROGEN ENERGY"
+    },
+    {
+      "date": "2013-08",
+      "title": "Development of a real-time, in-situ particle sizing technique: Real-time light transmission spectroscopy (RTLTS)",
+      "journal": "AEROSOL SCIENCE AND TECHNOLOGY"
+    },
+    {
+      "date": "2013-08",
+      "title": "H2 effects on diesel combustion and emissions with an LPL-EGR system",
+      "journal": "INTERNATIONAL JOURNAL OF HYDROGEN ENERGY"
+    },
+    {
+      "date": "2013-04",
+      "title": "Suspended GaN nanowires as NO2 sensor for high temperature applications",
+      "journal": "ANALYST"
+    },
+    {
+      "date": "2012-06",
+      "title": "소형 가스엔진 발전기의 배기가스 폐열을 이용한 바이오가스 개질 가능성에 관한 실험적 연구",
+      "journal": "한국수소및신에너지학회논문집"
+    },
+    {
+      "date": "2011-10",
+      "title": "Parametric study on particle size and SOF effects on EGR cooler fouling",
+      "journal": "ATMOSPHERIC ENVIRONMENT"
+    },
+    {
+      "date": "2011-10",
+      "title": "Investigation of the effects of hydrogen on cylinder pressure in a split-injection diesel engine at heavy EGR",
+      "journal": "INTERNATIONAL JOURNAL OF HYDROGEN ENERGY"
+    },
+    {
+      "date": "2011-06",
+      "title": "수소 첨가에 따른 30kW급 가스엔진 발전기의 발전효율 및 질소산화물 배출량 특성 연구",
+      "journal": "한국수소및신에너지학회논문집"
+    },
+    {
+      "date": "2011-06",
+      "title": "Calculation of mass-weighted distribution of diesel particulate matters using primary particle density",
+      "journal": "JOURNAL OF AEROSOL SCIENCE"
+    },
+    {
+      "date": "2011-05",
+      "title": "합성가스(Reforming gas)를 이용한 멀티채널 CDPF의 재생 특성 연구",
+      "journal": "한국자동차공학회 논문집"
+    },
+    {
+      "date": "2011-05",
+      "title": "Pt/CeO_2 촉매와 Tight Contact 한 상태의 Model Soot 산화에 NO가 미치는 영향에 관한 실험적 연구",
+      "journal": "한국자동차공학회 논문집"
+    },
+    {
+      "date": "2011-05",
+      "title": "Hydrogen effects on NOx emissions and brake thermal efficiency in a diesel engine under low-temperature and heavy-EGR conditions",
+      "journal": "INTERNATIONAL JOURNAL OF HYDROGEN ENERGY"
+    },
+    {
+      "date": "2011-04",
+      "title": "A numerical study of a methane-fueled gas engine generator with addition of hydrogen using cycle simulation and DOE method",
+      "journal": "INTERNATIONAL JOURNAL OF HYDROGEN ENERGY"
+    },
+    {
+      "date": "2010-12",
+      "title": "Formation of NOx from air and N2/O2 mixtures using a nonthermal microwave plasma system",
+      "journal": "Japanese Journal of Applied Physics"
+    },
+    {
+      "date": "2010-10",
+      "title": "NUMERICAL STUDY OF A LIGHT-DUTY DIESEL ENGINE WITH A DUAL-LOOP EGR SYSTEM UNDER FREQUENT ENGINE OPERATING CONDITIONS USING THE DOE METHOD",
+      "journal": "International Journal of Automotive Technology"
+    },
+    {
+      "date": "2010-09",
+      "title": "과급압력, 배압, 분사 시기 및 분사량에 따른 복합 방식 배기 재순환 시스템 적용 디젤 엔진의 최적화에 대한 연구",
+      "journal": "한국자동차공학회 논문집"
+    },
+    {
+      "date": "2010-08",
+      "title": "Experimental and numerical study of detailed reaction mechanism optimization for syngas (H-2 + CO) production by non-catalytic partial oxidation of methane in a flow reactor",
+      "journal": "International Journal of Hydrogen Energy"
+    },
+    {
+      "date": "2010-07",
+      "title": "NOx Reduction Characteristics for Different Composition Ratios of Pt/Al2O3, Rh/Al2O3 Catalyst Mixtures Using Model Gas as Reformates",
+      "journal": "Chinese Journal of Chemistry"
+    },
+    {
+      "date": "2010-06",
+      "title": "Generating efficiency and NOx emissions of a gas engine generator fueled with a biogas-hydrogen blend and using an exhaust gas recirculation system",
+      "journal": "International Journal of Hydrogen Energy"
+    },
+    {
+      "date": "2010-06",
+      "title": "Analysis of fractal particles from diesel exhaust using a scanning-mobility particle sizer and laser-induced incandescence",
+      "journal": "JOURNAL OF AEROSOL SCIENCE"
+    },
+    {
+      "date": "2010-06",
+      "title": "An experimental study of syn-gas production via microwave plasma reforming of methane, iso-octane and gasoline",
+      "journal": "Energy"
+    },
+    {
+      "date": "2010-02",
+      "title": "Study on the Fuel-Reforming-Assisted Hydrocarbon Selective Catalytic Reduction over Silver/Alumina Catalyst",
+      "journal": "Industrial & Engineering Chemistry Research"
+    },
+    {
+      "date": "2010-01",
+      "title": "Conversion of NO to NO2 in air by a micro electric NOx converter based on a corona discharge process",
+      "journal": "Analyst"
+    },
+    {
+      "date": "2010-01",
+      "title": "Real-time, In situ Measurement of Fuel and Crossover Methanol Vapor Concentration of a Vapor-Fed Passive Direct Methanol Fuel Cell Using Laser Absorption Spectroscopy",
+      "journal": "Japanese Journal of Applied Physics"
+    },
+    {
+      "date": "2010-01",
+      "title": "Measuring Methanol Concentrations in a Vapor-Fed Direct Methanol Fuel Cell Using Laser Absorption Spectroscopy",
+      "journal": "Journal of The Electrochemical Society"
+    },
+    {
+      "date": "2009-12",
+      "title": "Generating efficiency and emissions of a spark-ignition gas engine generator fuelled with biogas-hydrogen blends",
+      "journal": "INTERNATIONAL JOURNAL OF HYDROGEN ENERGY"
+    },
+    {
+      "date": "2009-07",
+      "title": "Gas sensing properties of WO3 doped rutile TiO2 thick film at high operating temperature",
+      "journal": "Current Applied Physics"
+    },
+    {
+      "date": "2009-04",
+      "title": "Reliable optical measurement of water vapor in highly scattering environment",
+      "journal": "Spectrochimica Acta Part A-Molecular And Biomolecular Spectroscopy"
+    },
+    {
+      "date": "2009-02",
+      "title": "A micro-thermoelectric gas sensor for detection of hydrogen and atomic oxygen",
+      "journal": "Analyst"
+    },
+    {
+      "date": "2008-08",
+      "title": "Measurement of soot oxidation with NO2-O-2-H2O in a flow reactor simulating diesel engine DPF",
+      "journal": "International Journal of Automotive Technology"
+    },
+    {
+      "date": "2007-12",
+      "title": "RPF 열분해 가스화시 합성가스 조성에 대한 화학평형 계산",
+      "journal": "한국연소학회지"
+    },
+    {
+      "date": "2007-10",
+      "title": "Thermo-gravimetric Analyzer를 이용한 RPF 열분해 특성",
+      "journal": "한국폐기물학회지"
+    },
+    {
+      "date": "2007-06",
+      "title": "나노 입자를 이용한 PCB 기반 후막 가스 센서",
+      "journal": "마이크전자 및 패키징학회지"
+    },
+    {
+      "date": "2007-05",
+      "title": "Kinetic study in modeling pyrolysis of refuse plastic fuel",
+      "journal": "ENERGY & FUELS"
+    },
+    {
+      "date": "2006-10",
+      "title": "Low pressure loop egr system analysis using simulation and experimental investigation in heavy-duty diesel engine",
+      "journal": "INTERNATIONAL JOURNAL OF AUTOMOTIVE TECHNOLOGY"
+    },
+    {
+      "date": "2006-01",
+      "title": "A study on time-resolved laser induced incandescence analysis method for the measurement of primary particle size in diesel exhaust",
+      "journal": "JSME INTERNATIONAL JOURNAL SERIES B-FLUIDS AND THERMAL ENGINEERING"
+    },
+    {
+      "date": "2003-04",
+      "title": "A Shock Tube Study of the Reaction NH2 + CH4 → NH3 + CH3 and Comparison with Transition State Theory",
+      "journal": "INTERNATIONAL JOURNAL OF CHEMICAL KINETICS"
+    }
+  ],
+  "awards": [],
+  "conferences": [
+    {
+      "title": "Modeling and simulation of shock waves in solids using branched Hugoniots",
+      "conference": "The 9th International Conference on Multiscale Materials Modeling",
+      "period": "2018.10.28~2018.11.02"
+    },
+    {
+      "title": "Multi-scale analysis of shock behavior of single crystalline Al",
+      "conference": "The 8th Japan-Korea Workshop on Computational Mechanics",
+      "period": "2018.06.07~2018.06.08"
+    },
+    {
+      "title": "Micro-CT 분석과 packing model을 이용한 고체 추진제 미세구조 기반 알루미늄 응집 예측 모델 개발",
+      "conference": "한국추진공학회 2017년도 제49회 추계학술대회",
+      "period": "2017.11.22~2017.11.24"
+    },
+    {
+      "title": "사일로 가스터빈 버너배열 변경에 따른 연소기 온도분포 변화",
+      "conference": "2017년도 에너지및 동력공학부문 춘계 학술대회",
+      "period": "2017.06.15~2017.06.16"
+    },
+    {
+      "title": "Molecular Dynamics Simulations of Al under Shock for Hugoniot Relationship",
+      "conference": "대한기계학회 CAE 및 응용역학부문 2017년도 춘계학술대회",
+      "period": "2017.05.25~2017.05.27"
+    },
+    {
+      "title": "Energy Sensitivity Analysis and Integration in 1D DI Diesel Engine Model",
+      "conference": "2017 한국자동차공학회 춘계학술대회",
+      "period": "2017.05.18~2017.05.20"
+    },
+    {
+      "title": "충격 하의 단결정 FCC 알루미늄 거동 모사를 위한 원자 상호간 포텐셜 모델 검증 및 휴고니엇 관계 도출",
+      "conference": "2017년도 대한금속재료학회 춘계학술대회",
+      "period": "2017.04.26~2017.04.28"
+    },
+    {
+      "title": "충격하의 알루미늄 원자 상호간 MD 포텐셜 모델 검증",
+      "conference": "2016 한국군사과학기술학회 추계학술대회",
+      "period": "2016.06.09~2016.06.10"
+    },
+    {
+      "title": "승용디젤엔진에서의 Dual-loop EGR 분배 특성에 따른 효율 향상 및 배기 특성에 대한 수치적 연구",
+      "conference": "2016 한국자동차공학회 춘계학술대회",
+      "period": "2016.05.19~2016.05.21"
+    },
+    {
+      "title": "천연가스가 첨가된 대형 디젤 엔진에서 흡기밸브시기에 따른 엔진성능 및 배출가스에 대한 수치해석적 연구",
+      "conference": "대한기계학회 열공학부문 2016년도 춘계학술대회",
+      "period": "2016.04.19~2016.04.22"
+    },
+    {
+      "title": "메탄-디젤 혼소 단기통 CFR 엔진에서 혼소 비율이 엔진 효율 및 배기가스에 미치는 영향",
+      "conference": "대한기계학회 열공학부문 2016년도 춘계학술대회",
+      "period": "2016.04.19~2016.04.22"
+    },
+    {
+      "title": "분자 동역학을 이용한 충격하의 단결정 FCC 알루미늄의 압력 부피 휴고니엇 관계 도출",
+      "conference": "대한기계학회 2016 CAE 및 응용역학 부문 춘계학술대회",
+      "period": "2016.04.07~2016.04.09"
+    },
+    {
+      "title": "가솔린 엔진의 EGR 적용 특성에 관한 연구",
+      "conference": "2015년 한국자동차공학회 학술대회 및 전시회",
+      "period": "2015.11.18~2015.11.21"
+    },
+    {
+      "title": "Optimization of Reformer in HEGR",
+      "conference": "2015 한국공업화학회 추계 총회 및 학술대회",
+      "period": "2015.11.04~2015.11.06"
+    },
+    {
+      "title": "Numerical analysis on the physical behavior and characteristics of MESM on the shock compression",
+      "conference": "2015 International Autumn Seminar on Propellants, Explosives and Pyrotechnics (2015 IASPEP)",
+      "period": "2015.09.16~2015.09.18"
+    },
+    {
+      "title": "Effect of hydrogen as an additive on lean limit and emissions of a turbo gasoline direct injection",
+      "conference": "2015 JSAE&SAE Powertrains, Fuels and Lubricants",
+      "period": "2015.09.01~2015.09.04"
+    },
+    {
+      "title": "Hydrogen effects on ignition delay of methyl butanoate/n-heptane mixture",
+      "conference": "8th International Conference on Sustainable Energy & Environmental Protection",
+      "period": "2015.08.11~2015.08.14"
+    },
+    {
+      "title": "CeO2 modified Ni based oxygen carriers in chemical-looping reforming",
+      "conference": "8th International Conference on Sustainable Energy & Environmental Protection",
+      "period": "2015.08.11~2015.08.14"
+    },
+    {
+      "title": "가스터빈 연소기 연소모드 변환에 따른 내부유동 및 열전달 특성",
+      "conference": "대한기계학회 2015년도 에너지 및 동력공학부문 춘계학술대회",
+      "period": "2015.06.26~2015.06.26"
+    },
+    {
+      "title": "흡기 매니폴드 형상에 따른 CNG 엔진 기통간 편차 개선에 관한 수치적 연구",
+      "conference": "한국자동차공학회 2015년도 부문종합 학술대회",
+      "period": "2015.05.28~2015.05.30"
+    },
+    {
+      "title": "수소 첨가가 메탄 예혼합압축착화 엔진의 점화 지연에 미치는 영향 예측",
+      "conference": "한국자동차공학회 2015년도 부문종합 학술대회",
+      "period": "2015.05.28~2015.05.30"
+    },
+    {
+      "title": "터보 가솔린 직분사 엔진의 전부하에서 수소 첨가에 따른 연소 특성 연구",
+      "conference": "한국자동차공학회 2015년도 부문종합 학술대회",
+      "period": "2015.05.28~2015.05.30"
+    },
+    {
+      "title": "승용 디젤 엔진에서 EGR 내 수소첨가가 배기 특성에 미치는 영향에 대한 수치적 연구",
+      "conference": "한국자동차공학회 2015년도 부문종합 학술대회",
+      "period": "2015.05.28~2015.05.30"
+    },
+    {
+      "title": "수소 첨가가 n-heptane의 ignition-delay에 영향을 미치는 요인",
+      "conference": "한국연소학회 2015 춘계학술대회",
+      "period": "2015.05.21~2015.05.23"
+    },
+    {
+      "title": "수소 첨가가 메탄 예혼합압축착화 엔진의 성능과 배기에 미치는 영향",
+      "conference": "대한기계학회 2015년도 열공학부문 춘계학술대회",
+      "period": "2015.04.22~2015.04.25"
+    },
+    {
+      "title": "확산 포집에 따른 Metal fiber filter의 포집 온도별 필터링 특성 고찰",
+      "conference": "한국자동차공학회 2014년도 학술대회 및 전시회",
+      "period": "2014.11.19~2014.11.22"
+    },
+    {
+      "title": "Metal fiber filter의 Dry soot 입자 포집특성에 대한 실험적 연구",
+      "conference": "대한기계학회 2014년도 추계학술대회",
+      "period": "2014.11.11~2014.11.14"
+    },
+    {
+      "title": "고체 추진기관에서 방출되는 배기화염의 광학 특성 분석",
+      "conference": "제4회 고에너지국방소재 학술대회",
+      "period": "2014.11.11~2014.11.11"
+    },
+    {
+      "title": "충격 시 다기능 에너지물질의 기계적 거동 특성 및 물리 현상에 대한 수치해석적 연구",
+      "conference": "제4회 고에너지국방소재 학술대회",
+      "period": "2014.11.11~2014.11.11"
+    },
+    {
+      "title": "An Experimental Study on the Mutual Consistency of Infrared Radiation Signature between Standard Rocket Motor and Actual Rocket Motor",
+      "conference": "3rd Korean International Symposium on High Energy Materials",
+      "period": "2014.08.25~2014.08.29"
+    },
+    {
+      "title": "Effects of Chemical Additives on the Ignition Delay of Iso-octane in the Rapid Compression Machine",
+      "conference": "35th International Symposium on Combustion",
+      "period": "2014.08.03~2014.08.08"
+    },
+    {
+      "title": "Effects of hydrogen as an additive on emission gas of turbo gasoline direct injection engine",
+      "conference": "35th International Symposium on Combustion",
+      "period": "2014.08.03~2014.08.08"
+    },
+    {
+      "title": "An experimental study of the effect of hydrogen additive on a primary reference fuel HCCI combustion",
+      "conference": "35th International Symposium on Combustion",
+      "period": "2014.08.03~2014.08.08"
+    },
+    {
+      "title": "Effects of Potassium and Zirconium Additives on the Infrared Radiation Signature in Rocket Motoro Plume",
+      "conference": "35th International Symposium on Combustion",
+      "period": "2014.08.03~2014.08.08"
+    },
+    {
+      "title": "A Numerical Study on Prediction of the Performance and NOx Emissions in a Light-duty Diesel Engine with Syngas Addition",
+      "conference": "35th International Symposium on Combustion",
+      "period": "2014.08.03~2014.08.08"
+    },
+    {
+      "title": "Numerical study on effects and designing limitations of valve timing in the dual fuel engine that is modified from diesel engine",
+      "conference": "35th International Symposium on Combustion",
+      "period": "2014.08.03~2014.08.08"
+    },
+    {
+      "title": "Effects of boost pressure and intake temperature on the emission of a CNG-fueled HCCI engine for electric generator",
+      "conference": "35th International Symposium on Combustion",
+      "period": "2014.08.03~2014.08.08"
+    },
+    {
+      "title": "Fracture of two-dimensional structures of silicon - molecular dynamics simulation",
+      "conference": "11th World Congress on Computational Mechanics (WCCM XI)",
+      "period": "2014.07.20~2014.07.25"
+    },
+    {
+      "title": "Al-Fe2O3-Binder Metal Mixture의 충격 시 메조스케일 상의 거동 특성에 대한 수치해석",
+      "conference": "한국군사과학기술학회 2014 종합학술대회",
+      "period": "2014.06.19~2014.06.20"
+    },
+    {
+      "title": "희연추진제에서 칼륨이 적회선 방출에 미치는 영향",
+      "conference": "한국추진공학회 2014년도 춘계학술대회",
+      "period": "2014.05.29~2014.05.30"
+    },
+    {
+      "title": "An experimental study of the effect of metal fiber filter pore size on deposition characteristics",
+      "conference": "한국자동차공학회 부문종합 학술대회",
+      "period": "2014.05.29~2014.05.31"
+    },
+    {
+      "title": "고체로켓모터의 적외선 신호에 관한 수치적·실험적 연구",
+      "conference": "2014년도 한국추진공학회 춘계학술대회",
+      "period": "2014.05.29~2014.05.30"
+    },
+    {
+      "title": "발전용 대형 디젤 엔진의 천연가스/디젤 혼소 엔진 개조 시 엔진 성능에 관한 수치해석적 기초 연구",
+      "conference": "대한기계학회 2014년도 열공학부문 춘계학술대회",
+      "period": "2014.04.23~2014.04.26"
+    },
+    {
+      "title": "Rapid Compression Machine Studies on Ignition Delay Change of PRF HCCI Combustion by Using Chemical Additives",
+      "conference": "International Symposium on Transport Phenomena and Dynamics of Rotating Machinert (ISROMAC-15)",
+      "period": "2014.02.24~2014.02.28"
+    },
+    {
+      "title": "수소첨가가 gasoline HCCI 연소특성에 미치는 영향에 관한 RCM을 이용한 실험적 연구",
+      "conference": "대한기계학회 2013년도 열공학부문 추계학술대회",
+      "period": "2013.12.18~2013.12.20"
+    },
+    {
+      "title": "바이오가스와 도시가스의 혼합을 위한 혼합챔버 성능에 관한 수치해석 연구",
+      "conference": "대한기계학회 2013년도 열공학부문 추계학술대회",
+      "period": "2013.12.18~2013.12.20"
+    },
+    {
+      "title": "충격압에 대한 Al-Fe2O3-Binder Metal Mixture의 메조스케일 거동 특성에 관한 연구",
+      "conference": "대한기계학회 2013년도 열공학부문 추계학술대회",
+      "period": "2013.12.18~2013.12.20"
+    },
+    {
+      "title": "메탄개질기의 운전조건 변화에 따른 개질 특성 : 촉매 종류, 공간 속도, 반응물의 O₂/C 비율",
+      "conference": "대한기계학회 춘추학술대회",
+      "period": "2013.12.18~2013.12.20"
+    },
+    {
+      "title": "An Experimental study of Metal Fiber Filter on Filtering Efficiency as a function of Mode Diameter of Particles",
+      "conference": "한국자동차공학회 학술대회 및 전시회",
+      "period": "2013.11.20~2013.11.23"
+    },
+    {
+      "title": "혼합촉매 메탄 개질기를 적용한 가스엔진 발전기의 발전효율 및 배기 특성에 관한 실험적 연구",
+      "conference": "2013년도 대한기계학회 열공학부문 춘계학술대회",
+      "period": "2013.05.21~2013.05.21"
+    },
+    {
+      "title": "합성가스 생성을 위한 혼합촉매 메탄 개질기의 실험적 연구",
+      "conference": "2013 한국수소 및 신에너지학회 춘계학술대회",
+      "period": "2013.05.09~2013.05.10"
+    },
+    {
+      "title": "Metal Foam Filter의 Soot 입자직경 및 수농도에 다른 포집특성 고찰",
+      "conference": "2013 한국자동차공학회 부문종합 학술대회",
+      "period": "2013.05.01~2013.05.04"
+    },
+    {
+      "title": "메탄개질기에서 혼합촉매 적용이 개질 특성에 미치는 영향 평가",
+      "conference": "2013 한국자동차공학회 부문종합 학술대회",
+      "period": "2013.05.01~2013.05.04"
+    },
+    {
+      "title": "Digital Micro-mirror Device의 열전달 특성 연구",
+      "conference": "제 2회 차세대 리소그래피 학술대회",
+      "period": "2013.04.10~2013.04.12"
+    },
+    {
+      "title": "분광시스템을 이용한 로켓모터 배기신호 평가 및 신호 예측 코드 보정 기법 개발",
+      "conference": "2013 스텔스 기술 학술대회",
+      "period": "2013.02.19~2013.02.19"
+    },
+    {
+      "title": "로켓 모터 적외선 신호 계측을 위한 IR 분광 시스템 구축 기초연구",
+      "conference": "2013 스텔스기술 학술대회",
+      "period": "2013.02.19~2013.02.19"
+    },
+    {
+      "title": "EXPERIMENTAL STUDY ON AUTO-THERMAL REFORMING(ATR) OF METHANE USING A MIXTURE OF METAL AND PRECIOUS METAL CATALYSTS FOR SYNGAS PRODUCTION",
+      "conference": "34th International Symposium on Combustion",
+      "period": "2012.07.29~2012.08.04"
+    },
+    {
+      "title": "Rapid Compression Machine Studies on n-heptane HCCI Combustion with using Directly Injected Hydrogen as an Additive",
+      "conference": "34th International Symposium on Combustion",
+      "period": "2012.07.29~2012.08.04"
+    },
+    {
+      "title": "Prediction of combustion characteristics under methane-based fueled engine with CO2 or H2 addition",
+      "conference": "5th international conference on sustainable energy and environmental protection",
+      "period": "2012.06.05~2012.06.05"
+    },
+    {
+      "title": "AN EXPERIMENTAL INVESTIGATION ON LOW TEMPERATURE CDPF REGENERATION UTILIZING HYDROGEN",
+      "conference": "2012 한국자동차공학회 부문종합 학술대회",
+      "period": "2012.05.31~2012.06.02"
+    },
+    {
+      "title": "승용 디젤 엔진에서 엔진 주요 변수가 EGR cooler fouling에 미치는 영향 평가",
+      "conference": "2012 한국자동차공학회 부문종합 학술대회",
+      "period": "2012.05.31~2012.05.31"
+    },
+    {
+      "title": "합성가스 주요성분(H2, CO) 첨가에 따른 30 kW급 가스엔진 발전기의 운전특성 연구",
+      "conference": "한국수소 및 신에너지학회 춘계학술대회",
+      "period": "2012.05.02~2012.05.02"
+    },
+    {
+      "title": "소형 가스엔진 발전기의 배기가스 폐열을 이용한 바이오가스 개질 가능성에 관한 실험적 연구",
+      "conference": "수소 및 신에너지학회 추계학술대회",
+      "period": "2011.11.10~2011.11.10"
+    },
+    {
+      "title": "Experimental study on syngas production via biogas reforming with water",
+      "conference": "International Conference on Hydrogen Production",
+      "period": "2011.06.19~2011.06.22"
+    },
+    {
+      "title": "로켓 모터 배기신호 예측 코드 보정을 위한 예혼합 화염의 자발광 신호 계측에 대한 실험적 연구",
+      "conference": "한국군사과학기술학회 2011 종합학술대회",
+      "period": "2011.06.02~2011.06.03"
+    },
+    {
+      "title": "LNT를 장착한 디젤 차량에서의 NOx 저감에 관한 연구",
+      "conference": "2011 한국자동차공학회 부문종합 학술대회",
+      "period": "2011.05.19~2011.05.21"
+    },
+    {
+      "title": "엔진오일 주입을 통한 SOF가 EGR Cooler Fouling에 미치는 영향에 대한 평가",
+      "conference": "2011 한국자동차공학회 부문종합 학술대회",
+      "period": "2011.05.19~2011.05.19"
+    },
+    {
+      "title": "디젤 연료 개질 반응 시 공간속도에 따른 수소 발생에 관한 실험적 연구",
+      "conference": "2011 한국자동차공학회 부문종합 학술대회",
+      "period": "2011.05.19~2011.05.19"
+    },
+    {
+      "title": "수소 첨가에 따른 30kW급 가스엔진 발전기의 발전효율 및 질소산화물 배출량 특성 연구",
+      "conference": "2011년도 한국수소및신에너지학회 춘계학술대회",
+      "period": "2011.05.12~2011.05.12"
+    },
+    {
+      "title": "바이오가스 개질기 제작을 위한 바이오가스 촉매 개질 특성에 관한 연구",
+      "conference": "대한기계학회 열공학부문 2011년도 춘계학술대회",
+      "period": "2011.05.12~2011.05.12"
+    },
+    {
+      "title": "Evaluation of SOF Effects on Deposit Characteristics of the EGR Cooler Using a PM Generator",
+      "conference": "SAE 2011 World Congress",
+      "period": "2011.04.12~2011.04.12"
+    },
+    {
+      "title": "Hydrogen Effect on the DeNOX Efficiency Enhancement of Fresh and Aged Ag/Al2O3 HC-SCR in a Diesel Engine Exhaust",
+      "conference": "SAE 2011 World Congress",
+      "period": "2011.04.12~2011.04.12"
+    },
+    {
+      "title": "INTEGRATED TOTAL-NOX-EVALUATION-CHIP FOR SIMULTANEOUS CONVERSION AND DETECTION OF NOX IN AIR",
+      "conference": "The 24th IEEE International Conference on Micro Electro Mechanical Systems (MEMS 2011)",
+      "period": "2011.01.23~2011.01.27"
+    },
+    {
+      "title": "n-dodecane과 수소를 환원제로 하는 은 알루미나 촉매 기반 HC-SCR에 대한 실험적 연구",
+      "conference": "2010년 한국자동차공학회 학술대회 및 전시회",
+      "period": "2010.11.24~2010.11.27"
+    },
+    {
+      "title": "소형 디젤 차량에서 LNT 시스템 제어를 통한 DeNOx 효율 개선에 관한 연구",
+      "conference": "2010년 한국자동차공학회 학술대회 및 전시회",
+      "period": "2010.11.24~2010.11.27"
+    },
+    {
+      "title": "수소와 일산화탄소를 이용한 멀티채널 CDPF의 재생특성에 관한 연구",
+      "conference": "2010년 한국자동차공학회 학술대회 및 전시회",
+      "period": "2010.11.24~2010.11.27"
+    },
+    {
+      "title": "소형 가스엔진 발전기용 탈황장치 설계를 위한 활성탄의 물리적 혼합 효과에 관한 기초연구",
+      "conference": "한국대기환경학회 2010년 추계학술대회",
+      "period": "2010.10.28~2010.10.30"
+    },
+    {
+      "title": "박막 및 다공성의 CuO-BaTio3 감지막을 이용한 CO2 가스 센서",
+      "conference": "한국정밀공학회 2010년도 춘계학술대회",
+      "period": "2010.05.26~2010.05.28"
+    },
+    {
+      "title": "Low Temperature Active Regeneration of Soot Using Hydrogen in a Multi-Channel Catalyzed DPF",
+      "conference": "SAE 2010 World Congress",
+      "period": "2010.04.12~2010.04.15"
+    },
+    {
+      "title": "CO2 가스의 빠른 검침을 위한 다공성 구조의 박막 가스센서",
+      "conference": "2010년도 제 12회 한국 멤스학회",
+      "period": "2010.04.01~2010.04.03"
+    },
+    {
+      "title": "공중부유형 GaN 나노와이어를 이용한 가스센서 제작",
+      "conference": "12th Korean MEMS Conference",
+      "period": "2010.04.01~2010.04.03"
+    },
+    {
+      "title": "공기질 모니터링을 위한 코로나 방전 기반의 마이크로 전기적 NOx 변환기",
+      "conference": "2010년도 제 12회 한국 멤스학회",
+      "period": "2010.04.01~2010.04.03"
+    },
+    {
+      "title": "바이오가스를 이용한 가스엔진 발전기의 발전효율 및 질소산화물 배출 특성",
+      "conference": "2009 신재생에너지학회 추계 학술대회",
+      "period": "2009.11.25~2009.11.25"
+    },
+    {
+      "title": "촉매 부분 산화를 이용한 디젤 연료 개질의 실험적 연구",
+      "conference": "2009 KSAE 학술대회",
+      "period": "2009.11.24~2009.11.26"
+    },
+    {
+      "title": "수소를 이용한 멀티채널 CDPF의 입자상물질 재생 특성에 대한 선행 연구",
+      "conference": "2009 KSAE 학술대회",
+      "period": "2009.11.24~2009.11.26"
+    },
+    {
+      "title": "A simulation Study about the Dual Loop EGR System of a Light-duty Diesel Engine Using DOE",
+      "conference": "The 15th Pacific Automotive Engineering Conference-APAC15",
+      "period": "2009.10.25~2009.10.26"
+    },
+    {
+      "title": "도시가스와 혼합가스(H2, CO) 적용시, 점화시기 및 공연비에 따른 발전효율 및 질소산화물 배출량 비교",
+      "conference": "2009 신재생에너지학회 춘계 학술대회",
+      "period": "2009.06.25~2009.06.25"
+    },
+    {
+      "title": "레이저분광법을 이용한 직접메탄올연료전지 내 메탄올 농도 측정",
+      "conference": "대한기계학회 2009년도 에너지 및 동력공학부문 춘계학술대회",
+      "period": "2009.05.21~2009.05.21"
+    },
+    {
+      "title": "수소 첨가가 디젤 엔진 HCCI 연소특성에 미치는 영향에 관한 계산적 연구",
+      "conference": "대한기계학회 2009년도 에너지 및 동력공학부문 춘계학술대회",
+      "period": "2009.05.21~2009.05.21"
+    },
+    {
+      "title": "Experimental Study on Soot Oxidation Characterization of Pt/CeO2 Catalyst with NO and O2 Using a Flow Reactor System",
+      "conference": "SAE 2009 World Congress",
+      "period": "2009.04.30~2009.04.30"
+    },
+    {
+      "title": "연료 개질 모델 가스를 이용한 Pt-based 촉매에서의 NOx 변환 특성에 관한 연구",
+      "conference": "2009 KSAE 부문종합 학술대회",
+      "period": "2009.04.29~2009.05.01"
+    },
+    {
+      "title": "Model Soot과 Pt/CeO2 촉매의 Tight Contact 상태에서 O2에 의한 산화특성 연구",
+      "conference": "2009 KSAE 부문종합 학술대회",
+      "period": "2009.04.29~2009.05.01"
+    },
+    {
+      "title": "EGR 쿨러의 오염 하에서 NOx 저감율과 BSFC 향상을 위한 소형 디젤엔진 운전 변수 최적화에 관한 수치적 연구",
+      "conference": "한국자동차공학회 30주년 학술대회",
+      "period": "2008.04.22~2008.04.24"
+    },
+    {
+      "title": "AlGaN/GaN의 다면결정박막 이종구조물을 이용한 NO2의 상온 검출",
+      "conference": "11th Korean MEMS Conference",
+      "period": "2009.04.02~2009.04.04"
+    },
+    {
+      "title": "혼합가스(CO,H2,CO2,N2)와 LPG를 이용한 Duel fuel의 조성 변화에 따른 엔진 연소 특성 및 배출가스 성분에 관한 연구",
+      "conference": "한국자동차공학회 춘 추계 학술대회",
+      "period": "2008.11.19~2008.11.22"
+    },
+    {
+      "title": "PM 입자 생성기를 이용한 디젤 엔진 EGR Cooler Fouling 특성 연구",
+      "conference": "한국자동차공학회 춘 추계 학술대회",
+      "period": "2008.11.19~2008.11.22"
+    },
+    {
+      "title": "Enhancement of DeNOx over Ag/Al₂O₃3 by H₂ and catalytic partial oxidation",
+      "conference": "한국자동차공학회 30주년 학술대회 및 전시회",
+      "period": "2008.11.19~2008.11.21"
+    },
+    {
+      "title": "레이저 유도 백열법을 이용한 DPF에서의 입자상 물질 저감 특성에 관한 연구",
+      "conference": "한국자동차공학회 2008 학술대회 및 전시회",
+      "period": "2008.11.19~2008.11.21"
+    },
+    {
+      "title": "Urea SCR System의 제어 알고리즘 개발을 통한 DeNOx 효율 개선에 관한 실험적 연구",
+      "conference": "한국자동차공학회 2008년 학술대회 및 전시회",
+      "period": "2008.11.19~2008.11.21"
+    },
+    {
+      "title": "Production of Synthesis Gasby Two-stage Gasification of RPF in aLab-Scale Reactor",
+      "conference": "7th international conference on Sustainable Energy Technologies (SET2008),",
+      "period": "2008.08.24~2008.08.27"
+    },
+    {
+      "title": "An Experimental Study on Methane and Gasoline Reforming for Hydrogen Rich Gas Generation Using Non-Thermal Microwave Plasma",
+      "conference": "The 7th International Conference on SET2008(Sustainable Energy Technologies2008)",
+      "period": "2008.08.24~2008.08.27"
+    },
+    {
+      "title": "Determination of the hydrodynamic resistance factor(kxp) of DPF during filtration and regeneration processes using a single channel DPF",
+      "conference": "Fisita 2008",
+      "period": "2008.05.31~2008.06.04"
+    },
+    {
+      "title": "질소 산화물 저감을 위한 고농도 오존을 이용한 연료 개질 특성",
+      "conference": "한국 수소 및 신에너지 학회 2008 춘계 학술대회",
+      "period": "2008.05.22~2008.05.23"
+    },
+    {
+      "title": "레이저 분광법을 이용한 직접 메탄올 연료전지의 메탄올 농도 측정",
+      "conference": "한국 수소 및 신에너지 학회 2008 춘계 학술대회",
+      "period": "2008.05.22~2008.05.23"
+    },
+    {
+      "title": "디젤 연료를 이용한 연료 개질 실험에 관한 연구",
+      "conference": "2008년도 에너지 및 동력공학부문 춘계학술대회",
+      "period": "2008.05.22~2008.05.23"
+    },
+    {
+      "title": "NO와 O₂ 조건 하에서 Pt/CeO₂ 촉매의 soot 산화특성에 관한 실험적 연구",
+      "conference": "한국자동차공학회 2008년 창립 30주년 기념 학술대회",
+      "period": "2008.04.22~2008.04.24"
+    },
+    {
+      "title": "모델 가스를 이용한 Pt/Al₂O₃와 Rh/Al₂O₃ 촉매에서의 NOx 변환 특성에 관한 연구",
+      "conference": "한국자동차공학회 30주년 학술대회",
+      "period": "2008.04.22~2008.04.24"
+    },
+    {
+      "title": "단일채널 DPF의 NO₂ 재생 특성에 대한 연구",
+      "conference": "한국자동차공학회 30주년 학술대회",
+      "period": "2008.04.22~2008.04.24"
+    },
+    {
+      "title": "Characterization of Catalyzed Soot Oxidation With NO2, NO and O2 Using a Lab-Scale Flow Reactor System",
+      "conference": "SAE 2008 World Congress",
+      "period": "2008.04.14~2008.04.17"
+    },
+    {
+      "title": "Numerical Simulation of Gasification of Coal-Water-Slurry for Production of Synthesis Gas in a Two Stage Oxygen-Blown Entrained Gasifier: Using PDF model & Finite rate/Eddy dissipation model",
+      "conference": "7th International Symposium of High Temperature Air Combustion and Gasification",
+      "period": "2008.01.14~2008.01.16"
+    },
+    {
+      "title": "A biochemical sensor based on a microcalorimeter with a split-flow microchannel for a multi-detection of micro-organisms and gases",
+      "conference": "Proceedings of IEEE Seoul Section 2007",
+      "period": "2007.12.08~2007.12.08"
+    },
+    {
+      "title": "2단 분류층 가스화기에서 합성가스 생성을 위한 석탄 슬러리 가스화에 대한 수치 해석적 연구 (PDF 모델을 사용하여)",
+      "conference": "2007 신재생에너지학회 추계학술대회",
+      "period": "2007.11.06~2007.11.07"
+    },
+    {
+      "title": "Lab-scale 반응기에서 RPF 열분해 가스의 가스화에 의한 합성 가스의 생성에 대한 연구",
+      "conference": "2007 신재생에너지학회 추계학술대회",
+      "period": "2007.11.06~2007.11.07"
+    },
+    {
+      "title": "A highly sensitive micro-thermal sensor for hydrogen detection",
+      "conference": "The 6th Annual IEEE Conference on Sensors",
+      "period": "2007.10.28~2007.10.31"
+    },
+    {
+      "title": "나노입자 프린팅 기법을 이용한 인쇄회로기판기술 기반 집적형 가스센서",
+      "conference": "한국마이크로전자 및 패키징학회 2007년 추계학술대회",
+      "period": "2007.10.26~2007.10.26"
+    },
+    {
+      "title": "Lab-scale 반응기에서 RPF 열분해 가스의 가스화에 의한 합성 가스의 생성에 대한 연구",
+      "conference": "2007 연소학회 추계학술대회",
+      "period": "2007.10.25~2007.10.26"
+    },
+    {
+      "title": "2단 분류층 가스화기에서 합성가스 생성을 위한 석탄 슬러리 가스화에 대한 수치 해석적 연구(Finite rate/Eddy dissipation 모델을 사용해서)",
+      "conference": "2007 연소학회 추계학술대회",
+      "period": "2007.10.25~2007.10.26"
+    },
+    {
+      "title": "단일 채널 DPF를 이용한 SiC와 Cordierite의 PM 포집 특성 비교 연구",
+      "conference": "한국자동차공학회 2007년 춘계학술대회",
+      "period": "2007.06.22~2007.06.24"
+    },
+    {
+      "title": "EXPERIMENTAL INVESTIGATION OF SOOT OXIDATION CHARACTERISTIC WITH NO2 AND O2 USING A FLOW REACTOR SIM",
+      "conference": "SAE 2007 WORLD CONGRESS",
+      "period": "2007.04.16~2007.04.19"
+    },
+    {
+      "title": "MEASUREMENT OF SOOT MASS AND PRESSURE DROP USING A SINGLE CHANNEL DPF TO DETERMINE SOOT PERMEABILITY",
+      "conference": "SAE 2007 WORLD CONGRESS",
+      "period": "2007.04.16~2007.04.19"
+    },
+    {
+      "title": "수소 가스 감지를 위한 고감도 미세 열센서의 설계 및 제작",
+      "conference": "제9회 한국MEMS 학술대회",
+      "period": "2007.04.05~2007.04.07"
+    },
+    {
+      "title": "DPF 모사 Flow Reactor를 이용한 NO₂의 Soot 산화에서 O₂의 영향에 대한 연구",
+      "conference": "한국자동차공학회 2006년 추계학술대회",
+      "period": "2006.11.23~2006.11.25"
+    },
+    {
+      "title": "Model-Based Investigation of HPL EGR and LPL EGR System on NOx Level and BSFC of Heavy-Duty Diesel Engine",
+      "conference": "한국자동차공학회 2006년 추계학술대회",
+      "period": "2006.11.23~2006.11.25"
+    },
+    {
+      "title": "LII를 이용한 단기통 커먼 레일 디젤 엔진 배기에서 soot 농도 측정에 관한 연구",
+      "conference": "한국입자에어로졸학회",
+      "period": "2006.07.06~2006.07.08"
+    },
+    {
+      "title": "시분해 레이저 유도 백열법을 이용한 단기통 커먼레일 디젤엔진 배기에서의 PM 크기 계측 및 보정 기법에 관한 연구",
+      "conference": "대한기계학회 2006년도 춘계학술대회",
+      "period": "2006.06.08~2006.06.14"
+    },
+    {
+      "title": "단일 채널 DPF를 이용한 PM 포집량과 배압간의 특성 연구",
+      "conference": "한국자동차공학회 2006년 춘계 학술대회",
+      "period": "2006.06.22~2006.06.24"
+    },
+    {
+      "title": "A SHOCK TUBE STUDY OF THE NH2 + NO2 REACTION",
+      "conference": "29TH INTERNATIONAL SYMPOSIUM ON COMBUSTION",
+      "period": "2002.07.21~2002.07.26"
+    },
+    {
+      "title": "SHOCK TUBE DETERMINATION OF THE OVERALL RATIO OF NH2 AND NO PRODUCTS IN THE THERMAL DE-NOX TEMPERATU",
+      "conference": "2ND JOINT MEETING OF COMBUSTION INSTITUTE",
+      "period": "2001.03.25~2001.03.28"
+    },
+    {
+      "title": "SHOCK TUBE DETERMINATION OF THE OVERALL RATE OF NH2 + NO &#61614; PRODUCTS AT HIGH TEMPERATURES",
+      "conference": "28TH INTERNATIONAL SYMPOSIUM ON COMBUSTION",
+      "period": "2000.07.30~2000.08.04"
+    },
+    {
+      "title": "Shock Tube Study of the Reaction NH2+NO→Products Using Frequency Modulation Detection of NH2: Product Branching Ratio and Overall Rate Coefficient",
+      "conference": "First Joint Meeting of the US Sections of the Combustion Institute",
+      "period": "1999.03.14~1999.03.17"
+    }
+  ],
+  "fundings": [
+    {
+      "title": "[7차년도]사회지향 기계기술 글로벌 리더 양성 교육연구단",
+      "org": "한국연구재단",
+      "period": "2026-03-01~2027-02-28"
+    },
+    {
+      "title": "[포닥]송순호(송현우)-차세대 친환경 모빌리티 동력 시스템 최적화",
+      "org": "연세대학교",
+      "period": "2025-09-01~2026-08-31"
+    },
+    {
+      "title": "[민간/우나스텔라㈜] 발사체용 전기모터펌프 수류 시험 설비 구축",
+      "org": "국내",
+      "period": "2025-07-01~2026-08-31"
+    },
+    {
+      "title": "[6차년도] 사회지향 기계기술 글로벌 리더 양성 교육연구단",
+      "org": "한국연구재단",
+      "period": "2025-03-01~2026-02-28"
+    },
+    {
+      "title": "(통합Ezbaro)바이오매스 가스화 및 로테이팅 글라이딩 아크 방전 플라즈마 기반 개질을 통한 이산화탄소 활용 및 수소 생산 방안 연구(3/3)(2022.3.1~2025.2.28)",
+      "org": "한국연구재단",
+      "period": "2024-03-01~2025-02-28"
+    },
+    {
+      "title": "[5차년도] 사회지향 기계기술 글로벌 리더 양성 교육연구단",
+      "org": "한국연구재단",
+      "period": "2024-03-01~2025-02-28"
+    },
+    {
+      "title": "(통합Ezbaro)바이오매스 가스화 및 로테이팅 글라이딩 아크 방전 플라즈마 기반 개질을 통한 이산화탄소 활용 및 수소 생산 방안 연구(2/3)(2022.3.1~2025.2.28)",
+      "org": "한국연구재단",
+      "period": "2023-03-01~2024-02-29"
+    },
+    {
+      "title": "[4차년도] 사회지향 기계기술 글로벌 리더 양성 교육연구단",
+      "org": "한국연구재단",
+      "period": "2023-03-01~2024-02-29"
+    },
+    {
+      "title": "[RCMS/공동/환경산업기술원] Post Stage-V 대응을 위한 중대형 건설기계 LPG 엔지 개조 및 차량 적용 기술개발(3/3)",
+      "org": "한국환경산업기술원",
+      "period": "2023-01-01~2024-06-30"
+    },
+    {
+      "title": "[민간/지엠테크니컬센터코리아]가상 캘리브레이션과 차량 동적 모델 구축을 위한 터보차저 과도 응답 모델링",
+      "org": "국내",
+      "period": "2022-12-01~2023-11-30"
+    },
+    {
+      "title": "[민간/현대엔지비] 현대자동차그룹 9기 계약학과 운영",
+      "org": "국내",
+      "period": "2022-03-02~2027-02-28"
+    },
+    {
+      "title": "(통합Ezbaro)바이오매스 가스화 및 로테이팅 글라이딩 아크 방전 플라즈마 기반 개질을 통한 이산화탄소 활용 및 수소 생산 방안 연구(1/3)(2022.3.1~2025.2.28)",
+      "org": "한국연구재단",
+      "period": "2022-03-01~2023-02-28"
+    },
+    {
+      "title": "[3차년도] 사회지향 기계기술 글로벌 리더 양성 교육연구단",
+      "org": "한국연구재단",
+      "period": "2022-03-01~2023-02-28"
+    },
+    {
+      "title": "[RCMS/공동/환경산업기술원] (대기환경 관리기술 사업화 연계 기술개발사업)Post Stage-V 대응을 위한 중대형 건설기계 LPG 엔지 개조 및 차량 적용 기술개발(2/3)",
+      "org": "한국환경산업기술원",
+      "period": "2022-01-01~2022-12-31"
+    },
+    {
+      "title": "[국방부/방위사업청 용역] 첨단 항공엔진 연구개발 추진방안 연구",
+      "org": "방위사업청",
+      "period": "2021-12-23~2022-05-23"
+    },
+    {
+      "title": "[RCMS]스마트 오프더그라운드 모빌리티 개발(1/1)",
+      "org": "한국산업기술평가관리원",
+      "period": "2021-05-01~2022-02-28"
+    },
+    {
+      "title": "[RCMS/공동/환경산업기술원] (공동)Post Stage-V 대응을 위한 중대형 건설기계 LPG 엔지 개조 및 차량 적용 기술개발(1/3)",
+      "org": "한국환경산업기술원",
+      "period": "2021-05-01~2021-12-31"
+    },
+    {
+      "title": "[민간/현대엔지비] 현대자동차그룹 8기 계약학과 운영",
+      "org": "국내",
+      "period": "2021-03-02~2024-02-29"
+    },
+    {
+      "title": "(통합Ezbaro)바이오매스 가스화 및 수소 생성을 위한 산소전달물질 기반 반응 시스템 설계(3/3)(2019.3.1~2022.2.28)",
+      "org": "한국연구재단",
+      "period": "2021-03-01~2022-02-28"
+    },
+    {
+      "title": "[2차년도] 사회지향 기계기술 글로벌 리더 양성 교육연구단",
+      "org": "한국연구재단",
+      "period": "2021-03-01~2022-02-28"
+    },
+    {
+      "title": "[통합이지바로] (4위탁)플라즈마 반응기의 온실가스 감축량 측정 장치 구축 및 평가 기법 개발 (2/2단계)(1/1)",
+      "org": "한국연구재단",
+      "period": "2021-01-01~2022-11-30"
+    },
+    {
+      "title": "[1차년도] 사회지향 기계기술 글로벌 리더 양성 교육연구단",
+      "org": "한국연구재단",
+      "period": "2020-09-01~2021-02-28"
+    },
+    {
+      "title": "[RCMS]스마트 오프더그라운드 모빌리티 개발(1/1)",
+      "org": "한국산업기술평가관리원",
+      "period": "2020-09-01~2021-04-30"
+    },
+    {
+      "title": "[민간/현대엔지비]현대자동차그룹 7기 계약학과 운영",
+      "org": "국내",
+      "period": "2020-03-02~2023-02-28"
+    },
+    {
+      "title": "[통합이지바로] (4위탁)플라즈마 반응기의 온실가스 감축량 측정 장치 구축 및 평가 기법 개발 (1/2단계)(2/2)",
+      "org": "한국연구재단",
+      "period": "2020-03-01~2020-12-31"
+    },
+    {
+      "title": "(통합Ezbaro)바이오매스 가스화 및 수소 생성을 위한 산소전달물질 기반 반응 시스템 설계(2/3)(2019.3.1~2022.2.28)",
+      "org": "한국연구재단",
+      "period": "2020-03-01~2021-02-28"
+    },
+    {
+      "title": "[8차년도]사회지향 기계기술 글로벌 리더 양성 사업단",
+      "org": "한국연구재단",
+      "period": "2020-03-01~2020-08-31"
+    },
+    {
+      "title": "[RCMS]한국생산기술연구원/화력발전소 발생 미세먼지/전구물질의 거동 및 확산 패턴 분석을 위한 통합관제 시스템 개발(4/4, 1단계)",
+      "org": "한국에너지기술평가원",
+      "period": "2019-08-01~2019-11-30"
+    },
+    {
+      "title": "[Ezbaro] (4위탁)플라즈마 반응기의 온실가스 감축량 측정장치 구축 및 평가기법 개발 (1단계)(1/2)",
+      "org": "한국연구재단",
+      "period": "2019-06-20~2020-02-29"
+    },
+    {
+      "title": "[민간/현대엔지비] 디젤 엔진 운전 조건에서 흡기 수분 첨가의 EGR 대체 가능성 연구",
+      "org": "국내",
+      "period": "2019-03-01~2021-08-31"
+    },
+    {
+      "title": "바이오매스 가스화 및 수소 생성을 위한 산소전달물질 기반 반응 시스템 설계(1/3)(2019.3.1~2022.2.28)",
+      "org": "한국연구재단",
+      "period": "2019-03-01~2020-02-29"
+    },
+    {
+      "title": "[7차년도]사회지향 기계기술 글로벌 리더 양성 사업단",
+      "org": "한국연구재단",
+      "period": "2019-03-01~2020-02-29"
+    },
+    {
+      "title": "[RCMS]한국생산기술연구원/화력발전소 발생 미세먼지/전구물질의 거동 및 확산 패턴 분석을 위한 통합관제 시스템 개발(3/4)",
+      "org": "한국에너지기술평가원",
+      "period": "2018-10-01~2019-07-31"
+    },
+    {
+      "title": "[민간/화이버텍(주)]버너 미디어 특성 평가 및 성능 개선을 위한 연구",
+      "org": "국내",
+      "period": "2018-09-01~2023-03-31"
+    },
+    {
+      "title": "[민간/현대엔지비] 가솔린 터보 엔진 SULEV 대응을 위한 촉매가열 구간 중 배기계 열손실 최소화 및 촉매 유동 개선 전략",
+      "org": "국내",
+      "period": "2018-06-01~2021-02-28"
+    },
+    {
+      "title": "[NE-21]다기능 에너지재료 설계 및 조합 기술(3단계)",
+      "org": "산하기관",
+      "period": "2018-05-15~2020-12-15"
+    },
+    {
+      "title": "[6차년도]사회지향 기계기술 글로벌 리더 양성 사업단",
+      "org": "한국연구재단",
+      "period": "2018-03-01~2019-02-28"
+    },
+    {
+      "title": "[RCMS]한국생산기술연구원/화력발전소 발생 미세먼지/전구물질의 거동 및 확산 패턴 분석을 위한 통합관제 시스템 개발(2/4)",
+      "org": "한국에너지기술평가원",
+      "period": "2017-12-01~2018-09-30"
+    },
+    {
+      "title": "[RCMS]디젤엔진의 폐열회수 기술을 이용한 개질 수소 EGR 시스템 개발(3/3)",
+      "org": "한국산업기술평가관리원",
+      "period": "2017-06-01~2018-05-31"
+    },
+    {
+      "title": "[5차년도]사회지향 기계기술 글로벌 리더 양성 사업단",
+      "org": "한국연구재단",
+      "period": "2017-03-01~2018-02-28"
+    },
+    {
+      "title": "[NE-21]다기능 에너지재료 설계 및 조합기술(2/3단계-3/3차년도)",
+      "org": "산하기관",
+      "period": "2017-01-01~2017-12-15"
+    },
+    {
+      "title": "[RCMS]한국생산기술연구원/화력발전소 발생 미세먼지/전구물질의 거동 및 확산 패턴 분석을 위한 통합관제 시스템 개발(1/3)",
+      "org": "한국에너지기술평가원",
+      "period": "2016-12-01~2017-11-30"
+    },
+    {
+      "title": "[RCMS]한국전력공사/천연가스-디젤 혼소 분산형 발전시스템을 위한 LNG공급시스템 개발(4/4)",
+      "org": "한국에너지기술평가원",
+      "period": "2016-12-01~2020-09-30"
+    },
+    {
+      "title": "[2단계]고체 추진제 연소중 알루미늄 응집 모델 연구",
+      "org": "산하기관",
+      "period": "2016-12-01~2018-12-15"
+    },
+    {
+      "title": "[RCMS]자동차부품연구원/1리터카를 위한 클린디젤 하이브리드 원천기술 개발(4/4)",
+      "org": "한국산업기술평가관리원",
+      "period": "2016-11-01~2017-10-31"
+    },
+    {
+      "title": "산소전달물질을 이용한 소형 고정상 자열개질기 설계를 위한 연구(3/3, 미래유망,사회이슈)",
+      "org": "한국연구재단",
+      "period": "2016-11-01~2017-10-31"
+    },
+    {
+      "title": "[RCMS]디젤엔진의 폐열회수 기술을 이용한 개질 수소 EGR 시스템 개발(2/3)",
+      "org": "한국산업기술평가관리원",
+      "period": "2016-06-01~2017-05-31"
+    },
+    {
+      "title": "현대엔지비/세타 터보 엔진 배기계 유동 및 열전달 해석을 통한 배기 특성 개선 방안 해석",
+      "org": "국내",
+      "period": "2016-05-01~2018-12-31"
+    },
+    {
+      "title": "현대엔지비/연소실내 수소 첨가시 가솔린 엔진 연소특성 및 열효율 향상 연구",
+      "org": "국내",
+      "period": "2016-04-01~2018-12-31"
+    },
+    {
+      "title": "(4차년도) 사회지향 기계기술 글로벌 리더 양성 사업단",
+      "org": "한국연구재단",
+      "period": "2016-03-01~2017-02-28"
+    },
+    {
+      "title": "LG전자/스마트폰 방열 기술 연구",
+      "org": "국내",
+      "period": "2016-02-01~2017-03-31"
+    },
+    {
+      "title": "[NE-21]다기능 에너지재료 설계 및 조합기술(2/3단계-2/3차)",
+      "org": "산하기관",
+      "period": "2016-01-01~2016-12-31"
+    },
+    {
+      "title": "[RCMS]한국전력공사/천연가스-디젤 혼소 분산형 발전시스템을 위한 LNG공급시스템 개발(3/4)",
+      "org": "한국에너지기술평가원",
+      "period": "2015-12-01~2016-11-30"
+    },
+    {
+      "title": "현대엔지비/MAF와 EGR 발란스를 위한 Closed loop 제어 로직 개발 및 최적화 연구",
+      "org": "국내",
+      "period": "2015-12-01~2018-12-31"
+    },
+    {
+      "title": "[RCMS]자동차부품연구원/1리터카를 위한 클린디젤 하이브리드 원천기술 개발(3/5)",
+      "org": "한국산업기술평가관리원",
+      "period": "2015-11-01~2016-10-31"
+    },
+    {
+      "title": "산소전달물질을 이용한 소형 고정상 자열개질기 설계를 위한 연구(2/3, 미래유망,사회이슈)",
+      "org": "한국연구재단",
+      "period": "2015-11-01~2016-10-31"
+    },
+    {
+      "title": "현대엔지비/Dual-loop EGR 분배 최적화를 통한 연비 및 NOx 개선과 LP EGR 사용한계 예측에 관한 연구",
+      "org": "국내",
+      "period": "2015-09-18~2017-03-31"
+    },
+    {
+      "title": "[RCMS]디젤엔진의 폐열회수 기술을 이용한 개질 수소 EGR 시스템 개발(1/3)",
+      "org": "한국산업기술평가관리원",
+      "period": "2015-06-01~2016-05-31"
+    },
+    {
+      "title": "[NE-21]다기능 에너지재료 설계 및 조합기술(2/3단계-1차년도)",
+      "org": "방위사업청",
+      "period": "2015-03-20~2015-12-31"
+    },
+    {
+      "title": "산소전달물질을 이용한 소형 고정상 자열개질기 설계를 위한 연구(1/3)(2014.12.1~2017.10.31)",
+      "org": "한국연구재단",
+      "period": "2014-12-01~2015-10-31"
+    },
+    {
+      "title": "[RCMS]자동차부품연구원/1리터카를 위한 클린디젤 하이브리드 원천기술 개발(2/5)",
+      "org": "한국산업기술평가관리원",
+      "period": "2014-11-01~2015-10-31"
+    },
+    {
+      "title": "[RCMS]한국전력공사/천연가스-디젤 혼소 분산형 발전시스템을 위한 LNG공급시스템 개발(2/4)",
+      "org": "한국에너지기술평가원",
+      "period": "2014-08-01~2015-07-31"
+    },
+    {
+      "title": "[포닥]송순호(박정수)-바이오가스엔진의수첨배기가스재순환시스템에서H2-EGR분배전략에따른엔진성능과배출가스최적화에대한수치적연구",
+      "org": "연세대학교",
+      "period": "2014-03-01~2014-08-31"
+    },
+    {
+      "title": "[RCMS]자동차부품연구원/1리터카를 위한 클린디젤 하이브리드 원천기술 개발(1/5)",
+      "org": "한국산업기술평가관리원",
+      "period": "2013-11-01~2014-10-31"
+    },
+    {
+      "title": "연소실내 수소 첨가시 가솔린엔진 연소특성 및 열효율 향상 연구",
+      "org": "국내",
+      "period": "2013-11-01~2016-02-29"
+    },
+    {
+      "title": "[RCMS]한국전력공사/천연가스-디젤 혼소 분산형 발전시스템을 위한 LNG공급시스템 개발(1/4)(2013.08.01~2022.07.31)",
+      "org": "한국에너지기술평가원",
+      "period": "2013-08-01~2014-07-31"
+    },
+    {
+      "title": "두산인프라코어(주)/OD 해석을 통한 CNG 엔진의 질소산화물 예측에 관한 연구",
+      "org": "국내",
+      "period": "2013-05-01~2014-12-31"
+    },
+    {
+      "title": "두산인프라코어(주)/CNG 기통간 편차 평가기법 정립 및 개선방안 도출",
+      "org": "국내",
+      "period": "2013-04-01~2014-12-31"
+    },
+    {
+      "title": "[글로벌] 미래융합기계기술사업단",
+      "org": "연세대학교",
+      "period": "2013-03-01~2014-03-31"
+    },
+    {
+      "title": "한국동서발전(주)/열병합발전플랜트 구축을 통한 통합제어 및 운영기술 개발(2단계)(2/2)(2011.09.01~2014.02.28)",
+      "org": "한국에너지기술평가원",
+      "period": "2013-03-01~2014-08-31"
+    },
+    {
+      "title": "화이버텍/METAL FIBER MEDIA의 포집 및 산화특성 평가",
+      "org": "국내",
+      "period": "2013-02-01~2014-06-30"
+    },
+    {
+      "title": "한화(주)/로켓플룸의 IR 및 광학신호 계측에 관한 연구",
+      "org": "국내",
+      "period": "2013-01-10~2014-10-31"
+    },
+    {
+      "title": "(주)블루플래닛/35%이상의 발전효율과 30PPM 미만의 질소산화물 배출량을 만족시킬 수 있는 40KW급 발전용 예혼합압축착화 바이오가스 엔진 개발(2/3)(2011.11.1~2019.10.31)",
+      "org": "한국에너지기술평가원",
+      "period": "2012-11-01~2013-10-31"
+    },
+    {
+      "title": "(주)코아시스템즈/디지털 노광기 공통 핵심 부품기술 개발(2/2)(2008.12.1~2013.9.30)",
+      "org": "한국산업기술평가관리원",
+      "period": "2012-10-01~2013-09-30"
+    },
+    {
+      "title": "[교비연구] 공과대학/공학대학원 발전방안 모색을 위한 연구지원사업",
+      "org": "연세대학교",
+      "period": "2012-10-01~2013-02-28"
+    },
+    {
+      "title": "[NE-21]차세대 융복합 에너지물질 특화연구센터",
+      "org": "방위사업청",
+      "period": "2012-09-01~2015-03-15"
+    },
+    {
+      "title": "한창산업(주)/아연 분말 제조 공정 최적화에 관한 연구",
+      "org": "국내",
+      "period": "2012-05-01~2013-04-30"
+    },
+    {
+      "title": "플라즈마와 촉매 조합기술을 이용한 이산화탄소 개질 반응의 최적화 및 활용(3/3)",
+      "org": "한국과학재단",
+      "period": "2012-05-01~2013-04-30"
+    },
+    {
+      "title": "(LO-22)국방 피탐지 감소기술 특화연구센터(2/3단계)",
+      "org": "방위사업청",
+      "period": "2012-03-09~2015-08-31"
+    },
+    {
+      "title": "나노마이크로응용기계기술인력양성사업단",
+      "org": "연세대학교",
+      "period": "2012-03-01~2014-02-28"
+    },
+    {
+      "title": "나노 마이크로 응용기계기술 인력양성사업",
+      "org": "학술진흥재단",
+      "period": "2012-03-01~2013-04-30"
+    },
+    {
+      "title": "두산인프라코어(주)/디젤엔진의 운전조건에 따른 화학적 착화지연 특성연구(2012.01.01~2012.12.31 - 2013.06.30)",
+      "org": "국내",
+      "period": "2012-01-01~2014-12-31"
+    },
+    {
+      "title": "(주)블루플래닛/35%이상의 발전효율과 30ppm 미만의 좋行寧位??배출량을 만족시킬 수 있는 40kW급 발전용예혼합압축착화 바이오가스 엔진 개발(1/3)(~2019.10.31)",
+      "org": "한국에너지기술평가원",
+      "period": "2011-11-01~2012-10-31"
+    },
+    {
+      "title": "[다학제간] 연세환경포럼의 10년 회고와 미래 친환경정책의 교내외 확산을 위한 다학제 연구",
+      "org": "연세대학교",
+      "period": "2011-11-01~2012-10-31"
+    },
+    {
+      "title": "두산인프라코어(주) / 대형 디젤 엔진의 EGR 분배율 개선 및 최적화에 관한 수치적 연구",
+      "org": "민간기업",
+      "period": "2011-10-15~2012-10-14"
+    },
+    {
+      "title": "(주)코아시스템즈/디지털 노광기 공통 핵심 부품기술 개발(1/2)(2011.10.1~2013.9.30)",
+      "org": "한국산업기술평가관리원",
+      "period": "2011-10-01~2012-09-30"
+    },
+    {
+      "title": "한국동서발전(주)/열병합발전플랜트 구축을 통한 통합제어 및 운영기술 개발(1/2)(2011.9.1~2013.8.31)",
+      "org": "한국산업기술평가관리원",
+      "period": "2011-09-01~2013-02-28"
+    },
+    {
+      "title": "신에너지 전지 융합기술 고급트랙(2차년도/5)(2010.11.01~2015.06.30)",
+      "org": "한국에너지자원기술기획평가원",
+      "period": "2011-07-01~2012-06-30"
+    },
+    {
+      "title": "개인 노출 환경의 미세먼지(PM2.5)와 TVOCs 동시 분석을 위한 통합 측정기 개발(2차년도/2)(2010.06.01~2012.05.31)",
+      "org": "한국환경산업기술원",
+      "period": "2011-06-01~2012-05-31"
+    },
+    {
+      "title": "플라즈마와 촉매 조합기술을 이용한 이산화탄소 개질 반응의 최적화 및 활용 2/3",
+      "org": "한국과학재단",
+      "period": "2011-05-01~2012-04-30"
+    },
+    {
+      "title": "나노 마이크로 응용기계기술 인력양성사업",
+      "org": "학술진흥재단",
+      "period": "2011-03-01~2012-02-29"
+    },
+    {
+      "title": "나노마이크로응용기계기술인력양성사업단",
+      "org": "연세대학교",
+      "period": "2011-03-01~2012-02-29"
+    },
+    {
+      "title": "알란텀(주) / Metal Foam Filter의 EGR Cooler Fouling 방지 담체로서의 Soot 포집 및 적층 성능 평가와 산화특성 고찰(2011.01.03~2012.10.02- 2012.12.31) (2011.01.03~2012.12.31)- 2013.06.10 재연장",
+      "org": "국내",
+      "period": "2011-01-03~2013-06-10"
+    },
+    {
+      "title": "GM대우(주) / 소형 디젤 엔진 EGR cooler 의 fouling mechanism 규명을 위한 실험적 연구 (2011.01.01~2012.12.31)- 2013.06.30 연장",
+      "org": "국내",
+      "period": "2011-01-01~2013-12-31"
+    },
+    {
+      "title": "사업장 온실가스 기술DB 구축연구",
+      "org": "환경부",
+      "period": "2010-11-09~2011-04-08"
+    },
+    {
+      "title": "신에너지 전지 융합기술 고급트랙(1차년도)",
+      "org": "한국에너지자원기술기획평가원",
+      "period": "2010-11-01~2011-06-30"
+    },
+    {
+      "title": "두산인프라코어(주) / 대형 디젤 엔진의 EGR 분배율 개선 및 최적화에 관한 수치적 연구",
+      "org": "민간기업",
+      "period": "2010-10-15~2012-05-14"
+    },
+    {
+      "title": "소형 가스화기 및 가스발전 엔진을 통한 폐기물 처리 혼합가스의 발전 최적화 연구(3차년도)",
+      "org": "한국에너지기술평가원",
+      "period": "2010-10-01~2011-09-30"
+    },
+    {
+      "title": "분산형 실시간 환경 모니터링을 위한 환경 분석 모듈 개발",
+      "org": "서울시정개발연구원",
+      "period": "2010-08-01~2011-07-31"
+    },
+    {
+      "title": "PM/NOx 동시저감을 위한 입자상물질 실시간 측정 및 제거기술",
+      "org": "산업자원부",
+      "period": "2010-08-01~2011-07-31"
+    },
+    {
+      "title": "엔진 배기가스 폐열을 이용한 바이오가스 촉매 개질 가능성 검증에 관한 연구",
+      "org": "한국에너지기술평가원",
+      "period": "2010-06-01~2011-05-31"
+    },
+    {
+      "title": "개인 노출 환경의 미세먼지(PM2.5)와 TVOC 동시 분석을 위한 통합 측정기 개발",
+      "org": "한국환경산업기술원",
+      "period": "2010-06-01~2011-05-31"
+    },
+    {
+      "title": "고체연료 물 접촉 반응 연소 해석기술",
+      "org": "국방과학연구소",
+      "period": "2010-05-07~2012-12-31"
+    },
+    {
+      "title": "플라즈마와 촉매 조합기술을 이용한 이산화탄소 개질 반응의 최적화 및 활용",
+      "org": "한국과학재단",
+      "period": "2010-05-01~2011-04-30"
+    },
+    {
+      "title": "나노마이크로응용기계기술인력양성사업단",
+      "org": "연세대학교",
+      "period": "2010-03-01~2011-02-28"
+    },
+    {
+      "title": "나노 마이크로 응용기계기술 인력양성사업단",
+      "org": "학술진흥재단",
+      "period": "2010-03-01~2011-02-28"
+    },
+    {
+      "title": "GM대우(주) / 디젤 배출가스 partial flow 조건하에서황 성분과 SOF가 EGR cooler fouling에 미치는 영향",
+      "org": "기업체/공사",
+      "period": "2010-01-01~2012-01-31"
+    },
+    {
+      "title": "국방피탐지감소기술특화연구센터(LO-22) 로켓 모터 배기신호 예측 및 평가기법 연구",
+      "org": "국방과학연구소",
+      "period": "2009-11-26~2011-12-31"
+    },
+    {
+      "title": "소형 가스화기 및 가스발전 엔진을 통한 폐기물 처리 혼합가스의 발전 최적화 연구",
+      "org": "에너지관리공단",
+      "period": "2009-10-01~2010-09-30"
+    },
+    {
+      "title": "분산형 실시간 환경 모니터링을 위한 환경 분석 모듈 개발",
+      "org": "서울시정개발연구원",
+      "period": "2009-08-01~2010-07-31"
+    },
+    {
+      "title": "PM/NOx 동시저감을 위한 입자상물질 실시간 측정 및 제거기술",
+      "org": "산업자원부",
+      "period": "2009-08-01~2010-07-31"
+    },
+    {
+      "title": "5차년도 수소연료전지특성화대학원 사업",
+      "org": "에너지관리공단",
+      "period": "2009-06-01~2010-10-31"
+    },
+    {
+      "title": "SOF가 소형디젤엔진 EGR cooler fouling에 미치는 영향 평가",
+      "org": "지엠대우오토엔테크놀로지(주)",
+      "period": "2009-04-01~2011-03-31"
+    },
+    {
+      "title": "G5-5-10/나노마이크로응용기계기술인력양성사업",
+      "org": "연세대학교",
+      "period": "2009-03-02~2010-06-30"
+    },
+    {
+      "title": "[SM] 국방과학연구소 - 특화연구센터",
+      "org": "연세대학교산학단_간접비",
+      "period": "2009-03-01~2009-07-24"
+    },
+    {
+      "title": "소형 가스화기 및 가스발전 엔진을 통한 폐기물 처리 혼합가스의 발전 최적화 연구",
+      "org": "에너지관리공단",
+      "period": "2008-12-01~2009-09-30"
+    },
+    {
+      "title": "4차년도 수소연료전지특성화대학원 사업",
+      "org": "에너지관리공단",
+      "period": "2008-12-01~2009-10-31"
+    },
+    {
+      "title": "금속폼(INCOFOAM)의 기본 물성 및 성능평가",
+      "org": "(주)알란텀",
+      "period": "2008-11-03~2010-04-30"
+    },
+    {
+      "title": "플라즈마 가스 연구",
+      "org": "AMARANTE",
+      "period": "2008-10-01~2009-07-01"
+    },
+    {
+      "title": "PM/NOx 동시저감을 위한 입자상물질 실시간 측정 및 제거기술",
+      "org": "산업자원부",
+      "period": "2008-08-01~2009-07-31"
+    },
+    {
+      "title": "PM/NOX동시저감을위한입자상물질실시간측정및제거기술",
+      "org": "산업자원부",
+      "period": "2008-08-01~2009-07-31"
+    },
+    {
+      "title": "3차년도 수소연료전지 특성화 대학원 사업",
+      "org": "연세대학교",
+      "period": "2008-08-01~2009-10-31"
+    },
+    {
+      "title": "분산형 실시간 환경 모니터링을 위한 환경 분석 모듈 개발",
+      "org": "서울시정개발연구원",
+      "period": "2008-08-01~2009-07-31"
+    },
+    {
+      "title": "산소와 이산화질소가 존재 할 때의 DIESEL SOOT 산화 특성에 관한 연구",
+      "org": "GM",
+      "period": "2008-06-01~2011-06-30"
+    },
+    {
+      "title": "운행차 PM 및 NOX 저감장치 보급 타당성 검토 연구",
+      "org": "환경부",
+      "period": "2008-05-30~2008-12-31"
+    },
+    {
+      "title": "NOX/NH3 듀얼센서 개발",
+      "org": "(주)LG마이크론",
+      "period": "2008-04-01~2009-04-30"
+    },
+    {
+      "title": "소형 디젤 엔진의 EGR쿨러 파울링 저감을 위한 EGR쿨러 촉매장치의 개발 및 평가",
+      "org": "지엠대우오토엔테크놀로지(주)",
+      "period": "2008-03-01~2009-10-31"
+    },
+    {
+      "title": "코리아니켈(주) 금속폼(INCOFOAM)의 기본 물성 및 성능평가",
+      "org": "민간기업",
+      "period": "2008-02-15~2008-10-15"
+    },
+    {
+      "title": "가스화기 설계 변수 특성연구",
+      "org": "(주)두산중공업",
+      "period": "2007-12-01~2008-11-30"
+    },
+    {
+      "title": "3차년도 수소연료전지 특성화 대학원 사업",
+      "org": "에너지관리공단",
+      "period": "2007-12-01~2008-11-30"
+    },
+    {
+      "title": "PM/NOX 동시저감을 위한 입자상물질 실시간 측정 및",
+      "org": "산업자원부",
+      "period": "2007-08-01~2008-07-31"
+    },
+    {
+      "title": "PM/NOX 동시저감을 위한 입자상물질 실시간 측정 및",
+      "org": "산업자원부",
+      "period": "2007-08-01~2008-07-31"
+    },
+    {
+      "title": "분산형 실시간 환경 모니터링을 위한 환경 분석 모듈 유연(FLEXIBLE)센서 모듈에 관한 기반 기술 연구",
+      "org": "서울시정개발연구원",
+      "period": "2007-08-01~2008-07-31"
+    },
+    {
+      "title": "STUDIES ON CATALYTIC REMOVAL OF TOXIC GASES",
+      "org": "AMARANTE",
+      "period": "2007-08-01~2008-07-31"
+    },
+    {
+      "title": "연료 개질을 위한 플라즈마 발생 장치의 특성에 관한 연구",
+      "org": "학술진흥재단",
+      "period": "2007-07-01~2008-06-30"
+    },
+    {
+      "title": "레이져 분광기술을 이용한 연료전지 개발 공정 기체성분 측정 기술 개발",
+      "org": "삼성전자(주)",
+      "period": "2007-06-20~2008-03-31"
+    },
+    {
+      "title": "고체연료 물 접촉 반응 연소 해석 기술",
+      "org": "국방과학연구소",
+      "period": "2007-05-01~2009-12-31"
+    },
+    {
+      "title": "수치해석과 실험에 의한 EGR COOLER FOULING 효과가 소형 디젤엔진 성능 및 배출가스에 미치는 영향 평가",
+      "org": "지엠대우오토엔테크놀로지(주)",
+      "period": "2007-03-01~2009-06-28"
+    },
+    {
+      "title": "도시폐자원의 청정전환 기술을 통한 자원순환시스템",
+      "org": "서울시정개발연구원",
+      "period": "2006-12-01~2007-11-30"
+    },
+    {
+      "title": "수소연료전지 특성화 대학원 사업",
+      "org": "에너지관리공단",
+      "period": "2006-12-01~2007-11-30"
+    },
+    {
+      "title": "가스화기 설계 변수 특성연구",
+      "org": "두산중공업",
+      "period": "2006-12-01~2007-11-30"
+    },
+    {
+      "title": "PM/NOX 동시저감을 위한 입자상물질 제거기술",
+      "org": "산업기술평가원",
+      "period": "2006-07-31~2007-07-30"
+    },
+    {
+      "title": "PM/NOX 동시저감을 위한 입자상물질 제거기술",
+      "org": "산업기술평가원",
+      "period": "2006-07-31~2007-07-30"
+    },
+    {
+      "title": "연료 개질을 위한 플라즈마 발생 장치의 특성에 관한 연구",
+      "org": "학술진흥재단",
+      "period": "2006-07-01~2007-06-30"
+    },
+    {
+      "title": "도시폐자원의 청정전환 기술을 통한 자원순환시스템",
+      "org": "서울시정개발연구원",
+      "period": "2005-12-01~2006-11-30"
+    },
+    {
+      "title": "수소.연료전지특성화대학원사업 신.재생에너지 특성화대학원사업 산업자원부-대응자금",
+      "org": "연구처",
+      "period": "2005-12-01~2006-11-30"
+    },
+    {
+      "title": "수소.연료전지특성화대학원사업",
+      "org": "에너지관리공단",
+      "period": "2005-12-01~2006-11-30"
+    },
+    {
+      "title": "디젤 엔진 배기 가스에서 유해 물질 저감에 관한 연구",
+      "org": "연세대학교산학단_간접비",
+      "period": "2005-09-01~2006-08-31"
+    },
+    {
+      "title": "PM/NOX 동시 저감을 위한 입자성 물질 제거 기술 (전광민분할)",
+      "org": "산업기술평가원",
+      "period": "2005-07-31~2006-07-30"
+    }
+  ],
+  "patents": [
+    {
+      "title": "수상이동체 및 그것의 제어방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2024-07-25"
+    },
+    {
+      "title": "비행체",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2022-02-25"
+    },
+    {
+      "title": "비행체 동력시스템",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2022-02-22"
+    },
+    {
+      "title": "비행체",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2022-02-22"
+    },
+    {
+      "title": "팽창형 충격 흡수 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2021-04-28"
+    },
+    {
+      "title": "조종면을 이용한 비행체",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2021-04-28"
+    },
+    {
+      "title": "수소 생산 장치 및 이를 이용한 수소 생산 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2020-08-21"
+    },
+    {
+      "title": "수소 생산 장치 및 이를 이용한 수소 생산 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2020-01-29"
+    },
+    {
+      "title": "미세 입자 측정 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2019-01-10"
+    },
+    {
+      "title": "유동 층류화 장치가 포함된 전기식 입자 계수기",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2018-08-30"
+    },
+    {
+      "title": "이중 광 검출기를 사용하는 광학식 입자 계수기",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2017-11-24"
+    },
+    {
+      "title": "쿼츠 물질을 활용한 반응기 온도 측정 시스템",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2017-10-26"
+    },
+    {
+      "title": "내부에 열교환 유로를 구비한 배기가스 저감장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2017-07-18"
+    },
+    {
+      "title": "전이금속-나노섬유 복합체 및 이의 제조방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2017-05-19"
+    },
+    {
+      "title": "냉매 상변화를 이용한 전자기기용 냉각 모듈",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2017-02-16"
+    },
+    {
+      "title": "전자식 2단 과급 시스템과 듀얼 루프 EGR 시스템을 구비하는 엔진에서의 흡기 제어 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2016-09-29"
+    },
+    {
+      "title": "2단 터보차저와 듀얼 루프 EGR 시스템을 구비하는 엔진에서의 EGR 제어 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2016-09-29"
+    },
+    {
+      "title": "산소전달물질을 이용한 고정상 개질 시스템 및 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2016-09-02"
+    },
+    {
+      "title": "디젤 엔진에서의 개질 수소 배기가스재순환 시스템 구현을 위한 촉매 반응기 및 니켈 기반 촉매",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2016-04-28"
+    },
+    {
+      "title": "흡기 온도 및 흡기 압력의 제어 장치를 가지는 엔진 제어 시스템",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2015-11-12"
+    },
+    {
+      "title": "HSIL 기반 가상 엔진 검증 장치 및 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2014-12-01"
+    },
+    {
+      "title": "HSIL 기반 가상 엔진 검증 장치 및 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2014-12-01"
+    },
+    {
+      "title": "미산란이론을 이용한 실시간 입자 직경 분포도 계측장치, 및 계측방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2013-09-16"
+    },
+    {
+      "title": "미산란이론을 이용한 실시간 입자 직경 분포도 계측장치, 및 계측방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2013-09-16"
+    },
+    {
+      "title": "미세오염물질 샘플링 셀 및 이를 포함하는 광 계측장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2012-05-30"
+    },
+    {
+      "title": "미세오염물질 샘플링 셀 및 이를 포함하는 광 계측장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2012-05-30"
+    },
+    {
+      "title": "폐열을 이용한 바이오가스 개질 시스템 및 바이오가스 개질 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2010-10-29"
+    },
+    {
+      "title": "폐열을 이용한 바이오가스 개질 시스템 및 바이오가스 개질 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2010-10-29"
+    },
+    {
+      "title": "엔진 배기가스 폐열을 이용한 바이오가스 촉매 개질 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2010-10-29"
+    },
+    {
+      "title": "개질기를 이용한 엔진의 유해배출물 저감 장치, 이에 사용되는 개질기 및 이를 이용한 엔진의 유해배출물 저감 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2009-11-03"
+    },
+    {
+      "title": "개질기를 이용한 엔진의 유해배출물 저감 장치, 이에 사용되는 개질기 및 이를 이용한 엔진의 유해배출물 저감 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2009-11-03"
+    },
+    {
+      "title": "HC-SCR 반응을 위한 연료 개질 시스템 및 이를 이용한 개질 방법과, HC-SCR 반응을 위한 개질 연료 분사량 제어 시스템 및 이를 이용한 개질 연료의 분사량 제어 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2009-10-20"
+    },
+    {
+      "title": "HC-SCR 반응을 위한 연료 개질 시스템 및 이를 이용한 개질 방법과, HC-SCR 반응을 위한 개질 연료 분사량 제어 시스템 및 이를 이용한 개질 연료의 분사량 제어 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2009-10-20"
+    },
+    {
+      "title": "개질기를 이용한 엔진의 유해배출물 저감 장치, 이에 사용되는 개질기 및 이를 이용한 엔진의 유해배출물 저감 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2008-12-31"
+    },
+    {
+      "title": "METHOD AND APPARATUS FOR MEASURING METHANOL VAPOR CONCENTRATION, METHOD OF CONTROLLING METHANOL VAPOR CONCENTRATION IN A FUEL CELL, AND FUEL CELL USING THE SAME",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 삼성에스디아이 주식회사(Samsung SDI Co., Ltd.)",
+      "date": "2008-07-18"
+    },
+    {
+      "title": "메탄올증기 농도측정방법과 그것을 이용한 메탄올증기농도측정장치와 연료전지의 메탄올농도 제어방법 및 그제어방법이 채용된 연료전지",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 삼성에스디아이 주식회사",
+      "date": "2008-07-18"
+    },
+    {
+      "title": "열 센서를 사용한 가스 센서 및 그 제조공정과 차동 증폭기를 사용한 측정 module",
+      "type": "특허",
+      "applicant": "연세대학교산학협력단",
+      "date": "2007-05-28"
+    },
+    {
+      "title": "열 센서를 사용한 가스 센서 및 그 제조공정과 차동 증폭기를 사용한 측정 module",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2007-05-28"
+    }
+  ]
+}

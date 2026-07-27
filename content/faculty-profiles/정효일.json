@@ -1,0 +1,3740 @@
+{
+  "name": "정효일",
+  "nameEn": "Jung Hyo il",
+  "email": "uridle7@yonsei.ac.kr",
+  "phone": "02)2123-5814",
+  "office": "A592",
+  "homepage": "https://nanobio.yonsei.ac.kr",
+  "sourceUrl": "https://me.yonsei.ac.kr/faculty/name_search.do?mode=view&userId=eIbW20vagt1HuZYo4nBWjg%3D%3D&sosokcd=",
+  "crawledAt": "2026-07-27",
+  "articles": [
+    {
+      "date": "2026-11",
+      "title": "Electrochemical-sensor-assisted lab-in-a-cartridge (EC-LIC) for on-site detection of SARS-CoV-2 with a self-contained heating system",
+      "journal": "BIOSENSORS & BIOELECTRONICS"
+    },
+    {
+      "date": "2026-04",
+      "title": "Proteomic Profiling of Human Extracellular Vesicles Reveals Diagnostic Biomarkers for Colon Adenocarcinoma",
+      "journal": "Journal of Extracellular Vesicles"
+    },
+    {
+      "date": "2026-04",
+      "title": "Vertical numbering-up microfluidic architecture for scalable and homogeneous lipid nanoparticle production",
+      "journal": "Lab on a Chip"
+    },
+    {
+      "date": "2026-04",
+      "title": "Immunoregulatory protein-hybrid extracellular vesicles via self-loadable backbone cyclization for oral inflammatory bowel disease therapy",
+      "journal": "Bioactive Materials"
+    },
+    {
+      "date": "2026-01",
+      "title": "Machine learning-driven exosome-mimetic lipid nanoparticles for tumor-specific targeting",
+      "journal": "Nano Convergence"
+    },
+    {
+      "date": "2026-01",
+      "title": "Microfluidic ExoBONE Assay for Predicting Bone Mineral Density Improvement in Primary Hyperparathyroidism",
+      "journal": "BIOCHIP JOURNAL"
+    },
+    {
+      "date": "2025-12",
+      "title": "Lab-in-a-cartridge for real-time detection of tuberculosis via precise measurement of urinary lipoarabinomannan",
+      "journal": "Nature Communications"
+    },
+    {
+      "date": "2025-12",
+      "title": "Machine learning-driven microfluidic deglycosylation for ultra-sensitive detection of PD-L1 extracellular vesicles",
+      "journal": "Sensors and Actuators B Chemical"
+    },
+    {
+      "date": "2025-10",
+      "title": "Microfluidic Generation of Exosome-Mimetic Nanoparticles for Scalable Production and Enhanced Therapeutic Efficacy",
+      "journal": "SMALL"
+    },
+    {
+      "date": "2025-10",
+      "title": "Alternative Models for Anticancer Drug Discovery From Natural Products Using Binary Tumor-Microenvironment-on-a-Chip",
+      "journal": "ADVANCED SCIENCE"
+    },
+    {
+      "date": "2025-10",
+      "title": "Gold nanoparticle-facilitated assembly via supernatant transfer as a colorimetric SELEX and sensing platform for cortisol",
+      "journal": "Biosensors and Bioelectronics"
+    },
+    {
+      "date": "2025-09",
+      "title": "Antibody-based alternatives to animal testing for toxin detection and antitoxin evaluation",
+      "journal": "Frontiers in Toxicology"
+    },
+    {
+      "date": "2025-09",
+      "title": "Critical Challenges and Future Direction in Extracellular Vesicle Research and Commercialization",
+      "journal": "BIOCHIP JOURNAL"
+    },
+    {
+      "date": "2025-08",
+      "title": "Automatic Identification of CTC in Microscope Images Based on Automatic Detection of Region of Interest and Machine Learning Algorithm",
+      "journal": "2025 10th International Conference on Biomedical Signal and Image Processing (ICBIP)"
+    },
+    {
+      "date": "2025-07",
+      "title": "Artificially intelligent nasal perception for rapid sepsis diagnostics",
+      "journal": "Npj Digital Medicine"
+    },
+    {
+      "date": "2025-06",
+      "title": "Extracellular Vesicle Proteome Analysis Improves Diagnosis of Recurrence in Triple-Negative Breast Cancer",
+      "journal": "Journal of Extracellular Vesicles"
+    },
+    {
+      "date": "2025-06",
+      "title": "Extracellular vesicles derived from salivary gland stem cells cultured on microwell scaffolds loaded with WNT3A promote the recovery of salivary gland function damaged by radiation via the YWHAZ-PI3K-AKT pathway",
+      "journal": "Bioactive Materials"
+    },
+    {
+      "date": "2025-05",
+      "title": "CD9-enriched extracellular vesicles from chemically reprogrammed basal progenitors of salivary glands mitigate salivary gland fibrosis",
+      "journal": "BIOACTIVE MATERIALS"
+    },
+    {
+      "date": "2025-03",
+      "title": "Machine Learning-Driven Electrochemical Aptasensing Platform for Highly Accurate Prediction of Phthalate Concentration in Multiple River Sites",
+      "journal": "BIOCHIP JOURNAL"
+    },
+    {
+      "date": "2025-02",
+      "title": "Dual Nozzle-Assisted Deterministic Encapsulation of Triple Particles for Screening NK-Cell Cytotoxicity Against Circulating Tumor Cell Clusters",
+      "journal": "Advanced Materials Technologies"
+    },
+    {
+      "date": "2025-01",
+      "title": "Channel-assembling tumor microenvironment on-chip for evaluating anticancer drug efficacy",
+      "journal": "Journal of Controlled Release"
+    },
+    {
+      "date": "2025-01",
+      "title": "High-resolution spiral microfluidic channel integrated electrochemical device for isolation and detection of extracellular vesicles without lipoprotein contamination",
+      "journal": "Biosensors and Bioelectronics"
+    },
+    {
+      "date": "2024-10",
+      "title": "Bone-on-a-chip simulating bone metastasis in osteoporosis",
+      "journal": "Biofabrication"
+    },
+    {
+      "date": "2024-09",
+      "title": "Efficient separation of large particles and giant cancer cells using an isosceles trapezoidal spiral microchannel",
+      "journal": "Analyst"
+    },
+    {
+      "date": "2024-08",
+      "title": "Machine learning powered detection of biological toxins in association with confined lateral flow immunoassay (c-LFA)",
+      "journal": "Analyst"
+    },
+    {
+      "date": "2024-08",
+      "title": "Capillary force-driven reverse-Tesla valve structure for microfluidic bioassays",
+      "journal": "Analyst"
+    },
+    {
+      "date": "2024-07",
+      "title": "Hand-held all-in-one (HAO) self-test kit for rapid and on-site detection of SARS-CoV-2 with colorimetric LAMP",
+      "journal": "Lab on a Chip"
+    },
+    {
+      "date": "2024-05",
+      "title": "Parathyroid-on-a-chip simulating parathyroid hormone secretion in response to calcium concentration",
+      "journal": "Lab on a Chip"
+    },
+    {
+      "date": "2024-04",
+      "title": "Formation Pattern Analysis of Spheroids Formed by a Droplet-Based Microfluidic System for Predicting the Aggressiveness of Tumor Cells",
+      "journal": "ACS Biomaterials Science and Engineering"
+    },
+    {
+      "date": "2024-03",
+      "title": "Optimization of Tumor Spheroid Preparation and Morphological Analysis for Drug Evaluation",
+      "journal": "BioChip Journal"
+    },
+    {
+      "date": "2024-03",
+      "title": "Enhanced enrichment of collected airborne coronavirus and influenza virus samples via a ConA-coated microfluidic chip for PCR detection",
+      "journal": "Journal of Hazardous Materials"
+    },
+    {
+      "date": "2024-02",
+      "title": "Classification of circulating tumor cell clusters by morphological characteristics using convolutional neural network-support vector machine",
+      "journal": "Sensors and Actuators, B: Chemical"
+    },
+    {
+      "date": "2024-01",
+      "title": "Anisotropic tumor spheroid remission with binary tumor-microenvironment-on-a-chip",
+      "journal": "Biosensors and Bioelectronics"
+    },
+    {
+      "date": "2024-01",
+      "title": "Machine learning-powered electrochemical aptasensor for simultaneous monitoring of di(2-ethylhexyl) phthalate and bisphenol A in variable pH environments",
+      "journal": "Journal of Hazardous Materials"
+    },
+    {
+      "date": "2023-12",
+      "title": "Continuous Isolation of Stem-Cell-Derived Extracellular Vesicles (SC-EVs) by Recycled Magnetic Beads in Microfluidic Channels",
+      "journal": "BioChip Journal"
+    },
+    {
+      "date": "2023-11",
+      "title": "E2E-BPF microscope: extended depth-of-field microscopy using learning-based implementation of binary phase filter and image deconvolution",
+      "journal": "Light: Science & Applications"
+    },
+    {
+      "date": "2023-11",
+      "title": "On-demand delivery of therapeutic extracellular vesicles by encapsulating in monodispersed photodegradable hydrogel microparticles using a droplet microfluidic device",
+      "journal": "Sensors and Actuators, B: Chemical"
+    },
+    {
+      "date": "2023-10",
+      "title": "An all-in-one platform to deplete pathogenic bacteria for rapid and safe enrichment of plant-derived extracellular vesicles",
+      "journal": "Lab on a Chip"
+    },
+    {
+      "date": "2023-04",
+      "title": "Modularized dynamic cell culture platform for efficient production of extracellular vesicles and sequential analysis",
+      "journal": "Lab on a Chip"
+    },
+    {
+      "date": "2023-04",
+      "title": "Electrochemical detection and analysis of tumor-derived extracellular vesicles to evaluate malignancy of pancreatic cystic neoplasm using integrated microfluidic device",
+      "journal": "Biosensors and Bioelectronics"
+    },
+    {
+      "date": "2022-12",
+      "title": "Coil spring-powered pump with inertial microfluidic chip for size-based isolation and enrichment of biological cells",
+      "journal": "Analyst"
+    },
+    {
+      "date": "2022-07",
+      "title": "Simple ultrasensitive electrochemical detection of the DBP plasticizer for the risk assessment of South Korean river waters",
+      "journal": "ANALYST"
+    },
+    {
+      "date": "2022-04",
+      "title": "Ultrasensitive detection and risk assessment of di(2-ethylhexyl) phthalate migrated from daily-use plastic products using a nanostructured electrochemical aptasensor",
+      "journal": "SENSORS AND ACTUATORS B-CHEMICAL"
+    },
+    {
+      "date": "2022-04",
+      "title": "Electrochemical biosensor for nucleic acid amplification-free and sensitive detection of severe acute respiratory syndrome coronavirus 2 (SARS-CoV-2) RNA via CRISPR/Cas13a trans-cleavage reaction",
+      "journal": "Biosensors and Bioelectronics"
+    },
+    {
+      "date": "2022-03",
+      "title": "A modular microfluidic platform for serial enrichment and harvest of pure extracellular vesicles",
+      "journal": "ANALYST"
+    },
+    {
+      "date": "2021-12",
+      "title": "Multi-miRNA panel of tumor-derived extracellular vesicles as promising diagnostic biomarkers of early-stage breast cancer",
+      "journal": "CANCER SCIENCE"
+    },
+    {
+      "date": "2021-11",
+      "title": "Microfluidic chip for rapid and selective isolation of tumor-derived extracellular vesicles for early diagnosis and metastatic risk evaluation of breast cancer",
+      "journal": "BIOSENSORS & BIOELECTRONICS"
+    },
+    {
+      "date": "2021-09",
+      "title": "Circulating miR-122-5p and miR-375 as potential biomarkers for bone mass recovery after parathyroidectomy in patients with primary hyperparathyroidism: A proof-of-concept study",
+      "journal": "Diagnostics"
+    },
+    {
+      "date": "2021-09",
+      "title": "Fully Automated System for Rapid Enrichment and Precise Detection of Enterobacteria Using Magneto-Electrochemical Impedance Measurements",
+      "journal": "BIOCHIP JOURNAL"
+    },
+    {
+      "date": "2021-07",
+      "title": "Microfluidic recapitulation of circulating tumor cell–neutrophil clusters via double spiral channel-induced deterministic encapsulation",
+      "journal": "LAB ON A CHIP"
+    },
+    {
+      "date": "2021-02",
+      "title": "A cost-effective and sensitive photothermal biosensor for the diagnosis of diabetes based on quantifying the sialic acid content on erythrocytes",
+      "journal": "SENSORS AND ACTUATORS B-CHEMICAL"
+    },
+    {
+      "date": "2020-12",
+      "title": "Detachable microfluidic device implemented with electrochemical aptasensor (DeMEA) for sequential analysis of cancerous exosomes",
+      "journal": "BIOSENSORS & BIOELECTRONICS"
+    },
+    {
+      "date": "2020-11",
+      "title": "Soft, skin-interfaced microfluidic systems with integrated immunoassays, fluorometric sensors, and impedance measurement capabilities",
+      "journal": "PROCEEDINGS OF THE NATIONAL ACADEMY OF SCIENCES OF THE UNITED STATES OF AMERICA"
+    },
+    {
+      "date": "2020-11",
+      "title": "Smart forensic kit: Real-time estimation of postmortem interval using a highly sensitive gas sensor for microbial forensics",
+      "journal": "SENSORS AND ACTUATORS B-CHEMICAL"
+    },
+    {
+      "date": "2020-10",
+      "title": "Salivary biomarkers in oral squamous cell carcinoma",
+      "journal": "대한구강악안면외과학회지"
+    },
+    {
+      "date": "2020-01",
+      "title": "All-in-one platform for salivary cotinine detection integrated with a microfluidic channel and an electrochemical biosensor",
+      "journal": "LAB ON A CHIP"
+    },
+    {
+      "date": "2019-11",
+      "title": "Automatically Controlled Microfluidic System for Continuous Separation of Rare Bacteria from Blood",
+      "journal": "CYTOMETRY PART A"
+    },
+    {
+      "date": "2019-09",
+      "title": "High-throughput microfluidic chip for magnetic enrichment and photothermal DNA extraction of foodborne bacteria",
+      "journal": "SENSORS AND ACTUATORS B-CHEMICAL"
+    },
+    {
+      "date": "2019-07",
+      "title": "Smart Fatigue Phone: Real-time estimation of driver fatigue using smartphone-based cortisol detection",
+      "journal": "BIOSENSORS & BIOELECTRONICS"
+    },
+    {
+      "date": "2019-04",
+      "title": "On-chip isolation and enrichment of circulating cell-free DNA using microfluidic device",
+      "journal": "BIOMICROFLUIDICS"
+    },
+    {
+      "date": "2019-04",
+      "title": "Highly sensitive and accurate estimation of bloodstain age using smartphone",
+      "journal": "BIOSENSORS & BIOELECTRONICS"
+    },
+    {
+      "date": "2018-10",
+      "title": "Highly sensitive paper-based immunoassay using photothermal laser speckle imaging",
+      "journal": "BIOSENSORS & BIOELECTRONICS"
+    },
+    {
+      "date": "2018-10",
+      "title": "A microfluidic electrochemical aptasensor for enrichment and detection of bisphenol A.",
+      "journal": "BIOSENSORS & BIOELECTRONICS"
+    },
+    {
+      "date": "2018-07",
+      "title": "Concanavalin A가 코팅 된 자성 입자를 이용한 미생물 농축 및 유전자 추출 칩 개발",
+      "journal": "센서학회지"
+    },
+    {
+      "date": "2018-07",
+      "title": "Progress in Circulating Tumor Cell Research Using Microfluidic Devices",
+      "journal": "MICROMACHINES"
+    },
+    {
+      "date": "2018-07",
+      "title": "Salivary Exosome and Cell-Free DNA for Cancer Detection",
+      "journal": "MICROMACHINES"
+    },
+    {
+      "date": "2018-04",
+      "title": "Mobile Diagnostics: Next-generation Technologies for in vitro Diagnostics",
+      "journal": "ANALYST"
+    },
+    {
+      "date": "2017-09",
+      "title": "Continuous adsorption and photothermal lysis of airborne bacteriausing a gold-nanoparticle-embedded-geometrically activated surfaceinteraction (gold-GASI) chip.",
+      "journal": "SENSORS AND ACTUATORS B-CHEMICAL"
+    },
+    {
+      "date": "2017-07",
+      "title": "A photothermal biosensor for detection of C-reactive protein in human saliva",
+      "journal": "SENSORS AND ACTUATORS B-CHEMICAL"
+    },
+    {
+      "date": "2017-06",
+      "title": "Relationship Analysis of Speech Communication between Salivary Cortisol Levels and Personal Characteristics Using the Smartphone Linked Stress Measurement (SLSM)",
+      "journal": "BIOCHIP JOURNAL"
+    },
+    {
+      "date": "2017-05",
+      "title": "Smart Forensic Phone: Colorimetric analysis of a bloodstain for age estimation using a smartphone",
+      "journal": "SENSORS AND ACTUATORS B-CHEMICAL"
+    },
+    {
+      "date": "2017-05",
+      "title": "An integrated microfluidic chip for one-step isolation of circulating tumor cells",
+      "journal": "SENSORS AND ACTUATORS B-CHEMICAL"
+    },
+    {
+      "date": "2017-03",
+      "title": "Smartphone Diagnostics Unit (SDU) for the assessment of human stress and inflammation level assisted by biomarker ink, fountain pen, and origami holder for strip biosensor",
+      "journal": "SENSORS AND ACTUATORS B-CHEMICAL"
+    },
+    {
+      "date": "2016-08",
+      "title": "Degradation of Kidney and Psoas Muscle Proteins as Indicators of Post-Mortem Interval in a Rat Model, with Use of Lateral Flow Technology",
+      "journal": "PLOS ONE"
+    },
+    {
+      "date": "2016-04",
+      "title": "High-throughput detection of human salivary cortisol using amultiple optical probe based scanning system with micro-optics andnanograting coupled label-free microarray",
+      "journal": "SENSORS AND ACTUATORS B-CHEMICAL"
+    },
+    {
+      "date": "2016-03",
+      "title": "Epithelial-to-mesenchymal transition leads to loss of EpCAM and different physical properties in circulating tumor cells from metastatic breast cancer",
+      "journal": "ONCOTARGET"
+    },
+    {
+      "date": "2016-02",
+      "title": "Graphene-Iodine Nanocomposites Highly Potent Bacterial Inhibitors that are Bio-compatible with Human Cells",
+      "journal": "SCIENTIFIC REPORTS"
+    },
+    {
+      "date": "2016-01",
+      "title": "Isolation and enrichment of circulating biomarkers for cancer screening, detection, and diagnostics",
+      "journal": "ANALYST"
+    },
+    {
+      "date": "2015-06",
+      "title": "Signal amplification in a microfluidic paper-based analytical device (μ-PAD) by confinement of the fluidic flow",
+      "journal": "BIOCHIP JOURNAL"
+    },
+    {
+      "date": "2015-05",
+      "title": "Two-stage microfluidic chip for selective isolation of circulating tumor cells (CTCs)",
+      "journal": "BIOSENSORS & BIOELECTRONICS"
+    },
+    {
+      "date": "2015-03",
+      "title": "Economical and rapid manufacturing of lateral flow immunosensor using fountain pens and gold colloidal solution",
+      "journal": "ANALYTICAL METHODS"
+    },
+    {
+      "date": "2015-03",
+      "title": "Viable Bacterial Cell Patterning Using a Pulsed Jet Electrospray System",
+      "journal": "JOURNAL OF MICROBIOLOGY AND BIOTECHNOLOGY"
+    },
+    {
+      "date": "2015-01",
+      "title": "Continuous enrichment of circulating tumor cells using a microfluidic lateral flow filtration chip",
+      "journal": "JOURNAL OF CHROMATOGRAPHY A"
+    },
+    {
+      "date": "2014-12",
+      "title": "Label-free detection of protein-protein interactions on multi-scale micro-well arrays using spatial light modulator",
+      "journal": "APPLIED PHYSICS LETTERS"
+    },
+    {
+      "date": "2014-12",
+      "title": "Real-time measurement of human salivary cortisol for the assessment of psychological stress using a smartphone",
+      "journal": "Sensing and Bio-Sensing Research"
+    },
+    {
+      "date": "2014-12",
+      "title": "Enrichment of circulating tumor cells using a centrifugal affinity plate system",
+      "journal": "JOURNAL OF CHROMATOGRAPHY A"
+    },
+    {
+      "date": "2014-07",
+      "title": "Photothermal spectral-domain optical coherence reflectometry for direct measurement of hemoglobin concentration of erythrocytes",
+      "journal": "BIOSENSORS & BIOELECTRONICS"
+    },
+    {
+      "date": "2014-05",
+      "title": "Kojyl cinnamate ester derivatives promote adiponectin production during adipogenesis in human adipose tissue-derived mesenchymal stem cells",
+      "journal": "BIOORGANIC & MEDICINAL CHEMISTRY LETTERS"
+    },
+    {
+      "date": "2014-04",
+      "title": "Label-free cell-based assay with spectral-domain optical coherence phase microscopy",
+      "journal": "JOURNAL OF BIOMEDICAL OPTICS"
+    },
+    {
+      "date": "2014-02",
+      "title": "Diagnosis of diabetes mellitus using sialic acid expression of erythrocyte and a microfluidic resistive temperature detector (micro-RTD).",
+      "journal": "SENSORS AND ACTUATORS B-CHEMICAL"
+    },
+    {
+      "date": "2014-01",
+      "title": "A high-Q resonator using biocompatible materials at microwave frequencies",
+      "journal": "APPLIED PHYSICS LETTERS"
+    },
+    {
+      "date": "2014-01",
+      "title": "Advances and critical concerns with the microfluidic enrichments of circulating tumor cells",
+      "journal": "LAB ON A CHIP"
+    },
+    {
+      "date": "2013-12",
+      "title": "Microfluidic sorting of fluorescently activated cells depending on gene expression level",
+      "journal": "ELECTROPHORESIS"
+    },
+    {
+      "date": "2013-12",
+      "title": "A highly sensitive and label free biosensing platform for wireless sensor node system",
+      "journal": "BIOSENSORS & BIOELECTRONICS"
+    },
+    {
+      "date": "2013-09",
+      "title": "Bi nanowire-based thermal biosensor for the detection of salivary cortisol using the Thomson effect",
+      "journal": "APPLIED PHYSICS LETTERS"
+    },
+    {
+      "date": "2013-09",
+      "title": "Biochip technology for monitoring posttraumatic stress disorder(PTSD)",
+      "journal": "BIOCHIP JOURNAL"
+    },
+    {
+      "date": "2013-07",
+      "title": "Asymmetric split-ring resonator-based biosensor for detection of label-free stress biomarkers",
+      "journal": "APPLIED PHYSICS LETTERS"
+    },
+    {
+      "date": "2013-05",
+      "title": "Negative Enrichment of Circulating Tumor Cells Using a geometrically activated surface interaction (GASI) chip",
+      "journal": "ANALYTICAL CHEMISTRY"
+    },
+    {
+      "date": "2013-04",
+      "title": "The opposite effect of isotype-selective monoamine oxidase inhibitors on adipogenesis in human bone marrow mesenchymal stem cells",
+      "journal": "BIOORGANIC & MEDICINAL CHEMISTRY LETTERS"
+    },
+    {
+      "date": "2013-04",
+      "title": "Microfluidic devices for the isolation of circulating rare cells: A focus on affinity-based, dielectrophoresis, and hydrophoresis",
+      "journal": "ELECTROPHORESIS"
+    },
+    {
+      "date": "2013-02",
+      "title": "Continuous labeling of circulating tumor cells with microbeads using a vortex micromixer for highly selective isolation",
+      "journal": "BIOSENSORS & BIOELECTRONICS"
+    },
+    {
+      "date": "2013-02",
+      "title": "Microfluidic flow fractionation device for label-free isolation of circulating tumor cells (CTCs) from breast cancer patients",
+      "journal": "BIOSENSORS & BIOELECTRONICS"
+    },
+    {
+      "date": "2013-01",
+      "title": "Continual collection and re-separation of circulating tumor cells from blood using multi-stage multi-ori?ce ?ow fractionation",
+      "journal": "BIOMICROFLUIDICS"
+    },
+    {
+      "date": "2012-12",
+      "title": "Emotion-on-a-chip (EOC): Evolution of biochip technology to measure human emotion using body fluids",
+      "journal": "MEDICAL HYPOTHESES"
+    },
+    {
+      "date": "2012-07",
+      "title": "A planar split-ring resonator-based microwave biosensor for label-free detection of biomolecules",
+      "journal": "SENSORS AND ACTUATORS B-CHEMICAL"
+    },
+    {
+      "date": "2012-05",
+      "title": "Quantitative analysis of sialic acid on erythrocyte membranes using a photothermal biosensor",
+      "journal": "BIOSENSORS & BIOELECTRONICS"
+    },
+    {
+      "date": "2012-02",
+      "title": "REVIEW OF RECENT PROGRESS IN MICRO-SYSTEMS FOR THE DETECTION AND ANALYSIS OF AIRBORNE MICROORGANISMS",
+      "journal": "ANALYTICAL LETTERS"
+    },
+    {
+      "date": "2011-12",
+      "title": "종이기반 미세유체 채널의 설계 및 제작기술",
+      "journal": "감성과학"
+    },
+    {
+      "date": "2011-12",
+      "title": "전자소자를 이용한 인간 감성지표 코티졸 검출에 관한 기초연구",
+      "journal": "감성과학"
+    },
+    {
+      "date": "2011-12",
+      "title": "Microfluidic device to separate micro-beads with various fluorescence intensities",
+      "journal": "SENSORS AND ACTUATORS B-CHEMICAL"
+    },
+    {
+      "date": "2011-10",
+      "title": "A symmetric metamaterial element-based RF biosensor for rapid and label-free detection",
+      "journal": "APPLIED PHYSICS LETTERS"
+    },
+    {
+      "date": "2011-03",
+      "title": "감성 진단칩 (Emotion-on-a-chip, EOC) : 인간 감성측정을 위한 바이오칩기술의 진화",
+      "journal": "감성과학"
+    },
+    {
+      "date": "2011-03",
+      "title": "Continuous separation of breast cancer cells from blood samples using multi-orifice flow fractionation (MOFF) and dielectrophoresis (DEP)",
+      "journal": "Lab on a Chip"
+    },
+    {
+      "date": "2011-01",
+      "title": "Multistage-multiorifice flow fractionation (MS-MOFF): continuous size-based separation of microspheres using multiple series of contraction/expansion microchannels",
+      "journal": "Lab on a Chip"
+    },
+    {
+      "date": "2011-01",
+      "title": "Optimization of microscale vortex generators in a microchannel using advanced response surface method",
+      "journal": "International Journal of Heat and Mass Transfer"
+    },
+    {
+      "date": "2010-12",
+      "title": "An integrated photo-thermal sensing system for rapid and direct diagnosis of anemia",
+      "journal": "BIOSENSORS & BIOELECTRONICS"
+    },
+    {
+      "date": "2010-09",
+      "title": "Real-time detection of food-borne bacterial adenosine triphosphate (ATP) using dielectrophoretic force and a bioluminescence sensor",
+      "journal": "Microchimica Acta"
+    },
+    {
+      "date": "2010-08",
+      "title": "A microfluidic magnetic bead impact generator for physical stimulation of osteoblast cell",
+      "journal": "Electrophoresis"
+    },
+    {
+      "date": "2010-08",
+      "title": "A rapid and simple fabrication method for 3-dimensional circular microfluidic channel using metal wire removal process",
+      "journal": "Microfluidics And Nanofluidics"
+    },
+    {
+      "date": "2010-07",
+      "title": "Direct measurement of the in vitro hemoglobin content of erythrocytes using the photo-thermal effect of the heme group",
+      "journal": "Analyst"
+    },
+    {
+      "date": "2010-07",
+      "title": "ZnO nanowire biosensors for detection of biomolecular interactions in enhancement mode",
+      "journal": "Sensors and Actuators B-Chemical"
+    },
+    {
+      "date": "2010-06",
+      "title": "Circulating Tumor Cells: Detection Methods and Potential Clinical Application in Breast Cancer",
+      "journal": "Journal Of Breast Cancer(한국유방암학회지)"
+    },
+    {
+      "date": "2010-03",
+      "title": "감성과학을 위한 측정기법의 최근 연구 동향",
+      "journal": "감성과학(Korean Journal of the Science of Emotion & Sensibility)"
+    },
+    {
+      "date": "2009-12",
+      "title": "Direct pattern formation of bacterial cells using micro-droplets generated by electrohydrodynamic forces",
+      "journal": "Microfluidics And Nanofluidics"
+    },
+    {
+      "date": "2009-10",
+      "title": "Multiorifice Flow Fractionation: Continuous Size-Based Separation of Microspheres Using a Series of Contraction/Expansion Microchannels",
+      "journal": "Analytical Chemistry"
+    },
+    {
+      "date": "2009-09",
+      "title": "Dielectrophoretic Separation of Airborne Microbes and Dust Particles Using a Microfluidic Channel for Real-Time Bioaerosol Monitoring",
+      "journal": "Environmental Science & Technology"
+    },
+    {
+      "date": "2009-09",
+      "title": "Real-time Detection of Nano-sized Magnetic Beads by Using Spin-valve Devices for Biological Applications",
+      "journal": "Journal Of The Korean Physical Society"
+    },
+    {
+      "date": "2009-08",
+      "title": "Electromagnetic microfluidic cell labeling device using on-chip microelectromagnet and multi-layered channels",
+      "journal": "Sensors and Actuators B-Chemical"
+    },
+    {
+      "date": "2009-07",
+      "title": "P-type Si-nanowire-based Field-effect Transistors for Electric Detection of a Biomarker: Matrix Metalloproteinase-9",
+      "journal": "Journal Of The Korean Physical Society"
+    },
+    {
+      "date": "2009-07",
+      "title": "Highly sensitive spin-valve devices for chip-cytometers",
+      "journal": "Physica Status Solidi A-Applications And Materials Science"
+    },
+    {
+      "date": "2009-06",
+      "title": "Analysis and utilization of Joule heating in an electromagnet integrated microfluidic device for biological applications",
+      "journal": "Current Applied Physics"
+    },
+    {
+      "date": "2009-06",
+      "title": "Effects of PDMS curing ratio and 3D micro-pyramid structure on the formation of an in vitro neuronal network",
+      "journal": "Current Applied Physics"
+    },
+    {
+      "date": "2009-04",
+      "title": "Novel application of Joule heating to maintain biocompatible temperatures in a fully integrated electromagnetic cell sorting system",
+      "journal": "SENSORS AND ACTUATORS A-PHYSICAL"
+    },
+    {
+      "date": "2009-04",
+      "title": "An impedimetric biosensor for real-time monitoring of bacterial growth in a microbial fermentor",
+      "journal": "Sensors and Actuators B-Chemical"
+    },
+    {
+      "date": "2009-04",
+      "title": "Continuous focusing of microparticles using inertial lift force and vorticity via multi-orifice microfluidic channels",
+      "journal": "Lab on a Chip"
+    },
+    {
+      "date": "2009-03",
+      "title": "Solid-medium-integrated impedimetric biosensor for real-time monitoring of microorganisms",
+      "journal": "Sensors and Actuators B-Chemical"
+    },
+    {
+      "date": "2009-01",
+      "title": "Physical stimulation of mammalian cells using micro-bead impact within a microfluidic environment to enhance growth rate",
+      "journal": "Microfluidics And Nanofluidics"
+    },
+    {
+      "date": "2008-09",
+      "title": "Continuous micro-magnetophoretic separation using a dipole magnetic field",
+      "journal": "Biochip Journal"
+    },
+    {
+      "date": "2008-08",
+      "title": "Dual thermopile integrated microfluidic calorimeter for biochemical thermodynamics",
+      "journal": "Microfluidics And Nanofluidics"
+    },
+    {
+      "date": "2008-06",
+      "title": "체험학습기반의 기초 창의공학설계 교육 및 운영",
+      "journal": "공학교육연구"
+    },
+    {
+      "date": "2008-06",
+      "title": "A microfluidic ATP-bioluminescence sensor for the detection of airborne microbes",
+      "journal": "Sensors and Actuators B-Chemical"
+    },
+    {
+      "date": "2008-05",
+      "title": "Single-cell assay on CD-like lab chip using centrifugal massive single-cell trap",
+      "journal": "Sensors And Actuators A-Physical"
+    },
+    {
+      "date": "2008-03",
+      "title": "A simple and direct biomolecule detection scheme based on a microwave resonator",
+      "journal": "Sensors and Actuators B-Chemical"
+    },
+    {
+      "date": "2007-11",
+      "title": "Separation of apoptotic cells using a microfluidic device",
+      "journal": "BIOTECHNOLOGY LETTERS"
+    },
+    {
+      "date": "2007-09",
+      "title": "체성분 측정용 스마트 의류 개발의 가능성 탐색",
+      "journal": "감성과학(Korean Journal of the Science of Emotion & Sensibility)"
+    },
+    {
+      "date": "2007-07",
+      "title": "Measurement of pull-off forces by atomic force microscope in liquids used for biological applications",
+      "journal": "EXPERIMENTAL TECHNIQUES"
+    },
+    {
+      "date": "2007-07",
+      "title": "Optimization of electrohydrodynamic writing technique to print collagen",
+      "journal": "EXPERIMENTAL TECHNIQUES"
+    },
+    {
+      "date": "2006-12",
+      "title": "Application of spectral SPR imaging for the surface analysis of C-reactive protein binding",
+      "journal": "SENSORS AND ACTUATORS B-CHEMICAL"
+    },
+    {
+      "date": "2006-10",
+      "title": "Mechanical detection of liposomes using piezoresistive cantilever",
+      "journal": "SENSORS AND ACTUATORS B-CHEMICAL"
+    },
+    {
+      "date": "2006-05",
+      "title": "벌크 마이크로 머시닝을 이용한 고감도 미세 칼로리미터의 설계 및 제작",
+      "journal": "센서학회지"
+    },
+    {
+      "date": "2006-04",
+      "title": "Direct force measurement of the interaction between liposome and the C2A domain of synaptotagmin I using atomic force microscopy",
+      "journal": "BIOTECHNOLOGY LETTERS"
+    },
+    {
+      "date": "2006-03",
+      "title": "건강관리 지원형 스마트 의류 제품 개발을 위한 가능성 탐색",
+      "journal": "감성과학(Korean Journal of the Science of Emotion & Sensibility)"
+    },
+    {
+      "date": "2006-02",
+      "title": "[Ca2+]-dependent Generation of Intracellular Reactive Oxygen Species Mediates Maitotoxin-induced Cellular Responses in Human Umbilical Vein Endothelial Cells",
+      "journal": "MOLECULES AND CELLS"
+    },
+    {
+      "date": "2005-08",
+      "title": "박테리아에 대한 나노 입자의 항균 특성 평가",
+      "journal": "한국실내환경학회지"
+    },
+    {
+      "date": "2005-05",
+      "title": "고감도 압저항 외팔보 센서를 이용한 Liposome의 검침",
+      "journal": "센서학회지"
+    },
+    {
+      "date": "2005-05",
+      "title": "Structural basis for the presence of a monoglucosylated oligosaccharide in mature glycoproteins",
+      "journal": "BIOCHEMICAL AND BIOPHYSICAL RESEARCH COMMUNICATIONS"
+    },
+    {
+      "date": "2004-12",
+      "title": "Arachidonic acid activates tissue transglutaminase and stress fiber formation via intracellular reactive oxygen species",
+      "journal": "BIOCHEMICAL AND BIOPHYSICAL RESEARCH COMMUNICATIONS"
+    },
+    {
+      "date": "2004-11",
+      "title": "DNA replication licensing in somatic and germ cells",
+      "journal": "JOURNAL OF CELL SCIENCE"
+    },
+    {
+      "date": "2004-10",
+      "title": "생체내 미소의료기기에 대한 Biotribology 기초연구",
+      "journal": "한국정밀공학회지"
+    },
+    {
+      "date": "2004-01",
+      "title": "Detection of apoptosis using the C2A domain of synaptotagmin I",
+      "journal": "BIOCONJUGATE CHEMISTRY"
+    },
+    {
+      "date": "2003-12",
+      "title": "Prediction of the binding site on E1 in the assembly of the pyruvate dehydrogenase multienzyme complex of Bacillus stearothermophilus",
+      "journal": "FEBS LETTERS"
+    },
+    {
+      "date": "2003-11",
+      "title": "Interactions of the peripheral subunit-binding domain of the dihydrolipoyl acetyltransferase component in the assembly of the pyruvate dehydrogenase multienzyme complex of Bacillus stearothermophilus",
+      "journal": "European Journal of Biochemistry"
+    },
+    {
+      "date": "2003-06",
+      "title": "Reaction mechanism of the heterotetrameric (alpha2beta2) E1 component of 2-oxo acid dehydrogenase multienzyme complexes",
+      "journal": "BIOCHEMISTRY"
+    },
+    {
+      "date": "2003-03",
+      "title": "Site-directed mutagenesis of a loop at the active site of E1 (alpha2beta2) of the pyruvate dehydrogenase complex. A possible common sequence motif",
+      "journal": "European Journal of Biochemistry"
+    },
+    {
+      "date": "2002-08",
+      "title": "Identification of key amino acid residues in the assembly of enzymes into the pyruvate dehydrogenase complex of Bacillus stearothermophilus: a kinetic and thermodynamic analysis.",
+      "journal": "BIOCHEMISTRY"
+    },
+    {
+      "date": "2002-05",
+      "title": "Thermodynamic analysis of the binding of component enzymes in the assembly of the pyruvate dehydrogenase multienzyme complex of Bacillus stearothermophilus.",
+      "journal": "PROTEIN SCIENCE"
+    },
+    {
+      "date": "2000-12",
+      "title": "Sites of limited proteolysis in the pyruvate decarboxylase component of the pyruvate dehydrogenase multienzyme complex of Bacillus stearothermophilus and their role in catalysis.",
+      "journal": "EUROPEAN JOURNAL OF BIOCHEMISTRY"
+    },
+    {
+      "date": "1997-06",
+      "title": "Colchicine activates actin polymerization by microtubule depolymerization",
+      "journal": "MOLECULES AND CELLS"
+    },
+    {
+      "date": "1995-06",
+      "title": "ISOLATION AND CHARACTERIZATION OF GUAMERIN, A NEW HUMAN-LEUKOCYTE ELASTASE INHIBITOR FROM HIRUDO-NIPPONIA",
+      "journal": "JOURNAL OF BIOLOGICAL CHEMISTRY"
+    },
+    {
+      "date": "1993-05",
+      "title": "The Leech as a laboratory animal for biomedical research",
+      "journal": "Korean J Zool"
+    }
+  ],
+  "awards": [
+    {
+      "title": "우수논문상",
+      "contents": null,
+      "date": null
+    },
+    {
+      "title": "과학기술정보통신부 장관상 수상",
+      "contents": "유전자 증폭없이 고감도로 측정할 수 있는 나노바이오센서 개발",
+      "date": "2022-07-06"
+    },
+    {
+      "title": "우수업적교수상(연구부문)",
+      "contents": "우수업적교수상 (통합업적우수)",
+      "date": "2016-02-17"
+    },
+    {
+      "title": "우수업적교수상(연구부문)",
+      "contents": "우수업적교수상(통합업적우수)",
+      "date": "2015-01-28"
+    },
+    {
+      "title": "연세대학교 우수연구실적 표창",
+      "contents": "연구실적우수자",
+      "date": "2013-02-13"
+    },
+    {
+      "title": "기술상",
+      "contents": "기술상",
+      "date": "2012-10-19"
+    },
+    {
+      "title": "우수연구실적표창",
+      "contents": "우수연구실적",
+      "date": "2010-12-08"
+    }
+  ],
+  "conferences": [
+    {
+      "title": "Inertial force-assisted buffer exchange of exosome-mimetic nanoparticles using a spiral microfluidic chip",
+      "conference": "2025 한국 바이오칩학회 추계학술대회",
+      "period": "2025.11.12~2025.11.14"
+    },
+    {
+      "title": "ML-Enhanced electrochemical aptasensor for phthalate detection on multiple river sites",
+      "conference": "2025 한국 바이오칩학회 추계학술대회",
+      "period": "2025.11.12~2025.11.14"
+    },
+    {
+      "title": "Integrated electrochemical sensing platform with self-contained heating system for on-site detection of SARS-CoV-2",
+      "conference": "2025 한국 바이오칩학회 추계학술대회",
+      "period": "2025.11.12~2025.11.14"
+    },
+    {
+      "title": "High-throughput lipid nanoparticle production via stacked microfluidic device with controlled inter-layer flow",
+      "conference": "2025 한국 바이오칩학회 추계학술대회",
+      "period": "2025.11.12~2025.11.14"
+    },
+    {
+      "title": "Microfluidic approach for effective lipid formulation determination in exosome-mimetic nanoparticle synthesis",
+      "conference": "2025 한국 바이오칩학회 추계학술대회",
+      "period": "2025.11.12~2025.11.14"
+    },
+    {
+      "title": "Generative data augmentation for improving circulating tumor cell detection using convolutional neural network",
+      "conference": "2025 한국 바이오칩학회 추계학술대회",
+      "period": "2025.11.12~2025.11.14"
+    },
+    {
+      "title": "Microfluidics-controlled conjugation of exosomal proteins for reproducible fabrication of exosome-mimetic nanoparticles",
+      "conference": "2025 한국 바이오칩학회 추계학술대회",
+      "period": "2025.11.12~2025.11.14"
+    },
+    {
+      "title": "Non-electrostatic miRNA encapsulation for exosome mimetic nanoparticles via cholesterol-miRNA conjugates and microfluidics",
+      "conference": "2025 한국 바이오칩학회 추계학술대회",
+      "period": "2025.11.12~2025.11.14"
+    },
+    {
+      "title": "Simultaneous integration of membrane protein and nucleic acids into exosome-mimetic nanoparticles using a microfluidic strategy",
+      "conference": "2025 한국 바이오칩학회 추계학술대회",
+      "period": "2025.11.12~2025.11.14"
+    },
+    {
+      "title": "Microfluidic-based fabrication of hydrogel microcarriers for exosome-mimetic nanoparticles in chronic wound healing",
+      "conference": "2025 한국 바이오칩학회 추계학술대회",
+      "period": "2025.11.12~2025.11.14"
+    },
+    {
+      "title": "Automated flow control system for continuous and uniform production of lipid nanoparticles (LNPs)",
+      "conference": "2025 한국 바이오칩학회 추계학술대회",
+      "period": "2025.11.12~2025.11.14"
+    },
+    {
+      "title": "Artificially intelligent-powered gas sensing for rapid and ultra-sensitive sepsis diagnostics",
+      "conference": "2025 한국 바이오칩학회 추계학술대회",
+      "period": "2025.11.12~2025.11.14"
+    },
+    {
+      "title": "Reverse-Tesla structure-based microfluidic device for deglycosylation and detection of PD-L1 extracellular vesicles",
+      "conference": "2025 한국 바이오칩학회 추계학술대회",
+      "period": "2025.11.12~2025.11.14"
+    },
+    {
+      "title": "Fully Automated Sample-to-Answer Microfluidic Platform for Rapid Multiplex Detection of Respiratory Viruses",
+      "conference": "2025 한국 바이오칩학회 추계학술대회",
+      "period": "2025.11.12~2025.11.14"
+    },
+    {
+      "title": "Hybrid deep learning-based rational design of exosome-mimetic nanoparticles (ENPs)",
+      "conference": "2025 한국 바이오칩학회 추계학술대회",
+      "period": "2025.11.12~2025.11.14"
+    },
+    {
+      "title": "Electrochemical sensor assisted Lab-in-a-cartridge (EC-LIC) for on-site detection of SARS-CoV-2 with self-contained heating system",
+      "conference": "2025년 한국센서학회 추계학술대회",
+      "period": "2025.10.22~2025.10.24"
+    },
+    {
+      "title": "Stacked microfluidic platform with uniform inter-layer flow for scalable lipid nanoparticle production",
+      "conference": "2025년 한국센서학회 추계학술대회",
+      "period": "2025.10.22~2025.10.24"
+    },
+    {
+      "title": "Machine learning-enhanced electrochemical aptasensor for accurate phthalate detection across multiple river sites",
+      "conference": "2025년 한국센서학회 추계학술대회",
+      "period": "2025.10.22~2025.10.24"
+    },
+    {
+      "title": "Design of an automated fluidic control system for uniform production of lipid nanoparticles",
+      "conference": "2025 한국생체재료학회 추계학술대회 및 교육심포지엄",
+      "period": "2025.09.10~2025.09.12"
+    },
+    {
+      "title": "Scalable and uniform lipid nanoparticle production using inter-layer balanced stacked microfluidic platform",
+      "conference": "추계학술대회 및 교육심포지엄",
+      "period": "2025.09.10~2025.09.12"
+    },
+    {
+      "title": "Simultaneous integration of membrane protein and nucleic acids into exosome-mimetic nanoparticles using a microfluidic strategy",
+      "conference": "2025 한국생체재료학회 추계학술대회 및 교육심포지엄",
+      "period": "2025.09.10~2025.09.12"
+    },
+    {
+      "title": "Microfluidic engineering of exosome-mimetic nanoparticles via exosomal protein conjugation for targeted delivery",
+      "conference": "추계학술대회 및 교육심포지엄",
+      "period": "2025.09.10~2025.09.12"
+    },
+    {
+      "title": "Microfluidic Strategy for Effective Lipid Formulation Determination in Exosome-Mimetic Nanoparticle Fabrication",
+      "conference": "추계학술대회 및 교육심포지엄",
+      "period": "2025.09.10~2025.09.12"
+    },
+    {
+      "title": "Machine Learning-driven rational design of exosome-mimic nanoparticles",
+      "conference": "CRS 2025 Annual Meeting and Exposition",
+      "period": "2025.07.14~2025.07.18"
+    },
+    {
+      "title": "Development of microfluidic platform for efficient lipid formulation discovery of lipid nanoparticles",
+      "conference": "CRS 2025 Annual Meeting and Exposition",
+      "period": "2025.07.14~2025.07.18"
+    },
+    {
+      "title": "Synthesis of exosome - mimicking nanoparticles using a microfluidic chip",
+      "conference": "CRS 2025 Annual Meeting and Exposition",
+      "period": "2025.07.14~2025.07.18"
+    },
+    {
+      "title": "Microfluidic strategy for efficient determination of lipid formulation in production of exosome-like nanoparticles",
+      "conference": "Physics and Chemistry of Microfluidics (GRC) Gordon Research Conference",
+      "period": "2025.06.01~2025.06.06"
+    },
+    {
+      "title": "Microfluidic formulation of exosomal nanoparticles as biocompatible nanocarriers for microRNA delivery",
+      "conference": "Physics and Chemistry of Microfluidics (GRC) Gordon Research Conference",
+      "period": "2025.06.01~2025.06.06"
+    },
+    {
+      "title": "Microfluidic platform for detection of PD-L1 extracellular vesicles with high sensitivity using machine learning techniques",
+      "conference": "Physics and Chemistry of Microfluidics (GRC) Gordon Research Conference",
+      "period": "2025.06.01~2025.06.06"
+    },
+    {
+      "title": "Microfluidic strategy for efficient determination of lipid formulation in production of exosome-like nanoparticles",
+      "conference": "Physics and Chemistry of Microfluidics (GRS)Gordon Research Seminar",
+      "period": "2025.05.31~2025.06.01"
+    },
+    {
+      "title": "Microfluidic formulation of exosomal nanoparticles as biocompatible nanocarriers for microRNA delivery",
+      "conference": "Physics and Chemistry of Microfluidics (GRS)Gordon Research Seminar",
+      "period": "2025.05.31~2025.06.01"
+    },
+    {
+      "title": "Microfluidic platform for detection of PD-L1 extracellular vesicles with high sensitivity using machine learning techniques",
+      "conference": "Physics and Chemistry of Microfluidics (GRS)Gordon Research Seminar",
+      "period": "2025.05.31~2025.06.01"
+    },
+    {
+      "title": "ML-Enhanced electrochemical aptasensor for phthalate detection on multiple river sites",
+      "conference": "2025 한국바이오칩학회 춘계학술대회",
+      "period": "2025.05.14~2025.05.16"
+    },
+    {
+      "title": "Automated diagnostic device of tuberculosis for point-of-care and highly sensitive detection of urinary lipoarabinomannan",
+      "conference": "2025 한국바이오칩학회 춘계학술대회",
+      "period": "2025.05.14~2025.05.16"
+    },
+    {
+      "title": "Artificial intelligence-based platform for engineering Exosome-like Nanoparticles(ENPs)",
+      "conference": "2025 한국바이오칩학회 춘계학술대회",
+      "period": "2025.05.14~2025.05.16"
+    },
+    {
+      "title": "Automated system for high-quality continuous production of LNPs with microfluidic stabilization air-chamber and orifice dampener mechanism",
+      "conference": "2025 한국바이오칩학회 춘계학술대회",
+      "period": "2025.05.14~2025.05.16"
+    },
+    {
+      "title": "Vertical piling up strategy for enhanced microfluidic production of lipid nanoparticles",
+      "conference": "2025 한국바이오칩학회 춘계학술대회",
+      "period": "2025.05.14~2025.05.16"
+    },
+    {
+      "title": "Microfluidic strategy for efficient determination of lipid formulation in production of exosome-mimetic nanoparticles",
+      "conference": "2025 한국바이오칩학회 춘계학술대회",
+      "period": "2025.05.14~2025.05.16"
+    },
+    {
+      "title": "Microfluidic platforms for the controllable mass production of exosomal nanoparticles",
+      "conference": "2024 한국바이오칩학회 추계학술대회",
+      "period": "2024.11.13~2024.11.15"
+    },
+    {
+      "title": "Hand-held All-in-One (HAO) automated platform for one-site detection of SARS-CoV-2 with colorimetric LAMP reaction",
+      "conference": "2024 한국바이오칩학회 추계학술대회",
+      "period": "2024.11.13~2024.11.15"
+    },
+    {
+      "title": "Capillary force-driven microfluidic device with reverse-Tesla structure for deglycosylation and detection of PD-L1 extracellular vesicles",
+      "conference": "2024 한국바이오칩학회 추계학술대회",
+      "period": "2024.11.13~2024.11.15"
+    },
+    {
+      "title": "Microfluidic-based synthesis of exosomal nanoparticles for therapeutic applications",
+      "conference": "2024 한국바이오칩학회 추계학술대회",
+      "period": "2024.11.13~2024.11.15"
+    },
+    {
+      "title": "Artificially Intelligent platform for exosomal nanoparticles (ENPs) design.",
+      "conference": "2024 한국바이오칩학회 추계학술대회",
+      "period": "2024.11.13~2024.11.15"
+    },
+    {
+      "title": "Machine learning–powered electrochemical aptasensor for simultaneous monitoring of di(2-ethylhexyl) phthalate and bisphenol A in variable pH environments",
+      "conference": "제 6회 연세대학교 기계공학과 대학원생 학술대회",
+      "period": "2024.11.12~2024.11.12"
+    },
+    {
+      "title": "Simultaneous isolation of multi-phenotypic extracellular vesicles(EVs) using sheathless inertial microfluidics for early diagnosis of pancreatic cancer",
+      "conference": "제 6회 연세대학교 기계공학과 대학원생 학술대회",
+      "period": "2024.11.12~2024.11.12"
+    },
+    {
+      "title": "Fully-automated mass production system for exosome-based therapeutics",
+      "conference": "제 6회 연세대학교 기계공학과 대학원생 학술대회",
+      "period": "2024.11.12~2024.11.12"
+    },
+    {
+      "title": "수생태계 유입 신종 오염물질 직독식 측정 기술 개발",
+      "conference": "2024 대한환경공학회 국내학술대회",
+      "period": "2024.11.06~2024.11.09"
+    },
+    {
+      "title": "Microfluidic strategy for exosome-based diagnostics and therapeutics",
+      "conference": "Korean Society for Extracellular Vesicles(KSEV) 2024 Annual Meeting",
+      "period": "2024.09.02~2024.09.03"
+    },
+    {
+      "title": "Simultaneous isolation of multi-phenotypic extracellular vesicles(EVs) using sheathless inertial microfluidics for early diagnosis of pancreatic cancer",
+      "conference": "Korean Society for Extracellular Vesicles(KSEV) 2024 Annual Meeting",
+      "period": "2024.09.02~2024.09.03"
+    },
+    {
+      "title": "Fully-automated mass production system for exosome-based therapeutics",
+      "conference": "Korean Society for Extracellular Vesicles(KSEV) 2024 Annual Meeting",
+      "period": "2024.09.02~2024.09.03"
+    },
+    {
+      "title": "Reverse-Tesla structure-based power-free microfluidic chip for the rapid and accurate detection of PD-L1 extracellular vesicles",
+      "conference": "Korean Society for Extracellular Vesicles(KSEV) 2024 Annual Meeting",
+      "period": "2024.09.02~2024.09.03"
+    },
+    {
+      "title": "Artificially intelligent platform for exosomal nanoparticles (ENPs) degisn",
+      "conference": "Korean Society for Extracellular Vesicles(KSEV) 2024 Annual Meeting",
+      "period": "2024.09.02~2024.09.03"
+    },
+    {
+      "title": "Continuous production of exosomal nanoparticles using microfluidic device",
+      "conference": "Korean Society for Extracellular Vesicles(KSEV) 2024 Annual Meeting",
+      "period": "2024.09.02~2024.09.03"
+    },
+    {
+      "title": "Microfluidic strategy for exosome based diagnostics and therapeutics",
+      "conference": "2024 KSBC Hokkaido University Joint Symposium on Bioconvergence",
+      "period": "2024.08.28~2024.08.30"
+    },
+    {
+      "title": "Light activated polyelemental nanocatalyst for dual modal environmental remediation",
+      "conference": "2024 한국바이오칩학회 춘계학술대회",
+      "period": "2024.05.22~2024.05.24"
+    },
+    {
+      "title": "Machine Learning Powered Detection of Biological Toxin Using Confined Microfluidic Paper-based Immune Chip",
+      "conference": "2024 한국바이오칩학회 춘계학술대회",
+      "period": "2024.05.22~2024.05.24"
+    },
+    {
+      "title": "A microfluidic chip for generation of epithelial to mesenchymal transition (EMT) index based on cancerous extracellular vesicles",
+      "conference": "8th International Conference on Bio-Sensing Technology",
+      "period": "2024.04.12~2024.04.15"
+    },
+    {
+      "title": "All-in-one device for on-site detection of SARS-CoV-2 and M.tuberculosis (TB) by using self-contained cartridge system",
+      "conference": "2023 한국 바이오칩 추계 학술대회",
+      "period": "2023.11.15~2023.11.17"
+    },
+    {
+      "title": "Hand-held All-in-One (HAO) colorimetric LAMP test kit for detection of SARS-CoV-2",
+      "conference": "2023 한국 바이오칩 추계 학술대회",
+      "period": "2023.11.15~2023.11.17"
+    },
+    {
+      "title": "Generative adversarial networks (GAN) for data augmentation of circulating tumor cell (CTC) clusters",
+      "conference": "2023 한국 바이오칩 추계 학술대회",
+      "period": "2023.11.15~2023.11.17"
+    },
+    {
+      "title": "Multiplex detection of respiratory viruses by utilizing automated device internalized with RT-RPA and Cas12a microfluidic cartridge",
+      "conference": "2023 한국 바이오칩 추계 학술대회",
+      "period": "2023.11.15~2023.11.17"
+    },
+    {
+      "title": "A Pumpless Microfluidic Device based on the Reverse-Tesla Structure for Detection of PD-L1 Extracellular Vesicles",
+      "conference": "2023 한국 바이오칩 추계 학술대회",
+      "period": "2023.11.15~2023.11.17"
+    },
+    {
+      "title": "Multistage multi-orifice flow fractionation (MS-MOFF) for multiplexing biomarker",
+      "conference": "2023 한국 바이오칩 추계 학술대회",
+      "period": "2023.11.15~2023.11.17"
+    },
+    {
+      "title": "Fabrication of uniform photodegradable hydrogel microparticles using droplet microfluidics for delivery of extracellular vesicles",
+      "conference": "2023 한국 바이오칩 추계 학술대회",
+      "period": "2023.11.15~2023.11.17"
+    },
+    {
+      "title": "Sensitive Detection of Exosomal Proteins for Rapid Therapeutic Monitoring in Lung Cancer Patients",
+      "conference": "Korean Society for Extracellular Vesicles(KSEV) 2023 Annual Meeting",
+      "period": "2023.11.12~2023.11.14"
+    },
+    {
+      "title": "An All-in-one Platform to Improve the Purity of Plant-derived Extracelluar Vesicles",
+      "conference": "Korean Society for Extracellular Vesicles(KSEV) 2023 Annual Meeting",
+      "period": "2023.11.12~2023.11.14"
+    },
+    {
+      "title": "Microfluidic strategy for circulating biomarkers",
+      "conference": "Europe-Korea Conference on Science and Technology (EKC)",
+      "period": "2023.08.14~2023.08.18"
+    },
+    {
+      "title": "A simple disposable dual aptasensor for the detection of dissolved plasticizers in river water",
+      "conference": "BIOSENSORS 2023 33rd Anniversary World Congress on Biosensors",
+      "period": "2023.06.05~2023.06.08"
+    },
+    {
+      "title": "All-in-one auto-diagnostic cartridge for SARS-CoV-2 detection by using colorimetric- LAMP rection",
+      "conference": "BIOSENSORS 2023 33rd Anniversary World Congress on Biosensors",
+      "period": "2023.06.05~2023.06.08"
+    },
+    {
+      "title": "All-in-one cartridge for rapid and sensitive detection of urinary lipoarabinomannan (LAM) for diagnosis of tuberculosis",
+      "conference": "BIOSENSORS 2023 33rd Anniversary World Congress on Biosensors",
+      "period": "2023.06.05~2023.06.08"
+    },
+    {
+      "title": "Reverse-Tesla structure-based power-free microfluidic chip for detection of viral RNA using nucleic acid amplification",
+      "conference": "BIOSENSORS 2023 33rd Anniversary World Congress on Biosensors",
+      "period": "2023.06.05~2023.06.08"
+    },
+    {
+      "title": "A support vector machine using morphological features of cells for classification of circulating tumor cell clusters",
+      "conference": "BIOSENSORS 2023 33rd Anniversary World Congress on Biosensors",
+      "period": "2023.06.05~2023.06.08"
+    },
+    {
+      "title": "High-resolution inertial microfluidic chip for label-free isolation of extracellular vesicle",
+      "conference": "2023 한국바이오칩학회 춘계학술대회",
+      "period": "2023.05.31~2023.06.02"
+    },
+    {
+      "title": "High-resolution particle separation using inertial microfluidics for improvement of analytical accuracy in bio-applications of microbeads",
+      "conference": "2023 한국바이오칩학회 춘계학술대회",
+      "period": "2023.05.31~2023.06.02"
+    },
+    {
+      "title": "Negative enrichment of extracellular vesicles (EVs) by using high-resolution spiral microfluidic chip",
+      "conference": "ISEV2023 Annual Meeting",
+      "period": "2023.05.17~2023.05.21"
+    },
+    {
+      "title": "Promotion of regenerative effects of highly enriched-specific extracellular vesicles from salivary gland epithelial stem cells through modular microfluidic device",
+      "conference": "ISEV 2023 Annual Meeting",
+      "period": "2023.05.17~2023.05.21"
+    },
+    {
+      "title": "Isolation of Centella asiatica-derived specific extracellular vesicles and their potential benefits for skin improvement",
+      "conference": "ISEV 2023 Annual Meeting",
+      "period": "2023.05.17~2023.05.21"
+    },
+    {
+      "title": "Extracellular vesicles(EVs)-loaded photodegradable hydrogel microparticles for on-demand release generated by droplet microfluidics",
+      "conference": "ISEV2023 Annual Meeting",
+      "period": "2023.05.17~2023.05.21"
+    },
+    {
+      "title": "Multi-exosomal protein-based assay for Monitoring of Immunotherapy Response in Breast Cancer",
+      "conference": "2023 Asia Pacific Societies for Extracellular Vesicles Conference",
+      "period": "2023.03.31~2023.04.02"
+    },
+    {
+      "title": "Negative Enrichment of Fresh Licorice-derived Extracellular Vesicles by Using Microfluidic Chip for Cosmeceutical Therapy",
+      "conference": "2023 Asia Pacific Societies for Extracellular Vesicles Conference",
+      "period": "2023.03.31~2023.04.02"
+    },
+    {
+      "title": "A pumpless microfluidic device based on the reverse-Tesla structure for the detection of cancerous exosomes",
+      "conference": "2023 마이크로나노시스템학회",
+      "period": "2023.03.22~2023.03.24"
+    },
+    {
+      "title": "Convolutional neural network-support vector machine for the classification of circulating tumor cell clusters",
+      "conference": "2023 마이크로나노시스템학회",
+      "period": "2023.03.22~2023.03.24"
+    },
+    {
+      "title": "Real-time and sensitive detection of urinary lipoarabinomannan (LAM) for diagnosis of tuberculosis",
+      "conference": "2023 마이크로나노시스템학회",
+      "period": "2023.03.22~2023.03.24"
+    },
+    {
+      "title": "All-in-One cartridge and its automated system for purification of exosome",
+      "conference": "2023 마이크로나노시스템학회",
+      "period": "2023.03.22~2023.03.24"
+    },
+    {
+      "title": "Hand-held All-in-One (HAO) colorimetric LAMP test kit for detection of SARS-CoV-2",
+      "conference": "2023 마이크로나노시스템학회",
+      "period": "2023.03.22~2023.03.25"
+    },
+    {
+      "title": "Automatic Identification of CTCs in Fluorescence Microscope Images Using Morphological Filtering to Detect Cell Nuclei",
+      "conference": "2022 The 22nd International Conference on Control, Automation and Systems (ICCAS 2022)",
+      "period": "2022.11.27~2022.12.01"
+    },
+    {
+      "title": "Microfluidic chip-based Detection of EMT-associated Extracellular Vesicles from BALF to Evaluate EGFR-TKI Resistance in EGFR mutant NSCLC Patients",
+      "conference": "Korean Society for Extracellular Vesicles(KSEV) 2022 Annual Meeting",
+      "period": "2022.11.20~2022.11.22"
+    },
+    {
+      "title": "Highly Sensitive Multi-Detection of Immune Checkpoint Inhibitors for Monitoring Immunotherapy Response in Breast Cancer",
+      "conference": "Korean Society for Extracellular Vesicles(KSEV) 2022 Annual Meeting",
+      "period": "2022.11.20~2022.11.22"
+    },
+    {
+      "title": "Highly Enhanced Cellular Uptake of Fresh Centella Asiatica-derived Specific Extracellular Vesicles for Skin Regeneration",
+      "conference": "Korean Society for Extracellular Vesicles(KSEV) 2022 Annual Meeting",
+      "period": "2022.11.20~2022.11.22"
+    },
+    {
+      "title": "Promotion of Regenerative Effects of Salivary Gland Epithelial Stem Cell-derived Extracellular Vesicles Through Direct Administration of CD9-positive Exosomes into Salivary Gland Ducts",
+      "conference": "Korean Society for Extracellular Vesicles(KSEV) 2022 Annual Meeting",
+      "period": "2022.11.20~2022.11.22"
+    },
+    {
+      "title": "Fully Automated System to Drive Microfluidic Cartridge for Isolation of Extracellular Vesicles",
+      "conference": "Korean Society for Extracellular Vesicles(KSEV) 2022 Annual Meeting",
+      "period": "2022.11.20~2022.11.22"
+    },
+    {
+      "title": "Delivery of therapeutic extracellular vesicles derived from mesenchymal stem cells using monodisperse photodegradable hydrogel microparticles",
+      "conference": "Korean Society for Extracellular Vesicles(KSEV) 2022 Annual Meeting",
+      "period": "2022.11.20~2022.11.22"
+    },
+    {
+      "title": "Negative enrichment of extracellular vesicles(EVs) by using a spiral microfluidic chip",
+      "conference": "Korean Society for Extracellular Vesicles(KSEV) 2022 Annual Meeting",
+      "period": "2022.11.20~2022.11.22"
+    },
+    {
+      "title": "An Effective Skin Repair of Extracellular Vesicles Extracted from Fresh Glycyrrhiza glabra",
+      "conference": "Korean Society for Extracellular Vesicles(KSEV) 2022 Annual Meeting",
+      "period": "2022.11.20~2022.11.22"
+    },
+    {
+      "title": "Detection of Glycosylated Exosomal PD-L1 as a Potential Predictive Biomarker for Immunotherapy in Lung Cancer Cells",
+      "conference": "Korean Society for Extracellular Vesicles(KSEV) 2022 Annual Meeting",
+      "period": "2022.11.20~2022.11.22"
+    },
+    {
+      "title": "수생태계 유입 신종 오염물질 직독식 측정 기술 개발",
+      "conference": "2022년 대한환경공학회 국내학술대회",
+      "period": "2022.11.08~2022.11.11"
+    },
+    {
+      "title": "Fabrication of extracellular vesicles loaded photodegradable hydrogel microparticles using droplet-based microfluidics",
+      "conference": "2022 한국 바이오칩 추계 학술대회",
+      "period": "2022.11.02~2022.11.04"
+    },
+    {
+      "title": "A Bespoke cosmetics manufacturing mini-system using plant-derived extracellular vesicles",
+      "conference": "2022 한국 바이오칩 추계 학술대회",
+      "period": "2022.11.02~2022.11.04"
+    },
+    {
+      "title": "All-in-one cartridge for SARS-CoV-2 detection by using CRISPR technology",
+      "conference": "2022 한국 바이오칩 추계 학술대회",
+      "period": "2022.11.02~2022.11.04"
+    },
+    {
+      "title": "Coil spring-powered device with microfluidic chip for biological applications",
+      "conference": "2022 한국 바이오칩 추계 학술대회",
+      "period": "2022.11.02~2022.11.04"
+    },
+    {
+      "title": "A pumpless microfluidic device based on the reverse-Tesla structure for improving reaction efficiency of nucleic acid amplification",
+      "conference": "2022 나노코리아",
+      "period": "2022.07.06~2022.07.08"
+    },
+    {
+      "title": "Encapsulation of extracellular vesicles in photodegradable hydrogel microparticles using droplet-based microfluidics",
+      "conference": "2022 나노코리아",
+      "period": "2022.07.06~2022.07.08"
+    },
+    {
+      "title": "CRISPR/Cas13a based electrochemical biosensor for ultrasensitive detection of severe acute respiratory syndrome coronavirus 2 (SARS-CoV-2)",
+      "conference": "2022 나노코리아",
+      "period": "2022.07.06~2022.07.08"
+    },
+    {
+      "title": "Gold Nanostructured Electrochemical Aptasensor for Monitoring and Risk Assessment of Migrated Di(2-ethylhexyl)phthalate in Daily Plastic Products",
+      "conference": "2022 나노코리아",
+      "period": "2022.07.06~2022.07.08"
+    },
+    {
+      "title": "A modular microfluidic chip for continuous enrichment and isolation of extracellular vesicles",
+      "conference": "Annual Meeting ISEV 2022",
+      "period": "2022.05.25~2022.05.29"
+    },
+    {
+      "title": "MicroRNA signatures from tumor-derived extracellular vesicles for detection of early-stage of breast cancer",
+      "conference": "Annual Meeting ISEV 2022",
+      "period": "2022.05.25~2022.05.29"
+    },
+    {
+      "title": "Enhanced enrichment of collected airborne coronavirus and influenza virus samples via a ConA-coated microfluidic chip for PCR detection",
+      "conference": "7th International Conference on Bio-Sensing Technology",
+      "period": "2022.05.22~2022.05.25"
+    },
+    {
+      "title": "Dual detection of circulating PD L1 specific extracellular vesicles and microRNAs for prediction of immunotherapeutic response in breast cancer",
+      "conference": "7th International Conference on Bio-Sensing Technology",
+      "period": "2022.05.22~2022.05.25"
+    },
+    {
+      "title": "A power free microfluidic device for fast and efficient nucleic acid amplification by using a reverse Tesla structure",
+      "conference": "2022 한국바이오칩학회 춘계학술대회",
+      "period": "2022.05.18~2022.05.20"
+    },
+    {
+      "title": "Microfluidic devices for monitoring NK cytotoxicity susceptibility of circulating tumor cell-neutrophil clusters",
+      "conference": "2022 한국바이오칩학회 춘계학술대회",
+      "period": "2022.05.18~2022.05.20"
+    },
+    {
+      "title": "Real-time and sensitive detection of urinary lipoarabinomannan (LAM) for diagnosis of tuberculosis",
+      "conference": "2022 한국바이오칩학회 춘계학술대회",
+      "period": "2022.05.18~2022.05.20"
+    },
+    {
+      "title": "MicroRNAs signature of circulating tumorderived EV as a potential diagnostic biomarker for early-stage of breast cancer",
+      "conference": "2021 한국세포밖소포체학회 정기학술대회",
+      "period": "2021.11.28~2021.11.30"
+    },
+    {
+      "title": "Extracellular vesicle (sEV) protein profiling study for biomarker discovery of breast cancer",
+      "conference": "2021 한국세포밖소포체학회 정기학술대회",
+      "period": "2021.11.28~2021.11.30"
+    },
+    {
+      "title": "Multi-detection of immune-mediated extracellular vesicle and microRNA for personalized immunotherapy of breast cancer",
+      "conference": "2021 한국세포밖소포체학회 정기학술대회",
+      "period": "2021.11.28~2021.11.30"
+    },
+    {
+      "title": "Integrated microfluidic platform for serial enrichment and isolation of extracellular vesicles",
+      "conference": "2021 한국세포밖소포체학회 정기학술대회",
+      "period": "2021.11.28~2021.11.30"
+    },
+    {
+      "title": "Multiple detections of endocrine-disrupting chemicals by dual signaling based on electrochemical aptasensor",
+      "conference": "2021 한국바이오칩학회 추계학술대회",
+      "period": "2021.11.17~2021.11.19"
+    },
+    {
+      "title": "Formation of circulating tumor cell clusters with hybrid phenotype via deterministic encapsulation and pairing",
+      "conference": "2021 한국바이오칩학회 추계학술대회",
+      "period": "2021.11.17~2021.11.19"
+    },
+    {
+      "title": "Label-free classification of circulating tumor cell clusters using convolutional neural network for image analysis",
+      "conference": "2021 한국바이오칩학회 추계학술대회",
+      "period": "2021.11.17~2021.11.19"
+    },
+    {
+      "title": "CRISPR/Cas13a based electrochemical biosensor for sensitive detection of SEVERE acute respiratory syndrome coronavirus 2 (SARS-CoV-2) RNA via trans-cleavage reaction",
+      "conference": "2021 한국바이오칩학회 추계학술대회",
+      "period": "2021.11.17~2021.11.19"
+    },
+    {
+      "title": "Modular and perfusable cell culture system for independent measurement of cellular metabolite",
+      "conference": "2021 한국바이오칩학회 추계학술대회",
+      "period": "2021.11.17~2021.11.19"
+    },
+    {
+      "title": "Detachable cell culture system for media perfusion and sequential measurement of cellular metabolites",
+      "conference": "2021 마이크로나노시스템학회 추계학술대회",
+      "period": "2021.11.11~2021.11.12"
+    },
+    {
+      "title": "Gold nano-structured electrochemical aptasensor for real-time detection of di(2-ethylhexyl) phthalate migrated from daily plastic products",
+      "conference": "Biosensors 2021 - online 31st Anniversary World Congress on Biosensors",
+      "period": "2021.07.26~2021.07.29"
+    },
+    {
+      "title": "Selective isolation of EMT-related exosome by using a fully-integrated microfluidic device",
+      "conference": "Biosensors 2021 - online 31st Anniversary World Congress on Biosensors",
+      "period": "2021.07.26~2021.07.29"
+    },
+    {
+      "title": "Dual detection of immune-related extracellular vesicle and microRNA for companion diagnosis of breast cancer",
+      "conference": "2021 한국바이오칩학회 춘계학술대회",
+      "period": "2021.06.16~2021.06.18"
+    },
+    {
+      "title": "A Fully Integrated Microfluidic Chip for Generation of Epithelial to Mesenchymal Transition(EMT) Index Based on Cancerous Extracellular Vesicles",
+      "conference": "2021 한국바이오칩학회 춘계학술대회",
+      "period": "2021.06.16~2021.06.18"
+    },
+    {
+      "title": "Gold Nano-structured Electrochemical Aptasensor for Monitoring Di(2-ethylhexyl) Phthalate Migrated from Daily Used Plastic Products",
+      "conference": "2021 한국바이오칩학회 춘계학술대회",
+      "period": "2021.06.16~2021.06.18"
+    },
+    {
+      "title": "An Electrochemical Aptasensor for the Detection of Dibutyl Phthalate Present in the River Water Across South Korea",
+      "conference": "2021 한국바이오칩학회 춘계학술대회",
+      "period": "2021.06.16~2021.06.18"
+    },
+    {
+      "title": "수생태계 내 프탈레이트 고감도 측정을 위한 골드 나노플라워 표면 개질 기반 전기 화학 압타 센서",
+      "conference": "2021,제23회 한국 MEMS 학술대회",
+      "period": "2021.04.07~2021.04.09"
+    },
+    {
+      "title": "Automated system for rapid electrochemical detection of infectious virus",
+      "conference": "2021,제23회 한국 MEMS 학술대회",
+      "period": "2021.04.07~2021.04.09"
+    },
+    {
+      "title": "Integrated Microfluidic chip (HO-MOFF) for Rapid and Selective Isolation of Tumor Derived Exosomes to Evaluate Metastatic Risk in Breast Cancer",
+      "conference": "2021,제23회 한국 MEMS 학술대회",
+      "period": "2021.04.07~2021.04.09"
+    },
+    {
+      "title": "Inertial force-assisted-pairing of cells for formation of circulating tumor cell-neutrophil clusters by droplet microfluidics",
+      "conference": "2021,제23회 한국 MEMS 학술대회",
+      "period": "2021.04.07~2021.04.09"
+    },
+    {
+      "title": "Selective isolation and profiling of EMT-related exosomes in breast cancer patients by using an integrated microfluidic chip",
+      "conference": "Korean Society for Extracellular Vesicles 2020 Annual Meeting",
+      "period": "2021.01.28~2021.01.29"
+    },
+    {
+      "title": "Microfluidic channel assembled electrochemical aptasensor for detection of tumor-derived exosomes",
+      "conference": "Korean Society for Extracellular Vesicles 2020 Annual Meeting",
+      "period": "2021.01.28~2021.01.29"
+    },
+    {
+      "title": "Integrated Microfluidic Device for Rapid and Selective Isolation of Tumor-Derived Exosomes in Evaluating Metastatic Risk of Cancer",
+      "conference": "Korean Society for Extracellular Vesicles 2020 Annual Meeting",
+      "period": "2021.01.28~2021.01.29"
+    },
+    {
+      "title": "Integrated Microfluidic Devices for Analysis of Micro- and Nano-sized Biological Particles",
+      "conference": "2020추계 한국바이오칩학회 추계학술대회",
+      "period": "2020.11.25~2020.11.27"
+    },
+    {
+      "title": "Inertial Force-assisted-pairing of Cells for Formation of Circulating Tumor Cell-neutrophil Clusters by Droplet Microfluidics",
+      "conference": "2020추계 한국바이오칩학회 추계학술대회",
+      "period": "2020.11.25~2020.11.27"
+    },
+    {
+      "title": "A Nanostructured Electrochemical Aptasensor for Highly Sensitive Measurement of Di(2-ethylhexyl) Phthalate in River Water Samples",
+      "conference": "2020추계 한국바이오칩학회 추계학술대회",
+      "period": "2020.11.25~2020.11.27"
+    },
+    {
+      "title": "Integrated Microfluidic Devices for Selective Isolation of Tumor-Derived Exosomes",
+      "conference": "제21차 한국조직공학 재생의학회 학술대회",
+      "period": "2020.08.28~2020.08.29"
+    },
+    {
+      "title": "타액 내 코티닌 검출을 위한 전기 화학 경쟁 면역 센싱 기반의 올인원 플랫폼",
+      "conference": "2020, 제22회 한국 MEMS 학술대회",
+      "period": "2020.08.19~2020.08.21"
+    },
+    {
+      "title": "Selective isolation and profiling of EMT-related exosomes in breast cancer patients by using an integrated microfluidic chip",
+      "conference": "2020, 제22회 한국 MEMS 학술대회",
+      "period": "2020.08.19~2020.08.21"
+    },
+    {
+      "title": "고효율 입자 공동 포획을 위한 이중 나선 채널을 결합한 액적 기반 유체 저항 제어 미세 유체 칩",
+      "conference": "2020, 제22회 한국 MEMS 학술대회",
+      "period": "2020.08.19~2020.08.21"
+    },
+    {
+      "title": "High-performance microfluidic integrated nanostructured electrochemical aptasensing platform for quantification of cancerous exosomes",
+      "conference": "APSEV 2019 Inaugural Annual Meeting & KSEV 2019 Annual Meeting",
+      "period": "2019.11.25~2019.11.26"
+    },
+    {
+      "title": "Gold nanoflowers modified electrochemical aptasensor for detection of di(2-ethylhexyl) phthalate",
+      "conference": "2019추계 한국바이오칩학회 추계학술대회",
+      "period": "2019.11.13~2019.11.15"
+    },
+    {
+      "title": "An integrated microfluidic chip for selective isolation of exosomes in breast cancer patients",
+      "conference": "2019추계 한국바이오칩학회 추계학술대회",
+      "period": "2019.11.13~2019.11.15"
+    },
+    {
+      "title": "Double spiral droplet-based microfluidics for high throughput particle co-encapsulation by using fluidic resistance",
+      "conference": "2019추계 한국바이오칩학회 추계학술대회",
+      "period": "2019.11.13~2019.11.15"
+    },
+    {
+      "title": "Continuous detection of exosome from whole blood using integrated microfluidic electrochemical biosensor",
+      "conference": "2019추계 한국바이오칩학회 추계학술대회",
+      "period": "2019.11.13~2019.11.15"
+    },
+    {
+      "title": "Microfluidic Strategies for Isolation and Enrichment of Circulating Biomarkers",
+      "conference": "SELECTBIO, Microfluidics for Circulating Biomarkers Summit 2019",
+      "period": "2019.10.10~2019.10.10"
+    },
+    {
+      "title": "An Integrated Microfluidic Device for Selective Isolation and Detection of Cancer-specific Exosomes",
+      "conference": "Circulating Biomarkers, Exosomes & Liquid Biopsy Asia 2019",
+      "period": "2019.09.09~2019.09.10"
+    },
+    {
+      "title": "Microfluidic devices for food safety",
+      "conference": "2019 KoSFoST International Symposium and Annual Meeting",
+      "period": "2019.06.26~2019.06.28"
+    },
+    {
+      "title": "Microfluidic nanostructured electrochemical aptasensor for quantification of exosome",
+      "conference": "2019 한국바이오칩학회 춘계학술대회",
+      "period": "2019.05.15~2019.05.17"
+    },
+    {
+      "title": "An Integrated Microfluidic Device for Selective Isolation of Exosome from Breast Cancer Patients",
+      "conference": "2019 한국바이오칩학회 춘계학술대회",
+      "period": "2019.05.15~2019.05.17"
+    },
+    {
+      "title": "Development of the High-throughput Microfluidic Chip for Pretreatment of Foodborne Bacteria Detection",
+      "conference": "2019 한국바이오칩학회 춘계학술대회",
+      "period": "2019.05.15~2019.05.17"
+    },
+    {
+      "title": "Highly Efficient Separation of Bacteria in Blood by using Automated Microfluidic Dielectrophoresis",
+      "conference": "2019 한국바이오칩학회 춘계학술대회",
+      "period": "2019.05.15~2019.05.17"
+    },
+    {
+      "title": "High throughput co-encapsulation in the droplet by using particle ordering and fluidic resistance control",
+      "conference": "2019 한국바이오칩학회 춘계학술대회",
+      "period": "2019.05.15~2019.05.17"
+    },
+    {
+      "title": "Microfluidic electrochemical aptasensor for detection of breast cancer-derived exosomes in biofluids",
+      "conference": "Annual Meeting ISEV 2019",
+      "period": "2019.04.25~2019.04.28"
+    },
+    {
+      "title": "An integrated microfluidic device for selective exosome isolation from human plasma",
+      "conference": "Annual Meeting ISEV 2019",
+      "period": "2019.04.25~2019.04.28"
+    },
+    {
+      "title": "Highly sensitive paper-based immunoassay using photothermal laser speckle imaging",
+      "conference": "Annual Biophotonics Conference 2018",
+      "period": "2018.10.26~2018.10.27"
+    },
+    {
+      "title": "Development of micro-RTD sensor for rapid diagnosis of diabetes mellitus using phtothermal effects of red blood cells",
+      "conference": "The 1st Emerging Technologies in Mechanical Engineering (ETME 2018)",
+      "period": "2018.08.19~2018.08.22"
+    },
+    {
+      "title": "A Microfluidic Integrated Electrochemical Aptasensor for Detection of Bisphenol A",
+      "conference": "The 1st Emerging Technologies in Mechanical Engineering (ETME 2018)",
+      "period": "2018.08.19~2018.08.22"
+    },
+    {
+      "title": "Dielectrophoretic separation and enrichment of bacteria in microfluidic chip and its automated system",
+      "conference": "The 1st Emerging Technologies in Mechanical Engineering (ETME 2018)",
+      "period": "2018.08.19~2018.08.22"
+    },
+    {
+      "title": "High-sensitive electrochemical immunosensor for detection of salivary cotinine",
+      "conference": "15th International Conference on Nanosciences & Nanotechnologies (NN18)",
+      "period": "2018.07.03~2018.07.06"
+    },
+    {
+      "title": "Smartphone-based pattern recognition for real-time prediction of bloodstain age via machine learning algorithm.",
+      "conference": "BIOSENSORS 2018",
+      "period": "2018.06.12~2018.06.15"
+    },
+    {
+      "title": "Smartphone-based Electorchemical Immunosensor for Real-time Estimation of Postmortem Interval (PMI) from Bacteria Analysis",
+      "conference": "2017 한국바이오칩학회 추계학술대회",
+      "period": "2017.11.08~2017.11.10"
+    },
+    {
+      "title": "Microfluidic Electrochemical Aptasensor for Enrichment and Detection of Bisphenol A (BPA)",
+      "conference": "2017 한국바이오칩학회 추계학술대회",
+      "period": "2017.11.08~2017.11.10"
+    },
+    {
+      "title": "Highly sensitive paper-based immunoassay using photothermal laser speckle imaging",
+      "conference": "Annual Biophotonics Conference 2017",
+      "period": "2017.10.27~2017.10.28"
+    },
+    {
+      "title": "A Disposable Electrochemical Immunosensor for detection of Salivary Cotinine resulted from the Second Hand Smoke",
+      "conference": "Select Biosciences Biodetection and Biosensors 2017 conference",
+      "period": "2017.10.10~2017.10.11"
+    },
+    {
+      "title": "A Highly Sensitive Microfluidic-based Electrochemical Aptasensor for Detection of Bisphenol A",
+      "conference": "Select Biosciences Biodetection and Biosensors 2017 conference",
+      "period": "2017.10.10~2017.10.11"
+    },
+    {
+      "title": "Forensic Profiling Device(FPD): Real-time estimation of postmortem interval(PMI) from bacteria analysis with smartphone-based electrochemical immunosensor",
+      "conference": "제 2회 연세대학교 기계공학과 대학원생 학술대회",
+      "period": "2017.09.28~2017.09.28"
+    },
+    {
+      "title": "A Highly Sensitive Microfluidic-based Electrochemical Apatasensor for Detection of Bisphenol A (BPA)",
+      "conference": "제 2회 연세대학교 기계공학과 대학원생 학술대회",
+      "period": "2017.09.28~2017.09.28"
+    },
+    {
+      "title": "Isolation and enrichment of circulating tumor(ct)DNA for monitoring the progression of cancer in vortexMACS",
+      "conference": "제 2회 연세대학교 기계공학과 대학원생 학술대회",
+      "period": "2017.09.28~2017.09.28"
+    },
+    {
+      "title": "A fully automated photo-thermal system for diagnosis of diabetes mellitus by capturing the sialic acid expressed on the erythrocyte membrane",
+      "conference": "21st International Conference on Flow Injection Analysis and Related Techniques",
+      "period": "2017.09.03~2017.09.08"
+    },
+    {
+      "title": "Forensic Profiling Device(FPD): Real-time estimation of postmortem interval(PMI) from bacteria analysis with smartphone-based electrochemical immunosensor",
+      "conference": "21st International Conference on Flow Injection Analysis and Related Techniques",
+      "period": "2017.09.03~2017.09.08"
+    },
+    {
+      "title": "Extraction and Enrichment of Circulating Cell Free DNA from Plasma/Serum fro Cancer Diagnostics in Micro-MixMACS",
+      "conference": "2017 한국바이오칩학회 하계심포지엄",
+      "period": "2017.08.25~2017.08.25"
+    },
+    {
+      "title": "An Integrated System of Measuring Hemoglobin Content in Erythrocytes for Diagnosis of Anemia Patients Using Photothermal Effect",
+      "conference": "2017 한국바이오칩학회 춘계학술대회",
+      "period": "2017.05.17~2017.05.19"
+    },
+    {
+      "title": "Enrichment of Circulating Tumor Cells for Cancer Diagnostics via Automated Flow System",
+      "conference": "2017 한국바이오칩학회 춘계학술대회",
+      "period": "2017.05.17~2017.05.19"
+    },
+    {
+      "title": "Continuous Adsorption and Photothermal Lysis of Airborne Bacteria Using a Gold-nanoparticle-embeded-geometrically Activated Suface Interaction (gold-GASI) Chip",
+      "conference": "2017 한국바이오칩학회 춘계학술대회",
+      "period": "2017.05.17~2017.05.19"
+    },
+    {
+      "title": "Extraction and Enrichment of Circulating Cell Free DNA from Plasm/Serum for Cancer Diagnotics in Micro-MixMACS",
+      "conference": "2017 한국바이오칩학회 춘계학술대회",
+      "period": "2017.05.17~2017.05.19"
+    },
+    {
+      "title": "Electrochemical Biosensor for the Rapid Detection of Salivary Cotinine Resulted from the Second Hand smoke",
+      "conference": "2017 한국바이오칩학회 춘계학술대회",
+      "period": "2017.05.17~2017.05.19"
+    },
+    {
+      "title": "A Highly Sensitive Microfluidic-based Electrochemical Apatasensor for Detection of Bisphenol A",
+      "conference": "2017 한국바이오칩학회 춘계학술대회",
+      "period": "2017.05.17~2017.05.19"
+    },
+    {
+      "title": "Smartphone Based Diagnostics for Human Healthcare and Forensic Science",
+      "conference": "International Congress on Analytical Sciences 2017",
+      "period": "2017.05.05~2017.05.08"
+    },
+    {
+      "title": "A PTB to Measure Concentration of Salivary CRP Using Photothermal Effect",
+      "conference": "The 3rd SPIE&apos;S International Conference",
+      "period": "2017.02.22~2017.02.24"
+    },
+    {
+      "title": "Enrichment and Phtothermal Lysis of the Airborne Bacteria Using Herringbone Microfluidic Chip with Concanavalin A",
+      "conference": "The 3rd SPIE&apos;S International Conference",
+      "period": "2017.02.22~2017.02.24"
+    },
+    {
+      "title": "Forensic Phone: Age Estimation of a Bloodstain with Colorimetric Analysis Using a Smartphone",
+      "conference": "The 3rd SPIE&apos;S International Conference",
+      "period": "2017.02.22~2017.02.24"
+    },
+    {
+      "title": "Microfluidic devices for isolation and enrichment of circulating biomarkers",
+      "conference": "제 1회 연세대학교 기계공학과 대학원생 학술대회",
+      "period": "2017.01.10~2017.01.10"
+    },
+    {
+      "title": "Concanavalin A가 처리된 헤링본 구조의 미세유체 칩을 이용한 공기 중 미생물의 연속적 농축 및 용해",
+      "conference": "생산제조시스템학회",
+      "period": "2016.11.02~2016.11.04"
+    },
+    {
+      "title": "타액 내 코티졸을 이용한 스마트폰 기반 졸음운전 측정 장치와 뇌파의 상관관계 규명",
+      "conference": "생산제조시스템학회",
+      "period": "2016.11.02~2016.11.04"
+    },
+    {
+      "title": "Capture of the Airborne Bacteria Using Concanavalin A-coated Herringbone Microfluidic Chip",
+      "conference": "2016 한국바이오칩학회 추계학술대회",
+      "period": "2016.10.26~2016.10.28"
+    },
+    {
+      "title": "Isolation and Enrichment of Circulating Cell Free DNA for Monitoring Predictive Biomarkers in Micro-MixMACS Chip",
+      "conference": "2016 한국바이오칩학회 추계학술대회",
+      "period": "2016.10.26~2016.10.28"
+    },
+    {
+      "title": "Smart Drowsiness Phone: A degree of driver’s fatigue via EEG monitoring",
+      "conference": "2016 한국바이오칩학회 추계학술대회",
+      "period": "2016.10.26~2016.10.28"
+    },
+    {
+      "title": "Development of origami stress diagnosis kit for POCT(Point-of-care-testing)",
+      "conference": "NANO KOREA 2016",
+      "period": "2016.07.13~2016.07.15"
+    },
+    {
+      "title": "Colorimetric analysis of bloodstain for estimating time span by using smartphone",
+      "conference": "NANO KOREA 2016",
+      "period": "2016.07.13~2016.07.15"
+    },
+    {
+      "title": "Smart Forensic Phone : Real-time colorimetric estimation of post-mortem interval from bloodstains by using a smartphone",
+      "conference": "Biosensors 2016",
+      "period": "2016.05.25~2016.05.27"
+    },
+    {
+      "title": "Photothermal biosensor for c-reactive protein(CPR) detection from human saliva",
+      "conference": "Biosensors 2016",
+      "period": "2016.05.25~2016.05.27"
+    },
+    {
+      "title": "Isolation and photothermal lysis of single circulating tumor cell (CTC) by ferrofluidic droplet array",
+      "conference": "Biosensors 2016",
+      "period": "2016.05.25~2016.05.27"
+    },
+    {
+      "title": "Continuous enrichment, nucleic acid extraction and detection of foodborne pathogens using a multifunctional microfluidic chip",
+      "conference": "Biosensors 2016",
+      "period": "2016.05.25~2016.05.27"
+    },
+    {
+      "title": "Bio-analytical Devices for Human Healthcare and Environmental Monitoring",
+      "conference": "2016 한국바이오칩학회 춘계학술대회",
+      "period": "2016.05.18~2016.05.20"
+    },
+    {
+      "title": "Enrichment of Circulating Biomarkers from Extracted Plasma",
+      "conference": "2016 한국바이오칩학회 춘계학술대회",
+      "period": "2016.05.18~2016.05.20"
+    },
+    {
+      "title": "Continuous Enrichment, Nucleic Acid Extraction and Detection of Human Norovirus by Photothermal Effect",
+      "conference": "2016 한국바이오칩학회 춘계학술대회",
+      "period": "2016.05.18~2016.05.20"
+    },
+    {
+      "title": "Smartphone Linked Paper Based Origami Kit for POCT(Point-of-care-testing)",
+      "conference": "2016 한국바이오칩학회 춘계학술대회",
+      "period": "2016.05.18~2016.05.20"
+    }
+  ],
+  "fundings": [
+    {
+      "title": "엑소좀 기반 차세대 치료전략 연구센터",
+      "org": "연세대학교",
+      "period": "2026-03-01~2027-02-28"
+    },
+    {
+      "title": "(통합Ezbaro/IRIS) 환자 맞춤형 항암 약물 감수성 평가를 위한 기계학습(ML) 연동 Lab-in-a-Cartridge (LIC)플랫폼 개발(1/3)",
+      "org": "한국연구재단",
+      "period": "2026-03-01~2027-02-28"
+    },
+    {
+      "title": "[7차년도]사회지향 기계기술 글로벌 리더 양성 교육연구단",
+      "org": "한국연구재단",
+      "period": "2026-03-01~2027-02-28"
+    },
+    {
+      "title": "[통합이지바로] 암 전이 모사 바이오 칩을 이용한 순환종양세포-종양내피세포 클러스터의 전이 메커니즘 분석(1/1단계)(2/2)",
+      "org": "한국연구재단",
+      "period": "2025-04-01~2026-03-31"
+    },
+    {
+      "title": "[통합이지바로/RS/주관] 항암방사선 유발 염증성 질환 재생 치료를 위한 인공엑소좀 기술 개발(1/2단계)(2/2)",
+      "org": "한국연구재단",
+      "period": "2025-03-01~2026-04-30"
+    },
+    {
+      "title": "(통합Ezbaro)액체 생검 기반 환자 맞춤형 항암약물 감수성 평가 플랫폼 기술(5/5)(2021.6.1~2026.2.28)",
+      "org": "한국연구재단",
+      "period": "2025-03-01~2026-02-28"
+    },
+    {
+      "title": "[6차년도] 사회지향 기계기술 글로벌 리더 양성 교육연구단",
+      "org": "한국연구재단",
+      "period": "2025-03-01~2026-02-28"
+    },
+    {
+      "title": "[통합이지바로/RS/주관] 항암방사선 유발 염증성 질환 재생 치료를 위한 인공엑소좀 기술 개발(1/2단계)(1/2)",
+      "org": "한국연구재단",
+      "period": "2024-05-01~2025-02-28"
+    },
+    {
+      "title": "[통합이지바로] 암 전이 모사 바이오 칩을 이용한 순환종양세포-종양내피세포 클러스터의 전이 메커니즘 분석(1/1단계)(1/2)",
+      "org": "한국연구재단",
+      "period": "2024-04-01~2025-03-31"
+    },
+    {
+      "title": "(통합Ezbaro)액체 생검 기반 환자 맞춤형 항암약물 감수성 평가 플랫폼 기술(4/5)(2021.6.1~2026.2.28)",
+      "org": "한국연구재단",
+      "period": "2024-03-01~2025-02-28"
+    },
+    {
+      "title": "[5차년도] 사회지향 기계기술 글로벌 리더 양성 교육연구단",
+      "org": "한국연구재단",
+      "period": "2024-03-01~2025-02-28"
+    },
+    {
+      "title": "[RCMS]주식회사 싸이토젠/액체생검의 순환종양세포 및 종양유래 엑소좀 기반 정밀 암 진단 플랫폼 상용화 기술 개발(2/2, 2/2단계)",
+      "org": "한국산업기술기획평가원",
+      "period": "2024-01-01~2024-12-31"
+    },
+    {
+      "title": "[RCMS/주관/환경산업기술원] 수생태계 유입 신종 오염물질 직독식 측정 기술 개발(2/2단계)(2/2)",
+      "org": "한국환경산업기술원",
+      "period": "2024-01-01~2024-12-31"
+    },
+    {
+      "title": "(통합Ezbaro)액체 생검 기반 환자 맞춤형 항암약물 감수성 평가 플랫폼 기술(3/5)(2021.6.1~2026.2.28)",
+      "org": "한국연구재단",
+      "period": "2023-03-01~2024-02-29"
+    },
+    {
+      "title": "[4차년도] 사회지향 기계기술 글로벌 리더 양성 교육연구단",
+      "org": "한국연구재단",
+      "period": "2023-03-01~2024-02-29"
+    },
+    {
+      "title": "[RCMS]주식회사 싸이토젠/액체생검의 순환종양세포 및 종양유래 엑소좀 기반 정밀 암 진단 플랫폼 상용화 기술 개발(1/2, 2/2단계)",
+      "org": "한국산업기술기획평가원",
+      "period": "2023-01-01~2023-12-31"
+    },
+    {
+      "title": "[통합이지바로/범부처/공동] 호흡기 바이러스 검출을 위한 RT-RTA 및 CRISPR 기술 기반 신속 원스텝 분자진단 시스템 개발 및 상용화(1/2단계)(3/3)",
+      "org": "범부처",
+      "period": "2023-01-01~2023-12-31"
+    },
+    {
+      "title": "[RCMS/주관/환경산업기술원] 수생태계 유입 신종 오염물질 직독식 측정 기술 개발(2/2단계)(1/2)",
+      "org": "한국환경산업기술원",
+      "period": "2023-01-01~2023-12-31"
+    },
+    {
+      "title": "[RCMS_위탁]비아이티밸류/실내 공기중 바이러스 분포 측정을 위한 분자진단기반 검사시스템 개발(2/2)",
+      "org": "중소기업기술정보진흥원",
+      "period": "2022-09-06~2023-12-05"
+    },
+    {
+      "title": "(통합Ezbaro)액체 생검 기반 환자 맞춤형 항암약물 감수성 평가 플랫폼 기술(2/5)(2021.6.1~2026.2.28)",
+      "org": "한국연구재단",
+      "period": "2022-03-01~2023-02-28"
+    },
+    {
+      "title": "[3차년도] 사회지향 기계기술 글로벌 리더 양성 교육연구단",
+      "org": "한국연구재단",
+      "period": "2022-03-01~2023-02-28"
+    },
+    {
+      "title": "[통합이지바로/범부처/공동] 호흡기 바이러스 검출을 위한 RT-RTA 및 CRISPR 기술 기반 신속 원스텝 분자진단 시스템 개발 및 상용화(1/2단계)(2/3)",
+      "org": "범부처",
+      "period": "2022-01-01~2022-12-31"
+    },
+    {
+      "title": "[RCMS]싸이토젠/액체생검의 순환종양세포 및 종양유래 엑소좀 기반 정밀 암 진단 플랫폼 상용화 기술 개발(3/3)",
+      "org": "한국산업기술기획평가원",
+      "period": "2022-01-01~2022-12-31"
+    },
+    {
+      "title": "[RCMS/주관/환경산업기술원] 수중생태계 유입 신종 오염물질 직독식 측정 기술 개발(1/2단계)(3/3)",
+      "org": "한국환경산업기술원",
+      "period": "2022-01-01~2022-12-31"
+    },
+    {
+      "title": "[RCMS_위탁]비아이티밸류/실내 공기중 바이러스 분포 측정을 위한 분자진단기반 검사시스템 개발(1/2)",
+      "org": "중소기업기술정보진흥원",
+      "period": "2021-09-06~2022-09-05"
+    },
+    {
+      "title": "(통합Ezbaro)액체 생검 기반 환자 맞춤형 항암약물 감수성 평가 플랫폼 기술(1/5)(2021.6.1~2026.2.28)",
+      "org": "한국연구재단",
+      "period": "2021-06-01~2022-02-28"
+    },
+    {
+      "title": "[민간/(주)나노바이오라이프]CTC 분리장비 개발 기술평가 및 지원",
+      "org": "국내",
+      "period": "2021-05-20~2021-12-19"
+    },
+    {
+      "title": "[민간/(주)유디피아] 타액내 결핵균 바이오마커의 신속진단을 위한 요소기술",
+      "org": "국내",
+      "period": "2021-04-19~2021-10-30"
+    },
+    {
+      "title": "[통합이지바로/범부처/공동] 호흡기 바이러스 검출을 위한 RT-RTA 및 CRISPR 기술 기반 신속 원스텝 분자진단 시스템 개발 및 상용화(1/2단계)(1/3)",
+      "org": "범부처",
+      "period": "2021-04-01~2021-12-31"
+    },
+    {
+      "title": "[중견사업_용역](주관:삼성서울병원)세포 포획 장치 제작 및 성능평가(2021)",
+      "org": "한국연구재단",
+      "period": "2021-04-01~2022-01-14"
+    },
+    {
+      "title": "[2차년도] 사회지향 기계기술 글로벌 리더 양성 교육연구단",
+      "org": "한국연구재단",
+      "period": "2021-03-01~2022-02-28"
+    },
+    {
+      "title": "[RCMS]싸이토젠/액체생검의 순환종양세포 및 종양유래 엑소좀 기반 정밀 암 진단 플랫폼 상용화 기술 개발(2/3)",
+      "org": "한국산업기술기획평가원",
+      "period": "2021-01-01~2021-12-31"
+    },
+    {
+      "title": "[통합이지바로](협동2:비아이티밸류주관)다종 바이러스의 현장 검출을 위한 미세유체 칩 기반 전기화학 센서 개발(2/3(2020.4.29~2022.12.31)",
+      "org": "농림식품기술기획평가원",
+      "period": "2021-01-01~2021-12-31"
+    },
+    {
+      "title": "[민간/ 주식회사 베라버스] 인체유래 세포 배양 플레이트내의 미세 유체 채널 설계",
+      "org": "국내",
+      "period": "2021-01-01~2023-12-31"
+    },
+    {
+      "title": "[RCMS/주관/환경산업기술원] 수중생태계 유입 신종 오염물질 직독식 측정 기술 개발(2/5)",
+      "org": "한국환경산업기술원",
+      "period": "2021-01-01~2021-12-31"
+    },
+    {
+      "title": "[민간/㈜코젠바이오텍] 감염성질환 진단을 위한 미세유체칩 활용 기술",
+      "org": "국내",
+      "period": "2020-10-01~2020-11-30"
+    },
+    {
+      "title": "[1차년도] 사회지향 기계기술 글로벌 리더 양성 교육연구단",
+      "org": "한국연구재단",
+      "period": "2020-09-01~2021-02-28"
+    },
+    {
+      "title": "[중견사업_용역](주관:삼성서울병원)세포 포획 장치 제작 및 성능평가",
+      "org": "한국연구재단",
+      "period": "2020-07-01~2021-03-15"
+    },
+    {
+      "title": "[RCMS/주관/환경산업기술원] 수생태계 유입 신종 오염물질 직독식 측정 기술 개발(1/5)",
+      "org": "한국환경산업기술원",
+      "period": "2020-05-07~2020-12-31"
+    },
+    {
+      "title": "(통합Ezbaro)(협동2:비아이티밸류주관)다종 바이러스의 현장 검출을 위한 미세유체 칩 기반 전기화학 센서 개발(1/3(2020.4.29~2022.12.31)",
+      "org": "농림식품기술기획평가원",
+      "period": "2020-04-29~2020-12-31"
+    },
+    {
+      "title": "[RCMS]싸이토젠/액체생검의 순환종양세포 및 종양유래 엑소좀 기반 정밀 암 진단 플랫폼 상용화 기술 개발(1/3)",
+      "org": "한국산업기술기획평가원",
+      "period": "2020-04-01~2020-12-31"
+    },
+    {
+      "title": "[민간/(주)코젠바이오텍]감염성질환 진단을 위한 생체시료 전처리 기술",
+      "org": "국내",
+      "period": "2020-04-01~2020-09-30"
+    },
+    {
+      "title": "(통합Ezbaro)(후속)엑소좀 분석을 위한 바이오칩 및 자동화 시스템(3/3)(2018.3.1~2021.2.28)",
+      "org": "한국연구재단",
+      "period": "2020-03-01~2021-02-28"
+    },
+    {
+      "title": "[8차년도]사회지향 기계기술 글로벌 리더 양성 사업단",
+      "org": "한국연구재단",
+      "period": "2020-03-01~2020-08-31"
+    },
+    {
+      "title": "[통합이지바로] (총괄/1세부)환경호르몬 측정용 바이오센서의 제작 및 모바일 측정기기의 개발 (2/2단계)(3/3)",
+      "org": "한국연구재단",
+      "period": "2020-02-01~2020-07-31"
+    },
+    {
+      "title": "[Ezbaro] (총괄/1세부)환경호르몬 측정용 바이오센서의 제작 및 모바일 측정기기의 개발 (2/2단계)(2/3)",
+      "org": "한국연구재단",
+      "period": "2019-04-01~2020-01-31"
+    },
+    {
+      "title": "(후속)엑소좀 분석을 위한 바이오칩 및 자동화 시스템(2/3)(2018.3.1~2021.2.28)",
+      "org": "한국연구재단",
+      "period": "2019-03-01~2020-02-29"
+    },
+    {
+      "title": "[7차년도]사회지향 기계기술 글로벌 리더 양성 사업단",
+      "org": "한국연구재단",
+      "period": "2019-03-01~2020-02-29"
+    },
+    {
+      "title": "[Ezbaro] (총괄/1세부)환경호르몬 측정용 바이오센서의 제작 및 모바일 측정기기의 개발 (2/2단계)(1/3)",
+      "org": "한국연구재단",
+      "period": "2018-06-01~2019-03-31"
+    },
+    {
+      "title": "(후속)엑소좀 분석을 위한 바이오칩 및 자동화 시스템(1/3)(2018.3.1~2021.2.28)",
+      "org": "한국연구재단",
+      "period": "2018-03-01~2019-02-28"
+    },
+    {
+      "title": "[6차년도]사회지향 기계기술 글로벌 리더 양성 사업단",
+      "org": "한국연구재단",
+      "period": "2018-03-01~2019-02-28"
+    },
+    {
+      "title": "[협동] 미세유체칩을 이용한 식품안전 위해 바이오마커의 농축 및 측정(3/3)",
+      "org": "농림수산식품기술기획평가원",
+      "period": "2018-01-01~2018-12-31"
+    },
+    {
+      "title": "인간 체내외 환경호르몬의 실시간 모니터링을 위한 모바일 웰니스 기기 개발(1/1,2단계)(2015.11.1~2020.7.31)",
+      "org": "한국연구재단",
+      "period": "2017-08-01~2018-05-31"
+    },
+    {
+      "title": "입자의 공기역학 및 전기적 특성을 이용한 기상 병원균 선별적 분류/포집과 미세유체채널 기반 전처리 기술(3/3, 2단계)",
+      "org": "한국연구재단",
+      "period": "2017-05-01~2018-02-28"
+    },
+    {
+      "title": "미세유체칩 기반 단일 혈중 희소세포들의 분리 및 분석기술(3/3)",
+      "org": "한국연구재단",
+      "period": "2017-05-01~2018-04-30"
+    },
+    {
+      "title": "[5차년도]사회지향 기계기술 글로벌 리더 양성 사업단",
+      "org": "한국연구재단",
+      "period": "2017-03-01~2018-02-28"
+    },
+    {
+      "title": "[협동] 미세유체칩을 이용한 식품안전 위해 바이오마커의 농축 및 측정(2/3)",
+      "org": "농림수산식품기술기획평가원",
+      "period": "2017-01-01~2017-12-31"
+    },
+    {
+      "title": "광열 바이오센서기반 혈액진단기기 상용화 개발",
+      "org": "중소기업청",
+      "period": "2016-11-13~2017-11-12"
+    },
+    {
+      "title": "[협동] 미세유체칩을 이용한 식품안전 위해 바이오마커의 농축 및 측정(1/3)",
+      "org": "농림수산식품기술기획평가원",
+      "period": "2016-08-30~2016-12-31"
+    },
+    {
+      "title": "환경호르몬 측정용 바이오센서의 제작 및 모바일 측정기기의 개발(총괄: 인간 체내외 환경호르몬의 실시간 모니터링을 위한 모바일 웰니스 기기 개발)",
+      "org": "한국연구재단",
+      "period": "2016-08-01~2017-07-31"
+    },
+    {
+      "title": "입자의 공기역학 및 전기적 특성을 이용한 기상 병원균 선별적 분류/포집과 미세유체채널 기반 전처리 기술(2/3, 2단계)",
+      "org": "한국연구재단",
+      "period": "2016-07-01~2017-04-30"
+    },
+    {
+      "title": "미세유체칩 기반 단일 혈중 희소세포들의 분리 및 분석기술(2/3)",
+      "org": "한국연구재단",
+      "period": "2016-05-01~2017-04-30"
+    },
+    {
+      "title": "(4차년도) 사회지향 기계기술 글로벌 리더 양성 사업단",
+      "org": "한국연구재단",
+      "period": "2016-03-01~2017-02-28"
+    },
+    {
+      "title": "[국가과학기술연구회/융합연구단] 사망시간 실시간 측정을 위한 휴대용 기기 개발(3차년도)",
+      "org": "산업기술연구회",
+      "period": "2016-01-01~2016-12-31"
+    },
+    {
+      "title": "SK텔레콤/&apos;15년 미세유체칩 기반 cfDNA 추출기술 개발",
+      "org": "국내",
+      "period": "2015-12-18~2018-03-31"
+    },
+    {
+      "title": "[RCMS]급성 바이러스 감염성 질환 진단을 위한 휴대용 바이오 진단 시스템 개발(1/4)",
+      "org": "한국산업기술기획평가원",
+      "period": "2015-12-01~2016-11-30"
+    },
+    {
+      "title": "광열 바이오센서기반 혈액진단기기 상용화 개발",
+      "org": "중소기업청",
+      "period": "2015-11-13~2016-11-12"
+    },
+    {
+      "title": "환경호르몬 측정용 바이오센서의 제작 및 모바일 측정기기의 개발(총괄: 인간 체내외 환경호르몬의 실시간 모니터링을 위한 모바일 웰니스 기기 개발)",
+      "org": "한국연구재단",
+      "period": "2015-11-01~2016-07-31"
+    },
+    {
+      "title": "입자의 공기역학 및 전기적 특성을 이용한 기상 병원균 선별적 분류/포집과 미세유체채널 기반 전처리 기술 (1/3, 2단계)",
+      "org": "한국연구재단",
+      "period": "2015-09-01~2016-06-30"
+    },
+    {
+      "title": "교통사고 예방을 위한 자가 진단용 피로도 측정기(바이오센서)의 기초 원천기술 개발(2/2)",
+      "org": "국토교통과학기술진흥원",
+      "period": "2015-07-11~2016-07-10"
+    },
+    {
+      "title": "[포인트제]혈중종양세포 분석 디바이스기반 대장암 환자의 치료 모니터링 기술개발",
+      "org": "중소기업청",
+      "period": "2015-06-17~2016-06-16"
+    },
+    {
+      "title": "미세유체칩 기반 단일 혈중 희소세포들의 분리 및 분석기술(1/3)",
+      "org": "한국연구재단",
+      "period": "2015-05-01~2016-04-30"
+    },
+    {
+      "title": "[국가과학기술연구회/융합연구단] 사망시간 실시간 측정을 위한 휴대용 기기 개발(2차년도)",
+      "org": "산업기술연구회",
+      "period": "2015-01-01~2015-12-31"
+    },
+    {
+      "title": "[국가과학기술연구회/융합연구단] 노로바이러스 RNA고속 추출 장치 개발",
+      "org": "산업기술연구회",
+      "period": "2014-12-16~2015-12-15"
+    },
+    {
+      "title": "광열 바이오센서기반 혈액진단기기 상용화 개발",
+      "org": "중소기업청",
+      "period": "2014-11-13~2015-11-12"
+    },
+    {
+      "title": "(주)아모그린텍/스마트폰 기반 전기화학센서의 개발",
+      "org": "국내",
+      "period": "2014-09-01~2014-10-31"
+    },
+    {
+      "title": "입자의 공기역학 및 전기적 특성을 이용한 기상 병원균 선별적 분류/포집과 미세유체채널 기반 전처리 기술(2/2,1단계)",
+      "org": "한국연구재단",
+      "period": "2014-09-01~2015-08-31"
+    },
+    {
+      "title": "[RCMS](주)바이브라시스템/일반인의 정신적 웰니스 증진을 위한 생체신호",
+      "org": "한국산업기술평가관리원",
+      "period": "2014-08-01~2015-10-31"
+    },
+    {
+      "title": "생화학테러물질의 검침을 위한 세포 분리 미세유체 소자 개발",
+      "org": "한국연구재단",
+      "period": "2014-08-01~2015-07-31"
+    },
+    {
+      "title": "삼성전자/타액을 이용한 정신질환 복합진단 센서개발",
+      "org": "국내",
+      "period": "2014-08-01~2015-09-30"
+    },
+    {
+      "title": "교통사고 예방을 위한 자가 진단용 피로도 측정기(바이오센서)의 기초 원천기술 개발",
+      "org": "국토교통과학기술진흥원",
+      "period": "2014-07-11~2015-07-10"
+    },
+    {
+      "title": "[포인트제]혈중종양세포 분석 디바이스기반 대장암 환자의 치료 모니터링 기술개발",
+      "org": "중소기업청",
+      "period": "2014-06-17~2015-06-16"
+    },
+    {
+      "title": "사망시간 실시간 측정을 위한 휴대용 기기 개발",
+      "org": "한국기초과학지원연구원",
+      "period": "2014-04-01~2014-12-31"
+    },
+    {
+      "title": "(주)아모그린텍/스마트폰 연동 센서의 신호 안정화에 대한 용역",
+      "org": "국내",
+      "period": "2014-01-01~2014-02-28"
+    },
+    {
+      "title": "입자의 공기역학 및 전기적 특성을 이용한 기상 병원균 선별적 분류/포집과 미세유체채널 기반 전처리 기술(2014.01.01~2014.08.31.)(1단계 1차년도)",
+      "org": "한국연구재단",
+      "period": "2014-01-01~2014-08-31"
+    },
+    {
+      "title": "병렬구조의 다중오리피스 유동분획 칩을 이용한 혈액 내 암세포 분리(1단계/2연차 3세부)",
+      "org": "한국보건산업진흥원",
+      "period": "2013-11-01~2014-10-31"
+    },
+    {
+      "title": "단백질 분석에 있어 가장 중요하고 보편적인 기술중 하나인 웨스턴 블랏의 랩온어칩 상에서의 구현",
+      "org": "연세대학교",
+      "period": "2013-09-01~2013-10-31"
+    },
+    {
+      "title": "인간 스트레스 측정기기 연구회(1/1)",
+      "org": "중소기업청",
+      "period": "2013-08-01~2014-01-10"
+    },
+    {
+      "title": "생화학테러물질의 검침을 위한 세포 분리 미세유체 소자 개발(2010.08.16.~ 2015.07.31.)(2단계 2차년도)",
+      "org": "한국연구재단",
+      "period": "2013-08-01~2014-07-31"
+    },
+    {
+      "title": "(주)아모그린텍/스마트폰 바이오칩 기술 개발",
+      "org": "국내",
+      "period": "2013-06-15~2014-08-30"
+    },
+    {
+      "title": "[RCMS](주)바이브라시스템/일반인의 정신적 웰니스 증진을 위한 생체신호(뇌파, 맥파(PPG),호흡(RSP), 코티졸)의 측정, 평가를 영상정보 기반으로 전환하는 ICT 융합 응용기술 개발(1/3)(2013.06.01~2016.07.31)",
+      "org": "한국산업기술평가관리원",
+      "period": "2013-06-01~2014-07-31"
+    },
+    {
+      "title": "혈액순환종양세포(CTC) 분리 검침용 통합 미세 유체칩에 대한 연구(3/3)",
+      "org": "한국연구재단",
+      "period": "2013-05-01~2014-04-30"
+    },
+    {
+      "title": "전이암 조기진단 및 예후판정을 위한 고감도 혈액내 순환종양세포 분리/검침기기 개발 및 임상적용(3/3년)(2011.5.1~2014.4.30)",
+      "org": "국립암센터",
+      "period": "2013-05-01~2014-04-30"
+    },
+    {
+      "title": "재난 피해자들의 심리상태를 정확하게 측정하고 관리 할 수 있는 EMOTION-ON-A-CHIP(EOC, 감성진단칩)의 개발",
+      "org": "한국기초과학지원연구원",
+      "period": "2013-01-01~2013-12-31"
+    },
+    {
+      "title": "[연세원주산학단]병렬구조의 다중오리피스 유동분획 칩을 이용한 혈액 내 암세포 분리(3세부)(1/6년)(2012.12.1~2018.10.31",
+      "org": "한국보건산업진흥원",
+      "period": "2012-12-01~2013-10-31"
+    },
+    {
+      "title": "LG전자(주)/혈중 종양세포 분리기술 개발 (2012.11.12~2013.05.13)- 2014.04.13",
+      "org": "국내",
+      "period": "2012-11-12~2014-09-30"
+    },
+    {
+      "title": "광학-마이크로 유체역학을 이용한 순환 종양 마커의 고감도 감지기술",
+      "org": "국립암센터",
+      "period": "2012-10-01~2012-12-31"
+    },
+    {
+      "title": "생화학테러물질의 검침을 위한 세포 분리 미세유체 소자 개발 (1/3,2단계)",
+      "org": "한국연구재단(과학재단)",
+      "period": "2012-08-01~2013-07-31"
+    },
+    {
+      "title": "(주)코젠바이오텍/췌장 및 대장암 세포 분리용 마이크로 칩 개발(2/2)(2011.6.1~2013.5.31)",
+      "org": "한국산업기술평가관리원",
+      "period": "2012-06-01~2013-05-31"
+    },
+    {
+      "title": "혈액순환종양세포(CTC) 분리 검침용 통합 미세 유체칩에 대한 연구(2/3)",
+      "org": "한국과학재단",
+      "period": "2012-05-01~2013-04-30"
+    },
+    {
+      "title": "전이암 조기진단 및 예후판정을 위한 고감도 혈액내 순환종양세포 분리/검침기기 개발 및 임상적용(2/3년)(2011.5.1~2014.4.30)",
+      "org": "국립암센터",
+      "period": "2012-05-01~2013-04-30"
+    },
+    {
+      "title": "적혈구 광열효과와 열센서를 이용한 혈액질환 진단기기 개발(2차년도/2)(2011.05.01~2013.03.31)",
+      "org": "한국보건산업진흥원",
+      "period": "2012-04-01~2013-03-31"
+    },
+    {
+      "title": "나노마이크로응용기계기술인력양성사업단",
+      "org": "연세대학교",
+      "period": "2012-03-01~2014-02-28"
+    },
+    {
+      "title": "나노 마이크로 응용기계기술 인력양성사업",
+      "org": "학술진흥재단",
+      "period": "2012-03-01~2013-04-30"
+    },
+    {
+      "title": "엘지전자(주) / Negative Enrichment 방법을 이용한 션泰償씨煐셕?분리기술 (2012.02.13-2012.08.13)",
+      "org": "국내",
+      "period": "2012-02-13~2013-09-14"
+    },
+    {
+      "title": "재난 피해자들의 심리상태를 정확하게 측정하고 관리할 수 있는 Emotion-on-a-chip의 개발",
+      "org": "한국기초과학지원연구원",
+      "period": "2012-01-01~2012-12-31"
+    },
+    {
+      "title": "[다학제간] 심리사회유전체 연구회",
+      "org": "연세대학교",
+      "period": "2012-01-01~2012-12-31"
+    },
+    {
+      "title": "(주)바이오메드랩/유해적혈구 분리를 통한 태아 선천성 유전 질환 검진 기술 개발",
+      "org": "중소기업기술정보진흥원",
+      "period": "2011-12-01~2012-11-30"
+    },
+    {
+      "title": "엘지이노텍(주) / 자성입자의 연속적 표지 및 분리를 위한 미세유체 채널 설계 및 제작",
+      "org": "국내",
+      "period": "2011-09-01~2013-08-31"
+    },
+    {
+      "title": "[유망ACE] 융합감성과학",
+      "org": "연세대학교",
+      "period": "2011-09-01~2012-02-29"
+    },
+    {
+      "title": "생화학테러물질의 검침을 위한 세포 분리 미세유체 소자 개발 (2/5)",
+      "org": "한국연구재단(과학재단)",
+      "period": "2011-08-01~2012-07-31"
+    },
+    {
+      "title": "삼성종합기술원 / CTC 회수율 향상을 위한 micromixing 기술 개발(2011.06.15~2013.08.14)",
+      "org": "국내",
+      "period": "2011-06-15~2014-03-31"
+    },
+    {
+      "title": "(주)코젠바이오텍/췌장 및 대장암 세포 분리용 마이크로 칩 개발(1차년도/2)(2011.06.01~2013.05.31)",
+      "org": "중소기업기술정보진흥원",
+      "period": "2011-06-01~2012-05-31"
+    },
+    {
+      "title": "마이크로 수력학 기반 초고속 백혈구 암세포 분리 및 진단 시스템 연구 (3/3)",
+      "org": "한국과학재단",
+      "period": "2011-05-01~2012-04-30"
+    },
+    {
+      "title": "전이암 조기진단 및 예후판정을 위한 고감도 혈액내 순환종양세포 분리/검침기기 개발 및 임상적용(1차년도/3)(2011.05.01~2014.04.30)",
+      "org": "국립암센터",
+      "period": "2011-05-01~2012-04-30"
+    },
+    {
+      "title": "혈액순환종양세포(CTC) 분리 검침용 통합 미세 유체칩에 대한 연구",
+      "org": "한국과학재단",
+      "period": "2011-05-01~2012-04-30"
+    },
+    {
+      "title": "적혈구 광열효과와 열 센서를 이용한 혈액질환 진단기기 개발(1차년도/2)(2011.05.01~2013.03.31)",
+      "org": "보건복지부",
+      "period": "2011-05-01~2012-03-31"
+    },
+    {
+      "title": "나노 마이크로 응용기계기술 인력양성사업",
+      "org": "학술진흥재단",
+      "period": "2011-03-01~2012-02-29"
+    },
+    {
+      "title": "[유망ACA] 융합감성과학",
+      "org": "연세대학교",
+      "period": "2011-03-01~2012-02-29"
+    },
+    {
+      "title": "나노마이크로응용기계기술인력양성사업단",
+      "org": "연세대학교",
+      "period": "2011-03-01~2012-02-29"
+    },
+    {
+      "title": "일회용 발열장갑",
+      "org": "대학산업기술지원단",
+      "period": "2010-09-01~2010-11-30"
+    },
+    {
+      "title": "고감도 나노바이오센서 및 진단키트 개발",
+      "org": "한국과학재단",
+      "period": "2010-09-01~2011-08-31"
+    },
+    {
+      "title": "CMOS 기반 DNA/뉴런 바이오 센서 칩 개발",
+      "org": "한국과학기술연구원(KIST)",
+      "period": "2010-09-01~2011-08-31"
+    },
+    {
+      "title": "바이러스 대응 나노복합소재 이용 공기정화 필터 시스템 개발",
+      "org": "한국과학재단",
+      "period": "2010-09-01~2011-08-31"
+    },
+    {
+      "title": "생화학테러물질의 검침을 위한 세포 분리 미세유체 소자 개발",
+      "org": "한국연구재단(과학재단)",
+      "period": "2010-08-16~2011-07-31"
+    },
+    {
+      "title": "5차년도/나노기술을 이용한 바이오 융합산업 혁신 클러스터",
+      "org": "서울시정개발연구원",
+      "period": "2010-08-01~2011-07-31"
+    },
+    {
+      "title": "체외진단시스템을 위한 고성능 세포 분리기 연구회",
+      "org": "중소기업기술정보진흥원",
+      "period": "2010-06-01~2010-10-31"
+    },
+    {
+      "title": "삼성전자(주) MOFF을 이용한 혈액 전처리 및 microfiltration 통합 기술",
+      "org": "민간기업",
+      "period": "2010-05-17~2011-06-30"
+    },
+    {
+      "title": "마이크로 수력학 기반 초고속 백혈구 암세포 분리 및 진단 시스템 연구",
+      "org": "한국과학재단",
+      "period": "2010-05-01~2011-04-30"
+    },
+    {
+      "title": "융합감성과학",
+      "org": "연세대학교",
+      "period": "2010-03-02~2011-06-30"
+    },
+    {
+      "title": "G-5-5-10나노마이크로응용기계기술인력양성사업단",
+      "org": "연세대학교",
+      "period": "2010-03-02~2011-06-30"
+    },
+    {
+      "title": "나노마이크로응용기계기술인력양성사업단",
+      "org": "연세대학교",
+      "period": "2010-03-01~2011-02-28"
+    },
+    {
+      "title": "나노 마이크로 응용기계기술 인력양성사업단",
+      "org": "학술진흥재단",
+      "period": "2010-03-01~2011-02-28"
+    },
+    {
+      "title": "전자소자를 이용한 수질 유해균 검출 키트 개발",
+      "org": "한국환경기술진흥원",
+      "period": "2010-03-01~2011-02-28"
+    },
+    {
+      "title": "체외진단 시스템을 위한 고성능 세포 분리기에 대한 옜П",
+      "org": "대학산업기술지원단",
+      "period": "2009-12-01~2010-04-30"
+    },
+    {
+      "title": "실시간 공기중 부유 미생물 검침용 박막 전자센서 연구개발",
+      "org": "서울시정개발연구원",
+      "period": "2009-10-19~2009-11-18"
+    },
+    {
+      "title": "CMOS 기반 DNA/뉴런 바이오 센서 칩 개발",
+      "org": "한국과학기술연구원(KIST)",
+      "period": "2009-09-01~2010-08-31"
+    },
+    {
+      "title": "고감도 나노바이오센서 및 진단키트 개발",
+      "org": "한국과학재단",
+      "period": "2009-09-01~2010-08-31"
+    },
+    {
+      "title": "융합감성과학",
+      "org": "연세대학교",
+      "period": "2009-09-01~2010-06-30"
+    },
+    {
+      "title": "등굽은 클립",
+      "org": "한국산업기술재단",
+      "period": "2009-08-03~2009-11-30"
+    },
+    {
+      "title": "4차년도 /나노기술을 이용한 바이오 융합산업 혁신 클러스터",
+      "org": "서울시정개발연구원",
+      "period": "2009-08-01~2010-07-31"
+    },
+    {
+      "title": "혈액세포 광열효과 기반 진단 바이오센서 시스템 연구회",
+      "org": "한국산업기술평가원",
+      "period": "2009-08-01~2009-10-31"
+    },
+    {
+      "title": "마이크로 수력학 기반 초고속 백혈구 암세포 분리 및 진단 시스템 연구",
+      "org": "한국과학재단",
+      "period": "2009-05-01~2010-04-30"
+    },
+    {
+      "title": "전자소자를 이용한 수질 유해균 검출 키트 개발",
+      "org": "한국환경기술진흥원",
+      "period": "2009-04-01~2010-02-28"
+    },
+    {
+      "title": "[다학제간] 소통의 소리학",
+      "org": "연세대학교산학단_간접비",
+      "period": "2009-04-01~2010-03-31"
+    },
+    {
+      "title": "Bio,Inorganic,Organic Micro Fabrication 센터 구축",
+      "org": "한국산업기술평가원",
+      "period": "2009-04-01~2010-03-31"
+    },
+    {
+      "title": "G5-5-10/나노마이크로응용기계기술인력양성사업",
+      "org": "연세대학교",
+      "period": "2009-03-02~2010-06-30"
+    },
+    {
+      "title": "나노메디신 사업단",
+      "org": "연세대학교",
+      "period": "2009-03-02~2010-06-30"
+    },
+    {
+      "title": "나노마이크로응용기계기술인력양성사업단",
+      "org": "연세대학교",
+      "period": "2009-03-01~2010-02-28"
+    },
+    {
+      "title": "나노마이크로응용기계기술인력양성사업단",
+      "org": "학술진흥재단",
+      "period": "2009-03-01~2010-02-28"
+    },
+    {
+      "title": "실용적 한우판별기기 제작을 위한 DNA추출 기술 및 메커니즘 개발",
+      "org": "축산연구소",
+      "period": "2009-01-01~2009-12-31"
+    },
+    {
+      "title": "나노메디컬 1-1세부-공통",
+      "org": "한국과학재단",
+      "period": "2008-09-01~2009-08-31"
+    },
+    {
+      "title": "나노메디컬 1-2세부-공통",
+      "org": "한국과학재단",
+      "period": "2008-09-01~2009-08-31"
+    },
+    {
+      "title": "나노메디컬 1-1세부-정효일",
+      "org": "한국과학재단",
+      "period": "2008-09-01~2009-08-31"
+    },
+    {
+      "title": "3차/나노기술을 이용한 바이오 융합산업 혁신 클러스터",
+      "org": "서울시정개발연구원",
+      "period": "2008-08-01~2009-07-31"
+    },
+    {
+      "title": "과열차단 Cognitive Sensor 다리미",
+      "org": "대학산업기술지원단",
+      "period": "2008-08-01~2008-11-30"
+    },
+    {
+      "title": "암세포의 비열을 이용한 세포개수 측정용 바이오센서 의 연구",
+      "org": "학술진흥재단",
+      "period": "2008-07-01~2009-06-30"
+    },
+    {
+      "title": "다학제간 교육 및 연구기반구축을 통한 의생명과학기",
+      "org": "교육부",
+      "period": "2008-05-01~2009-02-28"
+    },
+    {
+      "title": "전자소자를 이용한 수질 유해균 검출 키트 개발",
+      "org": "한국환경기술진흥원",
+      "period": "2008-04-01~2009-03-31"
+    },
+    {
+      "title": "G 5-5-10/연세의생명특성화사업단",
+      "org": "연세대학교",
+      "period": "2008-03-01~2009-02-28"
+    },
+    {
+      "title": "나노마이크로응용기계기술인력양성사업단",
+      "org": "학술진흥재단",
+      "period": "2008-03-01~2009-02-28"
+    },
+    {
+      "title": "G5-5-10/나노마이크로응용기계기술인력양성사업",
+      "org": "연세대학교",
+      "period": "2008-03-01~2009-02-28"
+    },
+    {
+      "title": "나노마이크로응용기계기술인력양성사업단",
+      "org": "연세대학교",
+      "period": "2008-03-01~2009-02-28"
+    },
+    {
+      "title": "실용적 한우판별기기 제작을 위한 DNA추출 및 PCR증폭기술 개발",
+      "org": "축산연구소",
+      "period": "2008-01-01~2008-12-31"
+    },
+    {
+      "title": "암 진단용 초고감도 나노선 바이오 센서 개발",
+      "org": "학술진흥재단",
+      "period": "2007-12-01~2008-11-30"
+    },
+    {
+      "title": "휴대용 고감도 식중독 미생물 검침기기 개발",
+      "org": "서울시정개발연구원",
+      "period": "2007-12-01~2008-11-30"
+    },
+    {
+      "title": "물리적 자극체와 통합된 연골세포 배양용 초미세 세포칩의 연구",
+      "org": "학술진흥재단",
+      "period": "2007-12-01~2008-11-30"
+    },
+    {
+      "title": "나노메디컬1총괄1세부-정효일",
+      "org": "한국과학재단",
+      "period": "2007-09-01~2008-08-31"
+    },
+    {
+      "title": "CMOS 정보보안 모듈 CMOS-뉴런칩 SOC",
+      "org": "한국과학기술연구원",
+      "period": "2007-09-01~2008-08-31"
+    },
+    {
+      "title": "나노기술을 이용한 바이오 융합산업 혁신 클러스터",
+      "org": "서울시정개발연구원",
+      "period": "2007-08-01~2011-05-31"
+    },
+    {
+      "title": "융합공학 기술",
+      "org": "연세대학교산학단_간접비",
+      "period": "2007-07-01~2009-03-31"
+    },
+    {
+      "title": "바이오 정보 시스템용 광 헤드 엑츄에이터 설계 및 제어알고리즘 개발",
+      "org": "한국전자통신연구원",
+      "period": "2007-06-01~2008-05-31"
+    },
+    {
+      "title": "다학제간 교육 및 연구기반구축을 통한 의생명과학기",
+      "org": "교육부",
+      "period": "2007-06-01~2008-04-30"
+    },
+    {
+      "title": "초간편, 고효율 소고기 육질 채취 및 DNA 추출기구의 설계 및 제작에 관한 연구",
+      "org": "한국전자통신연구원",
+      "period": "2007-05-01~2007-12-31"
+    },
+    {
+      "title": "감염성 세균 및 바이러스의 신속 진단이 가능한 고감도 IMPEDANCE 검출법 및 바이오칩 개발",
+      "org": "식품의약품안전청",
+      "period": "2007-04-10~2007-11-30"
+    },
+    {
+      "title": "학부 융합교육 프로그램 개발 및 실시방안 연구",
+      "org": "연세대학교산학단_간접비",
+      "period": "2007-04-01~2007-05-15"
+    },
+    {
+      "title": "G5-5-10/연세의생명특성화사업단",
+      "org": "연세대학교",
+      "period": "2007-03-01~2008-05-31"
+    },
+    {
+      "title": "열 반응을 이용한 암 진단용 THERMAL BIOSENSOR 연구",
+      "org": "한국과학재단",
+      "period": "2007-03-01~2008-02-29"
+    },
+    {
+      "title": "나노/마이크로 응용 기계기술 인력양성사업단",
+      "org": "학술진흥재단",
+      "period": "2007-03-01~2008-02-29"
+    },
+    {
+      "title": "기술 융합시대에 따른 공학교육 연구",
+      "org": "연세대학교산학단_간접비",
+      "period": "2007-03-01~2008-08-31"
+    },
+    {
+      "title": "나노/마이크로 응용 기계기술 인력양성사업단",
+      "org": "연세대학교",
+      "period": "2007-03-01~2008-02-29"
+    },
+    {
+      "title": "열 반응을 이용한 암 진단용 THERMAL BIOSENSOR 연구",
+      "org": "한국과학재단",
+      "period": "2007-03-01~2008-02-29"
+    },
+    {
+      "title": "G5-5-10/나노마이크로응용기계기술인력양성사업",
+      "org": "연세대학교",
+      "period": "2007-03-01~2008-05-31"
+    },
+    {
+      "title": "휴대용 고감도 식중독 미생물 검침기기 개발",
+      "org": "서울시정개발연구원",
+      "period": "2006-12-01~2007-11-30"
+    },
+    {
+      "title": "삼성전자(주)",
+      "org": "민간기업",
+      "period": "2006-12-01~2007-10-20"
+    },
+    {
+      "title": "문제해결형인력양성지원_기업체(손오택)",
+      "org": "학술진흥재단",
+      "period": "2006-12-01~2007-11-30"
+    },
+    {
+      "title": "암 진단용 초고감도 나노선 바이오 센서 개발",
+      "org": "학술진흥재단",
+      "period": "2006-12-01~2007-11-30"
+    },
+    {
+      "title": "본 과제명 : 차세대 고성능 광전자 소자 및 스마트 생화학 센서 구현을 위한 IT-BT-NT 융합 기술개발 위탁 과제명 : DNA를 추출하기 위한 최적의 미세유로 설계 및 제작",
+      "org": "한국전자통신연구원",
+      "period": "2006-12-01~2007-05-31"
+    },
+    {
+      "title": "나노메디컬1총괄1세부-공통",
+      "org": "과학재단",
+      "period": "2006-09-01~2007-08-31"
+    },
+    {
+      "title": "나노메디컬1총괄1세부-정효일",
+      "org": "과학재단",
+      "period": "2006-09-01~2007-08-31"
+    },
+    {
+      "title": "(주)코젠바이오텍",
+      "org": "민간기업",
+      "period": "2006-09-01~2007-08-31"
+    },
+    {
+      "title": "나노 바이오 소재의 적용화 기술 개발",
+      "org": "서울시정개발연구원",
+      "period": "2006-08-01~2007-07-31"
+    },
+    {
+      "title": "나노기술을 이용한 바이오 융합산업 혁신 클러스터",
+      "org": "연세대학교",
+      "period": "2006-08-01~2007-07-31"
+    },
+    {
+      "title": "스마트 의류 제품화",
+      "org": "산업자원부",
+      "period": "2006-08-01~2007-07-31"
+    },
+    {
+      "title": "나노기술을 이용한 바이오 융합산업 혁신 클러스터",
+      "org": "서울시정개발연구원",
+      "period": "2006-08-01~2007-07-31"
+    },
+    {
+      "title": "스마트의류 제품화",
+      "org": "산업자원부",
+      "period": "2006-08-01~2007-07-31"
+    },
+    {
+      "title": "초소형 고감도 식중독 미생물 검침기기 개발",
+      "org": "중소기업청",
+      "period": "2006-07-01~2006-12-31"
+    },
+    {
+      "title": "정전 프린팅 방법을 이용한 2차원 및 3차원 세포 패턴",
+      "org": "학술진흥재단",
+      "period": "2006-07-01~2007-06-30"
+    },
+    {
+      "title": "바이오 정보 시스템용 광 헤드 엑츄에이터 설계 및 제어알고리즘 개발",
+      "org": "한국전자통신연구원",
+      "period": "2006-06-01~2007-05-31"
+    },
+    {
+      "title": "다학제간 교육 및 연구기반 구축을 통한 의생명과학기",
+      "org": "교육부",
+      "period": "2006-06-01~2007-05-31"
+    }
+  ],
+  "patents": [
+    {
+      "title": "복층형 구조를 갖는 미세유체 채널 기반 막단백질 및 치료성분 동시 통합 지질나노입자 제조방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2026-07-21"
+    },
+    {
+      "title": "miR-3162가 봉입된 인공엑소좀을 유효성분으로 포함하는 안질환의 예방 또는 치료용 약학 조성물",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2025-09-15"
+    },
+    {
+      "title": "miR-3162 및 miR-1290을 이용한 섬유화 억제 방법 및 이의 용도",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2025-03-20"
+    },
+    {
+      "title": "나노입자 대량 생산을 위한 미세유체 칩 집적화 기술",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2024-12-26"
+    },
+    {
+      "title": "다중 입자 분리를 위한 미세유체칩",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2024-12-24"
+    },
+    {
+      "title": "수심 별 환경호르몬 농도 예측을 위한 머신러닝 기반 하이브리드 알고리즘",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2024-12-13"
+    },
+    {
+      "title": "인공 엑소좀 생산을 위한 자동화된 시스템",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2024-12-11"
+    },
+    {
+      "title": "인공 엑소좀 조성 설계 방법 및 시스템, 이를 이용한 인공 엑소좀 합성 방법, 및 이를 포함하는 천연 엑소좀 모사 인공 엑소좀 조성물",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2024-05-17"
+    },
+    {
+      "title": "미세유체칩 이용 물질 혼합 방법, 이를 이용한 천연엑소좀 모사 나노소포체 합성 방법, 이에 의해 합성된 천연엑소좀 모사 나노소포체",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2024-04-25"
+    },
+    {
+      "title": "듀얼 노즐 통합 액적 미세유체 칩 및 듀얼 노즐 이용 고처리량 액적 생산",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2024-04-17"
+    },
+    {
+      "title": "EV 분리 및 고감도 검출용 전기화학 장치, 및 이를 이용한 EV 분리 및 고감도 검출 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2024-04-17"
+    },
+    {
+      "title": "미세유체칩 및 LAMP 유전자 증폭 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2024-01-11"
+    },
+    {
+      "title": "바이러스 검출용 카트리지 및 바이러스 검출용 시스템",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2023-12-28"
+    },
+    {
+      "title": "다중 물질 농도 도출 방법, 다중 물질 농도 도출 시스템, 환경 모니터링 방법 및 환경 모니터링 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2023-11-22"
+    },
+    {
+      "title": "다세포 응집 구조체의 세포 분류 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2023-10-13"
+    },
+    {
+      "title": "침샘 세포 재생용 조성물",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2023-10-11"
+    },
+    {
+      "title": "초기 유방암의 진단 바이오마커로 작용할 수 있는 종양 유도 세포외 포체의 다중 miRNA 패널",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2023-10-04"
+    },
+    {
+      "title": "EV함유 고분자 미세입자 제조 미세유체칩, EV함유 고분자 미세입자 제조방법, EV함유 고분자 미세입자 및 중간엽 줄기세포 대체 치료제",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2023-09-20"
+    },
+    {
+      "title": "세포외 소포-miRNA를 이용한 유방암 진단용 조성물 및 유방암 진단방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2023-04-25"
+    },
+    {
+      "title": "침샘 세포 재생용 조성물",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2023-04-17"
+    },
+    {
+      "title": "식물 유래 엑소좀 조성물 제조 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2023-03-21"
+    },
+    {
+      "title": "바이오마커 분석용 튜브리스 키트 및 바이오마커 분석용 튜브리스 시스템",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2023-03-20"
+    },
+    {
+      "title": "미세유체칩 및 LAMP 유전자 증폭 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2023-03-17"
+    },
+    {
+      "title": "바이러스 검출용 카트리지 및 바이러스 검출용 시스템",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2023-03-17"
+    },
+    {
+      "title": "바이러스 검출 장치 및 바이러스 검출 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2023-02-28"
+    },
+    {
+      "title": "표적물질을 검출하는 전기화학적 압타머 바이오센서",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2022-12-27"
+    },
+    {
+      "title": "핵산의 고감도 검출 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2022-11-18"
+    },
+    {
+      "title": "골드 나노 플라워를 포함하는 DEHP 검출을 위한 전기화학 압타센서",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2022-11-10"
+    },
+    {
+      "title": "디에틸헥실프탈레이트 검출용 압타머 및 이를 이용한 검출용 키트",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 한양대학교 산학협력단",
+      "date": "2022-10-28"
+    },
+    {
+      "title": "다중 표적 물질을 검출하는 전기화학적 압타머 바이오 센서",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2022-10-25"
+    },
+    {
+      "title": "미세유체칩 기반 고순도 초고속 타액선 줄기세포 특이 엑소좀 치료제",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2022-10-13"
+    },
+    {
+      "title": "치료용 세포밖 소포체를 탑재한 광분해성 하이드로젤 균일미세입자 제작",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2022-10-13"
+    },
+    {
+      "title": "초기 유방암의 진단 바이오마커로 작용할 수 있는 종양 유도 세포외 포체의 다중 miRNA 패널",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2022-10-05"
+    },
+    {
+      "title": "세포밖 소포체 농축 및 분리를 위한 미세유체 필터장치, 이를 이용한 세포밖 소포체 농축 및 분리 방법 및 미세유체 모듈장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2022-06-30"
+    },
+    {
+      "title": "표적 RNA 검출용 전기화학적 바이오센서",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2022-05-27"
+    },
+    {
+      "title": "바이오마커를 이용한 결핵 진단용 조성물, 이를 이용한 결핵 진단방법 및 키트",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 주식회사 유디피아",
+      "date": "2022-01-26"
+    },
+    {
+      "title": "표적물질을 검출하는 전기화학적 압타머 바이오센서",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2022-01-12"
+    },
+    {
+      "title": "핵산의 고감도 검출 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2021-11-18"
+    },
+    {
+      "title": "골드 나노 플라워를 포함하는 DEHP 검출을 위한 전기화학 압타센서",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2021-11-11"
+    },
+    {
+      "title": "디에틸헥실프탈레이트 특이적 핵산 압타머 및 이의 용도",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 한양대학교 산학협력단",
+      "date": "2021-10-29"
+    },
+    {
+      "title": "세포의 관류 배양 및 대사체 수집을 위한 올인원 타입의 배양",
+      "type": "특허",
+      "applicant": "주식회사 베라버스, 연세대학교 산학협력단",
+      "date": "2021-10-15"
+    },
+    {
+      "title": "세포의 관류 배양 및 대사체 수집을 위한 올인원 타입의 배양",
+      "type": "특허",
+      "applicant": "주식회사 베라버스, 연세대학교 산학협력단",
+      "date": "2021-10-15"
+    },
+    {
+      "title": "폴리머의 팽창 특성을 이용한 올인원 타입의 세포 배양장치",
+      "type": "특허",
+      "applicant": "주식회사 베라버스, 연세대학교 산학협력단",
+      "date": "2021-10-15"
+    },
+    {
+      "title": "미세유체 혼합기 및 이를 포함하는 미세유지 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2021-07-07"
+    },
+    {
+      "title": "세포 쌍 형성을 위한 이중 나선형 채널과 유체저항 채널을 포함하는 미세유체 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2021-06-02"
+    },
+    {
+      "title": "세포포획이 가능한 미세유체 디바이스",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 사회복지법인 삼성생명공익재단",
+      "date": "2021-04-06"
+    },
+    {
+      "title": "미세유체 혼합기 및 이를 포함하는 미세유체 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2020-07-08"
+    },
+    {
+      "title": "미세유체 채널이 결합된 전기화학적 바이오센서",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2020-02-18"
+    },
+    {
+      "title": "혈액 방울의 컬러 이미지로부터 헤모글로빈 농도를 정량적으로 분석하는 방법 및 그 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2018-04-23"
+    },
+    {
+      "title": "미세유체 회로를 구비한 전기화학 바이오 센서",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2018-04-19"
+    },
+    {
+      "title": "항원 농도 측정장치 및 항원 농도 측정방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2016-01-12"
+    },
+    {
+      "title": "실시간 혈흔 측정을 통한 사후 경과 시간 예측 방법 및 시스템",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 한국기초과학지원연구원",
+      "date": "2015-12-01"
+    },
+    {
+      "title": "미세유체 분리장치, 이를 이용한 분리방법 및 이를 포함하는 혈액 내 순환희소세포 분리키트",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2015-09-22"
+    },
+    {
+      "title": "운전자의 졸음을 측정하여 졸음운전을 방지하는 스마트폰 연동 바이오센서 측정 시스템",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2015-06-10"
+    },
+    {
+      "title": "미세유체 분리장치, 이를 이용한 분리방법 및 이를 포함하는 혈액 내 순환희소세포 분리키트",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2014-09-22"
+    },
+    {
+      "title": "세포 용해 미세유체 장치 및 이를 이용한 세포 용해 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2014-06-09"
+    },
+    {
+      "title": "코티졸 및 씨-반응성 단백질 측정을 위한 광열바이오센서, 상기 광열바이오센서의 측정 장치 및 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2014-05-22"
+    },
+    {
+      "title": "종이기반 바이오센서",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2014-05-12"
+    },
+    {
+      "title": "스트레스, 우울증 측정을 위한 스트립 센서 및 스마트폰 연동 스트립 센서 측정시스템",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2014-04-23"
+    },
+    {
+      "title": "스트레스, 우울증 측정을 위한 스트립 센서 및 스마트폰 연동 스트립 센서 측정시스템",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2014-04-23"
+    },
+    {
+      "title": "다단 미세유체 칩 및 이를 이용한 시료의 선택적 분리방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2014-03-17"
+    },
+    {
+      "title": "당뇨측정장치 및 그 제조방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2014-01-29"
+    },
+    {
+      "title": "당뇨측정장치 및 그 제조방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2014-01-29"
+    },
+    {
+      "title": "고효율 입자 분리 장치 및 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2013-12-02"
+    },
+    {
+      "title": "진단용 스트립 센서의 제작 장치 및 그 제작방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2013-04-24"
+    },
+    {
+      "title": "스트레스, 우울증 측정을 위한 스트립 센서 및 스마트폰 연동 스트립 측정시스템",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2013-04-24"
+    },
+    {
+      "title": "스트레스, 우울증 측정을 위한 스트립 센서 및 스마트폰 연동 스트립 측정시스템",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2013-04-24"
+    },
+    {
+      "title": "진단용 스트립 센서의 제작 장치 및 그 제작방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2013-04-24"
+    },
+    {
+      "title": "스트레스 측정을 위한 전기소자 기반 바이오 센서 및 그 측정방법, 그리고 감성 진단 칩과 그 측정장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2013-03-21"
+    },
+    {
+      "title": "자성비드와 광열효과를 이용한 순환종양세포의 포획 및 바이오마커의 추출을 위한 장치 및 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, (주)코젠바이오텍",
+      "date": "2013-01-31"
+    },
+    {
+      "title": "자성비드와 광열효과를 이용한 순환종양세포의 포획 및 바이오마커의 추출을 위한 장치 및 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단,(주)코젠바이오텍",
+      "date": "2013-01-31"
+    },
+    {
+      "title": "열바이오 센서, 열바이오 센서의 제조방법 및 상기 열바이오 센서를 이용한 생체물질 검침 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2013-01-30"
+    },
+    {
+      "title": "열바이오 센서, 열바이오 센서의 제조방법 및 상기 열바이오 센서를 이용한 생체물질 검침 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2013-01-30"
+    },
+    {
+      "title": "당뇨측정장치 및 그 제조방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2013-01-29"
+    },
+    {
+      "title": "미세패턴을 이용한 희박세포 검출방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, LG전자",
+      "date": "2012-12-06"
+    },
+    {
+      "title": "광열 바이오센서를 이용한 시알산 정량측정 장치 및 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2012-09-10"
+    },
+    {
+      "title": "표적 물질 포획이 용이한 미세유동 장치 및 상기 미세유동 장치를 이용한 표적 물질 분리 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 삼성전자(주)",
+      "date": "2012-09-05"
+    },
+    {
+      "title": "바이오 장치, 그의 제조방법 및 이를 이용한 신경세포 성장 및 감지방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2012-06-18"
+    },
+    {
+      "title": "감성 진단 칩과 그 측정장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2012-04-24"
+    },
+    {
+      "title": "스트레스 측정을 위한 전자소자 기반 바이오 센서",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2012-03-21"
+    },
+    {
+      "title": "스트레스 측정을 위한 전자소자 기반 바이오 센서",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2012-03-21"
+    },
+    {
+      "title": "스트레스 측정을 위한 전기소자 기반 바이오 센서 및 그 측정방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2011-12-30"
+    },
+    {
+      "title": "스트레스 측정을 위한 전기소자 기반 바이오 센서 및 그 측정방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2011-12-30"
+    },
+    {
+      "title": "고효율 입자 분리 장치 및 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2011-08-08"
+    },
+    {
+      "title": "고효율 입자 분리 장치 및 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2011-08-08"
+    },
+    {
+      "title": "고효율 입자 분리 장치 및 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2011-06-15"
+    },
+    {
+      "title": "MOFF 채널을 이용한 표적 입자 분리 장치 및 분리 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 삼성전자(주)",
+      "date": "2011-06-10"
+    },
+    {
+      "title": "MOFF 채널을 이용한 표적 입자 분리 장치 및 분리 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 삼성전자(주)",
+      "date": "2011-06-09"
+    },
+    {
+      "title": "MOFF 채널을 이용한 표적 입자 분리 장치 및 분리 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 삼성전자(주)",
+      "date": "2011-04-21"
+    },
+    {
+      "title": "다중 형광 정도 이용 세포 분리 장치 및 전극구조와 다중 형광 정도 이용 세포 분리 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2010-10-22"
+    },
+    {
+      "title": "ＭＯＦＦ 채널을 이용한 표적 입자 분리 장치 및 분리 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 삼성전자 주식회사",
+      "date": "2010-06-10"
+    },
+    {
+      "title": "ＭＯＦＦ 채널을 이용한 표적 입자 분리 장치 및 분리 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단,삼성전자 주식회사",
+      "date": "2010-06-10"
+    },
+    {
+      "title": "음용수 내 세균 검사를 위한 전처리 및 검침장치와 그 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2010-05-13"
+    },
+    {
+      "title": "음용수 내 세균 검사를 위한 전처리 및 검침장치와 그 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2010-05-13"
+    },
+    {
+      "title": "자성입자의 충격자극이 가능한 물리적자극기가 통합된 세포배양장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2010-02-19"
+    },
+    {
+      "title": "자성입자의 충격자극이 가능한 물리적자극기가 통합된 세포배양장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2010-02-19"
+    },
+    {
+      "title": "적혈구의 광열효과를 이용한 세포 내외부 헤모글로빈의 차이 측정방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2009-11-24"
+    },
+    {
+      "title": "적혈구의 광열효과 및 마이크로 열 센서를 이용한 헤모글로빈의 정량 측정 장치 및 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2009-11-24"
+    },
+    {
+      "title": "적혈구의 광열효과 및 마이크로 열 센서를 이용한 헤모글로빈의 정량 측정 장치 및 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2009-11-24"
+    },
+    {
+      "title": "적혈구의 광열효과를 이용한 세포 내외부 헤모글로빈의 차이 측정방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2009-11-24"
+    },
+    {
+      "title": "멤브레인 집적 전자 소자를 이용한 바이오에어로졸 검침",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2009-09-08"
+    },
+    {
+      "title": "바이오 장치, 그의 제조방법 및 이를 이용한 신경세포 성장 및 감지방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2009-08-27"
+    },
+    {
+      "title": "실리콘 나노선을 이용한 초 고감도 바이오센서",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2009-01-28"
+    },
+    {
+      "title": "실리콘 나노선을 이용한 초 고감도 바이오센서",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2009-01-28"
+    },
+    {
+      "title": "유전 영동을 이용한 병원성 미생물 검침시료 전처리장치 및 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2008-11-26"
+    },
+    {
+      "title": "유전 영동을 이용한 병원성 미생물 검침시료 전처리장치 및 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2008-11-26"
+    },
+    {
+      "title": "병원균 검침을 위한 디엔에이 추출용 바이오칩 및 그것을 이용한 디엔에이 추출방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2008-11-07"
+    },
+    {
+      "title": "동물조직의 실시간 유전자 추출 휴대장치 및 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2008-11-07"
+    },
+    {
+      "title": "축산물의 디엔에이 추출 장치 및 이를 이용한 디엔에이 추출 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2008-09-17"
+    },
+    {
+      "title": "3차원 피라미드 구조체를 이용한 뉴런칩 및 그 뉴런칩에서의 뉴런세포의 패터닝 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2008-08-21"
+    },
+    {
+      "title": "신경세포의 생존율 향상을 위한 뉴런칩의 기판 및 그 제조방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2008-08-14"
+    },
+    {
+      "title": "신경세포의 생존율 향상을 위한 뉴런칩의 기판 및 그 제조방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2008-08-14"
+    },
+    {
+      "title": "생체유체의 반응 온도 측정 방법, 이를 이용한 마이크로칼로리미터 및 마이크로칼로리미터의 제조방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2008-05-20"
+    },
+    {
+      "title": "기체 내 미세입자 검출 장치 및 이의 제작 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 삼성전자",
+      "date": "2008-05-13"
+    },
+    {
+      "title": "기체 내 미세입자 검출 장치 및 이의 제작 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단,삼성전자",
+      "date": "2008-05-13"
+    },
+    {
+      "title": "전자석의 주울열을 이용하여 채널내 세포의 최적온도 조절이 가능한 자성세포분리 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2008-02-14"
+    },
+    {
+      "title": "전자석의 주울열을 이용하여 채널내 세포의 최적온도 조절이 가능한 자성세포분리 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2008-02-14"
+    },
+    {
+      "title": "전기수력학 프린팅 기법을 이용한 살아있는 세포의 직접 패터닝 방법 및 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2008-02-13"
+    },
+    {
+      "title": "전기수력학 프린팅 기법을 이용한 살아있는 세포의 직접 패터닝 방법 및 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2008-02-13"
+    },
+    {
+      "title": "자극체를 이용한 세포 배양기 및 세포 배양 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2008-01-30"
+    },
+    {
+      "title": "자극체를 이용한 세포 배양기 및 세포 배양 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2008-01-30"
+    },
+    {
+      "title": "초고감도 GMR스핀밸브를 이용한 세포 개수기",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2008-01-15"
+    },
+    {
+      "title": "초고감도 GMR스핀밸브를 이용한 세포 개수기",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2008-01-15"
+    },
+    {
+      "title": "미생물 농도 측정 센서 및 미생물 농도 측정 시스템",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2008-01-07"
+    },
+    {
+      "title": "미생물 농도 측정 센서 및 미생물 농도 측정 시스템",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2008-01-07"
+    },
+    {
+      "title": "미세입자 분리 장치 및 이의 제작 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 삼성전자주식회사",
+      "date": "2007-11-30"
+    },
+    {
+      "title": "미생물 검침 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2007-11-29"
+    },
+    {
+      "title": "미생물 검침 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2007-11-29"
+    },
+    {
+      "title": "체액 미생물 검침 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2007-11-14"
+    },
+    {
+      "title": "체액 미생물 검침 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2007-11-14"
+    },
+    {
+      "title": "축산물의 디엔에이 추출 장치 및 이를 이용한 디엔에이 추출 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2007-08-27"
+    },
+    {
+      "title": "축산물의 디엔에이 추출 장치 및 이를 이용한 디엔에이 추출 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2007-08-27"
+    },
+    {
+      "title": "대기 중 병원성 미생물의 유무 및 농도를 실시간으로 측정하는 측정 장치 및 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2007-08-22"
+    },
+    {
+      "title": "대기 중 병원성 미생물의 유무 및 농도를 실시간으로 측정하는 측정 장치 및 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2007-08-22"
+    },
+    {
+      "title": "산화아연계 나노선을 이용한 바이오센서 및 그 제조 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2007-02-09"
+    },
+    {
+      "title": "바이오 칼로리메타용 미세열 측정장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2006-08-29"
+    },
+    {
+      "title": "대기중 병원성 미생물의 유무및 농도를 측정하는 측정장치및 그 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2006-06-27"
+    },
+    {
+      "title": "미세유체채널 및 자장을 이용한 아폽토틱 세포의 검침.분리 방법 및 이를 위한 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2006-06-16"
+    },
+    {
+      "title": "세포고정용 생체물질을 패터닝하는 장치와 방법 및 이러한 방법에 의하여 제조된 세포칩",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2005-07-11"
+    },
+    {
+      "title": "세포고정용 생체물질을 패터닝하는 장치와 방법 및 이러한 방법에 의하여 제조된 세포칩",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2005-07-11"
+    }
+  ]
+}

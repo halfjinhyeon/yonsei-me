@@ -1,0 +1,3426 @@
+{
+  "name": "김종백",
+  "nameEn": "Kim, Jongbaeg",
+  "email": "kimjb@yonsei.ac.kr",
+  "phone": "02)2123-2812",
+  "office": null,
+  "homepage": "http://ntl.yonsei.ac.kr/home",
+  "sourceUrl": "https://me.yonsei.ac.kr/faculty/name_search.do?mode=view&userId=1RE2La5mkxWHrR7NkNGulA%3D%3D&sosokcd=0000405",
+  "crawledAt": "2026-07-27",
+  "articles": [
+    {
+      "date": "2026-08",
+      "title": "Preclinical development of engineered biomaterial-based artificial bladder demonstrating core functions in a large-animal orthotopic model",
+      "journal": "Materials Today Bio"
+    },
+    {
+      "date": "2026-05",
+      "title": "Flexible microscale tactile display with liquid-to-gas phase-change actuator array",
+      "journal": "Microsystems and Nanoengineering"
+    },
+    {
+      "date": "2026-05",
+      "title": "Mechanically-triggered self-powered triboelectric sensor platform with arbitrary-to-constant mechanical input conversion",
+      "journal": "Microsystems and Nanoengineering"
+    },
+    {
+      "date": "2026-05",
+      "title": "Integration of carbon nanotubes for MEMS and flexible electronics: Advances in fabrication and applications",
+      "journal": "Chemical Engineering Journal"
+    },
+    {
+      "date": "2026-04",
+      "title": "Lithography-free, Pd-based bimorph cantilever switches for zero-standby-power chemo-mechanical H2 detection",
+      "journal": "Microsystems & Nanoengineering"
+    },
+    {
+      "date": "2026-03",
+      "title": "Reversible and Flexible Electrolytic Actuator with 3D Porous Carbon Nanotube Electrodes for Electrodes for Enhanced Displacement",
+      "journal": "Proceedings of the IEEE International Conference on Micro Electro Mechanical Systems (MEMS)"
+    },
+    {
+      "date": "2026-03",
+      "title": "Electrostatic Comb-Actuated Resonant MEMS Micromirror with Integrated Electromagnetic Induction Sensing",
+      "journal": "Proceedings of the IEEE International Conference on Micro Electro Mechanical Systems (MEMS)"
+    },
+    {
+      "date": "2026-03",
+      "title": "Batch-Processed Gas Sensor with Carbon Nanotube Preconcentrator for PPB-Level Toluene Detection",
+      "journal": "Proceedings of the IEEE International Conference on Micro Electro Mechanical Systems (MEMS)"
+    },
+    {
+      "date": "2026-03",
+      "title": "Machine Learning-Assisted Large Area Screen-Printing Process Design for Uniform Carbon Nanotube Patterning",
+      "journal": "Proceedings of the IEEE International Conference on Micro Electro Mechanical Systems (MEMS)"
+    },
+    {
+      "date": "2026-03",
+      "title": "A Data-Driven Approach for Accurate Prediction of Thickness Uniformity in Tin Oxide Nanoparticles Coating",
+      "journal": "Proceedings of the IEEE International Conference on Micro Electro Mechanical Systems (MEMS)"
+    },
+    {
+      "date": "2026-03",
+      "title": "Partially Embedded Carbon Nanotube Bundles in an Elastomer Matrix for Highly Sensitive and High-Spatial-Resolution Tactile Sensing",
+      "journal": "ACS Nano"
+    },
+    {
+      "date": "2026-02",
+      "title": "Ice sublimation transfer of vertically aligned carbon nanotubes for residue-free and structure-preserving integration",
+      "journal": "Nature Communications"
+    },
+    {
+      "date": "2026-01",
+      "title": "Electrostatically actuated MEMS resonators for magnetic and electric field sensing: a review",
+      "journal": "Microsystems & Nanoengineering"
+    },
+    {
+      "date": "2025-12",
+      "title": "Recent progress in aluminum nitride for piezoelectric MEMS mirror applications: enhancements with scandium doping",
+      "journal": "Microsystems and Nanoengineering"
+    },
+    {
+      "date": "2025-12",
+      "title": "Washable heat-resistant and inkjet-printed devices on cotton fabric for wearable applications",
+      "journal": "Nature Communications"
+    },
+    {
+      "date": "2025-11",
+      "title": "Strain-Insensitive Heater on Wrinkled Surface Integrated with Carbon Nanotube Bundles for Wearable Thermal Therapy and Multimodal Tactile Displays",
+      "journal": "ACS Nano"
+    },
+    {
+      "date": "2025-11",
+      "title": "Ultra-sensitive ethanol detection using a chemiresistive SnO2 thin-film gas sensor functionalized with RuO2 nanosheets",
+      "journal": "Microsystems & Nanoengineering"
+    },
+    {
+      "date": "2025-11",
+      "title": "Tree-inspired omnidirectional conical triboelectric nanogenerator for ultra-low wind speeds",
+      "journal": "Sensors and Actuators, A: Physical"
+    },
+    {
+      "date": "2025-10",
+      "title": "Flexible tactile sensors based on gold nanoparticles-precipitated carbon nanotubes with low contact resistance and high sensitivity",
+      "journal": "MICROSYSTEMS & NANOENGINEERING"
+    },
+    {
+      "date": "2025-07",
+      "title": "Dome-Structure Array from Pre-Strained Extendable Mesh for Tactile Sensing Without Crosstalk and Lateral Strain Interference",
+      "journal": "Small Methods"
+    },
+    {
+      "date": "2025-06",
+      "title": "Self-powered single multifunctional tactile sensor for simultaneous detection of dynamic and static pressure and temperature inspired by skin sensory functions",
+      "journal": "Nano Energy"
+    },
+    {
+      "date": "2025-06",
+      "title": "Electrostatically driven two-axis microelectromechanical magnetometer with eccentric resonator and electromagnetic inductor",
+      "journal": "Sensors and Actuators, A: Physical"
+    },
+    {
+      "date": "2025-04",
+      "title": "Real-time airway monitoring system using binary classification model based on respiratory sounds of rabbits with a tracheostomy tube",
+      "journal": "Scientific Reports"
+    },
+    {
+      "date": "2025-04",
+      "title": "A Wireless Wearable Sensor System Based on a Silver Nanowire-Decorated Silicon Nanomembrane for Precise and Continuous Hazardous Gas Monitoring",
+      "journal": "Advanced Functional Materials"
+    },
+    {
+      "date": "2025-04",
+      "title": "Versatile Foldable Inkjet-Printed Thermoacoustic Loudspeaker on Paper",
+      "journal": "ADVANCED FUNCTIONAL MATERIALS"
+    },
+    {
+      "date": "2025-03",
+      "title": "Self-powered gas sensor based on triboelectric nanogenerators (TENG): a comparative review of sensing mechanisms",
+      "journal": "Micro and Nano Systems Letters"
+    },
+    {
+      "date": "2024-12",
+      "title": "Stacked triboelectric nanogenerator with grating structures for harvesting vertical motion",
+      "journal": "Nano Energy"
+    },
+    {
+      "date": "2024-12",
+      "title": "Fully bioresorbable hybrid opto-electronic neural implant system for simultaneous electrophysiological recording and optogenetic stimulation",
+      "journal": "Nature Communications"
+    },
+    {
+      "date": "2024-09",
+      "title": "Extremely durable electrical impedance tomography-based soft and ultrathin wearable e-skin for three-dimensional tactile interfaces",
+      "journal": "SCIENCE ADVANCES"
+    },
+    {
+      "date": "2024-01",
+      "title": "Externally motionless triboelectric nanogenerator based on vortex-induced rolling for omnidirectional wind energy harvesting",
+      "journal": "Nano Energy"
+    },
+    {
+      "date": "2023-11",
+      "title": "Breathing sounds analysis system for early detection of airway problems in patients with a tracheostomy tube",
+      "journal": "Scientific Reports"
+    },
+    {
+      "date": "2023-10",
+      "title": "Neural probe integrated with low-impedance electrodes implemented using vertically aligned carbon nanotubes for three-dimensional mapping of neural signals",
+      "journal": "Sensors and Actuators, B: Chemical"
+    },
+    {
+      "date": "2023-09",
+      "title": "Eye-Mimicked Neural Network Composed of Photosensitive Neural Spheroids with Human Opsin Proteins",
+      "journal": "Advanced Materials"
+    },
+    {
+      "date": "2023-07",
+      "title": "High-Temperature-Operable Electromechanical Computing Units Enabled by Aligned Carbon Nanotube Arrays",
+      "journal": "ACS Nano"
+    },
+    {
+      "date": "2023-06",
+      "title": "Mechanically resilient, alumina-reinforced carbon nanotube arrays for in-plane shock absorption in micromechanical devices",
+      "journal": "Microsystems & Nanoengineering"
+    },
+    {
+      "date": "2023-03",
+      "title": "3D engineered tissue models for studying human-specific infectious viral diseases",
+      "journal": "Bioactive Materials"
+    },
+    {
+      "date": "2023-03",
+      "title": "A 0.5-ms 47.5-nJ Resistor-to-Digital Converter for Resistive BTEX Sensor Achieving 0.1-to-5 ppb Resolution",
+      "journal": "IEEE Journal of Solid-State Circuits"
+    },
+    {
+      "date": "2023-02",
+      "title": "Formation of Sub-100 nm Suspended Nanowire with Various Materials Using Thermally Adjusted Electrospun Nanofiber as Template",
+      "journal": "Microsystems & Nanoengineering"
+    },
+    {
+      "date": "2022-11",
+      "title": "Curved flap array-based triboelectric self-powered sensor for omnidirectional monitoring of wind speed and direction",
+      "journal": "Nano Energy"
+    },
+    {
+      "date": "2022-10",
+      "title": "Cylindrical Shell and Metal Wire-Based Omnidirectional Wind-Driven Triboelectric Nanogenerator [원통형 쉘 및 금속 와이어 기반의 전방향 풍력 구동 마찰전기 나노 발전기]",
+      "journal": "Journal of the Korean Society for Precision Engineering"
+    },
+    {
+      "date": "2022-09",
+      "title": "Dual-Scale Porous Composite for Tactile Sensor with High Sensitivity over an Ultrawide Sensing Range",
+      "journal": "Small"
+    },
+    {
+      "date": "2022-07",
+      "title": "Three-Dimensional Axotomy and Regeneration on Open-Access Microfluidic Platform",
+      "journal": "IEEE TRANSACTIONS ON NANOBIOSCIENCE"
+    },
+    {
+      "date": "2022-06",
+      "title": "Self-suspended shell-based triboelectric nanogenerator for omnidirectional wind-energy harvesting",
+      "journal": "NANO ENERGY"
+    },
+    {
+      "date": "2022-04",
+      "title": "Ethanol-sensing properties of cobalt porphyrin-functionalized titanium dioxide nanoparticles as chemiresistive materials that are integrated into a low power microheater",
+      "journal": "Micro and Nano Systems Letters"
+    },
+    {
+      "date": "2022-03",
+      "title": "Toluene sensing characteristics of tin oxide-based gas sensor deposited with various amounts of metalloporphyrin",
+      "journal": "Micro and Nano Systems Letters"
+    },
+    {
+      "date": "2022-02",
+      "title": "All Paper-Based, Multilayered, Inkjet-Printed Tactile Sensor in Wide Pressure Detection Range with High Sensitivity",
+      "journal": "Advanced Materials Technologies"
+    },
+    {
+      "date": "2022-01",
+      "title": "Atomic layer deposited Pt nanoparticles on functionalized MoS2 as highly sensitive H2 sensor",
+      "journal": "APPLIED SURFACE SCIENCE"
+    },
+    {
+      "date": "2022-01",
+      "title": "Frequency up-conversion hybrid energy harvester combining piezoelectric and electromagnetic transduction mechanisms",
+      "journal": "INTERNATIONAL JOURNAL OF PRECISION ENGINEERING AND MANUFACTURING-GREEN TECHNOLOGY"
+    },
+    {
+      "date": "2021-12",
+      "title": "Effect of carbon nanomaterial dimension on the functional activity and degeneration of neurons",
+      "journal": "BIOMATERIALS"
+    },
+    {
+      "date": "2021-12",
+      "title": "Highly Sensitive Flexible Tactile Sensors in Wide Sensing Range Enabled by Hierarchical Topography of Biaxially Strained and Capillary-Densified Carbon Nanotube Bundles",
+      "journal": "SMALL"
+    },
+    {
+      "date": "2021-11",
+      "title": "Recent Progress in Flexible Tactile Sensors for Human-Interactive Systems: From Sensors to Advanced Applications",
+      "journal": "ADVANCED MATERIALS"
+    },
+    {
+      "date": "2021-09",
+      "title": "Engineered neural circuits for modeling brain physiology and neuropathology",
+      "journal": "ACTA BIOMATERIALIA"
+    },
+    {
+      "date": "2021-06",
+      "title": "Location-specific fabrication of suspended nanowires using electrospun fibers on designed microstructure",
+      "journal": "NANOTECHNOLOGY"
+    },
+    {
+      "date": "2021-05",
+      "title": "Fabrication of Fine-Pored Polydimethylsiloxane using Isopropyl Alcohol and Water Mixture for Adjustable Mechanical, Optical, and Thermal Properties",
+      "journal": "RSC ADVANCES"
+    },
+    {
+      "date": "2021-04",
+      "title": "Integration of Gold Nanoparticle–Carbon Nanotube Composite for Enhanced Contact Lifetime of Microelectromechanical Switches with Very Low Contact Resistance",
+      "journal": "ACS APPLIED MATERIALS & INTERFACES"
+    },
+    {
+      "date": "2021-03",
+      "title": "Large-Area, Crosstalk-Free, Flexible Tactile Sensor Matrix Pixelated by Mesh Layers",
+      "journal": "ACS APPLIED MATERIALS & INTERFACES"
+    },
+    {
+      "date": "2020-11",
+      "title": "Patterned Carbon Nanotube Bundles as Stretchable Strain Sensors for Human Motion Detection",
+      "journal": "ACS APPLIED NANO MATERIALS"
+    },
+    {
+      "date": "2020-11",
+      "title": "Detection of volatile organic compounds based on low-energy electron scattering according to difference in collisional cross-section",
+      "journal": "SENSORS AND ACTUATORS B-CHEMICAL"
+    },
+    {
+      "date": "2020-06",
+      "title": "Carbon-doped WO3 nanostructure based on CNT sacrificial template and its application to highly sensitive NO2 sensor",
+      "journal": "IEEE SENSORS JOURNAL"
+    },
+    {
+      "date": "2020-05",
+      "title": "All-textile wearable triboelectric generator using pile-embroidered fibers for enhancing output power",
+      "journal": "SMART MATERIALS AND STRUCTURES"
+    },
+    {
+      "date": "2020-03",
+      "title": "Highly Sensitive Detection of Benzene, Toluene, and Xylene Based on CoPP-Functionalized TiO2 Nanoparticles with Low Power Consumption",
+      "journal": "ACS Sensors"
+    },
+    {
+      "date": "2019-12",
+      "title": "A Novel Conductive and Micropatterned PEG-Based Hydrogel Enabling the Topographical and Electrical Stimulation of Myoblasts",
+      "journal": "ACS APPLIED MATERIALS & INTERFACES"
+    },
+    {
+      "date": "2019-12",
+      "title": "Detection of Mixed BTEX With Suppressed Reaction Specificity Using Tin Oxide Nanoparticles Functionalized by Multi-Metalloporphyrins",
+      "journal": "IEEE SENSORS JOURNAL"
+    },
+    {
+      "date": "2019-08",
+      "title": "Flexible Energy Harvester with Piezoelectric and Thermoelectric Hybrid Mechanisms for Sustainable Harvesting",
+      "journal": "INTERNATIONAL JOURNAL OF PRECISION ENGINEERING AND MANUFACTURING-GREEN TECHNOLOGY"
+    },
+    {
+      "date": "2019-08",
+      "title": "Multi-layered, hierarchical fabric-based tactile sensors with high sensitivity and linearity in ultrawide pressure range",
+      "journal": "ADVANCED FUNCTIONAL MATERIALS"
+    },
+    {
+      "date": "2019-08",
+      "title": "Light-assisted Recovery of Reacted MoS2 for Reversible NO2 Sensing at Room Temperature",
+      "journal": "NANOTECHNOLOGY"
+    },
+    {
+      "date": "2019-07",
+      "title": "Humidity-resistant triboelectric energy harvester using electrospun PVDF/PU nanofibers for flexibility and air permeability",
+      "journal": "NANOTECHNOLOGY"
+    },
+    {
+      "date": "2019-06",
+      "title": "Impact Ionization Induced by Accelerated Photoelectrons for Wide-Range and Highly Sensitive Detection of Volatile Organic Compounds at Room Temperature",
+      "journal": "ACS APPLIED MATERIALS & INTERFACES"
+    },
+    {
+      "date": "2019-06",
+      "title": "Sensitivity enhancement in photoionization detector using microelectrodes with integrated 1D nanostructures",
+      "journal": "SENSORS AND ACTUATORS B-CHEMICAL"
+    },
+    {
+      "date": "2019-05",
+      "title": "Polymer-based flexible and multi-directional tactile sensor with multiple NiCr piezoresistors",
+      "journal": "Micro and Nano Systems Letters"
+    },
+    {
+      "date": "2019-05",
+      "title": "Integration of Carbon Nanotube Network on Microelectromechanical Switch for Ultralong Contact Lifetime",
+      "journal": "ACS APPLIED MATERIALS & INTERFACES"
+    },
+    {
+      "date": "2019-05",
+      "title": "Improved photo- and chemical-responses of graphene via porphyrin-functionalization for flexible, transparent, and sensitive sensors",
+      "journal": "NANOTECHNOLOGY"
+    },
+    {
+      "date": "2019-04",
+      "title": "Fabrication of suspended nanowires for highly sensitive gas sensing",
+      "journal": "SENSORS AND ACTUATORS B-CHEMICAL"
+    },
+    {
+      "date": "2019-03",
+      "title": "Ultrasensitive Strain Sensor Based on Separation of Overlapped Carbon Nanotubes",
+      "journal": "SMALL"
+    },
+    {
+      "date": "2019-02",
+      "title": "A Fully Transparent, Flexible, Sensitive, and Visible-Blind Ultraviolet Sensor Based on Carbon Nanotube-Graphene Hybrid",
+      "journal": "ADVANCED ELECTRONIC MATERIALS"
+    },
+    {
+      "date": "2018-11",
+      "title": "Fabrication and Characterization of VOC Sensor Array Based on SnO2 and ZnO nanoparticles functionalized by metalloporphyrins",
+      "journal": "Micro and Nano Systems Letters"
+    },
+    {
+      "date": "2018-09",
+      "title": "입체 자수 기법을 적용한 마찰 에너지 수확 증대형 직물 구조의 탐색",
+      "journal": "감성과학"
+    },
+    {
+      "date": "2018-07",
+      "title": "Simple fabrication method of silicon/tungsten oxide nanowires heterojunction for NO2 gas sensors",
+      "journal": "SENSORS AND ACTUATORS B-CHEMICAL"
+    },
+    {
+      "date": "2018-07",
+      "title": "Humidity-Resistant, Fabric-Based, Wearable Triboelectric Energy Harvester by Treatment of Hydrophobic Self-Assembled Monolayers",
+      "journal": "Advanced Materials Technologies"
+    },
+    {
+      "date": "2018-07",
+      "title": "Suspended CoPP-ZnO nanorods integrated with micro-heaters for highly sensitive VOC detection",
+      "journal": "SENSORS AND ACTUATORS B-CHEMICAL"
+    },
+    {
+      "date": "2018-01",
+      "title": "Flexible and multi-directional piezoelectric energy harvester for self-powered human motion sensor",
+      "journal": "SMART MATERIALS AND STRUCTURES"
+    }
+  ],
+  "awards": [
+    {
+      "title": "Outstanding Young Researcher Award Winner (Poster Category)",
+      "contents": "The Transducers 2025 Conference Outstanding Young Researcher Awards recognizes excellence, on a competitive basis, amongst the students and young researchers presenting their work in Orlando in both oral and poster presentations. The winners will be announced during the Awards Ceremony on Thursday, 3 July. Based on the grading conducted by the Award Committee, 12 oral presentations delivered by students or young researchers (post-doctoral level) will be considered as finalists for this award. These papers will be evaluated by a small committee consisting of members of the organizers of Transducers’27, to identify the three winners. These talks will then be evaluated by a small committee consisting of members of the ISC and ETPC to identify the winners.",
+      "date": "2025-07-03"
+    },
+    {
+      "title": "Best Oral Presentation Award",
+      "contents": "2025 마이크로나노시스템학회 춘계학술대회 (2025 27회 KMEMS 학술대회)에서 발표한 \"발생 변위 향상을 위해 탄소나노튜브 기반 3차원 다공성 전극이 통합된 회복 가능한 유연 전기 분해 액추에이터 개발\" 연구의 우수성에 근거해 수상함",
+      "date": "2025-03-28"
+    },
+    {
+      "title": "삼성휴먼테크논문대상 장려상",
+      "contents": "\"Versatile Foldable Inkjet-Printed Thermoacoustic Loudspeaker on Paper \"연구의 우수성을 기반으로 삼성휴먼테크논문대상 장려상을 수상함",
+      "date": "2025-02-12"
+    },
+    {
+      "title": "2024학년도 우수업적교수상 연구부문",
+      "contents": "2024학년도 우수업적교수상 연구부문",
+      "date": "2025-02-11"
+    },
+    {
+      "title": "Outstanding Student Oral Presentation Award Finalist",
+      "contents": "Outstanding Student Oral Presentation Award Finalist 수상 (MICROELECTROMECHANICAL LOGIC DEVICE ENABLED BY TUNABLE TORSIONAL RESONATOR WITH LAYERED INDUCTOR)",
+      "date": "2025-01-23"
+    },
+    {
+      "title": "연세대학교 활천특훈교수 임명",
+      "contents": "기계공학과 김종백 교수는 국내외 주요 학술지 게재 실적, 연구 영향력, 연구비 수주 실적과 교육 및 봉사 업적을 평가하여 선정되는 2023학년도 연세대학교 공과대학 활천특훈교수에 임명되었다. 활천특훈교수는 연세대학교 공과대학에 연구적, 봉사적으로 기여한 연구자에게 금전적 인센티브등의 혜택을 제공하는 제도로써, 2023년도에는 총 두 명의 활천특훈교수가 공과대학에서 선정되었다.",
+      "date": "2024-04-22"
+    },
+    {
+      "title": "우수강의교수상",
+      "contents": "우수강의교수상",
+      "date": "2024-02-29"
+    },
+    {
+      "title": "Outstanding Student Oral Presentation Award Finalist",
+      "contents": "A TWO-AXIS SENSING MEMS MAGNETOMETER WITH MONOLITHIC MOVING PARTS IN ORTHOGONAL RESONANCE ORDER",
+      "date": "2024-01-25"
+    },
+    {
+      "title": "우수강의교수상",
+      "contents": "우수강의교수상",
+      "date": "2023-02-27"
+    },
+    {
+      "title": "제29회 삼성 휴먼테크 논문 대상 특별상",
+      "contents": "제29회 삼성 휴먼테크 논문 대상 특별상",
+      "date": "2023-02-20"
+    },
+    {
+      "title": "Outstanding Student Poster Presentation Award Finalist",
+      "contents": "FULLY-FLEXIBLE MICRO-SCALE ACTUATOR ARRAY WITH THE LIQUID-GAS PHASE CHANGE MATERIALS",
+      "date": "2023-01-19"
+    },
+    {
+      "title": "우수논문상",
+      "contents": "비틀림 셔터를 가지는 필드 밀 MEMS 전기장 센서",
+      "date": "2022-11-18"
+    },
+    {
+      "title": "우수강의교수상",
+      "contents": "우수강의교수상",
+      "date": "2022-02-28"
+    },
+    {
+      "title": "최우수논문상",
+      "contents": "MEMS에 가해지는 충격 완화 소재로서의 AlOx 강화 탄소나노튜브",
+      "date": "2022-01-14"
+    },
+    {
+      "title": "최우수논문상",
+      "contents": "2020 한국 정밀공학회 통합학술대회 (유연 메쉬 기반 공정으로 볼록 혹은 오목한 표면을 가진 촉각센서 어레이)",
+      "date": "2020-11-13"
+    },
+    {
+      "title": "우수업적 교수상(연구부문)",
+      "contents": "2019학년도 우수업적 교수상(연구부문)",
+      "date": "2020-02-04"
+    },
+    {
+      "title": "최우수논문상",
+      "contents": "2018 한국정밀공학회 추계학술대회 (마이크로 기계식 스위치를 이용한 금 나노입자가 장식된 탄소 나노튜브 네트워크의 접착력 평가)",
+      "date": "2019-05-17"
+    },
+    {
+      "title": "Best Paper Award",
+      "contents": "2019 KMEMS 학술대회 (스트레인 게이지가 통합된 폴리머 기반 유연 3축 촉각 센서)",
+      "date": "2019-04-06"
+    },
+    {
+      "title": "우수강의교수상",
+      "contents": "우수강의교수상",
+      "date": "2019-02-28"
+    },
+    {
+      "title": "최우수논문상",
+      "contents": "2018 한국 정밀공학회 춘계학술대회 (수직 정렬된 탄소나노튜브의 마찰특성 평가를 위한 MEMS 플랫폼)",
+      "date": "2018-10-26"
+    },
+    {
+      "title": "Best Paper Award",
+      "contents": "2018 KMEMS 학술대회 (SnO2 기능화 처리를 통해 향상된 감도를 가지는 MoS2 기반 유연 광 센서)",
+      "date": "2018-04-07"
+    },
+    {
+      "title": "우수연구자 상, 제 20회 KMEMS 학술대회",
+      "contents": "우수연구자 상, 제 20회 KMEMS 학술대회",
+      "date": "2018-04-06"
+    },
+    {
+      "title": "우수강의교수상",
+      "contents": "우수강의교수상",
+      "date": "2018-02-28"
+    },
+    {
+      "title": "우수업적 교수상(연구부문)",
+      "contents": "2017학년도 연세대학교 우수업적 교수상(연구부문) 우수 (연구비)",
+      "date": "2018-02-01"
+    },
+    {
+      "title": "Outstanding student paper award finalist",
+      "contents": "The 31st IEEE International Conference on Micro Electro Mechanical Systems (IMPROVEMENT OF PHOTORESPONSE IN MoS2 BY SnO2-FUNCTIONALIZATION AND ITS APPLICATION TO FLEXIBLE AND TRANSPARENT PHOTODETECTOR)",
+      "date": "2018-01-25"
+    },
+    {
+      "title": "최우수 논문상",
+      "contents": "한국정밀공학회 2017 춘계학술대회 (이황화몰리브덴의 대전서열상 위치의 정성적 분석)",
+      "date": "2017-12-15"
+    },
+    {
+      "title": "나노마이크로시스템학회 2017년도 학술상",
+      "contents": "나노마이크로시스템학회 2017년도 학술상",
+      "date": "2017-12-01"
+    },
+    {
+      "title": "Best presentation award",
+      "contents": "The 8th Japan-China-Korea joint Conference on MEMS/NEMS with NANO KOREA 2017 (Triboelectric energy harvester using curved flaps for multi-directional wind energy harvesting)",
+      "date": "2017-07-14"
+    },
+    {
+      "title": "우수강의교수상",
+      "contents": "우수강의교수상",
+      "date": "2017-02-28"
+    },
+    {
+      "title": "Outstanding student paper award finalist",
+      "contents": "The 30th IEEE International Conference on Micro Electro Mechanical Systems (CARBON NANOTUBES NETWORK CONTACT LUBRICATION FOR HIGHLY RELIABLE MEMS SWITCH)",
+      "date": "2017-01-26"
+    },
+    {
+      "title": "최우수 논문 발표상",
+      "contents": "한국정밀공학회 2015 추계학술대회 논문 최우수상 (국소압축응력법을 이용한 산화텅스텐 나노선의 밀도 제어)",
+      "date": "2016-05-13"
+    },
+    {
+      "title": "The best paper award oral session",
+      "contents": "2016년 KMEMS 학술대회 우수 논문 발표 (탄소 나노튜브 다발에 기반한 쿨롱 감쇠)",
+      "date": "2016-04-09"
+    },
+    {
+      "title": "우수업적 교수상(연구부문)",
+      "contents": "2015학년도 연세대학교 우수업적 교수상(연구부문) 우수(통합업적)",
+      "date": "2016-02-17"
+    },
+    {
+      "title": "우수논문상",
+      "contents": "대한기계학회 2014년도 마이크로/나노공학부문 춘계학술대회 우수논문상 수상(용액 접촉 기반 마찰전기 에너지 하베스터의 pH 변화에 따른 출력 특성 연구)",
+      "date": "2015-05-21"
+    },
+    {
+      "title": "우수논문 발표상 우수상",
+      "contents": "2014년 한국감성과학회 추계학술대회 구두발표부문 우수논문 (자수방식을 적용한 마찰에너지 수확 증대형 의복직물 구조의 탐색)",
+      "date": "2014-10-31"
+    },
+    {
+      "title": "Best Poster Award",
+      "contents": "국제 학술대회 최고 포스터 발표상",
+      "date": "2014-07-03"
+    },
+    {
+      "title": "우수 포스터 발표상",
+      "contents": "대한기계학회 마이크로/나노 공학부문 2014년도 춘계학술대회 우수 포스터 발표상",
+      "date": "2014-05-23"
+    },
+    {
+      "title": "우수강의교수상",
+      "contents": "우수강의교수상",
+      "date": "2014-02-28"
+    },
+    {
+      "title": "우수업적교수상(연구부문)",
+      "contents": "우수업적교수상(연구부문), 우수(연구비)",
+      "date": "2014-02-19"
+    },
+    {
+      "title": "우수강의교수상",
+      "contents": "2012학년도 우수 강의 교수",
+      "date": "2013-02-28"
+    },
+    {
+      "title": "우수강의교수상",
+      "contents": "2011 우수강의교수상",
+      "date": "2012-02-29"
+    },
+    {
+      "title": "논문 우수 발표상",
+      "contents": "춘계학술대회 논문 우수 발표상",
+      "date": "2011-04-15"
+    },
+    {
+      "title": "우수강의교수상",
+      "contents": "2010 우수강의교수상",
+      "date": "2011-02-28"
+    },
+    {
+      "title": "우수강의교수상",
+      "contents": "2009 우수강의교수상",
+      "date": "2010-02-28"
+    },
+    {
+      "title": "포스터 장려논문상",
+      "contents": "Poster Award",
+      "date": "2009-04-04"
+    },
+    {
+      "title": "우수강의교수상",
+      "contents": "2007 우수강의교수상",
+      "date": "2008-03-14"
+    },
+    {
+      "title": "우수강의교수상",
+      "contents": "2006 우수강의교수상",
+      "date": "2007-03-08"
+    }
+  ],
+  "conferences": [
+    {
+      "title": "Gas Identification Using Front–Back Response Differences Induced by AAO nanochannel",
+      "conference": "The 17th Japan-China-Korea Joint Conference on MEMS/NEMS (JCK MEMS/NEMS 2026)",
+      "period": "2026.07.08~2026.07.10"
+    },
+    {
+      "title": "High Sensitivity and Wide Sensing Range Strain Sensor Enabled by a Spatial Density Gradient in Carbon Nanotube Network",
+      "conference": "The 17th Japan-China-Korea Joint Conference on MEMS/NEMS (JCK MEMS/NEMS 2026)",
+      "period": "2026.07.08~2026.07.10"
+    },
+    {
+      "title": "Anti-degradation Achieved by Graphene Oxide Coating on Pd Films for Hydrogen Detection",
+      "conference": "The 17th Japan-China-Korea Joint Conference on MEMS/NEMS (JCK MEMS/NEMS 2026)",
+      "period": "2026.07.08~2026.07.10"
+    },
+    {
+      "title": "NIPS 기반 다공성 나노복합체 활용 유연·통기성 저전력 압력 감응형 히터",
+      "conference": "정밀공학회 2026 춘계학술대회",
+      "period": "2026.05.13~2026.05.15"
+    },
+    {
+      "title": "단일 프린팅 공정 기반 습도 둔감형 온도센서 개발",
+      "conference": "정밀공학회 2026 춘계학술대회",
+      "period": "2026.05.13~2026.05.15"
+    },
+    {
+      "title": "자성 희생 템플릿을 이용한 단일 프린팅 공정 기반의 수직 기공 구배형 전극 제조 기술",
+      "conference": "정밀공학회 2026 춘계학술대회",
+      "period": "2026.05.13~2026.05.15"
+    },
+    {
+      "title": "회복 가능한 유연 전기분해 액추에이터 기반 웨어러블 촉각 디스플레이 개발",
+      "conference": "2026 마이크로나노시스템학회 춘계학술대회",
+      "period": "2026.03.25~2026.03.27"
+    },
+    {
+      "title": "유연 전극을 적용한 마찰대전 나노발전기 성능 분석",
+      "conference": "2026 마이크로나노시스템학회 춘계학술대회",
+      "period": "2026.03.25~2026.03.27"
+    },
+    {
+      "title": "전자기 유도 기반 주사 각도 피드백 제어를 적용한 정전기력 구동 마이크로미러",
+      "conference": "2026 마이크로나노시스템학회 춘계학술대회",
+      "period": "2026.03.25~2026.03.27"
+    },
+    {
+      "title": "지렛대 증폭 스캔 각도를 갖는 압전 2차원 AlScN 마이크로미러의 모델링 및 시뮬레이션",
+      "conference": "2026 마이크로나노시스템학회 춘계학술대회",
+      "period": "2026.03.25~2026.03.27"
+    },
+    {
+      "title": "웨어러블 촉각 디스플레이를 위한 강-연성 구조 기반 인장 둔감형 전기유체역학 액추에이터",
+      "conference": "2026 마이크로나노시스템학회 춘계학술대회",
+      "period": "2026.03.25~2026.03.27"
+    },
+    {
+      "title": "발생 변위 향상을 위해 3차원 다공성 탄소나노튜브 전극이 통합된 회복 가능한 유연 전기분해 액추에이터 개발",
+      "conference": "2026 마이크로나노시스템학회 춘계학술대회",
+      "period": "2026.03.25~2026.03.27"
+    },
+    {
+      "title": "망막 신경 신호 기록을 위한 저임피던스 수직 정렬 탄소나노튜브 기반 마이크로전극 어레이",
+      "conference": "2026 마이크로나노시스템학회 춘계학술대회",
+      "period": "2026.03.25~2026.03.27"
+    },
+    {
+      "title": "대면적 균일 탄소나노튜브 패터닝을 위한 머신러닝 기반 스크린 프린팅 공정 설계",
+      "conference": "2026 마이크로나노시스템학회 춘계학술대회",
+      "period": "2026.03.25~2026.03.27"
+    },
+    {
+      "title": "에탄올의 초고감도 검출을 위한 RuO2 나노시트로 기능화한 SnO2 박막 화학저항식 가스 센서 연구",
+      "conference": "2026 마이크로나노시스템학회 춘계학술대회",
+      "period": "2026.03.25~2026.03.27"
+    },
+    {
+      "title": "Electrosprayed Tenax TA preconcentrator가 대면적으로 직접 통합된 Pt-SnO2가스 센서를 이용한 저농도 톨루엔 감지",
+      "conference": "2026 마이크로나노시스템학회 춘계학술대회",
+      "period": "2026.03.25~2026.03.27"
+    },
+    {
+      "title": "자성 희생 템플릿을 이용한 단일 코팅 공정 기반의 수직 기공 구배형 PDMS 구조체 제조 기술",
+      "conference": "2026 마이크로나노시스템학회 춘계학술대회",
+      "period": "2026.03.25~2026.03.27"
+    },
+    {
+      "title": "A DATA-DRIVEN APPROACH FOR ACCURATE PREDICTION OF THICKNESS UNIFORMITY IN TIN OXIDE NANOPARTICLES COATING",
+      "conference": "The 39th IEEE International Conference on Micro Electro Mechanical Systems (IEEE MEMS 2026)",
+      "period": "2026.01.25~2026.01.29"
+    },
+    {
+      "title": "REVERSIBLE AND FLEXIBLE ELECTROLYTIC ACTUATOR WITH 3D POROUS CARBON NANOTUBE ELECTRODES FOR ELECTRODES FOR ENHANCED DISPLACEMENT",
+      "conference": "The 39th IEEE International Conference on Micro Electro Mechanical Systems (IEEE MEMS 2026)",
+      "period": "2026.01.25~2026.01.29"
+    },
+    {
+      "title": "ELECTROSTATIC COMB-ACTUATED RESONANT MEMS MICROMIRROR WITH INTEGRATED ELECTROMAGNETIC INDUCTION SENSING",
+      "conference": "The 39th IEEE International Conference on Micro Electro Mechanical Systems (IEEE MEMS 2026)",
+      "period": "2026.01.25~2026.01.29"
+    },
+    {
+      "title": "BATCH-PROCESSED GAS SENSOR WITH CARBON NANOTUBE PRECONCENTRATOR FOR PPB-LEVEL TOLUENE DETECTION",
+      "conference": "The 39th IEEE International Conference on Micro Electro Mechanical Systems (IEEE MEMS 2026)",
+      "period": "2026.01.25~2026.01.29"
+    },
+    {
+      "title": "MACHINE LEARNING-ASSISTED LARGE AREA SCREEN-PRINTING PROCESS DESIGN FOR UNIFORM CARBON NANOTUBE PATTERNING",
+      "conference": "The 39th IEEE International Conference on Micro Electro Mechanical Systems (IEEE MEMS 2026)",
+      "period": "2026.01.25~2026.01.29"
+    },
+    {
+      "title": "저농도 가스 감지를 위한 얼음 희생층 기반 다공성 CNT 포집기가 통합된 가스 센서",
+      "conference": "2025 마이크로나노시스템학회 추계학술대회",
+      "period": "2025.11.19~2025.11.21"
+    },
+    {
+      "title": "발생 변위 향상을 위해 백금 나노 입자가 부착된 3차원 다공성 탄소나노튜브 전극 기반 유연 전기분해 액추에이터 개발",
+      "conference": "2025 마이크로나노시스템학회 추계학술대회",
+      "period": "2025.11.19~2025.11.21"
+    },
+    {
+      "title": "발생 변위 향상을 위해 주름 막 구조가 통합된 상변화 액추에이터 기반 원격 햅틱 인터페이스 시스템 개발",
+      "conference": "2025 마이크로나노시스템학회 추계학술대회",
+      "period": "2025.11.19~2025.11.21"
+    },
+    {
+      "title": "CNT-금속 복합재 코팅을 통한 전기 커넥터의 접촉저항 및 내구성 향상",
+      "conference": "2025 마이크로나노시스템학회 추계학술대회",
+      "period": "2025.11.19~2025.11.21"
+    },
+    {
+      "title": "주사 각도 감지 기능이 부여된 정전기력 구동 마이크로 미러",
+      "conference": "2025 마이크로나노시스템학회 추계학술대회",
+      "period": "2025.11.19~2025.11.21"
+    },
+    {
+      "title": "러닝 기반 2D 광학 이미지 분석을 통한 나노소재 코팅 두께 편차 예측",
+      "conference": "2025 마이크로나노시스템학회 추계학술대회",
+      "period": "2025.11.19~2025.11.21"
+    },
+    {
+      "title": "웨어러블 촉각 디스플레이를 위한 얇고 유연한 저전력 전기유체역학 구동기",
+      "conference": "정밀공학회 2025 추계학술대회",
+      "period": "2025.11.12~2025.11.14"
+    },
+    {
+      "title": "고온, 고압 제조 공정을 위한 스크린 프린팅 압력 비감응형 온도 센서 개발",
+      "conference": "정밀공학회 2025 추계학술대회",
+      "period": "2025.11.12~2025.11.14"
+    },
+    {
+      "title": "스크린프린팅 공정변수의 다중목적 베이지안 최적화를 통한 대면적 균일 탄소나노튜브 히터 어레이 제작 연구",
+      "conference": "정밀공학회 2025 추계학술대회",
+      "period": "2025.11.12~2025.11.14"
+    },
+    {
+      "title": "THREE-DIMENSIONAL MICROELECTRODE ARRAY WITH VERTICALLY-ALIGNED CARBON NANOTUBES FOR RETINAL NEURAL SIGNAL RECORDING",
+      "conference": "The 23nd International Conference on Solid-State Sensors, Actuators and Microsystems (Transducers 2025)",
+      "period": "2025.06.29~2025.07.03"
+    },
+    {
+      "title": "LIQUID-TO-GAS PHASE CHANGE-BASED STRETCHABLE ACTUATOR WITH INTEGRATED CARBON NANOTUBE BUNDLES",
+      "conference": "The 23nd International Conference on Solid-State Sensors, Actuators and Microsystems (Transducers 2025)",
+      "period": "2025.06.29~2025.07.03"
+    },
+    {
+      "title": "MEMS ELECTRIC FIELD SENSOR WITH COMB-ACTUATED RESONANT TORSIONAL SHUTTER",
+      "conference": "The 23nd International Conference on Solid-State Sensors, Actuators and Microsystems (Transducers 2025)",
+      "period": "2025.06.29~2025.07.03"
+    },
+    {
+      "title": "LITHOGRAPHY-FREE FABRICATION OF BIMORPH NANOSTRUCTURAL CHEMOMECHANICAL SWITCHES FOR HYDROGEN DETECTION WITH NEAR-ZERO STANDBY POWER CONSUMPTION",
+      "conference": "The 23nd International Conference on Solid-State Sensors, Actuators and Microsystems (Transducers 2025)",
+      "period": "2025.06.29~2025.07.03"
+    },
+    {
+      "title": "얼음 승화를 활용한 수직 정렬 탄소나노튜브의 소자 통합 전사 공정 개발",
+      "conference": "정밀공학회 2025 춘계학술대회",
+      "period": "2025.05.14~2025.05.16"
+    },
+    {
+      "title": "발생 변위 향상을 위해 탄소나노튜브 기반 3차원 다공성 전극이 통합된 회복 가능한 유연 전기 분해 액추에이터 개발",
+      "conference": "2025 마이크로나노시스템학회 춘계 학술대회",
+      "period": "2025.03.26~2025.03.28"
+    },
+    {
+      "title": "전극 젖음성 제어를 통한 얼음 패터닝 기반의 생체 광전지용 전기 전도성 다공성 입체구조",
+      "conference": "2025 마이크로나노시스템학회 춘계 학술대회",
+      "period": "2025.03.26~2025.03.28"
+    },
+    {
+      "title": "망막내 약물 주입을 위한 수직 정렬 탄소나노튜브 미세구조체 기반 마이크로니들",
+      "conference": "2025 마이크로나노시스템학회 춘계 학술대회",
+      "period": "2025.03.26~2025.03.28"
+    },
+    {
+      "title": "전도성 틸라코이드-탄소 나노튜브 다상소재를 이용한 스크린 프린팅 가능한 바이오 광전지 개발",
+      "conference": "2025 마이크로나노시스템학회 춘계 학술대회",
+      "period": "2025.03.26~2025.03.28"
+    },
+    {
+      "title": "수직 정렬된 탄소나노튜브가 통합된 신축성 액체-기체 상변화 액추에이터",
+      "conference": "2025 마이크로나노시스템학회 춘계 학술대회",
+      "period": "2025.03.26~2025.03.28"
+    },
+    {
+      "title": "MoS2 단층이 나노와이어에 전사된 고감도 NO2 가스센서",
+      "conference": "2025 마이크로나노시스템학회 춘계 학술대회",
+      "period": "2025.03.26~2025.03.28"
+    },
+    {
+      "title": "다공성 Tenax TA 포집기가 통합된 SnO2 기반 톨루엔 가스 센서",
+      "conference": "2025 마이크로나노시스템학회 춘계 학술대회",
+      "period": "2025.03.26~2025.03.28"
+    },
+    {
+      "title": "수직정렬된 탄소나노튜브 크러스트층 제거를 통한 열음향 스피커 출력 성능 향상",
+      "conference": "2025 마이크로나노시스템학회 춘계 학술대회",
+      "period": "2025.03.26~2025.03.28"
+    },
+    {
+      "title": "고온의 대기 환경에서 작동 가능한 초소형 기전 공진 컴퓨팅 장치",
+      "conference": "2025 마이크로나노시스템학회 춘계 학술대회",
+      "period": "2025.03.26~2025.03.28"
+    },
+    {
+      "title": "H2O 상변화를 통한 전사된 VACNT 패턴 모서리의 수직 정렬도 개선",
+      "conference": "2025 마이크로나노시스템학회 춘계 학술대회",
+      "period": "2025.03.26~2025.03.28"
+    },
+    {
+      "title": "대면적 MWNT 균일 패턴 제작을 위한 기계학습 기반 스크린 프린팅 공정 설계",
+      "conference": "2025 마이크로나노시스템학회 춘계 학술대회",
+      "period": "2025.03.26~2025.03.28"
+    },
+    {
+      "title": "베이지안 최적화를 활용한 가스 감지 다상 소재 코팅 균질도 개선 공정 조건 탐색",
+      "conference": "2025 마이크로나노시스템학회 춘계 학술대회",
+      "period": "2025.03.26~2025.03.28"
+    },
+    {
+      "title": "INTEGRATED PRECONCENTRATOR-ENHANCED GAS SENSOR FOR LOW POWER DETECTION OF LOW CONCENTRATION TOLUENE",
+      "conference": "The 38th IEEE International Conference on Micro Electro Mechanical Systems(IEEE MEMS 2025)",
+      "period": "2025.01.19~2025.01.23"
+    },
+    {
+      "title": "MICROELECTROMECHANICAL LOGIC DEVICE ENABLED BY TUNABLE TORSIONAL RESONATOR WITH LAYERED INDUCTOR",
+      "conference": "The 38th IEEE International Conference on Micro Electro Mechanical Systems(IEEE MEMS 2025)",
+      "period": "2025.01.19~2025.01.23"
+    },
+    {
+      "title": "STRAIN-INSENSITIVE, STRETCHABLE THERMOACOUSTIC LOUDSPEAKER WITH ENTANGLED CARBON NANOTUBES",
+      "conference": "The 38th IEEE International Conference on Micro Electro Mechanical Systems(IEEE MEMS 2025)",
+      "period": "2025.01.19~2025.01.23"
+    },
+    {
+      "title": "Zero TCR을 활용한 온도 변화에 둔감한 압력 센서 개발",
+      "conference": "2024 마이크로나노시스템학회 추계학술대회",
+      "period": "2024.11.21~2024.11.22"
+    },
+    {
+      "title": "주름 구조 멤브레인을 통합하여 변위를 향상시킨 촉각 디스플레이용 액체-기체 상변화 액추에이터 개발",
+      "conference": "2024 마이크로나노시스템학회 추계학술대회",
+      "period": "2024.11.21~2024.11.22"
+    },
+    {
+      "title": "수직 정렬 탄소나노튜브 전극 통합을 통한 전기 분해 기반 액추에이터의 변위 성능 향상",
+      "conference": "2024 마이크로나노시스템학회 추계학술대회",
+      "period": "2024.11.21~2024.11.22"
+    },
+    {
+      "title": "상변화 물질 기반 마이크로 스케일 완전 유연 촉각 디스플레이",
+      "conference": "2024 마이크로나노시스템학회 추계학술대회",
+      "period": "2024.11.21~2024.11.22"
+    },
+    {
+      "title": "탄소나노튜브- PDMS 복합체 기반의 높은 공간해상도를 갖는 유연, 고감도 촉각 센서 어레이",
+      "conference": "2024 마이크로나노시스템학회 추계학술대회",
+      "period": "2024.11.21~2024.11.22"
+    },
+    {
+      "title": "다상소재 코팅 균질도 향상을 위한 커피링 효과 억제 및 건조 조건 최적화",
+      "conference": "2024 마이크로나노시스템학회 추계학술대회",
+      "period": "2024.11.21~2024.11.22"
+    },
+    {
+      "title": "열 압착 공정 모니터링을 위한 rGO/GO 기반 고온, 고속 응답 속도 온도센서 개발",
+      "conference": "정밀공학회 2024 추계학술대회",
+      "period": "2024.11.13~2024.11.15"
+    },
+    {
+      "title": "수직 에너지 수확을 위한 저프로파일 적층형 격자구조 마찰전기 나노발전기 개발",
+      "conference": "정밀공학회 2024 추계학술대회",
+      "period": "2024.11.13~2024.11.15"
+    },
+    {
+      "title": "발생 변위 향상을 위해 수직 정렬 탄소나노튜브 전극이 통합된 회복 가능한 전기 분해 기반 액추에이터",
+      "conference": "정밀공학회 2024 추계학술대회",
+      "period": "2024.11.13~2024.11.15"
+    },
+    {
+      "title": "전기방사된 나노섬유를 희생층으로 활용하여 제작한 이중층 나노구조 기반 화학기계식 수소센서 개발",
+      "conference": "정밀공학회 2024 추계학술대회",
+      "period": "2024.11.13~2024.11.15"
+    },
+    {
+      "title": "탄소나노튜브 잉크젯 프린팅을 통해 제작한 형태 제약이 없는 열음향 스피커",
+      "conference": "정밀공학회 2024 춘계학술대회",
+      "period": "2024.05.08~2024.05.10"
+    },
+    {
+      "title": "바람자루 디자인 기반 풍력 마찰전기 나노발전기 개발",
+      "conference": "정밀공학회 2024 춘계학술대회",
+      "period": "2024.05.08~2024.05.10"
+    },
+    {
+      "title": "적층형 격자 구조 기반 수직 구동 마찰전기 나노발전기",
+      "conference": "제 26회 한국 멤스 학회(Korean MEMS conference)",
+      "period": "2024.03.27~2024.03.29"
+    },
+    {
+      "title": "높은 민감도 및 선형성을 가지는 다공성 촉각 센서",
+      "conference": "제 26회 한국 멤스 학회(Korean MEMS conference)",
+      "period": "2024.03.27~2024.03.29"
+    },
+    {
+      "title": "잉크젯 공정과 반응성 은 잉크를 활용한 면직물 기반 전극 제작 및 웨어러블 디바이스로의 활용",
+      "conference": "제 26회 한국 멤스 학회(Korean MEMS conference)",
+      "period": "2024.03.27~2024.03.29"
+    },
+    {
+      "title": "탄소나노튜브 흡수층 통합을 통한 비냉각식 마이크로볼로미터의 장파장 적외선에 대한 민감도 향상",
+      "conference": "제 26회 한국 멤스 학회(Korean MEMS conference)",
+      "period": "2024.03.27~2024.03.29"
+    },
+    {
+      "title": "콤 구동 공진 비틀림 셔터 기반의 MEMS 전기장 센서",
+      "conference": "제 26회 한국 멤스 학회(Korean MEMS conference)",
+      "period": "2024.03.27~2024.03.29"
+    },
+    {
+      "title": "INKJET-PRINTED, PAPER-BASED THERMOACOUSTIC LOUDSPEAKERS WITH MECHANICAL ROBUSTNESS AND VERSATILE FORM-FACTOR",
+      "conference": "The 37th IEEE International Conference on Micro Electro Mechanical Systems(IEEE MEMS 2024)",
+      "period": "2024.01.21~2024.01.25"
+    },
+    {
+      "title": "THIN, FLEXIBLE, AND INKJET-PRINTED BIOPHOTOVOLTAIC CELL BASED ON THYLAKOID MEMBRANE",
+      "conference": "The 37th IEEE International Conference on Micro Electro Mechanical Systems(IEEE MEMS 2024)",
+      "period": "2024.01.21~2024.01.25"
+    },
+    {
+      "title": "WRINKLED MEMBRANE-INTEGRATED FLEXIBLE ACTUATOR WITH LARGE OPERATING DISPLACEMENT FOR WEARABLE TACTILE DISPLAY",
+      "conference": "The 37th IEEE International Conference on Micro Electro Mechanical Systems(IEEE MEMS 2024)",
+      "period": "2024.01.21~2024.01.25"
+    },
+    {
+      "title": "IMPROVEMENT IN CHEMIRESISTIVE RESPONSE OF SnO2 THIN FILM BY RuO2-NANOSHEETS-FUNCTIONALIZATION AND ITS APPLICATION TO HIGHLY SENSITIVE ETHANOL SENSOR",
+      "conference": "The 37th IEEE International Conference on Micro Electro Mechanical Systems(IEEE MEMS 2024)",
+      "period": "2024.01.21~2024.01.25"
+    },
+    {
+      "title": "ALL-INKJET-PRINTED, COLOR-SELECTIVE PHOTODETECTOR ARRAY BASED ON ORGANIC MACROCYCLES-CARBON NANOTUBE HETEROSTRUCTURES",
+      "conference": "The 37th IEEE International Conference on Micro Electro Mechanical Systems(IEEE MEMS 2024)",
+      "period": "2024.01.21~2024.01.25"
+    },
+    {
+      "title": "NANO-NET MoS2-BASED NO2 SENSOR AT ROOM TEMPERATURE USING FACILE FABRICATION WITH ELECTROSPUN FIBER MASK",
+      "conference": "The 37th IEEE International Conference on Micro Electro Mechanical Systems(IEEE MEMS 2024)",
+      "period": "2024.01.21~2024.01.25"
+    },
+    {
+      "title": "FLEXIBLE NEURAL ELECTRODE ARRAY WITH VERTICALLY ALIGNED CARBON NANOTUBES MICROSTRUCTURE FOR HIGH SENSITIVITY EASUREMENT OF NEUROCHEMICALS",
+      "conference": "The 37th IEEE International Conference on Micro Electro Mechanical Systems(IEEE MEMS 2024)",
+      "period": "2024.01.21~2024.01.25"
+    },
+    {
+      "title": "A TWO-AXIS SENSING MEMS MAGNETOMETER WITH MONOLITHIC MOVING PARTS IN ORTHOGONAL RESONANCE ORDER",
+      "conference": "The 37th IEEE International Conference on Micro Electro Mechanical Systems(IEEE MEMS 2024)",
+      "period": "2024.01.21~2024.01.25"
+    },
+    {
+      "title": "마이크로스피어로 이루어진 모세관에서의 수전압 발전에 관한 고찰",
+      "conference": "2023 마이크로나노시스템학회 추계학술대회",
+      "period": "2023.11.23~2023.11.24"
+    },
+    {
+      "title": "루테늄옥사이드 나노시츠로 틴옥사이드 나노파티클을 기능화한 에탄올 가스 센서",
+      "conference": "2023 마이크로나노시스템학회 추계학술대회",
+      "period": "2023.11.23~2023.11.24"
+    },
+    {
+      "title": "주름 구조 막 통합 유연 액체-기체 상변화 구동기 기반 원격 촉감각 전달용 웨어러블 햅틱 인터페이스",
+      "conference": "2023 마이크로나노시스템학회 추계학술대회",
+      "period": "2023.11.23~2023.11.24"
+    },
+    {
+      "title": "탄소나노튜브 잉크젯 프린팅을 활용한 종이접기 기반 3차원 구조 열음향 스피커",
+      "conference": "2023 마이크로나노시스템학회 추계학술대회",
+      "period": "2023.11.23~2023.11.24"
+    },
+    {
+      "title": "차동 감지를 활용한 비틀림 공진 셔터 기반 MEMS 전기장 센서",
+      "conference": "2023 마이크로나노시스템학회 추계학술대회",
+      "period": "2023.11.23~2023.11.24"
+    },
+    {
+      "title": "발생 변위 향상을 위해 일괄 공정 기반 주름 구조 멤브레인이 통합된 유연 상변화 구동기 개발",
+      "conference": "정밀공학회 2023 추계학술대회",
+      "period": "2023.11.15~2023.11.17"
+    },
+    {
+      "title": "스마트 의류 적용을 위해 면직물에 잉크젯 프린팅된 웨어러블 촉각 센서.",
+      "conference": "정밀공학회 2023 추계학술대회",
+      "period": "2023.11.15~2023.11.17"
+    },
+    {
+      "title": "웨어러블 햅틱 인터페이스를 위한 인장에 둔감한 VACNT 기반 신축성 히터",
+      "conference": "정밀공학회 2023 추계학술대회",
+      "period": "2023.11.15~2023.11.17"
+    },
+    {
+      "title": "웨어러블 햅틱 디바이스로 활용을 위한 수직 정렬된 탄소나노튜브 기반 높은 공간해상도를 갖는 촉각 센서 어레이",
+      "conference": "정밀공학회 2023 추계학술대회",
+      "period": "2023.11.15~2023.11.17"
+    },
+    {
+      "title": "수직 운동 에너지 수확을 위한 적층형 격자 구조 마찰전기 나노발전기",
+      "conference": "정밀공학회 2023 추계학술대회",
+      "period": "2023.11.15~2023.11.17"
+    },
+    {
+      "title": "Sputum Sound Classification System for Rabbits with a Tracheostomy Tube",
+      "conference": "International Conference on Precision Engineering and Sustainable Manufacturing (PRESM2023)",
+      "period": "2023.07.16~2023.07.21"
+    },
+    {
+      "title": "Triboelectric energy harvester with triggering mechanism for consistent output as self-powered humidity sensor",
+      "conference": "International Conference on Precision Engineering and Sustainable Manufacturing (PRESM2023)",
+      "period": "2023.07.16~2023.07.21"
+    },
+    {
+      "title": "STRETCHABLE HEATER WITH ENTANGLED VERTICALLY ALIGNED CARBON NANOTUBES",
+      "conference": "The 22nd International Conference on Solid-State Sensors, Actuators and Microsystems(Transducers 2023)",
+      "period": "2023.06.25~2023.06.29"
+    },
+    {
+      "title": "RESIDUE-FREE TRANSFER OF VERTICALLY ALIGNED CARBON NANOTUBE ARRAYS USING THIN ICE FILM",
+      "conference": "The 22nd International Conference on Solid-State Sensors, Actuators and Microsystems(Transducers 2023)",
+      "period": "2023.06.25~2023.06.29"
+    },
+    {
+      "title": "유연 촉각 디스플레이를 활용한 사용자 간 실시간 압력 분포 원격 전달 시스템",
+      "conference": "정밀공학회 2023 춘계학술대회",
+      "period": "2023.05.10~2023.05.12"
+    },
+    {
+      "title": "수직 정렬된 탄소나노튜브 기반 미세구조를 활용한 대뇌 피질 검사용 고밀도 유연 마이크로 전극 어레이",
+      "conference": "정밀공학회 2023 춘계학술대회",
+      "period": "2023.05.10~2023.05.12"
+    },
+    {
+      "title": "고온 응용 분야를 위한 CNT가 내장된 스폰지형 PI 필름 촉각 센서",
+      "conference": "정밀공학회 2023 춘계학술대회",
+      "period": "2023.05.10~2023.05.12"
+    },
+    {
+      "title": "전기방사를 이용해 제작된 팔라듐 나노갭 기반 수소 센서",
+      "conference": "제 25회 한국 멤스 학회(Korean MEMS conference)",
+      "period": "2023.03.22~2023.03.24"
+    },
+    {
+      "title": "MEMS SHOCK ABSORBERS INTEGRATED WITH Al2O3-REINFORCED, MECHANICALLY RESILIENT NANOTUBE ARRAYS",
+      "conference": "The 36th IEEE International Conference on Micro Electro Mechanical Systems(IEEE MEMS 2023)",
+      "period": "2023.01.15~2023.01.19"
+    },
+    {
+      "title": "FULLY-FLEXIBLE MICRO-SCALE ACTUATOR ARRAY WITH THE LIQUID-GAS PHASE CHANGE MATERIALS",
+      "conference": "The 36th IEEE International Conference on Micro Electro Mechanical Systems(IEEE MEMS 2023)",
+      "period": "2023.01.15~2023.01.19"
+    },
+    {
+      "title": "비틀림 셔터를 가지는 필드 밀 MEMS 전기장 센서",
+      "conference": "2022 마이크로나노시스템학회 추계학술대회",
+      "period": "2022.11.17~2022.11.18"
+    },
+    {
+      "title": "3차원 신경망 매핑을 위한 수직정렬된 탄소나노튜브가 통합된 낮은 임피던스를 갖는 뉴럴프로브 개발",
+      "conference": "정밀공학회 2022 추계학술대회",
+      "period": "2022.10.19~2022.10.21"
+    },
+    {
+      "title": "미세 기공 크기 조절을 통한 다공성 폴리머 기반 촉각 센서의 응답 특성 분석 연구",
+      "conference": "정밀공학회 2022 추계학술대회",
+      "period": "2022.10.19~2022.10.21"
+    },
+    {
+      "title": "스트레인 센서가 통합된 상변화 기반 유연 촉각 디스플레이",
+      "conference": "정밀공학회 2022 추계학술대회",
+      "period": "2022.10.19~2022.10.21"
+    },
+    {
+      "title": "금속 유기 구조체가 코팅된 그물망 구조 기반 초저농도 휘발성 유기 화합물 포집기",
+      "conference": "정밀공학회 2022 추계학술대회",
+      "period": "2022.10.19~2022.10.21"
+    },
+    {
+      "title": "산화주석 나노입자 기반 가스 센서의 펄스 가열을 통한 자일렌 감지의 감도 향상 및 소비 전력 감소",
+      "conference": "정밀공학회 2022 추계학술대회",
+      "period": "2022.10.19~2022.10.21"
+    },
+    {
+      "title": "Thylakoid-MXene Composite Inkjet Printing for Large Scale Bioenergy Harvesting",
+      "conference": "대한기계학회 바이오공학부문 2022년 춘계학술대회",
+      "period": "2022.04.20~2022.04.22"
+    },
+    {
+      "title": "수직 정렬된 탄소 나노튜브의 마이크로 구조화를 통한 대뇌피질검사용 유연 미세 전극 어레이",
+      "conference": "제 24회 한국 멤스 학회(Korean MEMS conference)",
+      "period": "2022.04.06~2022.04.08"
+    },
+    {
+      "title": "저 전압 구동 상변화 액추에이터를 활용한 유연 촉각 디스플레이",
+      "conference": "제 24회 한국 멤스 학회(Korean MEMS conference)",
+      "period": "2022.04.06~2022.04.08"
+    },
+    {
+      "title": "All-fabric flexible tactile sensor with inkjet-printed carbon nanotubes for high sensitivity over wide sensing range",
+      "conference": "제 24회 한국 멤스 학회(Korean MEMS conference)",
+      "period": "2022.04.06~2022.04.08"
+    },
+    {
+      "title": "균일하게 장식된 금 나노입자-탄소나노튜브 복합체 기반 고감도 유연 촉각 센서",
+      "conference": "제 24회 한국 멤스 학회(Korean MEMS conference)",
+      "period": "2022.04.06~2022.04.08"
+    },
+    {
+      "title": "VERTICALLY-ALIGNED CARBON NANOTUBES-EMBEDDED PDMS MICROSTRUCTURES FOR FLEXIBLE TACTILE SENSOR ARRAY WITH HIGH SENSITIVITY AND DURABILITY",
+      "conference": "The 35th IEEE International Conference on Micro Electro Mechanical Systems (IEEE MEMS 2022)",
+      "period": "2022.01.09~2022.01.13"
+    },
+    {
+      "title": "WASHABLE, INKJET-PRINTED FLEXIBLE TACTILE SENSOR ON FABRIC WITH TEMPERATURE TOLERANCE",
+      "conference": "The 35th IEEE International Conference on Micro Electro Mechanical Systems (IEEE MEMS 2022)",
+      "period": "2022.01.09~2022.01.13"
+    },
+    {
+      "title": "극한의 고온 작동을 위한 탄소나노튜브 기반의 마이크로 기계식 스위치 및 상보적 논리 게이트 개발",
+      "conference": "정밀공학회 2021 추계학술대회",
+      "period": "2021.11.24~2021.11.26"
+    },
+    {
+      "title": "잉크젯 프린팅 공정으로 맥신/탄소나노튜브가 코팅된 종이 기반의 고감도 이산화질소 센서 개발",
+      "conference": "정밀공학회 2021 추계학술대회",
+      "period": "2021.11.24~2021.11.26"
+    },
+    {
+      "title": "MEMS에 가해지는 충격 완화 소재로서의 AlOx 강화 탄소나노튜브",
+      "conference": "정밀공학회 2021 추계학술대회",
+      "period": "2021.11.24~2021.11.26"
+    },
+    {
+      "title": "Highly sensitive, crosstalk-free, flexible tactile sensor array using mesh-embedded porous structure",
+      "conference": "International Symposium on Precision Engineering and Sustainable Manufacturing 2021 (PRESM 2021)",
+      "period": "2021.07.21~2021.07.23"
+    },
+    {
+      "title": "A 47.5nJ Resistor-to-Digital Converter for Detecting BTEX with 0.06ppb-Resolution",
+      "conference": "IEEE Symposium on VLSI Circuits (SOVC)",
+      "period": "2021.06.13~2021.06.19"
+    },
+    {
+      "title": "메쉬를 활용해 크로스토크 없는 대면적 유연 촉각센서 어레이",
+      "conference": "대한기계학회 마이크로/나노공학부문 2021년도 춘계학술대회",
+      "period": "2021.05.26~2021.05.28"
+    },
+    {
+      "title": "탄소나노튜브가 잉크젯 인쇄 된 뽕나무 종이 다층 구조 기반 촉각 센서",
+      "conference": "대한기계학회 마이크로/나노공학부문 2021년도 춘계학술대회",
+      "period": "2021.05.26~2021.05.28"
+    },
+    {
+      "title": "넓은 감지 범위의 은나노와이어-탄소나노튜브 다공성?PDMS?복합체 압저항 촉각 센서",
+      "conference": "정밀공학회 2021 춘계학술대회",
+      "period": "2021.05.12~2021.05.14"
+    },
+    {
+      "title": "편심형 공진기를 활용한 전자기 유도 기반 2축 MEMS 자기장 센서",
+      "conference": "정밀공학회 2021 춘계학술대회",
+      "period": "2021.05.12~2021.05.14"
+    },
+    {
+      "title": "액체-기체 상변화 구동기를 활용한 큰 변위, 큰 힘을 유발하는 유연 촉각 디스플레이",
+      "conference": "정밀공학회 2021 춘계학술대회",
+      "period": "2021.05.12~2021.05.14"
+    },
+    {
+      "title": "전자기 유도 기반 정전 구동형 MEMS 자기장 센서",
+      "conference": "제 23회 한국 멤스 학회(Korean MEMS conference)",
+      "period": "2021.04.07~2021.04.09"
+    },
+    {
+      "title": "탄소 나노튜브 다발이 포함된 마이크로 구조 기반 유연 고감도 촉각 센서",
+      "conference": "제 23회 한국 멤스 학회(Korean MEMS conference)",
+      "period": "2021.04.07~2021.04.09"
+    },
+    {
+      "title": "마이크로 히터의 국소가열을 통한 영역선택적 백금 원자층 증착",
+      "conference": "제 23회 한국 멤스 학회(Korean MEMS conference)",
+      "period": "2021.04.07~2021.04.09"
+    },
+    {
+      "title": "Highly Sensitive Tactile Sensor Array Insensitive to Uniaxial Tensile Strain Using Stretchable Mesh",
+      "conference": "제 23회 한국 멤스 학회(Korean MEMS conference)",
+      "period": "2021.04.07~2021.04.09"
+    },
+    {
+      "title": "다공성 구조 내외부의 탄소 나노 튜브를 활용한 광범위 고감도 유연 촉각 센서",
+      "conference": "제 23회 한국 멤스 학회(Korean MEMS conference)",
+      "period": "2021.04.07~2021.04.09"
+    },
+    {
+      "title": "철 촉매 확산 방지 알루미늄 박막 기반 금속 표면 위 수직 정렬된 탄소 나노 튜브의 성장",
+      "conference": "정밀공학회 2020 통합학술대회",
+      "period": "2020.09.14~2020.09.16"
+    },
+    {
+      "title": "상변화물질을 활용한 정압감 전달용 유연 촉각 디스플레이 제작",
+      "conference": "정밀공학회 2020 통합학술대회",
+      "period": "2020.09.14~2020.09.16"
+    },
+    {
+      "title": "유연 메쉬기반 공정으로 볼록 혹은 오목한 표면을 가진 촉각센서 어레이",
+      "conference": "정밀공학회 2020 통합학술대회",
+      "period": "2020.09.14~2020.09.16"
+    },
+    {
+      "title": "촉각 디스플레이를 위한 재료, 표면 품질 및 접촉 조건에 따른 열전달 양상의 확인",
+      "conference": "정밀공학회 2020 통합학술대회",
+      "period": "2020.09.14~2020.09.16"
+    },
+    {
+      "title": "탄소나노튜브가 코팅된 다층 한지 기반 유연 촉각센서(Multi-Layered and Carbon Nanotube coated Mulberry Paper Based Flexible Tactile Sensor)",
+      "conference": "제 22회 한국 멤스 학회(Korean MEMS conference)",
+      "period": "2020.08.19~2020.08.21"
+    },
+    {
+      "title": "금 나노입자 및 포피린으로 기능화 처리된 산화주석 기반 센서의 저온 에탄올 감지 특성 평가",
+      "conference": "제 22회 한국 멤스 학회(Korean MEMS conference)",
+      "period": "2020.08.19~2020.08.21"
+    },
+    {
+      "title": "탄소나노튜브 기반 p- and n-type microelectromechanical switch 구현",
+      "conference": "제 22회 한국 멤스 학회(Korean MEMS conference)",
+      "period": "2020.08.19~2020.08.21"
+    },
+    {
+      "title": "계층적 탄소나노튜브 표면 구조를 활용한 고감도 유연 촉각 센서",
+      "conference": "제 22회 한국 멤스 학회(Korean MEMS conference)",
+      "period": "2020.08.19~2020.08.21"
+    },
+    {
+      "title": "HIGHLY TRANSPARENT POROUS POLYDIMETHYLSILOXANE WITH MICRO-SIZE PORES USING WATER AND ISOPROPANOL MIXTURE",
+      "conference": "The 33rd IEEE International Conference on Micro Electro Mechanical Systems(IEEE MEMS 2020)",
+      "period": "2020.01.18~2020.01.22"
+    },
+    {
+      "title": "CROSSTALK-FREE MESH-EMBEDDED TACTILE SENSOR ARRAY WITH ELECTRICALLY ISOLATED SENSING CELLS",
+      "conference": "The 33rd IEEE International Conference on Micro Electro Mechanical Systems(IEEE MEMS 2020)",
+      "period": "2020.01.18~2020.01.22"
+    },
+    {
+      "title": "SELF-POWERED WIND SENSOR BASED ON TRIBOELECTRIC GENERATOR WITH CURVED FLAP ARRAY FOR MULTI-DIRECTIONAL WIND SPEED DETECTION",
+      "conference": "The 33rd IEEE International Conference on Micro Electro Mechanical Systems(IEEE MEMS 2020)",
+      "period": "2020.01.18~2020.01.22"
+    },
+    {
+      "title": "SUSPENDED ALUMINA MEMBRANE FOR Ga2O3 GAS SENSOR WITH ENHANCED LIFETIME AT HIGH-TEMPERATURE",
+      "conference": "The 33rd IEEE International Conference on Micro Electro Mechanical Systems(IEEE MEMS 2020)",
+      "period": "2020.01.18~2020.01.22"
+    },
+    {
+      "title": "MICROELECTROMECHANICAL SWITCH WITH CARBON NANOTUBE ARRAYS FOR HIGH-TEMPERATURE OPERATION",
+      "conference": "The 33rd IEEE International Conference on Micro Electro Mechanical Systems(IEEE MEMS 2020)",
+      "period": "2020.01.18~2020.01.22"
+    },
+    {
+      "title": "분당 기반 다공성 CNT-PDMS 복합체 촉각 센서",
+      "conference": "정밀공학회 2019년도 추계학술대회",
+      "period": "2019.10.30~2019.11.01"
+    },
+    {
+      "title": "탄소나노튜브가 첨가된 다공성 구조 폴리머 중함체 기반 고감도 고내구성 촉각센서",
+      "conference": "정밀공학회 2019년도 추계학술대회",
+      "period": "2019.10.30~2019.11.01"
+    },
+    {
+      "title": "패터닝 된 탄소나노튜브 배열 기반의 고신축성 스트레인 센서의 감도 제어에 관한 연구",
+      "conference": "정밀공학회 2019년도 추계학술대회",
+      "period": "2019.10.30~2019.11.01"
+    },
+    {
+      "title": "펠티에 어레이 열 디스플레이를 이용한 2차원 촉각 정보의 전달",
+      "conference": "정밀공학회 2019년도 추계학술대회",
+      "period": "2019.10.30~2019.11.01"
+    },
+    {
+      "title": "고온 동작용 알루미나 박막 기반 센서 플랫폼 개발과 이를 활용한 산화갈륨 가스센서",
+      "conference": "정밀공학회 2019년도 추계학술대회",
+      "period": "2019.10.30~2019.11.01"
+    },
+    {
+      "title": "스트레인 센서가 통합된 고유순도 인공방광 모델 제작",
+      "conference": "정밀공학회 2019년도 추계학술대회",
+      "period": "2019.10.30~2019.11.01"
+    },
+    {
+      "title": "모세관 응집 유도현상을 이용한 수직정렬된 탄소나노튜브 패터닝 연구",
+      "conference": "정밀공학회 2019년도 추계학술대회",
+      "period": "2019.10.30~2019.11.01"
+    },
+    {
+      "title": "CoPP-FUNCTIONALIZED TIO2 NANOPARTICLES FOR HIGHLY SENSITIVE AND RELIABLE VOC DETECTION",
+      "conference": "The 20th International Conference on Solid-State Sensors, Actuators and Microsystems (Transducers 2019 - EUROSENSORS XXXIII)",
+      "period": "2019.06.23~2019.06.27"
+    },
+    {
+      "title": "마이크로 기게식 스위치의 접촉물질로써 금나노입자-탄소나노튜브 나노복합소재의 이용 및 금나노입자 장식 방법에 따른 접촉 특성 평가",
+      "conference": "정밀공학회 2019년도 춘계학술대회",
+      "period": "2019.05.15~2019.05.17"
+    },
+    {
+      "title": "메탈로포피린의 기능화 처리 정도에 따른 산화주석 기반 가스센서의 특성 평가",
+      "conference": "제 21회 한국 멤스 학회(Korean MEMS conference)",
+      "period": "2019.04.04~2019.04.06"
+    },
+    {
+      "title": "전 방향 바람 에너지 수확이 가능한 원주형 마찰대전 에너지 하베스터",
+      "conference": "제 21회 한국 멤스 학회(Korean MEMS conference)",
+      "period": "2019.04.04~2019.04.06"
+    },
+    {
+      "title": "Ethanol Sensing Characteristics of Porphyrin-Functionalized TiO2 Nanoparticle-based Gas Sensor",
+      "conference": "제 21회 한국 멤스 학회(Korean MEMS conference)",
+      "period": "2019.04.04~2019.04.06"
+    },
+    {
+      "title": "습한 조건에서 MoS2 의 NO2 반응 및 회복 특성 분석",
+      "conference": "제 21회 한국 멤스 학회(Korean MEMS conference)",
+      "period": "2019.04.04~2019.04.06"
+    },
+    {
+      "title": "스트레인 게이지가 통합된 폴리머 기반 유연 3축 촉각 센서",
+      "conference": "제 21회 한국 멤스 학회(Korean MEMS conference)",
+      "period": "2019.04.04~2019.04.06"
+    },
+    {
+      "title": "GOLD-DECORATED CARBON NANOTUBE NETWORK AS CONTACT SURFACE OF MEM SWITCH FOR EXTENDED LIFETIME",
+      "conference": "The 32nd IEEE International Conference on Micro Electro Mechanical Systems(MEMS 2019)",
+      "period": "2019.01.27~2019.01.31"
+    },
+    {
+      "title": "MEASUREMENT OF FRICTION FORCE BETWEEN DIRECTLY INTEGRATED CNT BUNDLES IN TIP-TO-TIP CONTACT USING MEMS TRIBOMETER PLATFORM",
+      "conference": "The 32nd IEEE International Conference on Micro Electro Mechanical Systems(MEMS 2019)",
+      "period": "2019.01.27~2019.01.31"
+    },
+    {
+      "title": "DEVELOPMENT OF A HIGHLY STRETCHABLE STRAIN SENSOR BASED ON PATTERNED AND ROLLED CARBON NANOTUBES",
+      "conference": "The 32nd IEEE International Conference on Micro Electro Mechanical Systems(MEMS 2019)",
+      "period": "2019.01.27~2019.01.31"
+    },
+    {
+      "title": "WO3-MoS2 mixture-based gas sensor for NO2 detection at room temperature",
+      "conference": "The 32nd IEEE International Conference on Micro Electro Mechanical Systems(MEMS 2019)",
+      "period": "2019.01.27~2019.01.31"
+    },
+    {
+      "title": "A TEXTILE-BASED RESISTIVE TACTILE SENSOR WITH HIGH SENSITIVITY IN A WIDE PRESSURE RANGE",
+      "conference": "The 32nd IEEE International Conference on Micro Electro Mechanical Systems(MEMS 2019)",
+      "period": "2019.01.27~2019.01.31"
+    },
+    {
+      "title": "동적 광 패터닝에 기반한 전기 촉각 자극 제어",
+      "conference": "대한기계학회 2018년 학술대회",
+      "period": "2018.12.13~2018.12.15"
+    },
+    {
+      "title": "스크린 프린팅에 기반한 탄소나노튜브/폴리머 복합체 촉각 센서",
+      "conference": "정밀공학회 2018년도 추계학술대회",
+      "period": "2018.10.24~2018.10.26"
+    },
+    {
+      "title": "마이크로 기계식 스위치를 이용한 금 나노입자가 장식된 탄소 나노튜브 네트워크의 접착력 평가",
+      "conference": "정밀공학회 2018년도 추계학술대회",
+      "period": "2018.10.24~2018.10.26"
+    },
+    {
+      "title": "Recovery of Reacted MoS2-based Gas Sensor Using UV-LED Illumination",
+      "conference": "The 17th International Meeting on Chemical Sensors (IMCS 2018)",
+      "period": "2018.07.15~2018.07.19"
+    },
+    {
+      "title": "Sensitivity Improvement of Photo-Ionization Detectors by Coating Carbon Nanotubes on Electrodes",
+      "conference": "The 17th International Meeting on Chemical Sensors (IMCS 2018)",
+      "period": "2018.07.15~2018.07.19"
+    },
+    {
+      "title": "Wearable strain sensor based on line-patterned vertically aligned carbon nanotubes-silicone elastomer nanocomposite",
+      "conference": "The 15th International Workshop on Nanomechanical Sensing (NMC 2018)",
+      "period": "2018.06.26~2018.06.29"
+    },
+    {
+      "title": "Porous CNT/PVDF composite with triangular microgroove for pressure sensing",
+      "conference": "The 15th International Workshop on Nanomechanical Sensing (NMC 2018)",
+      "period": "2018.06.26~2018.06.29"
+    },
+    {
+      "title": "위치 선택적 단일 나노와이어 형성을 통한 현수형 팔라듐 나노와이어 수소센서",
+      "conference": "대한기계학회 마이크로/나노공학부문 2018년도 춘계학술대회",
+      "period": "2018.05.24~2018.05.26"
+    },
+    {
+      "title": "접촉하는 두 개의 PET 외팔보 진동 기반 슬라이딩 모드 마찰대전 에너지 하베스터",
+      "conference": "대한기계학회 마이크로/나노공학부문 2018년도 춘계학술대회",
+      "period": "2018.05.24~2018.05.26"
+    },
+    {
+      "title": "Lifetime improvement of micro-hotplate using suspended alumina membrane",
+      "conference": "대한기계학회 마이크로/나노공학부문 2018년도 춘계학술대회",
+      "period": "2018.05.24~2018.05.26"
+    },
+    {
+      "title": "수직 정렬된 탄소나노튜브의 마찰특성 평가를 위한 MEMS 플랫폼",
+      "conference": "정밀공학회 2018년도 춘계학술대회",
+      "period": "2018.05.09~2018.05.11"
+    },
+    {
+      "title": "라인 패턴 된 수직 배열 탄소 나노튜브-Ecoflex 나노복합소재를 이용한 고신축성 스트레인 센서",
+      "conference": "제 20회 한국 멤스 학회(Korean MEMS conference)",
+      "period": "2018.04.05~2018.04.07"
+    },
+    {
+      "title": "NO2 노출 후 UV 조사를 통한 MoS2의 회복 거동 향상",
+      "conference": "제 20회 한국 멤스 학회(Korean MEMS conference)",
+      "period": "2018.04.05~2018.04.07"
+    },
+    {
+      "title": "단일 금속산화물 기반 가스센서의 작동온도 변화를 통한 이종 VOC의 선택적 감지",
+      "conference": "제 20회 한국 멤스 학회(Korean MEMS conference)",
+      "period": "2018.04.05~2018.04.07"
+    },
+    {
+      "title": "고온 동작 시 수명 향상을 위한 부유형 알루미나 박막 기반 마이크로 핫플레이트 개발",
+      "conference": "제 20회 한국 멤스 학회(Korean MEMS conference)",
+      "period": "2018.04.05~2018.04.07"
+    },
+    {
+      "title": "전기방사 공정을 이용한 현수형 나노선 기반 가스 센서",
+      "conference": "제 20회 한국 멤스 학회(Korean MEMS conference)",
+      "period": "2018.04.05~2018.04.07"
+    },
+    {
+      "title": "마찰 대전 하베스터를 이용한 자력 구동 풍속, 풍향 센서",
+      "conference": "제 20회 한국 멤스 학회(Korean MEMS conference)",
+      "period": "2018.04.05~2018.04.07"
+    },
+    {
+      "title": "TiO2 나노선으로 기능화 처리한 Pd 촉매 기반 접촉연소방식 센서의 황피독 특성 및 UV 를 통한 회복 특성",
+      "conference": "제 20회 한국 멤스 학회(Korean MEMS conference)",
+      "period": "2018.04.05~2018.04.07"
+    },
+    {
+      "title": "다공성 C-doped WO3 나노구조물 기반 센서의 온도에 따른 NO2 감지 성능 확인",
+      "conference": "제 20회 한국 멤스 학회(Korean MEMS conference)",
+      "period": "2018.04.05~2018.04.07"
+    },
+    {
+      "title": "SnO2 기능화 처리를 통해 향성된 감도를 가지는 MoS2 기반 유연 광 센서",
+      "conference": "제 20회 한국 멤스 학회(Korean MEMS conference)",
+      "period": "2018.04.05~2018.04.07"
+    },
+    {
+      "title": "Porphyrin으로 기능화 처리한 마찰대전 기반 자가구동 VOC 센서",
+      "conference": "제 20회 한국 멤스 학회(Korean MEMS conference)",
+      "period": "2018.04.05~2018.04.07"
+    },
+    {
+      "title": "FABRICATION OF C-DOPED WO3 NANOAMTERIAL-BASED GAS SENSORS FOR HIGHLY SENSITIVE NO2 DETECTION AT ROOM TEMPERATURE",
+      "conference": "The 31st IEEE International Conference on Micro Electro Mechanical Systems(MEMS 2018)",
+      "period": "2018.01.21~2018.01.25"
+    },
+    {
+      "title": "IMPROVEMENT OF PHOTORESPONSE IN MoS2 BY SnO2-FUNCTIONALIZATION AND ITS APPLICATION TO FLEXIBLE AND TRANSPARAENT PHOTODETECTOR",
+      "conference": "The 31st IEEE International Conference on Micro Electro Mechanical Systems(MEMS 2018)",
+      "period": "2018.01.21~2018.01.25"
+    },
+    {
+      "title": "LOCATION-SPECIFIC FABRICATION OF SUSPENDED METAL NANOWIRE BASED ON ELECTROSPUN NANOFIBERS ON MEMS PLATFORM",
+      "conference": "The 31st IEEE International Conference on Micro Electro Mechanical Systems(MEMS 2018)",
+      "period": "2018.01.21~2018.01.25"
+    },
+    {
+      "title": "플라스틱 기판에 통합된 탄소 나노튜브 채널-그래핀 전극을 이용한 유연 광 센서 개발",
+      "conference": "한국정밀공학회 2017 추계학술대회",
+      "period": "2017.12.13~2017.12.15"
+    },
+    {
+      "title": "수직정렬된 탄소나노튜브의 트라이볼로지적, 전기적 특성에 관한 연구",
+      "conference": "한국정밀공학회 2017 추계학술대회",
+      "period": "2017.12.13~2017.12.15"
+    },
+    {
+      "title": "Piezoelectric and triboelectric hybrid energy harvester based on multilayered flexible film and single pair of electrodes",
+      "conference": "The 8th Japan-China-Korea MEMS/NEMS with NANO KOREA 2017",
+      "period": "2017.07.14~2017.07.14"
+    },
+    {
+      "title": "Triboelectric energy harvester using curved flaps for multi-directional wind energy harvesting",
+      "conference": "The 8th Japan-China-Korea MEMS/NEMS with NANO KOREA 2017",
+      "period": "2017.07.14~2017.07.14"
+    },
+    {
+      "title": "Sensing Characteristics for Pulsed heating Mode Driving of VOC Sensor",
+      "conference": "The 15th International Nanotech Symposium& Nano-Convergence Expo (NANO KOREA 2017)",
+      "period": "2017.07.12~2017.07.14"
+    },
+    {
+      "title": "WIND-POWERED TRIBOELECTRIC ENERGY HARVESTER USING CURVED FLAPPING FILM ARRAY",
+      "conference": "The 19th International Conference on Solid-State Sensors, Actuators and Microsystems (Transducers&apos; 17)",
+      "period": "2017.06.18~2017.06.22"
+    },
+    {
+      "title": "FABRICATION AND CHARACTERIZATION OF VOC SENSORS BASED ON SUSPENDED ZINC OXIDE NANORODS FUNCTIONALIZED BY COBALT PORPHYRIN",
+      "conference": "The 19th International Conference on Solid-State Sensors, Actuators and Microsystems (Transducers&apos; 17)",
+      "period": "2017.06.18~2017.06.22"
+    },
+    {
+      "title": "FLEXIBLE AND TRANSPARENT NO2 SENSOR USING FUNCTIONALIZED MoS2 WITH LIGHT-ENHANCED RESPONSE",
+      "conference": "The 19th International Conference on Solid-State Sensors, Actuators and Microsystems (Transducers&apos; 17)",
+      "period": "2017.06.18~2017.06.22"
+    },
+    {
+      "title": "FABRICATION OF CARBON NANOTUBE-COATED FABRIC FOR HIGHLY SENSITIVE PRESSURE SENSOR",
+      "conference": "The 19th International Conference on Solid-State Sensors, Actuators and Microsystems (Transducers&apos; 17)",
+      "period": "2017.06.18~2017.06.22"
+    },
+    {
+      "title": "MEMS 센서 플랫폼의 열 피로에 대한 신뢰성 평가",
+      "conference": "2017년도 대한기계학회 마이크로/나노공학부문 춘계학술대회",
+      "period": "2017.05.25~2017.05.26"
+    },
+    {
+      "title": "일렉트로 스피닝을 이용한 현수형 금속 나노선 기반 가스센서의 제작",
+      "conference": "2017년도 대한기계학회 마이크로/나노공학부문 춘계학술대회",
+      "period": "2017.05.25~2017.05.26"
+    },
+    {
+      "title": "이황화몰리브덴의 대전서열상 위치의 정성적 분석",
+      "conference": "한국정밀공학회 2017 춘계학술대회",
+      "period": "2017.05.17~2017.05.19"
+    },
+    {
+      "title": "Carbon nanotubes network contact lubrication의 산화에 의한 MEMS 스위치의 접촉 수명 변화 연구",
+      "conference": "제 19회 한국 멤스 학회(Korean MEMS conference)",
+      "period": "2017.03.30~2017.04.01"
+    },
+    {
+      "title": "저전력 현수형 마이크로 히터 기반 TiO2 나노선 VOC 센서",
+      "conference": "제 19회 한국 멤스 학회(Korean MEMS conference)",
+      "period": "2017.03.30~2017.04.01"
+    },
+    {
+      "title": "휴대용 자가 구동 능동 마찰 전기 습도 센서",
+      "conference": "제 19회 한국 멤스 학회(Korean MEMS conference)",
+      "period": "2017.03.30~2017.04.01"
+    },
+    {
+      "title": "FABRICATION OF SUSPENDED NANOWIRES USING SUSPENDED CARBON NANOTUBES AS TEMPLATE FOR GAS SENSING",
+      "conference": "The 30th IEEE International Conference on Micro Electro Mechanical Systems(MEMS 2017)",
+      "period": "2017.01.22~2017.01.26"
+    },
+    {
+      "title": "TRIBOELECTRIC ENERGY HARVESTER USING FREQUENCY UPCONVERSION TO GENERATE FROM EXTREMELY LOW FREQUENCY STRAIN INPUTS",
+      "conference": "The 30th IEEE International Conference on Micro Electro Mechanical Systems(MEMS 2017)",
+      "period": "2017.01.22~2017.01.26"
+    },
+    {
+      "title": "HIGHLY SENSITIVE DETECTION OF VOC USING IMPACT IONIZATION INDUCED BY PHOTOELECTRON",
+      "conference": "The 30th IEEE International Conference on Micro Electro Mechanical Systems(MEMS 2017)",
+      "period": "2017.01.22~2017.01.26"
+    },
+    {
+      "title": "LOW-VOLTAGE AND LOW-POWER FIELD-IONIZATION GAS SENSOR BASED ON MICRO-GAP BETWEEN SUSPENDED SILVER NANOWIRES ELECTRODES FOR TOLUENE DETECTION",
+      "conference": "The 30th IEEE International Conference on Micro Electro Mechanical Systems(MEMS 2017)",
+      "period": "2017.01.22~2017.01.26"
+    },
+    {
+      "title": "CARBON NANOTUBES NETWORK CONTACT LUBRICATION FOR HIGHLY RELIABLE MEMS SWITCH",
+      "conference": "The 30th IEEE International Conference on Micro Electro Mechanical Systems(MEMS 2017)",
+      "period": "2017.01.22~2017.01.26"
+    }
+  ],
+  "fundings": [
+    {
+      "title": "[대형사업운영비/2026-11-0468](선도연구센터/ERC)다상소재 혁신 생산공정 연구센터(4/4,1단계)",
+      "org": "연세대학교",
+      "period": "2026-03-01~2027-02-28"
+    },
+    {
+      "title": "[통합이지바로](선도연구센터/ERC)다상소재 혁신 생산공정 연구센터(4/4,1단계)(2023.6.1.~2027.2.28.)",
+      "org": "한국연구재단",
+      "period": "2026-03-01~2027-02-28"
+    },
+    {
+      "title": "[7차년도]사회지향 기계기술 글로벌 리더 양성 교육연구단",
+      "org": "한국연구재단",
+      "period": "2026-03-01~2027-02-28"
+    },
+    {
+      "title": "[RCMS](주)카이트로닉스/[위탁]고온 특성이 우수한 필름형 압력온도 복합 센서 요소 기술 및 이차전지 공정 관리용 전자 감압지 제품 개발(3/3)",
+      "org": "중소기업기술정보진흥원",
+      "period": "2025-11-01~2026-10-31"
+    },
+    {
+      "title": "(통합Ezbaro/IRIS) 승화 기반 디지털(On/Off) 접착 제어를 통한 무손상 나노소재 전사공정 및 응용소자 구현(2/3)",
+      "org": "한국연구재단",
+      "period": "2025-09-01~2026-08-31"
+    },
+    {
+      "title": "[해외/AOARD] Air Force Defense Research Sciences Conference and Workshop Support",
+      "org": "국외",
+      "period": "2025-03-26~2025-06-25"
+    },
+    {
+      "title": "[통합이지바로](선도연구센터/ERC)다상소재 혁신 생산공정 연구센터(3/4,1단계)(2023.6.1.~2027.2.28.)",
+      "org": "한국연구재단",
+      "period": "2025-03-01~2026-02-28"
+    },
+    {
+      "title": "[6차년도] 사회지향 기계기술 글로벌 리더 양성 교육연구단",
+      "org": "한국연구재단",
+      "period": "2025-03-01~2026-02-28"
+    },
+    {
+      "title": "[통합이지바로/RS/위탁] 비냉각형 고속·고감도 장파장 적외선(LWIR) 센서를 위한 극한 신소재, 나노기술 연구 (2/2단계)(1/3)",
+      "org": "한국연구재단",
+      "period": "2025-01-01~2025-12-31"
+    },
+    {
+      "title": "[RCMS](주)카이트로닉스/[위탁]고온 특성이 우수한 필름형 압력온도 복합 센서 요소 기술 및 이차전지 공정 관리용 전자 감압지 제품 개발(2/3)",
+      "org": "중소기업기술정보진흥원",
+      "period": "2024-11-01~2025-10-31"
+    },
+    {
+      "title": "(통합Ezbaro/IRIS) 승화 기반 디지털(On/Off) 접착 제어를 통한 무손상 나노소재 전사공정 및 응용소자 구현(1/3)",
+      "org": "한국연구재단",
+      "period": "2024-09-01~2025-08-31"
+    },
+    {
+      "title": "[통합이지바로/위탁] 광대역 적외선 고흡광도 나노 소재 합성 및 통합 공정 개발 (1/2단계)(3/3)",
+      "org": "한국연구재단",
+      "period": "2024-03-01~2024-12-31"
+    },
+    {
+      "title": "[통합이지바로](선도연구센터/ERC)다상소재 혁신 생산공정 연구센터(2/4,1단계)(2023.6.1.~2027.2.28.)",
+      "org": "한국연구재단",
+      "period": "2024-03-01~2025-02-28"
+    },
+    {
+      "title": "[5차년도] 사회지향 기계기술 글로벌 리더 양성 교육연구단",
+      "org": "한국연구재단",
+      "period": "2024-03-01~2025-02-28"
+    },
+    {
+      "title": "[RCMS](주)카이트로닉스/[위탁]고온 특성이 우수한 필름형 압력온도 복합 센서 요소 기술 및 이차전지 공정 관리용 전자 감압지 제품 개발(1/3)",
+      "org": "중소기업기술정보진흥원",
+      "period": "2023-11-01~2024-10-31"
+    },
+    {
+      "title": "[통합이지바로/위탁] 광대역 적외선 고흡광도 나노 소재 합성 및 통합 공정 개발 (1/2단계)(2/3)",
+      "org": "한국연구재단",
+      "period": "2023-07-01~2024-02-29"
+    },
+    {
+      "title": "[2023-11-1089/대응](선도연구센터/ERC)다상소재 혁신 생산공정 연구센터(1/4,1단계)(2023.6.1.~2027.2.28.)",
+      "org": "연세대학교",
+      "period": "2023-06-01~2025-02-28"
+    },
+    {
+      "title": "[통합이지바로](선도연구센터/ERC)다상소재 혁신 생산공정 연구센터(1/4,1단계)(2023.6.1.~2027.2.28.)",
+      "org": "한국연구재단",
+      "period": "2023-06-01~2024-02-29"
+    },
+    {
+      "title": "(통합Ezbaro)접촉과 마찰 기반 MEMS의 가혹환경 구동 및 장수명 고신뢰성 확보를 위한 나노소재 응용 연구(3/3)(2021.3.1~2024.2.29)",
+      "org": "한국연구재단",
+      "period": "2023-03-01~2024-02-29"
+    },
+    {
+      "title": "[4차년도] 사회지향 기계기술 글로벌 리더 양성 교육연구단",
+      "org": "한국연구재단",
+      "period": "2023-03-01~2024-02-29"
+    },
+    {
+      "title": "[통합이지바로](1위탁/과세)스마트 플레이트 시스템을 위한 신경 신호 기록 및 자극용 고성능 전극 개발(2/2단계)(2/2)",
+      "org": "한국연구재단",
+      "period": "2023-01-01~2023-12-31"
+    },
+    {
+      "title": "[통합이지바로/범부처/공동] 소변 충만도 감응소재 및 저장/배출 기능소재의 통합을 통한 이식형 인공방광 개발(2/2단계)(2/2)",
+      "org": "범부처",
+      "period": "2023-01-01~2024-12-31"
+    },
+    {
+      "title": "[통합이지바로] (위탁) 광대역 적외선 고흡광도 나노 소재 합성 및 통합 공정 개발 (1/2단계)(1/3)",
+      "org": "한국연구재단",
+      "period": "2022-10-01~2023-06-30"
+    },
+    {
+      "title": "[민간/엘지전자(주)] LG전자-연세대 산학협력위원회/1차년도 공통운영비",
+      "org": "국내",
+      "period": "2022-08-01~2024-07-31"
+    },
+    {
+      "title": "[통합이지바로/범부처/공동] 소변 충만도 감응소재 및 저장/배출 기능소재의 통합을 통한 이식형 인공방광 개발(2/2단계)(1/2)",
+      "org": "범부처",
+      "period": "2022-03-01~2022-12-31"
+    },
+    {
+      "title": "[통합이지바로/범부처/공동] 압력 감지형 스마트 기관절개관 개발(3/3)",
+      "org": "범부처",
+      "period": "2022-03-01~2022-12-31"
+    },
+    {
+      "title": "(통합Ezbaro)접촉과 마찰 기반 MEMS의 가혹환경 구동 및 장수명 고신뢰성 확보를 위한 나노소재 응용 연구(2/3)(2021.3.1~2024.2.29)",
+      "org": "한국연구재단",
+      "period": "2022-03-01~2023-02-28"
+    },
+    {
+      "title": "[3차년도] 사회지향 기계기술 글로벌 리더 양성 교육연구단",
+      "org": "한국연구재단",
+      "period": "2022-03-01~2023-02-28"
+    },
+    {
+      "title": "[RCMS/주관/환경산업기술원] 유해인자 DB구축 및 IoT기반 공기포집-농축-전처리-상시진단 연계기술개발(1/2단계)(2/2)",
+      "org": "한국환경산업기술원",
+      "period": "2022-01-01~2022-12-31"
+    },
+    {
+      "title": "[통합이지바로](1위탁)스마트 플레이트 시스템을 위한 신경 신호 기록 및 자극용 고성능 전극 개발(2/2단계)(1/2)",
+      "org": "한국연구재단",
+      "period": "2022-01-01~2022-12-31"
+    },
+    {
+      "title": "[RCMS/주관/환경산업기술원] 유해인자 DB구축 및 IoT기반 공기포집-농축-전처리-상시진단 연계기술개발(1/2단계)(1/2)",
+      "org": "한국환경산업기술원",
+      "period": "2021-04-01~2021-12-31"
+    },
+    {
+      "title": "[통합이지바로/범부처/공동] 압력 감지형 스마트 기관절개관 개발(2/3)",
+      "org": "범부처",
+      "period": "2021-03-01~2022-02-28"
+    },
+    {
+      "title": "[통합이지바로/범부처/공동] 소변 충만도 감응소재 및 저장/배출 기능소재의 통합을 통한 이식형 인공방광 개발(1/2단계)(2/2)",
+      "org": "범부처",
+      "period": "2021-03-01~2022-02-28"
+    },
+    {
+      "title": "(통합Ezbaro)접촉과 마찰 기반 MEMS의 가혹환경 구동 및 장수명 고신뢰성 확보를 위한 나노소재 응용 연구(1/3)(2021.3.1~2024.2.29)",
+      "org": "한국연구재단",
+      "period": "2021-03-01~2022-02-28"
+    },
+    {
+      "title": "[2차년도] 사회지향 기계기술 글로벌 리더 양성 교육연구단",
+      "org": "한국연구재단",
+      "period": "2021-03-01~2022-02-28"
+    },
+    {
+      "title": "[통합이지바로] (1위탁)스마트 플레이트 시스템을 위한 신경 신호 기록 및 자극용 고성능 전극 개발 (1/2단계)(3/3)",
+      "org": "한국연구재단",
+      "period": "2021-01-01~2021-12-31"
+    },
+    {
+      "title": "[통합이지바로](2세부) 소변 충만도 감응소재 및 저장/배출 기능소재의 통합을 통한 이식형 인공방광 개발(1/2단계)(1/2)",
+      "org": "범부처",
+      "period": "2020-09-01~2021-02-28"
+    },
+    {
+      "title": "[1차년도] 사회지향 기계기술 글로벌 리더 양성 교육연구단",
+      "org": "한국연구재단",
+      "period": "2020-09-01~2021-02-28"
+    },
+    {
+      "title": "[RCMS_위탁]카이트로닉스/스마트폰 압착제조공정 자동화를 위한 제조 품질 모니터링 및 양불 판정용 압력분포측정 시스템 기술 개발(2/2)",
+      "org": "중소기업기술정보진흥원",
+      "period": "2020-06-26~2021-06-25"
+    },
+    {
+      "title": "(통합Ezbaro)다중모드 햅틱 인터페이스 연구실(3/3)(2018.6.1~2021.2.28)",
+      "org": "한국연구재단",
+      "period": "2020-03-01~2021-02-28"
+    },
+    {
+      "title": "[통합이지바로] (1위탁)스마트 플레이트 시스템을 위한 신경 신호 기록 및 자극용 고성능 전극 개발 (1단계)(2/3)",
+      "org": "한국연구재단",
+      "period": "2020-03-01~2020-12-31"
+    },
+    {
+      "title": "(통합Ezbaro)(후속)접촉 기반 MEMS의 장수명 고신뢰성 확보를 위한 나노소재 응용 연구(3/3)(2018.3.1~2021.2.28)",
+      "org": "한국연구재단",
+      "period": "2020-03-01~2021-02-28"
+    },
+    {
+      "title": "[8차년도]사회지향 기계기술 글로벌 리더 양성 사업단",
+      "org": "한국연구재단",
+      "period": "2020-03-01~2020-08-31"
+    },
+    {
+      "title": "[RCMS-위탁]카이트로닉스/스마트폰 압착제조공정 자동화를 위한 제조 품질 모니터링 및 양불 판정용 압력분포측정 시스템 기술 개발",
+      "org": "중소기업기술정보진흥원",
+      "period": "2019-06-26~2020-06-25"
+    },
+    {
+      "title": "[Ezbaro] (위탁)스마트 플레이트 시스템을 위한 신경 신호 기록 및 자극용 고성능 전극 개발 (1단계)(1/3)",
+      "org": "한국연구재단",
+      "period": "2019-06-01~2020-02-29"
+    },
+    {
+      "title": "[RCMS]울산과학기술원/공중부유형 다종 나노소자 기반 초소형 유해가스 센서 시스템 기술개발(5/5)",
+      "org": "한국산업기술기획평가원",
+      "period": "2019-04-01~2019-10-31"
+    },
+    {
+      "title": "다중모드 햅틱 인터페이스 연구실(2/3)(2018.6.1~2021.2.28)",
+      "org": "한국연구재단",
+      "period": "2019-03-01~2020-02-29"
+    },
+    {
+      "title": "(후속)접촉 기반 MEMS의 장수명 고신뢰성 확보를 위한 나노소재 응용 연구(2/3)(2018.3.1~2021.2.28)",
+      "org": "한국연구재단",
+      "period": "2019-03-01~2020-02-29"
+    },
+    {
+      "title": "[7차년도]사회지향 기계기술 글로벌 리더 양성 사업단",
+      "org": "한국연구재단",
+      "period": "2019-03-01~2020-02-29"
+    },
+    {
+      "title": "[RCMS]울산과학기술원/공중부유형 다종 나노소자 기반 초소형 유해가스 센서 시스템 기술개발(4/5)",
+      "org": "한국산업기술기획평가원",
+      "period": "2018-06-01~2019-03-31"
+    },
+    {
+      "title": "다중모드 햅틱 인터페이스 연구실(1/3)(2018.6.1~2021.2.28)",
+      "org": "한국연구재단",
+      "period": "2018-06-01~2019-02-28"
+    },
+    {
+      "title": "(후속)접촉 기반 MEMS의 장수명 고신뢰성 확보를 위한 나노소재 응용 연구(1/3)(2018.3.1~2021.2.28)",
+      "org": "한국연구재단",
+      "period": "2018-03-01~2019-02-28"
+    },
+    {
+      "title": "[6차년도]사회지향 기계기술 글로벌 리더 양성 사업단",
+      "org": "한국연구재단",
+      "period": "2018-03-01~2019-02-28"
+    },
+    {
+      "title": "[RCMS]한국과학기술원/주변 환경 유해인자 기체 감지 및 필터링 복합기능 스마트센서 개발(3/3)",
+      "org": "한국산업기술기획평가원",
+      "period": "2018-01-01~2019-08-31"
+    },
+    {
+      "title": "[민간/현대엔지비] 스마트 공장 적용을 위한 광대역 에너지 하베스터 개발",
+      "org": "국내",
+      "period": "2017-12-18~2019-05-17"
+    },
+    {
+      "title": "최소 검출 압력 10mb 측정이 가능한 제조공정용 고감도 압력분포측정시스템(전자감압지) 개발",
+      "org": "중소기업청",
+      "period": "2017-10-30~2018-10-29"
+    },
+    {
+      "title": "[SM] 기초연구실지원사업/한국연구재단/2017.9.6.~ 2018.4.23.",
+      "org": "연세대학교",
+      "period": "2017-09-06~2018-06-30"
+    },
+    {
+      "title": "[RCMS]울산과학기술원/공중부유형 다종 나노소자 기반 초소형 유해가스 센서 시스템 기술개발(3/5)",
+      "org": "한국산업기술기획평가원",
+      "period": "2017-08-01~2018-05-31"
+    },
+    {
+      "title": "대량생산 가능한 저전력 초소형 VOC 센서 개발(2/4, 3단계)",
+      "org": "한국연구재단",
+      "period": "2017-05-01~2018-02-28"
+    },
+    {
+      "title": "접촉 기반 MEMS의 장수명 고신뢰성 확보를 위한 나노소재 응용 연구(3/3)(2015.7.1~2018.4.30)",
+      "org": "한국연구재단",
+      "period": "2017-05-01~2018-04-30"
+    },
+    {
+      "title": "[5차년도]사회지향 기계기술 글로벌 리더 양성 사업단",
+      "org": "한국연구재단",
+      "period": "2017-03-01~2018-02-28"
+    },
+    {
+      "title": "[RCMS]한국과학기술원/주변 환경 유해인자 기체 감지 및 필터링 복합기능 스마트센서 개발(2/3)",
+      "org": "한국산업기술기획평가원",
+      "period": "2017-01-01~2017-12-31"
+    },
+    {
+      "title": "[RCMS]주민 수용성 향상을 위한 양력발생 디스크 방식의 풍력발전 시스템 개발(2/3)",
+      "org": "한국에너지기술평가원",
+      "period": "2017-01-01~2017-12-31"
+    },
+    {
+      "title": "LG이노텍/(분리-세부)전자 이온화 방식 VOC(Volatile Organic Compounds)센서 성능 개선 및 특성 평가(제5세부과제)",
+      "org": "국내",
+      "period": "2016-09-01~2018-08-31"
+    },
+    {
+      "title": "[RCMS]한국과학기술원/주변 환경 유해인자 기체 감지 및 필터링 복합기능 스마트센서 개발(1/2)",
+      "org": "한국산업기술기획평가원",
+      "period": "2016-09-01~2016-12-31"
+    },
+    {
+      "title": "[RCMS]울산과학기술대학교/공중부유형 다종 나노소자 기반 초소형 유해가스 센서 시스템 기술개발(2/4)",
+      "org": "한국산업기술기획평가원",
+      "period": "2016-08-01~2017-07-31"
+    },
+    {
+      "title": "대량생산 가능한 저전력 초소형 VOC 센서 개발(1/4, 3단계)",
+      "org": "한국연구재단",
+      "period": "2016-07-01~2017-04-30"
+    },
+    {
+      "title": "[RCMS]주민 수용성 향상을 위한 양력발생 디스크 방식의 풍력발전 시스템 개발(1/3)",
+      "org": "한국에너지기술평가원",
+      "period": "2016-05-01~2016-12-31"
+    },
+    {
+      "title": "접촉 기반 MEMS의 장수명 고신뢰성 확보를 위한 나노소재 응용 연구(2/3)(2015.7.1~2018.4.30)",
+      "org": "한국연구재단",
+      "period": "2016-05-01~2017-04-30"
+    },
+    {
+      "title": "(4차년도) 사회지향 기계기술 글로벌 리더 양성 사업단",
+      "org": "한국연구재단",
+      "period": "2016-03-01~2017-02-28"
+    },
+    {
+      "title": "저에너지 구동 통합형 자가 가변색상 소재",
+      "org": "한국연구재단",
+      "period": "2015-12-04~2016-04-03"
+    },
+    {
+      "title": "대량생산 가능한 저전력 초소형 VOC 센서 개발 (3/3, 2단계)",
+      "org": "한국연구재단",
+      "period": "2015-09-01~2016-06-30"
+    },
+    {
+      "title": "(분리-세부) LG이노텍/전자 이온화 방식 VOC(Volatile Organic Compounds) 센서 개발 및 특성 평가",
+      "org": "국내",
+      "period": "2015-09-01~2019-08-31"
+    },
+    {
+      "title": "[RCMS]울산과학기술대학교/공중부유형 다종 나노소자 기반 초소형 유해가스 센서 시스템 기술개발(1/4)",
+      "org": "한국산업기술기획평가원",
+      "period": "2015-08-01~2016-07-31"
+    },
+    {
+      "title": "접촉 기반 MEMS의 장수명 고신뢰성 확보를 위한 나노소재 응용 연구(1/3)(2015.7.1~2018.4.30)",
+      "org": "한국연구재단",
+      "period": "2015-07-01~2016-04-30"
+    },
+    {
+      "title": "개인 환경의 초미세먼지(PM2.5)와 TVOC 동시 분석 센서모듈 개발(2/2)",
+      "org": "한국환경산업기술원",
+      "period": "2015-04-01~2016-03-31"
+    },
+    {
+      "title": "인체 에너지 수확을 위한 재료 및 패키징 기술",
+      "org": "한국연구재단",
+      "period": "2015-03-01~2016-02-29"
+    },
+    {
+      "title": "의복화 가능한 직물의 마찰로 발생하는 마찰전기를 이용한 에너지 발생 장치에 관한 연구",
+      "org": "방위사업청",
+      "period": "2014-11-05~2016-12-15"
+    },
+    {
+      "title": "지능형 군집기반 환경센서 시스템(2/3, 2단계)",
+      "org": "한국연구재단",
+      "period": "2014-09-01~2015-08-31"
+    },
+    {
+      "title": "NEMS 응용을 위한 선택적 이온 주입 신공정 기반 1차원 나노소재의 정밀 합성제어",
+      "org": "한국연구재단(교과부)",
+      "period": "2014-09-01~2015-08-31"
+    },
+    {
+      "title": "(분리_세부)이온화 방식 VOC 감지를 위한 MEMS 전극 설계 및 제작과 MEMS 전극을 이용한 VOC 센서의 구현 및 특성 평가",
+      "org": "국내",
+      "period": "2014-07-01~2017-06-30"
+    },
+    {
+      "title": "개인 환경의 초미세먼지(PM2.5)와 TVOC 동시 분석 센서모듈 개발",
+      "org": "한국환경산업기술원",
+      "period": "2014-04-01~2015-03-31"
+    },
+    {
+      "title": "인체의 물리적 에너지를 이용한 전력생산 기술(2/3, 2단계)",
+      "org": "한국연구재단",
+      "period": "2014-03-01~2015-02-28"
+    },
+    {
+      "title": "수직 정렬된 탄소나노튜브를 이용하는 접촉식 전기접속 구조의 개발",
+      "org": "연세대학교",
+      "period": "2013-09-01~2014-08-31"
+    },
+    {
+      "title": "지능형 군집기반 환경센서 시스템(2011.09.29.~2020.08.31.)(2단계 1차년도)",
+      "org": "한국연구재단",
+      "period": "2013-09-01~2014-08-31"
+    },
+    {
+      "title": "NEMS 응용을 위한 선택적 이온 주입 신공정 기반 1차원 나노소재의 정밀 합성제어(2/3)",
+      "org": "한국연구재단",
+      "period": "2013-09-01~2014-08-31"
+    },
+    {
+      "title": "실내오염물질 모니터링을 위한 초소형 감지 모듈 개발(3/3,2단계)",
+      "org": "한국연구재단",
+      "period": "2013-07-01~2014-06-30"
+    },
+    {
+      "title": "MEMS 하베스터 소자 설계 및 하이브리드 시스템 통합 기술(2/2,2단계)",
+      "org": "한국연구재단",
+      "period": "2013-06-01~2014-05-31"
+    },
+    {
+      "title": "[글로벌] 미래융합기계기술사업단",
+      "org": "연세대학교",
+      "period": "2013-03-01~2014-03-31"
+    },
+    {
+      "title": "인체의 물리적 에너지를 이용한 전력생산 기술 (1/3,2단계)",
+      "org": "한국연구재단",
+      "period": "2013-03-01~2014-02-28"
+    },
+    {
+      "title": "지능형 군집기반 환경센서 시스템(2/2,1단계)",
+      "org": "한국연구재단",
+      "period": "2012-09-01~2013-08-31"
+    },
+    {
+      "title": "NEMS 응용을 위한 선택적 이온 주입 신공정 기반 1차원 나노소재의 정밀 합성제어(1/3)",
+      "org": "한국연구재단",
+      "period": "2012-09-01~2013-08-31"
+    },
+    {
+      "title": "MEMS 기반 유연성-융합형 에너지 하베스터 소자 제조 기술 연구",
+      "org": "방위사업청",
+      "period": "2012-07-19~2014-12-15"
+    },
+    {
+      "title": "실내오염물질 모니터링을 위한 초소형 감지 모듈 개발(2/3,2단계)",
+      "org": "한국연구재단",
+      "period": "2012-07-01~2013-06-30"
+    },
+    {
+      "title": "삼성전자(주)/유연 촉각 센서 구조의 설계 및 제작 (2012.06.01~2012.11.30)- 2013.11.30",
+      "org": "국내",
+      "period": "2012-06-01~2015-12-30"
+    },
+    {
+      "title": "MEMS 하베스터 소자 설계 및 하이브리드 시스템 통합 기술(1/2,2단계)",
+      "org": "한국연구재단(과학재단)",
+      "period": "2012-06-01~2013-05-31"
+    },
+    {
+      "title": "나노마이크로응용기계기술인력양성사업단",
+      "org": "연세대학교",
+      "period": "2012-03-01~2014-02-28"
+    },
+    {
+      "title": "인체의 물리적 에너지를 이용한 전력생산 기술 (3/3,1단계)",
+      "org": "한국연구재단",
+      "period": "2012-03-01~2013-02-28"
+    },
+    {
+      "title": "나노 마이크로 응용기계기술 인력양성사업",
+      "org": "학술진흥재단",
+      "period": "2012-03-01~2013-04-30"
+    },
+    {
+      "title": "LG전자(주) / Nano-scale구조물/quantum dot layer를 이용한 저반사 표면 설계 &#48142 제작 기술 개발 (2011.12.01~2012.11.30)- 2013.11.30",
+      "org": "국내",
+      "period": "2011-12-01~2014-03-31"
+    },
+    {
+      "title": "LG전자(주) / 휴대폰 충격 시험용 압저항식 high-g 가속도 센서 개발(2011.12.01~2012.11.30- 2013.11.30)",
+      "org": "국내",
+      "period": "2011-12-01~2015-03-31"
+    },
+    {
+      "title": "삼성전기(주) / 압저항식 3축 가속도센서의 제작 2011.11.23~2012.04.30- 2013.04.30- 2013.12.31",
+      "org": "국내",
+      "period": "2011-11-23~2014-12-31"
+    },
+    {
+      "title": "지능형 군집기반 환경센서 시스템(1/2,1단계)",
+      "org": "한국연구재단",
+      "period": "2011-09-29~2012-08-31"
+    },
+    {
+      "title": "삼성전자(주) / 신개념 유연 촉각 센서 구조의 설계 뭐?제작(2011.08.17~2011.11.30->2012.11.30 ->2013.05.30)",
+      "org": "민간기업",
+      "period": "2011-08-17~2013-05-30"
+    },
+    {
+      "title": "개인 노출 환경의 미세먼지(PM2.5)와 TVOCs 동시 분석을 위한 통합 측정기 개발(2차년도/2)(2010.06.01~2012.05.31)",
+      "org": "한국환경산업기술원",
+      "period": "2011-06-01~2012-05-31"
+    },
+    {
+      "title": "MEMS 하베스터 소자 설계 및 하이브리드 시스템 통합 기술 (2/4)",
+      "org": "한국연구재단(과학재단)",
+      "period": "2011-06-01~2012-05-31"
+    },
+    {
+      "title": "소자 통합형 그래핀의 선택적 직접 합성법 개발 및 나노소자 응용 (3/3)",
+      "org": "한국과학재단",
+      "period": "2011-05-01~2012-04-30"
+    },
+    {
+      "title": "나노 마이크로 응용기계기술 인력양성사업",
+      "org": "학술진흥재단",
+      "period": "2011-03-01~2012-02-29"
+    },
+    {
+      "title": "나노마이크로응용기계기술인력양성사업단",
+      "org": "연세대학교",
+      "period": "2011-03-01~2012-02-29"
+    },
+    {
+      "title": "바이러스 대응 나노복합소재 이용 공기정화 필터 시스템 개발",
+      "org": "한국과학재단",
+      "period": "2010-09-01~2011-08-31"
+    },
+    {
+      "title": "유비쿼터스 헬스케어 시스템 인력양성 사업",
+      "org": "한국산업기술재단",
+      "period": "2010-09-01~2011-08-31"
+    },
+    {
+      "title": "나노선 기반 고감도 선택적 환경 센서 어레이 개발",
+      "org": "한국과학재단",
+      "period": "2010-09-01~2011-08-31"
+    },
+    {
+      "title": "분산형 실시간 환경 모니터링을 위한 환경 분석 모듈 개발",
+      "org": "서울시정개발연구원",
+      "period": "2010-08-01~2011-07-31"
+    },
+    {
+      "title": "실리콘 기반 MEMS 헤드형 multi e-jetting 기술 이용 고효율 유기 태양전지 제작(3차년도)",
+      "org": "한국에너지기술평가원",
+      "period": "2010-08-01~2011-07-31"
+    },
+    {
+      "title": "실내 오염 물질 모니터링을 위한 초소형 감지모듈 개뭐",
+      "org": "한국연구재단(과학재단)",
+      "period": "2010-07-01~2011-06-30"
+    },
+    {
+      "title": "개인 노출 환경의 미세먼지(PM2.5)와 TVOC 동시 분석을 위한 통합 측정기 개발",
+      "org": "한국환경산업기술원",
+      "period": "2010-06-01~2011-05-31"
+    },
+    {
+      "title": "MEMS 하베스터 소자 설계 및 하이브리드 시스템 통합 기술",
+      "org": "한국연구재단(과학재단)",
+      "period": "2010-06-01~2011-05-31"
+    },
+    {
+      "title": "MEMS 기반 차세대 기상 감지 소자 연구회",
+      "org": "기상지진기술개발사업단",
+      "period": "2010-06-01~2010-09-30"
+    },
+    {
+      "title": "AFM 탐침 어레이 기반 초정밀 국소 가열을 통한 1차원 나노구조물의 선택적 개별 성장법 및 나노탐침 개발",
+      "org": "한국과학재단",
+      "period": "2010-06-01~2011-05-31"
+    },
+    {
+      "title": "소자 통합형 그래핀의 선택적 직접 합성법 개발 및 나노소자 응용",
+      "org": "한국과학재단",
+      "period": "2010-05-01~2011-04-30"
+    },
+    {
+      "title": "G-5-5-10나노마이크로응용기계기술인력양성사업단",
+      "org": "연세대학교",
+      "period": "2010-03-02~2011-06-30"
+    },
+    {
+      "title": "나노마이크로응용기계기술인력양성사업단",
+      "org": "연세대학교",
+      "period": "2010-03-01~2011-02-28"
+    },
+    {
+      "title": "나노 마이크로 응용기계기술 인력양성사업단",
+      "org": "학술진흥재단",
+      "period": "2010-03-01~2011-02-28"
+    },
+    {
+      "title": "[SM] 교육과학기술부 - 원천기술개발사업",
+      "org": "연세대학교산학단_간접비",
+      "period": "2010-02-28~2010-05-31"
+    },
+    {
+      "title": "인체의 물리적 에너지를 이용한 전력생산 기술",
+      "org": "한국과학재단",
+      "period": "2009-10-01~2010-04-30"
+    },
+    {
+      "title": "나노선 기반 고감도 선택적 환경 센서 어레이 개발",
+      "org": "한국연구재단",
+      "period": "2009-09-01~2010-08-31"
+    },
+    {
+      "title": "분산형 실시간 환경 모니터링을 위한 환경 분석 모듈 개발",
+      "org": "서울시정개발연구원",
+      "period": "2009-08-01~2010-07-31"
+    },
+    {
+      "title": "실리콘 기반 MEMS 헤드형 multi e-jetting 기술 이용 고효율 유기 태양전지 제작",
+      "org": "에너지관리공단",
+      "period": "2009-08-01~2010-07-31"
+    },
+    {
+      "title": "실내 오염 물질 모니터링을 위한 초소형 감지모듈 개발",
+      "org": "한국연구재단(과학재단)",
+      "period": "2009-07-10~2010-06-30"
+    },
+    {
+      "title": "CTO 또는 혈전 제거용 MEMS actuator 소자 개발 및 성능 평가",
+      "org": "지식경제부",
+      "period": "2009-07-01~2010-06-30"
+    },
+    {
+      "title": "AFM 탐침 어레이 기반 초정밀 국소 가열을 통한 1차원 나노구조물의 선택적 개별 성장법 및 나노탐침 개발",
+      "org": "한국과학재단",
+      "period": "2009-06-01~2010-05-31"
+    },
+    {
+      "title": "소자 통합형 그래핀의 선택적 직접 합성법 개발 및 나노소자 응용",
+      "org": "한국과학재단",
+      "period": "2009-05-01~2010-04-30"
+    },
+    {
+      "title": "Bio,Inorganic,Organic Micro Fabrication 센터 구축",
+      "org": "한국산업기술평가원",
+      "period": "2009-04-01~2010-03-31"
+    },
+    {
+      "title": "G5-5-10/나노마이크로응용기계기술인력양성사업",
+      "org": "연세대학교",
+      "period": "2009-03-02~2010-06-30"
+    },
+    {
+      "title": "나노마이크로응용기계기술인력양성사업단",
+      "org": "연세대학교",
+      "period": "2009-03-01~2010-02-28"
+    },
+    {
+      "title": "나노마이크로응용기계기술인력양성사업단",
+      "org": "학술진흥재단",
+      "period": "2009-03-01~2010-02-28"
+    },
+    {
+      "title": "유비쿼터스 헬스케어 시스템 인력양성 사업",
+      "org": "한국산업기술재단",
+      "period": "2009-01-01~2010-08-31"
+    },
+    {
+      "title": "나노스텐실을 이용한 1차원 나노구조 초정밀 집적소자 제조기술 개발",
+      "org": "학술진흥재단",
+      "period": "2008-11-01~2009-10-31"
+    },
+    {
+      "title": "실리콘 기반 MEMS 헤드형 multi e-jetting 기술 이용 고효율 유기 태양전지 제작",
+      "org": "한국에너지기술연구원",
+      "period": "2008-10-01~2009-07-31"
+    },
+    {
+      "title": "나노선 기반 고감도 선택적 환경 센서 어레이 개발",
+      "org": "한국과학재단",
+      "period": "2008-09-01~2009-08-31"
+    },
+    {
+      "title": "분산형 실시간 환경 모니터링을 위한 환경 분석 모듈 개발",
+      "org": "서울시정개발연구원",
+      "period": "2008-08-01~2009-07-31"
+    },
+    {
+      "title": "여학생공학교육 3차년도 사업",
+      "org": "학술진흥재단",
+      "period": "2008-07-01~2009-06-30"
+    },
+    {
+      "title": "여학생공학교육-3차년도-기업체대응",
+      "org": "학술진흥재단",
+      "period": "2008-07-01~2009-06-30"
+    },
+    {
+      "title": "AFM 탐침 어레이 기반 초정밀 국소 가열을 통한 1차원나노구조물의 선택적 개별 성장법 및 나노탐침 개발",
+      "org": "한국과학재단",
+      "period": "2008-06-01~2009-05-31"
+    },
+    {
+      "title": "나노마이크로응용기계기술인력양성사업단",
+      "org": "학술진흥재단",
+      "period": "2008-03-01~2009-02-28"
+    },
+    {
+      "title": "G5-5-10/나노마이크로응용기계기술인력양성사업",
+      "org": "연세대학교",
+      "period": "2008-03-01~2009-02-28"
+    },
+    {
+      "title": "나노마이크로응용기계기술인력양성사업단",
+      "org": "연세대학교",
+      "period": "2008-03-01~2009-02-28"
+    },
+    {
+      "title": "카테터 통합 방식의 초소형 광 간섭 3차원 단층 영상 측정기를 위한 2축 마이크로 영상 주사장치 개발",
+      "org": "서울시정개발연구원",
+      "period": "2007-12-01~2008-11-30"
+    },
+    {
+      "title": "분산형 실시간 환경 모니터링을 위한 환경 분석 모듈 유연(FLEXIBLE)센서 모듈에 관한 기반 기술 연구",
+      "org": "서울시정개발연구원",
+      "period": "2007-08-01~2008-07-31"
+    },
+    {
+      "title": "여학생공학교육-2차년도-교육부",
+      "org": "학술진흥재단",
+      "period": "2007-07-01~2008-06-30"
+    },
+    {
+      "title": "여학생공학교육-2차년도-산자부",
+      "org": "학술진흥재단",
+      "period": "2007-07-01~2008-06-30"
+    },
+    {
+      "title": "여학생공학교육-2차년도-기업체대응",
+      "org": "학술진흥재단",
+      "period": "2007-07-01~2008-06-30"
+    },
+    {
+      "title": "나노/마이크로 응용 기계기술 인력양성사업단",
+      "org": "학술진흥재단",
+      "period": "2007-03-01~2008-02-29"
+    },
+    {
+      "title": "나노/마이크로 응용 기계기술 인력양성사업단",
+      "org": "연세대학교",
+      "period": "2007-03-01~2008-02-29"
+    },
+    {
+      "title": "G5-5-10/나노마이크로응용기계기술인력양성사업",
+      "org": "연세대학교",
+      "period": "2007-03-01~2008-05-31"
+    },
+    {
+      "title": "마이크로 나노 점선가공 기반구축",
+      "org": "한국산업기술평가원",
+      "period": "2007-02-01~2008-01-31"
+    },
+    {
+      "title": "카테터 통합 방식의 초소형 광 간섭 3차원 단층 영상 기를 위한 2축 마이크로 영상 주사장치 개발",
+      "org": "서울시정개발연구원",
+      "period": "2006-12-01~2007-11-30"
+    },
+    {
+      "title": "레이저 광 나노 프로브를 이용한 리소그래피 공정 기",
+      "org": "한국과학재단",
+      "period": "2006-10-01~2007-09-30"
+    },
+    {
+      "title": "여학생공학교육-기업체대응",
+      "org": "학술진흥재단",
+      "period": "2006-09-01~2007-06-30"
+    },
+    {
+      "title": "여학생 공학교육 선도대학 지원 사업 (산자부)",
+      "org": "학술진흥재단",
+      "period": "2006-09-01~2007-06-30"
+    },
+    {
+      "title": "고주파 진동형 3차원 구조 나노 기전 소자의 설계 및 제작",
+      "org": "학술진흥재단",
+      "period": "2006-07-01~2007-06-30"
+    },
+    {
+      "title": "나노 마이크로 응용기계기술 인력양성사업단",
+      "org": "학술진흥재단",
+      "period": "2006-03-01~2007-02-28"
+    },
+    {
+      "title": "나노마이크로응용기계기술인역양성사업단",
+      "org": "연세대학교",
+      "period": "2006-03-01~2007-02-28"
+    },
+    {
+      "title": "마이크로 나노 점선가공",
+      "org": "산업기술평가원",
+      "period": "2006-02-01~2007-01-31"
+    },
+    {
+      "title": "마이크로 구동기의 응답 속도 최적화와 능동 주파수 제어",
+      "org": "연세대학교산학단_간접비",
+      "period": "2005-09-01~2006-08-31"
+    },
+    {
+      "title": "마이크로-나노 점선가공 기반구축",
+      "org": "산업기술평가원",
+      "period": "2005-02-01~2006-01-31"
+    }
+  ],
+  "patents": [
+    {
+      "title": "용접에 의한 전기화학 소자 내부 유기물층의 손상 검사 장치 및 그 장치를 이용하는 검사 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2026-04-16"
+    },
+    {
+      "title": "탄소나노튜브가 통합된 신축성 상변화 구동기 및 이의 제조 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2026-04-13"
+    },
+    {
+      "title": "나노물질 코팅 기판의 코팅 균질도 예측 방법 및 예측 시스템",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2026-03-24"
+    },
+    {
+      "title": "압력에 둔감한 온도센서",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2026-02-09"
+    },
+    {
+      "title": "인장 둔감형 신축성 열음향 스피커 및 이의 제조 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2026-02-05"
+    },
+    {
+      "title": "다공성 포집층이 통합된 가스 센서 및 그 제조방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2026-01-14"
+    },
+    {
+      "title": "얇은 얼음층을 활용한 수직 정렬 탄소나노튜브 전사 공정",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2025-12-31"
+    },
+    {
+      "title": "포집기가 통합된 가스센서",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2025-12-30"
+    },
+    {
+      "title": "열화 방지를 위해 그래핀옥사이드 층이 코팅된 팔라듐 수소 가스 센서 개발",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2025-12-26"
+    },
+    {
+      "title": "망막에 사용이 가능한 마이크로니들 구조체 및 이의 제조 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 한국과학기술연구원",
+      "date": "2025-12-17"
+    },
+    {
+      "title": "발생 변위 향상을 위해 3차원 전도성 다공성 전극이 통합된 회복 가능한 유연 전기 분해 액추에이터",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2025-10-27"
+    },
+    {
+      "title": "기계학습 기반 나노소재의 대면적 프린팅 공정 설계 방법 및 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2025-10-16"
+    },
+    {
+      "title": "잉크젯 프린팅 박막 형상 예측 장치 및 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2025-08-07"
+    },
+    {
+      "title": "망막에 사용이 가능한 마이크로니들 구조체 및 이의 제조 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 한국과학기술연구원",
+      "date": "2025-07-22"
+    },
+    {
+      "title": "나노 섬유 희생층과 경사 증착을 활용한 현수형 나노 구조 제작 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2025-06-18"
+    },
+    {
+      "title": "AAO 기판을 이용한 극소형 초고용량 커패시터 칩의 집적 제조 공정 개발",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2025-06-09"
+    },
+    {
+      "title": "탄소나노튜브가 통합된 신축성 상변화 구동기 및 이의 제조 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2025-05-08"
+    },
+    {
+      "title": "기관절개관 환자의 라이프로거 및 맞춤형 의료관리 서비스 제공을 위한 다중센서 기반 헬스케어 장치와 시스템",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 가톨릭대학교 산학협력단",
+      "date": "2025-03-04"
+    },
+    {
+      "title": "포집기가 통합된 가스센서",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2025-02-19"
+    },
+    {
+      "title": "인장 둔감형 신축성 열음향 스피커 및 이의 제조 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2025-02-19"
+    },
+    {
+      "title": "마이크로볼로미터 및 이의 제조 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2025-02-07"
+    },
+    {
+      "title": "조정 가능한 비틀림 공진기와 전자기 인덕터를 이용한 MEMS 논리 장치 및 그 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2025-01-07"
+    },
+    {
+      "title": "인장 둔감형 발열 소자, 인장 둔감형 발열 소자 제조 방법 및 웨어러블 발열 기기",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2024-11-21"
+    },
+    {
+      "title": "마이크로 상변화 구동기 제조 방법, 마이크로 상변화 구동기, 마이크로 상변화 구동기 어레이 제조 방법, 마이크로 상변화 구동기 어레이, 및 촉각 디스플레이",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2024-11-19"
+    },
+    {
+      "title": "얇은 얼음층을 활용한 수직 정렬 탄소나노튜브 전사 공정",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2024-11-18"
+    },
+    {
+      "title": "공진 비틀림 셔터를 이용한 MEMS 전기장 센서 및 그 제조방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2024-11-14"
+    },
+    {
+      "title": "마이크로 상변화 구동기 제조 방법, 마이크로 상변화 구동기, 마이크로 상변화 구동기 어레이 제조 방법, 마이크로 상변화 구동기 어레이, 및 촉각 디스플레이",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2024-10-29"
+    },
+    {
+      "title": "기관절개관 환자의 기관절개관, 기관 및 기관지 막힘 측정 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 가톨릭대학교 산학협력단",
+      "date": "2024-08-15"
+    },
+    {
+      "title": "수직 정렬된 탄소나노튜브 흡수층이 통합된 마이크로볼로미터",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2024-04-23"
+    },
+    {
+      "title": "기관절개관 환자의 라이프로거 및 맞춤형 의료관리 서비스 제공을 위한 다중센서 기반 헬스케어 시스템",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 가톨릭대학교 산학협력단",
+      "date": "2024-04-18"
+    },
+    {
+      "title": "리튬 보호막의 위치선택적 분포 제어 코팅 방법 및 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 재단법인대구경북과학기술원",
+      "date": "2024-04-11"
+    },
+    {
+      "title": "나노소재 집전체의 위치선택적 분포제어를 통한 코팅 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2024-04-11"
+    },
+    {
+      "title": "마이크로 캡슐의 위치선택적 분포 제어 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 재단법인대구경북과학기술원",
+      "date": "2024-04-11"
+    },
+    {
+      "title": "뱅크 구조 설계와 표면 에너지 조절을 통한 고균일 인쇄 박막 형성 기반 고품질 양자점 디스플레이 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2024-04-09"
+    },
+    {
+      "title": "3개 초과 서브픽셀 기반 초현실 색표현 양자점 디스플레이 제조 장치 및 이를 이용한 디스플레이 제조 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2024-04-09"
+    },
+    {
+      "title": "호흡음을 이용한 가래 유형 판단 시스템 및 가래 유형 판단 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 가톨릭대학교 산학협력단",
+      "date": "2024-03-14"
+    },
+    {
+      "title": "광 센싱 어레이 제조 방법, 인쇄된 광 센싱 어레이 및 모든 구성 요소가 잉크젯 프린팅 된 광 센서",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 서울과학기술대학교 산학협력단",
+      "date": "2023-12-18"
+    },
+    {
+      "title": "광에너지 수확용 잉크 제조 방법, 광에너지 수확용 잉크젯 잉크 제조 방법, 광에너지 수확용 잉크, 광에너지 수확용 잉크젯 잉크 및 광에너지 수확 소자 제조 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2023-11-30"
+    },
+    {
+      "title": "웨어러블 촉각센서 및 이의 제조 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2023-11-29"
+    },
+    {
+      "title": "마이크로 상변화 구동기 제조 방법, 마이크로 상변화 구동기, 마이크로 상변화 구동기 어레이 제조 방법, 마이크로 상변화 구동기 어레이, 및 촉각 디스플레이",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2023-11-28"
+    },
+    {
+      "title": "인장 둔감형 발열 소자, 인장 둔감형 발열 소자 제조 방법 및 웨어러블 발열 기기",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2023-11-28"
+    },
+    {
+      "title": "가스 센서, 가스 센서 제조 방법 및 에탄올 센싱 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2023-11-27"
+    },
+    {
+      "title": "주름 구조 막이 통합된 유연 액체-기체 상변화 구동기 및 제작 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2023-11-27"
+    },
+    {
+      "title": "얇은 얼음층을 활용한 수직 정렬 탄소나노튜브 전사 공정",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2023-11-27"
+    },
+    {
+      "title": "공진 비틀림 셔터를 이용한 MEMS 전기장 센서 및 그 제조방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2023-11-27"
+    },
+    {
+      "title": "이종의 나노와이어 하이브리드 전도성 네트워크가 표면에 이식된 다공성 저항체, 이의 제조방법 및 이를 포함하는 촉각 센서",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2023-11-22"
+    },
+    {
+      "title": "마이크로 기계소자의 충격 흡수장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2023-11-21"
+    },
+    {
+      "title": "마찰전기 발전 소자, 마찰전기 발전 방법, 마찰전기 발전 장치, 및 마찰전기 발전 시스템",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2023-11-20"
+    },
+    {
+      "title": "열음향 스피커 제조방법 및 이로 제조되는 열음향 스피커",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2023-11-15"
+    },
+    {
+      "title": "리튬이온전지 소화캡슐의 균일 분포 및 위치선택적 분포제어 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2023-04-11"
+    },
+    {
+      "title": "3개 초과 서브픽셀 기반 초현실 색표현 양자점 디스플레이",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2023-04-11"
+    },
+    {
+      "title": "잉크젯 프린팅 공정으로 제작된 외부 전기장 및 굽힘 환경 변화에 둔감한 정전 방식의 고신뢰성 촉각센서",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2023-04-11"
+    },
+    {
+      "title": "나노소재 집전체의 위치선택적 분포제어 코팅 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2023-04-11"
+    },
+    {
+      "title": "마이크로 히터 플랫폼의 증기압 환경 및 열적 제어를 통한 커피링 효과 억제 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2023-04-11"
+    },
+    {
+      "title": "Bank구조 설계와 표면 에너지(surface energy) 조절을 통한 고균일 인쇄 박막 형성 기반 고품질 양자점 디스플레이",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2023-04-11"
+    },
+    {
+      "title": "잉크젯 프린팅된 그래핀을 접촉 물질로 이용한 마이크로 및 나노 기전 스위치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2023-04-11"
+    },
+    {
+      "title": "긴밀한 접촉을 유지하며 굴곡진 표면의 정확한 온도 분포 측정이 가능한 3D 마이크로 구조 기반 유연 온도 센서 어레이",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2023-04-11"
+    },
+    {
+      "title": "리튬 보호막의 위치선택적 분포제어 코팅 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 대구경북과학기술원",
+      "date": "2023-04-11"
+    },
+    {
+      "title": "정밀하게 위치가 제어된 단일 부유형 다공성 나노선 기반 가스센서",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2023-04-11"
+    },
+    {
+      "title": "다상소재의 균일한 형성 그리고 다종 다상소재의 위치선택적 분포제어를 위한 범용 프린팅 플랫폼",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2023-04-11"
+    },
+    {
+      "title": "다종센서를 활용한 프린팅 공정 모니터링 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2023-04-11"
+    },
+    {
+      "title": "위치 선택적 잉크젯 프린트 공정으로 제작한 인장에 둔감한 촉각 센서",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2023-04-11"
+    },
+    {
+      "title": "호흡음을 이용한 가래 유형 판단 시스템 및 가래 유형 판단 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 가톨릭대학교 산학협력단",
+      "date": "2023-04-06"
+    },
+    {
+      "title": "수직 정렬된 탄소나노튜브가 통합된 낮은 임피던스 전극을 갖는 뉴럴프로브",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 고려대학교 산학협력단",
+      "date": "2023-03-15"
+    },
+    {
+      "title": "수직 정렬된 탄소 나노튜브의 마이크로 구조화를 통한 대뇌피질검사용 유연 미세전극 어레이",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 고려대학교 산학협력단",
+      "date": "2023-03-13"
+    },
+    {
+      "title": "신축성 센서 어레이를 활용한 높은 민감도와 넓은 감지 범위를 가지는 인장에 둔감한 촉각 센서",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2023-01-06"
+    },
+    {
+      "title": "격벽으로 구분된 이중 공간 및 RFID 기술을 이용한 무선, 무전원 소변 충만도 감지 센서를 가진 인공 방광 시스템",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 가톨릭대학교 산학협력단, 영남대학교 산학협력단, 중앙대학교 산학협력단",
+      "date": "2022-12-28"
+    },
+    {
+      "title": "기관절개관 환자의 호흡음 실시간 모니터링을 통한 가래 흡인 알람 장치 및 그 방법",
+      "type": "특허",
+      "applicant": "가톨릭대학교 산학협력단, 연세대학교 산학협력단",
+      "date": "2022-12-28"
+    },
+    {
+      "title": "기관절개관 환자의 기관절개관, 기관 및 기관지 막힘 측정 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 가톨릭대학교 산학협력단",
+      "date": "2022-08-12"
+    },
+    {
+      "title": "기관절개관 환자의 호흡음 실시간 모니터링을 통한 가래 흡인 알람 장치 및 그 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 가톨릭대학교 산학협력단",
+      "date": "2022-08-11"
+    },
+    {
+      "title": "기관절개관 환자의 기관절개관, 기관 및 기관지 막힘 측정 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 가톨릭대학교 산학협력단",
+      "date": "2022-06-16"
+    },
+    {
+      "title": "기관절개관 환자의 호흡음 실시간 모니터링을 통한 가래 흡인 알람 장치 및 그 방법",
+      "type": "특허",
+      "applicant": "가톨릭대학교 산학협력단, 연세대학교 산학협력단",
+      "date": "2022-05-31"
+    },
+    {
+      "title": "편심 공진기와 전자기 인덕터를 활용한 정전기력 구동 2축 MEMS 자기장 센서 및 이의 제조방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 가톨릭대학교 산학협력단",
+      "date": "2022-04-06"
+    },
+    {
+      "title": "신축성 센서 어레이를 활용한 높은 민감도와 넓은 감지 범위를 가지는 인장에 둔감한 촉각 센서",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2022-01-06"
+    },
+    {
+      "title": "배뇨용 수동 엑츄에이터 및 제어 밸브를 포함하는 인공 방광 시스템",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 영남대학교 산학협력단, 중앙대학교 산학협력단, 가톨릭대학교 산학협력단",
+      "date": "2021-12-29"
+    },
+    {
+      "title": "격벽으로 구분된 이중 공간 및 RFID 기술을 이용한 무선, 무전원 소변 충만도 감지 센서를 가진 인공 방광 시스템",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 가톨릭대학교 산학협력단, 영남대학교 산학협력단, 중앙대학교 산학협력단",
+      "date": "2021-12-28"
+    },
+    {
+      "title": "생체 모사형 인공방광 및 이의 제어방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 가톨릭대학교 산학협력단, 영남대학교 산학협력단",
+      "date": "2021-01-22"
+    },
+    {
+      "title": "3차원 다공성 구조체, 이의 제조방법 및 이를 이용한 감압 센서",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2020-06-17"
+    },
+    {
+      "title": "다공성 투명 실록산계 중합체 기판 및 이의 제조방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2020-06-05"
+    },
+    {
+      "title": "3차원 다공성 구조체, 이의 제조방법 및 이를 이용한 감압 센서",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2020-05-29"
+    },
+    {
+      "title": "열처리를 이용한 현수형 나노와이어의 제조방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2020-05-28"
+    },
+    {
+      "title": "풍향 및 풍속 감지 센서 및 그 제조 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2020-05-08"
+    },
+    {
+      "title": "대면적 이방성 전도체 제조 방법 및 이를 통해 제조된 이방성 전도체를 이용한 감압 소재 어레이",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2019-11-07"
+    },
+    {
+      "title": "생체 모사형 인공방광.",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 카톨릭대학교 산학협력단, 영남대학교 산학협력단",
+      "date": "2019-07-26"
+    },
+    {
+      "title": "생체 모사형 인공방광 및 이의 제어방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 가톨릭대학교 산학협력단, 영남대학교 산학협력단",
+      "date": "2019-07-25"
+    },
+    {
+      "title": "열처리를 이용한 현수형 나노와이어의 제조방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2019-05-28"
+    },
+    {
+      "title": "고내구성 자가구동 환경센서",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2019-04-16"
+    },
+    {
+      "title": "금속 나노입자가 코팅된 탄소나노튜브 네트워크를 포함하는 접촉식 마이크로 소자 및 이의 제조 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 한국과학기술원",
+      "date": "2019-04-04"
+    },
+    {
+      "title": "액적 트랩을 이용한 액적 마찰대전 에너지 하베스터",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2019-03-27"
+    },
+    {
+      "title": "전방향 바람에너지 수확이 가능한 원주형 마찰대전 에너지 하베스터",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2019-03-04"
+    },
+    {
+      "title": "패턴 된 나노 소재를 포함하는 스트레인 센서 및 그 제조방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2019-02-11"
+    },
+    {
+      "title": "MEMS 플랫폼과 전기방사법을 이용한 현수형 나노와이어의 제조방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2019-01-17"
+    },
+    {
+      "title": "탄소가 도핑된 산화텅스텐 나노물질을 포함하는 가스 센서 및 이의 제조방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2019-01-04"
+    },
+    {
+      "title": "마이크로 패턴된 전도성 하이드로겔 하이브리드 시스템 스캐폴드 및 이의 제조방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2018-10-02"
+    },
+    {
+      "title": "생체 모사형 인공방광 및 이의 제어방법",
+      "type": "특허",
+      "applicant": "가톨릭대학교 산학협력단, 연세대학교 산학협력단, 영남대학교 산학협력단",
+      "date": "2018-07-25"
+    },
+    {
+      "title": "생체 모사형 인공방광",
+      "type": "특허",
+      "applicant": "가톨릭대학교 산학협력단, 연세대학교 산학협력단, 영남대학교 산학협력단",
+      "date": "2018-01-26"
+    },
+    {
+      "title": "풍력 발전 시스템",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2017-09-18"
+    },
+    {
+      "title": "전이금속 칼코겐화합물 기반 향상된 반응성을 가지는 가스센서",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2017-06-16"
+    },
+    {
+      "title": "가변 디스크 구조를 이용하는 양력 방향 전환 메커니즘 및 이를 활용하는 풍력 발전 시스템",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2017-05-23"
+    },
+    {
+      "title": "주파수 상향식 마찰 전기 에너지 하베스터 및 이를 활용한 자가 구동 능동 환경 센서",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2017-05-23"
+    },
+    {
+      "title": "압축성 탄소나노튜브 네트워크를 포함하는 접촉식 마이크로 소자 및 이의 제조 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 영남대학교 산학협력단, 한국과학기술원",
+      "date": "2017-03-27"
+    },
+    {
+      "title": "생체 모사형 인공방광.",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 가톨릭대학교 산학협력단, 영남대학교 산학협력단",
+      "date": "2017-01-26"
+    },
+    {
+      "title": "유연 압전 하베스팅 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2017-01-19"
+    },
+    {
+      "title": "풍력 발전 시스템",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2016-11-15"
+    },
+    {
+      "title": "Vortex Induced Vibration을 이용하는 슬라이딩 타입 마찰대전 에너지 하베스터",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2016-11-15"
+    },
+    {
+      "title": "위험물질을 감지하기 위한 화학기계적 스위치 및 이를 구비하는 위험물질 감지장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2016-09-29"
+    },
+    {
+      "title": "탄소나노튜브 집적 초소형 가스 크로마토그래피",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2016-09-28"
+    },
+    {
+      "title": "휘발성 유기화합물 센서",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2016-09-13"
+    },
+    {
+      "title": "투명하고 유연한 광 센서",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 영남대학교 산학협력단",
+      "date": "2016-07-11"
+    },
+    {
+      "title": "이황화몰리브덴 기반의 유연하고 투명한 가스 센서 및 그 제조방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2016-06-21"
+    },
+    {
+      "title": "광전도체를 이용한 전기 자극 햅틱 디스플레이",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2016-06-16"
+    },
+    {
+      "title": "Coffee-Ring Effect를 활용할 수 있는 가스 센서 플랫폼 및 그 제조방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2016-05-24"
+    },
+    {
+      "title": "휘발성 유기화합물 농도 측정장치 및 이를 이용하여 휘발성 유기화합물의 농도를 측정하는 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2016-05-09"
+    },
+    {
+      "title": "바람 에너지 하베스터",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2016-05-02"
+    },
+    {
+      "title": "마이크로 구조물을 위한 쿨롱 감쇠 기반 충격 방지 구조",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2016-04-28"
+    },
+    {
+      "title": "이황화몰리브덴 기반의 유연하고 투명한 가스 센서 및 그 제조방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2016-03-28"
+    },
+    {
+      "title": "가스센서 어레이 및 그 제조방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2016-03-25"
+    },
+    {
+      "title": "풍력 발전 시스템",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2016-03-21"
+    },
+    {
+      "title": "휘발성 유기화합물 센서",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2015-09-14"
+    },
+    {
+      "title": "감지 전극 및 이를 포함하는 유해 물질 감지 센서",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 엘지이노텍 주식회사",
+      "date": "2015-08-21"
+    },
+    {
+      "title": "유해 물질 감지 센서, 센서 패키지 및 이의 유해 물질 감지 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 엘지이노텍 주식회사",
+      "date": "2015-08-21"
+    },
+    {
+      "title": "스위치와 렛치 구조를 갖는 MEMS 가변 축전기, 이를 제작하는 방법, 및 이를 포함하는 전자장비",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2015-01-23"
+    },
+    {
+      "title": "스위치와 렛치 구조를 갖는 MEMS 가변 축전기, 이를 제작하는 방법, 및 이를 포함하는 전자장비",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2015-01-23"
+    },
+    {
+      "title": "금속산화물나노선의 이온주입 성장방법 및 이를 이용한 금속산화물나노선 패턴 소자",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2014-12-16"
+    },
+    {
+      "title": "마찰전기에너지 수확 증대구조를 포함하는 직물형 마찰전력 자가발전장치 및 이를 구비하는 직물 제품",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2014-08-26"
+    },
+    {
+      "title": "마찰전기에너지 수확 증대구조를 포함하는 직물형 마찰전력 자가발전장치 및 이를 구비하는 직물 제품",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2014-08-26"
+    },
+    {
+      "title": "직물형 마찰전력 자가발전장치 및 이를 구비하는 직물제품",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2014-03-26"
+    },
+    {
+      "title": "직물형 마찰전력 자가발전장치 및 이를 구비하는 직물제품",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2014-03-26"
+    },
+    {
+      "title": "금속산화물나노선의 이온주입 성장방법 및 이를 이용한 금속산화물나노선 패턴 소자",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2013-12-17"
+    },
+    {
+      "title": "촉각 측정 장치 및 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 삼성전자",
+      "date": "2013-11-08"
+    },
+    {
+      "title": "포피린으로 기능화 처리한 그래핀 기반의 VOC 센서 및 그 제작방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2013-05-31"
+    },
+    {
+      "title": "위험물질 감지센서 및 제조방법, 그리고 이를 이용한 실시간 위험물질 경보장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2013-05-10"
+    },
+    {
+      "title": "위험물질 감지센서 및 제조방법, 그리고 이를 이용한 실시간 위험물질 경보장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2013-05-10"
+    },
+    {
+      "title": "탄소나노튜브를 템플릿으로 이용한 현수된 나노구조체 가스센서 제작방법 및 그 방법으로 제조된 가스센서",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2013-04-30"
+    },
+    {
+      "title": "촉각 측정 장치 및 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 삼성전자(주)",
+      "date": "2013-03-18"
+    },
+    {
+      "title": "유연 촉각 센서",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 삼성전자(주)",
+      "date": "2012-12-10"
+    },
+    {
+      "title": "마이크로 구조물 및 마이크로 엑츄에이터 제조방법, 이 제조방법에 의해 제조된 마이크로 구조물 및 마이크로 엑츄에이터",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2012-06-05"
+    },
+    {
+      "title": "3차원 형상을 갖는 마이크로 구조물 및 마이크로 엑츄에이터 제조방법, 이 제조방법에 의해 제조된 마이크로 구조물 및 마이크로 액츄에이터",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2012-06-04"
+    },
+    {
+      "title": "포피린으로 기능화 처리한 공중부유형 산화아연 나노선 기반 ＶＯＣ 센서 제작 방법 및 그 방법으로 제작된 ＶＯＣ 센서",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2012-05-30"
+    },
+    {
+      "title": "유연 촉각 센서 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 삼성전자(주)",
+      "date": "2012-01-19"
+    },
+    {
+      "title": "유연 촉각 센서 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단,삼성전자(주)",
+      "date": "2012-01-19"
+    },
+    {
+      "title": "3차원 형상을 갖는 마이크로 구조물 및 마이크로 엑츄에이터 제조방법, 이 제조방법에 의해 제조된 마이크로 구조물 및 마이크로 엑츄에이터",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2011-12-05"
+    },
+    {
+      "title": "튜브형 단결정 실리콘 나노 구조물 및 그 제조방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2011-10-06"
+    },
+    {
+      "title": "정렬된 탄소나노튜브 어레이를 접촉 재료로 사용하는 마이크로 기전 스위치의 스위칭 소자, 마이크로 기전 스위치 및 그 제조방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2011-06-01"
+    },
+    {
+      "title": "정렬된 탄소나노튜브 어레이를 접촉 재료로 사용하는 마이크로 기전 스위치의 스위칭 소자, 마이크로 기전 스위치 및 그 제조방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2011-06-01"
+    },
+    {
+      "title": "공중부유형 탄소나노튜브를 이용하는 가스센서 제작방법, 그 방법으로 제작된 탄소나노튜브 나노구조체 및 가스센서",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2011-05-25"
+    },
+    {
+      "title": "탄소나노튜브를 이용한 가동 전기접속 구동체와 이를 이용한 마이크로 위치 감지기 및 이들의 제조방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2009-12-31"
+    },
+    {
+      "title": "양방향 구동 가능한 전열 전자기 회전형 마이크로 액추에이터 및 그 제조방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2009-02-27"
+    },
+    {
+      "title": "양방향 구동 가능한 전열 전자기 회전형 마이크로 액추에이터 및 그 제조방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2009-02-27"
+    },
+    {
+      "title": "금속 박막의 열적 응집현상을 이용한 기판의 반사방지표면 제작방법 및 그 제작방법에 의해 제작된 기판",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2009-02-26"
+    },
+    {
+      "title": "MEMS구동기의 기계적 구속에 의한 마이크로 공진기의 고유 주파수 튜닝장치, 이를 구비한 마이크로 공진기, 그 제조방법 및 튜닝방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2009-02-25"
+    },
+    {
+      "title": "MEMS구동기를 이용한 수직 정전용량형 마이크로 구동기의 조립장치, 이를 구비한 수직 정전용량형 마이크로 구동기 및 그 제조방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2009-02-25"
+    },
+    {
+      "title": "집속이온빔을 이용한 공중 부유형 단일 나노 와이어의 제작과 기능성 부여를 통한 초고감도 가스센서",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2008-02-18"
+    },
+    {
+      "title": "집속이온빔을 이용한 공중 부유형 단일 나노 와이어의 제작과 기능성 부여를 통한 초고감도 가스센서",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2008-02-18"
+    },
+    {
+      "title": "나노 공진기 제작 겸 주파수튜닝장치, 및 그 장치를 이용한 나노 공진기의 제작방법 및 주파수튜닝방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2007-04-30"
+    },
+    {
+      "title": "정전기력을 이요하여 구동되는 나노 트위저 및 그 제조 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2006-07-18"
+    }
+  ]
+}

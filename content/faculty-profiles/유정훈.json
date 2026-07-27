@@ -1,0 +1,2528 @@
+{
+  "name": "유정훈",
+  "nameEn": "Yoo, Jeonghoon",
+  "email": "yoojh@yonsei.ac.kr",
+  "phone": "02)2123-2859",
+  "office": null,
+  "homepage": "http://ssd.yonsei.ac.kr",
+  "sourceUrl": "https://me.yonsei.ac.kr/faculty/name_search.do?mode=view&userId=J7LH67wjoKs7HqFmJNWRwg%3D%3D&sosokcd=",
+  "crawledAt": "2026-07-27",
+  "articles": [
+    {
+      "date": "2026-03",
+      "title": "Multi-physics topology optimization for nonlinear magnetic field and heat transfer using a phase-field design method",
+      "journal": "OPTIMIZATION AND ENGINEERING"
+    },
+    {
+      "date": "2026-03",
+      "title": "Topological design of a continuous fiber composite structure and its experimental verification",
+      "journal": "Engineering Structures"
+    },
+    {
+      "date": "2026-02",
+      "title": "강성과 고유진동수 최대화를 위한 3차원 경사기능 복합재 구조 설계",
+      "journal": "한국전산구조공학회논문집"
+    },
+    {
+      "date": "2026-01",
+      "title": "Multi-objective topological structure design using a modified adaptive weighted sum method",
+      "journal": "Finite Elements in Analysis and Design"
+    },
+    {
+      "date": "2026-01",
+      "title": "Machine learning-assisted design of composite EM collimators considering additive manufacturing constraints",
+      "journal": "Computer Methods in Applied Mechanics and Engineering"
+    },
+    {
+      "date": "2025-08",
+      "title": "Compliant mechanism design using neural networks focusing on its procedure and limitations",
+      "journal": "Structural and Multidisciplinary Optimization"
+    },
+    {
+      "date": "2024-12",
+      "title": "Multi-objective topological design considering functionally graded materials and coated fiber reinforcement",
+      "journal": "Finite Elements in Analysis and Design"
+    },
+    {
+      "date": "2024-07",
+      "title": "Topological optimal design of composite magnetic actuators to improve driving force and thermal conductivity",
+      "journal": "Structural and Multidisciplinary Optimization"
+    },
+    {
+      "date": "2024-07",
+      "title": "다중 클래스 단위구조를 사용한 다중 스케일 위상최적설계",
+      "journal": "Transactions of the KSME, A"
+    },
+    {
+      "date": "2024-05",
+      "title": "Multi-scale design of composite material structures for maximizing fundamental natural frequency",
+      "journal": "Computer Methods in Applied Mechanics and Engineering"
+    },
+    {
+      "date": "2023-11",
+      "title": "E2E-BPF microscope: extended depth-of-field microscopy using learning-based implementation of binary phase filter and image deconvolution",
+      "journal": "Light: Science & Applications"
+    },
+    {
+      "date": "2023-08",
+      "title": "Topological design of thermal conductors using functionally graded materials",
+      "journal": "Finite Elements in Analysis and Design"
+    },
+    {
+      "date": "2023-06",
+      "title": "Functionally graded structure design for magnetic field applications",
+      "journal": "COMPUTER METHODS IN APPLIED MECHANICS AND ENGINEERING"
+    },
+    {
+      "date": "2022-11",
+      "title": "A MATLAB code of node-based topology optimization in 3D arbitrary domain for additive manufacturing",
+      "journal": "Structural and Multidisciplinary Optimization"
+    },
+    {
+      "date": "2022-10",
+      "title": "풍력 자원 평가를 위한 부유식 라이다의 모션 보정 프로그램 개발",
+      "journal": "Transactions of the KSME, A"
+    },
+    {
+      "date": "2022-10",
+      "title": "Bi-objective topology optimization for direct current concentration and heat flux cloaking using adaptive weighting method",
+      "journal": "Structural and Multidisciplinary Optimization"
+    },
+    {
+      "date": "2022-04",
+      "title": "다중 물질 위상최적설계를 위한 페이즈섹션 설계법 개선",
+      "journal": "한국전산구조공학회논문집"
+    },
+    {
+      "date": "2022-03",
+      "title": "Structural design methodology for lightweight supporting structure of a multi-rotor wind turbine",
+      "journal": "WIND AND STRUCTURES"
+    },
+    {
+      "date": "2022-01",
+      "title": "Stress constrained topology optimization simultaneously considering the uncertainty of load positions",
+      "journal": "INTERNATIONAL JOURNAL FOR NUMERICAL METHODS IN ENGINEERING"
+    },
+    {
+      "date": "2021-12",
+      "title": "Machine learning-combined topology optimization for functionary graded composite structure design",
+      "journal": "COMPUTER METHODS IN APPLIED MECHANICS AND ENGINEERING"
+    },
+    {
+      "date": "2021-12",
+      "title": "Reaction-diffusion equation-based topology optimization code for electromagnetic wave problems using FreeFEM plus",
+      "journal": "STRUCTURAL AND MULTIDISCIPLINARY OPTIMIZATION"
+    },
+    {
+      "date": "2021-06",
+      "title": "머신 러닝을 사용한 열전도 문제에 대한 기능적 등급구조 설계",
+      "journal": "한국전산구조공학회논문집"
+    },
+    {
+      "date": "2021-06",
+      "title": "Phase field-based topology optimization of metallic structures for microwave applications using adaptive mesh refinement",
+      "journal": "STRUCTURAL AND MULTIDISCIPLINARY OPTIMIZATION"
+    },
+    {
+      "date": "2021-04",
+      "title": "Design of spatially-varying orthotropic infill structures using multiscale topology optimization and explicit de-homogenization",
+      "journal": "Additive Manufacturing"
+    },
+    {
+      "date": "2021-03",
+      "title": "Multi-directional cloaking structure design using topology optimization",
+      "journal": "JOURNAL OF ELECTROMAGNETIC WAVES AND APPLICATIONS"
+    },
+    {
+      "date": "2020-12",
+      "title": "Topology optimization for three-dimensional design of segmented permanent magnet arrays",
+      "journal": "STRUCTURAL AND MULTIDISCIPLINARY OPTIMIZATION"
+    },
+    {
+      "date": "2020-09",
+      "title": "Topology optimization of functionally graded anisotropic composite structures using homogenization design method",
+      "journal": "COMPUTER METHODS IN APPLIED MECHANICS AND ENGINEERING"
+    },
+    {
+      "date": "2020-08",
+      "title": "Single variable-based multi-material structural optimization considering interface behavior",
+      "journal": "COMPUTER METHODS IN APPLIED MECHANICS AND ENGINEERING"
+    },
+    {
+      "date": "2020-08",
+      "title": "Patch antenna design using the gA and the binary method for dual-band applications",
+      "journal": "JOURNAL OF ELECTROMAGNETIC WAVES AND APPLICATIONS"
+    },
+    {
+      "date": "2020-07",
+      "title": "FreeFEM plus plus code for reaction-diffusion equation-based topology optimization: for high-resolution boundary representation using adaptive mesh refinement",
+      "journal": "STRUCTURAL AND MULTIDISCIPLINARY OPTIMIZATION"
+    },
+    {
+      "date": "2019-10",
+      "title": "Topology optimization of anisotropic magnetic composites in actuators using homogenization design method",
+      "journal": "STRUCTURAL AND MULTIDISCIPLINARY OPTIMIZATION"
+    },
+    {
+      "date": "2019-09",
+      "title": "Structural design considering the uncertainty of load positions using the phase field design method",
+      "journal": "FINITE ELEMENTS IN ANALYSIS AND DESIGN"
+    },
+    {
+      "date": "2019-09",
+      "title": "Study on the Clear Boundary Determination from Results of the Phase Field Design Method",
+      "journal": "INTERNATIONAL JOURNAL OF PRECISION ENGINEERING AND MANUFACTURING"
+    },
+    {
+      "date": "2019-08",
+      "title": "Multiphase topology optimization with a single variable using the phase-field design method",
+      "journal": "INTERNATIONAL JOURNAL FOR NUMERICAL METHODS IN ENGINEERING"
+    },
+    {
+      "date": "2019-06",
+      "title": "Design of Broadband Dielectric Collimators With the Phase-Field Design Method for Applications in the X-B and Range",
+      "journal": "IEEE ANTENNAS AND WIRELESS PROPAGATION LETTERS"
+    },
+    {
+      "date": "2019-04",
+      "title": "Structural Design to Control the Microwave Reflection Path in Broadband Frequency Using a Dielectric Material",
+      "journal": "IEEE ANTENNAS AND WIRELESS PROPAGATION LETTERS"
+    },
+    {
+      "date": "2018-10",
+      "title": "Topology optimization for continuous and discrete orientation design of functionally graded fiber-reinforced composite structures",
+      "journal": "COMPOSITE STRUCTURES"
+    },
+    {
+      "date": "2018-09",
+      "title": "Design of Microwave Collimators for Beam Splitting and Focusing Using Dual Dielectrics",
+      "journal": "IEEE ANTENNAS AND WIRELESS PROPAGATION LETTERS"
+    },
+    {
+      "date": "2018-09",
+      "title": "Magnetic Resonator Design for Wireless Power Transfer Using a Mathematical Design Approach",
+      "journal": "INTERNATIONAL JOURNAL OF PRECISION ENGINEERING AND MANUFACTURING"
+    },
+    {
+      "date": "2018-08",
+      "title": "매개변수 연구 기법을 이용한 DVR 내부 방열 유동제어 구조물의 형상 설계",
+      "journal": "한국전산구조공학회논문집"
+    },
+    {
+      "date": "2018-04",
+      "title": "응력 수정 계수를 고려한 피로 제약 조건 구조물의 위상최적설계",
+      "journal": "한국전산구조공학회논문집"
+    },
+    {
+      "date": "2018-03",
+      "title": "Systematic Design of a Grating Structure to Induce the Surface Plasmon Resonance at a Target Wavelength",
+      "journal": "IEEE TRANSACTIONS ON MAGNETICS"
+    },
+    {
+      "date": "2018-03",
+      "title": "Topological metallic structure design for microwave applications using a modified interpolation scheme",
+      "journal": "STRUCTURAL AND MULTIDISCIPLINARY OPTIMIZATION"
+    },
+    {
+      "date": "2018-02",
+      "title": "페이즈필드 설계법을 이용한 다중 유전체 구조의 RF 콜리메이터 설계",
+      "journal": "한국전산구조공학회논문집"
+    },
+    {
+      "date": "2018-02",
+      "title": "Reaction-diffusion equation based topology optimization combined with the modified conjugate gradient method",
+      "journal": "FINITE ELEMENTS IN ANALYSIS AND DESIGN"
+    },
+    {
+      "date": "2017-06",
+      "title": "Tunable Waveguide Bandpass Filter Design Using a Sequential Design Process",
+      "journal": "INTERNATIONAL JOURNAL OF PRECISION ENGINEERING AND MANUFACTURING"
+    },
+    {
+      "date": "2017-05",
+      "title": "Probability distribution function inspired structural optimization for frequency response problems",
+      "journal": "COMPUTER METHODS IN APPLIED MECHANICS AND ENGINEERING"
+    },
+    {
+      "date": "2017-02",
+      "title": "패치안테나 성능 향상을 위한 페이즈필드 설계법 기반의 형상 설계",
+      "journal": "한국전산구조공학회논문집"
+    },
+    {
+      "date": "2017-01",
+      "title": "All-dielectric structure development for electromagnetic wave shielding using a systematic design approach",
+      "journal": "APPLIED PHYSICS LETTERS"
+    },
+    {
+      "date": "2016-10",
+      "title": "Two-dimensional dielectric collimator design and its experimental verification for microwave beam focusing",
+      "journal": "APPLIED PHYSICS LETTERS"
+    },
+    {
+      "date": "2016-07",
+      "title": "A novel P-norm correction method for lightweight topology optimization under maximum stress constraints",
+      "journal": "COMPUTERS & STRUCTURES"
+    },
+    {
+      "date": "2016-05",
+      "title": "Topological design of the film-coupled nanoparticle for the field intensity enhancement over the broadband visible spectrum",
+      "journal": "APPLIED PHYSICS LETTERS"
+    },
+    {
+      "date": "2016-04",
+      "title": "Optimal shape design of the film-coupled nanoparticle using the phase field design method",
+      "journal": "INTERNATIONAL JOURNAL OF PRECISION ENGINEERING AND MANUFACTURING"
+    },
+    {
+      "date": "2016-01",
+      "title": "Dielectric structure design for microwave cloaking considering material properties",
+      "journal": "JOURNAL OF APPLIED PHYSICS"
+    },
+    {
+      "date": "2015-12",
+      "title": "Optimal design of a composite space shield based on numerical simulations",
+      "journal": "JOURNAL OF MECHANICAL SCIENCE AND TECHNOLOGY"
+    },
+    {
+      "date": "2015-12",
+      "title": "Structural optimization of a magnetic actuator with simultaneous consideration of thermal and magnetic performances",
+      "journal": "IEEE TRANSACTIONS ON MAGNETICS"
+    },
+    {
+      "date": "2015-06",
+      "title": "Development of a permanent magnet type micro-robot actuated by external electromagnetic system",
+      "journal": "MICROSYSTEM TECHNOLOGIES-MICRO-AND NANOSYSTEMS-INFORMATION STORAGE AND PROCESSING SYSTEMS"
+    },
+    {
+      "date": "2015-02",
+      "title": "Transparent dielectric nanostructures for efficient light management in optoelectronic applications",
+      "journal": "NANO TODAY"
+    },
+    {
+      "date": "2015-02",
+      "title": "적외선 피탐지를 위한 페이즈 필드법 기반의 적외선 반사층 설계",
+      "journal": "한국전산구조공학회논문집"
+    },
+    {
+      "date": "2014-12",
+      "title": "Electromagnetic band-gap structure design using the auxetic unit-structure for easily controllable tunability",
+      "journal": "JOURNAL OF APPLIED PHYSICS"
+    },
+    {
+      "date": "2014-11",
+      "title": "Novel motion modes for 2-D locomotion of a microrobot",
+      "journal": "IEEE TRANSACTIONS ON MAGNETICS"
+    },
+    {
+      "date": "2014-10",
+      "title": "상온-저온 RF 커플러 유한요소해석",
+      "journal": "Transactions of the Korean Society of Mechanical Engineers, A"
+    },
+    {
+      "date": "2014-10",
+      "title": "On the optimization of HDD arms with piezoelectric actuation",
+      "journal": "FINITE ELEMENTS IN ANALYSIS AND DESIGN"
+    },
+    {
+      "date": "2014-09",
+      "title": "유전 알고리즘을 이용한 패치 안테나 형상 설계",
+      "journal": "정보저장시스템학회 논문집"
+    },
+    {
+      "date": "2014-09",
+      "title": "페이즈 필드법을 이용한 박막형 태양전지의 광포획층 설계",
+      "journal": "Transactions of the Korean Society of Mechanical Engineers, A"
+    },
+    {
+      "date": "2014-05",
+      "title": "Optimal shape design of flux barriers in IPM synchronous motors using the phase field method",
+      "journal": "COMPEL-THE INTERNATIONAL JOURNAL FOR COMPUTATION AND MATHEMATICS IN ELECTRICAL AND ELECTRONIC ENGINEERING"
+    },
+    {
+      "date": "2014-05",
+      "title": "Numerical simulation of the nano-second pulsed laser ablation process based on the finite element thermal analysis",
+      "journal": "JOURNAL OF MECHANICAL SCIENCE AND TECHNOLOGY"
+    },
+    {
+      "date": "2014-05",
+      "title": "Systematic approach of nanoparticle design to enhance the broadband plasmonic scattering effect",
+      "journal": "JOURNAL OF APPLIED PHYSICS"
+    },
+    {
+      "date": "2014-03",
+      "title": "A systematic approach to enhance off-axis directional electromagnetic wave by two-dimensional structure design",
+      "journal": "OPTICS EXPRESS"
+    },
+    {
+      "date": "2014-02",
+      "title": "Waveguide Design at Infrared Wavelength With Asymmetric Dielectric Surface Gratings",
+      "journal": "IEEE TRANSACTIONS ON MAGNETICS"
+    },
+    {
+      "date": "2014-02",
+      "title": "Topological nano-aperture configuration by structural optimization based on the phase field method",
+      "journal": "STRUCTURAL AND MULTIDISCIPLINARY OPTIMIZATION"
+    },
+    {
+      "date": "2013-12",
+      "title": "유전알고리즘 및 ON/OFF 방법을 이용한 가시광선 영역의나노개구 형상의 위상최적설계",
+      "journal": "대한기계학회논문집 A"
+    },
+    {
+      "date": "2013-10",
+      "title": "Inverse design of the absorbing layer for detection enhancement in near-infrared range",
+      "journal": "OPTICS EXPRESS"
+    },
+    {
+      "date": "2013-08",
+      "title": "Topological Design Approach for Quadruple-Ridge Aperture Configuration",
+      "journal": "IEEE PHOTONICS TECHNOLOGY LETTERS"
+    },
+    {
+      "date": "2013-05",
+      "title": "Reflector Texturing Design of a Thin Film Solar Cell in a Specific Wavelength Range Using Topology Optimization",
+      "journal": "IEEE TRANSACTIONS ON MAGNETICS"
+    },
+    {
+      "date": "2012-11",
+      "title": "Structural Optimization of a Multi-Physics Problem Considering Thermal and Magnetic Effects",
+      "journal": "IEEE TRANSACTIONS ON MAGNETICS"
+    },
+    {
+      "date": "2012-09",
+      "title": "표면 플라즈몬 효과를 이용한 박막형 태양전지 효율향상",
+      "journal": "정보저장시스템학회 논문집"
+    },
+    {
+      "date": "2012-07",
+      "title": "GA 및 ON/OFF 방법 기반의 초고주파수 영역의 나노개구 격자의 구조설계",
+      "journal": "대한기계학회논문집 A"
+    },
+    {
+      "date": "2012-07",
+      "title": "Optimal design of the light absorbing layer in thin film silicon solar cells",
+      "journal": "SOLAR ENERGY"
+    },
+    {
+      "date": "2012-05",
+      "title": "Optimal design of spaced plates under hypervelocity impact",
+      "journal": "JOURNAL OF MECHANICAL SCIENCE AND TECHNOLOGY"
+    },
+    {
+      "date": "2012-02",
+      "title": "Texturing Design for a Light Trapping System Using Topology Optimization",
+      "journal": "IEEE TRANSACTIONS ON MAGNETICS"
+    },
+    {
+      "date": "2011-09",
+      "title": "Optimal Shape Design of Magnetic Actuators for Magnetic and Dynamic Characteristic Improvement",
+      "journal": "JOURNAL OF MAGNETICS"
+    },
+    {
+      "date": "2011-08",
+      "title": "Shape Design of the Surface Mounted Permanent Magnet in a Synchronous Machine",
+      "journal": "IEEE TRANSACTIONS ON MAGNETICS"
+    },
+    {
+      "date": "2011-08",
+      "title": "Study of Optimized Hip Implant Development for Hip Implant in Total Hip Replacement",
+      "journal": "INTERNATIONAL JOURNAL OF PRECISION ENGINEERING AND MANUFACTURING"
+    },
+    {
+      "date": "2011-07",
+      "title": "FEM based simulation of the pulsed laser ablation process in nanosecond fields",
+      "journal": "JOURNAL OF MECHANICAL SCIENCE AND TECHNOLOGY"
+    },
+    {
+      "date": "2011-07",
+      "title": "Topology optimization using a reaction-diffusion equation",
+      "journal": "COMPUTER METHODS IN APPLIED MECHANICS AND ENGINEERING"
+    },
+    {
+      "date": "2011-06",
+      "title": "Speed control and magnetic analysis of crawling robot with magnetic binder",
+      "journal": "INTERNATIONAL JOURNAL OF APPLIED ELECTROMAGNETICS AND MECHANICS"
+    },
+    {
+      "date": "2011-01",
+      "title": "IMPROVED SURFACE PLASMONIC WAVE PROPAGATION OF A PRISM COUPLER THROUGH OPTIMAL GRATING STRUCTURE DESIGN",
+      "journal": "JOURNAL OF ELECTROMAGNETIC WAVES AND APPLICATIONS"
+    },
+    {
+      "date": "2010-08",
+      "title": "Optimal design method for magnetization directions of a permanent magnet array",
+      "journal": "JOURNAL OF MAGNETISM AND MAGNETIC MATERIALS"
+    },
+    {
+      "date": "2010-07",
+      "title": "재료의 비선형을 고려한 수직기록장치의 위상최적화",
+      "journal": "대한기계학회논문집 A"
+    },
+    {
+      "date": "2010-07",
+      "title": "Optimal shape design of a brake calliper for squeal noise reduction considering system instability",
+      "journal": "Proceedings Of The Institution Of Mechanical Engineers Part D-Journal Of Automobile Engineering"
+    },
+    {
+      "date": "2010-06",
+      "title": "Optimization of Magnetization Directions in a 3-D Magnetic Structure",
+      "journal": "IEEE TRANSACTIONS ON MAGNETICS"
+    },
+    {
+      "date": "2010-06",
+      "title": "Grating Coupler Design of an Integrated HAMR Head Light Delivery System Using Topology Optimization",
+      "journal": "IEEE TRANSACTIONS ON MAGNETICS"
+    },
+    {
+      "date": "2010-05",
+      "title": "Topology optimization of the permanent magnet type MRI considering the magnetic field homogeneity",
+      "journal": "JOURNAL OF MAGNETISM AND MAGNETIC MATERIALS"
+    },
+    {
+      "date": "2010-04",
+      "title": "Design and application of layered composites with the prescribed magnetic permeability",
+      "journal": "International Journal for Numerical Methods in Engineering"
+    },
+    {
+      "date": "2010-01",
+      "title": "Design of the rotary VCM actuator for small form factor optical disk drive",
+      "journal": "Microsystem Technologies-Micro-And Nanosystems-Information Storage And Processing Systems"
+    },
+    {
+      "date": "2009-10",
+      "title": "Design of hybrid type&apos;s optical pickup actuator for system stability in high density reading and recording",
+      "journal": "Microsystem Technologies-Micro-And Nanosystems-Information Storage And Processing Systems"
+    },
+    {
+      "date": "2009-10",
+      "title": "Design of moving magnet type pickup actuator using inserted coil",
+      "journal": "Microsystem Technologies-Micro-And Nanosystems-Information Storage And Processing Systems"
+    },
+    {
+      "date": "2009-10",
+      "title": "Simultaneous Optimal Design of the Yoke and the Coil in the Perpendicular Magnetic Recording Head",
+      "journal": "IEEE TRANSACTIONS ON MAGNETICS"
+    },
+    {
+      "date": "2009-10",
+      "title": "Small form factor actuator design for camera phone lens systems",
+      "journal": "Microsystem Technologies-Micro-And Nanosystems-Information Storage And Processing Systems"
+    },
+    {
+      "date": "2009-09",
+      "title": "최적화 기법을 사용한 초소형 카메라 조리개 셔터장치의 성능향상",
+      "journal": "정보저장시스템학회논문집"
+    },
+    {
+      "date": "2009-08",
+      "title": "실험계획법과 순차적 반응표면법을 이용한 선형 모터의 다중 목적 형상최적설계",
+      "journal": "대한기계학회논문집 A"
+    },
+    {
+      "date": "2009-08",
+      "title": "Optimal design of a variable stiffness joint in a robot manipulator using the response surface method",
+      "journal": "Journal of Mechanical Science and Technology"
+    },
+    {
+      "date": "2009-07",
+      "title": "환자 맞춤형 인공 고관절의 기계적 안정성 평가를 위한 연구",
+      "journal": "한국정밀공학회지"
+    },
+    {
+      "date": "2009-07",
+      "title": "와전류 브레이크의 영구자석배열 최적설계",
+      "journal": "대한기계학회논문집 A"
+    },
+    {
+      "date": "2009-06",
+      "title": "Design of an Eddy Current Brake System Using Microstructures",
+      "journal": "IEEE TRANSACTIONS ON MAGNETICS"
+    },
+    {
+      "date": "2009-06",
+      "title": "엔진 밸브 자기 구동기의 설계 최적화",
+      "journal": "대한기계학회논문집 A"
+    },
+    {
+      "date": "2009-05",
+      "title": "Simultaneous structural topology optimization of electromagnetic sources and ferromagnetic materials",
+      "journal": "Computer Methods In Applied Mechanics And Engineering"
+    },
+    {
+      "date": "2009-05",
+      "title": "Optimal Design of Moving-Magnet Type Actuators for Optical Disk Drives Considering Effect of Coil Electromagnet",
+      "journal": "IEEE TRANSACTIONS ON MAGNETICS"
+    },
+    {
+      "date": "2009-05",
+      "title": "Structural Topology Optimization of Magnetic Actuators Using Genetic Algorithms and ON/OFF Sensitivity",
+      "journal": "IEEE TRANSACTIONS ON MAGNETICS"
+    },
+    {
+      "date": "2009-05",
+      "title": "Optimal Shape Design of the Perpendicular Magnetic Recording Head",
+      "journal": "IEEE TRANSACTIONS ON MAGNETICS"
+    },
+    {
+      "date": "2009-03",
+      "title": "2축 소형 구동기 판 스프링의 동특성 개선",
+      "journal": "정보저장시스템학회논문집"
+    },
+    {
+      "date": "2009-02",
+      "title": "Design guide of bolt locations for bolted joint plates considering dynamic characteristics",
+      "journal": "Proceedings Of The Institution Of Mechanical Engineers Part C-Journal Of Mechanical Engineering Science"
+    },
+    {
+      "date": "2008-11",
+      "title": "Structural parameters identification using improved normal frequency response function method",
+      "journal": "Mechanical Systems And Signal Processing"
+    },
+    {
+      "date": "2008-11",
+      "title": "Magnetic Actuator Design Using Level Set Based Topology Optimization",
+      "journal": "Ieee Transactions On Magnetics"
+    },
+    {
+      "date": "2008-10",
+      "title": "Design of a Halbach magnet array based on optimization techniques",
+      "journal": "Ieee Transactions On Magnetics"
+    },
+    {
+      "date": "2008-09",
+      "title": "Structural optimization of ferromagnetic materials based on the magnetic reluctivity for magnetic field problems",
+      "journal": "Computer Methods In Applied Mechanics And Engineering"
+    },
+    {
+      "date": "2008-08",
+      "title": "자기장의 균일성을 고려한 자기공명장치의 최적설계",
+      "journal": "대한기계학회논문집 A"
+    },
+    {
+      "date": "2008-06",
+      "title": "Optimal design of an electromagnetic coupler to maximize force to a specific direction",
+      "journal": "Ieee Transactions On Magnetics"
+    },
+    {
+      "date": "2008-04",
+      "title": "Numerical and experimental approach for the optimal design of a dual plate under ballistic impact",
+      "journal": "International Journal of Modern Physics B"
+    },
+    {
+      "date": "2008-03",
+      "title": "가동자석형 광 픽업 엑츄에이터의 개발",
+      "journal": "정보저장시스템학회 논문집"
+    },
+    {
+      "date": "2008-01",
+      "title": "Dynamic analysis of a linear motion guide having rolling elements for precision positioning devices",
+      "journal": "Journal of Mechanical Science and Technology"
+    },
+    {
+      "date": "2007-12",
+      "title": "위상-치수 최적화에 의한 마이크로 구동기 판 스프링의 설계",
+      "journal": "한국소음진동공학회논문집"
+    },
+    {
+      "date": "2007-12",
+      "title": "순차적 실험계획법을 이용한 위상 최적 설계",
+      "journal": "정보저장시스템학회논문집"
+    },
+    {
+      "date": "2007-12",
+      "title": "가동 자석형 3축 구동 엑츄에이터 개발",
+      "journal": "정보저장시스템학회논문집"
+    },
+    {
+      "date": "2007-11",
+      "title": "높은 유연 모드 주파수를 갖는 가동 자석형 광 픽업 액추에이터 개발",
+      "journal": "한국소음진동공학회논문집"
+    },
+    {
+      "date": "2007-06",
+      "title": "Optimal design of a variable stiffness joint using permanent magnets",
+      "journal": "IEEE TRANSACTIONS ON MAGNETICS"
+    },
+    {
+      "date": "2007-06",
+      "title": "Development of &quot;L-shaped&quot; rotary voice coil motor actuator for ultra slim optical disk drive using integrated design method based on coupled-field analysis",
+      "journal": "JAPANESE JOURNAL OF APPLIED PHYSICS PART 1-REGULAR PAPERS BRIEF COMMUNICATIONS & REVIEW PAPERS"
+    },
+    {
+      "date": "2007-05",
+      "title": "Design of swing arm type actuators considering thermal and dynamic characteristics",
+      "journal": "MICROSYSTEM TECHNOLOGIES-MICRO-AND NANOSYSTEMS-INFORMATION STORAGE AND PROCESSING SYSTEMS"
+    },
+    {
+      "date": "2007-05",
+      "title": "Design of swing arm actuator for small and slim optical disc drives",
+      "journal": "MICROSYSTEM TECHNOLOGIES-MICRO-AND NANOSYSTEMS-INFORMATION STORAGE AND PROCESSING SYSTEMS"
+    },
+    {
+      "date": "2007-03",
+      "title": "정자장 문제의 균질화 기법의 비교",
+      "journal": "대한기계학회논문집 A"
+    },
+    {
+      "date": "2007-01",
+      "title": "Topology optimization of a swing arm type actuator using the response surface method",
+      "journal": "MICROSYSTEM TECHNOLOGIES-MICRO-AND NANOSYSTEMS-INFORMATION STORAGE AND PROCESSING SYSTEMS"
+    },
+    {
+      "date": "2006-12",
+      "title": "유연디스크용 가동 코일형 광 픽업 액추에이터 개발",
+      "journal": "정보저장시스템학회논문집"
+    },
+    {
+      "date": "2006-12",
+      "title": "힘의 방향성을 고려한 전자기 커플러의 위상 최적화",
+      "journal": "정보저장시스템학회논문집"
+    },
+    {
+      "date": "2006-10",
+      "title": "Physical modeling and characteristics of a Johnsen-Rahbek type electrostatic chuck",
+      "journal": "KEY ENGINEERING MATERIALS"
+    },
+    {
+      "date": "2006-09",
+      "title": "열안정성을 고려한 초소형 정보저장기기용 액추에이터 구조설계",
+      "journal": "정보저장시스템학회논문집"
+    },
+    {
+      "date": "2006-09",
+      "title": "분극방향과 재료분포의 연속적 근사방법을 고려한 압전형 액추에이터의 구조 설계",
+      "journal": "대한기계학회논문집 A"
+    },
+    {
+      "date": "2006-03",
+      "title": "Design of micro-actuators using compliant mechanism",
+      "journal": "KEY ENGINEERING MATERIALS"
+    },
+    {
+      "date": "2006-02",
+      "title": "컴플라이언트 메커니즘을 이용한 스윙 암 액추에이터의 설계",
+      "journal": "대한기계학회논문집 A"
+    },
+    {
+      "date": "2006-02",
+      "title": "재료분포의 연속적인 근사를 이용한 위상최적설계 방법의 비교 연구",
+      "journal": "대한기계학회논문집 A"
+    },
+    {
+      "date": "2005-11",
+      "title": "An optimal design of magnetic actuators using topology optimization and the response surface method",
+      "journal": "MICROSYSTEM TECHNOLOGIES-MICRO-AND NANOSYSTEMS-INFORMATION STORAGE AND PROCESSING SYSTEMS"
+    },
+    {
+      "date": "2005-09",
+      "title": "볼트 체결 조건에 따른 두 판재의 동적 특성 예측",
+      "journal": "대한기계학회논문집 A"
+    },
+    {
+      "date": "2005-07",
+      "title": "볼 베어링을 이용하는 직선 운동 가이드의 진동 해석 및 응용",
+      "journal": "대한기계학회논문집 A"
+    },
+    {
+      "date": "2005-02",
+      "title": "광픽업 액추에이터 판스프링 서스펜션의 최적설계",
+      "journal": "한국소음진동공학회논문집"
+    },
+    {
+      "date": "2005-01",
+      "title": "An optimization of a multi-layered plate under ballistic impact",
+      "journal": "INTERNATIONAL JOURNAL OF SOLIDS AND STRUCTURES"
+    },
+    {
+      "date": "2004-11",
+      "title": "영구자석과 요크를 포함한 자기 시스템의 위상최적설계 및 자기변형 센서의 바이어스 자석 설계에의 응용",
+      "journal": "대한기계학회논문집 A"
+    },
+    {
+      "date": "2004-10",
+      "title": "FEM에 의한 볼트 결합 판재의 동특성 해석",
+      "journal": "한국소음진동공학회논문집"
+    },
+    {
+      "date": "2004-10",
+      "title": "구름 요소를 사용하는 LM 가이드에서의 마이크로스케일 진동현상",
+      "journal": "한국소음진동공학회논문집"
+    },
+    {
+      "date": "2004-09",
+      "title": "볼 베어링을 사용하는 선형 운동 가이드의 동적 특성",
+      "journal": "한국소음진동공학회논문집"
+    },
+    {
+      "date": "2004-07",
+      "title": "Modified method of topology optimization in magnetic fields",
+      "journal": "IEEE TRANSACTIONS ON MAGNETICS"
+    },
+    {
+      "date": "2004-04",
+      "title": "자기장 내의 위상최적화 방법에 대한 연구",
+      "journal": "대한기계학회논문집 A"
+    },
+    {
+      "date": "2004-04",
+      "title": "A modified density approach for topology optimization in magnetic fields",
+      "journal": "INTERNATIONAL JOURNAL OF SOLIDS AND STRUCTURES"
+    },
+    {
+      "date": "2004-03",
+      "title": "자동차 현가장치 부품에 대한 신뢰성 기반 최적설계에 관한 연구",
+      "journal": "한국자동차공학회 논문집"
+    },
+    {
+      "date": "2003-10",
+      "title": "다중판재의 고속충돌에 관한 최적설계",
+      "journal": "대한기계학회논문집 A"
+    },
+    {
+      "date": "2003-03",
+      "title": "구조물의 위상 최적설계에 관한 고찰",
+      "journal": "한국전산구조공학회 논문집"
+    },
+    {
+      "date": "2002-11",
+      "title": "Topology Optimization for Reduction of Vibration Caused by Magnetic Harmonic Excitation",
+      "journal": "IEEE TRANSACTIONS ON MAGNETICS"
+    },
+    {
+      "date": "2002-09",
+      "title": "Structural optimization in magnetic fields using the homogenization design method. Part II: Reduction of vibration caused by magnetic forces",
+      "journal": "ARCHIVES OF COMPUTATIONAL METHODS IN ENGINEERING"
+    },
+    {
+      "date": "2002-07",
+      "title": "Brake Moan Noise 소거를 위한 Brake Pad 위상최적화의 GA 적용",
+      "journal": "한국자동차공학회 논문집"
+    },
+    {
+      "date": "2002-07",
+      "title": "유한요소법의 개선에 따른 형상최적화 향상에 관한 연구",
+      "journal": "대한기계학회논문집 A"
+    },
+    {
+      "date": "2002-05",
+      "title": "Reduction of Vibration Caused by Magnetic Force in a Switched Reluctance Motor by Topology Optimization",
+      "journal": "JOURNAL OF APPLIED MECHANICS-TRANSACTIONS OF THE ASME"
+    },
+    {
+      "date": "2001-12",
+      "title": "Structural Optimization in Magnetic Fields Using the Homogenization Design Method - Part I",
+      "journal": "ARCHIVES OF COMPUTATIONAL METHODS IN ENGINEERING"
+    },
+    {
+      "date": "2001-10",
+      "title": "자기장에 의한 조화가진을 받는 구조물의 위상최적화",
+      "journal": "대한기계학회논문집 A"
+    },
+    {
+      "date": "2001-08",
+      "title": "Optimal structural design considering flexibility",
+      "journal": "COMPUTER METHODS IN APPLIED MECHANICS AND ENGINEERING"
+    },
+    {
+      "date": "2001-03",
+      "title": "CAE의 개요",
+      "journal": "한국전산구조공학회지"
+    },
+    {
+      "date": "2000-03",
+      "title": "Structural Optimization in Magnetic Devices by the Homogenization Design Method",
+      "journal": "IEEE TRANSACTIONS ON MAGNETICS"
+    },
+    {
+      "date": "2000-01",
+      "title": "Topology Optimization in Magnetic Fields Using the Homogenization Design Method",
+      "journal": "INTERNATIONAL JOURNAL FOR NUMERICAL METHODS IN ENGINEERING"
+    },
+    {
+      "date": "1995-08",
+      "title": "회전기계 볼베어링의 자동진단 시스템에 관한 연구",
+      "journal": "대한기계학회논문집 A"
+    },
+    {
+      "date": "1995-05",
+      "title": "롤러 베어링에서의 결함의 자동진단",
+      "journal": "한국소음진동공학회논문집"
+    },
+    {
+      "date": "1993-01",
+      "title": "장섬유강화 고분자복합판의 압축성형에 있어서 섬유의 분리와 배향의 상관관계에 관한 연구",
+      "journal": "대한기계학회논문집 A"
+    }
+  ],
+  "awards": [
+    {
+      "title": "2000 Outstanding Scientists of the 21st Century",
+      "contents": null,
+      "date": null
+    },
+    {
+      "title": "Who&apos;s Who in Scinence and Engineering 등재",
+      "contents": null,
+      "date": null
+    },
+    {
+      "title": "준최우등 졸업",
+      "contents": null,
+      "date": null
+    },
+    {
+      "title": "2020년도 한국전산구조공학회 논문상",
+      "contents": "2020년도 한국전산구조공학회 학회상(논문상) 시상",
+      "date": "2020-08-24"
+    },
+    {
+      "title": "2014년 기초연구 우수성과",
+      "contents": "2014년 기초연구 우수성과 50선",
+      "date": "2014-11-05"
+    }
+  ],
+  "conferences": [
+    {
+      "title": "Compliant mechanism design using neural networks and studies on its limitations",
+      "conference": "16th World Congress on Structural and Multidisciplinary Optimization (WCSMO-16)",
+      "period": "2025.05.18~2025.05.23"
+    },
+    {
+      "title": "Electromagnetic device topology optimization with RVE for addictive manufacturing",
+      "conference": "16th World Congress on Structural and Multidisciplinary Optimization (WCSMO-16)",
+      "period": "2025.05.18~2025.05.23"
+    },
+    {
+      "title": "Multi-Objective Topology Optimization Using Adaptive Scaling Weight Method",
+      "conference": "16th World Congress on Structural and Multidisciplinary Optimization (WCSMO-16)",
+      "period": "2025.05.18~2025.05.23"
+    },
+    {
+      "title": "J1: Multi-objective optimization_1 Session Chair",
+      "conference": "16th World Congress on Structural and Multidisciplinary Optimization (WCSMO-16)",
+      "period": "2025.05.18~2025.05.23"
+    },
+    {
+      "title": "여러 단위 구조를 사용한 이중 목적 위상최적설계",
+      "conference": "대한기계학회 CAE 및 응용역학부분 2025년 춘계학술대회",
+      "period": "2025.04.16~2025.04.19"
+    },
+    {
+      "title": "강성과 고유진동수 최대화를 고려한 경사기능구조 설계",
+      "conference": "대한기계학회 CAE 및 응용역학부분 2025년 춘계학술대회",
+      "period": "2025.04.16~2025.04.19"
+    },
+    {
+      "title": "다중 목적함수를 고려한 적응형 비례 가중치법 기반 위상최적설계",
+      "conference": "대한기계학회 2024년 추계학술대회",
+      "period": "2024.11.06~2024.11.09"
+    },
+    {
+      "title": "신경망을 이용한 컴플라이언트 메커니즘의 이중 목적 위상최적설계",
+      "conference": "대한기계학회 2024년 추계학술대회",
+      "period": "2024.11.06~2024.11.09"
+    },
+    {
+      "title": "하중 조건에 따른 국부응력 최소화를 위한 유선형 형상최적설계",
+      "conference": "대한기계학회 CAE 및 응용역학부분 2024년 춘계학술대회",
+      "period": "2024.05.01~2024.05.04"
+    },
+    {
+      "title": "경사기능재료 및 다중 목적함수를 고려한 위상최적설계",
+      "conference": "대한기계학회 CAE 및 응용역학부분 2024년 춘계학술대회",
+      "period": "2024.05.01~2024.05.04"
+    },
+    {
+      "title": "PINN based topology optimization",
+      "conference": "6th Asia-Pacific Conference on Engineering and Applied Science (APCEAS 2024)",
+      "period": "2024.01.09~2024.01.11"
+    },
+    {
+      "title": "Extended Depth-of-Field Fluorescence Microscopy via Physics-Incoporated Jointlylearned Binary Phase Filter and Image Deconvolution",
+      "conference": "2023 SPIE ABC",
+      "period": "2023.11.01~2023.11.04"
+    },
+    {
+      "title": "심층 신경망 기반 위상최적설계",
+      "conference": "대한기계학회 2023년 추계학술대회",
+      "period": "2023.11.01~2023.11.04"
+    },
+    {
+      "title": "대표 체적 요소법을 이용한 자계-열 다중 물리 문제의 위상 최적설계",
+      "conference": "대한기계학회 2023년 추계학술대회",
+      "period": "2023.11.01~2023.11.04"
+    },
+    {
+      "title": "머신러닝을 활용한 비등방성 복합재료의 유전율 도출 및 적용",
+      "conference": "대한기계학회 2022년 추계학술대회",
+      "period": "2022.11.09~2022.11.12"
+    },
+    {
+      "title": "적응형 가중치 기법네 기반한 기계 구조물의 이중 목적 위상 최적화",
+      "conference": "대한기계학회 2022년 추계학술대회",
+      "period": "2022.11.09~2022.11.12"
+    },
+    {
+      "title": "대표 체적 요소법을 이용한 자계 문제의 위상 최적 설계",
+      "conference": "대한기계학회 2022년 추계학술대회",
+      "period": "2022.11.09~2022.11.12"
+    },
+    {
+      "title": "Topological design of thermal conductors with functionally graded composite structure using machine learning based material properties",
+      "conference": "15th World Congress on Computational Mechanics (WCCM 2022)",
+      "period": "2022.07.31~2022.08.05"
+    },
+    {
+      "title": "Derivation of effective permittivity using machine learning and its application to collimator design",
+      "conference": "15th World Congress on Computational Mechanics (WCCM 2022)",
+      "period": "2022.07.31~2022.08.05"
+    },
+    {
+      "title": "A study on local optima due to anisotropic behavior in the topological design of fiber-reinforced composite laminate structure",
+      "conference": "Asian Congress of Structural and Multidisciplinary Optimization 2022",
+      "period": "2022.05.22~2022.05.26"
+    },
+    {
+      "title": "해상 풍력 자원 평가를 위한 부유식 라이다 모션 보정 프로그램 개발",
+      "conference": "대한기계학회 2022년 동역학 및 제어부분 춘계학술대회",
+      "period": "2022.04.27~2022.04.29"
+    },
+    {
+      "title": "머신러닝을 활용한 유전율 도출 및 콜리메이터 설계에의 적용",
+      "conference": "2021 한국전산구조공학회 정기학술대회",
+      "period": "2021.11.25~2021.11.26"
+    },
+    {
+      "title": "다중 재료 위상최적설계를 위한 페이즈 섹션 설계법 개선",
+      "conference": "대한기계학회 2021년 추계학술대회",
+      "period": "2021.11.03~2021.11.06"
+    },
+    {
+      "title": "딥러닝을 활용한 10 kW급 풍력발전기 블레이드 설계",
+      "conference": "한국풍력에너지학회 2021 춘계학술대회",
+      "period": "2021.07.05~2021.07.07"
+    },
+    {
+      "title": "복합재 단위 구조 기반의 풍력 블레이드 쉐어웹 구조설계",
+      "conference": "한국풍력에너지학회 2021 춘계학술대회",
+      "period": "2021.07.05~2021.07.07"
+    },
+    {
+      "title": "Topology optimization using the representative volume element method and machine learning for functionally graded composite materials",
+      "conference": "14th World Congress of Structural and Multidisciplinary Optimization",
+      "period": "2021.06.13~2021.06.18"
+    },
+    {
+      "title": "Topology optimization considering the stress constraint and the uncertainty of load positions",
+      "conference": "14th World Congress of Structural and Multidisciplinary Optimization",
+      "period": "2021.06.13~2021.06.18"
+    },
+    {
+      "title": "Two-layer design for microwave scattering structure using a conductive material and dielectric materials",
+      "conference": "14th World Congress of Structural and Multidisciplinary Optimization",
+      "period": "2021.06.13~2021.06.18"
+    },
+    {
+      "title": "RVE 방법을 사용한 열전도에 관한 위상최적설계",
+      "conference": "2021 한국전산구조공학회 정기학술대회",
+      "period": "2021.04.07~2021.04.09"
+    },
+    {
+      "title": "Stress-based topology optimization under load uncertainty with stress penalization function",
+      "conference": "14th World Congress in Computational Mechanics",
+      "period": "2021.01.11~2021.01.15"
+    },
+    {
+      "title": "Study on the high-resolution boundary representation of reaction-diffusion equation-based topology optimization",
+      "conference": "14th World Congress in Computational Mechanics",
+      "period": "2021.01.11~2021.01.15"
+    },
+    {
+      "title": "Topology optimization of multi-material structures considering an opening failure mode of the adhesive portion",
+      "conference": "Asian Congress of Structural and Multidisciplinary Optimization 2020",
+      "period": "2020.11.23~2020.11.25"
+    },
+    {
+      "title": "Structural design for electromagnetic wave scattering in aircraft engine intake considering incident angle change",
+      "conference": "Asian Congress of Structural and Multidisciplinary Optimization 2020",
+      "period": "2020.11.23~2020.11.25"
+    },
+    {
+      "title": "Structural design of multi-rotor wind turbine using topology optimization",
+      "conference": "Asian Congress of Structural and Multidisciplinary Optimization 2020",
+      "period": "2020.11.23~2020.11.25"
+    },
+    {
+      "title": "Stress-based topology optimization considering load position uncertainty",
+      "conference": "Asian Congress of Structural and Multidisciplinary Optimization 2020",
+      "period": "2020.11.23~2020.11.25"
+    },
+    {
+      "title": "Topology optimization of metallic structures for microwave applications using adaptive mesh refinement",
+      "conference": "Asian Congress of Structural and Multidisciplinary Optimization 2020",
+      "period": "2020.11.23~2020.11.25"
+    },
+    {
+      "title": "Structural design for electromagnetic wave reflector in aircraft engine intake considering incident angle change",
+      "conference": "11th International Conference on Computational Mehtods (ICCM2020)",
+      "period": "2020.08.09~2020.08.12"
+    },
+    {
+      "title": "Structural design of multi-rotor wind turbine using topology optimization considering static and dynamic behaviors",
+      "conference": "11th International Conference on Computational Mehtods (ICCM2020): virtual conference",
+      "period": "2020.08.09~2020.08.12"
+    },
+    {
+      "title": "유한요소법 구성방정식에서의 기계학습 적용에 대한 고찰",
+      "conference": "한국소성가공학회 2020년도 춘계학술대회",
+      "period": "2020.06.25~2020.06.26"
+    },
+    {
+      "title": "Structural Design of the Electromagnetic Wave Scattering Structure in Aircraft Engine Intake",
+      "conference": "Progress In Electromagnetics Research Symposium (PIERS 2019)",
+      "period": "2019.12.16~2019.12.20"
+    },
+    {
+      "title": "Structural Optimization for Microwave Scattering Structure with Broadband Performance Based on Reaction-diffusion Equation",
+      "conference": "Progress In Electromagnetics Research Symposium (PIERS 2019)",
+      "period": "2019.12.16~2019.12.20"
+    },
+    {
+      "title": "실험계획법을 이용한 10kW급 Blade의 Web 경량화",
+      "conference": "한국풍력에너지학회 2019 추계학술대회",
+      "period": "2019.10.28~2019.10.30"
+    },
+    {
+      "title": "위상최적화를 이용한 10MW급 Direct Drive King-pin 풍력터빈의 메인 프레임 경량 설계",
+      "conference": "한국풍력에너지학회 2019 추계학술대회",
+      "period": "2019.10.28~2019.10.30"
+    },
+    {
+      "title": "100kW 풍력발전기 메인 프레임의 위상최적화 경량 설계",
+      "conference": "한국풍력에너지학회 2019 추계학술대회",
+      "period": "2019.10.28~2019.10.30"
+    },
+    {
+      "title": "반응표면법을 사용한 풍력발전 메인프레임 두께 경량화 설계",
+      "conference": "한국태양에너지학회 2019 추계학술대회",
+      "period": "2019.10.16~2019.10.18"
+    },
+    {
+      "title": "Design of 5G band patch antenna using the genetic algorithm and the On/Off method",
+      "conference": "13th World Congress on Structural and Multidisciplinary Optimization (WCSMO 13)",
+      "period": "2019.05.20~2019.05.24"
+    },
+    {
+      "title": "Single-variable based multi-material topology optimization considering material interface behavior",
+      "conference": "3th World Congress on Structural and Multidisciplinary Optimization (WCSMO 13)",
+      "period": "2019.05.20~2019.05.24"
+    },
+    {
+      "title": "Structural Design of a Dielectric Structure for Microwave Scattering in Broadband Frequency",
+      "conference": "13th World Congress on Structural and Multidisciplinary Optimization (WCSMO 13)",
+      "period": "2019.05.20~2019.05.24"
+    },
+    {
+      "title": "페이즈필드법 결과 형상의 명확한 경계면 표현을 위한 확산계수 하한값 및 적응요소망에 관한 연구",
+      "conference": "한국태양에너지학회 2019 춘계학술대회",
+      "period": "2019.04.03~2019.04.05"
+    },
+    {
+      "title": "유전 알고리즘과 ON/OFF 방법을 이용한 DGS 패치 안테나 형상설계",
+      "conference": "대한기계학회 2018년 추계학술대회",
+      "period": "2018.12.12~2018.12.15"
+    },
+    {
+      "title": "유전체 물질을 이용한 광대역 마이크로파 산란구조설계",
+      "conference": "대한기계학회 2018년 추계학술대회",
+      "period": "2018.12.12~2018.12.15"
+    },
+    {
+      "title": "페이즈필드법 결과 형상의 경계에 대한 확산계수 하한값에 관한 연구",
+      "conference": "대한기계학회 2018년 추계학술대회",
+      "period": "2018.12.12~2018.12.15"
+    },
+    {
+      "title": "응력조건을 기반으로 한 풍력발전기 타원의 경량화",
+      "conference": "한국태양에너지학회 2018 추계학술대회",
+      "period": "2018.11.15~2018.11.15"
+    },
+    {
+      "title": "매개변수 설계법을 이용한 풍력발전기 타워 구조의 경량화",
+      "conference": "한국풍력에너지학회 2018 추계학술대회",
+      "period": "2018.10.15~2018.10.17"
+    },
+    {
+      "title": "다중 하중 조건하에서의 구조물 경량화를 위한 위상최적설계",
+      "conference": "한국풍력에너지학회 2018 추계학술대회",
+      "period": "2018.10.15~2018.10.17"
+    },
+    {
+      "title": "Structural design of an electromagnetic wave shield composed of multi-materials",
+      "conference": "Progress In Electromagnetics Research Symposium (PIERS 2018)",
+      "period": "2018.08.01~2018.08.04"
+    },
+    {
+      "title": "Broadband design of dielectric collimators in the X-band using phase-field design method",
+      "conference": "Asian Congress of Structural and Multidisciplinary Optimization 2018",
+      "period": "2018.05.21~2018.05.24"
+    },
+    {
+      "title": "Structural design using a dielectric material for microwave scattering",
+      "conference": "Asian Congress of Structural and Multidisciplinary Optimization 2018",
+      "period": "2018.05.21~2018.05.24"
+    },
+    {
+      "title": "Multi-material topology optimization with single variable using multiple well potential functions",
+      "conference": "Asian Congress of Structural and Multidisciplinary Optimization 2018",
+      "period": "2018.05.21~2018.05.24"
+    },
+    {
+      "title": "Structural design with simultaneous consideration of various load positions using the phase field design method",
+      "conference": "Asian Congress of Structural and Multidisciplinary Optimization 2018",
+      "period": "2018.05.21~2018.05.24"
+    },
+    {
+      "title": "Broadband dielectric collimator design using a topology optimization scheme",
+      "conference": "0th International Conference on Advanced Materials and Devices (ICAMD2017)",
+      "period": "2017.12.05~2017.12.08"
+    },
+    {
+      "title": "Microwave collimator design for beam splitting to prescribed directions",
+      "conference": "Progress In Electromagnetics Research Symposium (PIERS 2017)",
+      "period": "2017.11.19~2017.11.22"
+    },
+    {
+      "title": "DVR 내부 방열 유동제어 구조물의 형상 설계",
+      "conference": "대한기계학회 2017년 추계학술대회",
+      "period": "2017.11.01~2017.11.03"
+    },
+    {
+      "title": "응력 수정 계수를 고려한 피로 제약 조건 구조물의 위상 최적 설계",
+      "conference": "대한기계학회 2017년 추계학술대회",
+      "period": "2017.11.01~2017.11.03"
+    },
+    {
+      "title": "확률밀도함수를 이용한 2차원 유전체 콜리메이터의 광대역 구조최적설계",
+      "conference": "대한기계학회 2017년 추계학술대회",
+      "period": "2017.11.01~2017.11.03"
+    },
+    {
+      "title": "Energy Materials Session Chair",
+      "conference": "2017 Collaborative Conference on mAterial Research (CCMR 2017)",
+      "period": "2017.06.26~2017.06.30"
+    },
+    {
+      "title": "Dielectric Collimator Design in a Microwave Range and Its Experimental Verifications",
+      "conference": "2017 Collaborative Conference on mAterial Research (CCMR 2017)",
+      "period": "2017.06.26~2017.06.30"
+    },
+    {
+      "title": "Systematic Design of a Grating Structure to Induce Surface Plasmon Resonance st the Prescribed Wavelength",
+      "conference": "21st International Conference on the Computation of Electromagnetic Fields (Compumag 2017)",
+      "period": "2017.06.18~2017.06.22"
+    },
+    {
+      "title": "Magnetic Resonator Design in a VHF Range using a Systematic Design Approach",
+      "conference": "21st International Conference on the Computation of Electromagnetic Fields (Compumag 2017)",
+      "period": "2017.06.18~2017.06.22"
+    },
+    {
+      "title": "Tunable Waveguide Filter Design using Topology Optimization based in the On/OFF method",
+      "conference": "21st International Conference on the Computation of Electromagnetic Fields (Compumag 2017)",
+      "period": "2017.06.18~2017.06.22"
+    },
+    {
+      "title": "Systematic Structural Design for Frequency Response Applications using Topology Optimization",
+      "conference": "12th World Congress on Structural and Multidisciplinary Optimization (WCSMO 12)",
+      "period": "2017.06.05~2017.06.09"
+    },
+    {
+      "title": "Topological Structure Design for Microwave Applications using a New Interpolation Scheme",
+      "conference": "12th World Congress on Structural and Multidisciplinary Optimization (WCSMO 12)",
+      "period": "2017.06.05~2017.06.09"
+    },
+    {
+      "title": "페이즈 필드 설계법 기반의 체계적 설계 접근을 이용한 유전체 마이크로파 차폐막의 이차원 구조 설계",
+      "conference": "대한기계학회 CAE 부분 2017년 춘계학술대회",
+      "period": "2017.05.25~2017.05.27"
+    },
+    {
+      "title": "동적 피로 제약 조건을 고려한 구조물의 응력 기반 위상 최적 설계",
+      "conference": "대한기계학회 CAE 부분 2017년 춘계학술대회",
+      "period": "2017.05.25~2017.05.27"
+    },
+    {
+      "title": "페이즈 필드법 기반의 기계적 내구성을 위한 RF 콜리메이터 설계의 실험적 검증과 응용",
+      "conference": "대한기계학회 CAE 부분 2017년 춘계학술대회",
+      "period": "2017.05.25~2017.05.27"
+    },
+    {
+      "title": "확률밀도함수를 이용한 주파수응답함수에서의 위상최적설계",
+      "conference": "대한기계학회 CAE 부분 2017년 춘계학술대회",
+      "period": "2017.05.25~2017.05.27"
+    },
+    {
+      "title": "Systematic Design of a Plasmonic Grating Coupler",
+      "conference": "International Conference on Applied Science (ICAS) 2017",
+      "period": "2017.01.19~2017.01.21"
+    },
+    {
+      "title": "Structural Optimization Design Based on the Phase Field Method for Microwave Applications",
+      "conference": "International Conference on Applied Science (ICAS) 2017",
+      "period": "2017.01.19~2017.01.21"
+    },
+    {
+      "title": "페이즈 필드 설계법 기반의 기계적 내구성 증진을 위한 RF 콜리메이터",
+      "conference": "대한기계학회 2016년 추계학술대회",
+      "period": "2016.12.14~2016.12.16"
+    },
+    {
+      "title": "효과적인 방열을 위한 DVR 내부 유동제어 구조물의 형상 설계",
+      "conference": "대한기계학회 2016년 추계학술대회",
+      "period": "2016.12.14~2016.12.16"
+    },
+    {
+      "title": "Reflector Design for RF Stealth Effect Using the Phase Field Design Method",
+      "conference": "12th World Congress on Computational Mechanics (WCCM 12)",
+      "period": "2016.07.24~2016.07.29"
+    },
+    {
+      "title": "Shape and topology optimization (Room A) session chair",
+      "conference": "Asian Congress of Structural and Multidisciplinary Optimization 2016",
+      "period": "2016.05.22~2016.05.26"
+    },
+    {
+      "title": "Topological Design of the Broadband Plasmonic Device Using the Concept of the Probability Density Function",
+      "conference": "Asian Congress of Structural and Multidisciplinary Optimization 2016",
+      "period": "2016.05.22~2016.05.26"
+    },
+    {
+      "title": "Design of a microwave dielectric lens structure converting a cylindrical wave to a plane wave",
+      "conference": "Asian Congress of Structural and Multidisciplinary Optimization 2016",
+      "period": "2016.05.22~2016.05.26"
+    },
+    {
+      "title": "Dielectric structure design in a microwave range using the phase field design method",
+      "conference": "Asian Congress of Structural and Multidisciplinary Optimization 2016",
+      "period": "2016.05.22~2016.05.26"
+    },
+    {
+      "title": "확률밀도함수를 이용한 광대역 플라즈모닉 장치의 위상최적설계",
+      "conference": "대한기계학회 CAE 및 응용역학 부분 2016년 춘계학술대회",
+      "period": "2016.04.07~2016.04.09"
+    },
+    {
+      "title": "페이즈 필드 설계을 통한 RF 콜리메이터 설계",
+      "conference": "대한기계학회 CAE 및 응용역학 부분 2016년 춘계학술대회",
+      "period": "2016.04.07~2016.04.09"
+    },
+    {
+      "title": "페이즈 필드법 기반의 위상최적설계를 이용한 마이크로파 장치의 금속 구조물 설계",
+      "conference": "대한기계학회 CAE 및 응용역학 부분 2016년 춘계학술대회",
+      "period": "2016.04.07~2016.04.09"
+    },
+    {
+      "title": "Design for broadband plasmonic enhancement of the film-coupled nanoparticle",
+      "conference": "The 9th International Conference on Advanced Materials and Devices (ICAMD2015)",
+      "period": "2015.12.07~2015.12.09"
+    },
+    {
+      "title": "페이즈 필드 설계 방법과 새로운 P-norm 응력 수정 방법을 이용한 응력 제약조건의 위상최적설계",
+      "conference": "대한기계학회 2015년 추계학술대회",
+      "period": "2015.11.10~2015.11.14"
+    },
+    {
+      "title": "에너지 전달 효율 개선을 위한 단순화 모델을 이용한 새로운 액티브 캐롤라의 비선형 해석",
+      "conference": "대한기계학회 2015년 추계학술대회",
+      "period": "2015.11.10~2015.11.14"
+    },
+    {
+      "title": "높은 유전상수를 가지는 유전체를 이용한 RF 클록킹 설계",
+      "conference": "대한기계학회 2015년 추계학술대회",
+      "period": "2015.11.10~2015.11.14"
+    },
+    {
+      "title": "Nanoparticle design to enhance the electric field strength",
+      "conference": "KSME-JSME Joint Symposium on CM & CAE 2015",
+      "period": "2015.10.26~2015.10.26"
+    },
+    {
+      "title": "Structural optimization scheme for waveguide design in microwave range",
+      "conference": "International Conference on Engineering and Applied Science (ICEAS) 2015",
+      "period": "2015.07.20~2015.07.22"
+    },
+    {
+      "title": "Session 38 chair",
+      "conference": "6th International Conference on Computational Mehtods (ICCM2015)",
+      "period": "2015.07.14~2015.07.17"
+    },
+    {
+      "title": "Structural topological optimization of a 3-D nano-aperture based on the phase field method",
+      "conference": "6th International Conference on Computational Mehtods (ICCM2015)",
+      "period": "2015.07.14~2015.07.17"
+    },
+    {
+      "title": "Structural design in electromagnetic fields through topology optimization schemes on metamaterials",
+      "conference": "6th International Conference on Computational Mehtods (ICCM2015)",
+      "period": "2015.07.14~2015.07.17"
+    },
+    {
+      "title": "Metamaterial design in RF electromagnetic fields",
+      "conference": "2015 Collaborative Conference on 3D & Material Research (CC3DMR 2015)",
+      "period": "2015.06.28~2015.06.28"
+    },
+    {
+      "title": "Shape optimization of a nanoparticle for plasmonic enhancement in a small gap",
+      "conference": "11th World Congress on Structural and Multidisciplinary Optimization (WCSMO 11)",
+      "period": "2015.06.07~2015.06.12"
+    },
+    {
+      "title": "Weight reduction of the body weight support of COWALK using the topology optimization method",
+      "conference": "11th World Congress on Structural and Multidisciplinary Optimization (WCSMO 11)",
+      "period": "2015.06.07~2015.06.12"
+    },
+    {
+      "title": "Structural optimization for cloaking effect using dielectric material based on the phase field method",
+      "conference": "11th World Congress on Structural and Multidisciplinary Optimization (WCSMO 11)",
+      "period": "2015.06.07~2015.06.12"
+    },
+    {
+      "title": "위상 최적화 알고리즘을 이용한 은폐 구조체 구현",
+      "conference": "군사과학기술학회",
+      "period": "2015.06.04~2015.06.05"
+    },
+    {
+      "title": "대한기계학회 CAE 및 응용역학부문 춘계학술대회 논문집 학생논문발표II 좌장",
+      "conference": "대한기계학회 CAE 및 응용역학부문 춘계학술대회",
+      "period": "2015.04.15~2015.04.18"
+    },
+    {
+      "title": "대한기계학회 CAE 및 응용역학부문 춘계학술대회 학생논문발표I 좌장",
+      "conference": "대한기계학회 CAE 및 응용역학부문 춘계학술대회",
+      "period": "2015.04.15~2015.04.18"
+    },
+    {
+      "title": "플라즈몬 향상을 위한 체계적인 나노입자 형상설계",
+      "conference": "대한기계학회 CAE 및 응용역학부문 춘계학술대회",
+      "period": "2015.04.15~2015.04.18"
+    },
+    {
+      "title": "위상 최적 접근 기반의 마이크로파 주파수 대역에 대한 이차원 금속 구조물의 형상 설계",
+      "conference": "대한기계학회 CAE 및 응용역학부문 춘계학술대회",
+      "period": "2015.04.15~2015.04.18"
+    },
+    {
+      "title": "페이즈 필드법을 이용한 RF Cloaking 구조 설계",
+      "conference": "대한기계학회 CAE 및 응용역학부문 춘계학술대회",
+      "period": "2015.04.15~2015.04.18"
+    },
+    {
+      "title": "페이즈 필드법에 기반한 3-D 나노 개구의 위상최적설계",
+      "conference": "대한기계학회 CAE 및 응용역학부문 춘계학술대회",
+      "period": "2015.04.15~2015.04.18"
+    },
+    {
+      "title": "위상최적설계를 이용한 외골격 로봇의 경량 부품 설계",
+      "conference": "대한기계학회 CAE 및 응용역학부문 춘계학술대회",
+      "period": "2015.04.15~2015.04.18"
+    },
+    {
+      "title": "Session 102: SPM Technologies & Atomic Force Microscope (AFM) session chair",
+      "conference": "BIT&apos;s 1st Annual World Congress of Smart Materials(WCSM)-2015",
+      "period": "2015.03.23~2015.03.25"
+    },
+    {
+      "title": "Optimal design of infrared reflector for infrared stealth effect based on the phase field method",
+      "conference": "BIT&apos;s 1st Annual World Congress of Smart Materials(WCSM)-2015",
+      "period": "2015.03.23~2015.03.25"
+    },
+    {
+      "title": "Shape optimization of a nanoparticle to enhance plasmonic effects",
+      "conference": "BIT&apos;s 1st Annual World Congress of Smart Materials(WCSM)-2015",
+      "period": "2015.03.23~2015.03.25"
+    },
+    {
+      "title": "Off-axis directional beaming of microwave via tailoring dielectric structure",
+      "conference": "BIT&apos;s 1st Annual World Congress of Smart Materials(WCSM)-2015",
+      "period": "2015.03.23~2015.03.25"
+    },
+    {
+      "title": "Weight Reduction of the body Weight Support of COWALK Using the Topology Optimization Method",
+      "conference": "International Biomedical Engineering Conference (IBEC) 2014,",
+      "period": "2014.11.20~2014.11.22"
+    },
+    {
+      "title": "Systematic Nanoparticle Shape Design to Enhance Plasmonic Effects",
+      "conference": "International Biomedical Engineering Conference (IBEC) 2014",
+      "period": "2014.11.20~2014.11.22"
+    },
+    {
+      "title": "Ag Nanoparticle Shape Design in Thin Film Silicon Solar Cells for Broadband Plasmonic Scattering Effect Enhancement",
+      "conference": "8th International Congress on Advanced Electromagnetic Materials in Microwaves and Optics ？ Metamaterials 2014",
+      "period": "2014.08.25~2014.08.28"
+    },
+    {
+      "title": "Structural Design of Two-Dimensional Dielectric Structure to Enhance Off-axis Directional Electromagnetic Wave in a Microwave range",
+      "conference": "8th International Congress on Advanced Electromagnetic Materials in Microwaves and Optics ？ Metamaterials 2014",
+      "period": "2014.08.25~2014.08.28"
+    },
+    {
+      "title": "BLC Derivation of a Stuffed Whipple Shield Based on Numerical Simulations",
+      "conference": "11th World Congress on Computational Mechanics (WCCM XI)",
+      "period": "2014.07.20~2014.07.25"
+    },
+    {
+      "title": "Structural design of metallic waveguide device in the microwave range using topological design process",
+      "conference": "11th World Congress on Computational Mechanics (WCCM XI)",
+      "period": "2014.07.20~2014.07.25"
+    },
+    {
+      "title": "Numerical simulation based ballistic limit curve derivation of a stuffed Whipple shield",
+      "conference": "8th China-Japan-Korea Joint Symposium on Optimization of Structural and Mechanical Systems (CJK-OSM8)",
+      "period": "2014.05.25~2014.05.29"
+    },
+    {
+      "title": "Phase field method based optimal design considering thermal and magnetic effects",
+      "conference": "8th China-Japan-Korea Joint Symposium on Optimization of Structural and Mechanical Systems (CJK-OSM8)",
+      "period": "2014.05.25~2014.05.29"
+    },
+    {
+      "title": "페이즈 필드법을 이용한 박막형 태양 전지의 광포획층 설계",
+      "conference": "대한기계학회 CAE 및 응용역학 부분 춘계학술대회",
+      "period": "2014.04.30~2014.05.03"
+    },
+    {
+      "title": "상온-저온 RF Coupler 유한요소해석",
+      "conference": "대한기계학회 CAE 및 응용역학 부분 춘계학술대회",
+      "period": "2014.04.30~2014.05.03"
+    },
+    {
+      "title": "Nanoparticle shape optimization to enhance the performance of a thin film solar cell",
+      "conference": "2014 AMEE Workshop on Nanomaterials and Nanodevices (NMND 2014)",
+      "period": "2014.04.26~2014.04.27"
+    },
+    {
+      "title": "Reflector layer design of a thin film solar cell using topology optimization based on the phase field method",
+      "conference": "2014 AMEE Workshop on Nanomaterials and Nanodevices (NMND 2014)",
+      "period": "2014.04.26~2014.04.27"
+    },
+    {
+      "title": "Absorbing Layer Design for Infrared Detectors by Topology Optimization",
+      "conference": "5th Asia Pacific Congress on Computational Mechanics (APCOM 2013)",
+      "period": "2013.12.11~2013.12.14"
+    },
+    {
+      "title": "Grating Structure Design for Refraction to a Desired Direction",
+      "conference": "5th Asia Pacific Congress on Computational Mechanics (APCOM 2013)",
+      "period": "2013.12.11~2013.12.14"
+    },
+    {
+      "title": "Simulation based Ballistic Limit Curve Derivation of an Aluminum Whipple",
+      "conference": "The 8th International Symposium on Impact Engineering",
+      "period": "2013.09.02~2013.09.06"
+    },
+    {
+      "title": "Waveguide Design at Infrared Wavelength with Asymmetric Dielectric Surface Gratings",
+      "conference": "19th International Conference on the Computation of Electromagnetic Fields (Compumag 2013)",
+      "period": "2013.06.30~2013.07.04"
+    },
+    {
+      "title": "Electromagnetic actuation system using Helmholtz pairs for micro-robot locomotion",
+      "conference": "19th International Conference on the Computation of Electromagnetic Fields (Compumag 2013)",
+      "period": "2013.06.30~2013.07.04"
+    },
+    {
+      "title": "Systematic design approach of the thin film solar cells",
+      "conference": "Collaborative Conference on 3D & Materials Research (CC3DMR) 2013",
+      "period": "2013.06.23~2013.06.28"
+    },
+    {
+      "title": "Nano-aperture design for vertical-cavity surface-emitting laser using the shape optimization procedure",
+      "conference": "10th World Congress on Structural and Multidisciplinary Optimization",
+      "period": "2013.05.19~2013.05.24"
+    },
+    {
+      "title": "Optimization of the nanosecond pulsed laser ablation process using finite element analysis",
+      "conference": "10th World Congress on Structural and Multidisciplinary Optimization",
+      "period": "2013.05.19~2013.05.24"
+    },
+    {
+      "title": "Topology optimization of silver nano-particles in this film solar cells",
+      "conference": "10th World Congress on Structural and Multidisciplinary Optimization",
+      "period": "2013.05.19~2013.05.24"
+    },
+    {
+      "title": "Nano-aperture design to enhance optical transmission using the shape optimization procedure",
+      "conference": "META&apos;13 Conference",
+      "period": "2013.03.18~2013.03.22"
+    },
+    {
+      "title": "위상최적설계 기반의 근적외선 저시인성 광 도파로 설계",
+      "conference": "2013 스텔스 기술 학술대회",
+      "period": "2013.02.19~2013.02.19"
+    },
+    {
+      "title": "Efficiency improvement of a thin film solar cell using the surface pasmon effect",
+      "conference": "CODE 2012 Conference",
+      "period": "2012.11.13~2012.11.16"
+    },
+    {
+      "title": "Nano-aperture design in visible frequency range using the GA and the ON/OFF method based topology optimization scheme",
+      "conference": "CEFC 2012",
+      "period": "2012.11.12~2012.11.14"
+    },
+    {
+      "title": "Reflector testuring design of a thin film solar cell in a specific wavelength range using topology optimization",
+      "conference": "CEFC 2012",
+      "period": "2012.11.11~2012.11.14"
+    },
+    {
+      "title": "Shape optimization of flux barriers in IPM synchronous motors",
+      "conference": "CEFC 2012",
+      "period": "2012.11.11~2012.11.14"
+    },
+    {
+      "title": "Topological design of the nano-aperture for high transmission",
+      "conference": "KSME-JSME Joint Symposium on CM & CAE 2012",
+      "period": "2012.09.09~2012.09.12"
+    },
+    {
+      "title": "초고속 충돌시뮬레이션을 이용한 단판의 탄도한계곡선 도출",
+      "conference": "대한기계학회 CAE 및 응용역학 부분 춘계학술대회",
+      "period": "2012.05.10~2012.05.12"
+    },
+    {
+      "title": "표면플라즈몬 효과를 이용한 박막형 태양전지의 효율 향상 연구",
+      "conference": "대한기계학회 CAE 및 응용역학 부분 춘계학술대회",
+      "period": "2012.05.10~2012.05.12"
+    },
+    {
+      "title": "Motors and Actuator IX session chair",
+      "conference": "INTERMAG 2012",
+      "period": "2012.05.07~2012.05.11"
+    },
+    {
+      "title": "Structural optimization of a multi-physics problem considering thermal and magnetic effects",
+      "conference": "INTERMAG 2012",
+      "period": "2012.05.07~2012.05.11"
+    },
+    {
+      "title": "Periodic anti-Reflective Layer Design for the Thin Film Solar Cell using the Topology Optimization Procedure",
+      "conference": "META&apos;12 Conference",
+      "period": "2012.04.18~2012.04.22"
+    },
+    {
+      "title": "Topology Optimization of a Magnetic Actuator Considering Multi-physics Effect",
+      "conference": "7th International Conference on Advanced Materials and Devices",
+      "period": "2011.12.07~2011.12.09"
+    },
+    {
+      "title": "다중목적함수를 이용한 자기 액츄에이터의 위상최적설계",
+      "conference": "대한기계학회 추계학술대회",
+      "period": "2011.11.02~2011.11.04"
+    },
+    {
+      "title": "대한기계학회 추계학술대회 구조설계 세션 좌장",
+      "conference": "대한기계학회 추계학술대회",
+      "period": "2011.11.02~2011.11.04"
+    },
+    {
+      "title": "주기적 경계조건을 고려한 광 흡수층의 위상최적설계",
+      "conference": "대한기계학회 추계학술대회",
+      "period": "2011.11.02~2011.11.04"
+    },
+    {
+      "title": "Structural Design for Improving Surface Plasmon Resonance (SPR) Sensing Performance",
+      "conference": "ASIASENSE 2011",
+      "period": "2011.10.23~2011.10.26"
+    },
+    {
+      "title": "Texturing Design for a Light Trapping System using Topology Optimization",
+      "conference": "18th International Conference on the Computation of Electromagnetic Fields (Compumag 2011)",
+      "period": "2011.07.12~2011.07.15"
+    },
+    {
+      "title": "“Design Optimization of an IPMSM by Topology Optimization based on the Level Set Method",
+      "conference": "18th International Conference on the Computation of Electromagnetic Fields (Compumag 2011)",
+      "period": "2011.07.12~2011.07.15"
+    },
+    {
+      "title": "Hypervelocity Impact Analysis and Optmal Design Using a Coupled Method of Smoothed Particle Hydrodynamics",
+      "conference": "9th World Congress on Structural and Multidisciplinary Optimization",
+      "period": "2011.06.13~2011.06.17"
+    },
+    {
+      "title": "Topology Optimization Using a Genetic Algorithm and On/Off Method for Patch Antenna Design",
+      "conference": "9th World Congress on Structural and Multidisciplinary Optimization",
+      "period": "2011.06.13~2011.06.17"
+    },
+    {
+      "title": "Design of Surface Texture on Back Reflector of Light Trapping System Using Topology Optimization",
+      "conference": "9th World Congress on Structural and Multidisciplinary Optimization",
+      "period": "2011.06.13~2011.06.17"
+    },
+    {
+      "title": "최적설계 및 민감도 해석 I - 세션 좌장",
+      "conference": "대한기계학회 CAE 및 응용역학부분 춘계학술대회",
+      "period": "2011.04.14~2011.04.15"
+    },
+    {
+      "title": "매입형 영구자석 동기기 회전자의 레벨셋 기반 최적설계",
+      "conference": "대한기계학회 CAE 및 응용역학부분 춘계학술대회",
+      "period": "2011.04.14~2011.04.15"
+    },
+    {
+      "title": "박막 태양전지용 배면 반사층의 위상최적 설계",
+      "conference": "대한기계학회 CAE 및 응용역학부분 춘계학술대회",
+      "period": "2011.04.14~2011.04.15"
+    },
+    {
+      "title": "Optimal Shape Design of Magnetic Actuators for Magnetic and Dynamic Characteristic Improvement",
+      "conference": "International Conference of AUMS 2010",
+      "period": "2010.12.05~2010.12.08"
+    },
+    {
+      "title": "유한요소법 기반의 나노초 영역 레이저 제거 과정의 모사",
+      "conference": "대한기계학회 추계학술대회",
+      "period": "2010.11.03~2010.11.05"
+    },
+    {
+      "title": "입자완화 유체동역학(SPH)을 이용한 초고속 충돌해석 및 충격완화판 설계",
+      "conference": "대한기계학회 추계학술대회",
+      "period": "2010.11.03~2010.11.05"
+    },
+    {
+      "title": "강제 대류 조건에서의 열 소산 구조체의 위상 최적화",
+      "conference": "정보저장시스템학회 춘계학술대회",
+      "period": "2010.06.25~2010.06.25"
+    },
+    {
+      "title": "2B3 Topology Optimization1 sesssion chair",
+      "conference": "6th China-Japan-Korea Joint Symposium on Optimization of Structural and Mechanical Systems",
+      "period": "2010.06.22~2010.06.25"
+    },
+    {
+      "title": "Structural Topology Optimization using the Genetic Algorithms for the Improvement of Dynamic and Magnetic Characteristic",
+      "conference": "6th China-Japan-Korea Joint Symposium on Optimization of Structural and Mechanical Systems",
+      "period": "2010.06.22~2010.06.25"
+    },
+    {
+      "title": "Topology Optimization of Magnetic Actuator Considering the Nonlinear Saturation Effect",
+      "conference": "6th China-Japan-Korea Joint Symposium on Optimization of Structural and Mechanical Systems",
+      "period": "2010.06.22~2010.06.25"
+    },
+    {
+      "title": "Topology Optimization in Electromagnetic Fields for Visible/Near Infra-Red Frequency Range",
+      "conference": "2nd International Workshops on Advances in Computational Mechanics",
+      "period": "2010.03.29~2010.03.31"
+    },
+    {
+      "title": "Optimization of magnetization directions in a three dimensional magnetic system",
+      "conference": "11th Joint MMM-Intermag Conference",
+      "period": "2010.01.18~2010.01.22"
+    },
+    {
+      "title": "Grating coupler design of an integrated HAMR head light delevery system using topology optimization",
+      "conference": "11th Joint MMM-Intermag Conference",
+      "period": "2010.01.18~2010.01.22"
+    },
+    {
+      "title": "열보조 자기기록장치용 광도파로의 격자결합구조 위상최적설계",
+      "conference": "대한기계학회 추계학술대회",
+      "period": "2009.11.04~2009.11.06"
+    },
+    {
+      "title": "구조물의 동특성과 자기특성을 고려한 유전알고리즘 기반의 위상최적화",
+      "conference": "대한기계학회 추계학술대회",
+      "period": "2009.11.04~2009.11.06"
+    },
+    {
+      "title": "Simultaneous optimal design of the yoke and the coil in the perpendicular magnetic recording head",
+      "conference": "10th US Congress on Computational Mechanics",
+      "period": "2009.07.16~2009.07.19"
+    },
+    {
+      "title": "DESIGN OF MOVING MAGNET TYPE ACTUATOR CONSIDERING EFFECT OF COIL ELECTROMAGNET",
+      "conference": "IIP/IPSP Joint MIPE 2009",
+      "period": "2009.06.17~2009.06.20"
+    },
+    {
+      "title": "구조설계 및 응용기술2 세션 좌장",
+      "conference": "대한기계학회 CAE 및 응용역학부문 춘계학술대회",
+      "period": "2009.05.14~2009.05.15"
+    },
+    {
+      "title": "실험계획법과 순차적 반응표면법을 이용한 선형 모터의 다중 목적 형상최적설계",
+      "conference": "대한기계학회 CAE 및 응용역학부문 춘계학술대회",
+      "period": "2009.05.14~2009.05.15"
+    },
+    {
+      "title": "적층형 복합재를 이용한 자기장의 조절",
+      "conference": "대한기계학회 CAE 및 응용역학부문 춘계학술대회",
+      "period": "2009.05.14~2009.05.15"
+    },
+    {
+      "title": "Simultaneous optimal design of the yoke and the coil in the perpendicular magnetic recording head",
+      "conference": "IEEE International Magnetic Conference (INTERMAG) 2009",
+      "period": "2009.05.04~2009.05.08"
+    },
+    {
+      "title": "지기기록 헤드의 동시위상최적설계",
+      "conference": "정보저장시스템학회 동계학술대회",
+      "period": "2008.12.18~2008.12.18"
+    },
+    {
+      "title": "코일의 전자석 효과를 고려한 광 디스크 드라이브용 가동자석형 엑츄에이터의 최적 설계",
+      "conference": "정보저장시스템학회 2008년도 동계학술대회",
+      "period": "2008.12.18~2008.12.18"
+    },
+    {
+      "title": "Dynamic characteristics improvement of the plate spring in 2-axis small size actuator",
+      "conference": "Asia-Pacific Data Storage Conference 08",
+      "period": "2008.12.15~2008.12.17"
+    },
+    {
+      "title": "DESIGN OF 3-AXIS MOVING MARGNET TYPE ACTUATOR FOR HIGH-DENSITY OPTICAL DISC",
+      "conference": "2008 ASIA-PACIFIC DATA STORAGE CONFERENCE DIGEST",
+      "period": "2008.12.15~2008.12.18"
+    },
+    {
+      "title": "STRUCTURAL TOPOLOGY OPTIMIZATION OF MAGNETIC ACTUATOR USING GENETIC ALGORITHMS",
+      "conference": "ASIA-PACIFIC DATA STAORAGE CONFERENCE 08",
+      "period": "2008.12.15~2008.12.17"
+    },
+    {
+      "title": "OPTIMAL SHAPE DESIGN OF THE PERPENDICULAR MAGNETIC RECORDING HEAD",
+      "conference": "ASIA-PACIFIC DATA STAORAGE CONFERENCE 08",
+      "period": "2008.12.15~2008.12.17"
+    },
+    {
+      "title": "DEVELOPMENT OF MOVING MAGNET TYPE ACTUATOR FOR OPTICAL DISK DRIVE",
+      "conference": "2008 ASIA-PACIFIC DATA STORAGE CONFERENCE DIGEST",
+      "period": "2008.12.15~2008.12.17"
+    },
+    {
+      "title": "DESIGN OF AN EDDY CURRENT BRAKE SYSTEM USING MICROSTRUCTURES",
+      "conference": "ASIAN MAGNETIC CONFERENCE 2008",
+      "period": "2008.12.10~2008.12.13"
+    },
+    {
+      "title": "자기기록 장치의 위상최적설계",
+      "conference": "대한기계학회 추계학술대회",
+      "period": "2008.11.05~2008.11.07"
+    },
+    {
+      "title": "와전류 브레이크를 위한 영구자석 배열의 설계",
+      "conference": "대한기계학회 추계학술대회",
+      "period": "2008.11.05~2008.11.07"
+    },
+    {
+      "title": "TOPOLOGY OPTIMIZATION OF THE PERMANENT MAGNET TYPE MRI CONSIDERING THE MAGNETIC FIELD HOMOGENEITY",
+      "conference": "JOINT EUROPEAN MAGNETIC SYMPOSIA (JEMS) 08",
+      "period": "2008.09.14~2008.09.19"
+    },
+    {
+      "title": "BRAKE NOISE IMPROVEMENT USING COMPLEX EIGEN-VALUE ANALYSIS AND THE OPTIMAL DESIGN PROCESS",
+      "conference": "4TH ASIAN CONFERENCE ON MULTIBODY DYNAMICS 2008",
+      "period": "2008.08.20~2008.08.23"
+    },
+    {
+      "title": "OPTIMAL DESIGN CONSIDERING THE HOMOGENEITY OF THE MAGNETIC FIELD",
+      "conference": "4TH ASIAN CONFERENCE ON MULTIBODY DYNAMICS 2008",
+      "period": "2008.08.20~2008.08.23"
+    },
+    {
+      "title": "초소형 광디스크 드라이브용 VCM타입 엑추에이터의 열해석",
+      "conference": "정보저장시스템학회 2008년도 하계학술대회",
+      "period": "2008.08.21~2008.08.21"
+    },
+    {
+      "title": "OPTIMAL TOPOLOGY DESIGN OF THE MAGNETIC VALVE SYSTEMS IN AN AUTOMOBILE ENGINE",
+      "conference": "5TH CHINA-JAPAN-KOREA JOINT SYMPOSIUM ON OPTIMIZATION OF STRUCTURAL AND MECHANICAL SYSTEMS",
+      "period": "2008.06.16~2008.06.19"
+    },
+    {
+      "title": "THERMAL ANALYSIS OF ROTARY VCM ACTUATOR FOR SMALL FORM FACTOR OPTICAL DISK DRIVE",
+      "conference": "18TH ANNUAL ASME CONFERENCE ON INFORMATION STORAGE AND PROCESSING SYSTEMS",
+      "period": "2008.06.16~2008.06.17"
+    },
+    {
+      "title": "TOPOLOGY OPTIMIZATION BASED ON THE GENETIC ALGORITHM CONSIDERING THE CONNECTIVITY OF A STRUCTURE",
+      "conference": "5TH CHINA-JAPAN-KOREA JOINT SYMPOSIUM ON OPTIMIZATION OF STRUCTURAL AND MECHANICAL SYSTEMS",
+      "period": "2008.06.16~2008.06.19"
+    },
+    {
+      "title": "반응표면과 실험계획을 이용한 브레이크 응력해석의 하중조건 개선",
+      "conference": "대한기계학회 CAE 및 응용역학부분 춘계학술대회",
+      "period": "2008.04.24~2008.04.25"
+    },
+    {
+      "title": "최적설계법을 이용한 할바 영구자석 배열의 설계",
+      "conference": "대한기계학회 CAE 및 응용역학부분 춘계학술대회",
+      "period": "2008.04.24~2008.04.25"
+    },
+    {
+      "title": "가동자석형 광 픽업 엑츄에이터의 개발",
+      "conference": "정보저장시스템학회 2008년도 동계학술대회",
+      "period": "2008.02.21~2008.02.22"
+    },
+    {
+      "title": "영구자석과 강자성체의 동시 위상최적설계",
+      "conference": "정보저장시스템학회 동계학술대회",
+      "period": "2008.02.14~2008.02.15"
+    },
+    {
+      "title": "(수정해주세요)",
+      "conference": "ASIAN-PACIFIC CONFERENCE ON COMPUTATIONAL MECHANICS 07 MS35-5 SESSION CHAIR",
+      "period": "2007.12.09~2007.12.09"
+    },
+    {
+      "title": "MS35-5 SESSION CHAIR",
+      "conference": "ASIAN-PACIFIC CONFERENCE ON COMPUTATIONAL MECHANICS 07",
+      "period": "2007.12.03~2007.12.06"
+    }
+  ],
+  "fundings": [
+    {
+      "title": "[7차년도]사회지향 기계기술 글로벌 리더 양성 교육연구단",
+      "org": "한국연구재단",
+      "period": "2026-03-01~2027-02-28"
+    },
+    {
+      "title": "[6차년도] 사회지향 기계기술 글로벌 리더 양성 교육연구단",
+      "org": "한국연구재단",
+      "period": "2025-03-01~2026-02-28"
+    },
+    {
+      "title": "[통합이지바로] 머신러닝을 활용한 ICT 기기의 멀티 스케일 구조설계(3/3)",
+      "org": "한국연구재단",
+      "period": "2024-03-01~2025-02-28"
+    },
+    {
+      "title": "[5차년도] 사회지향 기계기술 글로벌 리더 양성 교육연구단",
+      "org": "한국연구재단",
+      "period": "2024-03-01~2025-02-28"
+    },
+    {
+      "title": "[민간/에이치디한국조선해양 주식회사] 선박 Bellmouth 형상 설계 최적화 알고리즘 개발",
+      "org": "국내",
+      "period": "2023-08-01~2025-03-31"
+    },
+    {
+      "title": "[통합이지바로] 머신러닝을 활용한 ICT 기기의 멀티 스케일 구조설계(2/3)",
+      "org": "한국연구재단",
+      "period": "2023-03-01~2024-02-29"
+    },
+    {
+      "title": "[4차년도] 사회지향 기계기술 글로벌 리더 양성 교육연구단",
+      "org": "한국연구재단",
+      "period": "2023-03-01~2024-02-29"
+    },
+    {
+      "title": "[민간/KTE] 1.5MW급 림구동 추진 전동기 기계 구조 설계",
+      "org": "국내",
+      "period": "2022-11-01~2026-12-31"
+    },
+    {
+      "title": "[통합이지바로] 머신러닝을 활용한 ICT 기기의 멀티 스케일 구조설계(1/3)",
+      "org": "한국연구재단",
+      "period": "2022-06-01~2023-02-28"
+    },
+    {
+      "title": "[민간/AOARD] Continuous Fiber-Reinforced Composite Structure Design Using the ML based design method",
+      "org": "국외",
+      "period": "2022-04-11~2024-04-10"
+    },
+    {
+      "title": "[통합이지바로][주관/(주)비갠] 부유식 라이다 시스템 활용을 위한 인공지능 풍황 평가 시스템 개발(1/1)",
+      "org": "정보통신기획평가원(한국연구재단부설)",
+      "period": "2022-04-01~2023-03-31"
+    },
+    {
+      "title": "[3차년도] 사회지향 기계기술 글로벌 리더 양성 교육연구단",
+      "org": "한국연구재단",
+      "period": "2022-03-01~2023-02-28"
+    },
+    {
+      "title": "[RCMS]강원대학교/풍력발전 시스템엔지니어링 핵심기술 고급트랙(3/3, 2단계)",
+      "org": "한국에너지기술평가원",
+      "period": "2022-01-01~2022-12-31"
+    },
+    {
+      "title": "(통합Ezbaro)(후속)다중물질 기반의 5G 대역 전자기파 차폐구조 개발(3/3)(2019.6.1~2022.2.28)",
+      "org": "한국연구재단",
+      "period": "2021-03-01~2022-02-28"
+    },
+    {
+      "title": "[2차년도] 사회지향 기계기술 글로벌 리더 양성 교육연구단",
+      "org": "한국연구재단",
+      "period": "2021-03-01~2022-02-28"
+    },
+    {
+      "title": "[민간/(주)솔루션랩] 해상 풍력 자원 평가를 위한 부유식 라이다 모션 보정 알고리즘 개발",
+      "org": "국내",
+      "period": "2021-02-15~2024-02-14"
+    },
+    {
+      "title": "[RCMS]강원대학교/풍력발전 시스템엔지니어링 핵심기술 고급트랙(2/3, 2단계)",
+      "org": "한국에너지기술평가원",
+      "period": "2021-01-01~2021-12-31"
+    },
+    {
+      "title": "[1차년도] 사회지향 기계기술 글로벌 리더 양성 교육연구단",
+      "org": "한국연구재단",
+      "period": "2020-09-01~2021-02-28"
+    },
+    {
+      "title": "(통합Ezbaro)(후속)다중물질 기반의 5G 대역 전자기파 차폐구조 개발(2/3)(2019.6.1~2022.2.28)",
+      "org": "한국연구재단",
+      "period": "2020-03-01~2021-02-28"
+    },
+    {
+      "title": "[8차년도]사회지향 기계기술 글로벌 리더 양성 사업단",
+      "org": "한국연구재단",
+      "period": "2020-03-01~2020-08-31"
+    },
+    {
+      "title": "[RCMS]강원대학교/풍력발전 시스템엔지니어링 핵심기술 고급트랙(1/3, 2단계)",
+      "org": "한국에너지기술평가원",
+      "period": "2020-01-01~2020-12-31"
+    },
+    {
+      "title": "(후속)다중물질 기반의 5G 대역 전자기파 차폐구조 개발(1/3)(2019.6.1~2022.2.28)",
+      "org": "한국연구재단",
+      "period": "2019-06-01~2020-02-29"
+    },
+    {
+      "title": "마이크로파 대역 메타구조의 설계와 응용(4/4)(2016.6.1~2019.5.31)",
+      "org": "한국연구재단",
+      "period": "2019-03-01~2019-05-31"
+    },
+    {
+      "title": "[7차년도]사회지향 기계기술 글로벌 리더 양성 사업단",
+      "org": "한국연구재단",
+      "period": "2019-03-01~2020-02-29"
+    },
+    {
+      "title": "[RCMS]강원대학교/풍력발전 시스템엔지니어링 핵심기술 고급트랙(2/2,1단계)",
+      "org": "한국에너지기술평가원",
+      "period": "2019-01-01~2019-12-31"
+    },
+    {
+      "title": "[RCMS]강원대학교/풍력발전 시스템엔지니어링 핵심기술 고급트랙(1/2,1단계)",
+      "org": "한국에너지기술평가원",
+      "period": "2018-04-01~2018-12-31"
+    },
+    {
+      "title": "마이크로파 대역 메타구조의 설계와 응용(3/4)(2016.6.1~2019.5.31)",
+      "org": "한국연구재단",
+      "period": "2018-04-01~2019-02-28"
+    },
+    {
+      "title": "[6차년도]사회지향 기계기술 글로벌 리더 양성 사업단",
+      "org": "한국연구재단",
+      "period": "2018-03-01~2019-02-28"
+    },
+    {
+      "title": "마이크로파 대역 메타구조의 설계와 응용(2/3)",
+      "org": "한국연구재단",
+      "period": "2017-06-01~2018-03-31"
+    },
+    {
+      "title": "현대엔지비/생산기술 열변형 해석 기반 물성치 개발",
+      "org": "국내",
+      "period": "2017-04-21~2020-05-20"
+    },
+    {
+      "title": "[5차년도]사회지향 기계기술 글로벌 리더 양성 사업단",
+      "org": "한국연구재단",
+      "period": "2017-03-01~2018-02-28"
+    },
+    {
+      "title": "유전체 단위구조를 이용한 장파장 대역 피탐지 연구",
+      "org": "산하기관",
+      "period": "2016-07-01~2019-12-15"
+    },
+    {
+      "title": "마이크로파 대역 메타구조의 설계와 응용(1/3)",
+      "org": "한국연구재단",
+      "period": "2016-06-01~2017-05-31"
+    },
+    {
+      "title": "(4차년도) 사회지향 기계기술 글로벌 리더 양성 사업단",
+      "org": "한국연구재단",
+      "period": "2016-03-01~2017-02-28"
+    },
+    {
+      "title": "현대엔지비/차체 성능을 고려한 알루미늄 적용 방법론 연구",
+      "org": "국내",
+      "period": "2015-12-01~2017-12-31"
+    },
+    {
+      "title": "적외선 주파수 영역 구조물 설계 기술(2/2,2단계)(2011.5.1~2016.4.30)",
+      "org": "한국연구재단",
+      "period": "2015-05-01~2016-04-30"
+    },
+    {
+      "title": "적외선 주파수 영역 구조물 설계 기술(1/2,2단계)(2011.5.1~2016.4.30)",
+      "org": "한국연구재단",
+      "period": "2014-05-01~2015-04-30"
+    },
+    {
+      "title": "Free-space Cloaking 단위/구조 모델링 및 전산모사",
+      "org": "기타정부기관",
+      "period": "2013-12-06~2016-08-31"
+    },
+    {
+      "title": "적외선 주파수 영역 구조물 설계 기술(3/3)",
+      "org": "한국연구재단",
+      "period": "2013-05-01~2014-04-30"
+    },
+    {
+      "title": "[기초과학연구원/위탁]상온-저온 RF COUPLER 개발 기초 연구(중이온가속기구축사업)",
+      "org": "한국연구재단",
+      "period": "2013-03-01~2013-06-30"
+    },
+    {
+      "title": "적외선 주파수 영역 구조물 설계 기술 (2/3,1단계)",
+      "org": "한국연구재단",
+      "period": "2012-05-01~2013-04-30"
+    },
+    {
+      "title": "(LO-23)국방 피탐지 감소기술 특화연구센터(2/3단계)",
+      "org": "방위사업청",
+      "period": "2012-03-09~2014-12-15"
+    },
+    {
+      "title": "나노마이크로응용기계기술인력양성사업단",
+      "org": "연세대학교",
+      "period": "2012-03-01~2014-02-28"
+    },
+    {
+      "title": "나노 마이크로 응용기계기술 인력양성사업",
+      "org": "학술진흥재단",
+      "period": "2012-03-01~2013-04-30"
+    },
+    {
+      "title": "적외선 주파수 영역 구조물 설계 기술 (1/3,1단계)",
+      "org": "한국과학재단",
+      "period": "2011-05-01~2012-04-30"
+    },
+    {
+      "title": "나노 마이크로 응용기계기술 인력양성사업",
+      "org": "학술진흥재단",
+      "period": "2011-03-01~2012-02-29"
+    },
+    {
+      "title": "나노마이크로응용기계기술인력양성사업단",
+      "org": "연세대학교",
+      "period": "2011-03-01~2012-02-29"
+    },
+    {
+      "title": "저주파수 및 초고주파수 대역 전자기장 내의 구조물 최적설계 및 응용",
+      "org": "한국과학재단",
+      "period": "2011-03-01~2012-02-29"
+    },
+    {
+      "title": "G-5-5-10나노마이크로응용기계기술인력양성사업단",
+      "org": "연세대학교",
+      "period": "2010-03-02~2011-06-30"
+    },
+    {
+      "title": "나노마이크로응용기계기술인력양성사업단",
+      "org": "연세대학교",
+      "period": "2010-03-01~2011-02-28"
+    },
+    {
+      "title": "나노 마이크로 응용기계기술 인력양성사업단",
+      "org": "학술진흥재단",
+      "period": "2010-03-01~2011-02-28"
+    },
+    {
+      "title": "저주파수 및 초고주파수 대역 전자기장 내의 구조물 최적설계 및 응용",
+      "org": "한국과학재단",
+      "period": "2010-03-01~2011-02-28"
+    },
+    {
+      "title": "다중 목적 최적화를 위한 자기장 내의 마이크로-매크로 구조의 설계와 응용",
+      "org": "학술진흥재단",
+      "period": "2009-11-01~2010-10-31"
+    },
+    {
+      "title": "삼성전자(주) 레이저 LCD 미세패턴 가공 Simulation의 타당성 검토에 대한 연구",
+      "org": "민간기업",
+      "period": "2009-08-15~2009-11-15"
+    },
+    {
+      "title": "나노 스케일 가공 및 조작기술 개발과 이를 응용한 차세대 광 정보저장기기 개발",
+      "org": "한국과학재단",
+      "period": "2009-07-01~2010-06-30"
+    },
+    {
+      "title": "저주파수 및 초고주파수 대역 전자기장 내의 구조물 최적설계 및 응용",
+      "org": "한국과학재단",
+      "period": "2009-05-01~2010-02-28"
+    },
+    {
+      "title": "G5-5-10/나노마이크로응용기계기술인력양성사업",
+      "org": "연세대학교",
+      "period": "2009-03-02~2010-06-30"
+    },
+    {
+      "title": "[SM] 국방과학연구소 - 특화연구센터",
+      "org": "연세대학교산학단_간접비",
+      "period": "2009-03-01~2009-07-24"
+    },
+    {
+      "title": "나노마이크로응용기계기술인력양성사업단",
+      "org": "연세대학교",
+      "period": "2009-03-01~2010-02-28"
+    },
+    {
+      "title": "나노마이크로응용기계기술인력양성사업단",
+      "org": "학술진흥재단",
+      "period": "2009-03-01~2010-02-28"
+    },
+    {
+      "title": "삼성전자(주)_캠코더 OIS/AF Unit 개발",
+      "org": "민간기업",
+      "period": "2009-01-01~2010-05-31"
+    },
+    {
+      "title": "다중 목적 최적화를 위한 자기장 내의 마이크로-매크로 구조의 설계와 응용",
+      "org": "학술진흥재단",
+      "period": "2008-11-01~2009-10-31"
+    },
+    {
+      "title": "(주)삼성전기-초소형 복합 ISM 모듈 및 메커니즘 개발",
+      "org": "민간기업",
+      "period": "2008-08-01~2009-12-31"
+    },
+    {
+      "title": "나노 스케일 가공 및 조작기술 개발과 이를 응용한 차세대 광 정보저장기기 개발",
+      "org": "한국과학재단",
+      "period": "2008-07-01~2009-06-30"
+    },
+    {
+      "title": "나노마이크로응용기계기술인력양성사업단",
+      "org": "학술진흥재단",
+      "period": "2008-03-01~2009-02-28"
+    },
+    {
+      "title": "G5-5-10/나노마이크로응용기계기술인력양성사업",
+      "org": "연세대학교",
+      "period": "2008-03-01~2009-02-28"
+    },
+    {
+      "title": "나노마이크로응용기계기술인력양성사업단",
+      "org": "연세대학교",
+      "period": "2008-03-01~2009-02-28"
+    },
+    {
+      "title": "미러박스(MIRROR BOX)개발",
+      "org": "삼성전자(주)",
+      "period": "2008-03-01~2008-12-31"
+    },
+    {
+      "title": "역균질화 설계법에 의한 강자성체의 마이크로 단위 구조의 설계 및 응용",
+      "org": "한국과학재단",
+      "period": "2008-03-01~2009-02-28"
+    },
+    {
+      "title": "자기장의 세기와 균일성을 고려한 영구자석 기반 전자기 시스템의 통합 설계 및 응용",
+      "org": "학술진흥재단",
+      "period": "2007-12-01~2008-11-30"
+    },
+    {
+      "title": "OTIS엘리베이터 MAINTENANCE FRIENDLY DOOR INTERLOCK의 MISALIGNMENT현상의 개선을 위한 자문",
+      "org": "민간기업",
+      "period": "2007-11-06~2007-11-06"
+    },
+    {
+      "title": "OTIS엘리베이터유한회사 MAINTENANCE FRIENDLY DOOR INTERLOCK을 위한 ELECTRO-MAGNETIC COUPLER의 MAGNETIC FORCE ANALYSIS",
+      "org": "민간기업",
+      "period": "2007-07-09~2007-10-08"
+    },
+    {
+      "title": "바이오 정보 시스템용 광 헤드 엑츄에이터 설계 및 제어알고리즘 개발",
+      "org": "한국전자통신연구원",
+      "period": "2007-06-01~2008-05-31"
+    },
+    {
+      "title": "삼성전기 신기능 ISM 모듈 센서 특성 연구",
+      "org": "민간기업",
+      "period": "2007-06-01~2008-05-31"
+    },
+    {
+      "title": "나노/마이크로 응용 기계기술 인력양성사업단",
+      "org": "학술진흥재단",
+      "period": "2007-03-01~2008-02-29"
+    },
+    {
+      "title": "나노/마이크로 응용 기계기술 인력양성사업단",
+      "org": "연세대학교",
+      "period": "2007-03-01~2008-02-29"
+    },
+    {
+      "title": "G5-5-10/나노마이크로응용기계기술인력양성사업",
+      "org": "연세대학교",
+      "period": "2007-03-01~2008-05-31"
+    },
+    {
+      "title": "역균질화 설계법에 의한 강자성체의 마이크로 단위 구조의 설계 및 응용",
+      "org": "한국과학재단",
+      "period": "2007-03-01~2008-02-29"
+    },
+    {
+      "title": "바이오 정보 시스템용 광 헤드 엑츄에이터 설계 및 제어알고리즘 개발",
+      "org": "한국전자통신연구원",
+      "period": "2006-06-01~2007-05-31"
+    },
+    {
+      "title": "가변강성유닛(VARIABLE STIFFNESS UNIT)의 개념 및 최",
+      "org": "한국과학기술연구원",
+      "period": "2006-04-01~2007-03-31"
+    },
+    {
+      "title": "나노 마이크로 응용기계기술 인력양성사업단",
+      "org": "학술진흥재단",
+      "period": "2006-03-01~2007-02-28"
+    },
+    {
+      "title": "나노마이크로응용기계기술인역양성사업단",
+      "org": "연세대학교",
+      "period": "2006-03-01~2007-02-28"
+    },
+    {
+      "title": "역균질화 설계법에 의한 강자성체의 마이크로 단위 구조의 설계 및 응용",
+      "org": "과학재단",
+      "period": "2006-03-01~2007-02-28"
+    },
+    {
+      "title": "전공연계와 교육수준을 고려한 이공계 대학 기초수학 교육과정 개발 (3유형)",
+      "org": "학술진흥재단",
+      "period": "2005-11-01~2006-10-31"
+    },
+    {
+      "title": "엘리베이터 도어 INTERLOCK 을 위한 ELECTRO-MAGNETICCOUPLER의 최적설계",
+      "org": "오티스엘리베이터유한회사",
+      "period": "2005-11-01~2006-10-31"
+    },
+    {
+      "title": "DEVELOPMENT OF SWING ARM ACTUATORS FOR SMALL FORM-FACTOR OPTICAL DISC DRIVES",
+      "org": "HITACHI LTD",
+      "period": "2005-10-01~2006-03-31"
+    },
+    {
+      "title": "DEVELOPMENT OF SWING ARM ACTUATORS FOR SMALL FORM-FACTOR OPTICAL DISC DRIVES",
+      "org": "HITACHI LTD",
+      "period": "2005-04-01~2005-09-30"
+    },
+    {
+      "title": "가변강성유닛(VARIABLE STIFFNESS UNIT)의 최적설계",
+      "org": "한국과학기술연구원",
+      "period": "2005-04-01~2006-03-31"
+    },
+    {
+      "title": "카메라 모듈의 AF/OZ를 위한 초소형 엑추에이터 개발",
+      "org": "국내",
+      "period": "2005-03-01~2006-02-28"
+    },
+    {
+      "title": "ERC/정보저장기기연구센터/1-1공통",
+      "org": "과학재단",
+      "period": "2005-03-01~2006-02-28"
+    },
+    {
+      "title": "ERC/정보저장기기연구센터/1-2세부",
+      "org": "과학재단",
+      "period": "2005-03-01~2006-02-28"
+    },
+    {
+      "title": "컴플라이언트 메카니즘을 이용한 초소형 액추에이터의설계",
+      "org": "학술진흥재단",
+      "period": "2004-12-01~2005-11-30"
+    },
+    {
+      "title": "DEVELOPMENT OF SWING ARM ACTUATORS FOR SMALL FORM-FACTOR OPTICAL DISC DRIVES",
+      "org": "HITACHI LTD",
+      "period": "2004-10-29~2005-10-28"
+    },
+    {
+      "title": "LCD 판넬의 CHUCKING 및 DE-CJUCKING 시의 거동 해석 기술 연구 개발",
+      "org": "삼성전자(주)",
+      "period": "2004-07-01~2004-12-31"
+    },
+    {
+      "title": "정보저장/1총괄2세부_유정훈",
+      "org": "과학재단",
+      "period": "2004-03-01~2005-02-28"
+    },
+    {
+      "title": "초소용 광 정보저장기기용 스윙암 형식의 엑추에이터 개발",
+      "org": "(주)삼성전기",
+      "period": "2004-01-01~2004-12-31"
+    },
+    {
+      "title": "컴플라이언트 메카니즘을 이용한 초소형 액추에이터 의 설계",
+      "org": "학술진흥재단",
+      "period": "2003-12-01~2004-11-30"
+    },
+    {
+      "title": "고속 충돌을 받는 판 구조의 해석 및 최적설계",
+      "org": "과학재단",
+      "period": "2003-09-01~2004-08-31"
+    },
+    {
+      "title": "시뮬레이션에 의한 초정밀 생산장비 이송부-결합부의 동적해석",
+      "org": "삼성전자(주)",
+      "period": "2003-04-01~2004-03-31"
+    },
+    {
+      "title": "정보저장_1총괄2세부 차세대 저장장치 시스템 응용 기술 개발",
+      "org": "과학재단",
+      "period": "2003-03-01~2004-02-28"
+    },
+    {
+      "title": "초소형 광정보저장기기용 픽업 엑추에이터 개발",
+      "org": "(주)삼성전기",
+      "period": "2003-01-01~2003-12-31"
+    },
+    {
+      "title": "고속 충돌을 받는 판 구조의 해석 및 최적설계",
+      "org": "과학재단",
+      "period": "2002-09-01~2003-08-31"
+    },
+    {
+      "title": "최적설계 기법을 이용한 초소형 자기 액추에이터의 설계",
+      "org": "학술진흥재단",
+      "period": "2002-07-01~2003-06-30"
+    },
+    {
+      "title": "BK21사업-산업체대응(대학원 핵심)",
+      "org": "학술진흥재단",
+      "period": "2001-12-01~2002-11-30"
+    },
+    {
+      "title": "BK21사업-학교대응(대학원 핵심)",
+      "org": "학술진흥재단",
+      "period": "2001-12-01~2002-11-30"
+    },
+    {
+      "title": "BK21 사업(대학원 핵심분야)",
+      "org": "학술진흥재단",
+      "period": "2001-12-01~2002-11-30"
+    },
+    {
+      "title": "(B.K)자동차 서스펜션 부품의 구조해석 및 최적설계에관한 연구",
+      "org": "(주)엔지비",
+      "period": "2001-12-01~2002-11-30"
+    },
+    {
+      "title": "고속 충돌을 받는 판 구조의 해석 및 최적 설계",
+      "org": "과학재단",
+      "period": "2001-09-01~2002-08-31"
+    },
+    {
+      "title": "자기장 내 구조물의 위상최적화에 관한 연구",
+      "org": "연세대학교산학단_간접비",
+      "period": "2001-08-01~2002-07-31"
+    },
+    {
+      "title": "BK21사업-산업체대응(대학원 핵심)",
+      "org": "학술진흥재단",
+      "period": "2000-12-01~2001-11-30"
+    },
+    {
+      "title": "BK21사업-학교대응(대학원 핵심)",
+      "org": "학술진흥재단",
+      "period": "2000-12-01~2001-11-30"
+    },
+    {
+      "title": "BK21 사업(대학원 핵심분야)",
+      "org": "학술진흥재단",
+      "period": "2000-12-01~2001-11-30"
+    }
+  ],
+  "patents": [
+    {
+      "title": "단위 금속 패치로 구성된 다중 대역 마이크로 스트립 안테나 및 이의 설계 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2019-12-12"
+    },
+    {
+      "title": "단위 금속 패치로 구성되는 마이크로 스트립 안테나의 설계방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2019-07-22"
+    },
+    {
+      "title": "유전체 전자기파 차폐막",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2016-04-22"
+    },
+    {
+      "title": "전도재료를 포함하지 않는 유전체 전자기파 차폐막",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2015-04-22"
+    },
+    {
+      "title": "전도재료를 포함하지 않는 유전체 전자기파 차폐막",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2015-04-22"
+    },
+    {
+      "title": "음의 푸아송비를 갖는 단위 광결정 구조체, 이를 주기적으로 배열한 복합 광결정 구조체 및 광학 필터.",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2014-07-09"
+    },
+    {
+      "title": "음의 푸아송비를 갖는 단위 광결정 구조체, 이를 주기적으로 배열한 복합 광결정 구조체 및 광학 필터.",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2014-07-09"
+    },
+    {
+      "title": "가변 금속필터판을 포함하는 도파관 필터",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2014-03-12"
+    },
+    {
+      "title": "가변 금속필터판을 포함하는 도파관 필터",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2014-03-12"
+    },
+    {
+      "title": "미러진동 저감장치, 그를 구비한 미러박스 및 이미지 생성 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 삼성전자주식회사",
+      "date": "2009-01-21"
+    },
+    {
+      "title": "자기장 제어 장치 및 그 배열방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2008-08-06"
+    },
+    {
+      "title": "자기장 제어 장치 및 그 배열방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2008-08-06"
+    },
+    {
+      "title": "다중열의 할바 영구자석 배열을 이용한 강성 발생장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2007-11-13"
+    }
+  ]
+}

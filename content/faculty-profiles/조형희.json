@@ -1,0 +1,3230 @@
+{
+  "name": "조형희",
+  "nameEn": "CHO, HYUNG HEE",
+  "email": "hhcho@yonsei.ac.kr",
+  "phone": "02)2123-2828/6548",
+  "office": "Yonsei Engineering Research Park, Room 307",
+  "homepage": "http://Jet.yonsei.ac.kr/",
+  "sourceUrl": "https://me.yonsei.ac.kr/faculty/name_search.do?mode=view&userId=hT04rPEoiwsNGXxdX%2B496w%3D%3D&sosokcd=",
+  "crawledAt": "2026-07-27",
+  "articles": [
+    {
+      "date": "2026-09",
+      "title": "Predicting film-cooling effectiveness of compound-angle holes using a POD-based hybrid deep learning model",
+      "journal": "Aerospace Science and Technology"
+    },
+    {
+      "date": "2026-08",
+      "title": "A semi-transparent strategy for sustainable radiative cooling",
+      "journal": "Nano Energy"
+    },
+    {
+      "date": "2026-07",
+      "title": "On-Chip additive manufacturing for enhanced boiling heat transfer",
+      "journal": "Applied Thermal Engineering"
+    },
+    {
+      "date": "2026-07",
+      "title": "Unsteady thermal–fluid interactions in ribbed rotor–stator cavities: Effects of design parameters and rib rotation",
+      "journal": "International Communications in Heat and Mass Transfer"
+    },
+    {
+      "date": "2026-05",
+      "title": "Experimental investigation of double-wall cooling with lattice structures for gas turbine blades",
+      "journal": "Case Studies in Thermal Engineering"
+    },
+    {
+      "date": "2026-03",
+      "title": "The detrimental impact of surface fouling on the critical heat flux of microstructures in boiling heat transfer",
+      "journal": "Applied Thermal Engineering"
+    },
+    {
+      "date": "2026-01",
+      "title": "Direction-Selective Energy Control Using Thermal Lens",
+      "journal": "Advanced Materials"
+    },
+    {
+      "date": "2026-01",
+      "title": "Enhanced external wall cooling using pyramid-shaped fins in double-wall cooling of gas turbine blade",
+      "journal": "Applied Thermal Engineering"
+    },
+    {
+      "date": "2025-12",
+      "title": "Thermal performance degradation induced by transition piece wall thickening in gas turbine",
+      "journal": "Energy"
+    },
+    {
+      "date": "2025-12",
+      "title": "Optimization of film cooling hole using Genetic algorithm for enhanced turbine endwall cooling performance",
+      "journal": "Energy"
+    },
+    {
+      "date": "2025-11",
+      "title": "Discrete slot design for turbine blade tip cooling: A comparative study with continuous slot",
+      "journal": "International Communications in Heat and Mass Transfer"
+    },
+    {
+      "date": "2025-11",
+      "title": "Effect of surfactant on boiling heat transfer of structured surfaces",
+      "journal": "International Journal of Heat and Mass Transfer"
+    },
+    {
+      "date": "2025-10",
+      "title": "Fin effect enables self-controlled growth of nanowires",
+      "journal": "RSC ADVANCES"
+    },
+    {
+      "date": "2025-09",
+      "title": "PIV visualization and CFD analysis of thermal-hydraulic performance in printed circuit heat exchangers with zigzag channels",
+      "journal": "Case Studies in Thermal Engineering"
+    },
+    {
+      "date": "2025-09",
+      "title": "Hydrodynamic characterization of cathodic flooding in proton exchange membrane fuel cell using a modified Euler number",
+      "journal": "Journal of Power Sources"
+    },
+    {
+      "date": "2025-08",
+      "title": "Effects of transition piece wall and misalignment on endwall cooling performance in gas turbines",
+      "journal": "International Communications in Heat and Mass Transfer"
+    },
+    {
+      "date": "2025-06",
+      "title": "Genetic algorithm-based optimal film cooling design for gas turbine endwalls under real operating conditions",
+      "journal": "Physics of Fluids"
+    },
+    {
+      "date": "2025-06",
+      "title": "Bubble dangling phenomenon and heat transfer characteristic investigations of printed-nanowires in saturated flow boiling",
+      "journal": "Applied Thermal Engineering"
+    },
+    {
+      "date": "2025-03",
+      "title": "Detailed heat and mass transfer of rotor-stator systems with radial rib structures on the rotating disk",
+      "journal": "International Communications in Heat and Mass Transfer"
+    },
+    {
+      "date": "2025-02",
+      "title": "Enhanced cooling design for shelf squealer tips of turbine blade using rim opening",
+      "journal": "International Communications in Heat and Mass Transfer"
+    },
+    {
+      "date": "2025-01",
+      "title": "3D-Printed vapor guiding structures for enhanced pool boiling heat transfer",
+      "journal": "International Journal of Mechanical Sciences"
+    },
+    {
+      "date": "2025-01",
+      "title": "Enhancing pool boiling heat transfer performance via deposition of nanoparticles with different sizes on micropillar surfaces",
+      "journal": "International Communications in Heat and Mass Transfer"
+    },
+    {
+      "date": "2025-01",
+      "title": "Multispectral pattern camouflage materials based on PU/Al-flake composite: A CNN-based evaluation",
+      "journal": "Applied Surface Science"
+    },
+    {
+      "date": "2024-12",
+      "title": "비행 시나리오에 의한 미사일 레이돔의 열전달 특성",
+      "journal": "한국전산구조공학회논문집"
+    },
+    {
+      "date": "2024-12",
+      "title": "Thermal network for breeding blanket analysis and design in fusion reactor",
+      "journal": "International Journal of Heat and Mass Transfer"
+    },
+    {
+      "date": "2024-11",
+      "title": "Active adaptation in infrared and visible vision through multispectral thermal Lens",
+      "journal": "International Communications in Heat and Mass Transfer"
+    },
+    {
+      "date": "2024-11",
+      "title": "Enhanced cooling performance of blade tip slot cooling: Effect of slot open length",
+      "journal": "International Communications in Heat and Mass Transfer"
+    },
+    {
+      "date": "2024-10",
+      "title": "에어포일 형상이 적용된 교차유동 유량 변화에 따른가스터빈 림 씰 기밀 성능 수치해석 연구",
+      "journal": "한국추진공학회지"
+    },
+    {
+      "date": "2024-10",
+      "title": "Effect of profiled endwall on nozzle guide vane with coolant purge flow",
+      "journal": "Case Studies in Thermal Engineering"
+    },
+    {
+      "date": "2024-10",
+      "title": "Thermal design for enhanced temperature uniformity on spark plasma sintering device",
+      "journal": "Finite Elements in Analysis and Design"
+    },
+    {
+      "date": "2024-09",
+      "title": "Heat transfer measurement near injection hole of supersonic nozzle with a sonic jet injection",
+      "journal": "Aerospace Science and Technology"
+    },
+    {
+      "date": "2024-09",
+      "title": "Heat transfer on secondary injection surface with backward-facing step influenced by hole location in supersonic flow field",
+      "journal": "International Communications in Heat and Mass Transfer"
+    },
+    {
+      "date": "2024-09",
+      "title": "Effect of Misalignment at the Flat and Profiled Endwall of Nozzle Guide Vane on Heat Transfer",
+      "journal": "International Journal of Heat and Mass Transfer"
+    },
+    {
+      "date": "2024-07",
+      "title": "Two-Phase Particle Image Velocimetry Visualization of Rewetting Flow on the Micropillar Interfacial Surface",
+      "journal": "ACS Applied Materials & Interfaces"
+    },
+    {
+      "date": "2024-07",
+      "title": "Machine learning-assisted effective thermal management of rotor-stator systems",
+      "journal": "Energy"
+    },
+    {
+      "date": "2024-06",
+      "title": "Experimental study on flow boiling heat transfer performance of nanowire-printed substrates with porous-like structures",
+      "journal": "Applied Thermal Engineering"
+    },
+    {
+      "date": "2024-05",
+      "title": "Thermal design of operating parameter for reliable AlSi7Mg selective laser melting",
+      "journal": "Journal of Materials Research and Technology"
+    },
+    {
+      "date": "2024-04",
+      "title": "Visibly Transparent Multifunctional Metascreen for Tunable Infrared Coloration and Microwave Transmission",
+      "journal": "Laser and Photonics Reviews"
+    },
+    {
+      "date": "2024-04",
+      "title": "Experimental investigation on heat transfer of an impinging jet of supercritical CO2 and comparison with liquid and gaseous CO2",
+      "journal": "International Communications in Heat and Mass Transfer"
+    },
+    {
+      "date": "2024-04",
+      "title": "Surface roughening and hemi-wicking: Synergistic impact on flow boiling",
+      "journal": "International Journal of Mechanical Sciences"
+    },
+    {
+      "date": "2024-03",
+      "title": "Multiresonant Selective Emitter with Enhanced Thermal Management for Infrared Camouflage",
+      "journal": "ACS Applied Materials & Interfaces"
+    },
+    {
+      "date": "2024-02",
+      "title": "Effect of nanobubbles on powder morphology in the spray drying process",
+      "journal": "Journal of Dairy Science"
+    },
+    {
+      "date": "2024-01",
+      "title": "핵융합로 증식 블랑켓 냉각 충돌제트의 유동 및 열전달 특성 연구",
+      "journal": "대한기계학회논문집 B"
+    },
+    {
+      "date": "2024-01",
+      "title": "Design and fabrication of heat pipes using additive manufacturing for thermal management",
+      "journal": "Applied Thermal Engineering"
+    },
+    {
+      "date": "2023-12",
+      "title": "Minimization of Aircraft Infrared Susceptibility in Three-Dimensional Space Through Signature Synchronization",
+      "journal": "IEEE TRANSACTIONS ON AEROSPACE AND ELECTRONIC SYSTEMS"
+    },
+    {
+      "date": "2023-11",
+      "title": "Flexible Metasurface for Microwave-Infrared Compatible Camouflage via Particle Swarm Optimization Algorithm",
+      "journal": "Small"
+    },
+    {
+      "date": "2023-09",
+      "title": "Free-standing nanowire printed surfaces with high variability in substrate selection for boiling heat transfer enhancement",
+      "journal": "International Journal of Heat and Mass Transfer"
+    },
+    {
+      "date": "2023-07",
+      "title": "Temperature-dependent wicking dynamics and its effects on critical heat flux on micropillar structures in pool boiling heat transfer",
+      "journal": "International Communications in Heat and Mass Transfer"
+    },
+    {
+      "date": "2023-07",
+      "title": "Effects of staggered dimple array under different flow conditions for enhancing cooling performance of solar systems",
+      "journal": "Applied Energy"
+    },
+    {
+      "date": "2023-07",
+      "title": "Superbiphilic patterned nanowires with wicking for enhanced pool boiling heat transfer",
+      "journal": "International Journal of Mechanical Sciences"
+    },
+    {
+      "date": "2023-06",
+      "title": "박스형 미익의 수평 위치와 너비에 따른 BWB 비행체의 공력 및 세로 정안정성 분석",
+      "journal": "Journal of The Korean Society Aeronautical and Space Sciences"
+    },
+    {
+      "date": "2023-06",
+      "title": "Investigation on microstructure evolution of iron-based alloy via synchronous powder-feeding underwater laser additive",
+      "journal": "Materials & Design"
+    },
+    {
+      "date": "2023-05",
+      "title": "차단구조가 적용된 파형 배열충돌제트의 유동 및 열전달 특성",
+      "journal": "Transactions of the KSME, B"
+    },
+    {
+      "date": "2023-05",
+      "title": "Local heat and mass transfer in a rotor-stator system with hub inflow: Thermal boundary layer and superposition effect",
+      "journal": "International Communications in Heat and Mass Transfer"
+    },
+    {
+      "date": "2023-05",
+      "title": "Heat/mass transfer augmentation in a leading-edge channel with extended ribs",
+      "journal": "International Communications in Heat and Mass Transfer"
+    },
+    {
+      "date": "2023-04",
+      "title": "Effect of Componential Camouflage on Aircraft&apos;s IR Multiband Susceptibility",
+      "journal": "IEEE Transactions on Aerospace and Electronic Systems"
+    },
+    {
+      "date": "2023-04",
+      "title": "열회로망을 이용한 판형 히트 파이프 열전달 성능 예측",
+      "journal": "Transactions of the KSME, B"
+    },
+    {
+      "date": "2023-02",
+      "title": "Numerical evaluation of a new impingement cooling scheme with a separate return-channel applied to turbine blade leading edge",
+      "journal": "Applied Thermal Engineering"
+    },
+    {
+      "date": "2023-02",
+      "title": "Augmented cooling performance in gas turbine blade tip with slot cooling",
+      "journal": "International Journal of Heat and Mass Transfer"
+    },
+    {
+      "date": "2023-02",
+      "title": "Uniform impingement heat transfer distribution in corrugated channel with an anti-crossflow-wing",
+      "journal": "INTERNATIONAL JOURNAL OF HEAT AND MASS TRANSFER"
+    },
+    {
+      "date": "2023-01",
+      "title": "Durable camouflage materials by polyimide nanofilm with thermal management",
+      "journal": "Applied Surface Science"
+    },
+    {
+      "date": "2023-01",
+      "title": "Enhancement of blade tip cooling with different position on tip cooling slot",
+      "journal": "INTERNATIONAL JOURNAL OF HEAT AND MASS TRANSFER"
+    },
+    {
+      "date": "2022-11",
+      "title": "Enhanced boiling heat transfer by nucleation patterning with self-assembly of re duce d graphene oxide coating",
+      "journal": "INTERNATIONAL JOURNAL OF HEAT AND MASS TRANSFER"
+    },
+    {
+      "date": "2022-06",
+      "title": "Multispectral Optical Confusion System: Visible to Infrared Coloration with Fractal Nanostructures",
+      "journal": "ACS Applied Materials and Interfaces"
+    },
+    {
+      "date": "2022-06",
+      "title": "레이돔 표면에 금속 나노코팅을 적용한 적외선 저피탐 성능특성 연구",
+      "journal": "한국군사과학기술학회지"
+    },
+    {
+      "date": "2022-06",
+      "title": "Unidirectional wicking-driven flow boiling on tilted pillar structures for high-power applications",
+      "journal": "INTERNATIONAL JOURNAL OF HEAT AND MASS TRANSFER"
+    },
+    {
+      "date": "2022-04",
+      "title": "Effect of profiled endwall on heat transfer under different turbulence intensitie",
+      "journal": "INTERNATIONAL COMMUNICATIONS IN HEAT AND MASS TRANSFER"
+    },
+    {
+      "date": "2022-04",
+      "title": "Energy-efficient design of dual circulating fluidized bed system for CCUS by multi-tube configuration with junctions",
+      "journal": "ENERGY"
+    },
+    {
+      "date": "2022-03",
+      "title": "Active cooling of photovoltaic (PV) cell by acoustic excitation in single-dimpled internal channel",
+      "journal": "APPLIED ENERGY"
+    },
+    {
+      "date": "2022-03",
+      "title": "Heat Transfer Measurements for Array Jet Impingement With Castellated Wall",
+      "journal": "JOURNAL OF TURBOMACHINERY-TRANSACTIONS OF THE ASME"
+    },
+    {
+      "date": "2022-02",
+      "title": "가스터빈 회전부 림 씰 두께 증가에 따른 씰링 효율 변화에 대한 수치해석 연구",
+      "journal": "한국추진공학회지"
+    },
+    {
+      "date": "2022-01",
+      "title": "Surfaces with bent micro-polymerized pillars exhibit enhanced heat transfer during subcooled flow boiling",
+      "journal": "INTERNATIONAL JOURNAL OF HEAT AND MASS TRANSFER"
+    },
+    {
+      "date": "2021-12",
+      "title": "초음속 항공기 전방위 탐지각도에 따른 적외선 피격성 분석",
+      "journal": "한국군사과학기술학회지"
+    },
+    {
+      "date": "2021-12",
+      "title": "Measurement of surface heat transfer caused by interaction of sonic jet and supersonic crossflow near injection hole",
+      "journal": "AEROSPACE SCIENCE AND TECHNOLOGY"
+    },
+    {
+      "date": "2021-12",
+      "title": "Effects of tip-bleed holes on two-pass channel on heat transfer with various aspect ratios",
+      "journal": "Case Studies in Thermal Engineering"
+    },
+    {
+      "date": "2021-11",
+      "title": "Thermoelectric behaviors of ZnO mesoporous thin films affected by strain induced from the different dopants radii (Al, Ga, and In)",
+      "journal": "APPLIED PHYSICS LETTERS"
+    },
+    {
+      "date": "2021-11",
+      "title": "Local heat/mass transfer of array jet impingement cooling with pin-fin heat sinks",
+      "journal": "IEEE TRANSACTIONS ON COMPONENTS PACKAGING AND MANUFACTURING TECHNOLOGY"
+    },
+    {
+      "date": "2021-10",
+      "title": "Measurement of heat/mass transfer at second stage vane endwall according to step heights",
+      "journal": "JOURNAL OF MECHANICAL SCIENCE AND TECHNOLOGY"
+    },
+    {
+      "date": "2021-10",
+      "title": "Unsteady hot gas ingestion through the double rim-seals of an axial gas turbine",
+      "journal": "INTERNATIONAL JOURNAL OF MECHANICAL SCIENCES"
+    },
+    {
+      "date": "2021-10",
+      "title": "Delta-Winglet-Pair for Enhancing Cooling Performance of a Single Dimple Imprinted Internal Channel",
+      "journal": "INTERNATIONAL JOURNAL OF HEAT AND MASS TRANSFER"
+    },
+    {
+      "date": "2021-10",
+      "title": "Effect of shelf squealer tip configuration on aerothermal performance of gas turbine blade",
+      "journal": "INTERNATIONAL JOURNAL OF THERMAL SCIENCES"
+    },
+    {
+      "date": "2021-09",
+      "title": "Flexible Thermocamouflage Materials in Supersonic Flowfields with Selective Energy Dissipation",
+      "journal": "ACS APPLIED MATERIALS & INTERFACES"
+    },
+    {
+      "date": "2021-08",
+      "title": "가스터빈 블레이드의 얇은 벽에서의 팬 형상 홀 최적화",
+      "journal": "한국추진공학회지"
+    },
+    {
+      "date": "2021-08",
+      "title": "Impingement/effusion cooling with a hollow cylinder structure for additive manufacturing: Effect of channel gap height",
+      "journal": "INTERNATIONAL JOURNAL OF HEAT AND MASS TRANSFER"
+    },
+    {
+      "date": "2021-07",
+      "title": "Wake effects on heat transfer from a turbine blade tip with different configurations and its corresponding shroud",
+      "journal": "INTERNATIONAL COMMUNICATIONS IN HEAT AND MASS TRANSFER"
+    },
+    {
+      "date": "2021-07",
+      "title": "Transparent Metamaterials for Multispectral Camouflage with Thermal Management",
+      "journal": "INTERNATIONAL JOURNAL OF HEAT AND MASS TRANSFER"
+    },
+    {
+      "date": "2021-07",
+      "title": "Heat transfer from a dimple-imprint downstream of boundary-layer trip-wire",
+      "journal": "INTERNATIONAL JOURNAL OF HEAT AND MASS TRANSFER"
+    },
+    {
+      "date": "2021-05",
+      "title": "Efficient design of heat exchange for CFB reactors in CO2 capture system regarding geometry-induced secondary flow",
+      "journal": "ENERGY CONVERSION AND MANAGEMENT"
+    },
+    {
+      "date": "2021-05",
+      "title": "Effects of seal installation in the mid-passage gap between turbine blade platforms on film cooling",
+      "journal": "APPLIED THERMAL ENGINEERING"
+    },
+    {
+      "date": "2021-05",
+      "title": "Effect of misalignment at 2nd vane endwall on heat transfer with purge flow",
+      "journal": "INTERNATIONAL JOURNAL OF HEAT AND MASS TRANSFER"
+    },
+    {
+      "date": "2021-04",
+      "title": "가스터빈 베인 후류에 의한 슈라우드면 열전달 특성",
+      "journal": "Transactions of the Korean Society of Mechanical Engineers, B"
+    },
+    {
+      "date": "2021-03",
+      "title": "가스터빈 블레이드 삼각 내부 냉각 유로 종횡비에 따른 열전달 특성",
+      "journal": "Transactions of the Korean Society of Mechanical Engineers, B"
+    },
+    {
+      "date": "2021-03",
+      "title": "Film cooling characteristics on blade platform with a leakage flow through mid-passage gap",
+      "journal": "INTERNATIONAL JOURNAL OF HEAT AND MASS TRANSFER"
+    },
+    {
+      "date": "2021-01",
+      "title": "가스터빈 블레이드 내부 배열별 핀-휜 지름 변경에 따른 냉각 성능 특성 변화",
+      "journal": "Transactions of the Korean Society of Mechanical Engineers, B"
+    },
+    {
+      "date": "2021-01",
+      "title": "가스터빈 블레이드 전연부 필렛 적용에 따른 유동 및 열전달 특성 분석",
+      "journal": "Transactions of the Korean Society of Mechanical Engineers, B"
+    },
+    {
+      "date": "2021-01",
+      "title": "Enhancement of flow boiling heat transfer using heterogeneous wettability patterned surfaces with varying inter-spacing",
+      "journal": "INTERNATIONAL JOURNAL OF HEAT AND MASS TRANSFER"
+    },
+    {
+      "date": "2020-12",
+      "title": "고도 변화에 따른 전투기 적외선 신호 최소 조건 분석",
+      "journal": "한국전산구조공학회논문집"
+    },
+    {
+      "date": "2020-11",
+      "title": "원형 실린더 전단에 분절 핀 설치에 따른 바닥면의 유동 및 열전달 특성 연구",
+      "journal": "Transactions of the Korean Society of Mechanical Engineers, B"
+    },
+    {
+      "date": "2020-10",
+      "title": "가스터빈 2단 베인 슈라우드면 필렛 크기 변화에 따른 효과 분석",
+      "journal": "한국유체기계학회 논문집"
+    },
+    {
+      "date": "2020-10",
+      "title": "Neural-Network-Assisted Optimization of Rectangular Channels with Intersecting Ribs for Enhanced Thermal Performance",
+      "journal": "Heat Transfer Engineering"
+    },
+    {
+      "date": "2020-08",
+      "title": "Effect of Various Coolant Mass Flow Rates on Sealing Effectiveness of Turbine Blade Rim Seal at First Stage Gas Turbine Experimental Facility",
+      "journal": "ENERGIES"
+    },
+    {
+      "date": "2020-07",
+      "title": "Impingement/effusion cooling with a hollow cylinder structure for additive manufacturing",
+      "journal": "INTERNATIONAL JOURNAL OF HEAT AND MASS TRANSFER"
+    },
+    {
+      "date": "2020-05",
+      "title": "4차 산업혁명 시대 기계공학 분야 엔지니어에게 필요한 역량과교육에 관한 델파이 연구",
+      "journal": "공학교육연구"
+    },
+    {
+      "date": "2020-05",
+      "title": "가스터빈 블레이드 전연면 내부 유로 요철 형상에 따른 열전달 특성 연구",
+      "journal": "Transactions of the Korean Society of Mechanical Engineers, B"
+    },
+    {
+      "date": "2020-05",
+      "title": "Thermal design of dual circulating fluidized bed reactors for a large-scale CO2 capture system",
+      "journal": "APPLIED THERMAL ENGINEERING"
+    },
+    {
+      "date": "2020-04",
+      "title": "Enhanced boiling heat transfer on micro-structured surfaces via ultrasonic actuation",
+      "journal": "INTERNATIONAL COMMUNICATIONS IN HEAT AND MASS TRANSFER"
+    },
+    {
+      "date": "2020-02",
+      "title": "Effects of Wakes on Blade Endwall Heat Transfer in High Turbulence Intensity",
+      "journal": "JOURNAL OF TURBOMACHINERY-TRANSACTIONS OF THE ASME"
+    },
+    {
+      "date": "2020-02",
+      "title": "터빈 1단 베인 엔드월에서 막냉각 홀 배열에 따른 막냉각 특성 변화",
+      "journal": "한국추진공학회지"
+    },
+    {
+      "date": "2020-02",
+      "title": "Multiple Resonance Metamaterial Emitter for Deception of Infrared Emission with Enhanced Energy Dissipation",
+      "journal": "ACS APPLIED MATERIALS & INTERFACES"
+    },
+    {
+      "date": "2019-12",
+      "title": "Enhanced nucleate boiling using a reduced graphene oxide-coated micropillar",
+      "journal": "INTERNATIONAL COMMUNICATIONS IN HEAT AND MASS TRANSFER"
+    },
+    {
+      "date": "2019-12",
+      "title": "Effects of radiative local heating on metal solidification during selective laser melting for additive manufacturing",
+      "journal": "APPLIED SURFACE SCIENCE"
+    },
+    {
+      "date": "2019-09",
+      "title": "Ti doping effects on the Seebeck coefficient and electrical conductivity of mesoporous ZnO thin film",
+      "journal": "MATERIALS CHEMISTRY AND PHYSICS"
+    },
+    {
+      "date": "2019-08",
+      "title": "Effect of temperature dependent material properties on thermoelastic damping in thin beams",
+      "journal": "INTERNATIONAL JOURNAL OF HEAT AND MASS TRANSFER"
+    },
+    {
+      "date": "2019-08",
+      "title": "Enhanced thermal uniformity and stability in pool boiling heat transfer using ultrasonic actuation",
+      "journal": "INTERNATIONAL COMMUNICATIONS IN HEAT AND MASS TRANSFER"
+    },
+    {
+      "date": "2019-06",
+      "title": "Temperature Effects on Electromechanical Response of Deposited Piezoelectric Sensors Used in Structural Health Monitoring of Aerospace Structures",
+      "journal": "SENSORS"
+    },
+    {
+      "date": "2019-06",
+      "title": "Metamaterial-Selective Emitter for Maximizing Infrared Camouflage Performance with Energy Dissipation",
+      "journal": "ACS APPLIED MATERIALS & INTERFACES"
+    },
+    {
+      "date": "2019-03",
+      "title": "Heat Transfer and Its Innovative Applications",
+      "journal": "Inventions"
+    },
+    {
+      "date": "2019-03",
+      "title": "Hierarchical Metamaterials for Multispectral Camouflage of Infrared and Microwaves",
+      "journal": "ADVANCED FUNCTIONAL MATERIALS"
+    },
+    {
+      "date": "2018-11",
+      "title": "Enhancement of cooling performance of a helium-cooled divertor through the addition of rib structures on the jet-impingement area",
+      "journal": "FUSION ENGINEERING AND DESIGN"
+    },
+    {
+      "date": "2018-11",
+      "title": "Nozzle-to-target distance effect on the cooling performances of a jet-impingement helium-cooled divertor",
+      "journal": "FUSION ENGINEERING AND DESIGN"
+    },
+    {
+      "date": "2018-10",
+      "title": "Effects of unsteady wakes on heat transfer of blade tip and shroud",
+      "journal": "INTERNATIONAL COMMUNICATIONS IN HEAT AND MASS TRANSFER"
+    },
+    {
+      "date": "2018-10",
+      "title": "Enhanced Boiling Heat Transfer using Self-Actuated Nanobimorphs",
+      "journal": "NANO LETTERS"
+    },
+    {
+      "date": "2018-09",
+      "title": "Design of multilayer ring emitter based on metamaterial for thermophotovoltaic applications",
+      "journal": "ENERGIES"
+    },
+    {
+      "date": "2018-08",
+      "title": "Characterization of mesoporous silica thin films for application to thermal isolation layer",
+      "journal": "THIN SOLID FILMS"
+    },
+    {
+      "date": "2018-08",
+      "title": "Study of the effect of stress/strain of mesoporous Al-doped ZnO thin films on thermoelectric properties",
+      "journal": "SOLID STATE SCIENCES"
+    },
+    {
+      "date": "2018-08",
+      "title": "Pt-decorated SnO2 nanotubes prepared directly on a conducting substrate and their application in solar energy conversion using a solid polymer electrolyte",
+      "journal": "APPLIED SURFACE SCIENCE"
+    },
+    {
+      "date": "2018-07",
+      "title": "Effect of mesopore-induced strain/stress on the thermoelectric properties of mesoporous ZnO thin films",
+      "journal": "APPLIED SURFACE SCIENCE"
+    },
+    {
+      "date": "2018-06",
+      "title": "Heat Transfer Characteristics of a Focused Surface Acoustic Wave (F-SAW) Device for Interfacial Droplet Jetting",
+      "journal": "Inventions"
+    },
+    {
+      "date": "2018-06",
+      "title": "Zirconia-based alumina compound aerogels with enhanced mesopore structure",
+      "journal": "CERAMICS INTERNATIONAL"
+    },
+    {
+      "date": "2018-05",
+      "title": "Effect of the wake on the heat transfer of a turbine blade endwall according to relative position of the cylindrical rod",
+      "journal": "INTERNATIONAL COMMUNICATIONS IN HEAT AND MASS TRANSFER"
+    },
+    {
+      "date": "2018-05",
+      "title": "Enhanced boiling heat transfer on nanowire-forested surfaces under subcooling conditions",
+      "journal": "INTERNATIONAL JOURNAL OF HEAT AND MASS TRANSFER"
+    },
+    {
+      "date": "2018-02",
+      "title": "Effect of the injection angle on local heat transfer in a showerhead cooling with array impingement jets",
+      "journal": "INTERNATIONAL JOURNAL OF THERMAL SCIENCES"
+    },
+    {
+      "date": "2018-02",
+      "title": "Enhancing thermal stability and uniformity in boiling heat transfer using micro-nano hybrid surfaces (MNHS)",
+      "journal": "APPLIED THERMAL ENGINEERING"
+    },
+    {
+      "date": "2018-01",
+      "title": "Effect of differentiated textural properties of tin oxide aerogels on anode performance in lithium-ion batteries",
+      "journal": "JOURNAL OF ALLOYS AND COMPOUNDS"
+    },
+    {
+      "date": "2018-01",
+      "title": "Enhancement of Seebeck coefficient of mesoporous SrTiO3 with V-group elements V, Nb, and Ta substituted for Ti",
+      "journal": "JOURNAL OF THE EUROPEAN CERAMIC SOCIETY"
+    },
+    {
+      "date": "2017-12",
+      "title": "Optimization of the Heating Element in a Gas-Gas Heater Using an Integrated Analysis Model",
+      "journal": "ENERGIES"
+    },
+    {
+      "date": "2017-12",
+      "title": "Improvement in the high temperature thermal insulation performance of Y<inf>2</inf>O<inf>3</inf> opacified silica aerogels",
+      "journal": "JOURNAL OF ALLOYS AND COMPOUNDS"
+    },
+    {
+      "date": "2017-12",
+      "title": "Thermal convection in a Kuvshiniski viscoelastic nanofluid saturated porous layer",
+      "journal": "Ain Shams Engineering Journal"
+    },
+    {
+      "date": "2017-11",
+      "title": "Effect of impingement jet on the full-coverage film cooling system with double layered wall",
+      "journal": "EXPERIMENTAL HEAT TRANSFER"
+    },
+    {
+      "date": "2017-11",
+      "title": "Heat transfer and gas-solid behaviors in pneumatic transport reactor used of carbon capture system",
+      "journal": "JOURNAL OF MECHANICAL SCIENCE AND TECHNOLOGY"
+    },
+    {
+      "date": "2017-10",
+      "title": "Experimental study on heat transfer performance of a two-phase single thermosyphon using HFE-7100",
+      "journal": "JOURNAL OF MECHANICAL SCIENCE AND TECHNOLOGY"
+    },
+    {
+      "date": "2017-09",
+      "title": "Thermal-fluid characteristics on near wall of gas-solid fluidized bed reactor",
+      "journal": "INTERNATIONAL JOURNAL OF HEAT AND MASS TRANSFER"
+    },
+    {
+      "date": "2017-09",
+      "title": "Hydrophobic silica composite aerogels using poly(methyl methacrylate) by rapid supercritical extraction process",
+      "journal": "JOURNAL OF SOL-GEL SCIENCE AND TECHNOLOGY"
+    },
+    {
+      "date": "2017-09",
+      "title": "Upstream wake effect on flow and heat transfer characteristics at an endwall of first-stage blade of a gas turbine",
+      "journal": "EXPERIMENTAL THERMAL AND FLUID SCIENCE"
+    },
+    {
+      "date": "2017-08",
+      "title": "Design of sister hole arrangements to reduce kidney vortex for film cooling enhancement",
+      "journal": "JOURNAL OF MECHANICAL SCIENCE AND TECHNOLOGY"
+    },
+    {
+      "date": "2017-08",
+      "title": "Effect of an unsteady wake on the external heat transfer of 2nd stage rotor",
+      "journal": "INTERNATIONAL JOURNAL OF HEAT AND MASS TRANSFER"
+    },
+    {
+      "date": "2017-08",
+      "title": "Effect of cationic and non-ionic surfactants on the microstructure of ambient pressure dried zirconia aerogel",
+      "journal": "MATERIALS EXPRESS"
+    },
+    {
+      "date": "2017-07",
+      "title": "Thermal performance in a rotating two-passage channel with various turning guide vanes",
+      "journal": "JOURNAL OF MECHANICAL SCIENCE AND TECHNOLOGY"
+    },
+    {
+      "date": "2017-07",
+      "title": "Flexible, elastic, and superhydrophobic silica-polymer composite aerogels by high internal phase emulsion process",
+      "journal": "COMPOSITES SCIENCE AND TECHNOLOGY"
+    },
+    {
+      "date": "2017-07",
+      "title": "Effect of mesoporous structure on the Seebeck coefficient and electrical properties of SrTi0.8Nb0.2O3",
+      "journal": "APPLIED SURFACE SCIENCE"
+    },
+    {
+      "date": "2017-05",
+      "title": "Enhancement of Pool Boiling Heat Transfer Using Aligned Silicon Nanowire Arrays",
+      "journal": "ACS APPLIED MATERIALS & INTERFACES"
+    },
+    {
+      "date": "2017-05",
+      "title": "Conjugate heat transfer on full-coverage film cooling with array jet impingements with various Biot numbers",
+      "journal": "EXPERIMENTAL THERMAL AND FLUID SCIENCE"
+    },
+    {
+      "date": "2017-04",
+      "title": "소형 시험모터의 노즐 열전달 및 삭마 통합해석",
+      "journal": "한국전산구조공학회논문집"
+    },
+    {
+      "date": "2017-04",
+      "title": "장갑 차량의 방사율 제어구조 적용에 따른 적외선 신호 분석",
+      "journal": "한국전산구조공학회논문집"
+    },
+    {
+      "date": "2017-04",
+      "title": "공대공 적외선 미사일의 항력을 고려한초음속 항공기의 피격성 분석",
+      "journal": "한국군사과학기술학회지"
+    },
+    {
+      "date": "2017-03",
+      "title": "Numerical Study of the Rib Arrangements for Enhancing Heat Transfer in a Two-pass Channel of Large Aspect Ratio",
+      "journal": "Transactions of the Korean Society of Mechanical Engineers, B"
+    },
+    {
+      "date": "2017-03",
+      "title": "Nano-inspired smart interfaces: fluidic interactivity and its impact on heat transfer",
+      "journal": "SCIENTIFIC REPORTS"
+    },
+    {
+      "date": "2017-03",
+      "title": "Effect of various rib arrangements on heat transfer in a semicylinder channel with effusion flow",
+      "journal": "NUMERICAL HEAT TRANSFER PART A-APPLICATIONS"
+    },
+    {
+      "date": "2017-02",
+      "title": "수치해석 통합기법을 이용한 노즐 내열재 표면의 열전달 해석",
+      "journal": "한국전산구조공학회논문집"
+    },
+    {
+      "date": "2017-02",
+      "title": "Effect of the jet direction of gas nozzle on the residence time distribution of solids in circulating fluidized bed risers",
+      "journal": "JOURNAL OF THE TAIWAN INSTITUTE OF CHEMICAL ENGINEERS"
+    },
+    {
+      "date": "2017-02",
+      "title": "Numerical investigation of the effects of discrete guide vanes on the control of heat transfer on the tip surface of a turbine blade",
+      "journal": "INTERNATIONAL JOURNAL OF THERMAL SCIENCES"
+    },
+    {
+      "date": "2017-02",
+      "title": "Solid polymer electrolyte dye-sensitized solar cells with organized mesoporous TiO2 interfacial layer templated by poly(vinyl alcohol)-poly(methyl methacrylate) comb copolymer",
+      "journal": "SOLID STATE IONICS"
+    },
+    {
+      "date": "2017-02",
+      "title": "Local heat and mass transfer measurements for multi-layered impingement/effusion cooling: Effects of pin spacing on the impingement and effusion plate",
+      "journal": "INTERNATIONAL JOURNAL OF HEAT AND MASS TRANSFER"
+    },
+    {
+      "date": "2017-01",
+      "title": "Thermal design of helium cooled divertor for reliable operation",
+      "journal": "APPLIED THERMAL ENGINEERING"
+    },
+    {
+      "date": "2016-12",
+      "title": "Bimodal porous TiO2 structures templated by graft copolymer/homopolymer blend for dye-sensitized solar cells with polymer electrolyte",
+      "journal": "JOURNAL OF POWER SOURCES"
+    },
+    {
+      "date": "2016-12",
+      "title": "Thermoelastic damping in micro- and nanomechanical beam resonators considering size effects",
+      "journal": "INTERNATIONAL JOURNAL OF HEAT AND MASS TRANSFER"
+    },
+    {
+      "date": "2016-12",
+      "title": "Throughflow and quadratic drag effects on the onset of convection in a Forchheimer-extended Darcy porous medium layer saturated by a nanofluid",
+      "journal": "JOURNAL OF THE BRAZILIAN SOCIETY OF MECHANICAL SCIENCES AND ENGINEERING"
+    },
+    {
+      "date": "2016-11",
+      "title": "Fluorine ligand exchange effect in poly(vinylidenefluoride-co-hexafluoropropylene) with embedded fluorinated barium titanate nanoparticles",
+      "journal": "THIN SOLID FILMS"
+    },
+    {
+      "date": "2016-11",
+      "title": "Heat transfer measurement near endwall region of first stage gas turbine nozzle having platform misalignment at combustor-turbine interface",
+      "journal": "INTERNATIONAL COMMUNICATIONS IN HEAT AND MASS TRANSFER"
+    },
+    {
+      "date": "2016-11",
+      "title": "Surface roughening for hemi-wicking and its impact on convective boiling heat transfer",
+      "journal": "INTERNATIONAL JOURNAL OF HEAT AND MASS TRANSFER"
+    },
+    {
+      "date": "2016-10",
+      "title": "항공기 적외선 스텔스 기술 적용을 위한 다양한 배경조건에서의 방사율 제어구조 성능 분석",
+      "journal": "한국전산구조공학회논문집"
+    },
+    {
+      "date": "2016-10",
+      "title": "Susceptibility of Combat Aircraft Modeled as an Anisotropic Source of Infrared Radiation",
+      "journal": "IEEE TRANSACTIONS ON AEROSPACE AND ELECTRONIC SYSTEMS"
+    },
+    {
+      "date": "2016-10",
+      "title": "Thermal Characteristics of Tube Bundles in Ultra-Supercritical Boilers",
+      "journal": "ENERGIES"
+    },
+    {
+      "date": "2016-09",
+      "title": "Electrothermal instability in a porous medium layer saturated by a dielectric nanofluid",
+      "journal": "JOURNAL OF APPLIED FLUID MECHANICS"
+    },
+    {
+      "date": "2016-08",
+      "title": "The effects of thermal spreaders on reducing thermal cracks in heat recovery steam generators",
+      "journal": "APPLIED THERMAL ENGINEERING"
+    },
+    {
+      "date": "2016-08",
+      "title": "Effect of a diffuser on gas-solid behavior in CFB riser for CO2 capture",
+      "journal": "JOURNAL OF MECHANICAL SCIENCE AND TECHNOLOGY"
+    },
+    {
+      "date": "2016-08",
+      "title": "Scalable and bendable organized mesoporous TiN films templated by using a dual-functional amphiphilic graft copolymer for solid supercapacitors",
+      "journal": "JOURNAL OF MATERIALS CHEMISTRY A"
+    },
+    {
+      "date": "2016-06",
+      "title": "Numerical investigation of the effect of magnetic field on the onset of nanofluid convection",
+      "journal": "APPLIED THERMAL ENGINEERING"
+    },
+    {
+      "date": "2016-06",
+      "title": "Synthesis of organized mesoporous metal oxide films templated by amphiphilic PVA?PMMA comb copolymer",
+      "journal": "RSC ADVANCES"
+    },
+    {
+      "date": "2016-05",
+      "title": "Effect of Hall current on the onset of MHD convection in a porous medium layer saturated by a nanofluid",
+      "journal": "JOURNAL OF APPLIED FLUID MECHANICS"
+    },
+    {
+      "date": "2016-03",
+      "title": "The Effect of Mesoporous Structure on the Thermoelectric Properties of Nonstoichiometric La-Doped SrTiO3",
+      "journal": "JOURNAL OF THE ELECTROCHEMICAL SOCIETY"
+    },
+    {
+      "date": "2016-03",
+      "title": "The oxygen-deficiency-dependent Seebeck coefficient and electrical properties of mesoporous La0.7Sr0.3MnO3-x films",
+      "journal": "JOURNAL OF MATERIALS CHEMISTRY A"
+    },
+    {
+      "date": "2016-01",
+      "title": "The onset of double-diffusive nanofluid convection in a rotating porous medium layer with thermal conductivity and viscosity variation: A revised model",
+      "journal": "JOURNAL OF POROUS MEDIA"
+    },
+    {
+      "date": "2015-12",
+      "title": "Brinkman convection induced by purely internal heating in a rotating porous medium layer saturated by a nanofluid",
+      "journal": "POWDER TECHNOLOGY"
+    },
+    {
+      "date": "2015-10",
+      "title": "Influence of magnetic field on the onset of nanofluid convection induced by purely internal heating",
+      "journal": "COMPUTERS & FLUIDS"
+    },
+    {
+      "date": "2015-09",
+      "title": "Augmented heat transfer with intersecting rib in rectangular channels having different aspect ratios",
+      "journal": "INTERNATIONAL JOURNAL OF HEAT AND MASS TRANSFER"
+    },
+    {
+      "date": "2015-05",
+      "title": "Thermal design of heat-exchangeable reactors using a dry-sorbent CO2 capture multi-step process",
+      "journal": "ENERGY"
+    }
+  ],
+  "awards": [
+    {
+      "title": "서울대학교 공과대 동창회장상 (기계공학과 수석졸업)",
+      "contents": null,
+      "date": null
+    },
+    {
+      "title": "대한기계학회 열공학학술상",
+      "contents": null,
+      "date": "2025-04-25"
+    },
+    {
+      "title": "2024년도 한국공학상",
+      "contents": null,
+      "date": "2024-12-12"
+    },
+    {
+      "title": "우수업적교수상, 연구부문, 최우수상",
+      "contents": null,
+      "date": "2024-04-26"
+    },
+    {
+      "title": "방위사업청장 표창장",
+      "contents": "귀하는 평소 맡은 바 임무를 성실히 수행하여 왔으며, 특히 방산전문인력양성 지원사업에 기여한 바가 크므로 이에 표창합니다",
+      "date": "2023-12-28"
+    },
+    {
+      "title": "AFMC distinguished engineer award",
+      "contents": null,
+      "date": "2023-10-21"
+    },
+    {
+      "title": "에너지인력양성사업 과제운영 부문 우수상",
+      "contents": null,
+      "date": "2023-06-01"
+    },
+    {
+      "title": "과학기술훈장 웅비장",
+      "contents": "귀하는 과학기술진흥을 통하여 국가 발전에 이바지한 공로가 크므로 대한민국 헌법에 따라 다음 훈장을 수여합니다",
+      "date": "2023-04-21"
+    },
+    {
+      "title": "에너지인력양성 혁신요람 부문 최우수상(산업통상자원부 장관 표창)",
+      "contents": null,
+      "date": "2022-11-02"
+    },
+    {
+      "title": "2022 대한민국 올해의 10대 기계기술",
+      "contents": "차세대 항공기를 위한 시각/레이더/적외선 동시 회피 복합 스텔스 기술, 위 기술은 2022년 대한민국을 대표하는 10대 기술로 선정되었기에 이 패를 드립니다",
+      "date": "2022-11-02"
+    },
+    {
+      "title": "2021 대한기계학회 최우수 논문상",
+      "contents": "2021 대한기계학회 최우수 논문상,",
+      "date": "2021-11-04"
+    },
+    {
+      "title": "2021 공학교육학술대회 우수발표논문상",
+      "contents": "2021 공학교육학술대회 우수발표논문상",
+      "date": "2021-10-01"
+    },
+    {
+      "title": "한송엽 공학교육상",
+      "contents": "한송엽 공학교육상",
+      "date": "2021-09-30"
+    },
+    {
+      "title": "올해의 기계인 (기계단체연합회)",
+      "contents": "올해의 기계인 연구부문",
+      "date": "2020-12-09"
+    },
+    {
+      "title": "연세대학교 2019년도 우수강의교수상",
+      "contents": "연세대학교 우수강의교수",
+      "date": "2020-02-29"
+    },
+    {
+      "title": "연세대학교 2019년도 우수업적교수상",
+      "contents": "연세대학교 연구업적 우수교수 우수(통합업적)",
+      "date": "2020-02-04"
+    },
+    {
+      "title": "연세대학교 2018학년도 최우수업적교수상",
+      "contents": ".",
+      "date": "2018-05-28"
+    },
+    {
+      "title": "연세대학교 2017학년도 최우수업적교수상",
+      "contents": ".",
+      "date": "2018-02-01"
+    },
+    {
+      "title": "한국유체기계학회 감사패",
+      "contents": "한국유체기계학회 감사패",
+      "date": "2017-07-06"
+    },
+    {
+      "title": "연세대학교 2016학년도 최우수업적교수상",
+      "contents": "연세대학교 연구업적 우수교수 최우수(연구비)",
+      "date": "2017-02-14"
+    },
+    {
+      "title": "한국유체기계학회 공로상",
+      "contents": "한국유체기계학회 공로상",
+      "date": "2016-12-01"
+    },
+    {
+      "title": "Best paper award (ISFMFE)",
+      "contents": "ISFEMFE",
+      "date": "2016-10-22"
+    },
+    {
+      "title": "연세대학교 연구업적 우수교수",
+      "contents": "연세대학교 연구업적 우수교수 우수(통합업적)",
+      "date": "2016-02-17"
+    },
+    {
+      "title": "연세대학교 연구업적 우수교수",
+      "contents": "연세대학교 연구업적 우수교수 우수(업적분야통합)",
+      "date": "2015-01-28"
+    },
+    {
+      "title": "연세대학교 2014년도 우수업적교수상",
+      "contents": "2014년도 연세대학교 내에서 우수한 업적을 거두었기에 수여함.",
+      "date": "2015-01-27"
+    },
+    {
+      "title": "연세대학교 언더우드 특훈교수",
+      "contents": "우수한 업적을 인정받아 연세대학교 특훈교수에 임명",
+      "date": "2015-01-26"
+    },
+    {
+      "title": "연세대학교 연구업적 우수교수",
+      "contents": "연세대학교 연구업적 우수교수 최우수(연구비)",
+      "date": "2014-02-19"
+    },
+    {
+      "title": "2013학년도 공헌교수상",
+      "contents": "2013학년도 연세대학교 공헌교수로 선정되어 수상함",
+      "date": "2014-02-19"
+    },
+    {
+      "title": "연세대학교 2013학년도 최우수 업적교수상",
+      "contents": "2013학년도 연세대학교 최우수 업적교수로 선정되어 수상함",
+      "date": "2014-02-19"
+    },
+    {
+      "title": "대한기계학회 2013년도 학술대회 감사패",
+      "contents": "2013년도 학술대회의 초청강연에 대한 감사패",
+      "date": "2013-12-18"
+    },
+    {
+      "title": "연세대학교 최우수공학교수상",
+      "contents": "2012학년도 공과대학 최우수공학교수로 선정되어 수상함",
+      "date": "2013-04-22"
+    },
+    {
+      "title": "이기준 공학혁신상",
+      "contents": "공학교육을 위해 헌신한 공로를 인정받아 수상",
+      "date": "2012-11-22"
+    },
+    {
+      "title": "우수 국방 특화연구센터 선정",
+      "contents": "위 센터는 방위사업청에서 실시한 2011년 특화연구센터 성과평가(1단계 종료) 결과 그 동안의 연구 성과 및 관리가 탁월하여 우수 국방 특화연구센터로 선정합니다.",
+      "date": "2011-12-09"
+    },
+    {
+      "title": "지식경제부 장관표창 (기계의 날)",
+      "contents": "귀하는 평소 맡은 바 직뭉 정려하여 왔으며 특히 산 학 연 협력을 통하여 기계산업 발전에 이바지한 공이 크므로 기계의 날 을 맞이하여 이에 표창합니다.",
+      "date": "2011-11-11"
+    },
+    {
+      "title": "연세대학교 2012학년도 우수 연구실적 표창",
+      "contents": "우수 연구실적 표창",
+      "date": "2009-09-02"
+    },
+    {
+      "title": "유체기계공업학회 학술상",
+      "contents": "유체기계공업학회 학술상",
+      "date": "2008-12-05"
+    },
+    {
+      "title": "ADD 기초연구 우수성과 50선",
+      "contents": "ADD 기초연구 우수성과 50선에 선정",
+      "date": "2008-08-08"
+    },
+    {
+      "title": "연세대학교 2006년도 우수강의교수상",
+      "contents": "2006년도 우수강의교수",
+      "date": "2007-03-08"
+    },
+    {
+      "title": "과학기술우수논문상",
+      "contents": null,
+      "date": "2006-11-30"
+    },
+    {
+      "title": "연세대학교 연구업적 우수교수",
+      "contents": null,
+      "date": "2005-05-02"
+    },
+    {
+      "title": "연세대학교 연구업적 우수교수",
+      "contents": null,
+      "date": "2004-05-01"
+    },
+    {
+      "title": "연세대학교 연구업적 우수교수",
+      "contents": null,
+      "date": "2003-05-01"
+    },
+    {
+      "title": "연세대학교 연구업적 우수교수",
+      "contents": null,
+      "date": "2002-05-01"
+    },
+    {
+      "title": "연세대학교 공과대학 최우수 교수상",
+      "contents": "최우수 교수상",
+      "date": "2001-12-12"
+    },
+    {
+      "title": "연세학술상",
+      "contents": "학술상",
+      "date": "2001-05-12"
+    },
+    {
+      "title": "대한기계학회 학술상",
+      "contents": "학술상",
+      "date": "2000-11-03"
+    },
+    {
+      "title": "BEST PRESENTATION IN THE POSTER SESSION (IHTC)",
+      "contents": "BEST PRESENTATION IN THE POSTER SESSION",
+      "date": "1998-08-17"
+    },
+    {
+      "title": "EXCELLENCE IN PRESENTATION OF A PAPER IN THE POSTER SESSION (ICHMT)",
+      "contents": "EXCELLENCE IN PRESENTATION OF A PAPER IN THE POSTER SESSION (ICHMT)",
+      "date": "1997-11-21"
+    },
+    {
+      "title": "전력기술 기초연구 과제수행 우수상",
+      "contents": "연구과제수행 우수상",
+      "date": "1996-11-21"
+    }
+  ],
+  "conferences": [
+    {
+      "title": "오일 리니어 컴프레서의 탈설계점 운전 조건에서 열전달 해석",
+      "conference": "대한기계학회 창립 80주년 기념 학술대회",
+      "period": "2025.12.10~2025.12.13"
+    },
+    {
+      "title": "투명 복사냉각 적용을 위한 PDMS 방사체의 방사 및 투과 특성 분석",
+      "conference": "대한기계학회 창립 80주년 기념 학술대회",
+      "period": "2025.12.10~2025.12.13"
+    },
+    {
+      "title": "핵융합 증식 블랑켓 발열을 고려한 1D 복합 열전달 분석",
+      "conference": "대한기계학회 창립 80주년 기념 학술대회",
+      "period": "2025.12.10~2025.12.13"
+    },
+    {
+      "title": "핵융합로 증식블랑켓 증식핀의 형상 개선을 통한 열성능 향상",
+      "conference": "대한기계학회 창립 80주년 기념 학술대회",
+      "period": "2025.12.10~2025.12.13"
+    },
+    {
+      "title": "핵융합로 증식블랑켓 단위 셀-단위 모듈 연동을 활용한 열유동 해석",
+      "conference": "대한기계학회 창립 80주년 기념 학술대회",
+      "period": "2025.12.10~2025.12.13"
+    },
+    {
+      "title": "횡방향 유동 영향 저감을 위한 전방 벽체의 곡률 설계가 배열충돌제트 열전달에 미치는 영향",
+      "conference": "대한기계학회 창립 80주년 기념 학술대회",
+      "period": "2025.12.10~2025.12.13"
+    },
+    {
+      "title": "터빈 블레이드 더블 월 충돌/유출 냉각에서 회전에 따른 열전달 특성",
+      "conference": "대한기계학회 창립 80주년 기념 학술대회",
+      "period": "2025.12.10~2025.12.13"
+    },
+    {
+      "title": "연소기 내벽에서의 전면 막냉각 냉각 특성 측정",
+      "conference": "대한기계학회 창립 80주년 기념 학술대회",
+      "period": "2025.12.10~2025.12.13"
+    },
+    {
+      "title": "금속 적층제작 충돌제트냉각의 열전달 특성",
+      "conference": "대한기계학회 창립 80주년 기념 학술대회",
+      "period": "2025.12.10~2025.12.13"
+    },
+    {
+      "title": "이차 분사가 있는 스크렘제트 엔진에서 2단 마이크로램프 설치에 따른 열전달 특성",
+      "conference": "대한기계학회 창립 80주년 기념 학술대회",
+      "period": "2025.12.10~2025.12.13"
+    },
+    {
+      "title": "터빈 블레이드 더블 월 회전 충돌/유출 냉각에서 내부 구조에 따른 열전달 특성",
+      "conference": "2025 한국유체기계학회 동계학술대회",
+      "period": "2025.12.03~2025.12.06"
+    },
+    {
+      "title": "연소기 라이너에서 슬롯 냉각과 전면 막냉각의 복합 냉각 특성",
+      "conference": "2025 한국유체기계학회 동계학술대회",
+      "period": "2025.12.03~2025.12.06"
+    },
+    {
+      "title": "배열충돌제트 냉각에서 전방 구조물을 이용한 냉각 성능 향상",
+      "conference": "2025 한국유체기계학회 동계학술대회",
+      "period": "2025.12.03~2025.12.06"
+    },
+    {
+      "title": "머신러닝 알고리즘을 활용한 가스터빈 1단 베인 바닥면 열전달 예측",
+      "conference": "2025 한국유체기계학회 동계학술대회",
+      "period": "2025.12.03~2025.12.06"
+    },
+    {
+      "title": "금속 적층제작된 충돌제트 냉각의 열유동 특성",
+      "conference": "2025 한국유체기계학회 동계학술대회",
+      "period": "2025.12.03~2025.12.06"
+    },
+    {
+      "title": "핵융합로 증식블랑켓 충돌면의 형상 변화에 따른 열유동 특성",
+      "conference": "2025 한국유체기계학회 동계학술대회",
+      "period": "2025.12.03~2025.12.06"
+    },
+    {
+      "title": "비행 조건에 따른 항공기 적외선 신호와 적외선 위장 효과",
+      "conference": "한국추진공학회 2025년도 추계학술대회",
+      "period": "2025.12.03~2025.12.05"
+    },
+    {
+      "title": "Thermal Stability of Aluminum-based Infrared Selective Emitter with Radar Transmission for Multispectral Camouflage Application",
+      "conference": "2025 MRS Fall Meeting & Exhibit",
+      "period": "2025.11.30~2025.12.05"
+    },
+    {
+      "title": "핵융합로 증식블랑켓 모듈 단위 복합열전달 해석을 통한 열설계 분석",
+      "conference": "2025 한국유체기계학회 동계학술대회",
+      "period": "2025.12.03~2025.12.06"
+    },
+    {
+      "title": "항공기 적외선 위장 소재의 표면온도 제어에 따른 위장 성능 변화",
+      "conference": "한국항공우주학회 2025년도 추계학술대회",
+      "period": "2025.11.11~2025.11.14"
+    },
+    {
+      "title": "터빈 더블월에 적용 가능한 금속 3DP 제작 충돌제트 냉각 특성",
+      "conference": "2025년도 발전기술 전문위원회 추계학술대회",
+      "period": "2025.09.04~2025.09.05"
+    },
+    {
+      "title": "가스터빈 블레이드 내부 유로의 배열충돌제트 냉각 개선을 위한 형상 연구",
+      "conference": "2025년도 발전기술 전문위원회 추계학술대회",
+      "period": "2025.09.04~2025.09.05"
+    },
+    {
+      "title": "터빈 블레이드 후단부 내부 냉각을 위한 이중 핀 구조 핀-휜 배열의 열전달 특성",
+      "conference": "2025 한국유체기계학회 하계학술대회",
+      "period": "2025.06.25~2025.06.27"
+    },
+    {
+      "title": "전방 구조물에 의한 배열충돌제트 냉각에서의 횡방향 유동 제어 및 열전달 특성",
+      "conference": "2025 한국유체기계학회 하계학술대회",
+      "period": "2025.06.25~2025.06.27"
+    },
+    {
+      "title": "EFFECT OF U-SHAPED PEDESTAL ON OVERALL COOLING EFFECTIVENESS IN DOUBLE WALL IMPINGEMENT/EFFUSION COOLING",
+      "conference": "ASME Turbo Expo 2025 Turbomachinery Technical Conference and Exposition",
+      "period": "2025.06.16~2025.06.20"
+    },
+    {
+      "title": "저피탐 무인 편대기의 비행 조건에 따른 적외선 신호 특성 분석",
+      "conference": "2025년 한국군사과학기술학회 종합학술대회",
+      "period": "2025.06.11~2025.06.13"
+    },
+    {
+      "title": "인공위성 표면 열관리를 위한 알루미늄 박막의 두께별 광학 특성 분석",
+      "conference": "2025년 한국군사과학기술학회 종합학술대회",
+      "period": "2025.06.11~2025.06.13"
+    },
+    {
+      "title": "선택적 방사체를 활용한 내열성 적외선 스텔스 표면 설계",
+      "conference": "2025년 한국군사과학기술학회 종합학술대회",
+      "period": "2025.06.11~2025.06.13"
+    },
+    {
+      "title": "무인기 적용을 위한 마이크로파-적외선 동시 위장 표면의 온도에 따른 전자기적 특성 분석",
+      "conference": "2025년 한국군사과학기술학회 종합학술대회",
+      "period": "2025.06.11~2025.06.13"
+    },
+    {
+      "title": "마이크로 열렌즈를 이용한 가시광-적외선 대역 적응형 위장막 연구",
+      "conference": "2025년 한국군사과학기술학회 종합학술대회",
+      "period": "2025.06.11~2025.06.13"
+    },
+    {
+      "title": "핵융합로 증식블랑켓에서 충돌제트 변화에 따른 열 회수 특성",
+      "conference": "대한기계학회 에너지 및 동력공학부문 2025년 춘계학술대회",
+      "period": "2025.05.30~2025.05.30"
+    },
+    {
+      "title": "터빈 블레이드 제트 가이드 형상 적용 더블 월 충돌/유출 냉각 특성 연구",
+      "conference": "대한기계학회 에너지 및 동력공학부문 2025년 춘계학술대회",
+      "period": "2025.05.30~2025.05.30"
+    },
+    {
+      "title": "터빈 고온부품 내부 냉각을 위한 이중 핀이 설치된 채널의 열 전달 특성",
+      "conference": "대한기계학회 에너지 및 동력공학부문 2025년 춘계학술대회",
+      "period": "2025.05.30~2025.05.30"
+    },
+    {
+      "title": "전면 막냉각에서 냉각 유체 공급 방향에 따른 냉각 효율 특성",
+      "conference": "대한기계학회 에너지 및 동력공학부문 2025년 춘계학술대회",
+      "period": "2025.05.30~2025.05.30"
+    },
+    {
+      "title": "온도감응 상전이 물질의 특성을 이용한 적외선 방사 에너지 능동 제어",
+      "conference": "대한기계학회 에너지 및 동력공학부문 2025년 춘계학술대회",
+      "period": "2025.05.30~2025.05.30"
+    },
+    {
+      "title": "액침 냉각 성능 향상을 위한 적층 제작 구조물 비등 표면의 산화물 생성 연구",
+      "conference": "대한기계학회 에너지 및 동력공학부문 2025년 춘계학술대회",
+      "period": "2025.05.30~2025.05.30"
+    },
+    {
+      "title": "배열충돌제트에서 횡방향 유동 저감을 위한 구조물에 따른 효과",
+      "conference": "대한기계학회 에너지 및 동력공학부문 2025년 춘계학술대회",
+      "period": "2025.05.30~2025.05.30"
+    },
+    {
+      "title": "고압터빈 엔진 상사 시험리그를 이용한 고온부품 냉각성능 측정",
+      "conference": "대한기계학회 에너지 및 동력공학부문 2025년 춘계학술대회",
+      "period": "2025.05.30~2025.05.30"
+    },
+    {
+      "title": "이중 제트가 분사되는 초음속 노즐 내 유동 및 열전달 특성",
+      "conference": "한국추진공학회 2025년도 춘계학술대회",
+      "period": "2025.05.20~2025.05.23"
+    },
+    {
+      "title": "무인전투기 노즐 형상에 따른 배기 플룸 유동장 및 적외선 신호 특성",
+      "conference": "한국추진공학회 2025년도 춘계학술대회",
+      "period": "2025.05.20~2025.05.23"
+    },
+    {
+      "title": "고속 유동 조건에서 가스터빈 이중 충돌/유출 냉각의 복합 열전달 특성",
+      "conference": "한국추진공학회 2025년도 춘계학술대회",
+      "period": "2025.05.20~2025.05.23"
+    },
+    {
+      "title": "엔진상사 시험리그를 이용한 고압터빈 구성품의 냉각성능 평가",
+      "conference": "한국추진공학회 2025년도 춘계학술대회",
+      "period": "2025.05.20~2025.05.23"
+    },
+    {
+      "title": "핵융합 증식 블랑켓 발열을 고려한 열회로 모델 분석",
+      "conference": "대한기계학회 열공학부문 2025년 춘계학술대회",
+      "period": "2025.04.23~2025.04.26"
+    },
+    {
+      "title": "핵융합 반응로 증식 블랑켓의 헬륨 충돌제트 냉각성능 분석",
+      "conference": "대한기계학회 열공학부문 2025년 춘계학술대회",
+      "period": "2025.04.23~2025.04.26"
+    },
+    {
+      "title": "초임계 이산화탄소 충돌 제트를 활용한 핵융합로 증식 블랑켓 열 회수 성능 분석",
+      "conference": "대한기계학회 열공학부문 2025년 춘계학술대회",
+      "period": "2025.04.23~2025.04.26"
+    },
+    {
+      "title": "금속적층제조를 활용한 가스터빈 이중 충돌/유출 냉각 구조의 열전달",
+      "conference": "대한기계학회 열공학부문 2025년 춘계학술대회",
+      "period": "2025.04.23~2025.04.26"
+    },
+    {
+      "title": "흡입 냉매 성능 개선을 위한 오일 리니어 컴프레서의 정상 상태 열전달 해석",
+      "conference": "대한기계학회 열공학부문 2025년 춘계학술대회",
+      "period": "2025.04.23~2025.04.26"
+    },
+    {
+      "title": "액침 냉각 성능 향상을 위한 적층 제작 구조물 비등 표면 연구",
+      "conference": "대한기계학회 열공학부문 2025년 춘계학술대회",
+      "period": "2025.04.23~2025.04.26"
+    },
+    {
+      "title": "복사냉각 물질의 시각 투과도에 따른 냉각 성능 분석",
+      "conference": "대한기계학회 열공학부문 2025년 춘계학술대회",
+      "period": "2025.04.23~2025.04.26"
+    },
+    {
+      "title": "가스터빈 고온부품 냉각기술과 열설계",
+      "conference": "대한기계학회 열공학부문 2025년 춘계학술대회",
+      "period": "2025.04.23~2025.04.26"
+    },
+    {
+      "title": "GA 최적화 알고리즘을 이용한 가스터빈 엔드월 막냉각 배열설계",
+      "conference": "2024 한국유체기계학회 동계학술대회",
+      "period": "2024.12.04~2024.12.06"
+    },
+    {
+      "title": "무인기용 고압터빈 개발을 위한 중온상사 시험리그 구축 및 성능평가",
+      "conference": "2024 한국유체기계학회 동계학술대회",
+      "period": "2024.12.04~2024.12.06"
+    },
+    {
+      "title": "가스터빈 블레이드 후연부 냉각을 위해 설치된 분절 핀의 열전달 특성",
+      "conference": "2024 한국유체기계학회 동계학술대회",
+      "period": "2024.12.04~2024.12.06"
+    },
+    {
+      "title": "가스터빈 블레이드 유로 내 스텝 핀 설치에 따른 열전달 특성 변화",
+      "conference": "2024 한국유체기계학회 동계학술대회",
+      "period": "2024.12.04~2024.12.06"
+    },
+    {
+      "title": "가스터빈 블레이드 전연부 삼각 채널 내 요철 설치에 따른 열전달 특성",
+      "conference": "2024 한국유체기계학회 동계학술대회",
+      "period": "2024.12.04~2024.12.06"
+    },
+    {
+      "title": "CSRR 구조 기반 메타표면의 방사율 제어특성에 따른 항공기 적외선 신호 특성 분석",
+      "conference": "한국추진공학회 2024년도 추계학술대회",
+      "period": "2024.11.27~2024.11.29"
+    },
+    {
+      "title": "표면 안테나를 고려한 저피탐 노즐 형상에 따른 무인전투기의 적외선 신호 특성",
+      "conference": "한국추진공학회 2024년도 추계학술대회",
+      "period": "2024.11.27~2024.11.29"
+    },
+    {
+      "title": "터빈 블레이드 냉각성능 향상을 위한 전방 분절 핀의 열유동 특성 분석",
+      "conference": "한국추진공학회 2024년도 추계학술대회",
+      "period": "2024.11.27~2024.11.29"
+    },
+    {
+      "title": "초음속 유동장 내 설치된 2단 마이크로램프가 이차분사 시 열전달 특성에 미치는 영향",
+      "conference": "한국추진공학회 2024년도 추계학술대회",
+      "period": "2024.11.27~2024.11.29"
+    },
+    {
+      "title": "스크램제트 엔진에서 마이크로 램프 너비에 따른 연소실 벽면 열전달 특성",
+      "conference": "한국추진공학회 2024년도 추계학술대회",
+      "period": "2024.11.27~2024.11.29"
+    },
+    {
+      "title": "가스터빈 이중 벽 충돌/유출 냉각 특성 연구",
+      "conference": "한국추진공학회 2024년도 추계학술대회",
+      "period": "2024.11.27~2024.11.29"
+    },
+    {
+      "title": "입구 단차 발생으로 인한 발전용 가스터빈 1단 베인의 바닥면 냉각 특성",
+      "conference": "한국추진공학회 2024년도 추계학술대회",
+      "period": "2024.11.27~2024.11.29"
+    },
+    {
+      "title": "고열유속 부품 보호를 위한 초임계 이산화탄소 단일 충돌 제트의 냉각 성능 분석",
+      "conference": "한국추진공학회 2024년도 추계학술대회",
+      "period": "2024.11.27~2024.11.29"
+    },
+    {
+      "title": "투명 주파수 선택 표면의 투과 특성 분석",
+      "conference": "2024년 한국군사과학기술학회 종합학술대회",
+      "period": "2024.11.08~2024.11.08"
+    },
+    {
+      "title": "적외선 화상 탐지상황에서의 패턴 형태에 따른 항공기 위장성능 분석",
+      "conference": "2024년 한국군사과학기술학회 종합학술대회",
+      "period": "2024.11.08~2024.11.08"
+    },
+    {
+      "title": "금속박막 기반 전파 투과특성을 갖는 투명 적외선 신호 제어 메타표면",
+      "conference": "2024년 한국군사과학기술학회 추계학술대회",
+      "period": "2024.11.08~2024.11.08"
+    },
+    {
+      "title": "충돌/유출 냉각에서 이중 벽 구조 형상에 따른 표면 온도 분포 특성",
+      "conference": "대한기계학회 2024년 학술대회",
+      "period": "2024.11.06~2024.11.08"
+    },
+    {
+      "title": "초음속 유동장 내 후향계단에서 열전달 특성 변화",
+      "conference": "대한기계학회 2024년 학술대회",
+      "period": "2024.11.06~2024.11.08"
+    },
+    {
+      "title": "적외선 위장표면의 선택적 적외선 열방출을 통한 열관리 성능 향상",
+      "conference": "대한기계학회 2024년 학술대회",
+      "period": "2024.11.06~2024.11.08"
+    },
+    {
+      "title": "운동량 부여를 통한 리니어 컴프레서의 정상 상태 유동 해석",
+      "conference": "대한기계학회 2024년 학술대회",
+      "period": "2024.11.06~2024.11.08"
+    },
+    {
+      "title": "나노와이어 공극률 변화에 따른 표면 젖음성 분석",
+      "conference": "대한기계학회 2024년 학술대회",
+      "period": "2024.11.06~2024.11.08"
+    },
+    {
+      "title": "곡면 엔드월을 적용한 가스터빈 노즐에서 누설 유동으로 인한 열전달 특성",
+      "conference": "대한기계학회 2024년 학술대회",
+      "period": "2024.11.06~2024.11.08"
+    },
+    {
+      "title": "주파수 선택 표면의 알루미늄 박막 두께에 따른 가시광/적외선 대역 광학 특성 분석",
+      "conference": "대한기계학회 2024년 학술대회",
+      "period": "2024.11.06~2024.11.08"
+    },
+    {
+      "title": "고온 이용 가능 한 재료 기반 적외선 선택 방사체 설계",
+      "conference": "대한기계학회 2024년 학술대회",
+      "period": "2024.11.06~2024.11.08"
+    },
+    {
+      "title": "HEAT TRANSFER ENHANCEMENT OF RIBBED CHANNEL WITH UPSTREAM HOLE IN GAS TURBINE BLADES",
+      "conference": "10th International Symposium on Heat Transfer (ISHT-10)",
+      "period": "2024.07.03~2024.07.06"
+    },
+    {
+      "title": "BOILING HEAT TRANSFER ENHANCEMENT USING METAL ADDITIVE MANUFACTURED STRUCTURES",
+      "conference": "10th International Symposium on Heat Transfer (ISHT-10)",
+      "period": "2024.07.03~2024.07.06"
+    },
+    {
+      "title": "터빈 베인 후연부 냉각을 위한 가이드 핀이 적용된 핀-휜의 열전달 특성",
+      "conference": "2024 한국유체기계학회 하계학술대회",
+      "period": "2024.07.03~2024.07.05"
+    },
+    {
+      "title": "초임계 이산화탄소 충돌 제트에서 벽 온도 조건에 따른열전달해석",
+      "conference": "2024 한국유체기계학회 하계학술대회",
+      "period": "2024.07.03~2024.07.05"
+    },
+    {
+      "title": "중온 시험리그 1단 노즐의 온도비에 따른 냉각성능 평가",
+      "conference": "2024 한국유체기계학회 하계학술대회",
+      "period": "2024.07.03~2024.07.05"
+    },
+    {
+      "title": "엔드월 형상에 따른 가스터빈 노즐 엔드월 냉각성능 향상",
+      "conference": "2024 한국유체기계학회 하계학술대회",
+      "period": "2024.07.03~2024.07.05"
+    },
+    {
+      "title": "금속 적층제작을 통해 제작된 가스터빈 베인 내부냉각유로에서 미제거 서포트로 인한 압력 강하 특성",
+      "conference": "2024 한국유체기계학회 하계학술대회",
+      "period": "2024.07.03~2024.07.05"
+    },
+    {
+      "title": "표면에 성장된 나노와이어의 형상 변화에 따른 위킹 성능 분석",
+      "conference": "2024 한국유체기계학회 하계학술대회",
+      "period": "2024.07.03~2024.07.05"
+    },
+    {
+      "title": "금속 3D 프린팅 적층 각도에 따른 원형관 열전달 특성",
+      "conference": "2024 한국유체기계학회 하계학술대회",
+      "period": "2024.07.03~2024.07.05"
+    },
+    {
+      "title": "IMPINGING JET HEAT TRANSFER OF LIQUID CARBON DIOXIDE AT CONSTANT ENTHALPY",
+      "conference": "ASME Turbo Expo 2024 Turbomachinery Technical Conference and Exposition",
+      "period": "2024.06.24~2024.06.28"
+    },
+    {
+      "title": "핵융합로 증식 블랑켓 냉각 시스템의 열회로 구성 기반 열설계",
+      "conference": "대한기계학회 에너지 및 동력공학부문 2024년 춘계학술대회",
+      "period": "2024.06.20~2024.06.20"
+    },
+    {
+      "title": "터빈 베인 후연부 냉각을 위한 슬릿 구조가 적용된 S 형 핀-휜의 열전달 특성",
+      "conference": "대한기계학회 에너지 및 동력공학부문 2024년 춘계학술대회",
+      "period": "2024.06.20~2024.06.20"
+    },
+    {
+      "title": "충돌제트판 형상에 따른 충돌/유출 냉각에서의 열전달 특성",
+      "conference": "대한기계학회 에너지 및 동력공학부문 2024년 춘계학술대회",
+      "period": "2024.06.20~2024.06.20"
+    },
+    {
+      "title": "단차에 의한 프로파일 엔드월에서 퍼지 유동의 냉각성능 변화",
+      "conference": "대한기계학회 에너지 및 동력공학부문 2024년 춘계학술대회",
+      "period": "2024.06.20~2024.06.20"
+    },
+    {
+      "title": "금속 적층제조 구조물을 이용한 상변화열전달 성능 향상 연구",
+      "conference": "대한기계학회 에너지 및 동력공학부문 2024년 춘계학술대회",
+      "period": "2024.06.20~2024.06.20"
+    },
+    {
+      "title": "금속 3D 프린팅을 통해 제작된 베인 내 냉각 유로의 압력비에 따른 유량 특성",
+      "conference": "대한기계학회 에너지 및 동력공학부문 2024년 춘계학술대회",
+      "period": "2024.06.20~2024.06.20"
+    },
+    {
+      "title": "가스터빈 베인 내부 유로 내 퍼지 파이프가 열전달에 미치는 영향",
+      "conference": "대한기계학회 에너지 및 동력공학부문 2024년 춘계학술대회",
+      "period": "2024.06.20~2024.06.20"
+    },
+    {
+      "title": "가스터빈 블레이드 냉각성능 향상을 위한 연결 핀 구조",
+      "conference": "대한기계학회 에너지 및 동력공학부문 2024년 춘계학술대회",
+      "period": "2024.06.20~2024.06.20"
+    },
+    {
+      "title": "가스터빈 블레이드 내부 유로의 사각뿔대 핀 길이 비율에 따른 열전달 특성",
+      "conference": "대한기계학회 에너지 및 동력공학부문 2024년 춘계학술대회",
+      "period": "2024.06.20~2024.05.20"
+    },
+    {
+      "title": "가스터빈 1 단 베인에서 입구 유동 변화에 따른 바닥면 열전달 특성",
+      "conference": "대한기계학회 에너지 및 동력공학부문 2024년 춘계학술대회",
+      "period": "2024.06.20~2024.06.20"
+    },
+    {
+      "title": "중온 시험리그를 활용한 고압터빈 노즐의 냉각성능 평가",
+      "conference": "2024년 한국군사과학기술학회 종합학술대회",
+      "period": "2024.06.12~2024.06.14"
+    },
+    {
+      "title": "항공기 동체 위 적외선 위장 표면 부착을 위한 접착제의 전자기적 물성에 따른 레이더 투과 특성",
+      "conference": "2024년 한국군사과학기술학회 종합학술대회",
+      "period": "2024.06.12~2024.06.14"
+    },
+    {
+      "title": "핀-휜이 설치된 계단형 유로에서 배열충돌제트의 열전달 특성",
+      "conference": "2024년 한국군사과학기술학회 종합학술대회",
+      "period": "2024.06.12~2024.06.14"
+    },
+    {
+      "title": "적층형 선택적 방사체를 통한 적외선 위장 표면의 열관리 성능 향상",
+      "conference": "2024년 한국군사과학기술학회 종합학술대회",
+      "period": "2024.06.12~2024.06.14"
+    },
+    {
+      "title": "엔드월 프로파일링을 적용한 가스터빈 노즐 엔드월에서의 누설 유동에 의한 막냉각 성능",
+      "conference": "2024년 한국군사과학기술학회 종합학술대회",
+      "period": "2024.06.12~2024.06.14"
+    },
+    {
+      "title": "알루미늄-PDMS 혼합물 농도에 따른 복사냉각 표면 연구",
+      "conference": "2024년 한국군사과학기술학회 종합학술대회",
+      "period": "2024.06.12~2024.06.14"
+    },
+    {
+      "title": "곡면 적용이 가능한 FSS 기반 적외선 메타표면 연구",
+      "conference": "2024년 한국군사과학기술학회 종합학술대회",
+      "period": "2024.06.12~2040.61.4"
+    },
+    {
+      "title": "Effect of Thermal Fluctuation on the Growth of InP Single Crystal Using the LEC Method",
+      "conference": "ISPSA: The 21st International Symposium on the Physics of Semiconductors and Applications",
+      "period": "2024.06.02~2024.06.06"
+    },
+    {
+      "title": "레이돔의 전면부 공동 형상에 따른 열유동 특성",
+      "conference": "한국추진공학회 2024년도 춘계학술대회",
+      "period": "2024.05.29~2024.05.31"
+    },
+    {
+      "title": "가스터빈 1단 베인에서 상류 T/P 벽에 따른 바닥면 막냉각 효율 특성",
+      "conference": "한국추진공학회 2024년도 춘계학술대회",
+      "period": "2024.05.29~2024.05.31"
+    },
+    {
+      "title": "가스터빈 노즐 공력-열 성능 향상을 위한 프로파일 엔드월 형상",
+      "conference": "2024년 발전연구회 춘계학술대회",
+      "period": "2024.05.30~2024.05.31"
+    },
+    {
+      "title": "AM Build Simulation을 활용한 가스터빈 베인의 적층 공정 해석",
+      "conference": "2024년 발전연구회 춘계학술대회",
+      "period": "2024.05.30~2024.05.31"
+    },
+    {
+      "title": "핵융합로 증식 블랑켓 냉각시스템의 열회로 모델 분석",
+      "conference": "대한기계학회 열공학부문 2024년 춘계학술대회",
+      "period": "2024.04.24~2024.04.27"
+    },
+    {
+      "title": "가스터빈 블레이드 내부 유로의 원뿔대형 핀에 의한 열전달 특성",
+      "conference": "대한기계학회 열공학부문 2024년 춘계학술대회",
+      "period": "2024.04.24~2024.04.27"
+    },
+    {
+      "title": "입자 군집 최적화 알고리즘 기반 선택적 방사체의 적외선 위장 및 에너지 소산 성능 변화 연구",
+      "conference": "대한기계학회 열공학부문 2024년 춘계학술대회",
+      "period": "2024.04.24~2040.42.7"
+    },
+    {
+      "title": "터빈 내부 유로에서 엇갈린 반원 단면 핀-휜의 냉각 특성",
+      "conference": "대한기계학회 열공학부문 2024년 춘계학술대회",
+      "period": "2024.04.24~2024.04.27"
+    },
+    {
+      "title": "Effect of Flight Scenarios on Heat Transfer Characteristics of the Air-Launched Missile Radome",
+      "conference": "HiSST: 3rd International Conference on High-Speed Vehicle Science Technology",
+      "period": "2024.04.14~2024.04.19"
+    },
+    {
+      "title": "금속 적층제작을 통해 제작된 가스터빈 베인 내부 냉각유로의 압력 강하 특성 측정",
+      "conference": "2023 한국유체기계학회 동계학술대회",
+      "period": "2023.11.29~2023.12.01"
+    },
+    {
+      "title": "충돌/유출 냉각에서 충돌판 개선 구조의 유동 및 열전달 특성",
+      "conference": "2023 한국유체기계학회 동계학술대회",
+      "period": "2023.11.29~2023.12.01"
+    },
+    {
+      "title": "공대공 미사일 레이돔의 소재에 따른 열전달 특성",
+      "conference": "한국추진공학회 2023년도 추계학술대회",
+      "period": "2023.11.29~2023.12.01"
+    },
+    {
+      "title": "유사-임계점 부근 초임계 이산화탄소 단일 충돌제트의 열전달 수치해석",
+      "conference": "2023 한국유체기계학회 동계학술대회",
+      "period": "2023.11.29~2023.12.01"
+    },
+    {
+      "title": "가스터빈 림 씰 교차유동 형상에 따른 씰링 성능 분석",
+      "conference": "2023 한국유체기계학회 동계학술대회",
+      "period": "2023.11.29~2023.12.01"
+    },
+    {
+      "title": "탈설계점 운전을 고려한 가스터빈 노즐 엔드월 열부하 저감 설계",
+      "conference": "2023 한국유체기계학회 동계학술대회",
+      "period": "2023.11.29~2023.12.01"
+    },
+    {
+      "title": "가이드 요철이 적용된 핀-휜의 열전달 특성",
+      "conference": "2023 한국유체기계학회 동계학술대회",
+      "period": "2023.11.29~2023.12.01"
+    },
+    {
+      "title": "금속 적층 제작을 이용한 가스터빈 고온부품 개발",
+      "conference": "2023 한국유체기계학회 동계학술대회",
+      "period": "2023.11.29~2023.12.01"
+    },
+    {
+      "title": "Cooling Effectiveness of Impingement/effusion Cooling with Additively Manufactured Tetrahedral Lattice Structure",
+      "conference": "International Gas Turbine Congress 2023",
+      "period": "2023.11.27~2023.12.01"
+    },
+    {
+      "title": "Conjugate Heat Transfer Characteristics of Impingement/Effusion Cooling with Pin-Fins",
+      "conference": "International Gas Turbine Congress 2023",
+      "period": "2023.11.27~2023.12.01"
+    },
+    {
+      "title": "Shelf type Squealer Tip with Opened Rim for Augmented Cooling Performance",
+      "conference": "International Gas Turbine Congress 2023",
+      "period": "2023.11.27~2023.12.01"
+    },
+    {
+      "title": "Tailoring Reduced Graphene Oxide Layer onto Microstructured Surface for Enhanced Boiling Heat Transfer",
+      "conference": "2023 MRS Fall meeting & exhibit",
+      "period": "2023.11.26~2023.12.01"
+    },
+    {
+      "title": "초음속 내 적외선 스텔스 메타 물질의 운용성 검증 연구",
+      "conference": "2023년 한국군사과학기술학회 추계학술대회",
+      "period": "2023.11.09~2023.11.10"
+    },
+    {
+      "title": "충돌판 열유속 변화에 따른 초임계 이산화탄소 단일 충돌 제트의 열전달 수치해석",
+      "conference": "대한기계학회 2023년 학술대회",
+      "period": "2023.11.01~2023.11.03"
+    },
+    {
+      "title": "온도 및 방사율 변화에 따른 적외선 스텔스 성능 지표 연구",
+      "conference": "2023년 대한기계학회 추계 학술대회",
+      "period": "2023.11.01~2023.11.04"
+    },
+    {
+      "title": "가스터빈 발전 전망과 열설계 기술",
+      "conference": "대한기계학회 2023년 학술대회",
+      "period": "2023.11.01~2023.11.04"
+    },
+    {
+      "title": "충돌 유출 냉각 성능 향상을 위한 충돌판 구조 개선",
+      "conference": "대한기계학회 2023년 학술대회",
+      "period": "2023.11.01~2023.11.03"
+    },
+    {
+      "title": "핵융합로 증식 블랑켓 냉각시스템 내 충돌제트의 열전달 특성 분석",
+      "conference": "대한기계학회 2023년 학술대회",
+      "period": "2023.11.01~2023.11.03"
+    },
+    {
+      "title": "배열충돌제트 냉각 성능 향상을 위한 핀 휜 적용 방안",
+      "conference": "대한기계학회 2023년 학술대회",
+      "period": "2023.11.01~2023.11.03"
+    },
+    {
+      "title": "가스터빈 T/P 벽 위치에 따른 1단 베인 바닥면 막냉각 특성",
+      "conference": "대한기계학회 2023년 학술대회",
+      "period": "2023.11.01~2023.11.03"
+    },
+    {
+      "title": "터빈 내부 곡관 유로에 설치된 경사요철에 따른 열전달 특성",
+      "conference": "대한기계학회 2023년 학술대회",
+      "period": "2023.11.01~2023.11.03"
+    },
+    {
+      "title": "가스 터빈 연소기 내벽에 설치된 냉각 볼트의 열전달 특성",
+      "conference": "대한기계학회 2023년 학술대회",
+      "period": "2023.11.01~2023.11.03"
+    },
+    {
+      "title": "Thermal analysis simulation of LEC/VGF method for the fabrication of a modular typed InP single crystal growth apparatus",
+      "conference": "2023 KPS Fall Meeting",
+      "period": "2023.10.24~2023.10.27"
+    },
+    {
+      "title": "표면 방사율 제어를 통한 IR 신호 저감 기술",
+      "conference": "2023년도 항공우주시스템공학회 추계학술대회",
+      "period": "2023.10.11~2023.10.14"
+    },
+    {
+      "title": "전파 투과가 가능한 FSS 기반 유연 적외선 신호 제어 메타표면",
+      "conference": "한국전자파학회 하계종합학술대회 (11회)",
+      "period": "2023.08.23~2023.08.26"
+    },
+    {
+      "title": "열저항 회로를 활용한 비행조건별 엔진 배열 및 적외선 신호 분석",
+      "conference": "한국전자파학회 하계종합학술대회 (11회)",
+      "period": "2023.08.23~2023.08.26"
+    },
+    {
+      "title": "Heat Transfer Enhancement of Bent Offset Strip Fin in Fuel Cell Cooling",
+      "conference": "17th International Heat Transfer Conference",
+      "period": "2023.08.14~2023.08.18"
+    },
+    {
+      "title": "COOLING PERFORMANCE IN GAS TURBINE BLADE TIP WITH ADVANCED SLOT COOLING",
+      "conference": "17th International Heat Transfer Conference",
+      "period": "2023.08.14~2023.08.18"
+    },
+    {
+      "title": "Effect of upstream misalignment on film cooling effectiveness with purge flow of the nozzle endwall",
+      "conference": "17th International Heat Transfer Conference",
+      "period": "2023.08.14~2023.08.18"
+    },
+    {
+      "title": "HEAT TRANSFER CHARACTERISTICS ACCORDING TO INNER PIPE IN A GAS TURBINE VANE INTERNAL PASSAGE",
+      "conference": "2023 SHTC",
+      "period": "2023.07.10~2023.07.14"
+    },
+    {
+      "title": "터보팬 엔진 고압터빈 노즐의 냉각성능 및 출구 프로파일 분석",
+      "conference": "2023 한국유체기계학회 하계학술대회",
+      "period": "2023.07.05~2023.07.07"
+    },
+    {
+      "title": "방사형으로 배치된 다중충돌제트를 가지는 회전-정지 시스템의 국부 열/물질 전달",
+      "conference": "2023 한국유체기계학회 하계학술대회",
+      "period": "2023.07.05~2023.07.07"
+    },
+    {
+      "title": "HEAT TRANSFER ANALYSIS OF SUBCRITICAL CARBON DIOXIDE JET IMPINGEMENT ON SUBMERGED AND UNCONFINED FLAT SURFACE",
+      "conference": "ASME Turbo Expo: Turbomachinery Technical Conference and Exposition",
+      "period": "2023.06.26~2023.06.30"
+    },
+    {
+      "title": "NET HEAT FLUX REDUCTION OF FILM COOLING ON THE NOZZLE ENDWALL WITH PURGE FLOW AND UPSTREAM MISALIGNMENT",
+      "conference": "ASME Turbo Expo: Turbomachinery Technical Conference and Exposition",
+      "period": "2023.06.26~2023.06.30"
+    },
+    {
+      "title": "COOLING EFFECTIVENESS OF ADDITIVE-MANUFACTURED INTERNAL STRUCTURE WITHIN A DOUBLE WALL COOLING SYSTEM",
+      "conference": "ASME Turbo Expo: Turbomachinery Technical Conference and Exposition",
+      "period": "2023.06.26~2023.06.30"
+    },
+    {
+      "title": "합성곱 신경망을 활용한 항공기용 적외선 화상 객체탐지기술 연구",
+      "conference": "2023 한국군사과학기술학회 춘계학술대회",
+      "period": "2023.06.15~2023.06.16"
+    },
+    {
+      "title": "가스터빈 림씰의 외부 돌출부 형상에 따른 냉각 성능",
+      "conference": "2023 한국군사과학기술학회 춘계학술대회",
+      "period": "2023.06.15~2023.06.16"
+    },
+    {
+      "title": "엔진 상사 조건에서의 고압터빈 노즐 냉각성능 시험",
+      "conference": "2023 한국군사과학기술학회 춘계학술대회",
+      "period": "2023.06.15~2023.06.16"
+    },
+    {
+      "title": "금속 박막 두께 조절을 통한 FSS 기반 적외선 위장 메타표면",
+      "conference": "2023 한국군사과학기술학회 춘계학술대회",
+      "period": "2023.06.15~2023.06.16"
+    },
+    {
+      "title": "가스터빈 블레이드 리딩엣지 충돌/유출 냉각을 위한 경사 제트 적용에 따른 열전달 특성",
+      "conference": "2023 한국군사과학기술학회 춘계학술대회",
+      "period": "2023.06.15~2023.06.16"
+    },
+    {
+      "title": "인공지능을 활용한 가스터빈 회전자 고정자 시스템 국부 열/물질전달 예측",
+      "conference": "2023 한국군사과학기술학회 춘계학술대회",
+      "period": "2023.06.15~2023.06.16"
+    },
+    {
+      "title": "냉각유로 내부의 타원형 돌출 위치에 따른 열전달 및 유동 특성",
+      "conference": "2023년도 대한기계학회 에너지동력공학부문 춘계학술대회",
+      "period": "2023.05.31~2023.06.01"
+    },
+    {
+      "title": "경사 요철이 적용된 정사각형 냉각 유로의 벽 기울기에 따른 열 전달 특성",
+      "conference": "2023년도 대한기계학회 에너지동력공학부문 춘계학술대회",
+      "period": "2023.05.31~2023.06.01"
+    },
+    {
+      "title": "핀-휜이 결합된 충돌 제트 냉각에서 제트 홀 노즐 연장에 따른 열전달 특성",
+      "conference": "2023년도 대한기계학회 에너지동력공학부문 춘계학술대회",
+      "period": "2023.05.31~2023.06.01"
+    },
+    {
+      "title": "가스터빈 베인 삼각채널의 요철 각도와 퍼징 파이프에 따른 열전달 특성",
+      "conference": "2023년도 대한기계학회 에너지동력공학부문 춘계학술대회",
+      "period": "2023.05.31~2023.06.01"
+    },
+    {
+      "title": "열저항 회로 분석을 기반한 가스터빈 회전-정지 시스템의 유동 및 열전달 특성",
+      "conference": "2023년도 대한기계학회 에너지동력공학부문 춘계학술대회",
+      "period": "2023.05.31~2023.06.01"
+    },
+    {
+      "title": "가스터빈 블레이드 내부 유로의 삼각 핀에 의한 열전달 특성",
+      "conference": "2023년도 대한기계학회 에너지동력공학부문 춘계학술대회",
+      "period": "2023.05.31~2023.06.01"
+    },
+    {
+      "title": "가스터빈 노즐 엔드월 프로파일에 의한 막냉각 특성 변화",
+      "conference": "2023년도 대한기계학회 에너지동력공학부문 춘계학술대회",
+      "period": "2023.05.31~2023.06.01"
+    },
+    {
+      "title": "상류 가벽으로 인한 후류 발생이 1단 베인 바닥면 냉각 성능에 미치는 영향",
+      "conference": "2023년도 대한기계학회 에너지동력공학부문 춘계학술대회",
+      "period": "2023.05.31~2023.06.01"
+    },
+    {
+      "title": "가스터빈 베인의 적층 제작 공정해석을 통한 열적 특성 분석",
+      "conference": "2023년도 대한기계학회 에너지동력공학부문 춘계학술대회",
+      "period": "2023.05.31~2023.06.01"
+    },
+    {
+      "title": "슬롯 냉각이 적용된 가스터빈 블레이드 팁에서의 냉각 성능 특성 분석",
+      "conference": "2023년도 대한기계학회 에너지동력공학부문 춘계학술대회",
+      "period": "2023.05.31~2023.06.01"
+    },
+    {
+      "title": "횡방향 제트 주입에 따른 타원형 핀 설치 내부유로의 열전달 특성",
+      "conference": "2023년도 대한기계학회 에너지동력공학부문 춘계학술대회",
+      "period": "2023.05.31~2023.06.01"
+    },
+    {
+      "title": "충돌판 온도 변화가 초임계 이산화탄소의 단일 충돌 제트 열전달에 미치는 영향",
+      "conference": "2023년도 대한기계학회 에너지동력공학부문 춘계학술대회",
+      "period": "2023.05.31~2023.06.01"
+    },
+    {
+      "title": "충돌/유출 냉각에서 충돌제트의 정체점 돌출에 의한 열전달 특성 변화",
+      "conference": "2023년도 대한기계학회 에너지동력공학부문 춘계학술대회",
+      "period": "2023.05.31~2023.06.01"
+    },
+    {
+      "title": "오프셋 스트립 핀에 곡률을 적용 시 열전달에 미치는 영향",
+      "conference": "2023년도 대한기계학회 에너지동력공학부문 춘계학술대회",
+      "period": "2023.05.31~2023.06.01"
+    },
+    {
+      "title": "가스터빈 베인 사각 채널에 설치된 내부 파이프 표면 형상에 따른 열전달 특성",
+      "conference": "한국추진공학회 2023년도 춘계학술대회",
+      "period": "2023.05.24~2023.05.26"
+    },
+    {
+      "title": "초음속 레이돔의 열전달 특성에 내부 열경계 조건이 미치는 영향",
+      "conference": "한국추진공학회 2023년도 춘계학술대회",
+      "period": "2023.05.24~2023.05.26"
+    },
+    {
+      "title": "초음속 유동장에서 후향계단이 열전달 특성에 미치는 영향",
+      "conference": "한국추진공학회 2023년도 춘계학술대회",
+      "period": "2023.05.24~2023.05.26"
+    },
+    {
+      "title": "굴곡진 냉각유로 내부의 돌출 형상에 따른 열전달 특성",
+      "conference": "한국추진공학회 2023년도 춘계학술대회",
+      "period": "2023.05.24~2023.05.26"
+    },
+    {
+      "title": "상류 가벽 존재가 1단 베인 엔드월 막냉각 성능에 미치는 영향",
+      "conference": "한국추진공학회 2023년도 춘계학술대회",
+      "period": "2023.05.24~2023.05.26"
+    },
+    {
+      "title": "적층 제작 가스터빈 엔드월 내 구조물로 인한 냉각 특성",
+      "conference": "한국추진공학회 2023년도 춘계학술대회",
+      "period": "2023.05.24~2023.05.26"
+    },
+    {
+      "title": "리니어 컴프레서 내부 비정상 유동 특성의 정상 상태 해석",
+      "conference": "한국추진공학회 2023년도 춘계학술대회",
+      "period": "2023.05.24~2023.05.25"
+    },
+    {
+      "title": "핀-휜이 설치된 충돌 제트 냉각에서 제트 홀 배열이 열전달에 미치는 영향",
+      "conference": "한국추진공학회 2023년도 춘계학술대회",
+      "period": "2023.05.24~2023.05.26"
+    },
+    {
+      "title": "충돌/유출 냉각에서 충돌제트의 정체점 돌출에 의한 냉각 성능 변화",
+      "conference": "한국추진공학회 2023년도 춘계학술대회",
+      "period": "2023.05.24~2023.05.26"
+    },
+    {
+      "title": "S형 핀-휜의 열전달 및 압력강하 특성",
+      "conference": "한국추진공학회 2023년도 춘계학술대회",
+      "period": "2023.05.24~2023.05.26"
+    },
+    {
+      "title": "가스터빈 림 씰 최소 냉각 유량에 대한 특성 고찰: 첫번째 씰 간극 영향",
+      "conference": "2023년도 대한기계학회 열공학부문 춘계학술대회",
+      "period": "2023.04.19~2023.04.21"
+    },
+    {
+      "title": "가스터빈 엔진 회전자 고정자 시스템 의 열관리를 위한 운전조건에 따른 국부 열 물질 전달",
+      "conference": "2023년도 대한기계학회 열공학부문 춘계학술대회",
+      "period": "2023.04.19~2023.04.21"
+    },
+    {
+      "title": "가스터빈 사각 채널 내 퍼징 파이프의 직경이 열전달에 미치는 영향",
+      "conference": "2023년도 대한기계학회 열공학부문 춘계학술대회",
+      "period": "2023.04.19~2023.04.21"
+    },
+    {
+      "title": "엔드월 냉각성능에 따른 막냉각 홀 배열 최적화",
+      "conference": "2023년도 대한기계학회 열공학부문 춘계학술대회",
+      "period": "2023.04.19~2023.04.21"
+    },
+    {
+      "title": "알루미늄 박막의 두께 조절을 통한 항공기 적외선 신호제어 연구",
+      "conference": "한국항공우주학회 2023 춘계학술대회",
+      "period": "2023.04.19~2023.04.21"
+    },
+    {
+      "title": "비행 마하수에 따른 항공기 엔진 배열 및 적외선 신호 특성 분석",
+      "conference": "한국항공우주학회 2023 춘계학술대회",
+      "period": "2023.04.19~2023.04.21"
+    },
+    {
+      "title": "비정렬 실리콘 나노선 구조 기반 NIR 위장 성능 평가",
+      "conference": "2023년도 대한기계학회 열공학부문 춘계학술대회",
+      "period": "2023.04.19~2023.04.21"
+    },
+    {
+      "title": "주기성을 가진 마이크로 구조를 이용한 SWIR 반사 제어 메타표면",
+      "conference": "2023년도 대한기계학회 열공학부문 춘계학술대회",
+      "period": "2023.04.19~2023.04.21"
+    },
+    {
+      "title": "냉각유로 내부의 돌출 형상에 따른 열전달 특성의 수치해석적 연구",
+      "conference": "2023년도 대한기계학회 열공학부문 춘계학술대회",
+      "period": "2023.04.19~2023.04.21"
+    },
+    {
+      "title": "적층 제작을 활용한 막냉각 홀 내부 유로 개선 및 막냉각 특성",
+      "conference": "2023년도 대한기계학회 열공학부문 춘계학술대회",
+      "period": "2023.04.19~2023.04.21"
+    },
+    {
+      "title": "가스터빈 블레이드 내부 유로의 단면이 변화하는 핀에 의한 열전달 특성",
+      "conference": "2023년도 대한기계학회 열공학부문 춘계학술대회",
+      "period": "2023.04.19~2023.04.21"
+    },
+    {
+      "title": "상류 가벽 의 존재가 1 단 베인 엔드월 열전달에 미치는 영향",
+      "conference": "2023년도 대한기계학회 열공학부문 춘계학술대회",
+      "period": "2023.04.19~2023.04.21"
+    },
+    {
+      "title": "충진율에 따른 3D 프린팅 히트파이프의 열전달 특성",
+      "conference": "2023년도 대한기계학회 열공학부문 춘계학술대회",
+      "period": "2023.04.19~2023.04.21"
+    },
+    {
+      "title": "위킹을 동반하는 이종 젖음성 표면에서의 비등열전달 특성",
+      "conference": "2023년도 대한기계학회 열공학부문 춘계학술대회",
+      "period": "2023.04.19~2023.04.21"
+    },
+    {
+      "title": "레이스트랙 핀 설치에 따른 터빈 블레이드 내부유로의 열전달 특성",
+      "conference": "2023년도 대한기계학회 열공학부문 춘계학술대회",
+      "period": "2023.04.19~2023.04.21"
+    },
+    {
+      "title": "노즐-충돌판 간격 변화에 따른 액체 이산화탄소 단일 충돌 제트의 열전달 특성",
+      "conference": "2023년도 대한기계학회 열공학부문 춘계학술대회",
+      "period": "2023.04.19~2023.04.21"
+    },
+    {
+      "title": "충돌/유출 냉각 내부 레이어 수 변화에 따른 복합 열전달 특성 변화",
+      "conference": "2023년도 대한기계학회 열공학부문 춘계학술대회",
+      "period": "2023.04.19~2023.04.21"
+    },
+    {
+      "title": "핀-휜이 결합된 충돌 제트 냉각에서 제트 홀 배열에 따른 열전달 특성",
+      "conference": "2023년도 대한기계학회 열공학부문 춘계학술대회",
+      "period": "2023.04.19~2023.04.21"
+    },
+    {
+      "title": "곡면을 가진 오프셋 스트립 핀의 열전달 특성",
+      "conference": "2023년도 대한기계학회 열공학부문 춘계학술대회",
+      "period": "2023.04.19~2023.04.21"
+    },
+    {
+      "title": "충돌/유출 냉각에서 충돌제트의 정체점 돌출과 홀 배열에 의한 열전달 특성 변화",
+      "conference": "2023년도 대한기계학회 열공학부문 춘계학술대회",
+      "period": "2023.04.19~2023.04.21"
+    },
+    {
+      "title": "Effect of Fractal Nanostructure on Multispectral optical properties in visible-IR waveband",
+      "conference": "2023 MRS spring meeting & exhibit",
+      "period": "2023.04.10~2023.04.14"
+    },
+    {
+      "title": "Design of Ring-Patch Pattern Based Microwave Frequency Selective and Infrared Camouflage Surface",
+      "conference": "2023 MRS spring meeting & exhibit",
+      "period": "2023.04.10~2023.04.14"
+    },
+    {
+      "title": "CHF enhancement on micro/nano hybrid structure under acoustic actuation",
+      "conference": "The 11th International Conference on Multiphase flow",
+      "period": "2023.04.02~2023.04.08"
+    },
+    {
+      "title": "Nucleation Patterning on Reduced Graphene Oxide-coated Micropillar surface for Enhanced Boiling Heat Transfer",
+      "conference": "The 11th International Conference on Multiphase flow",
+      "period": "2023.04.02~2023.04.08"
+    }
+  ],
+  "fundings": [
+    {
+      "title": "[RCMS](주)한스코/터보팬 노즐 쉬라우드용 일방향 응고 내열합금 개발 기술(1/7)",
+      "org": "국방기술진흥연구소",
+      "period": "2023-12-01~2023-12-31"
+    },
+    {
+      "title": "[2023-11-1858][RCMS]능동형 적외선 신호 통합제어 기술(1/7)",
+      "org": "연세대학교",
+      "period": "2023-12-01~2024-12-31"
+    },
+    {
+      "title": "[RCMS]능동형 적외선 신호 통합제어 기술(1/6)",
+      "org": "국방기술진흥연구소",
+      "period": "2023-12-01~2023-12-31"
+    },
+    {
+      "title": "[RCMS]연세대학교 우주국방융합협동과정(1/3)",
+      "org": "국방기술진흥연구소",
+      "period": "2022-09-01~2023-02-28"
+    },
+    {
+      "title": "[RCMS]한화에어로스페이스(주)/General Aviation 항공기 가스터빈용 저압터빈 모듈 설계 해석 제작 시험 평가 및 엔진 시험 기술 개발(2/2)",
+      "org": "한국산업기술평가관리원",
+      "period": "2022-01-01~2023-06-30"
+    },
+    {
+      "title": "[RCMS]한화에어로스페이스(주)/General Aviation 항공기 가스터빈용 저압터빈 모듈 설계 해석 제작 시험 평가 및 엔진 시험 기술 개발(1/2)",
+      "org": "한국산업기술평가관리원",
+      "period": "2021-01-01~2021-12-31"
+    },
+    {
+      "title": "[RCMS]한화에어로스페이스(주)/General Aviation 항공기 가스터빈용 저압터빈 모듈 설계 해석 제작 시험 평가 및 엔진 시험 기술 개발(3/3)",
+      "org": "한국산업기술평가관리원",
+      "period": "2020-01-01~2020-12-31"
+    },
+    {
+      "title": "[AL-04] 방사율 및 온도제어 카멜레온 방식 IR 저감기술 연구 (1/2단계)",
+      "org": "산하기관",
+      "period": "2019-12-16~2021-12-15"
+    },
+    {
+      "title": "[한중협력연구] 가스터빈 블레이드 열부하 저감을 위한 스퀼러 팁 최적 형상 설계 연구 (1/2)",
+      "org": "한국연구재단",
+      "period": "2019-07-01~2020-06-30"
+    },
+    {
+      "title": "[RCMS]한화에어로스페이스(주)/General Aviation 항공기 가스터빈용 저압터빈 모듈 설계 해석 제작 시험 평가 및 엔진 시험 기술 개발(2/3,1단계)",
+      "org": "한국산업기술평가관리원",
+      "period": "2019-03-01~2019-12-31"
+    },
+    {
+      "title": "[RCMS]한화에어로스페이스(주)/General Aviation 항공기 가스터빈용 저압터빈 모듈 설계 해석 제작 시험 평가 및 엔진 시험 기술 개발(1/3,1단계)",
+      "org": "한국산업기술평가관리원",
+      "period": "2018-09-01~2019-02-28"
+    },
+    {
+      "title": "[포닥]조형희(박세진)-유출 유동이 있는 터빈 블레이드 플랫폼의 열전달 특성 연구",
+      "org": "연세대학교",
+      "period": "2018-09-01~2019-08-31"
+    },
+    {
+      "title": "[Ezbaro] (0세부)열 극한물성 시스템 연구 (2단계)(3/3)",
+      "org": "한국연구재단",
+      "period": "2018-03-01~2018-12-31"
+    },
+    {
+      "title": "저피탐을 고려한 항공기 흡/배기구 최적 형상설계 연구",
+      "org": "산하기관",
+      "period": "2017-08-16~2019-08-15"
+    },
+    {
+      "title": "한국세라믹기술원_방위사업청용역/항공기용 hybrid 소재 및 공정 개발",
+      "org": "산하기관",
+      "period": "2017-06-26~2022-12-31"
+    },
+    {
+      "title": "[한국화학연구원위탁]CO2 포집공정 열교환형 유동층 반응기 열설계(1/3,2단계)(2011.11.1~2020.5.31)",
+      "org": "한국연구재단",
+      "period": "2017-06-01~2018-03-31"
+    },
+    {
+      "title": "열 극한물성 시스템 연구(2/3)",
+      "org": "한국연구재단",
+      "period": "2017-05-01~2018-02-28"
+    },
+    {
+      "title": "군용화 민간항공기 및 엔진 IR 특성분석",
+      "org": "산하기관",
+      "period": "2017-02-01~2017-04-30"
+    },
+    {
+      "title": "국방피탐지감소기술 특화연구센터(3/3단계-3/3차년도)",
+      "org": "산하기관",
+      "period": "2017-01-01~2017-12-15"
+    },
+    {
+      "title": "[LO-23]항공기 적외선 에너지 측정 및 저피탐 형상 연구(3/3단계-3/3차년도)",
+      "org": "산하기관",
+      "period": "2017-01-01~2017-12-15"
+    },
+    {
+      "title": "직물형 레이돔 열-구조 설계 및 해석 기법 연구",
+      "org": "산하기관",
+      "period": "2016-12-23~2018-12-15"
+    },
+    {
+      "title": "선회유동흐름 집진장치 설계의 이론적 고찰 및 CFD해석(2/2)",
+      "org": "중소기업청",
+      "period": "2016-10-01~2017-12-31"
+    },
+    {
+      "title": "열 극한물성 시스템 연구(1/3,2단계)",
+      "org": "한국연구재단",
+      "period": "2016-07-01~2017-04-30"
+    },
+    {
+      "title": "다단 CO2 포집공정 열교환형 유동층 반응기 열설계",
+      "org": "한국연구재단",
+      "period": "2016-06-01~2017-05-31"
+    },
+    {
+      "title": "[LO-23]항공기 적외선 에너지 측정 및 저피탐 형상 연구(3/3단계-2/3차년도)",
+      "org": "산하기관",
+      "period": "2016-01-01~2016-12-31"
+    },
+    {
+      "title": "[LO-21-41]국방피탐지감소기술 전출과제(3/3단계-2/3차년도)",
+      "org": "산하기관",
+      "period": "2016-01-01~2016-12-31"
+    },
+    {
+      "title": "국방피탐지감소기술 특화연구센터(3/3단계-2/3차년도)",
+      "org": "산하기관",
+      "period": "2016-01-01~2016-12-31"
+    },
+    {
+      "title": "선회유동흐름 집진장치 설계의 이론적 고찰 및 CFD해석",
+      "org": "중소기업청",
+      "period": "2015-10-01~2016-09-30"
+    },
+    {
+      "title": "열 극한물성 시스템 연구(2/2, 1단계)",
+      "org": "한국연구재단",
+      "period": "2015-09-01~2016-06-30"
+    },
+    {
+      "title": "다단 CO2 포집공정 열교환형 유동층 반응기 열설계",
+      "org": "한국연구재단",
+      "period": "2015-06-01~2016-05-31"
+    },
+    {
+      "title": "Nano bi­metal 및 스마트 표면처리를 통한 열전달 도약기술(2/2,2단계)(2011.5.1~2016.4.30)",
+      "org": "한국연구재단",
+      "period": "2015-05-01~2016-04-30"
+    },
+    {
+      "title": "[포닥]조형희(DHANANJAY YADAV)-Hydrodynamic and Hydromagnetic Instability in Nanofluids/Ferrofluids",
+      "org": "연세대학교",
+      "period": "2015-05-01~2015-12-31"
+    },
+    {
+      "title": "[RCMS]한국항공우주연구원/중소형 항공기용 터보팬 엔진의 고압터빈 냉각 설계기술 개발 및 시험평가 기술 구축(4/5)",
+      "org": "한국산업기술평가관리원",
+      "period": "2014-12-01~2015-11-30"
+    },
+    {
+      "title": "폐열회수보일러(HRSG) 케이싱 균열방지를 위한 열변형 흡수 설비 개발",
+      "org": "한국산업기술평가관리원",
+      "period": "2014-11-01~2015-10-31"
+    },
+    {
+      "title": "열 극한물성 시스템 연구(1/2,1단계)",
+      "org": "한국연구재단",
+      "period": "2014-09-01~2015-08-31"
+    },
+    {
+      "title": "LG전자(주)/핸드폰 방열 솔루션 개발",
+      "org": "국내",
+      "period": "2014-09-01~2015-03-31"
+    },
+    {
+      "title": "국방 피탐지 감소기술 특화연구센터(2/3단계)",
+      "org": "연세대학교",
+      "period": "2014-09-01~2015-08-31"
+    },
+    {
+      "title": "[RCMS](주)성일터빈/100MW급 가스터빈 upgrade 적용 설계기술 및 제작기술 개발",
+      "org": "한국에너지기술평가원",
+      "period": "2014-07-01~2015-06-30"
+    },
+    {
+      "title": "삼성전자(주)/미래 Logic 소자 기반 연구",
+      "org": "국내",
+      "period": "2014-07-01~2016-06-30"
+    },
+    {
+      "title": "[RCMS]차세대 가스터빈 고온부품 GET-FUTURE 연구실(1/3,2단계)(2013.06.01~2023.05.31)",
+      "org": "한국에너지기술평가원",
+      "period": "2014-06-01~2015-05-31"
+    },
+    {
+      "title": "[한국화학연구원/위탁]다단 CO2 포집공정 열교환형 유동층 반응기 열설계",
+      "org": "한국연구재단",
+      "period": "2014-06-01~2015-05-31"
+    },
+    {
+      "title": "연세대학교-서부발전-협력사 기술연구회",
+      "org": "중소기업청",
+      "period": "2014-05-28~2014-12-30"
+    },
+    {
+      "title": "Nano bi­metal 및 스마트 표면처리를 통한 열전달 도약기술(1/2,2단계)(2011.5.1~2016.4.30)",
+      "org": "한국연구재단",
+      "period": "2014-05-01~2015-04-30"
+    },
+    {
+      "title": "[위탁]한국로스트왁스(주)/501F급 블레이드 정밀제작 기술개발(2/2)(2012.10.1~2014.9.30)",
+      "org": "한국에너지기술평가원",
+      "period": "2014-04-01~2015-03-31"
+    },
+    {
+      "title": "Solar Turbines Inc./Gas-Side Heat Transfer Characteristics of Turbine Vane Airfoil Near Endwalls",
+      "org": "국외",
+      "period": "2014-04-01~2022-08-31"
+    },
+    {
+      "title": "비균질 화학반응을 고려한 (극)초음속 난류 열유동장 및 내열재 열반응 통합해석(MP3)",
+      "org": "방위사업청",
+      "period": "2014-03-24~2016-12-15"
+    },
+    {
+      "title": "[교비배정] 국내외 주요대학의 특수대학원/전문대학원 현황 및 비교분석 연구",
+      "org": "연세대학교",
+      "period": "2014-03-01~2015-04-30"
+    },
+    {
+      "title": "한국전력공사/나프탈렌승화법을 이용한 보일러 튜브 물질전달 실험 및 해석",
+      "org": "산하기관",
+      "period": "2014-01-27~2014-11-30"
+    },
+    {
+      "title": "LG전자/모바일 디바이스 소재의 감성온도 평가",
+      "org": "국내",
+      "period": "2014-01-01~2016-06-30"
+    },
+    {
+      "title": "[RCMS]한국항공우주연구원//중소형 항공기용 터보팬 엔진의 고압터빈 냉각 설계기술 개발 및 시험평가 기술 구축(3/3)",
+      "org": "한국산업기술평가관리원",
+      "period": "2013-12-01~2014-11-30"
+    },
+    {
+      "title": "HRSG 케이싱 균열방지를 위한 열변형 흡수 설비 개발",
+      "org": "한국산업기술평가관리원",
+      "period": "2013-11-01~2014-10-31"
+    },
+    {
+      "title": "Plasma actuator를 이용한 항공기 공력 성능 향상",
+      "org": "연세대학교",
+      "period": "2013-09-01~2014-07-31"
+    },
+    {
+      "title": "[2012-8-1175]국방피탐지감소기술특화연구센터 대응자금 및 공간임대료 지원 과제",
+      "org": "연세대학교",
+      "period": "2013-09-01~2015-08-31"
+    },
+    {
+      "title": "배관 내부 감육현상 최소화를 위한 유동가속부식 저감 기술 개발 용역",
+      "org": "한국지역난방공사",
+      "period": "2013-08-15~2015-02-15"
+    },
+    {
+      "title": "[RCMS](주)성일터빈/100 MW급 가스터빈 UPGRADE 적용 설계기술 및 제작기술 개발(3/5)(2011.07.01~2016.06.30)",
+      "org": "한국에너지기술평가원",
+      "period": "2013-07-01~2014-06-30"
+    },
+    {
+      "title": "다단 CO2 포집공정 열교환형 유동층 반응기 열설계(3/3,1단계)(이월안됨)",
+      "org": "한국연구재단",
+      "period": "2013-06-01~2014-05-31"
+    },
+    {
+      "title": "[RCMS]차세대 가스터빈 고온부품 GET-FUTURE 연구실(1/4)(2013.06.01~2023.05.31)",
+      "org": "한국에너지기술평가원",
+      "period": "2013-06-01~2014-05-31"
+    },
+    {
+      "title": "(주)테스/공정챔버 내 열전달 시뮬레이션",
+      "org": "국내",
+      "period": "2013-06-01~2013-11-30"
+    },
+    {
+      "title": "동반성장 기술연구회(1/1)",
+      "org": "중소기업청",
+      "period": "2013-05-01~2013-12-31"
+    },
+    {
+      "title": "NANO BI­METAL 및 스마트 표면처리를 통한 열전달 도약기술(3/3)",
+      "org": "한국연구재단",
+      "period": "2013-05-01~2014-04-30"
+    },
+    {
+      "title": "[다학제간] 연세대학교 학술활동의 선진화를 위한 과학기술 정책 수립",
+      "org": "연세대학교",
+      "period": "2013-03-01~2014-03-31"
+    },
+    {
+      "title": "한국항공우주연구원/중소형 항공기용 터보팬 엔진의 고압터빈 냉각 설계기술 개발 및 시험평가 기술 구축(2/3)(2011.10.1~2016.11.30)",
+      "org": "한국산업기술평가관리원",
+      "period": "2012-12-01~2013-11-30"
+    },
+    {
+      "title": "한국로스트왁스(주)/501F급 블레이드 정밀제작 기술개발(1/2)(2012.10.1~2014.9.30)",
+      "org": "한국에너지기술평가원",
+      "period": "2012-10-01~2013-09-30"
+    },
+    {
+      "title": "(주)한종이엔지/SEALING DEVICE 열특성 해석 및 실험평가 검증(1/1)(2012.10.1~2013.9.30)",
+      "org": "한국산업기술평가관리원",
+      "period": "2012-10-01~2013-09-30"
+    },
+    {
+      "title": "[정책c] 교무처/교원인사제도 개선 연구",
+      "org": "연세대학교",
+      "period": "2012-09-25~2013-02-28"
+    },
+    {
+      "title": "국방피탐지감소기술 특화연구센터(2/3단계) 공간임대료 지원 과제",
+      "org": "연세대학교",
+      "period": "2012-09-01~2013-08-31"
+    },
+    {
+      "title": "[2012-8-1175]국방피탐지감소기술특화연구센터(2/3단계) 대응자금 과제",
+      "org": "연세대학교",
+      "period": "2012-09-01~2013-08-31"
+    },
+    {
+      "title": "(주)성일터빈/100MW급 가스터빈 UPGRADE 적용 설계 기술 및 제작기술 개발(2/3)((2011.7.1~2016.6.30)",
+      "org": "한국에너지기술평가원",
+      "period": "2012-07-01~2013-06-30"
+    },
+    {
+      "title": "마이크로 터빈 구성품 및 열교환기 열해석",
+      "org": "한국기계연구원",
+      "period": "2012-06-05~2014-12-31"
+    },
+    {
+      "title": "다단 CO2 포집공정 열교환형 유동층 반응기 열설계(2/3,1단계)(이월안됨)",
+      "org": "한국연구재단",
+      "period": "2012-06-01~2013-05-31"
+    },
+    {
+      "title": "NANO BI­METAL 및 스마트 표면처리를 통한 열전달 도약기술(2/3,1단계)",
+      "org": "한국과학재단",
+      "period": "2012-05-01~2013-04-30"
+    },
+    {
+      "title": "연세대학교-서부발전-협력사 동반성장 기술연구회(1/1)",
+      "org": "대중소기업협력재단",
+      "period": "2012-04-01~2012-12-31"
+    },
+    {
+      "title": "(LO-23)국방 피탐지 감소기술 특화연구센터(2/3단계)",
+      "org": "방위사업청",
+      "period": "2012-03-09~2014-12-15"
+    },
+    {
+      "title": "국방 피탐지 감소기술 특화연구센터(2/3단계)",
+      "org": "방위사업청",
+      "period": "2012-03-09~2014-12-15"
+    },
+    {
+      "title": "[다학제간] 한국과학기술한림원 연세교류회",
+      "org": "연세대학교",
+      "period": "2012-03-02~2013-02-28"
+    },
+    {
+      "title": "나노마이크로응용기계기술인력양성사업단",
+      "org": "연세대학교",
+      "period": "2012-03-01~2014-02-28"
+    },
+    {
+      "title": "나노 마이크로 응용기계기술 인력양성사업",
+      "org": "학술진흥재단",
+      "period": "2012-03-01~2013-04-30"
+    },
+    {
+      "title": "터빈엔진용 분출냉각기법의 열전달 특성에 관한 실험적연구",
+      "org": "국방과학연구소",
+      "period": "2011-11-23~2013-05-31"
+    },
+    {
+      "title": "[다학제간] 연세환경포럼의 10년 회고와 미래 친환경정책의 교내외 확산을 위한 다학제 연구",
+      "org": "연세대학교",
+      "period": "2011-11-01~2012-10-31"
+    },
+    {
+      "title": "다단 CO2 포집공정 열교환형 유동층 반응기 열설계(1/3,1단계)(이월안됨)",
+      "org": "한국연구재단",
+      "period": "2011-11-01~2012-05-31"
+    },
+    {
+      "title": "한국항공우주연구원/중소형 항공기용 터보팬 엔진의 같藉斤故?냉각 설계기술 개발 및 시험평가 기술 구축 (1/3)(2011.10.1~2016.9.30)",
+      "org": "한국항공우주기술연구조합",
+      "period": "2011-10-01~2012-11-30"
+    },
+    {
+      "title": "비균질 화학반응을 고려한 초음속 난류 유동장 및 내열재 열반응 통합해석 (2011.12.14~2013.12.31)",
+      "org": "방위사업청",
+      "period": "2011-09-01~2013-12-31"
+    },
+    {
+      "title": "유동특성 및 저피탐 성능향상을 위한 저온 플라즈마 적용 연구",
+      "org": "국방과학연구소",
+      "period": "2011-07-07~2012-12-31"
+    },
+    {
+      "title": "(주)성일에스아이엠/100 MW급 가스터빈 upgrade 적용 설계기술 및 제작기술 개발(1차년도/3)",
+      "org": "한국에너지기술평가원",
+      "period": "2011-07-01~2012-06-30"
+    },
+    {
+      "title": "한국전력공사/블레이드 냉각유로변경 및 열응력 적용 열설계기술 개발(3차년도/3)(2009.06.01~2012.05.31)",
+      "org": "한국에너지기술평가원",
+      "period": "2011-06-01~2012-09-30"
+    },
+    {
+      "title": "엘지디스플레이(주)/ CFD를 이용한 LCM 방열구조 영향도 평가 및 기구 구조 최적화",
+      "org": "기업체/공사",
+      "period": "2011-06-01~2012-05-30"
+    },
+    {
+      "title": "온실가스 배출 전망 및 감축잠재량 예측·분석·평가 기술 개발",
+      "org": "한국환경산업기술원",
+      "period": "2011-05-01~2012-03-31"
+    },
+    {
+      "title": "Nano bi­metal 및 스마트 표면처리를 통한 열전달 도약기술",
+      "org": "한국과학재단",
+      "period": "2011-05-01~2012-04-30"
+    },
+    {
+      "title": "2차유동분사에 의한 경계층 변화특성 연구",
+      "org": "방위사업청",
+      "period": "2011-04-11~2013-12-31"
+    },
+    {
+      "title": "나노 마이크로 응용기계기술 인력양성사업",
+      "org": "학술진흥재단",
+      "period": "2011-03-01~2012-02-29"
+    },
+    {
+      "title": "나노마이크로응용기계기술인력양성사업단",
+      "org": "연세대학교",
+      "period": "2011-03-01~2012-02-29"
+    },
+    {
+      "title": "원자로 노심 봉다발 난류특성 실험 최적화 기술 개발",
+      "org": "한국원자력연구원",
+      "period": "2011-03-01~2012-02-29"
+    },
+    {
+      "title": "초전도 사이클로트론의 cryostat를 위한 헬륨 자연순훑?聆?설계(2차년도/2)(2010.03.01~2012.02.29)",
+      "org": "한국원자력의학원",
+      "period": "2011-03-01~2012-02-29"
+    },
+    {
+      "title": "초고발열기기 냉각을 위한 나노선융합 강제대류비등열전달기술 개발",
+      "org": "한국과학재단",
+      "period": "2011-03-01~2012-02-29"
+    },
+    {
+      "title": "냉각재 유동으로 발생하는 원자로 내부 구조물의 하중평가 방법론 연구(3차년도/3)(2009.08.10~2011.09.30)",
+      "org": "한국원자력연구원",
+      "period": "2011-01-01~2011-09-30"
+    },
+    {
+      "title": "마이크로 터빈 구성품 및 열교환기 열해석(3차년도/3)(2009.05.18~2011.12.31)",
+      "org": "한국기계연구원",
+      "period": "2011-01-01~2011-12-31"
+    },
+    {
+      "title": "발전용 고효율 대용량 가스터빈개발",
+      "org": "한국에너지기술평가원",
+      "period": "2010-12-27~2011-02-25"
+    },
+    {
+      "title": "사업장 온실가스 기술DB 구축연구",
+      "org": "환경부",
+      "period": "2010-11-09~2011-04-08"
+    },
+    {
+      "title": "(유)실리콘밸류/태양전지용 폴리실리콘 제조장비의 열/유동 특성 해석 및 최적 설계(3차)",
+      "org": "한국에너지기술평가원",
+      "period": "2010-10-01~2011-09-30"
+    },
+    {
+      "title": "성일에스아이엠 / 가스터빈 3단 Vane 열설계 기술개발",
+      "org": "기업체/공사",
+      "period": "2010-10-01~2011-12-31"
+    },
+    {
+      "title": "(주)성일에스아이엠/가스터빈 C/L 및 T/P 냉각시스템 해석 및 실험(2차)",
+      "org": "지식경제부",
+      "period": "2010-08-01~2011-07-31"
+    },
+    {
+      "title": "한국전력공사/블레이드 냉각유로변경 및 열응력 적용 열설계기술 개발",
+      "org": "한국에너지기술평가원",
+      "period": "2010-06-01~2011-05-31"
+    },
+    {
+      "title": "냉각재유동으로 발생하는 원자로 내부구조물의 유동 하중평가 방법론 연구",
+      "org": "한국원자력연구원",
+      "period": "2010-04-01~2010-12-31"
+    },
+    {
+      "title": "G-5-5-10나노마이크로응용기계기술인력양성사업단",
+      "org": "연세대학교",
+      "period": "2010-03-02~2011-06-30"
+    },
+    {
+      "title": "나노마이크로응용기계기술인력양성사업단",
+      "org": "연세대학교",
+      "period": "2010-03-01~2011-02-28"
+    },
+    {
+      "title": "나노 마이크로 응용기계기술 인력양성사업단",
+      "org": "학술진흥재단",
+      "period": "2010-03-01~2011-02-28"
+    },
+    {
+      "title": "원자로 노심 봉다발 난류특성 실험 최적화 기술 개발",
+      "org": "한국과학재단",
+      "period": "2010-03-01~2011-02-28"
+    },
+    {
+      "title": "초전도 사이클로트론의 저온유지장치를 위한 헬륨 자연순환루프 설계평가",
+      "org": "한국과학재단",
+      "period": "2010-03-01~2011-02-28"
+    },
+    {
+      "title": "초고발열기기 냉각을 위한 나노선융합 강제대류비등열전달기술 개발",
+      "org": "한국과학재단",
+      "period": "2010-03-01~2011-02-28"
+    },
+    {
+      "title": "마이크로 터빈 구성품 및 열교환기 열해석",
+      "org": "한국기계연구원",
+      "period": "2010-01-01~2010-12-31"
+    },
+    {
+      "title": "국방피탐지감소기술특화연구센터(LO-24) 다색 적외선 화상 장치 및 능동형 고온 표면 냉각기술에 관한 연구",
+      "org": "국방과학연구소",
+      "period": "2009-11-26~2011-12-31"
+    },
+    {
+      "title": "국방 피탐지 감소기술 특화연구센터(1단계)",
+      "org": "국방과학연구소",
+      "period": "2009-11-26~2011-12-31"
+    },
+    {
+      "title": "국방피탐지감소기술특화연구센터 Ⅲ(공간임대료 지원)",
+      "org": "연세대학교",
+      "period": "2009-11-03~2012-06-30"
+    },
+    {
+      "title": "국방피탐지감소기술특화연구센터Ⅱ",
+      "org": "연세대학교",
+      "period": "2009-11-03~2012-07-31"
+    },
+    {
+      "title": "(유)실리콘밸류/태양전지용 폴리실리콘 제조장비의 열/유동 특성 해석 및 최적 설계",
+      "org": "한국에너지기술평가원",
+      "period": "2009-10-01~2010-09-30"
+    },
+    {
+      "title": "국방 피탐지 감소기술 특화연구센터",
+      "org": "연세대학교",
+      "period": "2009-09-21~2010-12-31"
+    },
+    {
+      "title": "냉각재 유동으로 발생하는 원자로 내부 구조물의 하중평가 방법론 연구",
+      "org": "한국원자력연구원",
+      "period": "2009-08-10~2009-12-31"
+    },
+    {
+      "title": "가스터빈 C/L 및 T/P 냉각시스템 해석 및 실험",
+      "org": "지식경제부",
+      "period": "2009-08-01~2010-07-31"
+    },
+    {
+      "title": "5차년도 수소연료전지특성화대학원 사업",
+      "org": "에너지관리공단",
+      "period": "2009-06-01~2010-10-31"
+    },
+    {
+      "title": "블레이드 냉각유로변경 및 열응력 적용 열설계기술 개발",
+      "org": "지식경제부",
+      "period": "2009-06-01~2010-05-31"
+    },
+    {
+      "title": "온라인 전기자동차의 효율향상을 위한 열전소자의 응용 연구",
+      "org": "한국과학기술원",
+      "period": "2009-06-01~2009-12-31"
+    },
+    {
+      "title": "마이크로 터빈 구성품 및 열교환기 열해석",
+      "org": "한국기계연구원",
+      "period": "2009-05-18~2009-12-31"
+    },
+    {
+      "title": "초고발열기기 냉각을 위한 나노선융합 강제대류비등열전달기술 개발",
+      "org": "한국과학재단",
+      "period": "2009-05-01~2010-02-28"
+    },
+    {
+      "title": "(주)엔지비 PEM 연료전지의 효율적 물관리를 위한 분리판 최적유로 설계안 도출(3차)",
+      "org": "민간기업",
+      "period": "2009-04-01~2011-07-31"
+    },
+    {
+      "title": "회전체 주위의 유동장 측정 및 해석",
+      "org": "도시바삼성스토리지테크놀로지",
+      "period": "2009-03-25~2009-12-31"
+    },
+    {
+      "title": "G5-5-10/나노마이크로응용기계기술인력양성사업",
+      "org": "연세대학교",
+      "period": "2009-03-02~2010-06-30"
+    },
+    {
+      "title": "[SM] 국방과학연구소 - 특화연구센터",
+      "org": "연세대학교산학단_간접비",
+      "period": "2009-03-01~2009-07-24"
+    },
+    {
+      "title": "나노마이크로응용기계기술인력양성사업단",
+      "org": "연세대학교",
+      "period": "2009-03-01~2010-02-28"
+    },
+    {
+      "title": "나노마이크로응용기계기술인력양성사업단",
+      "org": "학술진흥재단",
+      "period": "2009-03-01~2010-02-28"
+    },
+    {
+      "title": "교원의 합리적 평가를 위한 공학교육업적 평가지표의 개발",
+      "org": "교육부",
+      "period": "2009-03-01~2009-12-31"
+    },
+    {
+      "title": "4차년도 수소연료전지특성화대학원 사업",
+      "org": "에너지관리공단",
+      "period": "2008-12-01~2009-10-31"
+    },
+    {
+      "title": "조형희/태양전지용 폴리실리콘 제조장비의 열/유동 틍성 해석 및 최적 설계",
+      "org": "에너지관리공단",
+      "period": "2008-12-01~2009-09-30"
+    },
+    {
+      "title": "501F 가스터빈 연소기 컴버스터 트랜지션 냉각시스템 특성 분석 및 열설계",
+      "org": "(주)한전KPS",
+      "period": "2008-11-01~2009-07-31"
+    },
+    {
+      "title": "(4차)버켓 및 노즐 열전달 및 냉각시스템 해석및실험",
+      "org": "(주)한전KPS",
+      "period": "2008-11-01~2010-04-30"
+    },
+    {
+      "title": "터빈 열전달 및 냉각시스템 해석 및 설계(4차)-2007-8-1244",
+      "org": "(주)두산중공업",
+      "period": "2008-09-01~2009-08-31"
+    },
+    {
+      "title": "3차년도 수소연료전지 특성화 대학원 사업",
+      "org": "연세대학교",
+      "period": "2008-08-01~2009-10-31"
+    },
+    {
+      "title": "가스터빈 C/L 및 T/P 냉각시스템 해석 및 실험(2차)",
+      "org": "(주)한전KPS",
+      "period": "2008-08-01~2009-07-31"
+    },
+    {
+      "title": "암세포의 비열을 이용한 세포개수 측정용 바이오센서 의 연구",
+      "org": "학술진흥재단",
+      "period": "2008-07-01~2009-06-30"
+    },
+    {
+      "title": "2차 유동분사에 의한 경계층 변화특성연구",
+      "org": "국방과학연구소",
+      "period": "2008-05-20~2011-03-31"
+    },
+    {
+      "title": "탄소/페놀계 내열재 열반응상수 측정 및 분석",
+      "org": "국방과학연구소",
+      "period": "2008-04-29~2009-12-31"
+    },
+    {
+      "title": "기초연구와 최대수율을 가지는 H2180 액체표적 장치 개발을 위한 액체표적의 가시화 및 온도측정 실험",
+      "org": "한국과학재단",
+      "period": "2008-04-01~2009-03-31"
+    },
+    {
+      "title": "나노마이크로응용기계기술인력양성사업단",
+      "org": "학술진흥재단",
+      "period": "2008-03-01~2009-02-28"
+    },
+    {
+      "title": "G5-5-10/나노마이크로응용기계기술인력양성사업",
+      "org": "연세대학교",
+      "period": "2008-03-01~2009-02-28"
+    },
+    {
+      "title": "나노마이크로응용기계기술인력양성사업단",
+      "org": "연세대학교",
+      "period": "2008-03-01~2009-02-28"
+    },
+    {
+      "title": "(주)엔지비 (2차)PEM 연료전지의 효율적 물관리를 위한 분리판 최적유로 설계안 도출",
+      "org": "민간기업",
+      "period": "2007-12-10~2009-12-31"
+    },
+    {
+      "title": "3차년도 수소연료전지 특성화 대학원 사업",
+      "org": "에너지관리공단",
+      "period": "2007-12-01~2008-11-30"
+    },
+    {
+      "title": "압력용기의 FLOW/TERMINAL ANALYSIS",
+      "org": "(주)이노베이션앤벤처스",
+      "period": "2007-11-26~2009-03-31"
+    },
+    {
+      "title": "(3차)버켓 및 노즐 열전달 및 냉각시스템 해석및실험",
+      "org": "(주)한전KPS",
+      "period": "2007-11-01~2008-10-31"
+    },
+    {
+      "title": "이공계교육과정개발 4유형",
+      "org": "학술진흥재단",
+      "period": "2007-11-01~2008-10-31"
+    },
+    {
+      "title": "터빈 열전달 및 냉각시스템 해석 및 실험(3차)",
+      "org": "(주)두산중공업",
+      "period": "2007-09-01~2008-08-31"
+    },
+    {
+      "title": "가스터빈 C/L 및 T/P 냉각시스템 해석 및 실험(1차)",
+      "org": "(주)한전KPS",
+      "period": "2007-08-01~2008-07-31"
+    },
+    {
+      "title": "HPCVD CHAMBER 내 열 유동 및 열 응력 해석",
+      "org": "(주)이노베이션앤벤처스",
+      "period": "2007-05-07~2007-07-31"
+    },
+    {
+      "title": "나노/마이크로 응용 기계기술 인력양성사업단",
+      "org": "학술진흥재단",
+      "period": "2007-03-01~2008-02-29"
+    },
+    {
+      "title": "기술 융합시대에 따른 공학교육 연구",
+      "org": "연세대학교산학단_간접비",
+      "period": "2007-03-01~2008-08-31"
+    },
+    {
+      "title": "나노/마이크로 응용 기계기술 인력양성사업단",
+      "org": "연세대학교",
+      "period": "2007-03-01~2008-02-29"
+    },
+    {
+      "title": "열 반응을 이용한 암 진단용 THERMAL BIOSENSOR 연구",
+      "org": "한국과학재단",
+      "period": "2007-03-01~2008-02-29"
+    },
+    {
+      "title": "G5-5-10/나노마이크로응용기계기술인력양성사업",
+      "org": "연세대학교",
+      "period": "2007-03-01~2008-05-31"
+    },
+    {
+      "title": "(3차)열반응을 이용한 암진단용THERMAL BIOSENSOR연구",
+      "org": "한국과학재단",
+      "period": "2007-03-01~2008-02-29"
+    },
+    {
+      "title": "수소연료전지 특성화 대학원 사업",
+      "org": "에너지관리공단",
+      "period": "2006-12-01~2007-11-30"
+    },
+    {
+      "title": "기계공학에서의 창의적 종합설게 교육 모델 개발",
+      "org": "학술진흥재단",
+      "period": "2006-11-01~2007-10-31"
+    },
+    {
+      "title": "버켓 및 노즐 열전달 및 냉각 시스템 해석 및 실험",
+      "org": "한전기공(주)",
+      "period": "2006-09-01~2007-08-31"
+    },
+    {
+      "title": "(2차) 터빈 열전달 및 냉각시스템 해석 및 실험",
+      "org": "두산중공업",
+      "period": "2006-09-01~2007-08-31"
+    },
+    {
+      "title": "탄소/탄소계 내열재 열반응 상수 측정 및 분석",
+      "org": "국방과학연구소",
+      "period": "2006-07-07~2007-12-31"
+    },
+    {
+      "title": "(2차)가스터빈 회전블레이드 성능개선을 위한 열부하 및 냉각특성에 관한 연구",
+      "org": "에너지관리공단",
+      "period": "2006-06-01~2007-05-31"
+    },
+    {
+      "title": "(2단계)램제트 연소실의 내열시스템 설계연구",
+      "org": "국방과학연구소",
+      "period": "2006-06-01~2009-12-31"
+    },
+    {
+      "title": "(주) 엔지비 PEM 연료전지의 효율적 물관리를 위한 분리판 최적유로 설계안 도출",
+      "org": "민간기업",
+      "period": "2006-05-01~2007-04-30"
+    },
+    {
+      "title": "열 반응을 이용한 암 진단용 THERMAL BIOSENSOR 연구",
+      "org": "과학재단",
+      "period": "2006-04-01~2007-02-28"
+    },
+    {
+      "title": "열 반응을 이용한 암 진단용 THERMAL BIOSENSOR 연구",
+      "org": "과학재단",
+      "period": "2006-04-01~2007-02-28"
+    },
+    {
+      "title": "나노 마이크로 응용기계기술 인력양성사업단",
+      "org": "학술진흥재단",
+      "period": "2006-03-01~2007-02-28"
+    },
+    {
+      "title": "나노마이크로응용기계기술인역양성사업단",
+      "org": "연세대학교",
+      "period": "2006-03-01~2007-02-28"
+    },
+    {
+      "title": "6MM CD 제어를 위한 MULTI-ZONE PEB 설계 기술 개발",
+      "org": "삼성전자(주)",
+      "period": "2006-03-01~2007-01-15"
+    },
+    {
+      "title": "(2차)반도체 수직로용 고효율 히팅묘듈 개발",
+      "org": "보임테크놀로지",
+      "period": "2006-02-01~2007-01-31"
+    },
+    {
+      "title": "공과대학/국제화전략연구",
+      "org": "연세대학교",
+      "period": "2006-02-01~2007-02-28"
+    },
+    {
+      "title": "보령화력 7,8호기 전기집진기내의 열/유동해석 및 설계 최적화",
+      "org": "한국코트렐(주)",
+      "period": "2006-01-01~2006-07-31"
+    },
+    {
+      "title": "수소.연료전지특성화대학원사업 신.재생에너지 특성화대학원사업 산업자원부-대응자금",
+      "org": "연구처",
+      "period": "2005-12-01~2006-11-30"
+    },
+    {
+      "title": "수소.연료전지특성화대학원사업",
+      "org": "에너지관리공단",
+      "period": "2005-12-01~2006-11-30"
+    },
+    {
+      "title": "기계공학에서의 창의적 종합설계 교육 모델 개발 (4유형)",
+      "org": "학술진흥재단",
+      "period": "2005-11-01~2006-10-31"
+    },
+    {
+      "title": "창의적 공학교육 사업",
+      "org": "삼성전자(주)",
+      "period": "2005-09-01~2006-02-28"
+    },
+    {
+      "title": "버켓 및 노즐 열전달 및 냉각 시스템 해석 및 실험",
+      "org": "한전기공",
+      "period": "2005-09-01~2006-08-31"
+    },
+    {
+      "title": "터빈 열전달 및 냉각시스템 해석 및 실험",
+      "org": "두산중공업",
+      "period": "2005-09-01~2006-08-31"
+    },
+    {
+      "title": "가스터빈 회전블레이드 성능 개선을 위한 열부하 및 냉각 특성에 관한 연구",
+      "org": "에너지관리공단",
+      "period": "2005-06-01~2006-05-31"
+    },
+    {
+      "title": "창의적 공학교육 프로그램 개발 및 확산 지원 사업",
+      "org": "한국산업기술재단",
+      "period": "2005-05-01~2006-02-28"
+    },
+    {
+      "title": "PEM 연료전지 분리판 유로 내 FLOODING 현상 저감 및",
+      "org": "(주)엔지비",
+      "period": "2005-04-25~2005-10-24"
+    },
+    {
+      "title": "열 반응을 이용한 암 진단용 THERMAL BIOSENSOR 연구",
+      "org": "과학재단",
+      "period": "2005-04-01~2006-03-31"
+    },
+    {
+      "title": "열 반응을 이용한 암 진단용 THERMAL BIOSENSOR 연구",
+      "org": "과학재단",
+      "period": "2005-04-01~2006-03-31"
+    },
+    {
+      "title": "중국 화양발전소 7호기 전기집진기 열유동해석",
+      "org": "한국코트렐(주)",
+      "period": "2005-03-24~2005-05-30"
+    },
+    {
+      "title": "태국 YALA GREEN ESP 유동해석",
+      "org": "한국코트렐(주)",
+      "period": "2005-03-15~2005-04-30"
+    },
+    {
+      "title": "ERC/정보저장기기연구센터/2-2세부",
+      "org": "과학재단",
+      "period": "2005-03-01~2006-02-28"
+    },
+    {
+      "title": "열 분해에 의한 숯-형성 현상 모델링에 대한 연구",
+      "org": "단국대학교",
+      "period": "2005-01-01~2005-12-31"
+    },
+    {
+      "title": "반도체 수직로용 고효율 히팅모듈 열해석 및 열설계기",
+      "org": "보임테크놀로지",
+      "period": "2004-12-01~2005-11-30"
+    },
+    {
+      "title": "가스터빈/연료전지혼합형고효율 발전시스템개발",
+      "org": "한국산업기술평가원",
+      "period": "2004-09-01~2005-08-31"
+    },
+    {
+      "title": "실용교육의 시대적 요구에 따른 기계공학 실험교육 모델 개발에 관한 연구",
+      "org": "학술진흥재단",
+      "period": "2004-08-01~2005-07-31"
+    },
+    {
+      "title": "학진 대학교육과정개발 대응자금",
+      "org": "연세대학교",
+      "period": "2004-08-01~2005-07-31"
+    },
+    {
+      "title": "고효율 HEAT RECOVERY열교환기 설계기술개발",
+      "org": "한국터보",
+      "period": "2004-07-01~2005-06-30"
+    },
+    {
+      "title": "글로벌시대의 제조업 생존을 위한 기계공학교육모델개",
+      "org": "연세대학교산학단_간접비",
+      "period": "2004-07-01~2005-06-30"
+    },
+    {
+      "title": "고온기기부품 냉각기술",
+      "org": "한국과학기술평가원",
+      "period": "2004-06-14~2005-06-13"
+    },
+    {
+      "title": "정보저장/2총괄2세부_조형희",
+      "org": "과학재단",
+      "period": "2004-03-01~2005-02-28"
+    },
+    {
+      "title": "가스터빈/연료전지혼합형고효율 발전시스템개발",
+      "org": "한국산업기술평가원",
+      "period": "2003-10-01~2004-09-30"
+    },
+    {
+      "title": "실용교육의 시대적 요구에 따른 기계공학 실험교육 모델 개발에 관한 연구",
+      "org": "학술진흥재단",
+      "period": "2003-08-01~2004-07-31"
+    },
+    {
+      "title": "대학교육과정개발연구과제 2차년도 대응자금",
+      "org": "연세대학교",
+      "period": "2003-08-01~2004-07-31"
+    }
+  ],
+  "patents": [
+    {
+      "title": "가스터빈 냉각블레이드 설계 교육 프로그램",
+      "type": "소프트웨어",
+      "applicant": null,
+      "date": null
+    },
+    {
+      "title": "가스터빈 내부관 요철 데이타베이스를 이용한 설계프로그램",
+      "type": "소프트웨어",
+      "applicant": null,
+      "date": null
+    },
+    {
+      "title": "가스터빈 국소정밀 열/물질전달 계수 측정/변환 프로그램",
+      "type": "소프트웨어",
+      "applicant": null,
+      "date": null
+    },
+    {
+      "title": "테일러 괴틀러 와류를 이용한 마이크로 믹서 및 그 제작방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2015-03-10"
+    },
+    {
+      "title": "초임계유체 냉각 가스터빈 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2014-04-29"
+    }
+  ]
+}

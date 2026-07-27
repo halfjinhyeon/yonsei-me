@@ -1,0 +1,2451 @@
+{
+  "name": "주철민",
+  "nameEn": "Joo Chulmin",
+  "email": "cjoo@yonsei.ac.kr",
+  "phone": "2123-5822",
+  "office": "C328",
+  "homepage": "http://boilab.wordpress.com/",
+  "sourceUrl": "https://me.yonsei.ac.kr/faculty/name_search.do?mode=view&userId=bhaCBRF5otdK3WVWoRHYiw%3D%3D&sosokcd=0000405",
+  "crawledAt": "2026-07-27",
+  "articles": [
+    {
+      "date": "2026-02",
+      "title": "Oblique Light Sheet Fluorescence Microscopy With Surface Tracking for High-Speed Large-Area Imaging of Conjunctival Goblet Cells",
+      "journal": "IEEE TRANSACTIONS ON MEDICAL IMAGING"
+    },
+    {
+      "date": "2025-08",
+      "title": "Dual-parameter tomographic imaging of attenuation and backscattering coefficients for quantitative evaluation of immune cell-mediated cytotoxicity in tumor spheroids",
+      "journal": "THERANOSTICS"
+    },
+    {
+      "date": "2025-04",
+      "title": "Label-free quantitative imaging of conjunctival goblet cells",
+      "journal": "OCULAR SURFACE"
+    },
+    {
+      "date": "2025-03",
+      "title": "Photon-Efficient, Hybrid Illumination for High-Throughput Fourier Ptychographic Phase Microscopy Using Lenslet-Integrated LED Illuminator",
+      "journal": "Laser & Photonics Reviews"
+    },
+    {
+      "date": "2024-01",
+      "title": "Hypertension-associated changes in retinal blood vessel walls measured in vivo with polarization-sensitive optical coherence tomography",
+      "journal": "Optics and Lasers in Engineering"
+    },
+    {
+      "date": "2023-12",
+      "title": "In vivo burn scar assessment with speckle decorrelation and joint spectral and time domain optical coherence tomography",
+      "journal": "Journal of Biomedical Optics"
+    },
+    {
+      "date": "2023-11",
+      "title": "Quantitative Measurements of Red Blood Cell Indices Using Spectroscopic Differential Phase-Contrast Microscopy",
+      "journal": "Chemical and Biomedical Imaging"
+    },
+    {
+      "date": "2023-11",
+      "title": "E2E-BPF microscope: extended depth-of-field microscopy using learning-based implementation of binary phase filter and image deconvolution",
+      "journal": "Light: Science & Applications"
+    },
+    {
+      "date": "2023-11",
+      "title": "Ptychographic lens-less birefringence microscopy using a mask-modulated polarization image sensor",
+      "journal": "Scientific Reports"
+    },
+    {
+      "date": "2023-08",
+      "title": "Non-Invasive Retinal Blood Vessel Wall Measurements with Polarization-Sensitive Optical Coherence Tomography for Diabetes Assessment: A Quantitative Study",
+      "journal": "Biomolecules"
+    },
+    {
+      "date": "2023-07",
+      "title": "Untrained deep learning-based differential phase-contrast microscopy",
+      "journal": "Optics Letters"
+    },
+    {
+      "date": "2023-07",
+      "title": "Simple and effective detection of water in hygroscopic organic solvents using smartphone-based device with dithiophene-conjugated benzothiazole",
+      "journal": "Sensors and Actuators, B: Chemical"
+    },
+    {
+      "date": "2023-05",
+      "title": "Polarization-sensitive intensity diffraction tomography",
+      "journal": "Light: Science & Applications"
+    },
+    {
+      "date": "2023-03",
+      "title": "Full Stokes polarimetry using a monolithic off-axis polarizing interferometer and a 2D array sensor",
+      "journal": "Applied Optics"
+    },
+    {
+      "date": "2022-09",
+      "title": "Quantitative refractive index tomography of millimeter-scale objects using single-pixel wavefront sampling",
+      "journal": "Optica"
+    },
+    {
+      "date": "2022-09",
+      "title": "Massively parallel direct writing of nanoapertures using multi-optical probes and super-resolution near-fields",
+      "journal": "Microsystems & Nanoengineering"
+    },
+    {
+      "date": "2022-07",
+      "title": "Two concepts for ultra-high-resolution polarization-sensitive optical coherence tomography with a single camera",
+      "journal": "JOURNAL OF THE OPTICAL SOCIETY OF AMERICA A-OPTICS IMAGE SCIENCE AND VISION"
+    },
+    {
+      "date": "2022-05",
+      "title": "Development of exothermic system based on internet of things for preventing damages in winter season and evaluation of applicability to railway vehicles",
+      "journal": "Smart Structures and Systems, An International Journal"
+    },
+    {
+      "date": "2022-03",
+      "title": "Dynamic spectroscopic imaging ellipsometry",
+      "journal": "OPTICS LETTERS"
+    },
+    {
+      "date": "2022-02",
+      "title": "Engineering pupil function for optical adversarial attacks",
+      "journal": "OPTICS EXPRESS"
+    },
+    {
+      "date": "2021-08",
+      "title": "Optical dosimeter for selective retinal therapy based on multi-port fiber-optic interferometry",
+      "journal": "BIOMEDICAL OPTICS EXPRESS"
+    },
+    {
+      "date": "2021-07",
+      "title": "Polarization properties of retinal blood vessel walls measured with polarization sensitive optical coherence tomography",
+      "journal": "BIOMEDICAL OPTICS EXPRESS"
+    },
+    {
+      "date": "2021-01",
+      "title": "Polarization-sensitive differential phase-contrast microscopy",
+      "journal": "OPTICS LETTERS"
+    },
+    {
+      "date": "2021-01",
+      "title": "Large-area, high-resolution birefringence imaging with polarization-sensitive Fourier ptychographic microscopy",
+      "journal": "ACS PHOTONICS"
+    },
+    {
+      "date": "2020-11",
+      "title": "A topology optimization implementation for depth-of-focus extension of binary phase filters",
+      "journal": "STRUCTURAL AND MULTIDISCIPLINARY OPTIMIZATION"
+    },
+    {
+      "date": "2020-10",
+      "title": "레이저 스펙클 기반 내시경타입 변위 측정 센서",
+      "journal": "비파괴검사학회지"
+    },
+    {
+      "date": "2020-10",
+      "title": "LED 광조사 패턴 변조를 이용한 정량적 등방성 위상 영상 이미징",
+      "journal": "비파괴검사학회지"
+    },
+    {
+      "date": "2020-07",
+      "title": "Single-pixel, single-input-state polarization-sensitive wavefront imaging",
+      "journal": "OPTICS LETTERS"
+    },
+    {
+      "date": "2020-07",
+      "title": "Light sheet fluorescence microscopy using axi-symmetric binary phase filters",
+      "journal": "BIOMEDICAL OPTICS EXPRESS"
+    },
+    {
+      "date": "2020-06",
+      "title": "Direct replication of a glass micro Fresnel zone plate array by laser irradiation using an infrared transmissive mold",
+      "journal": "OPTICS EXPRESS"
+    },
+    {
+      "date": "2020-06",
+      "title": "Electrically focus-tuneable ultrathin lens for high-resolution square subpixels",
+      "journal": "LIGHT-SCIENCE & APPLICATIONS"
+    },
+    {
+      "date": "2020-05",
+      "title": "A portable Smartphone-linked Device for Direct, Rapid and chemical-free Hemoglobin Assay",
+      "journal": "SCIENTIFIC REPORTS"
+    },
+    {
+      "date": "2020-03",
+      "title": "Recent advances in high-sensitivity detection methods for paper-based lateral-flow assay",
+      "journal": "BIOSENSORS & BIOELECTRONICS"
+    },
+    {
+      "date": "2019-07",
+      "title": "Smart Fatigue Phone: Real-time estimation of driver fatigue using smartphone-based cortisol detection",
+      "journal": "BIOSENSORS & BIOELECTRONICS"
+    },
+    {
+      "date": "2019-03",
+      "title": "Three-Step Thermal Drawing for Rapid Prototyping of Highly Customizable Microneedles for Vascular Tissue Insertion",
+      "journal": "Pharmaceutics"
+    },
+    {
+      "date": "2019-02",
+      "title": "Random lasing detection of structural transformation and compositions in silk fibroin scaffolds",
+      "journal": "NANO RESEARCH"
+    },
+    {
+      "date": "2018-12",
+      "title": "Depthwise-controlled scleral insertion of microneedles for drug delivery to the back of the eye",
+      "journal": "EUROPEAN JOURNAL OF PHARMACEUTICS AND BIOPHARMACEUTICS"
+    },
+    {
+      "date": "2018-11",
+      "title": "Intraoperative margin assessment of human breast tissue in optical coherence tomography images using deep neural networks",
+      "journal": "COMPUTERIZED MEDICAL IMAGING AND GRAPHICS"
+    },
+    {
+      "date": "2018-10",
+      "title": "구조광 기술을 이용한 레이저 스펙클 기반의 변형률 측정 센서",
+      "journal": "비파괴검사학회지"
+    },
+    {
+      "date": "2018-10",
+      "title": "Highly sensitive paper-based immunoassay using photothermal laser speckle imaging",
+      "journal": "BIOSENSORS & BIOELECTRONICS"
+    },
+    {
+      "date": "2018-08",
+      "title": "Real-Time Compensation of Simultaneous Errors Induced by Optical Phase Difference and Substrate Motion in Scanning Beam Laser Interference Lithography System",
+      "journal": "IEEE-ASME TRANSACTIONS ON MECHATRONICS"
+    },
+    {
+      "date": "2018-05",
+      "title": "Nondestructive evaluation on dispersion of steel fibers in UHPC using THz electromagnetic waves",
+      "journal": "CONSTRUCTION AND BUILDING MATERIALS"
+    },
+    {
+      "date": "2018-03",
+      "title": "Color-coded LED microscopy for quantitative phase imaging: Implementation and application to sperm motility analysis",
+      "journal": "METHODS"
+    },
+    {
+      "date": "2018-03",
+      "title": "Miniaturized sample preparation and rapid detection of arsenite in contaminated soil using a smartphone",
+      "journal": "SENSORS"
+    },
+    {
+      "date": "2018-02",
+      "title": "The use of biodegradable microneedle patches to increase penetration of topical steroid for purigonodularis",
+      "journal": "EUROPEAN JOURNAL OF DERMATOLOGY"
+    },
+    {
+      "date": "2017-11",
+      "title": "Design of binary phase filters for depth-offocus extension via binarization of axisymmetric aberrations",
+      "journal": "OPTICS EXPRESS"
+    },
+    {
+      "date": "2017-08",
+      "title": "Smartphone-based multi-contrast microscope using color-multiplexed illumination",
+      "journal": "SCIENTIFIC REPORTS"
+    },
+    {
+      "date": "2017-07",
+      "title": "Random lasing from structurally-modulated silk fibroin nanofibers",
+      "journal": "SCIENTIFIC REPORTS"
+    },
+    {
+      "date": "2017-04",
+      "title": "Single-exposure quantitative phase imaging in color-coded LED microscopy",
+      "journal": "OPTICS EXPRESS"
+    },
+    {
+      "date": "2016-12",
+      "title": "A Rapid and Chemical-free Hemoglobin Assay with Photothermal Angular Light Scattering",
+      "journal": "JOVE-JOURNAL OF VISUALIZED EXPERIMENTS"
+    },
+    {
+      "date": "2016-10",
+      "title": "THz 전자기파를 이용한 나노시멘트 광학물성 측정",
+      "journal": "비파괴검사학회지"
+    },
+    {
+      "date": "2016-10",
+      "title": "Terahertz reflectometry imaging for low and high grade gliomas",
+      "journal": "SCIENTIFIC REPORTS"
+    },
+    {
+      "date": "2016-06",
+      "title": "Refraction-Assisted Solar Thermoelectric Generator based on Phase-Change Lens",
+      "journal": "SCIENTIFIC REPORTS"
+    },
+    {
+      "date": "2015-12",
+      "title": "Color-coded LED microscopy for multi-contrast and quantitative phase-gradient imaging",
+      "journal": "BIOMEDICAL OPTICS EXPRESS"
+    },
+    {
+      "date": "2015-07",
+      "title": "Capillary-scale direct measurement of hemoglobin concentration of erythrocytes using photothermal angular light scattering",
+      "journal": "BIOSENSORS & BIOELECTRONICS"
+    },
+    {
+      "date": "2015-07",
+      "title": "Scalable synthesis of djurleite copper sulphide (Cu1.94S) hexagonal nanoplates from a single precursor copper thiocyanate and their photothermal properties",
+      "journal": "CRYSTENGCOMM"
+    },
+    {
+      "date": "2015-05",
+      "title": "Dark-field polarization-sensitive optical coherence tomography",
+      "journal": "OPTICS EXPRESS"
+    },
+    {
+      "date": "2015-03",
+      "title": "Spectrally encoded slit confocal microscopy using a wavelength-swept laser",
+      "journal": "JOURNAL OF BIOMEDICAL OPTICS"
+    },
+    {
+      "date": "2015-03",
+      "title": "Frequency- and spectrally-encoded confocal microscopy",
+      "journal": "OPTICS EXPRESS"
+    },
+    {
+      "date": "2015-02",
+      "title": "Automated Measurement of Stent Strut Coverage in Intravascular Optical Coherence Tomography",
+      "journal": "JOURNAL OF THE KOREAN PHYSICAL SOCIETY"
+    },
+    {
+      "date": "2015-01",
+      "title": "A Reconstruction Method of Blood Flow Velocity in Left Ventricle Using Color Flow Ultrasound",
+      "journal": "COMPUTATIONAL AND MATHEMATICAL METHODS IN MEDICINE"
+    },
+    {
+      "date": "2015-01",
+      "title": "Hemoglobin assay in anemic patients with a photothermal spectral-domain optical coherence reflectometric sensor",
+      "journal": "CLINICA CHIMICA ACTA"
+    },
+    {
+      "date": "2014-12",
+      "title": "Real-time measurement of human salivary cortisol for the assessment of psychological stress using a smartphone",
+      "journal": "Sensing and Bio-Sensing Research"
+    },
+    {
+      "date": "2014-07",
+      "title": "Nanoparticles of Conjugated Polymers Prepared from Phase-Separated Films of Phospholipids and Polymers for Biomedical Applications",
+      "journal": "ADVANCED MATERIALS"
+    },
+    {
+      "date": "2014-07",
+      "title": "Photothermal spectral-domain optical coherence reflectometry for direct measurement of hemoglobin concentration of erythrocytes",
+      "journal": "BIOSENSORS & BIOELECTRONICS"
+    },
+    {
+      "date": "2014-04",
+      "title": "Label-free cell-based assay with spectral-domain optical coherence phase microscopy",
+      "journal": "JOURNAL OF BIOMEDICAL OPTICS"
+    },
+    {
+      "date": "2013-12",
+      "title": "Microfluidic sorting of fluorescently activated cells depending on gene expression level",
+      "journal": "ELECTROPHORESIS"
+    },
+    {
+      "date": "2013-11",
+      "title": "Detection of pH-induced aggregation of “smart” gold nanoparticles with photothermal optical coherence tomography",
+      "journal": "OPTICS LETTERS"
+    },
+    {
+      "date": "2013-11",
+      "title": "Field-based dynamic light scattering microscopy: theory and numerical analysis",
+      "journal": "APPLIED OPTICS"
+    },
+    {
+      "date": "2013-06",
+      "title": "Development of micro-objective lens array for large field-of-view multi-optical probe confocal microscopy",
+      "journal": "JOURNAL OF MICROMECHANICS AND MICROENGINEERING"
+    },
+    {
+      "date": "2013-03",
+      "title": "광간섭 단층 영상기술을 이용한 생체 내 microneedle 삽입 구조 영상",
+      "journal": "정보저장시스템학회논문집"
+    },
+    {
+      "date": "2011-10",
+      "title": "Two-Photon Optical Properties of Near-Infrared Dyes at 1.55 mu m Excitation",
+      "journal": "JOURNAL OF PHYSICAL CHEMISTRY B"
+    },
+    {
+      "date": "2010-05",
+      "title": "Multiphoton microscopy with near infrared contrast agents",
+      "journal": "Journal Of Biomedical Optics"
+    },
+    {
+      "date": "2010-02",
+      "title": "Diffusive and directional intracellular dynamics quantified by field-based dynamic light scattering",
+      "journal": "Optics Express"
+    },
+    {
+      "date": "2010-01",
+      "title": "Autoconfocal transmission microscopy based on two-photon induced photocurrent of Si photodiodes",
+      "journal": "Optics Letters"
+    },
+    {
+      "date": "2009-10",
+      "title": "Spectral-domain optical coherence phase microscopy for label-free multiplexed protein microarray assay",
+      "journal": "Biosensors & Bioelectronics"
+    },
+    {
+      "date": "2008-10",
+      "title": "Application of maximum likelihood estimator in nano-scale optical path length measurement using spectral-domain optical coherence phase microscopy",
+      "journal": "Optics Express"
+    },
+    {
+      "date": "2007-08",
+      "title": "Spectral-domain optical coherence reflectometric sensor for highly sensitive molecular detection",
+      "journal": "OPTICS LETTERS"
+    },
+    {
+      "date": "2007-08",
+      "title": "Depth resolved measurement of transient structural changes during action potential",
+      "journal": "BIOPHYSICAL JOURNAL"
+    },
+    {
+      "date": "2007-03",
+      "title": "Spectral-domain optical coherence phase and multiphoton microscopy",
+      "journal": "OPTICS LETTERS"
+    },
+    {
+      "date": "2005-11",
+      "title": "Retinal nerve fiber layer thickness map determined from optical coherence tomography images",
+      "journal": "OPTICS EXPRESS"
+    },
+    {
+      "date": "2005-08",
+      "title": "Spectral-domain optical coherence phase microscopy for quantitative phase contrast imaging",
+      "journal": "OPTICS LETTERS"
+    },
+    {
+      "date": "2003-12",
+      "title": "Nanometer-level repeatable metrology using the Nanoruler",
+      "journal": "JOURNAL OF VACUUM SCIENCE & TECHNOLOGY B"
+    },
+    {
+      "date": "2002-11",
+      "title": "Generalized scanning beam interference lithography system for patterning gratings with variable period progressions",
+      "journal": "JOURNAL OF VACUUM SCIENCE & TECHNOLOGY B"
+    },
+    {
+      "date": "2002-11",
+      "title": "Precision fringe metrology using a Fresnel zoneplate",
+      "journal": "JOURNAL OF VACUUM SCIENCE & TECHNOLOGY B"
+    },
+    {
+      "date": "2002-11",
+      "title": "Beam alignment for scanning beam interference lithography",
+      "journal": "JOURNAL OF VACUUM SCIENCE & TECHNOLOGY B"
+    }
+  ],
+  "awards": [
+    {
+      "title": "2025 Yonsei Engineering Symposium",
+      "contents": null,
+      "date": "2025-03-25"
+    },
+    {
+      "title": "KSME-SEMES 오픈 이노베이션 챌린지 은상",
+      "contents": null,
+      "date": "2024-11-07"
+    },
+    {
+      "title": "ABC 2024 Advanced Biophotonics Conference Best Poster Award",
+      "contents": null,
+      "date": "2024-11-02"
+    },
+    {
+      "title": "ABC 2024 Advanced Biophotonics Conference Young Investigator Award",
+      "contents": null,
+      "date": "2024-11-02"
+    },
+    {
+      "title": "Best Poster Award",
+      "contents": null,
+      "date": "2023-11-03"
+    },
+    {
+      "title": "제5회 연세대학교 기계공학과 대학원생 학술대회",
+      "contents": null,
+      "date": "2023-10-05"
+    },
+    {
+      "title": "The 3rd quantitative phase imaging symposium",
+      "contents": null,
+      "date": "2023-03-15"
+    },
+    {
+      "title": "ABC 2022 Advanced Biophotonics Conference Best Poster Award",
+      "contents": null,
+      "date": "2022-11-11"
+    },
+    {
+      "title": "제4회 연세대학교 기계공학과 대학원생 학술대회",
+      "contents": null,
+      "date": "2022-09-29"
+    },
+    {
+      "title": "KSME-SEMES 오픈 이노베이션 챌린지 동상",
+      "contents": null,
+      "date": "2021-11-04"
+    },
+    {
+      "title": "대한의용생체공학회 2021년 춘계학술대회 우수포스터 논문상",
+      "contents": "우수 포스터 수상",
+      "date": "2021-05-14"
+    },
+    {
+      "title": "ABC 2020 Advanced Biophotonics Conference Best Young Investigator Award",
+      "contents": "최우수 유망 젊은 연구자 선정",
+      "date": "2020-11-07"
+    },
+    {
+      "title": "ABC 2020 Advanced Biophotonics Conference Best Young Investigator Award",
+      "contents": "최우수 유망 젊은 연구자 선정",
+      "date": "2020-11-07"
+    },
+    {
+      "title": "연세 공대 10대 특허기술",
+      "contents": "202개인 휴대용 혈액 헤모글로빈 농도 측정기. 2020연세 공대 10대 특허기술 선정",
+      "date": "2020-08-21"
+    },
+    {
+      "title": "2020 하계 학술발표회",
+      "contents": "우수 논문상",
+      "date": "2020-07-15"
+    },
+    {
+      "title": "2019 Annual Biophotonics Conference 우수 논문상 수상",
+      "contents": "2019 Annual Biophotonics Conference 우수 논문상 수상",
+      "date": "2019-11-02"
+    },
+    {
+      "title": "2019 하계 학술발표회",
+      "contents": "한국광학회",
+      "date": "2019-07-17"
+    },
+    {
+      "title": "우수상",
+      "contents": null,
+      "date": "2019-03-26"
+    },
+    {
+      "title": "2019 한국비파괴검사학회 우수 포스터상",
+      "contents": "우수 포스터상",
+      "date": "2019-02-13"
+    },
+    {
+      "title": "우수 포스터상",
+      "contents": "2017 추계학술대회 포스터 우수 논문",
+      "date": "2018-05-31"
+    },
+    {
+      "title": "연세대학교 공과대학 10대 기술상",
+      "contents": "연세대학교 공과대학 10대 기술상",
+      "date": "2018-03-07"
+    },
+    {
+      "title": "2017 Annual Biophotonics Conference Student Poster Award",
+      "contents": "Student Poster Award",
+      "date": "2017-10-28"
+    },
+    {
+      "title": "2016 비파괴검사학회지 우수논문상",
+      "contents": "2016 비파괴검사학회지 우수논문상",
+      "date": "2017-05-25"
+    },
+    {
+      "title": "제23회 휴먼테크논문대상",
+      "contents": "우수논문발표 장려상",
+      "date": "2017-02-07"
+    },
+    {
+      "title": "우수 논문 발표상",
+      "contents": "소재부품안전 및 신뢰성 심포지엄 우수 논문 발표상",
+      "date": "2016-04-28"
+    },
+    {
+      "title": "우수강의교수상",
+      "contents": "2015년 우수강의교수",
+      "date": "2016-02-29"
+    },
+    {
+      "title": "2015 Photonics Conference 우수논문상 수상",
+      "contents": "2015 Photonics Conference 우수논문상 수상",
+      "date": "2015-12-04"
+    }
+  ],
+  "conferences": [
+    {
+      "title": "High-speed Fourier ptychograpic with lenslet-integrated LED illuminator for stitching-free and photon-efficient phase imaging",
+      "conference": "YES 2025",
+      "period": "2025.03.25~2025.03.25"
+    },
+    {
+      "title": "Three-dimensional attenuation coefficient analysis for the quantitative evaluation of CAR T cell cytotoxicity in tumor spheroids",
+      "conference": "SPIE Photonics west 2025",
+      "period": "2025.01.25~2025.01.30"
+    },
+    {
+      "title": "High-speed Fourier ptychograpic with lenslet-integrated LED illuminator for stitching-free and photon-efficient phase imaging",
+      "conference": "2024 기계공학과 학술대회",
+      "period": "2024.11.12~2024.11.12"
+    },
+    {
+      "title": "Self-calibrated Sub-pixel Lens-less Ptychographic Microscopy using Untrained Neural Network",
+      "conference": "2024 기계공학과 학술대회",
+      "period": "2024.11.12~2024.11.12"
+    },
+    {
+      "title": "High-speed Fourier ptychograpic with lenslet-integrated LED illuminator for stitching-free and photon-efficient phase imaging",
+      "conference": "2024 Advanced Biophotonics Conference",
+      "period": "2024.10.31~2024.11.02"
+    },
+    {
+      "title": "Untrained neural network based self-calibrated multi-layer imaging in lens-less ptychographic microscopy",
+      "conference": "2024 Advanced Biophotonics Conference",
+      "period": "2024.10.31~2024.11.02"
+    },
+    {
+      "title": "Three-dimensional attenuation coefficient analysis for the quantitative evaluation of CAR T cell cytotoxicity in tumor spheroids",
+      "conference": "2024 Advanced Biophotonics Conference",
+      "period": "2024.10.31~2024.11.02"
+    },
+    {
+      "title": "Learning-based design of phase filters for depth-of-focus extension",
+      "conference": "2024 Advanced Biophotonics Conference",
+      "period": "2024.10.31~2024.11.02"
+    },
+    {
+      "title": "Digital adaptive optics for epi-illumination refractive index tomography in arbitrary scattering medium",
+      "conference": "2024 Advanced Biophotonics Conference",
+      "period": "2024.10.31~2024.11.02"
+    },
+    {
+      "title": "Digital adaptive optics for epi-illumination refractive index tomography in arbitrary scattering medium",
+      "conference": "2024 Advanced Biophotonics Conference",
+      "period": "2024.10.31~2024.11.02"
+    },
+    {
+      "title": "Learning-based design of phase filters for depth-of-focus extension",
+      "conference": "2024 CLEO-PR",
+      "period": "2024.08.04~2024.08.09"
+    },
+    {
+      "title": "Untrained deep learning‐based differential phase‐contrast microscopy",
+      "conference": "SPIE Photonics west 2024",
+      "period": "2024.01.26~2024.02.01"
+    },
+    {
+      "title": "UNN-based self-calibration of lens-less ptychographic microscopy",
+      "conference": "SPIE Photonics west 2024",
+      "period": "2024.01.26~2024.02.01"
+    },
+    {
+      "title": "Oblique back-illumination differential phase-contrast microscopy with computational aberration compensation",
+      "conference": "SPIE Photonics west 2024",
+      "period": "2024.01.26~2024.02.01"
+    },
+    {
+      "title": "Polarization-sensitive intensity diffraction tomography",
+      "conference": "SPIE Photonics west 2024",
+      "period": "2024.01.26~2021.02.01"
+    },
+    {
+      "title": "UNN-based autocalibration of lens-less ptychographic microscopy",
+      "conference": "2023 SPIE ABC",
+      "period": "2023.11.01~2023.11.04"
+    },
+    {
+      "title": "Oblique back illumination differential phase contrast microscopy with computational aberration compensation",
+      "conference": "2023 SPIE ABC",
+      "period": "2023.11.01~2023.11.04"
+    },
+    {
+      "title": "Extended Depth-of-Field Fluorescence Microscopy via Physics-Incoporated Jointlylearned Binary Phase Filter and Image Deconvolution",
+      "conference": "2023 SPIE ABC",
+      "period": "2023.11.01~2023.11.04"
+    },
+    {
+      "title": "High-speed quantitative phase imaging with color- and state-multiplexed Fourier ptychography",
+      "conference": "2023 SPIE ABC",
+      "period": "2023.11.01~2023.11.04"
+    },
+    {
+      "title": "Untrained deep learning-based differential phase-contrast microscopy",
+      "conference": "2023 SPIE ABC",
+      "period": "2023.11.01~2023.11.04"
+    },
+    {
+      "title": "Quantitative measurement of red blood cell indices using spectroscopic differential phase-contrast microscopy.",
+      "conference": "2023 SPIE ABC",
+      "period": "2023.11.01~2023.11.04"
+    },
+    {
+      "title": "Polarization-sensitive intensity diffraction tomography",
+      "conference": "2023 SPIE ABC",
+      "period": "2023.11.01~2023.11.04"
+    },
+    {
+      "title": "Pytchographic Lens-less Polarization Microscopy",
+      "conference": "3rd QPI symposium",
+      "period": "2023.03.15~2023.03.15"
+    },
+    {
+      "title": "Quantitative measurement of red blood cell indices using spectroscopic differential phase-contrast microscopy",
+      "conference": "3rd QPI symposium",
+      "period": "2023.03.15~2023.03.15"
+    },
+    {
+      "title": "Ptychographic Lens-less Polarization Microscopy",
+      "conference": "SPIE Photonics west 2023",
+      "period": "2023.01.28~2023.02.02"
+    },
+    {
+      "title": "Video-rate Fourier ptychographic microscopy using color- and state-multiplexed illumination",
+      "conference": "SPIE Photonics west 2023",
+      "period": "2023.01.28~2023.02.02"
+    },
+    {
+      "title": "Extended depth-of-field microscopy using jointly-learned binary phase filter and image deconvolution",
+      "conference": "SPIE Photonics west 2023",
+      "period": "2023.01.28~2023.02.02"
+    },
+    {
+      "title": "Self calibrated differential phase contrast microscopy with untrained deep learning",
+      "conference": "한국광학회 Annual Biophotonics Conference 2022",
+      "period": "2022.11.10~2022.11.11"
+    },
+    {
+      "title": "Pytchographic Lens-less Polarization Microscopy",
+      "conference": "한국광학회 Annual Biophotonics Conference 2022",
+      "period": "2022.11.10~2022.11.11"
+    },
+    {
+      "title": "Quantitative measurement of red blood cell indices using spectroscopic differential phase-contrast microscopy",
+      "conference": "한국광학회 Annual Biophotonics Conference 2022",
+      "period": "2022.11.10~2022.11.11"
+    },
+    {
+      "title": "Ptychographic Lens-less Polarization Microscopy",
+      "conference": "제 4회 연세대학교 기계공학과 대학원생 학술대회",
+      "period": "2022.09.29~2022.09.29"
+    },
+    {
+      "title": "Optical dosimeter for selective retinal therapy based on multi-port fiber-optic interferometry",
+      "conference": "SPIE PW 2022",
+      "period": "2022.01.22~2022.01.27"
+    },
+    {
+      "title": "Particle swarm optimization of binary phase filters for depth-of-field extension",
+      "conference": "SPIE ABC 2021",
+      "period": "2021.11.04~2021.11.06"
+    },
+    {
+      "title": "Optical dosimeter for selective retina therapy based on differential detection of on- and off-axis aperture",
+      "conference": "SPIE ABC 2021",
+      "period": "2021.11.04~2021.11.06"
+    },
+    {
+      "title": "High-throughput, high-precision detection of multiple airborne bacteria based on Fourier ptychographic microscopy",
+      "conference": "SPIE ABC 2021",
+      "period": "2021.11.04~2021.11.06"
+    },
+    {
+      "title": "Fluorescent water probes for highly sensitive smartphone-based detection of water content in organic solutions",
+      "conference": "SPIE ABC 2021",
+      "period": "2021.11.04~2021.11.06"
+    },
+    {
+      "title": "Large-area, high-resolution optical anisotropy imaging with polarization-sensitive Fourier ptychoraphy",
+      "conference": "OSA Imaging and Applied Optics Congress",
+      "period": "2021.07.19~2021.07.23"
+    },
+    {
+      "title": "3x3 광섬유커플러 광간섭계 기반 망막선택적치료(SRT) 모니터링 기술",
+      "conference": "한국생산제조학회 2021년도 춘계학술대회",
+      "period": "2021.07.07~2021.07.09"
+    },
+    {
+      "title": "산술 현미경 기반 광학 비등방성 영상 시스템",
+      "conference": "한국생산제조학회 2021년 춘계학술대회",
+      "period": "2021.07.07~2021.07.09"
+    },
+    {
+      "title": "멀티포트 광간섭계 기반 망막선택적치료 선량측정법",
+      "conference": "대한의용생체공학회 2021년 춘계학술대회",
+      "period": "2021.05.12~2021.05.14"
+    },
+    {
+      "title": "Large-area, high-resolution birefringence imaging with polarization-sensitive Fourier ptychographic microscopy",
+      "conference": "한국광학회 Annual Biophotonics Conference 2020",
+      "period": "2021.04.08~2021.04.08"
+    },
+    {
+      "title": "Differential phase-contrast based polarization microscope",
+      "conference": "한국광학회 2021년도 동계학술발표회",
+      "period": "2020.11.06~2020.11.07"
+    },
+    {
+      "title": "Large-area, high-resolution optical anisotropy imaging with polarization-sensitive Fourier ptychographic microscopy",
+      "conference": "한국광학회 2021년도 동계학술발표회",
+      "period": "2020.11.06~2020.11.07"
+    },
+    {
+      "title": "Real-time selective retina treatment monitoring based on offset aperture detection",
+      "conference": "한국광학회 Annual Biophotonics Conference 2020",
+      "period": "2020.11.06~2020.11.07"
+    },
+    {
+      "title": "Polarization-sensitive differential phase-contrast microscopy",
+      "conference": "한국광학회 Annual Biophotonics Conference 2020",
+      "period": "2020.11.06~2020.11.07"
+    },
+    {
+      "title": "Light sheet fluorescence microscopy using axi-symmetric binary phase filters",
+      "conference": "한국광학회 Annual Biophotonics Conference 2020",
+      "period": "2020.11.06~2020.11.07"
+    },
+    {
+      "title": "Real-time selective retina therapy (SRT) monitoring based on quadrature detection with multiport fiber-optic coupler",
+      "conference": "한국광학회 Annual Biophotonics Conference 2020",
+      "period": "2020.11.06~2020.11.07"
+    },
+    {
+      "title": "Polarization-sensitive Fourier ptychographic microscopy",
+      "conference": "2020 한국광학회 하계학술발표회",
+      "period": "2020.07.13~2020.07.15"
+    },
+    {
+      "title": "Isotropic quantitative phase imaging in LED microscopy using azimuthally cosine-modulated illumination",
+      "conference": "SPIE Photonics West 2020",
+      "period": "2020.02.01~2020.02.06"
+    },
+    {
+      "title": "Isotropic quantitative phase imaging based on LED microscopy using azimuthally cosine-modulated illumination",
+      "conference": "Annual Biophotonics Conference 2019",
+      "period": "2019.11.01~2019.11.02"
+    },
+    {
+      "title": "Single-input-state polarization-sensitive spatial wavefront sensor using single pixel detectors",
+      "conference": "Annual Biophotonics Conference 2019",
+      "period": "2019.11.01~2019.11.02"
+    },
+    {
+      "title": "A rapid and chemical-free Hemoglobin Assay using a Smartphone",
+      "conference": "Annual Biophotonics Conference 2019",
+      "period": "2019.11.01~2019.11.02"
+    },
+    {
+      "title": "topology optimization of binary phase filters for depth-of-focus extension",
+      "conference": "Annual Biophotonics Conference 2019",
+      "period": "2019.11.01~2019.11.02"
+    },
+    {
+      "title": "Handheld, smartphone-linked device for detection of skin wrinkle using coded LED illumination",
+      "conference": "Annual Biophotonics Conference 2019",
+      "period": "2019.11.01~2019.11.02"
+    },
+    {
+      "title": "Engineering illumination for isotropic phase imaging in LED-based DPC microscopy",
+      "conference": "Optics and Photonics Congress 2019",
+      "period": "2019.07.14~2019.07.17"
+    },
+    {
+      "title": "Light sheet fluorescence microscopy using binary phase filters",
+      "conference": "한국생산제조학회 2019년 춘계학술대회",
+      "period": "2019.05.01~2019.05.03"
+    },
+    {
+      "title": "Self-healing beam generation via binary phase filters",
+      "conference": "SPIE Photonics West 2019",
+      "period": "2019.02.02~2019.02.07"
+    },
+    {
+      "title": "Highly sensitive paper-based immunoassay using photothermal laser speckle imaging",
+      "conference": "Annual Biophotonics Conference 2018",
+      "period": "2018.10.26~2018.10.27"
+    },
+    {
+      "title": "Investigation of the self-healing ability of binary-phase-filter-generated Bessel-like beam",
+      "conference": "Annual Biophotonics Conference 2018",
+      "period": "2018.10.26~2018.10.27"
+    },
+    {
+      "title": "Highly sensitive paper-based immunoassay using photothermal laser speckle imaging",
+      "conference": "SPIE Photonics West 2018",
+      "period": "2018.01.27~2018.02.01"
+    },
+    {
+      "title": "Portable photothermal optical sensor for chemical-free hemoglobin assay",
+      "conference": "SPIE Photonics West 2018",
+      "period": "2018.01.28~2018.02.01"
+    },
+    {
+      "title": "Tunable Bessel beam generation via binarization of aberrated phase axicon",
+      "conference": "SPIE Photonics West 2018",
+      "period": "2018.01.27~2018.02.01"
+    },
+    {
+      "title": "스캐닝 간섭 리소그래피 공정 중 발생하는 오차 보정을 위한 tip tilt mirror 제어 수식에 관한 연구",
+      "conference": "한국생산제조학회 2017년도 추계학술대회",
+      "period": "2017.12.06~2017.12.08"
+    },
+    {
+      "title": "Portable photothermal optical sensor for chemical-free hemoglobin assay",
+      "conference": "Annual Biophotonics Conference 2017",
+      "period": "2017.10.27~2017.10.28"
+    },
+    {
+      "title": "Color-coded LED microscopy for quantitative phase imaging: Implementation and application to sperm motility analysis",
+      "conference": "Annual Biophotonics Conference 2017",
+      "period": "2017.10.27~2017.10.28"
+    },
+    {
+      "title": "Design of binary phase filters for depth-of-focus extension via binarization of axisymmetric aberrations",
+      "conference": "Annual Biophotonics Conference 2017",
+      "period": "2017.10.27~2017.10.28"
+    },
+    {
+      "title": "Highly sensitive paper-based immunoassay using photothermal laser speckle imaging",
+      "conference": "Annual Biophotonics Conference 2017",
+      "period": "2017.10.27~2017.10.28"
+    },
+    {
+      "title": "Self-formed lasing in structurally-modulated silk fibroin nanofibers",
+      "conference": "Annual Biophotonics Conference 2017",
+      "period": "2017.10.27~2017.10.28"
+    },
+    {
+      "title": "A smartphone multi-contrast microscope using a color-coded LED illumination",
+      "conference": "META 2017",
+      "period": "2017.07.25~2017.07.28"
+    },
+    {
+      "title": "Single-exposure quantitative phase imaging in color-coded LED microscopy",
+      "conference": "META 2017",
+      "period": "2017.07.25~2017.07.28"
+    },
+    {
+      "title": "In vivo optical coherence tomography imaging of penetration and dissolution characteristics of hyaluronic acid microneedles in human skin",
+      "conference": "META 2017",
+      "period": "2017.07.25~2017.07.28"
+    },
+    {
+      "title": "Detection of Scleral Structure with Glass Microneedle Insertion",
+      "conference": "EMBC 2017",
+      "period": "2017.07.11~2017.07.15"
+    },
+    {
+      "title": "실크피브로인 지지체의 내부 섬유 정렬에 따른 랜덤레이저 변화",
+      "conference": "대한기계학회 바이오공학부문 2017년도 춘계학술대회",
+      "period": "2017.04.27~2017.04.28"
+    },
+    {
+      "title": "OCT Analysis of Scleral Wounds by Microneedle Insertion",
+      "conference": "2017년도 한국생체재료학회 춘계학술대회",
+      "period": "2017.03.31~2017.03.31"
+    },
+    {
+      "title": "악성 뇌종양(glioma) 검출을 위한 비표지 테라헤르츠 의료영상",
+      "conference": "2017 한국광학회 동계학술발표회",
+      "period": "2017.02.15~2017.02.17"
+    },
+    {
+      "title": "Single-exposure quantitative phase imaging in color-coded LED microscopy",
+      "conference": "SPIE Photonics West 2017",
+      "period": "2017.01.28~2017.02.02"
+    },
+    {
+      "title": "In vivo optical coherence tomography imaging of dissolution of hyaluronic acid microneedles in human skin",
+      "conference": "SPIE Photonics West 2017",
+      "period": "2017.01.28~2017.02.02"
+    },
+    {
+      "title": "Single-exposure quantitative phase imaging in color-coded LED microscopy",
+      "conference": "Annual Biophotonics Conference 2016",
+      "period": "2016.11.04~2016.11.05"
+    },
+    {
+      "title": "in vivo optical coherence tomography imaging of penetration and dissolution",
+      "conference": "Annual Biophotonics Conference 2016",
+      "period": "2016.11.04~2016.11.05"
+    },
+    {
+      "title": "Light amplification self-formed from electrospun silk fibroin nanofibers",
+      "conference": "Annual Biophotonics Conference 2016",
+      "period": "2016.11.04~2016.11.05"
+    },
+    {
+      "title": "An implantable wireless optogenetic stimulation system for peripheral nerve control",
+      "conference": "37th Annual International Conference of the IEEE Engineering in Medicine and Biology Society (EMBC 2015)",
+      "period": "2015.08.25~2015.08.29"
+    },
+    {
+      "title": "RANDOM LASING FROM ELECTROSPUN SILK FIBROIN SCAFFOLDS WITH CONTROL OF MORPHOLOGY AND COMPOSITION",
+      "conference": "Electrospin 2016",
+      "period": "2016.06.28~2016.07.01"
+    },
+    {
+      "title": "Multi Axis Error Compensation for Scanning Beam Lase Interference Lithography",
+      "conference": "International Symposium on Green Manufacturing and Applications 2016 (ISGMA)",
+      "period": "2016.06.21~2016.06.25"
+    },
+    {
+      "title": "실크피브로인 지지체의 기공 정렬에 따른 랜덤레이저 변화",
+      "conference": "대한기계학회 2015년도 추계학술대회",
+      "period": "2015.11.10~2015.11.14"
+    },
+    {
+      "title": "나노 패터닝 정밀도 향상을 위한 광학적 패턴주기 측정 및 제어에 관한 연구",
+      "conference": "한국생산제조시스템학회 2015년도 추계학술대회",
+      "period": "2015.10.14~2015.10.16"
+    },
+    {
+      "title": "Random lasing in silk fibroin films with hydroxyapatite nanoparticles",
+      "conference": "한국광학회 창립 25주년 및 2015 세계 빛의 해(IYL) 기념 하계학술발표회",
+      "period": "2015.07.13~2015.07.15"
+    },
+    {
+      "title": "A LIGHT GUIDE PLATE BASED FLEXIBLE OPTICAL CUFF FOR OPTOGENETIC STIMULATION OF MOTOR UNITS",
+      "conference": "The 18th International Conference on Solid-State Sensors, Actuators and Microsystems (Transducers 2015)",
+      "period": "2015.06.21~2015.06.25"
+    },
+    {
+      "title": "Advances in functional optical coherence tomography",
+      "conference": "International Congress of Biorheology",
+      "period": "2015.05.24~2015.05.28"
+    },
+    {
+      "title": "주파수와 스펙트럼으로 부호화한 공초점 현미경",
+      "conference": "2015 한국생산제조시스템학회 춘계학술대회",
+      "period": "2015.04.28~2015.04.30"
+    },
+    {
+      "title": "색 암호화된 광조사법을 이용한 다중 모드 현미경 기술",
+      "conference": "2015 한국생산제조시스템학회 춘계학술대회",
+      "period": "2015.04.28~2015.04.30"
+    },
+    {
+      "title": "Random Lasing in Porous and Fibrous Silk Fibroin Scaffolds",
+      "conference": "한국생체재료학회 2015년도 춘계학술대회",
+      "period": "2015.03.27~2015.03.27"
+    },
+    {
+      "title": "Multi-contrast optical microscopy based on color-coded illumination",
+      "conference": "NBSIS 2015",
+      "period": "2015.02.25~2015.02.27"
+    },
+    {
+      "title": "Spectrally encoded slit confocal microscopy using a wavelength-swept laser",
+      "conference": "NBSIS 2015",
+      "period": "2015.02.25~2015.02.27"
+    },
+    {
+      "title": "주파수와 파장으로 코딩된 공초점 현미경",
+      "conference": "nano-IMP2015",
+      "period": "2015.02.11~2015.02.11"
+    },
+    {
+      "title": "Direct measurement of hemoglobin concentration of erythrocytes using photothermal angular light scattering",
+      "conference": "2015 Photonics West",
+      "period": "2015.02.07~2015.02.12"
+    },
+    {
+      "title": "Quantitative phase imaging with wavelength-multiplexed oblique illumination",
+      "conference": "IBEC 2014",
+      "period": "2014.11.20~2014.11.22"
+    },
+    {
+      "title": "Functional Optical Coherence Tomography for Tumor Margin Detection",
+      "conference": "IBEC 2014",
+      "period": "2014.11.20~2014.11.22"
+    },
+    {
+      "title": "광열 광 각도 산란을 이용한 적혈구내 헤모글로빈 농도 측정",
+      "conference": "대한기계학회 2014년도 추계학술대회",
+      "period": "2014.11.11~2014.11.14"
+    },
+    {
+      "title": "주파수와 파장으로 코딩된 공초점 현미경",
+      "conference": "대한기계학회 2014년도 추계학술대회",
+      "period": "2014.11.11~2014.11.14"
+    },
+    {
+      "title": "Self-formed lasing in silk fibroin scaffolds",
+      "conference": "International Conference on Biofabrication 2014",
+      "period": "2014.09.28~2014.10.01"
+    },
+    {
+      "title": "Reconstruction method for blood flow tracking in the left ventricle",
+      "conference": "제8회 한국유체공학 학술대회",
+      "period": "2014.08.27~2014.08.29"
+    },
+    {
+      "title": "주파수와 파장으로 코딩된 공초점 현미경",
+      "conference": "한국광학회 2014년도 하계학술발표회",
+      "period": "2014.08.25~2014.08.27"
+    },
+    {
+      "title": "광 각도 산란을 이용한 적혈구내 헤모글로빈 농도 측정",
+      "conference": "한국광학회 2014년도 하계학술발표회",
+      "period": "2014.08.25~2014.08.27"
+    },
+    {
+      "title": "(초청발표) 다기능 광간섭단층영상을 이용한 금 나노별 입자 표적 쥐 뇌종양 영상기법",
+      "conference": "한국광학회 2014년도 하계학술발표회",
+      "period": "2014.08.25~2014.08.27"
+    },
+    {
+      "title": "in vivo Photo-thermal optical cherence tomography of targeted mouse brain using gold nanostars",
+      "conference": "CLEO : 2014",
+      "period": "2014.06.08~2014.06.13"
+    },
+    {
+      "title": "Reconstuction model for blood flow tracking in the left ventricle",
+      "conference": "KSIAM 2014 Spring conference",
+      "period": "2014.05.23~2014.05.24"
+    },
+    {
+      "title": "Smartphone based quantitative stress measurement",
+      "conference": "ACED 2014",
+      "period": "2014.05.21~2014.05.24"
+    },
+    {
+      "title": "파장 영역 광간섭 위상차 현미경을 이용한 비표지 세포 모니터링 시스템",
+      "conference": "COOC2014",
+      "period": "2014.05.21~2014.05.23"
+    },
+    {
+      "title": "공간적으로 처핑된 변조와 스펙트럼의 부호화를 이용한 깊이방향 분해능을 갖는 넓은 영역 이미징",
+      "conference": "COOC2014",
+      "period": "2014.05.21~2014.05.23"
+    },
+    {
+      "title": "Smartphone based quantitative stress measurement system",
+      "conference": "2014 한국바이오칩학회 춘계학술대회",
+      "period": "2014.04.02~2014.04.04"
+    },
+    {
+      "title": "Combined spatially chirped modulation and spectral encoding for improved imaging in confocal microscopy",
+      "conference": "Photonics West BiOS 2014",
+      "period": "2014.02.01~2014.02.06"
+    },
+    {
+      "title": "Temporally and spectrally encoded confocal microscopy",
+      "conference": "Photonics West BiOS 2014",
+      "period": "2014.02.01~2014.02.06"
+    },
+    {
+      "title": "Photothermal optical coherence tomography and therapy in targeted mouse brain tumors using gold nanostars",
+      "conference": "Photonics West BioS 2014",
+      "period": "2014.02.01~2014.02.06"
+    },
+    {
+      "title": "Spectral-domain optical coherence reflectrometric sensors for label-free bioassay",
+      "conference": "한국바이오칩학회 추계학술대회",
+      "period": "2013.11.13~2013.11.14"
+    },
+    {
+      "title": "Lateral flow immunoassay using smartphone based reader to measure human stress biomarker",
+      "conference": "2013 한국바이오칩학회 추계학술대회",
+      "period": "2013.11.13~2013.11.14"
+    },
+    {
+      "title": "Widefield depth-resolved microscopy",
+      "conference": "International Symposium on Optical Memory",
+      "period": "2013.08.18~2013.08.22"
+    },
+    {
+      "title": "비표지 정량적 생체 세포 및 분자 연구를 위한 광단층 위상 현미경 개발",
+      "conference": "대한기계학회 바이오공학부문 춘계학술대회",
+      "period": "2013.05.22~2013.05.24"
+    },
+    {
+      "title": "micro-fluorescence activated cell sorter(FACS) for isolation of genetically modified cells",
+      "conference": "SPIE",
+      "period": "2013.02.20~2013.02.23"
+    },
+    {
+      "title": "Label-free cell-based assay with spectral-domain optical coherence phase microscopy",
+      "conference": "Photonics West BioS 2013",
+      "period": "2013.02.02~2013.02.07"
+    },
+    {
+      "title": "Imaging of micro-needle based drug delivery with molecular contrast optical coherence tomography",
+      "conference": "ICMTE 2012",
+      "period": "2012.10.18~2012.10.19"
+    },
+    {
+      "title": "Novel optical biosensor platform for protein-protein measurement",
+      "conference": "Korean Society of Biochemistry and Molecular Biology Annual Meeting",
+      "period": "2012.05.30~2012.06.01"
+    },
+    {
+      "title": "주파수 영역 광위상 현미경의 개발과 응용",
+      "conference": "KSMTE Spring Conference",
+      "period": "2012.04.25~2012.04.27"
+    }
+  ],
+  "fundings": [
+    {
+      "title": "[과기부산하/ETRI/용역] 복합소재 문화유산 데이터 광학 스캐너의 성능 향상을 위한 초점 심도 개선 광학 소자 설계 및 제작",
+      "org": "한국전자통신연구원",
+      "period": "2026-06-11~2026-10-31"
+    },
+    {
+      "title": "열화상 산술 영상 연구센터",
+      "org": "연세대학교",
+      "period": "2026-03-01~2027-02-28"
+    },
+    {
+      "title": "AI 바이오 분자 거동 판별 연구센",
+      "org": "연세대학교",
+      "period": "2026-03-01~2027-02-28"
+    },
+    {
+      "title": "(통합Ezbaro/IRIS)비표지 생체조직의 고해상도 분자특이적 삼차원 영상을 위한 중적외선 산술광학 토모그래피 기술 개발 (4/5)(2023.6.1~2028.2.29)",
+      "org": "한국연구재단",
+      "period": "2026-03-01~2027-02-28"
+    },
+    {
+      "title": "[7차년도]사회지향 기계기술 글로벌 리더 양성 교육연구단",
+      "org": "한국연구재단",
+      "period": "2026-03-01~2027-02-28"
+    },
+    {
+      "title": "[RCMS](주)카리스바이오/성숙 인간심장오가노이드를 이용한 신약개발 및 독성평가용 자동화 고효율 플랫폼 개발(3/4)",
+      "org": "한국산업기술진흥원",
+      "period": "2026-01-01~2026-12-31"
+    },
+    {
+      "title": "[통합이지바로/한미 전략기술 선행표준화 공동연구사업/공동] 반도체 소자의 3D 나노구조 분석용 극자외선 이미징 기술 개발(1/2단계,2/2)",
+      "org": "한국연구재단",
+      "period": "2026-01-01~2026-12-31"
+    },
+    {
+      "title": "[통합이지바로/한미 전략기술 선행표준화 공동연구사업/공동] 반도체 소자의 3D 나노구조 분석용 극자외선 이미징 기술 개발(1/2단계,1/2)",
+      "org": "한국연구재단",
+      "period": "2025-07-01~2025-12-31"
+    },
+    {
+      "title": "[민간/㈜LG전자] 경계면 부채꼴 간섭 잡음 제거 기술 개발",
+      "org": "국내",
+      "period": "2025-06-01~2026-10-30"
+    },
+    {
+      "title": "[민간/삼성미래기술육성사업]가상 마이크로톰 현미경: 순차적 단층 광수차 보정 기반 고심도 반사형 산술 토모그래피 개발",
+      "org": "국내",
+      "period": "2025-06-01~2027-05-31"
+    },
+    {
+      "title": "(통합Ezbaro)비표지 생체조직의 고해상도 분자특이적 삼차원 영상을 위한 중적외선 산술광학 토모그래피 기술 개발 (3/5)(2023.6.1~2028.2.29)",
+      "org": "한국연구재단",
+      "period": "2025-03-01~2026-02-28"
+    },
+    {
+      "title": "[6차년도] 사회지향 기계기술 글로벌 리더 양성 교육연구단",
+      "org": "한국연구재단",
+      "period": "2025-03-01~2026-02-28"
+    },
+    {
+      "title": "[민간/삼성전기]확장된 피사계 심도를 이용한 계측 광학계 개발",
+      "org": "국내",
+      "period": "2025-02-24~2026-08-23"
+    },
+    {
+      "title": "[RCMS](주)카리스바이오/성숙 인간심장오가노이드를 이용한 신약개발 및 독성평가용 자동화 고효율 플랫폼 개발(2/4)",
+      "org": "한국산업기술진흥원",
+      "period": "2025-01-01~2025-12-31"
+    },
+    {
+      "title": "[RCMS](주)카리스바이오/성숙 인간심장오가노이드를 이용한 신약개발 및 독성평가용 자동화 고효율 플랫폼 개발(1/4)",
+      "org": "한국산업기술진흥원",
+      "period": "2024-08-01~2024-12-31"
+    },
+    {
+      "title": "(통합Ezbaro)비표지 생체조직의 고해상도 분자특이적 삼차원 영상을 위한 중적외선 산술광학 토모그래피 기술 개발 (2/5)(2023.6.1~2028.2.29)",
+      "org": "한국연구재단",
+      "period": "2024-03-01~2025-02-28"
+    },
+    {
+      "title": "[5차년도] 사회지향 기계기술 글로벌 리더 양성 교육연구단",
+      "org": "한국연구재단",
+      "period": "2024-03-01~2025-02-28"
+    },
+    {
+      "title": "[민간/에이앤아이] 첨단광응용기기의 광학시스템 개발",
+      "org": "국내",
+      "period": "2024-02-01~2026-10-31"
+    },
+    {
+      "title": "[통합이지바로/범부처/공동] 딥러닝 피부 상태 분석 플랫폼 기반 개인맞춤형 스마트 LED 마스크 기기 및 서비스(2/2)(2/2단계)",
+      "org": "범부처",
+      "period": "2024-01-01~2024-06-04"
+    },
+    {
+      "title": "[RCMS]공동/노을주식회사/암 프로파일링을 위한 고심도 다중 광학 영상 기술 개발(3/3)",
+      "org": "한국산업기술진흥원",
+      "period": "2023-12-01~2024-11-30"
+    },
+    {
+      "title": "[민간/㈜스몰머신즈] 600 KW급 극자외선 노광용 Pellicle 품질 검사장비 개발",
+      "org": "국내",
+      "period": "2023-10-01~2026-10-01"
+    },
+    {
+      "title": "(통합Ezbaro)비표지 생체조직의 고해상도 분자특이적 삼차원 영상을 위한 중적외선 산술광학 토모그래피 기술 개발 (1/5)(2023.6.1~2028.2.29)",
+      "org": "한국연구재단",
+      "period": "2023-06-01~2024-02-29"
+    },
+    {
+      "title": "[4차년도] 사회지향 기계기술 글로벌 리더 양성 교육연구단",
+      "org": "한국연구재단",
+      "period": "2023-03-01~2024-02-29"
+    },
+    {
+      "title": "[통합이지바로/위탁] PCR 형광리더기 지능형 분석 소프트웨어",
+      "org": "한국전기연구원",
+      "period": "2023-02-01~2023-11-30"
+    },
+    {
+      "title": "[통합이지바로/범부처/공동] 딥러닝 피부 상태 분석 플랫폼 기반 개인맞춤형 스마트 LED 마스크 기기 및 서비스(1/2)(2/2단계)",
+      "org": "범부처",
+      "period": "2023-01-01~2023-12-31"
+    },
+    {
+      "title": "[통합이지바로/공동] 3D 나노복합구조 분석 광검사측정장비 핵심기술 개발_1/2단계,2/2",
+      "org": "과학기술일자리진흥원",
+      "period": "2023-01-01~2023-12-31"
+    },
+    {
+      "title": "[통합이지바로][BP유형1] 경안 건강 평가(1/1)",
+      "org": "한국연구재단",
+      "period": "2023-01-01~2023-12-31"
+    },
+    {
+      "title": "[통합이지바로/위탁] 고해상도 DUV/EUV Lensless 산술영상복원 알고리즘 개발",
+      "org": "한국표준과학연구원",
+      "period": "2023-01-01~2023-12-31"
+    },
+    {
+      "title": "[2022-11-1867] 해외우수과학자유치사업(BP) 전담인력지원과제",
+      "org": "연세대학교",
+      "period": "2023-01-01~2023-12-31"
+    },
+    {
+      "title": "[RCMS]공동/노을주식회사/암 프로파일링을 위한 고심도 다중 광학 영상 기술 개발(2/3)",
+      "org": "한국산업기술진흥원",
+      "period": "2022-12-01~2023-11-30"
+    },
+    {
+      "title": "[민간/오로스테크놀로지][2세부]Overlay 검사 장비의 영상 심도 향상을 위한 광위상구조 개발",
+      "org": "국내",
+      "period": "2022-12-01~2026-11-30"
+    },
+    {
+      "title": "[민간/삼성미래기술육성사업]생체 망막 세포와 복굴절 특성의 대면적 고해상도 영상을 위한 반사형 산술 편광 현미경 기술 개발(2단계)",
+      "org": "국내",
+      "period": "2022-12-01~2023-11-30"
+    },
+    {
+      "title": "(통합이지바로/공동) 3D 나노복합구조 분석 광검사측정장비 핵심기술 개발",
+      "org": "과학기술일자리진흥원",
+      "period": "2022-04-01~2022-12-31"
+    },
+    {
+      "title": "(통합Ezbaro)비간섭 산술현미경을 이용한 삼차원 복굴절 토모그래피 기술 개발(3/3)(2020.3.1~2023.2.28)",
+      "org": "한국연구재단",
+      "period": "2022-03-01~2023-02-28"
+    },
+    {
+      "title": "[통합이지바로/범부처/공동] 딥러닝 피부 상태 분석 플랫폼 기반 개인맞춤형 스마트 LED 마스크 기기 및 서비스(1/2단계)(3/3)",
+      "org": "범부처",
+      "period": "2022-03-01~2022-12-31"
+    },
+    {
+      "title": "[3차년도] 사회지향 기계기술 글로벌 리더 양성 교육연구단",
+      "org": "한국연구재단",
+      "period": "2022-03-01~2023-02-28"
+    },
+    {
+      "title": "[2021-11-1734]해외우수과학자유치사업(BP) 전담인력지원과제",
+      "org": "연세대학교",
+      "period": "2022-01-01~2022-12-31"
+    },
+    {
+      "title": "[민간/노을] 의료기기 개발, 임상시험, IRB 승인획득 등에 관한 자문",
+      "org": "국내",
+      "period": "2022-01-01~2023-08-31"
+    },
+    {
+      "title": "[민간/스몰머신즈] DPC를 적용한 적혈구 MCV 측정을 위한 광학설계 및 알고리즘 개발",
+      "org": "국내",
+      "period": "2022-01-01~2025-08-31"
+    },
+    {
+      "title": "[BP_Barry Cense]편광민감 광간섭 단층영상 기술을 이용한 망막질환의 조기진단 바이오마커 발굴(1/1)",
+      "org": "한국연구재단",
+      "period": "2022-01-01~2022-12-31"
+    },
+    {
+      "title": "[RCMS]공동/노을주식회사/암 프로파일링을 위한 고심도 다중 광학 영상 기술 개발(1/3)",
+      "org": "한국산업기술진흥원",
+      "period": "2021-12-01~2024-11-30"
+    },
+    {
+      "title": "[민간/고영테크놀러지] 심도 확장용 binary phase filter 설계 기술 이전에 관한 연구",
+      "org": "국내",
+      "period": "2021-10-06~2026-03-06"
+    },
+    {
+      "title": "[대형사업운영지원비](2021-11-0265/2021-11-0266) 초정밀 광기계기술연구센터",
+      "org": "연세대학교",
+      "period": "2021-03-01~2023-02-28"
+    },
+    {
+      "title": "[통합이지바로/범부처/공동] 딥러닝 피부 상태 분석 플랫폼 기반 개인맞춤형 스마트 LED 마스크 기기 및 서비스(1/2단계)(2/3)",
+      "org": "범부처",
+      "period": "2021-03-01~2022-02-28"
+    },
+    {
+      "title": "LINC+ 4차 산업혁명 혁신선도대학(2/2)",
+      "org": "한국연구재단",
+      "period": "2021-03-01~2022-02-28"
+    },
+    {
+      "title": "[통합이지바로](비과세)초정밀 광 기계기술 연구센터(2단계,3/3)(2019.03.01.~2022.02. 28.)",
+      "org": "한국연구재단",
+      "period": "2021-03-01~2022-02-28"
+    },
+    {
+      "title": "(통합Ezbaro)비간섭 산술현미경을 이용한 삼차원 복굴절 토모그래피 기술 개발(2/3)(2020.3.1~2023.2.28)",
+      "org": "한국연구재단",
+      "period": "2021-03-01~2022-02-28"
+    },
+    {
+      "title": "[2차년도] 사회지향 기계기술 글로벌 리더 양성 교육연구단",
+      "org": "한국연구재단",
+      "period": "2021-03-01~2022-02-28"
+    },
+    {
+      "title": "[민간/노을 주식회사] 의료기기 개발, 임상시험, IRB 승인획득 등에 관한 자문",
+      "org": "국내",
+      "period": "2021-02-01~2021-12-31"
+    },
+    {
+      "title": "[통합이지바로][BP/Abraham Josephus (Barry) Cense] 광수용세포의 구조-기능 영상화 실현과 이를 기반한 망막 질환 조기 진단(3/3)",
+      "org": "한국연구재단",
+      "period": "2021-01-01~2021-12-31"
+    },
+    {
+      "title": "[삼성미래기술육성사업/주관] 생체 망막 세포와 복굴절 특성의 대면적 고해상도 영상을 위한 반사형 산술 편광 현미경 기술 개발",
+      "org": "국내",
+      "period": "2020-12-01~2022-11-30"
+    },
+    {
+      "title": "[RCMS_위탁](주)스몰머신즈/Computational 광학시스템과 인공지능 이미지 판독을 통한 백혈구 분석기 개발(2/2)",
+      "org": "중소기업기술정보진흥원",
+      "period": "2020-11-06~2021-11-05"
+    },
+    {
+      "title": "[민간/국도화학 주식회사] Epoxy 및 ACF 생산 관련 모니터링 및 해석기술 개발",
+      "org": "국내",
+      "period": "2020-11-01~2021-10-31"
+    },
+    {
+      "title": "[통합이지바로](2세부) 딥러닝 피부 상태 분석 플랫폼 기반 개인맞춤형 스마트 LED 마스크 기기 및 서비스(1/2단계)(1/3)",
+      "org": "범부처",
+      "period": "2020-09-01~2021-02-28"
+    },
+    {
+      "title": "[1차년도] 사회지향 기계기술 글로벌 리더 양성 교육연구단",
+      "org": "한국연구재단",
+      "period": "2020-09-01~2021-02-28"
+    },
+    {
+      "title": "[RCMS]InSitu(현장형) 바이러스 검출 및 분석 지능형 플랫폼(1/1)",
+      "org": "한국산업기술기획평가원",
+      "period": "2020-09-01~2021-04-30"
+    },
+    {
+      "title": "[민간/현대엔지비]불소계 고분자 강화 복합막 두께측정 기술 개발 및 원소재 별 광학적 특성 파악(2차년도)",
+      "org": "국내",
+      "period": "2020-05-01~2022-03-31"
+    },
+    {
+      "title": "LINC+ 4차 산업혁명 혁신선도대학(1/2)",
+      "org": "한국연구재단",
+      "period": "2020-03-01~2021-02-28"
+    },
+    {
+      "title": "(통합Ezbaro)[선도연구센터/ERC]초정밀 광 기계기술 연구센터(2/3,2단계)(2019.3.1~2022.2.28)",
+      "org": "한국연구재단",
+      "period": "2020-03-01~2021-02-28"
+    },
+    {
+      "title": "(통합Ezbaro)비간섭 산술현미경을 이용한 삼차원 복굴절 토모그래피 기술 개발(1/3)(2020.3.1~2023.2.28)",
+      "org": "한국연구재단",
+      "period": "2020-03-01~2021-02-28"
+    },
+    {
+      "title": "[8차년도]사회지향 기계기술 글로벌 리더 양성 사업단",
+      "org": "한국연구재단",
+      "period": "2020-03-01~2020-08-31"
+    },
+    {
+      "title": "[RCMS]주식회사필로시스/광학기반 무채혈 당대사이상 모니터링을 위한 웨어러블 장비개발(3/3)",
+      "org": "한국산업기술기획평가원",
+      "period": "2020-02-01~2020-12-31"
+    },
+    {
+      "title": "[민간/노을(주)]의료기기 개발, 임상시험, IRB 승인획득 등에 관한 자문",
+      "org": "국내",
+      "period": "2020-02-01~2021-01-31"
+    },
+    {
+      "title": "[BP/Abraham Josephus (Barry) Cense] 광수용세포의 구조-기능 영상화 실현과 이를 기반한 망막 질환 조기 진단(2/3)",
+      "org": "한국연구재단",
+      "period": "2020-01-01~2020-12-31"
+    },
+    {
+      "title": "[민간/(주)고영테크놀러지]비전 검사 장비를 위한 심도 확장용 binary phase filter에 관한 연구",
+      "org": "국내",
+      "period": "2019-12-02~2021-05-30"
+    },
+    {
+      "title": "[RCMS_위탁](주)스몰머신즈/Computational 광학시스템과 인공지능 이미지 판독을 통한 백혈구 분석기 개발(1/2)",
+      "org": "중소기업기술정보진흥원",
+      "period": "2019-11-06~2020-11-05"
+    },
+    {
+      "title": "[민간/(주)스몰머신즈]디지털 세포 분석기 개발 자문",
+      "org": "국내",
+      "period": "2019-10-01~2020-09-30"
+    },
+    {
+      "title": "[BP/Abraham Josephus (Barry) Cense] 광수용세포의 구조-기능 영상화 실현과 이를 기반한 망막 질환 조기 진단(1/3)",
+      "org": "한국연구재단",
+      "period": "2019-09-01~2019-12-31"
+    },
+    {
+      "title": "[민간/삼성전자] Optical System 산학 협력개발",
+      "org": "국내",
+      "period": "2019-05-30~2020-08-31"
+    },
+    {
+      "title": "[RCMS]주식회사필로시스/광학기반 무채혈 당대사이상 모니터링을 위한 웨어러블 장비개발(2/3)",
+      "org": "한국산업기술기획평가원",
+      "period": "2019-04-01~2020-01-31"
+    },
+    {
+      "title": "[민간/(주)루트로닉]산란광 공간주파수의 선택적 측정을 통한 SRT 조직변형 탐지 신호 향상 기술 개발",
+      "org": "국내",
+      "period": "2019-04-01~2021-12-31"
+    },
+    {
+      "title": "[선도연구센터/ERC]초정밀 광 기계기술 연구센터(1/3,2단계)(2019.3.1~2022.2.28)",
+      "org": "한국연구재단",
+      "period": "2019-03-01~2020-02-29"
+    },
+    {
+      "title": "[7차년도]사회지향 기계기술 글로벌 리더 양성 사업단",
+      "org": "한국연구재단",
+      "period": "2019-03-01~2020-02-29"
+    },
+    {
+      "title": "[이지바로][주관/스몰머신즈] 디지털 줄기세포 이미지 분석시스템 개발 (2/2)",
+      "org": "정보통신기획평가원(한국연구재단부설)",
+      "period": "2019-01-01~2019-12-31"
+    },
+    {
+      "title": "[민간/현대엔지비] 불소계 고분자 강화 복합막 두께 측정 기술 개발 및 원소재 별 광학적 특성 파악",
+      "org": "국내",
+      "period": "2018-09-01~2021-01-31"
+    },
+    {
+      "title": "[용역/한국철도기술연구원] 레이저 스펙클 기술의 철도현장 적용을 위한 기초 분석 용역",
+      "org": "한국철도기술연구원",
+      "period": "2018-08-31~2018-12-31"
+    },
+    {
+      "title": "[RCMS]주식회사필로시스/광학기반 무채혈 당대사이상 모니터링을 위한 웨어러블 장비개발(1/3)",
+      "org": "한국산업기술기획평가원",
+      "period": "2018-07-01~2019-03-31"
+    },
+    {
+      "title": "[이지바로][주관/스몰머신즈] 디지털 줄기세포 이미지 분석시스템 개발 (1/2)",
+      "org": "정보통신기술진흥센터(NIPA산하)",
+      "period": "2018-07-01~2018-12-31"
+    },
+    {
+      "title": "고기능성 소재를 효율적으로 정량 전달하는 패치형 마이크로니들 제품 및 공정기술개발 (2/2)",
+      "org": "중소기업청",
+      "period": "2018-05-15~2019-05-14"
+    },
+    {
+      "title": "(주)고영테크놀러지/비전 검사 장비를 위한 심도 확장용 binary phase filter에 관한 연구",
+      "org": "국내",
+      "period": "2018-05-01~2020-09-30"
+    },
+    {
+      "title": "[Ezbaro] (2위탁)유연기판상 슈퍼렌즈 메타물질기반 초미세 패턴 제작 기술 (2단계)(3/3)",
+      "org": "한국연구재단",
+      "period": "2018-03-01~2018-12-31"
+    },
+    {
+      "title": "[민간 한국후지제록스(과제분리)] 광열 레이저 스페클 영상 기술을 이용한 인쇄질 측정",
+      "org": "국내",
+      "period": "2018-03-01~2019-10-30"
+    },
+    {
+      "title": "[선도연구센터/ERC]초정밀 광 기계기술 연구센터(4/4,1단계)(2015.8.1~2019.2.28)",
+      "org": "한국연구재단",
+      "period": "2018-03-01~2019-02-28"
+    },
+    {
+      "title": "[6차년도]사회지향 기계기술 글로벌 리더 양성 사업단",
+      "org": "한국연구재단",
+      "period": "2018-03-01~2019-02-28"
+    },
+    {
+      "title": "(분리-총괄)루트로닉/레이저 치료ㆍ진단 기술 개발을 위한 공동연구실 운영(1차년도)",
+      "org": "국내",
+      "period": "2017-09-01~2019-10-30"
+    },
+    {
+      "title": "고기능성 소재를 효율적으로 정량 전달하는 패치형 마이크로니들 제품 및 공정기술개발 (1/2)",
+      "org": "중소기업청",
+      "period": "2017-05-15~2018-05-14"
+    },
+    {
+      "title": "EZbaro_(후속연구) 광열 효과에 의한 파장별 위상 변화 감지 고속 심혈관 광간섭 분자 영상 기술 개발(3/3)",
+      "org": "한국연구재단",
+      "period": "2017-05-01~2018-04-30"
+    },
+    {
+      "title": "[위탁/철도기술연구원] 비접촉 철도 윤중 측정을 위한 광학 센서 기술 개발",
+      "org": "한국철도기술연구원",
+      "period": "2017-04-01~2017-10-31"
+    },
+    {
+      "title": "[위탁] 중금속 오염 농도의 정량적 측정과 시공간적 분포 모니터링을 위한 스마트폰 기반 측정 시스템 개발(3/3)",
+      "org": "한국환경산업기술원",
+      "period": "2017-04-01~2018-03-31"
+    },
+    {
+      "title": "[선도연구센터/ERC]초정밀 광 기계기술 연구센터(3/4,1단계,2015.08.01~2019.02.28)",
+      "org": "한국연구재단",
+      "period": "2017-03-01~2018-02-28"
+    },
+    {
+      "title": "[5차년도]사회지향 기계기술 글로벌 리더 양성 사업단",
+      "org": "한국연구재단",
+      "period": "2017-03-01~2018-02-28"
+    },
+    {
+      "title": "EZbaro_(후속연구)광열 효과에 의한 파장별 위상 변화 감지 고속 심혈관 광간섭 분자 영상 기술 개발(2/3)",
+      "org": "한국연구재단",
+      "period": "2016-05-01~2017-04-30"
+    },
+    {
+      "title": "[위탁] 중금속 오염 농도의 정량적 측정과 시공간적 분포 모니터링을 위한 스마트폰 기반 측정 시스템 개발",
+      "org": "한국환경산업기술원",
+      "period": "2016-04-01~2017-03-31"
+    },
+    {
+      "title": "(4차년도) 사회지향 기계기술 글로벌 리더 양성 사업단",
+      "org": "한국연구재단",
+      "period": "2016-03-01~2017-02-28"
+    },
+    {
+      "title": "초정밀 광 기계기술 연구센터(2/4,1단계, 2015.08.01 ~ 2019.02.28)",
+      "org": "한국연구재단",
+      "period": "2016-03-01~2017-02-28"
+    },
+    {
+      "title": "HLDS / 조인트랩 설립 및 협력 연구 (2016년)",
+      "org": "국내",
+      "period": "2016-02-01~2017-01-31"
+    },
+    {
+      "title": "삼차원 광학 영상기술을 이용한 마이크로 니들 기반 약물 전달 평가 기술 개발",
+      "org": "산하기관",
+      "period": "2016-02-01~2018-02-28"
+    },
+    {
+      "title": "[IT명품인재양성사업] 민간후원금 (3단계3차년도) / 출자부족분 학교대응",
+      "org": "연세대학교",
+      "period": "2016-01-01~2016-12-31"
+    },
+    {
+      "title": "[IT명품인재양성사업] 민간후원금 (3단계3차년도)",
+      "org": "정보통신기술진흥센터(NIPA산하)",
+      "period": "2016-01-01~2017-12-31"
+    },
+    {
+      "title": "저에너지 구동 통합형 자가 가변색상 소재",
+      "org": "한국연구재단",
+      "period": "2015-12-04~2016-04-03"
+    },
+    {
+      "title": "(과제분리) LG전자/모바일 디바이스를 이용한 혈압 및 혈관나이 측정 기술개발",
+      "org": "국내",
+      "period": "2015-09-01~2017-12-31"
+    },
+    {
+      "title": "ERC/초정밀 광 기계기술 연구센터(1/4,1단계)(2015.8.1~2019.2.28)",
+      "org": "한국연구재단",
+      "period": "2015-08-01~2016-02-29"
+    },
+    {
+      "title": "(주)라파스/마이크로 니들의 안면 경피 투과 깊이의 삼차원 영상과 분석을 위한 광학 영상 기술 개발",
+      "org": "국내",
+      "period": "2015-08-01~2017-02-28"
+    },
+    {
+      "title": "한국기술교육대학교/환경부(주관)/중금속 오염 농도의 정량적 측정과 시공간적 분포 모니터링을 위한 스마트폰 기반 측정 시스템 개발(1/3)",
+      "org": "한국환경산업기술원",
+      "period": "2015-07-01~2016-03-31"
+    },
+    {
+      "title": "3차원 나노구조물 형성을 위한 나노 마스터링 및 대면적 나노구조물 전주도금 공정 기술 개발",
+      "org": "한국연구재단",
+      "period": "2015-06-30~2016-06-29"
+    },
+    {
+      "title": "스마트폰을 이용한 모바일 다중기능 현미경 개발",
+      "org": "교육부",
+      "period": "2015-05-01~2015-12-31"
+    },
+    {
+      "title": "(후속연구)광열 효과에 의한 파장별 위상 변화 감지 고속 심혈관 광간섭 분자 영상 기술 개발(1/3)",
+      "org": "한국연구재단",
+      "period": "2015-05-01~2016-04-30"
+    },
+    {
+      "title": "[IT명품인재양성사업] 정부출연금 (3단계2차년도) / 출자부족분 학교대응",
+      "org": "연세대학교",
+      "period": "2015-01-01~2017-06-02"
+    },
+    {
+      "title": "[IT명품인재양성사업] 민간후원금 (3단계2차년도)",
+      "org": "정보통신기술진흥센터(NIPA산하)",
+      "period": "2015-01-01~2018-12-31"
+    },
+    {
+      "title": "LG전자(주)/미래기술센터 탐색과제",
+      "org": "국내",
+      "period": "2014-12-01~2021-06-30"
+    },
+    {
+      "title": "삼성전자(주)/스마트폰 기반 형광분석 시스템 개발",
+      "org": "국내",
+      "period": "2014-08-06~2015-04-30"
+    },
+    {
+      "title": "신경 자극을 위한 삽입형 optical cuff 개발",
+      "org": "한국연구재단",
+      "period": "2014-08-01~2015-07-31"
+    },
+    {
+      "title": "3차원 나노구조물 형성을 위한 나노 마스터링 및 대면적 나노구조물 전주도금 공정기술 개발(1단계 3차년도)",
+      "org": "한국연구재단",
+      "period": "2014-06-30~2015-06-29"
+    },
+    {
+      "title": "심혈관 단층 구조 및 분자 성분 영상화를 위한 1.7 μm 파장 영역대의 분광학적 광간섭 단층 영상기술 개발(3/3)",
+      "org": "한국연구재단",
+      "period": "2014-05-01~2015-04-30"
+    },
+    {
+      "title": "테라헤르츠 TOMOGRAPHY를 위한 신호처리 기술",
+      "org": "한국보건산업진흥원",
+      "period": "2014-04-01~2015-03-31"
+    },
+    {
+      "title": "칼코게나이드 기반 플렉서블 근접장 광 구조를 이용하는 대면적 가변 나노이미징 원천기술 개발",
+      "org": "한국연구재단",
+      "period": "2014-03-01~2014-07-31"
+    },
+    {
+      "title": "신경 자극을 위한 삽입형 OPTICAL CUFF 개발 (2010.08.16.~2015.07.31.)(2단계 2차년도)",
+      "org": "한국연구재단",
+      "period": "2013-08-01~2014-07-31"
+    },
+    {
+      "title": "미래기술센터과제",
+      "org": "국내",
+      "period": "2013-07-01~2015-12-31"
+    },
+    {
+      "title": "3차원 나노구조물 형성을 위한 나노 마스터링 및 대면적 나노구조물 전주도금 공정 기술 개발(2/3,1단계)",
+      "org": "한국연구재단",
+      "period": "2013-06-30~2014-06-29"
+    },
+    {
+      "title": "심혈관 단층 구조 및 분자 성분 영상화를 위한 1.7 μM 파장 영역대의 분광학적 광간섭 단층 영상기술 개발 (2/3)",
+      "org": "한국연구재단",
+      "period": "2013-05-01~2014-04-30"
+    },
+    {
+      "title": "[글로벌] 계산수학 기반 과학·공학 사업단",
+      "org": "연세대학교",
+      "period": "2013-03-01~2014-03-31"
+    },
+    {
+      "title": "초음파 영상을 이용한 혈류 분석 알고리즘 연구 및 검증용 팬텀 제작",
+      "org": "산하기관",
+      "period": "2013-03-01~2013-11-30"
+    },
+    {
+      "title": "신경 자극을 위한 삽입형 OPTICAL CUFF 개발 (1/3,2단계)",
+      "org": "한국연구재단(과학재단)",
+      "period": "2012-08-01~2013-07-31"
+    },
+    {
+      "title": "3차원 나노구조물 형성을 위한 나노 마스터링 및 대면적 나노구조물 전주도금 공정 기술 개발(1/3,1단계)",
+      "org": "한국연구재단",
+      "period": "2012-06-30~2013-06-29"
+    },
+    {
+      "title": "심혈관 단층 구조 및 분자 성분 영상화를 위한 1.7 μM 파장 영역대의 분광학적 광간섭 단층 영상기술 개발 (1/3)",
+      "org": "한국과학재단",
+      "period": "2012-05-01~2013-04-30"
+    },
+    {
+      "title": "두산인프라코어(주)/연세대학교 산학협력협의회 (2012.03.01~2013.02.28)- 2014.02.28",
+      "org": "국내",
+      "period": "2012-03-01~2019-12-31"
+    },
+    {
+      "title": "LG전자(주) / Nano-scale구조물/quantum dot layer를 이용한 저반사 표면 설계 &#48142 제작 기술 개발 (2011.12.01~2012.11.30)- 2013.11.30",
+      "org": "국내",
+      "period": "2011-12-01~2014-03-31"
+    },
+    {
+      "title": "광학적 분광법을 이용한 생세포 측정용 바이오 센서 개발",
+      "org": "연세대학교",
+      "period": "2011-09-01~2012-08-31"
+    },
+    {
+      "title": "바이오 메디칼 응용 광기술 개발 연구실 설립",
+      "org": "연세대학교",
+      "period": "2011-09-01~2012-08-31"
+    },
+    {
+      "title": "LG디스플레이/공간분해 분광계측기를 이용한 LCD 공정 플라즈마 계측 장비 개발",
+      "org": "민간기업",
+      "period": "2011-01-01~2012-12-31"
+    }
+  ],
+  "patents": [
+    {
+      "title": "자동미분을 이용한 광위상 구조 설계 방법 및 이를 이용한 빔 프로파일 형성 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2026-04-03"
+    },
+    {
+      "title": "다중 산란 샘플 대상 고심도 정량적 굴절률 영상 장비 및 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2026-03-05"
+    },
+    {
+      "title": "고해상도 삼차원 유전율 텐서 영상 장치 및 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2026-02-24"
+    },
+    {
+      "title": "렌즈 어레이를 이용한 푸리에 타이쵸그래피, 높은 광처리량 푸리에 타이쵸 그래피 구현 및 비네팅 유형 아티펙트 제거 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2025-04-17"
+    },
+    {
+      "title": "렌즈 어레이를 이용한 푸리에 타이쵸그래피, 높은 광처리량 푸리에 타이쵸 그래피 구현 및 비네팅 유형 아티펙트 제거 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2025-04-10"
+    },
+    {
+      "title": "경사 초점면 위상대비 현미경 및 이의 운용방법",
+      "type": "특허",
+      "applicant": "포항공과대학교 산학협력단, 연세대학교 산학협력단",
+      "date": "2025-03-05"
+    },
+    {
+      "title": "경사 초점면 위상대비 현미경 및 이의 운용방법",
+      "type": "특허",
+      "applicant": "포항공과대학교 산학협력단, 연세대학교 산학협력단",
+      "date": "2025-02-28"
+    },
+    {
+      "title": "삼차원 투명 시료의 내부 형상 측정과 분석 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2024-11-11"
+    },
+    {
+      "title": "고해상도 후방 경사 현미경 및 이의 영상 복원 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2024-10-29"
+    },
+    {
+      "title": "빔프로파일 도출 구조 설계 시스템, 설계 방법, 이에 의해 설계된 광원 시스템, 및 이를 포함하는 어플리케이션",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2024-10-29"
+    },
+    {
+      "title": "３차원 형상 측정 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 주식회사 고영테크놀러지",
+      "date": "2024-09-26"
+    },
+    {
+      "title": "피사계 심도 확장 시스템 및 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 주식회사 고영테크놀러지",
+      "date": "2024-09-23"
+    },
+    {
+      "title": "３차원 형상 측정 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 주식회사 고영테크놀러지",
+      "date": "2024-09-11"
+    },
+    {
+      "title": "피사계 심도 확장 시스템 및 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 주식회사 고영테크놀러지",
+      "date": "2024-09-11"
+    },
+    {
+      "title": "피사계 심도 확장 시스템 및 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 주식회사 고영테크놀러지",
+      "date": "2024-09-11"
+    },
+    {
+      "title": "피사계 심도 확장 시스템 및 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 주식회사 고영테크놀러지",
+      "date": "2024-09-11"
+    },
+    {
+      "title": "３차원 형상 측정 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 주식회사 고영테크놀러지",
+      "date": "2024-09-11"
+    },
+    {
+      "title": "３차원 형상 측정 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 주식회사 고영테크놀러지",
+      "date": "2024-09-11"
+    },
+    {
+      "title": "렌즈 어레이를 이용한 푸리에 타이쵸그래피, 높은 광처리량 푸리에 타이쵸 그래피 구현 및 비네팅 유형 아티펙트 제거 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2024-04-19"
+    },
+    {
+      "title": "비간섭 산술현미경 이용 적혈구 수치 측정 장치, 비간섭 산술현미경 이용 적혈구 수치 측정 방법 및 적혈구 관련 질병 진단 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2024-03-26"
+    },
+    {
+      "title": "무렌즈 산술 현미경, 이를 이용한 시료 형상 도출 방법, 및 이를 포함하는 휴대용 또는 이동형 실험 모듈",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2024-03-21"
+    },
+    {
+      "title": "피사계 심도 확장 시스템 및 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 주식회사 고영테크놀러지",
+      "date": "2024-03-10"
+    },
+    {
+      "title": "경사 초점면 위상대비 현미경 및 이의 운용방법",
+      "type": "특허",
+      "applicant": "포항공과대학교 산학협력단, 연세대학교 산학협력단",
+      "date": "2024-03-06"
+    },
+    {
+      "title": "피사계 심도 확장을 위한 이진위상필터 설계 및 영상 복원 방법 및 이를 수행하는 전자장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2023-10-20"
+    },
+    {
+      "title": "３차원 형상 측정 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 주식회사 고영테크놀러지",
+      "date": "2023-03-10"
+    },
+    {
+      "title": "위상 영상 복원 및 광학적 수차 보정 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2023-01-09"
+    },
+    {
+      "title": "피사계 심도 확장을 위한 이진위상필터 설계 및 영상 복원 방법 및 이를 수행하는 전자장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2022-10-20"
+    },
+    {
+      "title": "다중 푸리에 타이초그래픽 광학 이미징 시스템 및 그 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2022-08-19"
+    },
+    {
+      "title": "3차원 형상 측정 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 주식회사 고영테크놀러지",
+      "date": "2022-03-11"
+    },
+    {
+      "title": "피사계 심도 확장 시스템 및 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, (주)고영테크놀러지",
+      "date": "2022-03-11"
+    },
+    {
+      "title": "투명소재 복합박막 단층 영상 촬영 시스템",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 현대자동차 주식회사, 기아 주식회사",
+      "date": "2022-02-11"
+    },
+    {
+      "title": "시료의 광학적 이방성을 정량화하는 현미경 시스템",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2022-01-20"
+    },
+    {
+      "title": "형광 프로브 유기분자를 포함하는 유기용매 내 수분 검출용 형광 센서, 이를 이용한 유기용매 내 수분 검출방법 및 상기 형광 센서를 포함하는 유기용매 내 수분 검출장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2022-01-10"
+    },
+    {
+      "title": "다중클래드 광섬유를 활용한 광열신호 검출장치 및 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2021-12-31"
+    },
+    {
+      "title": "고감도 표적물질 농도 측정을 위한 자기동역학 광학장치 및 이를 이용한 표적물질 농도 측정방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2021-12-06"
+    },
+    {
+      "title": "딥러닝 기반 영상인식에 대한 공간광변조기 기반의 광학적 적대적 공격 장치 및 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2021-09-30"
+    },
+    {
+      "title": "푸리에 타이초그래픽 기반 광학 이미징 시스템 및 그 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2021-07-28"
+    },
+    {
+      "title": "투명소재 복합박막 단층 영상 촬영 시스템",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 현대자동차 주식회사, 기아 주식회사",
+      "date": "2021-07-01"
+    },
+    {
+      "title": "구조화된 광열 자극광을 이용한 표적물질 농도 측정 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2021-03-04"
+    },
+    {
+      "title": "다중포트 광커플러 기반 광간섭계를 이용한 표적물질 농도 측정 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2021-02-08"
+    },
+    {
+      "title": "시료의 광학적 이방성을 정량화하는 현미경 시스템",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2021-01-20"
+    },
+    {
+      "title": "복합막 단층 측정을 위한 영상 시스템 및 그 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 현대자동차 주식회사, 기아자동차 주식회사",
+      "date": "2020-06-23"
+    },
+    {
+      "title": "적외선 영상 측정 장치 및 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2020-05-07"
+    },
+    {
+      "title": "광원 위치를 보정하기 위한 현미경 장치 및 그 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 주식회사 스몰머신즈",
+      "date": "2020-05-05"
+    },
+    {
+      "title": "광원 위치를 보정하기 위한 현미경 장치 및 그 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 주식회사 스몰머신즈",
+      "date": "2019-10-10"
+    },
+    {
+      "title": "패턴 부호화를 이용한 광 간섭 단층 촬영 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2019-10-01"
+    },
+    {
+      "title": "광원 위치를 보정하기 위한 현미경 장치 및 그 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 주식회사 스몰머신즈",
+      "date": "2019-06-28"
+    },
+    {
+      "title": "광원 위치를 보정하기 위한 현미경 장치 및 그 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 주식회사 스몰머신즈",
+      "date": "2019-05-07"
+    },
+    {
+      "title": "적외선 영상 측정 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2019-05-07"
+    },
+    {
+      "title": "패턴 부호화를 이용한 광 간섭 단층 촬영 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2019-03-26"
+    },
+    {
+      "title": "적층 세라믹 커패시터를 이용한 광원 및 광학필터",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2019-03-26"
+    },
+    {
+      "title": "광산란을 이용한 면역 분석 장치 및 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2019-03-14"
+    },
+    {
+      "title": "안과용 치료장치 및 이의 제어방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, (주)루트로닉",
+      "date": "2019-02-08"
+    },
+    {
+      "title": "안과용 치료장치 및 이의 제어방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 루트로닉",
+      "date": "2019-02-08"
+    },
+    {
+      "title": "내시경 장치 및 이를 이용한 치료 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2019-01-24"
+    },
+    {
+      "title": "표적 물질 농도 측정 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2018-07-27"
+    },
+    {
+      "title": "표적 물질 농도 측정 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2018-07-24"
+    },
+    {
+      "title": "광섬유 프로브 및 이를 포함하는 내시경 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2018-06-07"
+    },
+    {
+      "title": "다중 광학 융합영상 기반 실시간으로 뇌종양을 진단하는 방법 및 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2018-03-12"
+    },
+    {
+      "title": "다중 광학 융합영상 기반 실시간으로 뇌종양을 진단하는 방법 및 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2018-03-09"
+    },
+    {
+      "title": "다중 광학 융합영상 기반 광학영상 생성장치 및 생성방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2017-10-24"
+    },
+    {
+      "title": "표면 진단기",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2017-09-27"
+    },
+    {
+      "title": "다중모드 영상의 획득이 가능한 영상 획득 시스템",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2017-08-28"
+    },
+    {
+      "title": "표적 물질 농도 측정 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2017-07-28"
+    },
+    {
+      "title": "광섬유 모듈의 구동장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2017-06-14"
+    },
+    {
+      "title": "의료용 내시경 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2017-06-08"
+    },
+    {
+      "title": "이동 단말기",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 엘지전자 주식회사",
+      "date": "2016-12-09"
+    },
+    {
+      "title": "다중 광학 융합영상 기반 실시간으로 뇌종양을 진단하는 방법 및 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2016-09-06"
+    },
+    {
+      "title": "색과 편광 패턴을 이용한 영상 시스템",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2016-06-02"
+    },
+    {
+      "title": "헤테로다인 간섭을 이용한 초고분해능 촬영 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2015-11-10"
+    },
+    {
+      "title": "광열 광산란을 이용한 혈액 내 헤모글로빈 농도 측정 장치 및 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2015-09-25"
+    },
+    {
+      "title": "다중 광학 융합영상 기반 실시간으로 뇌종양을 진단하는 방법 및 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2015-09-11"
+    },
+    {
+      "title": "다중모드 영상을 확보하는 영상정보 획득장치 및 그 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2015-06-24"
+    },
+    {
+      "title": "플렉서블 나노박막 광구조를 이용하는 가변 대면적 나노이미징 광학헤드 및 이미징 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2015-05-22"
+    },
+    {
+      "title": "고출력 비표지 세포 분석 시스템 및 그 구동방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2015-05-06"
+    },
+    {
+      "title": "고출력 비표지 세포 분석 시스템 및 그 구동방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2015-05-06"
+    },
+    {
+      "title": "고출력 비표지 세포 분석 시스템 및 그 구동방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2015-05-06"
+    },
+    {
+      "title": "고출력 비표지 세포 분석 시스템 및 그 구동방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2015-04-07"
+    },
+    {
+      "title": "심혈관OCT영상생성방법 및 이를 이용한 스텐트 검출방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2015-03-25"
+    },
+    {
+      "title": "광열효과를 이용한 헤모글로빈 농도측정장치 및 그 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2015-01-24"
+    },
+    {
+      "title": "광열 광산란을 이용한 혈액 내 헤모글로빈 농도 측정 장치 및 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2014-09-26"
+    },
+    {
+      "title": "주파수와 스펙트럼의 부호화를 이용한 공초점 현미경 장치 및 이를 이용한 영상 획득 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2014-08-27"
+    },
+    {
+      "title": "주파수와 스펙트럼의 부호화를 이용한 공초점 현미경 장치 및 이를 이용한 영상 획득 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2014-08-27"
+    },
+    {
+      "title": "자유곡면 상면 레이저 간섭 리소그라피 장치 및 그 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2014-05-28"
+    },
+    {
+      "title": "자유곡면 상면 레이저 간섭 리소그라피 장치 및 그 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2014-05-28"
+    },
+    {
+      "title": "플렉서블 나노박막 광구조를 이용하는 가변 대면적 나노이미징 광학헤드 및 이미징 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2014-05-23"
+    },
+    {
+      "title": "스트레스, 우울증 측정을 위한 스트립 센서 및 스마트폰 연동 스트립 센서 측정시스템",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2014-04-23"
+    },
+    {
+      "title": "스트레스, 우울증 측정을 위한 스트립 센서 및 스마트폰 연동 스트립 센서 측정시스템",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2014-04-23"
+    },
+    {
+      "title": "고출력 비표지 세포 분석 시스템 및 그 구동방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2014-04-17"
+    },
+    {
+      "title": "스마트 폰 기반의 혈관 영상 시스템",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2014-04-07"
+    },
+    {
+      "title": "스마트 폰 기반의 혈관 영상 시스템",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2014-04-07"
+    },
+    {
+      "title": "심혈관OCT영상생성방법 및 이를 이용한 스텐트 검출방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2014-03-25"
+    },
+    {
+      "title": "심혈관OCT영상생성방법 및 이를 이용한 스텐트 검출방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2014-03-25"
+    },
+    {
+      "title": "심장혈류모사모형 및 이를 이용하는 심장혈류시뮬레이션 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2014-03-19"
+    },
+    {
+      "title": "심장혈류모사모형 및 이를 이용하는 심장혈류시뮬레이션 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2014-03-19"
+    },
+    {
+      "title": "광열효과를 이용한 헤모글로빈 농도측정장치 및 그 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2014-03-13"
+    },
+    {
+      "title": "광유전학적 자극을 위한 발광소자",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2013-06-24"
+    },
+    {
+      "title": "스트레스, 우울증 측정을 위한 스트립 센서 및 스마트폰 연동 스트립 측정시스템",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2013-04-24"
+    },
+    {
+      "title": "스트레스, 우울증 측정을 위한 스트립 센서 및 스마트폰 연동 스트립 측정시스템",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2013-04-24"
+    },
+    {
+      "title": "스텐트가 삽입된 혈관 분석 시스템",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2013-01-15"
+    },
+    {
+      "title": "스텐트가 삽입된 혈관 분석 시스템",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2013-01-15"
+    }
+  ]
+}

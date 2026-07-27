@@ -1,0 +1,2869 @@
+{
+  "name": "이종수",
+  "nameEn": "LEE JONGSOO",
+  "email": "jleej@yonsei.ac.kr",
+  "phone": "02)2123-4474",
+  "office": null,
+  "homepage": null,
+  "sourceUrl": "https://me.yonsei.ac.kr/faculty/name_search.do?mode=view&userId=AXk7pPArre7tC15Fk0psVg%3D%3D&sosokcd=",
+  "crawledAt": "2026-07-27",
+  "articles": [
+    {
+      "date": "2026-09",
+      "title": "Edge-aware image quality assessment via uncertainty-guided signal stabilization for dynamic visual environments: application to automotive camera",
+      "journal": "Digital Signal Processing: A Review Journal"
+    },
+    {
+      "date": "2026-05",
+      "title": "Multi-perspective domain-invariant network with energy density-based data augmentation for domain generalization fault diagnosis",
+      "journal": "Expert Systems with Applications"
+    },
+    {
+      "date": "2026-04",
+      "title": "Maintenance knowledge graph and time-series relational graph convolution neural networks for enhancing predictive maintenance of wind turbine gearbox",
+      "journal": "Knowledge-Based Systems"
+    },
+    {
+      "date": "2026-03",
+      "title": "Failure prediction and uncertainty verification of LiDAR thermoelectric coolers using Archimedes spiral loss-based domain generalization",
+      "journal": "Reliability Engineering and System Safety"
+    },
+    {
+      "date": "2026-01",
+      "title": "Domain subset ensemble adversarial network and modified supervised adversarial autoencoder for enhancing domain generalization of induction motor fault diagnosis",
+      "journal": "Journal of Supercomputing"
+    },
+    {
+      "date": "2026-01",
+      "title": "Physics-guided self-supervised learning for rotating-machinery fault diagnosis: role of average energy density equation",
+      "journal": "Advanced Engineering Informatics"
+    },
+    {
+      "date": "2024-12",
+      "title": "이미지 데이터 증강 및 설명가능 인공지능을 이용한 반사경 구조의 변형 특성 평가",
+      "journal": "Transactions of the KSME, A"
+    },
+    {
+      "date": "2024-08",
+      "title": "Diagnosis-based design of electric power steering system considering multiple degradations: role of designable generative adversarial network anomaly detection",
+      "journal": "Journal of Computational Design and Engineering"
+    },
+    {
+      "date": "2024-07",
+      "title": "Multi-labeled image data-based generative topology optimization of primary mirror with conditional designable generative adversarial network and reinforcement learning",
+      "journal": "Engineering Applications of Artificial Intelligence"
+    },
+    {
+      "date": "2024-07",
+      "title": "Classification of battery laser welding defects via enhanced image preprocessing methods and explainable artificial intelligence-based verification",
+      "journal": "Engineering Applications of Artificial Intelligence"
+    },
+    {
+      "date": "2024-06",
+      "title": "Predictive performance enhancement via domain-adaptive designable data augmentation and virtual data-based optimization",
+      "journal": "Engineering with Computers"
+    },
+    {
+      "date": "2024-03",
+      "title": "베이지안 최적화를 활용한 물리 기반 펌프 시스템 시뮬레이션의 실시간 성능 예측",
+      "journal": "한국전산유체공학회지"
+    },
+    {
+      "date": "2024-01",
+      "title": "Designable Data Augmentation-Based Domain-Adaptive Design of Electric Vehicle Considering Dynamic Responses",
+      "journal": "International Journal of Precision Engineering and Manufacturing Smart Technology"
+    },
+    {
+      "date": "2024-01",
+      "title": "Enhancement of virtual data quality using pre-trained Bayesian transfer learning under inaccurate and insufficient measurement data",
+      "journal": "Advanced Engineering Informatics"
+    },
+    {
+      "date": "2023-12",
+      "title": "Virtual data-based generative optimization using domain-adaptive designable data augmentation (DADDA): Application to electric vehicle design",
+      "journal": "Expert Systems with Applications"
+    },
+    {
+      "date": "2023-11",
+      "title": "반사경 형상 패턴에 따른 파면오차 및 중량 최소화 최적 설계",
+      "journal": "Transactions of the KSME, A"
+    },
+    {
+      "date": "2023-10",
+      "title": "Vision-based virtual vibration sensor using error calibration convolutional neural network with signal augmentation",
+      "journal": "Mechanical Systems and Signal Processing"
+    },
+    {
+      "date": "2023-09",
+      "title": "Prediction of Internal Temperature of Starter Solenoid Via PoF-Based Fault Reproduction Experiment",
+      "journal": "IEEE Transactions on Instrumentation and Measurement"
+    },
+    {
+      "date": "2023-09",
+      "title": "도심 및 고속도로 에너지 소비를 고려한 C-Segment 전기차 주행거리 최적화",
+      "journal": "Transactions of the KSME, A"
+    },
+    {
+      "date": "2023-08",
+      "title": "Diagnosis-based domain-adaptive design using designable data augmentation and Bayesian transfer learning: Target design estimation and validation",
+      "journal": "Applied Soft Computing Journal"
+    },
+    {
+      "date": "2023-07",
+      "title": "Crack growth degradation-based diagnosis and design of high pressure liquefied natural gas pipe via designable data-augmented anomaly detection",
+      "journal": "Journal of Computational Design and Engineering"
+    },
+    {
+      "date": "2023-04",
+      "title": "Diagnosis and Prognosis of Chassis Systems in Autonomous Driving Conditions",
+      "journal": "SAE Technical Papers"
+    },
+    {
+      "date": "2023-04",
+      "title": "Randomized learning-based classification of sound quality using spectrogram image and time-series data: A practical perspective",
+      "journal": "Engineering Applications of Artificial Intelligence"
+    },
+    {
+      "date": "2022-11",
+      "title": "데이터 증강 및 전이학습을 이용한 진단 기반 도메인 적응 설계 평가 및 검증",
+      "journal": "Transactions of the Korean Society of Mechanical Engineers, A"
+    },
+    {
+      "date": "2022-11",
+      "title": "Predictive evaluation of spectrogram-based vehicle sound quality via data augmentation and explainable artificial intelligence: Image color adjustment with brightness and contrast",
+      "journal": "MECHANICAL SYSTEMS AND SIGNAL PROCESSING"
+    },
+    {
+      "date": "2022-09",
+      "title": "Statistical Classification of Vehicle Interior Sound Through Upsampling-Based Augmentation and Correction Using 1D CNN and LSTM",
+      "journal": "IEEE Access"
+    },
+    {
+      "date": "2022-08",
+      "title": "1D CNN을 이용한 이미지 기반의 진동 신호 측정 및 보정",
+      "journal": "Transactions of the KSME, A"
+    },
+    {
+      "date": "2022-07",
+      "title": "Deep learning-based efficient metamodeling via domain knowledge-integrated designable data augmentation with transfer learning: application to vehicle crash safety",
+      "journal": "STRUCTURAL AND MULTIDISCIPLINARY OPTIMIZATION"
+    },
+    {
+      "date": "2022-07",
+      "title": "Instance-based transfer learning method via modified domain-adversarial neural network with influence function: Applications to design metamodeling and fault diagnosis",
+      "journal": "APPLIED SOFT COMPUTING"
+    },
+    {
+      "date": "2022-06",
+      "title": "Multiclass anomaly detection for unsupervised and semi-supervised data based on a combination of negative selection and clonal selection algorithms",
+      "journal": "APPLIED SOFT COMPUTING"
+    },
+    {
+      "date": "2022-05",
+      "title": "데이터 증강에 따른 스팩트로그램 기반 차량 주행음의 감성적인 음질 특성 분류 정확도 변화",
+      "journal": "Transactions of the Korean Society of Mechanical Engineers, A"
+    },
+    {
+      "date": "2022-02",
+      "title": "Physician-Customized Strategies for Reducing Outpatient Waiting Time in South Korea Using Queueing Theory and Probabilistic Metamodels",
+      "journal": "International Journal of Environmental Research and Public Health"
+    },
+    {
+      "date": "2021-09",
+      "title": "설계가능 데이터 증강 이용 설계도메인 적응 생성적 성능 최적화 방법",
+      "journal": "한국CDE학회 논문집"
+    },
+    {
+      "date": "2021-08",
+      "title": "Neural network prediction of sound quality via domain knowledge-based data augmentation and Bayesian approach with small data sets",
+      "journal": "MECHANICAL SYSTEMS AND SIGNAL PROCESSING"
+    },
+    {
+      "date": "2021-04",
+      "title": "Probabilistic optimization of engine mount to enhance vibration characteristics using first-order reliability-based target cascading",
+      "journal": "JOURNAL OF VIBRATION AND CONTROL"
+    },
+    {
+      "date": "2021-03",
+      "title": "베이지안 네트워크를 이용한 출입문 장치의 확률론적 고장 분석",
+      "journal": "한국CDE학회 논문집"
+    },
+    {
+      "date": "2021-02",
+      "title": "Data Augmentation-Based Prediction of System Level Performance under Model and Parameter Uncertainties: Role of Designable Generative Adversarial Networks (DGAN)",
+      "journal": "RELIABILITY ENGINEERING & SYSTEM SAFETY"
+    },
+    {
+      "date": "2020-08",
+      "title": "Stress-life prediction of 25C polypropylene materials based on calibration of Zhurkov fatigue life model",
+      "journal": "FATIGUE & FRACTURE OF ENGINEERING MATERIALS & STRUCTURES"
+    },
+    {
+      "date": "2020-06",
+      "title": "통합마스트-송수신 모듈의 열화인자 분석을 통한 결함진단 및 잔여수명 예측 연구",
+      "journal": "한국CDE학회 논문집"
+    },
+    {
+      "date": "2020-05",
+      "title": "Early stage data-based probabilistic wear life prediction and maintenance interval optimization of driving wheels",
+      "journal": "RELIABILITY ENGINEERING & SYSTEM SAFETY"
+    },
+    {
+      "date": "2020-03",
+      "title": "Reliability assessment of display delamination considering adhesive properties based on statistical model calibration and validation",
+      "journal": "INTERNATIONAL JOURNAL OF MECHANICS AND MATERIALS IN DESIGN"
+    },
+    {
+      "date": "2020-03",
+      "title": "Multi-objective genetic algorithm in reliability-based design optimization with sequential statistical modeling: an application to design of engine mounting",
+      "journal": "STRUCTURAL AND MULTIDISCIPLINARY OPTIMIZATION"
+    },
+    {
+      "date": "2020-03",
+      "title": "Multi-objective optimization in the vibration characteristics of a hydraulic steering system using a conservative and feasible response surface method",
+      "journal": "ENGINEERING OPTIMIZATION"
+    },
+    {
+      "date": "2019-11",
+      "title": "Optimal pile design of dolphin structure considering axial compressive pressure-bending moment ratio under offshore load conditions",
+      "journal": "PROCEEDINGS OF THE INSTITUTION OF MECHANICAL ENGINEERS PART M-JOURNAL OF ENGINEERING FOR THE MARITIME ENVIRONMENT"
+    },
+    {
+      "date": "2019-07",
+      "title": "Integrated shape-morphing and metamodel-based optimization of railway wheel web considering thermo-mechanical loads",
+      "journal": "STRUCTURAL AND MULTIDISCIPLINARY OPTIMIZATION"
+    },
+    {
+      "date": "2019-04",
+      "title": "CNTs 기하학적 파라미터에 따른 폴리머 나노복합재의 퍼콜레이션 임계치 예측 및 전기 전도도 특성 연구",
+      "journal": "Transactions of the Korean Society of Mechanical Engineers, A"
+    },
+    {
+      "date": "2019-03",
+      "title": "접촉 압력 불균일성을 고려한 곡면 형상을 가지는 다층 구조 전자부품의 공정 장비 형상 파라미터 분석",
+      "journal": "Transactions of the Korean Society of Mechanical Engineers, A"
+    },
+    {
+      "date": "2019-02",
+      "title": "Sustainable Manufacturing of High-Precision, Heat-Resistant Aspherical Lenses Using Ultraviolet Illumination With Prognosis of Remaining Useful Life",
+      "journal": "JOURNAL OF MANUFACTURING SCIENCE AND ENGINEERING-TRANSACTIONS OF THE ASME"
+    },
+    {
+      "date": "2019-01",
+      "title": "Viscoplastic parameter identification of temperature‐dependent mechanical behavior of modified polyphenylene oxide polymers",
+      "journal": "POLYMER ENGINEERING AND SCIENCE"
+    },
+    {
+      "date": "2019-01",
+      "title": "Multi-objective design of thickness and curvature of a bendable structure considering delamination and strength characteristics",
+      "journal": "Journal of Computational Design and Engineering"
+    },
+    {
+      "date": "2018-12",
+      "title": "Reliability-based robust design optimization of gap size of annular nuclear fuels using kriging and inverse distance weighting methods",
+      "journal": "ENGINEERING OPTIMIZATION"
+    },
+    {
+      "date": "2018-11",
+      "title": "Modelica-based dynamic analysis and design of lift-generating disk-type wind blade using computational fluid dynamics and wind tunnel test data",
+      "journal": "MECHATRONICS"
+    },
+    {
+      "date": "2018-11",
+      "title": "Reliability assessment on the degradation properties of polymers under operating temperature and vibration conditions",
+      "journal": "PROCEEDINGS OF THE INSTITUTION OF MECHANICAL ENGINEERS PART D-JOURNAL OF AUTOMOBILE ENGINEERING"
+    },
+    {
+      "date": "2018-10",
+      "title": "근사 최적 기법을 이용한 변성 폴리페닐렌 옥사이드 폴리머의 점소성 모델 보정 연구",
+      "journal": "Transactions of the Korean Society of Mechanical Engineers, A"
+    },
+    {
+      "date": "2018-08",
+      "title": "Optimal Design of Thickness and Young&apos;s Modulus of Multi-Layered Foldable Structure Considering Bending Stress, Neutral Plane and Delamination under 2.5 mm Radius of Curvature",
+      "journal": "INTERNATIONAL JOURNAL OF PRECISION ENGINEERING AND MANUFACTURING"
+    },
+    {
+      "date": "2018-08",
+      "title": "Role of multi-response principal component analysis in reliability-based robust design optimization: an application to commercial vehicle design",
+      "journal": "STRUCTURAL AND MULTIDISCIPLINARY OPTIMIZATION"
+    },
+    {
+      "date": "2018-07",
+      "title": "Determination of the best distribution and effective interval using statistical characterization of uncertain variables",
+      "journal": "Journal of Computational Design and Engineering"
+    },
+    {
+      "date": "2018-06",
+      "title": "회전익 무인항공기 블레이드의 추력 성능 검증을 위한 추력 측정 실험기 설계",
+      "journal": "Transactions of the Korean Society of Mechanical Engineers, A"
+    },
+    {
+      "date": "2018-04",
+      "title": "Bayesian estimation of the lethargy coefficient for probabilistic fatigue life model",
+      "journal": "Journal of Computational Design and Engineering"
+    },
+    {
+      "date": "2018-02",
+      "title": "답면 제동을 고려한 차륜 웹부 형상에 따른 열전달 및 열응력 해석",
+      "journal": "Transactions of the Korean Society of Mechanical Engineers, A"
+    },
+    {
+      "date": "2018-02",
+      "title": "협동 최적화를 이용한 진공청소기 손잡이 최적설계",
+      "journal": "Transactions of the Korean Society of Mechanical Engineers, A"
+    },
+    {
+      "date": "2018-02",
+      "title": "Parameter analysis and design for the hovering thrust of a quad-rotor air vehicle using CFD and design of experiment",
+      "journal": "JOURNAL OF MECHANICAL SCIENCE AND TECHNOLOGY"
+    },
+    {
+      "date": "2018-01",
+      "title": "주성분분석을 이용한 캡 서스펜션의 영향인자 분석 및 신뢰성기반최적설계",
+      "journal": "Transactions of the Korean Society of Mechanical Engineers, A"
+    },
+    {
+      "date": "2017-11",
+      "title": "응력수명법을 이용한 탄소섬유강화복합재 로어 컨트롤 아암의 내구성 평가",
+      "journal": "Transactions of the Korean Society of Mechanical Engineers, A"
+    },
+    {
+      "date": "2017-11",
+      "title": "물리적 불확실성을 내재한 입력변수의 확률 통계 기반 유효 범위 결정 방법 및 신뢰성 평가",
+      "journal": "Transactions of the Korean Society of Mechanical Engineers, A"
+    },
+    {
+      "date": "2017-10",
+      "title": "Altitude and roll control of a hovering quad-rotor air vehicle using the multi-objective approximate optimization of proportional?integral?differential control",
+      "journal": "ENGINEERING OPTIMIZATION"
+    },
+    {
+      "date": "2017-08",
+      "title": "실험계획법을 이용한 날개 없는 선풍기의 노즐 형상 최적 설계",
+      "journal": "Transactions of the Korean Society of Mechanical Engineers, A"
+    },
+    {
+      "date": "2017-08",
+      "title": "모델리카를 이용한 2자유도 시스템 진동해석 및 파라미터 설계",
+      "journal": "Transactions of the Korean Society of Mechanical Engineers, A"
+    },
+    {
+      "date": "2017-08",
+      "title": "Topologically optimized shape of CFRP front lower control ARM",
+      "journal": "INTERNATIONAL JOURNAL OF AUTOMOTIVE TECHNOLOGY"
+    },
+    {
+      "date": "2016-12",
+      "title": "강도 및 강성 조건을 고려한 탄소섬유강화플라스틱(CFRP) 로어 컨트롤 아암의 치수 최적설계",
+      "journal": "한국CDE학회 논문집"
+    },
+    {
+      "date": "2016-09",
+      "title": "열화물성을 고려한 차량용 플라스틱 부품의 신뢰성 기반 설계",
+      "journal": "한국자동차공학회 논문집"
+    },
+    {
+      "date": "2016-08",
+      "title": "Fatigue design of a cellular phone folder using regression model-based multi-objective optimization",
+      "journal": "ENGINEERING OPTIMIZATION"
+    },
+    {
+      "date": "2016-06",
+      "title": "Prediction of the mechanical behavior of double walled-CNTs using a molecular mechanics-based finite element method: Effects of chirality",
+      "journal": "COMPUTERS & STRUCTURES"
+    },
+    {
+      "date": "2016-03",
+      "title": "Back-propagation neural network-based approximate analysis of true stress-strain behaviors of high-strength metallic material",
+      "journal": "JOURNAL OF MECHANICAL SCIENCE AND TECHNOLOGY"
+    },
+    {
+      "date": "2016-01",
+      "title": "An enhancement of selection and crossover operations in real-coded genetic algorithm for large-dimensionality optimization",
+      "journal": "JOURNAL OF MECHANICAL SCIENCE AND TECHNOLOGY"
+    },
+    {
+      "date": "2015-10",
+      "title": "Interval Prediction of the Fatigue Crack Cycle Using Evidence Theory and the Kriging Meta-Model",
+      "journal": "INTERNATIONAL JOURNAL OF PRECISION ENGINEERING AND MANUFACTURING"
+    },
+    {
+      "date": "2015-10",
+      "title": "굽힙하중을 받는 섬유 금속 적층판의 응력-변형률 예측을 위한 대변형 유한요소해석",
+      "journal": "Transactions of the Korean Society of Mechanical Engineers, A"
+    },
+    {
+      "date": "2015-09",
+      "title": "가압경수로용 환형 핵연료의 간극 크기 다중목적 근사최적설계",
+      "journal": "한국정밀공학회지"
+    },
+    {
+      "date": "2015-07",
+      "title": "PID 제어를 통한 쿼드콥터 다중목적 근사최적설계",
+      "journal": "Transactions of the Korean Society of Mechanical Engineers, A"
+    },
+    {
+      "date": "2015-06",
+      "title": "자동차용 휠의 응력을 고려한 근사 최적 설계",
+      "journal": "한국생산제조시스템학회지"
+    },
+    {
+      "date": "2015-06",
+      "title": "축하중을 고려한 스크롤 압축기 하부 프레임의 최적설계",
+      "journal": "한국생산제조시스템학회지"
+    },
+    {
+      "date": "2015-05",
+      "title": "강도조건을 고려한 벽걸이 모니터 브라켓 암의 다중목적 근사최적설계",
+      "journal": "Transactions of the Korean Society of Mechanical Engineers, A"
+    },
+    {
+      "date": "2015-04",
+      "title": "수직하중을 고려한 자전거 프레임의 다중목적 최적설계",
+      "journal": "한국생산제조시스템학회지"
+    },
+    {
+      "date": "2015-04",
+      "title": "강도 조건을 고려한 동력 전달 드라이브 샤프트의 근사최적설계",
+      "journal": "한국생산제조시스템학회지"
+    },
+    {
+      "date": "2015-04",
+      "title": "강도조건을 고려한 강구조물 보강재의 다목적 근사최적설계",
+      "journal": "한국생산제조시스템학회지"
+    },
+    {
+      "date": "2015-02",
+      "title": "Structural Design of a Level-Luffing Crane through Trajectory Optimization and Strength-Based Size Optimization",
+      "journal": "STRUCTURAL AND MULTIDISCIPLINARY OPTIMIZATION"
+    },
+    {
+      "date": "2014-10",
+      "title": "Electrode design optimization of lithium secondary batteries to enhance adhesion and deformation capabilities",
+      "journal": "ENERGY"
+    },
+    {
+      "date": "2014-06",
+      "title": "복소 고유치 해석을 통한 브레이크 시스템의 저주파 불안정성 영향인자 분석",
+      "journal": "Transactions of the Korean Society of Mechanical Engineers, A"
+    },
+    {
+      "date": "2014-06",
+      "title": "데이터 마이닝을 이용한 리튬 이차전지의 전류밀도 영향인자 분석",
+      "journal": "Transactions of the Korean Society of Mechanical Engineers, A"
+    },
+    {
+      "date": "2014-05",
+      "title": "무인비행체 블레이드 형상 변화에 따른 단일로터의 제자리 비행 추력성능 분석",
+      "journal": "Transactions of the Korean Society of Mechanical Engineers, A"
+    },
+    {
+      "date": "2014-05",
+      "title": "Optimal Doctor Blade Design Considering Contact Stress and Toner Properties",
+      "journal": "INTERNATIONAL JOURNAL OF PRECISION ENGINEERING AND MANUFACTURING"
+    },
+    {
+      "date": "2014-05",
+      "title": "Approximate multi-objective optimization using conservative and feasible moving least squares method: application to automotive knuckle design",
+      "journal": "STRUCTURAL AND MULTIDISCIPLINARY OPTIMIZATION"
+    },
+    {
+      "date": "2013-12",
+      "title": "Quality Engineering Optimization of Robot Casting Considering Design Robustness: Comparison with Reliability",
+      "journal": "INTERNATIONAL JOURNAL OF PRECISION ENGINEERING AND MANUFACTURING"
+    },
+    {
+      "date": "2013-10",
+      "title": "압입축의 손상저감을 위한 최적설계 연구",
+      "journal": "한국생산제조시스템학회지"
+    },
+    {
+      "date": "2013-04",
+      "title": "반응표면법 및 비지배 분류 유전자 알고리즘을 이용한 취배수문의 응력 및 변형 최적화",
+      "journal": "한국해양공학회지"
+    },
+    {
+      "date": "2013-04",
+      "title": "균일 화상 품질 구현을 위한 닥터 블레이드 접촉압력 근사모델링",
+      "journal": "한국생산제조시스템학회지"
+    },
+    {
+      "date": "2013-04",
+      "title": "Estimation of submerged-arc welding design parameters using Taguchi method and fuzzy logic",
+      "journal": "PROCEEDINGS OF THE INSTITUTION OF MECHANICAL ENGINEERS PART B-JOURNAL OF ENGINEERING MANUFACTURE"
+    },
+    {
+      "date": "2013-04",
+      "title": "Optimization of rail profile to reduce wear on curved track",
+      "journal": "INTERNATIONAL JOURNAL OF PRECISION ENGINEERING AND MANUFACTURING"
+    },
+    {
+      "date": "2013-03",
+      "title": "Optimization of a railway wheel profile to minimize flange wear and surface fatigue",
+      "journal": "WEAR"
+    },
+    {
+      "date": "2013-02",
+      "title": "Conservative multi-objective optimization considering design robustness and tolerance: a quality engineering design approach",
+      "journal": "STRUCTURAL AND MULTIDISCIPLINARY OPTIMIZATION"
+    },
+    {
+      "date": "2012-12",
+      "title": "트리즈를 이용한 에어컨디셔너 프레임구조 설계",
+      "journal": "한국생산제조시스템학회지"
+    },
+    {
+      "date": "2012-12",
+      "title": "처짐과 무게를 고려한 주물 프레임의 다중목적 근사최적설계",
+      "journal": "한국생산제조시스템학회지"
+    },
+    {
+      "date": "2012-12",
+      "title": "보수적 근사모델을 적용한 신뢰성 기반 강건 최적설계 방법",
+      "journal": "한국해양공학회지"
+    },
+    {
+      "date": "2012-12",
+      "title": "Reduction in the nitrogen oxide and soot emissions in a diesel engine combustion system using an approximate optimization method",
+      "journal": "PROCEEDINGS OF THE INSTITUTION OF MECHANICAL ENGINEERS PART D-JOURNAL OF AUTOMOBILE ENGINEERING"
+    },
+    {
+      "date": "2012-11",
+      "title": "Genetic-Algorithm-Based Controlling of Microcontact Distributions to Minimize Electrical Contact Resistance",
+      "journal": "IEEE Transactions on Components Packaging and Manufacturing Technology"
+    },
+    {
+      "date": "2012-11",
+      "title": "Design optimization of an accumulator for reducing rotary compressor noise",
+      "journal": "PROCEEDINGS OF THE INSTITUTION OF MECHANICAL ENGINEERS PART E-JOURNAL OF PROCESS MECHANICAL ENGINEERING"
+    },
+    {
+      "date": "2012-10",
+      "title": "Reliability assessment using feed-forward neural network-based approximate meta-models",
+      "journal": "PROCEEDINGS OF THE INSTITUTION OF MECHANICAL ENGINEERS PART O-JOURNAL OF RISK AND RELIABILITY"
+    },
+    {
+      "date": "2012-06",
+      "title": "곡선부에서 차륜 마모 저감을 위한 차륜답면 형상 설계",
+      "journal": "한국정밀공학회지"
+    },
+    {
+      "date": "2011-12",
+      "title": "Role of Conservative Moving Least Squares Methods in Reliability Based Design Optimization: A Mathematical Foundation",
+      "journal": "JOURNAL OF MECHANICAL DESIGN"
+    },
+    {
+      "date": "2011-12",
+      "title": "An implementation of new selection strategies in a genetic algorithm - population recombination and elitist refinement",
+      "journal": "ENGINEERING OPTIMIZATION"
+    },
+    {
+      "date": "2011-11",
+      "title": "Parameter analysis and optimization of paper feeding devices to minimize jamming and simultaneous feeding of multiple pages",
+      "journal": "PROCEEDINGS OF THE INSTITUTION OF MECHANICAL ENGINEERS PART C-JOURNAL OF MECHANICAL ENGINEERING SCIENCE"
+    },
+    {
+      "date": "2011-09",
+      "title": "A realization of constraint feasibility in a moving least squares response surface based approximate optimization",
+      "journal": "COMPUTATIONAL OPTIMIZATION AND APPLICATIONS"
+    },
+    {
+      "date": "2011-08",
+      "title": "Parameter analysis of batoid fin motions using fluid-structure interaction-based simulation and design of experiments",
+      "journal": "PROCEEDINGS OF THE INSTITUTION OF MECHANICAL ENGINEERS PART C-JOURNAL OF MECHANICAL ENGINEERING SCIENCE"
+    },
+    {
+      "date": "2011-07",
+      "title": "공조용 로터리 압축기 소음저감을 위한 어큐뮬레이터 최적설계",
+      "journal": "대한기계학회논문집 A"
+    },
+    {
+      "date": "2011-04",
+      "title": "Reliability-based design optimization of knuckle component using conservative method of moving least squares meta-models",
+      "journal": "PROBABILISTIC ENGINEERING MECHANICS"
+    },
+    {
+      "date": "2011-02",
+      "title": "Reliability-based design optimization of an FPSO riser support using moving least squares response surface meta-models",
+      "journal": "OCEAN ENGINEERING"
+    },
+    {
+      "date": "2011-01",
+      "title": "A conservative method of wavelet neural network based meta-modeling in constrained approximate optimization",
+      "journal": "COMPUTERS & STRUCTURES"
+    },
+    {
+      "date": "2010-12",
+      "title": "An improvement of Kriging based sequential approximate optimization method via extended use of design of experiments",
+      "journal": "Engineering Optimization"
+    },
+    {
+      "date": "2010-11",
+      "title": "추진력 생성을 위한 가오리 날개 짓의 유체-구조연성 수치해석",
+      "journal": "대한기계학회논문집 A"
+    },
+    {
+      "date": "2010-11",
+      "title": "구조 최적설계를 위한 다양한 근사 최적화기법의 적용 및 비교에 관한 연구",
+      "journal": "대한기계학회논문집 A"
+    },
+    {
+      "date": "2010-08",
+      "title": "차륜 및 차축의 변형을 고려한 차륜-레일 접촉해석",
+      "journal": "한국정밀공학회지"
+    },
+    {
+      "date": "2010-03",
+      "title": "Speech Recognition of Multi-Syllable Words Using Soft Computing Techniques",
+      "journal": "정보저장시스템학회 논문집"
+    },
+    {
+      "date": "2010-02",
+      "title": "Approximate Optimization Using Moving Least Squares Response Surface Methods: Application to FPSO Riser Support Design",
+      "journal": "한국해양공학회지"
+    },
+    {
+      "date": "2009-11",
+      "title": "A Response Surface Based Sequential Approximate Optimization Using Constraint-Shifting Analogy",
+      "journal": "Journal of Mechanical Science and Technology"
+    },
+    {
+      "date": "2009-08",
+      "title": "웨이블렛 신경망을 이용한 전역근사 메타모델의 성능비교",
+      "journal": "대한기계학회논문집 A"
+    },
+    {
+      "date": "2009-08",
+      "title": "Strength design of a knuckle component using moving least-squares response-surface-based approximate optimization methods",
+      "journal": "Proceedings Of The Institution Of Mechanical Engineers Part D-Journal Of Automobile Engineering"
+    },
+    {
+      "date": "2009-06",
+      "title": "A Messy GA and Its Application to An Approximate Optimization of An Occupant Safety System",
+      "journal": "Proceedings Of The Institution Of Mechanical Engineers Part D-Journal Of Automobile Engineering"
+    },
+    {
+      "date": "2009-05",
+      "title": "A method of multiobjective optimization using a genetic algorithm and an artificial immune system",
+      "journal": "Proceedings Of The Institution Of Mechanical Engineers Part C-Journal Of Mechanical Engineering Science"
+    },
+    {
+      "date": "2009-02",
+      "title": "An Integrated Method of Particle Swarm Optimization and Differential Evolution",
+      "journal": "Journal of Mechanical Science and Technology"
+    },
+    {
+      "date": "2008-12",
+      "title": "Genetic algorithm-based design of transonic aerofoils using Euler equations",
+      "journal": "Proceedings Of The Institution Of Mechanical Engineers Part G-Journal Of Aerospace Engineering"
+    },
+    {
+      "date": "2008-09",
+      "title": "Parameter design of water jet nozzle utilizing independence axiom",
+      "journal": "Proceedings Of The Institution Of Mechanical Engineers Part E-Journal Of Process Mechanical Engineering"
+    },
+    {
+      "date": "2008-07",
+      "title": "Air-bearing surface design of an optical flying head considering dynamic characteristics",
+      "journal": "Proceedings Of The Institution Of Mechanical Engineers Part J-Journal Of Engineering Tribology"
+    },
+    {
+      "date": "2008-06",
+      "title": "Prediction of low-speed aerodynamic load and aeroacoustic noise around simplified panhead section model",
+      "journal": "Proceedings of the Institution of Mechanical Engineers Part F-Journal of Rail and Rapid Transit"
+    },
+    {
+      "date": "2008-06",
+      "title": "체험학습기반의 기초 창의공학설계 교육 및 운영",
+      "journal": "공학교육연구"
+    },
+    {
+      "date": "2008-06",
+      "title": "Gate positioning design of injection mould using bi-objective micro genetic algorithm",
+      "journal": "Proceedings Of The Institution Of Mechanical Engineers Part B-Journal Of Engineering Manufacture"
+    },
+    {
+      "date": "2008-04",
+      "title": "The use of Taguchi and approximation methods to optimize the laser hybrid welding of a 5052-H32 aluminium alloy plate",
+      "journal": "Proceedings Of The Institution Of Mechanical Engineers Part B-Journal Of Engineering Manufacture"
+    },
+    {
+      "date": "2008-03",
+      "title": "구조역학적 성능을 고려한 마이크로 열변형 액추에이터의 최적설계",
+      "journal": "정보저장시스템학회 논문집"
+    },
+    {
+      "date": "2008-01",
+      "title": "Approximate optimization of high-speed train nose shape for reducing micropressure wave",
+      "journal": "Structural And Multidisciplinary Optimization"
+    },
+    {
+      "date": "2008-01",
+      "title": "Derivative and GA-based methods in metamodeling of back-propagation neural networks for constrained approximate optimization",
+      "journal": "Structural And Multidisciplinary Optimization"
+    },
+    {
+      "date": "2007-01",
+      "title": "Constrained minimization utilizing GA based pattern recognition of immune system",
+      "journal": "JOURNAL OF MECHANICAL SCIENCE AND TECHNOLOGY"
+    },
+    {
+      "date": "2007-01",
+      "title": "Optimal design of engine mount rubber considering stiffness and fatigue strength",
+      "journal": "PROCEEDINGS OF THE INSTITUTION OF MECHANICAL ENGINEERS PART D-JOURNAL OF AUTOMOBILE ENGINEERING"
+    },
+    {
+      "date": "2007-01",
+      "title": "GA based meta-modeling of BPN architecture for constrained approximate optimization",
+      "journal": "INTERNATIONAL JOURNAL OF SOLIDS AND STRUCTURES"
+    },
+    {
+      "date": "2007-01",
+      "title": "An enhancement of constraint feasibility in BPN based approximate optimization",
+      "journal": "COMPUTER METHODS IN APPLIED MECHANICS AND ENGINEERING"
+    },
+    {
+      "date": "2007-01",
+      "title": "Micro genetic algorithm based optimal gate positioning in injection molding design",
+      "journal": "JOURNAL OF MECHANICAL SCIENCE AND TECHNOLOGY"
+    },
+    {
+      "date": "2007-01",
+      "title": "Kriging-based approximate optimization of high-speed train nose shape for reducing micropressure wave",
+      "journal": "Proceedings of the Institution of Mechanical Engineers Part F-Journal of Rail and Rapid Transit"
+    },
+    {
+      "date": "2006-12",
+      "title": "A Method of Genetic Algorithm Based Multiobjective Optimization via Cooperative Coevolution",
+      "journal": "JOURNAL OF MECHANICAL SCIENCE AND TECHNOLOGY"
+    },
+    {
+      "date": "2006-01",
+      "title": "DOE based robust optimization considering tolerance bands of design parameters",
+      "journal": "JSME INTERNATIONAL JOURNAL SERIES C-MECHANICAL SYSTEMS MACHINE ELEMENTS AND MANUFACTURING"
+    },
+    {
+      "date": "2006-01",
+      "title": "A decomposition based design method coordinated by disciplinary subspace optimization",
+      "journal": "JSME INTERNATIONAL JOURNAL SERIES C-MECHANICAL SYSTEMS MACHINE ELEMENTS AND MANUFACTURING"
+    },
+    {
+      "date": "2005-12",
+      "title": "통합최적프레임을 사용한 광부상헤드를 탑재한 서스팬션의 최적화",
+      "journal": "정보저장시스템학회논문집"
+    },
+    {
+      "date": "2005-10",
+      "title": "Design of optical flying head for magnetooptical recording",
+      "journal": "IEEE TRANSACTIONS ON MAGNETICS"
+    },
+    {
+      "date": "2005-06",
+      "title": "승용차용 스티어링시스템 지지 T-형구조물의 최적설계",
+      "journal": "대한기계학회논문집 A"
+    },
+    {
+      "date": "2005-02",
+      "title": "Optical Flying Head의 Air Bearing Surface 형상 최적 설계",
+      "journal": "대한기계학회논문집 A"
+    },
+    {
+      "date": "2003-09",
+      "title": "원형 확장 휜 열 교환기의 치수 강건최적설계",
+      "journal": "대한기계학회논문집 A"
+    },
+    {
+      "date": "2003-06",
+      "title": "Applications of Classifier Systems in Improving Response Surface Based Approximations for Design Opt",
+      "journal": "COMPUTERS & STRUCTURES"
+    },
+    {
+      "date": "2003-06",
+      "title": "퍼지논리 및 GPS정보를 이용한 링크통행속도의 예측",
+      "journal": "한국지능시스템학회 논문지"
+    },
+    {
+      "date": "2003-06",
+      "title": "공리적 개념을 적용한 사출성형 시스템의 최적설계",
+      "journal": "대한기계학회논문집 A"
+    },
+    {
+      "date": "2003-06",
+      "title": "설계변수 및 매개변수의 공차를 고려한 캘리퍼 디스크 브레이크의 강건설계",
+      "journal": "대한기계학회논문집 A"
+    },
+    {
+      "date": "2003-02",
+      "title": "유동 안정성 및 유동 소음을 고려한 팬터그래프 팬헤드 단면의 강건설계",
+      "journal": "한국소음진동공학회논문집"
+    },
+    {
+      "date": "2002-09",
+      "title": "분야별 하부시스템의 최적화를 통합한 분해기반 MIDO 방법론",
+      "journal": "대한기계학회논문집 A"
+    },
+    {
+      "date": "2002-06",
+      "title": "전역근사화 반응표면의 생성을 위한 퍼지모델링 및 퍼지규칙의 생성",
+      "journal": "퍼지및지능시스템학회논문지"
+    },
+    {
+      "date": "2002-05",
+      "title": "실차상태에서의 제동시 이상떨림 현상에 관한 실험적 연구",
+      "journal": "한국소음진동공학회논문집"
+    },
+    {
+      "date": "2002-03",
+      "title": "Evolutionary Fuzzy Modeling in Global Approximate Optimization",
+      "journal": "INTERNATIONAL JOURNAL OF VEHICLE DESIGN"
+    },
+    {
+      "date": "2002-02",
+      "title": "웹기반 MDO프레임웍을 위한 다분야통합최적설계 방법론",
+      "journal": "한국산학연논문집"
+    },
+    {
+      "date": "2001-08",
+      "title": "Applications of Soft Computing Techniques in Response Surface Based Approximate Optimization",
+      "journal": "KSME international journal"
+    },
+    {
+      "date": "2001-06",
+      "title": "DVD 드라이브내에서 발생하는 유동소음에 관한 수치적 연구",
+      "journal": "한국소음진동공학회논문집"
+    },
+    {
+      "date": "2001-05",
+      "title": "승용차 A-Pillar Trim의 치수설계를 위한 소프트컴퓨팅기반 반응표면기법의 응용",
+      "journal": "대한기계학회논문집 A"
+    },
+    {
+      "date": "2001-03",
+      "title": "Applications of Classifier Systems in Improving Response Surface Based Approximations for Design Optimization",
+      "journal": "COMPUTERS & STRUCTURES"
+    },
+    {
+      "date": "2001-02",
+      "title": "자동미분을 이용한 민감도기반 분리시스템동시최적화기법의 개선",
+      "journal": "대한기계학회논문집 A"
+    },
+    {
+      "date": "2001-01",
+      "title": "Computation of Flow Induced Noise in DVD Drives - Effects of Turbulence Noise",
+      "journal": "ASME Transactions Journal of Information Storage and Processing Systems"
+    },
+    {
+      "date": "2000-11",
+      "title": "Development of Global Function Approximations for Design Optimization Using Evolutionary Fuzzy Modeling",
+      "journal": "KSME International Journal"
+    },
+    {
+      "date": "2000-06",
+      "title": "분류시스템을 이용한 다항식기반 반응표면 근사화 모델링",
+      "journal": "한국CAD/CAM학회 논문집"
+    },
+    {
+      "date": "2000-05",
+      "title": "보강된 복합재 패널의 최적설계를 위한 유전알고리즘의 연구",
+      "journal": "대한기계학회논문집 A"
+    },
+    {
+      "date": "2000-01",
+      "title": "Airflow and Sound Induced by Disk Rotation in DVD Drivers, part II: Visualization and Simulation for Noise Prediction",
+      "journal": "J Information Storage and Processing System"
+    },
+    {
+      "date": "1999-12",
+      "title": "유전알고리즘 및 신경회로망을 이용한 다분야통합최적설계문제의 시스템분리기법 연구",
+      "journal": "한국전산구조공학회지"
+    },
+    {
+      "date": "1999-12",
+      "title": "구조비선형성을 고려한 천음속 날개꼴의 공력탄성해석",
+      "journal": "연세대학교 산업기술연구소 논문집"
+    },
+    {
+      "date": "1998-12",
+      "title": "설계민감도해석을 위한 자동미분기법의 적용",
+      "journal": "연세대학교 산업기술연구소 논문집"
+    },
+    {
+      "date": "1997-10",
+      "title": "GA&apos;s in Decomposition Based Design - Subsystem Interactions Though Immune Network Simulation",
+      "journal": "Structural Optimization"
+    },
+    {
+      "date": "1997-05",
+      "title": "GA Based Simulation of Immune Networks - Applications in Structural Optimization",
+      "journal": "International Journal of Engineering Optimization"
+    },
+    {
+      "date": "1996-12",
+      "title": "Constrained Genetic Search Via Schema Adaptation: An Immune Network Solution",
+      "journal": "Structural Optimization"
+    },
+    {
+      "date": "1996-09",
+      "title": "Parallel Genetic Algorithm Implementation in Multidisciplinary Rotor Blade Design",
+      "journal": "JOURNAL OF AIRCRAFT"
+    },
+    {
+      "date": "1996-01",
+      "title": "Role of Emergent Computing Techniques in Multidisciplinary Rotor Blade Design",
+      "journal": "Computer and Systems Sciences NATO ASI Series F"
+    },
+    {
+      "date": "1994-09",
+      "title": "Mechanisms and Directivity of Unsteady Transonic Flow Noise",
+      "journal": "ASME Transactions Journal of Fluid Engineering"
+    },
+    {
+      "date": "1989-11",
+      "title": "박막탄성체와 강체의 주행접촉 해석",
+      "journal": "연세대학교 산업기술연구소 논문집"
+    }
+  ],
+  "awards": [
+    {
+      "title": "공헌교수상",
+      "contents": "연세대학교 연구, 교육, 봉사 공헌 업적 수상",
+      "date": "2025-02-27"
+    },
+    {
+      "title": "Best Poster Award of PHM Asia Pacific 2021",
+      "contents": "포스터 논문상 \"A Study on the Application of Cumulative Damage Defect Prediction Technology for Virtual Verification of Drop Reliability\" 수상",
+      "date": "2021-09-24"
+    },
+    {
+      "title": "과총 2021년 제31회 과학기술우수논문상",
+      "contents": "과총 2021년 제31회 과학기술우수논문상 수상: 통합마스트-송수신 모듈의 열화인자 분석을 통한 결함진단 및 잔여수명 예측 연구",
+      "date": "2021-09-10"
+    },
+    {
+      "title": "대한기계학회 ‘2020년 학술대회(온라인)’ 우수논문상",
+      "contents": "대한기계학회 ‘2020년 학술대회(온라인)’ CAE및응용역학부문 우수논문상: 머신러닝 알고리즘을 이용한 솔라장비 센서 데이터 이상감지 분석",
+      "date": "2021-08-26"
+    },
+    {
+      "title": "연세대학교 우수강의교수상",
+      "contents": "2020학년도 우수강의교수 선정",
+      "date": "2021-02-28"
+    },
+    {
+      "title": "한국CDE학회 2020년 우수논문상",
+      "contents": "한국CDE학회 2020년 우수논문상: 통합마스트-송수신 모듈의 열화인자 분석을 통한 결함진단 및 잔여수명 예측 연구",
+      "date": "2021-02-24"
+    },
+    {
+      "title": "한국CDE학회 2020년 동계학술대회 공로상",
+      "contents": "한국CDE학회 2020년 동계학술대회 기여에 대한 공로상",
+      "date": "2020-11-27"
+    },
+    {
+      "title": "ASSMO Congress Award",
+      "contents": "아시아 구조 및 다분야 최적설계학회 우수업적상 수상",
+      "date": "2020-11-23"
+    },
+    {
+      "title": "우수포스터상",
+      "contents": "PHM KOREA 2020 (한국PHM학회 2020년 정기학술대회) 우수 포스터 상 수상",
+      "date": "2020-07-23"
+    },
+    {
+      "title": "Outstanding Achievement Award",
+      "contents": "한국CDE학회 발행 Journal of Computational Design and Engineering 저널 2018년도 우수 업적 표창",
+      "date": "2019-01-25"
+    },
+    {
+      "title": "한국CDE학회 2017년 하계학술대회 공로상",
+      "contents": "한국CDE학회 2017년 하계학술대회 기여에 대한 공로상",
+      "date": "2018-01-25"
+    },
+    {
+      "title": "연세대학교 우수업적교수상(연구부문)",
+      "contents": "우수(통합업적)",
+      "date": "2017-02-14"
+    },
+    {
+      "title": "CAE및응용역학 학술상",
+      "contents": "우리나라 CAE및응용역학 부문 발전에 이바지한 업적을 기리는 학술상",
+      "date": "2014-11-13"
+    },
+    {
+      "title": "2009년 대한기계학회 추계학술대회 우수논문",
+      "contents": "추진력 생성을 위한 가오리 날개 짓의 유체-구조연성 수치해석",
+      "date": "2009-12-21"
+    },
+    {
+      "title": "대한기계학회 백암논문학술상",
+      "contents": "기계공학의 설계및생산분야의 논문업적에 대한 학술상 수상",
+      "date": "2003-11-06"
+    },
+    {
+      "title": "우수논문",
+      "contents": "2003년도 한국퍼지및지능시스템학회 춘계학술대회 우수논문",
+      "date": "2003-05-03"
+    }
+  ],
+  "conferences": [
+    {
+      "title": "Physics-Aided RUL Prediction of Pick-and-Place Robotic Arm Using Dynamic Simulation and GMM-Based Health Indicator",
+      "conference": "PHM Europe 2026",
+      "period": "2026.07.08~2026.07.10"
+    },
+    {
+      "title": "구동 비선형 특성을 고려한 전이 학습 기반 도메인 적응형 EV 전비 예측 모델",
+      "conference": "2026 한국자동차공학회 춘계학술대회",
+      "period": "2026.05.20~2026.05.23"
+    },
+    {
+      "title": "Feasibility-Aware Physics-Conditioned Generative Design of Metasurface Silencers in HVAC of Electric Vehicle",
+      "conference": "ACSMO 2026",
+      "period": "2026.05.17~2026.05.21"
+    },
+    {
+      "title": "도메인 시프트와 점진적 고장 확장을 동시에 고려한 회전기계 고장 진단",
+      "conference": "2026 대한기계학회 신뢰성부문 20주년 기념 학술대회",
+      "period": "2026.04.08~2026.04.10"
+    },
+    {
+      "title": "Physics knowledge-guided out-of-distribution domain AI agents: Design and diagnosis",
+      "conference": "대한기계학회 창립 80주년 기념 학술대회",
+      "period": "2025.12.10~2025.12.13"
+    },
+    {
+      "title": "냉장고 사이클의 물리 기반 시뮬레이션을 통한 고장 해석",
+      "conference": "한국CDE학회 2025년 하계학술대회",
+      "period": "2025.08.20~2025.08.23"
+    },
+    {
+      "title": "운용 조건별 데이터 증강과 전이학습을 활용한 진단 기반 시스템 설계",
+      "conference": "한국CDE학회 2025년 하계학술대회",
+      "period": "2025.08.20~2025.08.23"
+    },
+    {
+      "title": "전기차 감속기 시스템의 신규 고장에 대응하는 연속학습 기반 고장진단 알고리즘 고도화",
+      "conference": "아이씨티플랫폼학회 2025년 하계학술대회",
+      "period": "2025.06.27~2025.06.27"
+    },
+    {
+      "title": "대조 학습 기반 스펙트럴 클러스터링을 통한 베어링 건전성 단계 구분",
+      "conference": "PHM KOREA 2025",
+      "period": "2025.06.24~2025.06.25"
+    },
+    {
+      "title": "Optimal Damper Design for Vibration Reduction in Automotive Camera Modules",
+      "conference": "한국자동차공학회 2025년 춘계학술대회",
+      "period": "2025.05.21~2025.05.23"
+    },
+    {
+      "title": "타이어 설계인자 특성에 따른 전이학습 기반 NVH 성능 딥러닝 분석",
+      "conference": "대한기계학회 CAE및응용역학부문 2025년 춘계학술대회",
+      "period": "2025.04.16~2025.04.19"
+    },
+    {
+      "title": "유동해석을 통한 전기차 배터리 극 초기 화재진압 특성인자 분석",
+      "conference": "대한기계학회 CAE및응용역학부문 2025년 춘계학술대회",
+      "period": "2025.04.16~2025.04.19"
+    },
+    {
+      "title": "음향이론 기반 소음 저감용 메타표면 설계를 위한 인자 영향도 분석",
+      "conference": "대한기계학회 CAE및응용역학부문 2025년 춘계학술대회",
+      "period": "2025.04.16~2025.04.19"
+    },
+    {
+      "title": "Prognostics and Health Management with Model-Based System Engineering and Generative Industrial Artificial Intelligence",
+      "conference": "7th International Conference on Materials and Reliability",
+      "period": "2024.12.03~2024.12.06"
+    },
+    {
+      "title": "Fault Prediction and Estimation of Automotive LiDAR Signals Using Transfer Learning-Based Domain Generalization",
+      "conference": "PHM Europe 2024",
+      "period": "2024.07.03~2024.07.05"
+    },
+    {
+      "title": "베이지안 신뢰성 및 생성적 인공지능 활용한 MBSE 기반 전장부품의 기능안전 기술",
+      "conference": "2024 한국신뢰성학회 춘계학술대회",
+      "period": "2024.06.26~2024.06.28"
+    },
+    {
+      "title": "원심 펌프의 진동 분석을 통한 캐비테이션 및 임펠러 결함 진단 연구",
+      "conference": "PHM KOREA 2024",
+      "period": "2024.06.24~2024.06.26"
+    },
+    {
+      "title": "지식 그래프와 GNN을 활용한 풍력발전 기어박스의 유지보수 최적화",
+      "conference": "PHM KOREA 2024",
+      "period": "2024.06.24~2024.06.26"
+    },
+    {
+      "title": "LSTM-BNN을 통한 자율주행 센서 고장 감지 및 대응",
+      "conference": "PHM KOREA 2024",
+      "period": "2024.06.24~2024.06.26"
+    },
+    {
+      "title": "전이학습 기반 도메인 일반화를 통한 온도에 따른 자율주행차 라이다 열전소자의 전류 추정",
+      "conference": "PHM KOREA 2024",
+      "period": "2024.06.24~2024.06.26"
+    },
+    {
+      "title": "차량용 레이다 센서의 고장 진단예측을 위한 데이터 수집 전략",
+      "conference": "PHM KOREA 2024",
+      "period": "2024.06.24~2024.06.26"
+    },
+    {
+      "title": "생성적 인공지능 활용한 모델 기반 에너지 동력 시스템의 신뢰성 중심 건전성 진단 예지정비: 디지털트윈을 위한 융합기술 구현",
+      "conference": "대한기계학회 에너지및동력공학부문 2024년 춘계학술대회",
+      "period": "2024.06.20~2024.06.20"
+    },
+    {
+      "title": "돌입전류 수준별 한계내구시험을 통한 릴레이 수명모델 연구",
+      "conference": "대한기계학회 신뢰성부문 2024년 춘계학술대회",
+      "period": "2024.03.20~2024.03.22"
+    },
+    {
+      "title": "고진공 다이캐스팅 알루미늄 소재 고주기 피로물성 평가",
+      "conference": "대한기계학회 신뢰성부문 2024년 춘계학술대회",
+      "period": "2024.03.20~2024.03.22"
+    },
+    {
+      "title": "다목적 유전 알고리즘을 적용한 다단 축류형 터빈의 평균반경선 최적설계 기법 연구",
+      "conference": "2023 한국유체기계학회 동계학술대회",
+      "period": "2023.11.29~2023.12.01"
+    },
+    {
+      "title": "Multi-Label Fault Diagnosis of Rotary Machine via Domain Adversarial Neural Network-Based Domain Generalization Targeting High Range Rotating Speed",
+      "conference": "PHM Society Asia Pacific 2023",
+      "period": "2023.09.11~2023.09.14"
+    },
+    {
+      "title": "Anomaly Data Synthesis and Detection via Domain Randomization",
+      "conference": "PHM Society Asia Pacific 2023",
+      "period": "2023.09.11~2023.09.14"
+    },
+    {
+      "title": "A Study on Self-Diagnosis and Prediction Technology for Lidar Sensor of Autonomous Vehicles",
+      "conference": "PHM Society Asia Pacific 2023",
+      "period": "2023.09.11~2023.09.14"
+    },
+    {
+      "title": "Deep Neural Network Anomaly Detection and Statistical Estimation of High Pressure Liquefied Natural Gas Pipe",
+      "conference": "PHM Society Asia Pacific 2023",
+      "period": "2023.09.11~2023.09.14"
+    },
+    {
+      "title": "컨볼루션 오토인코더를 이용한 용접 이미지 전처리 품질 평가 비교",
+      "conference": "PHM KOREA 2023",
+      "period": "2023.07.03~2023.07.05"
+    },
+    {
+      "title": "가속열화모델을 활용한 FMCW 라이다 센서 잔존수명 예측",
+      "conference": "PHM KOREA 2023",
+      "period": "2023.07.03~2023.07.05"
+    },
+    {
+      "title": "Particle Filter를 이용한 라이다 센서의 잔존수명 예측",
+      "conference": "PHM KOREA 2023",
+      "period": "2023.07.03~2023.07.05"
+    },
+    {
+      "title": "부족한 계측 데이터와 CAE 데이터와의 결합을 통한 메타모델 성능향상 연구",
+      "conference": "대한기계학회 2023년 CAE및응용역학부문 춘계술대회",
+      "period": "2023.05.17~2023.05.20"
+    },
+    {
+      "title": "반사경 형상 패턴에 따른 파면오차 및 중량 최소화 최적설계",
+      "conference": "대한기계학회 2023년 CAE및응용역학부문 춘계술대회",
+      "period": "2023.05.17~2023.05.20"
+    },
+    {
+      "title": "Diagnosis and Prognosis of Chassis Systems in Autonomous Driving Conditions",
+      "conference": "SAE WCX 2023",
+      "period": "2023.04.18~2023.04.20"
+    },
+    {
+      "title": "가상제품개발을 위한 CAE, AI, PHM의 역할과 비전",
+      "conference": "대한기계학회 2022년 학술대회",
+      "period": "2022.11.09~2022.11.12"
+    },
+    {
+      "title": "성능설계 및 결함진단 위한 도메인 적응 데이터증강 및 전이학습 기법 적용",
+      "conference": "한국신뢰성학회 2022 춘계학술대회",
+      "period": "2022.07.07~2022.07.08"
+    },
+    {
+      "title": "강화학습을 이용한 증강된 불균형 데이터 가치 평가",
+      "conference": "PHM KOREA 2022",
+      "period": "2022.06.29~2022.07.01"
+    },
+    {
+      "title": "차량용 릴레이 등가부하 개발을 통한 가속수명 평가 및 분석",
+      "conference": "PHM KOREA 2022",
+      "period": "2022.06.29~2022.07.01"
+    },
+    {
+      "title": "Spectrogram-Based Classifier Metamodels for Driving Sound Qualities Using Data Augmentation and Explainable Artificial Intelligence",
+      "conference": "Asian Congress of Structural and Multidisciplinary Optimization 2022",
+      "period": "2022.05.22~2022.05.26"
+    },
+    {
+      "title": "Virtual Data-Based Predictive Performance Optimization via Domain-Adaptive Designable Data Augmentation (DADDA)",
+      "conference": "Asian Congress of Structural and Multidisciplinary Optimization 2022",
+      "period": "2022.05.22~2022.05.26"
+    },
+    {
+      "title": "전기자동차 주행거리 최적화를 위한 시스템 모델링 및 설계인자 영향도 분석",
+      "conference": "대한기계학회 CAE및응용역학부문 2022년 춘계학술대회",
+      "period": "2022.05.19~2022.05.21"
+    },
+    {
+      "title": "수학 예제 적용을 통한 도메인 일반화 및 도메인 적응 프로세스 비교 기초 연구",
+      "conference": "한국CDE학회 2022 동계학술대회",
+      "period": "2022.02.09~2022.02.12"
+    },
+    {
+      "title": "수학 예제 적용을 통한 전이학습-데이터증강 연계 도메인 적응 프로세스 기초 연구",
+      "conference": "한국CDE학회 2022 동계학술대회",
+      "period": "2022.02.09~2022.02.12"
+    },
+    {
+      "title": "신호처리 기반 비정형 데이터 전처리 및 소음 평가",
+      "conference": "PHM KOREA 2021",
+      "period": "2021.09.08~2021.09.10"
+    },
+    {
+      "title": "자율주행 차량의 기능 안전 강화를 위한 진단 및 예지",
+      "conference": "PHM KOREA 2021",
+      "period": "2021.09.08~2021.09.10"
+    },
+    {
+      "title": "산업인공지능 기반 진단 및 건전성 예지를 위한 데이터증강 및 전이학습",
+      "conference": "PHM KOREA 2021",
+      "period": "2021.09.08~2021.09.10"
+    },
+    {
+      "title": "1D 시스템 시뮬레이션 기반 호버바이크 틸팅 메커니즘 해석 및 조향장치 설계",
+      "conference": "PHM KOREA 2021",
+      "period": "2021.09.08~2021.09.10"
+    },
+    {
+      "title": "다양한 길이의 시계열데이터를 분류하는 신경망 설계",
+      "conference": "PHM KOREA 2021",
+      "period": "2021.09.08~2021.09.10"
+    },
+    {
+      "title": "A Research on Diagnosis and Prognosis of Autonomous Electric Vehicle Platforms",
+      "conference": "PHM Asia Pacific 2021",
+      "period": "2021.09.08~2021.09.11"
+    },
+    {
+      "title": "유체진동에 의한 고압 천연가스배관 피로도 모델링 및 결함인자 영향분석",
+      "conference": "PHM KOREA 2021",
+      "period": "2021.09.08~2021.09.10"
+    },
+    {
+      "title": "볼 베어링용 세라믹 소재의 건전성 관리를 위한 CNN 기반 신뢰성 평가",
+      "conference": "PHM KOREA 2021",
+      "period": "2021.09.08~2021.09.10"
+    },
+    {
+      "title": "누적손상 결함 산포 예측 기술 적용방안 연구",
+      "conference": "PHM KOREA 2021",
+      "period": "2021.09.08~2021.09.10"
+    },
+    {
+      "title": "A Study on the Application of Cumulative Damage Defect Prediction Technology for Virtual Verification of Drop Reliability",
+      "conference": "PHM Asia Pacific 2021",
+      "period": "2021.09.08~2021.09.11"
+    },
+    {
+      "title": "Classification of Time-Series Data Based on Anomaly Detection Method",
+      "conference": "PHM Asia Pacific 2021",
+      "period": "2021.09.08~2021.09.11"
+    },
+    {
+      "title": "Generating Data for PHM of New Design Using DGAN Considering Design Variable Uncertainty",
+      "conference": "PHM Asia Pacific 2021",
+      "period": "2021.09.08~2021.09.11"
+    },
+    {
+      "title": "국방생태계연구조성을 위한 PHM기술의 학술적 접근방안",
+      "conference": "PHM KOREA 2021",
+      "period": "2021.09.08~2021.09.10"
+    },
+    {
+      "title": "설계가능한 도메인 적응 데이터 증강 모델을 이용한 자율주행차 시스템의 성능 설계",
+      "conference": "대한기계학회 CAE및응용역학부문 2021년 춘계학술대회",
+      "period": "2021.08.25~2021.08.26"
+    },
+    {
+      "title": "베이지안 네트워크를 이용한 솔라장비 시스템 고장 분석 및 신뢰성 평가",
+      "conference": "대한기계학회 2020 학술대회",
+      "period": "2020.12.16~2020.12.19"
+    },
+    {
+      "title": "머신러닝 알고리즘을 이용한 솔라장비 센서 데이터 이상감지 분석",
+      "conference": "대한기계학회 2020 학술대회",
+      "period": "2020.12.16~2020.12.19"
+    },
+    {
+      "title": "1D Simulation-Based Vehicle System Dynamics Optimization Using Target Cascading",
+      "conference": "Asian Congress of Structural and Multidisciplinary Optimization 2020",
+      "period": "2020.11.23~2020.11.25"
+    },
+    {
+      "title": "2D Image Processing Using Convolutional Autoencoder and Fully Connected Neural Networks",
+      "conference": "Asian Congress of Structural and Multidisciplinary Optimization 2020",
+      "period": "2020.11.23~2020.11.25"
+    },
+    {
+      "title": "Role of Machine Learning and Deep Learning in Multi-Physics Engineering Design and Optimization",
+      "conference": "Asian Congress of Structural and Multidisciplinary Optimization 2020",
+      "period": "2020.11.23~2020.11.25"
+    },
+    {
+      "title": "설계 가능한 생성적 적대 신경망을 통한 시스템 단위에서의 성능 예측: 통계적 모델 보정 및 검증과의 비교",
+      "conference": "대한기계학회 CAE및응용역학부문 2020년 춘계학술대회",
+      "period": "2020.08.19~2020.08.21"
+    },
+    {
+      "title": "딥러닝 및 통계분석을 통한 차량 실내음의 특이값과 음감 특성간의 상관성 연구",
+      "conference": "PHM KOREA 2020",
+      "period": "2020.07.21~2020.07.23"
+    },
+    {
+      "title": "도메인 적응 기법을 적용한 베어링 고장 진단",
+      "conference": "PHM KOREA 2020",
+      "period": "2020.07.21~2020.07.23"
+    },
+    {
+      "title": "신경망을 이용한 차량 OBD 데이터 기반 차량 실내 소음 예측",
+      "conference": "PHM KOREA 2020",
+      "period": "2020.07.21~2020.07.23"
+    },
+    {
+      "title": "고장진단 이상감지를 위한 인공면역시스템 알고리즘의 사례 적용 연구",
+      "conference": "PHM KOREA 2020",
+      "period": "2020.07.21~2020.07.23"
+    },
+    {
+      "title": "난류 유동 예측을 위한 신경망의 설계와 검증",
+      "conference": "PHM KOREA 2020",
+      "period": "2020.07.21~2020.07.23"
+    },
+    {
+      "title": "복잡 멀티 도메인 시스템의 PHM 적용 고장진단 및 예측 기술 연구",
+      "conference": "PHM KOREA 2020",
+      "period": "2020.07.21~2020.07.23"
+    },
+    {
+      "title": "집도의 피로도 저감을 위한 로봇수술 콘솔기구의 인체공학적 설계 연구",
+      "conference": "한국CDE학회 2020 동계학술대회 (제 25회)",
+      "period": "2020.02.05~2020.02.08"
+    },
+    {
+      "title": "전동차 대차 시스템 시뮬레이션을 통한 디스크 제동장치 열화 수명 예측",
+      "conference": "한국CDE학회 2020 동계학술대회 (제 25회)",
+      "period": "2020.02.05~2020.02.08"
+    },
+    {
+      "title": "모델리카 시뮬레이션 비디오 프레임 데이터를 이용한 4기통 엔진의 상태 진단 및 예지",
+      "conference": "한국CDE학회 2020 동계학술대회 (제 25회)",
+      "period": "2020.02.05~2020.02.08"
+    },
+    {
+      "title": "대기이론을 이용한 외래 진료환자의 진료 대기시간 최적화",
+      "conference": "한국CDE학회 2019 하계학술대회",
+      "period": "2019.08.19~2019.08.22"
+    },
+    {
+      "title": "A Study on Piezoelectric Sensor-Based Structural Health Monitoring Considering Uncertainties",
+      "conference": "Asia Pacific Conference of the Prognostics and Health Management 2019",
+      "period": "2019.07.22~2019.07.24"
+    },
+    {
+      "title": "Reliability-Based MOGA Design Optimization Using Probabilistic Response Surface Method and Bayesian Neural Network",
+      "conference": "The Genetic and Evolutionary Computation Conference",
+      "period": "2019.07.13~2019.07.17"
+    },
+    {
+      "title": "Probabilistic Wear Life-Centered Maintenanace Design of Automation System Wheels",
+      "conference": "The fifth International Conference on the Interface between Statistics and Engineering",
+      "period": "2019.06.25~2019.06.28"
+    },
+    {
+      "title": "Statistical Uncertainty Modeling and Reliability Assessment using Bayesian Neural Networks in Reliability-Based Design Optimization",
+      "conference": "The fifth International Conference on the Interface between Statistics and Engineering",
+      "period": "2019.06.25~2019.06.28"
+    },
+    {
+      "title": "유동, 구조해석 연계를 통한 플라스틱 사출 성형 부품 품질 개선을 위한 동시해석법 개발",
+      "conference": "한국소성가공학회 2019년도 춘계학술대회",
+      "period": "2019.05.09~2019.05.10"
+    },
+    {
+      "title": "마모에 따른 형상 변화를 고려한 자동화 장비 주행 휠 잔존 수명 예측",
+      "conference": "PHM KOREA 2019",
+      "period": "2019.04.10~2019.04.12"
+    },
+    {
+      "title": "불확실성을 고려한 피에조 센서의 최적 계측 조건 선정",
+      "conference": "PHM KOREA 2019",
+      "period": "2019.04.10~2019.04.12"
+    },
+    {
+      "title": "LSTM을 이용한 리튬 이온 베터리 충방전 성능 수명 예측",
+      "conference": "PHM KOREA 2019",
+      "period": "2019.04.10~2019.04.12"
+    },
+    {
+      "title": "쿼드콥터 블레이드 형상최적화에 기반한 배터리 성능 및 수명 평가",
+      "conference": "PHM KOREA 2019",
+      "period": "2019.04.10~2019.04.12"
+    },
+    {
+      "title": "건전성 예지를 위한 복합재의 강성 열화 기반 피로 손상 모델",
+      "conference": "PHM KOREA 2019",
+      "period": "2019.04.10~2019.04.12"
+    },
+    {
+      "title": "베이지안 기법을 이용한 반송장비 주행 휠 마모 수명 예측",
+      "conference": "한국CDE학회 2019 동계학술대회",
+      "period": "2019.01.23~2019.01.26"
+    },
+    {
+      "title": "대기이론을 이용한 외래 진료환자의 진료 대기시간 영향인자 평가",
+      "conference": "한국CDE학회 2019 동계학술대회",
+      "period": "2019.01.23~2019.01.26"
+    },
+    {
+      "title": "Prognosis of Lithium-Ion Batteries Considering Cycle and Storage Conditions",
+      "conference": "Fourth European Conference of Prognostics and Health Management Society",
+      "period": "2018.07.03~2018.07.06"
+    },
+    {
+      "title": "Model-Based Prognosis for Remaining Useful Life Prediction of Composite Components",
+      "conference": "Fourth European Conference of Prognostics and Health Management Society",
+      "period": "2018.07.03~2018.07.06"
+    },
+    {
+      "title": "Image Realization of Fluid Flow Distributions Using Convolutional Neural Networks",
+      "conference": "6th European Conference on Computational Mechanics (ECCM 6) & 7th European Conference on Computational Fluid Dynamics (ECFD 7)",
+      "period": "2018.06.11~2018.06.15"
+    },
+    {
+      "title": "Analysis of Lift-Generating Disk Type Blade Wind Power System Using Modelica",
+      "conference": "Japanese Modelica Conference 2018",
+      "period": "2018.05.17~2018.05.18"
+    },
+    {
+      "title": "Approximate optimization of railway wheel based on thermo-mechanical analysis",
+      "conference": "4th International Conference on Computational Design In Engineering (CODE)",
+      "period": "2018.04.01~2018.04.05"
+    },
+    {
+      "title": "Reliability based design optimization using statistical modeling for distribution estimation",
+      "conference": "4th International Conference on Computational Design In Engineering (CODE)",
+      "period": "2018.04.01~2018.04.05"
+    },
+    {
+      "title": "직접적 주기 해석기법을 이용한 폴리머 소재 피로해석 기초연구",
+      "conference": "2018 한국 CDE학회 동계 학술 대회",
+      "period": "2018.01.23~2018.01.26"
+    },
+    {
+      "title": "디스플레이 형상에 따른 커브드 디스플레이의 접착 공정 응력 해석",
+      "conference": "2018 한국 CDE학회 동계 학술 대회",
+      "period": "2018.01.23~2018.01.26"
+    },
+    {
+      "title": "모델리카를 이용한 양력 발생 디스크형 블레이드 풍력발전시스템 해석",
+      "conference": "2018 한국 CDE학회 동계 학술 대회",
+      "period": "2018.01.23~2018.01.26"
+    },
+    {
+      "title": "소비전력을 고려한 쿼드콥터의 블레이드 형상 설계",
+      "conference": "2018 한국 CDE학회 동계 학술 대회",
+      "period": "2018.01.23~2018.01.26"
+    },
+    {
+      "title": "지뢰탐지를 위한 기계학습 모델을 이용한 금속 종류 분류 방법",
+      "conference": "대한기계학회 2017년도 학술대회",
+      "period": "2017.11.01~2017.11.03"
+    },
+    {
+      "title": "합성곱 신경망 기반 항공기 Airfoil 단면 형상 이미지 예측",
+      "conference": "대한기계학회 2017년도 학술대회",
+      "period": "2017.11.01~2017.11.03"
+    },
+    {
+      "title": "전산유체역학을 이용한 디스크형 풍력발전기 주변 공력소음 해석",
+      "conference": "한국풍력에너지학회 2017 추계학술대회",
+      "period": "2017.10.30~2017.11.01"
+    },
+    {
+      "title": "디스크형 풍력 발전기의 형상 변화에 따른 수직 변위 풍동 실험",
+      "conference": "한국풍력에너지학회 2017 추계학술대회",
+      "period": "2017.10.30~2017.11.01"
+    },
+    {
+      "title": "베이지안 업데이트를 이용한 확률론적 피로 수명 모델 파라미터 추정 연구",
+      "conference": "한국소음진동 추계학술대회 2017",
+      "period": "2017.10.18~2017.10.20"
+    },
+    {
+      "title": "Thermal Fatigue Analysis and Evaluation of Wheel-Rail Contact under Braking Conditions",
+      "conference": "Asia Pacific Conference of the Prognostics and Health Management Society 2017",
+      "period": "2017.07.12~2017.07.15"
+    },
+    {
+      "title": "Fatigue and Durability Based Analysis and Design of Lower Control Arm with Composite Materials",
+      "conference": "Asia Pacific Conference of the Prognostics and Health Management Society 2017",
+      "period": "2017.07.12~2017.07.15"
+    },
+    {
+      "title": "Statistical Modeling for Reliability Assessment Using Rubber Stiffness Data of the Automotive Engine Mount",
+      "conference": "Asia Pacific Conference of the Prognostics and Health Management Society 2017",
+      "period": "2017.07.12~2017.07.15"
+    },
+    {
+      "title": "The Lethargy Coefficient Estimation of the Probabilistic Fatigue Life Model Using the Markov Chain Monte Carlo",
+      "conference": "Asia Pacific Conference of the Prognostics and Health Management Society 2017",
+      "period": "2017.07.12~2017.07.15"
+    },
+    {
+      "title": "CFD and FW-H Equations Based Flow-Induced Noise Prediction in a Novel Lift-Generating Disk Type Wind Power System",
+      "conference": "11th International Conference on Advanced Computational Engineering and Experimenting, ACE-X 2017",
+      "period": "2017.07.03~2017.07.06"
+    },
+    {
+      "title": "Multi-objective robust design and evaluation of commercial vehicle components based on principal component analysis",
+      "conference": "12th World Congress on Structural and Multidisciplinary Optimization (WCSMO-12)",
+      "period": "2017.06.05~2017.06.09"
+    },
+    {
+      "title": "Enhanced PID Control Optimization of Hovering Quad-Copter for Robust Flight Stabilization",
+      "conference": "12th World Congress on Structural and Multidisciplinary Optimization (WCSMO-12)",
+      "period": "2017.06.05~2017.06.09"
+    },
+    {
+      "title": "Reliability Based Design Optimization of The Gap Size of Annular Nuclear Fuels in Pressurized Water Reactor (PWR)",
+      "conference": "12th World Congress on Structural and Multidisciplinary Optimization (WCSMO-12)",
+      "period": "2017.06.05~2017.06.09"
+    },
+    {
+      "title": "음향상사법을 이용한 디스크형 풍력발전기의 공력소음 예측",
+      "conference": "대한기계학회 CAE 및 응용역학부문 2017년도 춘계학술대회",
+      "period": "2017.05.25~2017.05.27"
+    },
+    {
+      "title": "Convolutional Neural Networks를 이용한 NACA0012 익형 주위 유동해석 결과 예측",
+      "conference": "대한기계학회 CAE 및 응용역학부문 2017년도 춘계학술대회",
+      "period": "2017.05.25~2017.05.27"
+    },
+    {
+      "title": "모델리카를 이용한 디스크형 블레이드 풍력발전 시스템 통합 시뮬레이션 개발",
+      "conference": "대한기계학회 CAE 및 응용역학부문 2017년도 춘계학술대회",
+      "period": "2017.05.25~2017.05.27"
+    },
+    {
+      "title": "서포트 벡터 머신 회귀모델을 이용한 스프링-댐퍼 시스템 분석",
+      "conference": "대한기계학회 CAE 및 응용역학부문 2017년도 춘계학술대회",
+      "period": "2017.05.25~2017.05.27"
+    },
+    {
+      "title": "컨볼루션 신경망을 이용한 구조해석 응력분포의 근사화",
+      "conference": "대한기계학회 CAE 및 응용역학부문 2017년도 춘계학술대회",
+      "period": "2017.05.25~2017.05.27"
+    },
+    {
+      "title": "전착도장공정을 고려한 차량용 플라스틱 부품의 열-구조 연성해석",
+      "conference": "대한기계학회 CAE 및 응용역학부문 2017년도 춘계학술대회",
+      "period": "2017.05.25~2017.05.27"
+    },
+    {
+      "title": "오류역전파신경망을 이용한 체결요소의 신뢰성 평가",
+      "conference": "대한기계학회 CAE 및 응용역학부문 2017년도 춘계학술대회",
+      "period": "2017.05.25~2017.05.27"
+    },
+    {
+      "title": "PID 강화 제어를 이용한 제자리 비행상태의 쿼드콥터 강인제어",
+      "conference": "대한기계학회 CAE 및 응용역학부문 2017년도 춘계학술대회",
+      "period": "2017.05.25~2017.05.27"
+    },
+    {
+      "title": "무기력 계수 기반 피로수명 모델을 이용한 폴리머 소재의 S-N 커브 예측 연구",
+      "conference": "대한기계학회 CAE 및 응용역학부문 2017년도 춘계학술대회",
+      "period": "2017.05.25~2017.05.27"
+    },
+    {
+      "title": "평면 디스플레이 접착 공정후에 발생하는 잔류응력분포 해석",
+      "conference": "대한기계학회 CAE 및 응용역학부문 2017년도 춘계학술대회",
+      "period": "2017.05.25~2017.05.27"
+    },
+    {
+      "title": "답면제동시 발생하는 열응력을 고려한 철도 차륜의 피로수명 평가",
+      "conference": "대한기계학회 CAE 및 응용역학부문 2017년도 춘계학술대회",
+      "period": "2017.05.25~2017.05.27"
+    },
+    {
+      "title": "반응표면법을 이용한 진공청소기 손잡이의 근사최적설계",
+      "conference": "대한기계학회 CAE 및 응용역학부문 2017년도 춘계학술대회",
+      "period": "2017.05.25~2017.05.27"
+    },
+    {
+      "title": "캡 서스펜션의 주성분분석 기반 다중반응 설계최적화",
+      "conference": "대한기계학회 CAE 및 응용역학부문 2017년도 춘계학술대회",
+      "period": "2017.05.25~2017.05.27"
+    },
+    {
+      "title": "응력-수명법을 이용한 로어 컨트롤 아암(LCA)의 구조해석 및 내구성 평가",
+      "conference": "대한기계학회 CAE 및 응용역학부문 2017년도 춘계학술대회",
+      "period": "2017.05.25~2017.05.27"
+    },
+    {
+      "title": "개선된 순차적 통계모델링 기법을 이용한 차량용 고무 물성의 확률 분포 추정 연구",
+      "conference": "대한기계학회 CAE 및 응용역학부문 2017년도 춘계학술대회",
+      "period": "2017.05.25~2017.05.27"
+    },
+    {
+      "title": "Collaborative Optimization을 이용한 인사이드 도어 핸들 일체형 하우징 최적설계",
+      "conference": "한국소성가공학회 2017년도 춘계학술대회",
+      "period": "2017.05.11~2017.05.12"
+    },
+    {
+      "title": "Statistical Modeling for Reliability Assessment Using Bolt Fastening Friction Coefficient Data",
+      "conference": "Venice 1st International Conference on \"Engineering & Technology, Computer, Basic & Applied Sciences\" (ECBA-2017)",
+      "period": "2017.01.14~2017.01.15"
+    },
+    {
+      "title": "Multi-Objective Optimization of Multi-Rotor Air Vehicle Considering Uncertain Environment",
+      "conference": "Venice 1st International Conference on \"Engineering & Technology, Computer, Basic & Applied Sciences\" (ECBA-2017)",
+      "period": "2017.01.14~2017.01.15"
+    },
+    {
+      "title": "블레이드 형상 변화 및 유동하중 분포에 따른 디스크형 풍력발전 구조 강도해석",
+      "conference": "대한기계학회 2016년도 학술대회",
+      "period": "2016.12.14~2016.12.16"
+    },
+    {
+      "title": "BEV용 CFRP Front Lower Control Arm 위상최적설계",
+      "conference": "2016 한국자동차공학회 추계학술대회 및 전시회",
+      "period": "2016.11.16~2016.11.19"
+    },
+    {
+      "title": "Developing Design Automation for Dolphin Structures with Optimization Techniques",
+      "conference": "Civil Engineering Conference in the Asian Region CECAR 7",
+      "period": "2016.08.30~2016.09.02"
+    },
+    {
+      "title": "Remaining Useful Life Predictions in Lithium-ion Battery under Composite Condition",
+      "conference": "Annual Conference of the Prognostics and Health Management Society 2016",
+      "period": "2016.10.01~2016.10.06"
+    },
+    {
+      "title": "Bayesian Approach for the Lethargy Coefficient Estimation in the Probabilistic Creep-Fatigue Life Model",
+      "conference": "Annual Conference of the Prognostics and Health Management Society 2016",
+      "period": "2016.10.01~2016.10.06"
+    },
+    {
+      "title": "Feature/Thickness Optimization of CFRP Front Lower Control Arm",
+      "conference": "FISITA World Automotive Congress 2016",
+      "period": "2016.09.26~2016.09.30"
+    },
+    {
+      "title": "사출성형을 고려한 진공청소기 핸들의 최적 설계",
+      "conference": "한국CDE학회 2016 부문연합학술대회",
+      "period": "2016.08.25~2016.08.26"
+    },
+    {
+      "title": "베이지안 통계 추론을 이용한 리튬 이온 배터리의 잔존 수명 예측",
+      "conference": "한국CDE학회 2016 부문연합학술대회",
+      "period": "2016.08.25~2016.08.26"
+    },
+    {
+      "title": "돌핀구조물 파라미터 최적설계 및 Seabed 영향도 분석",
+      "conference": "한국CDE학회 2016 부문연합학술대회",
+      "period": "2016.08.25~2016.08.26"
+    },
+    {
+      "title": "하중 조건하에서의 탄소섬유강화플라스틱을 적용한 로어 컨트롤 아암의 이산형 최적화 연구",
+      "conference": "한국CDE학회 2016 부문연합학술대회",
+      "period": "2016.08.25~2016.08.26"
+    },
+    {
+      "title": "분석적 목표 전개 방법을 이용한 다분야통합 최적설계에 관한 연구",
+      "conference": "한국CDE학회 2016 부문연합학술대회",
+      "period": "2016.08.25~2016.08.26"
+    },
+    {
+      "title": "시험 데이터를 기반한 통계 모델링 연구",
+      "conference": "한국CDE학회 2016 부문연합학술대회",
+      "period": "2016.08.25~2016.08.26"
+    },
+    {
+      "title": "열화물성을 고려한 폴리머 소재 조합에 따른 차량용 부품의 주파수응답해석",
+      "conference": "한국CDE학회 2016 부문연합학술대회",
+      "period": "2016.08.25~2016.08.26"
+    },
+    {
+      "title": "블레이드의 추력 측정 실험기 설계 제작 및 실험",
+      "conference": "한국CDE학회 2016 부문연합학술대회",
+      "period": "2016.08.25~2016.08.26"
+    },
+    {
+      "title": "Reliability Assessment on Stress Degradation of Polymer Materials in Automotive Component Design",
+      "conference": "Asian Congress of Structural and Multidisciplinary Optimization 2016",
+      "period": "2016.05.22~2016.05.26"
+    },
+    {
+      "title": "Validation of CFD Based Optimized Quad-Copter Blade Using 3D Printer and Thrust Measurement",
+      "conference": "Asian Congress of Structural and Multidisciplinary Optimization 2016",
+      "period": "2016.05.22~2016.05.26"
+    },
+    {
+      "title": "Bayesian MCMC를 이용한 리튬 이온 배터리의 수명 예측 영향 인자 분석",
+      "conference": "한국자동차공학회 춘계학술대회",
+      "period": "2016.05.19~2016.05.21"
+    },
+    {
+      "title": "하중 및 강성 조건 하에서의 탄소섬유강화플라스틱(CFRP) Lower Control Arm(LCA)의 최적설계 파라미터 연구",
+      "conference": "한국자동차공학회 춘계학술대회",
+      "period": "2016.05.19~2016.05.22"
+    },
+    {
+      "title": "열화물성을 고려한 차량용 플라스틱 부품의 주파수응답해석",
+      "conference": "대한기계학회 CAE및응용역학부문 춘계학술대회",
+      "period": "2016.04.07~2016.04.09"
+    },
+    {
+      "title": "최적화를 이용한 돌핀 강관파일 설계 자동화 시스템 개발 연구",
+      "conference": "2016 한국전산구조공학회 정기학술대회",
+      "period": "2016.04.13~2016.04.15"
+    },
+    {
+      "title": "멀티로터 블레이드의 추력 실험기 제작 및 성능 검증",
+      "conference": "대한기계학회 CAE및응용역학부문 춘계학술대회",
+      "period": "2016.04.07~2016.04.09"
+    },
+    {
+      "title": "플라스틱 구조물 체결부 최적 위치 선정에 대한 연구",
+      "conference": "대한기계학회 CAE및응용역학부문 춘계학술대회",
+      "period": "2016.04.07~2016.04.09"
+    },
+    {
+      "title": "Weight Reduction in Carbon Fiber Reinforced Plastic Front Lower Control Arm by Topology Optimization",
+      "conference": "2015 한국자동차공학회 학술대회 및 전시회",
+      "period": "2015.11.18~2015.11.21"
+    },
+    {
+      "title": "다층구조 롤러블 디스플레이에서의 역학적 물성특성 시뮬레이션 해석",
+      "conference": "대한기계학회 창립 70주년 기년 학술대회",
+      "period": "2015.11.10~2015.11.14"
+    },
+    {
+      "title": "다층구조 플렉시블 디스플레이에서의 잔류응력 시뮬레이션 해석",
+      "conference": "한국캐드캠학회 하계학술대회",
+      "period": "2015.08.19~2015.08.20"
+    },
+    {
+      "title": "하중조건을 고려한 돌핀구조 파라미터 최적설계",
+      "conference": "한국캐드캠학회 하계학술대회",
+      "period": "2015.08.19~2015.08.20"
+    },
+    {
+      "title": "Optimal Blade Design of Quad-Rotor Air Vehicle Considering Hovering Thrust and Position Diturbance",
+      "conference": "Proceedings of the 11th World Congress on Structural and Multidisciplinary Optimization",
+      "period": "2015.06.07~2015.06.12"
+    },
+    {
+      "title": "Reliaiblity Based Design Optimization Using Bayesian Reliability Neural Networks",
+      "conference": "Proceedings of the 11th World Congress on Structural and Multidisciplinary Optimization",
+      "period": "2015.06.07~2015.06.12"
+    },
+    {
+      "title": "구두 밑창 변형을 통한 보행패턴 분석",
+      "conference": "한국정밀공학회 2015년 춘계학술대회",
+      "period": "2015.05.13~2015.05.15"
+    },
+    {
+      "title": "불확실성을 고려한 트러스 구조물의 신뢰성기반 최적설계",
+      "conference": "한국정밀공학회 2015년 춘계학술대회",
+      "period": "2015.05.13~2015.05.15"
+    },
+    {
+      "title": "Evidence 이론 및 메타모델을 이용한 피로균형 싸이클 구산 예측",
+      "conference": "대한기계학회 CAE및응용역학부문 춘계학술대회",
+      "period": "2015.04.15~2015.04.18"
+    },
+    {
+      "title": "전산유체역학 해석을 통한 날개없는 선풍기의 노즐형상 연구",
+      "conference": "대한기계학회 CAE및응용역학부문 춘계학술대회",
+      "period": "2015.04.15~2015.04.18"
+    },
+    {
+      "title": "여성용 구두 플랫폼 형상에 따른 보행 교정",
+      "conference": "대한기계학회 CAE및응용역학부문 춘계학술대회",
+      "period": "2015.04.15~2015.04.18"
+    },
+    {
+      "title": "근사모델의 베이지안 신뢰성 평가를 통한 신뢰성기반 최적설계",
+      "conference": "대한기계학회 CAE및응용역학부문 춘계학술대회",
+      "period": "2015.04.15~2015.04.18"
+    },
+    {
+      "title": "내압을 받는 전력용 변압기 외함의 볼트 체결부 안전성능 평가",
+      "conference": "대한기계학회 CAE및응용역학부문 춘계학술대회",
+      "period": "2015.04.15~2015.04.18"
+    },
+    {
+      "title": "전력용 변압기 외함 체결부의 볼트개수 최소화에 관한 연구",
+      "conference": "대한기계학회 CAE및응용역학부문 춘계학술대회",
+      "period": "2015.04.15~2015.04.18"
+    },
+    {
+      "title": "격자 파라미터 분석을 이용한 축류 팬 응력분포 연구",
+      "conference": "대한기계학회 CAE및응용역학부문 춘계학술대회",
+      "period": "2015.04.15~2015.04.18"
+    },
+    {
+      "title": "플렉시블 디스플레이용 글라스의 합지형태에 따른 굽힘응력 해석",
+      "conference": "대한기계학회 CAE및응용역학부문 춘계학술대회",
+      "period": "2015.04.15~2015.04.18"
+    },
+    {
+      "title": "플렉시블 디스플레이의 굽힘반경에 따른 응력분포 해석",
+      "conference": "대한기계학회 CAE및응용역학부문 춘계학술대회",
+      "period": "2015.04.15~2015.04.18"
+    },
+    {
+      "title": "돌핀 강관파일 설계 자동화 시스템을 위한 파라미터 분석",
+      "conference": "대한기계학회 CAE및응용역학부문 춘계학술대회",
+      "period": "2015.04.15~2015.04.18"
+    },
+    {
+      "title": "절연유 누유 조건을 고려한 변압기 체결볼트 개수 최적화 연구",
+      "conference": "한국최적설계학회 2015년 정기학술대회",
+      "period": "2015.02.09~2015.02.10"
+    },
+    {
+      "title": "불확실성 환경에서의 신뢰성 평가를 위한 베이지안 신경망 근사모델",
+      "conference": "한국최적설계학회 2015년 정기학술대회",
+      "period": "2015.02.09~2015.02.10"
+    },
+    {
+      "title": "Evidence 이론을 이용한 불충분한 실험자료에 대한 정량화 방법",
+      "conference": "대한기계학회 2014년 추계학술대회",
+      "period": "2014.11.11~2014.11.14"
+    },
+    {
+      "title": "베이지안 S/N비 평가에 관한 기초 연구",
+      "conference": "대한기계학회 2014년 추계학술대회",
+      "period": "2014.11.11~2014.11.14"
+    },
+    {
+      "title": "인공신경망을 이용한 베이지안 추론의 신뢰성 평가",
+      "conference": "대한기계학회 2014년 추계학술대회",
+      "period": "2014.11.11~2014.11.14"
+    },
+    {
+      "title": "대변형을 수반하는 유연한 구조물의 굽힘거동 수치해석",
+      "conference": "대한기계학회 2014년 추계학술대회",
+      "period": "2014.11.11~2014.11.14"
+    },
+    {
+      "title": "PID 제어를 통한 쿼드콥터 자세제어",
+      "conference": "대한기계학회 2014년 추계학술대회",
+      "period": "2014.11.11~2014.11.14"
+    },
+    {
+      "title": "인공신경망 기반 베이지안 신뢰성 평가에 관한 기초 연구",
+      "conference": "대한기계학회 2014년 추계학술대회",
+      "period": "2014.11.11~2014.11.14"
+    },
+    {
+      "title": "분자역학 기반 유한요소법을 이용한 SWCNT의 인장특성 평가",
+      "conference": "대한기계학회 2014년 추계학술대회",
+      "period": "2014.11.11~2014.11.14"
+    },
+    {
+      "title": "가압 경수로용 환형 핵연로의 간극 크기 최적설계,",
+      "conference": "한국정밀공학회 2014년 추계학술대회",
+      "period": "2014.10.29~2014.10.31"
+    },
+    {
+      "title": "실험계획법을 이용한 쿼드콥터 블레이드 형상 최적설계",
+      "conference": "한국정밀공학회 2014년 추계학술대회",
+      "period": "2014.10.29~2014.10.31"
+    },
+    {
+      "title": "Effects of Rotor-Rotor Interaction in Aerodynamic Performance of Multi-Rotor Air Vehicle",
+      "conference": "Proceedings of 6th European Conference on Computational Fluid Dynamics (ECFD VI)",
+      "period": "2014.07.20~2014.07.25"
+    },
+    {
+      "title": "Role of Evolutionary and Soft Computing Techniques in Engineering Design and Optimization",
+      "conference": "Proceedings of the 8th China-Japan-Korea Joint Symposium on Optimization of Structural and Mechanical Systems",
+      "period": "2014.05.25~2014.05.29"
+    },
+    {
+      "title": "Approximate Analysis of True Stress-Strain Behaviors of High Strength Metallic Material Using Back-Propagation Neural Network",
+      "conference": "Proceedings of the 8th China-Japan-Korea Joint Symposium on Optimization of Structural and Mechanical Systems",
+      "period": "2014.05.25~2014.05.29"
+    },
+    {
+      "title": "헬름홀츠 공명기 효과에 따른 원형 진동판의 진폭 변화량 분석",
+      "conference": "대한기계학회 CAE 및 응용역학부문 춘계학술대회",
+      "period": "2014.04.30~2014.05.03"
+    },
+    {
+      "title": "데이터마이닝을 이용한 폴더형 휴대단말기의 피로강도 민감도 분석",
+      "conference": "대한기계학회 CAE 및 응용역학부문 춘계학술대회",
+      "period": "2013.05.23~2013.05.25"
+    },
+    {
+      "title": "데이터마이닝을 이용한 전기자동차용 리튬 이차전지 설계",
+      "conference": "대한기계학회 CAE 및 응용역학부문 춘계학술대회",
+      "period": "2013.05.23~2013.05.25"
+    },
+    {
+      "title": "시뮬레이션을 통한 브레이크 패드의 마모 분석",
+      "conference": "대한기계학회 CAE 및 응용역학부문 춘계학술대회",
+      "period": "2013.05.23~2013.05.25"
+    },
+    {
+      "title": "오류역전파 신경망 이론식에 의한 1차 민감도 근사해석",
+      "conference": "2012년도 대한기계학회 추계학술대회",
+      "period": "2012.11.07~2012.11.09"
+    },
+    {
+      "title": "Design of Rail Profile to Reduce Wear of Rail in Curve",
+      "conference": "the International Symposium on Speed-Up, Safety and Service Technology for Railway and Maglev Systems (STECH &apos;12)",
+      "period": "2012.09.17~2012.09.19"
+    },
+    {
+      "title": "반응표면법 및 비지배 분류 유전알고리즘을 이용한 취배수문의 응력 및 변위 최소화",
+      "conference": "2012년 대한기계학회 CAE 및 응용역학부문 춘계학술대회",
+      "period": "2012.05.10~2012.05.12"
+    },
+    {
+      "title": "균일 화상 품질 구현을 위한 닥터 블레이드 근사모델링",
+      "conference": "2012년 대한기계학회 CAE 및 응용역학부문 춘계학술대회",
+      "period": "2012.05.10~2012.05.12"
+    },
+    {
+      "title": "탠덤배열 팬 블레이드 로터의 유동해석 및 추력성능 분석",
+      "conference": "2012년 대한기계학회 CAE 및 응용역학부문 춘계학술대회",
+      "period": "2012.05.10~2012.05.12"
+    },
+    {
+      "title": "다양한 하중조건을 고려한 엔진밸브시트의 변형 및 마모 해석 기초 연구",
+      "conference": "2012년 대한기계학회 CAE 및 응용역학부문 춘계학술대회",
+      "period": "2012.05.10~2012.05.12"
+    },
+    {
+      "title": "보수적 근사모델을 적용한 신뢰성기반 강건 최적설계 방법 기초연구",
+      "conference": "2011년 대한기계학회 추계학술대회",
+      "period": "2011.11.02~2011.11.04"
+    },
+    {
+      "title": "철도 차륜 플랜지 손상 저감을 위한 차륜형상 설계",
+      "conference": "2011년 대한기계학회 추계학술대회",
+      "period": "2011.11.02~2011.11.04"
+    },
+    {
+      "title": "파라미터 평가를 통한 로봇주물 프레임의 최적설계",
+      "conference": "2011년 한국정밀공학회 춘계학술대회",
+      "period": "2011.06.01~2011.06.03"
+    },
+    {
+      "title": "NOx 및 Soot 저감분석을 위한 역전파 신경망을 이용한 디젤엔진 배기시스템의 근사모델링",
+      "conference": "2011년 한국자동차공학회 춘계학술대회",
+      "period": "2011.05.19~2011.05.21"
+    },
+    {
+      "title": "디젤엔진 연료 분사량 예측을 위한 HCS기반 신경망 근사모델링",
+      "conference": "2011년 한국자동차공학회 춘계학술대회",
+      "period": "2011.05.19~2011.05.21"
+    },
+    {
+      "title": "산업용 로봇주물의 설계를 위한 구조해석 및 파라미터 평가",
+      "conference": "2011년 대한기계학회 CAE 및 응용역학부문 춘계학술대회",
+      "period": "2011.04.14~2011.04.15"
+    },
+    {
+      "title": "반응표면법을 이용한 차륜답면형상의 근사최적화",
+      "conference": "2010년 한국정밀공학회 추계학술대회",
+      "period": "2010.11.10~2010.11.12"
+    },
+    {
+      "title": "사무용 인쇄기기 급지시스템 설계를 위한 신경망응용 파라미터 분석",
+      "conference": "2010년 대한기계학회 추계학술대회",
+      "period": "2010.11.03~2010.11.05"
+    }
+  ],
+  "fundings": [
+    {
+      "title": "[민간/LG전자(주)]냉장고 고장 생성 VPD 기반 고장진단 및 수명예지기술 개발",
+      "org": "국내",
+      "period": "2026-05-01~2027-04-30"
+    },
+    {
+      "title": "[RCMS]첨단산업특성화대학원지원(배터리)(3/3, 1/2단계)",
+      "org": "한국산업기술진흥원",
+      "period": "2026-03-01~2027-02-28"
+    },
+    {
+      "title": "[RCMS]미래형자동차 핵심기술 R&D 전문인력양성(1/1, 3/3단계)",
+      "org": "한국산업기술진흥원",
+      "period": "2026-03-01~2027-02-28"
+    },
+    {
+      "title": "[7차년도]사회지향 기계기술 글로벌 리더 양성 교육연구단",
+      "org": "한국연구재단",
+      "period": "2026-03-01~2027-02-28"
+    },
+    {
+      "title": "[민간/현대기아] 모빌리티시스템융합협동과정(계약학과 13기) 위탁 운영",
+      "org": "국내",
+      "period": "2025-09-01~2028-02-29"
+    },
+    {
+      "title": "[포닥]이종수(양다빈)-설계가능 데이터증강 및 전이학습 적용한 도메인 적응 성능예측 및 결함진단 연구",
+      "org": "연세대학교",
+      "period": "2025-09-01~2026-02-28"
+    },
+    {
+      "title": "[민간/LG전자] 칠러용 터보 컴프레서 PHM 기술 개발",
+      "org": "국내",
+      "period": "2025-04-01~2025-09-30"
+    },
+    {
+      "title": "[RCMS]미래형자동차 핵심기술 R&D 전문인력양성(2/2,2/3단계)",
+      "org": "한국산업기술진흥원",
+      "period": "2025-03-01~2026-02-28"
+    },
+    {
+      "title": "[RCMS]첨단산업특성화대학원지원(배터리)(2/3, 1/2단계)",
+      "org": "한국산업기술진흥원",
+      "period": "2025-03-01~2026-02-28"
+    },
+    {
+      "title": "(통합Ezbaro)설계가능 데이터증강 및 전이학습 적용한 도메인 적응 성능예측 및 결함진단 연구(4/4)(2022.3.1~2026.2.28)",
+      "org": "한국연구재단",
+      "period": "2025-03-01~2026-02-28"
+    },
+    {
+      "title": "[6차년도] 사회지향 기계기술 글로벌 리더 양성 교육연구단",
+      "org": "한국연구재단",
+      "period": "2025-03-01~2026-02-28"
+    },
+    {
+      "title": "[RCMS/위탁]더키퍼주식회사/감지 모듈을 활용한 극 초기 전기차 화재진압 솔루션(2/2)",
+      "org": "중소기업기술정보진흥원",
+      "period": "2025-01-01~2025-07-31"
+    },
+    {
+      "title": "[민간/LG전자] 냉장고 고장 생성 디지털 트윈 개발 고도화 및 고장예지기술 개발",
+      "org": "국내",
+      "period": "2024-11-01~2025-10-31"
+    },
+    {
+      "title": "[RCMS/위탁]더키퍼주식회사/감지 모듈을 활용한 극 초기 전기차 화재진압 솔루션(1/2)",
+      "org": "중소기업기술정보진흥원",
+      "period": "2024-08-01~2024-12-31"
+    },
+    {
+      "title": "[민간/넥센타이어(주)] 타이어 NVH 성능 예측모델 개발 및 타이어 소음, 진동 원리 연구",
+      "org": "국내",
+      "period": "2024-03-15~2024-12-15"
+    },
+    {
+      "title": "[민간/현대엔지비] 현대자동차 계약학과 12기 위탁 운영",
+      "org": "국내",
+      "period": "2024-03-04~2027-02-28"
+    },
+    {
+      "title": "[RCMS]첨단산업특성화대학원지원(배터리)(1/3, 1/2단계)",
+      "org": "한국산업기술진흥원",
+      "period": "2024-03-01~2025-02-28"
+    },
+    {
+      "title": "[RCMS]미래형자동차 핵심기술 R&D 전문인력양성(1/2,2/3단계)",
+      "org": "한국산업기술진흥원",
+      "period": "2024-03-01~2025-02-28"
+    },
+    {
+      "title": "(통합Ezbaro)설계가능 데이터증강 및 전이학습 적용한 도메인 적응 성능예측 및 결함진단 연구(3/4)(2022.3.1~2026.2.28)",
+      "org": "한국연구재단",
+      "period": "2024-03-01~2025-02-28"
+    },
+    {
+      "title": "[5차년도] 사회지향 기계기술 글로벌 리더 양성 교육연구단",
+      "org": "한국연구재단",
+      "period": "2024-03-01~2025-02-28"
+    },
+    {
+      "title": "[RCMS](주)인포웍스/다변량 DB 기반 자율주행 핵심부품의 고장 예지 및 건전성 관리 기술개발(1/2, 2/3단계)",
+      "org": "한국산업기술기획평가원",
+      "period": "2024-01-01~2024-12-31"
+    },
+    {
+      "title": "[민간/LG전자]ThinQ 데이터 기반의 압축기 운전맵 마진 범위 및 고장 VPD 개발",
+      "org": "국내",
+      "period": "2023-06-16~2024-06-15"
+    },
+    {
+      "title": "[민간/LG전자] LED 제품 Sheet Metal / Press 부품 강성 최적화 Meta Model 개발",
+      "org": "국내",
+      "period": "2023-04-01~2023-09-30"
+    },
+    {
+      "title": "[민간/현대엔지비]현가 시스템의 사전 고장 예측을 위한 복합 신호 분류 PHM 시스템 개발",
+      "org": "국내",
+      "period": "2023-04-01~2024-03-31"
+    },
+    {
+      "title": "[RCMS]미래형자동차 핵심기술 R&D 전문인력양성(2/2,1/3단계)",
+      "org": "한국산업기술진흥원",
+      "period": "2023-03-01~2024-02-29"
+    },
+    {
+      "title": "(통합Ezbaro)설계가능 데이터증강 및 전이학습 적용한 도메인 적응 성능예측 및 결함진단 연구(2/4)(2022.3.1~2026.2.28)",
+      "org": "한국연구재단",
+      "period": "2023-03-01~2024-02-29"
+    },
+    {
+      "title": "[4차년도] 사회지향 기계기술 글로벌 리더 양성 교육연구단",
+      "org": "한국연구재단",
+      "period": "2023-03-01~2024-02-29"
+    },
+    {
+      "title": "[RCMS](주)인포웍스/다변량 DB 기반 자율주행 핵심부품의 고장 예지 및 건전성 관리 기술개발(2/2, 1/3단계)",
+      "org": "한국산업기술평가관리원",
+      "period": "2023-01-01~2023-12-31"
+    },
+    {
+      "title": "[민간/현대엔지비]시험-해석 데이터의 도메인 적응 및 불확실성을 반영한 해석-시험 상관성 향상 기법 개발",
+      "org": "국내",
+      "period": "2022-11-15~2023-07-14"
+    },
+    {
+      "title": "[민간/현대모비스(주)] BMA 용접 플라즈마 검사 고도화",
+      "org": "국내",
+      "period": "2022-06-15~2022-12-15"
+    },
+    {
+      "title": "[민간/현대엔지비]AI 융합형 산업현장기술인력 양성사업 교육용 데이터셋 제작",
+      "org": "국내",
+      "period": "2022-06-01~2022-12-31"
+    },
+    {
+      "title": "[민간/현대엔지비]AI 융합형 산업현장기술인력 양성 교육과정 개발 및 강의",
+      "org": "국내",
+      "period": "2022-06-01~2022-12-31"
+    },
+    {
+      "title": "[민간/LG전자] LED사이니지 구조설계 및 해석 Data 기반 머신러닝 모델개발",
+      "org": "국내",
+      "period": "2022-04-04~2022-12-31"
+    },
+    {
+      "title": "[RCMS]인포웍스/다변량 DB 기반 자율주행 핵심부품의 고장 예지 및 건전성 관리 기술개발(1/2,1/3)",
+      "org": "한국산업기술평가관리원",
+      "period": "2022-04-01~2022-12-31"
+    },
+    {
+      "title": "[RCMS]미래형자동차 핵심기술 R&D 전문인력양성(1/2년차,1/3단계)",
+      "org": "한국산업기술진흥원",
+      "period": "2022-03-01~2023-02-28"
+    },
+    {
+      "title": "(통합Ezbaro)설계가능 데이터증강 및 전이학습 적용한 도메인 적응 성능예측 및 결함진단 연구(1/4)(2022.3.1~2026.2.28)",
+      "org": "한국연구재단",
+      "period": "2022-03-01~2023-02-28"
+    },
+    {
+      "title": "[3차년도] 사회지향 기계기술 글로벌 리더 양성 교육연구단",
+      "org": "한국연구재단",
+      "period": "2022-03-01~2023-02-28"
+    },
+    {
+      "title": "[민간/LG전자] 공정장비 Energy Saving System",
+      "org": "국내",
+      "period": "2022-02-07~2023-09-30"
+    },
+    {
+      "title": "[민간/한화시스템] 반사경 최적 경량 설계 Tool 개발",
+      "org": "국내",
+      "period": "2021-12-01~2026-02-28"
+    },
+    {
+      "title": "[민간/이티에스소프트] 플라스틱 사출 성형-도장 열변형 해석을 위한 물성 분석",
+      "org": "국내",
+      "period": "2021-05-03~2021-10-31"
+    },
+    {
+      "title": "[RCMS]스마트 오프더그라운드 모빌리티 개발(1/1)",
+      "org": "한국산업기술평가관리원",
+      "period": "2021-05-01~2022-02-28"
+    },
+    {
+      "title": "[민간/현대엔지비] 차량 개발 효율화 위한 AI 활용 실외 무빙 선행 검증 연구",
+      "org": "국내",
+      "period": "2021-04-01~2022-09-30"
+    },
+    {
+      "title": "[민간/현대엔지비] 딥러닝 활용한 연료탱크 유동소음 분류 및 예측 가능성 검토 자문",
+      "org": "국내",
+      "period": "2021-03-15~2021-07-14"
+    },
+    {
+      "title": "[민간/현대엔지비] 차량 주행 음질 예측을 위한 Jetson 기반 딥러닝 플랫폼 기술 개발",
+      "org": "국내",
+      "period": "2021-03-02~2022-03-31"
+    },
+    {
+      "title": "[2차년도] 사회지향 기계기술 글로벌 리더 양성 교육연구단",
+      "org": "한국연구재단",
+      "period": "2021-03-01~2022-02-28"
+    },
+    {
+      "title": "[산통부 산하/한국가스공사] 고압 천연가스배관 진동에 따른 소구경 분기관 피로도 수치 모델링 및 영향분석",
+      "org": "한국가스공사",
+      "period": "2020-12-21~2021-12-20"
+    },
+    {
+      "title": "[민간/ LG이노텍 주식회사] 누적 낙하 손상 산포 예측 기술개발",
+      "org": "국내",
+      "period": "2020-12-01~2021-09-30"
+    },
+    {
+      "title": "[민간/현대엔지비]자율주행차 시스템에서의 기능 안전 강화",
+      "org": "국내",
+      "period": "2020-09-25~2021-08-31"
+    },
+    {
+      "title": "[1차년도] 사회지향 기계기술 글로벌 리더 양성 교육연구단",
+      "org": "한국연구재단",
+      "period": "2020-09-01~2021-02-28"
+    },
+    {
+      "title": "[RCMS]스마트 오프더그라운드 모빌리티 개발(1/1)",
+      "org": "한국산업기술평가관리원",
+      "period": "2020-09-01~2021-04-30"
+    },
+    {
+      "title": "[민간/(주)한화] 센서 데이터를 이용한 기계장비 부품 결함진단 및 예지분석 인공지능 모델 개발",
+      "org": "국내",
+      "period": "2020-07-15~2021-01-31"
+    },
+    {
+      "title": "[민간/한솔피엔에스] AI기반 PdM 사업 진출을 위한 기술자문",
+      "org": "국내",
+      "period": "2020-04-27~2020-06-30"
+    },
+    {
+      "title": "[8차년도]사회지향 기계기술 글로벌 리더 양성 사업단",
+      "org": "한국연구재단",
+      "period": "2020-03-01~2020-08-31"
+    },
+    {
+      "title": "[민간/LIG넥스원(주)]KDDX 통합마스트 시스템/장치 간 PHM 적용 고장 진단 및 예측기술에 대한 연구",
+      "org": "국내",
+      "period": "2019-09-02~2020-08-31"
+    },
+    {
+      "title": "[민간/현대엔지비] 차량 주행 음질 예측을 위한 실내 소음 딥러닝 분석 기술 개발",
+      "org": "국내",
+      "period": "2019-04-01~2020-08-31"
+    },
+    {
+      "title": "[민간/삼성전자] 반복 굽힘에 따른 합지구조 박리수명 예측기술 개발",
+      "org": "국내",
+      "period": "2019-03-29~2019-11-29"
+    },
+    {
+      "title": "[민간/현대중공업] 엔진 구동부품 내마모 고장진단 및 예지기술 예비 타당성 연구",
+      "org": "국내",
+      "period": "2019-03-05~2020-04-30"
+    },
+    {
+      "title": "인공지능 학습기법 및 확률론적 추론을 이용한 고장예지 및 건전성 관리 기반 설계(3/3)(2017.3.1~2020.2.29)",
+      "org": "한국연구재단",
+      "period": "2019-03-01~2020-02-29"
+    },
+    {
+      "title": "[7차년도]사회지향 기계기술 글로벌 리더 양성 사업단",
+      "org": "한국연구재단",
+      "period": "2019-03-01~2020-02-29"
+    },
+    {
+      "title": "[민간/현대중공업] 빅데이터 기술을 활용한 성능분석 및 최적 선형 도출 자동화 기술 개발",
+      "org": "국내",
+      "period": "2019-01-01~2020-08-31"
+    },
+    {
+      "title": "[민간/오스템임플란트(주)]&apos;Ready-Made Custom Abutment 시스템 개발&apos;에 관한 연구",
+      "org": "국내",
+      "period": "2018-12-17~2020-04-15"
+    },
+    {
+      "title": "[민간/현대엔지비] 통계학적 분석을 통한 시스템단위 충돌 해석모델 검증",
+      "org": "국내",
+      "period": "2018-09-03~2019-02-28"
+    },
+    {
+      "title": "[(주)선광엘티아이/민간]기계학습 기법을 이용한 폐 배터리 등급 분류 및 잔존수명 예측 알고리즘 검증",
+      "org": "국내",
+      "period": "2018-06-01~2018-12-31"
+    },
+    {
+      "title": "[민간/현대엔지비] 건전성예측관리 측정 장비",
+      "org": "국내",
+      "period": "2018-05-08~2018-12-31"
+    },
+    {
+      "title": "[민간/현대엔지비] 강건 성능 설계를 위한 산포고려 최적화 기법 개발(2단계)",
+      "org": "국내",
+      "period": "2018-05-08~2020-03-31"
+    },
+    {
+      "title": "[민간/현대엔지비] 플라스틱 부품 내구 후 영구변형 해석예측 기법 개발",
+      "org": "국내",
+      "period": "2018-04-01~2019-06-30"
+    },
+    {
+      "title": "[Ezbaro] (2위탁)유연기판상 슈퍼렌즈 메타물질기반 초미세 패턴 제작 기술 (2단계)(3/3)",
+      "org": "한국연구재단",
+      "period": "2018-03-01~2018-12-31"
+    },
+    {
+      "title": "인공지능 학습기법 및 확률론적 추론을 이용한 고장예지 및 건전성 관리 기반 설계(2/3)(2017.3.1~2020.2.29)",
+      "org": "한국연구재단",
+      "period": "2018-03-01~2019-02-28"
+    },
+    {
+      "title": "[6차년도]사회지향 기계기술 글로벌 리더 양성 사업단",
+      "org": "한국연구재단",
+      "period": "2018-03-01~2019-02-28"
+    },
+    {
+      "title": "삼성디스플레이(주)/Youm Display의 다층구조 stress-strain 시뮬레이션 해석을 통한 공정 control tool 확보",
+      "org": "국내",
+      "period": "2018-01-15~2019-01-14"
+    },
+    {
+      "title": "[지자체/서울시] 기체 안정화 기술이 적용된 딥러닝 기반의 관광분야 특수목적 드론개발",
+      "org": "서울산업진흥원",
+      "period": "2017-09-25~2018-03-31"
+    },
+    {
+      "title": "유연기판상 슈퍼렌즈 메타물질기반 초미세 패턴 제작 기술(2/3, 2단계)",
+      "org": "한국연구재단",
+      "period": "2017-05-01~2018-02-28"
+    },
+    {
+      "title": "인공지능 학습기법 및 확률론적 추론을 이용한 고장예지 및 건전성 관리 기반 설계 (1/3)",
+      "org": "한국연구재단",
+      "period": "2017-03-01~2018-02-28"
+    },
+    {
+      "title": "[5차년도]사회지향 기계기술 글로벌 리더 양성 사업단",
+      "org": "한국연구재단",
+      "period": "2017-03-01~2018-02-28"
+    },
+    {
+      "title": "[국토부/위탁] 고속철도 차륜 열응력 저감을 위한 웹부 형상 최적화(2/3)",
+      "org": "국토교통과학기술진흥원",
+      "period": "2017-02-01~2017-11-30"
+    },
+    {
+      "title": "[RCMS]주민 수용성 향상을 위한 양력발생 디스크 방식의 풍력발전 시스템 개발(2/3)",
+      "org": "한국에너지기술평가원",
+      "period": "2017-01-01~2017-12-31"
+    },
+    {
+      "title": "삼성디스플레이/Youm Display의 다층구조 stress-strain 시뮬레이션 해석을 통한 공정 control tool 확보",
+      "org": "국내",
+      "period": "2016-12-01~2018-03-31"
+    },
+    {
+      "title": "유연기판상 슈퍼렌즈 메타물질기반 초미세 패턴 제작 기술(1/3, 2단계)",
+      "org": "한국연구재단",
+      "period": "2016-07-01~2017-04-30"
+    },
+    {
+      "title": "현대엔지비/강건 성능 설계를 위한 산포 고려 최적화 기법 개발(1단계)",
+      "org": "국내",
+      "period": "2016-07-01~2018-03-31"
+    },
+    {
+      "title": "3차원 나노구조물 형성을 위한 나노 마스터링 및 대면적 나노구조물 전주도금 공정기술 개발",
+      "org": "한국연구재단",
+      "period": "2016-06-30~2017-06-29"
+    },
+    {
+      "title": "[RCMS]주민 수용성 향상을 위한 양력발생 디스크 방식의 풍력발전 시스템 개발(1/3)",
+      "org": "한국에너지기술평가원",
+      "period": "2016-05-01~2016-12-31"
+    },
+    {
+      "title": "EZbaro_(후속연구)지능학습기법 및 확률론적 추론에 의한 신뢰성 평가 및 신뢰성기반 설계(3/3)",
+      "org": "한국연구재단",
+      "period": "2016-05-01~2017-04-30"
+    },
+    {
+      "title": "[국토부/위탁] 고속철도 차륜 열응력 저감을 위한 웹부 형상 최적화",
+      "org": "국토교통과학기술진흥원",
+      "period": "2016-04-22~2016-10-31"
+    },
+    {
+      "title": "현대엔지비/플라스틱 소재 적용에 따른 볼트/너트 형상 및 성형성 해석 연구",
+      "org": "국내",
+      "period": "2016-04-01~2017-12-31"
+    },
+    {
+      "title": "현대엔지비/플라스틱 부품 열변형 거동 예측 기술 개발",
+      "org": "국내",
+      "period": "2016-04-01~2018-03-31"
+    },
+    {
+      "title": "현대엔지비/체결환경 별 마찰계수 유효 데이터 도출을 위한 통계 분석",
+      "org": "국내",
+      "period": "2016-04-01~2017-07-31"
+    },
+    {
+      "title": "(4차년도) 사회지향 기계기술 글로벌 리더 양성 사업단",
+      "org": "한국연구재단",
+      "period": "2016-03-01~2017-02-28"
+    },
+    {
+      "title": "현대엔지비/이종 열화 인자 조합 로직 활용한 고전압 리튬 배터리 복합 내구 예측 알고리즘 및 프로그램 개발",
+      "org": "국내",
+      "period": "2015-07-15~2016-07-14"
+    },
+    {
+      "title": "비행환경 및 비행안정성을 고려한 모듈형 멀티로터 무인비행체의 설계 및 제작",
+      "org": "중소기업청",
+      "period": "2015-06-01~2016-05-31"
+    },
+    {
+      "title": "(후속연구)지능학습기법 및 확률론적 추론에 의한 신뢰성 평가 및 신뢰성기반 설계(2/3)",
+      "org": "한국연구재단(교과부)",
+      "period": "2015-05-01~2016-04-30"
+    },
+    {
+      "title": "GM Korea/Development of BEV Front Lower Control Arm Using Carbon Fiber Reinforced Plastic) Material",
+      "org": "국내",
+      "period": "2015-04-01~2017-03-31"
+    },
+    {
+      "title": "(분리-세부)현대엔지비주식회사/플라스틱 역량 강화를 위한 공동연구실-강화재에 따른 금형 수축율 예측 및 평가",
+      "org": "국내",
+      "period": "2015-03-01~2017-02-28"
+    },
+    {
+      "title": "(분리-세부)현대엔지비주식회사/플라스틱 역량 강화를 위한 공동연구실-환경조건에 따른 플라스틱 부품의 수명 예측 및 신뢰성 평가",
+      "org": "국내",
+      "period": "2015-03-01~2016-12-31"
+    },
+    {
+      "title": "(분리-책임) 현대엔지비주식회사/플라스틱 역량 강화를 위한 공동연구실-동종 및 이종소재간 최적 (열)융착 기술 개발",
+      "org": "국내",
+      "period": "2015-03-01~2018-02-28"
+    },
+    {
+      "title": "LG디스플레이/Foldable display 요소기술 개발 및 분석기술 확보",
+      "org": "국내",
+      "period": "2014-12-01~2015-11-30"
+    },
+    {
+      "title": "LG전자(주)/대변형 플렉시블 디스플레이의 역학적 거동해석을 통한 기구물 최적형상설계 기술 개발",
+      "org": "국내",
+      "period": "2014-12-01~2016-08-31"
+    },
+    {
+      "title": "LG전자(주)/표면처리를 통한 축류팬의 성능 증대 및 설계 툴 개발",
+      "org": "국내",
+      "period": "2014-11-24~2016-08-31"
+    },
+    {
+      "title": "지능학습기법 및 확률론적 추론에 의한 신뢰성 평가 및 신뢰성기반 설계(1/3)",
+      "org": "한국연구재단(교과부)",
+      "period": "2014-11-01~2015-04-30"
+    },
+    {
+      "title": "하지부 및 족관절 교정을 위한 구두 형상 최적설계 및 제작",
+      "org": "중소기업청",
+      "period": "2014-06-01~2015-05-31"
+    },
+    {
+      "title": "현대중공업/변압기 외함 hole 볼트 구조강도 평가 프로그램 개발 및 설계기준 정립",
+      "org": "국내",
+      "period": "2014-02-01~2015-05-31"
+    },
+    {
+      "title": "지능학습기법 및 확률론적 추론에 의한 신뢰성 평가 및 신뢰성기반 설계(3/3)",
+      "org": "한국연구재단",
+      "period": "2013-09-01~2014-08-31"
+    },
+    {
+      "title": "대용량 원심팬 신뢰성 해석기술 개발",
+      "org": "국내",
+      "period": "2013-05-27~2014-02-28"
+    },
+    {
+      "title": "지능학습기법 및 확률론적 추론에 의한 신뢰성 평가 및 신뢰성기반 설계(2/3)",
+      "org": "한국연구재단",
+      "period": "2012-09-01~2013-08-31"
+    },
+    {
+      "title": "현대모비스(주)/마모특성을 고려한 브레이크 패드의 스퀼노이즈 불안정성 해석 및 설계",
+      "org": "국내",
+      "period": "2012-04-01~2013-08-31"
+    },
+    {
+      "title": "대형 로켓엔진 추진제 공급제어 기술 (2/2)",
+      "org": "한국과학재단",
+      "period": "2012-04-01~2013-03-31"
+    },
+    {
+      "title": "나노마이크로응용기계기술인력양성사업단",
+      "org": "연세대학교",
+      "period": "2012-03-01~2014-02-28"
+    },
+    {
+      "title": "나노 마이크로 응용기계기술 인력양성사업",
+      "org": "학술진흥재단",
+      "period": "2012-03-01~2013-04-30"
+    },
+    {
+      "title": "지능학습기법 및 확률론적 추론에 의한 신뢰성 평가 및 신뢰성기반 설계 (1/3) (2011.09.01~2014.08.31)",
+      "org": "한국과학재단",
+      "period": "2011-09-01~2012-08-31"
+    },
+    {
+      "title": "대형 로켓엔진 추진제 공급제어 기술 (연구책임자 변경:윤웅섭->이종수 2011.10.04)",
+      "org": "한국과학재단",
+      "period": "2011-04-01~2012-03-31"
+    },
+    {
+      "title": "나노 마이크로 응용기계기술 인력양성사업",
+      "org": "학술진흥재단",
+      "period": "2011-03-01~2012-02-29"
+    },
+    {
+      "title": "나노마이크로응용기계기술인력양성사업단",
+      "org": "연세대학교",
+      "period": "2011-03-01~2012-02-29"
+    },
+    {
+      "title": "(주)엔지비 근사기법을 이용한 디젤엔진 배기매연 모델 개발",
+      "org": "민간기업",
+      "period": "2010-03-15~2011-05-31"
+    },
+    {
+      "title": "G-5-5-10나노마이크로응용기계기술인력양성사업단",
+      "org": "연세대학교",
+      "period": "2010-03-02~2011-06-30"
+    },
+    {
+      "title": "나노마이크로응용기계기술인력양성사업단",
+      "org": "연세대학교",
+      "period": "2010-03-01~2011-02-28"
+    },
+    {
+      "title": "나노 마이크로 응용기계기술 인력양성사업단",
+      "org": "학술진흥재단",
+      "period": "2010-03-01~2011-02-28"
+    },
+    {
+      "title": "G5-5-10/나노마이크로응용기계기술인력양성사업",
+      "org": "연세대학교",
+      "period": "2009-03-02~2010-06-30"
+    },
+    {
+      "title": "나노마이크로응용기계기술인력양성사업단",
+      "org": "연세대학교",
+      "period": "2009-03-01~2010-02-28"
+    },
+    {
+      "title": "나노마이크로응용기계기술인력양성사업단",
+      "org": "학술진흥재단",
+      "period": "2009-03-01~2010-02-28"
+    },
+    {
+      "title": "나노마이크로응용기계기술인력양성사업단",
+      "org": "학술진흥재단",
+      "period": "2008-03-01~2009-02-28"
+    },
+    {
+      "title": "G5-5-10/나노마이크로응용기계기술인력양성사업",
+      "org": "연세대학교",
+      "period": "2008-03-01~2009-02-28"
+    },
+    {
+      "title": "나노마이크로응용기계기술인력양성사업단",
+      "org": "연세대학교",
+      "period": "2008-03-01~2009-02-28"
+    },
+    {
+      "title": "실무교육 중심의 창의적 종합설계 교육모델 개발",
+      "org": "연세대학교산학단_간접비",
+      "period": "2007-07-01~2008-06-30"
+    },
+    {
+      "title": "내구성 및 신뢰성을 고려한 차량용 내비게이션 단말기의 품질공학 설계",
+      "org": "중소기업청",
+      "period": "2006-08-01~2007-01-31"
+    },
+    {
+      "title": "고속전철 관절링 피로신뢰성 평가 및 기반기술 통합 데이터베이스 프레임 개발",
+      "org": "한국철도기술연구원",
+      "period": "2005-11-01~2006-10-31"
+    },
+    {
+      "title": "고속철도 피로신뢰성 평가 및 기반기술의 통합을 위한근사모델 설정에 관한 연구",
+      "org": "한국철도기술연구원",
+      "period": "2004-11-01~2005-10-31"
+    },
+    {
+      "title": "실용교육의 시대적 요구에 따른 기계공학 실험교육 모델 개발에 관한 연구",
+      "org": "학술진흥재단",
+      "period": "2004-08-01~2005-07-31"
+    },
+    {
+      "title": "학진 대학교육과정개발 대응자금",
+      "org": "연세대학교",
+      "period": "2004-08-01~2005-07-31"
+    },
+    {
+      "title": "진화형 교통정보 안내 시스템 기술 개발",
+      "org": "중소기업청",
+      "period": "2004-05-01~2005-02-28"
+    },
+    {
+      "title": "국내 도로환경을 고려한 최적주행경로 알고리즘 개발",
+      "org": "(주)엔지비",
+      "period": "2003-12-01~2004-08-31"
+    },
+    {
+      "title": "고속철도 피로신뢰성 평가 및 기반기술의 통합을 위한근사모델 설정에 관한 연구",
+      "org": "한국철도기술연구원",
+      "period": "2003-11-01~2004-10-31"
+    },
+    {
+      "title": "실용교육의 시대적 요구에 따른 기계공학 실험교육 모델 개발에 관한 연구",
+      "org": "학술진흥재단",
+      "period": "2003-08-01~2004-07-31"
+    },
+    {
+      "title": "대학교육과정개발연구과제 2차년도 대응자금",
+      "org": "연세대학교",
+      "period": "2003-08-01~2004-07-31"
+    },
+    {
+      "title": "선바이저겸용 차량용 포터블피시의 기구해석 및 환경설계",
+      "org": "중소기업청",
+      "period": "2003-05-01~2004-02-28"
+    },
+    {
+      "title": "2.3GHZ 무선망을 이용한 텔레매틱스 시스템의 개발 및 구현",
+      "org": "하나로통신",
+      "period": "2003-01-22~2003-12-31"
+    },
+    {
+      "title": "진화형 교통정보 안내시스템 핵심기술 개발",
+      "org": "(주)엔지비",
+      "period": "2002-11-15~2003-04-14"
+    },
+    {
+      "title": "실용교육의 시대적 요구에 따른 기계공학 실험교육 모델 개발에 관한 연구",
+      "org": "학술진흥재단",
+      "period": "2002-08-01~2003-07-31"
+    },
+    {
+      "title": "학진대응",
+      "org": "연세대학교",
+      "period": "2002-08-01~2003-07-31"
+    },
+    {
+      "title": "컨넥터 접촉 불량 개선 방안에 관한 연구",
+      "org": "(주)유진전장",
+      "period": "2002-08-01~2003-07-31"
+    },
+    {
+      "title": "BK21사업-산업체대응(대학원 핵심)",
+      "org": "학술진흥재단",
+      "period": "2001-12-01~2002-11-30"
+    },
+    {
+      "title": "BK21사업-학교대응(대학원 핵심)",
+      "org": "학술진흥재단",
+      "period": "2001-12-01~2002-11-30"
+    },
+    {
+      "title": "BK21 사업(대학원 핵심분야)",
+      "org": "학술진흥재단",
+      "period": "2001-12-01~2002-11-30"
+    },
+    {
+      "title": "신뢰성 및 강건성을 고려한 기계설계 및 최적화 프레임웍 개발",
+      "org": "(재)운봉장학재단",
+      "period": "2000-12-26~2001-12-25"
+    },
+    {
+      "title": "BK21사업-산업체대응(대학원 핵심)",
+      "org": "학술진흥재단",
+      "period": "2000-12-01~2001-11-30"
+    },
+    {
+      "title": "BK21사업-학교대응(대학원 핵심)",
+      "org": "학술진흥재단",
+      "period": "2000-12-01~2001-11-30"
+    },
+    {
+      "title": "BK21 사업(대학원 핵심분야)",
+      "org": "학술진흥재단",
+      "period": "2000-12-01~2001-11-30"
+    },
+    {
+      "title": "BK21사업-산업체대응(대학원 핵심)",
+      "org": "학술진흥재단",
+      "period": "1999-12-01~2000-11-30"
+    },
+    {
+      "title": "BK21사업-학교대응(대학원 핵심)",
+      "org": "학술진흥재단",
+      "period": "1999-12-01~2000-11-30"
+    },
+    {
+      "title": "BK21 사업(대학원 핵심분야)",
+      "org": "학술진흥재단",
+      "period": "1999-12-01~2000-11-30"
+    },
+    {
+      "title": "판토그라프의 공력소음 설계",
+      "org": "생산기술연구원",
+      "period": "1999-11-01~2000-10-31"
+    }
+  ],
+  "patents": [
+    {
+      "title": "인공면역 알고리즘을 활용한 데이터의 다중분류 이상감지 시스템 및 그 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 주식회사 에이드팜",
+      "date": "2022-01-19"
+    },
+    {
+      "title": "도메인 지식 기반 설계 가능한 인공지능 모델을 이용한 성능 예측 시스템 및 그 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2021-09-06"
+    },
+    {
+      "title": "설계 가능한 생성적 적대 신경망을 적용한 도메인 적응 최적화 설계 시스템 및 그 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2021-09-03"
+    },
+    {
+      "title": "클라우드 플랫폼 서비스 기반 데이터 증강을 통한 건전성 예측 관리 모델 설계 방법 및 시스템",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2020-11-25"
+    },
+    {
+      "title": "딥 러닝 기반 설계 최적화 방법 및 시스템",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2020-11-25"
+    },
+    {
+      "title": "진동 시험기를 이용한 소재의 피로 시험 시스템",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2020-04-09"
+    },
+    {
+      "title": "클라우드 플랫폼 서비스 기반 PHM 모델의 성능 향상 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2019-11-28"
+    },
+    {
+      "title": "딥 러닝 기반 설계 최적화 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2019-11-28"
+    },
+    {
+      "title": "통계학적 분석을 통한 유한요소모델의 신뢰성 보정 및 검증 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2019-10-21"
+    },
+    {
+      "title": "풍력 발전 시스템",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2017-09-18"
+    },
+    {
+      "title": "풍력 발전 시스템",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2016-11-15"
+    },
+    {
+      "title": "풍력 발전 시스템",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2016-03-21"
+    },
+    {
+      "title": "물속 보행과 같은 효과를 갖는 재활 보행 보조 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2014-12-12"
+    },
+    {
+      "title": "보호수단을 포함하는 비행장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2014-06-04"
+    },
+    {
+      "title": "교통수단용 가변구조장치 및 이를 포함하는 교통수단용 가변구조시스템",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2014-06-04"
+    },
+    {
+      "title": "와인 산화방지장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2008-10-07"
+    },
+    {
+      "title": "차량 측면보호 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2008-10-07"
+    },
+    {
+      "title": "와인 산화방지장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2008-10-07"
+    },
+    {
+      "title": "차량 측면보호 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2008-10-07"
+    }
+  ]
+}

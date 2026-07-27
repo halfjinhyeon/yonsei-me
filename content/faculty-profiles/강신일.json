@@ -1,0 +1,3209 @@
+{
+  "name": "강신일",
+  "nameEn": "Kang Shinill",
+  "email": "snlkang@yonsei.ac.kr",
+  "phone": "02)2123-2829",
+  "office": null,
+  "homepage": null,
+  "sourceUrl": "https://me.yonsei.ac.kr/faculty/name_search.do?mode=view&userId=b1GY5tMdKXn9pcopgnOXuA%3D%3D&sosokcd=",
+  "crawledAt": "2026-07-27",
+  "articles": [
+    {
+      "date": "2025-01",
+      "title": "Integrating Aerogel into van der Waals Crystals for a High-Strength Thermal Insulator",
+      "journal": "Nano Letters"
+    },
+    {
+      "date": "2024-03",
+      "title": "Ductile mode machining of piezoelectric single crystal by laser-assisted diamond turning process",
+      "journal": "Journal of Materials Research and Technology"
+    },
+    {
+      "date": "2022-12",
+      "title": "대면적 나노구조 패턴 제작을 위한 위상 마스크 기반 스캐닝 근접장 홀로그래픽 리소그래피",
+      "journal": "한국생산제조학회지"
+    },
+    {
+      "date": "2022-09",
+      "title": "Massively parallel direct writing of nanoapertures using multi-optical probes and super-resolution near-fields",
+      "journal": "Microsystems & Nanoengineering"
+    },
+    {
+      "date": "2022-03",
+      "title": "Binary-state scanning probe microscopy for parallel imaging",
+      "journal": "NATURE COMMUNICATIONS"
+    },
+    {
+      "date": "2022-01",
+      "title": "A metallic anti-biofouling surface with a hierarchical topography containing nanostructures on curved micro-riblets",
+      "journal": "MICROSYSTEMS & NANOENGINEERING"
+    },
+    {
+      "date": "2021-06",
+      "title": "Binding characteristics of staphylococcal protein A and streptococcal protein G for fragment crystallizable portion of human immunoglobulin G",
+      "journal": "Computational and Structural Biotechnology Journal"
+    },
+    {
+      "date": "2020-06",
+      "title": "Direct replication of a glass micro Fresnel zone plate array by laser irradiation using an infrared transmissive mold",
+      "journal": "OPTICS EXPRESS"
+    },
+    {
+      "date": "2020-05",
+      "title": "Gigapixel confocal imaging using a massively parallel optical probe array with single directional infinite scanning",
+      "journal": "SCIENTIFIC REPORTS"
+    },
+    {
+      "date": "2020-02",
+      "title": "Near-field sub-diffraction photolithography with an elastomeric photomask",
+      "journal": "NATURE COMMUNICATIONS"
+    },
+    {
+      "date": "2019-12",
+      "title": "A Design Methodology for Casting Ladle to Minimize Air Entrapment and Oxide Inclusion: An Application to Permanent Mold Casting Process",
+      "journal": "MATERIALS TRANSACTIONS"
+    },
+    {
+      "date": "2019-06",
+      "title": "Replication of high refractive index glass microlens array by imprinting in conjunction with laser assisted rapid surface heating for high resolution confocal microscopy imaging",
+      "journal": "OPTICS EXPRESS"
+    },
+    {
+      "date": "2019-06",
+      "title": "The effect of oxidation concentration on the adhesion between flexible substrate and metal layer in metal transfer process using UV curable polymer",
+      "journal": "JOURNAL OF MICROMECHANICS AND MICROENGINEERING"
+    },
+    {
+      "date": "2019-05",
+      "title": "Active Accumulation of Spherical Analytes on Plasmonic Hot Spots of Double-Bent Au Strip Arrays by Multiple Dip-Coating",
+      "journal": "NANOMATERIALS"
+    },
+    {
+      "date": "2019-02",
+      "title": "Megahertz-wave-transmitting conducting polymer electrode for device-to-device integration",
+      "journal": "NATURE COMMUNICATIONS"
+    },
+    {
+      "date": "2019-02",
+      "title": "Sustainable Manufacturing of High-Precision, Heat-Resistant Aspherical Lenses Using Ultraviolet Illumination With Prognosis of Remaining Useful Life",
+      "journal": "JOURNAL OF MANUFACTURING SCIENCE AND ENGINEERING-TRANSACTIONS OF THE ASME"
+    },
+    {
+      "date": "2019-01",
+      "title": "Electrical, Structural, Optical, and Adhesive Characteristics of Aluminum-Doped Tin Oxide Thin Films for Transparent Flexible Thin-Film Transistor Applications",
+      "journal": "MATERIALS"
+    },
+    {
+      "date": "2018-12",
+      "title": "Sustainable Fabrication of Glass Nanostructures Using Infrared Transparent Mold Assisted by CO2 Laser Scanning Irradiation",
+      "journal": "JOURNAL OF MANUFACTURING SCIENCE AND ENGINEERING-TRANSACTIONS OF THE ASME"
+    },
+    {
+      "date": "2018-10",
+      "title": "근사 최적 기법을 이용한 변성 폴리페닐렌 옥사이드 폴리머의 점소성 모델 보정 연구",
+      "journal": "Transactions of the Korean Society of Mechanical Engineers, A"
+    },
+    {
+      "date": "2018-08",
+      "title": "Real-Time Compensation of Simultaneous Errors Induced by Optical Phase Difference and Substrate Motion in Scanning Beam Laser Interference Lithography System",
+      "journal": "IEEE-ASME TRANSACTIONS ON MECHATRONICS"
+    },
+    {
+      "date": "2018-07",
+      "title": "Effect of EOG Signal Filtering on the Removal of Ocular Artifacts and EEG-Based Brain-Computer Interface: A Comprehensive Study",
+      "journal": "COMPLEXITY"
+    },
+    {
+      "date": "2018-04",
+      "title": "Modulation of the effective density and refractive index of carbon nanotube forests via nanoimprint lithography",
+      "journal": "CARBON"
+    },
+    {
+      "date": "2018-03",
+      "title": "Acoustically sticky topographic metasurfaces for underwater sound absorption",
+      "journal": "JOURNAL OF THE ACOUSTICAL SOCIETY OF AMERICA"
+    },
+    {
+      "date": "2018-02",
+      "title": "Transparent, Flexible, Conformal Capacitive Pressure Sensors with Nanoparticles",
+      "journal": "SMALL"
+    },
+    {
+      "date": "2018-01",
+      "title": "Scalable fabrication of flexible multi-level nanoimprinting molds with uniform heights via a ‘top-to-bottom’ level patterning sequence",
+      "journal": "APPLIED SURFACE SCIENCE"
+    },
+    {
+      "date": "2017-11",
+      "title": "Rough-Surface-Enabled Capacitive Pressure Sensors with 3D Touch Capability",
+      "journal": "SMALL"
+    },
+    {
+      "date": "2017-04",
+      "title": "Temperature influenced chemical growth of hydrous copper oxide/hydroxide thin film electrodes for high performance supercapacitors",
+      "journal": "JOURNAL OF ALLOYS AND COMPOUNDS"
+    },
+    {
+      "date": "2017-02",
+      "title": "Controllable sulfuration engineered NiO nanosheets with enhanced capacitance for high rate supercapacitors",
+      "journal": "JOURNAL OF MATERIALS CHEMISTRY A"
+    },
+    {
+      "date": "2017-02",
+      "title": "Hierarchical MnCo-layered double hydroxides@Ni(OH)(2) core-shell heterostructures as advanced electrodes for supercapacitors",
+      "journal": "JOURNAL OF MATERIALS CHEMISTRY A"
+    },
+    {
+      "date": "2016-12",
+      "title": "액적 충돌 거동에 대한 표면 패턴의 영향에 관한 연구",
+      "journal": "마이크로전자 및 패키징학회지"
+    },
+    {
+      "date": "2016-11",
+      "title": "Observation of scattering parameters for bandgap-tuned graphene oxide under 488 nm illumination",
+      "journal": "CARBON"
+    },
+    {
+      "date": "2016-09",
+      "title": "Design methodology for a confocal imaging system using an objective microlens array with an increased working distance",
+      "journal": "SCIENTIFIC REPORTS"
+    },
+    {
+      "date": "2016-09",
+      "title": "Reduced graphene oxide enwrapped phosphors for long-term thermally stable phosphor converted white light emitting diodes",
+      "journal": "SCIENTIFIC REPORTS"
+    },
+    {
+      "date": "2016-08",
+      "title": "Design methodology for nano-engineered surfaces to control adhesion: Application to the anti-adhesion of particles",
+      "journal": "APPLIED SURFACE SCIENCE"
+    },
+    {
+      "date": "2016-08",
+      "title": "Design methodology for micro-discrete planar optics with minimum illumination loss for an extended source",
+      "journal": "OPTICS EXPRESS"
+    },
+    {
+      "date": "2016-07",
+      "title": "Design principle of super resolution near-field structure using thermally responsive optical phase change materials for nanolithography applications",
+      "journal": "MATERIALS & DESIGN"
+    },
+    {
+      "date": "2016-06",
+      "title": "The effect of mold materials on the overlay accuracy of a roll-to-roll imprinting system using UV LED illumination within a transparent mold",
+      "journal": "JOURNAL OF MICROMECHANICS AND MICROENGINEERING"
+    },
+    {
+      "date": "2016-04",
+      "title": "High-throughput detection of human salivary cortisol using amultiple optical probe based scanning system with micro-optics andnanograting coupled label-free microarray",
+      "journal": "SENSORS AND ACTUATORS B-CHEMICAL"
+    },
+    {
+      "date": "2016-04",
+      "title": "Surface plasmon enhancement of photoluminescence in photo-chemically synthesized graphene quantum dot and Au nanosphere",
+      "journal": "NANO RESEARCH"
+    },
+    {
+      "date": "2016-04",
+      "title": "Fabrication of ultra-high energy and power asymmetric supercapacitors based on hybrid 2D MoS2/Graphene oxide composite electrodes: A binder free approach",
+      "journal": "RSC ADVANCES"
+    },
+    {
+      "date": "2016-03",
+      "title": "High-concentration dispersion of exfoliated MoS2 sheet stabilized by freeze-dried silk fibroin powder",
+      "journal": "NANO RESEARCH"
+    },
+    {
+      "date": "2016-03",
+      "title": "Fundamental Monomeric Biomaterial Diagnostics by Radio-frequency Signal Analysis",
+      "journal": "BIOSENSORS & BIOELECTRONICS"
+    },
+    {
+      "date": "2016-03",
+      "title": "Drag reduction using metallic engineered surfaces with highly ordered hierarchical topographies nanostructures on micro-riblets",
+      "journal": "APPLIED SURFACE SCIENCE"
+    },
+    {
+      "date": "2016-02",
+      "title": "Graphene-Iodine Nanocomposites Highly Potent Bacterial Inhibitors that are Bio-compatible with Human Cells",
+      "journal": "SCIENTIFIC REPORTS"
+    },
+    {
+      "date": "2016-01",
+      "title": "Copper Hydroxide Nanorods Decorated Porous Graphene Foam Electrodes for Non-enzymatic Glucose Sensing",
+      "journal": "ELECTROCHIMICA ACTA"
+    },
+    {
+      "date": "2015-12",
+      "title": "Impact of different nanostructures of a PEDOT decorated 3D multilayered graphene foam by chemical methods on supercapacitive performance",
+      "journal": "RSC ADVANCES"
+    },
+    {
+      "date": "2015-11",
+      "title": "Effect of Alumina Composition and Surface Integrity in Aluminaepoxy Composites on the Ultrasonic Attenuation Properties",
+      "journal": "ULTRASONICS"
+    },
+    {
+      "date": "2015-10",
+      "title": "Design and fabrication of a large-area superhydrophobic metal surfacewith anti-icing properties engineered using a top-down approach",
+      "journal": "APPLIED SURFACE SCIENCE"
+    },
+    {
+      "date": "2015-09",
+      "title": "Fabrication of superhydrophobic surfaces with nano-in-microstructures using UV-nanoimprint lithography and thermal shrinkage films",
+      "journal": "APPLIED SURFACE SCIENCE"
+    },
+    {
+      "date": "2015-07",
+      "title": "Design methodology accounting for fabrication errors in manufactured modified Fresnel lenses for controlled LED illumination",
+      "journal": "OPTICS EXPRESS"
+    },
+    {
+      "date": "2015-01",
+      "title": "Formation of multilayered magnetic nanotracks with perpendicular anisotropy via deoxidization using ion irradiation on ultraviolet-imprinted intaglio nanostructures",
+      "journal": "APPLIED PHYSICS LETTERS"
+    },
+    {
+      "date": "2014-12",
+      "title": "Label-free detection of protein-protein interactions on multi-scale micro-well arrays using spatial light modulator",
+      "journal": "APPLIED PHYSICS LETTERS"
+    },
+    {
+      "date": "2014-12",
+      "title": "Fabrication of a metallic roll stamp with low internal stress and high hardness for large area display applications by a pulse reverse current electroforming process",
+      "journal": "JOURNAL OF MICROMECHANICS AND MICROENGINEERING"
+    },
+    {
+      "date": "2014-11",
+      "title": "Controlled electrochemical growth of Co(OH)2 flakes on 3D multilayered graphene foam for high performance supercapacitors",
+      "journal": "JOURNAL OF MATERIALS CHEMISTRY A"
+    },
+    {
+      "date": "2013-10",
+      "title": "Development of Direct Deep Reactive Ion Etching Process Using Laser Interference Lithographed Etch Barrier without Intermediate Layer",
+      "journal": "JAPANESE JOURNAL OF APPLIED PHYSICS"
+    },
+    {
+      "date": "2013-10",
+      "title": "Effects of Fabrication Errors on the Sensitivity of Nano-Replicated Guided Mode Resonance Protein Sensors",
+      "journal": "JAPANESE JOURNAL OF APPLIED PHYSICS"
+    },
+    {
+      "date": "2013-06",
+      "title": "Development of micro-objective lens array for large field-of-view multi-optical probe confocal microscopy",
+      "journal": "JOURNAL OF MICROMECHANICS AND MICROENGINEERING"
+    },
+    {
+      "date": "2013-03",
+      "title": "급성 심근경색 검지를 위한 비표지식 단백질 센서 제작 및 검증에 관한 연구",
+      "journal": "정보저장시스템학회논문집"
+    },
+    {
+      "date": "2012-11",
+      "title": "Development of optical system with rotational misalignment adjustment for multi-optical-probe confocal microscopy",
+      "journal": "JOURNAL OF VACUUM SCIENCE & TECHNOLOGY B"
+    },
+    {
+      "date": "2012-09",
+      "title": "Nanoscale patterning of complex magnetic nanostructures by reduction with low-energy protons",
+      "journal": "NATURE NANOTECHNOLOGY"
+    },
+    {
+      "date": "2012-06",
+      "title": "Elimination of nanovoids induced during electroforming of metallic nanostamps with high-aspect-ratio nanostructures by the pulse reverse current electroforming process",
+      "journal": "JOURNAL OF MICROMECHANICS AND MICROENGINEERING"
+    },
+    {
+      "date": "2012-02",
+      "title": "Deburring microparts using a magnetorheological fluid",
+      "journal": "INTERNATIONAL JOURNAL OF MACHINE TOOLS & MANUFACTURE"
+    },
+    {
+      "date": "2011-11",
+      "title": "Effect of the Acceleration Energy of Hydrogen Ion Irradiation on Perpendicular Magnetic Anisotropy in CoOx/Pd Multilayer Films",
+      "journal": "APPLIED PHYSICS EXPRESS"
+    },
+    {
+      "date": "2011-07",
+      "title": "Development of a Two-Chamber Process for Self-Assembling a Fluorooctatrichlorosilane Monolayer for the Nanoimprinting of Full-Track Nanopatterns with a 35 nm Half Pitch",
+      "journal": "JOURNAL OF NANOSCIENCE AND NANOTECHNOLOGY"
+    },
+    {
+      "date": "2011-04",
+      "title": "A Method for Evaluation of an Optical Image Stabilizer in an Image Sensor Module",
+      "journal": "INTERNATIONAL JOURNAL OF PRECISION ENGINEERING AND MANUFACTURING"
+    },
+    {
+      "date": "2011-01",
+      "title": "Reverse functional design of discontinuous refractive optics using an extended light source for flat illuminance distributions and high color uniformity",
+      "journal": "OPTICS EXPRESS"
+    },
+    {
+      "date": "2011-01",
+      "title": "Design and Fabrication of Label-Free Biochip Using a Guided Mode Resonance Filter with Nano Grating Structures by Injection Molding Process",
+      "journal": "JOURNAL OF NANOSCIENCE AND NANOTECHNOLOGY"
+    },
+    {
+      "date": "2010-04",
+      "title": "Eliminating hotspots in a multi-chip LED array direct backlight system with optimal patterned reflectors for uniform illuminance and minimal system thickness",
+      "journal": "Optics Express"
+    },
+    {
+      "date": "2010-03",
+      "title": "UV 임프린팅을 통한 프레넬 렌즈 제작 시 미세 복제 특성에 관한 연구",
+      "journal": "정보저장시스템학회 논문집"
+    },
+    {
+      "date": "2010-02",
+      "title": "Modeling and Simulation of Powered Hippo Orthosis by Pneumatic Actuators",
+      "journal": "INTERNATIONAL JOURNAL OF CONTROL AUTOMATION AND SYSTEMS"
+    },
+    {
+      "date": "2009-12",
+      "title": "Effect of process conditions on the properties of conductive tracks in direct imprinting and sintering of metal nano-powders",
+      "journal": "JOURNAL OF MICROMECHANICS AND MICROENGINEERING"
+    },
+    {
+      "date": "2009-09",
+      "title": "Elimination of flux loss by optimizing the groove angle in modified Fresnel lens to increase illuminance uniformity, color uniformity and flux efficiency in LED illumination",
+      "journal": "Optics Express"
+    },
+    {
+      "date": "2009-07",
+      "title": "Unlockable knee joint mechanism for powered gait orthosis",
+      "journal": "INTERNATIONAL JOURNAL OF PRECISION ENGINEERING AND MANUFACTURING"
+    },
+    {
+      "date": "2009-06",
+      "title": "나노 복제 기술을 이용한 나노 패턴의 제작 및 응용 기술",
+      "journal": "한국정밀공학회지"
+    },
+    {
+      "date": "2009-05",
+      "title": "Fabrication of transparent conductive tracks and patterns on flexible substrate using a continuous UV roll imprint lithography",
+      "journal": "Journal of Physics D-Applied Physics"
+    },
+    {
+      "date": "2009-05",
+      "title": "Design and Fabrication of Perpendicular Patterned Magnetic Media Using Nanoimprinted Nano Pillar Patterns",
+      "journal": "IEEE TRANSACTIONS ON MAGNETICS"
+    },
+    {
+      "date": "2009-05",
+      "title": "Application of Organic/Inorganic Hybrid Photopolymer to Fabricate Ultra-High-Density Patterned Substrate",
+      "journal": "IEEE TRANSACTIONS ON MAGNETICS"
+    },
+    {
+      "date": "2009-05",
+      "title": "Fabrication of Metallic Nano Stamp to Replicate Patterned Substrate Using Electron-Beam Recording, Nanoimprinting, and Electroforming",
+      "journal": "IEEE TRANSACTIONS ON MAGNETICS"
+    },
+    {
+      "date": "2009-05",
+      "title": "Measurement and Analysis of Magnetic Domain Properties of High-Density Patterned Media by Magnetic Force Microscopy",
+      "journal": "IEEE TRANSACTIONS ON MAGNETICS"
+    },
+    {
+      "date": "2008-12",
+      "title": "MICRO FORMING OF GLASS MICROLENS ARRAY USING AN IMPRINTED AND SINTERED TUNGSTEN CARBIDE MICRO MOLD",
+      "journal": "International Journal of Modern Physics B"
+    },
+    {
+      "date": "2008-10",
+      "title": "디스크 브레이크 허브 볼트의 억지 끼워 맞춤에서 발생하는 소성변형의 해석",
+      "journal": "소성가공"
+    },
+    {
+      "date": "2008-08",
+      "title": "Design and Evaluation of Wafer Level UV-Imprinted Aspherical Square Microlens Array to Increase Ray Convergence Efficiency of Image Sensor",
+      "journal": "Japanese Journal of Applied Physics"
+    },
+    {
+      "date": "2008-08",
+      "title": "Fabrication of Hybrid Microoptics Using UV Imprinting Process with Shrinkage Compensation Method",
+      "journal": "Japanese Journal of Applied Physics"
+    },
+    {
+      "date": "2008-08",
+      "title": "Design of Microlens Array on Aperture Stop Array to Generate Multi Optical Probes with Spatial Light Modulation",
+      "journal": "Japanese Journal of Applied Physics"
+    },
+    {
+      "date": "2008-08",
+      "title": "Design of Hybrid Lens for Compact Camera Module Considering Diffraction Effect",
+      "journal": "Japanese Journal of Applied Physics"
+    },
+    {
+      "date": "2008-07",
+      "title": "Design and analysis of replicated solid immersion lens for large thickness tolerance in near-field recording",
+      "journal": "Japanese Journal of Applied Physics"
+    },
+    {
+      "date": "2008-03",
+      "title": "Injection molding of nanopillars for perpendicular patterned magnetic media with metallic nanostamp",
+      "journal": "Japanese Journal of Applied Physics"
+    },
+    {
+      "date": "2008-03",
+      "title": "Development of method to model surface of reflowed square microlens for image sensor",
+      "journal": "Electronics Letters"
+    },
+    {
+      "date": "2007-10",
+      "title": "포토폴리머 활용 마이크로/나노 UV성형",
+      "journal": "기계저널"
+    }
+  ],
+  "awards": [
+    {
+      "title": "우수업적교수상 (연구부문)",
+      "contents": "2017년도 연세대학교 우수업적교수로 선정",
+      "date": "2018-03-30"
+    },
+    {
+      "title": "제7회 나노 임프린트.몰딩.프린트 학술대회 Best Poster Award",
+      "contents": "급성 심근 경색 바이오마커 트로포닌 T의 비표지 검지를 위한 SPR 센서 설계에 관한 연구",
+      "date": "2018-02-02"
+    },
+    {
+      "title": "제6회 나노 임프린트 몰딩 프린트 학술대회 Best Poster Award",
+      "contents": "UV경화 폴리머 사출 공정을 이용하는 나노구조 성형 방법에 관한 연구",
+      "date": "2017-02-15"
+    },
+    {
+      "title": "NANO KOREA 2016 Best Poster Award",
+      "contents": "Real-time Control of Beam Scanning System to Compensate Error due to Environmental Factors in Laser Interference Lithography",
+      "date": "2016-07-15"
+    },
+    {
+      "title": "한국생산제조시스템학회 산학협동 최우수상",
+      "contents": "2016년 대한민국 생산제조기술 혁신대회 산학협동 최우수 선정",
+      "date": "2016-04-29"
+    },
+    {
+      "title": "한국생산제조시스템학회 2015 생산제조기술 선도연구실 선정",
+      "contents": "2015년 대한민국 생산제조 기술 선도연구실 선정",
+      "date": "2015-10-14"
+    },
+    {
+      "title": "한국생산제조시스템학회 기술융합 우수성과상",
+      "contents": "기술융합 우수성과상",
+      "date": "2015-04-29"
+    },
+    {
+      "title": "2014학년도 우수강의교수상",
+      "contents": "2014학년도 우수강의",
+      "date": "2015-02-27"
+    },
+    {
+      "title": "제4회 나노 임프린트.몰딩.프린트 학술대회 Best Poster Award",
+      "contents": "레이저 간섭 리소그래피와 Deep Reactive Ion Etching 공정을 통한 대면적 고세장비 패턴 제작에 관한 연구",
+      "date": "2015-02-11"
+    },
+    {
+      "title": "Journal Reviewer Certificate",
+      "contents": "Serving as a reviewer for Optical Engineering during the calendar year of 2014 Presented",
+      "date": "2015-01-26"
+    },
+    {
+      "title": "2014년도 기초연구사업 우수평가자",
+      "contents": "2014년도 기초연구사업 우수평가자",
+      "date": "2015-01-23"
+    },
+    {
+      "title": "International Symposium on Green Manufacturing and Applications ISGMA 2014 Best Poster Award",
+      "contents": "International Symposium on Green Manufacturing and Applications ISGMA 2014 Best Poster Award",
+      "date": "2014-06-26"
+    },
+    {
+      "title": "중견연구자지원사업 최종평가 최우수(S등급)",
+      "contents": "중견연구자지원사업(도약연구) 최우수 등급(S등급)",
+      "date": "2014-06-24"
+    },
+    {
+      "title": "한국생산제조시스템학회 기술혁신상 학술부문",
+      "contents": "우리나라의 생산제조기술의 발전 및 첨단화를 통하여 생산제조기술 최강국 반열에 오르는데 학술부문에서 기여한 공로가 큰 것으로 평가되어 본상을 수상함.",
+      "date": "2014-04-29"
+    },
+    {
+      "title": "2013년도 우수업적교수상",
+      "contents": "국외 저역서(John Wiley & Sons) 관련 연구업적 우수상 수상",
+      "date": "2014-02-19"
+    },
+    {
+      "title": "제3회 나노 임프린트, 몰딩, 프린트 학술대회 Best Poster Award",
+      "contents": "수소이온 조사 자성 패턴 제작을 위한 나노임프린팅 리소그래피 기술 개발",
+      "date": "2014-02-13"
+    },
+    {
+      "title": "Japanese Journal of Applied Physics Spotlight paper 선정",
+      "contents": "Journal Spotlight paper 선정",
+      "date": "2013-11-06"
+    },
+    {
+      "title": "한국정밀공학회 2013 춘계학술대회 최우수 논문 발표상",
+      "contents": "한국정밀공학회 2013 춘계학술대회 최우수 발표 논문 선정",
+      "date": "2013-11-01"
+    },
+    {
+      "title": "NANO KOREA 2013 Best Poster Award",
+      "contents": "The 11th International Nanotech Symposium(NANO KOREA 2013 )",
+      "date": "2013-07-12"
+    },
+    {
+      "title": "2012학년도 우수강의교수상",
+      "contents": "2012학년도 우수강의",
+      "date": "2013-02-28"
+    },
+    {
+      "title": "제2회 나노 임프린트.몰딩.프린트 학술대회 Best Poster Award",
+      "contents": "제2회 나노 임프린트.몰딩.프린트 학술대회 Best Poster Award",
+      "date": "2013-02-14"
+    },
+    {
+      "title": "한국생산제조시스템학회 2011 추계학술대회 논문 우수발표상",
+      "contents": "한국생산제조시스템학회 2011추계학술대회 우수 발표 논문 선정",
+      "date": "2012-04-26"
+    },
+    {
+      "title": "2011학년도 우수강의교수상",
+      "contents": "2011학년도 우수강의",
+      "date": "2012-04-23"
+    },
+    {
+      "title": "제 1회 나노 임프린트.몰딩.프린트 학술대회 Best Poster Award",
+      "contents": "제 1회 나노 임프린트.몰딩.프린트 학술대회",
+      "date": "2012-02-24"
+    },
+    {
+      "title": "NANO KOREA 2011 Best Poster Award",
+      "contents": "The 9th International Nanotech Symposium(NANO KOREA 2011 )",
+      "date": "2011-08-26"
+    },
+    {
+      "title": "제33회 산학협동상 대상",
+      "contents": "제33회 산학협동상 대상 ((주)JMI와 나노 스탬프 및 나노 사출성형 공정과 관련한 공동연구)",
+      "date": "2011-05-18"
+    },
+    {
+      "title": "2010학년도 우수강의교수상",
+      "contents": "2010학년도 우수강의",
+      "date": "2011-04-20"
+    },
+    {
+      "title": "한국생산제조시스템학회 2011 춘계학술대회 논문 우수발표상",
+      "contents": "GMR 프로틴칩의 성형 및 특성 분석에 관한 연구",
+      "date": "2011-04-15"
+    },
+    {
+      "title": "한국생산제조시스템학회 2011 춘계학술대회 논문 우수발표상",
+      "contents": "롤 임프린트 리소그래피 공정을 이용한 유연 기판상의 마이크로 패턴 제작에 관한 연구",
+      "date": "2011-04-15"
+    },
+    {
+      "title": "2010년도 우수업적교수상",
+      "contents": "2010년도 우수업적 교수상 수상",
+      "date": "2011-02-18"
+    },
+    {
+      "title": "연세대학교 우수연구실적표창",
+      "contents": "우수연구실적표창 - 산학협동부문(발생년도 2009학년도)",
+      "date": "2010-12-08"
+    },
+    {
+      "title": "국가연구개발사업 2010 기초연구 우수성과",
+      "contents": "교육과학기술부 연구개발사업 2010 기초연구 우수성과(원천기술개발사업-21세기 프론티어연구개발사업-나노융합)",
+      "date": "2010-10-26"
+    },
+    {
+      "title": "연세대학교 우수강의 교수상",
+      "contents": "연세대학교 우수강의 교수상",
+      "date": "2010-04-19"
+    },
+    {
+      "title": "연세대학교 우수연구실적표창",
+      "contents": "우수연구실적표창 - 산학협동부문(발생년도 2008학년도)",
+      "date": "2009-12-22"
+    },
+    {
+      "title": "Outstanding Poster Award",
+      "contents": "Measurement and Analysis of Magnetic Domain Properties of High-Density Patterned Media by Magnetic Force Microscopy",
+      "date": "2008-12-17"
+    },
+    {
+      "title": "2006년도 우수연구실적표창",
+      "contents": "우수연구실적표창(2006학년도)",
+      "date": "2007-10-31"
+    },
+    {
+      "title": "2005학년도 연구업적 우수교원",
+      "contents": "연세대학교 2005학년도 연구업적 우수교원",
+      "date": "2006-06-01"
+    },
+    {
+      "title": "2004학년도 연구업적 우수교원",
+      "contents": "우수교원",
+      "date": "2005-04-01"
+    },
+    {
+      "title": "나노메카트로닉스 기술개발사업 3차년도 최우수 연구팀상 (세부주관연구책임자)",
+      "contents": "3차년도 최우수 연구팀상 (연구책임자)",
+      "date": "2005-03-15"
+    },
+    {
+      "title": "2003학년도 연구업적 우수교원",
+      "contents": "우수교원",
+      "date": "2004-04-28"
+    },
+    {
+      "title": "나노메카트로닉스 기술개발사업 1차년도 최우수 연구팀상",
+      "contents": "최우수 연구팀상",
+      "date": "2003-08-20"
+    },
+    {
+      "title": "2002학년도 연구업적 우수교원",
+      "contents": "우수교원",
+      "date": "2003-04-15"
+    }
+  ],
+  "conferences": [
+    {
+      "title": "Nano-Micro Hierarchical Structures on Metallic Surface for Seawater Anti-Biofouling",
+      "conference": "The 2nd International Symposium on Micro & Nano Manufacturing",
+      "period": "2024.12.11~2024.12.14"
+    },
+    {
+      "title": "Real time compensation of scanning angle error in scanning beam interference lithography for constructing precise periodic nanostructures",
+      "conference": "The 2nd International Symposium on Micro & Nano Manufacturing",
+      "period": "2024.12.11~2024.12.14"
+    },
+    {
+      "title": "생체 모방형 마이크로/나노 계층 구조 금속 표면을 통한 수중 생물 부착 방지 연구",
+      "conference": "제6회 연세대학교 기계공학과 대학원생 학술대회",
+      "period": "2024.11.12~2024.11.12"
+    },
+    {
+      "title": "Development of a Non-Enzymatic Glucose Sensor Electrode with Copper Hydroxide Nanorods on Porous Graphene Foam",
+      "conference": "2024년 한국센서학회 추계학술대회",
+      "period": "2024.09.04~2024.09.06"
+    },
+    {
+      "title": "Design and Fabrication of nano photonic protein sensor using nano-injection molding process",
+      "conference": "Program of the Japan-Korea Plastic Processing Symposium 2023",
+      "period": "2023.08.25~2023.08.25"
+    },
+    {
+      "title": "머신 러닝 기반 비접촉 생체 신호 모니터링 시스템 설계",
+      "conference": "한국생산제조학회 2023 춘계학술대회",
+      "period": "2023.07.12~2023.07.15"
+    },
+    {
+      "title": "phase-shift grating interferometry를 이용한 스캐닝 빔 간섭 리소그래피 빔 정렬 시스템 개발",
+      "conference": "한국생산제조학회 2023 춘계학술대회",
+      "period": "2023.07.12~2023.07.15"
+    },
+    {
+      "title": "Design and fabrication of nano engineered anti-bacterial surface",
+      "conference": "The 1st International Symposium on Micro & Nano Manufacturing (ISMNM2023)",
+      "period": "2023.07.12~2023.07.15"
+    },
+    {
+      "title": "Chip scale imaging for semiconductor wafer inspection",
+      "conference": "The 1st International Symposium on Micro & Nano Manufacturing (ISMNM2023)",
+      "period": "2023.07.12~2023.07.15"
+    },
+    {
+      "title": "초고해상도 근접장 효과를 갖는 상변화 마스크 및 병렬 어레이 광 프로브 기반 대면적 라이팅 시스템",
+      "conference": "한국생산제조학회 2022년 추계학술대회",
+      "period": "2022.12.12~2022.12.14"
+    },
+    {
+      "title": "초미세 생체 모방 계층 구조 방오 표면 개발",
+      "conference": "한국생산제조학회 2022년 추계학술대회",
+      "period": "2022.12.12~2022.12.14"
+    },
+    {
+      "title": "Development of biomimetic metal surface with nano-features in curved micro-features",
+      "conference": "The 10th International Conference of Manufacturing Technology Engineers 2022",
+      "period": "2022.05.25~2022.05.26"
+    },
+    {
+      "title": "Development of large-scale parallel direct writing of nanoapertures",
+      "conference": "The 10th International Conference of Manufacturing Technology Engineers 2022",
+      "period": "2022.05.25~2022.05.26"
+    },
+    {
+      "title": "Development of confocal imaging system using optical probe array module with expanded working distance",
+      "conference": "The 10th International Conference of Manufacturing Technology Engineers 2022",
+      "period": "2022.05.25~2022.05.26"
+    },
+    {
+      "title": "A chip-scale parallel micro-confocal imaging system using multi-optical probes",
+      "conference": "2021 OSA Imaging and Applied Optics Congress",
+      "period": "2021.07.19~2021.07.23"
+    },
+    {
+      "title": "Binding forces between Protein A on Magnetic bead, Anti-GFP antibody and GFP Expressing Human Umbilical Vein Endothelial Cells",
+      "conference": "한국생산제조학회 2021년 춘계학술대회",
+      "period": "2021.07.07~2021.07.09"
+    },
+    {
+      "title": "다중 광 프로브를 이용한 칩스케일 공초점 이미징 엔진 개발",
+      "conference": "한국생산제조학회 2021년 춘계학술대회",
+      "period": "2021.07.07~2021.07.09"
+    },
+    {
+      "title": "비표지식 다중 결합 검지 플랫폼 시스템 제작에 관한 연구",
+      "conference": "한국생산제조학회 2021년 춘계학술대회",
+      "period": "2021.07.07~2021.07.09"
+    },
+    {
+      "title": "이중 상변화막 마스크를 이용한 근접장 나노리소그래피 해상도 향상 연구",
+      "conference": "한국생산제조학회 2021년 춘계학술대회",
+      "period": "2021.07.07~2021.07.09"
+    },
+    {
+      "title": "Very large area confocal imaging using a parallelogram array multi-optical probes with single directional scanning",
+      "conference": "The 9th International Conference of Manufacturing Technology Engineers 2022",
+      "period": "2020.10.19~2020.10.20"
+    },
+    {
+      "title": "유리 마이크로 프레넬 존 플레이트 어레이 급속 성형",
+      "conference": "한국소성가공학회 2020년도 춘계학술대회",
+      "period": "2020.06.25~2020.06.26"
+    },
+    {
+      "title": "마이크로-나노 계층 구조의 마이크로 웰 어레이 성형을 통한 국부적 표면 플라즈몬 공명 바이오 센서 플랫폼 개발",
+      "conference": "한국소성가공학회 2020년도 춘계학술대회",
+      "period": "2020.06.25~2020.06.26"
+    },
+    {
+      "title": "대면적 나노구조 패턴 제작을 위한 레이저 간섭 리소그래피 기술을 활용한 가간섭성 회절 기술에 관한 연구",
+      "conference": "한국생산제조학회 2019년도 추계학술대회",
+      "period": "2019.11.06~2019.11.08"
+    },
+    {
+      "title": "유동, 구조해석 연계를 통한 플라스틱 사출 성형 부품 품질 개선을 위한 동시해석법 개발",
+      "conference": "한국소성가공학회 2019년도 춘계학술대회",
+      "period": "2019.05.09~2019.05.10"
+    },
+    {
+      "title": "안티아이싱 기능표면에서의 디아이싱 능동제어",
+      "conference": "한국생산제조학회 2019년도 춘계학술대회",
+      "period": "2019.05.01~2019.05.03"
+    },
+    {
+      "title": "레이저 기반 급속 표면 가열을 통한 유리 나노 성형",
+      "conference": "한국생산제조학회 2019년도 춘계학술대회",
+      "period": "2019.05.01~2019.05.03"
+    },
+    {
+      "title": "확장 가능한 시야각과 긴 작동거리를 가지는 다중 광 프로브 기반 공초점 이미징 시스템 개발",
+      "conference": "한국생산제조학회 2019년도 춘계학술대회",
+      "period": "2019.05.01~2019.05.03"
+    },
+    {
+      "title": "상변화 박막을 이용한 마스크 제작 및 나노 패터닝에 관한 연구",
+      "conference": "제 8회 나노 임프린트-몰딩-프린트 학술대회",
+      "period": "2019.02.19~2019.02.19"
+    },
+    {
+      "title": "나노 사출 성형을 이용한 LSPR 단백질 바이오센서 제작기술 개발",
+      "conference": "제 8회 나노 임프린트-몰딩-프린트 학술대회",
+      "period": "2019.02.19~2019.02.19"
+    },
+    {
+      "title": "Design and fabrication of normal incident surface plasmon resonance sensor using nano-imprinting for detecting cardiac troponin T, biomarker for myocardial infarction",
+      "conference": "NANOPIA2018",
+      "period": "2018.11.07~2018.11.09"
+    },
+    {
+      "title": "Development of functional nano engineerd surface to improve anti-icing property",
+      "conference": "NANOPIA2018",
+      "period": "2018.11.07~2018.11.09"
+    },
+    {
+      "title": "Investigation of the enhanced natural convection on a nano-engineered surface",
+      "conference": "International Conference of Manufacturing Technology Engineers (ICMTE) 2018",
+      "period": "2018.10.02~2018.10.05"
+    },
+    {
+      "title": "Nanolithography using Phase Change Mask with Sb55Se45",
+      "conference": "NANO KOREA 2018",
+      "period": "2018.07.10~2018.07.13"
+    },
+    {
+      "title": "상변화 마스크를 이용한 나노 리소그래피에 관한 연구",
+      "conference": "한국소성가공학회 2018년도 춘계학술대회",
+      "period": "2018.05.17~2018.05.18"
+    },
+    {
+      "title": "확산 광원의 Illumination loss를 최소화를 위한 LED 광학계 설계 방법에 관한 연구",
+      "conference": "한국생산제조학회 2018년도 춘계학술대회",
+      "period": "2018.05.02~2018.05.04"
+    },
+    {
+      "title": "대면적 나노 패턴 제작을 위한 유연기판상 메타물질 기반 슈퍼렌즈 플랫폼 시스템 설계에 관한 연구",
+      "conference": "제7회 나노 임프린트, 몰딩, 프린트 학술대회",
+      "period": "2018.02.02~2018.02.02"
+    },
+    {
+      "title": "급성 심근 경색 바이오마커 트로포닌 T의 비표지 검지를 위한 SPR 센서 설계에 관한 연구",
+      "conference": "제7회 나노 임프린트, 몰딩, 프린트 학술대회",
+      "period": "2018.02.02~2018.02.02"
+    },
+    {
+      "title": "직접적 주기 해석기법을 이용한 폴리머 소재 피로해석 기초연구",
+      "conference": "2018 한국 CDE학회 동계 학술 대회",
+      "period": "2018.01.23~2018.01.26"
+    },
+    {
+      "title": "스캐닝 간섭 리소그래피 공정 중 발생하는 오차 보정을 위한 tip tilt mirror 제어 수식에 관한 연구",
+      "conference": "한국생산제조학회 2017년도 추계학술대회",
+      "period": "2017.12.06~2017.12.08"
+    },
+    {
+      "title": "Design of a flexible metamaterial superlens system for large-area nano patterning",
+      "conference": "META 2017, the 8th International Conference on Metamaterials, Photonic Crystals and Plasmonics",
+      "period": "2017.07.25~2017.07.28"
+    },
+    {
+      "title": "Design and fabrication of label free guided mode resonance(GMR) protein sensor with nanograting structure",
+      "conference": "The 15th International Nanotech Symposium& Nano-Convergence Expo (NANO KOREA 2017)",
+      "period": "2017.07.12~2017.07.14"
+    },
+    {
+      "title": "환경 요인에 의한 오차 보정 알고리즘을 적용한 실시간 스캐닝 빔 제어 기술에 관한 연구",
+      "conference": "한국정밀공학회 2017년도 춘계학술대회",
+      "period": "2017.05.17~2017.05.19"
+    },
+    {
+      "title": "Collaborative Optimization을 이용한 인사이드 도어 핸들 일체형 하우징 최적설계",
+      "conference": "한국소성가공학회 2017년도 춘계학술대회",
+      "period": "2017.05.11~2017.05.12"
+    },
+    {
+      "title": "간섭리소그래피 공정을 통한 임의의 자유곡면 패터닝을 위한 오차 보정 모델링에 관한 연구",
+      "conference": "한국생산제조학회 2017년도 춘계학술대회",
+      "period": "2017.04.26~2017.04.28"
+    },
+    {
+      "title": "접착제가 코팅된 고분자 필름 위로의 그래핀막의 직접 전사 공정",
+      "conference": "제 6회 나노 임프린트, 몰딩, 프린트 학술대회",
+      "period": "2017.02.15~2017.02.15"
+    },
+    {
+      "title": "수직 입사 SPR 센서 설계 및 제작에 관한 연구",
+      "conference": "제 6회 나노 임프린트, 몰딩, 프린트 학술대회",
+      "period": "2017.02.15~2017.02.15"
+    },
+    {
+      "title": "PMMA-ABS 이종재료의 열융착 공정에서 용융층 두께가 접합강도에 미치는 영향에 관한 연구",
+      "conference": "제 6회 나노 임프린트, 몰딩, 프린트 학술대회",
+      "period": "2017.02.15~2017.02.15"
+    },
+    {
+      "title": "UV경화 폴리머 사출 공정을 이용하는 나노구조 성형 방법에 관한 연구",
+      "conference": "제 6회 나노 임프린트, 몰딩, 프린트 학술대회",
+      "period": "2017.02.15~2017.02.15"
+    },
+    {
+      "title": "Working distance가 길어진 마이크로 대물렌즈 어레이를 이용한 공초점 이미징 시스템 개발",
+      "conference": "한국생산제조시스템학회 2016년도 추계학술대회",
+      "period": "2016.11.02~2016.11.04"
+    },
+    {
+      "title": "반데르발스력 제어를 위한 기능성 표면 설계",
+      "conference": "한국정밀공학회 2016년도 추계학술대회",
+      "period": "2016.10.26~2016.10.28"
+    },
+    {
+      "title": "The Effect of Molten Layer Thickness on Weld Strength in Thermal Bonding of Dissimilar Plastic Materials",
+      "conference": "International Conference of Manufacturing Technology Engineers (ICMTE) 2016",
+      "period": "2016.10.05~2016.10.07"
+    },
+    {
+      "title": "고온 전사를 통한 유리 마이크로 렌즈 어레이 성형에 관한 연구",
+      "conference": "한국소성가공학회 2016년도 추계학술대회",
+      "period": "2016.10.05~2016.10.07"
+    },
+    {
+      "title": "Detection of human stress hormone (human salivary cortisol) via nanoimprinted multiscale protein sensor by label-free method",
+      "conference": "The 15th International Conference on Nanoimprint and Nanoprint",
+      "period": "2016.09.26~2016.09.28"
+    },
+    {
+      "title": "(Invited Speaker) Parallel detection of biomolecular interactions by label-free method using multi optical probes with optical modulation and multi-scale microwell arrays",
+      "conference": "The 6th International Multidisciplinary Conference on Optofluidics",
+      "period": "2016.07.24~2016.07.27"
+    },
+    {
+      "title": "Real-time Control of Beam Scanning to Compensate Error due to Environmental Factors in Laser Interference Lithography",
+      "conference": "Nano Korea 2016 The 14th International Nanotech Symposium",
+      "period": "2016.07.13~2016.07.15"
+    },
+    {
+      "title": "Multi Axis Error Compensation for Scanning Beam Lase Interference Lithography",
+      "conference": "International Symposium on Green Manufacturing and Applications 2016 (ISGMA)",
+      "period": "2016.06.21~2016.06.25"
+    },
+    {
+      "title": "Flexible Optical Head with Super Resolution Dynamic Nano Aperture for Nanolithography",
+      "conference": "International Symposium on Green Manufacturing and Applications 2016 (ISGMA)",
+      "period": "2016.06.21~2016.06.25"
+    },
+    {
+      "title": "다중 광 프로브 기반 long-working distance 공초점 이미징 시스템 개발에 관한 연구",
+      "conference": "한국정밀공학회 2016년도 춘계학술대회",
+      "period": "2016.05.11~2016.05.13"
+    },
+    {
+      "title": "마이크로 광 커플러를 이용한 공초점 이미징 시스템 구현",
+      "conference": "한국생산제조시스템학회 2016년도 춘계학술대회",
+      "period": "2016.04.27~2016.04.29"
+    },
+    {
+      "title": "용융층 두께 해석 기반 이종 플라스틱 소재 열융착 공정에 관한 연구",
+      "conference": "한국소성가공학회 2016년도 춘계학술대회",
+      "period": "2016.04.21~2016.04.22"
+    },
+    {
+      "title": "수직입사 SPR 어레이를 이용한 단백질 병렬 반응 검지 시스템 설계 및 제작",
+      "conference": "제5회 나노 임프린트, 몰딩, 프린트 학술대회",
+      "period": "2016.02.17~2016.02.17"
+    },
+    {
+      "title": "이종 플라스틱 소재간 열융착 공정에 관한 연구",
+      "conference": "한국정밀공학회 2015년도 추계학술대회",
+      "period": "2015.12.16~2015.12.18"
+    },
+    {
+      "title": "레이저 순간 국소 가열을 이용한 초미세 유리 성형에 관한 연구",
+      "conference": "한국정밀공학회 2015년도 추계학술대회",
+      "period": "2015.12.16~2015.12.18"
+    },
+    {
+      "title": "Label-free detection of human stress hormone by nanograting based protein sensors",
+      "conference": "The 2nd International Conference & Exhibition for Nanopia",
+      "period": "2015.11.11~2015.11.13"
+    },
+    {
+      "title": "Fabrication of a large-area hierarchical superhydrophobic metal surface with anti-icing properties",
+      "conference": "The 14th International Conference on Nanoimprint and Nanoprint",
+      "period": "2015.10.22~2015.10.24"
+    },
+    {
+      "title": "Replication of multi-scale label-free protein microarray with nanograting structures for parallel analysis",
+      "conference": "The 14th International Conference on Nanoimprint and Nanoprint",
+      "period": "2015.10.22~2015.10.24"
+    },
+    {
+      "title": "나노 패터닝 정밀도 향상을 위한 광학적 패턴주기 측정 및 제어에 관한 연구",
+      "conference": "한국생산제조시스템학회 2015년도 추계학술대회",
+      "period": "2015.10.14~2015.10.16"
+    },
+    {
+      "title": "나노 그레이팅 어레이 기반의 비표지식 병렬 검지 단백질 센서를 이용한 인간 감성지표 검출에 관한 연구",
+      "conference": "한국생산제조시스템학회 2015년도 추계학술대회",
+      "period": "2015.10.14~2015.10.16"
+    },
+    {
+      "title": "열반응 상변화 물질을 적용한 나노리소그래피 시스템 해석",
+      "conference": "한국생산제조시스템학회 2015년도 추계학술대회",
+      "period": "2015.10.14~2015.10.16"
+    },
+    {
+      "title": "대면적 초소수성 금속 표면의 성형 및 결빙 특성고찰",
+      "conference": "2015년도 한국소성가공학회 춘계학술대회",
+      "period": "2015.05.21~2015.05.22"
+    },
+    {
+      "title": "알루미늄 옥사이드-에폭시 복합재로 구성된 backing block의 초음파 감쇠 특성에 관한 연구",
+      "conference": "한국정밀공학회 2015년도 춘계학술대회",
+      "period": "2015.05.13~2015.05.15"
+    },
+    {
+      "title": "유연전자소자 제작을 위한 UV 롤 임프린트 리소그래피 공정에 관한 연구",
+      "conference": "한국생산제조시스템학회 2015년도 춘계학술대회",
+      "period": "2015.04.28~2015.04.30"
+    },
+    {
+      "title": "Top-down 방식으로 마이크로 및 나노 구조를 갖는 계층구조 표면의 방오 특성에 관한 연구",
+      "conference": "한국생산제조시스템학회 2015년도 춘계학술대회",
+      "period": "2015.04.28~2015.04.30"
+    },
+    {
+      "title": "비표지식 프로틴 마이크로어레이 설계 및 제작에 관한 연구",
+      "conference": "한국생산제조시스템학회 2015년도 춘계학술대회",
+      "period": "2015.04.28~2015.04.30"
+    },
+    {
+      "title": "표면의 소수성이 결빙 형성 및 성장에 미치는 영향에 대한 연구",
+      "conference": "2015년도 (사)정보저장시스템학회 학술대회",
+      "period": "2015.02.26~2015.02.26"
+    },
+    {
+      "title": "Design and Fabrication of Large Areal Sub-wavelength Grating Structure using Laser Interference Lithography and Deep Reactive Ion Etching",
+      "conference": "제 4회 나노 임프린트, 몰딩, 프린트 학술대회",
+      "period": "2015.02.11~2015.02.11"
+    },
+    {
+      "title": "편광필름의 투과특성 향상을 위한 나노 스케일 저 반사 표면 설계 및 제작에 대한 연구",
+      "conference": "한국광학회 제26회 정기총회 및 2015년도 동계학술대회",
+      "period": "2015.01.28~2015.01.30"
+    },
+    {
+      "title": "마이크로 디스플레이 디바이스 LED 투사 광학계의 광,기계 특성을 고려한 보정 설계에 대한 연구",
+      "conference": "한국광학회 제26회 정기총회 및 2015년도 동계학술발표회",
+      "period": "2015.01.28~2015.01.30"
+    },
+    {
+      "title": "광결정 구조를 통한 발광다이오드의 지향각 제어",
+      "conference": "정밀공학회 2014년도 추계학술대회",
+      "period": "2014.10.29~2014.10.31"
+    },
+    {
+      "title": "미세 패턴의 형상 특성이 표면 부착력에 미치는 영향",
+      "conference": "한국정밀공학회 2014년도 추계학술대회",
+      "period": "2014.10.29~2014.10.31"
+    },
+    {
+      "title": "Metallic multi-functional nano surfaces with hierarchical structures for drag-reduction and antibiofouling by R2R electrochemical process",
+      "conference": "IEEE Nanotechnology Materials and Devices Conference",
+      "period": "2014.10.18~2014.10.18"
+    },
+    {
+      "title": "Detection of bio-molecular interactions by multi-scale microwell arrays integrated with microfluidic device",
+      "conference": "International Conference of Manufacturing Technology Engineers (ICMTE) 2014",
+      "period": "2014.09.30~2014.10.02"
+    },
+    {
+      "title": "Fabrication of Metallic Riblet Structures for Drag Reduction using Roll to Roll Electroforming Process",
+      "conference": "International Symposium on Green Manufacturing and Applications 2014 (ISGMA)",
+      "period": "2014.06.24~2014.06.28"
+    },
+    {
+      "title": "재활용 열가소성 수지를 사용하는 사출 성형품의 기계적 물성 변화에 대한 연구",
+      "conference": "2014년도 한국소성가공학회 춘계학술대회",
+      "period": "2014.05.22~2014.05.23"
+    },
+    {
+      "title": "병렬형 공초점 이미징 기술",
+      "conference": "한국정밀공학회 2014 년도 춘계학술대회",
+      "period": "2014.05.14~2014.05.16"
+    },
+    {
+      "title": "E-beam Evaporation 공정을 이용한 곡면 상 금속 패턴 제작",
+      "conference": "한국정밀공학회 2014년도 춘계학술대회",
+      "period": "2014.05.14~2014.05.16"
+    },
+    {
+      "title": "안티 바이오파울링을 위한 금속 나노 기능성 표면의 연속 성형에 관한 연구",
+      "conference": "한국생산제조시스템학회 2014년도 춘계학술대회",
+      "period": "2014.04.28~2014.04.30"
+    },
+    {
+      "title": "Design and Fabrication of Multi-scale Label-free Protein Microarray with Nanogratings on Micro-well Structures for Parallel Detection",
+      "conference": "IEEE International Nano/Micro Engineered and Molecular Systems Conferences(MEMS) 2014",
+      "period": "2014.04.13~2014.04.16"
+    },
+    {
+      "title": "A study on adhesion reduction of Dunaliella on metallic functional surface",
+      "conference": "2014년도 (사)정보저장시스템학회 학술대회",
+      "period": "2014.02.28~2014.02.28"
+    },
+    {
+      "title": "Control on Curing of UV Curable Resin to Optimize the Adhesion of the Conductive Thin film",
+      "conference": "제 3회 나노 임프린트, 몰딩, 프린트 학술대회",
+      "period": "2014.02.13~2014.02.13"
+    },
+    {
+      "title": "초미세 계층구조를 갖는 금속 표면 연속 복제 공정 기술 개발",
+      "conference": "제 3회 나노 임프린트, 몰딩, 프린트 학술대회",
+      "period": "2014.02.13~2014.02.13"
+    },
+    {
+      "title": "결빙방지를 위한 기능성 표면 구현에 관한 연구",
+      "conference": "제 3회 나노 임프린트, 몰딩, 프린트 학술대회",
+      "period": "2014.02.13~2014.02.13"
+    },
+    {
+      "title": "나노 구조를 갖는 기능성 표면에서의 안티 바이오파울링 효과에 대한 연구",
+      "conference": "제 3회 나노 임프린트, 몰딩, 프린트 학술대회",
+      "period": "2014.02.13~2014.02.13"
+    },
+    {
+      "title": "수소이온 조사 자성 패턴 제작을 위한 나노임프린팅 리소그래피 기술 개발",
+      "conference": "제 3회 나노 임프린트, 몰딩, 프린트 학술대회",
+      "period": "2014.02.13~2014.02.13"
+    },
+    {
+      "title": "요철구조를 갖는 유연기판 상 나노 임프린팅에 관한 연구",
+      "conference": "한국정밀공학회 2013년도 추계학술대회",
+      "period": "2013.10.30~2013.11.01"
+    },
+    {
+      "title": "단파장용 양방향 마이크로 광 커플러 설계 및 제작에 관한 연구",
+      "conference": "한국생산제조시스템학회 2013년도 추계학술대회",
+      "period": "2013.10.16~2013.10.18"
+    },
+    {
+      "title": "금속전주공정을 이용한 금형코어 제작에서의 기계적 특성 및 형상정밀도 향상에 관한 연구",
+      "conference": "2013년도 한국소성가공학회 추계학술대회",
+      "period": "2013.10.09~2013.10.11"
+    },
+    {
+      "title": "Rubber & Elastomer 응용기술, 신재생 에너지 분야에서의 폴리머 응용기술 및 차세대 디스플레이 분야에서의 폴리머 응용기술",
+      "conference": "제6회 폴리머 프로세싱 심포지엄",
+      "period": "2013.08.23~2013.08.24"
+    },
+    {
+      "title": "Nano-roll fabrication by rotary AAO system",
+      "conference": "NANO KOREA 2013 The 11th International Nanotech Symposium",
+      "period": "2013.07.10~2013.07.12"
+    },
+    {
+      "title": "조명용 프레넬 렌즈의 팁 전사성에 따른 Illumination Efficiency 향상에 관한 연구",
+      "conference": "한국정밀공학회 2013 춘계학술대회",
+      "period": "2013.05.29~2013.05.31"
+    },
+    {
+      "title": "대면적 초소수성 금속 표면을 위한 연속 금속 복제에 관한 연구",
+      "conference": "한국정밀공학회 2013년도 춘계학술대회",
+      "period": "2013.05.29~2013.05.31"
+    },
+    {
+      "title": "나노 그레이팅 어레이 구조를 적용한 초고속 다종 검지 프로틴 센서 성형에 관한 연구",
+      "conference": "2013 한국소성가공학회 춘계학술대회",
+      "period": "2013.05.09~2013.05.10"
+    },
+    {
+      "title": "항력 저감용 대면적 금속 샤크 리블렛 표면 제작을 위한 롤투롤 금속 복제에 관한 연구",
+      "conference": "2013 한국생산제조시스템학회 춘계학술대회",
+      "period": "2013.04.24~2013.04.26"
+    },
+    {
+      "title": "롤 상면 알루미늄 증착을 위한 E-beam Evaporation 시스템 개발에 관한 연구",
+      "conference": "2013 한국생산제조시스템학회 춘계학술대회",
+      "period": "2013.04.24~2013.04.26"
+    },
+    {
+      "title": "레들 주입구 형상에 따른 용탕 주입 특성 분석",
+      "conference": "2013 한국생산제조시스템학회 춘계학술대회",
+      "period": "2013.04.24~2013.04.26"
+    },
+    {
+      "title": "나노 그레이팅 어레이 상에서 일어나는 단백질 상호작용 분석을 위한 병렬 광 프로브 기반의 다종 검지시스템 설계 및 제작",
+      "conference": "제 2회 나노 임프린트, 몰딩, 프린트 학술대회",
+      "period": "2013.02.14~2013.02.15"
+    },
+    {
+      "title": "Monolithic fabrication of self-aligned three dimensional micro optical fiber coupler aray using UV imprinting process",
+      "conference": "Proceedings of the International Conference of Manufacturing Technology Engineers 2012(ICMTE),",
+      "period": "2012.10.18~2012.10.19"
+    },
+    {
+      "title": "Construction of parallel detection system for bio-molecular interactions on the surface of sub-wavelength nanograting array structures",
+      "conference": "Proceedings of the International Conference of Manufacturing Technology Engineers 2012(ICMTE),",
+      "period": "2012.10.18~2012.10.19"
+    },
+    {
+      "title": "비표지식 단백질 센서 성형을 위한 금속나노스탬프 제작에 관한 연구",
+      "conference": "2012 한국소성가공학회 추계학술대회",
+      "period": "2012.10.11~2012.10.12"
+    },
+    {
+      "title": "프레넬 렌즈 성형에서 tip radius가 광학 성능에 미치는 영향 - 해석 및 실험적 연구",
+      "conference": "2012 한국소성가공학회 추계학술대회",
+      "period": "2012.10.11~2012.10.12"
+    },
+    {
+      "title": "Fabrication of metallic roll nanostamp with low internal stress and high hardness by pulse reverse current electroforming process",
+      "conference": "15th International Conference on Advances in Materials & Processing Technologies 2012(AMPT)",
+      "period": "2012.09.23~2012.09.26"
+    },
+    {
+      "title": "Design and Fabrication of Multi-dimensional Label-free GMR Protein Microarray Chip for High Speed Parallel Analysis",
+      "conference": "15th International Conference on Advances in Materials & Processing Technologies 2012(AMPT)",
+      "period": "2012.09.23~2012.09.26"
+    },
+    {
+      "title": "Effects of Fabrication Errors on the Sensitivity of Nano-replicated Guided Mode Resonance Protein Sensors",
+      "conference": "International Conference on Electronic Materials and Nanotechnology for Green Environment 2012(ENGE)",
+      "period": "2012.09.16~2012.09.19"
+    },
+    {
+      "title": "Design and Fabrication of Large Areal Sub-wavelength Grating Structure using Laser Interference Lithography and Deep Reactive Ion Etching",
+      "conference": "International Conference on Electronic Materials and Nanotechnology for Green Environment 2012(ENGE)",
+      "period": "2012.09.16~2012.09.19"
+    },
+    {
+      "title": "Development of disposable polymer nano replicated label-free protein chip with micro-well structures",
+      "conference": "The 9th Japan-Korea plastics processing Joint Seminar 2012 - 9th meeting-",
+      "period": "2012.08.24~2012.08.24"
+    },
+    {
+      "title": "Development of a large areal metallic nano stamp fabrication process using UV nanoimprinting and pulse reverse current electroforming for discrete track media with pattern width of 35nm",
+      "conference": "The 56th International Conference on Electron, Ion, and Photon Beam Technology and Nanofabrication",
+      "period": "2012.05.29~2012.06.01"
+    },
+    {
+      "title": "Design and fabrication of micro optical system for multi-optical probe confocal microscopy for large areal measurement",
+      "conference": "The 56th International Conference on Electron, Ion, and Photon Beam Technology and Nanofabrication",
+      "period": "2012.05.29~2012.06.01"
+    },
+    {
+      "title": "고 장비 마이크로 음각 패턴을 갖는 금속 몰드 제작을 위한 기계가공 및 전주도금 공정 기술 개발",
+      "conference": "2012 한국소성가공학회 춘계학술대회",
+      "period": "2012.05.10~2012.05.11"
+    },
+    {
+      "title": "초고속 다종 검지를 위한 비표지식 프로틴 마이크로어레이 칩 제작에 관한 연구",
+      "conference": "2012 한국생산제조시스템학회 춘계학술대회",
+      "period": "2012.04.25~2012.04.27"
+    },
+    {
+      "title": "Replication of Nanostructures for GMR Protein sensor Applications",
+      "conference": "1st Summit on Nanotechnology and Nanomanufacturing",
+      "period": "2012.04.11~2012.04.12"
+    },
+    {
+      "title": "Parallel Detection of Bio-molecular Interactions using the Principle of Guided Mode Resonance",
+      "conference": "제 1회 나노 임프린트, 몰딩, 프린트 학술대회",
+      "period": "2012.02.24~2012.02.25"
+    },
+    {
+      "title": "대면적 측정용 다중 병렬 광 프로브 공초점 현미경을 위한 마이크로렌즈 어레이 임프린팅 기술",
+      "conference": "제 1회 나노 임프린트, 몰딩, 프린트 학술대회",
+      "period": "2012.02.24~2012.02.25"
+    },
+    {
+      "title": "Design anf Fabrication of Label-free Optical Protein sensors using UV nanoimprinting Process",
+      "conference": "제 1회 나노 임프린트, 몰딩, 프린트 학술대회",
+      "period": "2012.02.24~2012.02.25"
+    },
+    {
+      "title": "다중 병렬 광 프로브 기반의 무마스크 리소그래피 공정 설계 및 구현",
+      "conference": "제 1회 차세대 리소그래피 학술대회",
+      "period": "2012.02.09~2012.02.10"
+    },
+    {
+      "title": "E-beam recording 및 나노 임프린팅 공정을 이용한 패턴미디어 제작",
+      "conference": "제 1회 차세대 리소그래피 학술대회",
+      "period": "2012.02.09~2012.02.10"
+    },
+    {
+      "title": "연속 롤 임프린팅 공정을 이용한 투명 유연 전극의 형성",
+      "conference": "제 1회 차세대 리소그래피 학술대회",
+      "period": "2012.02.09~2012.02.10"
+    },
+    {
+      "title": "Fabrication of magnetic nanotracks in the (CoOxPd)10 multilayer using UV-nanoimprinting lithography and low-energy ion irradiation",
+      "conference": "The 10th International Conference on Nanoimprint and Nanoprint",
+      "period": "2011.10.19~2011.10.21"
+    },
+    {
+      "title": "대면적 측정용 다중 광 프로브 공초점 광학 현미경 개발",
+      "conference": "2011생산제조시스템학회 추계학술대회",
+      "period": "2011.10.14~2011.10.15"
+    },
+    {
+      "title": "나노임프린팅 리소그래피와 수소이온조사를 이용한 자성패턴 제작에 관한 연구",
+      "conference": "2011생산제조시스템학회 추계학술대회",
+      "period": "2011.10.14~2011.10.15"
+    },
+    {
+      "title": "Application of Finite Element Code to Mechanical Properties of Complex Microstructured Materials",
+      "conference": "XI International Conference on Computational Plasticty Fundamentals and Application(COMPLAS XI)",
+      "period": "2011.09.07~2011.09.09"
+    },
+    {
+      "title": "Improvement of pattern transfer vy instant heating in injection molding for highly ensitive abel-free guidel mode resonance(GMR) protein sensor",
+      "conference": "The 2nd Japan-China-Korea joint conference on MEMS/NEMS 2011",
+      "period": "2011.09.05~2011.09.07"
+    },
+    {
+      "title": "Formation of multilayered magnetic nanotracks with perpendicular anisotropy via ion irradiation on UV-imprinted intaglio nanostructures",
+      "conference": "The 9th International nanotech Symposium & Exhibition in Korea",
+      "period": "2011.08.24~2011.08.26"
+    },
+    {
+      "title": "초음파 감쇠를 위한 에폭시 복합재 성형에 관한 연구",
+      "conference": "한국소성가공학회 2011년도 춘계학술대회",
+      "period": "2011.05.12~2011.05.13"
+    },
+    {
+      "title": "롤 임프린트 리소그래피 공정을 이용한 유연 기판 상의 마이크로 패턴 제작에 관한 연구",
+      "conference": "2011 한국생산제조시스템학회 춘계학술대회",
+      "period": "2011.04.13~2011.04.15"
+    },
+    {
+      "title": "GMR 프로틴칩의 성형 및 특성 분석에 관한 연구",
+      "conference": "2011 한국생산제조시스템학회 춘계학술대회",
+      "period": "2011.04.13~2011.04.15"
+    },
+    {
+      "title": "The effect of nano grating shapes on the sensitivity of guided mode resonance protein sensor fabricated by nano injection molding process",
+      "conference": "2011 OSA Optics in the Life Sciences",
+      "period": "2011.04.04~2011.04.06"
+    },
+    {
+      "title": "CFD Simulation and Nickel Stamp Fabrication of Microfluidic Chip for Medical Diagnosis Applications",
+      "conference": "ICOMM(INTERNATIONAL CONFERENCE ON MICROMANUFACTURING) 2011",
+      "period": "2011.03.07~2011.03.10"
+    },
+    {
+      "title": "Fabrication of punching die with high aspect ratio sub-micron structures by pulse reverse current electroforming",
+      "conference": "ICOMM(INTERNATIONAL CONFERENCE ON MICROMANUFACTURING) 2011",
+      "period": "2011.03.07~2011.03.10"
+    },
+    {
+      "title": "Construction of Confocal Microscopy System Using Micro Objective Lens",
+      "conference": "2011년도 (사)정보저장시스템학회 학술대회",
+      "period": "2011.01.20~2011.01.20"
+    },
+    {
+      "title": "Microscale diffusers for absorption of ultrasound",
+      "conference": "2nd Pan-American/Iberian Meeting on Acoustics",
+      "period": "2010.11.15~2010.11.19"
+    },
+    {
+      "title": "UV경화수지 특성에 따른 미세패턴 이형력 분석",
+      "conference": "한국정밀공학회 2010년도 추계학술대회",
+      "period": "2010.11.10~2010.11.12"
+    },
+    {
+      "title": "Fabrication of metallic mold with high aspect ratio nano structures by UV nanoimprinting and pulse reerse current electroforming",
+      "conference": "3rd ASIAN WORKSHOP ON NANO/MICRO FORMING TECHNOLOFY(AWMFT-2010)",
+      "period": "2010.10.07~2010.10.08"
+    },
+    {
+      "title": "The effects of nanograting pattern shapes on the optical performance of injection molded guided mode resonance protein sensor",
+      "conference": "The 8th Korea-Japan Plastics Processing Joint Seminar",
+      "period": "2010.08.27~2010.08.28"
+    },
+    {
+      "title": "미세 기계가공 시스템으로 제작된 고세장비 마이크로 패턴의 전주 복제 공정개발",
+      "conference": "한국정밀공학회 2010년도 춘계학술대회",
+      "period": "2010.05.26~2010.05.28"
+    },
+    {
+      "title": "Design of Antireflective Subwavelength Grating Structure for Infrared Medical Imaging",
+      "conference": "IEEE International NanoElectronics Conference (INEC) 2010",
+      "period": "2010.01.03~2010.01.08"
+    },
+    {
+      "title": "Replication of Label-free Guided Mode Resonance Filter for Protein-sensors using UV Nanoimprinting Process with Metallic Nano Stamp",
+      "conference": "IEEE International NanoElectronics Conference (INEC) 2010",
+      "period": "2010.01.03~2010.01.08"
+    },
+    {
+      "title": "고세장비 마이크로 패턴을 갖는 대면적 금속 스탬프 제작을 위한 전주 복제 공정개발",
+      "conference": "한국정밀공학회 2009년도 추계학술대회",
+      "period": "2009.10.28~2009.10.30"
+    },
+    {
+      "title": "Method to evaluate optical image stabilizer in an image sensor module",
+      "conference": "The 15th Microoptics Conference(MOC&apos;09)",
+      "period": "2009.10.25~2009.10.28"
+    },
+    {
+      "title": "Design and fabrication of large-area optical functional rigid transparent substrate using UV-nanoimprinting process",
+      "conference": "The 15th Microoptics Conference(MOC&apos;09)",
+      "period": "2009.10.25~2009.10.28"
+    },
+    {
+      "title": "Design and fabrication of compact size optical pick-up system for biosensor using guided mode resonance filter",
+      "conference": "The 15th Microoptics Conference(MOC&apos;09)",
+      "period": "2009.10.25~2009.10.28"
+    },
+    {
+      "title": "초미세 나노 패턴 복제를 위한 점착방지 처리 공정 개발",
+      "conference": "4th Korea-Taiwan Data Storage Symposium & SISS Conference",
+      "period": "2009.08.27~2009.08.27"
+    },
+    {
+      "title": "Fabrication of label-free biochip with nano grating structures by injection molding process",
+      "conference": "나노코리아 2009 심포지엄",
+      "period": "2009.08.26~2009.08.28"
+    },
+    {
+      "title": "Replication of Nanostructures for Industrial Applications",
+      "conference": "20th Annual Meeting of the Japan Society of Polymer Processing",
+      "period": "2009.06.03~2009.06.04"
+    },
+    {
+      "title": "나노 그래이팅 구조를 갖는 비표지식 바이오센서 성형에 관한 연구",
+      "conference": "한국소성가공학회 2009년도 춘계학술대회",
+      "period": "2009.05.07~2009.05.08"
+    },
+    {
+      "title": "고세장비 마이크로 음각 형상을 갖는 대면적 스탬프의 제작",
+      "conference": "한국소성가공학회 2009년도 춘계학술대회",
+      "period": "2009.05.07~2009.05.08"
+    },
+    {
+      "title": "Cyclic Olefin Copolymer 를 이용한 공진반사광 바이오 칩의",
+      "conference": "한국정밀공학회 2009년도 추계학술대회",
+      "period": "2009.04.09~2009.04.09"
+    },
+    {
+      "title": "폴리머 스탬프를 사용하는 자외선 나노임프린팅 공정을 이용한 수직자기 패턴드 미디어 제작에 관한 연구",
+      "conference": "2008년도(사)정보저장시스템학회 동계학술대회",
+      "period": "2008.12.18~2008.12.18"
+    },
+    {
+      "title": "자기력 현미경 팁의 부상 높이가 수직 자기 기록 패턴드 미디어의 자성 도메인 화상 해상도에 미치는 영향",
+      "conference": "2008년도(사)정보저장시스템학회 동계학술대회",
+      "period": "2008.12.18~2008.12.18"
+    },
+    {
+      "title": "Application of Organic/inorganic Hybrid Photopolymer to Fabricate Ultra-high Density Patterned Substrate",
+      "conference": "APDSC&apos;08(Asia-Pacific Data Storage Conference)",
+      "period": "2008.12.15~2008.12.17"
+    },
+    {
+      "title": "Fabrication of Metallic Nano Stamp to Replicate Patterned Substrate using Electron-Beam Recording, Nanoimprinting and Electroforming",
+      "conference": "APDSC&apos;08(Asia-Pacific Data Storage Conference)",
+      "period": "2008.12.15~2008.12.17"
+    },
+    {
+      "title": "Measurement and Analysis of Magnetic Domain Properties of High-Density Patterned Media by Magnetic Force Microscopy",
+      "conference": "APDSC&apos;08(Asia-Pacific Data Storage Conference)",
+      "period": "2008.12.15~2008.12.17"
+    },
+    {
+      "title": "Design and Fabrication of Perpendicular Patterned Magnetic Media using Nanoimprinted Nano Pillar Patterns",
+      "conference": "APDSC&apos;08(Asia-Pacific Data Storage Conference)",
+      "period": "2008.12.15~2008.12.17"
+    },
+    {
+      "title": "Measurement and Analysis of Magnetic Domain Properties of High-Density Patterned Media by Magnetic Force Microscopy",
+      "conference": "Yonsei Mechanical Engineering Graduate Student Symposium",
+      "period": "2008.12.05~2008.12.05"
+    },
+    {
+      "title": "Fabrication of transparent conductive tracks and patterns on flexible substrate using continuous UV roll imprint lithography",
+      "conference": "Yonsei Mechanical Engineering Graduate Student Symposium",
+      "period": "2008.12.05~2008.12.05"
+    },
+    {
+      "title": "Electroforming of large area metallic stamp with high aspect ratio structures using micro machined master",
+      "conference": "Yonsei Mechanical Engineering Graduate Student Symposium",
+      "period": "2008.12.05~2008.12.05"
+    },
+    {
+      "title": "Design and UV Nano Imprinting of Modified Fresnel Lens to Condense Light for LED Illumination",
+      "conference": "Yonsei Mechanical Engineering Graduate Student Symposium",
+      "period": "2008.12.05~2008.12.05"
+    },
+    {
+      "title": "마이크로 프리즘 패턴을 이용한 고효율 LCD 백라이트용 도광판 제작 및 평가(Fabrication and Evaluation of High Efficient LCD Backlight Unit using Micro-Prism Patterns)",
+      "conference": "정밀공학회 2008년도 추계학술대회",
+      "period": "2008.11.12~2008.11.14"
+    },
+    {
+      "title": "미세 기계 가공에 의해 제작된 대면적 고세장비 마이크로 패턴의 미세 전주 복제 공정기술 개발",
+      "conference": "한국정밀공학회 2008년도 추계학술대회",
+      "period": "2008.11.12~2008.11.14"
+    },
+    {
+      "title": "Micro forming of glass microlens array using an imprinted and sintered tungsten carbide micro mold",
+      "conference": "AEPA 2008(The 9th Asia-Pacific Conference on Engineering Plasticity and Its Applications)",
+      "period": "2008.10.20~2008.10.24"
+    },
+    {
+      "title": "롤스템퍼를 이용한 연속 UV 나노 임프린팅 공정 기술 개발",
+      "conference": "The 4th Nano Imprinting Lithography Workshop",
+      "period": "2007.10.10~2007.10.12"
+    },
+    {
+      "title": "Fabrication of Metallic Stamp with 30nm Hole Array using UV Nanoimprinting and Nanoelectroforming",
+      "conference": "ASME MSEC 2008 AND JSME ICM&P 2008",
+      "period": "2008.10.07~2008.10.10"
+    },
+    {
+      "title": "DEVELOPMENT OF MULTI OPTICAL PROBE LITHOGRAPHY SYSTEM USING SPATIAL LIGHT MODULATOR AND MICROLENS ARRAY WITH APERTURE STOP ARRAY",
+      "conference": "THE FOURTEENTH MICROOPTICS CONFERENCE(MOC&apos;08)",
+      "period": "2008.09.25~2008.09.26"
+    },
+    {
+      "title": "WAFER SCALE FABRICATION OF MICRO MIRROR ARRAY FOR SMALL FORM FACTOR OPTICAL PICK-UP BY UV NANOIMPRINTING PROCESS",
+      "conference": "THE FOURTEENTH MICROOPTICS CONFERENCE(MOC&apos;08)",
+      "period": "2008.09.25~2008.09.27"
+    },
+    {
+      "title": "Nanoimprinting and Nanoelectroforming Process to fabricate Metallic Nanostamp for Nanoreplicaton Process",
+      "conference": "The Japan-Korea Plastics Processing Joint Seminar 2008",
+      "period": "2008.09.05~2008.09.05"
+    },
+    {
+      "title": "나노 금속 파우더 임프린팅 공정을 이용한 초미세 전도성 배선 제작",
+      "conference": "2008년도 한국정밀공학회 춘계학술대회",
+      "period": "2008.06.11~2008.06.13"
+    },
+    {
+      "title": "Fabrication of ITO conductive tracks on flexible substrate by UV roll nano imprinting",
+      "conference": "euspen2008(10th Anniversary intrnational conference of the european society for precision engineering and nanotechnology)",
+      "period": "2008.05.18~2008.05.22"
+    },
+    {
+      "title": "디스크 브레이크 허브 볼트의 억지 끼워 맞춤에서 발생하는 소성변형의 해석",
+      "conference": "한국소성가공학회 2008년도 춘계학술대회",
+      "period": "2008.05.08~2008.05.09"
+    },
+    {
+      "title": "고밀도 패턴드 미디어 성형 및 자성 도메인 평가에 관한 연구",
+      "conference": "2008년도 한국소성가공학회 춘계학술대회",
+      "period": "2008.05.08~2008.05.09"
+    },
+    {
+      "title": "Fabrication of conductive tracks and patterns by UV roll nanoimprinting",
+      "conference": "ASNIL2008(The 1st Asian Symposium on Nano Imprint Lithography)",
+      "period": "2008.04.24~2008.04.26"
+    },
+    {
+      "title": "Design and UV Nano Imprinting of Aspherical Square Microlens Array for Image Sensor Application",
+      "conference": "13th Microoptics Conference(MOC&apos;07)",
+      "period": "2007.10.28~2007.10.31"
+    },
+    {
+      "title": "Design and Fabrication of Aspherical Microlens Array to Generate Multi Optical Probes",
+      "conference": "13th Microoptics Conference(MOC&apos;07)",
+      "period": "2007.10.28~2007.10.31"
+    },
+    {
+      "title": "FABRICATION OF LIGHT GUIDE PANEL WITH MICRO-PRISM PATTERNS FOR COMPACT LCD BACKLIGHT UNIT",
+      "conference": "THE 13TH MICROOPTICS CONFERENCE (MOC&apos;&apos;07)",
+      "period": "2007.10.28~2007.10.31"
+    },
+    {
+      "title": "OPTIMIZED DESIGN METHOD AND EVALUATION PERFORMANCE OF HYBRID LENS FOR SMALL SIZED MOBILE PHONE CAMER",
+      "conference": "13TH MICROOPTICS CONFERENCE",
+      "period": "2007.10.28~2007.10.31"
+    },
+    {
+      "title": "DESIGN AND ANALYSYS OF REPLICATED SOLID IMMERSION LENS FOR LARGE THICKNESS TOLERANCE IN NEAR-FIELD RECORDING",
+      "conference": "INTERNATIONAL SYMPOSIUM OF OPTICAL MEMORY",
+      "period": "2007.10.21~2007.10.25"
+    },
+    {
+      "title": "다중 광 프로브 특성 향상을 위한 비구면 마이크로 렌즈 어레이의 개발",
+      "conference": "한국소성가공학회 2007년도 추계학술대회",
+      "period": "2007.10.11~2007.10.12"
+    },
+    {
+      "title": "UV임프린팅을 이용한 이미지 센서용 웨이퍼 스케일 마이크로렌즈 어레이 설계 및 제작",
+      "conference": "한국소성가공학회 2007년도 추계학술대회",
+      "period": "2007.10.11~2007.10.12"
+    },
+    {
+      "title": "Replication of transparent nanostamp by using organic/inorganic hybrid materials for UV nanoimprint process",
+      "conference": "Nanoimprint and Nanoprint Technology Conference(NNT&apos;07)",
+      "period": "2007.10.10~2007.10.12"
+    },
+    {
+      "title": "Injection molding of 50nm Pillar Array for Patterned Media using a Metallic Stamp Electroformed from Nanoimprinted Polymeric Master",
+      "conference": "Nanoimprint and Nanoprint Technology Conference(NNT&apos;07)",
+      "period": "2007.10.10~2007.10.12"
+    },
+    {
+      "title": "NANO SCALE FABRICATION ISSUES IN OPTOELECTRONIC APPLICATIONS",
+      "conference": "NANO KOREA 2007",
+      "period": "2007.08.29~2007.08.31"
+    },
+    {
+      "title": "패턴드 미디어 제작을 위한 나노 사출성형 공정에 관한 연구",
+      "conference": "정보저장시스템학회 2007 하계학술대회",
+      "period": "2007.08.30~2007.08.30"
+    },
+    {
+      "title": "고밀도 패턴드 미디어의 자성 특성 평가에 관한 연구",
+      "conference": "정보저장시스템학회 하계학술대회",
+      "period": "2007.08.30~2007.08.30"
+    },
+    {
+      "title": "상 변화방식 마이크로 액츄에이터의 제조 및 성능에 관한 연구",
+      "conference": "07 대한기계학회 춘계학술대회",
+      "period": "2007.05.30~2007.06.01"
+    },
+    {
+      "title": "Analysis of injection molding to fabricate patterned media with nano pillars",
+      "conference": "Annual Technical Conference 2007 (ANTEC 2007)",
+      "period": "2007.05.06~2007.05.11"
+    },
+    {
+      "title": "DEVELOPMENT OF METAL NANO POWDER IMPRINTING PROCESS FOR FABRICATION OF CONDUCTIVE TRACKS",
+      "conference": "2007년도 한국소성가공학회 춘계학술대회",
+      "period": "2007.05.10~2007.05.11"
+    },
+    {
+      "title": "ANALYSIS OF INJECTJION MOLDING TO FABRICATE PATTERNED WITH NANO PILLARS",
+      "conference": "ANNUAL TECHNICAL CONFERENCE 2007",
+      "period": "2007.05.06~2007.05.10"
+    },
+    {
+      "title": "NANO IMPRINTING OF CONDUCTIVE TRACKS USING SINTERING OF METAL NANO POWDERS",
+      "conference": "NANOIMPRINT AND NANOPRINT TECHNOLOGY CONFERENCE(NNT&apos;&apos;06)",
+      "period": "2006.11.15~2006.11.17"
+    },
+    {
+      "title": "CONTINUOUS UV ROLL NANOIMPRINTING LITHOGRAPHY PROCESS FOR LARGE AREA APPLICATIONS",
+      "conference": "NANOIMPRINT AND NANOPRINT TECHNOLOGY CONFERENCE(NNT&apos;&apos;06)",
+      "period": "2006.11.15~2006.11.17"
+    }
+  ],
+  "fundings": [
+    {
+      "title": "[7차년도]사회지향 기계기술 글로벌 리더 양성 교육연구단",
+      "org": "한국연구재단",
+      "period": "2026-03-01~2027-02-28"
+    },
+    {
+      "title": "[RCMS](주)펨트론/반도체 공정용 병렬 광 이미징 기술 응용 고속 고해상 검사 모듈 개발(3/4)",
+      "org": "한국산업기술기획평가원",
+      "period": "2026-01-01~2026-12-31"
+    },
+    {
+      "title": "[6차년도] 사회지향 기계기술 글로벌 리더 양성 교육연구단",
+      "org": "한국연구재단",
+      "period": "2025-03-01~2026-02-28"
+    },
+    {
+      "title": "[RCMS](주)펨트론/반도체 공정용 병렬 광 이미징 기술 응용 고속 고해상 검사 모듈 개발(2/4)",
+      "org": "한국산업기술기획평가원",
+      "period": "2025-01-01~2025-12-31"
+    },
+    {
+      "title": "[국방기술진흥연구소/국방벤처 혁신기술 지원사업/위탁] 나노구조 기반 전천후 시야확보용 필름 기술(3/3)",
+      "org": "국방기술진흥연구소",
+      "period": "2024-12-15~2025-12-14"
+    },
+    {
+      "title": "[민간/㈜허니냅스] 생체 신호 기반 수면 단계 및 각성 상태 검출 알고리즘 고도화 연구",
+      "org": "국내",
+      "period": "2024-12-01~2026-12-31"
+    },
+    {
+      "title": "[민간/삼성전자]나노 다공성 입자가 첨가된 에어로젤 단열소재 기술 개발",
+      "org": "국내",
+      "period": "2024-07-19~2026-07-18"
+    },
+    {
+      "title": "[RCMS](주)펨트론/반도체 공정용 병렬 광 이미징 기술 응용 고속 고해상 검사 모듈 개발(1/4)",
+      "org": "한국산업기술기획평가원",
+      "period": "2024-07-01~2024-12-31"
+    },
+    {
+      "title": "[5차년도] 사회지향 기계기술 글로벌 리더 양성 교육연구단",
+      "org": "한국연구재단",
+      "period": "2024-03-01~2025-02-28"
+    },
+    {
+      "title": "[국방기술진흥연구소/국방벤처 혁신기술 지원사업/위탁] 나노구조 기반 전천후 시야확보용 필름 기술(2/3)",
+      "org": "국방기술진흥연구소",
+      "period": "2023-12-15~2024-12-15"
+    },
+    {
+      "title": "[민간/이에스피앤메딕] 초정밀 광 기계기술 연구센터(nCOMS)",
+      "org": "국내",
+      "period": "2023-11-01~2024-04-30"
+    },
+    {
+      "title": "[민간/삼성전자]고강도 고분자 Aerogel 합성 기술 개발",
+      "org": "국내",
+      "period": "2023-05-15~2026-09-29"
+    },
+    {
+      "title": "[민간/허니냅스] 초정밀 광 기계기술 연구센터(nCOMS)",
+      "org": "국내",
+      "period": "2023-03-01~2027-02-28"
+    },
+    {
+      "title": "[4차년도] 사회지향 기계기술 글로벌 리더 양성 교육연구단",
+      "org": "한국연구재단",
+      "period": "2023-03-01~2024-02-29"
+    },
+    {
+      "title": "[국방기술진흥연구소/국방벤처 혁신기술 지원사업/위탁] 나노구조 기반 전천후 시야확보용 필름 기술(1/3)",
+      "org": "국방기술진흥연구소",
+      "period": "2022-12-15~2023-12-14"
+    },
+    {
+      "title": "[민간/오로스테크놀로지] [총괄 및 1세부]마이크로 멀티 옵티컬 프로브를 적용하는 shack-hartmann 기반 wavefront analyzer 개발",
+      "org": "국내",
+      "period": "2022-12-01~2026-11-30"
+    },
+    {
+      "title": "[민간/삼성전자(주)] 가전용 금속 응결방지/방오/자가세정 기능성 표면 기술 개발 (연세대학교초정밀광기계기술연구센터-삼성전자 집단산학협력연구)",
+      "org": "국내",
+      "period": "2022-04-22~2024-03-31"
+    },
+    {
+      "title": "[민간/삼성전자(주)] pyro-free coating 기술 개발",
+      "org": "국내",
+      "period": "2022-04-22~2025-03-31"
+    },
+    {
+      "title": "[3차년도] 사회지향 기계기술 글로벌 리더 양성 교육연구단",
+      "org": "한국연구재단",
+      "period": "2022-03-01~2023-02-28"
+    },
+    {
+      "title": "[대형사업운영지원비](2021-11-0265/2021-11-0266) 초정밀 광기계기술연구센터",
+      "org": "연세대학교",
+      "period": "2021-03-01~2023-02-28"
+    },
+    {
+      "title": "[통합이지바로](비과세)초정밀 광 기계기술 연구센터(2단계,3/3)(2019.03.01.~2022.02. 28.)",
+      "org": "한국연구재단",
+      "period": "2021-03-01~2022-02-28"
+    },
+    {
+      "title": "[통합이지바로](과세)초정밀 광 기계기술 연구센터(2단계,3/3)(2019.03. 01 - 2022.02.28)",
+      "org": "한국연구재단",
+      "period": "2021-03-01~2022-02-28"
+    },
+    {
+      "title": "[2차년도] 사회지향 기계기술 글로벌 리더 양성 교육연구단",
+      "org": "한국연구재단",
+      "period": "2021-03-01~2022-02-28"
+    },
+    {
+      "title": "[민간/국도화학 주식회사] Epoxy 및 ACF 생산 관련 모니터링 및 해석기술 개발",
+      "org": "국내",
+      "period": "2020-11-01~2021-10-31"
+    },
+    {
+      "title": "[RCMS](재)경남테크노파크/나노금형기반 맞춤형 융합제품 상용화지원센터 구축(5/5)",
+      "org": "한국산업기술진흥원",
+      "period": "2020-10-01~2021-11-30"
+    },
+    {
+      "title": "[1차년도] 사회지향 기계기술 글로벌 리더 양성 교육연구단",
+      "org": "한국연구재단",
+      "period": "2020-09-01~2021-02-28"
+    },
+    {
+      "title": "[RCMS]생분해성 및 자성을 지닌 생체 유동관 내 다상 임플란트(1/1)",
+      "org": "한국산업기술평가관리원",
+      "period": "2020-09-01~2021-04-30"
+    },
+    {
+      "title": "(통합Ezbaro)[선도연구센터/ERC]초정밀 광 기계기술 연구센터(2/3,2단계)(2019.3.1~2022.2.28)",
+      "org": "한국연구재단",
+      "period": "2020-03-01~2021-02-28"
+    },
+    {
+      "title": "(통합Ezbaro)[과세-선도연구센터/ERC]초정밀 광 기계기술 연구센터(2/3,2단계)(2019.3.1~2022.2.28)",
+      "org": "한국연구재단",
+      "period": "2020-03-01~2021-02-28"
+    },
+    {
+      "title": "[8차년도]사회지향 기계기술 글로벌 리더 양성 사업단",
+      "org": "한국연구재단",
+      "period": "2020-03-01~2020-08-31"
+    },
+    {
+      "title": "[RCMS](재)경남테크노파크/나노금형기반 맞춤형 융합제품 상용화지원센터 구축(4/5)",
+      "org": "한국산업기술진흥원",
+      "period": "2019-10-01~2020-09-30"
+    },
+    {
+      "title": "[과세-선도연구센터/ERC]초정밀 광 기계기술 연구센터(1/3,2단계)(2019.3.1~2022.2.28)",
+      "org": "한국연구재단",
+      "period": "2019-03-01~2020-02-29"
+    },
+    {
+      "title": "[선도연구센터/ERC]초정밀 광 기계기술 연구센터(1/3,2단계)(2019.3.1~2022.2.28)",
+      "org": "한국연구재단",
+      "period": "2019-03-01~2020-02-29"
+    },
+    {
+      "title": "[7차년도]사회지향 기계기술 글로벌 리더 양성 사업단",
+      "org": "한국연구재단",
+      "period": "2019-03-01~2020-02-29"
+    },
+    {
+      "title": "[민간/오스템임플란트(주)]&apos;Ready-Made Custom Abutment 시스템 개발&apos;에 관한 연구",
+      "org": "국내",
+      "period": "2018-12-17~2020-04-15"
+    },
+    {
+      "title": "[RCMS](재)경남테크노파크/나노금형기반 맞춤형 융합제품 상용화지원센터 구축(3/5)",
+      "org": "한국산업기술진흥원",
+      "period": "2018-10-01~2019-09-30"
+    },
+    {
+      "title": "[민간/에스엘] SL Micro II",
+      "org": "국내",
+      "period": "2018-04-01~2022-11-30"
+    },
+    {
+      "title": "[Ezbaro] (2위탁)유연기판상 슈퍼렌즈 메타물질기반 초미세 패턴 제작 기술 (2단계)(3/3)",
+      "org": "한국연구재단",
+      "period": "2018-03-01~2018-12-31"
+    },
+    {
+      "title": "[과세-선도연구센터/ECR]초정밀 광 기계기술 연구센터(4/4,1단계,2015.8.1~2019.2.28)",
+      "org": "한국연구재단",
+      "period": "2018-03-01~2019-02-28"
+    },
+    {
+      "title": "[선도연구센터/ERC]초정밀 광 기계기술 연구센터(4/4,1단계)(2015.8.1~2019.2.28)",
+      "org": "한국연구재단",
+      "period": "2018-03-01~2019-02-28"
+    },
+    {
+      "title": "[6차년도]사회지향 기계기술 글로벌 리더 양성 사업단",
+      "org": "한국연구재단",
+      "period": "2018-03-01~2019-02-28"
+    },
+    {
+      "title": "[RCMS](재)경남테크노파크/나노금형기반 맞춤형 융합제품 상용화지원센터 구축(2/5)",
+      "org": "한국산업기술진흥원",
+      "period": "2017-12-01~2018-09-30"
+    },
+    {
+      "title": "(주)에스엘/Xenon lamp 광원을 이용한 평행광 기술개발 및 솔라 시뮬레이터 개발",
+      "org": "국내",
+      "period": "2017-09-21~2020-07-31"
+    },
+    {
+      "title": "[민간/LG디스플레이] 초정밀 기계기술을 활용한 OLED Module의 Panel 온도 개선",
+      "org": "국내",
+      "period": "2017-06-01~2018-12-31"
+    },
+    {
+      "title": "(주)허니냅스/생체신호 획득 모듈 방열 설계",
+      "org": "국내",
+      "period": "2017-05-01~2019-02-28"
+    },
+    {
+      "title": "유연기판상 슈퍼렌즈 메타물질기반 초미세 패턴 제작 기술(2/3, 2단계)",
+      "org": "한국연구재단",
+      "period": "2017-05-01~2018-02-28"
+    },
+    {
+      "title": "[선도연구센터/ERC]초정밀 광 기계기술 연구센터(3/4,1단계,2015.08.01~2019.02.28)",
+      "org": "한국연구재단",
+      "period": "2017-03-01~2018-02-28"
+    },
+    {
+      "title": "[과세-선도연구센터/ERC]초정밀 광 기계기술 연구센터(3/4,1단계)(2015.8.1~2019.2.28)",
+      "org": "한국연구재단",
+      "period": "2017-03-01~2018-02-28"
+    },
+    {
+      "title": "[5차년도]사회지향 기계기술 글로벌 리더 양성 사업단",
+      "org": "한국연구재단",
+      "period": "2017-03-01~2018-02-28"
+    },
+    {
+      "title": "에스엘서봉재단/연구발전기금 기부",
+      "org": "국내",
+      "period": "2017-01-01~2017-11-30"
+    },
+    {
+      "title": "에스엘/마이크로 옵틱을 이용한 Slim 헤드램프 개발",
+      "org": "국내",
+      "period": "2016-12-01~2025-08-31"
+    },
+    {
+      "title": "[RCMS](재)경남테크노파크/나노금형기반 맞춤형 융합제품 상용화지원센터 구축(1/5)",
+      "org": "한국산업기술진흥원",
+      "period": "2016-12-01~2017-11-30"
+    },
+    {
+      "title": "유연기판상 슈퍼렌즈 메타물질기반 초미세 패턴 제작 기술(1/3, 2단계)",
+      "org": "한국연구재단",
+      "period": "2016-07-01~2017-04-30"
+    },
+    {
+      "title": "3차원 나노구조물 형성을 위한 나노 마스터링 및 대면적 나노구조물 전주도금 공정기술 개발",
+      "org": "한국연구재단",
+      "period": "2016-06-30~2017-06-29"
+    },
+    {
+      "title": "[과세-선도연구센터/ERC]초정밀 광 기계기술 연구센터(2/4,1단계)(2015.8.1~2019.2.28)",
+      "org": "한국연구재단",
+      "period": "2016-03-01~2017-02-28"
+    },
+    {
+      "title": "(4차년도) 사회지향 기계기술 글로벌 리더 양성 사업단",
+      "org": "한국연구재단",
+      "period": "2016-03-01~2017-02-28"
+    },
+    {
+      "title": "[포닥]강신일(조익현)-나노 그레이팅 기반의 비표지식 단백질 마이크로어레이를 활용한 초고속 급성 심근경색 진단에 관한 연구",
+      "org": "연세대학교",
+      "period": "2016-03-01~2017-02-28"
+    },
+    {
+      "title": "초정밀 광 기계기술 연구센터(2/4,1단계, 2015.08.01 ~ 2019.02.28)",
+      "org": "한국연구재단",
+      "period": "2016-03-01~2017-02-28"
+    },
+    {
+      "title": "유연기판상 슈퍼렌즈 메타물질기반 초미세 패턴 제작 기술(2/2, 1단계)",
+      "org": "한국연구재단",
+      "period": "2015-09-01~2016-06-30"
+    },
+    {
+      "title": "[부가세 과세과제]ERC/초정밀 광 기계기술 연구센터(1/4,1단계)(2015.8.1~2019.2.28)",
+      "org": "한국연구재단",
+      "period": "2015-08-01~2016-02-29"
+    },
+    {
+      "title": "ERC/초정밀 광 기계기술 연구센터(1/4,1단계)(2015.8.1~2019.2.28)",
+      "org": "한국연구재단",
+      "period": "2015-08-01~2016-02-29"
+    },
+    {
+      "title": "[RCMS]한국기계연구원/폭 1m급 광학필름용 원통형 나노패터닝 공정장비 개발(5/5)",
+      "org": "한국산업기술기획평가원",
+      "period": "2015-07-01~2016-06-30"
+    },
+    {
+      "title": "3차원 나노구조물 형성을 위한 나노 마스터링 및 대면적 나노구조물 전주도금 공정 기술 개발",
+      "org": "한국연구재단",
+      "period": "2015-06-30~2016-06-29"
+    },
+    {
+      "title": "(분리-세부)현대엔지비주식회사/플라스틱 역량 강화를 위한 공동연구실-플라스틱 사출금형 냉각 해석",
+      "org": "국내",
+      "period": "2015-03-01~2020-06-30"
+    },
+    {
+      "title": "(분리-세부)현대엔지비주식회사/플라스틱 역량 강화를 위한 공동연구실-강화재에 따른 금형 수축율 예측 및 평가",
+      "org": "국내",
+      "period": "2015-03-01~2017-02-28"
+    },
+    {
+      "title": "(분리-세부)현대엔지비주식회사/플라스틱 역량 강화를 위한 공동연구실-환경조건에 따른 플라스틱 부품의 수명 예측 및 신뢰성 평가",
+      "org": "국내",
+      "period": "2015-03-01~2016-12-31"
+    },
+    {
+      "title": "(분리-책임) 현대엔지비주식회사/플라스틱 역량 강화를 위한 공동연구실-동종 및 이종소재간 최적 (열)융착 기술 개발",
+      "org": "국내",
+      "period": "2015-03-01~2018-02-28"
+    },
+    {
+      "title": "LG전자(주)/표면처리를 통한 축류팬의 성능 증대 및 설계 툴 개발",
+      "org": "국내",
+      "period": "2014-11-24~2016-08-31"
+    },
+    {
+      "title": "Multi Physics 파동제어를 위한 프랙탈 메타물질 구현기술 개발(1/2,1단계)",
+      "org": "한국연구재단",
+      "period": "2014-09-01~2015-08-31"
+    },
+    {
+      "title": "[RCMS]한국기계연구원/폭 1m급 광학필름용 원통형 나노패터닝 공정장비 개발(4/5)",
+      "org": "한국산업기술평가관리원",
+      "period": "2014-07-01~2015-06-30"
+    },
+    {
+      "title": "3차원 나노구조물 형성을 위한 나노 마스터링 및 대면적 나노구조물 전주도금 공정기술 개발(1단계 3차년도)",
+      "org": "한국연구재단",
+      "period": "2014-06-30~2015-06-29"
+    },
+    {
+      "title": "급성 심근경색 진단을 위한 마이크로 유체채널이 결합된 비표지식 멀티스케일 마이크로웰 어레이 개발에 관한 연구",
+      "org": "한국과학창의재단",
+      "period": "2014-06-01~2014-11-30"
+    },
+    {
+      "title": "칼코게나이드 기반 플렉서블 근접장 광 구조를 이용하는 대면적 가변 나노이미징 원천기술 개발",
+      "org": "한국연구재단",
+      "period": "2014-03-01~2014-07-31"
+    },
+    {
+      "title": "[포닥]강신일(한정진)-병렬 광 프로브 기반 다중 병렬 검지 시스템 기술 개발",
+      "org": "연세대학교",
+      "period": "2014-03-01~2015-02-28"
+    },
+    {
+      "title": "[대학생창의융합형지원]항력 저감 및 안티 바이오파울링 기능을 갖는 복합 기능성 표면 설계 및 제작",
+      "org": "한국과학창의재단",
+      "period": "2013-09-02~2014-02-28"
+    },
+    {
+      "title": "글라스 기판 일체형 패턴드 광학 소자 설계 및 제작 기술 개발",
+      "org": "국내",
+      "period": "2013-08-16~2016-04-30"
+    },
+    {
+      "title": "[RCMS]한국기계연구원/폭 1m급 광학필름용 원통형 나노패터닝 공정장비 개발(3/5)(2011.07.01~2016. 06.30)",
+      "org": "한국산업기술평가관리원",
+      "period": "2013-07-01~2014-06-30"
+    },
+    {
+      "title": "3차원 나노구조물 형성을 위한 나노 마스터링 및 대면적 나노구조물 전주도금 공정 기술 개발(2/3,1단계)",
+      "org": "한국연구재단",
+      "period": "2013-06-30~2014-06-29"
+    },
+    {
+      "title": "[글로벌] 미래융합기계기술사업단",
+      "org": "연세대학교",
+      "period": "2013-03-01~2014-03-31"
+    },
+    {
+      "title": "[교비연구] 공공기관의 지방 이전에 따른 공학대학원 전략 수립 연구",
+      "org": "연세대학교",
+      "period": "2013-03-01~2014-03-31"
+    },
+    {
+      "title": "극 초해상 다중 병렬 나노 광 프로브 기반 기술 개발(2/2,2단계)",
+      "org": "한국연구재단",
+      "period": "2013-03-01~2014-02-28"
+    },
+    {
+      "title": "[교비연구] 공과대학/공학대학원 산학협력 활성화 방안 연구3",
+      "org": "연세대학교",
+      "period": "2012-12-01~2013-08-31"
+    },
+    {
+      "title": "[교비연구] 공과대학/공학대학원 산학협력 활성화 방안연구2",
+      "org": "연세대학교",
+      "period": "2012-12-01~2013-08-31"
+    },
+    {
+      "title": "[교비연구] 공과대학/공학대학원 산학협력 활성화 방씨?",
+      "org": "연세대학교",
+      "period": "2012-12-01~2013-08-31"
+    },
+    {
+      "title": "[RCMS]한국기계연구원/폭 1m급 광학필름용 원통형 나노패터닝 공정장비 개발(2/2)(2011.7.1~2016.6.30)",
+      "org": "한국산업기술평가관리원",
+      "period": "2012-07-01~2013-06-30"
+    },
+    {
+      "title": "3차원 나노구조물 형성을 위한 나노 마스터링 및 대면적 나노구조물 전주도금 공정 기술 개발(1/3,1단계)",
+      "org": "한국연구재단",
+      "period": "2012-06-30~2013-06-29"
+    },
+    {
+      "title": "나노 그레이팅 어레이 구조상에서 일어나는 단백질 상호작용의 병렬 분석에 관한 연구",
+      "org": "한국과학창의재단",
+      "period": "2012-05-10~2012-10-31"
+    },
+    {
+      "title": "나노마이크로응용기계기술인력양성사업단",
+      "org": "연세대학교",
+      "period": "2012-03-01~2014-02-28"
+    },
+    {
+      "title": "나노 마이크로 응용기계기술 인력양성사업",
+      "org": "학술진흥재단",
+      "period": "2012-03-01~2013-04-30"
+    },
+    {
+      "title": "극 초해상 다중 병렬 나노 광 프로브 기반 기술 개발 (1/2,2단계)",
+      "org": "한국과학재단",
+      "period": "2012-03-01~2013-02-28"
+    },
+    {
+      "title": "삼성전자(주)/멀티스케일 형상을 갖는 몰드 제작을 위한 초미세 전주공정 기술 개발/2012.02.01~2012.10.31(2012.02.01~2012.10.31)- 2013.10.31- 2014.03.31",
+      "org": "국내",
+      "period": "2012-02-01~2014-03-31"
+    },
+    {
+      "title": "LG전자(주) / Nano-scale구조물/quantum dot layer를 이용한 저반사 표면 설계 &#48142 제작 기술 개발 (2011.12.01~2012.11.30)- 2013.11.30",
+      "org": "국내",
+      "period": "2011-12-01~2014-03-31"
+    },
+    {
+      "title": "[RCMS]한국기계연구원/폭 1m급 광학필름용 원통형 나노패터닝 공정장비 개발(1차년도/5)(2011.07.01~2016.06.30)",
+      "org": "한국산업기술평가관리원",
+      "period": "2011-07-01~2012-06-30"
+    },
+    {
+      "title": "나노사출성형 공정기술개발 (4/4, 3단계)",
+      "org": "한국과학재단",
+      "period": "2011-04-01~2012-03-31"
+    },
+    {
+      "title": "나노 마이크로 응용기계기술 인력양성사업",
+      "org": "학술진흥재단",
+      "period": "2011-03-01~2012-02-29"
+    },
+    {
+      "title": "나노마이크로응용기계기술인력양성사업단",
+      "org": "연세대학교",
+      "period": "2011-03-01~2012-02-29"
+    },
+    {
+      "title": "극 초해상 다중 병렬 나노 광 프로브 기반 기술 개발",
+      "org": "한국과학재단",
+      "period": "2011-03-01~2012-02-29"
+    },
+    {
+      "title": "생기원/마이크로 니들 어레이 몰드 가공 및 패치 성형공정 연구",
+      "org": "지식경제부",
+      "period": "2010-10-01~2011-06-30"
+    },
+    {
+      "title": "초정밀 제작 기술을 바탕으로 한 공초점현미경 해상도 향상에 관한 연구",
+      "org": "한국과학창의재단",
+      "period": "2010-07-20~2011-01-20"
+    },
+    {
+      "title": "[SM] 한국연구재단-기초연구사업(선도연구센터육성사업)",
+      "org": "연세대학교산학단_간접비",
+      "period": "2010-05-01~2010-06-30"
+    },
+    {
+      "title": "나노사출성형 공정기술개발",
+      "org": "한국과학재단",
+      "period": "2010-04-01~2011-03-31"
+    },
+    {
+      "title": "나노양자점 형광체 기반 차세대 LED 모듈 개발(세부-고효율 나노형광체 구조 설계 및 미세 도포 기술)",
+      "org": "지식경제부",
+      "period": "2010-04-01~2011-03-31"
+    },
+    {
+      "title": "(주)대일정공 / 초음파 영상진단용 트랜스듀서 backing block 제작 기술 개발",
+      "org": "기업체/공사",
+      "period": "2010-04-01~2011-12-31"
+    },
+    {
+      "title": "G-5-5-10나노마이크로응용기계기술인력양성사업단",
+      "org": "연세대학교",
+      "period": "2010-03-02~2011-06-30"
+    },
+    {
+      "title": "나노마이크로응용기계기술인력양성사업단",
+      "org": "연세대학교",
+      "period": "2010-03-01~2011-02-28"
+    },
+    {
+      "title": "나노 마이크로 응용기계기술 인력양성사업단",
+      "org": "학술진흥재단",
+      "period": "2010-03-01~2011-02-28"
+    },
+    {
+      "title": "극 초해상 다중 병렬 나노광 프로브 기반 기술 개발",
+      "org": "한국과학재단",
+      "period": "2010-03-01~2011-02-28"
+    },
+    {
+      "title": "[다학제간] 로봇공학/로보틱스:지능형 로봇 연구회(2차)",
+      "org": "연세대학교산학단_간접비",
+      "period": "2010-01-01~2011-02-28"
+    },
+    {
+      "title": "조인트 랩 설립 및 협력연구에 관한 계약 ODD Mechanism의 진동 소음 특성 개선에 대한 연구",
+      "org": "(주)히타치엘지데이터스토리지",
+      "period": "2010-01-01~2011-03-31"
+    },
+    {
+      "title": "대면적 고세장비 미세 패턴 성형용 금속 패턴 스탬프 제작 기술 개발",
+      "org": "한국기계연구원",
+      "period": "2009-10-01~2010-09-30"
+    },
+    {
+      "title": "극 초해상 다중 병렬 나노광 프로브 기반 기술 개발",
+      "org": "한국과학재단",
+      "period": "2009-05-01~2010-02-28"
+    },
+    {
+      "title": "나노사출성형 공정기술개발",
+      "org": "한국과학재단",
+      "period": "2009-04-01~2010-03-31"
+    },
+    {
+      "title": "G5-5-10/나노마이크로응용기계기술인력양성사업",
+      "org": "연세대학교",
+      "period": "2009-03-02~2010-06-30"
+    },
+    {
+      "title": "나노마이크로응용기계기술인력양성사업단",
+      "org": "연세대학교",
+      "period": "2009-03-01~2010-02-28"
+    },
+    {
+      "title": "나노마이크로응용기계기술인력양성사업단",
+      "org": "학술진흥재단",
+      "period": "2009-03-01~2010-02-28"
+    },
+    {
+      "title": "LG디스플레이(주) 차세대 LCD용 soluble 재료와 소자 및 고휘도 발광다이오드 BLU 기술개발",
+      "org": "민간기업",
+      "period": "2009-03-01~2012-08-31"
+    },
+    {
+      "title": "대면적 미세 성형공정 원천기술 개발",
+      "org": "한국기계연구원",
+      "period": "2008-10-01~2009-09-30"
+    },
+    {
+      "title": "DEVELOPMENT OF NANO-REPLICATION TECHNOLOGY FOR NANO STORAGE DEVECE",
+      "org": "KONICA",
+      "period": "2008-09-01~2010-08-31"
+    },
+    {
+      "title": "나노 몰드 및 고분자 나노 복제 기술의 나노 광전자 소자 응용",
+      "org": "한국과학재단",
+      "period": "2008-07-08~2009-07-07"
+    },
+    {
+      "title": "공진반사광 바이오센서 나노패턴 제작 몰드 및 리더기용 광픽업제작",
+      "org": "한국전자통신연구원",
+      "period": "2008-05-01~2008-12-31"
+    },
+    {
+      "title": "10 NM 급 패턴 나노사출성형 공정기술개발",
+      "org": "한국기계연구원",
+      "period": "2008-04-01~2009-03-31"
+    },
+    {
+      "title": "나노마이크로응용기계기술인력양성사업단",
+      "org": "학술진흥재단",
+      "period": "2008-03-01~2009-02-28"
+    },
+    {
+      "title": "G5-5-10/나노마이크로응용기계기술인력양성사업",
+      "org": "연세대학교",
+      "period": "2008-03-01~2009-02-28"
+    },
+    {
+      "title": "나노마이크로응용기계기술인력양성사업단",
+      "org": "연세대학교",
+      "period": "2008-03-01~2009-02-28"
+    },
+    {
+      "title": "대면적 미세 성형공정 원천기술 개발",
+      "org": "한국기계연구원",
+      "period": "2007-12-01~2008-09-30"
+    },
+    {
+      "title": "DEVELOPMENT OF NANO-REPLICATION TECHNOLOGY FOR NANO STORAGE DEVECE",
+      "org": "KONICA",
+      "period": "2007-09-01~2008-08-31"
+    },
+    {
+      "title": "나노 몰드 및 고분자 나노 복제 기술의 나노 광전자 소자 응용",
+      "org": "한국과학재단",
+      "period": "2007-07-08~2008-07-07"
+    },
+    {
+      "title": "이미지 신호처리 관련 단기 자문 및 세미나 운영",
+      "org": "(주)삼성전기",
+      "period": "2007-06-01~2008-05-31"
+    },
+    {
+      "title": "삼성전기 신기능 ISM 모듈 센서 특성 연구",
+      "org": "민간기업",
+      "period": "2007-06-01~2008-05-31"
+    },
+    {
+      "title": "2007년 1차 해외특허보조선정 미국",
+      "org": "특허청",
+      "period": "2007-05-30~2010-12-31"
+    },
+    {
+      "title": "50NM급 패턴 사출성형 공정기술 개발",
+      "org": "나노메카트로닉스기술개발사업단",
+      "period": "2007-04-01~2008-03-31"
+    },
+    {
+      "title": "나노/마이크로 응용 기계기술 인력양성사업단",
+      "org": "학술진흥재단",
+      "period": "2007-03-01~2008-02-29"
+    },
+    {
+      "title": "나노/마이크로 응용 기계기술 인력양성사업단",
+      "org": "연세대학교",
+      "period": "2007-03-01~2008-02-29"
+    },
+    {
+      "title": "G5-5-10/나노마이크로응용기계기술인력양성사업",
+      "org": "연세대학교",
+      "period": "2007-03-01~2008-05-31"
+    },
+    {
+      "title": "삼성전자(주) 광전자소자(FPD응용) 패턴 제작을 위한 금속 잉크 나노 임프린트 성형성 최적화",
+      "org": "민간기업",
+      "period": "2006-08-15~2006-12-15"
+    },
+    {
+      "title": "나노 몰드 및 고분자 나노 복제 기술의 나노 광전자 소자 응용",
+      "org": "한국과학재단",
+      "period": "2006-07-08~2007-07-07"
+    },
+    {
+      "title": "2005 한-독 신진고급과학기술인력양성사업 선정자 연수경비지원-이남석",
+      "org": "과학재단",
+      "period": "2006-06-16~2006-12-15"
+    },
+    {
+      "title": "신개념 렌즈 설계",
+      "org": "(주)삼성전기",
+      "period": "2006-06-01~2007-05-31"
+    },
+    {
+      "title": "폰 카메라 플레쉬 및 조명용 고휘도 LED 렌즈설계 및 제조기술",
+      "org": "산업기술평가원",
+      "period": "2006-06-01~2007-05-31"
+    },
+    {
+      "title": "50NM급 패턴 사출성형 공정기술 개발",
+      "org": "제이엠아이",
+      "period": "2006-04-01~2007-03-31"
+    },
+    {
+      "title": "나노 마이크로 응용기계기술 인력양성사업단",
+      "org": "학술진흥재단",
+      "period": "2006-03-01~2007-02-28"
+    },
+    {
+      "title": "나노마이크로응용기계기술인역양성사업단",
+      "org": "연세대학교",
+      "period": "2006-03-01~2007-02-28"
+    },
+    {
+      "title": "LCD TFT 금속 배선 제작을 위한 NANO IMPRINTING 공정 기술",
+      "org": "삼성전자(주)",
+      "period": "2005-08-01~2006-02-28"
+    },
+    {
+      "title": "나노 몰드 및 고분자 나노 복제 기술의 나노 광전소자응용",
+      "org": "한국과학재단",
+      "period": "2005-07-08~2006-07-07"
+    },
+    {
+      "title": "폰 카메라 플레쉬 및 조명용 고휘도 LED 렌즈설계 및 제조기술",
+      "org": "산업기술평가원",
+      "period": "2005-06-01~2006-05-31"
+    },
+    {
+      "title": "50NM급 패턴 사출성형 공정 기술 개발",
+      "org": "제이엠아이",
+      "period": "2005-04-01~2006-03-31"
+    },
+    {
+      "title": "ERC/정보저장기기연구센터/1-2공통",
+      "org": "과학재단",
+      "period": "2005-03-01~2006-02-28"
+    },
+    {
+      "title": "ERC/정보저장기기연구센터/1-1공통",
+      "org": "과학재단",
+      "period": "2005-03-01~2006-02-28"
+    },
+    {
+      "title": "어레이 구조를 갖는 홀더 일체형 렌즈 성형기술 개발",
+      "org": "(주)삼성전기",
+      "period": "2005-03-01~2006-02-28"
+    },
+    {
+      "title": "ERC/정보저장기기연구센터/2-3세부",
+      "org": "과학재단",
+      "period": "2005-03-01~2006-02-28"
+    },
+    {
+      "title": "ERC/정보저장기기연구센터/2-3공통",
+      "org": "과학재단",
+      "period": "2005-03-01~2006-02-28"
+    },
+    {
+      "title": "나노 몰드 및 고분자 나노 복제 기술의 나노 광전자 소자 응용",
+      "org": "한국과학기술평가원",
+      "period": "2004-09-08~2005-07-07"
+    },
+    {
+      "title": "MOLDING에 의한 광픽업용 MIRROR ARRAY WAFER 개발",
+      "org": "삼성전자(주)",
+      "period": "2004-07-01~2004-09-30"
+    },
+    {
+      "title": "나노패턴 성형 공정기술",
+      "org": "기계연구원",
+      "period": "2004-04-01~2005-03-31"
+    },
+    {
+      "title": "정보저장/2총괄3세부_강신일",
+      "org": "과학재단",
+      "period": "2004-03-01~2005-02-28"
+    },
+    {
+      "title": "정보저장/2총괄3세부_공통",
+      "org": "과학재단",
+      "period": "2004-03-01~2005-02-28"
+    },
+    {
+      "title": "초소용 광 정보저장기기용 스윙암 형식의 엑추에이터 개발",
+      "org": "(주)삼성전기",
+      "period": "2004-01-01~2004-12-31"
+    },
+    {
+      "title": "MICRO/NANO 광기능성 소재의 성형을 위한 UV EMBOSSING 및 HOT EMBOSSING 공정기술 개발(3차년도)",
+      "org": "한국생산기술연구원",
+      "period": "2003-08-01~2004-07-31"
+    },
+    {
+      "title": "나노패턴 성형 공정기술",
+      "org": "기계연구원",
+      "period": "2003-07-01~2004-03-31"
+    },
+    {
+      "title": "FABRICATION OF MICROLENS ILLUMINATED APERTURE ARRAYS",
+      "org": "PHILIPS RESEARCH",
+      "period": "2003-05-22~2004-01-22"
+    },
+    {
+      "title": "자외선 성형을 통한 카메라용 비구면 DOE/HOE 복합형 대물렌즈(결상용, 직경 10MM 이상) 제작",
+      "org": "(주)삼양옵틱스",
+      "period": "2003-03-01~2004-02-28"
+    },
+    {
+      "title": "정보저장_2총괄3세부",
+      "org": "과학재단",
+      "period": "2003-03-01~2004-02-28"
+    },
+    {
+      "title": "정보저장_2총괄3세부",
+      "org": "과학재단",
+      "period": "2003-03-01~2004-02-28"
+    },
+    {
+      "title": "SLIM SUPER COMBO P/U 모델의 열변형 해석 및 측정시스템 개발",
+      "org": "(주)삼성전기",
+      "period": "2002-12-01~2003-11-30"
+    },
+    {
+      "title": "SEEDMONEY 지원",
+      "org": "연세대학교산학단_간접비",
+      "period": "2002-10-01~"
+    },
+    {
+      "title": "나노 패턴 성형 공정 기술",
+      "org": "기계연구원",
+      "period": "2002-10-01~2003-06-30"
+    },
+    {
+      "title": "MICRO/NANO 광기능성 소재의 성형을 위한 UV EMBOSSING 및 HOT EMBOSSING 공정기술 개발",
+      "org": "인덕대학교",
+      "period": "2002-08-01~2003-07-31"
+    },
+    {
+      "title": "(2-3세부/강신일) 차세대 고밀도 정보저장용부품 및 미디어제조기술개발",
+      "org": "과학재단",
+      "period": "2002-03-01~2003-02-28"
+    },
+    {
+      "title": "MICRO/NANO 광기능성 소재의 성형을 위한 UV EMBOSSING 및 HOT EMBOSSING 공정기술 개발",
+      "org": "인덕대학교",
+      "period": "2001-10-01~2002-07-31"
+    },
+    {
+      "title": "(강신일)",
+      "org": "과학재단",
+      "period": "2001-03-01~2002-02-28"
+    },
+    {
+      "title": "보압해석 프로그램 (PVT DATA) 개발(2차년도)",
+      "org": "생산기술연구원",
+      "period": "2000-12-01~2001-11-30"
+    },
+    {
+      "title": "고속레이져프린터용 PRESCANNING HOLOGRAM DISK와 POSTSCANNING 광학소자의 성형공정 기술개발",
+      "org": "(주)엘지에스",
+      "period": "2000-12-01~2001-11-30"
+    },
+    {
+      "title": "제품 설계 기술 (2차년도)",
+      "org": "생산기술연구원",
+      "period": "2000-11-01~2001-10-31"
+    },
+    {
+      "title": "OPTICAL DISC DRIVE 기술 개발 과제",
+      "org": "삼성전자(주)",
+      "period": "2000-09-01~2001-08-31"
+    },
+    {
+      "title": "국제학술활동지원 통합처리과제(학술회의/논문게재)",
+      "org": "연세대학교산학단_간접비",
+      "period": "2000-03-01~2001-02-28"
+    },
+    {
+      "title": "HIGH DENSITY DVD 용 0.3MM 광 디스크 기판 및 근접장기록용 고강성,저진동 디스크 기판의 초정밀 성형",
+      "org": "LG 전자",
+      "period": "2000-02-01~2000-11-30"
+    },
+    {
+      "title": "제품 설계 기술(1차년도)",
+      "org": "생산기술연구원",
+      "period": "1999-11-01~2000-10-31"
+    },
+    {
+      "title": "사출성형 보압해석 프로그램 개발",
+      "org": "한국산업기술평가원",
+      "period": "1999-09-01~2000-08-31"
+    },
+    {
+      "title": "승원안전을 고려한 승용차 플라스틱 내장재의 설계 및성형",
+      "org": "학술진흥재단",
+      "period": "1998-12-01~1999-11-30"
+    }
+  ],
+  "patents": [
+    {
+      "title": "혈압 모니터링 장치 및 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2025-01-26"
+    },
+    {
+      "title": "혈압 모니터링 장치 및 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2024-07-10"
+    },
+    {
+      "title": "대면적 정밀 패터닝을 위한 리소그래피 장치 및 리소그래피 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2024-02-20"
+    },
+    {
+      "title": "빔 정렬 가능한 스캐닝 간섭 빔 리소그래피 장치 및 스캐닝 간섭 빔 리소그래피 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2024-01-12"
+    },
+    {
+      "title": "유리 표면 초미세 구조 형성 방법 및 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2023-04-14"
+    },
+    {
+      "title": "병렬 나노리소그래피",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2023-02-22"
+    },
+    {
+      "title": "비접촉식 심전도 측정장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 한국과학기술원",
+      "date": "2022-08-12"
+    },
+    {
+      "title": "비침습 방식 심전도 모니터링 장치 및 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 한국과학기술원",
+      "date": "2022-07-13"
+    },
+    {
+      "title": "유리 표면 초미세 구조 형성 방법 및 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2022-03-07"
+    },
+    {
+      "title": "유동관 형상 제어용 자성 세포, 이의 제조방법, 유동관 형상 제어 시스템 및 자성 세포를 이용한 인공지능 유동관 형상 제어계획 수립 시스템",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2021-12-06"
+    },
+    {
+      "title": "유동관 형상 제어용 자성 세포, 이의 제조방법, 유동관 형상 제어 시스템 및 자성 세포를 이용한 인공지능 유동관 형상 제어계획 수립 시스템",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2021-12-04"
+    },
+    {
+      "title": "외부 전기장 및 적외선 대역 레이저 투과형 몰드를 이용하는 금속 부재 임프린팅 성형 장치 및 성형 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2021-09-17"
+    },
+    {
+      "title": "비접촉식 심전도 측정장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 한국과학기술원",
+      "date": "2021-08-13"
+    },
+    {
+      "title": "미생물 부착 방지 구조물 및 그 제조 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2021-07-29"
+    },
+    {
+      "title": "비침습 방식 심전도 모니터링 장치 및 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 한국과학기술원",
+      "date": "2021-07-16"
+    },
+    {
+      "title": "유동관 형상 제어용 자성 세포, 이의 제조방법, 유동관 형상 제어 시스템 및 자성 세포를 이용한 인공지능 유동관 형상 제어계획 수립 시스템",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2020-12-04"
+    },
+    {
+      "title": "미생물 부착 방지 구조물 및 그 제조 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2020-01-07"
+    },
+    {
+      "title": "외부 전기장 및 적외선 대역 레이저 투과형 몰드를 이용하는 금속 임프린팅 성형 장치 및 성형 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2019-11-28"
+    },
+    {
+      "title": "실시간 위상감지 GMR 바이오센서 장치 및 센싱 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 전북대학교 산학협력단",
+      "date": "2018-12-28"
+    },
+    {
+      "title": "미생물 부착 방지 구조물 및 그 제조 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2017-12-20"
+    },
+    {
+      "title": "초미세 와류를 발생시켜 자가발전을 통한 열 발생이 가능한 표면 구조체",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2017-11-15"
+    },
+    {
+      "title": "실시간 오차 보정이 가능한 스캐닝 간섭 리소그래피 시스템",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2017-11-14"
+    },
+    {
+      "title": "미생물 부착 방지 구조물 및 그 제조 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2016-05-04"
+    },
+    {
+      "title": "실리콘 적외선 투과용 광학장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2016-01-11"
+    },
+    {
+      "title": "항력 저감 및 미생물 부착 방지용 마이크로-나노 프랙탈 구조.",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2015-10-15"
+    },
+    {
+      "title": "칼코게나이드 기반 플렉서블 상변화 박막을 포함하는 플렉서블 근접장 광 이미징 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2015-07-29"
+    },
+    {
+      "title": "플렉서블 나노박막 광구조를 이용하는 가변 대면적 나노이미징 광학헤드 및 이미징 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2015-05-22"
+    },
+    {
+      "title": "유리 표면 성형 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2015-04-16"
+    },
+    {
+      "title": "유리 표면 성형 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2015-04-16"
+    },
+    {
+      "title": "유리 표면 성형 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2015-04-16"
+    },
+    {
+      "title": "유리 표면 성형 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2015-04-16"
+    },
+    {
+      "title": "초해상막 및 이를 이용한 리소그래피 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2015-03-02"
+    },
+    {
+      "title": "초해상막 및 이를 이용한 리소그래피 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2015-03-02"
+    },
+    {
+      "title": "초해상막 및 이를 이용한 리소그래피 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2015-03-02"
+    },
+    {
+      "title": "초해상막 및 이를 이용한 리소그래피 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2015-03-02"
+    },
+    {
+      "title": "항력 저감 및 미생물 부착 방지용 마이크로-나노 프랙탈 구조.",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2014-11-27"
+    },
+    {
+      "title": "실리콘 적외선 투과용 광학장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2014-10-06"
+    },
+    {
+      "title": "실리콘 적외선 투과용 광학장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2014-10-06"
+    },
+    {
+      "title": "칼코게나이드 기반 플렉서블 상변화 박막을 포함하는 플렉서블 근접장 광 이미징 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2014-07-29"
+    },
+    {
+      "title": "롤투롤 플렉서블 근접장 광 이미징 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2014-07-29"
+    },
+    {
+      "title": "자유곡면 상면 레이저 간섭 리소그라피 장치 및 그 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2014-05-28"
+    },
+    {
+      "title": "자유곡면 상면 레이저 간섭 리소그라피 장치 및 그 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2014-05-28"
+    },
+    {
+      "title": "플렉서블 나노박막 광구조를 이용하는 가변 대면적 나노이미징 광학헤드 및 이미징 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2014-05-23"
+    },
+    {
+      "title": "롤 상면 레이저 간섭 리소그라피 장치 및 그 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2014-04-22"
+    },
+    {
+      "title": "대면적 롤 마스터 상면 미세패턴 제작을 위한 롤 마스터 제조장치 및 이를 이용한 대면적 롤 마스터 제작방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2014-04-18"
+    },
+    {
+      "title": "다중 병렬 공초점 시스템 및 이를 이용한 표면 측정방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2014-04-09"
+    },
+    {
+      "title": "초해상막 및 이를 이용한 리소그래피 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2014-02-28"
+    },
+    {
+      "title": "초해상막 및 이를 이용한 리소그래피 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2014-02-28"
+    },
+    {
+      "title": "실리콘 적외선 투과용 광학계 및 그 제조방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2013-07-18"
+    },
+    {
+      "title": "실리콘 적외선 투과용 광학계 및 그 제조방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2013-07-18"
+    },
+    {
+      "title": "유리 표면 성형 장치 및 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2013-01-28"
+    },
+    {
+      "title": "유리 표면 성형 장치 및 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2013-01-28"
+    },
+    {
+      "title": "다중 병렬 공초점 시스템 및 이를 이용한 표면 측정방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2013-01-11"
+    },
+    {
+      "title": "다중 병렬 공초점 시스템 및 이를 이용한 표면 측정방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2013-01-11"
+    },
+    {
+      "title": "와이어 그리드 편광자 및 그 제조방법, 와이어 그리드 편광자를 구비하는 액정 디스플레이 패널 및 액정 디스플레이 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2012-06-25"
+    },
+    {
+      "title": "와이어 그리드 편광자 및 그 제조방법, 와이어 그리드 편광자를 구비하는 액정 디스플레이 패널 및 액정 디스플레이 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2012-06-25"
+    },
+    {
+      "title": "와이어 그리드 편광자 및 그 제조방법, 와이어 그리드 편광자를 구비하는 액정 디스플레이 패널 및 액정 디스플레이 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2012-06-23"
+    },
+    {
+      "title": "와이어 그리드 편광자 및 그 제조방법, 와이어 그리드 편광자를 구비하는 액정 디스플레이 패널 및 액정 디스플레이 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2012-05-11"
+    },
+    {
+      "title": "와이어 그리드 편광자 및 그 제조방법, 와이어 그리드 편광자를 구비하는 액정 디스플레이 패널 및 액정 디스플레이 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2012-05-11"
+    },
+    {
+      "title": "다중 병렬 공초점 시스템 및 이를 이용한 표면 측정방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2012-01-12"
+    },
+    {
+      "title": "실리콘 적외선 투과용 광학계 및 그 제조방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2011-12-22"
+    },
+    {
+      "title": "무반사 패턴이 형성된 적외선 투과용 광학계 및 그 제조방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2010-12-30"
+    },
+    {
+      "title": "자성 패턴 형성 방법 및 자성 패턴 형성을 통한 패턴드 미디어 제조방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2010-06-21"
+    },
+    {
+      "title": "이종재료 반사방지 미세구조물을 갖는 적외선 광학계용 광소자 및 이의 제조방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2010-01-28"
+    },
+    {
+      "title": "이종재료 반사방지 미세구조물을 갖는 적외선 광학계용 광소자 및 이의 제조방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2010-01-28"
+    },
+    {
+      "title": "프레넬 렌즈의 그루브각 최적화 방법 및 이를 이용한 프레넬 제조방법 및 프레넬 렌즈",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2009-11-12"
+    },
+    {
+      "title": "웨이퍼 스케일 렌즈 어레이, 그 성형장치 및 그 제조방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2009-03-13"
+    },
+    {
+      "title": "웨이퍼 스케일 렌즈 어레이, 그 성형장치 및 그 제조방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2009-03-13"
+    },
+    {
+      "title": "나노 구조물 제작방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2009-02-12"
+    },
+    {
+      "title": "나노 구조물 제작방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2009-02-12"
+    },
+    {
+      "title": "나노 구조물 제작방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2009-02-12"
+    },
+    {
+      "title": "기능성 나노패턴을 갖는 렌즈와 그 제조방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2009-01-29"
+    },
+    {
+      "title": "기능성 나노패턴을 갖는 렌즈와 그 제조방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2009-01-29"
+    },
+    {
+      "title": "광학패키지 웨이퍼스케일 어레이 및 그 제조방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2009-01-12"
+    },
+    {
+      "title": "광학 패키지의 웨이퍼 스케일 어레이와 똑같은 것을 제조하기 위한 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2009-01-12"
+    },
+    {
+      "title": "광학패키지 웨이퍼스케일 어레이 및 그 제조방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2009-01-12"
+    },
+    {
+      "title": "자성 패턴 형성 방법 및 자성 패턴 형성을 통한 패턴드 미디어 제조방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2008-12-22"
+    },
+    {
+      "title": "자성 패턴 형성 방법 및 자성 패턴 형성을 통한 패턴드 미디어 제조방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2008-12-22"
+    },
+    {
+      "title": "스탬프 제작장비 및 방법과 이를 이용한 패턴드 미디어 제작방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2008-09-19"
+    },
+    {
+      "title": "스탬프 제작장비 및 방법과 이를 이용한 패턴드 미디어 제작방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2008-09-19"
+    },
+    {
+      "title": "기능성 나노패턴을 갖는 렌즈와 그 제조방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2008-09-08"
+    },
+    {
+      "title": "렌즈 일체형 LED 모듈 및 그 제조방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2008-05-30"
+    },
+    {
+      "title": "렌즈 일체형 LED 모듈 및 그 제조방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2008-05-30"
+    },
+    {
+      "title": "유기 전계발광 소자",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2008-05-29"
+    },
+    {
+      "title": "유기 전계발광 소자",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2008-05-29"
+    },
+    {
+      "title": "웨이퍼 스케일 렌즈 어레이, 그 성형장치 및 그 제조방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2008-03-14"
+    },
+    {
+      "title": "웨이퍼 스케일 렌즈 어레이, 그 성형장치 및 그 제조방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2008-03-14"
+    },
+    {
+      "title": "광학 리소그래피 장치 및 광학 리소그래피 장치에 사용되는 광학 헤드 제조방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2008-02-21"
+    },
+    {
+      "title": "광학 리소그래피 장치 및 광학 리소그래피 장치에 사용되는 광학 헤드 제조방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2008-02-21"
+    },
+    {
+      "title": "광학 리소그래피 장치 및 광학 리소그래피 장치에 사용되는 광학 헤드 제조방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2008-02-21"
+    },
+    {
+      "title": "광학패키지 웨이퍼스케일 어레이 및 그 제조방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2008-01-10"
+    },
+    {
+      "title": "자성 패턴 형성 방법 및 자성 패턴 형성을 통한 패턴드 미디어 제조방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2007-12-21"
+    },
+    {
+      "title": "자외선 나노 임프린팅을 이용한 연속 리소그라피 장치 및 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2007-04-20"
+    },
+    {
+      "title": "자외선 나노 임프린팅을 이용한 연속 리소그라피 장치 및 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2007-04-20"
+    },
+    {
+      "title": "프레넬 렌즈 및 이를 이용한 LED 조명 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2007-03-23"
+    },
+    {
+      "title": "프레넬 렌즈 및 이를 이용한 LED 조명 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2007-03-23"
+    },
+    {
+      "title": "자외선 나노 임프린팅을 이용한 연속 리소그라피 장치 및 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2007-02-22"
+    },
+    {
+      "title": "자외선 나노 임프린팅을 이용한 연속 리소그라피 장치 및 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2007-02-22"
+    },
+    {
+      "title": "마이크로 렌즈 어레이 일체형 공간 광 변조기를 이용한 무마스크 리소그래피 시스템",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2007-02-22"
+    },
+    {
+      "title": "프레넬 렌즈 및 이를 이용한 LED 조명 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2006-03-23"
+    },
+    {
+      "title": "마이크로 발열기구를 구비하는 마이크로 패턴 구조물성형용 금형구조 및 이에 사용되는 마이크로 패턴 구조물성형용 몰드인서트의 제작 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2005-06-30"
+    },
+    {
+      "title": "마이크로 발열기구를 구비하는 마이크로 패턴 구조물성형용 금형구조 및 이에 사용되는 마이크로 패턴 구조물성형용 몰드인서트의 제작 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2005-06-29"
+    },
+    {
+      "title": "병렬 광 프로브 광학 시스템",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2005-06-14"
+    },
+    {
+      "title": "마이크로 발열기구를 구비하는 마이크로 패턴 구조물성형용 금형구조 및 이에 사용되는 마이크로 패턴 구조물성형용 몰드인서트의 제작 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2003-12-31"
+    },
+    {
+      "title": "마이크로 발열기구를 구비하는 마이크로 패턴 구조물성형용 금형구조 및 이에 사용되는 마이크로 패턴 구조물성형용 몰드인서트의 제작 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2003-12-31"
+    },
+    {
+      "title": "미세형상 구조물의 연속 성형장치 및 방법 그리고 그 미세형상의 성형을 위한 스탬퍼 제작방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2002-10-11"
+    },
+    {
+      "title": "패턴드 미디어 제조방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2002-09-23"
+    },
+    {
+      "title": "미세 구조물의 가공 방법 및 그의미세 압축성형 금형",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2000-08-05"
+    },
+    {
+      "title": "미세 구조물의 가공 방법 및 그의미세 압축성형 금형",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2000-08-05"
+    }
+  ]
+}

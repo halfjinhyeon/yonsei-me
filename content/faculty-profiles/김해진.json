@@ -1,0 +1,887 @@
+{
+  "name": "김해진",
+  "nameEn": "Kim Hae-Jin",
+  "email": "hjk@yonsei.ac.kr",
+  "phone": "2819",
+  "office": "Engineering Hall #1, Rm. N206",
+  "homepage": "http://www.yslidm.com",
+  "sourceUrl": "https://me.yonsei.ac.kr/faculty/name_search.do?mode=view&userId=pAo4Dx2KA2dkOviAVvwsLQ%3D%3D&sosokcd=0000405",
+  "crawledAt": "2026-07-27",
+  "articles": [
+    {
+      "date": "2026-03",
+      "title": "Coarse-Grained Modeling of P3HT:SBS Blends for Stretchable Organic Semiconductors",
+      "journal": "MACROMOLECULES"
+    },
+    {
+      "date": "2025-10",
+      "title": "본질적 신축성 도체를 위한 최신 패터닝 전략: 재료·구조·장치 수준 성능",
+      "journal": "Journal of the Korean Society for Precision Engineering"
+    },
+    {
+      "date": "2025-10",
+      "title": "Engineering Surface Properties and Structural Designs for Controlling Underfill Dynamics in Flip-Chip Packaging",
+      "journal": "International Journal of Precision Engineering and Manufacturing"
+    },
+    {
+      "date": "2025-09",
+      "title": "Intrinsically stretchable organic electrochemical synaptic transistors for versatile response modulations",
+      "journal": "Nano Research"
+    },
+    {
+      "date": "2025-08",
+      "title": "Uniform patterning of MXene-based slurry on carbon cloth for flexible supercapacitor by roll-to-roll production",
+      "journal": "Manufacturing Letters"
+    },
+    {
+      "date": "2025-06",
+      "title": "Tribological Design Optimization of Probe Card Tip for Enhanced Chip Manufacturing Productivity",
+      "journal": "International Journal of Precision Engineering and Manufacturing"
+    },
+    {
+      "date": "2025-03",
+      "title": "Flexible and lightweight perovskite/Cu(In,Ga)Se2 tandem solar cells",
+      "journal": "Joule"
+    },
+    {
+      "date": "2025-01",
+      "title": "Status and prospects of tribology in Republic of Korea",
+      "journal": "Friction"
+    },
+    {
+      "date": "2024-07",
+      "title": "Design of hybrid Ag–Au nanostructure based fully elastomeric nanocomposite electrodes for soft integrated electronics",
+      "journal": "Composites Part B: Engineering"
+    },
+    {
+      "date": "2024-01",
+      "title": "Soft nanocomposites of lead bromide perovskite and polyurethane prepared via coordination chemistry for highly flexible, stable, and quaternary metal alloy-printed light emitting diodes",
+      "journal": "Journal of Materials Chemistry C"
+    },
+    {
+      "date": "2023-05",
+      "title": "Interfacial Capillary Spooling of Conductive Polyurethane–Silver Core–Sheath (PU@Ag) Microfibers for Highly Stretchable Interconnects",
+      "journal": "ACS Applied Materials & Interfaces"
+    }
+  ],
+  "awards": [
+    {
+      "title": "우수논문상",
+      "contents": null,
+      "date": "2026-03-28"
+    },
+    {
+      "title": "우수 발표 논문상",
+      "contents": null,
+      "date": "2026-03-20"
+    },
+    {
+      "title": "우수강의교수상",
+      "contents": null,
+      "date": "2026-02-28"
+    },
+    {
+      "title": "우수포스터상",
+      "contents": null,
+      "date": "2026-02-27"
+    },
+    {
+      "title": "학부생 포스터 경진대회 우수상",
+      "contents": null,
+      "date": "2025-11-21"
+    },
+    {
+      "title": "우수논문상",
+      "contents": null,
+      "date": "2025-11-21"
+    },
+    {
+      "title": "우수논문상",
+      "contents": null,
+      "date": "2025-11-21"
+    },
+    {
+      "title": "우수 젊은 연구자",
+      "contents": null,
+      "date": "2025-11-13"
+    },
+    {
+      "title": "최우수상",
+      "contents": null,
+      "date": "2025-10-24"
+    },
+    {
+      "title": "우수 발표 논문상",
+      "contents": null,
+      "date": "2025-10-24"
+    },
+    {
+      "title": "우수포스터상",
+      "contents": null,
+      "date": "2025-10-17"
+    },
+    {
+      "title": "현장우수포스터상",
+      "contents": null,
+      "date": "2025-08-22"
+    },
+    {
+      "title": "학술대회 최우수 논문상",
+      "contents": null,
+      "date": "2025-05-16"
+    },
+    {
+      "title": "우수포스터상",
+      "contents": null,
+      "date": "2025-05-09"
+    },
+    {
+      "title": "Best Poster Award",
+      "contents": null,
+      "date": "2025-03-25"
+    },
+    {
+      "title": "젊은공학자상",
+      "contents": null,
+      "date": "2025-03-21"
+    },
+    {
+      "title": "한국유연인쇄전자학회",
+      "contents": null,
+      "date": "2025-03-21"
+    },
+    {
+      "title": "한국유연인쇄전자학회",
+      "contents": null,
+      "date": "2025-03-21"
+    },
+    {
+      "title": "우수강의교수상",
+      "contents": "우수강의교수상",
+      "date": "2025-02-28"
+    },
+    {
+      "title": "사회지향형 우수논문상",
+      "contents": null,
+      "date": "2024-12-26"
+    },
+    {
+      "title": "최우수 논문상",
+      "contents": null,
+      "date": "2024-12-13"
+    },
+    {
+      "title": "우수논문상",
+      "contents": null,
+      "date": "2024-11-22"
+    },
+    {
+      "title": "학술대회 최우수 논문상",
+      "contents": null,
+      "date": "2024-11-02"
+    },
+    {
+      "title": "학술대회 최우수 논문상",
+      "contents": "2023 추계학술대회 최우수 논문상",
+      "date": "2024-05-10"
+    },
+    {
+      "title": "우수강의교수상",
+      "contents": null,
+      "date": "2024-02-29"
+    },
+    {
+      "title": "우수심사자상",
+      "contents": null,
+      "date": "2023-10-19"
+    },
+    {
+      "title": "우수포스터상",
+      "contents": null,
+      "date": "2023-04-20"
+    }
+  ],
+  "conferences": [
+    {
+      "title": "고집적 소프트 회로 구현을 위한 반도체 나노복합소재의 도핑 제어",
+      "conference": "2026 한국정밀공학회 춘계학술대회",
+      "period": "2026.05.13~2026.05.15"
+    },
+    {
+      "title": "전극 및 기능층의 전층 인쇄 공정을 이용한 ITO-Free 양자점 발광다이오드(QLED) 구현",
+      "conference": "2026 한국정밀공학회 춘계학술대회",
+      "period": "2026.05.13~2026.05.15"
+    },
+    {
+      "title": "금 나노시트 기반 신축성 멀티모달 뉴로모픽 시스템 구현",
+      "conference": "2026 한국정밀공학회 춘계학술대회",
+      "period": "2026.05.13~2026.05.15"
+    },
+    {
+      "title": "대면적 신축성 전자소자를 위한 2차원 금 나노시트 잉크 기반 Direct-Ink-Writing 기술",
+      "conference": "2026 한국정밀공학회 춘계학술대회",
+      "period": "2026.05.13~2026.05.15"
+    },
+    {
+      "title": "신축성 전극 Lift-off 패터닝을 위한 PAA 합성 정량 제어 및 마스크 형성",
+      "conference": "마이크로/나노공학부문 2026년 춘계학술대회",
+      "period": "2026.05.06~2026.05.07"
+    },
+    {
+      "title": "온-스킨 소프트 인터페이스 뉴로모픽 컴퓨팅 플랫폼 개발",
+      "conference": "마이크로/나노공학부문 2026년 춘계학술대회",
+      "period": "2026.05.06~2026.05.08"
+    },
+    {
+      "title": "Development of On-Skin Soft-Interfaced Neuromorphic Computing Platform",
+      "conference": "2026 마이크로나노시스템학회 춘계학술대회",
+      "period": "2026.03.25~2026.03.27"
+    },
+    {
+      "title": "Quantitative Control of PAA Synthesis for PI Mask Formation and High-Resolution Lift-Off Patterning of Stretchable AuNS Electrodes",
+      "conference": "2026 마이크로나노시스템학회 춘계학술대회",
+      "period": "2026.03.25~2026.03.27"
+    },
+    {
+      "title": "MEMS-based Lift-off of 2D Gold Nanosheets for Ultra-High-Density Neuromorphic Soft Electronics",
+      "conference": "2026 마이크로나노시스템학회 춘계학술대회",
+      "period": "2026.03.25~2026.03.27"
+    },
+    {
+      "title": "Direct Ink Writing of Two-Dimensional Gold Nanosheets for Large-Area Stretchable Electronic Platforms",
+      "conference": "2026 마이크로나노시스템학회 춘계학술대회",
+      "period": "2026.03.25~2026.03.27"
+    },
+    {
+      "title": "Scalable Fabrication of Stretchable Organic Transistor Arrays Based on UV-Curable Ion Gel Patterning",
+      "conference": "2026 마이크로나노시스템학회 춘계학술대회",
+      "period": "2026.03.25~2026.03.27"
+    },
+    {
+      "title": "Stretchable Gold Nanosheet–Hydrogel Electrodes for Interface Applications",
+      "conference": "2026년 한국센서학회 춘계학술대회",
+      "period": "2026.03.18~2026.03.20"
+    },
+    {
+      "title": "Mohr’s Circle–Based Multiaxial Neck-Motion Sensing with Gold Nanosheet Rosette Strain Sensors",
+      "conference": "2026년 한국센서학회 춘계학술대회",
+      "period": "2026.03.18~2026.03.20"
+    },
+    {
+      "title": "Electrochemical Characteristics of Stretchable AuNSs–Hydrogel Electrodes for Cortical Surface Interfaces",
+      "conference": "2026 한국유연인쇄전자학회 춘계학술대회",
+      "period": "2026.02.25~2026.02.27"
+    },
+    {
+      "title": "ITO-Free QLEDs Enabled by Fully Printed Electrodes and Functional Layers",
+      "conference": "2026 한국유연인쇄전자학회 춘계학술대회",
+      "period": "2026.02.25~2026.02.27"
+    },
+    {
+      "title": "Gold Nanosheet Rosette Sensors for Multidirectional Stretchable Strain Sensing and Real-Time Viewpoint Tracking",
+      "conference": "2026 한국유연인쇄전자학회 춘계학술대회",
+      "period": "2026.02.25~2026.02.27"
+    },
+    {
+      "title": "Mems-based lift-off of 2D gold nanosheets for ultra-high-density neuromorphic soft electronics",
+      "conference": "The 39th Annual Conference of the IEEE Micro Electro Mechanical Systems",
+      "period": "2026.01.25~2026.01.29"
+    },
+    {
+      "title": "Doping-engineering of semiconducting nanocomposites for highly integrated soft circuits",
+      "conference": "The 39th Annual Conference of the IEEE Micro Electro Mechanical Systems",
+      "period": "2026.01.25~2026.01.29"
+    },
+    {
+      "title": "Reproducible direct-ink-writing of 2D gold nanosheet inks for scalable and stretchable circuit integration",
+      "conference": "The 39th Annual Conference of the IEEE Micro Electro Mechanical Systems",
+      "period": "2026.01.25~2026.01.29"
+    },
+    {
+      "title": "Reproducible direct-ink-writing of 2D gold nanosheet inks for scalable and stretchable circuit integration",
+      "conference": "The 39th Annual Conference of the IEEE Micro Electro Mechanical Systems",
+      "period": "2026.01.25~2026.01.29"
+    },
+    {
+      "title": "UV 경화형 이온 젤 패터닝을 통한 대면적 신축성 OFET 어레이 제작",
+      "conference": "대한기계학회 창립 80주년 기념 학술대회",
+      "period": "2025.12.10~2025.12.13"
+    },
+    {
+      "title": "Large-Area Stretchable Electronics Enabled by 2D Gold Nanosheet Direct-Ink- Printing Technology",
+      "conference": "대한기계학회 창립 80주년 기념 학술대회",
+      "period": "2025.12.10~2025.12.13"
+    },
+    {
+      "title": "Rosette Sensors based on Gold Nanosheet",
+      "conference": "대한기계학회 창립 80주년 기념 학술대회",
+      "period": "2025.12.10~2025.12.13"
+    },
+    {
+      "title": "Design and Implementation of Stretchable Electrodes Based on Hexagonal and Triangular Gold Nanosheet",
+      "conference": "대한기계학회 창립 80주년 기념 학술대회",
+      "period": "2025.12.10~2025.12.13"
+    },
+    {
+      "title": "Gold Nanosheet Rosette Sensors for Multidirectional Stretchable Strain Sensing in Immersive Virtual Reality",
+      "conference": "2025 MRS Fall meating & Exhibit",
+      "period": "2025.11.30~2025.12.05"
+    },
+    {
+      "title": "Inherently Elastic Ferroelectric Neuromorphic Interfaces for Soft Robotic Intelligence",
+      "conference": "2025 MRS Fall meating & Exhibit",
+      "period": "2025.11.30~2025.12.05"
+    },
+    {
+      "title": "Cross-linked Polymer Network-Based Elastic Ferroelectric Neuromorphic Devices a nd Application",
+      "conference": "2025 마이크로나노시스템학회 추계 학술대회",
+      "period": "2025.11.19~2025.11.21"
+    },
+    {
+      "title": "Improving Gold Nanosheet Lift-off Patterning via Poly(amic acid) Viscosity Control",
+      "conference": "2025 마이크로나노시스템학회 추계 학술대회",
+      "period": "2025.11.19~2025.11.21"
+    },
+    {
+      "title": "Large-Area Stretchable Electronics Enabled by 2D Gold Nanosheet Direct-Ink- Printing Technology",
+      "conference": "2025 마이크로나노시스템학회 추계 학술대회",
+      "period": "2025.11.19~2025.11.21"
+    },
+    {
+      "title": "Large-area stretchable electronics enabled by 2D gold nanosheet direct -ink-printing technology",
+      "conference": "2025 한국정밀공학회 추계학술대회",
+      "period": "2025.11.12~2025.11.14"
+    },
+    {
+      "title": "Optimization of high-resolution silver ink printing process and its application to QLED modules",
+      "conference": "2025 한국정밀공학회 추계학술대회",
+      "period": "2025.11.12~2025.11.14"
+    },
+    {
+      "title": "Solution-processed stretchable transistors and logic circuits based on Li-doped P3HT:SBS nanocomposite semiconductors",
+      "conference": "2025 한국정밀공학회 추계학술대회",
+      "period": "2025.11.12~2025.11.14"
+    },
+    {
+      "title": "Gold Nanosheet Rosette Sensors",
+      "conference": "2025 한국센서학회 추계학술대회",
+      "period": "2025.10.22~2025.10.24"
+    },
+    {
+      "title": "Adaptive Soft Robotic Tactile Skin via Cross-linked Ferroelectric Polymer Engineering for Multi-Deformation Applications",
+      "conference": "2025 한국센서학회 추계학술대회",
+      "period": "2025.10.22~2025.10.24"
+    },
+    {
+      "title": "Artificial Synaptic Device-Based Stretchable Neuromorphic System",
+      "conference": "2025 한국센서학회 추계학술대회",
+      "period": "2025.10.22~2025.10.24"
+    },
+    {
+      "title": "Optimization of High-Resolution Silver Ink Printing Process and Its Application to QLED Modules",
+      "conference": "2025 한국유연인쇄전자학회 추계학술대회",
+      "period": "2025.10.15~2025.10.17"
+    },
+    {
+      "title": "용액공정 기반 Li 도핑 P3HT:SBS 나노복합 반도체를 이용한 신축성 트랜지스터와 논리회로",
+      "conference": "2025 한국유연인쇄전자학회 추계학술대회",
+      "period": "2025.10.15~2025.10.17"
+    },
+    {
+      "title": "Implementation of a Stretchable Neuromorphic Integrated System Based on Artificial Synaptic Devices",
+      "conference": "The 25th International Meeting on Information Display",
+      "period": "2025.08.19~2025.08.22"
+    },
+    {
+      "title": "Intrinsically Stretchable Ferroelectric Synaptic Memory via Cross-linked P(VDF-TrFE) for Biomimetic Neural Systems",
+      "conference": "The 25th International Meeting on Information Display",
+      "period": "2025.08.19~2025.08.22"
+    },
+    {
+      "title": "신축성 광검출 기반 뉴로모픽 통합 소자의 개발",
+      "conference": "2025 한국정밀공학회 춘계학술대회",
+      "period": "2025.05.14~2025.05.16"
+    },
+    {
+      "title": "금 나노 시트 기반의 신축성 인장 센서 개발",
+      "conference": "2025 한국정밀공학회 춘계학술대회",
+      "period": "2025.05.14~2025.05.16"
+    },
+    {
+      "title": "PMDA-ODA 기반 Poly (Amic Acid) 합성 및 패터닝 공정 연구",
+      "conference": "2025 한국정밀공학회 춘계학술대회",
+      "period": "2025.05.14~2025.05.16"
+    },
+    {
+      "title": "도핑을 통한 고성능 신축성 유기 반도체 기반 인버터 개발",
+      "conference": "2025 한국정밀공학회 춘계학술대회",
+      "period": "2025.05.14~2025.05.16"
+    },
+    {
+      "title": "리튬 도핑을 활용한 신축성 반도체 나노복합소재",
+      "conference": "2025 한국정밀공학회 춘계학술대회",
+      "period": "2025.05.14~2025.05.16"
+    },
+    {
+      "title": "고해상도 금 나노시트 전극 기반 고집적 신축성 소자 구현 및 응용",
+      "conference": "2025 한국정밀공학회 춘계학술대회",
+      "period": "2025.05.14~2025.05.16"
+    },
+    {
+      "title": "잉크젯 프린팅 기반 고해상도 양자점 디스플레이 소자의 균일성 향상",
+      "conference": "마이크로/나노공학부문 2025년 춘계학술대회",
+      "period": "2025.05.07~2025.05.10"
+    },
+    {
+      "title": "리튬 도핑을 활용한 신축성 반도체 나노복합소재",
+      "conference": "마이크로/나노공학부문 2025년 춘계학술대회",
+      "period": "2025.05.07~2025.05.10"
+    },
+    {
+      "title": "몰드 프린팅 공정을 활용한 신축성 트랜지스터",
+      "conference": "마이크로/나노공학부문 2025년 춘계학술대회",
+      "period": "2025.05.07~2025.05.10"
+    },
+    {
+      "title": "생체 모사 신경 시스템을 위한 가교 결합된 P(VDF-TrFE) 기반의 신축성 강유전성 시냅틱 메모리 소자 개발",
+      "conference": "마이크로/나노공학부문 2025년 춘계학술대회",
+      "period": "2025.05.07~2025.05.10"
+    },
+    {
+      "title": "인공 시냅스 소자 기반 신축성 뉴로모픽 시스템 구현",
+      "conference": "마이크로/나노공학부문 2025년 춘계학술대회",
+      "period": "2025.05.07~2025.05.10"
+    },
+    {
+      "title": "Implementing a Stretchable Neuromorphic System Based on Artificial Synaptic Devices",
+      "conference": "2025년 한국센서학회 춘계학술대회",
+      "period": "2025.04.02~2025.04.03"
+    },
+    {
+      "title": "Development of Photodetection-Based Neuromorphic Integrated Device",
+      "conference": "2025년 한국센서학회 춘계학술대회",
+      "period": "2025.04.02~2025.04.03"
+    },
+    {
+      "title": "금 나노시트 기반의 신축성 인장 센서 개발",
+      "conference": "2025 마이크로나노시스템학회 춘계 학술대회",
+      "period": "2025.03.26~2025.03.28"
+    },
+    {
+      "title": "리튬 도핑을 통한 신축성 유기 반도체의 성능 개선 및 검증",
+      "conference": "2025 마이크로나노시스템학회 춘계 학술대회",
+      "period": "2025.03.26~2025.28."
+    },
+    {
+      "title": "생체 모사 신경 시스템을 위한 가교 결합된 P(VDF-TrFE) 기반의 신축성 강유전성 메모리 소자 개발",
+      "conference": "2025 마이크로나노시스템학회 춘계 학술대회",
+      "period": "2025.03.26~2025.03.28"
+    },
+    {
+      "title": "Soft Electronics and Beyond",
+      "conference": "Yonsei Engineering Symposium",
+      "period": "2025.03.23~2025.03.25"
+    },
+    {
+      "title": "잉크젯 프린팅 기반 양자점 디스플레이 소자의 균일성 향상 연구",
+      "conference": "2025 한국유연인쇄전자학회 춘계학술대회",
+      "period": "2025.03.19~2025.03.21"
+    },
+    {
+      "title": "신축성 광 검출 기반 뉴로모픽 통합 소자의 개발",
+      "conference": "2025 한국유연인쇄전자학회 춘계학술대회",
+      "period": "2025.03.19~2025.03.21"
+    },
+    {
+      "title": "생체 모사 신경 시스템을 위한 가교 결합된 P(VDF-TrFE) 기반의 신축성 강유전성 메모리 소자 개발",
+      "conference": "2025 한국유연인쇄전자학회 춘계학술대회",
+      "period": "2025.03.19~2025.03.21"
+    },
+    {
+      "title": "고해상도 금 나노시트 신축성 전극 기반 유연 전자소자 개발",
+      "conference": "2025 한국유연인쇄전자학회 춘계학술대회",
+      "period": "2025.03.19~2025.03.21"
+    },
+    {
+      "title": "인공 시냅스 소자 기반 신축성 뉴로모픽 시스템 구현",
+      "conference": "2025 한국유연인쇄전자학회 춘계학술대회",
+      "period": "2025.03.19~2025.03.21"
+    },
+    {
+      "title": "인공 시냅스 소자 기반 신축성 뉴로모픽 시스템 구현",
+      "conference": "2024년 제5회 마이크로나노시스템학회 추계 학술대회 및 정기총회",
+      "period": "2024.11.21~2024.11.22"
+    },
+    {
+      "title": "유기 반도체 기반 스트레쳐블 전계 효과 트랜지스터 설계 및 성능 검증",
+      "conference": "2024년 제5회 마이크로나노시스템학회 추계 학술대회 및 정기총회",
+      "period": "2024.11.21~2024.11.22"
+    },
+    {
+      "title": "마이크로 스케일 플립칩 구조의 언더필 거동에 관한 연구",
+      "conference": "2024년 제5회 마이크로나노시스템학회 추계 학술대회 및 정기총회",
+      "period": "2024.11.21~2024.11.22"
+    },
+    {
+      "title": "도핑된 신축성 유기 반도체 기반 논리 소자",
+      "conference": "2024년 제5회 마이크로나노시스템학회 추계 학술대회 및 정기총회",
+      "period": "2024.11.21~2024.11.22"
+    },
+    {
+      "title": "금 나노시트 기반 고해상도 신축성 전극 개발 및 응용",
+      "conference": "2024년 제5회 마이크로나노시스템학회 추계 학술대회 및 정기총회",
+      "period": "2024.11.21~2024.11.22"
+    },
+    {
+      "title": "유기 반도체 기반 전계 효과 트랜지스터 설계 및 성능 검증",
+      "conference": "2024 한국정밀공학회 추계학술대회",
+      "period": "2024.11.13~2024.11.15"
+    },
+    {
+      "title": "도핑된 신축성 유기 반도체 기반 논리 소자",
+      "conference": "2024 한국정밀공학회 추계학술대회",
+      "period": "2024.11.13~2024.11.15"
+    },
+    {
+      "title": "금 나노 시트 기반 신축성 인장 센서 개발",
+      "conference": "2024 한국정밀공학회 추계학술대회",
+      "period": "2024.11.13~2024.11.15"
+    },
+    {
+      "title": "인공 시냅스 소자 기반 신축성 뉴로모픽 시스템 구현",
+      "conference": "2024 한국정밀공학회 추계학술대회",
+      "period": "2024.11.13~2024.11.15"
+    },
+    {
+      "title": "금 나노시트 기반 고해상도 신축성 소자 개발 및 응용",
+      "conference": "대한기계학회 2024년 학술대회",
+      "period": "2024.11.06~2024.11.09"
+    },
+    {
+      "title": "신축성 전극 트랜지스터 소자의 메모리 특성 강화: 기계적 내구성과 성능의 조화",
+      "conference": "대한기계학회 2024년 학술대회",
+      "period": "2024.11.06~2024.11.09"
+    },
+    {
+      "title": "금 나노시트를 이용한 신축성 트랜지스터 개발",
+      "conference": "대한기계학회 2024년 학술대회",
+      "period": "2024.11.06~2024.11.09"
+    },
+    {
+      "title": "마이크로 스케일 플립칩 구조의 언더필 흐름 시각화",
+      "conference": "대한기계학회 2024년 학술대회",
+      "period": "2024.11.06~2024.11.09"
+    },
+    {
+      "title": "Advancing Soft Electronics: Innovative Structural and Material Designs for Enhanced Functionality",
+      "conference": "The 7th International Conference on Active Materials and Soft Mechatronics",
+      "period": "2024.10.27~2024.10.30"
+    },
+    {
+      "title": "Advancing Soft Electronics: Innovative Structural and Material Designs for Enhanced Functionality",
+      "conference": "The 24th International Meeting on Information Display",
+      "period": "2024.08.20~2024.08.23"
+    },
+    {
+      "title": "신축성 전극 트랜지스터 소자의 메모리 특성 강화: 기계적 내구성과 성능의 조화",
+      "conference": "KSPE 2024 춘계학술대회",
+      "period": "2024.05.08~2024.05.10"
+    },
+    {
+      "title": "유기 반도체를 활용한 MOSFET 구조 트랜지스터 설계의 접근",
+      "conference": "KSPE 2024 춘계학술대회",
+      "period": "2024.05.08~2024.05.10"
+    },
+    {
+      "title": "금 나노시트 기반의 신축성 인장 센서 개발",
+      "conference": "KSPE 2024 춘계학술대회",
+      "period": "2024.05.08~2024.05.10"
+    },
+    {
+      "title": "나노 복합 소재 기반 신축성 시냅스 트랜지스터 개발",
+      "conference": "KSPE 2024 춘계학술대회",
+      "period": "2024.05.08~2024.05.10"
+    },
+    {
+      "title": "도핑 기반 신축성 유기 반도체의 성능 개선에 관한 연구",
+      "conference": "KSPE 2024 춘계학술대회",
+      "period": "2024.05.08~2024.05.10"
+    },
+    {
+      "title": "인간의 뇌를 모방한 신축성 인공 시냅스 소자 개발 및 응용",
+      "conference": "KSPE 2024 춘계학술대회",
+      "period": "2024.05.08~2024.05.10"
+    },
+    {
+      "title": "나노/마이크로 수준 고분자 나노복합소재 박막의 기계적 물성 연구",
+      "conference": "KSPE 2024 춘계학술대회",
+      "period": "2024.05.08~2024.05.10"
+    },
+    {
+      "title": "Development of Stretchable Synapse Transistors Based on Nanocomposite Materials",
+      "conference": "KMEMS 2024 학술대회",
+      "period": "2024.03.27~2024.03.29"
+    },
+    {
+      "title": "Performance Enhancement of Stretchable Organic Semiconductors through Lithium Doping",
+      "conference": "KMEMS 2024 학술대회",
+      "period": "2024.03.27~2024.03.29"
+    },
+    {
+      "title": "Development and Application of Stretchable Synaptic Devices Based on Nanocomposite Materials",
+      "conference": "KMEMS 2024 학술대회",
+      "period": "2024.03.27~2024.03.29"
+    },
+    {
+      "title": "Ultra-thin Stretchable Conducting Polymer Composite Film Mechanical Properties Measurement",
+      "conference": "KMEMS 2024 학술대회",
+      "period": "2024.03.27~2024.03.29"
+    },
+    {
+      "title": "은 나노 와이어 기반 신축성 투명 전극 개발 및 응용",
+      "conference": "KSPE 2023 Autumn Conference",
+      "period": "2023.11.15~2023.11.17"
+    },
+    {
+      "title": "나노/마이크로 수준 폴리머 박막의 기계적 물성 연구",
+      "conference": "KSPE 2023 Autumn Conference",
+      "period": "2023.11.15~2023.11.17"
+    },
+    {
+      "title": "금 나노 시트 기반 고해상도 신축성 전극 개발 및 응용",
+      "conference": "KSPE 2023 Autumn Conference",
+      "period": "2023.11.15~2023.11.17"
+    },
+    {
+      "title": "신축성 전극 기반 고해상도 유연 소자 개발",
+      "conference": "KSPE 2023 Autumn Conference",
+      "period": "2023.11.15~2023.11.17"
+    },
+    {
+      "title": "Advancing Soft Electronics: Innovative Structural and Material Designs for Enhanced Functionality",
+      "conference": "IEEE Nano 2023",
+      "period": "2023.07.02~2023.07.05"
+    }
+  ],
+  "fundings": [
+    {
+      "title": "[RCMS]반도체특성화대학지원사업(3/4)",
+      "org": "한국산업기술진흥원",
+      "period": "2026-03-01~2027-02-28"
+    },
+    {
+      "title": "[통합이지바로](선도연구센터/ERC)다상소재 혁신 생산공정 연구센터(4/4,1단계)(2023.6.1.~2027.2.28.)",
+      "org": "한국연구재단",
+      "period": "2026-03-01~2027-02-28"
+    },
+    {
+      "title": "[통합이지바로/IRIS] 동적 비정형 객체 인식을 위한 비전-촉각 퓨전 센서 기반 뉴로모픽 골무 개발(2/3)(1/2단계)",
+      "org": "한국연구재단",
+      "period": "2026-03-01~2027-02-28"
+    },
+    {
+      "title": "[통합이지바로/IRIS][총괄]바이오 센테니얼 융합 연구소(1/3단계, 2/3차년도)",
+      "org": "한국연구재단",
+      "period": "2026-03-01~2027-02-28"
+    },
+    {
+      "title": "[7차년도]사회지향 기계기술 글로벌 리더 양성 교육연구단",
+      "org": "한국연구재단",
+      "period": "2026-03-01~2027-02-28"
+    },
+    {
+      "title": "[통합이지바로/IRIS]바이오 센테니얼 융합 연구소(1/3단계, 1/3차년도)",
+      "org": "한국연구재단",
+      "period": "2025-09-01~2026-02-28"
+    },
+    {
+      "title": "[2025-1 신임교원 3차년도] 지능형 뉴로모픽 인공피부 스티커 개발",
+      "org": "연세대학교",
+      "period": "2025-05-01~2026-04-30"
+    },
+    {
+      "title": "[IRIS/신진]동적 비정형 객체 인식을 위한 비전-촉각 퓨전 센서 기반 뉴로모픽 골무 개발(1/3)(1/2단계)(2025.3.1~2030.2.28)",
+      "org": "한국연구재단",
+      "period": "2025-03-01~2026-02-28"
+    },
+    {
+      "title": "[통합이지바로](선도연구센터/ERC)다상소재 혁신 생산공정 연구센터(3/4,1단계)(2023.6.1.~2027.2.28.)",
+      "org": "한국연구재단",
+      "period": "2025-03-01~2026-02-28"
+    },
+    {
+      "title": "[RCMS]반도체특성화대학지원사업(2/4)",
+      "org": "한국산업기술진흥원",
+      "period": "2025-03-01~2026-02-28"
+    },
+    {
+      "title": "[6차년도] 사회지향 기계기술 글로벌 리더 양성 교육연구단",
+      "org": "한국연구재단",
+      "period": "2025-03-01~2026-02-28"
+    },
+    {
+      "title": "[2024-1 신임교원 2차년도]지능형 뉴로모픽 인공피부 스티커 개발",
+      "org": "연세대학교",
+      "period": "2024-05-01~2025-04-30"
+    },
+    {
+      "title": "[RCMS]반도체특성화대학지원사업(1/4)",
+      "org": "한국산업기술진흥원",
+      "period": "2024-03-01~2025-02-28"
+    },
+    {
+      "title": "[SM] 고신축성 멀티모달 디커플링 센싱 인 메모리 소자 기반 인공 신경 플랫폼 개발",
+      "org": "연세대학교",
+      "period": "2024-03-01~2024-05-31"
+    },
+    {
+      "title": "[민간/삼성전자]Underfill Resin Bleed 축소 방안 연구",
+      "org": "국내",
+      "period": "2024-03-01~2027-02-28"
+    },
+    {
+      "title": "[통합이지바로](선도연구센터/ERC)다상소재 혁신 생산공정 연구센터(2/4,1단계)(2023.6.1.~2027.2.28.)",
+      "org": "한국연구재단",
+      "period": "2024-03-01~2025-02-28"
+    },
+    {
+      "title": "[통합이지바로] 신축성 뉴로모픽 비전센서 기반 지능형 콘택트렌즈 개발(3/3)(22.3.1~25.2.28)",
+      "org": "한국연구재단",
+      "period": "2024-03-01~2025-02-28"
+    },
+    {
+      "title": "[5차년도] 사회지향 기계기술 글로벌 리더 양성 교육연구단",
+      "org": "한국연구재단",
+      "period": "2024-03-01~2025-02-28"
+    },
+    {
+      "title": "[통합이지바로](선도연구센터/ERC)다상소재 혁신 생산공정 연구센터(1/4,1단계)(2023.6.1.~2027.2.28.)",
+      "org": "한국연구재단",
+      "period": "2023-06-01~2024-02-29"
+    },
+    {
+      "title": "[2023-1 신임교원 1차년도] 지능형 뉴로모픽 인공피부 스티커 개발",
+      "org": "연세대학교",
+      "period": "2023-05-01~2024-10-31"
+    },
+    {
+      "title": "[통합이지바로] 신축성 뉴로모픽 비전센서 기반 지능형 콘택트렌즈 개발(2/3)(22.3.1~25.2.28)",
+      "org": "한국연구재단",
+      "period": "2023-03-01~2024-02-29"
+    },
+    {
+      "title": "[4차년도] 사회지향 기계기술 글로벌 리더 양성 교육연구단",
+      "org": "한국연구재단",
+      "period": "2023-03-01~2024-02-29"
+    },
+    {
+      "title": "[통합이지바로][이관: 경상국립대->연세대] 신축성 뉴로모픽 비전센서 기반 지능형 콘택트렌즈 개발(1/3)(22.3.1~25.2.28)",
+      "org": "한국연구재단",
+      "period": "2022-03-01~2023-02-28"
+    }
+  ],
+  "patents": [
+    {
+      "title": "화학적 가교 공정 기반 탄성 PVDF-TrFE 강유전체 박막을 활용한 신축성 시냅틱 메모리 소자",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2026-07-10"
+    },
+    {
+      "title": "각도 분해 웨어러블 변형률 디코딩을 위한 내재적 신축성 금 나노시트 로제트 센서",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2026-06-08"
+    },
+    {
+      "title": "유변학적으로 설계된 2차원 금 나노시트 잉크를 이용한 신축성 전도체의 직접잉크쓰기 제조방법 및 그 전도체",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2026-06-08"
+    },
+    {
+      "title": "각도 분해 웨어러블 변형률 디코딩을 위한 내재적 신축성 금 나노시트 로제트 센서",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2026-06-08"
+    },
+    {
+      "title": "유변학적으로 설계된 2차원 금 나노시트 잉크를 이용한 신축성 전도체의 직접잉크쓰기 제조방법 및 그 전도체",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2026-06-08"
+    },
+    {
+      "title": "Ag-Au 하이브리드 신축성 전극, 이의 제조 방법 및 이를 포함하는 신축성 전자 소자",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2024-07-22"
+    },
+    {
+      "title": "뱅크 구조 설계와 표면 에너지 조절을 통한 고균일 인쇄 박막 형성 기반 고품질 양자점 디스플레이 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2024-04-09"
+    },
+    {
+      "title": "3개 초과 서브픽셀 기반 초현실 색표현 양자점 디스플레이 제조 장치 및 이를 이용한 디스플레이 제조 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2024-04-09"
+    },
+    {
+      "title": "3개 초과 서브픽셀 기반 초현실 색표현 양자점 디스플레이",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2023-04-11"
+    },
+    {
+      "title": "Bank구조 설계와 표면 에너지(surface energy) 조절을 통한 고균일 인쇄 박막 형성 기반 고품질 양자점 디스플레이",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2023-04-11"
+    },
+    {
+      "title": "박막 기반 플렉시블/폴더블 디바이스 최적 설계를 위한 내구성 및 기계적 특성 분석 기법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2015-04-03"
+    },
+    {
+      "title": "리버스 타입 혈관 봉합 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2012-03-06"
+    },
+    {
+      "title": "고내구성·저마찰 코팅, 이를 적용한 동적 시스템을 구성하는 접촉소자의 접촉부 구조, 마이크로 동적 시스템 및 그 형성방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2011-07-13"
+    },
+    {
+      "title": "표면 강성 제어를 통한 내마모성 코팅 구조 및 그 제조방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2010-11-29"
+    },
+    {
+      "title": "접촉각 제어가 가능한 금속박막 적층구조체 및 그 제조방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2009-04-24"
+    },
+    {
+      "title": "이탈가능한 디지털 도어락",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2008-07-18"
+    },
+    {
+      "title": "무선 신호를 이용하는 디지털 도어락 및 그 제어 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2008-07-09"
+    }
+  ]
+}

@@ -261,7 +261,10 @@ const FACULTY_BASE_FIELDS: FieldDef[] = [
   { kind: 'text', key: 'phone', label: '전화', width: 'half', emptyAs: 'null', placeholder: '02)2123-0000' },
   { kind: 'text', key: 'room', label: '연구실 위치', width: 'half', emptyAs: 'null', placeholder: 'Engineering Building #1, Room 589' },
   { kind: 'text', key: 'specialty', label: '전공 분야', width: 'half', emptyAs: 'null', hint: '주로 전임(퇴임) 교원에 사용' },
-  { kind: 'text', key: 'yearRange', label: '재직 기간', width: 'half', emptyAs: 'null', placeholder: '1963~2002', hint: '퇴임 교원만. 재직 중이면 비움' },
+  { kind: 'text', key: 'yearRange', label: '재직 기간', width: 'half', emptyAs: 'null', placeholder: '1963~2002', hint: '퇴임 교원만. 재직 중이면 비움 — 적어 두면 아래 체크 없이도 명예·퇴임으로 분류됩니다' },
+  // 재직 기간을 모르는 퇴임 교원을 위한 수동 스위치. 기간이 적혀 있으면 그것만으로
+  // 분류되므로(사이트의 isEmeritus 가 둘을 OR 로 본다) 이 체크는 "기간 미상" 보완용이다.
+  { kind: 'checkbox', key: 'emeritus', label: '명예·퇴임 교원', width: 'half', hint: '재직 기간을 모를 때 직접 체크하세요. 기간을 적었다면 체크하지 않아도 됩니다.' },
   { kind: 'text', key: 'moreInfoUrl', label: '상세 정보 URL', width: 'half', emptyAs: 'null' },
   { kind: 'text', key: 'photoAlt', label: '사진 대체 텍스트', width: 'half', hint: '비우면 이름을 사용' },
   {

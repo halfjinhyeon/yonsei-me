@@ -1,0 +1,2397 @@
+{
+  "name": "김우철",
+  "nameEn": "Kim Woochul",
+  "email": "woochul@yonsei.ac.kr",
+  "phone": "02)2123-5816",
+  "office": null,
+  "homepage": null,
+  "sourceUrl": "https://me.yonsei.ac.kr/faculty/name_search.do?mode=view&userId=MS4QfqRPzaZ5YDrwsETFUA%3D%3D&sosokcd=",
+  "crawledAt": "2026-07-27",
+  "articles": [
+    {
+      "date": "2026-08",
+      "title": "Size-directed reflectance modulation in thermochromic microcapsule-based adaptive thermal management coatings",
+      "journal": "Applied Thermal Engineering"
+    },
+    {
+      "date": "2026-07",
+      "title": "Thermogalvanic Sensor Array for Heat Flux Mapping and Radiative Sensing",
+      "journal": "ACS Applied Energy Materials"
+    },
+    {
+      "date": "2026-04",
+      "title": "Hollow thermoelectric refrigerator with ultralow power consumption for personal thermal management",
+      "journal": "Applied Thermal Engineering"
+    },
+    {
+      "date": "2026-01",
+      "title": "Realistic thermal haptics for discriminating materials with identical temperatures",
+      "journal": "Chemical Engineering Journal"
+    },
+    {
+      "date": "2025-12",
+      "title": "온도제어형 다중대역 스마트 창문의 에너지절약 성능 평가",
+      "journal": "Transactions of the KSME, B"
+    },
+    {
+      "date": "2025-12",
+      "title": "Ultra-low thermal conductivity and high zT in multi-doped AgInSe2: A high-entropy approach to n-type thermoelectric materials",
+      "journal": "Nano Energy"
+    },
+    {
+      "date": "2025-11",
+      "title": "Hollow thermoelectric legs with extremely low power-generation cost compatible with scalable manufacturing",
+      "journal": "Applied Energy"
+    },
+    {
+      "date": "2025-04",
+      "title": "Additive-manufactured topology-optimized heat sinks for enhancing thermoelectric generator conversion efficiency",
+      "journal": "ENERGY"
+    },
+    {
+      "date": "2025-03",
+      "title": "방열 하우징 설계를 이용한 차량탑재형 AESA 레이더 시스템의 향상된 냉각시스템에 대한 수치해석적 연구",
+      "journal": "Transactions of the KSME, B"
+    },
+    {
+      "date": "2025-03",
+      "title": "Effects of Unit Cell Size on Thermal Conductivity in Two Different Polymorphs of Niobium Diselenide",
+      "journal": "SMALL"
+    },
+    {
+      "date": "2025-03",
+      "title": "Innovative dual-band energy-efficient smart windows using VO2(M)-Based Fabry-Pérot structures for solar and radiative cooling modulation",
+      "journal": "Materials Today Physics"
+    },
+    {
+      "date": "2024-11",
+      "title": "Compact Vital-Sensing Band with Uninterrupted Power Supply for Core Body Temperature and Pulse Rate Monitoring",
+      "journal": "ACS Sensors"
+    },
+    {
+      "date": "2024-11",
+      "title": "Ultra-low-energy operation of electromagnetic bi-stable actuator under restricted energy supply",
+      "journal": "Sensors and Actuators A: Physical"
+    },
+    {
+      "date": "2024-10",
+      "title": "Optimization of thermoelectric systems for maximum power generation based on heat-source and heat-sink conditions",
+      "journal": "Journal of Applied Physics"
+    },
+    {
+      "date": "2024-09",
+      "title": "열차폐코팅 구성 소재의 증착 방식에 따른 열물성에 관한 연구",
+      "journal": "Transactions of the KSME, B"
+    },
+    {
+      "date": "2024-09",
+      "title": "In vivo measurement of intrinsic thermal conductivity of living blood-perfused tissue",
+      "journal": "International Communications in Heat and Mass Transfer"
+    },
+    {
+      "date": "2024-06",
+      "title": "인공위성 제어 모멘트 자이로의 열적 안정성 분석",
+      "journal": "Transactions of the KSME, B"
+    },
+    {
+      "date": "2024-02",
+      "title": "초내열합금 CMSX-4의 열처리에 따른 열물성에 대한 연구",
+      "journal": "Transactions of the KSME, A"
+    },
+    {
+      "date": "2023-12",
+      "title": "능동형 전자주사식 위상배열 레이더 냉각 시스템에 관한 수치해석적 연구",
+      "journal": "Transactions of the KSME, B"
+    },
+    {
+      "date": "2023-08",
+      "title": "Noninvasive and Continuous Monitoring of the Core Body Temperature through the Quantitative Measurement of Blood Perfusion Rate",
+      "journal": "ACS Sensors"
+    },
+    {
+      "date": "2023-08",
+      "title": "A true continuous healthcare system for type 1 diabetes",
+      "journal": "Nano Energy"
+    },
+    {
+      "date": "2023-07",
+      "title": "Quasi-random distribution of distorted nanostructures enhances thermoelectric performance of high-entropy chalcopyrite",
+      "journal": "Nano Energy"
+    },
+    {
+      "date": "2023-04",
+      "title": "Multiple electron &amp; phonon scattering effect achieves highly efficient thermoelectricity due to nanostructuring",
+      "journal": "Materials Today Physics"
+    },
+    {
+      "date": "2023-01",
+      "title": "Enhanced Thermoelectric Performance by Resonant Doping and Embedded Magnetic Impurity",
+      "journal": "Physical Review Applied"
+    },
+    {
+      "date": "2022-11",
+      "title": "능동형 전자주사식 위상배열 레이더 송수신 모듈의 공랭식 냉각에 관한 수치해석적 연구",
+      "journal": "Transactions of the KSME, B"
+    },
+    {
+      "date": "2022-10",
+      "title": "Modeling heat transfer in humans for body heat harvesting and personal thermal management",
+      "journal": "Applied Energy"
+    },
+    {
+      "date": "2022-09",
+      "title": "Higher-order anharmonicity leads to ultra-low thermal conductivity and high output power density of SnTe-based thermoelectric materials and modules",
+      "journal": "MATERIALS TODAY PHYSICS"
+    },
+    {
+      "date": "2022-06",
+      "title": "Universal Experimental Methods for Evaluating the Performance of Radiative Cooling Materials",
+      "journal": "Advanced Materials Technologies"
+    },
+    {
+      "date": "2021-12",
+      "title": "Effect of Heat Treatment on Microstructure and Thermal Conductivity of Thermal Barrier Coating",
+      "journal": "MATERIALS"
+    },
+    {
+      "date": "2021-11",
+      "title": "Materials Research at Yonsei University",
+      "journal": "ADVANCED MATERIALS"
+    },
+    {
+      "date": "2021-10",
+      "title": "High Thermoelectric Performance of ZnO by Coherent Phonon Scattering and Optimized Charge Transport",
+      "journal": "ADVANCED FUNCTIONAL MATERIALS"
+    },
+    {
+      "date": "2021-09",
+      "title": "High power density of radiative-cooled compact thermoelectric generator based on body heat harvesting",
+      "journal": "NANO ENERGY"
+    },
+    {
+      "date": "2021-07",
+      "title": "Embedding Aligned Graphene Oxides in Polyelectrolytes to Facilitate Thermo-Diffusion of Protons for High Ionic Thermoelectric Figure-of-Merit",
+      "journal": "ADVANCED FUNCTIONAL MATERIALS"
+    },
+    {
+      "date": "2021-06",
+      "title": "Enhancement of thermoelectric performance in a non-toxic CuInTe2/SnTe coated grain nanocomposite",
+      "journal": "JOURNAL OF MATERIALS CHEMISTRY A"
+    },
+    {
+      "date": "2021-06",
+      "title": "Anisotropic Thermal Conductivity of Nickel-Based Superalloy CM247LC Fabricated via Selective Laser Melting",
+      "journal": "APPLIED SCIENCES-BASEL"
+    },
+    {
+      "date": "2021-05",
+      "title": "Review on the operation of wearable sensors through body heat harvesting based on thermoelectric devices",
+      "journal": "APPLIED PHYSICS LETTERS"
+    },
+    {
+      "date": "2021-02",
+      "title": "Strategies for Manipulating Phonon Transport in Solids",
+      "journal": "ACS NANO"
+    },
+    {
+      "date": "2021-01",
+      "title": "Self-charging wearables for continuous health monitoring",
+      "journal": "NANO ENERGY"
+    },
+    {
+      "date": "2020-10",
+      "title": "일방향 응고 초내열합금 CM247LC의 방향성에 따른 열물성에 관한 연구",
+      "journal": "Transactions of the Korean Society of Mechanical Engineers, B"
+    },
+    {
+      "date": "2020-08",
+      "title": "Review on Mechanical Thermal Properties of Superalloys and Thermal Barrier Coating Used in Gas Turbines",
+      "journal": "APPLIED SCIENCES-BASEL"
+    },
+    {
+      "date": "2020-07",
+      "title": "함정 탑재 레이더의 능동 열 제어를 위한 열전 냉각 장치 성능의 수치 해석적 연구",
+      "journal": "Transactions of the Korean Society of Mechanical Engineers, B"
+    },
+    {
+      "date": "2020-06",
+      "title": "Planar-type thermally chargeable supercapacitor without an effective heat sink and performance variations with layer thickness and operation conditions",
+      "journal": "APPLIED ENERGY"
+    },
+    {
+      "date": "2019-12",
+      "title": "liquid-metal-electrode-based compact, flexible and high-power thermoelectric device",
+      "journal": "ENERGY"
+    },
+    {
+      "date": "2019-11",
+      "title": "High power output based on watch-strap-shaped body heat harvesterusing bulk thermoelectric materials",
+      "journal": "ENERGY"
+    },
+    {
+      "date": "2019-09",
+      "title": "Energy harvesting using thermoelectricity for IoT (Internet of Things) and E-skin sensors",
+      "journal": "Journal of Physics: Energy"
+    },
+    {
+      "date": "2019-09",
+      "title": "Thermoelectric Transport Properties of Interface-Controlled p-type Bismuth Antimony Telluride Composites by Reduced Graphene Oxide",
+      "journal": "ELECTRONIC MATERIALS LETTERS"
+    },
+    {
+      "date": "2019-07",
+      "title": "Gigantic phonon scattering cross section to enhance thermoelectric performance in bulk crystals",
+      "journal": "ACS NANO"
+    },
+    {
+      "date": "2019-06",
+      "title": "Spacer strategy for exceptionally low thermal conductivity and high zT in antimony-doped bulk silicon",
+      "journal": "Materials Today Energy"
+    },
+    {
+      "date": "2019-04",
+      "title": "Effects of Cl-Doping on Thermoelectric Transport Properties of Cu2Se Prepared by Spark Plasma Sintering",
+      "journal": "JOURNAL OF ELECTRONIC MATERIALS"
+    },
+    {
+      "date": "2018-09",
+      "title": "Recent progress and futuristic development of PbSe thermoelectric materials and devices",
+      "journal": "Materials Today Energy"
+    },
+    {
+      "date": "2018-09",
+      "title": "High power output from body heat harvesting based on flexible thermoelectric system with low thermal contact resistance",
+      "journal": "JOURNAL OF PHYSICS D-APPLIED PHYSICS"
+    },
+    {
+      "date": "2018-06",
+      "title": "Effect of phonon confinement on the thermal conductivity In0.53Ga0.47As nanofilms",
+      "journal": "JOURNAL OF APPLIED PHYSICS"
+    },
+    {
+      "date": "2018-04",
+      "title": "Optimization of peak and average figures of merits for In Se co-doped SnTe alloys",
+      "journal": "Inorganic Chemistry Frontiers"
+    },
+    {
+      "date": "2018-04",
+      "title": "New evaluation parameter for wearable thermoelectric generators",
+      "journal": "JOURNAL OF APPLIED PHYSICS"
+    },
+    {
+      "date": "2018-04",
+      "title": "홈 형태의 전극을 이용한 열전소자의 기계적인 강도 개선",
+      "journal": "Transactions of the Korean Society of Mechanical Engineers, B"
+    },
+    {
+      "date": "2018-01",
+      "title": "Simplified human thermoregulatory model for designing wearable thermoelectric devices",
+      "journal": "JOURNAL OF PHYSICS D-APPLIED PHYSICS"
+    },
+    {
+      "date": "2017-12",
+      "title": "Mat-like flexible thermoelectric system based on rigid inorganic bulk materials",
+      "journal": "JOURNAL OF PHYSICS D-APPLIED PHYSICS"
+    },
+    {
+      "date": "2017-11",
+      "title": "More than half reduction in price per watt of thermoelectric device without increasing the thermoelectric figure of merit of materials",
+      "journal": "APPLIED ENERGY"
+    },
+    {
+      "date": "2017-09",
+      "title": "Flexible thermoelectric power generation system based on rigid inorganic bulk materials",
+      "journal": "APPLIED ENERGY"
+    },
+    {
+      "date": "2017-08",
+      "title": "Dataset on the electronic and thermal transport properties of quaternary compounds of (PbTe)0.95?x(PbSe)x(PbS)0.05",
+      "journal": "Data in Brief"
+    },
+    {
+      "date": "2017-07",
+      "title": "Enhancement of the thermoelectric performance of bulk SnTe alloys via the synergistic effect of band structure modification and chemical bond softening",
+      "journal": "JOURNAL OF MATERIALS CHEMISTRY A"
+    },
+    {
+      "date": "2017-06",
+      "title": "A gigantically increased ratio of electrical to thermal conductivity and synergistically enhanced thermoelectric properties in interface-controlled TiO2?RGO nanocomposites",
+      "journal": "NANOSCALE"
+    },
+    {
+      "date": "2017-06",
+      "title": "High thermoelectric performance in pseudo quaternary compounds of (PbTe)0.95?x(PbSe)x(PbS)0.05 by simultaneous band convergence and nano precipitation",
+      "journal": "ACTA MATERIALIA"
+    },
+    {
+      "date": "2017-05",
+      "title": "Extension of the T-bridge method for measuring the thermal conductivity of two-dimensional materials",
+      "journal": "REVIEW OF SCIENTIFIC INSTRUMENTS"
+    },
+    {
+      "date": "2017-03",
+      "title": "Research for Actively Reducing Infrared Radiation by Thermoelectric Refrigerator",
+      "journal": "Transactions of the Korean Society of Mechanical Engineers, B"
+    },
+    {
+      "date": "2017-03",
+      "title": "Low thermal conductivity and high thermoelectric performance in In4Se3-x with phase-separated indium inclusions",
+      "journal": "JOURNAL OF ELECTRONIC MATERIALS"
+    },
+    {
+      "date": "2017-01",
+      "title": "Ultralow Lattice Thermal Conductivity and Enhanced Thermoelectric Performance in SnTe:Ga Materials",
+      "journal": "CHEMISTRY OF MATERIALS"
+    },
+    {
+      "date": "2016-07",
+      "title": "Modulation of light absorption by optical spacer in perovskite solar cells",
+      "journal": "PHYSICA STATUS SOLIDI-RAPID RESEARCH LETTERS"
+    },
+    {
+      "date": "2016-02",
+      "title": "Measurement of thermal conductivity of Bi2Te3 nanowire using high-vacuum scanning thermal wave microscopy",
+      "journal": "APPLIED PHYSICS LETTERS"
+    },
+    {
+      "date": "2016-01",
+      "title": "Band degeneracy for low thermal conductivity and high temperature thermoelectric figure of merit in SnTe-CaTe alloys",
+      "journal": "CHEMISTRY OF MATERIALS"
+    },
+    {
+      "date": "2015-10",
+      "title": "Strategies for engineering phonon transport in thermoelectrics",
+      "journal": "JOURNAL OF MATERIALS CHEMISTRY C"
+    },
+    {
+      "date": "2015-10",
+      "title": "Enhancement of light absorption by using light scattering and emitting dyes in organic photovoltaics",
+      "journal": "PHYSICA STATUS SOLIDI A-APPLICATIONS AND MATERIALS SCIENCE"
+    },
+    {
+      "date": "2015-06",
+      "title": "High-Pressure Solvent Vapor Annealing with a Benign Solvent To Rapidly Enhance the Performance of Organic Photovoltaics",
+      "journal": "ACS APPLIED MATERIALS & INTERFACES"
+    },
+    {
+      "date": "2015-02",
+      "title": "High Thermoelectric Performance of a Heterogeneous PbTe Nanocomposite",
+      "journal": "CHEMISTRY OF MATERIALS"
+    },
+    {
+      "date": "2015-02",
+      "title": "A way of achieving a low $/W and a decent power output from a thermoelectric device",
+      "journal": "APPLIED ENERGY"
+    },
+    {
+      "date": "2014-09",
+      "title": "고효율 열전소재 2%Na-PbTe의 소자화에 관한 연구",
+      "journal": "정보저장시스템학회 논문집"
+    },
+    {
+      "date": "2014-09",
+      "title": "Microwave-assisted solvent vapor annealing to rapidly achieve enhanced performance of organic photovoltaics",
+      "journal": "JOURNAL OF MATERIALS CHEMISTRY A"
+    },
+    {
+      "date": "2014-07",
+      "title": "Right sizes of nano- and microstructures for high-performance and rigid bulk thermoelectrics",
+      "journal": "PROCEEDINGS OF THE NATIONAL ACADEMY OF SCIENCES OF THE UNITED STATES OF AMERICA"
+    },
+    {
+      "date": "2014-03",
+      "title": "New device architecture of a thermoelectric energy conversion for recovering low-quality heat",
+      "journal": "APPLIED PHYSICS A-MATERIALS SCIENCE & PROCESSING"
+    },
+    {
+      "date": "2014-02",
+      "title": "Effect of Excess Na on the Morphology and Thermoelectric Properties of Na (x) Pb1-x Te0.85Se0.15",
+      "journal": "JOURNAL OF ELECTRONIC MATERIALS"
+    },
+    {
+      "date": "2014-01",
+      "title": "Inter-diffused ordered bulk heterojunction organic photovoltaics: optimized morphology for efficient exciton dissociation and charge transport",
+      "journal": "SOLAR ENERGY MATERIALS AND SOLAR CELLS"
+    },
+    {
+      "date": "2013-10",
+      "title": "Thermoelectricity in Semiconductor Nanowires",
+      "journal": "PHYSICA STATUS SOLIDI-RAPID RESEARCH LETTERS"
+    },
+    {
+      "date": "2013-08",
+      "title": "Large enhancement in the thermoelectric properties of Pb0.98Na0.02Te by optimizing the synthesis conditions",
+      "journal": "JOURNAL OF MATERIALS CHEMISTRY A"
+    },
+    {
+      "date": "2012-11",
+      "title": "Fabrication of ordered bulk heterojunction organic photovoltaic cells using nanopatterning and electrohydrodynamic spray deposition methods",
+      "journal": "NANOSCALE"
+    },
+    {
+      "date": "2012-10",
+      "title": "Enhanced thermoelectric properties of tungsten disulfide-multiwalled carbon nanotube composites",
+      "journal": "JOURNAL OF MATERIALS CHEMISTRY"
+    },
+    {
+      "date": "2011-12",
+      "title": "Effect of the carbon nanotube type on the thermoelectric properties of CNT/Nafion nanocomposites",
+      "journal": "Organic Electronics"
+    },
+    {
+      "date": "2011-11",
+      "title": "Thermal transport in individual thermoelectric nanowires: a review",
+      "journal": "MATERIALS RESEARCH INNOVATIONS"
+    },
+    {
+      "date": "2011-11",
+      "title": "Optimum design of ordered bulk heterojunction organic photovoltaics",
+      "journal": "SOLAR ENERGY MATERIALS AND SOLAR CELLS"
+    },
+    {
+      "date": "2011-05",
+      "title": "Thermal conductivity of VLS-grown rough Si nanowires with various surface roughnesses and diameters",
+      "journal": "APPLIED PHYSICS A-MATERIALS SCIENCE & PROCESSING"
+    },
+    {
+      "date": "2011-05",
+      "title": "Effect of surface roughness on thermal conductivity of VLS-grown rough Si1-xGex nanowires",
+      "journal": "APPLIED PHYSICS A-MATERIALS SCIENCE & PROCESSING"
+    },
+    {
+      "date": "2011-05",
+      "title": "Observation of Anisotropy in Thermal Conductivity of Individual Single-Crystalline Bismuth Nanowires",
+      "journal": "ACS Nano"
+    },
+    {
+      "date": "2011-02",
+      "title": "Synthesis and characterization of thiophene-based conjugated copolymer containing ferroceneunits for organic electronics",
+      "journal": "Proceedings of SPIE - The International Society for Optical Engineering"
+    },
+    {
+      "date": "2011-02",
+      "title": "Large-scale synthesis and characterization of the size-dependent thermoelectric properties of uniformly sized bismuth nanocrystals",
+      "journal": "Angewandte Chemie-International Edition"
+    },
+    {
+      "date": "2011-01",
+      "title": "Spray deposition of electrohydrodynamically atomized polymer mixture for active layer fabrication in organic photovoltaics",
+      "journal": "SOLAR ENERGY MATERIALS AND SOLAR CELLS"
+    },
+    {
+      "date": "2010-10",
+      "title": "Effects of embedding non-absorbing nanoparticles in organic photovoltaics on power conversion efficiency",
+      "journal": "SOLAR ENERGY MATERIALS AND SOLAR CELLS"
+    },
+    {
+      "date": "2010-06",
+      "title": "Thermal conductivities of Si1-xGex nanowires with different germanium concentrations and diameters",
+      "journal": "Applied Physics Letters"
+    },
+    {
+      "date": "2010-05",
+      "title": "Comparison of thermal conductivity in nanodot nanocomposites and nanograined nanocomposites",
+      "journal": "Applied Physics Letters"
+    },
+    {
+      "date": "2010-04",
+      "title": "소규모 산업 폐열회수용 열전발전시스템의 출력 특성에 관한 실험적 연구",
+      "journal": "대한기계학회논문집 B"
+    },
+    {
+      "date": "2010-03",
+      "title": "Size-dependent thermal conductivity of individual single-crystalline PbTe nanowires",
+      "journal": "Applied Physics Letters"
+    },
+    {
+      "date": "2009-04",
+      "title": "Novel application of Joule heating to maintain biocompatible temperatures in a fully integrated electromagnetic cell sorting system",
+      "journal": "SENSORS AND ACTUATORS A-PHYSICAL"
+    },
+    {
+      "date": "2009-03",
+      "title": "Comparison of the 3 omega method and time-domain thermoreflectance for measurements of the cross-plane thermal conductivity of epitaxial semiconductors",
+      "journal": "Journal of Applied Physics"
+    },
+    {
+      "date": "2008-12",
+      "title": "Power Generator Modules of Segmented Bi2Te3 and ErAs:(InGaAs)(1-x)(InAlAs)(x)",
+      "journal": "JOURNAL OF ELECTRONIC MATERIALS"
+    },
+    {
+      "date": "2008-07",
+      "title": "Reducing thermal conductivity of crystalline solids at high temperature using embedded nanostructures",
+      "journal": "Nano Letters"
+    },
+    {
+      "date": "2008-04",
+      "title": "Effects of nanosized contact spots on thermal contact resistance",
+      "journal": "Journal of Applied Physics"
+    },
+    {
+      "date": "2007-12",
+      "title": "Tuning thermal transport in crystalline solids using embedded nanoparticles",
+      "journal": "Journal of Physics: Conference Series"
+    },
+    {
+      "date": "2007-12",
+      "title": "ErAs :(InGaAs)(1-x)(InAlAs)(x) alloy power generator modules",
+      "journal": "APPLIED PHYSICS LETTERS"
+    },
+    {
+      "date": "2007-02",
+      "title": "Cross-plane Seebeck coefficient of ErAs : InGaAs/InGaAlAs superlattices",
+      "journal": "JOURNAL OF APPLIED PHYSICS"
+    },
+    {
+      "date": "2007-02",
+      "title": "Nanostructuring expands thermal limits",
+      "journal": "NANO TODAY"
+    },
+    {
+      "date": "2006-06",
+      "title": "Cross-plane lattice and electronic thermal conductivities of ErAs : InGaAs/InGaAlAs superlattices",
+      "journal": "APPLIED PHYSICS LETTERS"
+    },
+    {
+      "date": "2006-04",
+      "title": "Phonon scattering cross section of polydispersed spherical nanoparticles",
+      "journal": "JOURNAL OF APPLIED PHYSICS"
+    },
+    {
+      "date": "2006-03",
+      "title": "ErAs : InGaAs/InGaAlAs superlattice thin-film power generator array",
+      "journal": "APPLIED PHYSICS LETTERS"
+    },
+    {
+      "date": "2006-02",
+      "title": "Thermal conductivity reduction and thermoelectric figure of merit increase by embedding nanoparticles in crystalline semiconductors",
+      "journal": "PHYSICAL REVIEW LETTERS"
+    },
+    {
+      "date": "2004-06",
+      "title": "Fabrication and characterization of a nanowire/polymer-based nanocomposite for a prototype thermoelectric device",
+      "journal": "JOURNAL OF MICROELECTROMECHANICAL SYSTEMS"
+    }
+  ],
+  "awards": [
+    {
+      "title": "중소벤처기업부 장관 표창",
+      "contents": null,
+      "date": "2024-05-23"
+    },
+    {
+      "title": "우수업적 교수상",
+      "contents": null,
+      "date": "2024-02"
+    },
+    {
+      "title": "최우수공학교수상",
+      "contents": null,
+      "date": "2023-04-20"
+    },
+    {
+      "title": "우수업적 교수상(연세대학교)",
+      "contents": "연구업적 우수",
+      "date": "2020-02-14"
+    },
+    {
+      "title": "나노연구혁신부문 최우수상 (국무총리상, 나노코리아 2017 어워드)",
+      "contents": "나노연구성과 및 논문",
+      "date": "2017-07-13"
+    },
+    {
+      "title": "우수강의교수상(연세대학교 공학대학원)",
+      "contents": "우수강의상",
+      "date": "2016-08-19"
+    },
+    {
+      "title": "우수업적교수상(연세대학교)",
+      "contents": "연구부문 성과",
+      "date": "2016-02-17"
+    },
+    {
+      "title": "Netzsch KSTP TPP Award(한국열물성학회-네취코리아)",
+      "contents": "열물성 분야 연구성과",
+      "date": "2015-08-21"
+    },
+    {
+      "title": "젊은열공학자상(대한기계학회 열공학부문)",
+      "contents": "열공학부문 괄목할 만한 연구성과를 낸 젊은 열공학자",
+      "date": "2013-05-25"
+    },
+    {
+      "title": "학술상(한국열물성학회)",
+      "contents": "학술상",
+      "date": "2013-04-05"
+    },
+    {
+      "title": "우수연구실적표창(연세대학교)",
+      "contents": "우수연구업적",
+      "date": "2013-01-31"
+    },
+    {
+      "title": "LG 연암해외연구교수(LG 연암문화재단)",
+      "contents": "연구년 해외 연구 지원",
+      "date": "2012-06-18"
+    },
+    {
+      "title": "우수강의교수상(연세대학교)",
+      "contents": "우수강의",
+      "date": "2012-02-29"
+    },
+    {
+      "title": "연구과제 발표 우수상(나노소재기술개발사업단)",
+      "contents": "연구결과를 훌룡하고 효과적으로 발표함.",
+      "date": "2009-02-12"
+    },
+    {
+      "title": "우수강의교수상(연세대학교)",
+      "contents": "우수강의상",
+      "date": "2008-03-14"
+    }
+  ],
+  "conferences": [
+    {
+      "title": "Thermal transport in nanowires; scattering processes and anisotropy",
+      "conference": "EMN Meetings on Nanowires",
+      "period": "2016.05.15~2016.05.18"
+    },
+    {
+      "title": "Thermal Conductivity Measurement of InGaAs Thin Film",
+      "conference": "ATPC2016",
+      "period": "2016.03.25~2016.03.25"
+    },
+    {
+      "title": "Extremely low thermal conductivity and high electrical conductivity due to the metastability during phase change",
+      "conference": "ICT2015",
+      "period": "2015.06.27~2015.07.04"
+    },
+    {
+      "title": "Structural approach for high thermoelectric performance and device architecture for low $/W",
+      "conference": "MPM-1",
+      "period": "2015.05.26~2015.05.30"
+    },
+    {
+      "title": "슬릿노즐을 이용한 유기태양전지 모듈의 모폴로지 제어",
+      "conference": "대한기계학회 춘계 마이크로 나노",
+      "period": "2015.05.21~2015.05.22"
+    },
+    {
+      "title": "합성조건에 따른 PbTe의 열물성 및 열전물성",
+      "conference": "춘계학술대회 생산제조시스템",
+      "period": "2015.04.28~2015.04.29"
+    },
+    {
+      "title": "Thermal Conductivity Measurement of Silicon with Various Particle Sizes",
+      "conference": "제15회 한국열물성학회 학술대회",
+      "period": "2015.04.09~2015.04.10"
+    },
+    {
+      "title": "Thermal Transport in a Heterogeneous Nanocomposite of Na Doped PbTe for Thermoelectric Application",
+      "conference": "2015 MRS Spring Meeting & Exhibit",
+      "period": "2015.04.06~2015.04.11"
+    },
+    {
+      "title": "InGaAs 나노박막의 열전도도 측정",
+      "conference": "춘계 열공학부문",
+      "period": "2015.03.04~2015.03.05"
+    },
+    {
+      "title": "Fast Morphology Evolution of Organic Photovoltaics using Internal Heat Generation Induced by Oscillating Solvent vapor by Microwave",
+      "conference": "MRS Fall",
+      "period": "2014.11.29~2014.12.04"
+    },
+    {
+      "title": "Effects of Synthesis Conditions on Thermal and Thermoelectric Properties of Na-doped PbTe",
+      "conference": "ENGE 2014",
+      "period": "2014.11.17~2014.11.19"
+    },
+    {
+      "title": "결정립 크기에 따른 실리콘의 열전도도 측정",
+      "conference": "대한기계학회",
+      "period": "2014.11.11~2014.11.13"
+    },
+    {
+      "title": "2차원 나노물질의 열전도도 측정",
+      "conference": "열물성학회",
+      "period": "2014.11.06~2014.11.07"
+    },
+    {
+      "title": "합성조건에 따른 나노/마이크로 구조 변화 및 그에 따른 PbTe의 열전성능지수 향상에 관한 연구",
+      "conference": "한국세라믹학회 추계학술대회 및 총회",
+      "period": "2014.10.15~2014.10.17"
+    },
+    {
+      "title": "High zT of Na doped PbTe caused by effective phonon scattering",
+      "conference": "12th European Conference on Thermoelectricity",
+      "period": "2014.09.24~2014.09.26"
+    },
+    {
+      "title": "Optimization of cooling duct direction and dust cover shape for brake disc best cooling performance",
+      "conference": "SAE",
+      "period": "2014.07.10~2014.07.10"
+    },
+    {
+      "title": "Spacer-inserted thermoelectric Device with enhanced Power",
+      "conference": "6th Forum on New Materials",
+      "period": "2014.06.15~2014.06.19"
+    },
+    {
+      "title": "Thermoelectric Properties of Silicon Nanocomposite using Spark Plasma Sintering",
+      "conference": "군사과학기술학회",
+      "period": "2014.06.10~2014.06.10"
+    },
+    {
+      "title": "이종구조에 의한 포논 산란의 향상과 이에 의한 높은 열전물성치에 대한 연구",
+      "conference": "마이크로/나노 공학부문 춘계학술대회",
+      "period": "2014.05.22~2014.05.23"
+    },
+    {
+      "title": "Effects of Synthesis Methods on Nano- and Microstructures in Na-doped PbTe for High Thermoelectric Performance",
+      "conference": "MRS SRPING",
+      "period": "2014.04.23~2014.04.26"
+    },
+    {
+      "title": "저발전단가 구현 열전소자",
+      "conference": "춘계 고분자학회",
+      "period": "2014.04.10~2014.04.11"
+    },
+    {
+      "title": "Thermoelectric properties of Nax Pb1-x Te0.85 Se0.15 with various Na concentrations",
+      "conference": "15th International Symposium on Transport Phenomena and Dynamics of Rotating Machinery",
+      "period": "2014.02.24~2014.02.28"
+    },
+    {
+      "title": "Effects of synthesis condition on zT of PbTe",
+      "conference": "KIMM TE",
+      "period": "2014.02.06~2014.02.06"
+    },
+    {
+      "title": "New Device Architecture of a Thermoelectric Generator Ideal for High $/W",
+      "conference": "MRS Fall",
+      "period": "2013.11.25~2013.12.08"
+    },
+    {
+      "title": "CNT/PEDOT:PSS nanocomposite based thermoelectric device",
+      "conference": "Optics + Photonics 2013",
+      "period": "2013.08.25~2013.08.29"
+    },
+    {
+      "title": "Enhancement of Thermoelectric properties of Pb0.98Na0.02Te by Optimizing Synthesis Condition",
+      "conference": "15ACC",
+      "period": "2013.08.19~2013.08.23"
+    },
+    {
+      "title": "Optimization for Higher Efficiency of Thermoelectric Devices by Separating Energy Paths.",
+      "conference": "ISGMA 2013",
+      "period": "2013.06.25~2013.06.29"
+    },
+    {
+      "title": "발광 염료를 이용한 유기태양전지 모듈 효율 향상",
+      "conference": "대한기계학회 춘계학술대회 나노마이크로",
+      "period": "2013.05.23~2013.05.24"
+    },
+    {
+      "title": "과도핑된 텔루륨-셀레늄화 납의 도핑농도에 대한 열전물성조사",
+      "conference": "대한기계학회 춘계학술대회 열공학",
+      "period": "2013.05.22~2013.05.24"
+    },
+    {
+      "title": "Thermal conductivity of Si Nanoribbons",
+      "conference": "ATPC2013",
+      "period": "2013.04.20~2013.04.20"
+    },
+    {
+      "title": "Thermal Properties of 2-Dimensional Si Nanoribbons",
+      "conference": "열물성학회 춘계학술대회",
+      "period": "2013.04.02~2013.04.06"
+    },
+    {
+      "title": "Hybridized Morphology of Disordered and Ordered Bulk Heterojunction for Next Generation Organic Photovoltaics",
+      "conference": "MRS Spring",
+      "period": "2013.04.01~2013.04.05"
+    },
+    {
+      "title": "Thermal conductivity of NaxPb1-xTe0.85Se0.15 as Hot perss conditions",
+      "conference": "2013 스텔스 기술 학술대회",
+      "period": "2013.01.12~2013.01.12"
+    },
+    {
+      "title": "Enhancement of thermoelectric Thermoelectric properties Properties of Pb0.98Na0.02Te by optimizing Optimizing Synthesis Conditionpressure and sintered time",
+      "conference": "MRS Fall",
+      "period": "2012.11.25~2012.11.30"
+    },
+    {
+      "title": "광흡수 정보를 통한 유기태양전지 모델링 정확성 향상",
+      "conference": "한국광전자학회",
+      "period": "2012.10.21~2012.10.21"
+    },
+    {
+      "title": "정형이종접합 유기태양전지를 위한 AAO 몰드",
+      "conference": "추계기계학회",
+      "period": "2012.09.20~2012.09.20"
+    },
+    {
+      "title": "THERMAL TRANSPORT IN NANOSTRUCTURED MATERIALS",
+      "conference": "ENGE 2012",
+      "period": "2012.09.17~2012.09.19"
+    },
+    {
+      "title": "Flexible Thermoelectric Devices",
+      "conference": "The ICT 2012",
+      "period": "2012.07.09~2012.07.12"
+    },
+    {
+      "title": "내부 확산형 정형이종접합 유기태양전지",
+      "conference": "기계학회 마이크로나노부문",
+      "period": "2012.05.11~2012.05.11"
+    },
+    {
+      "title": "Nanostructured Materials",
+      "conference": "한중일청년과학자",
+      "period": "2012.04.28~2012.04.28"
+    },
+    {
+      "title": "PbTe 기반 열전냉각 나노복합재의 열전도도 특성",
+      "conference": "군사과학기술학회",
+      "period": "2012.04.19~2012.04.19"
+    },
+    {
+      "title": "Polymer Nanocomposites for Thermoelectric Devices”",
+      "conference": "MRS Spring",
+      "period": "2012.04.07~2012.04.14"
+    },
+    {
+      "title": "Thermoelectric Properties of Bulk PbTe-Pb-Sb as Pb, Sb Content",
+      "conference": "한국열물성학회",
+      "period": "2012.04.04~2012.04.06"
+    },
+    {
+      "title": "THERMAL TRANSPORT IN NANOSTRUCTURED MATERIALS",
+      "conference": "춘계 물리학회",
+      "period": "2012.03.20~2012.03.20"
+    },
+    {
+      "title": "Thermal Transport in Two Dimensional Layers",
+      "conference": "Korea-Japan Thermal and Fluid",
+      "period": "2012.03.18~2012.03.21"
+    },
+    {
+      "title": "Nano-structured Organic Photovoltaics: Design of the Ideal Structure",
+      "conference": "MCARE2012",
+      "period": "2012.02.26~2012.03.01"
+    },
+    {
+      "title": "Nanostructured Materials for Energy Conversion Devices",
+      "conference": "Tsinghua-Yonsei",
+      "period": "2012.02.12~2012.02.12"
+    },
+    {
+      "title": "CNT 종류에 따른 CNT/Nafion 나노복합체의 열전성능 측정",
+      "conference": "나노튜브연구회",
+      "period": "2012.01.08~2012.01.10"
+    },
+    {
+      "title": "Nanostructured Organic Photovoltaics Using AAO Mold",
+      "conference": "KMEMS",
+      "period": "2012.01.06~2012.01.06"
+    },
+    {
+      "title": "Crystal Orientation-Dependent Thermal Conductivity of Single-Crystaline Bi Nanowires",
+      "conference": "IEEE Nanotechnology Materials and Devices Conference in conjunction with CNMT Exhibition",
+      "period": "2011.10.18~2011.10.21"
+    },
+    {
+      "title": "Thermoelectric Properties of In-PbTe",
+      "conference": "IEEE NMDC",
+      "period": "2011.10.18~2011.10.21"
+    },
+    {
+      "title": "Thermoelectric Performance of PEDOT:PSS/SWCNT Nanocomposite",
+      "conference": "ECT",
+      "period": "2011.09.28~2011.09.30"
+    },
+    {
+      "title": "Thermal transport in nanowires",
+      "conference": "Tsinghua & Yonsei Joint Workshop",
+      "period": "2011.08.11~2011.08.11"
+    },
+    {
+      "title": "Effect of Surface Roughness on Thermal Conductivity of VLS-Grown Rough Si1-xGex (x=0~0.4) Nanowires",
+      "conference": "2011 US-Korea Joint Symposium of NanoTechnology Workshops",
+      "period": "2011.06.01~2011.06.03"
+    },
+    {
+      "title": "Thermal transport in rough surfaced nanowires",
+      "conference": "5th korea japan joint seminar on heat transfer",
+      "period": "2011.05.26~2011.05.28"
+    },
+    {
+      "title": "Ball mill시간에 따른 PbTe 열전 나노복합재의 열전도도 비교",
+      "conference": "2011대한기계학회 춘계 나노마이크로부문 학술대회",
+      "period": "2011.05.26~2011.05.27"
+    },
+    {
+      "title": "Comparison of thermoelectric performance in nanodot noanocomposites and nanoagrained nanocomposites",
+      "conference": "2011 MRS Fall",
+      "period": "2010.11.29~2010.12.03"
+    },
+    {
+      "title": "Crystalline orientation and size-dependent thermal conductivity of individual single crystalline Bi nanowires",
+      "conference": "ENGE 2010",
+      "period": "2010.11.21~2010.11.24"
+    },
+    {
+      "title": "Efficiency Enhancement of Organic Solar Sells by Incorporating ZnO Nanoparticles",
+      "conference": "19th International Photovoltaic Science and Engineering Conference and Exhibition",
+      "period": "2009.11.09~2009.11.13"
+    },
+    {
+      "title": "Anistropic thermal conductivities of individual single-crystalline Bi nanowires grown by on-film formation of nanowires",
+      "conference": "2010년 대한금속.재료학회 추계 학술대회",
+      "period": "2010.11.04~2010.11.05"
+    },
+    {
+      "title": "Thermal conductivities of individual single-crystalline PbTe nanowires grown by a chemical vapor transport method",
+      "conference": "30th International Conference on the Physics of Semiconductors",
+      "period": "2010.07.25~2010.07.30"
+    },
+    {
+      "title": "Thermal conductivities of SixGe1-x nanowires with different germanium concentrations",
+      "conference": "2010년 한국열물성학회",
+      "period": "2010.04.01~2010.04.02"
+    },
+    {
+      "title": "Comparison of thermoelectric performance between nanodots and nanograined nanocomposite of Tl0.02Pb0.98Te",
+      "conference": "3rd Micro&Nano Technology and Micro/Nanoscale Energy Conversion&Transport-2010",
+      "period": "2010.03.21~2010.03.24"
+    },
+    {
+      "title": "ORGNIC SOLAR CELLS EMBEDDED WITH ZnO NANOPARTICLES",
+      "conference": "POWER MEMS 2009 THE 9TH INTERNATIONAL WORKSHOP ON MICRO AND NANOTECHNOLOGY FOR POWER GENERATION AND ENERGY CONVERSION APPLICATIONS",
+      "period": "2009.12.01~2009.12.04"
+    },
+    {
+      "title": "SixGe1-x 나노선의 열전도도 특성",
+      "conference": "대한기계학회 추계학술대회 2009",
+      "period": "2009.11.04~2009.11.06"
+    },
+    {
+      "title": "Thermal conductance of self-assembled pctanedithip; monolayer",
+      "conference": "NANO KOREA 2009-The 7th INTERNATIONAL NANOTECH SYMPOSIUM&EXHIBITION ON KOREA",
+      "period": "2009.08.26~2009.08.28"
+    },
+    {
+      "title": "Photovoltaic effect of an alkyl fullerene on a nanostructured cell",
+      "conference": "IC ME&D",
+      "period": "2009.05.22~2009.05.23"
+    },
+    {
+      "title": "Thermoelectric Properties of Individual Single-Crystalline Bi nanowires",
+      "conference": "한국열물성학회",
+      "period": "2009.04.03~2009.04.03"
+    },
+    {
+      "title": "Thermoelectric properties of polymer nanocomposites",
+      "conference": "The Seventh JSME-KSME Thermal and Fluids Engineering Conference",
+      "period": "2008.10.13~2008.10.16"
+    },
+    {
+      "title": "Thermal conductivity of an individual single crystalline Bi nanowire grown a spontaneous growth method",
+      "conference": "The 14th International Symposium on the Physics of Semiconductiors and Applications-2008",
+      "period": "2008.08.26~2008.08.29"
+    },
+    {
+      "title": "차량 및 산업설비 폐열회수용 열전발전시스템의 최적 열교환 시스템에 관한 실험적 연구",
+      "conference": "한국 신재생에너지학회 춘계학술대회 2008",
+      "period": "2008.05.22~2008.05.23"
+    },
+    {
+      "title": "나노구조물 첨가를 이용한 고온에서의 고체 열전도도 감소",
+      "conference": "대한기계학회 열공학 부문 학술대회, 2008",
+      "period": "2008.04.23~2008.04.25"
+    },
+    {
+      "title": "Measurement of Thermal Conductivity of the Individual Single Crystalline Bi Nanowire using MEMS Structure",
+      "conference": "한국물리학회 2008년 봄 학술논문발표회",
+      "period": "2008.04.17~2008.04.18"
+    },
+    {
+      "title": "Electromagnetic cell sorting system to make biocompatible heat condition using Joule heating",
+      "conference": "10th Korean MEMS conference",
+      "period": "2008.04.03~2008.04.05"
+    },
+    {
+      "title": "Segmented power generator modules of Bi2Te3 and ErAs:InGaAlAs embedded with ErAs nanoparticles",
+      "conference": "Material Research Society 2008",
+      "period": "2007.11.26~2007.11.30"
+    },
+    {
+      "title": "고온용 폐열회수 열전발전시스템에 관한 실험적 연구",
+      "conference": "대한기계학회 추계학술대회",
+      "period": "2007.10.31~2007.11.02"
+    },
+    {
+      "title": "Tuning thermal transport in crystalline solids using embedded nanoparticles",
+      "conference": "12th International Conference on Phonon Scattering in Condensed Matter",
+      "period": "2007.07.15~2007.07.20"
+    },
+    {
+      "title": "Semimetallic nanoparticles epitaxially embedded within III-V semiconductors for efficient thermoelectric power generation",
+      "conference": "Electronic Materials Conference (EMC), 2007",
+      "period": "2007.06.20~2007.06.22"
+    },
+    {
+      "title": "Thermal conductivity of ErAs:InGaAlAs for thermoelectric applications",
+      "conference": "26th International Conference on Thermoelectrics",
+      "period": "2007.06.03~2007.06.07"
+    },
+    {
+      "title": "InGaAlAs alloys embedded with ErAs nanoparticles for thermoelectric energy conversion",
+      "conference": "26th International Conference on Thermoelectrics",
+      "period": "2007.06.03~2007.06.07"
+    },
+    {
+      "title": "Wiedemann-Franz law and electronic thermal conductivity in tall barrier superlattices",
+      "conference": "Material Research Society 2007 Spring Meeting",
+      "period": "2007.04.09~2007.04.13"
+    },
+    {
+      "title": "400 ELEMENT ERAS:INERAS /INERALAS SUPERLATTICES POWER GENERATOR",
+      "conference": "2005 MATERIAL RESEARCH SOCIETY FALL MEERTING",
+      "period": "2005.11.28~2005.12.01"
+    }
+  ],
+  "fundings": [
+    {
+      "title": "[SM]2026년도 이공분야 학술연구지원사업 글로컬랩(거점형)",
+      "org": "연세대학교",
+      "period": "2026-03-01~2026-09-01"
+    },
+    {
+      "title": "[7차년도]사회지향 기계기술 글로벌 리더 양성 교육연구단",
+      "org": "한국연구재단",
+      "period": "2026-03-01~2027-02-28"
+    },
+    {
+      "title": "[통합이지바로/주관] 저발전단가 구현 신구조 열전 발전 시스템(2/2단계)(2/2)",
+      "org": "한국연구재단",
+      "period": "2026-01-01~2026-12-31"
+    },
+    {
+      "title": "[민간/KS시스템] 안테나부 RMA 냉각구조 방열검증",
+      "org": "국내",
+      "period": "2025-11-01~2026-10-31"
+    },
+    {
+      "title": "[HKUST] Engineering Tri-Stable Thermal Switch Device for Dual-mode Solid-State ~",
+      "org": "연세대학교",
+      "period": "2025-04-01~2026-03-31"
+    },
+    {
+      "title": "[민간/KS시스템] LRS-M 체계 RMA 냉각구조 방열검증",
+      "org": "국내",
+      "period": "2025-03-01~2026-10-31"
+    },
+    {
+      "title": "[민간/KS시스템] LRS-M 체계 다기능레이다부 방열검증",
+      "org": "국내",
+      "period": "2025-03-01~2026-10-31"
+    },
+    {
+      "title": "(통합Ezbaro)인터페이스 엔지니어링을 통한 열전도도 조율 및 살아있는 인체 조직의 비침투적 열물성 측정(3/3)(2023.03.01~2026.02.28)",
+      "org": "한국연구재단",
+      "period": "2025-03-01~2026-02-28"
+    },
+    {
+      "title": "[6차년도] 사회지향 기계기술 글로벌 리더 양성 교육연구단",
+      "org": "한국연구재단",
+      "period": "2025-03-01~2026-02-28"
+    },
+    {
+      "title": "[통합이지바로/RS/주관] 저발전단가 구현 신구조 열전 발전 시스템(2/2단계)(1/2)",
+      "org": "한국연구재단",
+      "period": "2025-01-01~2025-12-31"
+    },
+    {
+      "title": "2024 산학연협력 기술개발사업 공동운영(추가)",
+      "org": "연세대학교",
+      "period": "2024-08-01~2025-12-31"
+    },
+    {
+      "title": "2024 산학연협력 기술개발사업 공동운영",
+      "org": "연세대학교",
+      "period": "2024-03-01~2026-02-28"
+    },
+    {
+      "title": "[통합이지바로] 저발전단가 구현 신구조 열전 발전 시스템(1/2단계)(3/3)",
+      "org": "한국연구재단",
+      "period": "2024-03-01~2024-12-31"
+    },
+    {
+      "title": "(통합Ezbaro)인터페이스 엔지니어링을 통한 열전도도 조율 및 살아있는 인체 조직의 비침투적 열물성 측정(2/3)(2023.03.01~2026.02.28)",
+      "org": "한국연구재단",
+      "period": "2024-03-01~2025-02-28"
+    },
+    {
+      "title": "[5차년도] 사회지향 기계기술 글로벌 리더 양성 교육연구단",
+      "org": "한국연구재단",
+      "period": "2024-03-01~2025-02-28"
+    },
+    {
+      "title": "[RCMS]엘지이노텍(주)/① 열전발전 소자/파워모듈 양산 공정 기술 개발(4/4)",
+      "org": "한국에너지기술평가원",
+      "period": "2024-01-01~2024-05-31"
+    },
+    {
+      "title": "[민간/RF시스템즈(주) ]사단급대포병탐지레이더 안테나부 냉각성능, 풍하중 분석",
+      "org": "국내",
+      "period": "2023-09-01~2025-08-31"
+    },
+    {
+      "title": "[통합이지바로] 저발전단가 구현 신구조 열전 발전 시스템(1/2단계)(2/3)",
+      "org": "한국연구재단",
+      "period": "2023-06-01~2024-02-29"
+    },
+    {
+      "title": "[민간/알에프시스템즈] 열교환 시스템 각 단위별 열해석, 유동해석 및 분석",
+      "org": "국내",
+      "period": "2023-03-08~2025-12-31"
+    },
+    {
+      "title": "2023 산학연협력 기술개발사업 공동운영비",
+      "org": "연세대학교",
+      "period": "2023-03-01~2025-02-28"
+    },
+    {
+      "title": "[대형사업운영지원비](2023-11-0364) 체열발전 기반 진단 및 치료위한 기초연구",
+      "org": "연세대학교",
+      "period": "2023-03-01~2024-05-31"
+    },
+    {
+      "title": "(통합Ezbaro)인터페이스 엔지니어링을 통한 열전도도 조율 및 살아있는 인체 조직의 비침투적 열물성 측정(1/3)(2023.03.01 ~ 2026.02.28)",
+      "org": "한국연구재단",
+      "period": "2023-03-01~2024-02-29"
+    },
+    {
+      "title": "(통합Ezbaro)체열발전 기반 진단 및 치료위한 기초연구(3/3)(2021.6.1~2024.2.29)",
+      "org": "한국연구재단",
+      "period": "2023-03-01~2024-02-29"
+    },
+    {
+      "title": "[4차년도] 사회지향 기계기술 글로벌 리더 양성 교육연구단",
+      "org": "한국연구재단",
+      "period": "2023-03-01~2024-02-29"
+    },
+    {
+      "title": "[민간/케이에스시스템] CIWS-II 추적안테나 열적안전성 분석 및 최적화 설계",
+      "org": "국내",
+      "period": "2023-02-14~2025-06-30"
+    },
+    {
+      "title": "[RCMS]엘지이노텍(주)/① 열전발전 소자/파워모듈 양산 공정 기술 개발(3/4)",
+      "org": "한국에너지기술평가원",
+      "period": "2023-01-01~2023-12-31"
+    },
+    {
+      "title": "[민간/현대엔지비]VO2 소재를 이용한 온도 감응형 복사냉각 다층구조 연구",
+      "org": "국내",
+      "period": "2022-12-05~2025-06-30"
+    },
+    {
+      "title": "[용역/LIG넥스원/거대과학재원]위성 구동장치 구동 부품의 유동하중 및 열에너지 영향성 분석(1/1)",
+      "org": "한국연구재단",
+      "period": "2022-11-14~2023-12-31"
+    },
+    {
+      "title": "[통합이지바로] 저발전단가 구현 신구조 열전 발전 시스템(1/2단계)(1/3)",
+      "org": "한국연구재단",
+      "period": "2022-08-01~2023-05-31"
+    },
+    {
+      "title": "[ADD/무인기용 고효율 터빈기술 특화연구센터(2단계)/T-33] 고온터빈 구성품 건전성 및 소재수명 평가 기술 개발",
+      "org": "산하기관",
+      "period": "2022-06-17~2025-03-31"
+    },
+    {
+      "title": "(통합Ezbaro)체열발전 기반 진단 및 치료위한 기초연구(2/3)(2021.6.1~2024.2.29)",
+      "org": "한국연구재단",
+      "period": "2022-03-01~2023-02-28"
+    },
+    {
+      "title": "[민간/삼성전자] 열전달 모델링, 전달 메커니즘 및 시뮬레이션 연구 및 분석",
+      "org": "국내",
+      "period": "2022-03-01~2023-08-31"
+    },
+    {
+      "title": "[3차년도] 사회지향 기계기술 글로벌 리더 양성 교육연구단",
+      "org": "한국연구재단",
+      "period": "2022-03-01~2023-02-28"
+    },
+    {
+      "title": "[RCMS]엘지이노텍(주)/① 열전발전 소자/파워모듈 양산 공정 기술 개발(2/4)",
+      "org": "한국에너지기술평가원",
+      "period": "2022-02-01~2022-12-31"
+    },
+    {
+      "title": "[민간/삼성전자] 체온 센서 최적화 연구",
+      "org": "국내",
+      "period": "2022-02-01~2025-02-28"
+    },
+    {
+      "title": "[민간/LIG넥스원] LIG넥스원 협의체-연세대학교 기계융복합 공동연구소",
+      "org": "국내",
+      "period": "2021-11-01~2026-10-31"
+    },
+    {
+      "title": "[민간/현대엔지비] 온도 감응형 복사냉각 소재 연구",
+      "org": "국내",
+      "period": "2021-08-20~2023-08-19"
+    },
+    {
+      "title": "2021 산학연협력 기술개발사업 공동운영비",
+      "org": "연세대학교",
+      "period": "2021-06-01~2023-05-31"
+    },
+    {
+      "title": "[민간/엘아이지넥스원㈜] E-Scan Rader TR블록 방열효율 증가를 위한 소재 및 부품 개발",
+      "org": "국내",
+      "period": "2021-06-01~2022-11-30"
+    },
+    {
+      "title": "(통합Ezbaro)체열발전 기반 진단 및 치료위한 기초연구(1/3)(2021.6.1~2024.2.29)",
+      "org": "한국연구재단",
+      "period": "2021-06-01~2022-02-28"
+    },
+    {
+      "title": "[RCMS]엘지이노텍(주)/① 열전발전 소자/파워모듈 양산 공정 기술 개발(1/4)",
+      "org": "한국에너지기술평가원",
+      "period": "2021-05-01~2022-01-31"
+    },
+    {
+      "title": "[민간/삼성전자]웨어러블 헬스 센서를 위한 bio 모델링 및 센서 최적화 연구",
+      "org": "국내",
+      "period": "2021-04-15~2024-12-31"
+    },
+    {
+      "title": "(통합Ezbaro)2D 레고물질 기반 비등방성 방열소재 연구(3/3)(2019.9.1~2022.2.28)",
+      "org": "한국연구재단",
+      "period": "2021-03-01~2022-02-28"
+    },
+    {
+      "title": "[2차년도] 사회지향 기계기술 글로벌 리더 양성 교육연구단",
+      "org": "한국연구재단",
+      "period": "2021-03-01~2022-02-28"
+    },
+    {
+      "title": "[RCMS]차세대 가스터빈 고온부품 GET-FUTURE 연구실(2/4, 4단계)",
+      "org": "한국에너지기술평가원",
+      "period": "2021-01-01~2021-12-31"
+    },
+    {
+      "title": "[RCMS]3D 프린팅 공정 제어 및 설계 최적화 기법(DfAM) 적용을 통한 F급 이상의 고효율 냉각터빈 고온부품 기술 개발(3/3, 1단계)",
+      "org": "한국에너지기술평가원",
+      "period": "2021-01-01~2021-12-31"
+    },
+    {
+      "title": "[통합이지바로] 결정립 코팅 나노구조를 응용한 열전반도체 개발 (3/3)",
+      "org": "한국연구재단",
+      "period": "2021-01-01~2021-12-31"
+    },
+    {
+      "title": "[RCMS]초임계 소재 산업기술거점센터(1/3)",
+      "org": "한국산업기술평가관리원",
+      "period": "2020-09-01~2021-02-28"
+    },
+    {
+      "title": "[1차년도] 사회지향 기계기술 글로벌 리더 양성 교육연구단",
+      "org": "한국연구재단",
+      "period": "2020-09-01~2021-02-28"
+    },
+    {
+      "title": "[RCMS]한국에너지기술연구원/1분 충전 600km 주행 전기차용 3차원 전고체 전지 및 시스템 기술(2/2)",
+      "org": "한국산업기술기획평가원",
+      "period": "2020-06-01~2021-05-31"
+    },
+    {
+      "title": "[민간/현대엔지비]고분자 기반 복사행각소재 및 평가법 구축(복사냉각 소재의 방사율 향상 연구)",
+      "org": "국내",
+      "period": "2020-04-13~2021-09-12"
+    },
+    {
+      "title": "[민간/현대엔지비] 복사 메커니즘을 통한 열에너지 전달 시뮬레이션 기술자문",
+      "org": "국내",
+      "period": "2020-03-04~2021-03-01"
+    },
+    {
+      "title": "(통합Ezbaro)2D 레고물질 기반 비등방성 방열소재 연구(2/3)(2019.9.1~2022.2.28)",
+      "org": "한국연구재단",
+      "period": "2020-03-01~2021-02-28"
+    },
+    {
+      "title": "[8차년도]사회지향 기계기술 글로벌 리더 양성 사업단",
+      "org": "한국연구재단",
+      "period": "2020-03-01~2020-08-31"
+    },
+    {
+      "title": "[RCMS]3D 프린팅 공정 제어 및 설계 최적화 기법(DfAM) 적용을 통한 F급 이상의 고효율 냉각터빈 고온부품 기술 개발(2/3, 1단계)",
+      "org": "한국에너지기술평가원",
+      "period": "2020-02-01~2020-12-31"
+    },
+    {
+      "title": "[RCMS]차세대 가스터빈 고온부품 GET-FUTURE 연구실(1/4, 4단계)",
+      "org": "한국에너지기술평가원",
+      "period": "2020-01-01~2020-12-31"
+    },
+    {
+      "title": "[통합이지바로] 결정립 코팅 나노구조를 응용한 열전반도체 개발 (2/3)",
+      "org": "한국연구재단",
+      "period": "2020-01-01~2020-12-31"
+    },
+    {
+      "title": "[민간/LIG넥스원(주)]KDDX MFR 빔패턴 대응을 위한 TR모듈 방열구조에 대한 연구",
+      "org": "국내",
+      "period": "2019-09-02~2021-11-30"
+    },
+    {
+      "title": "[RCMS]한국에너지기술연구원/1분 충전 600km 주행 전기차용 3차원 전고체 전지 및 시스템 기술(1/2,1/2)",
+      "org": "한국산업기술기획평가원",
+      "period": "2019-09-01~2020-05-31"
+    },
+    {
+      "title": "(통합Ezbaro)2D 레고물질 기반 비등방성 방열소재 연구(1/3)(2019.9.1~2022.2.28)",
+      "org": "한국연구재단",
+      "period": "2019-09-01~2020-02-29"
+    },
+    {
+      "title": "[BP/Choongho Yu] 자가 발전 웨어러블 열전 배터리 시스템",
+      "org": "한국연구재단",
+      "period": "2019-07-01~2020-04-30"
+    },
+    {
+      "title": "[RCMS]3D 프린팅 공정 제어 및 설계 최적화 기법(DfAM) 적용을 통한 F급 이상의 고효율 냉각터빈 고온부품 기술 개발(1/3, 1단계)",
+      "org": "한국에너지기술평가원",
+      "period": "2019-05-01~2020-01-31"
+    },
+    {
+      "title": "[7차년도]사회지향 기계기술 글로벌 리더 양성 사업단",
+      "org": "한국연구재단",
+      "period": "2019-03-01~2020-02-29"
+    },
+    {
+      "title": "[Ezbaro] 결정립 코팅 나노구조를 응용한 열전반도체 개발 (1/3)",
+      "org": "한국연구재단",
+      "period": "2019-01-01~2019-12-31"
+    },
+    {
+      "title": "[T-33]고온터빈 구성품 건전성 및 소재수명 평가 기술 개발(1/2단계)",
+      "org": "산하기관",
+      "period": "2018-12-18~2021-12-15"
+    },
+    {
+      "title": "[민간/현대엔지비] 에너지 효율 극대화 열원방식 도장 오븐 공정 혁신기술",
+      "org": "국내",
+      "period": "2018-12-01~2021-05-31"
+    },
+    {
+      "title": "[민간/현대중공업] 친환경 선박기술을 위한 폐열 회수용 저발전단가 열전발전모듈",
+      "org": "국내",
+      "period": "2018-10-01~2020-12-31"
+    },
+    {
+      "title": "[민간/현대엔지비] 곡면 적용 열전냉각 시스템",
+      "org": "국내",
+      "period": "2018-09-03~2021-05-02"
+    },
+    {
+      "title": "2017 중소기업산학협력지원사업 공동운영경비(2/2)",
+      "org": "연세대학교",
+      "period": "2018-06-01~2019-11-30"
+    },
+    {
+      "title": "[6차년도]사회지향 기계기술 글로벌 리더 양성 사업단",
+      "org": "한국연구재단",
+      "period": "2018-03-01~2019-02-28"
+    },
+    {
+      "title": "[Ezbaro](1세부)(총괄:이화여대)포논 제어 기반 고효율 열전 소자 개발(2/2단계)(2/2연차)",
+      "org": "한국연구재단",
+      "period": "2017-09-01~2018-08-31"
+    },
+    {
+      "title": "이종 나노구조를 이용한 SnTe 합금 열전변환 효율 향상에 관한 연구(2/2)",
+      "org": "한국연구재단",
+      "period": "2017-07-01~2018-06-30"
+    },
+    {
+      "title": "2017 중소기업 산학협력센터 총괄(특허)",
+      "org": "연세대학교",
+      "period": "2017-06-01~2024-12-31"
+    },
+    {
+      "title": "2017 중소기업산학협력지원사업 공동운영경비",
+      "org": "연세대학교",
+      "period": "2017-06-01~2019-05-31"
+    },
+    {
+      "title": "[RCMS]창의공학리더 양성사업(6/10)(2012.03.~2022.02.)",
+      "org": "한국산업기술진흥원",
+      "period": "2017-03-01~2018-02-28"
+    },
+    {
+      "title": "2016 중소기업산학협력지원사업 공동운영경비",
+      "org": "연세대학교",
+      "period": "2017-03-01~2019-01-31"
+    },
+    {
+      "title": "[5차년도]사회지향 기계기술 글로벌 리더 양성 사업단",
+      "org": "한국연구재단",
+      "period": "2017-03-01~2018-02-28"
+    },
+    {
+      "title": "[LO-24]다색 적외선 화상 장치 및 능동형 고온 표면 냉각기술에 관한 연구(3/3단계-3/3차년도)",
+      "org": "산하기관",
+      "period": "2017-01-01~2017-12-15"
+    },
+    {
+      "title": "LG이노텍/(분리-세부)시뮬레이션을 통한 체열 냉각 카시트용 유연 열전소자 면적 계산(제4세부과제)",
+      "org": "국내",
+      "period": "2016-09-01~2018-08-31"
+    },
+    {
+      "title": "포논 제어 기반 고효율 열전 소자 개발",
+      "org": "한국연구재단",
+      "period": "2016-09-01~2017-08-31"
+    },
+    {
+      "title": "이종 나노구조를 이용한 SnTe 합금 열전변환 효율 향상에 관한 연구(1/2)",
+      "org": "한국연구재단",
+      "period": "2016-07-01~2017-06-30"
+    },
+    {
+      "title": "[RCMS]창의공학리더 양성사업(5/10)(2012.03.~2022.02.)",
+      "org": "한국산업기술진흥원",
+      "period": "2016-03-01~2017-02-28"
+    },
+    {
+      "title": "(4차년도) 사회지향 기계기술 글로벌 리더 양성 사업단",
+      "org": "한국연구재단",
+      "period": "2016-03-01~2017-02-28"
+    },
+    {
+      "title": "LG전자/스마트폰 방열 기술 연구",
+      "org": "국내",
+      "period": "2016-02-01~2017-03-31"
+    },
+    {
+      "title": "[LO-24]다색 적외선 화상 장치 및 능동형 고온 표면 냉각기술에 관한 연구(3/3단계-2/3차년도)",
+      "org": "산하기관",
+      "period": "2016-01-01~2016-12-31"
+    },
+    {
+      "title": "[RCMS]한국전기연구원/격자모듈레이션을 통한 양자제어형 열전소재(1단계:5/5)",
+      "org": "한국에너지기술평가원",
+      "period": "2015-09-01~2016-08-31"
+    },
+    {
+      "title": "포논 제어 기반 고효율 열전 소자 개발",
+      "org": "한국연구재단",
+      "period": "2015-09-01~2016-08-31"
+    },
+    {
+      "title": "(분리-세부) LG이노텍/체열 냉각용 카시트를 위한 유연 열전 냉각소자 개발",
+      "org": "국내",
+      "period": "2015-09-01~2017-12-31"
+    },
+    {
+      "title": "폐열회수용 나노소재 기반 열전소자 개발(2/2,2단계)(2011.9.1~2016.8.31)",
+      "org": "한국연구재단",
+      "period": "2015-09-01~2016-08-31"
+    },
+    {
+      "title": "[LO-24]다색 적외선 화상 장치 및 능동형 고온 표면 냉각기술에 관한 연구(3/3단계-1차년도)",
+      "org": "방위사업청",
+      "period": "2015-03-31~2015-12-31"
+    },
+    {
+      "title": "2014 산학연사업 추가분 배정",
+      "org": "연세대학교",
+      "period": "2015-03-01~2017-03-01"
+    },
+    {
+      "title": "[RCMS]한국전기연구원/격자모듈레이션을 통한 양자제어형 열전소재",
+      "org": "한국에너지기술평가원",
+      "period": "2014-09-01~2015-08-31"
+    },
+    {
+      "title": "폐열회수용 나노소재 기반 열전소자 개발(1/2,2단계)(2011.9.1~2016.8.31)",
+      "org": "한국연구재단",
+      "period": "2014-09-01~2015-08-31"
+    },
+    {
+      "title": "포논 제어 기반 고효율 열전 소자 개발(1/5)",
+      "org": "한국연구재단",
+      "period": "2014-09-01~2015-08-31"
+    },
+    {
+      "title": "[포닥]김우철(김강민)-대면적 프린팅 기법 기반 유기태양전지 모듈 효율 향상",
+      "org": "연세대학교",
+      "period": "2014-09-01~2015-06-30"
+    },
+    {
+      "title": "[포닥]김우철(정부영)-고온, 고압 솔벤트를 이용한 유기태양전지 몰포로지 제어",
+      "org": "연세대학교",
+      "period": "2014-09-01~2015-05-31"
+    },
+    {
+      "title": "2014 중소기업 산학연협력 공동운영경비(14년 선정과제 간접비)",
+      "org": "연세대학교",
+      "period": "2014-08-01~2016-08-31"
+    },
+    {
+      "title": "(분리_세부)폐열 회수용 신구조 열전발전소자 개발",
+      "org": "국내",
+      "period": "2014-07-01~2015-11-30"
+    },
+    {
+      "title": "유기태양전지 모듈 제작용 잉크젯 장비 기술 개발",
+      "org": "중소기업청",
+      "period": "2014-06-01~2015-05-31"
+    },
+    {
+      "title": "2014 산학연협력지원사업 공동운영경비",
+      "org": "연세대학교",
+      "period": "2014-04-01~2016-06-30"
+    },
+    {
+      "title": "[RCMS]한국전기연구원/신 열전물질 개발 - 격자 모듈레이션을 통한 양자제어형 열전소재(3/5,1단계)",
+      "org": "한국에너지기술평가원",
+      "period": "2013-09-01~2014-08-31"
+    },
+    {
+      "title": "포논 제어 기반 고효율 열전 소자 개발(2011.09.01~2018.08.31)(1단계 3차년도)",
+      "org": "한국연구재단",
+      "period": "2013-09-01~2014-08-31"
+    },
+    {
+      "title": "폐열회수용 나노소재 기반 열전소자 개발(3/3, 1단계)",
+      "org": "한국연구재단",
+      "period": "2013-09-01~2014-08-31"
+    },
+    {
+      "title": "[글로벌] 미래융합기계기술사업단",
+      "org": "연세대학교",
+      "period": "2013-03-01~2014-03-31"
+    },
+    {
+      "title": "[포닥] 김우철-왕홍차오/나노구조와 에너지띠 공정을 통해 텔루륨화 납을 기반으로한 열전물질의 열전물성치 향상",
+      "org": "연세대학교",
+      "period": "2013-03-01~2014-02-28"
+    },
+    {
+      "title": "LG전자/금형 Cavity 내 국부적으로 온도 control 할 수 있는 기술 개발",
+      "org": "국내",
+      "period": "2013-03-01~2016-03-31"
+    },
+    {
+      "title": "한국전기연구원/격자모듈레이션을 통한 양자제어형 열전소재(2/5)(2011.9.1~2021.8.31)",
+      "org": "한국에너지기술평가원",
+      "period": "2012-09-01~2013-08-31"
+    },
+    {
+      "title": "포논 제어 기반 고효율 열전 소자 개발 (2/3,1단계)",
+      "org": "한국연구재단",
+      "period": "2012-09-01~2013-08-31"
+    },
+    {
+      "title": "폐열회수용 나노소재 기반 열전소자 개발(2/3)",
+      "org": "한국연구재단",
+      "period": "2012-09-01~2013-08-31"
+    },
+    {
+      "title": "분자자기조립층을 이용한 고체간의 열컨덕턴스 조절 (3/3)",
+      "org": "한국연구재단",
+      "period": "2012-09-01~2013-08-31"
+    },
+    {
+      "title": "한국지역난방공사/지역난방에서 열전효과 적용을 위한 모사 및 시험 용역",
+      "org": "국내",
+      "period": "2012-08-03~2013-08-02"
+    },
+    {
+      "title": "2012 기업부설연구소 공동운영경비(사업운영관리비)/2012-8-1520. 2012-8-1431",
+      "org": "중소기업청",
+      "period": "2012-06-01~2014-05-31"
+    },
+    {
+      "title": "(LO-24)국방 피탐지 감소기술 특화연구센터(2/3단계) 다색 적외선 화상 장치 및 능동",
+      "org": "방위사업청",
+      "period": "2012-03-09~2014-12-15"
+    },
+    {
+      "title": "나노마이크로응용기계기술인력양성사업단",
+      "org": "연세대학교",
+      "period": "2012-03-01~2014-02-28"
+    },
+    {
+      "title": "나노 마이크로 응용기계기술 인력양성사업",
+      "org": "학술진흥재단",
+      "period": "2012-03-01~2013-04-30"
+    },
+    {
+      "title": "[참가] MCARE 2012 - Materials Challenges in Alternative & Renewable Energy (2.20~2.26)",
+      "org": "연세대학교",
+      "period": "2012-02-20~2012-02-26"
+    },
+    {
+      "title": "폐열회수용 나노소재 기반 열전소자 개발 1/5",
+      "org": "한국연구재단",
+      "period": "2011-09-01~2012-08-31"
+    },
+    {
+      "title": "나노융합 그린에너지 원천기술 개발 (3/3,1단계)",
+      "org": "학술진흥재단",
+      "period": "2011-09-01~2012-08-31"
+    },
+    {
+      "title": "포논 제어 기반 고효율 열전 소자 개발(1/3,1단계)",
+      "org": "한국연구재단(과학재단)",
+      "period": "2011-09-01~2012-08-31"
+    },
+    {
+      "title": "전기연구원/격자모듈레이션을 통한 양자제어형 열전소재(1/5)(2011.9.1~2021.8.31)",
+      "org": "한국에너지기술평가원",
+      "period": "2011-09-01~2012-08-31"
+    },
+    {
+      "title": "분자자기조립층을 이용한 고체간의 열컨덕턴스 조절 (2/3)",
+      "org": "한국과학재단",
+      "period": "2011-09-01~2012-08-31"
+    },
+    {
+      "title": "신에너지 전지 융합기술 고급트랙(2차년도/5)(2010.11.01~2015.06.30)",
+      "org": "한국에너지자원기술기획평가원",
+      "period": "2011-07-01~2012-06-30"
+    },
+    {
+      "title": "고효율 열전나노선 개발 및 열전소자 제작 (4/4)",
+      "org": "한국과학재단",
+      "period": "2011-04-01~2012-03-31"
+    },
+    {
+      "title": "현대NGV(주) / 프론트 디스크 사이즈 적합성 평가법 CAT 개발",
+      "org": "국내",
+      "period": "2011-03-02~2013-10-01"
+    },
+    {
+      "title": "나노 마이크로 응용기계기술 인력양성사업",
+      "org": "학술진흥재단",
+      "period": "2011-03-01~2012-02-29"
+    },
+    {
+      "title": "나노마이크로응용기계기술인력양성사업단",
+      "org": "연세대학교",
+      "period": "2011-03-01~2012-02-29"
+    },
+    {
+      "title": "신에너지 전지 융합기술 고급트랙(1차년도)",
+      "org": "한국에너지자원기술기획평가원",
+      "period": "2010-11-01~2011-06-30"
+    },
+    {
+      "title": "(주)포스코 / 열전 나노소재의 대량합성 및 나노복합 재 고성능 열전발전소자 개발",
+      "org": "민간기업",
+      "period": "2010-11-01~2011-10-31"
+    },
+    {
+      "title": "나노융합 그린에너지 원천기술 개발(2/3,1단계)",
+      "org": "학술진흥재단",
+      "period": "2010-09-01~2011-08-31"
+    },
+    {
+      "title": "[2010-8-1810] 나노융합 그린에너지 원천기술개발",
+      "org": "연세대학교",
+      "period": "2010-09-01~2011-08-31"
+    },
+    {
+      "title": "벌크 PbTe-Tl의 열전효율 향상",
+      "org": "서울시정개발연구원",
+      "period": "2010-09-01~2011-08-31"
+    },
+    {
+      "title": "분자자기조립층을 이용한 고체간의 열컨덕턴스 조절",
+      "org": "한국과학재단",
+      "period": "2010-09-01~2011-08-31"
+    },
+    {
+      "title": "실리콘 기반 MEMS 헤드형 multi e-jetting 기술 이용 고효율 유기 태양전지 제작(3차년도)",
+      "org": "한국에너지기술평가원",
+      "period": "2010-08-01~2011-07-31"
+    },
+    {
+      "title": "고효율 열전나노선 개발 및 열전소자 제작",
+      "org": "한국과학재단",
+      "period": "2010-04-01~2011-03-31"
+    },
+    {
+      "title": "G-5-5-10나노마이크로응용기계기술인력양성사업단",
+      "org": "연세대학교",
+      "period": "2010-03-02~2011-06-30"
+    },
+    {
+      "title": "나노마이크로응용기계기술인력양성사업단",
+      "org": "연세대학교",
+      "period": "2010-03-01~2011-02-28"
+    },
+    {
+      "title": "나노 마이크로 응용기계기술 인력양성사업단",
+      "org": "학술진흥재단",
+      "period": "2010-03-01~2011-02-28"
+    },
+    {
+      "title": "(주)두산인프라코어-연세대학교산학협력단 산학협력",
+      "org": "민간기업",
+      "period": "2010-03-01~2013-02-28"
+    },
+    {
+      "title": "폴리머 나노복합재 기반의 고효율 저비용 열전소자 개발",
+      "org": "한국과학재단",
+      "period": "2010-03-01~2011-02-28"
+    },
+    {
+      "title": "[개최-국내] 한국열물성학회 학술대회(04.01~02)",
+      "org": "연세대학교산학단_간접비",
+      "period": "2010-03-01~2010-04-30"
+    },
+    {
+      "title": "국방피탐지감소기술특화연구센터(LO-24) 다색 적외선 화상 장치 및 능동형 고온 표면 냉각기술에 관한 연구",
+      "org": "국방과학연구소",
+      "period": "2009-11-26~2011-12-31"
+    },
+    {
+      "title": "[2009-8-1655] 나노융합 그린에너지 원천기술개발",
+      "org": "연세대학교",
+      "period": "2009-09-01~2010-08-31"
+    },
+    {
+      "title": "나노융합 그린에너지 원천기술 개발 (1/3,1단계)",
+      "org": "학술진흥재단",
+      "period": "2009-09-01~2010-08-31"
+    },
+    {
+      "title": "벌크 PbTe-Tl의 열전효율 향상",
+      "org": "서울특별시",
+      "period": "2009-09-01~2010-08-31"
+    },
+    {
+      "title": "실리콘 기반 MEMS 헤드형 multi e-jetting 기술 이용 고효율 유기 태양전지 제작",
+      "org": "에너지관리공단",
+      "period": "2009-08-01~2010-07-31"
+    },
+    {
+      "title": "반금속 단결정 단일 나노선의 초임계 전송 특성 연구",
+      "org": "학술진흥재단",
+      "period": "2009-08-01~2010-07-31"
+    },
+    {
+      "title": "반금속 단결정 단일 나노선의 초임계 전도 특성연구",
+      "org": "학술진흥재단",
+      "period": "2009-08-01~2010-07-31"
+    },
+    {
+      "title": "고효율 열전나노선 개발 및 열전소자 제작",
+      "org": "한국과학재단",
+      "period": "2009-04-01~2010-03-31"
+    },
+    {
+      "title": "G5-5-10/나노마이크로응용기계기술인력양성사업",
+      "org": "연세대학교",
+      "period": "2009-03-02~2010-06-30"
+    },
+    {
+      "title": "[SM] 국방과학연구소 - 특화연구센터",
+      "org": "연세대학교산학단_간접비",
+      "period": "2009-03-01~2009-07-24"
+    },
+    {
+      "title": "나노마이크로응용기계기술인력양성사업단",
+      "org": "연세대학교",
+      "period": "2009-03-01~2010-02-28"
+    },
+    {
+      "title": "나노마이크로응용기계기술인력양성사업단",
+      "org": "학술진흥재단",
+      "period": "2009-03-01~2010-02-28"
+    },
+    {
+      "title": "폴리머 나노복합재 기반의 고효율 저비용 열전소자 개발",
+      "org": "한국과학재단",
+      "period": "2009-03-01~2010-02-28"
+    },
+    {
+      "title": "EU FP7 나노 광자공학 기술 연구 참여를 위한 국제협력",
+      "org": "국제과학기술협력재단",
+      "period": "2008-11-01~2009-12-31"
+    },
+    {
+      "title": "실리콘 기반 MEMS 헤드형 multi e-jetting 기술 이용 고효율 유기 태양전지 제작",
+      "org": "에너지관리공단",
+      "period": "2008-10-01~2009-07-31"
+    },
+    {
+      "title": "반금속 단결정 단일 나노선의 초임계 전송 특성 연구",
+      "org": "학술진흥재단",
+      "period": "2008-08-01~2009-07-31"
+    },
+    {
+      "title": "반금속 단결정 단일 나노선의 초임계 전도 특성연구",
+      "org": "학술진흥재단",
+      "period": "2008-08-01~2009-07-31"
+    },
+    {
+      "title": "고전도 저비용 열전달 물질 개발",
+      "org": "중소기업청",
+      "period": "2008-07-01~2008-12-31"
+    },
+    {
+      "title": "대형 로켓엔진 추진제 공급제어 기술",
+      "org": "한국과학재단",
+      "period": "2008-06-01~2009-05-31"
+    },
+    {
+      "title": "고효율 열전나노선 개발 및 열전소자 제작",
+      "org": "한국과학재단",
+      "period": "2008-05-22~2009-03-31"
+    },
+    {
+      "title": "폴리머 나노복합재 기반의고효율 저비용 열전소자개발",
+      "org": "한국과학재단",
+      "period": "2008-05-01~2009-02-28"
+    },
+    {
+      "title": "나노마이크로응용기계기술인력양성사업단",
+      "org": "학술진흥재단",
+      "period": "2008-03-01~2009-02-28"
+    },
+    {
+      "title": "G5-5-10/나노마이크로응용기계기술인력양성사업",
+      "org": "연세대학교",
+      "period": "2008-03-01~2009-02-28"
+    },
+    {
+      "title": "나노마이크로응용기계기술인력양성사업단",
+      "org": "연세대학교",
+      "period": "2008-03-01~2009-02-28"
+    },
+    {
+      "title": "ADD용역 희박기체 환경 모사용 지상시험장치 최적 설계 기법",
+      "org": "삼성테크윈(주)",
+      "period": "2007-12-21~2010-12-31"
+    },
+    {
+      "title": "분자단층의 열전송 특성",
+      "org": "학술진흥재단",
+      "period": "2007-12-01~2008-11-30"
+    },
+    {
+      "title": "CMOS 정보보안 모듈 CMOS-뉴런칩 SOC",
+      "org": "한국과학기술연구원",
+      "period": "2007-09-01~2008-08-31"
+    },
+    {
+      "title": "반금속 단결정 단일 나노선의 초임계 전도 특성연구",
+      "org": "학술진흥재단",
+      "period": "2007-08-01~2008-07-30"
+    },
+    {
+      "title": "반금속 단결정 단일 나노선의 초임계 전도 특성연구",
+      "org": "학술진흥재단",
+      "period": "2007-08-01~2008-07-31"
+    },
+    {
+      "title": "나노/마이크로 응용 기계기술 인력양성사업단",
+      "org": "학술진흥재단",
+      "period": "2007-03-01~2008-02-29"
+    },
+    {
+      "title": "나노/마이크로 응용 기계기술 인력양성사업단",
+      "org": "연세대학교",
+      "period": "2007-03-01~2008-02-29"
+    },
+    {
+      "title": "G5-5-10/나노마이크로응용기계기술인력양성사업",
+      "org": "연세대학교",
+      "period": "2007-03-01~2008-05-31"
+    },
+    {
+      "title": "고체의 최소 열전달율에 대한 고찰",
+      "org": "연세대학교",
+      "period": "2007-03-01~2008-02-28"
+    }
+  ],
+  "patents": [
+    {
+      "title": "집합조직 제어를 통한 열전 소결체 제조 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 국립공주대학교 산학협력단",
+      "date": "2026-06-23"
+    },
+    {
+      "title": "온도 감응형 복사 냉각용 적층체 및 이를 포함하는 복사 냉각 소재",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 현대자동차주식회사, 기아 주식회사",
+      "date": "2025-09-16"
+    },
+    {
+      "title": "웨어러블 열전발전소자의 효율적인 사용을 위해 스위치-축전기 직류승압 가능한 웨어러블 장치 및 이의 작동방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2025-06-17"
+    },
+    {
+      "title": "온도 감응형 복사 냉각용 적층체 및 이를 포함하는 복사 냉각 소재",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 현대자동차주식회사, 기아 주식회사",
+      "date": "2025-05-29"
+    },
+    {
+      "title": "열전 소자용 확산방지막의 제조방법 및 이에 의해 제조된 확산방지막을 포함하는 열전 소자",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 국립창원대학교 산학협력단",
+      "date": "2025-02-13"
+    },
+    {
+      "title": "신구조 열전소자의 대량 제조 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2025-01-20"
+    },
+    {
+      "title": "열전 레그 및 이의 제조 방법, 및 이를 포함하는 열전 소자",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2025-01-17"
+    },
+    {
+      "title": "무소음 온도 조절 시스템을 구비한 펫 케이지",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 주식회사 바이오히트",
+      "date": "2024-12-12"
+    },
+    {
+      "title": "혈액이 관류하는 생체 조직(in-vivo)의 비침투적 열전도도 측정에 대한 방법론",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 삼성전자",
+      "date": "2024-10-30"
+    },
+    {
+      "title": "웨어러블 열전발전소자의 효율적인 사용을 위해 스위치-죽전기 직류승압 가능한 웨어러블 장치 및 이의 작동방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2024-08-20"
+    },
+    {
+      "title": "신구조 열전소자의 대량 제조 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2024-07-11"
+    },
+    {
+      "title": "열전 레그 및 이의 제조 방법, 및 이를 포함하는 열전 소자",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2024-06-28"
+    },
+    {
+      "title": "신구조 열전소자의 대량 제조 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2024-05-14"
+    },
+    {
+      "title": "열전 레그 및 이의 제조 방법, 및 이를 포함하는 열전 소자",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2024-05-14"
+    },
+    {
+      "title": "생체 조직의 열전도도를 측정하는 방법, 생체 조직의 열전도도를 측정하기 위한 시스템 및 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 삼성전자",
+      "date": "2024-04-30"
+    },
+    {
+      "title": "열전 레그 및 이의 제조 방법, 및 이를 포함하는 열전 소자",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2024-02-05"
+    },
+    {
+      "title": "열전소자 및 그의 제조방법",
+      "type": "특허",
+      "applicant": "포항공과대학교 산학협력단, 연세대학교 산학협력단",
+      "date": "2024-01-31"
+    },
+    {
+      "title": "열변색성 필름 및 이를 포함하는 스마트 윈도우",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 현대자동차, 기아",
+      "date": "2023-12-28"
+    },
+    {
+      "title": "혈액이 관류하는 생체 조직(in-vivo)의 비침투적 열전도도 측정에 대한 방법론",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 삼성전자 주식회사",
+      "date": "2023-11-10"
+    },
+    {
+      "title": "복사 냉각을 이용한 AESA 레이더 냉각 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, LIG넥스원(주)",
+      "date": "2023-10-31"
+    },
+    {
+      "title": "신구조 열전소자의 대량 제조 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2023-10-12"
+    },
+    {
+      "title": "웨어러블 열전발전소자의 효율적인 사용을 위해 스위치-축전기 직류승압 가능한 웨어러블 장치 및 이의 작동방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2023-09-12"
+    },
+    {
+      "title": "열유속 센서 및 그 열유속 센서를 이용한 심부 체온 추정 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 삼성전자(주)",
+      "date": "2023-06-15"
+    },
+    {
+      "title": "전자 장치 및 그 전자 장치를 이용한 심부 체온 추정 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 삼성전자(주)",
+      "date": "2023-04-25"
+    },
+    {
+      "title": "열유속 센서 및 그 열유속 센서를 이용한 심부 체온 추정 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 삼성전자 주식회사",
+      "date": "2023-03-13"
+    },
+    {
+      "title": "전자 장치 및 그 전자 장치를 이용한 심부 체온 추정 방법",
+      "type": "특허",
+      "applicant": "삼성전자주식회사, 연세대학교 산학협력단",
+      "date": "2022-12-30"
+    },
+    {
+      "title": "용기와 홀더 및 이를 포함하는 용기 방열 어셈블리",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2022-04-13"
+    },
+    {
+      "title": "공랭식 AESA 레이다에서 송수신 모듈의 방열 구조 및 공랭식 AESA 레이다에서 송수신 모듈의 냉각 시스템",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 엘아이지넥스원 주식회사",
+      "date": "2022-04-11"
+    },
+    {
+      "title": "체온 추정 장치 및 방법",
+      "type": "특허",
+      "applicant": "삼성전자주식회사, 연세대학교 산학협력단",
+      "date": "2022-02-08"
+    },
+    {
+      "title": "복사냉각 방열부를 적용한 유연 열전 소자 및 복사냉각 방열부의 제조 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2022-01-17"
+    },
+    {
+      "title": "복사 냉각 실험 장비",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 현대자동차, 기아",
+      "date": "2021-06-02"
+    },
+    {
+      "title": "대기 플라즈마 용사를 이용한 단계적 이트리아 안정화 지르코니아 열차폐 코팅 방법 및 이에 의해 증착된 열차폐 코팅",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 국방과학연구소",
+      "date": "2021-05-18"
+    },
+    {
+      "title": "삼원계 물질 코팅층을 포함하는 열전 소재 및 이의 제조방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 이화여자대학교 산학협력단",
+      "date": "2021-05-10"
+    },
+    {
+      "title": "배터리 팩의 온도 제어 시스템 및 그 제어 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 한국에너지기술연구원",
+      "date": "2021-04-15"
+    },
+    {
+      "title": "복사냉각 방열부를 적용한 유연 열전 소자 및 복사냉각 방열부의 제조 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2021-01-18"
+    },
+    {
+      "title": "열전 모듈 및 그 제조방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 현대자동차, 기아자동차",
+      "date": "2019-07-03"
+    },
+    {
+      "title": "채널 유동을 이용한 유연 히트싱크 및 이의 제조방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 한국과학기술원",
+      "date": "2019-06-14"
+    },
+    {
+      "title": "유연 열전 시스템",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 한국과학기술원",
+      "date": "2017-06-08"
+    },
+    {
+      "title": "열전소자 및 열전모듈",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 엘지이노텍(주)",
+      "date": "2016-09-02"
+    },
+    {
+      "title": "열전소자 및 이를 포함하는 웨어러블 기기",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2016-07-07"
+    },
+    {
+      "title": "유연 열전 시스템",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 한국과학기술원",
+      "date": "2016-06-09"
+    },
+    {
+      "title": "열전소자 및 이를 포함하는 웨어러블 기기",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2015-12-14"
+    },
+    {
+      "title": "파장 변환 발광 염료를 이용한 유기태양전지",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2014-09-24"
+    },
+    {
+      "title": "마이크로 웨이브 기반 유기태양전지 제조장치, 이를 이용한 솔벤트 어닐링 방법 및 이를 이용하여 제조된 유기태양전지",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2014-09-04"
+    },
+    {
+      "title": "열효율을 개선할 수 있는 구조를 갖는 열전 소자",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2014-07-08"
+    },
+    {
+      "title": "열효율을 개선할 수 있는 구조를 갖는 열전 소자",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2014-07-08"
+    },
+    {
+      "title": "열효율을 개선할 수 있는 구조를 갖는 열전 소자",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2014-07-01"
+    },
+    {
+      "title": "열효율을 개선할 수 있는 구조를 갖는 열전 소자",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2014-07-01"
+    },
+    {
+      "title": "열전 재료 제조 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2014-06-10"
+    },
+    {
+      "title": "열전 재료 제조 방법, 열전 재료 및 열전 발전기",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2014-06-05"
+    },
+    {
+      "title": "열전 재료 제조 방법, 열전 재료 및 열전 발전기",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2014-06-05"
+    },
+    {
+      "title": "열전 재료 제조 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2013-06-10"
+    },
+    {
+      "title": "열전 재료 제조 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2013-06-10"
+    },
+    {
+      "title": "열효율을 개선할 수 있는 구조를 갖는 열전 소자",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2012-08-08"
+    },
+    {
+      "title": "열효율을 개선할 수 있는 구조를 갖는 열전 소자",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2012-08-08"
+    },
+    {
+      "title": "확산효과가 적용된 정형이종접합 유기태양전지",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2012-06-15"
+    },
+    {
+      "title": "열효율을 개선할 수 있는 구조를 갖는 열전 소자",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2012-01-30"
+    },
+    {
+      "title": "열효율을 개선할 수 있는 구조를 갖는 열전 소자",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2012-01-30"
+    },
+    {
+      "title": "폐열 발전 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2010-02-25"
+    },
+    {
+      "title": "열전 나노와이어 및 그의 제조방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2010-01-13"
+    },
+    {
+      "title": "열전 나노와이어 및 그의 제조방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2010-01-13"
+    },
+    {
+      "title": "열전 나노와이어 및 그의 제조방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2010-01-13"
+    },
+    {
+      "title": "열전 나노와이어 및 그의 제조방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2010-01-13"
+    },
+    {
+      "title": "열전 나노와이어 및 그의 제조방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2010-01-13"
+    },
+    {
+      "title": "열전 나노와이어 및 그의 제조방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2010-01-13"
+    },
+    {
+      "title": "열전 나노와이어 및 그의 제조방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2009-12-29"
+    },
+    {
+      "title": "열전 나노와이어 및 그의 제조방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2009-12-29"
+    },
+    {
+      "title": "열전달 물질 및 그 제조 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2009-08-14"
+    },
+    {
+      "title": "열전달 물질 및 그 제조 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2009-08-14"
+    },
+    {
+      "title": "비금속 나노입자를 포함하는 유기태양전지 및 그 제조 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2009-08-14"
+    },
+    {
+      "title": "열전 나노와이어 및 그의 제조방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2009-01-14"
+    },
+    {
+      "title": "열전 나노와이어 및 그의 제조방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2009-01-14"
+    },
+    {
+      "title": "전자석의 주울열을 이용하여 채널내 세포의 최적온도 조절이 가능한 자성세포분리 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2008-02-14"
+    },
+    {
+      "title": "전자석의 주울열을 이용하여 채널내 세포의 최적온도 조절이 가능한 자성세포분리 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2008-02-14"
+    },
+    {
+      "title": "납땜 부위 내구성 강화를 위한 납땜 재료 및 납땜 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2007-11-07"
+    },
+    {
+      "title": "용접시 변형을 억제하기 위해 나노입자를 이용하여 용접하는 방법",
+      "type": "특허",
+      "applicant": "연세대학교산학협력단",
+      "date": "2007-05-30"
+    },
+    {
+      "title": "용접시 변형을 억제하기 위해 나노입자를 이용하여 용접하는 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2007-05-30"
+    }
+  ]
+}

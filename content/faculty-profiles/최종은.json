@@ -1,0 +1,1380 @@
+{
+  "name": "최종은",
+  "nameEn": "Choi Jongeun",
+  "email": "jongeunchoi@yonsei.ac.kr",
+  "phone": "02-2123-2813",
+  "office": "Eng Blg III C319",
+  "homepage": "http://mlcs.yonsei.ac.kr",
+  "sourceUrl": "https://me.yonsei.ac.kr/faculty/name_search.do?mode=view&userId=i8y28rIy7%2Fvf1sq15evoBw%3D%3D&sosokcd=0000405",
+  "crawledAt": "2026-07-27",
+  "articles": [
+    {
+      "date": "2026-07",
+      "title": "U-DiffPlan: Uncertainty-Aware Trajectory Prediction and Planning via Diffusion for Strategic Autonomous Racing",
+      "journal": "IEEE Robotics and Automation Letters"
+    },
+    {
+      "date": "2026-06",
+      "title": "Multi-Robot Motion Planning From Vision and Language Using Heat-Inspired Diffusion",
+      "journal": "IEEE Robotics and Automation Letters"
+    },
+    {
+      "date": "2026-04",
+      "title": "SELF-BALANCING ROBOTIC-ASSISTED KNEE-ANKLE-FOOT ORTHOSIS (RA-KAFO) FOR IMPROVING GAIT AND REDUCING EFFORT IN INCOMPLETE SPINAL CORD INJURY REHABILITATION: A CASE STUDY",
+      "journal": "Journal of Mechanics in Medicine and Biology"
+    },
+    {
+      "date": "2026-02",
+      "title": "Single-step prediction of inferior alveolar nerve injury after mandibular third-molar extraction using contrastive learning and Bayesian auto-tuned deep learning model",
+      "journal": "Dentomaxillofacial Radiology"
+    },
+    {
+      "date": "2025-12",
+      "title": "VALIDITY AND TEST–RETEST RELIABILITY OF AN INDEPENDENT SELF-BALANCED, SOCIALLY INTEGRATED GAIT-ASSISTED ROBOTIC SYSTEM FOR HIP AND KNEE JOINT KINEMATICS IN REHABILITATION",
+      "journal": "Journal of Mechanics in Medicine and Biology"
+    },
+    {
+      "date": "2025-10",
+      "title": "Data-Driven Driver Training via Counterfactual and Language-Based Guidance in Racing Scenarios",
+      "journal": "IEEE Access"
+    },
+    {
+      "date": "2025-09",
+      "title": "Scale-Equivariant Object Perception for Autonomous Driving",
+      "journal": "IEEE Transactions on Intelligent Vehicles"
+    },
+    {
+      "date": "2025-06",
+      "title": "Learning Expert-Level Racing Strategies via Scheduled Cost Functions in Model Predictive Control",
+      "journal": "IEEE Transactions on Intelligent Vehicles"
+    },
+    {
+      "date": "2025-05",
+      "title": "SE(3)-equivariant Robot Learning and Control: A Tutorial Survey",
+      "journal": "International Journal of Control, Automation, and Systems"
+    },
+    {
+      "date": "2025-01",
+      "title": "Explainable Deep Learning Approaches for Risk Screening of Periodontitis",
+      "journal": "Journal of Dental Research"
+    },
+    {
+      "date": "2024-12",
+      "title": "Spatial regression with multiplicative errors, and its application with LiDAR measurements",
+      "journal": "Journal of the Korean Statistical Society"
+    },
+    {
+      "date": "2024-12",
+      "title": "Identifying optimal candidates and interventions in physical therapy and exoskeletal and end-effector robot-assisted gait training for balance, gait, and cognition: A longitudinal study of 190 patients with stroke",
+      "journal": "NeuroRehabilitation"
+    },
+    {
+      "date": "2024-11",
+      "title": "Inferring Human Control Intent Using Inverse Linear Quadratic Regulator With Output Penalty Versus Gain Penalty: Better Fit but Similar Intent",
+      "journal": "Journal of Dynamic Systems, Measurement and Control, Transactions of the ASME"
+    },
+    {
+      "date": "2024-09",
+      "title": "Differentiable Moving Horizon Estimation for Vehicle Kinematics via Learning Covariance Matrices",
+      "journal": "IEEE Transactions on Intelligent Vehicles"
+    },
+    {
+      "date": "2024-08",
+      "title": "Multi-class segmentation of temporomandibular joint using ensemble deep learning",
+      "journal": "Scientific Reports"
+    },
+    {
+      "date": "2024-07",
+      "title": "A Comparison between Lie Group- and Lie Algebra- Based Potential Functions for Geometric Impedance Control",
+      "journal": "Proceedings of the American Control Conference"
+    },
+    {
+      "date": "2024-06",
+      "title": "Clinical machine learning predicting best stroke rehabilitation responders to exoskeletal robotic gait rehabilitation",
+      "journal": "NeuroRehabilitation"
+    },
+    {
+      "date": "2024-04",
+      "title": "Automatic concrete slump prediction of concrete batching plant by deep learning",
+      "journal": "Developments in the Built Environment"
+    },
+    {
+      "date": "2024-03",
+      "title": "Autonomous Robot Racing CompetitionsTruly Multivehicle Autonomous Racing Competitions",
+      "journal": "IEEE Robotics and Automation Magazine"
+    },
+    {
+      "date": "2024-02",
+      "title": "AI-based dental caries and tooth number detection in intraoral photos: Model development and performance evaluation",
+      "journal": "Journal of Dentistry"
+    },
+    {
+      "date": "2024-02",
+      "title": "Contact-Rich SE(3)-Equivariant Robot Manipulation Task Learning via Geometric Impedance Control",
+      "journal": "IEEE Robotics and Automation Letters"
+    },
+    {
+      "date": "2023-12",
+      "title": "Integration and Evaluation of an Immersive Virtual Platform",
+      "journal": "IEEE Access"
+    },
+    {
+      "date": "2023-10",
+      "title": "Clustering Techniques for Stable Linear Dynamical Systems with applications to Hard Disk Drives",
+      "journal": "IFAC-PapersOnLine"
+    },
+    {
+      "date": "2023-08",
+      "title": "Distributional and hierarchical reinforcement learning for physical systems with noisy state observations and exogenous perturbations",
+      "journal": "Engineering Applications of Artificial Intelligence"
+    },
+    {
+      "date": "2023-06",
+      "title": "Output feedback control design for quadrotor using recursive least square dynamic inversion",
+      "journal": "Mechatronics"
+    },
+    {
+      "date": "2023-05",
+      "title": "Explainable deep learning-based clinical decision support engine for MRI-based automated diagnosis of temporomandibular joint anterior disk displacement",
+      "journal": "Computer Methods and Programs in Biomedicine"
+    },
+    {
+      "date": "2023-03",
+      "title": "Multiplexed DNA-functionalized graphene sensor with artificial intelligence-based discrimination performance for analyzing chemical vapor compositions",
+      "journal": "Microsystems & Nanoengineering"
+    },
+    {
+      "date": "2023-01",
+      "title": "Interpretable Deep-Learning Approaches for Osteoporosis Risk Screening and Individualized Feature Analysis Using Large Population-Based Data: Model Development and Performance Evaluation",
+      "journal": "Journal of medical Internet research"
+    },
+    {
+      "date": "2023-01",
+      "title": "Suspension Control Strategies Using Switched Soft Actor-Critic Models for Real Roads",
+      "journal": "IEEE Transactions on Industrial Electronics"
+    },
+    {
+      "date": "2022-12",
+      "title": "The effects of osteopathic manipulative treatment on pain and disability in patients with chronic neck pain: A single-blinded randomized controlled trial",
+      "journal": "PM&R"
+    },
+    {
+      "date": "2022-08",
+      "title": "Layered-Cost-Map-Based Traffic Management for Multiple AMRs via a DDS",
+      "journal": "Applied Sciences-basel"
+    },
+    {
+      "date": "2022-08",
+      "title": "Guest Editorial Focused Section on the Third Edition of TMECH/AIM Emerging Topics",
+      "journal": "IEEE/ASME Transactions on Mechatronics"
+    },
+    {
+      "date": "2022-08",
+      "title": "Policy Design for an Ankle-Foot Orthosis Using Simulated Physical Human–Robot Interaction via Deep Reinforcement Learning",
+      "journal": "IEEE TRANSACTIONS ON NEURAL SYSTEMS AND REHABILITATION ENGINEERING"
+    },
+    {
+      "date": "2022-08",
+      "title": "Regularized nonlinear regression for simultaneously selecting and estimating key model parameters: Application to head-neck position tracking",
+      "journal": "ENGINEERING APPLICATIONS OF ARTIFICIAL INTELLIGENCE"
+    },
+    {
+      "date": "2022-07",
+      "title": "Hierarchical Primitive Composition: Simultaneous Activation of Skills With Inconsistent Action Dimensions in Multiple Hierarchies",
+      "journal": "IEEE Robotics and Automation Letters"
+    },
+    {
+      "date": "2022-06",
+      "title": "A warning system for urolithiasis via retrograde intrarenal surgery using machine learning: an experimental study",
+      "journal": "BMC UROLOGY"
+    },
+    {
+      "date": "2022-04",
+      "title": "Safety-Critical Control With Nonaffine Control Inputs Via a Relaxed Control Barrier Function for an Autonomous Vehicle",
+      "journal": "IEEE Robotics and Automation Letters"
+    },
+    {
+      "date": "2022-03",
+      "title": "Nonaffine Helicopter Control Design and Implementation Based on a Robust Explicit Nonlinear Model Predictive Control",
+      "journal": "IEEE TRANSACTIONS ON CONTROL SYSTEMS TECHNOLOGY"
+    },
+    {
+      "date": "2021-11",
+      "title": "Control Logic Synthesis for Manufacturing Systems Using Markov Decision Processes",
+      "journal": "IFAC-PapersOnLine"
+    },
+    {
+      "date": "2021-11",
+      "title": "Output feedback control design using Extended High-Gain Observers and dynamic inversion with projection for a small scaled helicopter",
+      "journal": "AUTOMATICA"
+    },
+    {
+      "date": "2021-09",
+      "title": "Diagnosis of obstructive sleep apnea with prediction of flow characteristics according to airway morphology automatically extracted from medical images: Computational fluid dynamics and artificial intelligence approach",
+      "journal": "COMPUTER METHODS AND PROGRAMS IN BIOMEDICINE"
+    },
+    {
+      "date": "2021-08",
+      "title": "Stability threshold during seated balancing is sensitive to low back pain and safe to assess",
+      "journal": "JOURNAL OF BIOMECHANICS"
+    },
+    {
+      "date": "2021-08",
+      "title": "Vision-based uncertainty-aware lane keeping strategy using deep reinforcement learning",
+      "journal": "JOURNAL OF DYNAMIC SYSTEMS MEASUREMENT AND CONTROL-TRANSACTIONS OF THE ASME"
+    },
+    {
+      "date": "2021-07",
+      "title": "State reconstruction in a nonlinear vehicle suspension system using deep neural networks",
+      "journal": "NONLINEAR DYNAMICS"
+    },
+    {
+      "date": "2021-06",
+      "title": "Machine learning approaches to surrogate multifidelity Growth and Remodeling models for efficient abdominal aortic aneurysmal applications",
+      "journal": "COMPUTERS IN BIOLOGY AND MEDICINE"
+    },
+    {
+      "date": "2021-05",
+      "title": "Multi-output Infinite Horizon Gaussian Processes",
+      "journal": "Proceedings - IEEE International Conference on Robotics and Automation"
+    },
+    {
+      "date": "2021-04",
+      "title": "Erratum: Gaussian Process Online Learning with a Sparse Data Stream (IEEE Robot. Autom. Lett. (2020) 5: 4 (5977-5984) DOI: 10.1109/LRA.2020.3010752)",
+      "journal": "IEEE Robotics and Automation Letters"
+    },
+    {
+      "date": "2021-03",
+      "title": "Large-Area, Crosstalk-Free, Flexible Tactile Sensor Matrix Pixelated by Mesh Layers",
+      "journal": "ACS APPLIED MATERIALS & INTERFACES"
+    },
+    {
+      "date": "2021-01",
+      "title": "Training an artificial neural network for recognizing electron collision patterns",
+      "journal": "PHYSICS LETTERS A"
+    },
+    {
+      "date": "2020-11",
+      "title": "Quantifying trunk neuromuscular control using seated balancing and stability threshold",
+      "journal": "JOURNAL OF BIOMECHANICS"
+    },
+    {
+      "date": "2020-11",
+      "title": "Intraluminal thrombus effect on the progression of abdominal aortic aneurysms by using a multistate continuous-time Markov chain model",
+      "journal": "JOURNAL OF INTERNATIONAL MEDICAL RESEARCH"
+    },
+    {
+      "date": "2020-10",
+      "title": "Automated cephalometric landmark detection with confidence regions using Bayesian convolutional neural networks",
+      "journal": "BMC ORAL HEALTH"
+    },
+    {
+      "date": "2020-10",
+      "title": "Gaussian Process Online Learning With a Sparse Data Stream",
+      "journal": "IEEE Robotics and Automation Letters"
+    },
+    {
+      "date": "2020-10",
+      "title": "Customer-Specific Robotic Attendant for VR Simulators",
+      "journal": "IEEE TRANSACTIONS ON AUTOMATION SCIENCE AND ENGINEERING"
+    },
+    {
+      "date": "2020-08",
+      "title": "Prediction of Reward Functions for Deep Reinforcement Learning via Gaussian Process Regression",
+      "journal": "IEEE-ASME TRANSACTIONS ON MECHATRONICS"
+    },
+    {
+      "date": "2020-08",
+      "title": "Efficient Sampling for Rapid Estimation of 3-D Stiffness Distribution via Active Tactile Exploration",
+      "journal": "IEEE-ASME TRANSACTIONS ON MECHATRONICS"
+    },
+    {
+      "date": "2020-07",
+      "title": "Multifidelity Sampling for Fast Bayesian Shape Estimation With Tactile Exploration",
+      "journal": "IEEE TRANSACTIONS ON INDUSTRIAL INFORMATICS"
+    },
+    {
+      "date": "2020-07",
+      "title": "Model Predictive Tracking Control for Invariant Systems on Matrix Lie Groups via Stable Embedding into Euclidean Spaces",
+      "journal": "IEEE TRANSACTIONS ON AUTOMATIC CONTROL"
+    },
+    {
+      "date": "2020-03",
+      "title": "Early prediction of Alzheimer’s disease using longitudinal volumetric MRI data from ADNI",
+      "journal": "Health Services and Outcomes Research Methodology"
+    },
+    {
+      "date": "2020-03",
+      "title": "Automated Skeletal Classification with Lateral Cephalometry Based on Artificial Intelligence",
+      "journal": "JOURNAL OF DENTAL RESEARCH"
+    },
+    {
+      "date": "2020-01",
+      "title": "A Deep Learning Approach to Predict Abdominal Aortic Aneurysm Expansion Using Longitudinal Data",
+      "journal": "Frontiers in Physics"
+    },
+    {
+      "date": "2020-01",
+      "title": "Unexpected Collision Avoidance Driving Strategy Using Deep Reinforcement Learning",
+      "journal": "IEEE Access"
+    },
+    {
+      "date": "2020-01",
+      "title": "Coronary artery decision algorithm trained by two-step machine learning algorithm",
+      "journal": "RSC ADVANCES"
+    },
+    {
+      "date": "2019-11",
+      "title": "Patient-Specific Prediction of Abdominal Aortic Aneurysm Expansion using Bayesian Calibration",
+      "journal": "IEEE JOURNAL OF BIOMEDICAL AND HEALTH INFORMATICS"
+    },
+    {
+      "date": "2019-09",
+      "title": "Analysis of conversion of Alzheimer’s disease using a multi-state Markov model",
+      "journal": "STATISTICAL METHODS IN MEDICAL RESEARCH"
+    },
+    {
+      "date": "2019-04",
+      "title": "Inferring Control Intent During Seated Balance Using Inverse Model Predictive Control",
+      "journal": "IEEE Robotics and Automation Letters"
+    },
+    {
+      "date": "2019-03",
+      "title": "Prediction of Abdominal Aortic Aneurysm Growth using Dynamical Gaussian Process Implicit Surface",
+      "journal": "IEEE TRANSACTIONS ON BIOMEDICAL ENGINEERING"
+    },
+    {
+      "date": "2019-02",
+      "title": "Feasibility of Incorporating Test-Retest Reliability and Model Diversity in Identification of Key Neuromuscular Pathways During Head Position Tracking",
+      "journal": "IEEE TRANSACTIONS ON NEURAL SYSTEMS AND REHABILITATION ENGINEERING"
+    },
+    {
+      "date": "2019-01",
+      "title": "Driving Assistant Companion with Voice Interface using Long Short-Term Memory Networks",
+      "journal": "IEEE TRANSACTIONS ON INDUSTRIAL INFORMATICS"
+    },
+    {
+      "date": "2018-09",
+      "title": "Appearance-Based Localization of Mobile Robots Using Group LASSO Regression",
+      "journal": "JOURNAL OF DYNAMIC SYSTEMS MEASUREMENT AND CONTROL-TRANSACTIONS OF THE ASME"
+    },
+    {
+      "date": "2018-08",
+      "title": "Fully Bayesian Prediction Algorithms for Mobile Robotic Sensors under Uncertain Localization Using Gaussian Markov Random Fields",
+      "journal": "SENSORS"
+    },
+    {
+      "date": "2018-07",
+      "title": "Selecting Sensitive Parameter Subsets in Dynamical Models With Application to Biomechanical System Identification",
+      "journal": "JOURNAL OF BIOMECHANICAL ENGINEERING-TRANSACTIONS OF THE ASME"
+    },
+    {
+      "date": "2018-04",
+      "title": "Anomaly Detection of Electromyographic Signals",
+      "journal": "IEEE TRANSACTIONS ON NEURAL SYSTEMS AND REHABILITATION ENGINEERING"
+    },
+    {
+      "date": "2017-11",
+      "title": "Reliability of assessing postural control during seated balancing using a physical human-robot interaction",
+      "journal": "JOURNAL OF BIOMECHANICS"
+    },
+    {
+      "date": "2017-04",
+      "title": "Feedback Control of an Achiral Robotic Microswimmer",
+      "journal": "JOURNAL OF BIONIC ENGINEERING"
+    },
+    {
+      "date": "2017-03",
+      "title": "A Distributed Navigation Strategy for Mobile Sensor Networks With the Probabilistic Wireless Links",
+      "journal": "JOURNAL OF DYNAMIC SYSTEMS MEASUREMENT AND CONTROL-TRANSACTIONS OF THE ASME"
+    }
+  ],
+  "awards": [
+    {
+      "title": "Fellow",
+      "contents": "Fellow of American Society of Mechanical Engineers (ASME) See at https://credentials.asme.org/6a7eb3d7-4a25-4173-8a0d-72c778424bf6#acc.t2ITdq6j",
+      "date": "2025-01-23"
+    },
+    {
+      "title": "2020 연세 공대 10대 특허기술",
+      "contents": "2020 연세 공대 10대 특허기술",
+      "date": "2020-08-21"
+    }
+  ],
+  "conferences": [
+    {
+      "title": "한국 보행장애인의 재정적 부담에 따른 삶의 만족도 연구",
+      "conference": "2024년 한국보건행정학회 후기 학술대회",
+      "period": "2024.11.14~2024.11.15"
+    },
+    {
+      "title": "Safety-critical Control with Nonaffine Control Inputs via a Relaxed Control Barrier Function for an Autonomous Vehicle",
+      "conference": "2022 IEEE International Conference on Robotics and Automation (ICRA)",
+      "period": "2022.05.23~2022.05.27"
+    },
+    {
+      "title": "Indoor localization using infrared sensorsbased on heteroscedastic Gaussian process regression",
+      "conference": "International Conference on Control, Automation and Systems (ICCAS) 2021",
+      "period": "2022.04.06~2022.04.06"
+    },
+    {
+      "title": "Control Logic Synthesis for Manufacturing Systems Using Markov Decision Processes",
+      "conference": "Modeling, Estimation and Control Conference 2021",
+      "period": "2021.10.24~2021.10.27"
+    },
+    {
+      "title": "Behavior tree driven multi-mobile robots via data distribution service (DDS)",
+      "conference": "International Conference on Control, Automation and Systems (ICCAS) 2021",
+      "period": "2021.10.12~2021.10.15"
+    },
+    {
+      "title": "Development of Deep Learning-based Risky Object Detection in Power Plant",
+      "conference": "2021 한국안전학회 춘계학술대회",
+      "period": "2021.07.15~2021.07.16"
+    },
+    {
+      "title": "The development of behavior tree driven mobile robot",
+      "conference": "2021 제36회 제어로봇시스템학회 학술대회 (ICROS 2021)",
+      "period": "2021.06.23~2021.06.25"
+    },
+    {
+      "title": "Multi-output Infinite Horizon Gaussian Processes",
+      "conference": "2021 IEEE International Conference on Robotics and Automation (ICRA)",
+      "period": "2021.05.30~2021.06.05"
+    },
+    {
+      "title": "Gaussian Process Online Learning With a Sparse Data Stream",
+      "conference": "International Conference on Intelligent Robots and Systems (IROS) 2020",
+      "period": "2020.10.25~2020.10.29"
+    },
+    {
+      "title": "Prediction of Reward Functions for Deep Reinforcement Learning via Gaussian Process Regression",
+      "conference": "The 2020 IEEE/ASME International Conference on Advanced Intelligent Mechatronics (AIM 2020)",
+      "period": "2020.07.06~2020.07.09"
+    },
+    {
+      "title": "Fast Distance Error Computation for Path Following Vehicle Control using GPUs",
+      "conference": "2020 제35회 제어로봇시스템학회 학술대회 (ICROS 2020)",
+      "period": "2020.07.02~2020.07.04"
+    },
+    {
+      "title": "Uncertainty Analysis for the Estimation of Vehicle State Variables via Mixture Density Networks",
+      "conference": "The International Conference on Control, Automation, and Systems (ICCAS) 2019",
+      "period": "2019.10.15~2019.10.18"
+    },
+    {
+      "title": "Reinforcement Learning using a Deep Deterministic Policy Gradient for Full Car Semi-active Suspension Control",
+      "conference": "The International Conference on Control, Automation, and Systems (ICCAS) 2019",
+      "period": "2019.10.15~2019.10.18"
+    },
+    {
+      "title": "Learning Hyperparameters in Efficient Spatial Model by Robotic Sensors",
+      "conference": "Dynamic Systems and Control Conference (DSCC) 2019",
+      "period": "2019.10.08~2019.10.11"
+    },
+    {
+      "title": "Penalized Nonlinear Regression with Application to Head-Neck Position Tracking",
+      "conference": "Dynamic Systems and Control Conference (DSCC) 2019",
+      "period": "2019.10.08~2019.10.11"
+    },
+    {
+      "title": "Output Feedback Control Synthesis for a Helicopter using Explicit Nonlinear MPC, Dynamic Inversion and Extended High Gain Observers",
+      "conference": "Dynamic Systems and Control Conference (DSCC) 2019",
+      "period": "2019.10.08~2019.10.11"
+    },
+    {
+      "title": "Estimation of vehicle kinematic states via CNN- LSTM-MDN",
+      "conference": "2019 제34회 제어·로봇·시스템학회 학술대회 (ICROS 2019)",
+      "period": "2019.05.16~2019.05.18"
+    },
+    {
+      "title": "Optimal Collision Avoidance of Mecanum-wheeled Mobile Robot with Timed Elastic Band Trajectory Planner",
+      "conference": "2019 제34회 제어·로봇·시스템학회 학술대회 (ICROS 2019)",
+      "period": "2019.05.16~2019.05.18"
+    },
+    {
+      "title": "Emotion Recognition in Gamers Wearing Head-Mounted Display",
+      "conference": "IEEE VR 2019 (The 26th IEEE Conference on Virtual Reality and 3D User Interfaces)",
+      "period": "2019.03.23~2019.03.27"
+    },
+    {
+      "title": "Gain-Scheduled State-Feedback Controller Design with Time-Varying Uncertainty Bounds",
+      "conference": "한국로봇종합학술대회",
+      "period": "2019.01.20~2019.01.23"
+    },
+    {
+      "title": "GA-Based Filter Selection for Representation in Convolutional Neural Networks",
+      "conference": "2nd International Workshop on Compact and Efficient Feature Representation and Learning in Computer Vision",
+      "period": "2018.09.08~2018.09.14"
+    },
+    {
+      "title": "Reliability of Sensitive Parameter Estimates in Head Position Tracking",
+      "conference": "The 42nd Annual Meeting of the American Society of Biomechanics",
+      "period": "2018.08.08~2018.08.11"
+    },
+    {
+      "title": "An Artificial Intelligence based Service Robot for VR Theme Parks",
+      "conference": "The 14th International Conference on Motion and Vibration Control",
+      "period": "2018.08.05~2018.08.10"
+    },
+    {
+      "title": "Developement of abdominal aortic aneurysm modeling and elucidating the role of hemodynamics variables in thrombus formation",
+      "conference": "8th World Congress of Biomechanics",
+      "period": "2018.07.08~2018.07.12"
+    },
+    {
+      "title": "Path Planner for Dynamic Obstacle Avoidance via Deep Reinforcement Learning",
+      "conference": "대한기계학회 동역학 및 제어부문 2018년도 춘계학술대회",
+      "period": "2018.05.23~2018.05.25"
+    },
+    {
+      "title": "Advanced Driving Assistant System using Long Short-Term Memory Networks",
+      "conference": "대한기계학회 2017년도 학술대회",
+      "period": "2017.11.01~2017.11.03"
+    },
+    {
+      "title": "Automatic Age and Gender Classification for Koreans",
+      "conference": "The 17th International Conference on Control, Automation and Systems",
+      "period": "2017.10.18~2017.10.21"
+    },
+    {
+      "title": "Uncertainty and Disturbance Estimation for Quadrotor Control Using Extended High-Gain Observers: Experimental Implementation",
+      "conference": "2017 Dynamic Systems and Control Conference",
+      "period": "2017.10.11~2017.10.13"
+    },
+    {
+      "title": "Identifying neurophysiological control parameters of the knee",
+      "conference": "41st Annual Meeting of the American Society of Biomechanics",
+      "period": "2017.08.08~2017.08.11"
+    },
+    {
+      "title": "Reliability of a novel seated balance experiment to assess trunk control",
+      "conference": "41st Annual Meeting of the American Society of Biomechanics",
+      "period": "2017.08.08~2017.08.11"
+    },
+    {
+      "title": "Speed of trunk control assessed with a robotic seat: between day reliability",
+      "conference": "Rehab Week 2017",
+      "period": "2017.07.17~2017.07.20"
+    },
+    {
+      "title": "Robotic solutions to facilitate studying human motor control",
+      "conference": "14th International Conference on Ubiquitous Robots and Ambient Intelligence (URAI 2017)",
+      "period": "2017.06.28~2017.07.01"
+    },
+    {
+      "title": "Level-set based greedy algorithm with sequential gaussian process regression for implicit surface estimation",
+      "conference": "ASME 2016 Dynamic Systems and Control Conference (DSCC 2016)",
+      "period": "2016.10.12~2016.10.14"
+    },
+    {
+      "title": "Implementation of state and disturbance estimation for quadrotor control using extended high-gain observers",
+      "conference": "ASME 2016 Dynamic Systems and Control Conference (DSCC 2016)",
+      "period": "2016.10.12~2016.10.14"
+    }
+  ],
+  "fundings": [
+    {
+      "title": "(통합Ezbaro)로봇 자율성을 위한 공간 지능: 세계 추론부터 정밀 제어까지(1/3)(2026.7.1~2029.6.30)",
+      "org": "한국연구재단",
+      "period": "2026-07-01~2027-06-30"
+    },
+    {
+      "title": "(통합Ezbaro/IRIS) 비전 기반 로봇 매니퓰레이션 제어의 데이터 효율적 학습 프레임워크 연구 (3/3)(24.5.1~27.4.30)",
+      "org": "한국연구재단",
+      "period": "2026-05-01~2027-04-30"
+    },
+    {
+      "title": "[민간/현대자동차(주)] 고객 피드백 정보 기반 제어기 강화학습용 Performance Index 신뢰성 향상",
+      "org": "국내",
+      "period": "2026-05-01~2027-04-30"
+    },
+    {
+      "title": "[통합이지바로][주관/㈜성지제강]비언어 동작 기반 건설 부재 제작 및 설치 공정의 품질·안전 확보를 위한 XR 코파일럿 기술 개발(1/3)",
+      "org": "정보통신기획평가원(한국연구재단부설)",
+      "period": "2026-04-01~2026-12-31"
+    },
+    {
+      "title": "[RCMS]미래형자동차 핵심기술 R&D 전문인력양성(1/1, 3/3단계)",
+      "org": "한국산업기술진흥원",
+      "period": "2026-03-01~2027-02-28"
+    },
+    {
+      "title": "[7차년도]사회지향 기계기술 글로벌 리더 양성 교육연구단",
+      "org": "한국연구재단",
+      "period": "2026-03-01~2027-02-28"
+    },
+    {
+      "title": "[22과제/대응/연세-KIST] 집도의와 수술로봇간의 자율협업을 위한 인공지능 요소기술개발(3단계, 3/3년도)",
+      "org": "연세대학교",
+      "period": "2026-01-01~2026-12-31"
+    },
+    {
+      "title": "[대형사업운영비](연세-KIST융합연구) 복합적 상황 인지 가능한 고차원 시각-언어 융합 AI 지능 연구(3단계, 3/3)",
+      "org": "연세대학교",
+      "period": "2026-01-01~2026-12-31"
+    },
+    {
+      "title": "[통합이지바로/연세KIST/위탁] 집도의와 수술로봇간의 자율협업을 위한 인공지능 요소기술개발(3단계, 3/3년도)",
+      "org": "한국과학기술연구원",
+      "period": "2026-01-01~2026-12-31"
+    },
+    {
+      "title": "[통합이지바로/공동] 약물관련 악골괴사증, 치아우식-치수질환, 치주-임플란트질환, 구강암의 고품질 데이터셋 구축 및 임상활용 AI 모델 개발 (4/4)",
+      "org": "한국보건산업진흥원",
+      "period": "2026-01-01~2026-12-31"
+    },
+    {
+      "title": "[IPY 2025-2차] Physical AI 및 체화지능 관련 대형공동연구 기획",
+      "org": "연세대학교",
+      "period": "2026-01-01~2026-12-31"
+    },
+    {
+      "title": "[지능형자동차부품진흥원/용역] A1 Challenge 2026",
+      "org": "지능형자동차부품진흥원",
+      "period": "2025-12-19~2026-02-28"
+    },
+    {
+      "title": "[민간/현대기아] 모빌리티시스템융합협동과정(계약학과 13기) 위탁 운영",
+      "org": "국내",
+      "period": "2025-09-01~2028-02-29"
+    },
+    {
+      "title": "[민간/현대기아]모델 불확실성 개선을 위한 AI-aided MPC 개발",
+      "org": "국내",
+      "period": "2025-08-01~2027-01-31"
+    },
+    {
+      "title": "[민간/현대기아]고객 피드백 정보 기반 제어기 강화학습 방법론 연구",
+      "org": "국내",
+      "period": "2025-06-23~2027-05-22"
+    },
+    {
+      "title": "(통합Ezbaro/IRIS) 비전 기반 로봇 매니퓰레이션 제어의 데이터 효율적 학습 프레임워크 연구 (2/3)(24.5.1~27.4.30)",
+      "org": "한국연구재단",
+      "period": "2025-05-01~2026-04-30"
+    },
+    {
+      "title": "[RCMS]미래형자동차 핵심기술 R&D 전문인력양성(2/2,2/3단계)",
+      "org": "한국산업기술진흥원",
+      "period": "2025-03-01~2026-02-28"
+    },
+    {
+      "title": "[6차년도] 사회지향 기계기술 글로벌 리더 양성 교육연구단",
+      "org": "한국연구재단",
+      "period": "2025-03-01~2026-02-28"
+    },
+    {
+      "title": "[대형사업운영비](연세-KIST융합연구) 복합적 상황 인지 가능한 고차원 시각-언어 융합 AI 지능 연구(3단계, 2/3))",
+      "org": "연세대학교",
+      "period": "2025-01-01~2026-12-31"
+    },
+    {
+      "title": "[22과제/대응/연세-KIST] 집도의와 수술로봇간의 자율협업을 위한 인공지능 요소기술개발(3단계, 2/3년도)",
+      "org": "연세대학교",
+      "period": "2025-01-01~2026-12-31"
+    },
+    {
+      "title": "[통합이지바로/연세KIST/위탁]집도의와 수술로봇간의 자율협업을 위한 인공지능 요소기술개발(3단계, 2/3년도)",
+      "org": "한국과학기술연구원",
+      "period": "2025-01-01~2025-12-31"
+    },
+    {
+      "title": "[통합이지바로/RS/공동] 약물관련 악골괴사증, 치수질환, 임플란트질환의 임상활용 AI 모델 개발 (3/4)",
+      "org": "한국보건산업진흥원",
+      "period": "2025-01-01~2025-12-31"
+    },
+    {
+      "title": "[민간/현대기아]차체 랙방 취출 로봇 보정 및 형상데이터 활용기술 내재화",
+      "org": "국내",
+      "period": "2024-11-01~2027-05-31"
+    },
+    {
+      "title": "[민간/현대기아]주변 차량 거동을 고려한 Ego & Social Vehicle 주행 에너지 최적화를 위한 AI 알고리즘 방법론 연구 (3차년도)",
+      "org": "국내",
+      "period": "2024-10-01~2026-09-30"
+    },
+    {
+      "title": "[민간/현대기아]운전자에게 최적 주행 가이드를 제공하기 위한 AI기반 Virtual Track Instructor 기능 개발 (3차년도)",
+      "org": "국내",
+      "period": "2024-10-01~2026-09-30"
+    },
+    {
+      "title": "[시드니] VisionV2X: Advanced Perception, Communication Systems, and Optimal Control~",
+      "org": "연세대학교",
+      "period": "2024-09-01~2026-02-28"
+    },
+    {
+      "title": "[IPY 지식융합 Seed Grant 2023-1차] 초학제간 자율주행 모빌리티 로봇(TARM) 혁신융합 연구 센터(2/3)",
+      "org": "연세대학교",
+      "period": "2024-08-01~2026-07-31"
+    },
+    {
+      "title": "[22과제/대응/연세-KIST] 집도의와 수술로봇간의 자율협업을 위한 인공지능 요소기술개발",
+      "org": "연세대학교",
+      "period": "2024-06-01~2025-12-31"
+    },
+    {
+      "title": "[대형사업운영비](연세-KIST융합연구) 복합적 상황 인지 가능한 고차원 시각-언어 융합 AI 지능 연구(1/1)",
+      "org": "연세대학교",
+      "period": "2024-06-01~2025-12-31"
+    },
+    {
+      "title": "[통합이지바로/연세KIST/위탁]집도의와 수술로봇간의 자율협업을 위한 인공지능 요소기술개발",
+      "org": "한국과학기술연구원",
+      "period": "2024-06-01~2024-12-31"
+    },
+    {
+      "title": "(통합Ezbaro/IRIS) 비전 기반 로봇 매니퓰레이션 제어의 데이터 효율적 학습 프레임워크 연구 (1/3)(24.5.1~27.4.30)",
+      "org": "한국연구재단",
+      "period": "2024-05-01~2025-04-30"
+    },
+    {
+      "title": "[민간/현대엔지비] 현대자동차 계약학과 12기 위탁 운영",
+      "org": "국내",
+      "period": "2024-03-04~2027-02-28"
+    },
+    {
+      "title": "[RCMS]미래형자동차 핵심기술 R&D 전문인력양성(1/2,2/3단계)",
+      "org": "한국산업기술진흥원",
+      "period": "2024-03-01~2025-02-28"
+    },
+    {
+      "title": "소아-노인 보행 장애인의 삶의 질 향상과 사회통합을 향한 자율보행로봇 (‘Miracle’)개발 센터",
+      "org": "한국연구재단",
+      "period": "2024-03-01~2025-02-28"
+    },
+    {
+      "title": "[5차년도] 사회지향 기계기술 글로벌 리더 양성 교육연구단",
+      "org": "한국연구재단",
+      "period": "2024-03-01~2025-02-28"
+    },
+    {
+      "title": "[RCMS]한국전력공사/발전소 안전환경 정착을 위한 IoT기반 작업안전관리 플랫폼 개발(5/5)",
+      "org": "한국에너지기술평가원",
+      "period": "2024-01-01~2024-04-30"
+    },
+    {
+      "title": "[통합이지바로/공동] 약물관련 악골괴사증, 치수질환, 임플란트질환의 임상활용 AI 모델 개발 (2/4)",
+      "org": "한국보건산업진흥원",
+      "period": "2024-01-01~2024-12-31"
+    },
+    {
+      "title": "[민간/유진기업] SR 프로젝트 산학협력과제",
+      "org": "국내",
+      "period": "2023-08-01~2027-07-31"
+    },
+    {
+      "title": "[IPY 지식융합 Seed Grant 2023-1차] 초학제간 자율주행 모빌리티 로봇(TARM) 혁신융합 연구 센터",
+      "org": "연세대학교",
+      "period": "2023-08-01~2024-07-31"
+    },
+    {
+      "title": "[민간/두산로보틱스] 로봇 기술 및 연구 동향 조사",
+      "org": "국내",
+      "period": "2023-06-15~2023-08-15"
+    },
+    {
+      "title": "2023 선도연구센터(CRC) 교비대응",
+      "org": "연세대학교",
+      "period": "2023-06-01~2025-02-28"
+    },
+    {
+      "title": "소아-노인 보행 장애인의 삶의 질 향상과 사회통합을 향한 자율보행로봇 (‘Miracle’)개발 센터",
+      "org": "한국연구재단",
+      "period": "2023-06-01~2024-02-29"
+    },
+    {
+      "title": "[민간/현대엔지비] 현대자동차그룹 11기 계약학과 운영",
+      "org": "국내",
+      "period": "2023-06-01~2027-02-28"
+    },
+    {
+      "title": "[민간/현대엔지비]주변 차량 거동을 고려한 Ego & Social vehicle 주행 에너지 최적화를 위한 AI 알고리즘 방법론 연구 (2차년도)",
+      "org": "국내",
+      "period": "2023-05-29~2026-05-27"
+    },
+    {
+      "title": "[민간/두산로보틱스](2023-11-1001/여비지원)로봇 기술 및 연구 동향 조사",
+      "org": "국내",
+      "period": "2023-05-27~2025-08-15"
+    },
+    {
+      "title": "[통합이지바로/공동] 약물관련 악골괴사증, 치수질환, 임플란트질환의 임상활용 AI 모델 개발 (1/4)",
+      "org": "한국보건산업진흥원",
+      "period": "2023-04-01~2023-12-31"
+    },
+    {
+      "title": "[민간/현대엔지비] 현대자동차그룹 10기 계약학과 운영",
+      "org": "국내",
+      "period": "2023-03-02~2027-02-28"
+    },
+    {
+      "title": "[RCMS]미래형자동차 핵심기술 R&D 전문인력양성(2/2,1/3단계)",
+      "org": "한국산업기술진흥원",
+      "period": "2023-03-01~2024-02-29"
+    },
+    {
+      "title": "[민간/현대모비스] SBW/RWS MILs 평가 시스템 구축을 위한 강화학습 운전자 모델 개발",
+      "org": "국내",
+      "period": "2023-03-01~2024-12-31"
+    },
+    {
+      "title": "(통합Ezbaro)비전 기반 역최적제어 기법을 이용한 자율주행기술 개발 프레임워크 수립(3/3)(2021.3.1~2024.2.29)",
+      "org": "한국연구재단",
+      "period": "2023-03-01~2024-02-29"
+    },
+    {
+      "title": "[4차년도] 사회지향 기계기술 글로벌 리더 양성 교육연구단",
+      "org": "한국연구재단",
+      "period": "2023-03-01~2024-02-29"
+    },
+    {
+      "title": "[22과제/대응/연세-KIST] 임상의사 부족 시대의 1인 수술(sole surgery)이 가능한 AI 수술실 환경 구현을 위한 핵심 요소기술 개발 (3/3)",
+      "org": "연세대학교",
+      "period": "2023-01-01~2024-06-07"
+    },
+    {
+      "title": "[통합이지바로/연세-KIST융합연구사업/위탁] 임상의사 부족 시대의 1인 수술(sole surgery)이 가능한 AI 수술실 환경 구현을 위한 핵심 요소기술 개발 (3/3)",
+      "org": "한국과학기술연구원",
+      "period": "2023-01-01~2023-12-31"
+    },
+    {
+      "title": "[RCMS]한국전력공사/발전소 안전환경 정착을 위한 IoT기반 작업안전관리 플랫폼 개발(4/5)",
+      "org": "한국에너지기술평가원",
+      "period": "2023-01-01~2023-12-31"
+    },
+    {
+      "title": "[RCMS_위탁](주)피앤피어드바이저리/스마트 제조를 위한 역강화학습기반 모듈화 제품설계 어플리케이션 개발(2/2)",
+      "org": "중소기업기술정보진흥원",
+      "period": "2022-09-27~2023-09-26"
+    },
+    {
+      "title": "[민간/현대엔지비] 운전자에게 최적 주행 가이드를 제공하기 위한 AI기반 Virtual Track Instructor 기능 개발",
+      "org": "국내",
+      "period": "2022-06-30~2026-01-31"
+    },
+    {
+      "title": "[민간/(주)티로보틱스] 저상형 AMR 주행제어를 위한 ROS 개발",
+      "org": "국내",
+      "period": "2022-05-01~2023-01-31"
+    },
+    {
+      "title": "[민간/두산에너빌리티] 비파괴 검사 이미지 분석 AI솔루션 고도화",
+      "org": "국내",
+      "period": "2022-05-01~2024-02-29"
+    },
+    {
+      "title": "[민간/현대엔지비] 주변 차량 거동을 고려한 Ego & Social vehicle 주행 에너지 최적화를 위한 AI 알고리즘 방법론 연구",
+      "org": "국내",
+      "period": "2022-04-18~2026-01-31"
+    },
+    {
+      "title": "[민간/현대엔지비] 현대자동차그룹 9기 계약학과 운영",
+      "org": "국내",
+      "period": "2022-03-02~2027-02-28"
+    },
+    {
+      "title": "(통합Ezbaro)비전 기반 역최적제어 기법을 이용한 자율주행기술 개발 프레임워크 수립(2/3)(2021.3.1~2024.2.29)",
+      "org": "한국연구재단",
+      "period": "2022-03-01~2023-02-28"
+    },
+    {
+      "title": "[RCMS]미래형자동차 핵심기술 R&D 전문인력양성(1/2년차,1/3단계)",
+      "org": "한국산업기술진흥원",
+      "period": "2022-03-01~2023-02-28"
+    },
+    {
+      "title": "2D 및 3D 치과 영상 데이터 학습을 통한 인공지능 기반 의사 결정 보조 시스템 구축 - Pilot Study",
+      "org": "연세대학교",
+      "period": "2022-03-01~2023-02-28"
+    },
+    {
+      "title": "[3차년도] 사회지향 기계기술 글로벌 리더 양성 교육연구단",
+      "org": "한국연구재단",
+      "period": "2022-03-01~2023-02-28"
+    },
+    {
+      "title": "[연세-KIST융합연구사업] 임상의사 부족 시대의 1인 수술(sole surgery)이 가능한 AI 수술실 환경 구현을 위한 핵심 요소기술 개발 (2/3)",
+      "org": "연세대학교",
+      "period": "2022-01-01~2023-12-31"
+    },
+    {
+      "title": "[통합이지바로/연세-KIST융합연구사업/위탁] 임상의사 부족 시대의 1인 수술(sole surgery)이 가능한 AI 수술실 환경 구현을 위한 핵심 요소기술 개발 (2/3)",
+      "org": "한국과학기술연구원",
+      "period": "2022-01-01~2022-12-31"
+    },
+    {
+      "title": "[RCMS]한국전력공사/발전소 안전환경 정착을 위한 IoT기반 작업안전관리 플랫폼 개발(3/5)",
+      "org": "한국에너지기술평가원",
+      "period": "2022-01-01~2022-12-31"
+    },
+    {
+      "title": "[통합이지바로/연세-KIST융합연구사업] 임상의사 부족 시대의 1인 수술(sole surgery)이 가능한 AI 수술실 환경 구현을 위한 핵심 요소기술 개발 (1/3)",
+      "org": "한국과학기술연구원",
+      "period": "2021-10-01~2021-12-31"
+    },
+    {
+      "title": "[RCMS_위탁](주)피앤피어드바이저리/스마트 제조를 위한 역강화학습기반 모듈화 제품설계 어플리케이션 개발(1/2)",
+      "org": "중소기업기술정보진흥원",
+      "period": "2021-09-27~2022-09-26"
+    },
+    {
+      "title": "[민간/두산중공업] 비파괴검사 이미지분석 AI솔루션 개발 3차",
+      "org": "국내",
+      "period": "2021-09-01~2026-03-31"
+    },
+    {
+      "title": "[민간/현대엔지비] 운전자의 실력 향상을 위한 AI기반 Virtual Track Instructor 기능 개발",
+      "org": "국내",
+      "period": "2021-04-01~2022-12-31"
+    },
+    {
+      "title": "[민간/두산중공업] 비파괴검사 이미지분석 AI솔루션 개발 2차",
+      "org": "국내",
+      "period": "2021-04-01~2022-08-31"
+    },
+    {
+      "title": "[민간/현대엔지비] 현대자동차그룹 8기 계약학과 운영",
+      "org": "국내",
+      "period": "2021-03-02~2024-02-29"
+    },
+    {
+      "title": "LINC+ 4차 산업혁명 혁신선도대학(2/2)",
+      "org": "한국연구재단",
+      "period": "2021-03-01~2022-02-28"
+    },
+    {
+      "title": "(통합Ezbaro)비전 기반 역최적제어 기법을 이용한 자율주행기술 개발 프레임워크 수립(1/3)(2021.3.1~2024.2.29)",
+      "org": "한국연구재단",
+      "period": "2021-03-01~2022-02-28"
+    },
+    {
+      "title": "[2차년도] 사회지향 기계기술 글로벌 리더 양성 교육연구단",
+      "org": "한국연구재단",
+      "period": "2021-03-01~2022-02-28"
+    },
+    {
+      "title": "[RCMS]한국전력공사/발전소 안전환경 정착을 위한 IoT기반 작업안전관리 플랫폼 개발(2/5)",
+      "org": "한국에너지기술평가원",
+      "period": "2021-02-01~2021-12-31"
+    },
+    {
+      "title": "[통합이지바로/공동][주관/㈜모션디바이스] 문화 체험 극대화를 위한 공간 재구성 및 공간 확장형 다기능/다목적 라이더 플랫폼 개발 (3/3)",
+      "org": "한국콘텐츠진흥원",
+      "period": "2021-01-01~2021-12-31"
+    },
+    {
+      "title": "[RCMS]듀얼 암 장착 이동로봇의 지능 주행 및 조작을 위한 딥러닝과 역강화학습 기반 인공지능 원천기술 개발(5/5)",
+      "org": "한국산업기술평가관리원",
+      "period": "2021-01-01~2021-11-30"
+    },
+    {
+      "title": "[민간/ 두산중공업(주)] 비파괴검사 이미지분석 AI솔루션 개발",
+      "org": "국내",
+      "period": "2020-12-07~2021-09-11"
+    },
+    {
+      "title": "[1차년도] 사회지향 기계기술 글로벌 리더 양성 교육연구단",
+      "org": "한국연구재단",
+      "period": "2020-09-01~2021-02-28"
+    },
+    {
+      "title": "[RCMS]한국전력공사/발전소 안전환경 정착을 위한 IoT기반 작업안전관리 플랫폼 개발(1/5)",
+      "org": "한국에너지기술평가원",
+      "period": "2020-05-01~2021-01-31"
+    },
+    {
+      "title": "[민간/현대엔지비]현대자동차그룹 7기 계약학과 운영",
+      "org": "국내",
+      "period": "2020-03-02~2023-02-28"
+    },
+    {
+      "title": "[민간/현대중공업지주] SLAM 알고리즘 기술 개발",
+      "org": "국내",
+      "period": "2020-03-01~2023-04-30"
+    },
+    {
+      "title": "(통합Ezbaro)다중모드 햅틱 인터페이스 연구실(3/3)(2018.6.1~2021.2.28)",
+      "org": "한국연구재단",
+      "period": "2020-03-01~2021-02-28"
+    },
+    {
+      "title": "(통합Ezbaro)딥러닝 기반의 상황인식과 그에 따른 불확실성을 고려하는 자율주행제어시스템 연구(3/3)(2018.3.1~2021.2.28)",
+      "org": "한국연구재단",
+      "period": "2020-03-01~2021-02-28"
+    },
+    {
+      "title": "[8차년도]사회지향 기계기술 글로벌 리더 양성 사업단",
+      "org": "한국연구재단",
+      "period": "2020-03-01~2020-08-31"
+    },
+    {
+      "title": "[통합이지바로/공동][주관/㈜모션디바이스] 문화 체험 극대화를 위한 공간 재구성 및 공간 확장형 다기능/다목적 라이더 플랫폼 개발 (2/3)",
+      "org": "한국콘텐츠진흥원",
+      "period": "2020-01-01~2020-12-31"
+    },
+    {
+      "title": "[RCMS]듀얼 암 장착 이동로봇의 지능 주행 및 조작을 위한 딥러닝과 역강화학습 기반 인공지능 원천기술 개발(4/5)",
+      "org": "한국산업기술평가관리원",
+      "period": "2020-01-01~2020-12-31"
+    },
+    {
+      "title": "[통합이지바로] 인간형 로봇 팔과 손을 이용한 능숙한 조작 기술의 합성을 위한 다중 센서 강화 학습 (2/2)",
+      "org": "정보통신기획평가원(한국연구재단부설)",
+      "period": "2020-01-01~2020-10-31"
+    },
+    {
+      "title": "[민간/비앤에스(주)]인공지능 및 최적제어 기반 공장 어셈블리 라인 제어로직 개발",
+      "org": "국내",
+      "period": "2019-10-15~2020-10-14"
+    },
+    {
+      "title": "[이지바로] 인간형 로봇 팔과 손을 이용한 능숙한 조작 기술의 합성을 위한 다중 센서 강화 학습 (1/2)",
+      "org": "정보통신기획평가원(한국연구재단부설)",
+      "period": "2019-07-01~2019-12-31"
+    },
+    {
+      "title": "[공동][주관/㈜모션디바이스] 문화 체험 극대화를 위한 공간 재구성 및 공간 확장형 다기능/다목적 라이더 플랫폼 개발 (1/3)",
+      "org": "한국콘텐츠진흥원",
+      "period": "2019-04-01~2019-12-31"
+    },
+    {
+      "title": "[민간/현대엔지비] 인공지능 기반 가변 서스펜션 시스템 제어로직 개발 및 시스템 요구 성능 도출",
+      "org": "국내",
+      "period": "2019-04-01~2020-09-30"
+    },
+    {
+      "title": "딥러닝 기반의 상황인식과 그에 따른 불확실성을 고려하는 자율주행제어시스템 연구(2/3)(2018.3.1~2021.2.28)",
+      "org": "한국연구재단",
+      "period": "2019-03-01~2020-02-29"
+    },
+    {
+      "title": "다중모드 햅틱 인터페이스 연구실(2/3)(2018.6.1~2021.2.28)",
+      "org": "한국연구재단",
+      "period": "2019-03-01~2020-02-29"
+    },
+    {
+      "title": "[7차년도]사회지향 기계기술 글로벌 리더 양성 사업단",
+      "org": "한국연구재단",
+      "period": "2019-03-01~2020-02-29"
+    },
+    {
+      "title": "[RCMS]듀얼 암 장착 이동로봇의 지능 주행 및 조작을 위한 딥러닝과 역강화학습 기반 인공지능 원천기술 개발(3/5)",
+      "org": "한국산업기술평가관리원",
+      "period": "2019-01-01~2019-12-31"
+    },
+    {
+      "title": "[민간/현대모비스] 외기 환경 변화에 따른 초음파 센서 감도 변화 분석",
+      "org": "국내",
+      "period": "2018-07-02~2020-06-30"
+    },
+    {
+      "title": "다중모드 햅틱 인터페이스 연구실(1/3)(2018.6.1~2021.2.28)",
+      "org": "한국연구재단",
+      "period": "2018-06-01~2019-02-28"
+    },
+    {
+      "title": "[2018-1신임교원]역강화학습 기반 운전자 모델 및 자율주행차량 경로계획 알고리즘 개발 및 실험",
+      "org": "연세대학교",
+      "period": "2018-05-01~2019-10-31"
+    },
+    {
+      "title": "[해외/미시간대(NIH발주)] Image-based Multi-scale Modeling Framework of the Cardiopulmonary System",
+      "org": "국외",
+      "period": "2018-03-01~2020-02-29"
+    },
+    {
+      "title": "딥러닝 기반의 상황인식과 그에 따른 불확실성을 고려하는 자율주행제어시스템 연구(1/3)(2018.3.1~2021.2.28)",
+      "org": "한국연구재단",
+      "period": "2018-03-01~2019-02-28"
+    },
+    {
+      "title": "[6차년도]사회지향 기계기술 글로벌 리더 양성 사업단",
+      "org": "한국연구재단",
+      "period": "2018-03-01~2019-02-28"
+    },
+    {
+      "title": "[RCMS]듀얼 암 장착 이동로봇의 지능 주행 및 조작을 위한 딥러닝과 역강화학습 기반 인공지능 원천기술 개발(2/5)",
+      "org": "한국산업기술평가관리원",
+      "period": "2018-01-01~2018-12-31"
+    },
+    {
+      "title": "[RCMS](주)모션디바이스/VR테마파크를 위한 인공지능 기반 서비스 로봇 개발(2/2)",
+      "org": "한국산업기술진흥원",
+      "period": "2018-01-01~2018-12-31"
+    },
+    {
+      "title": "[SM] 기초연구실지원사업/한국연구재단/2017.9.6.~ 2018.4.23.",
+      "org": "연세대학교",
+      "period": "2017-09-06~2018-06-30"
+    },
+    {
+      "title": "나노복합소재를 활용한 VOCs 감지,흡착,제거용 IoT 적용 통합시스템 개발(1/3,1단계)(2017.7.1~2022.6.30)",
+      "org": "한국연구재단",
+      "period": "2017-07-01~2018-03-31"
+    },
+    {
+      "title": "[2017-1 신임교원]역강화학습 기반 운전자 모델 및 자율주행차량 경로계획 알고리즘 개발 및 실험",
+      "org": "연세대학교",
+      "period": "2017-05-01~2018-04-30"
+    },
+    {
+      "title": "[RCMS](주)모션디바이스/VR테마파크를 위한 인공지능 기반 서비스 로봇 개발(1/2)",
+      "org": "한국산업기술진흥원",
+      "period": "2017-04-01~2017-12-31"
+    },
+    {
+      "title": "[RCMS]듀얼 암 장착 이동로봇의 지능 주행 및 조작을 위한 딥러닝과 역강화학습 기반 인공지능 원천기술 개발(1/5)",
+      "org": "한국산업기술평가관리원",
+      "period": "2016-12-01~2017-12-31"
+    },
+    {
+      "title": "[신임] 신임교원 연구정착금 지원",
+      "org": "연세대학교",
+      "period": "2016-09-01~2017-08-31"
+    }
+  ],
+  "patents": [
+    {
+      "title": "멀티 에이전트를 이용한 악골괴사증(ONJ) 진단 시스템",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 이화여자대학교 산학협력단",
+      "date": "2025-11-25"
+    },
+    {
+      "title": "치과용 소음 저감 방법 및 시스템",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 이화여자대학교 산학협력단, 서동완",
+      "date": "2025-02-14"
+    },
+    {
+      "title": "비착용형 능동 소음 저감 시스템의 작동 방법 및 비착용형 능동 소음 저감 시스템",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 이화여자대학교 산학협력단, 서동완",
+      "date": "2025-02-14"
+    },
+    {
+      "title": "소아용 보행보조기기",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2024-11-19"
+    },
+    {
+      "title": "성인용 보행보조기기",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2024-11-19"
+    },
+    {
+      "title": "거골 고정용 신발",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 연세대학교 원주산학협력단",
+      "date": "2024-11-12"
+    },
+    {
+      "title": "웨어러블 로봇, 및 이를 이용한 사용자의 신체 상태 판단 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 연세대학교 원주산학협력단",
+      "date": "2024-11-08"
+    },
+    {
+      "title": "이상 심전도의 예측 알고리즘 및 이를 포함하는 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 연세대학교 원주산학협력단",
+      "date": "2024-11-08"
+    },
+    {
+      "title": "낙상 예측 알고리즘 및 이를 포함하는 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 연세대학교 ㅣ원주산학협력단",
+      "date": "2024-11-08"
+    },
+    {
+      "title": "탈러스 스트랩를 이용한 보행보조장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 연세대학교 원주산학협력단",
+      "date": "2024-11-07"
+    },
+    {
+      "title": "보행보조장치에서의 사용자 맞춤형 하지 보조 유닛",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 연세대학교 원주산학협력단",
+      "date": "2024-08-29"
+    },
+    {
+      "title": "보행보조기구용 심전도 측정장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 연세대학교 원주산학협력단",
+      "date": "2024-08-29"
+    },
+    {
+      "title": "차량 제어 장치 및 그 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 현대자동차주식회사, 기아 주식회사",
+      "date": "2024-07-22"
+    },
+    {
+      "title": "차량 제어 장치 및 그 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 현대자동차주식회사, 기아 주식회사",
+      "date": "2024-06-20"
+    },
+    {
+      "title": "인공지능 딥러닝을 활용한 콘크리트 슬럼프 자동 예측 시스템",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 유진기업 주식회사",
+      "date": "2024-06-14"
+    },
+    {
+      "title": "기계 학습을 활용한 악골괴사증 예측 방법, 시스템 및 컴퓨터 프로그램",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 이화여자대학교 산학협력단",
+      "date": "2024-05-16"
+    },
+    {
+      "title": "기계 학습을 이용한 치아 상태 판단 시스템 및 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 이화여자대학교 산학협력단",
+      "date": "2024-03-18"
+    },
+    {
+      "title": "비착용형 능동 소음 저감 방법 및 시스템",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 이화여자대학교 산학협력단, 서동완",
+      "date": "2024-02-16"
+    },
+    {
+      "title": "치과용 소음 저감 방법 및 시스템",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 이화여자대학교 산학협력단, 서동완",
+      "date": "2024-02-14"
+    },
+    {
+      "title": "딥러닝 네트워크를 활용한 악천후 환경 객체 탐지 모델 예측 값 보정 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 현대자동차, 기아",
+      "date": "2023-12-08"
+    },
+    {
+      "title": "차량 제어 장치 및 그 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 현대자동차, 기아",
+      "date": "2023-12-08"
+    },
+    {
+      "title": "차별화된 트랜스포머를 이용한 인간 동작 예측 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2023-08-04"
+    },
+    {
+      "title": "모듈러 디자인 생성 방법 및 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 주식회사 피앤피어드바이저리",
+      "date": "2023-07-31"
+    },
+    {
+      "title": "골다공증 위험도 예측 방법 및 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 이화여자대학교 산학협력단",
+      "date": "2022-11-21"
+    },
+    {
+      "title": "피검자 체성분 볼륨 추정 방법 및 이를 위한 프로그램 및 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2022-11-03"
+    },
+    {
+      "title": "학습 모델을 이용한 데이터 처리 방법",
+      "type": "특허",
+      "applicant": "이화여자대학교 산학협력단, 연세대학교 산학협력단",
+      "date": "2022-09-20"
+    },
+    {
+      "title": "복수의 액추에이터를 포함하는 액추에이터 시스템에 대한 계층적 강화학습 기법을 이용한 제어 방법 및 이에 의한 액추에이터 시스템",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2022-01-27"
+    },
+    {
+      "title": "모바일 로봇을 이용한 공간정보 구축 시스템",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2021-02-01"
+    },
+    {
+      "title": "딥러닝 기반의 관절 질환의 진단 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 이화여자대학교 산학협력단",
+      "date": "2020-12-14"
+    },
+    {
+      "title": "학습 모델을 이용한 데이터 처리 방법",
+      "type": "특허",
+      "applicant": "이화여자대학교 산학협력단, 연세대학교 산학협력단",
+      "date": "2020-11-27"
+    },
+    {
+      "title": "학습 모델을 이용한 데이터 처리 방법",
+      "type": "특허",
+      "applicant": "이화여자대학교 산학협력단, 연세대학교 산학협력단",
+      "date": "2020-11-26"
+    },
+    {
+      "title": "마르코브 결정 프로세스를 이용한 생산 라인의 제어 로직 최적화 장치 및 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 비앤에스(주)",
+      "date": "2020-03-24"
+    },
+    {
+      "title": "감정 상태 추정을 이용한 VR 시뮬레이터 제어 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2020-02-24"
+    },
+    {
+      "title": "컨시어지 로봇 및 이를 이용한 고객 맞춤형 서비스 제공 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2020-02-24"
+    },
+    {
+      "title": "인공신경망을 이용한 적분산출가능물리량 추정방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2020-02-06"
+    },
+    {
+      "title": "데이터 분류 방법 및 장치",
+      "type": "특허",
+      "applicant": "이화여자학교 산학협력단, 연세대학교 산학협력단",
+      "date": "2019-12-24"
+    },
+    {
+      "title": "학습 모델을 이용한 랜드 마크 추출 방법 및 장치",
+      "type": "특허",
+      "applicant": "이화여자대학교 산학협력단, 연세대학교 산학협력단",
+      "date": "2019-11-29"
+    },
+    {
+      "title": "머신러닝 알고리즘을 이용한 데이터 기반 음성 서비스 제공 시스템 및 그 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2019-06-17"
+    },
+    {
+      "title": "강화학습 기반 서스펜션 제어장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2019-03-31"
+    },
+    {
+      "title": "전방향 상호작용 가능한 로봇의 얼굴 방향 제어 장치 및 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2019-02-26"
+    }
+  ]
+}

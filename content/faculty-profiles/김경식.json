@@ -1,0 +1,1834 @@
+{
+  "name": "김경식",
+  "nameEn": "Kim Kyoungsik",
+  "email": "kks@yonsei.ac.kr",
+  "phone": "02)2123-5815",
+  "office": null,
+  "homepage": null,
+  "sourceUrl": "https://me.yonsei.ac.kr/faculty/name_search.do?mode=view&userId=vf2yly2lcmm7EMPsUS2Fvw%3D%3D&sosokcd=",
+  "crawledAt": "2026-07-27",
+  "articles": [
+    {
+      "date": "2026-03",
+      "title": "AI-Driven Adaptive Camouflage Pattern Generation for Helicopter Detection Evasion in Aerial Sensor Imagery Using Fine-Tuned YOLOv8 and Stable Diffusion",
+      "journal": "Sensors"
+    },
+    {
+      "date": "2026-03",
+      "title": "Polarization-Selective and Tunable Metal-Dielectric (Al-Al2O3) Multilayer Negative Index Metamaterial Absorber",
+      "journal": "Journal of Electronic Materials"
+    },
+    {
+      "date": "2025-12",
+      "title": "Broadband high-efficiency polarization-independent Photonic Spin Hall Effect with high structure tolerance for all incident angle",
+      "journal": "Optics & Laser Technology"
+    },
+    {
+      "date": "2025-11",
+      "title": "Terahertz Ultrasensitive Architecture for Temperature Monitoring Using Waveguide-SPP Driven Giant Photonic Spin Hall Effect",
+      "journal": "IEEE Sensors Journal"
+    },
+    {
+      "date": "2025-11",
+      "title": "High-sensitivity cancer cell detection with dual-polarization photonic spin Hall effect",
+      "journal": "Optics & Laser Technology"
+    },
+    {
+      "date": "2024-12",
+      "title": "Ultrathin metal-dielectric planar interface for high-performance photonic spin Hall effect",
+      "journal": "Journal of Physics D: Applied Physics"
+    },
+    {
+      "date": "2024-12",
+      "title": "Wave-Guided Surface Plasmonic Resonance Induced Giant and Tunable Photonic Spin Hall Effect with Polarization Mode Control",
+      "journal": "PLASMONICS"
+    },
+    {
+      "date": "2024-07",
+      "title": "Valley contrasting chirality in triple Dirac points",
+      "journal": "Applied Physics Letters"
+    },
+    {
+      "date": "2024-01",
+      "title": "High sensitive SERS film of Ag-coated aggregated nanowire structure and benzene gas detection",
+      "journal": "Japanese Journal of Applied Physics"
+    },
+    {
+      "date": "2024-01",
+      "title": "Ultrahigh sensitive SERS film of silver nanorods grown on nanohole array template by oblique angle deposition",
+      "journal": "Optical Materials"
+    },
+    {
+      "date": "2023-12",
+      "title": "Ultrahighly Sensitive Surface-Enhanced Raman Spectroscopy Film of Silver Nanoparticles Dispersed in Three Dimensions on a Thin Alumina Nanowire Framework",
+      "journal": "Nanomaterials"
+    },
+    {
+      "date": "2022-12",
+      "title": "Polarization Switchable Enhanced Photonic Spin Hall Effect for Optical Switch and Filters",
+      "journal": "IEEE Photonics Technology Letters"
+    },
+    {
+      "date": "2022-12",
+      "title": "All angle polarization-independent photonic spin Hall effect",
+      "journal": "OPTICS AND LASER TECHNOLOGY"
+    },
+    {
+      "date": "2022-08",
+      "title": "Polarization manipulation of giant photonic spin Hall effect using wave-guiding effect",
+      "journal": "JOURNAL OF APPLIED PHYSICS"
+    },
+    {
+      "date": "2022-01",
+      "title": "Enhancing the Up-conversion luminescence using All dielectric Three-Dimensional multiscale anodized aluminum oxide nanowire structure",
+      "journal": "APPLIED SURFACE SCIENCE"
+    },
+    {
+      "date": "2021-09",
+      "title": "Enhancing the Efficiency of GaSb Photovoltaic Cell Using Thin-Film Multiscale Haze and Radiative Cooling",
+      "journal": "ACS Applied Energy Materials"
+    },
+    {
+      "date": "2021-09",
+      "title": "Enhancement of solar thermoelectric power generation by optical and thermal management with highly transparent aerogel window",
+      "journal": "SOLAR ENERGY MATERIALS AND SOLAR CELLS"
+    },
+    {
+      "date": "2021-06",
+      "title": "High-Efficiency Solar Vapor Generation Boosted by a Solar-Induced Updraft with Biomimetic 3D Structures",
+      "journal": "ACS APPLIED MATERIALS & INTERFACES"
+    },
+    {
+      "date": "2020-12",
+      "title": "Controlling the Multiscale Topography of Anodized Aluminum Oxide Nanowire Structures for Surface-Enhanced Raman Scattering and Perfect Absorbers",
+      "journal": "ACS APPLIED MATERIALS & INTERFACES"
+    },
+    {
+      "date": "2020-10",
+      "title": "Solar Steam Generation and Desalination Using Ultra-Broadband Absorption in Plasmonic Alumina Nanowire Haze Structure-Graphene Oxide-Gold Nanoparticle Composite",
+      "journal": "LANGMUIR"
+    },
+    {
+      "date": "2020-07",
+      "title": "Efficient solar steam generation by using metal-versatile hierarchical nanostructures for nickel and gold with aerogel insulator",
+      "journal": "APPLIED SURFACE SCIENCE"
+    },
+    {
+      "date": "2020-01",
+      "title": "Au−Graphene Oxide−Anodic Aluminum Oxide Nanostructured Substrates for Surface-Enhanced Raman Spectroscopy Based Molecular Sensing",
+      "journal": "ACS APPLIED NANO MATERIALS"
+    },
+    {
+      "date": "2019-07",
+      "title": "Applications of asymmetric 2D and 3D gold Fano resonators and optical realization approach",
+      "journal": "JOURNAL OF PHYSICS D-APPLIED PHYSICS"
+    },
+    {
+      "date": "2019-06",
+      "title": "Design and studies on gradient index metasurfaces for broadband polarization independent, subwavelength, and dichroic focusing",
+      "journal": "APPLIED OPTICS"
+    },
+    {
+      "date": "2019-02",
+      "title": "Air-like plasmonics with ultralow-refractive-index silica aerogels",
+      "journal": "SCIENTIFIC REPORTS"
+    },
+    {
+      "date": "2018-11",
+      "title": "Fabrication of antireflective hierarchical TiO2 nanostructures by moth-eye patterning of anodic anodized nanotubes",
+      "journal": "OPTICS EXPRESS"
+    },
+    {
+      "date": "2018-11",
+      "title": "Over 1000-fold enhancement of upconversion luminescence using water-dispersible metal-insulator-metal nanostructures",
+      "journal": "NATURE COMMUNICATIONS"
+    },
+    {
+      "date": "2018-10",
+      "title": "Large-scale nanoporous metal-coated silica aerogels for high SERS effect improvement",
+      "journal": "SCIENTIFIC REPORTS"
+    },
+    {
+      "date": "2018-09",
+      "title": "Material-Versatile Ultrabroadband Light Absorber with Self-Aggregated Multiscale Funnel Structures",
+      "journal": "ACS APPLIED MATERIALS & INTERFACES"
+    },
+    {
+      "date": "2018-09",
+      "title": "Thermoplasmonic and Photothermal Metamaterials for Solar Energy Applications",
+      "journal": "ADVANCED OPTICAL MATERIALS"
+    },
+    {
+      "date": "2017-07",
+      "title": "Scalable variable-index elasto-optic metamaterials for macroscopic optical components and devices",
+      "journal": "NATURE COMMUNICATIONS"
+    },
+    {
+      "date": "2017-06",
+      "title": "Auxetic structures with regularly configured rigid sliding units",
+      "journal": "PHYSICA STATUS SOLIDI B-BASIC SOLID STATE PHYSICS"
+    },
+    {
+      "date": "2017-06",
+      "title": "Regularly Configured Structures with Polygonal Prisms for 3D Auxetic Behavior",
+      "journal": "PROCEEDINGS OF THE ROYAL SOCIETY A-MATHEMATICAL PHYSICAL AND ENGINEERING SCIENCES"
+    },
+    {
+      "date": "2017-05",
+      "title": "Regularly configured structures with polygonal prisms for three-dimensional auxetic behaviour",
+      "journal": "PROCEEDINGS OF THE ROYAL SOCIETY A-MATHEMATICAL PHYSICAL AND ENGINEERING SCIENCES"
+    },
+    {
+      "date": "2016-07",
+      "title": "Resolution enhancement using plasmonic metamask for wafer-scale photolithography in the far field",
+      "journal": "SCIENTIFIC REPORTS"
+    },
+    {
+      "date": "2016-05",
+      "title": "Lithography-Free Broadband Ultrathin-Film Absorbers with Gap-Plasmon Resonance for Organic Photovoltaics",
+      "journal": "ACS APPLIED MATERIALS & INTERFACES"
+    },
+    {
+      "date": "2016-05",
+      "title": "Multi-Functional Transparent Luminescent Configuration for Advanced Photovoltaics",
+      "journal": "ADVANCED ENERGY MATERIALS"
+    },
+    {
+      "date": "2016-01",
+      "title": "Improvement of Light Extraction Efficiency in Flip-Chip Light Emitting Diodes on SiC Substrate via Transparent Haze Films with Morphology-Controlled Collapsed Alumina Nanorods",
+      "journal": "ACS APPLIED MATERIALS & INTERFACES"
+    },
+    {
+      "date": "2015-12",
+      "title": "Flexible thin film black gold membranes with ultrabroadband plasmonic nanofocusing for efficient solar vapour generation",
+      "journal": "NATURE COMMUNICATIONS"
+    },
+    {
+      "date": "2015-11",
+      "title": "Refractometric and colorimetric index sensing by a plasmon-coupled hybrid AAO nanotemplate",
+      "journal": "RSC ADVANCES"
+    },
+    {
+      "date": "2015-09",
+      "title": "Meta-lens design with low permittivity dielectric materials through smart transformation optics",
+      "journal": "APPLIED PHYSICS LETTERS"
+    },
+    {
+      "date": "2015-09",
+      "title": "Porous metallic nanocone arrays for high-density SERS hot spots via solvent-assisted nanoimprint lithography of block copolymer",
+      "journal": "RSC ADVANCES"
+    },
+    {
+      "date": "2015-09",
+      "title": "Broadband and ultrahigh optical haze thin films with self-aggregated alumina nanowire bundles for photovoltaic applications",
+      "journal": "ENERGY & ENVIRONMENTAL SCIENCE"
+    },
+    {
+      "date": "2015-08",
+      "title": "Graded-lattice AAO photonic crystal heterostructure for high Q refractive index sensing",
+      "journal": "RSC ADVANCES"
+    },
+    {
+      "date": "2015-08",
+      "title": "Design of 3D isotropic metamaterial device using smart transformation optics",
+      "journal": "OPTICS EXPRESS"
+    },
+    {
+      "date": "2015-07",
+      "title": "Quasi-conformal transformation optics with elasto-electromagnetic metamaterials: Design algorithm",
+      "journal": "APPLIED PHYSICS LETTERS"
+    },
+    {
+      "date": "2015-02",
+      "title": "Transparent dielectric nanostructures for efficient light management in optoelectronic applications",
+      "journal": "NANO TODAY"
+    },
+    {
+      "date": "2014-12",
+      "title": "Electromagnetic band-gap structure design using the auxetic unit-structure for easily controllable tunability",
+      "journal": "JOURNAL OF APPLIED PHYSICS"
+    },
+    {
+      "date": "2014-10",
+      "title": "스마트 메타물질을 이용한 투명망토 소개",
+      "journal": "소음ㆍ진동"
+    },
+    {
+      "date": "2014-03",
+      "title": "A systematic approach to enhance off-axis directional electromagnetic wave by two-dimensional structure design",
+      "journal": "OPTICS EXPRESS"
+    },
+    {
+      "date": "2014-02",
+      "title": "A versatile smart transformation optics device with auxetic elasto-electromagnetic metamaterials",
+      "journal": "SCIENTIFIC REPORTS"
+    },
+    {
+      "date": "2014-02",
+      "title": "Bifunctional Moth-Eye Nanopatterned Dye-Sensitized Solar Cells: Light-Harvesting and Self-Cleaning Effects",
+      "journal": "ADVANCED ENERGY MATERIALS"
+    },
+    {
+      "date": "2013-12",
+      "title": "나노물리개론 과목 소개",
+      "journal": "기계저널"
+    },
+    {
+      "date": "2013-09",
+      "title": "비정질 실리콘 박막 태양전지 효율 향상을 위한 양극산화 알루미늄 템플레이트를 이용한 플라즈모닉 금나노점 배열 최적화",
+      "journal": "정보저장시스템학회논문집"
+    },
+    {
+      "date": "2013-09",
+      "title": "튜닝가능한 역반구형의 브래그 그레이팅 센서",
+      "journal": "정보저장시스템학회논문집"
+    },
+    {
+      "date": "2013-05",
+      "title": "Broadband light-trapping enhancement in an ultrathin film a-si absorber using whispering gallery modes and guided wave modes with dielectric surface-textured structures",
+      "journal": "ADVANCED MATERIALS"
+    },
+    {
+      "date": "2012-11",
+      "title": "Broadband electromagnetic cloaking with smart metamaterials",
+      "journal": "NATURE COMMUNICATIONS"
+    },
+    {
+      "date": "2012-07",
+      "title": "광 메타물질 응용기술",
+      "journal": "광학과 기술"
+    },
+    {
+      "date": "2012-06",
+      "title": "Development of Rapid Assessment Method to Determine Bacterial Viability Based on ultraviolet and visible spectroscopy analysis including application to bioaerosols",
+      "journal": "AEROSOL AND AIR QUALITY RESEARCH"
+    },
+    {
+      "date": "2011-12",
+      "title": "Broadband Optical Antirefl ection Enhancement by Integrating Antirefl ective Nanoislands with Silicon Nanoconical-Frustum Arrays",
+      "journal": "ADVANCED MATERIALS"
+    },
+    {
+      "date": "2011-05",
+      "title": "Dynamics of cis isomers in highly sensitive amino-azobenzene monolayers: The effect of slow relaxation on photo-induced anisotropy",
+      "journal": "JOURNAL OF APPLIED PHYSICS"
+    },
+    {
+      "date": "2010-07",
+      "title": "Tunable subwavelength focusing with dispersion-engineered metamaterials in the terahertz regime",
+      "journal": "Optics Letters"
+    },
+    {
+      "date": "2010-06",
+      "title": "Quantitative analysis of mixed hydrofluoric and nitric acids using Raman spectroscopy with partial least squares regression",
+      "journal": "Talanta"
+    },
+    {
+      "date": "2010-06",
+      "title": "Elimination of phase singularity to achieve superresolution in lossy metamaterials",
+      "journal": "Optics Express"
+    },
+    {
+      "date": "2009-07",
+      "title": "Near-field phase correction for superresolution enhancement",
+      "journal": "Physical Review B"
+    },
+    {
+      "date": "2009-04",
+      "title": "Reliable optical measurement of water vapor in highly scattering environment",
+      "journal": "Spectrochimica Acta Part A-Molecular And Biomolecular Spectroscopy"
+    },
+    {
+      "date": "2009-03",
+      "title": "Active phase control of a Ag near-field superlens via the index mismatch approach",
+      "journal": "Applied Physics Letters"
+    },
+    {
+      "date": "2008-06",
+      "title": "Redshift of the excited state due to a nondegenerate biexciton in self-organized quantum dots",
+      "journal": "Journal of Applied Physics"
+    },
+    {
+      "date": "2008-02",
+      "title": "Improved image quality of a Ag slab near-field superlens with intrinsic loss of absorption",
+      "journal": "Optics Express"
+    },
+    {
+      "date": "2007-12",
+      "title": "Characterization of frequency noise on a broadband infrared frequency comb using optical heterodyne techniques",
+      "journal": "OPTICS EXPRESS"
+    },
+    {
+      "date": "2007-11",
+      "title": "Optical-to-microwave frequency comparison with fractional uncertainty of 10",
+      "journal": "APPLIED PHYSICS B-LASERS AND OPTICS"
+    },
+    {
+      "date": "2007-06",
+      "title": "Observation of the S01→P03 clock transition in Al+27",
+      "journal": "PHYSICAL REVIEW LETTERS"
+    },
+    {
+      "date": "2007-02",
+      "title": "Precision atomic spectroscopy for improved limits on variation of the fine structure constant and local position invariance",
+      "journal": "PHYSICAL REVIEW LETTERS"
+    },
+    {
+      "date": "2007-02",
+      "title": "Frequency uncertainty for optically referenced femtosecond laser frequency combs",
+      "journal": "IEEE JOURNAL OF QUANTUM ELECTRONICS"
+    },
+    {
+      "date": "2006-07",
+      "title": "Single-atom optical clock with high accuracy",
+      "journal": "PHYSICAL REVIEW LETTERS"
+    },
+    {
+      "date": "2006-01",
+      "title": "Improved stabilization of a 1.3 μm femtosecond optical frequency comb using spectrally tailored continuum from a nonlinear fiber grating",
+      "journal": "OPTICS LETTERS"
+    },
+    {
+      "date": "2005-06",
+      "title": "The measurement of optical frequencies",
+      "journal": "METROLOGIA"
+    },
+    {
+      "date": "2005-04",
+      "title": "Stabilized frequency comb with a self-referenced femtosecond Cr : forsterite laser",
+      "journal": "OPTICS LETTERS"
+    },
+    {
+      "date": "2005-01",
+      "title": "Density and temperature dependence of carrier dynamics in self-organized InGaAs quantum dots",
+      "journal": "JOURNAL OF PHYSICS D-APPLIED PHYSICS"
+    },
+    {
+      "date": "2003-08",
+      "title": "Carrier dynamics and high-speed modulation properties of tunnel injection InGaAs-GaAs quantum-dot lasers",
+      "journal": "IEEE JOURNAL OF QUANTUM ELECTRONICS"
+    },
+    {
+      "date": "2003-03",
+      "title": "Level degeneracy and temperature-dependent carrier distributions in self-organized quantum dots",
+      "journal": "APPLIED PHYSICS LETTERS"
+    },
+    {
+      "date": "2002-07",
+      "title": "Gain dynamics and ultrafast spectral hole burning in In(Ga)As self-organized quantum dots",
+      "journal": "APPLIED PHYSICS LETTERS"
+    },
+    {
+      "date": "1999-10",
+      "title": "Generation of 10-W average-power, 40-TW peak-power, 24-fs pulses from a Ti : sapphire amplifier system",
+      "journal": "JOURNAL OF THE OPTICAL SOCIETY OF AMERICA B-OPTICAL PHYSICS"
+    }
+  ],
+  "awards": [
+    {
+      "title": "우수강의교수상",
+      "contents": "2009년도 연세대학교 우수강의교수상",
+      "date": "2010-02-28"
+    },
+    {
+      "title": "우수강의교수상",
+      "contents": "우수강의교수상",
+      "date": "2009-03-23"
+    },
+    {
+      "title": "국비유학장학금",
+      "contents": "국비유학장학금",
+      "date": "1997-06-23"
+    },
+    {
+      "title": "교수 기술 우수상",
+      "contents": "교수 기술 우수상",
+      "date": "1994-08-01"
+    },
+    {
+      "title": "우수 교관상",
+      "contents": "우수 교수법",
+      "date": "1994-08-01"
+    }
+  ],
+  "conferences": [
+    {
+      "title": "침투력 및 생존성 향상을 위한 가시광 저피탐 위장",
+      "conference": "한국군사과학기술학회 2024 추계학술대회",
+      "period": "2024.11.08~2024.11.08"
+    },
+    {
+      "title": "Polarization-selective enhancement of photonic spin Hall effect",
+      "conference": "SPIE Optics + Photonics 2024",
+      "period": "2024.08.18~2024.08.22"
+    },
+    {
+      "title": "복합재 하이브리드 조인트의 피로수명 예측을 위한 통계적 접근방법",
+      "conference": "대한기계학회 CAE 및 응용역학부문 2024년 춘계학술대회",
+      "period": "2024.05.01~2024.05.04"
+    },
+    {
+      "title": "단일 랩 하이브리드 조인트의 피로수명 예측: 분석 모델과 실험적 보정법",
+      "conference": "2024년도 한국복합재료학회 춘계학술대회",
+      "period": "2024.04.24~2024.04.26"
+    },
+    {
+      "title": "복합재 접합 조인트의 피로수명 예측을 위한 통계적 접근방법",
+      "conference": "2023년도 한국복합재료학회 추계학술대회",
+      "period": "2023.11.08~2023.11.10"
+    },
+    {
+      "title": "Enhanced photonic spin hall effect with polarization control using SPR-waveguided method",
+      "conference": "SPIE Optics and Photonics",
+      "period": "2023.08.20~2023.08.24"
+    },
+    {
+      "title": "Broadband plasmonic effect for high solar-thermal conversion efficiency",
+      "conference": "Photonics West",
+      "period": "2020.02.01~2020.02.06"
+    },
+    {
+      "title": "Al-Al2O3 multilayer plasmonic metamaterial absorber",
+      "conference": "Photonics West",
+      "period": "2020.02.01~2020.02.06"
+    },
+    {
+      "title": "Plasmonic applications using air-like refractive index aerogel",
+      "conference": "META 2017",
+      "period": "2017.07.25~2017.07.28"
+    },
+    {
+      "title": "Thermoplasmonic energy conversion by self-assembled aluminum oxide meta-structures",
+      "conference": "META 2017",
+      "period": "2017.07.25~2017.07.28"
+    },
+    {
+      "title": "Construction methods of auxetic structures with hourglass shaped units and its application",
+      "conference": "META 2017",
+      "period": "2017.07.25~2017.07.28"
+    },
+    {
+      "title": "Aluminum oxide nanowire metastructure for tailoring the absorption and radiation",
+      "conference": "META 2017",
+      "period": "2017.07.25~2017.07.28"
+    },
+    {
+      "title": "Facile fabrication technique of periodically aligned faceted gold nanocrystal array",
+      "conference": "META 2017",
+      "period": "2017.07.25~2017.07.28"
+    },
+    {
+      "title": "Broadband enhancement of photocatalytic efficiency by 3D patterned light trapping structure",
+      "conference": "META 2017",
+      "period": "2017.07.25~2017.07.28"
+    },
+    {
+      "title": "Optical meta-films of alumina nanowire arrays for solar evaporation",
+      "conference": "SPIE Optics Optoelectronics",
+      "period": "2017.04.24~2017.04.27"
+    },
+    {
+      "title": "Highly scattering layer for efficient LED light extraction",
+      "conference": "SPIE Photonics West 2017",
+      "period": "2017.01.30~2017.02.02"
+    },
+    {
+      "title": "Block-copolymer-based hierarchical plasmonic nanostructure and its application for molecular detection",
+      "conference": "SPIE Photonics West 2017",
+      "period": "2017.01.30~2017.02.02"
+    },
+    {
+      "title": "Three-dimensional metamaterial with auxetic behavior",
+      "conference": "SPIE Photonics West 2017",
+      "period": "2017.01.30~2017.02.02"
+    },
+    {
+      "title": "Electromagnetic field analysis of the gap plasmonic resonance with metaldielectric-metal nanoparticles",
+      "conference": "SPIE Photonics West 2017",
+      "period": "2017.01.30~2017.02.02"
+    },
+    {
+      "title": "Design of self-assembled aluminum-oxide nanowire arrays for perfect absorbers",
+      "conference": "SPIE Photonics West 2017",
+      "period": "2017.01.30~2017.02.02"
+    },
+    {
+      "title": "Visual sensing with plasmonic nanoporous structure",
+      "conference": "SPIE Photonics West 2017",
+      "period": "2017.01.30~2017.02.02"
+    },
+    {
+      "title": "Self-assembled Alumina Nanowire Meta-Structure for Optoelectronic Devices and Solar Evaporation",
+      "conference": "ICFPAM 2016",
+      "period": "2016.10.31~2016.11.03"
+    },
+    {
+      "title": "Design and simulation of low dielectric constant metamaterial collimator lens based on smart transformation optics",
+      "conference": "2016 한국광학회 하계학술발표회",
+      "period": "2016.07.11~2016.07.12"
+    },
+    {
+      "title": "Enhancement of UV Light absorption in Wide-bandgap Semiconductor using Plasmonic nanostructures",
+      "conference": "2016 한국광학회 하계학술발표회",
+      "period": "2016.07.11~2016.07.12"
+    },
+    {
+      "title": "Design methods of dielectric wave bender with isotropic transformation optics",
+      "conference": "2016 한국광학회 하계학술발표회",
+      "period": "2016.07.11~2016.07.12"
+    },
+    {
+      "title": "비색형 굴절률 센서를 위한 플라즈모닉 나노 기공 알루미나 구조체의 근접장 분포 분석",
+      "conference": "2016 한국광학회 하계학술발표회",
+      "period": "2016.07.11~2016.07.12"
+    },
+    {
+      "title": "Analysis on Resonance Wavelength Controlling Method by Changing Contact Angle of Metal Nanoisland",
+      "conference": "2016 한국광학회 하계학술발표회",
+      "period": "2016.07.11~2016.07.12"
+    },
+    {
+      "title": "Light-Harvesting Plasmonic Meta-Structure and Optical Haze Film by Self-Assembled Dielectric and Semiconductor Nanowire Arrays",
+      "conference": "IUMRS-ICEM 2016",
+      "period": "2016.07.04~2016.07.08"
+    },
+    {
+      "title": "3차원으로 연결된 육면체 구조가 가지는 음의 푸아송비 성질",
+      "conference": "2016년도 대한기계학회 CAE 및 응용역학부문 춘계학술대회",
+      "period": "2016.04.07~2016.04.09"
+    },
+    {
+      "title": "광 헤이즈 필름을 부착한 플립칩 발광다이오드의 광 추출각 계산",
+      "conference": "2016년도 대한기계학회 CAE 및 응용역학부문 춘계학술대회",
+      "period": "2016.04.07~2016.04.09"
+    },
+    {
+      "title": "스마트 변환광학 장치의 다중물리 전산모사",
+      "conference": "2016년도 대한기계학회 CAE 및 응용역학부문 춘계학술대회",
+      "period": "2016.04.07~2016.04.09"
+    },
+    {
+      "title": "Solar vapor generation by plasmonic nanofocusing black gold membrane with self-aggregated alumina nanowires",
+      "conference": "SPIE Photonics Europe",
+      "period": "2016.04.04~2016.04.07"
+    },
+    {
+      "title": "Red shift of the gap plasmonic resonance as increasing contact angle of Ostwald-ripened gold nanoparticle",
+      "conference": "SPIE Photonics Europe",
+      "period": "2016.04.04~2016.04.07"
+    },
+    {
+      "title": "Facile fabrication method of 3D porous SERS substrate by solvent-assisted nanoimprint of block copolymer",
+      "conference": "SPIE Photonics Europe",
+      "period": "2016.04.04~2016.04.07"
+    },
+    {
+      "title": "Design method of metamaterial lens by conceptual deformation",
+      "conference": "SPIE Photonics Europe",
+      "period": "2016.04.04~2016.04.07"
+    },
+    {
+      "title": "3차원 변환광학을 이용한 전자기파 제어기술",
+      "conference": "2016 스텔스기술 학술대회",
+      "period": "2016.02.17~2016.02.17"
+    },
+    {
+      "title": "높은 민감도의 양극 산화 알루미늄 광 결정 색측정 굴절률 센서",
+      "conference": "2016 스텔스기술 학술대회",
+      "period": "2016.02.17~2016.02.17"
+    },
+    {
+      "title": "주변 굴절률에 따라 색이 변하는 플라즈모닉 색 변환형 위장막",
+      "conference": "2016 스텔스기술 학술대회",
+      "period": "2016.02.17~2016.02.17"
+    },
+    {
+      "title": "블록 공중합체 및 나노임프린트 기술을 이용한 다공성 플라즈모닉 구조의 제작 및 광특성 분석",
+      "conference": "2016 스텔스기술 학술대회",
+      "period": "2016.02.17~2016.02.17"
+    },
+    {
+      "title": "투과 광 헤이즈 필름을 통한 발광 다이오드 광 추출 효율 증가",
+      "conference": "2016 스텔스기술 학술대회",
+      "period": "2016.02.17~2016.02.17"
+    },
+    {
+      "title": "광결정 메타 구조 기반 선택적 적외선 복사체 설계 기술",
+      "conference": "2016 스텔스기술 학술대회",
+      "period": "2016.02.17~2016.02.17"
+    },
+    {
+      "title": "태양광 발전 및 증기 생성을 위한 자가응집 알루미나 나노와이어 박막 필름",
+      "conference": "제5회 나노 임프린트ㆍ몰딩ㆍ프린트 학술대회",
+      "period": "2016.02.17~2016.02.17"
+    },
+    {
+      "title": "\"용매원용 나노임프린트 리소그래피를 이용한 블록 공중합체 기반 다공성",
+      "conference": "제27회 한국광학회 정기총회 및 2016년도 동계학술발표회",
+      "period": "2016.01.20~2016.01.22"
+    },
+    {
+      "title": "양극산화 알루미늄을 이용한 삼차원 연결 네트워크를 갖는 광결정",
+      "conference": "2016 한국광학회 동계학술발표회",
+      "period": "2016.01.20~2016.01.22"
+    },
+    {
+      "title": "스마트 변환광학 기반 콜리메이터 렌즈 설계 방법",
+      "conference": "2016 한국광학회 동계학술발표회",
+      "period": "2016.01.20~2016.01.22"
+    },
+    {
+      "title": "자가응집 나노선 기반 메타물질의 응용",
+      "conference": "2016 한국광학회 동계학술대회",
+      "period": "2016.01.20~2016.01.22"
+    },
+    {
+      "title": "스마트 메타물질 투명 망토 및 메타 필름 응용 기술",
+      "conference": "2016 한국광학회 동계학술발표회",
+      "period": "2016.01.20~2016.01.22"
+    },
+    {
+      "title": "높은 민감도를 가지는 양극산화 알루미늄 광 결정 센서",
+      "conference": "대한기계학회 창립 70주년 기념 학술대회",
+      "period": "2015.11.10~2015.11.13"
+    },
+    {
+      "title": "금속 나노입자 기반 가시광선 영역 플라즈모닉 흡수체 설계의 수치해석 연구",
+      "conference": "대한기계학회 창립 70주년 기념 학술대회",
+      "period": "2015.11.10~2015.11.13"
+    },
+    {
+      "title": "공진결합 플라즈모닉 양극산화 알루미늄 나노구조체를 이용한 비색형 굴절률 센서",
+      "conference": "대한기계학회 창립 70주년 기념 학술대회",
+      "period": "2015.11.10~2015.11.13"
+    },
+    {
+      "title": "저유전율 물질용 메타 렌즈 디자인 방법 및 해석",
+      "conference": "대한기계학회 창립 70주년 기념 학술대회",
+      "period": "2015.11.10~2015.11.13"
+    },
+    {
+      "title": "표면증강 라만분광을 위한 다공성 금속 나노 원뿔구조의 광반응 분석",
+      "conference": "대한기계학회 창립 70주년 기념 학술대회",
+      "period": "2015.11.10~2015.11.13"
+    },
+    {
+      "title": "등방성을 가지는 3차원 변환광학장치의 설계",
+      "conference": "대한기계학회 창립 70주년 기념 학술대회",
+      "period": "2015.11.10~2015.11.13"
+    },
+    {
+      "title": "투광도 및 광학 헤이즈가 우수한 자가응집 알루미나 나노선 어레이 구조 개발",
+      "conference": "대한기계학회 창립 70주년 기념 학술대회",
+      "period": "2015.11.10~2015.11.13"
+    },
+    {
+      "title": "광 헤이즈 필름을 이용한 플립칩 발광다이오드의 광 추출효율 향상",
+      "conference": "대한기계학회 창립 70주년 기념 학술대회",
+      "period": "2015.10.17~2015.10.17"
+    },
+    {
+      "title": "Applications of metamaterials: Cloaking, photonics and energy harvesting",
+      "conference": "제 49회 한국진공학회 하계정기학술대회",
+      "period": "2015.08.24~2015.08.27"
+    },
+    {
+      "title": "3D isotropic metamaterial design using smart transformation optics",
+      "conference": "META 15",
+      "period": "2015.08.04~2015.08.07"
+    },
+    {
+      "title": "Photovoltaic applications of optical haze and perfect absorbers made by self-aggregated nanowire",
+      "conference": "Meta&apos; 15",
+      "period": "2015.08.04~2015.08.07"
+    },
+    {
+      "title": "Highly sensitive refractive index sensors based on AAO photonic crystal",
+      "conference": "2015년도 25주년 및 세계 빛의 해 기념 하계학술발표회",
+      "period": "2015.07.13~2015.07.16"
+    },
+    {
+      "title": "3차원 투명망토 설계를 위한 스마트 변환광학",
+      "conference": "2015년도 한국군사과학기술학회 종합학술대회",
+      "period": "2015.06.04~2015.06.05"
+    },
+    {
+      "title": "위상 최적화 알고리즘을 이용한 은폐 구조체 구현",
+      "conference": "2015년도 한국군사과학기술학회 종합학술대회",
+      "period": "2015.06.04~2015.06.05"
+    },
+    {
+      "title": "저유전율 평면파 형성 메타렌즈",
+      "conference": "2015년도 한국군사과학기술학회 종합학술대회",
+      "period": "2015.06.04~2015.06.05"
+    },
+    {
+      "title": "가시광선 영역의 광대역 흡수체 제작을 위한 리소그래피가 필요없는 웨이퍼 단위의 금속 나노 소재 제작방법",
+      "conference": "2015년도 한국군사과학기술학회 종합학술대회",
+      "period": "2015.06.04~2015.06.05"
+    },
+    {
+      "title": "위상 최적화 알고리즘을 이용한 은폐 구조체 구현",
+      "conference": "군사과학기술학회",
+      "period": "2015.06.04~2015.06.05"
+    },
+    {
+      "title": "음의 푸아송비를 가지는 스마트 메타 물질 기반 투명망토 응용 기술",
+      "conference": "CAE 및 응용역학부문 2015년도 춘계학술대회",
+      "period": "2015.04.16~2015.04.17"
+    },
+    {
+      "title": "페이즈 필드법을 이용한 RF Cloaking 구조 설계",
+      "conference": "CAE 및 응용역학부문 2015년도 춘계학술대회",
+      "period": "2015.04.16~2015.04.17"
+    },
+    {
+      "title": "스마트 변환광학을 이용한 메타 콜리메이터 렌즈",
+      "conference": "CAE 및 응용역학부문 2015년도 춘계학술대회",
+      "period": "2015.04.15~2015.04.17"
+    },
+    {
+      "title": "Electromagnetic cloak using self-adjustable smart metamaterials",
+      "conference": "The 2nd Muju International Winter School Series",
+      "period": "2015.01.26~2015.10.29"
+    },
+    {
+      "title": "3-dimensional auxetic behavior of rigid cuboids connected by elastic bonding",
+      "conference": "The 2nd Muju International Winter School Series",
+      "period": "2015.01.26~2015.01.29"
+    },
+    {
+      "title": "Design and fabrication of photonic crystal using potentiostatic anodization of Aluminum",
+      "conference": "The 2nd Muju International Winter School Series",
+      "period": "2015.01.26~2015.01.29"
+    },
+    {
+      "title": "Smart Transformation Optics based on Auxetic Metamaterials",
+      "conference": "Nanometa 2015",
+      "period": "2015.01.05~2015.01.08"
+    },
+    {
+      "title": "적외선 스텔스를 위한 광결정 메타구조 기술",
+      "conference": "제4회 고에너지국방소재 학술대회",
+      "period": "2014.11.11~2014.11.11"
+    },
+    {
+      "title": "Smart Transformation Optics based on negative Poisson&apos;s ratio Metamaterials",
+      "conference": "Metamaterials 2014",
+      "period": "2014.08.25~2014.08.28"
+    },
+    {
+      "title": "Structural Design of Two-Dimensional Dielectric Structure to Enhance Off-axis Directional Electromagnetic Wave in a Microwave range",
+      "conference": "8th International Congress on Advanced Electromagnetic Materials in Microwaves and Optics ？ Metamaterials 2014",
+      "period": "2014.08.25~2014.08.28"
+    },
+    {
+      "title": "Self-assembly approach to enhance antireflection or light trapping enhancement",
+      "conference": "META 14",
+      "period": "2014.05.20~2014.05.23"
+    },
+    {
+      "title": "주파수 선택적 표면구조를 이용한 이중 봉우리 광흡수체 설계 연구",
+      "conference": "제 21회 광전자 및 광통신 학술회의",
+      "period": "2014.05.21~2014.05.23"
+    },
+    {
+      "title": "다공성 금 디스크를 이용한 굴절률 감지센서의 수치해석적 분석",
+      "conference": "제 21회 광전자 및 광통신 학술회의",
+      "period": "2014.05.21~2014.05.23"
+    },
+    {
+      "title": "Theoretical Investigation of Nanoporous-Gold(NPG) Disks as selective light absorber",
+      "conference": "2014 KIST-IMCM Symposium for Spectrum Conversion Technology and Applications",
+      "period": "2014.05.08~2014.05.08"
+    },
+    {
+      "title": "Analysis of two different modes of resonance enhanced along the metallic Jerusalem cross patterned perfect absorber",
+      "conference": "2014 KIST-IMCM Symposium for Spectrum Conversion Technology and Applications",
+      "period": "2014.05.08~2014.05.08"
+    },
+    {
+      "title": "Light Absorption-improved Design of a-Si Thin Film Solar Cell with Embedded Nanosphere Arrays that Support Low-Q Whispering Gallery Modes",
+      "conference": "Nano Energy 2014",
+      "period": "2014.02.19~2014.02.21"
+    },
+    {
+      "title": "Electromagnetic cloak using self-adjustable smart metamaterials",
+      "conference": "The 1st Muju International Winter School Series",
+      "period": "2014.02.09~2014.02.13"
+    },
+    {
+      "title": "Design of a lossy superlens for THz near field imaging using SWCNT",
+      "conference": "The 1st Muju International Winter School Series",
+      "period": "2014.02.09~2014.02.13"
+    },
+    {
+      "title": "Self-assembled nanostructures for broadband light absorption enhancement in silicon absorber",
+      "conference": "제46회 한국진공학회 동계정기학술대회",
+      "period": "2014.02.10~2014.02.13"
+    },
+    {
+      "title": "Light Absorption-improved Design of -Si Thin Film Solar Cell with Dielectric Nanoshell Arrays",
+      "conference": "The 1st Muju International Winter School Series",
+      "period": "2014.02.09~2014.02.13"
+    },
+    {
+      "title": "유기 태양전지 성능 향상을 위한 정렬된 금속 나노 배열 최적화",
+      "conference": "제 46회 한국진공학회 동계정기학술대회",
+      "period": "2014.02.10~2014.02.13"
+    },
+    {
+      "title": "Fabrication and characterization of dielectric nanostructures for light trapping enhancement in a-Si thin film absorber with colloidal and soft lithography",
+      "conference": "Nano Today Conference",
+      "period": "2013.12.08~2013.12.11"
+    },
+    {
+      "title": "Adjustable metamaterial cloaking using an elastic crystal",
+      "conference": "Asia-Pacific Microwave Conference",
+      "period": "2013.11.05~2013.11.08"
+    },
+    {
+      "title": "Elastically Self-Adjustable Electromagnetic Cloaking Using Smart Metamaterials",
+      "conference": "Metamaterals 2013",
+      "period": "2013.09.16~2013.09.19"
+    },
+    {
+      "title": "A tunable inverse-hemisphere-shaped Bragg grating sensor",
+      "conference": "Optics and Photonics 2013",
+      "period": "2013.08.26~2013.08.29"
+    },
+    {
+      "title": "Plasmonic nanodot array optimization on organic thin film solar cells using anodic aluminum oxide templates",
+      "conference": "Optics and Photonics",
+      "period": "2013.08.26~2013.08.29"
+    },
+    {
+      "title": "광탄성결정을 이용한 마이크로파 스마트 투명망토",
+      "conference": "2013 한국전자파학회 하계종합학술대회",
+      "period": "2013.08.22~2013.08.24"
+    },
+    {
+      "title": "Self-adjustable smart cloaking with an elastic and electromagnetic crystal",
+      "conference": "3rd Korea-Japan Metamaterials Forum",
+      "period": "2013.06.26~2013.06.28"
+    },
+    {
+      "title": "콜로이드 리소그래피 및 반응성 이온 식각 공정 기술을 이용한 메타물질의 공간적 유효굴절률 제어",
+      "conference": "한국군사과학기술 학회",
+      "period": "2013.06.07~2013.06.08"
+    },
+    {
+      "title": "도핑된 실리콘의 기하학적 굴절률 매칭방법을 이용한 적외선 영역에서의 유효흡수 특성분석",
+      "conference": "한국군사과학기술 학회",
+      "period": "2013.06.07~2013.06.08"
+    },
+    {
+      "title": "Numerical analysis of whispering gallery mode enhanced light absorption in amorphous silicon thin film absorber with hemisphere and nanocone arrays",
+      "conference": "META 2013",
+      "period": "2013.03.18~2013.03.22"
+    },
+    {
+      "title": "Smart cloaking using an elastic and electromagnetic metamaterials",
+      "conference": "Nanometa 2013",
+      "period": "2013.01.03~2013.01.06"
+    },
+    {
+      "title": "Numerical analysis of absorption enhancement in solar cells with Si nanoconical-frustum arrays",
+      "conference": "Metamaterials 2012",
+      "period": "2012.09.17~2012.09.20"
+    },
+    {
+      "title": "Strategy for broadening antireflection spectrum:quarter-wavelength AR nanoislands on Si nanoconical-frustum",
+      "conference": "Meta 2012",
+      "period": "2012.04.19~2012.04.22"
+    },
+    {
+      "title": "광리소그래피와 포토닉 소자를 위한 메타물질 응용기술",
+      "conference": "차세대 리소그라피 학술회의",
+      "period": "2012.02.09~2012.02.10"
+    },
+    {
+      "title": "유효매질을 위한 적층된 메타물질",
+      "conference": "대한기계학회 추계학술대회",
+      "period": "2011.11.03~2011.11.04"
+    },
+    {
+      "title": "나노스피어 리소그라피를 이용한 메타물질의 제작",
+      "conference": "대한기계학회 추계학술대회",
+      "period": "2011.11.02~2011.11.04"
+    },
+    {
+      "title": "Manipulation of photonic crystal nanostructures based on nanosphere lithography",
+      "conference": "Metamaterials 2011",
+      "period": "2011.10.10~2011.10.15"
+    },
+    {
+      "title": "Effective refractive index profiling of close-packed silicon nanostructure array",
+      "conference": "대한기계학회 춘계학술대회",
+      "period": "2011.05.26~2011.05.27"
+    },
+    {
+      "title": "Photolithography using silver slab near field superlens",
+      "conference": "대한기계학회 춘계학술대회",
+      "period": "2011.05.26~2011.05.27"
+    },
+    {
+      "title": "Optimization of phase transfer function to compensate for the loss",
+      "conference": "Nanometa 2011",
+      "period": "2011.01.03~2011.01.06"
+    },
+    {
+      "title": "Design of a near field superlens in the THz regime",
+      "conference": "Nanometa 2011",
+      "period": "2011.01.03~2011.01.06"
+    },
+    {
+      "title": "Super-lensing effect of TiO 2 NFSL in the mid IR regime",
+      "conference": "Optics and Photonics",
+      "period": "2010.08.01~2010.08.05"
+    },
+    {
+      "title": "Tunable subwavelength focusing with slit-groove-based metamaterials in THz",
+      "conference": "Optics and Photonics",
+      "period": "2010.08.01~2010.08.05"
+    },
+    {
+      "title": "Optical measurement for the concentrations of the pickling acid with near infrared spectroscopy in steel making industry,",
+      "conference": "Optics and Photonics",
+      "period": "2010.08.01~2010.08.05"
+    },
+    {
+      "title": "Permittivity manipulation of metal-dielectric composite for improved SPR sensing",
+      "conference": "Optics and Photonics",
+      "period": "2010.08.01~2010.08.05"
+    },
+    {
+      "title": "Monitoring of pickling process with Raman spectroscopy and multivariate calibration",
+      "conference": "The 7th Asia-Pacific Laser Symposium",
+      "period": "2010.05.11~2010.05.15"
+    },
+    {
+      "title": "Tunable Subwavelength Focusing With Metamaterials In THz",
+      "conference": "2010년 한국물리학회 봄학술논문발표회",
+      "period": "2010.04.21~2010.04.23"
+    },
+    {
+      "title": "근접장 수퍼렌즈의 위상 제어 방법",
+      "conference": "The OSK 20th Anniversary Special Meeting 2009",
+      "period": "2009.10.20~2009.10.21"
+    },
+    {
+      "title": "Measurement of Mixed Acid Concentrations using Raman Spectroscopy",
+      "conference": "IEEE 34th International Conference on Infrared, Millimeter, and Terahertz Waves",
+      "period": "2009.09.21~2009.09.25"
+    },
+    {
+      "title": "Enhanced Image Quality of a Lossy Near-Field Superlens",
+      "conference": "IEEE 34th International Conference on Infrared, Millimeter, and Terahertz Waves",
+      "period": "2009.09.21~2009.09.25"
+    },
+    {
+      "title": "(Invited) Laser Cleaning and NIR Spectroscopy for the Pickling Process of oxidized steel layers",
+      "conference": "IEEE 34th International Conference on Infrared, Millimeter, and Terahertz Waves",
+      "period": "2009.09.21~2009.09.25"
+    },
+    {
+      "title": "A study of the image quality in a lossy NFSL",
+      "conference": "SPIE Optics & Photonics 2009",
+      "period": "2009.08.02~2009.08.06"
+    },
+    {
+      "title": "은 박막 수퍼렌즈의 능동형 근접장 위상 제어 기술 개발",
+      "conference": "The 5th user workshop of ultrafast quantum beam facility",
+      "period": "2009.05.21~2009.05.21"
+    },
+    {
+      "title": "Impedance mismatch approach for a near-field superlens with intrinsic loss of absorption",
+      "conference": "SPIE Photonics west 2009",
+      "period": "2009.01.24~2009.01.29"
+    },
+    {
+      "title": "Optical detection of concentrations for mixed acid: HF and HNO3",
+      "conference": "SPIE Photonics west 2009",
+      "period": "2009.01.24~2009.01.29"
+    },
+    {
+      "title": "Robust optical measurement of water vapor in steel-making process",
+      "conference": "International Conference on Control, Automation and Systems 2008",
+      "period": "2008.10.14~2008.10.17"
+    },
+    {
+      "title": "Tailored focal length of the sub-wavelength slit-groove-based metamaterials in THz regime",
+      "conference": "IEEE 33rd International Conference on Infrared, Millimeter, and Terahertz Waves",
+      "period": "2008.09.15~2008.09.19"
+    },
+    {
+      "title": "Compensation of focus blurring of Ag slab superlens with intrinsic loss of absorption",
+      "conference": "Conference on Lasers and Electro-Optics / Quantum Electronics & Laser Science Conference (CLEO/QELS)",
+      "period": "2008.05.04~2008.05.09"
+    },
+    {
+      "title": "빛 흡수로 인한 고유의 손실을 가진 은(Ag)박막 근접장 수퍼렌즈의 이미지 품질 향상",
+      "conference": "2008년 춘계 한국 물리학회",
+      "period": "2008.04.17~2008.04.18"
+    },
+    {
+      "title": "Robust measurements of water using wavelength modulation spectroscopy(WMS)",
+      "conference": "The joint 52nd Annual Meeting of the Biophysical Society and 16th IUPAB International Biophysics Congress",
+      "period": "2008.02.02~2008.02.08"
+    },
+    {
+      "title": "Optical nanometer scale gap sensing based on surface Plasmon Resonance (SPR)",
+      "conference": "The joint 52nd Annual Meeting of the Biophysical Society and 16th IUPAB International Biophysics Congress",
+      "period": "2008.02.02~2008.02.08"
+    },
+    {
+      "title": "배가스 수분량 정밀측정 기술개발",
+      "conference": "ICROS 대구, 경북지부 및 철강계측제어연구회 학술발표회",
+      "period": "2007.11.09~2007.11.09"
+    },
+    {
+      "title": "Variation of the confocal parameters of silver nano superlens",
+      "conference": "SPIE Optics & Photonics",
+      "period": "2007.08.26~2007.08.30"
+    },
+    {
+      "title": "Frequency noise measurement of broad infrared frequency comb using optical heterodyne techniques",
+      "conference": "Korea-China-Japan Joint Meeting on Ultra-High Intense Laser development and their applications & The 4th User workshop of ultrashort quantum beam facility",
+      "period": "2007.04.26~2007.04.27"
+    },
+    {
+      "title": "Design of metal slits for higher harmonic fringe patterns generated with surface plasmon interference lithography",
+      "conference": "SPIE Advanced Lithography",
+      "period": "2007.02.25~2007.02.25"
+    },
+    {
+      "title": "Spectrally investigated optimization for the high-optical transmission of the C-shaped nano-apertures",
+      "conference": "SPIE Advanced Lithography",
+      "period": "2007.02.25~2007.03.02"
+    },
+    {
+      "title": "스펙트럼 분석을 이용한 C형 나노개구의 고투과 특성 연구",
+      "conference": "한국물리학회 2006년 가을학술논문발표회",
+      "period": "2006.10.19~2006.10.20"
+    },
+    {
+      "title": "고조파 간섭 패턴을 형성하기 위한 표면 플라즈몬 간섭 리소그래피용 금속 슬릿 설계",
+      "conference": "한국물리학회 2006년 가을학술논문발표회",
+      "period": "2006.10.19~2006.10.20"
+    },
+    {
+      "title": "스펙트럼 분석을 이용한 C형 나노개구의 고투과 특성 연구",
+      "conference": "2006년 가을 한국 물리학회",
+      "period": "2006.10.19~2006.10.20"
+    },
+    {
+      "title": "고조파 간섭 패턴을 형성하기 위한 표면 플라즈몬 간섭 리소그래피용 금속 슬릿 설계",
+      "conference": "2006년 가을 한국 물리학회",
+      "period": "2006.10.19~2006.10.20"
+    },
+    {
+      "title": "(초청강연)Time-variation measurement of fundamental constant using femtosecond laser combs",
+      "conference": "2006년 하계 한국 광학회",
+      "period": "2005.07.13~2006.07.14"
+    },
+    {
+      "title": "PID 제어기법을 이용한 철스 레이저 출력 안정화에 관한 연구",
+      "conference": "한국레이저가공학회 춘계학술발표대회",
+      "period": "2006.06.02~2006.06.02"
+    },
+    {
+      "title": "공초점 정렬을 이용한 자동초점보정 레이저 직접묘화 시스템",
+      "conference": "한국레이저가공학회 춘계학술발표대회",
+      "period": "2006.06.02~2006.06.02"
+    },
+    {
+      "title": "공초점 정렬을 이용한 자동초점보정 레이저 직접묘화 시스템",
+      "conference": "2006년도 춘계 학술 발표대회 논문집, 한국레이저 가공 학회",
+      "period": "2006.06.02~2006.06.02"
+    },
+    {
+      "title": "Test of time-variation of fundamental constant using femtosecond laser optical frequency comb",
+      "conference": "2006년 춘계 한국 물리학회",
+      "period": "2006.04.20~2006.04.21"
+    },
+    {
+      "title": "(초청강연)Test of time-variation of fundamental constant using femtosecond laser optical frequency comb",
+      "conference": "2006년 춘계 한국 물리학회",
+      "period": "2006.04.20~2006.04.21"
+    }
+  ],
+  "fundings": [
+    {
+      "title": "[RCMS]서울대학교 산학협력단/수직이착륙기의 InFlight Visual 신호 저감 기술(4/6)",
+      "org": "국방기술진흥연구소",
+      "period": "2026-01-01~2026-04-30"
+    },
+    {
+      "title": "[RCMS]서울대학교 산학협력단/수직이착륙기의 InFlight Visual 신호 저감 기술(3/6)",
+      "org": "국방기술진흥연구소",
+      "period": "2025-01-01~2025-12-31"
+    },
+    {
+      "title": "[RCMS]서울대학교 산학협력단/수직이착륙기의 InFlight Visual 신호 저감 기술(2/6)",
+      "org": "국방기술진흥연구소",
+      "period": "2024-01-01~2024-12-31"
+    },
+    {
+      "title": "[RCMS]서울대학교 산학협력단/수직이착륙기의 InFlight Visual 신호 저감 기술(1/6)",
+      "org": "국방기술진흥연구소",
+      "period": "2023-05-01~2023-12-31"
+    },
+    {
+      "title": "[2019 챌린지 2차년도]광탄성 결정구조와 열플라즈모닉스를 융합한 멀티피직스 소재 기술",
+      "org": "연세대학교",
+      "period": "2020-05-01~2021-10-31"
+    },
+    {
+      "title": "[2019 챌린지 1차년도]광탄성 결정구조와 열플라즈모닉스를 융합한 멀티피직스 소재 기술",
+      "org": "연세대학교",
+      "period": "2019-05-01~2020-04-30"
+    },
+    {
+      "title": "[민간/현대엔지비] 자동차 내부온도 상승 저감을 위한 필름형 방사냉각 소재기술 개발",
+      "org": "국내",
+      "period": "2018-12-01~2020-05-31"
+    },
+    {
+      "title": "(후속)광결정 구조 기반 열 플라즈모닉스 멀티피직스 소재 개발(1/3)(2018.3.1~2021.2.28)/집행중지/",
+      "org": "한국연구재단",
+      "period": "2018-03-01~2019-02-28"
+    },
+    {
+      "title": "[Ezbaro] (4세부)고효율 적외선/자외선 센서를 위한 파장변환 메타구조 개발 연구 (3/3)",
+      "org": "한국연구재단",
+      "period": "2018-03-01~2018-10-26"
+    },
+    {
+      "title": "음향 극한물성 시스템 연구(3/3, 2단계)",
+      "org": "한국연구재단",
+      "period": "2018-03-01~2018-12-31"
+    },
+    {
+      "title": "[6차년도]사회지향 기계기술 글로벌 리더 양성 사업단",
+      "org": "한국연구재단",
+      "period": "2018-03-01~2019-02-28"
+    },
+    {
+      "title": "[이지바로]에너지 하베스팅과 복사냉각을 위한 열플라즈모닉 광 제어 기술 연구(2/3,1단계)",
+      "org": "한국연구재단",
+      "period": "2017-07-01~2018-04-30"
+    },
+    {
+      "title": "음향 극한물성 시스템 연구(2/3, 2단계)",
+      "org": "한국연구재단",
+      "period": "2017-05-01~2018-02-28"
+    },
+    {
+      "title": "광결정 구조 기반 광학 소재 개발(3/3)",
+      "org": "한국연구재단",
+      "period": "2017-05-01~2018-04-30"
+    },
+    {
+      "title": "고효율 적외선/자외선 센서를 위한 파장변환 메타구조 개발 연구",
+      "org": "한국연구재단",
+      "period": "2017-03-01~2018-02-28"
+    },
+    {
+      "title": "[5차년도]사회지향 기계기술 글로벌 리더 양성 사업단",
+      "org": "한국연구재단",
+      "period": "2017-03-01~2018-02-28"
+    },
+    {
+      "title": "[LO-11]능동형 시각 및 광학 위장 기술 연구(3/3단계-3/3차년도)",
+      "org": "산하기관",
+      "period": "2017-01-01~2017-12-15"
+    },
+    {
+      "title": "에너지 하베스팅과 복사냉각을 위한 열플라즈모닉 광 제어 기술 연구(1/3,1단계)",
+      "org": "한국연구재단",
+      "period": "2016-12-01~2017-06-30"
+    },
+    {
+      "title": "LG디스플레이/NEMO(New Mode) Display",
+      "org": "국내",
+      "period": "2016-08-01~2023-08-31"
+    },
+    {
+      "title": "음향 극한물성 시스템 연구(1/3, 2단계)",
+      "org": "한국연구재단",
+      "period": "2016-07-01~2017-04-30"
+    },
+    {
+      "title": "광결정 구조 기반 광학 소재 개발(차상위연계 2/3)",
+      "org": "한국연구재단",
+      "period": "2016-05-01~2017-04-30"
+    },
+    {
+      "title": "고효율 적외선/자외선 센서를 위한 파장변환 메타구조 개발 연구",
+      "org": "한국연구재단",
+      "period": "2016-03-01~2017-02-28"
+    },
+    {
+      "title": "(4차년도) 사회지향 기계기술 글로벌 리더 양성 사업단",
+      "org": "한국연구재단",
+      "period": "2016-03-01~2017-02-28"
+    },
+    {
+      "title": "[LO-11]능동형 시각 및 광학 위장 기술 연구(3/3단계-2/3차년도)",
+      "org": "산하기관",
+      "period": "2016-01-01~2016-12-31"
+    },
+    {
+      "title": "AOARD/Metamaterials and Metasurgace coatings",
+      "org": "국외",
+      "period": "2015-08-31~2019-02-28"
+    },
+    {
+      "title": "LG디스플레이/NEMO Display 기술개발",
+      "org": "국내",
+      "period": "2015-05-01~2018-04-30"
+    },
+    {
+      "title": "광결정 구조 기반 광학 소재 개발(차상위연계 1/3)",
+      "org": "한국연구재단",
+      "period": "2015-05-01~2016-04-30"
+    },
+    {
+      "title": "[LO-11]능동형 시각 및 광학 위장 기술 연구(3/3단계-1차년도)",
+      "org": "방위사업청",
+      "period": "2015-03-31~2015-12-31"
+    },
+    {
+      "title": "나노 광결정 및 메타구조 기반 고효율 광대역 스펙트럼 변환 플랫폼 개발 연구",
+      "org": "한국연구재단",
+      "period": "2015-03-01~2016-02-29"
+    },
+    {
+      "title": "[포닥]김경식(신동혁)-스마트 메타물질을 이용한 메타 안테나 개발",
+      "org": "연세대학교",
+      "period": "2015-03-01~2015-08-31"
+    },
+    {
+      "title": "광결정 구조 기반 광학 소재 개발",
+      "org": "한국연구재단(교과부)",
+      "period": "2014-05-01~2015-04-30"
+    },
+    {
+      "title": "[포닥]김경식(강구민)-플라즈모닉 나노안테나를 이용한 고효율 박막태양전지 개발",
+      "org": "연세대학교",
+      "period": "2014-03-01~2014-08-31"
+    },
+    {
+      "title": "나노 광결정 및 메타구조 기반 고효율 광대역 스펙트럼 변환 플랫폼 개발 연구(2/5)",
+      "org": "한국연구재단",
+      "period": "2014-03-01~2015-02-28"
+    },
+    {
+      "title": "Free-space Cloaking 단위/구조 모델링 및 전산모사",
+      "org": "기타정부기관",
+      "period": "2013-12-06~2016-08-31"
+    },
+    {
+      "title": "나노 광결정 및 메타구조 기반 고효율 광대역 스펙트럼 변환 플랫폼 개발 연구(1/5)",
+      "org": "한국연구재단",
+      "period": "2013-09-17~2014-02-28"
+    },
+    {
+      "title": "(추가지원)광결정 구조 기반 광학 소재 개발 (2/3)",
+      "org": "한국연구재단",
+      "period": "2013-05-01~2014-04-30"
+    },
+    {
+      "title": "[글로벌] 미래융합기계기술사업단",
+      "org": "연세대학교",
+      "period": "2013-03-01~2014-03-31"
+    },
+    {
+      "title": "LG전자(주)/선택적 방사체 설계 기술 연구",
+      "org": "국내",
+      "period": "2013-02-14~2016-11-30"
+    },
+    {
+      "title": "마이크로 광공진기를 이용한 고정밀 센서 개발",
+      "org": "한국표준과학연구원",
+      "period": "2013-01-01~2013-10-31"
+    },
+    {
+      "title": "삼성디스플레이(주)/수퍼(하이퍼) 렌즈 LITHOGRAPHY",
+      "org": "국내",
+      "period": "2012-12-01~2016-11-30"
+    },
+    {
+      "title": "고효율 태양 열광전지를 위한 메타에너지 흑체소재 개발 연구",
+      "org": "한국과학기술연구원",
+      "period": "2012-08-01~2012-12-31"
+    },
+    {
+      "title": "(추가지원)광결정 구조 기반 광학 소재 개발 (1/3)",
+      "org": "한국과학재단",
+      "period": "2012-05-01~2013-04-30"
+    },
+    {
+      "title": "(LO-11)국방 피탐지 감소기술 특화연구센터(2/3단계)",
+      "org": "방위사업청",
+      "period": "2012-03-09~2014-12-15"
+    },
+    {
+      "title": "나노마이크로응용기계기술인력양성사업단",
+      "org": "연세대학교",
+      "period": "2012-03-01~2014-02-28"
+    },
+    {
+      "title": "나노 마이크로 응용기계기술 인력양성사업",
+      "org": "학술진흥재단",
+      "period": "2012-03-01~2013-04-30"
+    },
+    {
+      "title": "마이크로 광 공진기를 이용한 고정밀 센서 개발",
+      "org": "한국표준과학연구원",
+      "period": "2012-01-01~2012-10-31"
+    },
+    {
+      "title": "IR 스텔스를 위한 광결정 구조에 관한 연구",
+      "org": "방위사업청",
+      "period": "2011-09-01~2014-08-30"
+    },
+    {
+      "title": "삼성전자(주) / 수퍼(하이퍼) 렌즈 lithography",
+      "org": "민간기업",
+      "period": "2011-05-01~2012-11-30"
+    },
+    {
+      "title": "양자점을 이용한 고효율 태양 전지 소자 개발 (3/3)",
+      "org": "한국과학재단",
+      "period": "2011-05-01~2012-04-30"
+    },
+    {
+      "title": "나노 마이크로 응용기계기술 인력양성사업",
+      "org": "학술진흥재단",
+      "period": "2011-03-01~2012-02-29"
+    },
+    {
+      "title": "나노마이크로응용기계기술인력양성사업단",
+      "org": "연세대학교",
+      "period": "2011-03-01~2012-02-29"
+    },
+    {
+      "title": "양자점을 이용한 고효율 태양 전지 소자 개발",
+      "org": "한국과학재단",
+      "period": "2010-05-01~2011-04-30"
+    },
+    {
+      "title": "삼성전자(주) 수퍼(하이퍼) 렌즈 Lithography",
+      "org": "민간기업",
+      "period": "2010-05-01~2011-11-30"
+    },
+    {
+      "title": "G-5-5-10나노마이크로응용기계기술인력양성사업단",
+      "org": "연세대학교",
+      "period": "2010-03-02~2011-06-30"
+    },
+    {
+      "title": "나노마이크로응용기계기술인력양성사업단",
+      "org": "연세대학교",
+      "period": "2010-03-01~2011-02-28"
+    },
+    {
+      "title": "나노 마이크로 응용기계기술 인력양성사업단",
+      "org": "학술진흥재단",
+      "period": "2010-03-01~2011-02-28"
+    },
+    {
+      "title": "초정밀 광주파수 빗 분해모드 측정 기술을 이용한 기체 및 고분자 시료 분광 장비 개발",
+      "org": "한국표준과학연구원",
+      "period": "2010-02-20~2010-10-20"
+    },
+    {
+      "title": "능동형 시각 및 광학 위장 기술 연구(LO-11)",
+      "org": "국방과학연구소",
+      "period": "2009-11-26~2011-12-31"
+    },
+    {
+      "title": "테라헤르쯔파 광원을 이용한 실시간 비침습 암진단 이미징 장치의 연구개발",
+      "org": "국립암센터",
+      "period": "2009-05-25~2010-05-24"
+    },
+    {
+      "title": "양자점을 이용한 고효율 태양 전지 소자 개발",
+      "org": "한국과학재단",
+      "period": "2009-05-01~2010-04-30"
+    },
+    {
+      "title": "G5-5-10/나노마이크로응용기계기술인력양성사업",
+      "org": "연세대학교",
+      "period": "2009-03-02~2010-06-30"
+    },
+    {
+      "title": "[SM] 국방과학연구소 - 특화연구센터",
+      "org": "연세대학교산학단_간접비",
+      "period": "2009-03-01~2009-07-24"
+    },
+    {
+      "title": "나노마이크로응용기계기술인력양성사업단",
+      "org": "연세대학교",
+      "period": "2009-03-01~2010-02-28"
+    },
+    {
+      "title": "나노마이크로응용기계기술인력양성사업단",
+      "org": "학술진흥재단",
+      "period": "2009-03-01~2010-02-28"
+    },
+    {
+      "title": "광주파수 빗의 분해 모드 기반 초정밀 측정 기술 개발",
+      "org": "한국표준과학연구원",
+      "period": "2009-02-20~2009-10-20"
+    },
+    {
+      "title": "(주)포스코 산세성 향상을 위한 레이저 전처리 기초 기술 연구",
+      "org": "민간기업",
+      "period": "2009-01-01~2009-10-31"
+    },
+    {
+      "title": "바이오메디컬 응용을 위한 선택적 극초단 이완 시간분해 이미징 시스템 개발",
+      "org": "학술진흥재단",
+      "period": "2008-11-01~2009-10-31"
+    },
+    {
+      "title": "테라헤르쯔 영역에서 초점 거리 가변한 슬릿 주름 기반 sub-wavelength 광부품 소자 개발",
+      "org": "광주과학기술원",
+      "period": "2008-07-01~2009-06-30"
+    },
+    {
+      "title": "테라헤르쯔파 광원을 이용한 실시간 비침습 암진단 이미징 장치의 연구개발",
+      "org": "국립암센터",
+      "period": "2008-05-25~2009-05-24"
+    },
+    {
+      "title": "나노마이크로응용기계기술인력양성사업단",
+      "org": "학술진흥재단",
+      "period": "2008-03-01~2009-02-28"
+    },
+    {
+      "title": "G5-5-10/나노마이크로응용기계기술인력양성사업",
+      "org": "연세대학교",
+      "period": "2008-03-01~2009-02-28"
+    },
+    {
+      "title": "나노마이크로응용기계기술인력양성사업단",
+      "org": "연세대학교",
+      "period": "2008-03-01~2009-02-28"
+    },
+    {
+      "title": "(주)포스코 분광법을 이용한 혼산용액 산농도 측정기술 연구",
+      "org": "민간기업",
+      "period": "2008-01-01~2008-11-30"
+    },
+    {
+      "title": "BRAGG REFLECTOR를 응용한 고출력 테라헤르쯔파 단일 SUB-WAVELENGTH 성형개구 개발",
+      "org": "학술진흥재단",
+      "period": "2007-08-01~2008-07-31"
+    },
+    {
+      "title": "표면 플라즈몬을 이용한 고 투과율, 고 분해능 주기 구조체의 연구 개발",
+      "org": "광주과학기술원",
+      "period": "2007-07-01~2008-06-30"
+    },
+    {
+      "title": "테라헤르쯔파 광원을 이용한 실시간 비침습 암진단 이미징 장치의 연구개발",
+      "org": "국립암센터",
+      "period": "2007-05-25~2008-05-24"
+    },
+    {
+      "title": "나노/마이크로 응용 기계기술 인력양성사업단",
+      "org": "학술진흥재단",
+      "period": "2007-03-01~2008-02-29"
+    },
+    {
+      "title": "나노/마이크로 응용 기계기술 인력양성사업단",
+      "org": "연세대학교",
+      "period": "2007-03-01~2008-02-29"
+    },
+    {
+      "title": "G5-5-10/나노마이크로응용기계기술인력양성사업",
+      "org": "연세대학교",
+      "period": "2007-03-01~2008-05-31"
+    },
+    {
+      "title": "배가스 수분량 정밀 측정 기술 개발",
+      "org": "(주)포스코",
+      "period": "2007-02-01~2007-10-31"
+    },
+    {
+      "title": "(주)포스코 배가스 수분량 정밀 측정 기술 개발",
+      "org": "민간기업",
+      "period": "2007-02-01~2007-10-31"
+    },
+    {
+      "title": "레이저 광 나노 프로브를 이용한 리소그래피 공정 기",
+      "org": "한국과학재단",
+      "period": "2006-10-01~2007-09-30"
+    },
+    {
+      "title": "펨토초레이저를 이용한 광비접촉 전류센서개발",
+      "org": "광주과학기술원",
+      "period": "2006-07-01~2007-06-30"
+    },
+    {
+      "title": "광을 이용한 비접촉 전류 센서 개발",
+      "org": "연세대학교",
+      "period": "2006-07-01~2007-06-30"
+    },
+    {
+      "title": "레이저 광 실시간 제어 및 가공 공정 계측",
+      "org": "한국기계연구원",
+      "period": "2005-07-31~2006-07-30"
+    },
+    {
+      "title": "병렬 집적형 나노개구 광 리소그래피 기술 개발",
+      "org": "한국과학재단",
+      "period": "2005-07-08~2006-07-07"
+    },
+    {
+      "title": "GDI 연소 진단 기술 개발",
+      "org": "(주)현대자동차",
+      "period": "2004-09-15~2008-12-31"
+    }
+  ],
+  "patents": [
+    {
+      "title": "노광용 마스크, 이의 제조 방법 및 이를 이용한 기판의 제조 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 삼성디스플레이 주식회사",
+      "date": null
+    },
+    {
+      "title": "노광용 마스크, 이의 제조 방법 및 이를 이용한 기판의 제조",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 삼성디스플레이",
+      "date": "2017-09-08"
+    },
+    {
+      "title": "저굴절률층 및 이를 포함하는 무안경 입체영상 표시장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 엘지디스플레이 주식회사",
+      "date": "2016-12-30"
+    },
+    {
+      "title": "다공성 물질을 이용한 광학체 및 이를 제조하기 위한 광학 제조장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2016-11-03"
+    },
+    {
+      "title": "나노와이어 번들 어레이, 이를 포함하는 멤브레인, 그 제작방법 및 이를 이용한 증기발생장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2016-11-01"
+    },
+    {
+      "title": "나노와이어 번들 어레이, 이를 포함하는 멤브레인, 그 제작방법 및 이를 이용한 증기발생장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2016-10-27"
+    },
+    {
+      "title": "플라즈모닉을 이용한 반사형 디스플레이장치 및 그 제조방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 엘지디스플레이 주식회사",
+      "date": "2016-09-27"
+    },
+    {
+      "title": "유전체 전자기파 차폐막",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2016-04-22"
+    },
+    {
+      "title": "알루미나 기반 광 디퓨저 제조방법 및 이를 통해 제작된 광 디퓨저",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2016-04-07"
+    },
+    {
+      "title": "알루미나 기반 광 디퓨저 제조방법 및 이를 통해 제작된 광 디퓨저",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2016-04-06"
+    },
+    {
+      "title": "알루미나 기반 광 디퓨저 제조방법 및 이를 통해 제작된 광 디퓨저",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2016-03-03"
+    },
+    {
+      "title": "나노와이어 번들 어레이, 광대역의 초고성능 옵티컬 필름 및 그 제조 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2016-01-29"
+    },
+    {
+      "title": "나노와이어 번들 어레이, 광대역의 초고성능 옵티컬 필름 및 그 제조 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2016-01-28"
+    },
+    {
+      "title": "나노와이어 번들 어레이, 이를 포함하는 멤브레인, 그 제작방법 및 이를 이용한 증기발생장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2015-11-20"
+    },
+    {
+      "title": "나노와이어 번들 어레이, 광대역의 초고성능 옵티컬 필름 및 그 제조 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2015-10-30"
+    },
+    {
+      "title": "노광용 마스크, 이의 제조 방법 및 이를 이용한 기판의 제조",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 삼성디스플레이",
+      "date": "2015-06-26"
+    },
+    {
+      "title": "노광용 마스크, 이의 제조 방법 및 이를 이용한 기판의 제조 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 삼성디스플레이",
+      "date": "2015-06-08"
+    },
+    {
+      "title": "노광용 마스크, 이의 제조 방법 및 이를 이용한 기판의 제조 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 삼성디스플레이",
+      "date": "2015-05-26"
+    },
+    {
+      "title": "전도재료를 포함하지 않는 유전체 전자기파 차폐막",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2015-04-22"
+    },
+    {
+      "title": "전도재료를 포함하지 않는 유전체 전자기파 차폐막",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2015-04-22"
+    },
+    {
+      "title": "알루미나 기반 광 디퓨저 제조방법 및 이를 통해 제작된 광 디퓨저",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2015-04-17"
+    },
+    {
+      "title": "알루미나 기반 광 디퓨저 제조방법 및 이를 통해 제작된 광 디퓨저",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2015-04-17"
+    },
+    {
+      "title": "노광용 마스크, 이의 제조 방법 및 이를 이용한 기판의 제조 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 삼성디스플레이",
+      "date": "2014-08-04"
+    },
+    {
+      "title": "노광용 마스크 이의 제조 방법 및 이를 이용한 기판의 제조 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2014-08-04"
+    },
+    {
+      "title": "광대역 전자기 변환광학소자를 위한 외부자극에 적응하며 기능을 유지하는 스마트 메타물질",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2013-11-20"
+    },
+    {
+      "title": "탄성 전자기 하이브리드 스마트 메타물질 및 이를 이용한 클로킹방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2013-11-19"
+    },
+    {
+      "title": "노광용 포토마스크 및 이를 이용한 패턴 형성 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 삼성디스플레이(주)",
+      "date": "2013-04-04"
+    },
+    {
+      "title": "광대역 무반사 효과를 가지는 반사방지 나노아일랜드(nano-islnads) 코팅을 겸비한 나노 구조체",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2012-11-09"
+    },
+    {
+      "title": "노광용 포토마스크 및 이를 이용한 패턴 형성 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 삼성디스플레이(주)",
+      "date": "2012-11-06"
+    },
+    {
+      "title": "노광용 마스크, 그 제조 방법 및 그 마스크를 이용한 기판의 제조 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 삼성디스플레이(주)",
+      "date": "2012-08-02"
+    },
+    {
+      "title": "노광용 마스크, 그 제조 방법 및 그 마스크를 이용한 기판의 제조 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 삼성전자(주)",
+      "date": "2011-12-02"
+    },
+    {
+      "title": "음굴절률 메타물질을 이용한 능동형 위상 보정 방법, 이를 이용한 노광 이미징 장치와 시스템 및 음굴절률 메타물질을 이용하는 노광 이미징 장치의 분해능 개선방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2011-01-24"
+    },
+    {
+      "title": "음굴절률 메타물질을 이용한 능동형 위상 보정 방법, 이를 이용한 노광 이미징 장치와 시스템 및 음굴절률 메타물질을 이용하는 노광 이미징 장치의 분해능 개선방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2011-01-24"
+    },
+    {
+      "title": "음굴절률 메타물질을 이용한 능동형 위상 보정 방법, 이를 이용한 노광 이미징 장치와 시스템 및 음굴절률 메타물질을 이용하는 노광 이미징 장치의 분해능 개선방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2010-06-10"
+    },
+    {
+      "title": "음굴절률 메타물질을 이용한 능동형 위상 보정 방법, 이를 이용한 노광 이미징 장치와 시스템 및 음굴절률 메타물질을 이용하는 노광 이미징 장치의 분해능 개선방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2010-06-10"
+    },
+    {
+      "title": "표면 플라즈몬 공명 센서의 민감도 개선방법, 제조방법 및 그 적용방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2010-06-09"
+    },
+    {
+      "title": "음굴절률 메타물질을 이용한 능동형 위상 보정 방법 및 이를 이용한 노광 이미징 장치와 시스템",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2009-09-09"
+    },
+    {
+      "title": "음굴절률 메타물질을 이용한 능동형 위상 보정 방법 및 이를 이용한 노광 이미징 장치와 시스템",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2009-09-09"
+    },
+    {
+      "title": "표면 플라즈몬 공명을 이용한 나노 스케일 간극 측정장치 및 이를 이용한 나노 스케일 간극 측정방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2008-08-07"
+    }
+  ]
+}

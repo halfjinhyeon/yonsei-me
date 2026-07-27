@@ -98,6 +98,7 @@
     "room": null,
     "specialty": null,
     "yearRange": null,
+    "emeritus": true,
     "moreInfoUrl": null,
     "photoAlt": "백윤수",
     "lab": null
@@ -248,6 +249,7 @@
     "room": null,
     "specialty": "AI CADCAM 동시공학설계",
     "yearRange": null,
+    "emeritus": true,
     "moreInfoUrl": null,
     "photoAlt": "임윤철",
     "lab": null
@@ -278,6 +280,7 @@
     "room": null,
     "specialty": null,
     "yearRange": null,
+    "emeritus": true,
     "moreInfoUrl": null,
     "photoAlt": "전광민",
     "lab": null
@@ -338,6 +341,7 @@
     "room": null,
     "specialty": null,
     "yearRange": null,
+    "emeritus": true,
     "moreInfoUrl": "https://me.yonsei.ac.kr/faculty/name_search.do?mode=view&userId=hT04rPEoiwsNGXxdX%2B496w%3D%3D&sosokcd=",
     "photoAlt": "조형희",
     "lab": null
@@ -368,6 +372,7 @@
     "room": null,
     "specialty": null,
     "yearRange": null,
+    "emeritus": true,
     "moreInfoUrl": null,
     "photoAlt": "주원구",
     "lab": null
@@ -398,6 +403,7 @@
     "room": null,
     "specialty": null,
     "yearRange": null,
+    "emeritus": true,
     "moreInfoUrl": "https://me.yonsei.ac.kr/faculty/name_search.do?mode=view&userId=ABTz8DQI6vw65KNq6XagYA%3D%3D&sosokcd=",
     "photoAlt": "차성운",
     "lab": null
@@ -428,6 +434,7 @@
     "room": null,
     "specialty": null,
     "yearRange": null,
+    "emeritus": true,
     "moreInfoUrl": null,
     "photoAlt": "최용제",
     "lab": null
@@ -458,6 +465,7 @@
     "room": null,
     "specialty": null,
     "yearRange": null,
+    "emeritus": true,
     "moreInfoUrl": null,
     "photoAlt": "한재원",
     "lab": null
@@ -488,6 +496,7 @@
     "room": null,
     "specialty": null,
     "yearRange": null,
+    "emeritus": true,
     "moreInfoUrl": "https://me.yonsei.ac.kr/faculty/name_search.do?mode=view&userId=MCmrOSwwxHveWq3XxBCIQA%3D%3D&sosokcd=",
     "photoAlt": "황정호",
     "lab": null

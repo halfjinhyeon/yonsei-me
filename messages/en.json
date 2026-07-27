@@ -424,6 +424,27 @@
       "all": "All",
       "active": "Faculty",
       "emeritus": "Emeritus"
+    },
+    "profile": {
+      "campusLabel": "Campus",
+      "campusValue": "Seoul Campus",
+      "deptLabel": "Department",
+      "deptValue": "Department of Mechanical Engineering",
+      "officeLabel": "Office",
+      "labLabel": "Lab",
+      "homepage": "Personal homepage",
+      "backToList": "Back to faculty list",
+      "emptySection": "No records have been posted yet.",
+      "activitiesEyebrow": "Academic Activities",
+      "activitiesTitle": "Academic Activities",
+      "activitiesNav": "Academic activity categories",
+      "tabs": {
+        "articles": "Journal Articles",
+        "fundings": "Research Projects",
+        "patents": "Intellectual Property",
+        "awards": "Awards",
+        "conferences": "Conference Papers"
+      }
     }
   },
   "academics": {

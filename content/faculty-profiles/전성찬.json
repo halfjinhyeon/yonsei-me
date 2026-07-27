@@ -1,0 +1,3365 @@
+{
+  "name": "전성찬",
+  "nameEn": "Jun Seong Chan",
+  "email": "scj@yonsei.ac.kr",
+  "phone": "02-2123-5817",
+  "office": "Engineering Bld A587",
+  "homepage": "http://nemd.yonsei.ac.kr/frontpage.asp?catalogid=nemd&language=ko",
+  "sourceUrl": "https://me.yonsei.ac.kr/faculty/name_search.do?mode=view&userId=wTKcmb%2F8b6Ols1dO%2B8bByg%3D%3D&sosokcd=",
+  "crawledAt": "2026-07-27",
+  "articles": [
+    {
+      "date": "2026-09",
+      "title": "Hierarchically engineered MXene/metal−organic framework-derived Fe2O3 heterointerfaces for high-performance flexible asymmetric supercapacitors with enhanced redox kinetics and electronic structure modulation",
+      "journal": "Chemical Engineering Journal"
+    },
+    {
+      "date": "2026-06",
+      "title": "Phosphorus controlled metal organic framework derived dual phase cobalt phosphide nanoparticles embedded in nitrogen doped carbon scaffold with multiwalled carbon nanotube-MXene for hybrid supercapacitor",
+      "journal": "Journal of Energy Storage"
+    },
+    {
+      "date": "2026-05",
+      "title": "Rayleigh-driven ethanol cluster tracking based on non-contact deep optical molecular diagnosis",
+      "journal": "Opto-electronic Advances"
+    },
+    {
+      "date": "2026-05",
+      "title": "Partially Reduced and Stabilized Phase-Changed MoS2 Hybrids for Vapor Molecular Absorption at Defects in Edge Sites",
+      "journal": "Small Science"
+    },
+    {
+      "date": "2026-04",
+      "title": "Critical review of phase-engineered 1 T/2H MoS2 cathode materials for enhanced Zn-ion diffusion with tactically designed Zn anodes for aqueous Zn-ion battery",
+      "journal": "Journal of Energy Storage"
+    },
+    {
+      "date": "2026-03",
+      "title": "Tailoring interfacial chemistry of aluminum alloy anodes for high-performance aqueous aluminum-ion batteries",
+      "journal": "Progress in Materials Science"
+    },
+    {
+      "date": "2025-12",
+      "title": "Hierarchically structured Co@Fe(SA)-MoO/MoP electrocatalyst with tuned electronic states for thermodynamically optimized hydrogen adsorption in chloride-rich media",
+      "journal": "Journal of Materials Chemistry A"
+    },
+    {
+      "date": "2025-12",
+      "title": "Modulation of charge distribution of NiCo2S4 by inducing S vacancy and incorporating Ir single atom and cluster catalyst for efficient alkaline water electrolysis",
+      "journal": "Materials Today Energy"
+    },
+    {
+      "date": "2025-10",
+      "title": "Self-Assembled Cu3P@NiCo2O4 Core-Shell Heterostructure Electrodes for High-Energy All-Solid-State Supercapacitor",
+      "journal": "Small"
+    },
+    {
+      "date": "2025-10",
+      "title": "Halogen-confining host materials for high-performance zinc-halogen batteries",
+      "journal": "Chemical Society Reviews"
+    },
+    {
+      "date": "2025-08",
+      "title": "Predominant hydroxyl group reduction for gas sensitivity control in graphene oxide",
+      "journal": "Micro & Nano Manufacturing"
+    },
+    {
+      "date": "2025-08",
+      "title": "Uniform patterning of MXene-based slurry on carbon cloth for flexible supercapacitor by roll-to-roll production",
+      "journal": "Manufacturing Letters"
+    },
+    {
+      "date": "2025-08",
+      "title": "Intercalation pseudocapacitance of monolithic microporous carbon thin film scrolls and their battery type behavior",
+      "journal": "Journal of Power Sources"
+    },
+    {
+      "date": "2025-08",
+      "title": "Antimony-modified tin oxide nanoparticles: hydrothermal synthesis for high-performance supercapacitor electrodes",
+      "journal": "Carbon Letters"
+    },
+    {
+      "date": "2025-07",
+      "title": "Hybrid Series of Carbon‐Vacancy Electrodes for Multi Chemical Vapors Diagnosis Using a Residual Multi‐Task Model",
+      "journal": "Advanced Science"
+    },
+    {
+      "date": "2025-06",
+      "title": "3D Controlled Growth of Binder-Free Manganese Ferrite Electrodes for High-Performance Hybrid Supercapacitor Device",
+      "journal": "Advanced Sustainable Systems"
+    },
+    {
+      "date": "2025-05",
+      "title": "3D-Printed photocatalysts for revolutionizing catalytic conversion of solar to chemical energy",
+      "journal": "Progress in Materials Science"
+    },
+    {
+      "date": "2025-05",
+      "title": "In Situ Spatially Confined Silver Nanoparticles in 3D Laser-Induced Graphene Architecture for All-in-One Planar Supercapacitor-Glucose Sensor System",
+      "journal": "Small"
+    },
+    {
+      "date": "2025-03",
+      "title": "Ethanol sensor based on nano crystalline Nd3+ substituted in Mg-Cd ferrite thick film",
+      "journal": "Sensors and Actuators, B: Chemical"
+    },
+    {
+      "date": "2025-01",
+      "title": "Dual Strategies of Na+ Electrolyte Additives and Dendrites Protective Ti3C2TX-MXene/Zn Anode with 2D MXene Nanosheet Encased Niobium Pyrophosphate (NbP2O7) Composite Binder-Free Cathode for Stable Zinc-Ion Storage",
+      "journal": "Advanced Energy Materials"
+    },
+    {
+      "date": "2025-01",
+      "title": "The power trio: CoS-CoFe2O4-rGO ternary composite to enhance energy density of all-solid-state asymmetric supercapacitors",
+      "journal": "Journal of Energy Storage"
+    },
+    {
+      "date": "2024-12",
+      "title": "Data-centric artificial olfactory system based on the eigengraph",
+      "journal": "Nature Communications"
+    },
+    {
+      "date": "2024-10",
+      "title": "Recent progress of MXene synthesis, properties, microelectrode fabrication techniques for microsupercapacitors and microbatteries energy storage devices and integration: A comprehensive review",
+      "journal": "Coordination Chemistry Reviews"
+    },
+    {
+      "date": "2024-10",
+      "title": "Oxygen Vacancy-Induced Low-Valence reactive species enabling High-Efficient nonenzymatic glucose detection",
+      "journal": "Applied Surface Science"
+    },
+    {
+      "date": "2024-09",
+      "title": "Advancements in Electrospun Nanofibrous Membranes for Improved Waterproofing and Breathability",
+      "journal": "Macromolecular Materials and Engineering"
+    },
+    {
+      "date": "2024-07",
+      "title": "Mechanical Activation of Graphite for Na-Ion Battery Anodes: Unexpected Reversible Reaction on Solid Electrolyte Interphase via X-Ray Analysis",
+      "journal": "Advanced Science"
+    },
+    {
+      "date": "2024-07",
+      "title": "Tailoring desolvation strategies for aqueous zinc-ion batteries",
+      "journal": "Energy and Environmental Science"
+    },
+    {
+      "date": "2024-07",
+      "title": "Stabilizing Zinc Anode through Ion Selection Sieving for Aqueous Zn-Ion Batteries",
+      "journal": "Nano Letters"
+    },
+    {
+      "date": "2024-06",
+      "title": "Engineering Covalent Organic Frameworks Toward Advanced Zinc-Based Batteries",
+      "journal": "Advanced Materials"
+    },
+    {
+      "date": "2024-04",
+      "title": "Zinc-Bismuth Binary Alloy Enabling High-Performance Aqueous Zinc Ion Batteries",
+      "journal": "Small"
+    },
+    {
+      "date": "2024-04",
+      "title": "Heterostructured grafting of NiFe-layered double hydroxide@TiO&lt;inf&gt;2&lt;/inf&gt; for boosting photoelectrochemical cathodic protection",
+      "journal": "Materials Horizons"
+    },
+    {
+      "date": "2024-04",
+      "title": "Functionalization design of zinc anode for advanced aqueous zinc-ion batteries",
+      "journal": "SusMat"
+    },
+    {
+      "date": "2024-02",
+      "title": "Heterometallic Electrocatalysts Derived from High-Nuclearity Metal Clusters for Efficient Overall Water Splitting",
+      "journal": "ACS Nano"
+    },
+    {
+      "date": "2024-01",
+      "title": "Wood Derived Flexible and Spongy Architectures for Advanced Electrochemical Energy Storage and Conversion",
+      "journal": "Advanced Sustainable Systems"
+    },
+    {
+      "date": "2024-01",
+      "title": "Achieving Stable Zinc Metal Anode Via Polyaniline Interface Regulation of Zn Ion Flux and Desolvation",
+      "journal": "Advanced Functional Materials"
+    },
+    {
+      "date": "2024-01",
+      "title": "Hierarchical Spatial Confinement Unlocking the Storage Limit of MoS<sub>2</sub> for Flexible High-Energy Supercapacitors",
+      "journal": "ACS NANO"
+    },
+    {
+      "date": "2024-01",
+      "title": "Covalent Organic Frameworks: Their Composites and Derivatives for Rechargeable Metal-Ion Batteries",
+      "journal": "ACS NANO"
+    },
+    {
+      "date": "2023-12",
+      "title": "Emerging Pristine MOF‐Based Heterostructured Nanoarchitectures: Advances in Structure Evolution, Controlled Synthesis, and Future Perspectives",
+      "journal": "Small"
+    },
+    {
+      "date": "2023-11",
+      "title": "In Situ Construction of the Fe-Cu Hydroxide Interlocking Structure with Solution-Derived Cu/Ag Current Collectors for Flexible Symmetric Supercapacitors",
+      "journal": "ACS Applied Materials & Interfaces"
+    },
+    {
+      "date": "2023-11",
+      "title": "Stabilizing Zn Metal Anode Through Regulation of Zn Ion Transfer and Interfacial Behavior with a Fast Ion Conductor Protective Layer",
+      "journal": "Small"
+    },
+    {
+      "date": "2023-11",
+      "title": "Modifying Electronic Structure of Cation-Exchanged Bimetallic Sulfide/Metal Oxide Heterostructure through In Situ Inclusion of Silver (Ag) Nanoparticles for Extrinsic Pseudocapacitor",
+      "journal": "Advanced Functional Materials"
+    },
+    {
+      "date": "2023-11",
+      "title": "Tensile Strain-Mediated Spinel Ferrites Enable Superior Oxygen Evolution Activity",
+      "journal": "Journal of the American Chemical Society"
+    },
+    {
+      "date": "2023-09",
+      "title": "Electronic Structure Engineered Heteroatom Doped All Transition Metal Sulfide Carbon Confined Heterostructure for Extrinsic Pseudocapacitor",
+      "journal": "Small"
+    },
+    {
+      "date": "2023-09",
+      "title": "Ionoelastomer electrolytes for stretchable ionic thermoelectric supercapacitors",
+      "journal": "Nano Energy"
+    },
+    {
+      "date": "2023-08",
+      "title": "Metal-organic frameworks and beyond: The road toward zinc-based batteries",
+      "journal": "Coordination Chemistry Reviews"
+    },
+    {
+      "date": "2023-07",
+      "title": "Electronic and Structural Engineering of Atomically Dispersed Isolated Single-Atom and Alloy Architectures",
+      "journal": "SMALL"
+    },
+    {
+      "date": "2023-04",
+      "title": "Unraveling the regulation of a polyhydroxy electrolyte additive for a reversible, dendrite-free zinc anode",
+      "journal": "Journal of Materials Chemistry A"
+    },
+    {
+      "date": "2023-04",
+      "title": "Unveiling the effect of structural water on Zn-ion storage of polyoxovanadate for high-rate and long-life aqueous zinc ion battery",
+      "journal": "Chemical Engineering Journal"
+    },
+    {
+      "date": "2023-03",
+      "title": "Multiplexed DNA-functionalized graphene sensor with artificial intelligence-based discrimination performance for analyzing chemical vapor compositions",
+      "journal": "Microsystems & Nanoengineering"
+    },
+    {
+      "date": "2023-02",
+      "title": "A Simple Method to Produce an Aluminum Oxide-Passivated Tungsten Diselenide/n-Type Si Heterojunction Solar Cell with High Power Conversion Efficiency",
+      "journal": "International Journal of Energy Research"
+    },
+    {
+      "date": "2023-02",
+      "title": "Sodium preintercalation-induced oxygen-deficient hydrated potassium manganese oxide for high-energy flexible Mg-ion supercapacitors",
+      "journal": "NPG Asia Materials"
+    },
+    {
+      "date": "2023-02",
+      "title": "Stabling Zinc Metal Anode with Polydopamine Regulation through Dual Effects of Fast Desolvation and Ion Confinement",
+      "journal": "Advanced Energy Materials"
+    },
+    {
+      "date": "2023-02",
+      "title": "Reconfiguring the Electronic Structure of Heteroatom Doped Carbon Supported Bimetallic Oxide@Metal Sulfide Core–Shell Heterostructure via In Situ Nb Incorporation toward Extrinsic Pseudocapacitor",
+      "journal": "Small"
+    },
+    {
+      "date": "2023-02",
+      "title": "Interfacial coupled engineering of plasmonic amorphous MoO3-x nanodots/g-C3N4 nanosheets for photocatalytic water splitting and photothermal conversion",
+      "journal": "Chemical Engineering Journal"
+    },
+    {
+      "date": "2023-01",
+      "title": "Covalently Interlayer-Confined Organic–Inorganic Heterostructures for Aqueous Potassium Ion Supercapacitors",
+      "journal": "Small"
+    },
+    {
+      "date": "2022-12",
+      "title": "N-doped oxygen vacancy-rich NiCo&lt;inf&gt;2&lt;/inf&gt;O&lt;inf&gt;4&lt;/inf&gt; nanoarrays for supercapacitor and non-enzymatic glucose sensing",
+      "journal": "International Journal of Energy Research"
+    },
+    {
+      "date": "2022-12",
+      "title": "Tuning the band (p and d) center and enhancing the active sites by nitrogen (N) doping on iridium diphosphide (IrP2) for accelerating pH-universal water electrolysis",
+      "journal": "Applied Catalysis B: Environmental"
+    },
+    {
+      "date": "2022-10",
+      "title": "Bio-inspired interface engineering of Ag<inf>2</inf>O rooted on Au, Ni-modified filter paper for highly robust Zn–Ag<inf>2</inf>O batteries",
+      "journal": "JOURNAL OF COLLOID AND INTERFACE SCIENCE"
+    },
+    {
+      "date": "2022-09",
+      "title": "Pronounced Optoelectronic Effect in n-n ReS2 Homostructure",
+      "journal": "ACS Applied Electronic Materials"
+    },
+    {
+      "date": "2022-06",
+      "title": "Atomic-Level Platinum Filling into Ni-Vacancies of Dual-Deficient NiO for Boosting Electrocatalytic Hydrogen Evolution",
+      "journal": "ADVANCED ENERGY MATERIALS"
+    },
+    {
+      "date": "2022-06",
+      "title": "Development of directly grown-graphene–silicon Schottky barrier solar cell using co-doping technique",
+      "journal": "INTERNATIONAL JOURNAL OF ENERGY RESEARCH"
+    },
+    {
+      "date": "2022-05",
+      "title": "Simultaneous integration of low-level rhenium (Re) doping and nitrogen-functionalized 3D carbon backbone into nickel-iron hydroxide (NiFeOH) to amplify alkaline water electrolysis at high current densities",
+      "journal": "CHEMICAL ENGINEERING JOURNAL"
+    },
+    {
+      "date": "2022-03",
+      "title": "Construction of hierarchical nickel cobalt sulfide@manganese oxide nanoarrays@nanosheets core-shell electrodes for high-performance electrochemical asymmetric supercapacitor",
+      "journal": "INTERNATIONAL JOURNAL OF ENERGY RESEARCH"
+    },
+    {
+      "date": "2022-03",
+      "title": "The role of oxygen defects engineering via passivation of the Al2O3 interfacial layer for the direct growth of a graphene-silicon Schottky junction solar cell",
+      "journal": "Applied Materials Today"
+    },
+    {
+      "date": "2022-02",
+      "title": "Realizing Superior Redox Kinetics of Hollow Bimetallic Sulfide Nanoarchitectures by Defect-Induced Manipulation toward Flexible Solid-State Supercapacitors",
+      "journal": "SMALL"
+    },
+    {
+      "date": "2022-01",
+      "title": "Two-dimensional MXenes for electrochemical energy storage applications",
+      "journal": "JOURNAL OF MATERIALS CHEMISTRY A"
+    },
+    {
+      "date": "2022-01",
+      "title": "Highly Dispersed Pt Clusters on F-Doped Tin(IV) Oxide Aerogel Matrix: An Ultra-Robust Hybrid Catalyst for Enhanced Hydrogen Evolution",
+      "journal": "ACS NANO"
+    },
+    {
+      "date": "2021-12",
+      "title": "Recent Advances and Perspectives of Battery-Type Anode Materials for Potassium Ion Storage",
+      "journal": "ACS NANO"
+    },
+    {
+      "date": "2021-11",
+      "title": "2D-on-2D core-shell Co-3(PO4)(2) stacked micropetals@Co2Mo3O8 nanosheets and binder-free 2D CNT-Ti3C2TX-MXene electrodes for high-energy solid-state flexible supercapacitors",
+      "journal": "JOURNAL OF MATERIALS CHEMISTRY A"
+    },
+    {
+      "date": "2021-11",
+      "title": "Carbonaceous Anode Materials for Non-aqueous Sodium- And Potassium-Ion Hybrid Capacitors",
+      "journal": "ACS Energy Letters"
+    },
+    {
+      "date": "2021-11",
+      "title": "Interfacial Assembled CeO2-x/Co@N-Doped Carbon Hollow Nanohybrids for High-Performance Lithium-Sulfur Batteries",
+      "journal": "ACS SUSTAINABLE CHEMISTRY & ENGINEERING"
+    },
+    {
+      "date": "2021-11",
+      "title": "Challenges and Strategies toward Cathode Materials for Rechargeable Potassium-Ion Batteries",
+      "journal": "ADVANCED MATERIALS"
+    },
+    {
+      "date": "2021-09",
+      "title": "Unlocking the Potential of Oxygen-Deficient Copper-Doped Co3O4 Nanocrystals Confined in Carbon as an Advanced Electrode for Flexible Solid-State Supercapacitors",
+      "journal": "ACS Energy Letters"
+    },
+    {
+      "date": "2021-07",
+      "title": "A reversible and stable doping technique to invert the carrier polarity of MoTe2",
+      "journal": "NANOTECHNOLOGY"
+    },
+    {
+      "date": "2021-07",
+      "title": "Dipole-assisted carrier transport in bis(trifluoromethane) sulfonamide-treated O-ReS2 field-effect transistor",
+      "journal": "NANO RESEARCH"
+    },
+    {
+      "date": "2021-06",
+      "title": "Highly Desirable Platform for Efficient Hydrogen Generation: Electrodeposited CoP on N-Doped Vertical Graphene",
+      "journal": "ACS Applied Energy Materials"
+    },
+    {
+      "date": "2021-03",
+      "title": "Hierarchically designed 3D Cu3N@Ni3N porous nanorod arrays: An efficient and robust electrode for high-energy solid-state hybrid supercapacitors",
+      "journal": "Applied Materials Today"
+    },
+    {
+      "date": "2021-02",
+      "title": "An unexpected phase-transformation of cobalt–vanadium layered double hydroxides toward high energy density hybrid supercapacitor",
+      "journal": "JOURNAL OF POWER SOURCES"
+    },
+    {
+      "date": "2021-02",
+      "title": "All-redox solid-state supercapacitor with cobalt manganese oxide@ bimetallic hydroxides and vanadium nitride@ nitrogen-doped carbon electrodes",
+      "journal": "CHEMICAL ENGINEERING JOURNAL"
+    },
+    {
+      "date": "2021-01",
+      "title": "High-performance gas sensor array for indoor air quality monitoring: the role of Au nanoparticles on WO3, SnO2, and NiO-based gas sensors",
+      "journal": "JOURNAL OF MATERIALS CHEMISTRY A"
+    },
+    {
+      "date": "2021-01",
+      "title": "Focus-Tunable Planar Lenses by Controlled Carriers over Exciton",
+      "journal": "ADVANCED OPTICAL MATERIALS"
+    },
+    {
+      "date": "2020-12",
+      "title": "Dual-defect surface engineering of bimetallic sulfide nanotubes towards flexible asymmetric solid-state supercapacitors",
+      "journal": "JOURNAL OF MATERIALS CHEMISTRY A"
+    },
+    {
+      "date": "2020-11",
+      "title": "Structural engineering and surface modification of MOF-derived cobalt-based hybrid nanosheets for flexible solid-state supercapacitors",
+      "journal": "Energy Storage Materials"
+    },
+    {
+      "date": "2020-10",
+      "title": "Binder-assisted electrostatic spray deposition of LiCoO2 and graphite films on coplanar interdigitated electrodes for flexible/wearable lithium-ion batteries",
+      "journal": "JOURNAL OF POWER SOURCES"
+    },
+    {
+      "date": "2020-10",
+      "title": "Nitrogen-doped carbon integrated nickel-cobalt metal phosphide marigold flowers as a high capacity electrode for hybrid supercapacitor",
+      "journal": "CRYSTENGCOMM"
+    },
+    {
+      "date": "2020-09",
+      "title": "A systematic approach to achieve high energy density hybrid supercapacitors based on Ni?Co?Fe hydroxide",
+      "journal": "ELECTROCHIMICA ACTA"
+    },
+    {
+      "date": "2020-09",
+      "title": "Two-dimensional electronic devices modulated by the activation of donor-like states in boron nitride",
+      "journal": "NANOSCALE"
+    },
+    {
+      "date": "2020-07",
+      "title": "Recent Advances in Vanadium-Based Aqueous Rechargeable Zinc-Ion Batteries",
+      "journal": "ADVANCED ENERGY MATERIALS"
+    },
+    {
+      "date": "2020-07",
+      "title": "Multi-heterostructured spin-valve junction of vertical FLG/MoSe2/FLG",
+      "journal": "APL MATERIALS"
+    },
+    {
+      "date": "2020-06",
+      "title": "Modulation of Magnetoresistance Polarity in BLG/SL-MoSe(2)Heterostacks",
+      "journal": "Nanoscale Research Letters"
+    },
+    {
+      "date": "2020-06",
+      "title": "Electrically focus-tuneable ultrathin lens for high-resolution square subpixels",
+      "journal": "LIGHT-SCIENCE & APPLICATIONS"
+    },
+    {
+      "date": "2020-06",
+      "title": "Effect of fluorine doping and sulfur vacancies of CuCo2S4 on its electrochemical performance in supercapacitors",
+      "journal": "CHEMICAL ENGINEERING JOURNAL"
+    },
+    {
+      "date": "2020-05",
+      "title": "Layered manganese metal-organic framework with high specific and areal capacitance for hybrid supercapacitors",
+      "journal": "CHEMICAL ENGINEERING JOURNAL"
+    },
+    {
+      "date": "2020-03",
+      "title": "Potentiodynamic polarization assisted phosphorus-containing amorphous trimetal hydroxide nanofibers for highly efficient hybrid supercapacitors",
+      "journal": "JOURNAL OF MATERIALS CHEMISTRY A"
+    },
+    {
+      "date": "2020-03",
+      "title": "Self-assembled bimetallic cobalt–manganese metal–organic framework as a highly efficient, robust electrode for asymmetric supercapacitors",
+      "journal": "ELECTROCHIMICA ACTA"
+    },
+    {
+      "date": "2020-02",
+      "title": "Strong Jahn-Teller effect at NiO<inf>4</inf> tetrahedron in NiCo<inf>2</inf>O<inf>4</inf> spinel",
+      "journal": "PHYSICS LETTERS A"
+    },
+    {
+      "date": "2020-01",
+      "title": "Phosphorus Regulated Cobalt Oxide@Nitrogen‐Doped Carbon Nanowires for Flexible Quasi‐Solid‐State Supercapacitors",
+      "journal": "SMALL"
+    },
+    {
+      "date": "2020-01",
+      "title": "Metal–organic-framework-derived hierarchical Co/CoP-decorated nanoporous carbon polyhedra for robust high-energy storage hybrid supercapacitors",
+      "journal": "DALTON TRANSACTIONS"
+    },
+    {
+      "date": "2020-01",
+      "title": "Multicolor emissive carbon dot with solvatochromic behavior across the entire visible spectrum",
+      "journal": "CARBON"
+    },
+    {
+      "date": "2020-01",
+      "title": "Review on Recent Progress in the Development of Tungsten Oxide Based Electrodes for Electrochemical Energy Storage",
+      "journal": "CHEMSUSCHEM"
+    },
+    {
+      "date": "2019-12",
+      "title": "Phosphorus dual-site driven CoS2@S, N co-doped porous carbon nanosheets for flexible quasi-solid-state supercapacitors",
+      "journal": "JOURNAL OF MATERIALS CHEMISTRY A"
+    },
+    {
+      "date": "2019-11",
+      "title": "New insight into the effect of fluorine doping and oxygen vacancies on electrochemical performance of Co<inf>2</inf>MnO<inf>4</inf> for flexible quasi-solid-state asymmetric supercapacitors",
+      "journal": "Energy Storage Materials"
+    },
+    {
+      "date": "2019-10",
+      "title": "Cu2O-Cu2Se Mixed-Phase Nanoflake Arrays: pH-Universal Hydrogen Evolution Reactions with Ultralow Overpotential",
+      "journal": "CHEMELECTROCHEM"
+    },
+    {
+      "date": "2019-08",
+      "title": "Structural, chemical, and electrical parameters of Au/MoS2/n-GaAs metal/2D/3D hybrid heterojunction",
+      "journal": "JOURNAL OF COLLOID AND INTERFACE SCIENCE"
+    },
+    {
+      "date": "2019-07",
+      "title": "Imaging and Differentiation of Retinal Ganglion Cells in Ex Vivo Experimental Optic Nerve Degeneration by Differential Interference Contrast Microscopy",
+      "journal": "CURRENT EYE RESEARCH"
+    },
+    {
+      "date": "2019-06",
+      "title": "Preparation of graphene sponge with mechanical stability for compressible supercapacitor electrode",
+      "journal": "JMST Advances"
+    },
+    {
+      "date": "2019-06",
+      "title": "Direct growth of WO3 nanostructures on multi-walled carbon nanotubes for high-performance flexible all-solid-state asymmetric supercapacitor",
+      "journal": "ELECTROCHIMICA ACTA"
+    },
+    {
+      "date": "2019-05",
+      "title": "Phosphorous-containing oxygen-deficient cobalt molybdate as an advanced electrode material for supercapacitors",
+      "journal": "Energy Storage Materials"
+    },
+    {
+      "date": "2019-04",
+      "title": "Phonon-assisted carrier transport through a lattice-mismatched interface",
+      "journal": "NPG ASIA MATERIALS"
+    },
+    {
+      "date": "2019-03",
+      "title": "Energy-Dependent Spectral Analysis of Photon-Assisted Carrier Transport at Resonance in Graphene Oxide",
+      "journal": "ADVANCED OPTICAL MATERIALS"
+    },
+    {
+      "date": "2019-02",
+      "title": "Impedance Variation on Lattice Misoriented Few-Layer Graphene Via Layer Decoupling",
+      "journal": "IEEE TRANSACTIONS ON NANOTECHNOLOGY"
+    },
+    {
+      "date": "2019-02",
+      "title": "Nickel hydroxide/chemical vapor deposition-grown graphene/nickel hydroxide/nickel foam hybrid electrode for high performance supercapacitors",
+      "journal": "ELECTROCHIMICA ACTA"
+    },
+    {
+      "date": "2019-01",
+      "title": "Environmentally benign and cost-eﬀective synthesis of water soluble red light emissive gold nanoclusters: selective and ultra-sensitive detection of mercuric ions",
+      "journal": "NEW JOURNAL OF CHEMISTRY"
+    },
+    {
+      "date": "2019-01",
+      "title": "Phosphorus-Mediated MoS2 Nanowires as a HighPerformance Electrode Material for Quasi-Solid-State Sodium-Ion Intercalation Supercapacitors",
+      "journal": "SMALL"
+    },
+    {
+      "date": "2018-12",
+      "title": "Hydrous nickel sulphide nanoparticle decorated 3D graphene foam electrodes for enhanced supercapacitive performance of an asymmetric device",
+      "journal": "NEW JOURNAL OF CHEMISTRY"
+    },
+    {
+      "date": "2018-10",
+      "title": "High-Performance Flexible Quasi-Solid-State Supercapacitors Realized by Molybdenum Dioxide@ Nitrogen-Doped Carbon and Copper Cobalt Sulfide Tubular Nanostructures",
+      "journal": "Advanced Science"
+    },
+    {
+      "date": "2018-09",
+      "title": "Carrier Transport Properties of MoS2 Asymmetric Gas Sensor Under Charge Transfer-Based Barrier Modulation",
+      "journal": "NANOSCALE RESEARCH LETTERS"
+    },
+    {
+      "date": "2018-09",
+      "title": "Determination of the molecular assembly of actin and actin-binding proteins using photoluminescence",
+      "journal": "COLLOIDS AND SURFACES B-BIOINTERFACES"
+    },
+    {
+      "date": "2018-07",
+      "title": "Few- layered a-MoTe2 Schottky junction for a high sensitivity chemical- vapour sensor",
+      "journal": "JOURNAL OF MATERIALS CHEMISTRY C"
+    },
+    {
+      "date": "2018-07",
+      "title": "Artificial Rod and Cone Photoreceptors with Human-Like Spectral Sensitivities",
+      "journal": "ADVANCED MATERIALS"
+    },
+    {
+      "date": "2018-07",
+      "title": "Flexible radio frequency interconnect of reduced graphene oxide",
+      "journal": "2D MATERIALS"
+    },
+    {
+      "date": "2018-05",
+      "title": "Stacked Porous Iron-Doped Nickel Cobalt Phosphide Nanoparticle: An Efficient and Stable Water Splitting Electrocatalyst",
+      "journal": "ACS SUSTAINABLE CHEMISTRY & ENGINEERING"
+    },
+    {
+      "date": "2018-03",
+      "title": "Effect of cation substitution on the pseudocapacitive performance of spinel cobaltite MCo2O4 (M = Mn, Ni, Cu, and Co)dagger",
+      "journal": "JOURNAL OF MATERIALS CHEMISTRY A"
+    },
+    {
+      "date": "2018-03",
+      "title": "Vertical and In-Plane Current Devices Using NbS2/n-MoS2 van der Waals Schottky Junction and Graphene Contact",
+      "journal": "NANO LETTERS"
+    },
+    {
+      "date": "2018-03",
+      "title": "Facile approach to synthesize highly fluorescent multicolor emissive carbon dots via surface functionalization for cellular imaging",
+      "journal": "JOURNAL OF COLLOID AND INTERFACE SCIENCE"
+    },
+    {
+      "date": "2018-03",
+      "title": "Facile hydrothermal synthesis of carbon-coated cobalt ferrite spherical nanoparticles as a potential negative electrode for flexible supercapattery",
+      "journal": "JOURNAL OF COLLOID AND INTERFACE SCIENCE"
+    },
+    {
+      "date": "2018-02",
+      "title": "Review of contact-resistance analysis in nano-material",
+      "journal": "JOURNAL OF MECHANICAL SCIENCE AND TECHNOLOGY"
+    },
+    {
+      "date": "2018-01",
+      "title": "Redox Additive-Improved Electrochemically and Structurally Robust Binder-Free Nickel Pyrophosphate Nanorods as Superior Cathode for Hybrid Supercapacitors",
+      "journal": "ACS APPLIED MATERIALS & INTERFACES"
+    },
+    {
+      "date": "2018-01",
+      "title": "Conceptual design of three-dimensional CoN/Ni3N-coupled nanograsses integrated on N-doped carbon to serve as efficient and robust water splitting electrocatalysts",
+      "journal": "JOURNAL OF MATERIALS CHEMISTRY A"
+    },
+    {
+      "date": "2018-01",
+      "title": "Cobalt carbonate hydroxides as advanced battery-type materials for supercapatteries: Influence of morphology on performance",
+      "journal": "ELECTROCHIMICA ACTA"
+    },
+    {
+      "date": "2018-01",
+      "title": "Binder-free cobalt phosphate one-dimensional nanograsses as ultrahigh-performance cathode material for hybrid supercapacitor applications",
+      "journal": "JOURNAL OF POWER SOURCES"
+    },
+    {
+      "date": "2017-11",
+      "title": "Carrier scattering in quasi-free standing graphene on hexagonal boron nitride",
+      "journal": "NANOSCALE"
+    },
+    {
+      "date": "2017-09",
+      "title": "An asymmetric supercapacitor with excellent cycling performance realized by hierarchical porous NiGa2O4 nanosheets",
+      "journal": "JOURNAL OF MATERIALS CHEMISTRY A"
+    },
+    {
+      "date": "2017-08",
+      "title": "Contact Effect of ReS<inf>2</inf>/Metal Interface",
+      "journal": "ACS APPLIED MATERIALS & INTERFACES"
+    },
+    {
+      "date": "2017-07",
+      "title": "Honeycomb-Like Interconnected Network of Nickel Phosphide Heteronanoparticles with Superior Electrochemical Performance for Supercapacitors",
+      "journal": "ACS APPLIED MATERIALS & INTERFACES"
+    },
+    {
+      "date": "2017-07",
+      "title": "Humidity-Tolerant Single-Stranded DNA-Functionalized Graphene Probe for Medical Applications of Exhaled Breath Analysis",
+      "journal": "ADVANCED FUNCTIONAL MATERIALS"
+    },
+    {
+      "date": "2017-04",
+      "title": "Temperature influenced chemical growth of hydrous copper oxide/hydroxide thin film electrodes for high performance supercapacitors",
+      "journal": "JOURNAL OF ALLOYS AND COMPOUNDS"
+    },
+    {
+      "date": "2017-03",
+      "title": "Transition of a nanomechanical Sharvin oscillator towards the chaotic regime",
+      "journal": "NEW JOURNAL OF PHYSICS"
+    },
+    {
+      "date": "2017-02",
+      "title": "3D yolk-shell NiGa2S4 microspheres confined with nanosheets for high performance supercapacitors",
+      "journal": "JOURNAL OF MATERIALS CHEMISTRY A"
+    },
+    {
+      "date": "2017-02",
+      "title": "Controllable sulfuration engineered NiO nanosheets with enhanced capacitance for high rate supercapacitors",
+      "journal": "JOURNAL OF MATERIALS CHEMISTRY A"
+    },
+    {
+      "date": "2017-02",
+      "title": "Hierarchical MnCo-layered double hydroxides@Ni(OH)(2) core-shell heterostructures as advanced electrodes for supercapacitors",
+      "journal": "JOURNAL OF MATERIALS CHEMISTRY A"
+    },
+    {
+      "date": "2017-01",
+      "title": "Amorphous Phosphorus-Incorporated Cobalt Molybdenum Sulfide on Carbon Cloth: An Efficient and Stable Electrocatalyst for Enhanced Overall Water Splitting over Entire pH Values",
+      "journal": "ACS APPLIED MATERIALS & INTERFACES"
+    },
+    {
+      "date": "2017-01",
+      "title": "Hierarchical manganese cobalt sulfide core-shell nanostructures for high-performance asymmetric supercapacitors",
+      "journal": "JOURNAL OF POWER SOURCES"
+    },
+    {
+      "date": "2016-11",
+      "title": "Observation of scattering parameters for bandgap-tuned graphene oxide under 488 nm illumination",
+      "journal": "CARBON"
+    },
+    {
+      "date": "2016-10",
+      "title": "PolyHIPE Derived Freestanding 3D Carbon Foam for Cobalt Hydroxide Nanorods Based High Performance Supercapacitor",
+      "journal": "SCIENTIFIC REPORTS"
+    },
+    {
+      "date": "2016-09",
+      "title": "A binder free synthesis of 1D PANI and 2D MoS2 nanostructured hybrid composite electrodes by the electrophoretic deposition (EPD) method for supercapacitor application",
+      "journal": "RSC ADVANCES"
+    },
+    {
+      "date": "2016-09",
+      "title": "Reduced graphene oxide enwrapped phosphors for long-term thermally stable phosphor converted white light emitting diodes",
+      "journal": "SCIENTIFIC REPORTS"
+    },
+    {
+      "date": "2016-08",
+      "title": "A Reduced Graphene Oxide Based Radio Frequency Glucose Sensing Device Using Multi-Dimensional Parameters",
+      "journal": "MICROMACHINES"
+    },
+    {
+      "date": "2016-08",
+      "title": "Enhanced Non-enzymatic amperometric sensing of glucose using Co(OH)(2) nanorods deposited on a three dimensional graphene network as an electrode material",
+      "journal": "MICROCHIMICA ACTA"
+    },
+    {
+      "date": "2016-05",
+      "title": "All-solid-state Flexible Micro Hybrid-capacitors Based on Cobalt Hydroxide and Reduced Graphene Oxide Electrodes",
+      "journal": "RSC ADVANCES"
+    },
+    {
+      "date": "2016-04",
+      "title": "Sensitivity Enhancement of Bead-based Electrochemical Impedance Spectroscopy (BEIS) biosensor by electric field-focusing in microwells",
+      "journal": "BIOSENSORS & BIOELECTRONICS"
+    },
+    {
+      "date": "2016-04",
+      "title": "Scalable fabrication of micron-scale graphene nanomeshes for high-performance supercapacitor applications",
+      "journal": "ENERGY & ENVIRONMENTAL SCIENCE"
+    },
+    {
+      "date": "2016-04",
+      "title": "Surface plasmon enhancement of photoluminescence in photo-chemically synthesized graphene quantum dot and Au nanosphere",
+      "journal": "NANO RESEARCH"
+    },
+    {
+      "date": "2016-04",
+      "title": "Fabrication of ultra-high energy and power asymmetric supercapacitors based on hybrid 2D MoS2/Graphene oxide composite electrodes: A binder free approach",
+      "journal": "RSC ADVANCES"
+    },
+    {
+      "date": "2016-03",
+      "title": "High-concentration dispersion of exfoliated MoS2 sheet stabilized by freeze-dried silk fibroin powder",
+      "journal": "NANO RESEARCH"
+    },
+    {
+      "date": "2016-03",
+      "title": "Fundamental Monomeric Biomaterial Diagnostics by Radio-frequency Signal Analysis",
+      "journal": "BIOSENSORS & BIOELECTRONICS"
+    },
+    {
+      "date": "2016-02",
+      "title": "Tension assisted metal transfer of graphene for Schottky diodes onto wafer scale substrates",
+      "journal": "NANOTECHNOLOGY"
+    },
+    {
+      "date": "2016-02",
+      "title": "Graphene-Iodine Nanocomposites Highly Potent Bacterial Inhibitors that are Bio-compatible with Human Cells",
+      "journal": "SCIENTIFIC REPORTS"
+    },
+    {
+      "date": "2016-01",
+      "title": "Static and Dynamic Performance of Complementary Inverters Based on Nanosheet α-MoTe2 p-Channel and MoS2 n-Channel Transistors",
+      "journal": "ACS NANO"
+    },
+    {
+      "date": "2016-01",
+      "title": "Copper Hydroxide Nanorods Decorated Porous Graphene Foam Electrodes for Non-enzymatic Glucose Sensing",
+      "journal": "ELECTROCHIMICA ACTA"
+    },
+    {
+      "date": "2015-12",
+      "title": "Impact of different nanostructures of a PEDOT decorated 3D multilayered graphene foam by chemical methods on supercapacitive performance",
+      "journal": "RSC ADVANCES"
+    },
+    {
+      "date": "2015-11",
+      "title": "Enhanced nonlinear optical characteristics of copper-ion-doped double crossover DNAs",
+      "journal": "NANOSCALE"
+    },
+    {
+      "date": "2015-10",
+      "title": "Sensitivity Enhancement in Nickel Hydroxide/3DGraphene as Enzymeless Glucose Detection",
+      "journal": "ELECTROANALYSIS"
+    },
+    {
+      "date": "2015-09",
+      "title": "Phosphorus-Doped Graphene Oxide Layer as a Highly Efficient Flame Retardant",
+      "journal": "CHEMISTRY-A EUROPEAN JOURNAL"
+    },
+    {
+      "date": "2015-07",
+      "title": "Efficient Direct Reduction of Graphene Oxide by Silicon Substrate",
+      "journal": "SCIENTIFIC REPORTS"
+    },
+    {
+      "date": "2015-06",
+      "title": "Tunable near white light photoluminescence of lanthanide ion (Dy3+, Eu3+ and Tb3+) doped DNA lattices",
+      "journal": "RSC ADVANCES"
+    },
+    {
+      "date": "2015-05",
+      "title": "Layer dependence and gas molecule absorption property in MoS2 Schottky diode with asymmetric metal contacts",
+      "journal": "SCIENTIFIC REPORTS"
+    },
+    {
+      "date": "2015-04",
+      "title": "Molecular dynamics simulations of nanoscale and sub-nanoscale friction behavior between graphene and a silicon tip : Analysis of tip apex motion",
+      "journal": "NANOSCALE"
+    },
+    {
+      "date": "2015-03",
+      "title": "Tunable wide blue photoluminescence with europium decorated graphene",
+      "journal": "JOURNAL OF MATERIALS CHEMISTRY C"
+    },
+    {
+      "date": "2015-03",
+      "title": "Nanostructured pseudocapacitive materials decorated 3D graphene foam electrodes for next generation supercapacitors",
+      "journal": "NANOSCALE"
+    },
+    {
+      "date": "2014-12",
+      "title": "Hysteresis control of nanoelectromechanical resonator with electrothermal power",
+      "journal": "ELECTRONICS LETTERS"
+    },
+    {
+      "date": "2014-12",
+      "title": "Modified physico-chemical properties and supercapacitive performance via DMSO inducement to PEDOT:PSS active layer",
+      "journal": "ORGANIC ELECTRONICS"
+    },
+    {
+      "date": "2014-11",
+      "title": "Controlled electrochemical growth of Co(OH)2 flakes on 3D multilayered graphene foam for high performance supercapacitors",
+      "journal": "JOURNAL OF MATERIALS CHEMISTRY A"
+    },
+    {
+      "date": "2014-11",
+      "title": "Label-free glucose sensing with temperature modulation",
+      "journal": "CURRENT APPLIED PHYSICS"
+    },
+    {
+      "date": "2014-10",
+      "title": "Top and back gate molybdenum disulfide transistors coupled for logic and photo-inverter operation",
+      "journal": "JOURNAL OF MATERIALS CHEMISTRY C"
+    },
+    {
+      "date": "2014-09",
+      "title": "ssDNA를 이용한 그래핀 가스 센서",
+      "journal": "센서학회지"
+    },
+    {
+      "date": "2014-08",
+      "title": "Crack-Release Transfer Method of Wafer-Scale Grown Graphene Onto Large-Area Substrates",
+      "journal": "ACS APPLIED MATERIALS & INTERFACES"
+    },
+    {
+      "date": "2014-05",
+      "title": "Detection of Retinitis Pigmentosa by Differential Interference Contrast Microscopy",
+      "journal": "PLOS ONE"
+    },
+    {
+      "date": "2014-05",
+      "title": "Enhanced Symmetric Supercapacitive Performance of Co(OH)(2) Nanorods Decorated Conducting Porous Graphene Foam Electrodes",
+      "journal": "ELECTROCHIMICA ACTA"
+    },
+    {
+      "date": "2014-04",
+      "title": "Post-heating effects on the physical and electrochemical capacitive properties of reduced graphene oxide paper",
+      "journal": "JOURNAL OF MATERIALS CHEMISTRY A"
+    },
+    {
+      "date": "2014-04",
+      "title": "Bath temperature impact on morphological evolution of Ni(OH)(2) thin films and their supercapacitive behaviour",
+      "journal": "BULLETIN OF MATERIALS SCIENCE"
+    },
+    {
+      "date": "2014-04",
+      "title": "High-performance supercapacitor electrode based on a polyaniline nanofibers/3D graphene framework as an efficient charge transporter",
+      "journal": "JOURNAL OF MATERIALS CHEMISTRY A"
+    },
+    {
+      "date": "2014-04",
+      "title": "Radio frequency based label-free detection of glucose",
+      "journal": "BIOSENSORS & BIOELECTRONICS"
+    },
+    {
+      "date": "2014-03",
+      "title": "A facile synthesis of hierarchical α-MnO2 nanofibers on 3D-graphene foam for supercapacitor application",
+      "journal": "MATERIALS LETTERS"
+    },
+    {
+      "date": "2014-03",
+      "title": "Unconventional Terahertz Carrier Relaxation in Graphene Oxide: Observation of Enhanced Auger Recombination Due to Defect Saturation",
+      "journal": "ACS NANO"
+    },
+    {
+      "date": "2014-02",
+      "title": "Enhanced supercapacitive performance of chemically grown cobalt-nickel hydroxides on three-dimensional graphene foam electrodes",
+      "journal": "ACS APPLIED MATERIALS & INTERFACES"
+    }
+  ],
+  "awards": [
+    {
+      "title": "nanoMan/ICMTE Best Paper Award",
+      "contents": "nanoMan/ICMTE 2026",
+      "date": "2026-04-13"
+    },
+    {
+      "title": "한국센서학회 우수 발표 논문상",
+      "contents": "한국센서학회 2026년도 춘계학술대회",
+      "date": "2026-03-19"
+    },
+    {
+      "title": "한국 생산조학회 Young Researcher Award",
+      "contents": "2025 한국생산제조학회 추계학술대회",
+      "date": "2025-12-10"
+    },
+    {
+      "title": "한국 생산제조학회 논문 우수발표상",
+      "contents": "2025 한국생산제조학회 추계학술대회",
+      "date": "2025-07-18"
+    },
+    {
+      "title": "한국 생산제조학회 Best Student Presentation Award",
+      "contents": "한국생산제조학회 2024 추계학술대회",
+      "date": "2024-12-12"
+    },
+    {
+      "title": "한국 생산제조학회 논문 우수발표상",
+      "contents": "한국생산제조학회 2024 추계학술대회",
+      "date": "2024-12-12"
+    },
+    {
+      "title": "한국센서학회 우수 발표 논문상",
+      "contents": "한국센서학회 2024년도 추계학술대회",
+      "date": "2024-09-06"
+    },
+    {
+      "title": "한국 생산제조학회 논문 우수발표상",
+      "contents": "한국 생산제조학회 2023년 추계학술대회",
+      "date": "2024-07-18"
+    },
+    {
+      "title": "한국 생산제조학회 논문 우수발표상",
+      "contents": "한국 생산제조학회 2023년 추계학술대회",
+      "date": "2024-07-18"
+    },
+    {
+      "title": "2023학년도 우수연구업적상 (연세대학교)",
+      "contents": "우수업적교수상 (연구부문)",
+      "date": "2024-04-26"
+    },
+    {
+      "title": "한국센서학회 우수 발표 논문상",
+      "contents": "한국센서학회 2023년도 추계학술대회",
+      "date": "2023-10-13"
+    },
+    {
+      "title": "2022학년도 최우수연구업적상 (연세대학교)",
+      "contents": "우수업적교수상 (연구부문)",
+      "date": "2023-01-22"
+    },
+    {
+      "title": "2021학년도 우수연구업적상 (연세대학교)",
+      "contents": "우수업적교수상 (연구부문)",
+      "date": "2022-01-22"
+    },
+    {
+      "title": "한림원 정회원 선출",
+      "contents": "한국 과학기술 한림원 정회원 선출",
+      "date": "2022-01-01"
+    },
+    {
+      "title": "2020학년도 우수연구업적상 (연세대학교)",
+      "contents": "우수업적교수상 (연구부문)",
+      "date": "2021-01-22"
+    },
+    {
+      "title": "2019학년도 우수연구업적상 (연세대학교)",
+      "contents": "우수업적교수상 (연구부문)",
+      "date": "2020-01-22"
+    },
+    {
+      "title": "2018학년도 우수연구업적상 (연세대학교)",
+      "contents": "우수업적교수상 (연구부문)",
+      "date": "2019-05-16"
+    },
+    {
+      "title": "IAAM Scientist Award",
+      "contents": "International Association of Advanced materials Medal for the year 2016 (IAAMM-2016)",
+      "date": "2018-10-22"
+    },
+    {
+      "title": "Research Award",
+      "contents": "APSMR (Asia pacific society for material research)",
+      "date": "2018-02-09"
+    },
+    {
+      "title": "Impact research Award",
+      "contents": "Advanced Materials World Congress",
+      "date": "2018-02-04"
+    },
+    {
+      "title": "2017학년도 우수연구업적상 (연세대학교)",
+      "contents": "우수업적교수상 (연구부문)",
+      "date": "2018-01-24"
+    },
+    {
+      "title": "KSMTE Young Engineering Award",
+      "contents": "우수연구",
+      "date": "2017-10-12"
+    },
+    {
+      "title": "2016학년도 우수연구업적상 (연세대학교)",
+      "contents": "우수업적교수상 (연구부문)",
+      "date": "2017-02-06"
+    },
+    {
+      "title": "Research Award",
+      "contents": "ICMTech-2016 (International Conference on Materials Science& Technology)",
+      "date": "2016-03-01"
+    },
+    {
+      "title": "International Association of Advanced Materials Scientist Award - 2015",
+      "contents": "Scientist Award",
+      "date": "2015-08-23"
+    },
+    {
+      "title": "ISAMR Outstanding Achievement 2015",
+      "contents": "업적상 AWARD",
+      "date": "2015-08-19"
+    },
+    {
+      "title": "Research Award",
+      "contents": "ISAMR (International Symposium for Advanced Materials Research)",
+      "date": "2015-08-16"
+    },
+    {
+      "title": "KMEMS 우수논문상",
+      "contents": "우수 논문상",
+      "date": "2012-04-04"
+    },
+    {
+      "title": "2012 한국을 이끄는 혁신 리더",
+      "contents": "혁신 연구 부문",
+      "date": "2012-02-07"
+    },
+    {
+      "title": "대한민국 파워 브레인 대상 2011",
+      "contents": "우수 연구",
+      "date": "2011-06-14"
+    }
+  ],
+  "conferences": [
+    {
+      "title": "Low-temperature charge transport in disordered graphene-derived networks",
+      "conference": "2026 한국생산제조학회 춘계학술대회",
+      "period": "2026.07.14~2026.07.17"
+    },
+    {
+      "title": "Turning Weak Rayleigh Scattering into Learnable Optical Fingerprints for Non-Contact Molecular Diagnosis",
+      "conference": "2026 한국생산제조학회 춘계학술대회",
+      "period": "2026.07.14~2026.07.17"
+    },
+    {
+      "title": "Optimization of the Fabrication Process for MoS2/rGO Gas Sensing Materials",
+      "conference": "2026 한국생산제조학회 춘계학술대회",
+      "period": "2026.07.14~2026.07.17"
+    },
+    {
+      "title": "Compositional tuning and electrochemical properties of MOF-derived bimetallic MnMo oxide electrodes for supercapacitors",
+      "conference": "2026 한국생산제조학회 춘계학술대회",
+      "period": "2026.07.14~2026.07.17"
+    },
+    {
+      "title": "Classification of Potassium Ion Concentrations in Complex Media Using a Deep Learning-Assisted rGO Multi-Channel Biosensor",
+      "conference": "2026 한국생산제조학회 춘계학술대회",
+      "period": "2026.07.14~2026.07.17"
+    },
+    {
+      "title": "CTAB-Induced Electrical Conductivity Enhancement in Cobalt-Based Metal–Organic Frameworks for High-Performance Supercapacitor Applications",
+      "conference": "2026 한국생산제조학회 춘계학술대회",
+      "period": "2026.07.14~2026.07.17"
+    },
+    {
+      "title": "Scalable Array Engineering of Flexible Ionic Thermoelectrics for Maximized Waste Heat Harvesting",
+      "conference": "2026 한국생산제조학회 춘계학술대회",
+      "period": "2026.07.14~2026.07.17"
+    },
+    {
+      "title": "Effects of Processing Conditions and GO Addition on Pore Structure in Polymer Foam Manufacturing",
+      "conference": "2026 한국생산제조학회 춘계학술대회",
+      "period": "2026.07.14~2026.07.17"
+    },
+    {
+      "title": "Hierarchical Deep Learning Framework for Analyzing Complex Molecular Signals",
+      "conference": "2026 한국생산제조학회 춘계학술대회",
+      "period": "2026.07.14~2026.07.17"
+    },
+    {
+      "title": "Process-integrated structural control in MoS2-based sensor platforms",
+      "conference": "2026 한국생산제조학회 춘계학술대회",
+      "period": "2026.07.14~2026.07.17"
+    },
+    {
+      "title": "Graphene-based sensor array for respiratory viral protein detection",
+      "conference": "2026 한국생산제조학회 춘계학술대회",
+      "period": "2026.07.14~2026.07.17"
+    },
+    {
+      "title": "AI-Integrated Graphene Sensor for High-Precision Molecular Identification",
+      "conference": "NANO KOREA 2026",
+      "period": "2026.07.08~2026.07.10"
+    },
+    {
+      "title": "Fabrication-Oriented Design of Phase-Engineered MoS₂@rGO Hybrid Electrodes via Controlled Reduction",
+      "conference": "2026 nanoMan-ICMTE",
+      "period": "2026.04.12~2026.04.15"
+    },
+    {
+      "title": "rGO–MXene Heterostructure Sensor for Sensitive Biomarker Detection",
+      "conference": "2026 한국센서학회 춘계학술대회",
+      "period": "2026.03.17~2026.03.19"
+    },
+    {
+      "title": "A Machine Learning Framework for Robust Characterization of Complex Human Biofluids via Compensated Spectral Analysis",
+      "conference": "2026 한국센서학회 춘계학술대회",
+      "period": "2026.03.17~2026.03.19"
+    },
+    {
+      "title": "Enhanced Stability in Microwave Biosensing Using an Interdigitated Electrode",
+      "conference": "2026 한국센서학회 춘계학술대회",
+      "period": "2026.03.17~2026.03.19"
+    },
+    {
+      "title": "Spectral Inference from Diffraction Fields Using a Graphene Diffractive Lens",
+      "conference": "2026 한국센서학회 춘계학술대회",
+      "period": "2026.03.17~2026.03.19"
+    },
+    {
+      "title": "Spectral Composition Estimation from Two-Dimensional Diffraction Patterns Using a Graphene Fresnel Lens",
+      "conference": "2026 한국센서학회 춘계학술대회",
+      "period": "2026.03.17~2026.03.19"
+    },
+    {
+      "title": "Intelligent optical system with focus control",
+      "conference": "ISMNM 2025 (The 3rd International Symposium of Micro & Nano Manufacturing)",
+      "period": "2025.12.09~2025.12.12"
+    },
+    {
+      "title": "High-Performance Thermal Runaway Barrier based on Phosphorus-Doped Graphene Oxide Reinforced polymer for Lithium-Ion Batteries",
+      "conference": "2025 한국생산제조학회 추계학술대회",
+      "period": "2025.12.09~2025.12.12"
+    },
+    {
+      "title": "Systematic Design of Flexible Ionic Thermoelectric Modules Using PAM Hydrogel Electrolytes",
+      "conference": "2025 한국생산제조학회 추계학술대회",
+      "period": "2025.12.09~2025.12.12"
+    },
+    {
+      "title": "Flexible Ionic Thermoelectric Modules Using PAM Hydrogel Electrolytes for Energy Harvesting",
+      "conference": "2025 한국생산제조학회 추계학술대회",
+      "period": "2025.12.09~2025.12.12"
+    },
+    {
+      "title": "A Systematic De-embedding Framework for Parasitic Effects Compensation in High-frequency Sensing Platforms",
+      "conference": "2025 한국생산제조학회 추계학술대회",
+      "period": "2025.12.09~2025.12.12"
+    },
+    {
+      "title": "Data-Driven High-Frequency Characterization of Biofluid Signatures on 2D Carbon Sensors",
+      "conference": "2025 한국생산제조학회 추계학술대회",
+      "period": "2025.12.09~2025.12.12"
+    },
+    {
+      "title": "Real-Time Prediction of Laser Wavelength Ratios Using a Graphene Fresnel Lens and a 1D Convolutional Neural Network",
+      "conference": "2025 한국센서학회 추계학술대회",
+      "period": "2025.10.22~2025.10.24"
+    },
+    {
+      "title": "AI-Driven Comparative Analysis of Sensing Performance in Graphene- and MoS₂-Based Channel Materials",
+      "conference": "2025 한국센서학회 추계학술대회",
+      "period": "2025.10.22~2025.10.22"
+    },
+    {
+      "title": "Dynamic Control of Thermal Reduction Kinetics in Carbon-Based Materials for Stable Biosensor Interfaces",
+      "conference": "2025 한국센서학회 추계학술대회",
+      "period": "2025.10.22~2025.10.24"
+    },
+    {
+      "title": "Effective Room-Temperature Gas Molecular Sensor for Harmful Gas Detection",
+      "conference": "2025 한국센서학회 추계학술대회",
+      "period": "2025.10.22~2025.10.24"
+    },
+    {
+      "title": "Self-Feature Learning Multi-Target Inference Model",
+      "conference": "2025 한국센서학회 추계학술대회",
+      "period": "2025.10.22~2025.10.24"
+    },
+    {
+      "title": "Chemical Vapor Sensing with High Efficiency Using Controlled Reduced TMD@rGO Composite Electrodes",
+      "conference": "2025 한국센서학회 추계학술대회",
+      "period": "2025.10.22~2025.10.24"
+    },
+    {
+      "title": "Development of a Fabrication Process of MOFderived Co@CoMoO₄ Nanosheets for Electrochemical Sensor Applications",
+      "conference": "2025 한국센서학회 추계학술대회",
+      "period": "2025.10.22~2025.10.24"
+    },
+    {
+      "title": "High-Frequency Sensing of Human-Derived Fluids via Conductive 2D Carbon Interfaces",
+      "conference": "2025 한국센서학회 추계학술대회",
+      "period": "2025.10.22~2025.10.24"
+    },
+    {
+      "title": "High-Sensitivity Sensing of Aβ42 Monomers via MoS2/rGO Hybrid Nanostructures",
+      "conference": "2025 한국센서학회 추계학술대회",
+      "period": "2025.10.22~2025.10.24"
+    },
+    {
+      "title": "Temporal Profiling of Thermal Reduction in Carbon-Based Materials for Stable Sensor Interfaces",
+      "conference": "2025 한국생산제조학회 춘계학술대회",
+      "period": "2025.07.16~2025.07.19"
+    },
+    {
+      "title": "High-Performance Chemical Vapor Sensors via Partially Reduced TMD–rGO Composite Electrodes",
+      "conference": "2025 한국생산제조학회 춘계학술대회",
+      "period": "2025.07.16~2025.07.19"
+    },
+    {
+      "title": "Effect of MXene to Fe2O3-MOF Ratio on Electrochemical Properties of Roll-Coated Electrodes",
+      "conference": "2025 한국생산제조학회 춘계학술대회",
+      "period": "2025.07.16~2025.07.19"
+    },
+    {
+      "title": "Quantitative Analysis of High-Frequency Electromagnetic Response Characteristics via Frequency Filament-Induced Alignment of Carbon-Based Sensing Materials",
+      "conference": "2025 한국생산제조학회 춘계학술대회",
+      "period": "2025.07.16~2025.07.19"
+    },
+    {
+      "title": "Characterization of carbon–MoS2 composites and protein detection performance with furnace-based reduction time variation",
+      "conference": "2025 한국생산제조학회 춘계학술대회",
+      "period": "2025.07.16~2025.07.19"
+    },
+    {
+      "title": "Diagnostic System for RGB Light Output Prediction Using Artificial Neural Networks",
+      "conference": "2025 한국생산제조학회 춘계학술대회",
+      "period": "2025.07.16~2025.07.19"
+    },
+    {
+      "title": "Ionic Thermoelectric Supercapacitor Based on Hydrogel Electrolytes for Wearable Energy Harvesting",
+      "conference": "2025 한국생산제조학회 춘계학술대회",
+      "period": "2025.07.16~2025.07.19"
+    },
+    {
+      "title": "Tailoring Cu3P Nanostructures for Integrated Electrochemical Energy Conversion and Storage",
+      "conference": "2025 한국생산제조학회 춘계학술대회",
+      "period": "2025.07.16~2025.07.19"
+    },
+    {
+      "title": "Engineering bimetallic MOF-derived Ni3S2/Co9S8 composite electrodes for energy storage properties enhancement",
+      "conference": "2025 한국생산제조학회 춘계학술대회",
+      "period": "2025.07.16~2025.07.19"
+    },
+    {
+      "title": "Multi-structured deep learning models for electrochemical sensor integration",
+      "conference": "2025 한국생산제조학회 춘계학술대회",
+      "period": "2025.07.16~2025.07.19"
+    },
+    {
+      "title": "High-Sensitivity Enzymeless Glucose Detection Using 3D-Graphene/Nickel Hydroxide Composite Electrode",
+      "conference": "2025 한국센서학회 춘계학술대회",
+      "period": "2025.04.02~2025.04.03"
+    },
+    {
+      "title": "Oxygen Vacancy Engineering for Enhanced Nonenzymatic Glucose Sensing",
+      "conference": "2025 한국센서학회 춘계학술대회",
+      "period": "2025.04.02~2025.04.03"
+    },
+    {
+      "title": "Surface modification of PDMS microstructures via plasma treatment for mold applications",
+      "conference": "2025 한국센서학회 춘계학술대회",
+      "period": "2025.04.02~2025.04.03"
+    },
+    {
+      "title": "Deep Learning with Image-to-Vector Conversion for Ultra-Small Optical Sensors",
+      "conference": "2025 한국센서학회 춘계학술대회",
+      "period": "2025.04.02~2025.04.03"
+    },
+    {
+      "title": "Optimization and stability analysis for reduced graphene oxide sensing ground layer for functionalized sensors",
+      "conference": "2025 한국센서학회 춘계학술대회",
+      "period": "2025.04.02~2025.04.03"
+    },
+    {
+      "title": "Carbon-based gas sensor with stabilized functional groups",
+      "conference": "2025 한국센서학회 춘계학술대회",
+      "period": "2025.04.02~2025.04.03"
+    },
+    {
+      "title": "Machine Learning-Based Single Gas Detection Technology for Complex Molecules",
+      "conference": "2025 한국센서학회 춘계학술대회",
+      "period": "2025.04.02~2025.04.03"
+    },
+    {
+      "title": "Design of Deep Learning Model for Multi-Detection from Single-Sensing Data",
+      "conference": "2025 한국센서학회 춘계학술대회",
+      "period": "2025.04.02~2025.04.03"
+    },
+    {
+      "title": "Analyzing Molecular Photosensor Laser Source",
+      "conference": "2025년 마이크로나노시스템학회 춘계학술대회 (제27회 KMEMS 학술대회)",
+      "period": "2025.03.26~2025.03.28"
+    },
+    {
+      "title": "Application of Artificial Regression Models for Harmful Gas Detection",
+      "conference": "2025년 마이크로나노시스템학회 춘계학술대회 (제27회 KMEMS 학술대회)",
+      "period": "2025.03.26~2025.03.28"
+    },
+    {
+      "title": "Diverse Approaches to Hydroxyl-Functionalized PDMS Double Mold Fabrication for ISFET Sensors in Medical and Biological Applications",
+      "conference": "ISMNM 2024 (The 2nd International Symposium of Micro & Nano Manufacturing)",
+      "period": "2024.12.11~2024.12.14"
+    },
+    {
+      "title": "High-Performance Multi-Gas Detection Systems with Graphene Composite Sensors",
+      "conference": "ISMNM 2024 (The 2nd International Symposium of Micro & Nano Manufacturing)",
+      "period": "2024.12.11~2024.12.14"
+    },
+    {
+      "title": "Optimized design of machine learning model for optical sensor analysis",
+      "conference": "한국생산제조학회 2024 추계학술대회",
+      "period": "2024.12.11~2024.12.14"
+    },
+    {
+      "title": "Applying Functionalized Activated Carbon Slurry to Minimize Cracks and Using Roll Coating Technique for Enhanced Supercapacitor",
+      "conference": "한국생산제조학회 2024 추계학술대회",
+      "period": "2024.12.11~2024.12.14"
+    },
+    {
+      "title": "Optimization of MXene-Functionalized Electrode Fabrication Process",
+      "conference": "한국생산제조학회 2024 추계학술대회",
+      "period": "2024.12.11~2024.12.14"
+    },
+    {
+      "title": "Improving the Electrical Performance of P-Doped Co-P@NC Nanosheets through Chemical Vapor Deposition and Production of High-Performance Supercapacitor Electrodes",
+      "conference": "한국생산제조학회 2024 추계학술대회",
+      "period": "2024.12.11~2024.12.14"
+    },
+    {
+      "title": "Fabrication of Core-Shell Copper Oxide/Phosphide Micro-Nano Array Electrodes via CVD and Strategies for Stability Improvement",
+      "conference": "한국생산제조학회 2024 추계학술대회",
+      "period": "2024.12.11~2024.12.14"
+    },
+    {
+      "title": "Designing optimal electrode structures for multi-channel sensors",
+      "conference": "한국생산제조학회 2024 추계학술대회",
+      "period": "2024.12.11~2024.12.14"
+    },
+    {
+      "title": "Design of deep learning model structures for simultaneous detection of multiple targets",
+      "conference": "한국생산제조학회 2024 추계학술대회",
+      "period": "2024.12.11~2024.12.14"
+    },
+    {
+      "title": "Chemical Vapor Depostion (CVD) - Driven Cu2O@Cu3P Heterostructure electrode for Energy Storage Applications",
+      "conference": "NANOMAN 2024",
+      "period": "2024.12.01~2024.12.04"
+    },
+    {
+      "title": "Effect of Morphology-Controlled CuO@Cu3p Heterostructures on Supercapacitor Performance",
+      "conference": "ECS PRiME 2024",
+      "period": "2024.10.06~2024.10.11"
+    },
+    {
+      "title": "Virus Detection Using Functionalized Graphene Oxide Composites",
+      "conference": "ECS PRiME 2024",
+      "period": "2024.10.06~2024.10.11"
+    },
+    {
+      "title": "Prediction of coexisting gases by deep neural networks",
+      "conference": "ECS PRiME 2024",
+      "period": "2024.10.06~2024.10.11"
+    },
+    {
+      "title": "Performance evaluation of deep learning models for identification of harmful gas molecules",
+      "conference": "2024년 한국센서학회 추계학술대회",
+      "period": "2020.09.04~2024.09.06"
+    },
+    {
+      "title": "Optimization of Multi-Gas Detection Systems Using Graphene-Based Sensor Arrays",
+      "conference": "2024년 한국센서학회 추계학술대회",
+      "period": "2024.09.04~2024.09.06"
+    },
+    {
+      "title": "Enhancing Data Reliability in AI-Driven Sensing Systems Through Two-Dimensional Material Integration",
+      "conference": "2024년 한국센서학회 추계학술대회",
+      "period": "2024.09.04~2024.09.06"
+    },
+    {
+      "title": "Three-Dimensional Graphene Network-Supported Co(OH)2 Nanorods for Enhanced Non-Enzymatic Glucose Sensing",
+      "conference": "2024년 한국센서학회 추계학술대회",
+      "period": "2024.09.04~2024.09.06"
+    },
+    {
+      "title": "Development of a Non-Enzymatic Glucose Sensor Electrode with Copper Hydroxide Nanorods on Porous Graphene Foam",
+      "conference": "2024년 한국센서학회 추계학술대회",
+      "period": "2024.09.04~2024.09.06"
+    },
+    {
+      "title": "N-doped oxygen vacancy-rich NiCo2O4 nanoarrays for non-enzymatic glucose sensing",
+      "conference": "2024년 한국센서학회 추계학술대회",
+      "period": "2024.09.04~2024.09.06"
+    },
+    {
+      "title": "Optimizing MXene Composition Electrodes for Multi-sensing",
+      "conference": "2024년 한국센서학회 추계학술대회",
+      "period": "2024.09.04~2024.09.06"
+    },
+    {
+      "title": "Optical feature extraction methods for focus characterization of planar lenses",
+      "conference": "2024년 한국센서학회 추계학술대회",
+      "period": "2024.09.04~2024.09.06"
+    },
+    {
+      "title": "Machine learning-based graphene oxide sensor design for multi-feature generation",
+      "conference": "2024년 한국센서학회 추계학술대회",
+      "period": "2024.09.04~2024.09.06"
+    },
+    {
+      "title": "Performance Analysis of Graphene/MoS2 heterostructure in Fresnel lenses",
+      "conference": "2024년 한국센서학회 추계학술대회",
+      "period": "2024.09.04~2024.09.06"
+    },
+    {
+      "title": "Reasonable machine learning models for identification of molecules",
+      "conference": "2024년 한국센서학회 추계학술대회",
+      "period": "2024.09.04~2024.09.06"
+    },
+    {
+      "title": "Designing effective Graphene-based electrodes for multidimensional gas",
+      "conference": "2024년 한국센서학회 추계학술대회",
+      "period": "2024.09.04~2024.09.06"
+    },
+    {
+      "title": "Development and application of multi-sensor AI fusion technology",
+      "conference": "2024년 한국센서학회 추계학술대회",
+      "period": "2024.09.04~2024.09.06"
+    },
+    {
+      "title": "Optimization of Gas Sensor Manufacturing Using Graphene-Based Materials for Multi-Gas Detection",
+      "conference": "한국생산제조학회 2024 춘계학술대회",
+      "period": "2024.07.17~2024.07.19"
+    },
+    {
+      "title": "Groundwork for Mass Production: Efficient, Clean Thermal Reduction of Graphene Oxide for Sensor Channels",
+      "conference": "한국생산제조학회 2024 춘계학술대회",
+      "period": "2024.07.17~2024.07.19"
+    },
+    {
+      "title": "Estimation of harmful gases using machine learning with multi-feature data from nano-sensitive materials",
+      "conference": "한국생산제조학회 2024 춘계학술대회",
+      "period": "2024.07.17~2024.07.19"
+    },
+    {
+      "title": "Approach to Fabricate Heterostructured Cu3P Micro-nano Array Electrode using Chemical Vapor Deposition",
+      "conference": "한국생산제조학회 2024 춘계학술대회",
+      "period": "2024.07.17~2024.07.19"
+    },
+    {
+      "title": "PDMS Process Optimization Focused on Enhancing Production Yield and Quality through Surface Functionalization",
+      "conference": "한국생산제조학회 2024 춘계학술대회",
+      "period": "2024.07.17~2024.07.19"
+    },
+    {
+      "title": "Production and optimization of zinc vanadium oxide-based nanosheet electrodes for supercapacitor",
+      "conference": "한국생산제조학회 2024 춘계학술대회",
+      "period": "2024.07.17~2024.07.19"
+    },
+    {
+      "title": "Enhancing Supercapacitor Performance through Uniform Electrode Thickness Achieved by Roll Coating",
+      "conference": "한국생산제조학회 2024 춘계학술대회",
+      "period": "2024.07.17~2024.07.19"
+    },
+    {
+      "title": "Multi-dimensional neural network models to overcome limitations in diagnosing complex molecules",
+      "conference": "2024년 한국센서학회 춘계학술대회",
+      "period": "2024.04.29~2024.04.30"
+    },
+    {
+      "title": "Refining Thermal Reduction Techniques for Graphene Oxide: Towards Advanced Semiconductor Biosensors and Gas Sensors",
+      "conference": "2024년 한국센서학회 춘계학술대회",
+      "period": "2024.04.29~2024.04.30"
+    },
+    {
+      "title": "Optimal Deep Learning Model for Identifying Multiple Gas Mixtures",
+      "conference": "2024년 한국센서학회 춘계학술대회",
+      "period": "2024.04.29~2024.04.30"
+    },
+    {
+      "title": "Metal-Organic Framework Derived Hybrid Nanosheets for Enhanced Supercapacitor Performance in Wearable Electronics",
+      "conference": "2024년도 춘계총회 및 학술발표회",
+      "period": "2024.04.03~2024.04.05"
+    },
+    {
+      "title": "Effect of number and size of Self-assembled Copper Oxide/Tricopper Phospide micro/nano-array on the electrochemical properties",
+      "conference": "2024년도 춘계총회 및 학술발표회",
+      "period": "2024.04.03~2024.04.05"
+    },
+    {
+      "title": "Thermal Optimizing of Reduced Graphene Oxide for Enhanced Performance in Semiconductor based Biosensors",
+      "conference": "ICMTE 2024",
+      "period": "2024.04.02~2024.04.03"
+    },
+    {
+      "title": "Neural network model for identifying complex gas molecules in a high humidity environment",
+      "conference": "ICMTE 2024",
+      "period": "2024.04.02~2024.04.03"
+    },
+    {
+      "title": "Multi detection and verification of Gaseous Chemical Compositions Deep Learning",
+      "conference": "한국생산제조학회 2023 추계학술대회",
+      "period": "2023.12.13~2023.12.15"
+    },
+    {
+      "title": "Free-standing Heterostructure Copper Oxide/Tricopper phopsphide Electrode for High Energy Supercapacitor",
+      "conference": "한국생산제조학회 2023 추계학술대회",
+      "period": "2023.12.13~2023.12.15"
+    },
+    {
+      "title": "Optimizing the Thermal Reduction of Reduced Graphene Oxide for Semiconductor-based Biosensor Applications",
+      "conference": "한국생산제조학회 2023 추계학술대회",
+      "period": "2023.12.13~2023.12.15"
+    },
+    {
+      "title": "Multiplexed detection of respiratory viruses via two-dimensional nanoelectronic devices",
+      "conference": "Nature conference",
+      "period": "2023.11.07~2023.11.09"
+    },
+    {
+      "title": "Effect of number and size of Self-assmbled Copper Oxide/Tricopper phosphide micro-nanoarray on the electrochemical properties",
+      "conference": "2023년 추계총회 및 학술발표회",
+      "period": "2023.11.01~2023.11.03"
+    },
+    {
+      "title": "Mental illness biomarkers and detection methods in human exhaled breath",
+      "conference": "2023년 한국센서학회 추계학술대회",
+      "period": "2023.10.11~2023.10.13"
+    },
+    {
+      "title": "Determination of gas components of exhaled breath through electrical signal network",
+      "conference": "2023년 한국센서학회 추계학술대회",
+      "period": "2023.10.11~2023.10.13"
+    },
+    {
+      "title": "Self-Assembled Copper Oxide/Tricopper Phosphide (CuO/Cu3P) Electrode for High-Energy Solid-State Supercapacitor",
+      "conference": "한국생산제조학회 2023 춘계학술대회",
+      "period": "2023.07.12~2023.07.15"
+    },
+    {
+      "title": "The characteristics of free standing, pore structure of copper hydroxide as high efficient glucose sensor",
+      "conference": "한국생산제조학회 2023 춘계학술대회",
+      "period": "2023.07.12~2023.07.15"
+    },
+    {
+      "title": "Multi detection and verification of Gaseous Chemical Compositions",
+      "conference": "한국생산제조학회 2023 춘계학술대회",
+      "period": "2023.07.12~2023.07.15"
+    },
+    {
+      "title": "Two-dimensional Nanoelectronic Devices for the Multiple Simultaneous Diagnoses of Contagious Viral Disease",
+      "conference": "NANOKOREA 2023",
+      "period": "2023.07.05~2023.07.07"
+    },
+    {
+      "title": "LSTM-based neural networks for discriminating gaseous biomarkers of human diseases",
+      "conference": "CAE 및 응용역학부문 2023년 춘계학술대회",
+      "period": "2023.05.17~2023.05.19"
+    },
+    {
+      "title": "Discrimination of chemical vapor composition based on convolutional neural networks for disease diagnosis through human exhaled breath",
+      "conference": "CAE 및 응용역학부문 2023년 춘계학술대회",
+      "period": "2023.05.17~2023.05.20"
+    },
+    {
+      "title": "Multi-Dimensional Driven Verification Platform of Chemical Vapor Compositions",
+      "conference": "2023 MRS Spring Meeting",
+      "period": "2023.04.10~2023.04.14"
+    },
+    {
+      "title": "Black Phosphorus-based Field Effect Transistor with PMMA Dielectric Layer",
+      "conference": "제30회 한국반도체학술대회",
+      "period": "2023.02.13~2023.02.15"
+    },
+    {
+      "title": "Graphene based flat lens with controllable focal length",
+      "conference": "제30회 한국반도체학술대회",
+      "period": "2023.02.13~2023.02.15"
+    },
+    {
+      "title": "Highly-Sensitive Label-free Multiple Detection of Respiratory Viruses by Graphene Field-Effect Transistor Biosensor",
+      "conference": "2022년 제 19회 한국실내환경학회",
+      "period": "2022.11.23~2022.11.25"
+    },
+    {
+      "title": "Amplification-Free Detection of Respiratory Syncytial Virus Using Ion Sensitive Field Effect Transistor",
+      "conference": "대한기계학회 2022년 학술대회",
+      "period": "2022.11.09~2022.11.12"
+    },
+    {
+      "title": "NbS2/ReS2 Van der Waals heterojunction structure and Schottky diode characteristics analysis",
+      "conference": "대한기계학회 2022년 학술대회",
+      "period": "2022.11.09~2022.11.12"
+    },
+    {
+      "title": "Comparison of Performance of 1D CNN and LSTM Models for Multi Channel Time Series Data Discrimination",
+      "conference": "대한기계학회 2022년 학술대회",
+      "period": "2022.11.09~2022.11.12"
+    },
+    {
+      "title": "Computational modelling of graphene/MoS 2 based focus tunable fresnel lens at visible wavelengths",
+      "conference": "NANO KOREA 2022",
+      "period": "2022.07.06~2022.07.08"
+    },
+    {
+      "title": "The performance of pore structure nano rods of zinc oxide decorated with Nickle hydroxide",
+      "conference": "NANO KOREA 2022",
+      "period": "2022.07.06~2022.07.08"
+    },
+    {
+      "title": "Label-free and multiplexed detection via graphene field-effect transistor for monitoring airborne infectious disease",
+      "conference": "NANO KOREA 2022",
+      "period": "2022.07.06~2022.07.08"
+    },
+    {
+      "title": "Variation of Focus Characteristics According to the Number of Graphene Layers of a Focus-Tunable Fresnel Lens Using DC Voltage",
+      "conference": "제 24회 한국 MEMS 학술대회",
+      "period": "2022.04.06~2022.04.08"
+    },
+    {
+      "title": "Highly Efficient Non Enzymatic Glucose Biosensor based on Graphene Field effect Transistor",
+      "conference": "제 24회 한국 MEMS 학술대회",
+      "period": "2022.04.06~2022.04.08"
+    },
+    {
+      "title": "Radiofrequency (10MHz-40GHz) photodetector using ALD ZnO-F film",
+      "conference": "제 24회 한국 MEMS 학술대회",
+      "period": "2022.04.06~2022.04.08"
+    },
+    {
+      "title": "Highly-Sensitive Label-free Multiple Detection of Respiratory Viruses by Graphene Field-Effect Transistor Biosensor",
+      "conference": "제 24회 한국 MEMS 학술대회",
+      "period": "2022.04.06~2022.04.08"
+    },
+    {
+      "title": "Graphene Field-Effect Transistor Biosensor for the Multiple Detection of Respiratory Viruses",
+      "conference": "2021 한국바이오칩학회 추계학술대회",
+      "period": "2021.11.17~2021.11.19"
+    },
+    {
+      "title": "Highly Efficient Non-Enzymatic Glucose Biosensors Based on NiCo2O4 Bimetal Oxide",
+      "conference": "ICAE2021",
+      "period": "2021.11.09~2021.11.12"
+    },
+    {
+      "title": "A novel method to fabricate 2D material-based vertical junction",
+      "conference": "ICAE2021",
+      "period": "2021.11.09~2021.11.12"
+    },
+    {
+      "title": "Salient features of nucleobase signal analysis with radio frequency resonatorusing single stranded DNA",
+      "conference": "ICAE2021",
+      "period": "2021.11.09~2021.11.12"
+    },
+    {
+      "title": "Focus-Tunable Fresnel Lens by Carrier Control Based on Number of Graphene Layers",
+      "conference": "ICAE2021",
+      "period": "2021.11.09~2021.11.12"
+    },
+    {
+      "title": "Highly Efficient Non-Enzymatic Glucose Biosensors Based on NiCo2O4 Bimetal Oxide",
+      "conference": "2021 한국생산제조학회 춘계학술대회",
+      "period": "2021.07.07~2021.07.09"
+    },
+    {
+      "title": "Design of Focusing Tunable Graphene Based Ultrathin Fresnel Lens with 4 Channel DC Voltage",
+      "conference": "2021 한국생산제조학회 춘계학술대회",
+      "period": "2021.07.07~2021.07.09"
+    },
+    {
+      "title": "수돗물 내 대장균 미생물 실시간 검측 능력 개발에 관한 연구",
+      "conference": "KSCE 2018 Convention",
+      "period": "2018.10.17~2018.10.19"
+    },
+    {
+      "title": "Preparation of Graphene Sponge for Compressible Supercapacitor Electrode",
+      "conference": "2018 한국생산제조학회 추계학술대회",
+      "period": "2018.10.04~2018.10.05"
+    },
+    {
+      "title": "Development of electro-chemical sensor system for detection of residual microorganisms in tap water",
+      "conference": "제6회 한국위험물학회 정기총회 및 학술대회",
+      "period": "2018.08.16~2018.08.17"
+    },
+    {
+      "title": "Graphene과 ssDNA를 이용한 고습 환경 가스 센서",
+      "conference": "제20회 KMEMS 학술대회",
+      "period": "2018.04.05~2018.04.07"
+    },
+    {
+      "title": "High efficient photoluminescence by Surface plasmon enhancement in graphene quantum dot decorated metal?nanosphere",
+      "conference": "ICCMSE (14th International Conference of Computational Methods in Sciences and Engineering) 2018",
+      "period": "2018.03.14~2018.03.18"
+    },
+    {
+      "title": "Junction effects for 2D materials",
+      "conference": "SPARCA (Symposium for the Promotion of Applied Research Collaboration in Asia) 2018",
+      "period": "2018.02.09~2018.02.11"
+    },
+    {
+      "title": "Hybrid-contact issues in 2D materials of ReS2",
+      "conference": "AMWC (Advanced Materials World Congress) 2018",
+      "period": "2018.02.04~2018.02.08"
+    },
+    {
+      "title": "Dispersion control for the preparation of exfoliated MoS2 sheets prepared from MoS2 powder and crystal",
+      "conference": "5th Nano Today Conference",
+      "period": "2017.12.06~2017.12.10"
+    },
+    {
+      "title": "Anomalously low junction resistance by decoupling effect of mis-aligned MoS2 layers",
+      "conference": "NNT (the 16th International Conference on Nanoimprint and Nanoprint Technology) 2017",
+      "period": "2017.11.08~2017.11.10"
+    },
+    {
+      "title": "Characterization of ReS2 band structure and its electrical characteristics",
+      "conference": "NNT (the 16th International Conference on Nanoimprint and Nanoprint Technology) 2017",
+      "period": "2017.11.08~2017.11.10"
+    },
+    {
+      "title": "수돗물 내 실시간 미생물 모니터링 장치 개발을 위한 바이오센서 민감도 평가 연구",
+      "conference": "KSCE 2017 Convention",
+      "period": "2017.10.18~2017.10.20"
+    },
+    {
+      "title": "Multi-Dimensional Nano-Structure for High Efficiency Energy Electrodes",
+      "conference": "EMN Meeting on Energy Storage 2017",
+      "period": "2017.08.14~2017.08.18"
+    },
+    {
+      "title": "Contact effect of TMDC/metal interface",
+      "conference": "EMN Meeting on 2D materials",
+      "period": "2017.08.08~2017.08.12"
+    },
+    {
+      "title": "Graphene quantum dot based nanohybrid material for photoluminescence with surface plasmonic",
+      "conference": "META (The 8th International Conference on Metamaterials, Photonic Crystals and Plasmonics) 2017",
+      "period": "2017.07.25~2017.07.28"
+    },
+    {
+      "title": "Controllable sulfuration in NiO nanosheets with enhanced capacitance",
+      "conference": "CCMR (Collaborative Conference on Materials Research) 2017",
+      "period": "2017.06.26~2017.06.30"
+    },
+    {
+      "title": "Fabrication of Graphene Porous Structure by Hydrothermal method for flexible supercapacitor electrodes",
+      "conference": "대한기계학회 마이크로/나노공학부문 2017년도 춘계학술대회",
+      "period": "2017.05.25~2017.05.26"
+    },
+    {
+      "title": "Quantum effects on photoluminescence in 2D materials",
+      "conference": "Frontier Forum on Nanoscience (FFSCI) on Nanoscience 2017",
+      "period": "2017.05.04~2017.05.07"
+    },
+    {
+      "title": "Fabrication of graphene composite foam for flexible supercapacitor electrodes",
+      "conference": "제4회 한국 그래핀 및 2차원소재 심포지엄",
+      "period": "2017.04.06~2017.04.07"
+    },
+    {
+      "title": "Electrical characteristics of graphene/ReS2 heterostructure",
+      "conference": "제4회 한국 그래핀 및 2차원소재 심포지엄",
+      "period": "2017.04.06~2017.04.07"
+    },
+    {
+      "title": "Imaging of single retinal ganglion cell with differential interference",
+      "conference": "SPIE Photonics West 2017",
+      "period": "2017.01.28~2017.02.02"
+    },
+    {
+      "title": "Schottky diode in 2D materials",
+      "conference": "AAMC (American Advanced Materials Congress) 2016",
+      "period": "2016.12.04~2016.12.09"
+    },
+    {
+      "title": "Preparation of Thin Film Carbon Electrode and its Application in Lithium Ion Battery",
+      "conference": "ENGE (International Conference on Electronic Materials and Nanotechnology for Green Environment) 2016",
+      "period": "2016.11.06~2016.11.09"
+    },
+    {
+      "title": "Differential interference contrast microscopy 를 이용한 망막신경절세포의 이미징",
+      "conference": "2016 추계 대한안과학회",
+      "period": "2016.11.04~2016.11.06"
+    },
+    {
+      "title": "ReS2 전계효과 트랜지스터의 낮은 쇼트키 저항 특성",
+      "conference": "한국생산제조학회 2016년도 추계학술대회",
+      "period": "2016.11.02~2016.11.04"
+    },
+    {
+      "title": "Preparation of Thin film Electrode by Electrospray Method for Micro-scale Lithium Ion Battery",
+      "conference": "3rd international energy and environment conference",
+      "period": "2016.10.26~2016.10.26"
+    },
+    {
+      "title": "Fabrication of Porous Graphene composite for next generation",
+      "conference": "ACCM-10 (the 10th Asian-Australasian Conference on Composite Materials)",
+      "period": "2016.10.16~2016.10.19"
+    },
+    {
+      "title": "Contact performance enhancement based on isotype junction effects of thickness dependent MoS2 layers",
+      "conference": "Graphene Canada 2016",
+      "period": "2016.10.18~2016.10.20"
+    },
+    {
+      "title": "Graphene oxide based high-frequency modulation in electronics via optical illumination",
+      "conference": "Graphene Canada 2016",
+      "period": "2016.10.18~2016.10.20"
+    },
+    {
+      "title": "Radio-frequency transmission of few-layer WSe2 nanosheet Coplanar waveguide",
+      "conference": "Graphene Canada 2016",
+      "period": "2016.10.18~2016.10.20"
+    },
+    {
+      "title": "Radio frequency transmission characteristics of graphene under low temperature",
+      "conference": "Graphene Canada 2016",
+      "period": "2016.10.18~2016.10.20"
+    },
+    {
+      "title": "Microwave characteristics of WSe2 transport by PDMS stacking method",
+      "conference": "ICMTE (International Conference of Manufacturing Technology Engineers) 2016",
+      "period": "2016.10.05~2016.10.07"
+    },
+    {
+      "title": "Neuromodulation by ultrasound though micromachined piezoelectric transducer array enable localized ultrasound stimulation with high spatial resolution",
+      "conference": "2016 한국뇌신경과학회",
+      "period": "2016.09.28~2016.09.30"
+    },
+    {
+      "title": "Label and mediator-free biosensor using radio frequeny signal analysis",
+      "conference": "EAMC (European Advanced Materials Congress) 2016",
+      "period": "2016.08.23~2016.08.25"
+    },
+    {
+      "title": "Nanostructured cobalt hydroxide (1D and 2D) decorated freestanding 3d graphene foam for high performance supercapacitor",
+      "conference": "ISAMR (International Symposium for Advanced Materials Research) 2016",
+      "period": "2016.08.11~2016.08.14"
+    },
+    {
+      "title": "Surface Plasmon Enhancement of Photoluminescence in Photo-Chemically Synthesized Nano-Composites",
+      "conference": "2nd Zing Nanocrystal Conference 2016",
+      "period": "2016.08.02~2016.08.05"
+    },
+    {
+      "title": "Enhanced chemical vapor sensing by single-stranded DNA-graphene",
+      "conference": "2nd International Conference and Exhibition on Satellite & Space Missions 2016",
+      "period": "2016.07.21~2016.07.23"
+    },
+    {
+      "title": "실시간 신경전달물질 측정을 위한 푸시-풀 뉴럴 프로브",
+      "conference": "제18회 한국 MEMS 학술대회",
+      "period": "2016.04.07~2016.04.09"
+    },
+    {
+      "title": "Multi-dimensional carbon fusion bonding for supercapacitor",
+      "conference": "EMN Meeting on Nanotubes 2016",
+      "period": "2016.03.27~2016.03.30"
+    },
+    {
+      "title": "Porous carbon structure for supercapacitors",
+      "conference": "ICMTech (International Conference on Materials Science & Technology) 2016",
+      "period": "2016.03.01~2016.03.04"
+    },
+    {
+      "title": "Composite electrode for micro-scale supercapacitor",
+      "conference": "ISAMR (Asia pacific society for material research) 2015",
+      "period": "2015.10.19~2015.10.19"
+    },
+    {
+      "title": "Porous carbon structure for energy storages",
+      "conference": "EMN (Energy Materials and nanotechnology) 2015",
+      "period": "2015.09.01~2015.09.04"
+    },
+    {
+      "title": "Simple Fabricated High Performance 3D Structured Supercapacitor Electrode with Hybrid Materials",
+      "conference": "AMWC (Advanced Materials World Congress) 2015",
+      "period": "2015.08.23~2015.08.26"
+    },
+    {
+      "title": "The composite of 3D graphene and 2d materials for glucose sensing",
+      "conference": "AMWC (Advanced Materials World Congress) 2015",
+      "period": "2015.08.23~2015.08.26"
+    },
+    {
+      "title": "The new growth technique for ZnO nanorods/Graphene hybrid Structures for pohtocatalyst",
+      "conference": "AMWC (Advanced Materials World Congress) 2015",
+      "period": "2015.08.23~2015.08.26"
+    },
+    {
+      "title": "센서 어레이 모듈 기반 유해물질 구분",
+      "conference": "제3회 한국위험물학회 정기학술대회",
+      "period": "2015.08.20~2015.08.22"
+    },
+    {
+      "title": "Highly Sensitive Detection of Amyloid Beta for Alzheimer’s Disease Diagnosis Using",
+      "conference": "Alzheimer&apos;s Association International Conference",
+      "period": "2015.07.24~2015.07.25"
+    },
+    {
+      "title": "MoS2 Schottky diode with asymmetric metal contacts",
+      "conference": "The 13th International Nanotech Symposium & Nano-Convergence Expo (NANO KOREA 2015)",
+      "period": "2015.07.01~2015.07.03"
+    },
+    {
+      "title": "An improved sensitivity non-enzymatic glucose sensor based on a Nickel Hydroxide nanoflakes modified three dimensional graphene skeleton",
+      "conference": "The 13th International Nanotech Symposium & Nano-Convergence Expo (NANO KOREA 2015)",
+      "period": "2015.07.01~2015.07.03"
+    },
+    {
+      "title": "Distinction of Viable and non-viable cells using RF-micro device",
+      "conference": "The 13th International Nanotech Symposium & Nano-Convergence Expo (NANO KOREA 2015",
+      "period": "2015.07.01~2015.07.03"
+    },
+    {
+      "title": "DNA based material for metal ion sensing with photoluminescence characteristics",
+      "conference": "The 13th International Nanotech Symposium & Nano-Convergence Expo (NANO KOREA 2015)",
+      "period": "2015.07.01~2015.07.03"
+    },
+    {
+      "title": "Hybrid porous electrode for supercapacitor",
+      "conference": "CC3DMR",
+      "period": "2015.06.15~2015.06.19"
+    },
+    {
+      "title": "Selective vapor detection of an integrated chemical sensor array",
+      "conference": "The 5th Asia Pacific Optical Sensors Conference (APOS 2015)",
+      "period": "2015.05.20~2015.05.23"
+    },
+    {
+      "title": "Metal Ion Sensing by Double Crossover DNA Lattice",
+      "conference": "The 5th Asia Pacific Optical Sensors Conference (APOS 2015)",
+      "period": "2015.05.20~2015.05.23"
+    },
+    {
+      "title": "임피던스 측정을 이용한 비표지식 알츠하이머 아밀로이드 베타 검출",
+      "conference": "제 17회 한국 MEMS 학술대회",
+      "period": "2015.04.02~2015.04.04"
+    },
+    {
+      "title": "산 처리된 그래핀 옥사이드의 광학적 특성 및 이에 대한 고찰",
+      "conference": "제 17회 한국 MEMS 학술대회",
+      "period": "2015.04.02~2015.04.04"
+    },
+    {
+      "title": "Simple Chemical Deposition of Metal Hydroxide on 3D Network Electrode for supercapacitor",
+      "conference": "한국전기화학회 2015년도 춘계총회 및 학술발표회",
+      "period": "2015.04.02~2015.04.05"
+    },
+    {
+      "title": "포토 리소그라피 공정을 이용한 대칭 전극 제작 및 이의 슈퍼캐패시터로서의 활용",
+      "conference": "제 17회 한국 MEMS 학술대회",
+      "period": "2015.04.02~2015.04.05"
+    },
+    {
+      "title": "Electrodeposition of Graphene Oxide on Metal Electrode for Energy Storage Application",
+      "conference": "제2회 한국 그래핀 심포지엄",
+      "period": "2015.03.26~2015.03.29"
+    },
+    {
+      "title": "Optical properties of Pre-treated single layer graphene",
+      "conference": "WCSM-2015",
+      "period": "2015.03.23~2015.03.25"
+    },
+    {
+      "title": "New Method of Label and Mediator?free Biomaterial Detection Solely Using High Frequency Signal Analysis",
+      "conference": "Label-Free Technologies",
+      "period": "2015.03.12~2015.03.15"
+    },
+    {
+      "title": "3D Carbon Structure Benefits for Supercapacitor Electrode Performance",
+      "conference": "제20회 나노튜브연구회",
+      "period": "2015.01.29~2015.01.31"
+    },
+    {
+      "title": "photon assisted controlling radio frequency properties of graphene oxide",
+      "conference": "제20회 나노튜브연구회",
+      "period": "2015.01.29~2015.01.31"
+    },
+    {
+      "title": "Hybrid-dimensional approaches for energy storage",
+      "conference": "2015 EMN_photovoltaics",
+      "period": "2015.01.12~2015.01.15"
+    },
+    {
+      "title": "Highly sensitive new bio-sensing platform using radio wave signal analysis assisted by magnetic beads",
+      "conference": "EEEC",
+      "period": "2014.12.28~2014.12.28"
+    },
+    {
+      "title": "Electrical property of three dimensional graphene composite for sensor applications",
+      "conference": "EEEC",
+      "period": "2014.12.28~2014.12.28"
+    },
+    {
+      "title": "Simple Fabricated Hybrid Type Metal Based Electrode for Supercapacitor Application",
+      "conference": "EEEC",
+      "period": "2014.12.28~2014.12.28"
+    },
+    {
+      "title": "Distinction of Viable and dead cells using RF-MEMS",
+      "conference": "KJMW (Korea-Japan Microwave Workshop) 2014",
+      "period": "2014.12.04~2014.12.04"
+    },
+    {
+      "title": "Graphene Oxide based Biomaterial Detection Using High Frequency Signal Analysis",
+      "conference": "IBEC",
+      "period": "2014.11.19~2014.11.19"
+    },
+    {
+      "title": "Efficient Low Voltage AC/DC Converters and Nanoscale Resonator for wearable devices",
+      "conference": "Korea-France joint symposium",
+      "period": "2014.10.30~2014.10.30"
+    },
+    {
+      "title": "Enhanced Hybrid Carbon Structure for High Performance Supercapacitor",
+      "conference": "A3 symposium on emerging materials",
+      "period": "2014.10.18~2014.10.18"
+    },
+    {
+      "title": "Enhanced Electrochemical Properties of three dimensional hybrid carbon electrode with metal oxide",
+      "conference": "RPGR 2014",
+      "period": "2014.09.21~2014.09.25"
+    },
+    {
+      "title": "The resonance frequency based detection of bio-materials using graphene oxide as a dielectric material",
+      "conference": "RPGR 2014",
+      "period": "2014.09.21~2014.09.25"
+    },
+    {
+      "title": "Electrical property of hybrid structure of zinc oxide nanorod and three dimensional graphene foam",
+      "conference": "RPGR 2014",
+      "period": "2014.09.21~2014.09.25"
+    }
+  ],
+  "fundings": [
+    {
+      "title": "(통합Ezbaro/IRIS) Soret-Nerst 열전 충전을 위한 위상-변위-전극 적용 고효율 패치형 열전-융합-슈퍼커패시터용 최적 생산 기술 개발(3/3)",
+      "org": "한국연구재단",
+      "period": "2026-05-01~2027-04-30"
+    },
+    {
+      "title": "AI 바이오 분자 거동 판별 연구센",
+      "org": "연세대학교",
+      "period": "2026-03-01~2027-02-28"
+    },
+    {
+      "title": "기계생물연구센터",
+      "org": "연세대학교",
+      "period": "2026-03-01~2027-02-28"
+    },
+    {
+      "title": "[RCMS]첨단산업특성화대학원지원(배터리)(3/3, 1/2단계)",
+      "org": "한국산업기술진흥원",
+      "period": "2026-03-01~2027-02-28"
+    },
+    {
+      "title": "[민간/(주)LG에너지솔루션] 자동차전지 제품 실용기술 연구개발(4차)",
+      "org": "국내",
+      "period": "2025-11-01~2026-10-31"
+    },
+    {
+      "title": "(통합Ezbaro/IRIS) Soret-Nerst 열전 충전을 위한 위상-변위-전극 적용 고효율 패치형 열전-융합-슈퍼커패시터용 최적 생산 기술 개발(2/3)",
+      "org": "한국연구재단",
+      "period": "2025-05-01~2026-04-30"
+    },
+    {
+      "title": "[RCMS]첨단산업특성화대학원지원(배터리)(2/3, 1/2단계)",
+      "org": "한국산업기술진흥원",
+      "period": "2025-03-01~2026-02-28"
+    },
+    {
+      "title": "[RCMS/주관/환경산업기술원] 유해인자 DB구축 및 IoT기반 공기포집-농축-전처리-상시진단 연계기술개발(2/2단계)(3/3)",
+      "org": "한국환경산업기술원",
+      "period": "2025-01-01~2025-12-31"
+    },
+    {
+      "title": "[2024-2학기/캡스톤디자인지원사업] 창의제품설계(종합설계)",
+      "org": "연세대학교",
+      "period": "2024-09-01~2025-02-28"
+    },
+    {
+      "title": "(통합Ezbaro/IRIS) Soret-Nerst 열전 충전을 위한 위상-변위-전극 적용 고효율 패치형 열전-융합-슈퍼커패시터용 최적 생산 기술 개발(1/3)",
+      "org": "한국연구재단",
+      "period": "2024-05-01~2025-04-30"
+    },
+    {
+      "title": "[RCMS]반도체특성화대학지원사업(1/4)",
+      "org": "한국산업기술진흥원",
+      "period": "2024-03-01~2025-02-28"
+    },
+    {
+      "title": "[기업협업센터교내/2023-11-1038]주식회사 디에스세미콘_2차원 소재 고정밀 저온 나노 전극 증착 기술 개발",
+      "org": "연세대학교",
+      "period": "2024-03-01~2025-02-28"
+    },
+    {
+      "title": "[5차년도] 사회지향 기계기술 글로벌 리더 양성 교육연구단",
+      "org": "한국연구재단",
+      "period": "2024-03-01~2025-02-28"
+    },
+    {
+      "title": "[RCMS/주관/환경산업기술원] 유해인자 DB구축 및 IoT기반 공기포집-농축-전처리-상시진단 연계기술개발(2/2단계)(2/3)",
+      "org": "한국환경산업기술원",
+      "period": "2024-01-01~2024-12-31"
+    },
+    {
+      "title": "[통합이지바로][BP(KRF계속)_Amar Maruti Patil] 초고용량 유연 전고체 슈퍼캐패시터 기술 개발(4/4)",
+      "org": "한국연구재단",
+      "period": "2024-01-01~2024-12-31"
+    },
+    {
+      "title": "[기업협업센터교내/2023-11-1038]주식회사 디에스세미콘_2차원 소재 고정밀 저온 나노 전극 증착 기술 개발",
+      "org": "연세대학교",
+      "period": "2023-05-01~2024-08-31"
+    },
+    {
+      "title": "[2023기업협업센터(공과대학) 기업매칭]㈜디에스세미콘_2차원 소재 고정밀 저온 나노 전극 증착 기술 개발",
+      "org": "국내",
+      "period": "2023-05-01~2025-02-28"
+    },
+    {
+      "title": "(통합Ezbaro)비등방성 열전 이온 확산을 통한 필름형 자가 열충전 슈퍼캐패시터(5/5)(2019.9.1~2024.2.29)",
+      "org": "한국연구재단",
+      "period": "2023-03-01~2024-02-29"
+    },
+    {
+      "title": "[4차년도] 사회지향 기계기술 글로벌 리더 양성 교육연구단",
+      "org": "한국연구재단",
+      "period": "2023-03-01~2024-02-29"
+    },
+    {
+      "title": "[RCMS]초임계 소재 산업기술거점센터(1/3, 2/2단계)",
+      "org": "한국산업기술기획평가원",
+      "period": "2023-01-01~2023-12-31"
+    },
+    {
+      "title": "[RCMS/주관/환경산업기술원] 유해인자 DB구축 및 IoT기반 공기포집-농축-전처리-상시진단 연계기술개발(2/2단계)(1/3)",
+      "org": "한국환경산업기술원",
+      "period": "2023-01-01~2023-12-31"
+    },
+    {
+      "title": "[통합이지바로][BP(KRF계속)_Amar Maruti Patil] 초고용량 유연 전고체 슈퍼캐패시터 기술 개발(3/4)",
+      "org": "한국연구재단",
+      "period": "2023-01-01~2023-12-31"
+    },
+    {
+      "title": "(통합Ezbaro)비등방성 열전 이온 확산을 통한 필름형 자가 열충전 슈퍼캐패시터(4/5)(2019.9.1~2024.2.29)",
+      "org": "한국연구재단",
+      "period": "2022-03-01~2023-02-28"
+    },
+    {
+      "title": "[3차년도] 사회지향 기계기술 글로벌 리더 양성 교육연구단",
+      "org": "한국연구재단",
+      "period": "2022-03-01~2023-02-28"
+    },
+    {
+      "title": "[통합이지바로] (총괄/1세부)나노 융복합 소재를 이용한 어레이 기반 VOCs 센싱 (2/2단계)(3/3)",
+      "org": "한국연구재단",
+      "period": "2022-01-01~2022-06-30"
+    },
+    {
+      "title": "[RCMS/주관/환경산업기술원] 유해인자 DB구축 및 IoT기반 공기포집-농축-전처리-상시진단 연계기술개발(1/2단계)(2/2)",
+      "org": "한국환경산업기술원",
+      "period": "2022-01-01~2022-12-31"
+    },
+    {
+      "title": "[통합이지바로][BP(KRF계속)_Amar Maruti Patil] 초고용량 유연 전고체 슈퍼캐패시터 기술 개발(2/4)",
+      "org": "한국연구재단",
+      "period": "2022-01-01~2022-12-31"
+    },
+    {
+      "title": "[전력연구원(단체)/개별] 다차원 집전체/그래핀 기반 에너지밀도 120/200 Wh/kg 이상의 3차원 탄소 나노구조체 복합전극 개발(3/3)",
+      "org": "한국전력공사",
+      "period": "2021-05-01~2022-04-30"
+    },
+    {
+      "title": "[RCMS]초임계 소재 산업기술거점센터(2/3)",
+      "org": "한국산업기술평가관리원",
+      "period": "2021-03-01~2021-12-31"
+    },
+    {
+      "title": "(통합Ezbaro)비등방성 열전 이온 확산을 통한 필름형 자가 열충전 슈퍼캐패시터(3/5)(2019.9.1~2024.2.29)",
+      "org": "한국연구재단",
+      "period": "2021-03-01~2022-02-28"
+    },
+    {
+      "title": "[통합이지바로] (총괄/1세부)나노 융복합 소재를 이용한 어레이 기반 VOCs 센싱 (2/2단계)(2/3)",
+      "org": "한국연구재단",
+      "period": "2021-01-01~2021-12-31"
+    },
+    {
+      "title": "[통합이지바로][KRF_Amar Maruti Patil] 초고용량 유연 전고체 슈퍼캐패시터 기술 개발(1/4)",
+      "org": "한국연구재단",
+      "period": "2020-10-01~2021-12-31"
+    },
+    {
+      "title": "다차원 집전체/그래핀 기반 에너지밀도 120/200 Wh/kg 이상의 3차원 탄소 나노구조체 복합전극 개발(2/3)",
+      "org": "산하기관",
+      "period": "2020-05-01~2021-04-30"
+    },
+    {
+      "title": "(통합Ezbaro)[선도연구센터/ERC]초정밀 광 기계기술 연구센터(2/3,2단계)(2019.3.1~2022.2.28)",
+      "org": "한국연구재단",
+      "period": "2020-03-01~2021-02-28"
+    },
+    {
+      "title": "(통합Ezbaro)비등방성 열전 이온 확산을 통한 필름형 자가 열충전 슈퍼캐패시터(2/5)(2019.9.1~2024.2.29)",
+      "org": "한국연구재단",
+      "period": "2020-03-01~2021-02-28"
+    },
+    {
+      "title": "[시드니] Quantum composite for energy conversion and storage",
+      "org": "연세대학교",
+      "period": "2020-03-01~2021-12-31"
+    },
+    {
+      "title": "[8차년도]사회지향 기계기술 글로벌 리더 양성 사업단",
+      "org": "한국연구재단",
+      "period": "2020-03-01~2020-08-31"
+    },
+    {
+      "title": "[통합이지바로] (총괄/1세부)나노 융복합 소재를 이용한 어레이 기반 VOCs 센싱 (2/2단계)(1/3)",
+      "org": "한국연구재단",
+      "period": "2020-01-01~2020-12-31"
+    },
+    {
+      "title": "[민간/LG디스플레이(주)]New Display 기술개발, Incubation 5차년도",
+      "org": "국내",
+      "period": "2019-09-01~2023-09-13"
+    },
+    {
+      "title": "(통합Ezbaro)비등방성 열전 이온 확산을 통한 필름형 자가 열충전 슈퍼캐패시터(1/5)(2019.9.1~2024.2.29)",
+      "org": "한국연구재단",
+      "period": "2019-09-01~2020-02-29"
+    },
+    {
+      "title": "다차원 집전체/그래핀 기반 에너지밀도 120/200 Wh/kg 이상의 3차원 탄소 나노구조체 복합전극 개발(1/3)",
+      "org": "산하기관",
+      "period": "2019-05-01~2020-04-30"
+    },
+    {
+      "title": "[선도연구센터/ERC]초정밀 광 기계기술 연구센터(1/3,2단계)(2019.3.1~2022.2.28)",
+      "org": "한국연구재단",
+      "period": "2019-03-01~2020-02-29"
+    },
+    {
+      "title": "[7차년도]사회지향 기계기술 글로벌 리더 양성 사업단",
+      "org": "한국연구재단",
+      "period": "2019-03-01~2020-02-29"
+    },
+    {
+      "title": "[Ezbaro] (총괄/1세부)나노 융복합 소재를 이용한 어레이 기반 VOCs 센싱 (1/2단계)(3/3)",
+      "org": "한국연구재단",
+      "period": "2019-02-01~2019-12-31"
+    },
+    {
+      "title": "[RCMS]제이시스퀘어(주)/인공지능 기반 환경 감지 융합센서 시스템 개발(3/3)",
+      "org": "한국산업기술평가관리원",
+      "period": "2019-01-01~2019-12-31"
+    },
+    {
+      "title": "[Ezbaro] (총괄/1세부)나노 융복합 소재를 이용한 어레이 기반 VOCs 센싱 (1/2단계)(2/3)",
+      "org": "한국연구재단",
+      "period": "2018-04-01~2019-01-31"
+    },
+    {
+      "title": "[위탁] 상수도관 수돗물 내 실시간 미생물 유해성 진단 모니터링 장치 개발(3/3)",
+      "org": "한국환경산업기술원",
+      "period": "2018-03-01~2018-12-31"
+    },
+    {
+      "title": "[선도연구센터/ERC]초정밀 광 기계기술 연구센터(4/4,1단계)(2015.8.1~2019.2.28)",
+      "org": "한국연구재단",
+      "period": "2018-03-01~2019-02-28"
+    },
+    {
+      "title": "[6차년도]사회지향 기계기술 글로벌 리더 양성 사업단",
+      "org": "한국연구재단",
+      "period": "2018-03-01~2019-02-28"
+    },
+    {
+      "title": "[RCMS]제이시스퀘어(주)/인공지능 기반 환경 감지 융합센서 시스템 개발(2/3)",
+      "org": "한국산업기술평가관리원",
+      "period": "2018-01-01~2018-12-31"
+    },
+    {
+      "title": "[RCMS]주식회사캔티스/알츠하이머성 경도인지장애 진단 시스템 개발(3/3)",
+      "org": "한국산업기술기획평가원",
+      "period": "2017-12-01~2018-11-30"
+    },
+    {
+      "title": "(2017-11-1184)대응자금_나노과학기술연구소(3/3,3단계)(2009.9.1~2018.8.31)",
+      "org": "연세대학교",
+      "period": "2017-09-01~2018-08-31"
+    },
+    {
+      "title": "Ezbaro_나노과학기술연구소(3/3,3단계)(2009.9.1~2018.8.31)",
+      "org": "한국연구재단",
+      "period": "2017-09-01~2018-08-31"
+    },
+    {
+      "title": "나노복합소재를 활용한 VOCs 감지,흡착,제거용 IoT 적용 통합시스템 개발(1/3,1단계)(2017.7.1~2022.6.30)",
+      "org": "한국연구재단",
+      "period": "2017-07-01~2018-03-31"
+    },
+    {
+      "title": "[위탁] 상수도관 수돗물 내 실시간 미생물 유해성 진단 모니터링 장치 개발(2/3)",
+      "org": "한국환경산업기술원",
+      "period": "2017-05-01~2018-02-28"
+    },
+    {
+      "title": "[RCMS]제이시스퀘어(주)/인공지능 기반 환경 감지 융합센서 시스템 개발(1/3)",
+      "org": "한국산업기술기획평가원",
+      "period": "2017-04-01~2017-12-31"
+    },
+    {
+      "title": "[선도연구센터/ERC]초정밀 광 기계기술 연구센터(3/4,1단계,2015.08.01~2019.02.28)",
+      "org": "한국연구재단",
+      "period": "2017-03-01~2018-02-28"
+    },
+    {
+      "title": "[5차년도]사회지향 기계기술 글로벌 리더 양성 사업단",
+      "org": "한국연구재단",
+      "period": "2017-03-01~2018-02-28"
+    },
+    {
+      "title": "[RCMS]주식회사캔티스/알츠하이머성 경도인지장애 진단 시스템 개발(2/3)",
+      "org": "한국산업기술기획평가원",
+      "period": "2016-12-01~2017-11-30"
+    },
+    {
+      "title": "[미래선도-2014선정-3차년] 포스트 그래핀 저차원 신물질의 물리적 특성 규명 및 차세대 융합소자 개발",
+      "org": "연세대학교",
+      "period": "2016-12-01~2017-12-31"
+    },
+    {
+      "title": "삼성전자/그래핀기반 one-chip VOC sensor array 개발",
+      "org": "국내",
+      "period": "2016-09-05~2023-08-31"
+    },
+    {
+      "title": "[2016-11-0924/대응자금]Ezbaro_나노과학기술연구소(2/3, 3단계)",
+      "org": "연세대학교",
+      "period": "2016-09-01~2017-08-31"
+    },
+    {
+      "title": "Ezbaro_나노과학기술연구소(2/3, 3단계)",
+      "org": "한국연구재단",
+      "period": "2016-09-01~2017-08-31"
+    },
+    {
+      "title": "[위탁] 상수도관 수돗물 내 실시간 미생물 유해성 진단 모니터링 장치 개발(1/3)",
+      "org": "한국환경산업기술원",
+      "period": "2016-08-10~2017-04-30"
+    },
+    {
+      "title": "[KRF_Umakant Patil]3차원 그래핀 및 유사 커패시더 물질을 이용한 고성능 슈퍼캐패시터 전극 기술 개발 (2/5)",
+      "org": "한국연구재단",
+      "period": "2016-05-01~2017-02-28"
+    },
+    {
+      "title": "[위탁/철도기술연구원] 내부저항 최소화를 통한 성능저하 방지 기술 연구",
+      "org": "한국철도기술연구원",
+      "period": "2016-04-19~2016-10-31"
+    },
+    {
+      "title": "(4차년도) 사회지향 기계기술 글로벌 리더 양성 사업단",
+      "org": "한국연구재단",
+      "period": "2016-03-01~2017-02-28"
+    },
+    {
+      "title": "[SM] 나노소재기술개발사업(15.12.18.~16.4.28.)",
+      "org": "연세대학교",
+      "period": "2016-03-01~2016-04-28"
+    },
+    {
+      "title": "[주관/한국표준과학연구원] 실감미디어를 위한 플렉시블 센서기반 촉감 저장·재생 플랫폼 원천기술 개발(5/5)",
+      "org": "정보통신기술진흥센터(NIPA산하)",
+      "period": "2016-03-01~2016-11-30"
+    },
+    {
+      "title": "초정밀 광 기계기술 연구센터(2/4,1단계, 2015.08.01 ~ 2019.02.28)",
+      "org": "한국연구재단",
+      "period": "2016-03-01~2017-02-28"
+    },
+    {
+      "title": "[RCMS]주식회사캔티스/알츠하이머성 경도인지장애 진단 시스템 개발(1/3)",
+      "org": "한국산업기술기획평가원",
+      "period": "2015-12-01~2016-11-30"
+    },
+    {
+      "title": "[미래선도-국제/2014-2차년] 포스트 그래핀 저차원 신물질의 물리적 특성 규명 및 차세대 융합소자 개발",
+      "org": "연세대학교",
+      "period": "2015-12-01~2016-12-31"
+    },
+    {
+      "title": "나노과학기술연구소(1/3, 3단계)",
+      "org": "한국연구재단",
+      "period": "2015-09-01~2016-08-31"
+    },
+    {
+      "title": "탄소소재를 적용한 능동 제어 나노 공진기 개발(3/3)",
+      "org": "한국연구재단",
+      "period": "2015-06-01~2016-05-31"
+    },
+    {
+      "title": "[포닥]전성찬(Nanasaheb Shinde)-Low cost wet chemical method used for synthesis of Cu2ZnSnS4",
+      "org": "연세대학교",
+      "period": "2015-05-01~2016-04-30"
+    },
+    {
+      "title": "[위탁/철도기술연구원]탄소 나노복합 소재의 in-situ 합성 기반 하이브리드 슈퍼커패시터 전근 성능향상 기술 개발",
+      "org": "한국철도기술연구원",
+      "period": "2015-04-01~2015-10-31"
+    },
+    {
+      "title": "전기화학기법을 이용한 금속화합물 미세 박막 형성",
+      "org": "한국산업기술진흥원",
+      "period": "2014-12-08~2015-03-08"
+    },
+    {
+      "title": "LG전자(주)/MoS2/Graphene Oxide 의 layer-by-layer 합성을 통한 고성능 리튬 이온 배터리 기술 개발",
+      "org": "국내",
+      "period": "2014-12-01~2021-02-28"
+    },
+    {
+      "title": "[미래선도-국제]포스트 그래핀 저차원 신물질의 물리적 특성 규명 및 차세대 융합소자 개발",
+      "org": "연세대학교",
+      "period": "2014-12-01~2016-02-29"
+    },
+    {
+      "title": "탄소소재를 이용한 가스센서 제작에 있어 검출한계 증가를 위한 최적의 탄소 전극코팅 방법",
+      "org": "한국산업기술진흥원",
+      "period": "2014-11-03~2015-05-02"
+    },
+    {
+      "title": "나노과학기술연구소(3/3, 2단계)",
+      "org": "한국연구재단",
+      "period": "2014-09-01~2015-08-31"
+    },
+    {
+      "title": "탄소소재를 적용한 능동 제어 나노 공진기 개발(2/3)",
+      "org": "한국연구재단(교과부)",
+      "period": "2014-06-01~2015-05-31"
+    },
+    {
+      "title": "[포닥]전성찬(쿨카르니)-polymer/graphene oxide and metal LDHs",
+      "org": "연세대학교",
+      "period": "2014-05-01~2015-04-30"
+    },
+    {
+      "title": "나노과학기술연구소 (2/3.2단계)(2009.9.1~2018.8.31)",
+      "org": "한국연구재단",
+      "period": "2013-09-01~2014-08-31"
+    },
+    {
+      "title": "[후속연구지원]탄소소재를 적용한 능동 제어 나노 공진기 개발 (1/3)",
+      "org": "한국연구재단",
+      "period": "2013-06-01~2014-05-31"
+    },
+    {
+      "title": "Graphene oxide와 Metal LDHs (Layered double hydroxides) composite 를 이용한 슈퍼캐패시터",
+      "org": "연세대학교",
+      "period": "2013-04-30~2014-04-29"
+    },
+    {
+      "title": "고전도성 그래핀 박막 개발",
+      "org": "한국과학기술연구원",
+      "period": "2013-01-01~2013-12-31"
+    },
+    {
+      "title": "나노융합 그린에너지 응용 기술 개발 (2단계 1/3차년도)",
+      "org": "한국연구재단",
+      "period": "2012-09-01~2013-08-31"
+    },
+    {
+      "title": "LG디스플레이(주)/DISPLAY용 저온 FLEXIBLE ARRAY 재료 및 공정 개발(2012.06.01~2013.05.31)- 2014.05.31",
+      "org": "국내",
+      "period": "2012-06-01~2016-12-31"
+    },
+    {
+      "title": "탄소소재를 적용한 능동 제어 나노 공진기 개발 (3/3)",
+      "org": "한국과학재단",
+      "period": "2012-05-01~2013-04-30"
+    },
+    {
+      "title": "두산인프라코어(주)/연세대학교 산학협력협의회 (2012.03.01~2013.02.28)- 2014.02.28",
+      "org": "국내",
+      "period": "2012-03-01~2019-12-31"
+    },
+    {
+      "title": "그라핀을 이용한 가스 센서 어레이 기술 연구(미래원천연구사업)",
+      "org": "한국과학기술연구원",
+      "period": "2012-01-01~2012-12-31"
+    },
+    {
+      "title": "삼성전자(주) / Medical RF Sensor 연구 (2011.12.01~2012.11.30- 2013.11.30)",
+      "org": "국내",
+      "period": "2011-12-01~2013-11-30"
+    },
+    {
+      "title": "나노융합 그린에너지 원천기술 개발 (3/3,1단계)",
+      "org": "학술진흥재단",
+      "period": "2011-09-01~2012-08-31"
+    },
+    {
+      "title": "탄소소재를 적용한 능동 제어 나노 공진기 개발 (2/3) 010-8891-0908/전성찬",
+      "org": "한국과학재단",
+      "period": "2011-05-01~2012-04-30"
+    },
+    {
+      "title": "그래핀을 이용한 센서 플랫폼 개발",
+      "org": "한국과학기술연구원",
+      "period": "2011-01-01~2011-12-31"
+    },
+    {
+      "title": "삼성전자(주) / RF sensor 구조 연구 (2010.11.01~2012.10.30)- 2013.10.30",
+      "org": "국내",
+      "period": "2010-11-01~2015-04-30"
+    },
+    {
+      "title": "나노융합 그린에너지 원천기술 개발(2/3,1단계)",
+      "org": "학술진흥재단",
+      "period": "2010-09-01~2011-08-31"
+    },
+    {
+      "title": "[2010-8-1810] 나노융합 그린에너지 원천기술개발",
+      "org": "연세대학교",
+      "period": "2010-09-01~2011-08-31"
+    },
+    {
+      "title": "어린아동들의 손가락 끼임 방지용 문틈 방지용 롤러",
+      "org": "대학산업기술지원단",
+      "period": "2010-09-01~2010-11-30"
+    },
+    {
+      "title": "다기능 집적화 컨버전스 플렉서블 전자소자 개발",
+      "org": "한국과학기술연구원",
+      "period": "2010-06-01~2010-12-31"
+    },
+    {
+      "title": "탄소소재를 적용한 능동 제어 나노 공진기 개발",
+      "org": "한국과학재단",
+      "period": "2010-05-01~2011-04-30"
+    },
+    {
+      "title": "탄소소재의 고주파 특성을 이용한 LCD 패널의 투명전 극 개발 (20100201-20110131)",
+      "org": "삼성전자(주)",
+      "period": "2010-02-01~2012-11-07"
+    },
+    {
+      "title": "[2009-8-1655] 나노융합 그린에너지 원천기술개발",
+      "org": "연세대학교",
+      "period": "2009-09-01~2010-08-31"
+    },
+    {
+      "title": "나노융합 그린에너지 원천기술 개발 (1/3,1단계)",
+      "org": "학술진흥재단",
+      "period": "2009-09-01~2010-08-31"
+    },
+    {
+      "title": "G5-5-10/나노마이크로응용기계기술인력양성사업",
+      "org": "연세대학교",
+      "period": "2009-03-02~2010-06-30"
+    },
+    {
+      "title": "나노 고주파 역학 공진기",
+      "org": "삼성전자(주)",
+      "period": "2009-03-02~2011-04-30"
+    },
+    {
+      "title": "나노마이크로응용기계기술인력양성사업단",
+      "org": "연세대학교",
+      "period": "2009-03-01~2010-02-28"
+    },
+    {
+      "title": "나노마이크로응용기계기술인력양성사업단",
+      "org": "학술진흥재단",
+      "period": "2009-03-01~2010-02-28"
+    },
+    {
+      "title": "그라핀( 탄소)의 고주파 INTERCONNECTOR로서의 특성 연구",
+      "org": "연세대학교산학단_간접비",
+      "period": "2008-09-01~2009-12-31"
+    },
+    {
+      "title": "그라핀의 고주파 passive line 으로서의 특성 연구",
+      "org": "연세대학교",
+      "period": "2008-04-01~2009-03-31"
+    },
+    {
+      "title": "나노마이크로응용기계기술인력양성사업단",
+      "org": "학술진흥재단",
+      "period": "2008-03-01~2009-02-28"
+    },
+    {
+      "title": "G5-5-10/나노마이크로응용기계기술인력양성사업",
+      "org": "연세대학교",
+      "period": "2008-03-01~2009-02-28"
+    },
+    {
+      "title": "나노마이크로응용기계기술인력양성사업단",
+      "org": "연세대학교",
+      "period": "2008-03-01~2009-02-28"
+    },
+    {
+      "title": "그라핀의 고주파 interconnector로서의 특성 연구",
+      "org": "연세대학교",
+      "period": "2008-03-01~2009-02-28"
+    }
+  ],
+  "patents": [
+    {
+      "title": "그래핀 회절 존 플레이트를 이용한 물리적 복제 불가 함수 기반 인증 시스템 및 인증 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2026-06-02"
+    },
+    {
+      "title": "2차원 소재를 활용한 전계 효과 트랜지스터 기반 바이오 센서 시스템 및 β-아밀로이드 단백질의 응집 형태 분석 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2026-05-20"
+    },
+    {
+      "title": "헬리컬 구조의 열전-슈퍼 커패시터 융합소자 및 이의 제조방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2025-11-13"
+    },
+    {
+      "title": "레일리 산란 및 광 회절 현상을 이용한 기체 농도 추론 시스템 및 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2025-10-30"
+    },
+    {
+      "title": "롤투롤 코팅을 이용한 수퍼커패시터의 전극 제조방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2025-10-16"
+    },
+    {
+      "title": "그래핀 인터페이스 기반 고주파 전자기 센싱을 이용한 호흡기 바이러스 검출 시스템 및 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2025-10-13"
+    },
+    {
+      "title": "칼코젠 화합물 및 산화그래핀 기반 가스 센서 및 이의 제조방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2025-09-18"
+    },
+    {
+      "title": "가스 센싱 시스템",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2025-09-09"
+    },
+    {
+      "title": "슈퍼커패시터의 전기화학 임피던스 분광법 기반 주파수 응답을 이용한 뉴로모픽 디바이스 구현 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2025-09-02"
+    },
+    {
+      "title": "무항체 다종 혼합 바이러스 센싱 시스템 및 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2025-08-20"
+    },
+    {
+      "title": "딥러닝 기반 RF 스펙트럼 분석을 이용한 그래핀 나노포어 DNA 시퀀싱 시스템 및 판독 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2025-06-19"
+    },
+    {
+      "title": "딥러닝 기반 전파 매체 반응형 RF 가스 센싱 시스템 및 신호 분석 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2025-06-10"
+    },
+    {
+      "title": "안정적인 아연 이온 저장을 위한 바인더 없는 양극, 이를 포함하는 덴드라이트 형성 억제 음극 및 아연 이온 커패시터",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2024-12-06"
+    },
+    {
+      "title": "멀티 센서 및 이를 이용한 조기진단 시스템",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2024-10-31"
+    },
+    {
+      "title": "멀티 센서 및 이를 이용한 조기진단 시스템",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2024-10-29"
+    },
+    {
+      "title": "전극 활물질의 증착 방법, 이를 이용한 단일 전극의 제조 방법 및 이에 의해 제조된 단일 전극",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2024-09-04"
+    },
+    {
+      "title": "금속포일 기반 1T-이황화몰리브덴 전극의 히팅롤 공정을 수행하는 슈퍼캐패시터 제조장치 및 슈퍼캐패시터 제조방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2024-07-10"
+    },
+    {
+      "title": "퇴행성 신경 질환 예방 또는 치료 방법, 및 이를 이용한 퇴행성 신경 질환 예방 또는 치료 시스템",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2024-06-11"
+    },
+    {
+      "title": "중공 탄소 비드를 활용한 맥신 층상 구조 제어 기술 및 슈퍼캐패시터 전극 제작 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2024-04-18"
+    },
+    {
+      "title": "2차원 활물질의 슬러리 제작 방법 및 균일한 두께의 증착을 위한 롤 프레싱 기법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2024-04-16"
+    },
+    {
+      "title": "구리 포일 기반 1T-MoS2 전극의 히팅 롤 공정을 통한 효율적 슈퍼캐패시터 제작 기술",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2024-04-16"
+    },
+    {
+      "title": "RF 바이오 센서 및 이의 제조방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2024-03-14"
+    },
+    {
+      "title": "산화 그래핀을 이용한 온도 센서 및 이의 제조방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2024-03-13"
+    },
+    {
+      "title": "RF 바이오 센서 및 이의 제조방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2024-03-12"
+    },
+    {
+      "title": "초점 흐려짐 보정 가능한 렌즈, 초점 흐려짐 보정 가능한 영상 장치 및, 영상 보정 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2024-03-05"
+    },
+    {
+      "title": "멀티 센서 및 이를 이용한 조기진단 시스템",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2023-11-21"
+    },
+    {
+      "title": "혼합 기체 조성 판별 방법 및 혼합 기체 조성 판별 시스템",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2023-11-03"
+    },
+    {
+      "title": "인공 후각 시스템 구현 방법 및 이를 이용한 인공 후각 시스템",
+      "type": "특허",
+      "applicant": "주식회사 튜터러스랩스, 연세대학교 산학협력단",
+      "date": "2023-11-02"
+    },
+    {
+      "title": "RF 바이오 센싱 시스템, 이에 구비된 RF 바이오 센서의 제조 방법 및 이의 제어 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2023-04-27"
+    },
+    {
+      "title": "RF 바이오 센싱 시스템, 이에 구비된 RF 바이오 센서의 제조 방법 및 이의 제어 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2023-04-21"
+    },
+    {
+      "title": "산화 그래핀을 이용한 온도 센서 및 이의 제조방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2023-03-15"
+    },
+    {
+      "title": "RF 바이오 센서 및 이의 제조방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2023-03-15"
+    },
+    {
+      "title": "가변 초점 렌즈",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2022-11-23"
+    },
+    {
+      "title": "RF 신호를 이용한 광 검출기 및 이의 제조방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2022-09-05"
+    },
+    {
+      "title": "RF 신호를 통한 질병 원인물질 중합체 분해 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2022-07-15"
+    },
+    {
+      "title": "쇼트 방지를 위한 태양전지의 제조방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2022-06-03"
+    },
+    {
+      "title": "RF 바이오 센서 및 이의 제조방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2022-04-27"
+    },
+    {
+      "title": "단일 가닥 DNA 센서 및 단일 가닥 DNA 센서 제조 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2022-04-12"
+    },
+    {
+      "title": "RF 신호를 이용한 UV광 검출기 및 이의 제조방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2022-04-04"
+    },
+    {
+      "title": "단일 가닥 DNA 센서 및 단일 가닥 DNA 센서 제조 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2022-03-22"
+    },
+    {
+      "title": "딥러닝 기반 가스 센싱 시스템 및 가스 센싱 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2022-03-14"
+    },
+    {
+      "title": "딥러닝 기반 습도 센싱 시스템 및 습도 센싱 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2022-02-22"
+    },
+    {
+      "title": "주사전자현미경을 사용한 쇼트키 다이오드의 제조방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2022-01-26"
+    },
+    {
+      "title": "딥러닝 기반 RF 바이오 센싱 시스템 및 RF 바이오 신호 분석 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2021-12-14"
+    },
+    {
+      "title": "가변 초점 렌즈",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2021-11-24"
+    },
+    {
+      "title": "자가 충전 가능한 슈퍼 커패시터",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2021-08-20"
+    },
+    {
+      "title": "열박리 테이프를 이용한 태양전지 제조 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2021-08-18"
+    },
+    {
+      "title": "3차원 구조의 슈퍼커패시터용 전극 제조방법 및 이에 의해 제조된 슈퍼커패시터용 전극",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 한국전력공사",
+      "date": "2021-07-23"
+    },
+    {
+      "title": "바이오 센서",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2021-06-09"
+    },
+    {
+      "title": "자가 열 충전 슈퍼 커패시터",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2021-04-22"
+    },
+    {
+      "title": "단일 가닥 DNA 센서 및 단일 가닥 DNA 센서 제조 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2021-04-13"
+    },
+    {
+      "title": "디스플레이 장치용 초박막 픽셀 렌즈",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2019-08-09"
+    },
+    {
+      "title": "초박막 렌즈를 이용한 멀티 가스 센서 및 이의 제조방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2019-04-16"
+    },
+    {
+      "title": "흑연의 나트륨 이온 저장 능력 활성화 방법 및 이를 이용한 나트륨 이온 전지용 음극소재",
+      "type": "특허",
+      "applicant": "한국과학기술연구원, 연세대학교 산학협력단",
+      "date": "2019-04-09"
+    },
+    {
+      "title": "3축 초점거리 변환이 가능한 디스플레이 패널",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2019-01-30"
+    },
+    {
+      "title": "3축 초점거리 변환이 가능한 디스플레이 패널",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2019-01-30"
+    },
+    {
+      "title": "수돗물 내 목표 미생물 실시간 검출 센서 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2018-11-21"
+    },
+    {
+      "title": "수돗물 내 목표 미생물 실시간 검출 센서 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2018-11-13"
+    },
+    {
+      "title": "3축 초점거리 변환이 가능한 디스플레이 패널",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2018-01-30"
+    },
+    {
+      "title": "수돗물 내 유해성 미생물 실시간 검측 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2018-01-26"
+    },
+    {
+      "title": "3차원 세포 배양에서의 물질 전달 장치 및 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2017-12-27"
+    },
+    {
+      "title": "무선신호를 이용한 디스플레이 시스템",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2017-10-12"
+    },
+    {
+      "title": "초박막 렌즈 패턴 및 발광체를 이용한 디스플레이 패널",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2017-09-25"
+    },
+    {
+      "title": "탄소나노소재 기반 고습 환경에서 극민감한 가스 센서",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2017-09-01"
+    },
+    {
+      "title": "그래핀 기반의 스트립라인에 의해 형성되는 RF 필터",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2017-06-23"
+    },
+    {
+      "title": "고주파 및 미분간섭을 활용한 병변 진단 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2017-04-28"
+    },
+    {
+      "title": "전이금속 칼코게나이드 채널과 그래핀 전극을 이용한 다중 게이트 구조의 CMOS 인버터 디바이스",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2017-02-27"
+    },
+    {
+      "title": "향상된 형광 특성을 갖는 금을 포함하는 그래핀 양자점 나노 복합체 및 그 제조방법, 이를 이용하는 금속 이온 검출기",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2016-09-08"
+    },
+    {
+      "title": "탄소나노소재 기반 고습 환경에서 극민감한 가스 센서",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 한국과학기술연구원",
+      "date": "2016-09-01"
+    },
+    {
+      "title": "산화 그래핀 코팅층을 포함하는 멜라민 스펀지 구조체 및 그 제조방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2016-07-15"
+    },
+    {
+      "title": "잎사귀 모양의 구리 산화물 나노 구조체를 이용한 에너지 저장 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2016-01-19"
+    },
+    {
+      "title": "표면에 인이 도핑된 산화 그래핀을 포함하는 난연제 및 이의 제조방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2015-12-27"
+    },
+    {
+      "title": "실크를 이용한 반도체 물질의 박리방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2015-08-11"
+    },
+    {
+      "title": "유로퓸과 그래핀 산화물을 포함하는 비접촉식 온도 센서 및 이의 제조 방법, 그리고 이를 사용한 비접촉식 온도 측정 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2015-07-30"
+    },
+    {
+      "title": "디스플레이 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2015-07-09"
+    },
+    {
+      "title": "프렛 효과를 이용하는 안압계",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2015-06-29"
+    },
+    {
+      "title": "원심력을 이용한 그래핀 직접 전사장치 및 전사방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2015-02-16"
+    },
+    {
+      "title": "실리콘 구체를 이용한 니켈구조체 제조방법, 이를 통해 제조된 니켈구조체, 및 이를 이용하여 제조된 3차원 그라핀",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2015-02-16"
+    },
+    {
+      "title": "3차원 그래핀 복합체, 이의 제조방법 및 이를 포함하는 초고용량 커패시터",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2015-02-04"
+    },
+    {
+      "title": "표면에 인이 도핑된 산화 그래핀을 포함하는 난연제 및 이의 제조방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2014-12-26"
+    },
+    {
+      "title": "필름형 에너지 생산 및 저장 소자 및 이를 포함하는 전자장비",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2014-10-17"
+    },
+    {
+      "title": "산화 그래핀 유도체-삼중 요오드 복합체를 유효성분으로 함유하는 생체적합성인 항박테리아 조성물 및 이의 제조방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2014-10-06"
+    },
+    {
+      "title": "그래핀 박막 패터닝 장치, 이를 이용한 그래핀 박막 패터닝 방법 및 이를 이용하여 제조된 그래핀 박막",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2014-09-26"
+    },
+    {
+      "title": "튜너블 공진기 및 이를 포함하는 전자기기",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2014-09-26"
+    },
+    {
+      "title": "3차원 그래핀-실크 복합체를 이용한 바이오 센서 및 센싱 시스템",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2014-08-18"
+    },
+    {
+      "title": "RF 신호를 활용한 미세먼지 모니터링 장치 및 방법.",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2014-08-18"
+    },
+    {
+      "title": "산화 그래핀을 이용한 수은 이온의 제거 및 검출 장치 및 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2014-07-08"
+    },
+    {
+      "title": "3차원 그래핀 복합체, 이의 제조방법 및 이를 포함하는 초고용량 커패시터",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2014-05-20"
+    },
+    {
+      "title": "그래핀을 이용한 액정 디스플레이 배향막의 형성 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2014-04-16"
+    },
+    {
+      "title": "전도성 고분자 기반의 슈퍼 커패시터용 전극 및 이의 제조방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2014-01-08"
+    },
+    {
+      "title": "투명하고 유연한 슈퍼 커패시터용 전극, 이의 제조방법 및 이를 포함하는 슈퍼 커패시터",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2014-01-08"
+    },
+    {
+      "title": "투명하고 유연한 슈퍼 커패시터용 전극, 이의 제조방법 및 이를 포함하는 슈퍼 커패시터",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2014-01-08"
+    },
+    {
+      "title": "전도성 고분자 기반의 슈퍼 커패시터용 전극 및 이의 제조방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2014-01-08"
+    },
+    {
+      "title": "그래핀막의 제조방법 및 이를 이용한 유기전계발광표시장치의 제조방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 엘지디스플레이",
+      "date": "2013-05-24"
+    },
+    {
+      "title": "세포의 아포토시스 진행단계 측정 센서 및 그 제조방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2013-04-05"
+    },
+    {
+      "title": "무선 주파수를 이용한 센싱 장치 및 이의 제조 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 삼성전자(주)",
+      "date": "2013-03-07"
+    },
+    {
+      "title": "바이오 물질의 알에프 특성 측정 방법 및 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 삼성전자(주)",
+      "date": "2013-02-06"
+    },
+    {
+      "title": "그라핀 옥사이드의 유전율을 변화 시키는 방법 및 이를 이용한 캐패시터",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2012-11-09"
+    },
+    {
+      "title": "그래핀을 채용한 고주파 회로 및 그의 구동방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 삼성전자",
+      "date": "2012-07-06"
+    },
+    {
+      "title": "성능조절이 가능한 초 고감도 그라핀 센서 및 그 제조방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2012-05-31"
+    },
+    {
+      "title": "팔라듐-수소 시스템을 이용한 그라핀의 부분 도핑을 통해 형성된 반도체 소자 및 이의 제조방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2012-05-31"
+    },
+    {
+      "title": "바이오 물질의 알에프 특성 측정 방법 및 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 삼성전자(주)",
+      "date": "2012-05-10"
+    },
+    {
+      "title": "그라핀을 이용한 인쇄회로기판 제조방법, 이 제조방법에 의해 제조된 인쇄회로기판, 이를 구비한 디스플레이 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2012-05-09"
+    },
+    {
+      "title": "광 인식 스크린, 이를 이용한 디스플레이 장치 및 그 제조 방법.",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2012-05-07"
+    },
+    {
+      "title": "산화 그라핀을 이용한 전극 구조체, 이를 구비한 전기 광학 소자 및 유기태양전지",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2012-04-04"
+    },
+    {
+      "title": "무선 주파수를 이용한 센싱 장치 및 이의 제조 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 삼성전자(주)",
+      "date": "2012-03-23"
+    },
+    {
+      "title": "그라핀-폴리머 복합체, 그라핀-폴리머 복합체가 구비된 디바이스 및 그들의 제조방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2011-10-11"
+    },
+    {
+      "title": "그래핀을 채용한 고주파 회로 및 그의 구동방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 삼성전자(주)",
+      "date": "2011-07-08"
+    },
+    {
+      "title": "그래핀을 채용한 고주파 회로 및 그의 구동방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 삼성전자(주)",
+      "date": "2011-07-08"
+    },
+    {
+      "title": "서스펜더를 가지는 나노구조체의 제조방법 및 이에 의해 제조된 나노구조체",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2011-04-25"
+    },
+    {
+      "title": "그라핀 나노 필터 망, 그라핀 나노 필터 및 그 제조방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2010-09-01"
+    },
+    {
+      "title": "탄소계 나노 물질을 이용한 공진기 및 그 제조 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 삼성전자",
+      "date": "2010-05-11"
+    },
+    {
+      "title": "나노공진기",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2010-04-12"
+    },
+    {
+      "title": "나노공진기 및 그 제조방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2010-03-19"
+    },
+    {
+      "title": "그라핀 가스센서 유닛 및 복합체와 이들의 제조방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2009-10-12"
+    }
+  ]
+}

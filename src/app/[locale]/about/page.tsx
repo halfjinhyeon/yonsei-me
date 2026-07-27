@@ -11,7 +11,7 @@ import { CareerPaths } from '@/components/CareerPaths';
 import { FacultyDirectoryGrid } from '@/components/FacultyDirectoryGrid';
 import { HistoryTimeline } from '@/components/HistoryTimeline';
 import { KakaoMap } from '@/components/KakaoMap';
-import { getFacultyDirectory } from '@/lib/faculty';
+import { getFacultyDirectory, getFacultyProfileNames } from '@/lib/faculty';
 import { getHistoryImages } from '@/lib/history-images';
 import { history, staff, pick } from '@/lib/content';
 import type { Locale } from '@/i18n/routing';
@@ -67,7 +67,13 @@ export default async function AboutPage({ params }: { params: { locale: string }
       key: 'faculty',
       label: tMenu('about.items.faculty'),
       markdown: null,
-      content: <FacultyDirectoryGrid items={getFacultyDirectory()} moreLabel={tFaculty('moreLabel')} />,
+      content: (
+        <FacultyDirectoryGrid
+          items={getFacultyDirectory()}
+          moreLabel={tFaculty('moreLabel')}
+          profileNames={getFacultyProfileNames()}
+        />
+      ),
     },
     {
       key: 'staff',

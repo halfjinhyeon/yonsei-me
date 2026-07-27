@@ -1,0 +1,3043 @@
+{
+  "name": "민병권",
+  "nameEn": "Min Byung-Kwon",
+  "email": "bkmin@yonsei.ac.kr",
+  "phone": "02)2123-5813",
+  "office": null,
+  "homepage": null,
+  "sourceUrl": "https://me.yonsei.ac.kr/faculty/name_search.do?mode=view&userId=epVKuTRkwjej3W7%2F8Ob6lA%3D%3D&sosokcd=0000405",
+  "crawledAt": "2026-07-27",
+  "articles": [
+    {
+      "date": "2026-10",
+      "title": "Generalized machine learning model for deformation prediction and compensation in robotic machining",
+      "journal": "Robotics and Computer-Integrated Manufacturing"
+    },
+    {
+      "date": "2025-12",
+      "title": "Rapid identification method for nonlinear feed drive model parameters using integral driven friction decoupling and dimensionality reduction of cost function",
+      "journal": "Control Engineering Practice"
+    },
+    {
+      "date": "2025-10",
+      "title": "Thermally Induced Error Compensation of 5-Axis Machine Tools in the Environment with Temperature Fluctuation",
+      "journal": "International Journal of Precision Engineering and Manufacturing"
+    },
+    {
+      "date": "2025-09",
+      "title": "Recent Advances in CNC Technology: Toward Autonomous and Sustainable Manufacturing",
+      "journal": "International Journal of Precision Engineering and Manufacturing"
+    },
+    {
+      "date": "2025-09",
+      "title": "Preface to the 25th Anniversary Special Issue",
+      "journal": "International Journal of Precision Engineering and Manufacturing"
+    },
+    {
+      "date": "2025-09",
+      "title": "Advancing Precision Engineering through Scholarly Excellence: A 40-Year Retrospective of KSPE and the 25-Year Journey of IJPEM",
+      "journal": "International Journal of Precision Engineering and Manufacturing"
+    },
+    {
+      "date": "2025-09",
+      "title": "Reduction of burr formation in drilling of 3D-printed carbon fiber reinforced polymer with pilot holes",
+      "journal": "Journal of Manufacturing Processes"
+    },
+    {
+      "date": "2025-06",
+      "title": "Model parameter identification for CNC machine tool feed drive using robust recursive least squares with non-temporal adaptive weight filter",
+      "journal": "Control Engineering Practice"
+    },
+    {
+      "date": "2024-07",
+      "title": "Effect of the Built-Up-Edge on Tool Wear in Machining of STAVAX",
+      "journal": "International Journal of Precision Engineering and Manufacturing"
+    },
+    {
+      "date": "2023-11",
+      "title": "Tool Wear Reduction Using Directional Milling Considering Cutting Angle in Carbon fiber Reinforced Plastic Machining",
+      "journal": "International Journal of Precision Engineering and Manufacturing"
+    },
+    {
+      "date": "2023-09",
+      "title": "Model Parameter Identification of a Machining Robot Using Joint Frequency Response Functions",
+      "journal": "International Journal of Precision Engineering and Manufacturing"
+    },
+    {
+      "date": "2023-08",
+      "title": "Inlet Hole Shape Analysis Depending on the Focus Conditions for Electron Beam Micro-hole Drilling",
+      "journal": "INTERNATIONAL JOURNAL OF PRECISION ENGINEERING AND MANUFACTURING"
+    },
+    {
+      "date": "2023-05",
+      "title": "Relative Positioning Error Minimization of the Dual-Robot System With Kinematic and Base Frame Transformation Parameter Identification",
+      "journal": "IEEE Access"
+    },
+    {
+      "date": "2023-03",
+      "title": "Real-time hand ownership decision in egocentric view using kinematic approach",
+      "journal": "Journal of Ambient Intelligence and Humanized Computing"
+    },
+    {
+      "date": "2023-01",
+      "title": "Exit delamination at the material interface in drilling of CFRP/metal stack",
+      "journal": "Journal of Manufacturing Processes"
+    },
+    {
+      "date": "2022-12",
+      "title": "Posture optimization in robotic drilling using a deformation energy model",
+      "journal": "Robotics and Computer-Integrated Manufacturing"
+    },
+    {
+      "date": "2022-12",
+      "title": "코너링 오차 및 기구학적 제한값 간의 관계를 활용한 공구경로 계획",
+      "journal": "Journal of the Korean Society for Precision Engineering"
+    },
+    {
+      "date": "2022-11",
+      "title": "Optimization of gas shielding for the vacuum laser beam welding of Ti-6Al-4 V titanium alloy",
+      "journal": "International Journal of Advanced Manufacturing Technology"
+    },
+    {
+      "date": "2022-10",
+      "title": "Contamination suppression of coupling glass during vacuum laser welding",
+      "journal": "Science and Technology of Welding and Joining"
+    },
+    {
+      "date": "2022-07",
+      "title": "Machining sound analysis for the effects of fiber bending on cutting mechanisms during carbon fiber reinforced plastic composite milling",
+      "journal": "Composites Part B: Engineering"
+    },
+    {
+      "date": "2022-06",
+      "title": "Real-time tool path modification for machine tool contour error reduction",
+      "journal": "International Journal of Advanced Manufacturing Technology"
+    },
+    {
+      "date": "2022-05",
+      "title": "Effect of fiber bending induced matrix shear behavior on machined surface quality in carbon fiber reinforced plastic milling",
+      "journal": "Composite Structures"
+    },
+    {
+      "date": "2022-03",
+      "title": "Simulation-based optimization of CNC interpolator parameters for machining accuracy improvement",
+      "journal": "International Journal of Advanced Manufacturing Technology"
+    },
+    {
+      "date": "2022-02",
+      "title": "Effect of workpiece preheating on tool wear and delamination at the hole exit in high feed drilling of carbon fiber reinforced plastics with diamond-coated tools",
+      "journal": "Journal of Manufacturing Processes"
+    },
+    {
+      "date": "2022-01",
+      "title": "Modelling of fume particle behaviour and coupling glass contamination during vacuum laser beam welding",
+      "journal": "Science and Technology of Welding and Joining"
+    },
+    {
+      "date": "2021-03",
+      "title": "전자빔을 이용한 미세 홀 가공 시 전자빔 조사량 변화에 따른 용융 깊이 특성 연구",
+      "journal": "한국정밀공학회지"
+    },
+    {
+      "date": "2020-08",
+      "title": "Identification of mass and sliding friction parameters of machine tool feed drive using recursive least squares method",
+      "journal": "INTERNATIONAL JOURNAL OF ADVANCED MANUFACTURING TECHNOLOGY"
+    },
+    {
+      "date": "2020-06",
+      "title": "Joint Compliance Error Compensation for Robot Manipulator Using Body Frame",
+      "journal": "INTERNATIONAL JOURNAL OF PRECISION ENGINEERING AND MANUFACTURING"
+    },
+    {
+      "date": "2019-12",
+      "title": "Contamination of coupling glass and performance evaluation of protective system in vacuum laser beam welding",
+      "journal": "APPLIED SCIENCES-BASEL"
+    },
+    {
+      "date": "2019-09",
+      "title": "Robotic Machining: A Review of Recent Progress",
+      "journal": "INTERNATIONAL JOURNAL OF PRECISION ENGINEERING AND MANUFACTURING"
+    },
+    {
+      "date": "2019-05",
+      "title": "Ultrasonic impact treatment and corrosion test after the austenite phase transformation of SKD11 using a plasma diode electron beam",
+      "journal": "JOURNAL OF MATERIALS PROCESSING TECHNOLOGY"
+    },
+    {
+      "date": "2019-04",
+      "title": "Post‑machining Deformation Analysis for Virtual Machining of Thin Aluminium Alloy Parts",
+      "journal": "INTERNATIONAL JOURNAL OF PRECISION ENGINEERING AND MANUFACTURING"
+    },
+    {
+      "date": "2019-01",
+      "title": "Wettability modification of cyclic olefin copolymer surface and microchannel using micromilling process",
+      "journal": "Journal of Manufacturing Processes"
+    },
+    {
+      "date": "2018-08",
+      "title": "Effect of chemical oxidizer on material removal rate in electrochemical oxidation assisted machining",
+      "journal": "JOURNAL OF MATERIALS PROCESSING TECHNOLOGY"
+    },
+    {
+      "date": "2018-03",
+      "title": "정밀가공을 위한 CNC 알고리즘 연구 현황",
+      "journal": "한국정밀공학회지"
+    },
+    {
+      "date": "2018-01",
+      "title": "A Review on Optical Fiber Sensors for Environmental Monitoring",
+      "journal": "INTERNATIONAL JOURNAL OF PRECISION ENGINEERING AND MANUFACTURING-GREEN TECHNOLOGY"
+    },
+    {
+      "date": "2018-01",
+      "title": "Material interface detection based on secondary electron images for focused ion beam machining",
+      "journal": "ULTRAMICROSCOPY"
+    },
+    {
+      "date": "2017-12",
+      "title": "Cryogenic machining of PDMS fluidic channel using shrinkage compensation and surface roughness control",
+      "journal": "INTERNATIONAL JOURNAL OF PRECISION ENGINEERING AND MANUFACTURING"
+    },
+    {
+      "date": "2017-12",
+      "title": "Fabrication of a Screw-Shaped Long-Period Fiber Grating for Refractive Index Sensing",
+      "journal": "IEEE PHOTONICS TECHNOLOGY LETTERS"
+    },
+    {
+      "date": "2017-10",
+      "title": "Limiting Tool Path Error Generated by Corner Blending of CNC Interpolator",
+      "journal": "한국정밀공학회지"
+    },
+    {
+      "date": "2017-10",
+      "title": "Plasma Diode Electron Beam Heat Treatment of Cast Iron: Effect of Direct Preheating",
+      "journal": "INTERNATIONAL JOURNAL OF PRECISION ENGINEERING AND MANUFACTURING"
+    },
+    {
+      "date": "2017-08",
+      "title": "Contact Effect of ReS<inf>2</inf>/Metal Interface",
+      "journal": "ACS APPLIED MATERIALS & INTERFACES"
+    },
+    {
+      "date": "2017-07",
+      "title": "Austenite phase transformation of SKD11 by surface heat treatment with a focused electron beam",
+      "journal": "SURFACE & COATINGS TECHNOLOGY"
+    },
+    {
+      "date": "2017-05",
+      "title": "Simulation-based machining condition optimization for machine tool energy consumption reduction",
+      "journal": "JOURNAL OF CLEANER PRODUCTION"
+    },
+    {
+      "date": "2017-04",
+      "title": "액체질소 분사 안정화를 통한 극저온가공 품질 향상",
+      "journal": "한국정밀공학회지"
+    },
+    {
+      "date": "2017-03",
+      "title": "Fabrication of high-aspect-ratio microgrooves using an electrochemical discharge micromilling process",
+      "journal": "JOURNAL OF MICROMECHANICS AND MICROENGINEERING"
+    },
+    {
+      "date": "2017-01",
+      "title": "Effect of Electrochemical Conditions on Material Removal Rate in Electrochemical Oxidation Assisted Machining",
+      "journal": "JOURNAL OF THE ELECTROCHEMICAL SOCIETY"
+    },
+    {
+      "date": "2016-06",
+      "title": "탄소섬유복합재 가공의 결함특성 및 결함 저감을 위한 경계검출",
+      "journal": "한국정밀공학회지"
+    },
+    {
+      "date": "2016-01",
+      "title": "가상제조환경에서 제품의 표면 거칠기 전달을 위한 촉각 디스플레이",
+      "journal": "한국정밀공학회지"
+    },
+    {
+      "date": "2015-11",
+      "title": "Characterization of refractive index change and fabrication of long period gratings in pure silica fiber by femtosecond laser radiation",
+      "journal": "OPTICS AND LASER TECHNOLOGY"
+    },
+    {
+      "date": "2015-09",
+      "title": "Effects of coating material on the fabrication accuracy of focused ion beam machining of insulators",
+      "journal": "JAPANESE JOURNAL OF APPLIED PHYSICS"
+    },
+    {
+      "date": "2015-09",
+      "title": "Friction compensation controller for load varying machine tool feed drive",
+      "journal": "INTERNATIONAL JOURNAL OF MACHINE TOOLS & MANUFACTURE"
+    },
+    {
+      "date": "2015-08",
+      "title": "Distributed Component Friction Model for Precision Control of a Feed Drive System",
+      "journal": "IEEE-ASME TRANSACTIONS ON MECHATRONICS"
+    },
+    {
+      "date": "2015-06",
+      "title": "3D thickness profile measurement of thin films coated on the microscopic area",
+      "journal": "MEASUREMENT SCIENCE & TECHNOLOGY"
+    },
+    {
+      "date": "2015-06",
+      "title": "Compensation of tool deflection in micromilling using workpiece holder control device",
+      "journal": "INTERNATIONAL JOURNAL OF PRECISION ENGINEERING AND MANUFACTURING"
+    },
+    {
+      "date": "2015-05",
+      "title": "CNC 제어 이송계의 Hardware-in-the-loop 시뮬레이션",
+      "journal": "한국정밀공학회지"
+    },
+    {
+      "date": "2015-05",
+      "title": "Layer dependence and gas molecule absorption property in MoS2 Schottky diode with asymmetric metal contacts",
+      "journal": "SCIENTIFIC REPORTS"
+    },
+    {
+      "date": "2015-04",
+      "title": "Material Removal of Glass by Magnetorheological Fluid Jet",
+      "journal": "INTERNATIONAL JOURNAL OF PRECISION ENGINEERING AND MANUFACTURING"
+    },
+    {
+      "date": "2015-04",
+      "title": "Ductile mode electrochemical oxidation assisted micromachining for glassy carbon",
+      "journal": "JOURNAL OF MICROMECHANICS AND MICROENGINEERING"
+    },
+    {
+      "date": "2015-03",
+      "title": "Electrochemical Oxidation Assisted Micromachining of Glassy Carbon Substrate",
+      "journal": "INTERNATIONAL JOURNAL OF PRECISION ENGINEERING AND MANUFACTURING"
+    },
+    {
+      "date": "2015-02",
+      "title": "Experimental demonstration of line-width modulation in plasmonic lithography using a solid immersion lens-based active nano-gap control",
+      "journal": "APPLIED PHYSICS LETTERS"
+    },
+    {
+      "date": "2015-01",
+      "title": "Emission Characteristics of High-Voltage Plasma Diode Cathode for Metal Surface Modification",
+      "journal": "INTERNATIONAL JOURNAL OF PRECISION ENGINEERING AND MANUFACTURING"
+    },
+    {
+      "date": "2014-10",
+      "title": "Experimental and numerical investigations of cavity filling process in injection moulding for microcantilever structures",
+      "journal": "INTERNATIONAL JOURNAL OF ADVANCED MANUFACTURING TECHNOLOGY"
+    },
+    {
+      "date": "2014-09",
+      "title": "Electrically assisted blanking using the electroplasticity of ultra-high strength metal alloys",
+      "journal": "CIRP ANNALS-MANUFACTURING TECHNOLOGY"
+    },
+    {
+      "date": "2014-07",
+      "title": "Simulation-Based Energy Usage Profiling of Machine Tool at the Component Level",
+      "journal": "INTERNATIONAL JOURNAL OF PRECISION ENGINEERING AND MANUFACTURING-GREEN TECHNOLOGY"
+    },
+    {
+      "date": "2014-04",
+      "title": "Polarization-dependent transmission through a bull&apos;s eye with an elliptical aperture",
+      "journal": "OPTICS COMMUNICATIONS"
+    },
+    {
+      "date": "2013-11",
+      "title": "A high throughput supra-wavelength plasmonic bull&apos;s eye photon sorter spatially and spectrally multiplexed on silica optical fiber facet",
+      "journal": "OPTICS EXPRESS"
+    },
+    {
+      "date": "2013-10",
+      "title": "Synthesis and Bidirectional Frequency Tuning of Cantilever-shape Nano Resonators Using A Focused Ion Beam",
+      "journal": "ACS APPLIED MATERIALS & INTERFACES"
+    },
+    {
+      "date": "2013-07",
+      "title": "Mechanism of synergetic material removal by electrochemomechanical magnetorheological polishing",
+      "journal": "INTERNATIONAL JOURNAL OF MACHINE TOOLS & MANUFACTURE"
+    },
+    {
+      "date": "2013-02",
+      "title": "Spatially discrete thermal drawing of biodegradable microneedles for vascular drug delivery",
+      "journal": "EUROPEAN JOURNAL OF PHARMACEUTICS AND BIOPHARMACEUTICS"
+    },
+    {
+      "date": "2012-11",
+      "title": "Fabrication of ordered bulk heterojunction organic photovoltaic cells using nanopatterning and electrohydrodynamic spray deposition methods",
+      "journal": "NANOSCALE"
+    },
+    {
+      "date": "2012-10",
+      "title": "High-speed plasmonic nanolithography with a solid immersion lens-based plasmonic optical head",
+      "journal": "APPLIED PHYSICS LETTERS"
+    },
+    {
+      "date": "2012-08",
+      "title": "Application of Solid Immersion Lens-Based Near-Field Recording Technology to High-Speed Plasmonic Nanolithography",
+      "journal": "JAPANESE JOURNAL OF APPLIED PHYSICS"
+    },
+    {
+      "date": "2012-04",
+      "title": "미세밀링공정의 최근 연구동향",
+      "journal": "한국기계가공학회지"
+    },
+    {
+      "date": "2012-02",
+      "title": "Deburring microparts using a magnetorheological fluid",
+      "journal": "INTERNATIONAL JOURNAL OF MACHINE TOOLS & MANUFACTURE"
+    },
+    {
+      "date": "2011-10",
+      "title": "Micro-electrochemical discharge cutting of glass using a surface-textured tool",
+      "journal": "CIRP Journal of Manufacturing Science and Technology"
+    },
+    {
+      "date": "2011-06",
+      "title": "Subwavelength plasmonic lens patterned on a composite optical fiber facet for quasi-one-dimensional Bessel beam generation",
+      "journal": "APPLIED PHYSICS LETTERS"
+    },
+    {
+      "date": "2011-05",
+      "title": "Ploughing detection in micromilling processes using the cutting force signal",
+      "journal": "INTERNATIONAL JOURNAL OF MACHINE TOOLS & MANUFACTURE"
+    },
+    {
+      "date": "2011-05",
+      "title": "A behavior model of a magnetorheological fluid in direct shear mode",
+      "journal": "JOURNAL OF MAGNETISM AND MAGNETIC MATERIALS"
+    },
+    {
+      "date": "2011-03",
+      "title": "다개구 이온빔 가공장치용 냉음극 방식의 가스 이온원의 가능성 평가에 관한 연구",
+      "journal": "한국정밀공학회지"
+    },
+    {
+      "date": "2011-03",
+      "title": "기계장비 제어특성 시뮬레이션 플랫폼 기술",
+      "journal": "한국정밀공학회지"
+    },
+    {
+      "date": "2011-01",
+      "title": "유도결합형 플라즈마 소스를 이용한 집속 이온빔용 가스 이온원 개발",
+      "journal": "한국정밀공학회지"
+    },
+    {
+      "date": "2010-12",
+      "title": "The fabrication of metal silicide nanodot arrays using localized ion implantation",
+      "journal": "Nanotechnology"
+    },
+    {
+      "date": "2010-10",
+      "title": "An electrochemomechanical polishing process using magnetorheological fluid",
+      "journal": "INTERNATIONAL JOURNAL OF MACHINE TOOLS & MANUFACTURE"
+    },
+    {
+      "date": "2010-08",
+      "title": "Analysis of the Machining Characteristics of EDM as Functions of the Mobilities of Electrons and Ions",
+      "journal": "INTERNATIONAL JOURNAL OF PRECISION ENGINEERING AND MANUFACTURING"
+    },
+    {
+      "date": "2010-08",
+      "title": "Motor Current Prediction of a Machine Tool Feed Drive Using a Component-Based Simulation Model",
+      "journal": "INTERNATIONAL JOURNAL OF PRECISION ENGINEERING AND MANUFACTURING"
+    },
+    {
+      "date": "2010-08",
+      "title": "선택적 빔 차단을 통한 집속이온빔 가공 정밀도 향상",
+      "journal": "한국정밀공학회지"
+    },
+    {
+      "date": "2010-06",
+      "title": "Fabrication of Nanochannels with High Aspect Ratios on a Silicon Substrate by Local Focused Ion Beam Implantation and Deep Reactive Ion Etching",
+      "journal": "Japanese Journal of Applied Physics"
+    },
+    {
+      "date": "2010-06",
+      "title": "Design and Fabrication of Multi-Aperture Plate for Multi-Ion Beam Patterning System",
+      "journal": "Japanese Journal of Applied Physics"
+    },
+    {
+      "date": "2010-01",
+      "title": "Multiple excitation of localized surface plasmon to create a 10 nm x 10 nm strong optical spot using an Au nanoparticle array-based ridge waveguide",
+      "journal": "Optics Express"
+    },
+    {
+      "date": "2010-01",
+      "title": "Prediction of nanopattern topography using two-dimensional focused ion beam milling with beam irradiation intervals",
+      "journal": "MICROELECTRONIC ENGINEERING"
+    },
+    {
+      "date": "2009-12",
+      "title": "Energy Consumption Reduction Technology in Manufacturing - A Selective Review of Policies, Standards, and Research",
+      "journal": "International Journal of Precision Engineering and Manufacturing"
+    },
+    {
+      "date": "2009-11",
+      "title": "Bimorph nano actuators synthesized by focused ion beam chemical vapor deposition",
+      "journal": "Microelectronic Engineering"
+    },
+    {
+      "date": "2009-10",
+      "title": "Virtual EDM simulator: Three-dimensional geometric simulation of micro-EDM milling processes",
+      "journal": "INTERNATIONAL JOURNAL OF MACHINE TOOLS & MANUFACTURE"
+    },
+    {
+      "date": "2009-08",
+      "title": "Parameter optimization for finishing hard materials with magnetorheological fluid using the penalized multi-response Taguchi method",
+      "journal": "Proceedings Of The Institution Of Mechanical Engineers Part B-Journal Of Engineering Manufacture"
+    },
+    {
+      "date": "2009-07",
+      "title": "Deburring microfeatures using micro-EDM",
+      "journal": "Journal Of Materials Processing Technology"
+    },
+    {
+      "date": "2009-06",
+      "title": "Tribological Properties of a Magnetorheological (MR) Fluid in a Finishing Process",
+      "journal": "Tribology Transactions"
+    },
+    {
+      "date": "2009-06",
+      "title": "Electrostatically actuated carbon nanowire nanotweezers",
+      "journal": "Smart Materials & Structures"
+    },
+    {
+      "date": "2009-06",
+      "title": "Geometric improvement of electrochemical discharge micro-drilling using an ultrasonic-vibrated electrolyte",
+      "journal": "JOURNAL OF MICROMECHANICS AND MICROENGINEERING"
+    },
+    {
+      "date": "2009-05",
+      "title": "Behavioral model for magnetorheological fluid under a magnetic field using Lekner summation method",
+      "journal": "Journal Of Magnetism And Magnetic Materials"
+    },
+    {
+      "date": "2009-04",
+      "title": "Magnetorheological finishing process for hard materials using sintered iron-CNT compound abrasives",
+      "journal": "INTERNATIONAL JOURNAL OF MACHINE TOOLS & MANUFACTURE"
+    },
+    {
+      "date": "2009-04",
+      "title": "A behavioral model of axisymmetrically configured magnetorheological fluid using Lekner summation",
+      "journal": "Journal of Applied Physics"
+    },
+    {
+      "date": "2009-02",
+      "title": "Microfabrication Method using a Combination of Local Ion Implantation and Magnetorheological Finishing",
+      "journal": "Applied Physics Express"
+    },
+    {
+      "date": "2009-01",
+      "title": "A 3D Model for Magnetorheological Fluid that Considers Neighboring Particle Interactions in 2D Skewed Magnetic Fields",
+      "journal": "INTERNATIONAL JOURNAL OF PRECISION ENGINEERING AND MANUFACTURING"
+    },
+    {
+      "date": "2008-12",
+      "title": "MICRO FORMING OF GLASS MICROLENS ARRAY USING AN IMPRINTED AND SINTERED TUNGSTEN CARBIDE MICRO MOLD",
+      "journal": "International Journal of Modern Physics B"
+    },
+    {
+      "date": "2008-12",
+      "title": "Geometric Compensation of Focused Ion Beam Machining Using Image Processing",
+      "journal": "Applied Physics Express"
+    },
+    {
+      "date": "2008-12",
+      "title": "Virtual automatic tool changer of a machining centre with a real-time simulation",
+      "journal": "International Journal Of Computer Integrated Manufacturing"
+    },
+    {
+      "date": "2008-06",
+      "title": "체험학습기반의 기초 창의공학설계 교육 및 운영",
+      "journal": "공학교육연구"
+    },
+    {
+      "date": "2008-06",
+      "title": "Model-based pulse frequency control for micro-EDM milling using real-time discharge pulse monitoring",
+      "journal": "Journal Of Manufacturing Science And Engineering-Transactions Of The Asme"
+    },
+    {
+      "date": "2008-04",
+      "title": "Modeling gas film formation in electrochemical discharge machining processes using a side-insulated electrode",
+      "journal": "Journal Of Micromechanics And Microengineering"
+    },
+    {
+      "date": "2008-01",
+      "title": "Real-time gap control for micro-EDM: Application in a microfactory",
+      "journal": "INTERNATIONAL JOURNAL OF PRECISION ENGINEERING AND MANUFACTURING"
+    },
+    {
+      "date": "2007-11",
+      "title": "A study on the fabrication of curved surfaces using magnetorheological fluid finishing",
+      "journal": "INTERNATIONAL JOURNAL OF MACHINE TOOLS & MANUFACTURE"
+    },
+    {
+      "date": "2007-10",
+      "title": "Geometry prediction of EDM-drilled holes and tool electrode shapes of micro-EDM process using simulation",
+      "journal": "INTERNATIONAL JOURNAL OF MACHINE TOOLS & MANUFACTURE"
+    },
+    {
+      "date": "2007-10",
+      "title": "Estimation of material removal volume of a micro-EDM drilled hole using discharge pulse monitoring",
+      "journal": "INTERNATIONAL JOURNAL OF PRECISION ENGINEERING AND MANUFACTURING"
+    },
+    {
+      "date": "2007-08",
+      "title": "Improvement of surface integrity of electro-chemical discharge machining process using powder-mixed electrolyte",
+      "journal": "JOURNAL OF MATERIALS PROCESSING TECHNOLOGY"
+    },
+    {
+      "date": "2007-06",
+      "title": "자기유변유체를 이용한 하드디스크 슬라이더의 표면연마를 위한 기초연구",
+      "journal": "정보저장시스템학회논문집"
+    },
+    {
+      "date": "2006-10",
+      "title": "Estimation of machine tool feed drive inclination from current measurements and a mathematical model",
+      "journal": "INTERNATIONAL JOURNAL OF MACHINE TOOLS & MANUFACTURE"
+    },
+    {
+      "date": "2006-07",
+      "title": "Modeling and compensation of geometric errors in simultaneous cutting using a multi-spindle machine tool",
+      "journal": "INTERNATIONAL JOURNAL OF ADVANCED MANUFACTURING TECHNOLOGY"
+    },
+    {
+      "date": "2005-09",
+      "title": "최신 공작기계의 CNC 제어기 동향",
+      "journal": "한국공작기계학회 논문집"
+    },
+    {
+      "date": "2004-11",
+      "title": "Surface finishing and evaluation of three-dimensional silicon microchannel using magnetorheological fluid",
+      "journal": "JOURNAL OF MANUFACTURING SCIENCE AND ENGINEERING-TRANSACTIONS OF THE ASME"
+    },
+    {
+      "date": "2004-11",
+      "title": "Development of a padless ultraprecision polishing method using electrorheological fluid",
+      "journal": "JOURNAL OF MATERIALS PROCESSING TECHNOLOGY"
+    },
+    {
+      "date": "2004-11",
+      "title": "Design and fabrication of tungsten carbide mould with micro patterns imprinted by micro lithography",
+      "journal": "JOURNAL OF MICROMECHANICS AND MICROENGINEERING"
+    },
+    {
+      "date": "2004-11",
+      "title": "Reduction of machining errors of a three-axis machine tool by on-machine measurement and error compensation system",
+      "journal": "JOURNAL OF MATERIALS PROCESSING TECHNOLOGY"
+    },
+    {
+      "date": "2004-10",
+      "title": "마이크로 방전가공에서 Round Trip Method를 이용한 전극마모 보정",
+      "journal": "한국정밀공학회지"
+    },
+    {
+      "date": "2004-06",
+      "title": "미소 렌즈가 내재화된 이중사출 성형제품의 웰드라인 최소화",
+      "journal": "소성가공"
+    },
+    {
+      "date": "2004-04",
+      "title": "Surface finishing technique for small parts using dielectrophoretic effects of abrasive particles",
+      "journal": "JOURNAL OF MATERIALS PROCESSING TECHNOLOGY"
+    },
+    {
+      "date": "2003-12",
+      "title": "기상측정시스템과 오차보정을 이용한 가공정밀도 향상",
+      "journal": "한국정밀공학회지"
+    },
+    {
+      "date": "2002-11",
+      "title": "A Smart Boring Tool for Process Control",
+      "journal": "MECHATRONICS"
+    },
+    {
+      "date": "2002-10",
+      "title": "Improving Machine Accuracy in Precision Line Boring",
+      "journal": "JOURNAL OF INTELLIGENT MANUFACTURING"
+    },
+    {
+      "date": "2002-06",
+      "title": "소프트웨어 기반의 개방형 제어기를 통한 가상 CNC 개발",
+      "journal": "한국정밀공학회지"
+    },
+    {
+      "date": "2002-06",
+      "title": "Integration of Real-Time Control Simulation to a Virtual Manufacturing Environment",
+      "journal": "Journal of Advanced Manufacturing Systems"
+    },
+    {
+      "date": "2002-03",
+      "title": "Cutting Process Diagnostics Utilizing a Smart Cutting Tool",
+      "journal": "MECHANICAL SYSTEMS AND SIGNAL PROCESSING"
+    },
+    {
+      "date": "2002-01",
+      "title": "Web-enabled Monitoring and Control of Manufacturing Systems",
+      "journal": "Advances in Manufacturing Science and Technology"
+    },
+    {
+      "date": "2001-09",
+      "title": "Integrated Structure/Control Design of Micro-Positioner for Boring Bar Tool Insert",
+      "journal": "JOURNAL OF INTELLIGENT MATERIAL SYSTEMS AND STRUCTURES"
+    },
+    {
+      "date": "1997-03",
+      "title": "Sonar mapping of a mobile robot considering position uncertainty",
+      "journal": "ROBOTICS AND COMPUTER-INTEGRATED MANUFACTURING"
+    },
+    {
+      "date": "1996-03",
+      "title": "Exploration of a mobile robot based on sonar probability mapping",
+      "journal": "JOURNAL OF DYNAMIC SYSTEMS MEASUREMENT AND CONTROL-TRANSACTIONS OF THE ASME"
+    }
+  ],
+  "awards": [
+    {
+      "title": "한국정밀공학회 2024 추계 학술대회 논문 최우수상",
+      "contents": "시뮬레이션을 이용한 CNC 공작기계의 피크 전력제한",
+      "date": "2025-05-16"
+    },
+    {
+      "title": "한국정밀공학회 2024 춘계 학술대회 논문 최우수상",
+      "contents": "직선 삽입을 이용한 제약조건 변동을 고려한 로봇공구경로 생성",
+      "date": "2024-11-13"
+    },
+    {
+      "title": "한국정밀공학회 2023 추계 학술대회 논문 최우수상",
+      "contents": "마찰 모델 분리를 이용한 로봇 매니퓰레이터 모델 파라미터 고속 식별",
+      "date": "2024-05-10"
+    },
+    {
+      "title": "한국정밀공학회 2023 추계 학술대회 논문 최우수상",
+      "contents": "선박 중조립 용접을 위한 로봇 시스템의 자동 궤적 생성",
+      "date": "2024-05-10"
+    },
+    {
+      "title": "한국정밀공학회 2023 춘계 학술대회 논문 최우수상",
+      "contents": "절삭계수를 사용한 공구 상태 모니터링",
+      "date": "2023-11-17"
+    },
+    {
+      "title": "우수업적교수상(연구부문)",
+      "contents": null,
+      "date": "2022-08-11"
+    },
+    {
+      "title": "우수업적교수상(연구부문)",
+      "contents": null,
+      "date": "2020-02-04"
+    },
+    {
+      "title": "우수업적교수상(연구부문)",
+      "contents": null,
+      "date": "2019-05-27"
+    },
+    {
+      "title": "RoboMaster AI Challenge 3rd Prize",
+      "contents": null,
+      "date": "2019-05-20"
+    },
+    {
+      "title": "과학기술정보통신부 장관 표창",
+      "contents": "과학기술정보통신부 장관 표창",
+      "date": "2019-04-23"
+    },
+    {
+      "title": "우수업적교수상(연구부문)",
+      "contents": "2016학년도 우수업적교수",
+      "date": "2017-07-31"
+    },
+    {
+      "title": "가헌학술상",
+      "contents": "과학기술분야 업적",
+      "date": "2015-12-18"
+    },
+    {
+      "title": "ASPEN 2015 Best Paper Award (Electrochemical Oxidation Assisted Micromachining using Acidic Electrolyte)",
+      "contents": "Best paper award presented to Eunseok Nam and Byung-Kwon Min for paper titled Electrochemical Oxidation Assisted Micromachining using Acidic Electrolyte",
+      "date": "2015-08-18"
+    },
+    {
+      "title": "한국정밀공학회 2014 춘계학술대회 논문 최우수상(엔진블록 가공용 PCD 공구의 칩 브레이커 제작)",
+      "contents": "논문명: 엔진블록 가공용 PCD 공구의 칩 브레이커 제작",
+      "date": "2014-10-31"
+    },
+    {
+      "title": "키슬러코리아기술상",
+      "contents": "정밀가공 분야에서 뛰어난 논문들을 발표하여 정밀공학 발전에 기여",
+      "date": "2014-10-30"
+    },
+    {
+      "title": "한국정밀공학회 2013 추계 학술대회 논문 최우수상(방전가공 표면의 햅틱 랜터링을 위한 촉감 피드백 장치)",
+      "contents": "논문명: 방전가공 표면의 햅틱 랜터링을 위한 촉감 피드백 장치",
+      "date": "2014-05-16"
+    },
+    {
+      "title": "한국생산제조시스템학회 논문 우수발표상(공작기계 이송계 요소의 에너지 소비 예측)",
+      "contents": "논문명: 공작기계 이송계 요소의 에너지 소비 예측",
+      "date": "2014-04-29"
+    },
+    {
+      "title": "한국생산제조시스템학회 논문 우수발표상(전기장 강도의 변화를 갖는 표면형상 전극을 이용한 전해방전가공)",
+      "contents": "논문명: 전기장 강도의 변화를 갖는 표면형상 전극을 이용한 전해방전가공",
+      "date": "2014-04-29"
+    },
+    {
+      "title": "나노임프린트몰딩프린트학술대회 Best Poster Award(집속이온빔을 이용한 절연 재료 가공 시 가공 표면 특성)",
+      "contents": "논문명: 집속이온빔을 이용한 절연 재료 가공 시 가공 표면 특성",
+      "date": "2014-02-13"
+    },
+    {
+      "title": "한국기계가공학회 우수 논문 발표상(극저온 가공한 PDMS의 표면특성)",
+      "contents": "논문명: 극저온 가공한 PDMS의 표면특성",
+      "date": "2013-11-08"
+    },
+    {
+      "title": "한국정밀공학회 2013 춘계학술대회 논문 최우수상(표면형상 전극을 이용한 전해방전 가공의 시뮬레이션)",
+      "contents": "논문명: 표면형상 전극을 이용한 전해방전 가공의 시뮬레이션",
+      "date": "2013-11-01"
+    },
+    {
+      "title": "한국정밀공학회 2012 추계학술대회 논문 최우수상(금속 박막의 식각을 이용한 두께형상 측정)",
+      "contents": "논문명: 금속 박막의 식각을 이용한 두께형상 측정",
+      "date": "2013-05-31"
+    },
+    {
+      "title": "한국정밀공학회 2012 추계학술대회 논문 최우수상(기계적 가공을 이용한 COC 표면의 젖음성 조절)",
+      "contents": "논문명: 기계적 가공을 이용한 COC 표면의 젖음성 조절",
+      "date": "2013-05-30"
+    },
+    {
+      "title": "한국생산제조시스템학회 논문 우수발표상(전류신호를 이용한 전기화학/기계적 연마공정의 Endpoint 검출)",
+      "contents": "논문명: 전류신호를 이용한 전기화학/기계적 연마공정의 Endpoint 검출",
+      "date": "2013-04-26"
+    },
+    {
+      "title": "한국생산제조시스템학회 논문 우수발표상(PCD 미세공구 제조를 위한 방전가공 특성)",
+      "contents": "논문명: PCD 미세공구 제조를 위한 방전가공 특성",
+      "date": "2011-10-13"
+    },
+    {
+      "title": "IJPEM Most Downloaded Articles Award 2010",
+      "contents": "1년간 IJPEM 논문의 다운로드 회수를 바탕으로 독자로부터 다운로드가 가장 많이 된 논문",
+      "date": "2011-04-12"
+    },
+    {
+      "title": "백암논문상",
+      "contents": "한국정밀공학회 백암논문상",
+      "date": "2010-11-12"
+    },
+    {
+      "title": "ASPEN 2009 Best Paper Award (High Efficiency Electrochemical Discharge Machining Process for Glass Micromilling)",
+      "contents": "Best paper award to Han, Kim, Min, and Lee for the paper entitled High Efficiency Electrochemical Discharge Machining Process for Glass Micromilling",
+      "date": "2009-11-12"
+    },
+    {
+      "title": "제19회 과학기술우수논문상",
+      "contents": "2008년도 과학기술우수논문: \"Real-time gap control for micro-EDM: Application in a microfactory\"",
+      "date": "2009-07-07"
+    },
+    {
+      "title": "산업자원부 장관 표창",
+      "contents": "공작기계산업 발전 기여",
+      "date": "2007-12-07"
+    },
+    {
+      "title": "문교부장관상",
+      "contents": "전국 대학생 논문 경연대회 응용과학부문 1등",
+      "date": "1991-02-01"
+    }
+  ],
+  "conferences": [
+    {
+      "title": "CFRP 밀링의 공구 마모 저감을 위한 미변형 칩 두께 제어",
+      "conference": "한국정밀공학회 2025 춘계학술대회",
+      "period": "2025.05.14~2025.05.16"
+    },
+    {
+      "title": "가공조건 변동을 고려한 공작기계 에너지 소비 예측",
+      "conference": "한국정밀공학회 2025 춘계학술대회",
+      "period": "2025.05.14~2025.05.16"
+    },
+    {
+      "title": "이중 감지 알고리즘을 활용한 온라인 공작기계 충돌 방지",
+      "conference": "한국정밀공학회 2025 춘계학술대회",
+      "period": "2025.05.14~2025.05.16"
+    },
+    {
+      "title": "레이저 스냅샷 센서 이용 3차원 형상 기상 측정을 통한 5축 공작기계의 기하오차 식별",
+      "conference": "한국정밀공학회 2025 춘계학술대회",
+      "period": "2025.05.14~2025.05.16"
+    },
+    {
+      "title": "홀 주변 곡선 섬유 배열이 있는 3D 프린팅으로 제작된 아치형 복합재 구조물의 굽힘 강성",
+      "conference": "한국정밀공학회 2025 춘계학술대회",
+      "period": "2025.05.14~2025.05.16"
+    },
+    {
+      "title": "게이트 순환 유닛을 이용한 5축 공작기계의 공구 경로 예측",
+      "conference": "한국정밀공학회 2024 추계학술대회",
+      "period": "2024.11.13~2024.11.15"
+    },
+    {
+      "title": "높은 굽힘 강성을 갖는 탄소섬유복합재 구조물 제작을 위한 로봇 3D 프린팅 경로 생성",
+      "conference": "한국정밀공학회 2024 추계학술대회",
+      "period": "2024.11.13~2024.11.15"
+    },
+    {
+      "title": "딥러닝 기반 절삭 공정 계획 생성 모델",
+      "conference": "한국정밀공학회 2024 추계학술대회",
+      "period": "2024.11.13~2024.11.15"
+    },
+    {
+      "title": "대형 부품의 로봇 가공을 위한 위치 제어",
+      "conference": "한국정밀공학회 2024 추계학술대회",
+      "period": "2024.11.13~2024.11.15"
+    },
+    {
+      "title": "시뮬레이션을 이용한 CNC 공작기계의 피크 전력 제한",
+      "conference": "한국정밀공학회 2024 추계학술대회",
+      "period": "2024.11.13~2024.11.15"
+    },
+    {
+      "title": "탄소섬유복합재 드릴링에서의 버 저감을 위한 가공조건의 결정",
+      "conference": "한국정밀공학회 2024 추계학술대회",
+      "period": "2024.11.13~2024.11.15"
+    },
+    {
+      "title": "Estimation and Reduction of Peak Load of CNC Machine Tools",
+      "conference": "International Conference on Precision Engineering and Sustainable Manufacturing 2024",
+      "period": "2024.07.07~2024.07.12"
+    },
+    {
+      "title": "Tool Path Generation Algorithm of Robot Manipulator considering Posture-dependent Constraints Variation",
+      "conference": "International Conference on Precision Engineering and Sustainable Manufacturing 2024",
+      "period": "2024.07.07~2024.07.12"
+    },
+    {
+      "title": "Integral-based Model Parameter Identification for the Rotary Axes of 5-axis Machine Tool",
+      "conference": "International Conference on Precision Engineering and Sustainable Manufacturing 2024",
+      "period": "2024.07.07~2024.07.12"
+    },
+    {
+      "title": "마찰 모델 분리를 통한 5축 공작기계 모델 파라미터 식별",
+      "conference": "한국정밀공학회 2024 춘계학술대회",
+      "period": "2024.05.08~2024.05.10"
+    },
+    {
+      "title": "직선 삽입을 이용한 제약조건 변동을 고려한 로봇 공구경로 생성",
+      "conference": "한국정밀공학회 2024 춘계학술대회",
+      "period": "2024.05.08~2024.05.10"
+    },
+    {
+      "title": "3D 프린팅으로 제작된 홀을 포함하는 아치형 탄소섬유복합재의 굽힘 강성",
+      "conference": "한국정밀공학회 2024 춘계학술대회",
+      "period": "2024.05.08~2024.05.10"
+    },
+    {
+      "title": "가공 시편의 3 차원 형상 정보를 활용한 5 축 공작 기계의 기하 오차 식별",
+      "conference": "한국정밀공학회 2024 춘계학술대회",
+      "period": "2024.05.08~2024.05.10"
+    },
+    {
+      "title": "CFRP 밀링 가공 시 재료가진의 공구 마모 저감 효과",
+      "conference": "한국정밀공학회 2024 춘계학술대회",
+      "period": "2024.05.08~2024.05.10"
+    },
+    {
+      "title": "인공신경망을 이용한 CNC 의 공구 경로 예측",
+      "conference": "한국정밀공학회 2024 춘계학술대회",
+      "period": "2024.05.08~2024.05.10"
+    },
+    {
+      "title": "배터리 에너지 저장장치를 활용한 공작기계 피크 전력 저감",
+      "conference": "한국정밀공학회 2024 춘계학술대회",
+      "period": "2024.05.08~2024.05.10"
+    },
+    {
+      "title": "공구 경로 생성 제약 조건을 고려한 양방향 게이트 순환 유닛 기반 광역 스무딩",
+      "conference": "한국정밀공학회 2024 춘계학술대회",
+      "period": "2024.05.08~2024.05.10"
+    },
+    {
+      "title": "마찰모델 분리를 이용한 로봇 매니퓰레이터 모델 파라미터 고속식별",
+      "conference": "한국정밀공학회 2023 추계학술대회",
+      "period": "2023.11.15~2023.11.17"
+    },
+    {
+      "title": "저크 제한 곡선을 활용한 선독 기반 보간기",
+      "conference": "한국정밀공학회 2023 추계학술대회",
+      "period": "2023.11.15~2023.11.17"
+    },
+    {
+      "title": "로봇 3D 프린팅 시스템을 이용한 탄소섬유복합재 구조물의 강성 강화",
+      "conference": "한국정밀공학회 2023 추계학술대회",
+      "period": "2023.11.15~2023.11.17"
+    },
+    {
+      "title": "의사 결정 트리 기반 기계학습을 이용한 CNC 사이클 타임 예측",
+      "conference": "한국정밀공학회 2023 추계학술대회",
+      "period": "2023.11.15~2023.11.17"
+    },
+    {
+      "title": "Reinforcement Learning Based Corner Smoothing with Kinematic Constraints",
+      "conference": "International Conference on Precision Engineering and Sustainable Manufacturing 2023",
+      "period": "2023.07.16~2023.07.21"
+    },
+    {
+      "title": "Remaining Useful Life Prediction of Ball Screw Using Transfer Learning",
+      "conference": "International Conference on Precision Engineering and Sustainable Manufacturing 2023",
+      "period": "2023.07.16~2023.07.21"
+    },
+    {
+      "title": "Cycle Time Prediction for 5-axis CNC Machine Using Tool Path Generation Model",
+      "conference": "International Conference on Precision Engineering and Sustainable Manufacturing 2023",
+      "period": "2023.07.16~2023.07.21"
+    },
+    {
+      "title": "Dynamics Model Parameter Identification of Robot Manipulator Using Least Squares and Gradient Descent",
+      "conference": "International Conference on Precision Engineering and Sustainable Manufacturing 2023",
+      "period": "2023.07.16~2023.07.21"
+    },
+    {
+      "title": "Energy Consumption Estimation of Machine Tool Using Machine Learning",
+      "conference": "9th International Conference of ASPEN",
+      "period": "2022.11.15~2022.11.18"
+    },
+    {
+      "title": "Linear Regression-based Parameter Identification of Machine Tool Feed Drive",
+      "conference": "9th International Conference of ASPEN",
+      "period": "2022.11.15~2022.11.18"
+    },
+    {
+      "title": "자기 베어링을 이용한 6 자유도 모터",
+      "conference": "한국정밀공학회 2022년도 추계학술대회",
+      "period": "2022.10.19~2022.10.21"
+    },
+    {
+      "title": "산업용 로봇 강성 모델의 데이터 기반 학습방법",
+      "conference": "한국정밀공학회 2022 추계학술대회",
+      "period": "2022.10.19~2022.10.22"
+    },
+    {
+      "title": "GFRP의 가공성 향상을 위한 가공공정기술 사례 연구",
+      "conference": "한국정밀공학회 2022 추계학술대회",
+      "period": "2022.10.19~2022.10.22"
+    },
+    {
+      "title": "고속가공을 위한 보간 알고리즘 경로오차 예측",
+      "conference": "한국정밀공학회 2022 추계학술대회",
+      "period": "2022.10.19~2022.10.22"
+    },
+    {
+      "title": "차분 진화 알고리즘을 이용한 듀얼 로봇 시스템의 기구학 파라미터 식별",
+      "conference": "한국정밀공학회 2022 추계학술대회",
+      "period": "2022.10.19~2022.10.22"
+    },
+    {
+      "title": "코너 오차가 제한된 로봇가공용 공구경로 생성",
+      "conference": "한국정밀공학회 2022 추계학술대회",
+      "period": "2022.10.19~2022.10.22"
+    },
+    {
+      "title": "머신러닝을 활용한 공작기계 에너지 효율 향상",
+      "conference": "한국정밀공학회 2022 추계학술대회",
+      "period": "2022.10.19~2022.10.22"
+    },
+    {
+      "title": "전류기반 절삭력 모니터링을 위한 이송계의 위치 의존적 동특성 분석",
+      "conference": "한국정밀공학회 2022 추계학술대회",
+      "period": "2022.10.19~2022.10.22"
+    },
+    {
+      "title": "재료 가진 장치를 이용한 탄소섬유복합재 밀링 공구의 마모 저감",
+      "conference": "한국정밀공학회 2022 추계학술대회",
+      "period": "2022.10.19~2022.10.22"
+    },
+    {
+      "title": "선형 회귀 모델과 경사하강법을 활용한 공작기계 이송계 모델 파라미터 식별",
+      "conference": "한국정밀공학회 2022 추계학술대회",
+      "period": "2022.10.19~2022.10.22"
+    },
+    {
+      "title": "CNC 보간 파라미터의 코너링 오차에 대한 영향",
+      "conference": "한국정밀공학회 2022 추계학술대회",
+      "period": "2022.10.19~2022.10.22"
+    },
+    {
+      "title": "5축 공작기계 사이클 타임 예측",
+      "conference": "한국정밀공학회 2022 추계학술대회",
+      "period": "2022.10.19~2022.10.22"
+    },
+    {
+      "title": "3D 프린팅으로 제작된 홀을 포함한 탄소섬유복합재의 기계적 물성",
+      "conference": "한국정밀공학회 2022 추계학술대회",
+      "period": "2022.10.19~2022.10.22"
+    },
+    {
+      "title": "Parameter Optimization and Cycle Time Estimation Using CNC Machine Tool Simulation",
+      "conference": "International Symposium on Precision Engineering and Sustainable Manufacturing",
+      "period": "2022.07.20~2022.07.23"
+    },
+    {
+      "title": "Machinability Investigation of Cryogenic Tooling Kit in Ti6Al4V Milling Process",
+      "conference": "International Symposium on Precision Engineering and Sustainable Manufacturing",
+      "period": "2022.07.20~2022.07.23"
+    },
+    {
+      "title": "Prediction of Surface Roughness in Machining of WC with the PCD Micro Grinding Tool Using ANN",
+      "conference": "International Symposium on Precision Engineering and Sustainable Manufacturing",
+      "period": "2022.07.20~2022.07.23"
+    },
+    {
+      "title": "Robotic Machining Productivity Improvement through a Dynamic Model-based FRF Prediction",
+      "conference": "International Symposium on Precision Engineering and Sustainable Manufacturing",
+      "period": "2022.07.20~2022.07.23"
+    },
+    {
+      "title": "High Precision Interpolator for Robotic Machining Considering Kinematic Constraints and Corner Errors",
+      "conference": "International Symposium on Precision Engineering and Sustainable Manufacturing",
+      "period": "2022.07.20~2022.07.23"
+    },
+    {
+      "title": "Predicting the Tracking Performance of Machine Tool Feed Drive Using Simulation Model",
+      "conference": "International Symposium on Precision Engineering and Sustainable Manufacturing",
+      "period": "2022.07.20~2022.07.23"
+    },
+    {
+      "title": "Kinematic Parameter Identification for Improving Accuracy of Dual-robotic Systems",
+      "conference": "International Symposium on Precision Engineering and Sustainable Manufacturing",
+      "period": "2022.07.20~2022.07.23"
+    },
+    {
+      "title": "Effect of Fiber-tool contact Mode on Carbon Fiber Reinforced Plastic Milling Tool Wear",
+      "conference": "International Symposium on Precision Engineering and Sustainable Manufacturing",
+      "period": "2022.07.20~2022.07.23"
+    },
+    {
+      "title": "로봇 밀링에서의 동강성 기반 자세 최적화의 MRR 향상에 대한 효과 연구",
+      "conference": "한국정밀공학회 2022 춘계학술대회",
+      "period": "2022.05.11~2022.05.13"
+    },
+    {
+      "title": "극저온 드릴링 공정을 이용한 CFRP 소재의 가공성 향상",
+      "conference": "한국정밀공학회 2022 춘계학술대회",
+      "period": "2022.05.11~2022.05.13"
+    },
+    {
+      "title": "이송계 마찰 보상을 포함하는 선형 파라미터 가변 윤곽오차 제어기",
+      "conference": "한국정밀공학회 2022 춘계학술대회",
+      "period": "2022.05.11~2022.05.13"
+    },
+    {
+      "title": "가공시간 저감을 위한 5축 CNC 보간",
+      "conference": "한국정밀공학회 2022 춘계학술대회",
+      "period": "2022.05.11~2022.05.13"
+    },
+    {
+      "title": "모델 예측 제어를 활용한 시간 최적 공구경로 생성",
+      "conference": "한국정밀공학회 2022 춘계학술대회",
+      "period": "2022.05.11~2022.05.13"
+    },
+    {
+      "title": "마찰 부하 및 가속도 신호를 이용한 볼 스크류 상태 진단",
+      "conference": "한국정밀공학회 2022 춘계학술대회",
+      "period": "2022.05.11~2022.05.13"
+    },
+    {
+      "title": "듀얼 로봇 시스템을 이용한 강성 오차 저감",
+      "conference": "한국정밀공학회 2022 춘계학술대회",
+      "period": "2022.05.11~2022.05.13"
+    },
+    {
+      "title": "절삭 공정 모니터링 신호와 가공 표면 이미지를 활용한 딥 러닝 기반 공구 파손 진단",
+      "conference": "한국정밀공학회 2022 춘계학술대회",
+      "period": "2022.05.11~2022.05.13"
+    },
+    {
+      "title": "탄소섬유복합재/금속 스택 드릴링에서의 경계면 박리 모델",
+      "conference": "한국정밀공학회 2022 춘계학술대회",
+      "period": "2022.05.11~2022.05.13"
+    },
+    {
+      "title": "선형 회귀 방식을 활용한 이송계 모델 파라미터 식별",
+      "conference": "한국정밀공학회 2022 춘계학술대회",
+      "period": "2022.05.11~2022.05.13"
+    },
+    {
+      "title": "공구 경로 생성 모델을 활용한 CNC 공작기계 사이클 타임 예측",
+      "conference": "한국정밀공학회 2022 춘계학술대회",
+      "period": "2022.05.11~2022.05.13"
+    },
+    {
+      "title": "CNC 시뮬레이션을 활용한 공작기계 에너지 소비 예측",
+      "conference": "한국정밀공학회 2022 춘계학술대회javascript:fn_save();",
+      "period": "2022.05.11~2022.05.13"
+    },
+    {
+      "title": "공작기계 에너지 소비 예측 모델을 활용한 가공 조건 최적화",
+      "conference": "한국정밀공학회 2021년도 추계학술대회",
+      "period": "2021.11.24~2021.11.26"
+    },
+    {
+      "title": "가공 시간 저감을 위한 유한 임펄스 응답 필터 적용 5축 코너 스무딩 알고리즘",
+      "conference": "한국정밀공학회 2021 추계학술대회",
+      "period": "2021.11.24~2021.11.26"
+    },
+    {
+      "title": "공작기계 이송계 모델을 활용한 윤곽오차 제한 공구 경로 생성",
+      "conference": "한국정밀공학회 2021 추계학술대회",
+      "period": "2021.11.24~2021.11.26"
+    },
+    {
+      "title": "섬유배향각도에 따른 3D 프린팅된 탄소섬유복합재 인장강도 계산",
+      "conference": "한국정밀공학회 2021 추계학술대회",
+      "period": "2021.11.24~2021.11.26"
+    },
+    {
+      "title": "듀얼 로봇 팔을 이용한 가공오차 보상",
+      "conference": "한국정밀공학회 2021 추계학술대회",
+      "period": "2021.11.24~2021.11.26"
+    },
+    {
+      "title": "기구학적 제한을 고려한 코너 오차 제한 5축 고정밀 보간기",
+      "conference": "한국정밀공학회 2021 추계학술대회",
+      "period": "2021.11.24~2021.11.26"
+    },
+    {
+      "title": "가변가중치 재귀최소자승법을 이용한 이송계 모델 파라미터 식별",
+      "conference": "한국정밀공학회 2021 추계학술대회",
+      "period": "2021.11.24~2021.11.26"
+    },
+    {
+      "title": "Feed Drive Component Selection Method for Precision Control in Pre-sliding Friction Regime",
+      "conference": "International Symposium on Precision Engineering and Sustainable Manufacturing (PRESM2021)",
+      "period": "2021.07.21~2021.07.23"
+    },
+    {
+      "title": "공작기계 디지털 트윈 기반의 이송계 위치제어 성능예측",
+      "conference": "한국생산제조학회 2021년 춘계학술대회",
+      "period": "2021.07.07~2021.07.09"
+    },
+    {
+      "title": "NCK 모델 기반의 공작기계 이송계 제어특성 예측",
+      "conference": "한국생산제조학회 2021년 춘계학술대회",
+      "period": "2021.07.07~2021.07.09"
+    },
+    {
+      "title": "Laser Assisted Self-piercing Riveting Process for AHSS/CFRP Dissimilar Joint",
+      "conference": "International Symposium on Precision Engineering and Sustainable Manufacturing",
+      "period": "2021.06.21~2021.06.23"
+    },
+    {
+      "title": "The Geometrical Predictions of Machining Defects in CFRP Milling",
+      "conference": "International Symposium on Precision Engineering and Sustainable Manufacturing",
+      "period": "2021.06.21~2021.06.23"
+    },
+    {
+      "title": "Posture Optimization for Robotic Drilling within Entire Machining Space",
+      "conference": "International Symposium on Precision Engineering and Sustainable Manufacturing",
+      "period": "2021.06.21~2021.06.23"
+    },
+    {
+      "title": "Simulation-based tracking performance estimation of CNC machine tool feed drive",
+      "conference": "21st International Conference of the European Society for Precision Engineering and Nanotechnology",
+      "period": "2021.06.07~2121.06.10"
+    },
+    {
+      "title": "시뮬레이션 기반 공작기계 가공 시간 예측",
+      "conference": "한국정밀공학회 2021 추계학술대회",
+      "period": "2021.05.12~2021.05.13"
+    },
+    {
+      "title": "소음/진동 신호의 통계적 분석을 통한 밀링 가공 채터 진단",
+      "conference": "한국정밀공학회 2021 춘계학술대회",
+      "period": "2021.05.12~2021.05.14"
+    },
+    {
+      "title": "극저온 냉각과 최소 윤활 복합 공정을 이용한 인코넬 718 선삭가공에서의 공구 수명 향상",
+      "conference": "한국정밀공학회 2021 춘계학술대회",
+      "period": "2021.05.12~2021.05.14"
+    },
+    {
+      "title": "이송모터 토크신호를 이용한 밀링 공정에서의 절삭계수 식별",
+      "conference": "한국정밀공학회 2021 춘계학술대회",
+      "period": "2021.05.12~2021.05.14"
+    },
+    {
+      "title": "이송계 적응형 가속도 필터를 활용한 마찰 계수 식별",
+      "conference": "한국정밀공학회 2021 춘계학술대회",
+      "period": "2021.05.12~2021.05.14"
+    },
+    {
+      "title": "머리에 장착한 1인칭 시점 카메라를 활용한 손 소유권 식별",
+      "conference": "한국정밀공학회 2021 춘계학술대회",
+      "period": "2021.05.12~2021.05.14"
+    },
+    {
+      "title": "CNC 내재형 이송계 모델을 활용한 가공오차 예측",
+      "conference": "한국정밀공학회 2021 춘계학술대회",
+      "period": "2021.05.12~2021.05.14"
+    },
+    {
+      "title": "시뮬레이션 기반 공작기계 가공 시간 예측",
+      "conference": "한국정밀공학회 2021 춘계학술대회",
+      "period": "2021.05.12~2021.05.14"
+    },
+    {
+      "title": "공구 경로 생성 모델을 활용한 공작기계 에너지 소비 예측",
+      "conference": "한국정밀공학회 2021년 춘계학술대회",
+      "period": "2021.05.12~2021.05.14"
+    },
+    {
+      "title": "공작기계 이송계 위치추종오차 예측을 위한 고속 시뮬레이션",
+      "conference": "한국생산제조학회 2020년 추계학술대회",
+      "period": "2020.12.02~2020.12.04"
+    },
+    {
+      "title": "Thrust Force Model of Woven CFRP Drilling Considering Tool Geometry",
+      "conference": "International Symposium on Precision Engineering and Sustainable Manufacturing",
+      "period": "2020.11.15~2020.11.18"
+    },
+    {
+      "title": "Effect of Fiber Bending on Machined Surface Quality in CFRP Milling",
+      "conference": "International Symposium on Precision Engineering and Sustainable Manufacturing",
+      "period": "2020.11.15~2020.11.18"
+    },
+    {
+      "title": "모델기반의 공작기계 에너지 소비 예측의 속도향상",
+      "conference": "한국정밀공학회 2020 통합학술대회",
+      "period": "2020.09.14~2020.09.16"
+    },
+    {
+      "title": "가공오차 제한을 위한 저크 제한 곡선 기반의 코너 스무딩",
+      "conference": "한국정밀공학회 2020 통합학술대회",
+      "period": "2020.09.14~2020.09.16"
+    },
+    {
+      "title": "장비/제어/공정이 통합된 가상공작기계 기술 개발 현황",
+      "conference": "한국정밀공학회 2020 통합학술대회",
+      "period": "2020.09.14~2020.09.16"
+    },
+    {
+      "title": "로봇 메니퓰레이터 조인트 강성의 효과적인 식별을 위한 렌치 벡터 설계 기법",
+      "conference": "한국정밀공학회 2019 추계학술대회",
+      "period": "2019.10.30~2019.11.01"
+    },
+    {
+      "title": "프레스금형 수명 향상을 위한 DED 3D프린팅 공정용 적층경로 생성",
+      "conference": "한국정밀공학회 2019 추계학술대회",
+      "period": "2019.10.30~2019.11.01"
+    },
+    {
+      "title": "이송계 요소부품의 미세 마찰 특성",
+      "conference": "한국정밀공학회 2019 추계학술대회",
+      "period": "2019.10.30~2019.11.01"
+    },
+    {
+      "title": "6자유도 로봇 가공기의 동특성분석을 통한 가공성능 향상",
+      "conference": "한국정밀공학회 2019 추계학술대회",
+      "period": "2019.10.30~2019.11.01"
+    },
+    {
+      "title": "NCK 모델 기반의 CNC 공작기계 가공시간 예측",
+      "conference": "한국정밀공학회 2019 추계학술대회",
+      "period": "2019.10.30~2019.11.01"
+    },
+    {
+      "title": "처짐을 고려한 로봇 매니퓰레이터의 기구학 파라미터 식별",
+      "conference": "한국정밀공학회 2019 추계학술대회",
+      "period": "2019.10.30~2019.11.01"
+    },
+    {
+      "title": "음향신호를 이용한 위치 엔코더",
+      "conference": "한국정밀공학회 2019 추계학술대회",
+      "period": "2019.10.30~2019.11.01"
+    },
+    {
+      "title": "MTConnect 를 활용한 기계장비 공정 진단",
+      "conference": "한국정밀공학회 2019 추계학술대회",
+      "period": "2019.10.30~2019.11.01"
+    },
+    {
+      "title": "가공 중 수집한 신호를 부품 3D 모델에 가시화하기 위한 사용자 인터페이스",
+      "conference": "한국정밀공학회 2019 추계학술대회",
+      "period": "2019.10.30~2019.11.01"
+    },
+    {
+      "title": "Electrochemical oxidation assisted machining using conductive tool",
+      "conference": "International Symposium on Precision Engineering and Sustainable Manufacturing",
+      "period": "2019.07.10~2019.07.13"
+    },
+    {
+      "title": "structgural rigidity of robot machining systems depending on machining processes",
+      "conference": "International Symposium on Precision Engineering and Sustainable Manufacturing",
+      "period": "2019.07.10~2019.07.13"
+    },
+    {
+      "title": "corner error limit setting method for kinematic curve based interpolator",
+      "conference": "International Symposium on Precision Engineering and Sustainable Manufacturing",
+      "period": "2019.07.10~2019.07.13"
+    },
+    {
+      "title": "MICRO-SCALE GEOMETRICAL PREDICTIONS FOR MILLING OF CARBON FIBER REINFORCED POLYMERS (CFRP)",
+      "conference": "Manufacturing Science and Engineering Conference MSEC2019",
+      "period": "2019.06.10~2019.06.14"
+    },
+    {
+      "title": "Machined surface improvement of CFRP routing process using cryogenic cooling method",
+      "conference": "euspen&apos;s 19th international conference & Exhibition",
+      "period": "2019.06.03~2019.06.07"
+    },
+    {
+      "title": "모델 기반의 CNC 파라미터 최적화",
+      "conference": "한국정밀공학회 춘계학술대회",
+      "period": "2019.05.15~2019.05.17"
+    },
+    {
+      "title": "CNC 사용자 인터페이스를 위한 증강현실 오버레이 기술",
+      "conference": "한국정밀공학회 춘계학술대회",
+      "period": "2019.05.15~2019.05.17"
+    },
+    {
+      "title": "로봇 드릴링 공정을 위한 자세 최적화",
+      "conference": "한국정밀공학회 춘계학술대회",
+      "period": "2019.05.15~2019.05.17"
+    },
+    {
+      "title": "CFRP 라우팅 가공에서 섬유의 굽힘이 공구마모에 미치는 영향",
+      "conference": "한국정밀공학회 춘계학술대회",
+      "period": "2019.05.15~2019.05.17"
+    },
+    {
+      "title": "듀얼 로봇 매니퓰레이터의 기구학 파라미터 식별",
+      "conference": "한국정밀공학회 춘계학술대회",
+      "period": "2019.05.15~2019.05.17"
+    },
+    {
+      "title": "지능형 생산 플랫폼을 위한 개방형 CNC",
+      "conference": "한국정밀공학회 춘계학술대회",
+      "period": "2019.05.15~2019.05.17"
+    },
+    {
+      "title": "스크류 이론을 이용한 로봇 매니퓰레이터의 조인트 강성 식별",
+      "conference": "한국정밀공학회 춘계학술대회",
+      "period": "2019.05.15~2019.05.17"
+    },
+    {
+      "title": "CNC 의 가공오차 제한을 고려한 코너 블렌딩",
+      "conference": "한국정밀공학회 추계학술대회",
+      "period": "2018.10.24~2018.10.26"
+    },
+    {
+      "title": "실시간 포즈제어를 통한 로봇가공시스템 오차 보상",
+      "conference": "한국정밀공학회 추계학술대회",
+      "period": "2018.10.24~2018.10.26"
+    },
+    {
+      "title": "상체에 착용한 RGB-D 카메라를 이용한 팔 소유권 인식",
+      "conference": "한국정밀공학회 추계학술대회",
+      "period": "2018.10.24~2018.10.26"
+    },
+    {
+      "title": "티타늄 합금 선삭 시 냉각 방식이 공작물 미세구조 변형에 미치는 영향",
+      "conference": "한국정밀공학회 추계학술대회",
+      "period": "2018.10.24~2018.10.26"
+    },
+    {
+      "title": "탄소섬유의 굽힘 지점이 CFRP 밀링 품질에 미치는 영향",
+      "conference": "한국정밀공학회 추계학술대회",
+      "period": "2018.10.24~2018.10.26"
+    },
+    {
+      "title": "The geometrical predictions of the 3D milling process for Carbon Fiber Reinforced Polymer (CFRP) machining",
+      "conference": "World Congress on Micro and Nano Manufacturing 2018",
+      "period": "2018.10.18~2018.10.20"
+    },
+    {
+      "title": "레이저트래커를 이용한 로봇가공시스템 실시간 위치제어",
+      "conference": "한국생산제조학회 추계학술대회",
+      "period": "2018.10.04~2018.10.05"
+    },
+    {
+      "title": "Real time compensation of robot machining error using laser tracker",
+      "conference": "International Symposium on Precision Engineering and Sustainable Manufacturing",
+      "period": "2018.07.03~2018.07.07"
+    },
+    {
+      "title": "CFRP 밀링 공정에서 탄소섬유의 절삭 길이가 Fiber Pull-out 에 미치는 영향",
+      "conference": "한국정밀공학회 춘계학술대회",
+      "period": "2018.05.09~2018.05.11"
+    },
+    {
+      "title": "공작기계 이송계 서보의 게인 자동선정을 위한 동특성 추정",
+      "conference": "한국생산제조학회 춘계학술대회",
+      "period": "2018.05.02~2018.05.04"
+    },
+    {
+      "title": "Effect of workpiece temperature on delamination of CFRP drilling",
+      "conference": "International Symposium on Green Manufacturing Applications 2017",
+      "period": "2017.06.27~2017.07.01"
+    },
+    {
+      "title": "Material Interface Detection for Ion Beam Process Control",
+      "conference": "The 10th MIRAI Conference on Macrifabrication and Green Technology",
+      "period": "2017.06.28~2017.06.28"
+    },
+    {
+      "title": "CFRP 라우팅 가공의 fiber pullout 특성",
+      "conference": "한국정밀공학회 춘계학술대회",
+      "period": "2017.05.17~2017.05.19"
+    },
+    {
+      "title": "CFRP-금속 스택의 드릴링 공정제어를 위한 최대허용 피드 계산",
+      "conference": "한국정밀공학회 춘계학술대회",
+      "period": "2017.05.17~2017.05.19"
+    },
+    {
+      "title": "전기화학적 산화반응을 이용한 글래시카본 가공공정의 임계칩 두께",
+      "conference": "한국정밀공학회 춘계학술대회",
+      "period": "2017.05.17~2017.05.19"
+    },
+    {
+      "title": "공작기계 이송계의 질량 및 마찰 파라미터 실시간 식별",
+      "conference": "한국생산제조학회 춘계학술대회",
+      "period": "2017.04.26~2017.04.28"
+    },
+    {
+      "title": "Suppression of MQL oil mist combustion in titanium alloy turning using indirect cryogenic cooling",
+      "conference": "The 7th International Conference on Manufacturing, Machine Design and Tribology",
+      "period": "2017.04.19~2017.04.22"
+    },
+    {
+      "title": "Effects of electrolyte on the critical chip thickness in electrochemical oxidation assited micromachining of glassy carbon",
+      "conference": "World Congress on Micro and Nano Manufacturing 2017",
+      "period": "2017.03.27~2017.03.30"
+    },
+    {
+      "title": "플라즈모닉 나노홀어레이의 홀모양에 따른 투과광 특성 비교",
+      "conference": "The 6th nano-Imprint-Molding-Print Forum",
+      "period": "2017.02.15~2017.02.15"
+    },
+    {
+      "title": "글래시카본의 전기화학적 산화 응용 미세가공에서 전해질농도가 미치는 영향",
+      "conference": "The 6th nano-Imprint-Molding-Print Forum",
+      "period": "2017.02.15~2017.02.15"
+    },
+    {
+      "title": "Real-time tool path modification for accuracy improvement of machine tool contour error precompensation",
+      "conference": "The 7th International Conference on Positioning Technology",
+      "period": "2016.11.08~2016.11.11"
+    },
+    {
+      "title": "Friction model for feed drive systems operated in vacuum",
+      "conference": "The 7th International Conference on Positioning Technology",
+      "period": "2016.11.08~2016.11.11"
+    },
+    {
+      "title": "Vision-based emergency detection for machine tools",
+      "conference": "The 7th International Conference on Positioning Technology",
+      "period": "2016.11.08~2016.11.11"
+    },
+    {
+      "title": "Recursive Least Squares 방식의 이송계모델 파라미터 식별",
+      "conference": "한국정밀공학회 추계학술대회",
+      "period": "2016.10.26~2016.10.28"
+    },
+    {
+      "title": "탄소섬유복합재 라우팅 가공 공정에서의 가공 면 결함 분석",
+      "conference": "한국정밀공학회 추계학술대회",
+      "period": "2016.10.26~2016.10.28"
+    },
+    {
+      "title": "첨단소재 가공시스템을 위한 지능형 CNC 개발",
+      "conference": "한국정밀공학회 추계학술대회",
+      "period": "2016.10.26~2016.10.28"
+    },
+    {
+      "title": "Process control for CFRP-aluminum stack drilling using material interface detection",
+      "conference": "The 10th Asian-Australasian Conference on Composite Materials",
+      "period": "2016.10.16~2016.10.19"
+    },
+    {
+      "title": "Drilling simulation of UD/MD CFRP",
+      "conference": "The 10th Asian-Australasian Conference on Composite Materials",
+      "period": "2016.10.16~2016.10.19"
+    },
+    {
+      "title": "티타늄 합금선 삭가공시 극저온 공구간접냉각을 통한 MQL 윤활성 향상",
+      "conference": "한국기계가공학회 추계학술대회",
+      "period": "2016.10.13~2016.10.14"
+    },
+    {
+      "title": "CFRP 가공 온도에 따른 열적 결함 분석",
+      "conference": "대한기계학회 2016년도 춘계학술대회",
+      "period": "2016.05.25~2016.05.27"
+    },
+    {
+      "title": "CFRP 가공품질 향상을 위한 초음파 보조 드릴공구 개발",
+      "conference": "대한기계학회 춘계학술대회",
+      "period": "2016.05.25~2016.05.27"
+    },
+    {
+      "title": "티타늄합금의 절삭성 향상을 위한 공구의 극저온 간접냉각",
+      "conference": "한국정밀공학회 춘계학술대회",
+      "period": "2016.05.11~2016.05.13"
+    },
+    {
+      "title": "CFRP 소재 제작 방식에 따른 드릴링 가공 특성 분석",
+      "conference": "한국정밀공학회 춘계학술대회",
+      "period": "2016.05.11~2016.05.13"
+    },
+    {
+      "title": "CFRP-Al 스택 드릴링에서의 전기저항 변화를 이용한 경계면 검출",
+      "conference": "한국정밀공학회 춘계학술대회",
+      "period": "2016.05.11~2016.05.13"
+    },
+    {
+      "title": "기체분사를 이용한 전해방전가공의 속도향상",
+      "conference": "한국생산제조학회 춘계학술대회",
+      "period": "2016.04.27~2016.04.29"
+    },
+    {
+      "title": "극저온 간접냉각 방식 선삭공구의 정온 특성",
+      "conference": "한국생산제조학회 춘계학술대회",
+      "period": "2016.04.27~2016.04.29"
+    },
+    {
+      "title": "SKD11 소재의 저진공 고전압 전자빔 표면열처리 특성",
+      "conference": "한국정밀공학회 추계학술대회",
+      "period": "2015.12.13~2015.12.16"
+    },
+    {
+      "title": "CFRP 가공특성 분석을 위한 테스트베드 제작",
+      "conference": "한국정밀공학회 추계학술대회",
+      "period": "2015.12.13~2015.12.16"
+    },
+    {
+      "title": "시뮬레이션 기반의 사전 경로보정을 이용한 이송계 윤곽오차 저감",
+      "conference": "한국정밀공학회 추계학술대회",
+      "period": "2015.12.13~2015.12.16"
+    },
+    {
+      "title": "수직형 복합 연삭시스템의 가공품질 특성 실험",
+      "conference": "한국정밀공학회 추계학술대회",
+      "period": "2015.12.13~2015.12.16"
+    },
+    {
+      "title": "다양한 필기감 구현을 위한 스마트 기기용 스타일러스의 마찰계수 제어",
+      "conference": "한국정밀공학회 추계학술대회",
+      "period": "2015.12.13~2015.12.16"
+    },
+    {
+      "title": "공작기계 이송계의 Cyber-Physical System 기반 제어를 위한 학습 시뮬레이터",
+      "conference": "한국정밀공학회 추계학술대회",
+      "period": "2015.12.13~2015.12.16"
+    },
+    {
+      "title": "외란관측기를 이용한 마이크로 밀링 공정의 런아웃 보상제제어",
+      "conference": "한국생산제조시스템학회 추계학술대회",
+      "period": "2015.10.14~2015.10.16"
+    },
+    {
+      "title": "멀티모드 광섬유를 이용한 유리 나노프로브 제작",
+      "conference": "한국생산제조시스템학회 추계학술대회",
+      "period": "2015.10.14~2015.10.16"
+    },
+    {
+      "title": "공구간접냉각을 이용한 플랭크 마모 감소",
+      "conference": "한국생산제조시스템학회 추계학술대회",
+      "period": "2015.10.14~2015.10.16"
+    },
+    {
+      "title": "Scratch test of glassy carbon surface under",
+      "conference": "The 18th International Symposium on Advances in Abrasive Technology",
+      "period": "2015.10.04~2015.10.07"
+    },
+    {
+      "title": "Indirect cryogenic cooling for titanium alloy turning",
+      "conference": "The 18th International Symposium on Advances in Abrasive Technology",
+      "period": "2015.10.04~2015.10.07"
+    },
+    {
+      "title": "Efficiency improvement of electrochemical discharge machining using abrasive wire",
+      "conference": "International Symposium on Green Manufacturing and Applications 2015",
+      "period": "2015.06.23~2015.06.26"
+    },
+    {
+      "title": "Surface integrity of Ti-6Al-4V parts machined by cryogenic turning",
+      "conference": "International Symposium on Green Manufacturing and Applications 2015",
+      "period": "2015.06.23~2015.06.26"
+    },
+    {
+      "title": "티타늄합금 선삭가공 시 극저온 냉각의 칩절단 효과",
+      "conference": "한국정밀공학회 춘계학술대회",
+      "period": "2015.05.13~2015.05.15"
+    },
+    {
+      "title": "제품의 온도인지에 열유속이 미치는 영향 실험",
+      "conference": "한국정밀공학회 춘계학술대회",
+      "period": "2015.05.13~2015.05.15"
+    },
+    {
+      "title": "철도차량 외란보상 및 가속도제어를 위한 제동제어기 설계",
+      "conference": "한국정밀공학회 춘계학술대회",
+      "period": "2015.05.13~2015.05.15"
+    },
+    {
+      "title": "방전가공을 이용한 CFRP 홀의 미절삭 탄소섬유 제거",
+      "conference": "한국정밀공학회 춘계학술대회",
+      "period": "2015.05.13~2015.05.15"
+    },
+    {
+      "title": "탄소섬유복합재의 미세방전 홀 가공",
+      "conference": "한국정밀공학회 춘계학술대회",
+      "period": "2015.05.13~2015.05.15"
+    },
+    {
+      "title": "윤활/냉각방법에 따른 티타늄합금 선삭 표면특성 실험",
+      "conference": "한국정밀공학회 춘계학술대회",
+      "period": "2015.05.13~2015.05.15"
+    },
+    {
+      "title": "수직형 복합연삭가공기의 공정상태 모니터링",
+      "conference": "한국정밀공학회 춘계학술대회",
+      "period": "2015.05.13~2015.05.15"
+    },
+    {
+      "title": "시뮬레이션을 이용한 CNC 공작기계의 에너지소비 저감",
+      "conference": "한국정밀공학회 춘계학술대회",
+      "period": "2015.05.13~2015.05.15"
+    },
+    {
+      "title": "Simulation of Machining Error Induced by Tool Deflection in the NC Milling Process",
+      "conference": "6th International Conference on Manufacturing, Machine Design and Tribology",
+      "period": "2015.04.21~2015.04.24"
+    },
+    {
+      "title": "Development of End Point Detection System for Ion Beam Machining Equipment Using Secondary Electron Monitoring",
+      "conference": "6th International Conference on Manufacturing, Machine Design and Tribology",
+      "period": "2015.04.21~2015.04.24"
+    },
+    {
+      "title": "Optimal Design of Multi-ion Beam Optics",
+      "conference": "The 6th International Conference on Positioning Technology",
+      "period": "2014.11.19~2014.11.21"
+    },
+    {
+      "title": "Hardware-in-the-loop simulation for machine tool energy consumption estimation",
+      "conference": "The 6th International Conference on Positioning Technology",
+      "period": "2014.11.19~2014.11.21"
+    },
+    {
+      "title": "Mach-Zehnder Interferometer using Small Diameter Single Mode Fiber for Refractive Index Sensing",
+      "conference": "Asia Communications and Photonics Conference",
+      "period": "2014.11.11~2014.11.14"
+    },
+    {
+      "title": "Geometric simulation based tool wear compensation in micro die-sinking EDM process",
+      "conference": "29th Annual Meeting of the American Society for Precision Engineering",
+      "period": "2014.11.09~2014.11.14"
+    },
+    {
+      "title": "PDMS 재료의 극저온 가공 및 표면특성 조정",
+      "conference": "한국정밀공학회 추계학술대회",
+      "period": "2014.10.29~2014.10.31"
+    },
+    {
+      "title": "유리의 연삭와이어 전해방전 가공",
+      "conference": "한국정밀공학회 추계학술대회",
+      "period": "2014.10.29~2014.10.31"
+    },
+    {
+      "title": "시뮬레이션 기반 공작기계 요소 에너지소비 예측",
+      "conference": "한국정밀공학회 추계학술대회",
+      "period": "2014.10.29~2014.10.31"
+    },
+    {
+      "title": "다중이온빔 가공 시스템의 가공균일성 향상",
+      "conference": "한국정밀공학회 추계학술대회",
+      "period": "2014.10.29~2014.10.31"
+    },
+    {
+      "title": "전기화학적 산화반응을 이용한 가공에서의 산화막 생성 모델",
+      "conference": "한국정밀공학회 추계학술대회",
+      "period": "2014.10.29~2014.10.31"
+    },
+    {
+      "title": "Plasmonic Lithography Using an Active Nanogap-Controlled Solid Immersion Lens-Based Plasmonic Optical Head with a Sharp-Ridged Aperture",
+      "conference": "International Symposium on Optical Memory 2014",
+      "period": "2014.10.20~2014.10.23"
+    },
+    {
+      "title": "Improvement of machine tool friction compensation controller using detailed feed drive component",
+      "conference": "International Conference of Manufacturing Technology Engineers (ICMTE) 2014",
+      "period": "2014.09.30~2014.10.02"
+    },
+    {
+      "title": "Fabrication of plasmonic nanohole array for fiber-optic chemical sensing",
+      "conference": "International Conference of Manufacturing Technology Engineers (ICMTE) 2014",
+      "period": "2014.09.30~2014.10.02"
+    },
+    {
+      "title": "Wettability modification of polymer suface using micromachining",
+      "conference": "International Conference of Manufacturing Technology Engineers (ICMTE) 2014",
+      "period": "2014.09.30~2014.10.02"
+    },
+    {
+      "title": "Trimming of ultra-high strength alloy using the electroplasticity under electric current",
+      "conference": "International Symposium on Green Manufacturing and Applications 2014",
+      "period": "2014.06.24~2014.06.28"
+    },
+    {
+      "title": "ECDM tool Electrode Design for Improving Machining Speed",
+      "conference": "International Symposium on Green Manufacturing and Applications 2014",
+      "period": "2014.06.24~2014.06.28"
+    },
+    {
+      "title": "Feed drive model for machine tool energy consumption simulation",
+      "conference": "42nd North American Manufacturing Research Conference",
+      "period": "2014.06.09~2014.06.13"
+    },
+    {
+      "title": "자기유변유체를 이용한 초박형유리 에지 연마장비",
+      "conference": "한국정밀공학회 춘계학술대회",
+      "period": "2014.05.14~2014.05.16"
+    },
+    {
+      "title": "엔진블록 가공용 PCD 공구의 칩 브레이커 제작",
+      "conference": "한국정밀공학회 춘계학술대회",
+      "period": "2014.05.14~2014.05.16"
+    },
+    {
+      "title": "부하하중이 변동하는 공작기계 이송계의 마찰력보상",
+      "conference": "한국정밀공학회 춘계학술대회",
+      "period": "2014.05.14~2014.05.16"
+    },
+    {
+      "title": "코팅된 절연재료의 FIB 가공 시 이온 침투범위의 영향",
+      "conference": "한국정밀공학회 춘계학술대회",
+      "period": "2014.05.14~2014.05.16"
+    },
+    {
+      "title": "햅틱 구현을 위한 필기감 측정",
+      "conference": "한국정밀공학회 춘계학술대회",
+      "period": "2014.05.14~2014.05.16"
+    },
+    {
+      "title": "CNC 공작기계 시뮬레이션 플랫폼을 이용한 제어기 게인 결정",
+      "conference": "한국생산제조시스템학회 춘계학술대회",
+      "period": "2014.04.28~2014.04.30"
+    },
+    {
+      "title": "CNC-in-the-loop 시뮬레이션을 위한 서보드라이브 모델",
+      "conference": "한국생산제조시스템학회 춘계학술대회",
+      "period": "2014.04.28~2014.04.30"
+    },
+    {
+      "title": "미세 로봇 응용을 위한 나선형 나노 구조물의 FIB 3D 프린팅",
+      "conference": "한국생산제조시스템학회 춘계학술대회",
+      "period": "2014.04.28~2014.04.30"
+    },
+    {
+      "title": "Electrochemical oxidation assisted micromachining process of glassy carbon at high overpotential",
+      "conference": "International Conference On Micromanufacturing 2014",
+      "period": "2014.03.25~2014.03.28"
+    }
+  ],
+  "fundings": [
+    {
+      "title": "[RCMS]대한항공/대형 모빌리티 부품 조립을 위한 복수 로봇 동시 운영 기반 가공-접합 복합공정시스템 개발(3/3, 1/2단계)",
+      "org": "한국산업기술기획평가원",
+      "period": "2026-04-01~2027-01-31"
+    },
+    {
+      "title": "[민간/(주)디엔솔루션즈]5축 공작기계 기계-제어 통합 시뮬레이션 기술 적용 설계 평가",
+      "org": "국내",
+      "period": "2026-03-01~2027-02-28"
+    },
+    {
+      "title": "[통합이지바로](선도연구센터/ERC)다상소재 혁신 생산공정 연구센터(4/4,1단계)(2023.6.1.~2027.2.28.)",
+      "org": "한국연구재단",
+      "period": "2026-03-01~2027-02-28"
+    },
+    {
+      "title": "[7차년도]사회지향 기계기술 글로벌 리더 양성 교육연구단",
+      "org": "한국연구재단",
+      "period": "2026-03-01~2027-02-28"
+    },
+    {
+      "title": "[RCMS]한국기계연구원/공작기계 디지털 트윈 및 지능화 기술 개발(1/2, 2/2단계)",
+      "org": "한국산업기술기획평가원",
+      "period": "2026-01-01~2026-12-31"
+    },
+    {
+      "title": "[RCMS]대한항공/대형 모빌리티 부품 조립을 위한 복수 로봇 동시 운영 기반 가공-접합 복합공정시스템 개발(2/3, 1/2단계)",
+      "org": "한국산업기술기획평가원",
+      "period": "2025-06-01~2026-03-31"
+    },
+    {
+      "title": "[통합이지바로](선도연구센터/ERC)다상소재 혁신 생산공정 연구센터(3/4,1단계)(2023.6.1.~2027.2.28.)",
+      "org": "한국연구재단",
+      "period": "2025-03-01~2026-02-28"
+    },
+    {
+      "title": "[6차년도] 사회지향 기계기술 글로벌 리더 양성 교육연구단",
+      "org": "한국연구재단",
+      "period": "2025-03-01~2026-02-28"
+    },
+    {
+      "title": "[민간/디엔솔루션즈] 산업기술알키미스트프로젝트멤버십",
+      "org": "국내",
+      "period": "2025-01-01~2030-12-31"
+    },
+    {
+      "title": "[RCMS]생성형 제조지능 기반 초연결 제조플랫폼 개발(1/1, ２/3단계)",
+      "org": "한국산업기술기획평가원",
+      "period": "2025-01-01~2025-12-31"
+    },
+    {
+      "title": "[RCMS]한국기계연구원/공작기계 디지털 트윈 및 지능화 기술 개발(3/3, 1/2단계)",
+      "org": "한국산업기술기획평가원",
+      "period": "2025-01-01~2025-12-31"
+    },
+    {
+      "title": "[민간/(주)DN솔루션즈] CNC 모델과 이송계 동역학 모델을 통합한 시뮬레이션 모델 제작",
+      "org": "국내",
+      "period": "2024-12-01~2026-11-30"
+    },
+    {
+      "title": "[RCMS]대한항공/대형 모빌리티 부품 조립을 위한 복수 로봇 동시 운영 기반 가공-접합 복합공정시스템 개발(1/3, 1/2단계)",
+      "org": "한국산업기술기획평가원",
+      "period": "2024-09-01~2025-05-31"
+    },
+    {
+      "title": "[RCMS]케이씨엔씨주식회사/스마트 제조장비용 CNC 제어시스템 기술 개발(2/2, 2/2단계)",
+      "org": "한국산업기술기획평가원",
+      "period": "2024-07-01~2025-06-30"
+    },
+    {
+      "title": "[RCMS]생성형 제조지능 기반 초연결 제조플랫폼 개발(1/1, 1/3단계)",
+      "org": "한국산업기술기획평가원",
+      "period": "2024-04-01~2024-12-31"
+    },
+    {
+      "title": "[RCMS]한국기계산업진흥회/디지털 제조장비 R&D 전문인력양성(5/5)",
+      "org": "한국산업기술진흥원",
+      "period": "2024-03-01~2025-02-28"
+    },
+    {
+      "title": "[통합이지바로](선도연구센터/ERC)다상소재 혁신 생산공정 연구센터(2/4,1단계)(2023.6.1.~2027.2.28.)",
+      "org": "한국연구재단",
+      "period": "2024-03-01~2025-02-28"
+    },
+    {
+      "title": "[5차년도] 사회지향 기계기술 글로벌 리더 양성 교육연구단",
+      "org": "한국연구재단",
+      "period": "2024-03-01~2025-02-28"
+    },
+    {
+      "title": "[RCMS]한국기계연구원/공작기계 디지털 트윈 및 지능화 기술 개발(2/3, 1/2단계)",
+      "org": "한국산업기술기획평가원",
+      "period": "2024-01-01~2024-12-31"
+    },
+    {
+      "title": "[민간/유진기업] SR 프로젝트 산학협력과제",
+      "org": "국내",
+      "period": "2023-08-01~2027-07-31"
+    },
+    {
+      "title": "[RCMS]케이씨엔씨주식회사/스마트 제조장비용 CNC 제어시스템 기술 개발(1/2, 2/2단계)",
+      "org": "한국산업기술기획평가원",
+      "period": "2023-07-01~2024-06-30"
+    },
+    {
+      "title": "[통합이지바로](선도연구센터/ERC)다상소재 혁신 생산공정 연구센터(1/4,1단계)(2023.6.1.~2027.2.28.)",
+      "org": "한국연구재단",
+      "period": "2023-06-01~2024-02-29"
+    },
+    {
+      "title": "[RCMS]한국기계연구원/공작기계 디지털 트윈 및 지능화 기술 개발(1/3, 1/2단계)",
+      "org": "한국산업기술기획평가원",
+      "period": "2023-04-01~2023-12-31"
+    },
+    {
+      "title": "[민간/에이치디한국조선해양(주)]로봇 CPS 플랫폼 개발",
+      "org": "국내",
+      "period": "2023-04-01~2026-11-30"
+    },
+    {
+      "title": "[RCMS]한국기계산업진흥회/디지털 제조장비 R&D 전문인력양성(4/5)",
+      "org": "한국산업기술진흥원",
+      "period": "2023-03-01~2024-02-29"
+    },
+    {
+      "title": "[4차년도] 사회지향 기계기술 글로벌 리더 양성 교육연구단",
+      "org": "한국연구재단",
+      "period": "2023-03-01~2024-02-29"
+    },
+    {
+      "title": "[민간/DN솔루션즈] 공작기계 채터 저감을 위한 전자기 액티브 워크피스 홀더 원천기술 개발 자문",
+      "org": "국내",
+      "period": "2022-10-01~2025-04-30"
+    },
+    {
+      "title": "[RCMS]현대위아㈜/스마트 제조장비용 CNC 제어시스템 기술 개발(3/3)",
+      "org": "한국산업기술기획평가원",
+      "period": "2022-07-01~2023-06-30"
+    },
+    {
+      "title": "[RCMS]한국기계연구원/공작기계 운영 에너지 효율화를 위한 에너지 소비 평가기술실증(1/1)",
+      "org": "한국산업기술기획평가원",
+      "period": "2022-05-01~2023-10-31"
+    },
+    {
+      "title": "[RCMS]한국기계산업진흥회/디지털 제조장비 R&D 전문인력양성(3/5)",
+      "org": "한국산업기술진흥원",
+      "period": "2022-03-01~2023-02-28"
+    },
+    {
+      "title": "[포닥]민병권(김규호)-공구마모 저감을 위한 피삭재 진동 보조 탄소섬유복합재 가공",
+      "org": "연세대학교",
+      "period": "2022-03-01~2023-02-28"
+    },
+    {
+      "title": "[3차년도] 사회지향 기계기술 글로벌 리더 양성 교육연구단",
+      "org": "한국연구재단",
+      "period": "2022-03-01~2023-02-28"
+    },
+    {
+      "title": "[RCMS]한국기계연구원/장비제어공정 통합 가상공작기계 기술 및 이에 기반한 공작기계 지능화 원천기술 개발(2/2,2/2)",
+      "org": "한국산업기술기획평가원",
+      "period": "2022-01-01~2022-12-31"
+    },
+    {
+      "title": "[RCMS]현대위아㈜/스마트 제조장비용 CNC 제어시스템 기술 개발(2/3)",
+      "org": "한국산업기술기획평가원",
+      "period": "2021-03-01~2022-06-30"
+    },
+    {
+      "title": "LINC+ 4차 산업혁명 혁신선도대학(2/2)",
+      "org": "한국연구재단",
+      "period": "2021-03-01~2022-02-28"
+    },
+    {
+      "title": "[2차년도] 사회지향 기계기술 글로벌 리더 양성 교육연구단",
+      "org": "한국연구재단",
+      "period": "2021-03-01~2022-02-28"
+    },
+    {
+      "title": "[RCMS]한국기계연구원/장비제어공정 통합 가상공작기계 기술 및 이에 기반한 공작기계 지능화 원천기술 개발(1/2,1/2)",
+      "org": "한국산업기술기획평가원",
+      "period": "2021-01-01~2021-12-31"
+    },
+    {
+      "title": "[1차년도] 사회지향 기계기술 글로벌 리더 양성 교육연구단",
+      "org": "한국연구재단",
+      "period": "2020-09-01~2021-02-28"
+    },
+    {
+      "title": "[RCMS]현대위아(주)/스마트 제조장비용 CNC 제어시스템 기술 개발(1/3)",
+      "org": "한국산업기술기획평가원",
+      "period": "2020-07-01~2021-02-28"
+    },
+    {
+      "title": "[민간/두산공작기계] 공작기계 채터 저감을 위한 액티브 댐퍼 원천기술 개발 자문",
+      "org": "국내",
+      "period": "2020-07-01~2022-06-30"
+    },
+    {
+      "title": "[RCMS]두산공작기계(주)/중소형 공작기계용 2계통 제어 CNC와 서보, 스핕들 구동 유닛 국산화 개발(5/5)",
+      "org": "한국산업기술기획평가원",
+      "period": "2020-04-01~2020-09-30"
+    },
+    {
+      "title": "LINC+ 4차 산업혁명 혁신선도대학(1/2)",
+      "org": "한국연구재단",
+      "period": "2020-03-01~2021-02-28"
+    },
+    {
+      "title": "[8차년도]사회지향 기계기술 글로벌 리더 양성 사업단",
+      "org": "한국연구재단",
+      "period": "2020-03-01~2020-08-31"
+    },
+    {
+      "title": "[RCMS]한국생산기술연구원/첨단소재부품 가공시스템 기술지원 기반조성 사업(5/5, 1단계)",
+      "org": "한국산업기술진흥원",
+      "period": "2020-01-01~2020-12-31"
+    },
+    {
+      "title": "[RCMS]한국생산기술연구원/탄소섬유복합재(CFRP)가공시스템 개발(6/6)",
+      "org": "한국산업기술기획평가원",
+      "period": "2020-01-01~2020-08-31"
+    },
+    {
+      "title": "[RCMS]한국기계연구원/장비제어공정 통합 가상공작기계 기술 및 이에 기반한 공작기계 지능화 원천기술 개발(3/3)",
+      "org": "한국산업기술기획평가원",
+      "period": "2020-01-01~2020-12-31"
+    },
+    {
+      "title": "[RCMS]한국기계연구원/공작기계용 국산 CNS 시스템 실증[1/1]",
+      "org": "한국산업기술기획평가원",
+      "period": "2019-10-01~2020-09-30"
+    },
+    {
+      "title": "[RCMS]두산공작기계(주)/중소형 공작기계용 2계통 제어 CNC와 서보, 스핀들 구동 유닛 국산화 개발(4/5)",
+      "org": "한국산업기술기획평가원",
+      "period": "2019-06-01~2020-03-31"
+    },
+    {
+      "title": "[민간/현대무벡스] Moving magnet type linear motor 및 원천기술 개발 자문",
+      "org": "국내",
+      "period": "2019-05-24~2020-12-30"
+    },
+    {
+      "title": "[7차년도]사회지향 기계기술 글로벌 리더 양성 사업단",
+      "org": "한국연구재단",
+      "period": "2019-03-01~2020-02-29"
+    },
+    {
+      "title": "[RCMS]한국생산기술연구원/탄소섬유복합재(CFRP)가공시스템 개발(5/6)",
+      "org": "한국산업기술기획평가원",
+      "period": "2019-02-01~2019-12-31"
+    },
+    {
+      "title": "[RCMS]한국생산기술연구원/첨단소재부품 가공시스템 기술지원 기반조성 사업(4/5)",
+      "org": "한국산업기술진흥원",
+      "period": "2019-01-01~2019-12-31"
+    },
+    {
+      "title": "[RCMS]한국기계연구원/장비제어공정 통합 가상공작기계 기술 및 이에 기반한 공작기계 지능화 원천기술 개발(2/3)",
+      "org": "한국산업기술기획평가원",
+      "period": "2019-01-01~2019-12-31"
+    },
+    {
+      "title": "[RCMS]두산공작기계(주)/중소형 공작기계용 2계통 제어 CNC와 서보, 스핀들 구동 유닛 국산화 개발(3/5)",
+      "org": "한국산업기술기획평가원",
+      "period": "2018-08-01~2019-05-31"
+    },
+    {
+      "title": "[RCMS]한국기계연구원/장비제어공정 통합 가상공작기계 기술 및 이에 기반한 공작기계 지능화 원천기술 개발(1/3)",
+      "org": "한국산업기술기획평가원",
+      "period": "2018-04-01~2018-12-31"
+    },
+    {
+      "title": "[RCMS]한국생산기술연구원/탄소섬유복합재(CFRP)가공시스템 개발(4/5)",
+      "org": "한국산업기술기획평가원",
+      "period": "2018-04-01~2020-06-30"
+    },
+    {
+      "title": "[6차년도]사회지향 기계기술 글로벌 리더 양성 사업단",
+      "org": "한국연구재단",
+      "period": "2018-03-01~2019-02-28"
+    },
+    {
+      "title": "[RCMS]한국생산기술연구원/첨단소재부품 가공시스템 기술지원 기반조성 사업(3/5)",
+      "org": "한국산업기술진흥원",
+      "period": "2018-01-01~2018-12-31"
+    },
+    {
+      "title": "[위탁/한국기계연구원] 기계장비 위치제어특성 시뮬레이션 기술",
+      "org": "한국기계연구원",
+      "period": "2018-01-01~2018-12-31"
+    },
+    {
+      "title": "[RCMS]두산공작기계(주)/중소형 공작기계용 2계통 제어 CNC와 서보, 스핀들 구동 유닛 국산화 개발(2/5)",
+      "org": "한국산업기술기획평가원",
+      "period": "2017-10-01~2018-07-31"
+    },
+    {
+      "title": "[RCMS]한국생산기술연구원/탄소섬유복합재(CFRP)가공시스템 개발(3/5)",
+      "org": "한국산업기술기획평가원",
+      "period": "2017-06-01~2018-03-31"
+    },
+    {
+      "title": "[RCMS]한국생산기술연구원/첨단소재부품 가공시스템 기술지원 기반조성 사업(2/5)",
+      "org": "한국산업기술진흥원",
+      "period": "2017-03-01~2017-12-31"
+    },
+    {
+      "title": "[5차년도]사회지향 기계기술 글로벌 리더 양성 사업단",
+      "org": "한국연구재단",
+      "period": "2017-03-01~2018-02-28"
+    },
+    {
+      "title": "기계장비 위치제어특성 시뮬레이션 기술",
+      "org": "한국산업기술기획평가원",
+      "period": "2017-01-01~2017-12-31"
+    },
+    {
+      "title": "[RCMS]두산공작기계(주)/중소형 공작기계용 2계통 제어 CNC와 서보, 스핀들 구동 유닛 국산화 개발(1/4)",
+      "org": "한국산업기술기획평가원",
+      "period": "2016-10-01~2017-09-30"
+    },
+    {
+      "title": "[RCMS]한국생산기술연구원/탄소섬유복합재(CFRP)가공시스템 개발(2/5)",
+      "org": "한국산업기술기획평가원",
+      "period": "2016-06-01~2017-05-31"
+    },
+    {
+      "title": "[RCMS]한국생산기술연구원/첨단소재부품 가공시스템 기술지원 기반조성 사업(1/5)",
+      "org": "한국산업기술진흥원",
+      "period": "2016-04-01~2017-02-28"
+    },
+    {
+      "title": "(4차년도) 사회지향 기계기술 글로벌 리더 양성 사업단",
+      "org": "한국연구재단",
+      "period": "2016-03-01~2017-02-28"
+    },
+    {
+      "title": "초정밀 광 기계기술 연구센터(2/4,1단계, 2015.08.01 ~ 2019.02.28)",
+      "org": "한국연구재단",
+      "period": "2016-03-01~2017-02-28"
+    },
+    {
+      "title": "LG전자/스마트폰 방열 기술 연구",
+      "org": "국내",
+      "period": "2016-02-01~2017-03-31"
+    },
+    {
+      "title": "[한국기계연구원]기계장비 위치제어특성 시뮬레이션 기술",
+      "org": "한국산업기술기획평가원",
+      "period": "2016-01-01~2016-12-31"
+    },
+    {
+      "title": "ERC/초정밀 광 기계기술 연구센터(1/4,1단계)(2015.8.1~2019.2.28)",
+      "org": "한국연구재단",
+      "period": "2015-08-01~2016-02-29"
+    },
+    {
+      "title": "[RCMS]한국생산기술연구원/탄소섬유복합재(CFRP)가공시스템 개발(1/5)",
+      "org": "한국산업기술기획평가원",
+      "period": "2015-06-01~2016-05-31"
+    },
+    {
+      "title": "[포닥]민병권(이원균)-모델기반 공작기계 에너지효율 향상",
+      "org": "연세대학교",
+      "period": "2015-03-01~2016-02-29"
+    },
+    {
+      "title": "한국기계연구원/기계장비 위치제어특성 시뮬레이션 기술",
+      "org": "한국산업기술기획평가원",
+      "period": "2015-01-01~2015-12-31"
+    },
+    {
+      "title": "2층 고속열차 승차감 향상을 위한 제동제어 기술개발",
+      "org": "국토교통과학기술진흥원",
+      "period": "2014-08-29~2015-06-28"
+    },
+    {
+      "title": "자동차 주행안전장치 평가용 실시간 테스트 장치 제작",
+      "org": "중소기업청",
+      "period": "2014-06-01~2015-05-31"
+    },
+    {
+      "title": "한국기계연구원/기계장비 위치제어특성 시뮬레이션 기술",
+      "org": "한국산업기술평가관리원",
+      "period": "2014-06-01~2014-12-31"
+    },
+    {
+      "title": "[RCMS]한국생산기술연구원/차세대 하이브리드 연삭시스템 개발(4/5)",
+      "org": "한국산업기술평가관리원",
+      "period": "2014-04-01~2015-03-31"
+    },
+    {
+      "title": "LG전자/모바일 디바이스 소재의 감성온도 평가",
+      "org": "국내",
+      "period": "2014-01-01~2016-06-30"
+    },
+    {
+      "title": "한국기계연구원/기계장비 제어/방진특성 예측 시뮬레이터 개발(2단계 3/3)",
+      "org": "한국산업기술평가관리원",
+      "period": "2014-01-01~2014-05-31"
+    },
+    {
+      "title": "2층 고속열차 승차감 향상을 위한 제동제어 기술개발",
+      "org": "국토교통과학기술진흥원",
+      "period": "2013-11-11~2014-07-10"
+    },
+    {
+      "title": "[SM] 글로벌프론티어 사업",
+      "org": "연세대학교",
+      "period": "2013-09-01~2014-04-30"
+    },
+    {
+      "title": "0.2T GLASS EDGE POLISHING을 할 수 있는 MR POLISHING 자성체의 SIMULATION 구현 및 설계/최적 가공조건 도출",
+      "org": "국내",
+      "period": "2013-08-26~2013-12-26"
+    },
+    {
+      "title": "현대엔지비(주)/청정도 향상 가공칩 제어기술 개발",
+      "org": "국내",
+      "period": "2013-05-01~2016-03-31"
+    },
+    {
+      "title": "[글로벌] 미래융합기계기술사업단",
+      "org": "연세대학교",
+      "period": "2013-03-01~2014-03-31"
+    },
+    {
+      "title": "한국기계연구원/기계장비 제어/방진특성 예측 시뮬레이터 개발(1/2)(2013.01.01~2014.05.31)",
+      "org": "한국산업기술평가관리원",
+      "period": "2013-01-01~2013-12-31"
+    },
+    {
+      "title": "삼성전기(주)/모터 기술 개발",
+      "org": "국내",
+      "period": "2012-11-01~2014-06-30"
+    },
+    {
+      "title": "한국기계연구원/기계장비 제어/방진특성 예측 시뮬레응謙？개발(1/2)(2009.6.1~2014.5.31)",
+      "org": "한국산업기술평가관리원",
+      "period": "2012-06-01~2012-12-31"
+    },
+    {
+      "title": "전기화학/기계적 재료제거 특성을 이용한 고경도 구조물의 나노정밀도 표면연마(3/3)",
+      "org": "한국과학재단",
+      "period": "2012-05-01~2013-04-30"
+    },
+    {
+      "title": "나노마이크로응용기계기술인력양성사업단",
+      "org": "연세대학교",
+      "period": "2012-03-01~2014-02-28"
+    },
+    {
+      "title": "나노 마이크로 응용기계기술 인력양성사업",
+      "org": "학술진흥재단",
+      "period": "2012-03-01~2013-04-30"
+    },
+    {
+      "title": "생기원/대면적 미세 가공공정 원천기술 개발(2/2)(2007.12.1~2012.9.30)",
+      "org": "한국산업기술평가관리원",
+      "period": "2011-10-01~2012-09-30"
+    },
+    {
+      "title": "나노 금속 도파로가 형성된 SIL을 이용한 고속 마스 크리스 나노리소그래피 기술 (3/3)",
+      "org": "한국과학재단",
+      "period": "2011-09-01~2012-08-31"
+    },
+    {
+      "title": "(주)에프티랩/다중 이온빔 연마 및 밀링 가공 장비 개발(2차년도/2)(2010.07.01~2012.06.30)",
+      "org": "한국산업기술평가관리원",
+      "period": "2011-07-01~2012-06-30"
+    },
+    {
+      "title": "한국기계연구원/기계장비 제어/방진특성 예측 시뮬레 이터 개발(3차년도/3)(2009.06.01~2012.05.31)",
+      "org": "한국산업기술평가관리원",
+      "period": "2011-06-01~2012-05-31"
+    },
+    {
+      "title": "(주)테크맥/마이크로 방전 기반 하이브리드 다축 가공 시스템 기술 개발(3차년도/6)(2009.06.01~2015.05.31)",
+      "org": "한국산업기술평가관리원",
+      "period": "2011-06-01~2012-05-31"
+    },
+    {
+      "title": "전기화학/기계적 재료제거 특성을 이용한 고경도 구조물의 나노정밀도 표면연마",
+      "org": "한국과학재단",
+      "period": "2011-05-01~2012-04-30"
+    },
+    {
+      "title": "나노사출성형 공정기술개발 (4/4, 3단계)",
+      "org": "한국과학재단",
+      "period": "2011-04-01~2012-03-31"
+    },
+    {
+      "title": "나노 마이크로 응용기계기술 인력양성사업",
+      "org": "학술진흥재단",
+      "period": "2011-03-01~2012-02-29"
+    },
+    {
+      "title": "나노마이크로응용기계기술인력양성사업단",
+      "org": "연세대학교",
+      "period": "2011-03-01~2012-02-29"
+    },
+    {
+      "title": "생기원/대면적 미세 가공공정 원천기술 개발(2단계 1차년도)",
+      "org": "한국산업기술평가관리원",
+      "period": "2010-10-01~2011-09-30"
+    },
+    {
+      "title": "나노 금속 도파로가 형성된 SIL을 이용한 고속 마스크리스 나노리소그래피 기술",
+      "org": "한국과학재단",
+      "period": "2010-09-01~2011-08-31"
+    },
+    {
+      "title": "(주)에프티랩/다중 이온빔 연마 및 밀링 가공 장비 개발",
+      "org": "지식경제부",
+      "period": "2010-07-01~2011-06-30"
+    },
+    {
+      "title": "한국기계연구원/기계장비 제어/방진특성 예측 시뮬레이터 개발",
+      "org": "지식경제부",
+      "period": "2010-06-01~2011-05-31"
+    },
+    {
+      "title": "(주)테크맥/마이크로 방전 기반 하이브리드 다축 가공 시스템 기술 개발",
+      "org": "지식경제부",
+      "period": "2010-06-01~2011-05-31"
+    },
+    {
+      "title": "전기화학/기계적 재료제거 특성을 이용한 고경도 구조물의 나노정밀도 표면연마",
+      "org": "한국과학재단",
+      "period": "2010-05-01~2011-04-30"
+    },
+    {
+      "title": "나노사출성형 공정기술개발",
+      "org": "한국과학재단",
+      "period": "2010-04-01~2011-03-31"
+    },
+    {
+      "title": "G-5-5-10나노마이크로응용기계기술인력양성사업단",
+      "org": "연세대학교",
+      "period": "2010-03-02~2011-06-30"
+    },
+    {
+      "title": "나노마이크로응용기계기술인력양성사업단",
+      "org": "연세대학교",
+      "period": "2010-03-01~2011-02-28"
+    },
+    {
+      "title": "나노 마이크로 응용기계기술 인력양성사업단",
+      "org": "학술진흥재단",
+      "period": "2010-03-01~2011-02-28"
+    },
+    {
+      "title": "[송도정책] 송도 R&D PARK 유치전략 연구",
+      "org": "연세대학교산학협력단",
+      "period": "2010-03-01~2010-12-31"
+    },
+    {
+      "title": "초정밀 밀링공정을 이용한 미세형상 가공기술 개발 3차년도",
+      "org": "한국생산기술연구원",
+      "period": "2009-10-01~2010-09-30"
+    },
+    {
+      "title": "나노 금속 도파로가 형성된 SIL을 이용한 고속 마스크리스 나노리소그래피 기술",
+      "org": "한국과학재단",
+      "period": "2009-09-01~2010-08-31"
+    },
+    {
+      "title": "나노 스케일 가공 및 조작기술 개발과 이를 응용한 차세대 광 정보저장기기 개발",
+      "org": "한국과학재단",
+      "period": "2009-07-01~2010-06-30"
+    },
+    {
+      "title": "다중빔 방식의 고효율 이온빔 가공 공정 및 In-line 시스템 개발",
+      "org": "한국산업기술대학교",
+      "period": "2009-07-01~2010-06-30"
+    },
+    {
+      "title": "마이크로 방전 기반 하이브리드 다축 가공 시스템 기술 개발",
+      "org": "지식경제부",
+      "period": "2009-06-01~2010-05-31"
+    },
+    {
+      "title": "기계장비 제어/방진특성 예측 시뮬레이터 개발",
+      "org": "지식경제부",
+      "period": "2009-06-01~2010-05-31"
+    },
+    {
+      "title": "금속박막의 국소적 이온주입을 이용한 나노구조물 제작",
+      "org": "한국과학재단",
+      "period": "2009-05-01~2010-04-30"
+    },
+    {
+      "title": "나노사출성형 공정기술개발",
+      "org": "한국과학재단",
+      "period": "2009-04-01~2010-03-31"
+    },
+    {
+      "title": "G5-5-10/나노마이크로응용기계기술인력양성사업",
+      "org": "연세대학교",
+      "period": "2009-03-02~2010-06-30"
+    },
+    {
+      "title": "나노마이크로응용기계기술인력양성사업단",
+      "org": "연세대학교",
+      "period": "2009-03-01~2010-02-28"
+    },
+    {
+      "title": "나노마이크로응용기계기술인력양성사업단",
+      "org": "학술진흥재단",
+      "period": "2009-03-01~2010-02-28"
+    },
+    {
+      "title": "디자인인력양성사업 중캡스톤디자인 사업",
+      "org": "한국디자인진흥원",
+      "period": "2009-02-01~2009-08-31"
+    },
+    {
+      "title": "제조시스템혁신을 위한 산업현황 분석 및 기획",
+      "org": "한국생산기술연구원",
+      "period": "2008-12-16~2009-02-03"
+    },
+    {
+      "title": "표면 플라즈몬 효과를 이용한 테라급 자기기록용 신개념 미디어설계 및 제작",
+      "org": "서울시정개발연구원",
+      "period": "2008-10-01~2009-09-30"
+    },
+    {
+      "title": "초정밀 밀링공정을 이용한 미세형상 가공기술 개발 2차년도",
+      "org": "한국생산기술연구원",
+      "period": "2008-10-01~2009-09-30"
+    },
+    {
+      "title": "데스크탑 복합 가공 기스템의 정밀 방전 가공요소 기술 개발(2차년도)",
+      "org": "(주)메카니아",
+      "period": "2008-09-01~2009-08-31"
+    },
+    {
+      "title": "다중빔 방식의 고효율 이온빔 가공 공정 및 IN-LINE 시스템 개발",
+      "org": "한국산업기술대학교",
+      "period": "2008-07-01~2009-06-30"
+    },
+    {
+      "title": "나노 스케일 가공 및 조작기술 개발과 이를 응용한 차세대 광 정보저장기기 개발",
+      "org": "한국과학재단",
+      "period": "2008-07-01~2009-06-30"
+    },
+    {
+      "title": "웨이퍼 다이싱 장비의 가공면 미세 형상측정 및 분석",
+      "org": "한국생산기술연구원",
+      "period": "2008-06-01~2009-05-31"
+    },
+    {
+      "title": "10 NM 급 패턴 나노사출성형 공정기술개발",
+      "org": "한국기계연구원",
+      "period": "2008-04-01~2009-03-31"
+    },
+    {
+      "title": "나노마이크로응용기계기술인력양성사업단",
+      "org": "학술진흥재단",
+      "period": "2008-03-01~2009-02-28"
+    },
+    {
+      "title": "G5-5-10/나노마이크로응용기계기술인력양성사업",
+      "org": "연세대학교",
+      "period": "2008-03-01~2009-02-28"
+    },
+    {
+      "title": "나노마이크로응용기계기술인력양성사업단",
+      "org": "연세대학교",
+      "period": "2008-03-01~2009-02-28"
+    },
+    {
+      "title": "GM대우 실린더 블록 밀링 가공 최적화를 위한 연구",
+      "org": "민간기업",
+      "period": "2008-03-01~2012-02-29"
+    },
+    {
+      "title": "초정밀 밀링공정을 이용한 미세형상 가공기술개발",
+      "org": "한국생산기술연구원",
+      "period": "2007-12-01~2008-09-30"
+    },
+    {
+      "title": "표면 플라즈몬 효과를 이용한 테라급 자기기록용 신개념 미디어 설계 및 제작",
+      "org": "서울시정개발연구원",
+      "period": "2007-10-01~2008-09-30"
+    },
+    {
+      "title": "다중빔 방식의 고효율 이온빔 가공 공정 및 IN-LINE시",
+      "org": "한국산업기술대학교",
+      "period": "2007-09-01~2008-06-30"
+    },
+    {
+      "title": "데스크탑 복합 가공 기스템의 정밀 방전 가공요소 기",
+      "org": "(주)메카니아",
+      "period": "2007-09-01~2008-08-31"
+    },
+    {
+      "title": "웨이퍼 다이싱 장비의 가공면 미세 형상측정 및 분석",
+      "org": "한국생산기술연구원",
+      "period": "2007-06-01~2008-05-31"
+    },
+    {
+      "title": "50NM급 패턴 사출성형 공정기술 개발",
+      "org": "나노메카트로닉스기술개발사업단",
+      "period": "2007-04-01~2008-03-31"
+    },
+    {
+      "title": "고에너지빔 응용 초미세 부품 제조용 IN-LINE 시스템 개발",
+      "org": "한국산업기술평가원",
+      "period": "2007-04-01~2007-05-31"
+    },
+    {
+      "title": "나노/마이크로 응용 기계기술 인력양성사업단",
+      "org": "학술진흥재단",
+      "period": "2007-03-01~2008-02-29"
+    },
+    {
+      "title": "나노/마이크로 응용 기계기술 인력양성사업단",
+      "org": "연세대학교",
+      "period": "2007-03-01~2008-02-29"
+    },
+    {
+      "title": "G5-5-10/나노마이크로응용기계기술인력양성사업",
+      "org": "연세대학교",
+      "period": "2007-03-01~2008-05-31"
+    },
+    {
+      "title": "마이크로 나노 점선가공 기반구축",
+      "org": "한국산업기술평가원",
+      "period": "2007-02-01~2008-01-31"
+    },
+    {
+      "title": "(주) 엔지비 변속기 가공품질향상을 위한 공구 진동 이용 치면 가공품질 모니터링 시스템에 관한 연구",
+      "org": "민간기업",
+      "period": "2007-02-01~2008-01-31"
+    },
+    {
+      "title": "(주) 로보젠 미세 재료제거용 피에조 구동기 드라이브의 개발",
+      "org": "민간기업",
+      "period": "2006-10-01~2006-12-31"
+    },
+    {
+      "title": "마이크로 전기화학 복합형상 제거 시스템 개발",
+      "org": "산업자원부",
+      "period": "2006-09-01~2007-08-31"
+    },
+    {
+      "title": "고주파 진동형 3차원 구조 나노 기전 소자의 설계 및 제작",
+      "org": "학술진흥재단",
+      "period": "2006-07-01~2007-06-30"
+    },
+    {
+      "title": "50NM급 패턴 사출성형 공정기술 개발",
+      "org": "제이엠아이",
+      "period": "2006-04-01~2007-03-31"
+    },
+    {
+      "title": "나노 마이크로 응용기계기술 인력양성사업단",
+      "org": "학술진흥재단",
+      "period": "2006-03-01~2007-02-28"
+    },
+    {
+      "title": "나노마이크로응용기계기술인역양성사업단",
+      "org": "연세대학교",
+      "period": "2006-03-01~2007-02-28"
+    },
+    {
+      "title": "마이크로 나노 점선가공",
+      "org": "산업기술평가원",
+      "period": "2006-02-01~2007-01-31"
+    },
+    {
+      "title": "마이크로 전기 화학 복합형상 제거 시스템 개발",
+      "org": "산업자원부",
+      "period": "2005-09-01~2006-08-31"
+    },
+    {
+      "title": "초정밀 기계공학기반 복합기술사업단(2단계 BK21 SEED2차 BK21 SEED MONEY 지원 1단계 1,700,000원",
+      "org": "연세대학교",
+      "period": "2005-08-01~2006-03-31"
+    },
+    {
+      "title": "레이저 광 실시간 제어 및 가공 공정 계측",
+      "org": "한국기계연구원",
+      "period": "2005-07-31~2006-07-30"
+    },
+    {
+      "title": "슬라이드 레일제조의 정밀도 향상을 위한 측정치 분석기술 개발",
+      "org": "한국산업기술평가원",
+      "period": "2005-07-01~2006-06-30"
+    },
+    {
+      "title": "50NM급 패턴 사출성형 공정 기술 개발",
+      "org": "제이엠아이",
+      "period": "2005-04-01~2006-03-31"
+    },
+    {
+      "title": "마이크로-나노 점선가공 기반구축",
+      "org": "산업기술평가원",
+      "period": "2005-02-01~2006-01-31"
+    },
+    {
+      "title": "IT기반 제어시스템 모듈형 S/W 기술개발",
+      "org": "터보테크",
+      "period": "2004-09-01~2005-08-31"
+    },
+    {
+      "title": "마이크로 전기화학 복합형상 제거시스템",
+      "org": "산업자원부",
+      "period": "2004-09-01~2005-08-31"
+    },
+    {
+      "title": "3차원 미세가공을 위한 초정밀 방전기술연구",
+      "org": "대산정밀",
+      "period": "2004-08-01~2005-07-31"
+    },
+    {
+      "title": "레이저 광 실시간 제어 및 가공 공정 계측",
+      "org": "한국기계연구원",
+      "period": "2004-07-31~2005-07-30"
+    },
+    {
+      "title": "슬라이드 레일 제조의 정밀도 향상을 위한 측정치 분석 기술개발",
+      "org": "한국산업기술평가원",
+      "period": "2004-07-01~2005-06-30"
+    },
+    {
+      "title": "마이크로-나노 점선가공기반 구축",
+      "org": "한국산업기술평가원",
+      "period": "2004-02-01~2005-01-31"
+    },
+    {
+      "title": "45&apos; SI MIRROR FABRICATION TECHNOLOGY",
+      "org": "삼성종합기술원",
+      "period": "2003-12-15~2004-08-14"
+    },
+    {
+      "title": "시뮬레이션 기반의 공작기계 설계 및 관리를 위한 국 제 IMS 프로그램의 개발 및 기초연구",
+      "org": "한국생산기술연구원",
+      "period": "2003-10-01~2004-09-30"
+    },
+    {
+      "title": "IT기반 제어시스템 모듈형 S/W기술개발",
+      "org": "한국산업기술평가원",
+      "period": "2003-09-01~2004-08-31"
+    },
+    {
+      "title": "3차원 미세가공을 위한 초정밀 방전기술연구",
+      "org": "한국산업기술평가원",
+      "period": "2003-08-01~2004-07-31"
+    },
+    {
+      "title": "3차원 미세부품 표면가공을 위한 자기연마기술 연구",
+      "org": "연세대학교산학단_간접비",
+      "period": "2003-07-01~2004-06-30"
+    },
+    {
+      "title": "마이크로-나노 점.선가공 기반구축",
+      "org": "한국산업기술평가원",
+      "period": "2003-04-01~2004-01-31"
+    },
+    {
+      "title": "IT기반제어시스템의 모듈형 S/W기술 개발",
+      "org": "한국산업기술평가원",
+      "period": "2002-11-01~2003-10-31"
+    },
+    {
+      "title": "시뮬레이션 기반의 공작기계 설계 및 관리를 위한 국제 IMS 프로그램의 개발 및 기초연구",
+      "org": "한국생산기술연구원",
+      "period": "2002-10-01~2003-09-30"
+    }
+  ],
+  "patents": [
+    {
+      "title": "확산 모델에 기반한 공작기계 공구경로의 이송속도 프로파일 생성 방법 및 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2026-05-14"
+    },
+    {
+      "title": "시뮬레이션 기반 공정 대리모델과 대형 언어 모델을 이용한 제조 공정 분류 장치 및 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2025-11-28"
+    },
+    {
+      "title": "생성형 AI 기반 제품 설계 자동화 및 3차원 부품 배치 최적화 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2025-11-13"
+    },
+    {
+      "title": "절삭 공정 계획 및 제조 코드 자동 생성 장치 및 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2025-11-13"
+    },
+    {
+      "title": "제조 장비 에너지 예측 기반의 소비 전력 피크 저감 방법 및 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2025-10-21"
+    },
+    {
+      "title": "생성형 AI 기반 제품 설계 자동화 및 3차원 부품 배치 최적화 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2025-09-08"
+    },
+    {
+      "title": "홀이 있는 복합재 부품의 적층절삭복합공정 방법 및 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2025-07-03"
+    },
+    {
+      "title": "소프트웨어를 활용한 절삭 공정 계획 데이터셋 생성 장치 및 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2025-06-05"
+    },
+    {
+      "title": "절삭 공정 계획 및 제조 코드 자동 생성 장치 및 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2025-06-05"
+    },
+    {
+      "title": "에너지 저장 장치를 활용한 공작기계 피크 전력 제한 장치 및 제한 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2025-03-24"
+    },
+    {
+      "title": "공작기계의 요소단위 에너지 소모량 예측을 위한 수치제어장치 및 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2021-11-25"
+    },
+    {
+      "title": "고정밀 공구경로를 생성하는 공작기계용 수치 제어 장치 및 제어 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2021-06-23"
+    },
+    {
+      "title": "공작기계의 요소단위 에너지 소모량 예측을 위한 수치제어장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2020-11-25"
+    },
+    {
+      "title": "이송 대차용 코어리스 리니어 모터",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 현대무벡스 주식회사",
+      "date": "2020-08-07"
+    },
+    {
+      "title": "음향신호를 이용한 엔코더",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2019-11-22"
+    },
+    {
+      "title": "광섬유, 이를 포함하는 광센서, 광섬유 제조방법 및 이를 위한 증착장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2018-12-31"
+    },
+    {
+      "title": "가상 공작 기계를 활용하여 가공 오차를 제한하는 수치 제어 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2018-10-26"
+    },
+    {
+      "title": "다공성 구조를 포함하는 생체적합성 구조물 및 이를 제조하는 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2017-11-15"
+    },
+    {
+      "title": "광섬유, 이를 포함하는 광센서, 광섬유 제조방법 및 이를 위한 증착장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2016-09-29"
+    },
+    {
+      "title": "전해방전가공장치 및 이를 이용한 전해방전가공방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 한국산업기술대학교산학협력단",
+      "date": "2016-04-26"
+    },
+    {
+      "title": "광섬유, 이를 포함하는 광센서, 광섬유 제조방법 및 이를 위한 증착장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2015-12-01"
+    },
+    {
+      "title": "다양한 필기감을 가지는 햅틱 스타일러스 펜",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2015-08-10"
+    },
+    {
+      "title": "전자제어장치 및 운행 영상 데이터 기반 차량 운행 시뮬레이션 플랫폼 및 운행 시뮬레이션 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, (주)아띠",
+      "date": "2015-07-27"
+    },
+    {
+      "title": "HILS 기반 차량 부품성능 평가장치 및 평가방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, (주)아띠",
+      "date": "2015-07-07"
+    },
+    {
+      "title": "오일미스트 포집장치, 이를 운용하는 방법, 및 이를 포함하는 기계가공장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2015-01-05"
+    },
+    {
+      "title": "3차원 나노 스케일 구조물 제작 장치 및 이를 이용한 3차원 나노 스케일 구조물 제조방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2014-11-03"
+    },
+    {
+      "title": "에너지 소비 효율 향상을 위한 가상 공작기계 시뮬레이션 모델 및 이를 이용한 공작기계 에너지 소비 효율 향상 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2014-08-07"
+    },
+    {
+      "title": "3차원 나노 스케일 구조물 제작을 위한 새로운 장치 및 공정 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2013-11-19"
+    },
+    {
+      "title": "위상변조기를 이용한 휴대용 홀로그래피 현미경",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2012-10-31"
+    },
+    {
+      "title": "전기화학적 산화를 이용한 고경도, 취성 재료의 기계적 가공장치 및 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2011-12-30"
+    },
+    {
+      "title": "능동 근접장 간극제어가 가능한 고속 마스크리스 나노리소그래피 방법, 이에 사용되는 나노 개구 기반 광학렌즈 및 광학헤드",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2011-02-11"
+    },
+    {
+      "title": "내부에 나노 개구 구비 금속막이 형성된 소자의 제조방법, 그 방법으로 제조된 나노 소자, 광학렌즈 및 플라즈모닉 광학헤드",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2011-01-28"
+    },
+    {
+      "title": "자기유변유체를 이용한 3차원 롤 금형 연마장치 및 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2010-12-03"
+    },
+    {
+      "title": "고분자 확산 반사판 및 이 반사판 제작을 위한 고분자 수지 조성물",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, (주)케이엠팩",
+      "date": "2010-09-16"
+    },
+    {
+      "title": "자기유변유체를 이용한 피가공물의 연마장치 및 그 연마방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2010-06-14"
+    },
+    {
+      "title": "압전소자를 이용한 자가발전 센서 및 모니터링 시스템",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2010-02-25"
+    },
+    {
+      "title": "다이아몬드-폴리머 복합패드 및 그 제조방법, 다이아몬드-폴리머 복합패드를 이용한 실리콘 웨이퍼 연마방법 및 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2009-10-28"
+    },
+    {
+      "title": "패턴 제어 또는 입사광 제어를 이용한 반사광 제어 유닛 및 반사광 제어 방법과, 이를 이용한 광학적 디스플레이 장치 및 반사광 제어 시스템",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2009-10-20"
+    },
+    {
+      "title": "스텐실 마스크 조립체 및 이를 이용한 빔 조사 장치와 빔 조사 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2009-10-20"
+    },
+    {
+      "title": "고경도 전도성 재료의 표면 연마 장치 및 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2009-09-18"
+    },
+    {
+      "title": "철-폴리머 복합체 제조방법, 이 제조방법에 의해 제조된 철-폴리머 복합체를 이용한 고경도 전도성 재료의 표면 연마방법 및 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2009-09-18"
+    },
+    {
+      "title": "나노 금속 구조물의 도트 크기 조절 방법 및 이를 이용한 나노 금속 구조물의 제조 방법과 미세 금속 가공용 이온 조사 시스템",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2009-09-10"
+    },
+    {
+      "title": "미세 방전 디버링 가공장치 및 가공공정",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2009-01-20"
+    },
+    {
+      "title": "자기유변유체를 이용하는 곡면 연마공구 및 곡면 연마방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2009-01-19"
+    },
+    {
+      "title": "자기유변연마공정에 적용되는 자화가능한 고경도의 연마제 및 그에 따른 연마공정",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2009-01-19"
+    },
+    {
+      "title": "다중개구를 이용한 집속 이온빔 가공장치, 그 보정방법 및 이를 이용한 가공방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2008-07-02"
+    },
+    {
+      "title": "형상개구를 이용한 집속 이온빔 가공장치와 이를 이용한 가공방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2008-07-01"
+    },
+    {
+      "title": "집속이온빔을 이용한 나노패턴 형성방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2008-01-28"
+    },
+    {
+      "title": "초미세 바늘 전극 제조 방법 및 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2007-07-13"
+    },
+    {
+      "title": "나노 공진기 제작 겸 주파수튜닝장치, 및 그 장치를 이용한 나노 공진기의 제작방법 및 주파수튜닝방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2007-04-30"
+    },
+    {
+      "title": "접속이온빔과 MRF를 이용한 나노 구조물의 제조방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2006-11-20"
+    },
+    {
+      "title": "정전기력을 이요하여 구동되는 나노 트위저 및 그 제조 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2006-07-18"
+    },
+    {
+      "title": "미세구조물의 FIB가공시 가공오차 보정데이터의 산출방법, 가공오차 보정데이터를 적용한 미세구조물의 FIB 가공방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2006-05-23"
+    }
+  ]
+}

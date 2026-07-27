@@ -16,6 +16,10 @@ export interface FacultyRecord {
   room: string | null;
   specialty: string | null;
   yearRange: string | null;
+  /** 명예·퇴임 교원 수동 표시 — 재직 기간(yearRange)을 모르는 경우를 위한 보완 스위치.
+   *  기간이 적혀 있으면 그것만으로도 퇴임으로 분류되므로, 둘 중 하나만 있으면 된다.
+   *  구 데이터엔 이 키가 없어 optional 이다(없으면 false 취급). */
+  emeritus?: boolean;
   moreInfoUrl: string | null;
   photoAlt: string;
   lab: FacultyLab | null;
@@ -73,6 +77,64 @@ export interface LabDirectoryEntry {
   internCount?: number;
 }
 
+/** content/faculty-profiles/<한글이름>.json — 교수 개인 상세(학술활동) 크롤 데이터.
+ *  직위·보직·연구실·사진은 여기 없다. 같은 이름의 faculty-directory 레코드와 합쳐 쓴다. */
+export interface FacultyProfileArticleRow {
+  /** "2025-12" (연-월) */
+  date: string | null;
+  title: string;
+  journal: string | null;
+}
+
+export interface FacultyProfileAwardRow {
+  title: string;
+  contents: string | null;
+  /** "2024-04-18" (연-월-일) */
+  date: string | null;
+}
+
+export interface FacultyProfileConferenceRow {
+  title: string;
+  conference: string | null;
+  /** "2023.08.21~2023.08.25" (시작~끝) */
+  period: string | null;
+}
+
+export interface FacultyProfileFundingRow {
+  title: string;
+  org: string | null;
+  /** "2026-03-01~2027-02-28" (시작~끝) */
+  period: string | null;
+}
+
+export interface FacultyProfilePatentRow {
+  title: string;
+  /** 특허 / 상표 등 */
+  type: string | null;
+  applicant: string | null;
+  /** "2026-01-27" (연-월-일) */
+  date: string | null;
+}
+
+export interface FacultyProfile {
+  name: string;
+  nameEn: string | null;
+  email: string | null;
+  phone: string | null;
+  office: string | null;
+  homepage: string | null;
+  sourceUrl: string | null;
+  crawledAt: string | null;
+  /** 배열 5종은 항상 존재한다(빈 배열일 수는 있다) */
+  articles: FacultyProfileArticleRow[];
+  awards: FacultyProfileAwardRow[];
+  conferences: FacultyProfileConferenceRow[];
+  fundings: FacultyProfileFundingRow[];
+  patents: FacultyProfilePatentRow[];
+}
+
+const FACULTY_PROFILE_DIR = 'faculty-profiles';
+
 function readJson<T>(name: string): T {
   const path = join(process.cwd(), 'content', name);
   return JSON.parse(readFileSync(path, 'utf-8')) as T;
@@ -115,4 +177,25 @@ export function getClubs(): ClubSummary[] {
 /** content/labs-directory.json — 연구실 목록(지도교수·위치·연락처·사이트 링크) */
 export function getLabsDirectory(): LabDirectoryEntry[] {
   return readJson<LabDirectoryEntry[]>('labs-directory.json');
+}
+
+/** content/faculty-profiles/*.json 파일명(확장자 제거) = 교수 상세 페이지 slug 목록.
+ *  디렉터리가 아직 없는 체크아웃에서도 빌드가 깨지지 않도록 빈 배열로 떨어진다. */
+export function getFacultyProfileNames(): string[] {
+  const dir = join(process.cwd(), 'content', FACULTY_PROFILE_DIR);
+  try {
+    return readdirSync(dir)
+      .filter((file) => file.endsWith('.json'))
+      .map((file) => file.slice(0, -'.json'.length));
+  } catch {
+    return [];
+  }
+}
+
+/** 이름(한글)으로 교수 개인 상세를 읽는다. 목록에 없는 이름은 즉시 null —
+ *  slug 가 URL 에서 오므로 파일명을 조립하기 전에 화이트리스트로 거른다. */
+export function getFacultyProfile(name: string): FacultyProfile | null {
+  if (!getFacultyProfileNames().includes(name)) return null;
+  const path = join(process.cwd(), 'content', FACULTY_PROFILE_DIR, `${name}.json`);
+  return JSON.parse(readFileSync(path, 'utf-8')) as FacultyProfile;
 }

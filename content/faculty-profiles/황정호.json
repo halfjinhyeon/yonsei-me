@@ -1,0 +1,4300 @@
+{
+  "name": "황정호",
+  "nameEn": "Hwang Jungho",
+  "email": "hwangjh@yonsei.ac.kr",
+  "phone": "02)2123-2821",
+  "office": null,
+  "homepage": null,
+  "sourceUrl": "https://me.yonsei.ac.kr/faculty/name_search.do?mode=view&userId=MCmrOSwwxHveWq3XxBCIQA%3D%3D&sosokcd=",
+  "crawledAt": "2026-07-27",
+  "articles": [
+    {
+      "date": "2026-07",
+      "title": "Simultaneous real-time estimation of airborne bacterial and fungal concentrations for indoor bioaerosol exposure surveillance via adenosine triphosphate (ATP) bioluminescence",
+      "journal": "Journal of Hazardous Materials"
+    },
+    {
+      "date": "2026-07",
+      "title": "On-site detection of airborne foodborne pathogens using a field-deployable recombinase polymerase amplification and CRISPR/Cas12a cleavage activity assay",
+      "journal": "Biosensors and Bioelectronics"
+    },
+    {
+      "date": "2026-06",
+      "title": "Development of a portable real-time PCR system for on-site detection of airborne bacteria",
+      "journal": "Sensors and Actuators Reports"
+    },
+    {
+      "date": "2026-03",
+      "title": "Indoor airflow effect on the detectability of airborne pathogens: Simulation with computational fluid dynamics and validation with field PCR measurements",
+      "journal": "Journal of Hazardous Materials"
+    },
+    {
+      "date": "2026-02",
+      "title": "Effect of Air Sampling Location on Monitoring of SARS-CoV-2 Viral Aerosol Transmission in an Indoor Space",
+      "journal": "Indoor Air"
+    },
+    {
+      "date": "2026-02",
+      "title": "Fluorescence Resonance Energy Transfer-Based Biosensor with Femtomolar Sensitivity for Culture-Independent Detection of Airborne Bacteria",
+      "journal": "Environmental Science & Technology"
+    },
+    {
+      "date": "2026-02",
+      "title": "A charger-free electrostatic precipitator for collecting triboelectrically charged brake wear particles",
+      "journal": "Tribology International"
+    },
+    {
+      "date": "2026-01",
+      "title": "Electric field manipulated droplet encapsulation for airborne virus monitoring at indoor environmental levels",
+      "journal": "Sensors and Actuators, B: Chemical"
+    },
+    {
+      "date": "2025-12",
+      "title": "Experimental investigation of fundamental flame characteristics, N2O and NF3 decomposition, and NOX formation in hydrogen/ methane diffusion flames",
+      "journal": "Case Studies in Thermal Engineering"
+    },
+    {
+      "date": "2025-11",
+      "title": "Plasmonic Digital PCR Chip with Gold Nanorod/MXene Films for Rapid Multiplex Detection of Airborne Viruses",
+      "journal": "Advanced Healthcare Materials"
+    },
+    {
+      "date": "2025-11",
+      "title": "Technical note: Prediction of bacterial aerosol concentration via absorbance measurement of bacterial suspension in atomizer: Staphylococcus aureus as an example",
+      "journal": "Journal of Aerosol Science"
+    },
+    {
+      "date": "2025-10",
+      "title": "Scalable and sustainable epoxide-functionalized polyethyleneimine/silica adsorbent for carbon dioxide capture from flue gases",
+      "journal": "Chemical Engineering Journal"
+    },
+    {
+      "date": "2025-10",
+      "title": "Application of parallel-type hydrophilic rayon sheet on non-packing scrubber and electrostatic precipitator for gaseous pollutant and particulate removal",
+      "journal": "Separation and Purification Technology"
+    },
+    {
+      "date": "2025-09",
+      "title": "Gentle collection of bacteria aerosols using ferrofluid–bovine serum albumin coating and electromagnetic air sampling for rapid bioaerosol monitoring",
+      "journal": "Journal of Hazardous Materials"
+    },
+    {
+      "date": "2025-09",
+      "title": "Air purifier and ventilation fan effects on SARS-CoV-2 airborne transmission in vehicle: Infection risk analysis with zonal and CFD models",
+      "journal": "Process Safety and Environmental Protection: Transactions of the Institution of Chemical Engineers, Part B"
+    },
+    {
+      "date": "2025-09",
+      "title": "Heat-induced fragmentation of airborne bacteria enables real-time concentration sensing",
+      "journal": "Chemical Engineering Journal"
+    },
+    {
+      "date": "2025-08",
+      "title": "Airborne bacteria detection: Species-specific concentration measurement using colorimetric detection of free antibodies",
+      "journal": "Journal of Hazardous Materials"
+    },
+    {
+      "date": "2025-07",
+      "title": "The machine learning prediction model of non-alcoholic fatty liver; the role of hydrogen and methane breath tests",
+      "journal": "Journal of Breath Research"
+    },
+    {
+      "date": "2025-07",
+      "title": "Evaluating the limits of ammonia cofiring in a 50 kWth CFB test rig",
+      "journal": "Fuel"
+    },
+    {
+      "date": "2025-06",
+      "title": "Tuning the Aggregation of Plasmonic Probes to Shed Light on Diagnostic Strategies",
+      "journal": "ACS Sensors"
+    },
+    {
+      "date": "2025-06",
+      "title": "Absorption of nitrogen dioxide via a non-packing scrubber using a sulfite/thiosulfate complex absorbent",
+      "journal": "Chemosphere"
+    },
+    {
+      "date": "2025-06",
+      "title": "An integrated bioaerosol sampler with simultaneous sampling and droplet encapsulation for the monitoring of airborne bacteria",
+      "journal": "Biosensors and Bioelectronics"
+    },
+    {
+      "date": "2025-05",
+      "title": "Evaluation of Airborne Infection Risk in a School Using Multizone Simulation: Pathogen Transmission Between Students in Different Classrooms Through Corridors",
+      "journal": "Aerosol and Air Quality Research"
+    },
+    {
+      "date": "2025-04",
+      "title": "Optimal blending ratio of Elga caking coal in Samcheok circulating fluidized bed boilers: Experimental and practical insights",
+      "journal": "Fuel"
+    },
+    {
+      "date": "2025-02",
+      "title": "Revisiting the joint effect of temperature and relative humidity on airborne mold and bacteria concentration in indoor environment: A machine learning approach",
+      "journal": "Building and Environment"
+    },
+    {
+      "date": "2025-02",
+      "title": "Application of ionic wind in sampling of bioaerosols: collection efficiency, ROS/RNS production, and viability assessment",
+      "journal": "Journal of Hazardous Materials"
+    },
+    {
+      "date": "2024-12",
+      "title": "나노 입자로 구성된 나노 구조 형태(Nanostructure)의 단위 격자 구조(Unit Cell)에 따른 열전달 분석에 관한 연구",
+      "journal": "Transactions of the KSME, B"
+    },
+    {
+      "date": "2024-12",
+      "title": "Experimental investigation of combustion characteristics of ammonia with sub-bituminous coal in a pilot circulating fluidized bed combustor",
+      "journal": "Fuel"
+    },
+    {
+      "date": "2024-11",
+      "title": "Reduction of Submicron-Sized Aerosols by Aerodynamically Assisted Electrical Attraction with Micron-Sized Aerosols",
+      "journal": "Applied Sciences-basel"
+    },
+    {
+      "date": "2024-11",
+      "title": "Determination of airborne influenza virus and coronavirus infectivity using capsid integrity polymerase chain reaction",
+      "journal": "Journal of Hazardous Materials"
+    },
+    {
+      "date": "2024-11",
+      "title": "Microfluidics-based condensation bioaerosol sampler for multipoint airborne virus monitoring",
+      "journal": "Biosensors and Bioelectronics"
+    },
+    {
+      "date": "2024-10",
+      "title": "Optimal environmental sampling conditions for electrostatic aerosol-to-hydrosol collection of airborne viruses",
+      "journal": "Journal of Hazardous Materials"
+    },
+    {
+      "date": "2024-10",
+      "title": "Methane gas in breath test is associated with nonalcoholic fatty liver disease",
+      "journal": "Journal of Breath Research"
+    },
+    {
+      "date": "2024-09",
+      "title": "Air sampling and simultaneous detection of airborne influenza virus via gold nanorod-based plasmonic PCR",
+      "journal": "Journal of Hazardous Materials"
+    },
+    {
+      "date": "2024-08",
+      "title": "Determination of submicron aerosols effective density using two-stage low-pressure impactor and aerosol electrometer based on pre-measured particle size distribution",
+      "journal": "Journal of Hazardous Materials"
+    },
+    {
+      "date": "2024-07",
+      "title": "Evaluation of Antiviral Electrostatic Precipitator With Commercially Antiviral Films Coated on Collection Plates Against Aerosolized Viruses",
+      "journal": "IEEE Transactions on Industry Applications"
+    },
+    {
+      "date": "2024-07",
+      "title": "U-Type 세로핀을 이용한 잠열 에너지 저장 시스템의 총괄 열전달 계수 분석에 관한 연구",
+      "journal": "Transactions of the KSME, B"
+    },
+    {
+      "date": "2024-07",
+      "title": "Rapid monitoring of indoor airborne influenza and coronavirus with high air flowrate electrostatic sampling and PCR analysis",
+      "journal": "Frontiers of Environmental Science & Engineering"
+    },
+    {
+      "date": "2024-03",
+      "title": "Enhanced enrichment of collected airborne coronavirus and influenza virus samples via a ConA-coated microfluidic chip for PCR detection",
+      "journal": "Journal of Hazardous Materials"
+    },
+    {
+      "date": "2024-02",
+      "title": "Effect of gas temperature on carbon soot oxidation via non-thermal plasma: two-dimensional numerical study integrating reactive flow and discharge models",
+      "journal": "Environmental Science and Pollution Research"
+    },
+    {
+      "date": "2024-02",
+      "title": "전기방사 PLA/ZnO 나노섬유의 황색포도상구균에 대한 항균성 평가",
+      "journal": "Transactions of the KSME, B"
+    },
+    {
+      "date": "2024-02",
+      "title": "Development of multi-module arranged in series using U-type longitudinal fin tube in thermal energy storage system",
+      "journal": "Case Studies in Thermal Engineering"
+    },
+    {
+      "date": "2023-10",
+      "title": "A portable smartphone-based colorimetric sensor that utilizes dual amplification for the on-site detection of airborne bacteria",
+      "journal": "Journal of Hazardous Materials"
+    },
+    {
+      "date": "2023-10",
+      "title": "Scalable, solvent-free transparent film-based air filter with high particulate matter 2.5 filtration efficiency",
+      "journal": "Science of the Total Environment"
+    },
+    {
+      "date": "2023-09",
+      "title": "공기 중 박테리아 포집을 위한 습식 사이클론의 CFD 해석을이용한 설계 및 성능 평가",
+      "journal": "PARTICLE AND AEROSOL RESEARCH"
+    },
+    {
+      "date": "2023-09",
+      "title": "와이어-평판 형태의 전기집진기식 바이오-에어로졸 포집기성능 수치해석: 이온풍의 영향",
+      "journal": "PARTICLE AND AEROSOL RESEARCH"
+    },
+    {
+      "date": "2023-09",
+      "title": "Electrospinning-based nanofiber architectures for outstanding CO2 capture",
+      "journal": "Separation and Purification Technology"
+    },
+    {
+      "date": "2023-08",
+      "title": "Developing an Optimal Antiviral Method for the Air-filtration System of Subway Stations",
+      "journal": "Aerosol and Air Quality Research"
+    },
+    {
+      "date": "2023-08",
+      "title": "Calibration of Low-cost Sensors for Measurement of Indoor Particulate Matter Concentrations via Laboratory/Field Evaluation",
+      "journal": "Aerosol and Air Quality Research"
+    },
+    {
+      "date": "2023-08",
+      "title": "Size-classified monitoring of ATP bioluminescence for rapid assessment of biological distribution in airborne particulates",
+      "journal": "Biosensors and Bioelectronics"
+    },
+    {
+      "date": "2023-07",
+      "title": "A study on the structure of garment-hood-embedded air curtain with fine dust protection function",
+      "journal": "BUILDING AND ENVIRONMENT"
+    },
+    {
+      "date": "2023-06",
+      "title": "브레이크 마모입자의 하전 및 자성 특성 분석",
+      "journal": "PARTICLE AND AEROSOL RESEARCH"
+    },
+    {
+      "date": "2023-06",
+      "title": "Aerosol additive manufacturing of multi-component supraparticles for Fenton reaction-assisted multi-modal anticancer treatment",
+      "journal": "Chemical Engineering Journal"
+    },
+    {
+      "date": "2023-03",
+      "title": "Aero-manufacture of nanobulges for an in-place anticoronaviral on air filters",
+      "journal": "Journal of Hazardous Materials"
+    },
+    {
+      "date": "2023-02",
+      "title": "Effect of surface charge density on electret filters charge degradation by organic solvent exposure",
+      "journal": "Environmental Engineering Research"
+    },
+    {
+      "date": "2022-12",
+      "title": "실내 미세먼지 측정을 위한 저가형 PM 센서의실험실/현장 평가 및 보정 방법",
+      "journal": "PARTICLE AND AEROSOL RESEARCH"
+    },
+    {
+      "date": "2022-11",
+      "title": "Prediction of indoor PM2.5 concentrations and reduction strategies for cooking events through various IAQ management methods in an apartment of South Korea",
+      "journal": "Indoor Air"
+    },
+    {
+      "date": "2022-11",
+      "title": "Modified Aerotaxy for the Plug-in Manufacture of Cell-Penetrating Fenton Nanoagents for Reinforcing Chemodynamic Cancer Therapy",
+      "journal": "ACS Nano"
+    },
+    {
+      "date": "2022-11",
+      "title": "rGO-wrapped Ag-doped TiO2 nanofibers for photocatalytic CO2 reduction under visible light",
+      "journal": "Journal of Cleaner Production"
+    },
+    {
+      "date": "2022-10",
+      "title": "Efficient Energy Saving Scenarios for Indoor PM2.5 Management in an Apartment of South Korea",
+      "journal": "Toxics"
+    },
+    {
+      "date": "2022-09",
+      "title": "이젝터-다공튜브 희석 샘플링과 ELPI를 이용한 석탄화력발전소 배출 미세먼지의 입자 크기에 따른 성분 분석",
+      "journal": "PARTICLE AND AEROSOL RESEARCH"
+    },
+    {
+      "date": "2022-09",
+      "title": "Development of a sampling probe with a small non-isokinetic sampling error in variable flow velocity environments",
+      "journal": "Aerosol Science and Technology"
+    },
+    {
+      "date": "2022-08",
+      "title": "Numerical methodology to evaluate unipolar saturation current limit of DC corona discharge in complex geometries",
+      "journal": "Scientific Reports"
+    },
+    {
+      "date": "2022-08",
+      "title": "Simultaneous measurement of OH radical, H2O concentration, and temperature in a premixed CH4/air flame using TDLAS with an improved analysis method",
+      "journal": "OPTICS EXPRESS"
+    },
+    {
+      "date": "2022-06",
+      "title": "A novel and facile synthesis of Ag-doped TiO2 nanofiber for airborne virus/bacteria inactivation and VOC elimination under visible light",
+      "journal": "APPLIED SURFACE SCIENCE"
+    },
+    {
+      "date": "2022-05",
+      "title": "Particle resolved numerical modeling of unsteady forced convection of nanofluid around a porous cuboid with sinusoidal inlet velocity",
+      "journal": "ZEITSCHRIFT FUR NATURFORSCHUNG SECTION A-A JOURNAL OF PHYSICAL SCIENCES"
+    },
+    {
+      "date": "2022-04",
+      "title": "Effects of nanosized water droplet generation on number concentration measurement of virus aerosols when using an airblast atomizer",
+      "journal": "SCIENTIFIC REPORTS"
+    },
+    {
+      "date": "2022-04",
+      "title": "지하역사 승강장 공조 시스템 필터용 항바이러스 코팅 성능 및 재생 성능 평가",
+      "journal": "PARTICLE AND AEROSOL RESEARCH"
+    },
+    {
+      "date": "2022-02",
+      "title": "Measurement and Analysis of PM10 and PM2.5 from Chimneys of Coal-fired Power Plants Using a Light Scattering Method",
+      "journal": "AEROSOL AND AIR QUALITY RESEARCH"
+    },
+    {
+      "date": "2022-02",
+      "title": "Hierarchical ZnO nano-spines grown on a carbon fiber seed layer for efficient VOC removal and airborne virus and bacteria inactivation",
+      "journal": "JOURNAL OF HAZARDOUS MATERIALS"
+    },
+    {
+      "date": "2022-01",
+      "title": "Dry process for SO2 and NOx removal via gas-to-particle conversion with ozone and ammonia injection",
+      "journal": "SEPARATION AND PURIFICATION TECHNOLOGY"
+    },
+    {
+      "date": "2021-10",
+      "title": "Nano-dry-salt deposition on electret nonwoven confers anticoronaviral effect while retaining aerosol filtration performance",
+      "journal": "ENVIRONMENTAL SCIENCE-NANO"
+    },
+    {
+      "date": "2021-08",
+      "title": "Reusable surface amplified nanobiosensor for the sub PFU/mL level detection of airborne virus",
+      "journal": "SCIENTIFIC REPORTS"
+    },
+    {
+      "date": "2021-07",
+      "title": "Increased survivability of coronavirus and H1N1 influenza virus under electrostatic aerosol-to-hydrosol sampling",
+      "journal": "JOURNAL OF HAZARDOUS MATERIALS"
+    },
+    {
+      "date": "2021-06",
+      "title": "Bioaerosol: A Key Vessel between Environment and Health",
+      "journal": "FRONTIERS OF ENVIRONMENTAL SCIENCE & ENGINEERING"
+    },
+    {
+      "date": "2021-06",
+      "title": "Collection and decomposition of oil mist via corona discharge and surface dielectric barrier discharge",
+      "journal": "JOURNAL OF HAZARDOUS MATERIALS"
+    },
+    {
+      "date": "2021-06",
+      "title": "High air flow-rate electrostatic sampler for the rapid monitoring of airborne coronavirus and influenza viruses",
+      "journal": "JOURNAL OF HAZARDOUS MATERIALS"
+    },
+    {
+      "date": "2021-06",
+      "title": "Fabrication of silver nanowire coated fibrous air filter medium via a two-step process of electrospinning and electrospray for anti-bioaerosol treatment",
+      "journal": "JOURNAL OF HAZARDOUS MATERIALS"
+    },
+    {
+      "date": "2021-04",
+      "title": "Measurement of Temperature and H2O Concentration in Premixed CH4/Air Flame Using Two Partially Overlapped H2O Absorption Signals in the Near Infrared Region",
+      "journal": "APPLIED SCIENCES-BASEL"
+    },
+    {
+      "date": "2021-03",
+      "title": "CFD-DEM simulation of air-blown gasification of biomass in a bubbling fluidized bed gasifier: Effects of equivalence ratio and fluidization number",
+      "journal": "ENERGY"
+    },
+    {
+      "date": "2021-03",
+      "title": "Improvement of ammonia mixing in an industrial scale selective catalytic reduction De-NOx system of a coal-fired power plant: A numerical analysis",
+      "journal": "PROCESS SAFETY AND ENVIRONMENTAL PROTECTION"
+    },
+    {
+      "date": "2021-02",
+      "title": "CoMn2O4 embedded hollow activated carbon nanofibers as a novel peroxymonosulfate activator",
+      "journal": "CHEMICAL ENGINEERING JOURNAL"
+    },
+    {
+      "date": "2021-02",
+      "title": "Effects of bio-syngas CO2concentration on water-gas shiftand side reactions with Fe-Cr based catalyst",
+      "journal": "INTERNATIONAL JOURNAL OF ENERGY RESEARCH"
+    },
+    {
+      "date": "2021-01",
+      "title": "Reduction of submicron-sized aerosols emission in electrostatic precipitation by electrical attraction with micron-sized aerosols",
+      "journal": "POWDER TECHNOLOGY"
+    },
+    {
+      "date": "2021-01",
+      "title": "Training an artificial neural network for recognizing electron collision patterns",
+      "journal": "PHYSICS LETTERS A"
+    },
+    {
+      "date": "2020-12",
+      "title": "7.6 μm 파장 영역의 다중 광 흡수 신호 파장 변조 분광법을 이용한 이산화황 농도 측정",
+      "journal": "청정기술"
+    },
+    {
+      "date": "2020-12",
+      "title": "실내 공간에서의 호흡기 감염병 공기전파감염 위험도와 공기정화장치(필터 임배디드 기계식 환기설비 및 공기청정기 등 실내 감염원 저감 장치) 사용에 따른 효율",
+      "journal": "PARTICLE AND AEROSOL RESEARCH"
+    },
+    {
+      "date": "2020-12",
+      "title": "광산란법을 이용한 국내 석탄화력발전소 굴뚝에서 배출되는 PM10, PM2.5 측정 및 분석",
+      "journal": "PARTICLE AND AEROSOL RESEARCH"
+    },
+    {
+      "date": "2020-12",
+      "title": "An integrated system of air sampling and simultaneous enrichment for rapid biosensing of airborne coronavirus and influenza virus",
+      "journal": "BIOSENSORS & BIOELECTRONICS"
+    },
+    {
+      "date": "2020-11",
+      "title": "Dilution Ratio and Particle Loss Performance of a Newly Developed Ejector Porous Tube Diluter Compared to a Commercial Diluter",
+      "journal": "AEROSOL AND AIR QUALITY RESEARCH"
+    },
+    {
+      "date": "2020-11",
+      "title": "Environmental contamination in the isolation rooms of COVID-19 patients with severe pneumonia requiring mechanical ventilation or high-flow oxygen therapy",
+      "journal": "JOURNAL OF HOSPITAL INFECTION"
+    },
+    {
+      "date": "2020-11",
+      "title": "Dust loading performance of a non-electret HVAC filter module in the presence of an external electric field",
+      "journal": "SEPARATION AND PURIFICATION TECHNOLOGY"
+    },
+    {
+      "date": "2020-09",
+      "title": "Determination of Air Filter Anti-Viral Efficiency against an Airborne Infectious Virus",
+      "journal": "JOURNAL OF HAZARDOUS MATERIALS"
+    },
+    {
+      "date": "2020-09",
+      "title": "Photothermally Modulatable and Structurally Disintegratable Sub-8-nm Au1Ag9 Embedded Nanoblocks for Combination Cancer Therapy Produced by Plug-in Assembly",
+      "journal": "ACS NANO"
+    },
+    {
+      "date": "2020-09",
+      "title": "Aerosol-to-Hydrosol Sampling and Simultaneous Enrichment of Airborne Bacteria For Rapid Biosensing",
+      "journal": "ACS Sensors"
+    },
+    {
+      "date": "2020-08",
+      "title": "Detection Limit of CO Concentration Measurement in LPG/Air Flame Flue Gas Using Tunable Diode Laser Absorption Spectroscopy",
+      "journal": "ENERGIES"
+    },
+    {
+      "date": "2020-07",
+      "title": "Effects of vortex finder length on flow field and collection efficiency of cyclone in an industrial-scale circulating fluidized bed boiler: Numerical study",
+      "journal": "INTERNATIONAL JOURNAL OF ENERGY RESEARCH"
+    },
+    {
+      "date": "2020-07",
+      "title": "Numerical investigation of the separation mechanism in an electrostatic aerosol-to-hydrosol separator by glow corona discharge: a quantitative comparison of the effects of ionic wind and Coulomb force",
+      "journal": "PLASMA SOURCES SCIENCE & TECHNOLOGY"
+    },
+    {
+      "date": "2020-06",
+      "title": "Continuous measurement of PM10 and PM2.5 concentration in coal-fired power plant stacks using a newly developed diluter and optical particle counter",
+      "journal": "FUEL"
+    },
+    {
+      "date": "2020-04",
+      "title": "Two-step numerical procedure on the removal process of gaseous potassium chloride generated from waste incineration via the injection of sulfate-based additives",
+      "journal": "WASTE MANAGEMENT"
+    },
+    {
+      "date": "2020-04",
+      "title": "Artificial Nanoscale Erythrocytes from Clinically Relevant Compounds for Enhancing Cancer Immunotherapy",
+      "journal": "NANO-MICRO LETTERS"
+    },
+    {
+      "date": "2020-03",
+      "title": "근적외선 파장 영역에서 레이저 흡수 분광법을 이용한 화염 내 OH 라디칼 농도 측정에 관한 실험적 연구",
+      "journal": "한국연소학회지"
+    },
+    {
+      "date": "2020-03",
+      "title": "나노펄스 플라즈마를 이용한 탈황 시스템의 H2O 및 NH3, 펄스 인가전압에 따른 입자변환 분석",
+      "journal": "PARTICLE AND AEROSOL RESEARCH"
+    },
+    {
+      "date": "2020-03",
+      "title": "Study on the Simultaneous Measurement of O2 and CO Concentrations in the Exhaust Gas of a Methane/Air Flame Using Tunable Diode Laser Absorption Spectroscopy",
+      "journal": "ENERGY & FUELS"
+    },
+    {
+      "date": "2020-02",
+      "title": "Prevention of damage caused by corona discharge-generated reactive oxygen species under electrostatic aerosol-to-hydrosol sampling",
+      "journal": "JOURNAL OF HAZARDOUS MATERIALS"
+    },
+    {
+      "date": "2020-02",
+      "title": "Evaporation-condensation in the presence of unipolar ionic flow for solvent-free production of ultrasmall antibacterial particles",
+      "journal": "CHEMICAL ENGINEERING JOURNAL"
+    },
+    {
+      "date": "2020-02",
+      "title": "Simultaneous removal of gaseous NOx and SO2 by gas-phase oxidation with ozone and wet scrubbing with sodium hydroxide",
+      "journal": "CHEMICAL ENGINEERING JOURNAL"
+    },
+    {
+      "date": "2020-01",
+      "title": "Fabrication of hollow activated carbon nanofibers (HACNFs) containing manganese oxide catalyst for toluene removal via two-step process of electrospinning and thermal treatment",
+      "journal": "CHEMICAL ENGINEERING JOURNAL"
+    },
+    {
+      "date": "2019-12",
+      "title": "공간 내 부유한 바이러스에 대한 광촉매 TiO2가 코팅된 에어 필터의 항바이러스 효율 평가",
+      "journal": "PARTICLE AND AEROSOL RESEARCH"
+    },
+    {
+      "date": "2019-12",
+      "title": "Development of a new dilution system for continuous measurement of particle concentration in the exhaust from a coal-fired power plant",
+      "journal": "FUEL"
+    },
+    {
+      "date": "2019-11",
+      "title": "Plug-in Safe-by-Design Nanoinorganic Antibacterials",
+      "journal": "ACS NANO"
+    },
+    {
+      "date": "2019-11",
+      "title": "Numerical simulation of a dense flow cyclone using the kinetic theory of granular flow in a dense discrete phase model",
+      "journal": "POWDER TECHNOLOGY"
+    },
+    {
+      "date": "2019-10",
+      "title": "Microelectromechanical-system-based condensation particle counter for real-time monitoring of airborne ultrafine particles",
+      "journal": "ATMOSPHERIC MEASUREMENT TECHNIQUES"
+    },
+    {
+      "date": "2019-10",
+      "title": "The control of particle size distribution for fabricated alumina nanoparticles using a thermophoretic separator",
+      "journal": "ADVANCED POWDER TECHNOLOGY"
+    },
+    {
+      "date": "2019-09",
+      "title": "화력발전소 굴뚝 미세먼지 측정을 위해 개발한 이젝터-다공튜브 희석장치의 희석비 검증",
+      "journal": "PARTICLE AND AEROSOL RESEARCH"
+    },
+    {
+      "date": "2019-09",
+      "title": "SMPS와 1단 저압 임팩터를 이용한 대기 중 서브 마이크론 에어로졸 유효 밀도 측정",
+      "journal": "PARTICLE AND AEROSOL RESEARCH"
+    },
+    {
+      "date": "2019-09",
+      "title": "Simulated experiments with TiO2 particles using a lab‑designed single‑stage impactor to evaluate impaction characteristics of particles leaked by steam generator tube rupture",
+      "journal": "JMST Advances"
+    },
+    {
+      "date": "2019-07",
+      "title": "Dry Aerosol Coating of Anti-viral Particles on Commercial Air Filters Using a High-volume Flow Atomizer",
+      "journal": "AEROSOL AND AIR QUALITY RESEARCH"
+    },
+    {
+      "date": "2019-07",
+      "title": "Plug-and-play safe-by-design production of metal-doped tellurium nanoparticles with safer antimicrobial activities",
+      "journal": "ENVIRONMENTAL SCIENCE-NANO"
+    },
+    {
+      "date": "2019-05",
+      "title": "Plug-and-Play Continuous Gas Flow Assembly of Cysteine-Inserted AuCu Nanobimetals for Folate-Receptor-Targeted Chemo-Phototherapy",
+      "journal": "ACS APPLIED MATERIALS & INTERFACES"
+    },
+    {
+      "date": "2019-05",
+      "title": "In situ lysis droplet supply to efficiently extract ATP from dust particles for near-real-time bioaerosol monitoring",
+      "journal": "JOURNAL OF HAZARDOUS MATERIALS"
+    },
+    {
+      "date": "2019-05",
+      "title": "Reconfigurable plug-and-play assembly for the continuous production of composite anodes for modulating lithium storage",
+      "journal": "CHEMICAL ENGINEERING JOURNAL"
+    },
+    {
+      "date": "2019-04",
+      "title": "MEMS-based condensation particle growth chip for optically measuring airborne nanoparticle concentration",
+      "journal": "LAB ON A CHIP"
+    },
+    {
+      "date": "2019-03",
+      "title": "고속전철 객실의 공기 분배 및 기류에 관한 수치해석적 연구",
+      "journal": "PARTICLE AND AEROSOL RESEARCH"
+    },
+    {
+      "date": "2019-02",
+      "title": "Utilizing deactivated catalysts from the nitric oxide removal process for the fabrication of metal oxide/carbon supercapacitors",
+      "journal": "GREEN CHEMISTRY"
+    },
+    {
+      "date": "2019-02",
+      "title": "Filter layer structure effect on the most penetrating particle size of multilayered flat sheet filter",
+      "journal": "POWDER TECHNOLOGY"
+    },
+    {
+      "date": "2018-12",
+      "title": "Study on nanoparticle production process characteristics in transferred arc plasma system using heat and mass balance",
+      "journal": "ADVANCED POWDER TECHNOLOGY"
+    },
+    {
+      "date": "2018-10",
+      "title": "NaOH를 이용한 배기가스의 습식 스크러빙에서 SO2 농도에 따른NOx 제거효율",
+      "journal": "한국대기환경학회지"
+    },
+    {
+      "date": "2018-10",
+      "title": "MEMS-based particle detection system for measuring airborne ultrafine particles",
+      "journal": "SENSORS AND ACTUATORS A-PHYSICAL"
+    },
+    {
+      "date": "2018-08",
+      "title": "Study on Concentration Measurement of NO and NO2 Gases Using Quantum Cascade Laser Absorption Spectroscopy",
+      "journal": "NANOSCIENCE AND NANOTECHNOLOGY LETTERS"
+    },
+    {
+      "date": "2018-08",
+      "title": "Study on Real-Time Oxygen Concentration Measurement with an Irregular Temperature Condition Using Light Absorption Signals by Nano Scale Kinetic Motion of Molecules",
+      "journal": "NANOSCIENCE AND NANOTECHNOLOGY LETTERS"
+    },
+    {
+      "date": "2018-08",
+      "title": "A batch-by-batch free route for the continuous production of black phosphorus nanosheets for targeted combination cancer therapy",
+      "journal": "NPG ASIA MATERIALS"
+    },
+    {
+      "date": "2018-08",
+      "title": "Particle size spectrometer using inertial classification and electrical measurement techniques for real-time monitoring of particle size distribution",
+      "journal": "LAB ON A CHIP"
+    },
+    {
+      "date": "2018-04",
+      "title": "Design and Performance Evaluation of a Laboratory-made 200 nm Precut Electrical Cascade Impactor",
+      "journal": "AEROSOL AND AIR QUALITY RESEARCH"
+    },
+    {
+      "date": "2018-03",
+      "title": "Computational Fluid Dynamic Modelling of Particle Charging and Collection in a Wire-to-Plate Type Single-Stage Electrostatic Precipitator",
+      "journal": "AEROSOL AND AIR QUALITY RESEARCH"
+    },
+    {
+      "date": "2018-03",
+      "title": "안내깃 형상에 따른 배연탈황 시스템 배관 내 유동 특성에 관한 전산수치해석",
+      "journal": "Transactions of the Korean Society of Mechanical Engineers, B"
+    },
+    {
+      "date": "2018-02",
+      "title": "Numerical investigation for the effect of electro-aerodynamic nanoparticle deposition on the performance of a metal grid type transparent electrode",
+      "journal": "JOURNAL OF AEROSOL SCIENCE"
+    },
+    {
+      "date": "2018-01",
+      "title": "Design and Performance Evaluation of a PN1 Sensor for Real-Time Measurement of Indoor Aerosol Size Distribution",
+      "journal": "AEROSOL AND AIR QUALITY RESEARCH"
+    },
+    {
+      "date": "2018-01",
+      "title": "Investigation of live and dead status of airborne bacteria using UVAPS with LIVE/DEAD® BacLight Kit",
+      "journal": "JOURNAL OF AEROSOL SCIENCE"
+    },
+    {
+      "date": "2018-01",
+      "title": "Comparison of lab-made electrostatic rod-type sampler with single stage viable impactor for identification of indoor airborne bacteria",
+      "journal": "JOURNAL OF AEROSOL SCIENCE"
+    },
+    {
+      "date": "2017-12",
+      "title": "Effect of staged combustion on low NOx emission from an industrial-scale fuel oil combustor in South Korea",
+      "journal": "FUEL"
+    },
+    {
+      "date": "2017-11",
+      "title": "Competition between H2O and CO2 for active sites during co-gasification of bituminous coal and pineapple sawdust in an atmosphere containing H2O, CO2, H2, and CO",
+      "journal": "FUEL"
+    },
+    {
+      "date": "2017-10",
+      "title": "Application of Moment Method for Predicting Condensational Growth of Nuclear Aerosols in a Severe Accident",
+      "journal": "NUCLEAR TECHNOLOGY"
+    },
+    {
+      "date": "2017-09",
+      "title": "Continuous adsorption and photothermal lysis of airborne bacteriausing a gold-nanoparticle-embedded-geometrically activated surfaceinteraction (gold-GASI) chip.",
+      "journal": "SENSORS AND ACTUATORS B-CHEMICAL"
+    },
+    {
+      "date": "2017-07",
+      "title": "Real-time separation of aerosolized Staphylococcus epidermidis and polystyrene latex particles with similar size distributions",
+      "journal": "AEROSOL SCIENCE AND TECHNOLOGY"
+    },
+    {
+      "date": "2017-07",
+      "title": "Gas cleaning with molten tin for hydrogen sulfide and tar in producer gas generated from biomass gasification",
+      "journal": "ENERGY"
+    },
+    {
+      "date": "2017-05",
+      "title": "Investigation on co-gasification of coal and biomass in Shell gasifier by using a validated gasification model",
+      "journal": "FUEL"
+    },
+    {
+      "date": "2017-05",
+      "title": "Application of corona discharge-generated air ions for filtration of aerosolized virus and inactivation of filtered virus",
+      "journal": "JOURNAL OF AEROSOL SCIENCE"
+    },
+    {
+      "date": "2017-04",
+      "title": "Effective filtration area of a pleated filter bag in a pulse-jet bag house",
+      "journal": "POWDER TECHNOLOGY"
+    },
+    {
+      "date": "2017-03",
+      "title": "Numerical investigation of particle transport hydrodynamics and coal combustion in an industrial-scale circulating fluidized bed combustor: Effects of coal feeder positions and coal feeding rates",
+      "journal": "FUEL"
+    },
+    {
+      "date": "2017-02",
+      "title": "Assessment of indoor bioaerosols using a labmade virtual impactor",
+      "journal": "AEROSOL SCIENCE AND TECHNOLOGY"
+    },
+    {
+      "date": "2017-01",
+      "title": "The effect of CO on coal-biomass co-gasification with CO2",
+      "journal": "FUEL"
+    },
+    {
+      "date": "2016-12",
+      "title": "대용량 입자 발생 장치 개발 및 이를 이용한 항바이러스 공조용 공기필터 제조",
+      "journal": "PARTICLE AND AEROSOL RESEARCH"
+    },
+    {
+      "date": "2016-10",
+      "title": "Continuous and real-time bioaerosol monitoring by combined aerosol-to-hydrosol sampling and ATP bioluminescence assay",
+      "journal": "ANALYTICA CHIMICA ACTA"
+    },
+    {
+      "date": "2016-10",
+      "title": "Kinetic study on coal biomass mixed char co-gasification with H2O in the presence of H2",
+      "journal": "FUEL"
+    },
+    {
+      "date": "2016-09",
+      "title": "Methodology to set up nozzle-to-substrate gap for high resolution electrohydrodynamic jet printing",
+      "journal": "APPLIED PHYSICS LETTERS"
+    },
+    {
+      "date": "2016-09",
+      "title": "Full-scale fire test of an intercity train car",
+      "journal": "FIRE TECHNOLOGY"
+    },
+    {
+      "date": "2016-01",
+      "title": "Thermal decomposition characteristics of expired single base propellant using a lab-scale tube furnace and a thermo-gravimetric analysis reactor",
+      "journal": "JOURNAL OF THERMAL ANALYSIS AND CALORIMETRY"
+    },
+    {
+      "date": "2016-01",
+      "title": "Evaluation of Ag nanoparticle coated air filter against aerosolized virus: Anti-viral efficiency with dust loading",
+      "journal": "JOURNAL OF HAZARDOUS MATERIALS"
+    },
+    {
+      "date": "2015-12",
+      "title": "Detection of airborne viruses using electro-aerodynamic deposition and a field-effect transistor",
+      "journal": "SCIENTIFIC REPORTS"
+    },
+    {
+      "date": "2015-10",
+      "title": "Design and Performance Test of a Lab-Made Single-Stage Low-Pressure Impactor for Morphology Analysis of Diesel Exhaust Particles",
+      "journal": "AEROSOL SCIENCE AND TECHNOLOGY"
+    },
+    {
+      "date": "2015-10",
+      "title": "Effects of hydrothermal treatment of sewage sludge on pyrolysis and steam gasification",
+      "journal": "ENERGY CONVERSION AND MANAGEMENT"
+    },
+    {
+      "date": "2015-09",
+      "title": "Oil mist collection and oil mist-to-gas conversion via dielectric barrier discharge at atmospheric pressure",
+      "journal": "SEPARATION AND PURIFICATION TECHNOLOGY"
+    },
+    {
+      "date": "2015-09",
+      "title": "Co-gasification of bituminous coal-pine sawdust blended char with H2O at temperatures of 750-850°C",
+      "journal": "FUEL"
+    },
+    {
+      "date": "2015-07",
+      "title": "Circuital characterisation of space-charge motion with a time-varying applied bias",
+      "journal": "SCIENTIFIC REPORTS"
+    },
+    {
+      "date": "2015-06",
+      "title": "A comprehensive study on co-pyrolysis of bituminous coal and pine sawdust using TG",
+      "journal": "JOURNAL OF THERMAL ANALYSIS AND CALORIMETRY"
+    },
+    {
+      "date": "2015-05",
+      "title": "Maskless, site-selective, nanoaerosol deposition via electro-aerodynamic jet to enhance the performance of flexible Ag-grid transparent electrodes",
+      "journal": "RSC ADVANCES"
+    },
+    {
+      "date": "2015-05",
+      "title": "3-D CFD Modeling for Parametric Study in a 300-MWe One-Stage Oxygen-Blown Entrained-Bed Coal Gasifier",
+      "journal": "ENERGIES"
+    },
+    {
+      "date": "2015-05",
+      "title": "Fast Monitoring of Indoor Bioaerosol Concentrations with ATP Bioluminescence Assay using an Electrostatic Rod-Type Sampler",
+      "journal": "PLOS ONE"
+    },
+    {
+      "date": "2015-02",
+      "title": "Development and performance test of a ZnO nanowire charger for measurements of nano-aerosol particles",
+      "journal": "SENSORS AND ACTUATORS A-PHYSICAL"
+    },
+    {
+      "date": "2014-11",
+      "title": "Prediction of Drop-On-Demand (DOD) Pattern Size in Pulse-Voltage- Applied Electrohydrodynamic (EHD) Jet Printing of Ag Colloid Ink",
+      "journal": "APPLIED PHYSICS A-MATERIALS SCIENCE & PROCESSING"
+    },
+    {
+      "date": "2014-10",
+      "title": "Feasibility study of a combined Ocean Thermal Energy Conversion method in South Korea",
+      "journal": "ENERGY"
+    },
+    {
+      "date": "2014-10",
+      "title": "Prompt and synergistic antibacterial activity of silver nanoparticle-decorated silica hybrid particles on air filtration",
+      "journal": "JOURNAL OF MATERIALS CHEMISTRY B"
+    },
+    {
+      "date": "2014-09",
+      "title": "Fabrication of an anti-viral air filter with SiO2-Ag nanoparticles and performance evaluation in a continuous airflow condition",
+      "journal": "JOURNAL OF HAZARDOUS MATERIALS"
+    },
+    {
+      "date": "2014-09",
+      "title": "Fabrication of a flexible Ag-grid transparent electrode using ac based electrohydrodynamic Jet printing",
+      "journal": "JOURNAL OF PHYSICS D-APPLIED PHYSICS"
+    },
+    {
+      "date": "2014-08",
+      "title": "Filtration and inactivation of aerosolized bacteriophage MS2 by a CNT air filter fabricated using electro-aerodynamic deposition",
+      "journal": "CARBON"
+    },
+    {
+      "date": "2014-06",
+      "title": "CFD modeling for coal size effect on coal gasification in a two-stage commercial entrained-bed gasifier with an improved char gasification model",
+      "journal": "APPLIED ENERGY"
+    },
+    {
+      "date": "2014-04",
+      "title": "A Quantitative Determination of the Antibacterial Efficiency of Fibrous Air Filters Based on the Disc Diffusion Method",
+      "journal": "AEROSOL AND AIR QUALITY RESEARCH"
+    },
+    {
+      "date": "2014-03",
+      "title": "One-pass antibacterial efficacy of bipolar air ions against aerosolized Staphylococcus epidermidis in a duct flow",
+      "journal": "JOURNAL OF AEROSOL SCIENCE"
+    },
+    {
+      "date": "2014-02",
+      "title": "Development for fabrication of refined silicon nanoparticles by transferred arc plasma system",
+      "journal": "CURRENT NANOSCIENCE"
+    },
+    {
+      "date": "2014-02",
+      "title": "Methodology for Modeling the Microbial Contamination of Air Filters",
+      "journal": "PLOS ONE"
+    },
+    {
+      "date": "2014-02",
+      "title": "Real-time monitoring of bioaerosols via cell-lysis by air ion and ATP bioluminescence detection",
+      "journal": "BIOSENSORS & BIOELECTRONICS"
+    },
+    {
+      "date": "2014-01",
+      "title": "Morphology characterization of phenyl-C61-butyric acid methyl ester films via an electrohydrodynamic spraying route",
+      "journal": "THIN SOLID FILMS"
+    },
+    {
+      "date": "2014-01",
+      "title": "Anti-agglomeration of spark discharge-generated aerosols via unipolar air ions",
+      "journal": "JOURNAL OF AEROSOL SCIENCE"
+    },
+    {
+      "date": "2014-01",
+      "title": "Co-gasification of coal-biomass blended char with CO2 at temperatures of 900-1100 degrees C",
+      "journal": "FUEL"
+    },
+    {
+      "date": "2013-12",
+      "title": "Fabrication of silver nanowire transparent electrodes using electrohydrodynamic spray deposition for flexible organic solar cells",
+      "journal": "JOURNAL OF MATERIALS CHEMISTRY A"
+    },
+    {
+      "date": "2013-12",
+      "title": "An integrated microchannel with continuous electrodynamic anti-adhesion capability for particle loss reduction in air-based microfluidic chips",
+      "journal": "JOURNAL OF ADHESION SCIENCE AND TECHNOLOGY"
+    },
+    {
+      "date": "2013-10",
+      "title": "Site-specific growth and density control of carbon nanotubes by direct deposition of catalytic nanoparticles generated by spark discharge",
+      "journal": "NANOSCALE RESEARCH LETTERS"
+    },
+    {
+      "date": "2013-09",
+      "title": "은 나노 헤파 필터를 이용한 공기 부유 곰팡이 Cladosporium의 저감 및 ATP 생물 발광법 이용 항 곰팡이성 신속평가",
+      "journal": "한국실내환경학회지"
+    },
+    {
+      "date": "2013-07",
+      "title": "Continuous coaxial electrohydrodynamic atomization system for water-stable wrapping of magnetic nanoparticles",
+      "journal": "SMALL"
+    },
+    {
+      "date": "2013-06",
+      "title": "Estimations of heat release rate curve of railcar fire",
+      "journal": "JOURNAL OF MECHANICAL SCIENCE AND TECHNOLOGY"
+    },
+    {
+      "date": "2013-06",
+      "title": "Drop-on-demand hybrid printing using a piezoelectric MEMS printhead at various waveforms, high voltages and jetting frequencies",
+      "journal": "JOURNAL OF MICROMECHANICS AND MICROENGINEERING"
+    },
+    {
+      "date": "2013-06",
+      "title": "Correlation between the Antibacterial Ability of Silver Nanoparticle Coated Air Filters and the Dust Loading",
+      "journal": "AEROSOL AND AIR QUALITY RESEARCH"
+    },
+    {
+      "date": "2013-05",
+      "title": "Deposition of Charged Aerosol Particles on a Substrate by Collimating Through an Electric Field Assisted Coaxial Flow Nozzle",
+      "journal": "AEROSOL SCIENCE AND TECHNOLOGY"
+    },
+    {
+      "date": "2013-04",
+      "title": "Transient behavior of devolatilization and char reaction during steam gasification of biomass",
+      "journal": "BIORESOURCE TECHNOLOGY"
+    }
+  ],
+  "awards": [
+    {
+      "title": "학술상",
+      "contents": null,
+      "date": null
+    },
+    {
+      "title": "연구업적우수교수상",
+      "contents": null,
+      "date": null
+    },
+    {
+      "title": "우수논문상",
+      "contents": null,
+      "date": null
+    },
+    {
+      "title": "남헌학술상",
+      "contents": null,
+      "date": null
+    },
+    {
+      "title": "대한기계학회학술상",
+      "contents": null,
+      "date": null
+    },
+    {
+      "title": "우수논문상",
+      "contents": null,
+      "date": null
+    },
+    {
+      "title": "대한기계학회 남헌학술상",
+      "contents": null,
+      "date": null
+    },
+    {
+      "title": "연구업적우수교수상",
+      "contents": null,
+      "date": null
+    },
+    {
+      "title": "연구업적우수교수상",
+      "contents": null,
+      "date": null
+    },
+    {
+      "title": "2024 AARA Fellow",
+      "contents": null,
+      "date": "2024-11-03"
+    },
+    {
+      "title": "연세대학교 공헌교수상",
+      "contents": ".",
+      "date": "2015-01-28"
+    },
+    {
+      "title": "2014년도 연세대학교 우수업적교수상",
+      "contents": "연구부문",
+      "date": "2015-01-28"
+    },
+    {
+      "title": "2013년도 연세대학교 우수업적교수상",
+      "contents": "연구부문",
+      "date": "2014-02-19"
+    },
+    {
+      "title": "LG전자 HAE연구센터 센터장 감사패",
+      "contents": "연구 및 강의",
+      "date": "2013-08-20"
+    },
+    {
+      "title": "JMST Award for Most Cited Paper\" in 2012",
+      "contents": "상장",
+      "date": "2013-02-01"
+    },
+    {
+      "title": "2012년도 연세대학교 우수연구실적표창",
+      "contents": "상패",
+      "date": "2013-01-31"
+    },
+    {
+      "title": "2011년도 연세대학교 연구업적 우수교원",
+      "contents": "상패",
+      "date": "2012-04-26"
+    },
+    {
+      "title": "지식경제부 장관 감사패",
+      "contents": "가스기술기준위원회 초대위원",
+      "date": "2011-11-30"
+    },
+    {
+      "title": "Top-50 most cited articles \"published in Journal of Aerosol Science",
+      "contents": "상장",
+      "date": "2011-04-21"
+    },
+    {
+      "title": "대한기계학회학술상",
+      "contents": "“PARTICLE CHARGING AND AGGLOMERATION IN DC AND AC ELECTRIC FIELDS. JOURNAL OF ELECTROSTATICS, VOL.",
+      "date": "2005-11-23"
+    },
+    {
+      "title": "우수논문상",
+      "contents": null,
+      "date": "2003-12-12"
+    },
+    {
+      "title": "대한기계학회 남헌학술상",
+      "contents": "열공학부문 우수논문상",
+      "date": "2001-11-07"
+    }
+  ],
+  "conferences": [
+    {
+      "title": "Enhanced enrichment of collected airborne coronavirus and influenza virus samples via a ConA-coated microfluidic chip for PCR detection",
+      "conference": "7th International Conference on Bio-Sensing Technology",
+      "period": "2022.05.22~2022.05.25"
+    },
+    {
+      "title": "High-throughput, high-precision detection of multiple airborne bacteria based on Fourier ptychographic microscopy",
+      "conference": "SPIE ABC 2021",
+      "period": "2021.11.04~2021.11.06"
+    },
+    {
+      "title": "MEMS BASED PARTICLE SIZE ANALYZER USING ELECTROSTATIC MEASURING TECHNIQUES",
+      "conference": "The 20th International Conference on Solid-State Sensors, Actuators and Microsystems & Eurosensors XXXIII (TRANSDUCERS 2019 & EUROSENSORS XXXIII)",
+      "period": "2019.06.23~2019.06.27"
+    },
+    {
+      "title": "공기 중 나노 입자를 광학적으로 모니터링하기 위하여 응축 유체로 수증기를 사용하는 MEMS 기반 응축 입자 계수기",
+      "conference": "제21회 한국 MEMS 학술대회",
+      "period": "2019.04.04~2019.04.06"
+    },
+    {
+      "title": "초소형 대기 중 나노 입자 크기 분포 측정기",
+      "conference": "제21회 한국 MEMS 학술대회",
+      "period": "2019.04.04~2019.04.06"
+    },
+    {
+      "title": "입자 크기 분포를 실시간으로 모니터링하기 위한 MEMS 기반 센서",
+      "conference": "제 15회 한국실내환경학회 연차학술대회",
+      "period": "2018.09.18~2018.09.19"
+    },
+    {
+      "title": "MEMS-BASED PARTICLE SIZE MAGNIFIER FOR MEASURING ULTRA LOW NANOPARTICLE CONCENTRATION",
+      "conference": "2018 IEEE 31th International Conference on Micro Electro Mechanical Systems (MEMS)",
+      "period": "2018.02.21~2018.02.25"
+    },
+    {
+      "title": "공기 중 부유 입자 크기 분포 측정을 위한 MEMS 기반 다단임팩터",
+      "conference": "제19회 한국 MEMS 학술대회",
+      "period": "2017.03.30~2017.04.01"
+    },
+    {
+      "title": "AEROSOL PARTICLE SIZE SPECTROMETER USING A MICROMACHINED CASCADE IMPACTOR",
+      "conference": "2017 IEEE 30th International Conference on Micro Electro Mechanical Systems (MEMS)",
+      "period": "2017.01.22~2017.01.26"
+    },
+    {
+      "title": "공기 중 부유 미세먼지 측정 성능 향상을 위한 이온 발생부와 입자 하전부가 분리된 구조의 마이크로 코로나 하전 장치",
+      "conference": "제 18회 한국 MEMS 학술대회",
+      "period": "2016.04.07~2016.04.09"
+    },
+    {
+      "title": "A MICROMACHINED CORONA-BASED UNIPOLAR AEROSOL CHARGER HAVING SEPARATED IONIZATION AND CHARGING ZONES FOR REDUCING THE ELECTRICAL LOSSES OF CHARGED PARTICLES",
+      "conference": "The 29th IEEE International Conference on Micro Electro Mechanical Systems(MEMS 2016)",
+      "period": "2016.01.24~2016.01.28"
+    },
+    {
+      "title": "공기 중 부유 미세먼지 모니터링을 위한 MEMS 기반의 입자 감지 시스템",
+      "conference": "제 17회 한국 MEMS 학술대회",
+      "period": "2015.04.02~2015.04.04"
+    },
+    {
+      "title": "ULTRAFINE PARTICLE COUNTER USING A MEMS-BASED PARTICLE PROCESSING CHIP",
+      "conference": "The 28th IEEE International Conference on Micro Electro Mechanical Systems (MEMS 2015)",
+      "period": "2015.01.18~2015.01.22"
+    },
+    {
+      "title": "A miniaturized airborne particle sensor using MEMS technology",
+      "conference": "2014년 한국센서학회 종합학술대회",
+      "period": "2014.11.14~2014.11.15"
+    },
+    {
+      "title": "MEMS 기반 입자 분석 칩을 이용한 초미립자 감지 시스템",
+      "conference": "2014년도 한국실내환경학회 제11회 연차학술대회",
+      "period": "2014.09.19~2014.09.20"
+    },
+    {
+      "title": "열영동을 이용한 기체기반 미세채널의 입자벽면부착 저감 기술 개발",
+      "conference": "제 16회 한국 MEMS 학술대회",
+      "period": "2014.04.03~2014.04.05"
+    },
+    {
+      "title": "MICROMACHINED TIP-TO-PLATE CORONA DISCHARGER WITH SLIT DIELECTRIC BARRIER FOR MEASURING THE AIRBORNE PARTICLE NUMBER CONCENTRATION",
+      "conference": "The 26th IEEE International Conference on Micro Electro Mechanical Systems (MEMS 2013)",
+      "period": "2013.01.20~2013.01.24"
+    },
+    {
+      "title": "부유 입자 수농도 측정을 위한 슬릿 유전체 장벽을 갖는 마이크로 코로나 하전 장치",
+      "conference": "한국정밀공학회 2012년도 추계학술대회",
+      "period": "2012.10.24~2012.10.26"
+    },
+    {
+      "title": "공기 중 입자 측정의 높은 효율을 위한 초소형 코로나 방전기 향상",
+      "conference": "2012년도 한국실내환경학회",
+      "period": "2012.09.20~2013.07.25"
+    },
+    {
+      "title": "Fabrication of orderd bulk hetero junction organic solar cells using e-jet spray on the nano in printed subtrate",
+      "conference": "제 9회 한미 나노 포럼",
+      "period": "2012.06.04~2012.06.05"
+    },
+    {
+      "title": "실내공기오염 감지 기술",
+      "conference": "공기청정기술지 2012년 6월호",
+      "period": "2012.06.01~2012.06.30"
+    },
+    {
+      "title": "기계 환기 식 의료복지 공간에서의 USN 이용 실내 공기질 모니터링 및 청정화 연구",
+      "conference": "한국실내환경학회 춘계워크샵",
+      "period": "2012.05.17~2012.05.17"
+    },
+    {
+      "title": "실내 공기질 개선을 위한 나노/바이오 에어로졸 입자 측정 및 저감기술",
+      "conference": "기계저널 2012년 5월호",
+      "period": "2012.05.01~2012.05.31"
+    },
+    {
+      "title": "An experimental study on production of carbon black using organic solvents with manufactured char of scrap automotive waste tire",
+      "conference": "한국화학공학회 2012년도 봄 총회 및 학술대회",
+      "period": "2012.04.25~2012.04.27"
+    },
+    {
+      "title": "3D Numerical simulation of gas-particle hydrodynamic behavior in a circulating fluidized bed riser",
+      "conference": "한국화학공학회 2012년도 봄 총회 및 학술대회",
+      "period": "2012.04.25~2012.04.27"
+    },
+    {
+      "title": "바이오매스 ash 특성에 관한 연구",
+      "conference": "한국화학공학회 2012년도 봄 총회 및 학술대회",
+      "period": "2012.04.25~2012.04.27"
+    },
+    {
+      "title": "Fabrication of a multi-walled carbon nanotube deposited glass fiber air filter for the enhancement of Nano and submicron aerosol particle filtration and Additional antibacterial efficacy",
+      "conference": "The Eighth KSME-JSME Thermal and Fluids Engineering Conference",
+      "period": "2012.03.18~2012.03.21"
+    },
+    {
+      "title": "석탄/biomass CO2 혼합 가스화에 따른 1단 분류층 가스화기 성능 변화에 대한 전산수치해석적 연구",
+      "conference": "2011년도 추계학술대회 제 43회 KOSCO SYMPOSIUM",
+      "period": "2011.12.01~2011.12.02"
+    },
+    {
+      "title": "석탄, 바이오매스 유래 혼합 촤 CO2 가스화 반응특성 연구",
+      "conference": "2011년도 추계학술대회 제 43회 KOSCO SYMPOSIUM",
+      "period": "2011.12.01~2011.12.02"
+    },
+    {
+      "title": "석탄 바이오매스 혼합 촤 스팀 가스화 반응성에 관한 연구",
+      "conference": "2011년도 추계학술대회 제 43회 KOSCO SYMPOSIUM",
+      "period": "2011.12.01~2011.12.02"
+    },
+    {
+      "title": "고효율 플라즈마 용융로 공정 특성 연구(Characteristics of the plasma melting process having high efficiency)",
+      "conference": "2011년 한국열환경공학회 추계 공동학술발표회",
+      "period": "2011.10.17~2011.10.19"
+    },
+    {
+      "title": "Deposition of charged aerosol particles collimating through a coaxial flow nozzle on a substrate under an external electric field",
+      "conference": "30th American Association of Aerosol Research",
+      "period": "2011.10.03~2011.10.07"
+    },
+    {
+      "title": "Characteristics of Removal of Bioaerosols by Dielectric Barrier Discharge",
+      "conference": "30th American Association of Aerosol Research",
+      "period": "2011.10.03~2011.10.07"
+    },
+    {
+      "title": "An experimental study on pyrolysis under isothermal condition of Indonesian biomass (Empty Fluid Bunch : EFB)",
+      "conference": "10th International Conference on Sustainable Energy Technologies",
+      "period": "2011.09.04~2011.09.07"
+    },
+    {
+      "title": "A study on tar reduction of producer gas from biomass gasification with activated carbon and dolomite",
+      "conference": "10th International Conference on Sustainable Energy Technologies",
+      "period": "2011.09.04~2011.09.07"
+    },
+    {
+      "title": "Application of Electrical Means to Aerosol Technologies",
+      "conference": "The 7th Asian Aerosol Conference",
+      "period": "2011.08.17~2011.08.20"
+    },
+    {
+      "title": "The Method to Control the Size of Generated Particles from a Spark Discharger by the Ion Bombardment with the Multi-ionizing",
+      "conference": "The 7th Asian Aerosol Conference",
+      "period": "2011.08.17~2011.08.20"
+    },
+    {
+      "title": "Characteristics of Removal of Bioaerosols by Dielectric Barrier Discharge",
+      "conference": "The 7tth Asian Aerosol Conference",
+      "period": "2011.08.17~2011.08.20"
+    },
+    {
+      "title": "3-dimensional Simulation of Micro Virtual Impactor",
+      "conference": "The 7tth Asian Aerosol Conference",
+      "period": "2011.08.17~2011.08.20"
+    },
+    {
+      "title": "고하전 마이크로 입자 발생을 위한 단극성 하전기의 설계 및 성능평가",
+      "conference": "한국입자에어로졸학회 학술대회 2011",
+      "period": "2011.06.30~2011.07.02"
+    },
+    {
+      "title": "Size control of aerosol particles generated from a spaark dischager via air ions",
+      "conference": "한국입자에어로졸학회 학술대회 2011",
+      "period": "2011.06.30~2011.07.02"
+    },
+    {
+      "title": "Characteristics of removing airborne bacteria by plasma reactor",
+      "conference": "한국입자에어로졸학회 학술대회 2011",
+      "period": "2011.06.30~2011.07.02"
+    },
+    {
+      "title": "Application and performance test of a chip-type unipolar charger for real-time measurements of exhausted particle from diesel vehicle",
+      "conference": "한국입자에어로졸학회 학술대회 2011",
+      "period": "2011.06.30~2011.07.02"
+    },
+    {
+      "title": "실시간 환경 모니터링을 위한 기체 기반 입자 분석 칩",
+      "conference": "한국정밀공학회 2011년도 춘계학술대회",
+      "period": "2011.06.01~2011.06.03"
+    },
+    {
+      "title": "스크랩 폐타이어 열분해로의한 수율분석 및 카본블랙 생산 특성에 관한 실험적 연구",
+      "conference": "한국화학공학회 2011년도 봄 총회 및 학술대회",
+      "period": "2011.04.27~2011.04.29"
+    },
+    {
+      "title": "활성탄과 백운석을 이용한 바이오 합성가스 내 Tar 저감에 관한 연구",
+      "conference": "한국화학공학회 2011년도 봄 총회 및 학술대회",
+      "period": "2011.04.27~2011.04.29"
+    },
+    {
+      "title": "스팀을 이용한 석탄 바이오매스 혼합 촤 가스화 반응에 관한 연구",
+      "conference": "한국화학공학회 2011년도 봄 총회 및 학술대회",
+      "period": "2011.04.27~2011.04.29"
+    },
+    {
+      "title": "TGA와 가스분석을 이용한 바이오매스 석탄 혼합 열분해에 대한 연구",
+      "conference": "한국화학공학회 2011년도 봄 총회 및 학술대회",
+      "period": "2011.04.27~2011.04.29"
+    },
+    {
+      "title": "Shell형 분류층 석탄 가스화기를 소형화시킴에 따른 합성 가스 조성 변화 예측에 관한 전산 수치해석적 연구",
+      "conference": "한국화학공학회 2011년도 봄 총회 및 학술대회",
+      "period": "2011.04.27~2011.04.29"
+    },
+    {
+      "title": "환경 모니터링을 위한 기체 기반 입자 분석 칩",
+      "conference": "2010년도 한국실내환경학회 연차학술대회",
+      "period": "2010.09.16~2010.09.16"
+    },
+    {
+      "title": "환경 모니터링을 위한 기체 기반 입자 분석 칩",
+      "conference": "2010년도 한국실내환경학회 연차학술대회",
+      "period": "2010.09.16~2010.09.16"
+    },
+    {
+      "title": "Size-controlled phytic acid-chitosan capsules for oral insulin delivery",
+      "conference": "KoSFoST 2010, P16-016",
+      "period": "2010.06.16~2010.06.18"
+    },
+    {
+      "title": "링형태 추출장치를 이용한 전기수력학 기반 하이브리드 젯팅 시스템",
+      "conference": "한국정밀공학회 2010년도 춘계학술대회",
+      "period": "2010.05.26~2010.05.28"
+    },
+    {
+      "title": "REAL-TIME MONITORING OF AIRBORNE MICROBIAL GROWTH USING SOLID-MEDIUM-INTEGRATED IMPEDIMETRIC BIOSENSOR",
+      "conference": "Fourth International Workshop on \"Biosensors for Food Safety and Environmental Monitoring\" 2009",
+      "period": "2009.10.01~2009.10.03"
+    },
+    {
+      "title": "Continuous Microfluidic Airborne Bacteria Separation Using Dielectrophoresis",
+      "conference": "Transducers 2009",
+      "period": "2009.06.21~2009.06.25"
+    },
+    {
+      "title": "Wall Loss Reduction Using Electrodynamic Anti-adhesion Technique for Air-based Microfludic Devices",
+      "conference": "한국바이오칩학회 2009 춘계학술대회",
+      "period": "2009.06.04~2009.06.05"
+    },
+    {
+      "title": "전기수력학 기반의 Hybrid jetting 시스템을 이용한 미세 액적의 토출 제어",
+      "conference": "한국정밀공학회 2009년도 춘계학술대회",
+      "period": "2009.06.03~2009.06.05"
+    },
+    {
+      "title": "Fly back 현상을 줄이기 위한 EHD 노즐 설계",
+      "conference": "한국정밀공학회 2009년도 춘계학술대회",
+      "period": "2009.06.03~2009.06.05"
+    },
+    {
+      "title": "압전 액츄에이터의 메니스커스 제어를 통한 온 디멘드(On-demand) 전기 수력학 프린팅",
+      "conference": "한국정밀공학회 2009년도 춘계학술대회",
+      "period": "2009.06.03~2009.06.05"
+    },
+    {
+      "title": "마이크로머시닝을 이용한 패러데이 케이지의 전기적 가상 임팩터 적용",
+      "conference": "한국정밀공학회 2009년도 춘계학술대회",
+      "period": "2009.06.03~2009.06.05"
+    },
+    {
+      "title": "전기방전을 통한 나노입자 생성 및 탄소나노튜브 합성의 위치 제어",
+      "conference": "11th Korean MEMS Conference",
+      "period": "2009.04.02~2009.04.04"
+    },
+    {
+      "title": "미세채널에서의 입자 손실을 줄이기 위한 전기적 부착 방지 기술",
+      "conference": "제11회 한국MEMS 학술대회",
+      "period": "2009.04.02~2009.04.04"
+    },
+    {
+      "title": "전기수력학적 프린팅에서 유량 조절을 통한 액적 분열 위치 제어",
+      "conference": "제11회 한국MEMS 학술대회",
+      "period": "2009.04.02~2009.04.04"
+    },
+    {
+      "title": "공기 기반 Lab-on-a-Chip을 위한 전기 영동 법을 이용한 공기 중 나노 입자의 크기 별 분류",
+      "conference": "제11회 한국MEMS 학술대회",
+      "period": "2009.04.02~2009.04.04"
+    },
+    {
+      "title": "ELECTROHYDRODYNAMIC JET PRINTING CAPABLE OF REMOVING SUBSTRATE EFFECTS AND MODULATING PRINTING CHARACTERISTICS",
+      "conference": "The 22th IEEE International Conference on Micro Electro Mechanical Systems",
+      "period": "2009.01.25~2009.01.29"
+    },
+    {
+      "title": "HYBRID ON DEMAND JETTING SYSTEM FOR ULTRA FINE DROPLET BASED ON ELECTROHYDRODYNAMIC AND PIEZOELECTRIC ACTUATION",
+      "conference": "The 22th IEEE International Conference on Micro Electro Mechanical Systems",
+      "period": "2009.01.25~2009.01.29"
+    },
+    {
+      "title": "CLASSIFICATION AND CONDENSATION OF NANO-SIZED AIRBORNE PARTICLES BY ELECTRICALLY TUNNING COLLECTION SIZE",
+      "conference": "The 22th IEEE International Conference on Micro Electro Mechanical Systems",
+      "period": "2009.01.25~2009.01.29"
+    },
+    {
+      "title": "이산화탄소를 이용한 바이오매스 촤 가스화 반응에 대한연구",
+      "conference": "한국연소학회 추계학술대회",
+      "period": "2008.12.12~2008.12.12"
+    },
+    {
+      "title": "1단 분류층 가스화기의 가스화 반응에 대한 전산해석",
+      "conference": "한국연소학회 추계학술대회",
+      "period": "2008.12.12~2008.12.12"
+    },
+    {
+      "title": "칩 타입 노즐을 이용한 정전기력 잉크젯 프린팅에 관한 안정된 원뿔형 액주 형성 및 전도성 라인 패턴",
+      "conference": "학국정밀공학회 추계학술대회",
+      "period": "2008.11.12~2008.11.14"
+    },
+    {
+      "title": "멤스 기반 전기 이동도 분석기를 이용한 대기 중 나노 입자의 분류",
+      "conference": "2008 한국정밀공학회 추계학술대회",
+      "period": "2008.11.13~2008.11.14"
+    },
+    {
+      "title": "기판으로부터의 영향을 제거한 전기수력학 젯 프린팅 및 그 특성 조절",
+      "conference": "대한기계학회 2008 추계학술대회",
+      "period": "2008.11.05~2008.11.07"
+    },
+    {
+      "title": "포집크기의 전기적 튜닝 기술을 이용한 나노크기의 공기중 입자 분류 및 수농도 응축",
+      "conference": "대한기계학회 2008 추계학술대회",
+      "period": "2008.11.05~2008.11.07"
+    },
+    {
+      "title": "Characterization of Photocatalytic Activity of TiO2 Nanowire Synthesized by Wet Corrosion Process",
+      "conference": "NanoBio-seoul 2008",
+      "period": "2008.10.30~2008.10.31"
+    },
+    {
+      "title": "In-plane EHD droplet generator based on MEMS for a Lab-on-a chip application",
+      "conference": "NanoBio-seoul 2008",
+      "period": "2008.10.30~2008.10.31"
+    },
+    {
+      "title": "건식 촉매 활성화 후 무전해 구리 도금된 ACF 의 NO 저감 특성",
+      "conference": "한국대기환경학회 추계학술대회",
+      "period": "2008.10.23~2008.10.25"
+    },
+    {
+      "title": "단극성 이온발생을 이용한 바이오에어로졸 저감",
+      "conference": "한국실내환경학회 학술대회",
+      "period": "2008.09.26~2008.09.26"
+    },
+    {
+      "title": "Production of Synthesis Gasby Two-stage Gasification of RPF in aLab-Scale Reactor",
+      "conference": "7th international conference on Sustainable Energy Technologies (SET2008),",
+      "period": "2008.08.24~2008.08.27"
+    },
+    {
+      "title": "Micromachined virtual impactor with rectangular single nozzle for aerodynamic size classification",
+      "conference": "European Aerosol Conference",
+      "period": "2008.08.24~2008.08.29"
+    },
+    {
+      "title": "Numerical simulation of cone-shape and jet formation in electrohydrodynamic jet printing (EHDP)",
+      "conference": "European Aerosol Conference",
+      "period": "2008.08.24~2008.08.29"
+    },
+    {
+      "title": "Simultaneous removal of ordors, airborne particles, and bioaerosols in a municipal composting facility by a dielectric barrier discharge",
+      "conference": "European Aerosol Conference",
+      "period": "2008.08.24~2008.08.29"
+    },
+    {
+      "title": "Gasification Reactivity of Biomass Chars with CO2",
+      "conference": "7th international conference on Sustainable Energy Technologies(SET2008)",
+      "period": "2008.08.24~2008.08.27"
+    },
+    {
+      "title": "Rapid monitoring of indoor bioaerosols using impactor and ATP bioluminescence",
+      "conference": "Indoor Air 2008",
+      "period": "2008.08.17~2008.08.22"
+    },
+    {
+      "title": "Silver-deposited activated carbon fiber for bioaerosol control",
+      "conference": "Indoor Air 2008",
+      "period": "2008.08.17~2008.08.22"
+    },
+    {
+      "title": "Collection of submicron aerosol particles using a fibrous filter with ion generators",
+      "conference": "Indoor Air 2008",
+      "period": "2008.08.17~2008.08.22"
+    },
+    {
+      "title": "Control of odors, aerosols in a composting facility by a dielectric",
+      "conference": "한국입자에어로졸학회 학술대회",
+      "period": "2008.07.03~2008.07.05"
+    },
+    {
+      "title": "Spark generation of monometallic and bimetallic aerosol nanoparticles",
+      "conference": "한국입자에어로졸학회 학술대회",
+      "period": "2008.07.03~2008.07.05"
+    },
+    {
+      "title": "Numerical simulation of cone-shape and jet formation in Electrohydrodynamic printing (EHDP)",
+      "conference": "한국입자에어로졸학회 학술대회",
+      "period": "2008.07.03~2008.07.05"
+    },
+    {
+      "title": "Particles growth using Nafion humidifier",
+      "conference": "한국입자에어로졸학회 학술대회",
+      "period": "2008.07.03~2008.07.05"
+    },
+    {
+      "title": "바이오 에어로졸의 크기 분류를 위한 초소형 가상 임팩터 개발",
+      "conference": "한국입자에어로졸학회",
+      "period": "2008.07.03~2008.07.05"
+    },
+    {
+      "title": "Development and Performance Test of a Thermo-Denuder for Separation of Volatile Matter from Submicron aerosol particles",
+      "conference": "한국입자에어로졸학회 학술대회",
+      "period": "2008.07.03~2008.07.05"
+    },
+    {
+      "title": "Electroless copper deposition on activated carbon fiber for NO removal",
+      "conference": "한국입자에어로졸학회 학술대회",
+      "period": "2008.07.03~2008.07.05"
+    },
+    {
+      "title": "은입자가 코팅된 항균 필터의 바이오에어로졸 저감 특성",
+      "conference": "한국입자에어로졸학회 학술대회",
+      "period": "2008.07.03~2008.07.05"
+    },
+    {
+      "title": "Design and performance test of multi-channel diffusion chargerfor real-time measurements of submicron aerosol particles having a log-normal size distribution",
+      "conference": "한국입자에어로졸학회 학술대회",
+      "period": "2008.07.03~2008.07.05"
+    },
+    {
+      "title": "Real-time measurement of size distribution of diesel exhaust particles using a portable 4-stage electrical low pressure impactor and a data inversion algorithm",
+      "conference": "한국입자에어로졸학회 학술대회",
+      "period": "2008.07.03~2008.07.05"
+    },
+    {
+      "title": "MEMS based EHD drop generator for Lab-on-a-chip application",
+      "conference": "2008 한국바이오칩학회 춘계학술대회",
+      "period": "2008.06.12~2008.06.13"
+    },
+    {
+      "title": "Size-classification of Airborne Particle for Air-based Lab-on-a-Chip",
+      "conference": "2008 한국바이오칩학회 춘계학술대회",
+      "period": "2008.06.12~2008.06.13"
+    },
+    {
+      "title": "전기수력을 이용한 미세노즐",
+      "conference": "2008 한국정밀공학회 춘계학술대회",
+      "period": "2008.06.11~2008.06.13"
+    },
+    {
+      "title": "MEMS 기반 노즐을 이용한 전기수력학 프린팅",
+      "conference": "제10회 한국MEMS 학술대회",
+      "period": "2008.04.03~2008.04.05"
+    },
+    {
+      "title": "입자의 크기 별 분류를 위한 멤스 기반 전기적 이동도 분석기",
+      "conference": "제10회 한국MEMS 학술대회",
+      "period": "2008.04.03~2008.04.05"
+    },
+    {
+      "title": "전기적으로 분류입경 제어가 가능한 가상임팩터 기반 공기 중 부유입자 분류기",
+      "conference": "제10회 한국MEMS 학술대회",
+      "period": "2008.04.03~2008.04.05"
+    },
+    {
+      "title": "MEMS 기반 칩 타입 노즐을 이용한 전기수력학 프린팅에서 안정된 원뿔형 액주 모드를 이용한 전도성 라인 패턴",
+      "conference": "정보저장시스템학회 동계학술대회",
+      "period": "2008.02.14~2008.02.14"
+    },
+    {
+      "title": "Numerical Simulation of Gasification of Coal-Water-Slurry for Production of Synthesis Gas in a Two Stage Oxygen-Blown Entrained Gasifier: Using PDF model & Finite rate/Eddy dissipation model",
+      "conference": "7th International Symposium of High Temperature Air Combustion and Gasification",
+      "period": "2008.01.14~2008.01.16"
+    },
+    {
+      "title": "Electrically tunable airborne particle classifier using a virtual impactor",
+      "conference": "The 21th IEEE International Conference on Micro Electro Mechanical Systems",
+      "period": "2008.01.13~2008.01.17"
+    },
+    {
+      "title": "Micromachined electrical mobility analyzer for wide range airborne particle classification",
+      "conference": "The 21th IEEE International Conference on Micro Electro Mechanical Systems",
+      "period": "2008.01.13~2008.01.17"
+    },
+    {
+      "title": "PRODUCTION OF SYNTHESIS GAS BY CRACKING PYROLYSIS GAS OF RPF IN GASIFYING REACTOR",
+      "conference": "7TH HIGH TEMPERATURE AIR COMBUSTION AND GASIFICATION INTERNATIONAL SYMPOSIUM",
+      "period": "2008.01.13~2008.01.16"
+    },
+    {
+      "title": "NUMERICAL SIMULATION OF GASIFICATION OF COAL-WATER-SLURRY FOR PRODUCTION OF SYNTHESIS GAS IN A TWO S",
+      "conference": "7TH HIGH TEMPERATURE AIR COMBUSTION AND GASIFICATION INTERNATIONAL SYMPOSIUM",
+      "period": "2008.01.13~2008.01.16"
+    },
+    {
+      "title": "MICROMACHINED ELECTRICAL MOBILITY ANALYZER FOR WIDE RANGE AIRBORNE PARTICLE CLASSIFICATION",
+      "conference": "IEEE MEMS 2008 CONFERENCE",
+      "period": "2008.01.13~2008.01.17"
+    },
+    {
+      "title": "ELECTRICALLY TUNABLE AIRBORNE PARTICLE CLASSIFIER USING A VIRTUAL IMPACTOR",
+      "conference": "IEEE MEMS 2008 CONFERENCE",
+      "period": "2008.01.13~2008.01.17"
+    },
+    {
+      "title": "Micromachined Particle Classification Chips for Wide Range Airborne Particles",
+      "conference": "Proceedings of IEEE Seoul Section 2007",
+      "period": "2007.12.08~2007.12.08"
+    },
+    {
+      "title": "2단 분류층 가스화기에서 합성가스 생성을 위한 석탄 슬러리 가스화에 대한 수치 해석적 연구 (PDF 모델을 사용하여)",
+      "conference": "2007 신재생에너지학회 추계학술대회",
+      "period": "2007.11.06~2007.11.07"
+    },
+    {
+      "title": "Lab-scale 반응기에서 RPF 열분해 가스의 가스화에 의한 합성 가스의 생성에 대한 연구",
+      "conference": "2007 신재생에너지학회 추계학술대회",
+      "period": "2007.11.06~2007.11.07"
+    },
+    {
+      "title": "2단 분류층 가스화기에서 합성가스 생성을 위한 석탄 슬러리 가스화에 대한 수치 해석적 연구 :&NBSP;FINIT",
+      "conference": "신재생에너지학회 학술대회",
+      "period": "2007.11.06~2007.11.07"
+    },
+    {
+      "title": "LAB-SCALE 반응기에서 RPF 열분해 가스의 가스화에 의한 합성 가스의 생성에 대한 연구",
+      "conference": "신재생에너지학회 학술대회",
+      "period": "2007.11.06~2007.11.07"
+    },
+    {
+      "title": "2단 분류층 가스화기에서 합성가스 생성을 위한 석탄 슬러리 가스화에 대한 수치 해석적 연구 :&NBSP;FINIT",
+      "conference": "신재생에너지학회 학술대회",
+      "period": "2007.11.06~2007.11.07"
+    },
+    {
+      "title": "나노입자 프린팅 기법을 이용한 인쇄회로기판기술 기반 집적형 가스센서",
+      "conference": "한국마이크로전자 및 패키징학회 2007년 추계학술대회",
+      "period": "2007.10.26~2007.10.26"
+    },
+    {
+      "title": "Lab-scale 반응기에서 RPF 열분해 가스의 가스화에 의한 합성 가스의 생성에 대한 연구",
+      "conference": "2007 연소학회 추계학술대회",
+      "period": "2007.10.25~2007.10.26"
+    },
+    {
+      "title": "2단 분류층 가스화기에서 합성가스 생성을 위한 석탄 슬러리 가스화에 대한 수치 해석적 연구(Finite rate/Eddy dissipation 모델을 사용해서)",
+      "conference": "2007 연소학회 추계학술대회",
+      "period": "2007.10.25~2007.10.26"
+    },
+    {
+      "title": "2단 분류층 가스화기에서 합성가스 생성을 위한 석탄 슬러리 가스화에 대한 수치 해석적 연구 : NON-PREMIX",
+      "conference": "한국연소학회 학술대회",
+      "period": "2007.10.25~2007.10.26"
+    },
+    {
+      "title": "LAB-SCALE 반응기에서 RPF 열분해 가스의 가스화에 의한 합성 가스의 생성에 대한 연구",
+      "conference": "한국연소학회 학술대회",
+      "period": "2007.10.25~2007.10.26"
+    },
+    {
+      "title": "2단 분류층 가스화기에서 합성가스 생성을 위한 석탄 슬러리 가스화에 대한 수치 해석적 연구 : NON-PREMIX",
+      "conference": "한국연소학회 학술대회",
+      "period": "2007.10.25~2007.10.26"
+    },
+    {
+      "title": "A PARTICLE CLASSIFICATION CHIP FOR BOTH AIRBORNE AND LIQUID-SUSPENDED BIOLOGICAL PARTICLES",
+      "conference": "uTAS 2007 Conference",
+      "period": "2007.10.07~2007.10.11"
+    },
+    {
+      "title": "SILVER-DEPOSITED ACTIVATED CARBON FIBERS FOR BIOAEROSOL CONTROL",
+      "conference": "AAAR 26TH ANNUAL CONFERENCE",
+      "period": "2007.09.24~2007.09.28"
+    },
+    {
+      "title": "SYNTHESIS OF BIMETALLIC NOBLE METAL AEROSOL NANOPARTICLES BY HETEROGENEOUS SPARK DISCHARGES",
+      "conference": "AAAR 26TH ANNUAL CONFERENCE",
+      "period": "2007.09.24~2007.09.28"
+    },
+    {
+      "title": "EVALUATION OF AIR FILTRATION SYSTEM INCLUDING A DIFFUSION PRE-CHARGER AND A MEDIUM FILTER FOR REMOVA",
+      "conference": "AAAR 26TH ANNUAL CONFERENCE",
+      "period": "2007.09.24~2007.09.28"
+    },
+    {
+      "title": "자연환기용 정전필터와 프리필터의 입자상 오염물질 저감특성",
+      "conference": "한국실내환경학회 학술대회",
+      "period": "2007.09.14~2007.09.14"
+    },
+    {
+      "title": "자연환기용 정전필터와 프리필터의 입자상 오염물질 저감특성",
+      "conference": "한국실내환경학회 학술대회",
+      "period": "2007.09.14~2007.09.14"
+    },
+    {
+      "title": "환경 모니터링을 위한 MEMS 기반 집적형 입자감지칩",
+      "conference": "2007년도 한국실내환경학회 연차학술대회",
+      "period": "2007.09.13~2007.09.14"
+    },
+    {
+      "title": "ANTIMICROBIAL CHARACTERISTICS OF ACF FILTER CONTAINING SILVER NANO PARTICLES",
+      "conference": "EUROPEAN AEROSOL CONFERENCE",
+      "period": "2007.09.09~2007.09.14"
+    },
+    {
+      "title": "FORMATION OF THICK SILVER LINES ON A PET(POLYETHYLENE TEREPHTHALATE) FILM PATTERNED BY A COMBINED PR",
+      "conference": "EUROPEAN AEROSOL CONFERENCE",
+      "period": "2007.09.09~2007.09.14"
+    },
+    {
+      "title": "SIZE DISTRIBUTIONS OF AEROSOL PARTICLES IN A FOOD WASTE COMPOSTING CENTER",
+      "conference": "EUROPEAN AEROSOL CONFERENCE",
+      "period": "2007.09.09~2007.09.14"
+    },
+    {
+      "title": "DESIGN AND PERFORMANCE EVALUATION OF A THREE-STAGE IMPACTOR FOR RAPID BIOAEROSOL DETECTION BY ATP BI",
+      "conference": "EUROPEAN AEROSOL CONFERENCE",
+      "period": "2007.09.09~2007.09.14"
+    },
+    {
+      "title": "서브마이크론 입자의 휘발성분과 비휘발성분의 분리를 위한 열탈착기의 개발 및 성능평가",
+      "conference": "한국입자에어로졸학회 학술대회",
+      "period": "2007.06.28~2007.06.30"
+    },
+    {
+      "title": "서브마이크론 입자의 체류시간에 따른 단극성 확산 하전량 분석 연구",
+      "conference": "한국입자에어로졸학회 학술대회",
+      "period": "2007.06.28~2007.06.30"
+    },
+    {
+      "title": "서브마이크론 입자의 실시간 크기 분포 측정을 위한 MEMS 기반 입자측정센서 개발",
+      "conference": "한국입자에어로졸학회 학술대회",
+      "period": "2007.06.28~2007.06.30"
+    },
+    {
+      "title": "복합 하전기 시스템을 이용한 서브마이크론 입자의 실시간 크기분포 측정 연구",
+      "conference": "한국입자에어로졸학회 학술대회",
+      "period": "2007.06.28~2007.06.30"
+    },
+    {
+      "title": "바이오에어로졸 처리장치의 성능평가 기술 개발",
+      "conference": "한국입자에어로졸학회 학술대회",
+      "period": "2007.06.28~2007.06.30"
+    },
+    {
+      "title": "마이크론/서브마이크론 입자의 크기 별 분류를 위한 초소형 다단 가상 임팩터 개발",
+      "conference": "한국입자에어로졸학회 학술대회",
+      "period": "2007.06.28~2007.06.30"
+    },
+    {
+      "title": "바이오에어로졸 처리장치의 성능평가 기술 개발",
+      "conference": "한국입자에어로졸학회 학술대회",
+      "period": "2007.06.28~2007.06.30"
+    },
+    {
+      "title": "서브마이크론 입자의 휘발성분과 비휘발성분의 분리를 위한 열탈착기의 개발 및 성능평가",
+      "conference": "한국입자에어로졸학회 학술대회",
+      "period": "2007.06.28~2007.06.30"
+    },
+    {
+      "title": "서브마이크론 입자의 체류시간에 따른 단극성 확산 하전량 분석 연구",
+      "conference": "한국입자에어로졸학회 학술대회",
+      "period": "2007.06.28~2007.06.30"
+    },
+    {
+      "title": "복합 하전기 시스템을 이용한 서브마이크론 입자의 실시간 크기분포 측정 연구",
+      "conference": "한국입자에어로졸학회 학술대회",
+      "period": "2007.06.28~2007.06.30"
+    },
+    {
+      "title": "서브마이크론 입자의 실시간 크기 분포 측정을 위한 MEMS 기반 입자측정센서 개발",
+      "conference": "한국입자에어로졸학회 학술대회",
+      "period": "2007.06.28~2007.06.30"
+    },
+    {
+      "title": "마이크론/서브마이크론 입자의 크기 별 분류를 위한 초소형 다단 가상 임팩터 개발",
+      "conference": "한국입자에어로졸학회 학술대회",
+      "period": "2007.06.28~2007.06.30"
+    },
+    {
+      "title": "POWER GENERATION UTILIZING GAS FEUL PRODUCED FROM WASTE GASIFICATION PROCESS",
+      "conference": "INTERNATIONAL SYMPOSIUM ON BIOMASS AND BIOWASTE UTILIZATION FOR CLEAN ENERGY RECOVERY",
+      "period": "2007.06.18~2007.06.18"
+    },
+    {
+      "title": "A VIRTUAL IMPACTOR FOR HYDRODYNAMIC PARTICLE CLASSIFICATION",
+      "conference": "The 14th International Conference on Solid-state Sensors, Actuators and Microsystems",
+      "period": "2007.06.10~2007.06.14"
+    },
+    {
+      "title": "RPF 열분해 가스화 시 합성가스에 대한 화학평형 계산",
+      "conference": "대한기계학회 춘계학술대회",
+      "period": "2007.05.30~2007.06.01"
+    },
+    {
+      "title": "SIZE DISTRIBUTIONS OF TOTAL AIRBORNE PARTICLES AND BIOAEROSOLS IN A MUNICIPAL COMPOSTING FACILITY",
+      "conference": "INTERNATIONAL MEETING OF THE MICROBIOLOGICAL SOCIETY OF KOREA",
+      "period": "2007.05.10~2007.05.11"
+    },
+    {
+      "title": "SUSCEPTIBILITY CONSTANTS OF E.COLI AND B.SUBTILIS TO SILVER AND COPPER NANOPARTICLES",
+      "conference": "INTERNATIONAL MEETING OF THE MICROBIOLOGICAL SOCIETY OF KOREA",
+      "period": "2007.05.10~2007.05.11"
+    },
+    {
+      "title": "공기 중 부유 입자의 크기 별 분류를 위한 초소형 다단 가상 임팩터",
+      "conference": "제9회 한국 MEMS 학술대회",
+      "period": "2007.04.05~2007.04.07"
+    },
+    {
+      "title": "공기 중 부유 입자의 크기 별 분류를 위한 초소형 다단 가상 임팩터",
+      "conference": "제9회 한국 MEMS 학술대회",
+      "period": "2007.04.05~2007.04.07"
+    },
+    {
+      "title": "PATTERNING CONDUCTIVE SILVER LINE BY ELECTROHYDRODYNAMIC DEPOSITION AND ITS ELECTRICAL CHARACTERIZAT",
+      "conference": "ELECTROSTATICS 2007",
+      "period": "2007.03.25~2007.03.29"
+    },
+    {
+      "title": "DESIGN OF ELECTROHYDRODYNAMIC LENS FOR STABILIZING OF ELETROHYDRODYNAMIC PRINTING",
+      "conference": "ELECTROSTATICS 2007",
+      "period": "2007.03.25~2007.03.29"
+    },
+    {
+      "title": "MICROMACHINED CASCADE VIRTUAL IMPACTOR FOR AERODYNAMIC SIZE CLASSIFICATION OF AIRBORNE PARTICLES",
+      "conference": "The 20th IEEE International Conference on Micro Electro Mechanical Systems",
+      "period": "2007.01.21~2007.01.25"
+    },
+    {
+      "title": "MICROMACHINED CASCADE VIRTUAL IMPACTOR FOR AERODYNAMIC SIZE CLASSIFICATION OF AIRBORNE PARTICLES",
+      "conference": "IEEE MEMS 2007 CONFERENCE",
+      "period": "2007.01.21~2007.01.25"
+    },
+    {
+      "title": "ANTIMICROBIAL CHARACTERISTICS OF METAL DEPOSITED ACF FILTERS",
+      "conference": "THE 8TH INTERNATIONAL SYMPOSIUM ON ECO-MATERIALS PROCESSING AND DESIGN (ISEPD2007)",
+      "period": "2007.01.11~2007.01.14"
+    },
+    {
+      "title": "ANTIMICROBIAL CHARACTERISTICS OF SILVER AEROSOL NANOPARTICLES AGAINST B. SUBTILIS BIOAEROSOLS",
+      "conference": "THE 8TH INTERNATIONAL SYMPOSIUM ON ECO-MATERIALS PROCESSING AND DESIGN (ISEPD2007)",
+      "period": "2007.01.11~2007.01.14"
+    },
+    {
+      "title": "PD-AG BIMETAL DEPOSITION ONTO ACTIVATED CARBON FIBERS (ACF) BY SPARK GENERATED PD-AG AEROSOL NANOPAR",
+      "conference": "THE 8TH INTERNATIONAL SYMPOSIUM ON ECO-MATERIALS PROCESSING AND DESIGN (ISEPD2007)",
+      "period": "2007.01.11~2007.01.14"
+    },
+    {
+      "title": "NO REMOVAL BY ELECTROLESSLY COPPER CATALYST SUPPORTED ACTIVATED CARBON FIBERS (ACF)",
+      "conference": "THE 8TH INTERNATIONAL SYMPOSIUM ON ECO-MATERIALS PROCESSING AND DESIGN (ISEPD2007)",
+      "period": "2007.01.11~2007.01.14"
+    },
+    {
+      "title": "SURFACE CHARACTERISTICS AND PHOTOCATALYTIC ACTIVITY OF TIO2 AND WO3-TIO2 IMMOBILIZED ACTIVATED CARBO",
+      "conference": "THE 8TH INTERNATIONAL SYMPOSIUM ON ECO-MATERIALS PROCESSING AND DESIGN (ISEPD2007)",
+      "period": "2007.01.11~2007.01.14"
+    },
+    {
+      "title": "CHARACTERIZATION OF FLAME-GENERATED TIO2 DEPOSITED ACTIVATED CARBON FIBERS (ACF)",
+      "conference": "THE 8TH INTERNATIONAL SYMPOSIUM ON ECO-MATERIALS PROCESSING AND DESIGN (ISEPD2007)",
+      "period": "2007.01.11~2007.01.14"
+    },
+    {
+      "title": "COMB-SHAPE PATTERNED CLAMP/SPACER FOR IMPROVEMENT OF RECIRCULATION FILTER EFFICIENCY IN HARD DISK DR",
+      "conference": "ASIA-PACIFIC MAGNETIC RECORDING CONFERENCE",
+      "period": "2006.11.29~2006.12.01"
+    },
+    {
+      "title": "COMBUSTION CHARACTERISTICS OF RPF FOR PRODUCTION OF SYNTHESIS GAS IN A LABSCALE CIRCULATING FLUIDIZE",
+      "conference": "4TH I-CIPEC",
+      "period": "2006.09.26~2006.09.29"
+    },
+    {
+      "title": "PYROLYSIS CHARACTERISTICS OF RDF IN PYROLYSIS CHAMBER OF A 30KG/HR SCALE PYROLYSIS MELTING INCINERAT",
+      "conference": "4TH I-CIPEC",
+      "period": "2006.09.26~2006.09.29"
+    },
+    {
+      "title": "COMBUSTION, PYROLYSIS AND MELTING CHARACTERISTICS OF SOLID WASTES IN A 30KG/HR CAPACITY PYROLYSIS ME",
+      "conference": "4TH I-CIPEC",
+      "period": "2006.09.26~2006.09.29"
+    },
+    {
+      "title": "실내공기질 측정을 위한 MEMS기반 초소형 미세 입자 측정칩",
+      "conference": "2006년도 한국실내환경학회",
+      "period": "2006.09.15~2006.09.17"
+    },
+    {
+      "title": "실내공기질 측정을 위한 MEMS 기반 초소형 미세입자 측정칩",
+      "conference": "한국실내환경학회 학술대회",
+      "period": "2006.09.15~2006.09.15"
+    },
+    {
+      "title": "NO REMOVAL OF COPPER DECORATED ACTIVATED CARBON FIBERS(ACF)",
+      "conference": "한국실내환경학회 학술대회",
+      "period": "2006.09.15~2006.09.15"
+    },
+    {
+      "title": "CHARACTERISTICS OF COPPER-DEPOSITIED ACTIVATED CARBON FIBERS FOR ANTIBACTERIAL ACTION AND ADSORPTION",
+      "conference": "한국실내환경학회 학술대회",
+      "period": "2006.09.15~2006.09.15"
+    },
+    {
+      "title": "실내공기질 측정을 위한 MEMS 기반 초소형 미세입자 측정칩",
+      "conference": "한국실내환경학회 학술대회",
+      "period": "2006.09.15~2006.09.15"
+    },
+    {
+      "title": "VENTILATION SYSTEM COMPRISING A DIELECTRIC BARRIER DISCHARGER AND UV-TIO2 PHOTOCATALYST FILTERS FOR",
+      "conference": "INTERNATIONAL AEROSOL CONFERENCE 2006",
+      "period": "2006.09.10~2006.09.15"
+    },
+    {
+      "title": "NANO AEROSOL PARTICLE CHARGE NEUTRALIZATION BY A NOVEL BIPOLAR DIFFUSION CHARGER",
+      "conference": "INTERNATIONAL AEROSOL CONFERENCE 2006",
+      "period": "2006.09.10~2006.09.15"
+    },
+    {
+      "title": "COLLECTION OF SUBMICRON PARTICLES BY AN ELECTROSTATIC PRECIPITATOR USING A DIELECTRIC BARRIER DISCHA",
+      "conference": "INTERNATIONAL AEROSOL CONFERENCE 2006",
+      "period": "2006.09.10~2006.09.15"
+    },
+    {
+      "title": "APPLICABILITY OF AN ELECTROSTATIC CARBON AEROSOL PARTICLE GENERATOR TO VOCS REMOVAL",
+      "conference": "INTERNATIONAL AEROSOL CONFERENCE 2006",
+      "period": "2006.09.10~2006.09.15"
+    },
+    {
+      "title": "EFFECT OF VARIATION IN ELECTRODE DIAMETER AND FLOW RATE ON FORMATION OF PATTERN BY ELECTROHYDRODYNAM",
+      "conference": "INTERNATIONAL AEROSOL CONFERENCE 2006",
+      "period": "2006.09.10~2006.09.15"
+    },
+    {
+      "title": "EVALUATIONS OF VARIOUS NOBLE CATALYTIC AIR FILTERS: FOR SIMULTANEOUS REMOVAL OF BIOAEROSOLS AND MICR",
+      "conference": "INTERNATIONAL AEROSOL CONFERENCE 2006",
+      "period": "2006.09.10~2006.09.15"
+    },
+    {
+      "title": "SIMULTANEOUS REMOVAL OF BIOAEROSOLS AND MVOCS BY METAL PLATED ACTIVATED CARBON FIBER FILTER",
+      "conference": "INTERNATIONAL AEROSOL CONFERENCE 2006",
+      "period": "2006.09.10~2006.09.15"
+    },
+    {
+      "title": "ANTIMICROBIAL EFFECT OF AIRBORNE SILVER NANOPARTICLES GENERATED BY THE ATOMIZER AGAINST B. SUBTILIS",
+      "conference": "INTERNATIONAL AEROSOL CONFERENCE 2006",
+      "period": "2006.09.10~2006.09.15"
+    },
+    {
+      "title": "USE OF UNIPOLAR CORONA CHARGERS TO ESTIMATE THE SIZE DISTRIBUTION OF SUBMICRON PARTICLES",
+      "conference": "INTERNATIONAL AEROSOL CONFERENCE 2006",
+      "period": "2006.09.10~2006.09.15"
+    },
+    {
+      "title": "실내공기질 측정을 위한 MEMS 기반 초소형 미세입자 측정칩",
+      "conference": "한국실내환경학회",
+      "period": null
+    },
+    {
+      "title": "COMBUSTION, PYROLYSIS AND MELTING CHARACTERISTICS IN A PYROLYSIS MELTING INCINERATOR",
+      "conference": "31ST INT. SYMP. COMBUSTION,",
+      "period": "2006.08.06~2006.08.11"
+    },
+    {
+      "title": "하드 디스크 드라이브 내부에서 생성되는 나노입자의 발생 위치가 재순환 필터의 입자저감에 미치는 영향",
+      "conference": "한국입자에어로졸학회 학술대회",
+      "period": "2006.07.06~2006.07.08"
+    },
+    {
+      "title": "핀-핀 타입 전기-수력학 프린팅에서 유전체 베리어를 이용한 패턴 안정성에 대한 연구",
+      "conference": "한국입자에어로졸학회 학술대회",
+      "period": "2006.07.06~2006.07.08"
+    },
+    {
+      "title": "전기-수력학 프린팅 방식의 전도성 라인 제작을 위한 은나노 입자 혼합 잉크 제조",
+      "conference": "한국입자에어로졸학회 학술대회",
+      "period": "2006.07.06~2006.07.08"
+    },
+    {
+      "title": "음식물 자원화시설에서의 부유미생물 및 부유입자 발생 특성",
+      "conference": "한국입자에어로졸학회 학술대회",
+      "period": "2006.07.06~2006.07.08"
+    },
+    {
+      "title": "은입자가 코팅된 ACF 필터의 바이오에어로졸 저감 특성",
+      "conference": "한국입자에어로졸학회 학술대회",
+      "period": "2006.07.06~2006.07.08"
+    },
+    {
+      "title": "은 나노입자 전기회로 제작을 위한 전기수력학 프린팅 구현",
+      "conference": "한국입자에어로졸학회 학술대회",
+      "period": "2006.07.06~2006.07.08"
+    },
+    {
+      "title": "원뿔형 전극을 이용한 전기수력학 프린팅 구현",
+      "conference": "한국입자에어로졸학회 학술대회",
+      "period": "2006.07.06~2006.07.08"
+    },
+    {
+      "title": "실험실 규모 순환유동층 연소로에서의 배출 미세입자 입경 분포",
+      "conference": "한국입자에어로졸학회 학술대회",
+      "period": "2006.07.06~2006.07.08"
+    },
+    {
+      "title": "신촌 도로변 극미세입자의 이동도 및 NOX 상관관계",
+      "conference": "한국입자에어로졸학회 학술대회",
+      "period": "2006.07.06~2006.07.08"
+    },
+    {
+      "title": "서브마이크론 입자의 휘발성분과 비휘발성분의 분리를 위한 열탈착기의 개발 및 성능평가",
+      "conference": "한국입자에어로졸학회 학술대회",
+      "period": "2006.07.06~2006.07.08"
+    },
+    {
+      "title": "서브마이크론 입자의 크기분류를 위한 MEMS 기반 초소형 가상 임팩터 설계 및 성능평가",
+      "conference": "한국입자에어로졸학회 학술대회",
+      "period": "2006.07.06~2006.07.08"
+    },
+    {
+      "title": "전기-수력학 프린팅 방식의 전도성 라인 제작을 위한 은나노 입자 혼합 잉크 제조",
+      "conference": "한국입자에어로졸학회 학술대회",
+      "period": "2006.07.06~2006.07.08"
+    },
+    {
+      "title": "은 나노입자 전기회로 제작을 위한 전기수력학 프린팅 구현",
+      "conference": "한국입자에어로졸학회 학술대회",
+      "period": "2006.07.06~2006.07.08"
+    },
+    {
+      "title": "원뿔형 전극을 이용한 전기수력학 프린팅 구현",
+      "conference": "한국입자에어로졸학회 학술대회",
+      "period": "2006.07.06~2006.07.08"
+    },
+    {
+      "title": "핀-핀 타입 전기-수력학 프린팅에서 유전체 베리어를 이용한 패턴 안정성에 대한 연구",
+      "conference": "한국입자에어로졸학회 학술대회",
+      "period": "2006.07.06~2006.07.08"
+    },
+    {
+      "title": "하드 디스크 드라이브 내부에서 생성되는 나노입자의 발생 위치가 재순환 필터의 입자저감에 미치는 영향",
+      "conference": "한국입자에어로졸학회 학술대회",
+      "period": "2006.07.06~2006.07.08"
+    },
+    {
+      "title": "음식물 자원화시설에서의 부유미생물 및 부유입자 발생 특성",
+      "conference": "한국입자에어로졸학회 학술대회",
+      "period": "2006.07.06~2006.07.08"
+    },
+    {
+      "title": "신촌 도로변 극미세입자의 이동도 및 NOX 상관관계",
+      "conference": "한국입자에어로졸학회 학술대회",
+      "period": "2006.07.06~2006.07.08"
+    }
+  ],
+  "fundings": [
+    {
+      "title": "기후변화대응삶의질개선 연세과학기술한림원융합연구센터",
+      "org": "연세대학교",
+      "period": "2026-03-01~2027-02-28"
+    },
+    {
+      "title": "[통합이지바로/공동] 병원감염 예방·예측 융복합 지능형 에이전트 개발 (1/2단계)(2/3)",
+      "org": "한국보건산업진흥원",
+      "period": "2026-01-01~2026-12-31"
+    },
+    {
+      "title": "[6차년도] 사회지향 기계기술 글로벌 리더 양성 교육연구단",
+      "org": "한국연구재단",
+      "period": "2025-03-01~2026-02-28"
+    },
+    {
+      "title": "[RCMS]한국기계연구원/대기 미세먼지 대응 상호 협력형 공기정화 자동차(5/6)",
+      "org": "한국산업기술기획평가원",
+      "period": "2025-01-01~2025-12-31"
+    },
+    {
+      "title": "[RCMS/주관/환경산업기술원] 유해인자 DB구축 및 IoT기반 공기포집-농축-전처리-상시진단 연계기술개발(2/2단계)(3/3)",
+      "org": "한국환경산업기술원",
+      "period": "2025-01-01~2025-12-31"
+    },
+    {
+      "title": "[5차년도] 사회지향 기계기술 글로벌 리더 양성 교육연구단",
+      "org": "한국연구재단",
+      "period": "2024-03-01~2025-02-28"
+    },
+    {
+      "title": "[민간/삼성전자]PSD 배관 내 비산 파우더 진단 기술 개발",
+      "org": "국내",
+      "period": "2024-02-08~2025-08-31"
+    },
+    {
+      "title": "[RCMS]한국기계연구원/대기 미세먼지 대응 상호 협력형 공기정화 자동차(4/6)",
+      "org": "한국산업기술기획평가원",
+      "period": "2024-02-01~2024-12-31"
+    },
+    {
+      "title": "[대형사업운영비](2023-11-2201) 유해인자 DB구축 및 IoT기반 공기포집-농축-전처리-상시진단 연계기술개발(2/2단계)(2/3)",
+      "org": "연세대학교",
+      "period": "2024-01-01~2025-06-30"
+    },
+    {
+      "title": "[통합이지바로/위탁](비과세)저온 플라즈마 기술을 적용한 폐유기물의 C2 단량체 전환 연구 (3/4)",
+      "org": "한국연구재단",
+      "period": "2024-01-01~2024-12-31"
+    },
+    {
+      "title": "[RCMS/주관/환경산업기술원] 유해인자 DB구축 및 IoT기반 공기포집-농축-전처리-상시진단 연계기술개발(2/2단계)(2/3)",
+      "org": "한국환경산업기술원",
+      "period": "2024-01-01~2024-12-31"
+    },
+    {
+      "title": "[RCMS]한국기계연구원/대기 미세먼지 대응 상호 협력형 공기정화 자동차(3/6)",
+      "org": "한국산업기술기획평가원",
+      "period": "2023-04-01~2024-01-31"
+    },
+    {
+      "title": "[4차년도] 사회지향 기계기술 글로벌 리더 양성 교육연구단",
+      "org": "한국연구재단",
+      "period": "2023-03-01~2024-02-29"
+    },
+    {
+      "title": "[민간/삼성전자]PSD 배관 내 비산 파우더 진단 기술 개발",
+      "org": "국내",
+      "period": "2023-01-18~2024-06-30"
+    },
+    {
+      "title": "[통합이지바로][국토부/공동] 입자 응집 및 제어 기술 개발 (5/5)",
+      "org": "국토교통과학기술진흥원",
+      "period": "2023-01-01~2023-12-31"
+    },
+    {
+      "title": "[통합이지바로](위탁/비과세)저온 플라즈마 기술을 적용한 폐유기물의 C2 단량체 전환 연구(1/1단계)(2/4)",
+      "org": "한국연구재단",
+      "period": "2023-01-01~2023-12-31"
+    },
+    {
+      "title": "[RCMS/주관/환경산업기술원] 유해인자 DB구축 및 IoT기반 공기포집-농축-전처리-상시진단 연계기술개발(2/2단계)(1/3)",
+      "org": "한국환경산업기술원",
+      "period": "2023-01-01~2023-12-31"
+    },
+    {
+      "title": "[통합이지바로](위탁)저온 플라즈마 기술을 적용한 폐유기물의 C2 단량체 전환 연구(1/1단계)(1/4)",
+      "org": "한국연구재단",
+      "period": "2022-08-01~2022-12-31"
+    },
+    {
+      "title": "[RCMS]한국기계연구원/대기 미세먼지 대응 상호 협력형 공기정화 자동차(2/6)",
+      "org": "한국산업기술기획평가원",
+      "period": "2022-06-01~2023-03-31"
+    },
+    {
+      "title": "[민간/LG전자] 유증기 필터 솔루션을 위한 유증기 특성분석 및 저압손 필터 구조 연구",
+      "org": "국내",
+      "period": "2022-04-01~2024-04-30"
+    },
+    {
+      "title": "[RCMS](주)에스지이에너지/8 MWth급 상용 목질계 바이오매스 가스화기 개발 및 실증(4/4, 2단계)",
+      "org": "한국에너지기술평가원",
+      "period": "2022-04-01~2022-12-31"
+    },
+    {
+      "title": "[대형사업운영비](2021-11-2212) 유해인자 DB구축 및 IoT기반 공기포집-농축-전처리-상시진단 연계기술개발(1/2단계)(2/2)",
+      "org": "연세대학교",
+      "period": "2022-03-01~2023-06-30"
+    },
+    {
+      "title": "[3차년도] 사회지향 기계기술 글로벌 리더 양성 교육연구단",
+      "org": "한국연구재단",
+      "period": "2022-03-01~2023-02-28"
+    },
+    {
+      "title": "[민간/LG전자] 장비 및 공정환경 기류해석 고도화",
+      "org": "국내",
+      "period": "2022-02-01~2024-08-31"
+    },
+    {
+      "title": "[RCMS]한국생산기술연구원/다중분석을 통한 오염발생 최소화 연소로 제어기술 개발(4/4)",
+      "org": "한국산업기술기획평가원",
+      "period": "2022-01-01~2022-12-31"
+    },
+    {
+      "title": "[RCMS/주관/환경산업기술원] 유해인자 DB구축 및 IoT기반 공기포집-농축-전처리-상시진단 연계기술개발(1/2단계)(2/2)",
+      "org": "한국환경산업기술원",
+      "period": "2022-01-01~2022-12-31"
+    },
+    {
+      "title": "[통합이지바로] (3세부)입자의 전기적 특성을 이용한 기상 감염성 병원체 액상포집 기술개발 (3/3단계)(5/5)",
+      "org": "한국연구재단",
+      "period": "2022-01-01~2022-08-31"
+    },
+    {
+      "title": "[통합이지바로][국토부/공동] 입자 응집 및 제어 기술 개발 (4/5)",
+      "org": "국토교통과학기술진흥원",
+      "period": "2022-01-01~2022-12-31"
+    },
+    {
+      "title": "[RCMS]한국기계연구원/대기 미세먼지 대응 상호 협력형 공기정화 자동차(1/5)",
+      "org": "한국산업기술기획평가원",
+      "period": "2021-06-01~2022-05-31"
+    },
+    {
+      "title": "[민간/현대엔지비] 초미세입자의 선별적 감지를 위한 전기식 센싱 메커니즘 검증",
+      "org": "국내",
+      "period": "2021-05-01~2023-11-30"
+    },
+    {
+      "title": "[RCMS/주관/환경산업기술원] 유해인자 DB구축 및 IoT기반 공기포집-농축-전처리-상시진단 연계기술개발(1/2단계)(1/2)",
+      "org": "한국환경산업기술원",
+      "period": "2021-04-01~2021-12-31"
+    },
+    {
+      "title": "[RCMS](주)에스지이에너지/8 MWth급 상용 목질계 바이오매스 가스화기 개발 및 실증(3/4, 2단계)",
+      "org": "한국에너지기술평가원",
+      "period": "2021-04-01~2022-03-31"
+    },
+    {
+      "title": "[통합이지바로] (1위탁)저온 플라즈마 기술을 적용한 포집 매연입자의 가스 전환 연구(3/3)",
+      "org": "한국연구재단",
+      "period": "2021-04-01~2022-03-31"
+    },
+    {
+      "title": "[민간/(주)쓰리에이씨] 기상 부유 바이러스 저감형 항바이러스 필터 평가",
+      "org": "국내",
+      "period": "2021-03-22~2021-11-21"
+    },
+    {
+      "title": "[민간/LG전자 주식회사] 생산설비 최적화를 위한 열 유체해석",
+      "org": "국내",
+      "period": "2021-03-20~2022-03-19"
+    },
+    {
+      "title": "[민간/Hitachi-LG Storage korea] HLDS 차량용 공기 청정기 청정 효율 향상 구조 설계",
+      "org": "국내",
+      "period": "2021-03-02~2021-12-31"
+    },
+    {
+      "title": "[2차년도] 사회지향 기계기술 글로벌 리더 양성 교육연구단",
+      "org": "한국연구재단",
+      "period": "2021-03-01~2022-02-28"
+    },
+    {
+      "title": "[통합이지바로][국토부/공동] 입자 응집 및 제어 기술 개발 (3/5)",
+      "org": "국토교통과학기술진흥원",
+      "period": "2021-01-01~2021-12-31"
+    },
+    {
+      "title": "[RCMS]한국생산기술연구원/다중분석을 통한 오염발생 최소화 연소로 제어기술 개발(3/4)",
+      "org": "한국산업기술기획평가원",
+      "period": "2021-01-01~2021-12-31"
+    },
+    {
+      "title": "[통합이지바로] (3세부)입자의 전기적 특성을 이용한 기상 감염성 병원체 액상포집 기술개발 (3/3단계)(4/5)",
+      "org": "한국연구재단",
+      "period": "2021-01-01~2021-12-31"
+    },
+    {
+      "title": "(통합Ezbaro)[한국원자력연구원위탁]증기발생기 세관파단 시 입자 거동 분석(2/2)",
+      "org": "한국연구재단",
+      "period": "2021-01-01~2021-12-31"
+    },
+    {
+      "title": "[민간/(주)동일기연] 전기 집진 필터 살균력 시험",
+      "org": "국내",
+      "period": "2020-10-19~2021-05-19"
+    },
+    {
+      "title": "[1차년도] 사회지향 기계기술 글로벌 리더 양성 교육연구단",
+      "org": "한국연구재단",
+      "period": "2020-09-01~2021-02-28"
+    },
+    {
+      "title": "[RCMS]InSitu(현장형) 바이러스 검출 및 분석 지능형 플랫폼(1/1)",
+      "org": "한국산업기술기획평가원",
+      "period": "2020-09-01~2021-04-30"
+    },
+    {
+      "title": "[삼성미래기술육성사업/주관/2단계] MEMS 기반 실시간 입자 밀도 측정기와 이를 이용한 고정밀 초미세먼지 측정 기술",
+      "org": "국내",
+      "period": "2020-09-01~2021-08-31"
+    },
+    {
+      "title": "[통합이지바로] (1위탁)저온 플라즈마 기술을 적용한 포집 매연입자의 가스 전환 연구(2/3)",
+      "org": "한국연구재단",
+      "period": "2020-04-01~2021-03-31"
+    },
+    {
+      "title": "[민간/KC코트렐] THAI OIL ESP의 유동 균일화를 위한 CFD 해석에 관한 연구",
+      "org": "국내",
+      "period": "2020-04-01~2020-06-30"
+    },
+    {
+      "title": "[민간/LG전자(주)]나노섬유 세경화 및 압력손실 저감 연구",
+      "org": "국내",
+      "period": "2020-03-01~2021-12-31"
+    },
+    {
+      "title": "[8차년도]사회지향 기계기술 글로벌 리더 양성 사업단",
+      "org": "한국연구재단",
+      "period": "2020-03-01~2020-08-31"
+    },
+    {
+      "title": "[통합이지바로] (0세부)음식 조리 시 발생하는 미세먼지의 실내·외 배출저감기술 개발 (4/4)",
+      "org": "한국연구재단",
+      "period": "2020-02-08~2020-07-31"
+    },
+    {
+      "title": "[RCMS]한국생산기술연구원/다중분석을 통한 오염발생 최소화 연소로 제어기술 개발(2/4)",
+      "org": "한국산업기술기획평가원",
+      "period": "2020-01-01~2020-12-31"
+    },
+    {
+      "title": "[RCMS](주)에스지이에너지/8 MWth급 상용 목질계 바이오매스 가스화기 개발 및 실증(2/4, 2단계)",
+      "org": "한국에너지기술평가원",
+      "period": "2020-01-01~2021-03-31"
+    },
+    {
+      "title": "[통합이지바로][국토부/공동] 입자 응집 및 제어 기술 개발 (2/5)",
+      "org": "국토교통과학기술진흥원",
+      "period": "2020-01-01~2020-12-31"
+    },
+    {
+      "title": "(통합Ezbaro)[한국원자력연구원위탁]증기발생기 세관파단시 입자 거동 분석",
+      "org": "한국연구재단",
+      "period": "2020-01-01~2020-12-31"
+    },
+    {
+      "title": "[통합이지바로] (3세부)입자의 전기적 특성을 이용한 기상 감염성 병원체 액상포집 기술개발 (3단계)(3/5)",
+      "org": "한국연구재단",
+      "period": "2020-01-01~2020-12-31"
+    },
+    {
+      "title": "[민간/(주)쓰리에이씨]기상 부유 바이러스 저감형 항바이러스 필터 평가법 개발",
+      "org": "국내",
+      "period": "2019-12-27~2021-02-28"
+    },
+    {
+      "title": "[지자체/서울시] IoT 기반 공사장 비산먼지 모니터링 및 능동적 저감 솔루션 개발 (3/3)",
+      "org": "서울산업진흥원",
+      "period": "2019-11-01~2020-10-31"
+    },
+    {
+      "title": "(통합Ezbaro) (1위탁)저온 플라즈마 기술을 적용한 포집 매연입자의 가스 전환 연구(1/3)",
+      "org": "한국연구재단",
+      "period": "2019-09-30~2020-03-31"
+    },
+    {
+      "title": "[RCMS](주)에스지이에너지/8 MWth급 상용 목질계 바이오매스 가스화기 개발 및 실증(1/4, 2단계)",
+      "org": "한국에너지기술평가원",
+      "period": "2019-07-01~2019-12-31"
+    },
+    {
+      "title": "[민간/LG전자(주)]청정 생산 환경을 위한 기류시뮬레이션",
+      "org": "국내",
+      "period": "2019-06-01~2020-12-31"
+    },
+    {
+      "title": "[SM] 2019년도 알키미스트 프로젝트(2019.05.08. ~ 2019.10.15.)",
+      "org": "연세대학교",
+      "period": "2019-05-08~2019-10-15"
+    },
+    {
+      "title": "[용역/한국화학연구원] 광촉매 적용 공조 필터의 항바이러스 성능평가",
+      "org": "한국화학연구원",
+      "period": "2019-05-01~2019-12-31"
+    },
+    {
+      "title": "[국토부/공동] 입자 응집 및 제어 기술 개발 (1/5)",
+      "org": "국토교통과학기술진흥원",
+      "period": "2019-04-25~2019-12-31"
+    },
+    {
+      "title": "[민간/한국시멘트협회]시멘트공장 질소산화물 저감기술 적용성 조사",
+      "org": "국내",
+      "period": "2019-04-05~2021-07-31"
+    },
+    {
+      "title": "[RCMS]한국생산기술연구원/다중분석을 통한 오염발생 최소화 연소로 제어기술 개발(1/4)",
+      "org": "한국산업기술기획평가원",
+      "period": "2019-04-01~2019-12-31"
+    },
+    {
+      "title": "[민간/LG전자(주)]도심형 대형공기청정설비 실효과 검증을 위한 유동 시뮬레이션",
+      "org": "국내",
+      "period": "2019-03-25~2019-05-24"
+    },
+    {
+      "title": "[민간/삼성전자] 중국 지구환경연구소 미세먼지 연구 자문",
+      "org": "국내",
+      "period": "2019-03-25~2019-04-05"
+    },
+    {
+      "title": "(후속)전기방사/열공정을 이용한 초다공성 항바이러스 활성탄소섬유 생산 및 에어로졸 기법을 이용한 성능평가(2/3)(2018.3.1~2021.2.28)",
+      "org": "한국연구재단",
+      "period": "2019-03-01~2020-02-29"
+    },
+    {
+      "title": "[7차년도]사회지향 기계기술 글로벌 리더 양성 사업단",
+      "org": "한국연구재단",
+      "period": "2019-03-01~2020-02-29"
+    },
+    {
+      "title": "[Ezbaro] (0세부)음식 조리 시 발생하는 미세먼지의 실내·외 배출저감기술 개발 (3/4)",
+      "org": "한국연구재단",
+      "period": "2019-02-08~2020-02-07"
+    },
+    {
+      "title": "[민간/LG전자]챔버 기류 최적화를 위한 유동 시뮬레이션",
+      "org": "국내",
+      "period": "2019-02-01~2019-09-30"
+    },
+    {
+      "title": "[민간/LG전자]유분 제거를 위한 나노섬유가 코팅된 프리필터 개발",
+      "org": "국내",
+      "period": "2019-01-02~2020-06-30"
+    },
+    {
+      "title": "[한국원자력연구원위탁]증기발생기 세관파단 시 입자충돌현상에 관한 연구",
+      "org": "한국연구재단",
+      "period": "2019-01-01~2019-12-31"
+    },
+    {
+      "title": "[Ezbaro] (3세부)입자의 전기적 특성을 이용한 기상 감염성 병원체 액상포집 기술개발 (3단계)(2/4)",
+      "org": "한국연구재단",
+      "period": "2019-01-01~2019-12-31"
+    },
+    {
+      "title": "[지자체/서울시] IoT 기반 공사장 비산먼지 모니터링 및 능동적 저감 솔루션 개발(2/3)",
+      "org": "서울산업진흥원",
+      "period": "2018-11-01~2019-10-31"
+    },
+    {
+      "title": "[RCMS](주)에스지이에너지/8 MWth급 상용 목질계 바이오매스 가스화기 개발 및 실증(1/1,1단계)",
+      "org": "한국에너지기술평가원",
+      "period": "2018-10-01~2019-06-30"
+    },
+    {
+      "title": "[삼성미래기술육성사업/주관] MEMS 기반 실시간 입자 밀도 측정기와 이를 이용한 고정밀 초미세먼지 측정 기술",
+      "org": "국내",
+      "period": "2018-09-01~2020-08-31"
+    },
+    {
+      "title": "[RCMS](주)한국종합기술/수출 연계형 10MWe급 바이오매스 발전시스템 현지화 개발 및 해외 실증(1/1,1단계)",
+      "org": "한국에너지기술평가원",
+      "period": "2018-06-01~2018-12-31"
+    },
+    {
+      "title": "[Ezbaro] (0세부)음식 조리 시 발생하는 미세먼지의 실내·외 배출저감기술 개발 (2/3)",
+      "org": "한국연구재단",
+      "period": "2018-05-08~2019-02-07"
+    },
+    {
+      "title": "LG전자(주)/국소 M/E(Mini Environment) 최적 설계를 위한 유동 시뮬레이션",
+      "org": "국내",
+      "period": "2018-04-02~2019-10-31"
+    },
+    {
+      "title": "(후속)전기방사/열공정을 이용한 초다공성 항바이러스 활성탄소섬유 생산 및 에어로졸 기법을 이용한 성능평가(1/3)(2018.3.1~2021.2.28)",
+      "org": "한국연구재단",
+      "period": "2018-03-01~2019-02-28"
+    },
+    {
+      "title": "[Ezbaro] (3세부)입자의 전기적 특성을 이용한 기상 감염성 병원체 액상포집 기술개발 (3단계)(1/4)",
+      "org": "한국연구재단",
+      "period": "2018-03-01~2018-12-31"
+    },
+    {
+      "title": "[6차년도]사회지향 기계기술 글로벌 리더 양성 사업단",
+      "org": "한국연구재단",
+      "period": "2018-03-01~2019-02-28"
+    },
+    {
+      "title": "[민간/LG전자] 바이러스 공간 제균 효율 예측 및 인체 감염률 분석",
+      "org": "국내",
+      "period": "2018-01-02~2022-02-28"
+    },
+    {
+      "title": "[한국원자력연구원위탁]증기발생기 세관파단 시 입자충돌현상에 관한 연구",
+      "org": "한국연구재단",
+      "period": "2018-01-01~2018-12-31"
+    },
+    {
+      "title": "[국토부/위탁] 전기적 입자 하전 및 응집 기술을 이용한 지하철 터널 내 미세/초미세 입자 제거 기술 개발(5/5)",
+      "org": "국토교통과학기술진흥원",
+      "period": "2018-01-01~2019-05-30"
+    },
+    {
+      "title": "[위탁] 대용량 스파크 방전 탈취금속산화물 나노입자 발생장치와 전기집진방식 필터 코팅시설 설계 및 에어 필터의 탈취 성능 평가(3/3)",
+      "org": "한국환경산업기술원",
+      "period": "2018-01-01~2018-12-31"
+    },
+    {
+      "title": "[RCMS]두산중공업/표준/신표준 발전소 대상 미세먼지 저감 통합환경설비 솔루션 개발(2/2)",
+      "org": "한국에너지기술평가원",
+      "period": "2017-12-01~2019-03-31"
+    },
+    {
+      "title": "[지자체/서울시] IoT 기반 공사장 비산먼지 모니터링 및 능동적 저감 솔루션 개발",
+      "org": "서울산업진흥원",
+      "period": "2017-11-01~2018-10-31"
+    },
+    {
+      "title": "[Ezbaro](0세부)음식 조리 시 발생하는 미세먼지의 실내·외 배출저감기술 개발(1/3)",
+      "org": "한국연구재단",
+      "period": "2017-09-08~2018-05-07"
+    },
+    {
+      "title": "[RCMS](주)에스지이에너지/수출 연계형 혼합폐기물 열병합발전 공정개선 기술 개발(3/3)",
+      "org": "한국에너지기술평가원",
+      "period": "2017-06-01~2018-05-31"
+    },
+    {
+      "title": "[위탁] 나노입자 (0.01~1㎛) 전기식 측정 기술 개발(4/4)",
+      "org": "한국환경산업기술원",
+      "period": "2017-05-01~2018-04-30"
+    },
+    {
+      "title": "입자의 공기역학 및 전기적 특성을 이용한 기상 병원균 선별적 분류/포집과 미세유체채널 기반 전처리 기술(3/3, 2단계)",
+      "org": "한국연구재단",
+      "period": "2017-05-01~2018-02-28"
+    },
+    {
+      "title": "에어로졸 기법을 이용한 위치 선택적 입자 부착 연구 및 기능성 활성탄소나노섬유 생산에의 적용(3/3)(2015.5.1~2018.4.30)",
+      "org": "한국연구재단",
+      "period": "2017-05-01~2018-04-30"
+    },
+    {
+      "title": "[위탁]초음파 입자 응집기 성능 평가(3/3)",
+      "org": "한국환경산업기술원",
+      "period": "2017-04-01~2018-09-30"
+    },
+    {
+      "title": "(원자력연구원 위탁)증기발생기 세관파단시 입자충돌현상에 관한 연구",
+      "org": "한국연구재단",
+      "period": "2017-03-01~2017-12-31"
+    },
+    {
+      "title": "[국토부/위탁] 전기적 입자 하전 및 응집 기술을 이용한 지하철 터널 내 미세/초미세 입자 제거 기술 개발(4/5)",
+      "org": "국토교통과학기술진흥원",
+      "period": "2017-03-01~2017-12-31"
+    },
+    {
+      "title": "[5차년도]사회지향 기계기술 글로벌 리더 양성 사업단",
+      "org": "한국연구재단",
+      "period": "2017-03-01~2018-02-28"
+    },
+    {
+      "title": "차량용 Dust Sensor의 측정 성능 개선",
+      "org": "국내",
+      "period": "2017-02-01~2019-05-31"
+    },
+    {
+      "title": "[위탁] 대용량 스파크 방전 탈취금속산화물 나노입자 발생장치와 전기집진방식 필터 코팅시설 설계 및 에어 필터의 탈취 성능 평가(2/3)",
+      "org": "한국환경산업기술원",
+      "period": "2017-01-01~2017-12-31"
+    },
+    {
+      "title": "[NE-31]수명도래 화포용 추진제의 재활용 연구(2/3단계-3/3차년도)",
+      "org": "산하기관",
+      "period": "2017-01-01~2017-12-15"
+    },
+    {
+      "title": "[RCMS]두산중공업/표 준/신표준 발전소 대상 미세먼지 저감 통합환경설비 솔루션 개발(1/2)",
+      "org": "한국에너지기술평가원",
+      "period": "2016-12-01~2017-11-30"
+    },
+    {
+      "title": "실내외 초미세먼지 실시간 모니터링 진단기술 개발(2/2)",
+      "org": "한국환경산업기술원",
+      "period": "2016-10-01~2017-09-30"
+    },
+    {
+      "title": "LG전자/NOx, SOx 동시 저감 및 처리용량 확대기술 개발",
+      "org": "국내",
+      "period": "2016-09-01~2019-08-31"
+    },
+    {
+      "title": "입자의 공기역학 및 전기적 특성을 이용한 기상 병원균 선별적 분류/포집과 미세유체채널 기반 전처리 기술(2/3, 2단계)",
+      "org": "한국연구재단",
+      "period": "2016-07-01~2017-04-30"
+    },
+    {
+      "title": "[RCMS](주)에스지이에너지/수출 연계형 혼합폐기물 열병합발전 공정개선 기술 개발(2/3)",
+      "org": "한국에너지기술평가원",
+      "period": "2016-06-01~2017-05-31"
+    },
+    {
+      "title": "유동층 보일러 요소설비 및 연계시스템 3D 수치해석",
+      "org": "산하기관",
+      "period": "2016-06-01~2018-05-31"
+    },
+    {
+      "title": "KC코트렐(주)/한화군장 SCR의 유동 균일화를 위한 CFD 해석에 관한 연구",
+      "org": "국내",
+      "period": "2016-06-01~2019-07-31"
+    },
+    {
+      "title": "[위탁] 대용량 스파크 방전 탈취금속산화물 나노입자 발생장치와 전기집진방식 필터 코팅시설 설계 및 에어 필터의 탈취 성능 평가(1/3)",
+      "org": "한국환경산업기술원",
+      "period": "2016-05-18~2016-12-31"
+    },
+    {
+      "title": "[국토부/위탁] 전기적 입자 하전 및 응집 기술을 이용한 지하철 터널 내 미세/초미세 입자 제거 기술 개발(3/5)",
+      "org": "국토교통과학기술진흥원",
+      "period": "2016-05-03~2017-02-28"
+    },
+    {
+      "title": "[위탁] 나노입자 (0.01~1㎛) 전기식 측정 기술 개발(3/4)",
+      "org": "한국환경산업기술원",
+      "period": "2016-05-01~2017-04-30"
+    },
+    {
+      "title": "LG전자/대용량 AHU 및 환기시스템 청정기술 자문",
+      "org": "국내",
+      "period": "2016-05-01~2018-06-30"
+    },
+    {
+      "title": "에어로졸 기법을 이용한 위치 선택적 입자 부착 연구 및 기능성 활성탄소나노섬유 생산에의 적용(2/3)(2015.5.1~2018.4.30)",
+      "org": "한국연구재단",
+      "period": "2016-05-01~2017-04-30"
+    },
+    {
+      "title": "LG전자/공기감염 예방을 위한 살균 기술개발",
+      "org": "국내",
+      "period": "2016-04-30~2019-08-31"
+    },
+    {
+      "title": "(주)세라콤/(위탁)초음파 입자 응집기 성능 평가(2/3)",
+      "org": "한국환경산업기술원",
+      "period": "2016-04-01~2017-03-31"
+    },
+    {
+      "title": "[원자력연구원 위탁]원전 방사선원항 평가를 위한 에어로졸 거동모델 개선연구(2/2, 이월불가)",
+      "org": "한국연구재단",
+      "period": "2016-03-01~2017-02-28"
+    },
+    {
+      "title": "(4차년도) 사회지향 기계기술 글로벌 리더 양성 사업단",
+      "org": "한국연구재단",
+      "period": "2016-03-01~2017-02-28"
+    },
+    {
+      "title": "[NE-31]수명도래 화포용 추진제의 재활용 연구(2/3단계-2/3차)",
+      "org": "산하기관",
+      "period": "2016-01-01~2016-12-31"
+    },
+    {
+      "title": "한국환경산업기술원/ 실내외 초미세먼지 실시간 모니터링 진단기술 개발(1/2)",
+      "org": "한국환경산업기술원",
+      "period": "2015-12-01~2016-09-30"
+    },
+    {
+      "title": "기상 부유 바이러스 검출기술 및 분석용역",
+      "org": "국토교통부",
+      "period": "2015-09-24~2016-08-31"
+    },
+    {
+      "title": "입자의 공기역학 및 전기적 특성을 이용한 기상 병원균 선별적 분류/포집과 미세유체채널 기반 전처리 기술 (1/3, 2단계)",
+      "org": "한국연구재단",
+      "period": "2015-09-01~2016-06-30"
+    },
+    {
+      "title": "KC코트렐/PAGBILAO 전기집진기의 유동 균일화를 위한 CFD 해석에 관한 연구",
+      "org": "국내",
+      "period": "2015-08-20~2015-10-19"
+    },
+    {
+      "title": "KC코트렐/여수화력 1호기 전기집진기의 유동 균일화를 위한 CFD 해석에 관한 연구",
+      "org": "국내",
+      "period": "2015-08-20~2015-10-19"
+    },
+    {
+      "title": "(주)에이치시티/실시간 전기식 입자 수농도 측정 기술 개발",
+      "org": "국내",
+      "period": "2015-08-01~2016-05-31"
+    },
+    {
+      "title": "한양대 에리카산학협력단/나노입자 (0.005~1㎛) 전기식 측정 기술 개발(2/4)",
+      "org": "한국환경산업기술원",
+      "period": "2015-06-01~2016-04-30"
+    },
+    {
+      "title": "[RCMS](주)에스지이에너지/수출 연계형 혼합폐기물 열병합발전 공정개선 기술 개발(1/3)(2015.06.01.~2018.05.31.)",
+      "org": "한국에너지기술평가원",
+      "period": "2015-06-01~2016-05-31"
+    },
+    {
+      "title": "(위탁) 전기적 입자 하전 및 응집 기술을 이용한 지하철 터널 내 미세/초미세 입자 제거 기술 개발(2/5)",
+      "org": "국토교통과학기술진흥원",
+      "period": "2015-05-03~2016-05-02"
+    },
+    {
+      "title": "에어로졸 기법을 이용한 위치 선택적 입자 부착 연구 및 기능성 활성탄소나노섬유 생산에의 적용(1/3)(2015.5.1~2018.4.30)",
+      "org": "한국연구재단",
+      "period": "2015-05-01~2016-04-30"
+    },
+    {
+      "title": "LG전자주식회사-자문용역",
+      "org": "국내",
+      "period": "2015-05-01~2018-06-25"
+    },
+    {
+      "title": "한국에너지기술연구원/나노 에어로졸 제조 및 부유기술 개발(2/2)",
+      "org": "한국환경산업기술원",
+      "period": "2015-04-01~2016-03-31"
+    },
+    {
+      "title": "(주)세라콤/(위탁)초음파 입자 응집기 성능 평가(1/3)",
+      "org": "한국환경산업기술원",
+      "period": "2015-04-01~2016-03-31"
+    },
+    {
+      "title": "(주)쓰리에이씨/상압 건식 에어로졸 공정 기반 항균/항바이러스 에어필터 연속 제조 시스템 개발(2/2)",
+      "org": "한국환경산업기술원",
+      "period": "2015-04-01~2016-03-31"
+    },
+    {
+      "title": "개인 환경의 초미세먼지(PM2.5)와 TVOC 동시 분석 센서모듈 개발(2/2)",
+      "org": "한국환경산업기술원",
+      "period": "2015-04-01~2016-03-31"
+    },
+    {
+      "title": "[NE-31]수명도래 화포용 추진제의 재활용 연구(2/3단계-1차년도)",
+      "org": "방위사업청",
+      "period": "2015-03-20~2015-12-31"
+    },
+    {
+      "title": "[원자력연구원 위탁]원전 방사선원항 평가를 위한 에어로졸 거동모델 개선연구(1/2, 이월불가)",
+      "org": "한국연구재단",
+      "period": "2015-03-01~2016-02-29"
+    },
+    {
+      "title": "나노입자 (0.005~1㎛) 전기식 측정 기술 개발",
+      "org": "한국환경산업기술원",
+      "period": "2015-01-01~2015-05-31"
+    },
+    {
+      "title": "전기적 입자 하전 및 응집 기술을 이용한 지하철 터널 내 미세/초미세 입자 제거 기술 개발",
+      "org": "국토교통과학기술진흥원",
+      "period": "2014-09-03~2015-05-02"
+    },
+    {
+      "title": "바이러스 대응 무기물 은나노복합소재 이용 공기정화 필터 시스템 개발(2/2,2단계)",
+      "org": "한국연구재단",
+      "period": "2014-09-01~2015-08-31"
+    },
+    {
+      "title": "입자의 공기역학 및 전기적 특성을 이용한 기상 병원균 선별적 분류/포집과 미세유체채널 기반 전처리 기술(2/2,1단계)",
+      "org": "한국연구재단",
+      "period": "2014-09-01~2015-08-31"
+    },
+    {
+      "title": "한라산업개발(주)/여수화력 1호기 탈황설비(CFD Model Test 외주용역)",
+      "org": "국내",
+      "period": "2014-08-28~2015-12-31"
+    },
+    {
+      "title": "초미세먼지 저감을 위한 에너지절약형 공조장치 급기구 필터 시스템 개발",
+      "org": "중소기업청",
+      "period": "2014-08-01~2015-07-31"
+    },
+    {
+      "title": "LG전자(주)/병원 및 노인시설 대응 공기청정기술 자문",
+      "org": "국내",
+      "period": "2014-08-01~2018-06-30"
+    },
+    {
+      "title": "보일러 연소장애 최소화를 위한 CFD 해석",
+      "org": "한국전력공사",
+      "period": "2014-07-25~2014-10-27"
+    },
+    {
+      "title": "한일 플라즈마-정전기 응용기술 컨퍼런스",
+      "org": "한국연구재단",
+      "period": "2014-07-01~2015-06-30"
+    },
+    {
+      "title": "한국지역난방공사/바이오중유 상용화 기술연구",
+      "org": "산하기관",
+      "period": "2014-06-25~2015-06-17"
+    },
+    {
+      "title": "한국남동발전(주)/전산해석을 통항 유동층 보일러 연소기술 개발 및 운영최적화",
+      "org": "국내",
+      "period": "2014-06-25~2015-09-30"
+    },
+    {
+      "title": "스파크 방전을 위용한 대용량 항균/항바이러스 나노입자 제조 및 에어 필터의 항균/항바이러스 성능평가",
+      "org": "한국환경산업기술원",
+      "period": "2014-05-01~2015-03-31"
+    },
+    {
+      "title": "환경유해인자에 의한 뇌졸중·치매·파킨슨병 위해성 평가 모델 개발",
+      "org": "한국환경산업기술원",
+      "period": "2014-05-01~2015-03-31"
+    },
+    {
+      "title": "나노 에어로졸 제조 및 부유기술 개발",
+      "org": "한국환경산업기술원",
+      "period": "2014-05-01~2015-03-31"
+    },
+    {
+      "title": "LG전자(주)/마이크로 플라즈마와 가시광촉매를 활용한 쾨속탈취 시스템 개발",
+      "org": "국내",
+      "period": "2014-04-01~2019-06-30"
+    },
+    {
+      "title": "개인 환경의 초미세먼지(PM2.5)와 TVOC 동시 분석 센서모듈 개발",
+      "org": "한국환경산업기술원",
+      "period": "2014-04-01~2015-03-31"
+    },
+    {
+      "title": "[원자력연구원 위탁]원전 방사선원항 평가를 위한 에어로졸 거동 모델 연구",
+      "org": "한국연구재단",
+      "period": "2014-03-01~2015-02-28"
+    },
+    {
+      "title": "입자의 공기역학 및 전기적 특성을 이용한 기상 병원균 선별적 분류/포집과 미세유체채널 기반 전처리 기술(2014.01.01~2014.08.31.)(1단계 1차년도)",
+      "org": "한국연구재단",
+      "period": "2014-01-01~2014-08-31"
+    },
+    {
+      "title": "바이러스 대응 무기물 은나노복합소재 이용 공기정화 필터 시스템 개발",
+      "org": "한국연구재단",
+      "period": "2013-09-01~2014-08-31"
+    },
+    {
+      "title": "석탄의 기초실험과 이를 적용한 전산모사 연구",
+      "org": "국내",
+      "period": "2013-08-01~2016-03-31"
+    },
+    {
+      "title": "LG전자(주)/오존제거 시스템 개발",
+      "org": "국내",
+      "period": "2013-08-01~2015-12-31"
+    },
+    {
+      "title": "백금 나노코팅 작업 품목",
+      "org": "국내",
+      "period": "2013-07-31~2013-08-31"
+    },
+    {
+      "title": "삼척화력 전기집진기의 유동 균일화를 위한 CFD 해석에 관한 연구",
+      "org": "국내",
+      "period": "2013-07-01~2014-12-31"
+    },
+    {
+      "title": "LG전자(주)/사막환경 모사 열교환기 막힘 연구",
+      "org": "국내",
+      "period": "2013-07-01~2014-09-30"
+    },
+    {
+      "title": "실내오염물질 모니터링을 위한 초소형 감지 모듈 개발(3/3,2단계)",
+      "org": "한국연구재단",
+      "period": "2013-07-01~2014-06-30"
+    },
+    {
+      "title": "부유미생물 실시간 자동센싱 모듈 실험-장소 및 장비대여",
+      "org": "국내",
+      "period": "2013-06-03~2013-07-31"
+    },
+    {
+      "title": "대기방전 MODULE 성능평가",
+      "org": "국내",
+      "period": "2013-05-23~2013-06-22"
+    },
+    {
+      "title": "공기 이온 활용 실내 미세먼지 및 기상 부유균 동시저감 시스템 개발)3/3)",
+      "org": "한국환경산업기술원",
+      "period": "2013-04-01~2014-03-31"
+    },
+    {
+      "title": "(주)LG전자/OIL MIST 제거 및 분해 모듈 기술 개발",
+      "org": "국내",
+      "period": "2013-04-01~2016-12-31"
+    },
+    {
+      "title": "[다학제간] 연세대학교 학술활동의 선진화를 위한 과학기술 정책 수립",
+      "org": "연세대학교",
+      "period": "2013-03-01~2014-03-31"
+    },
+    {
+      "title": "LG전자(주)/대기방전 MODULE 성능평가",
+      "org": "국내",
+      "period": "2013-02-12~2014-12-31"
+    },
+    {
+      "title": "KC쏠라에너지(주)/르노삼성 공장 지붕 태양광 발전 모듈 설치 유무에 따른 공기 유동 CFD해석",
+      "org": "민간기업",
+      "period": "2012-12-31~2013-01-31"
+    },
+    {
+      "title": "고 H2/CO 비 합성가스 생산을 위한, 바이오매스 혼합 석탄 가스화기 화학반응 유동 설계기술개발(3/3)(2010.12.01~2013.11.30)",
+      "org": "한국에너지기술평가원",
+      "period": "2012-12-01~2013-11-30"
+    },
+    {
+      "title": "LG전자(주)/대기방전 MODULE 성능 평가",
+      "org": "민간기업",
+      "period": "2012-11-14~2012-12-13"
+    },
+    {
+      "title": "카이스트/원심여과 집진장치 3D 모델링 및 전산유동 해석",
+      "org": "민간기업",
+      "period": "2012-09-15~2012-11-15"
+    },
+    {
+      "title": "[NE-31]차세대 융복합 에너지물질 특화연구센터(1/3단계)",
+      "org": "방위사업청",
+      "period": "2012-09-01~2014-12-31"
+    },
+    {
+      "title": "나노에어로졸 소재 기술(2/2) 1단계",
+      "org": "한국연구재단",
+      "period": "2012-09-01~2013-08-31"
+    },
+    {
+      "title": "바이러스 대응 무기물 은나노복합소재 이용 공기정화 필터 시스템 개발 (3/3,1단계)",
+      "org": "한국연구재단",
+      "period": "2012-09-01~2013-08-31"
+    },
+    {
+      "title": "실내오염물질 모니터링을 위한 초소형 감지 모듈 개발(2/3,2단계)",
+      "org": "한국연구재단",
+      "period": "2012-07-01~2013-06-30"
+    },
+    {
+      "title": "산학협동재단(재)/실내 공기질 개선을 위한 실시간 나노/마이크로 소형 입자 측정 센서 상용화 개발",
+      "org": "국내",
+      "period": "2012-06-01~2016-05-31"
+    },
+    {
+      "title": "HCT(주)/실시간 나노, 마이크로 입자 측정 센서 개발",
+      "org": "국내",
+      "period": "2012-05-01~2012-10-31"
+    },
+    {
+      "title": "(재)포항산업과학연구원/가스화기의 화학반응 유동 기초 설계를 위한 전산 모사 연구 (2012.05.01~2013.03.31)- 2013.05.31",
+      "org": "국내",
+      "period": "2012-05-01~2015-08-31"
+    },
+    {
+      "title": "한라산업개발(주)/제철화력발전소 5~8호기 질소산화 저감설비",
+      "org": "국내",
+      "period": "2012-04-24~2013-07-31"
+    },
+    {
+      "title": "한라산업개발(주)/제철화력발전소 5~8호기 질소산화물 저감설비",
+      "org": "민간기업",
+      "period": "2012-04-24~2013-07-31"
+    },
+    {
+      "title": "공기 이온 활용 실내 미세먼지 및 기상 부유균 동시저감 시스템 개발(2차년도/2)",
+      "org": "한국환경기술진흥원",
+      "period": "2012-04-01~2013-03-31"
+    },
+    {
+      "title": "[다학제간] 한국과학기술한림원 연세교류회",
+      "org": "연세대학교",
+      "period": "2012-03-02~2013-02-28"
+    },
+    {
+      "title": "나노마이크로응용기계기술인력양성사업단",
+      "org": "연세대학교",
+      "period": "2012-03-01~2014-02-28"
+    },
+    {
+      "title": "LG전자(주) / 부유 미생물 실시간 센싱 모듈 개발 (2012.03.01~2013.02.28)",
+      "org": "국내",
+      "period": "2012-03-01~2016-12-31"
+    },
+    {
+      "title": "나노 마이크로 응용기계기술 인력양성사업",
+      "org": "학술진흥재단",
+      "period": "2012-03-01~2013-04-30"
+    },
+    {
+      "title": "고 H2/CO 비 합성가스 생산을 위한, 바이오매스 혼합 석탄 가스화기 화학반응 유동 설계기술개발(2/3)(2010.12.01~2013.11.30)",
+      "org": "한국에너지기술평가원",
+      "period": "2011-12-01~2012-11-30"
+    },
+    {
+      "title": "한국전력공사 / 순환유동층 보일러의 3D수치해석 및 신?개발",
+      "org": "국내",
+      "period": "2011-11-01~2013-07-31"
+    },
+    {
+      "title": "[다학제간] 연세환경포럼의 10년 회고와 미래 친환경정책의 교내외 확산을 위한 다학제 연구",
+      "org": "연세대학교",
+      "period": "2011-11-01~2012-10-31"
+    },
+    {
+      "title": "바이러스 대응 무기물 은나노복합소재 이용 공기정화 필터 시스템 개발 (2/3,1단계)",
+      "org": "한국과학재단",
+      "period": "2011-09-01~2012-08-31"
+    },
+    {
+      "title": "한국코트렐(주) / YANBU ESP와 RAIBIGH ESP의 유동 균일화를 위한 CFD해석 (2011.07.01~2012.02.29)",
+      "org": "국내",
+      "period": "2011-07-01~2014-10-31"
+    },
+    {
+      "title": "실내오염물질 모니터링을 위한 초소형 감지 모듈 개발 (1/3, 2단계)",
+      "org": "한국연구재단(과학재단)",
+      "period": "2011-07-01~2012-06-30"
+    },
+    {
+      "title": "(주)리뉴에너지/페타이어 잔류물의 활성탄소화 및 나납奫ズ뼙喪璲平？기술 개발(2차년도/2)(2010.06.01~2012.05.31)",
+      "org": "중소기업청",
+      "period": "2011-06-01~2012-05-31"
+    },
+    {
+      "title": "(주)에이치시티/스마크 방전용 에어로졸 발생기 실험팎漬？및 DB 구축(2차년도/2)(2010.06.01~2012.05.31)",
+      "org": "중소기업청",
+      "period": "2011-06-01~2012-05-31"
+    },
+    {
+      "title": "공기 이온 활용 실내 미세먼지 및 기상 부유균 동시저감 시스템 개발(1차년도/3)(2011.05.01~2014.03.31)",
+      "org": "한국환경산업기술원",
+      "period": "2011-05-01~2012-03-31"
+    },
+    {
+      "title": "LG전자(주) / 단극 입자 대정장치의 성능평가",
+      "org": "민간기업",
+      "period": "2011-05-01~2011-07-30"
+    },
+    {
+      "title": "상압 스파크 방전을 이용한 나노 에어로졸 입자 생성과 공기청정 항균 디바이스로의 적용(3/3)",
+      "org": "한국과학재단",
+      "period": "2011-05-01~2012-04-30"
+    },
+    {
+      "title": "LG전자(주) / 공기 이온을 이용한 에어컨 내부 살균 모듈 개발 및 전기 유동장 해석 (2011.04.01~2012.03.31)- 2014.03.31",
+      "org": "국내",
+      "period": "2011-04-01~2015-03-31"
+    },
+    {
+      "title": "나노 마이크로 응용기계기술 인력양성사업",
+      "org": "학술진흥재단",
+      "period": "2011-03-01~2012-02-29"
+    },
+    {
+      "title": "나노마이크로응용기계기술인력양성사업단",
+      "org": "연세대학교",
+      "period": "2011-03-01~2012-02-29"
+    },
+    {
+      "title": "포항산업과학연구원/ 1t/d급 가스화기의 화학반응 유동 기초 설계를 위한 전산 모사 연구 (2011.01.16~2011.12.15- 2012.12.15- 2013.12.15)",
+      "org": "국내",
+      "period": "2011-01-16~2013-12-15"
+    },
+    {
+      "title": "고 H2/CO 비 합성가스 생산을 위한, 바이오매스 혼합 석탄 가스화기 화학반응 유동 설계기술개발(1차년도)",
+      "org": "한국에너지기술평가원",
+      "period": "2010-12-01~2011-11-30"
+    }
+  ],
+  "patents": [
+    {
+      "title": "시료 전처리 자동화 장치 및 이를 이용한 시료 전처리 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2025-12-15"
+    },
+    {
+      "title": "기능성 섬유 및 그 제조방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 한국기계연구원",
+      "date": "2025-11-04"
+    },
+    {
+      "title": "이산화탄소 포집용 다공성 필터 섬유 및 그 제조 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 한국기계연구원",
+      "date": "2025-10-20"
+    },
+    {
+      "title": "배기 가스 희석 장치 및 이를 포함하는 입자 측정 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 삼성전자",
+      "date": "2025-02-19"
+    },
+    {
+      "title": "이산화탄소 포집용 다공성 필터 섬유 및 그 제조 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 한국기계연구원",
+      "date": "2024-11-29"
+    },
+    {
+      "title": "기능성 섬유 및 그 제조방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 한국기계연구원",
+      "date": "2024-11-18"
+    },
+    {
+      "title": "배관/덕트/스택 내 고농도 입자 측정을 위한 이동형 다중 희석 시스템",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 삼성전자",
+      "date": "2024-10-16"
+    },
+    {
+      "title": "공기 부유 미생물 분류 측정 장치 및 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2024-04-03"
+    },
+    {
+      "title": "에어로졸 방식으로 제조된 그래핀옥사이드 볼 및 앱타머를 이용한 바이오에어로졸 실시간 검출 시스템",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2024-02-05"
+    },
+    {
+      "title": "캡시드 무결성 PCR을 이용한 공기 중 바이러스 감염성 측정 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2024-01-05"
+    },
+    {
+      "title": "실내 초미세먼지와 미세먼지의 측정 정확도 향상을 위한 미세먼지 센서 보정 방법 및 시스템",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2023-06-09"
+    },
+    {
+      "title": "초미세입자 측정장치 및 초미세먼지/세균 구분 및 농도산출 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 현대자동차주식회사, 기아 주식회사",
+      "date": "2023-03-09"
+    },
+    {
+      "title": "CO2 포집을 위한 계층적 구조의 나노섬유 복합재의 제조 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 영남대학교 산학협력단",
+      "date": "2023-03-03"
+    },
+    {
+      "title": "바이오-에어로졸 및 이산화탄소 간의 연관성 분석 시스템",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 영남대학교 산학협력단",
+      "date": "2023-01-11"
+    },
+    {
+      "title": "배기가스 처리 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2022-12-27"
+    },
+    {
+      "title": "귀금속이 표면 도핑된 이산화타이타늄 나노섬유의 제조 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2022-12-15"
+    },
+    {
+      "title": "기계학습 및 열중량분석을 이용한 화학적 혼합물의 구성성분 또는 성분비를 분석하는 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2022-10-19"
+    },
+    {
+      "title": "건식 세정형 전기집진장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2022-09-06"
+    },
+    {
+      "title": "미생물 및 에어로졸 측정 장치 및 이를 이용한 미생물 및 에어로졸 측정 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2022-05-02"
+    },
+    {
+      "title": "나노 복합체 제조 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 영남대학교 산학협력단",
+      "date": "2022-04-22"
+    },
+    {
+      "title": "귀금속이 표면 도핑된 이산화타이타늄 나노섬유의 제조 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2022-04-22"
+    },
+    {
+      "title": "그래핀 산화물로 둘러싸인 광촉매 복합 나노 섬유의 제조 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2022-02-28"
+    },
+    {
+      "title": "미세 유체칩 기반 고속 코로나19 검사 키트 및 이를 이용한 검사 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2022-02-09"
+    },
+    {
+      "title": "상용 ATP 광측정기의 재현성 있는 ATP 반응을 위한 탈부착 가능한 믹싱 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2022-02-07"
+    },
+    {
+      "title": "질소산화물 저감방법 및 질소산화물 저감장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2022-01-20"
+    },
+    {
+      "title": "인간 활동 및 바이오에어로졸 간의 연관성 분석 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 영남대학교 산학협력단",
+      "date": "2022-01-12"
+    },
+    {
+      "title": "박테리아를 이용한 가스 중 질소산화물의 저감 방법 및 시스템",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2021-10-18"
+    },
+    {
+      "title": "응축부를 포함하는 공기 중 바이오 에어로졸의 포집 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2021-10-18"
+    },
+    {
+      "title": "미생물 에어로졸화 과정 중 발생하는 손상 방지 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2021-08-30"
+    },
+    {
+      "title": "NOx 및 SOx의 건식 입자화 및 분리 배출을 위한 사이클론",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2021-08-23"
+    },
+    {
+      "title": "POU 가스 스크러버 연계 전기집진장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2021-08-20"
+    },
+    {
+      "title": "건식 세정형 전기집진장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2021-07-01"
+    },
+    {
+      "title": "복수 노즐을 포함한 다류체 정전분무 방식을 이용한 적혈구 형상 나노 구조체의 제조 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 영남대학교 산학협력단",
+      "date": "2021-05-24"
+    },
+    {
+      "title": "공기 중 바이오입자의 포집을 위한 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2021-03-19"
+    },
+    {
+      "title": "바이오 에어로졸 포집장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 영남대학교 산학협력단",
+      "date": "2021-02-26"
+    },
+    {
+      "title": "기계학습을 이용한 바이오 에어로졸 모니터링 장치 및 그 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2021-02-23"
+    },
+    {
+      "title": "바이오에어로졸 모니터링 장치 및 그 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2021-02-22"
+    },
+    {
+      "title": "나노 복합체 제조 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 영남대학교 산학협력단",
+      "date": "2021-02-19"
+    },
+    {
+      "title": "부유 미생물의 실시간 연속 측정장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 재단법인 바이오나노헬스가드연구단",
+      "date": "2021-02-10"
+    },
+    {
+      "title": "퍼옥시모노설페이트 활성화용 중공 활성탄소 나노섬유 및 그 제조방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2021-02-09"
+    },
+    {
+      "title": "난류 유동을 이용한 미세입자 응집장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2021-01-29"
+    },
+    {
+      "title": "공기 중 바이오입자의 모니터링 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2021-01-22"
+    },
+    {
+      "title": "공기 중 바이오입자의 온전한 포집을 위한 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2021-01-22"
+    },
+    {
+      "title": "정전력 재생형 필터",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 영남대학교 산학협력단",
+      "date": "2020-12-29"
+    },
+    {
+      "title": "바이오 에어로졸 포집장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 영남대학교 산학협력단",
+      "date": "2020-12-24"
+    },
+    {
+      "title": "바이오 에어로졸 포집장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 영남대학교 산학협력단",
+      "date": "2020-11-26"
+    },
+    {
+      "title": "매미날개구조 생체모방 나노스파이크 충돌판이 적용된 전기적 임팩터",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2020-09-25"
+    },
+    {
+      "title": "병원균 감지 방법 및 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 영남대학교 산학협력단",
+      "date": "2020-09-14"
+    },
+    {
+      "title": "연소가스 처리방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2020-09-04"
+    },
+    {
+      "title": "미생물 에어로졸화 과정 중 발생하는 손상 방지 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2020-08-31"
+    },
+    {
+      "title": "섬유 형상 및 나노 섬유경 조절방법을 활용한 필터 제조방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2020-08-28"
+    },
+    {
+      "title": "감염성 바이러스에 대한 항바이러스 공기 필터의 성능 평가 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2020-07-31"
+    },
+    {
+      "title": "정전력 재생형 필터",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 영남대학교 산학협력단",
+      "date": "2020-07-10"
+    },
+    {
+      "title": "정전력 재생형 마스크",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 영남대학교 산학협력단",
+      "date": "2020-03-17"
+    },
+    {
+      "title": "필터 제작방법 및 이에 의해 제작된 필터",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2020-03-16"
+    },
+    {
+      "title": "퍼옥시모노설페이트 활성화용 중공 활성탄소 나노섬유 및 그 제조방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2020-02-10"
+    },
+    {
+      "title": "미세 입자 포집장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2020-02-10"
+    },
+    {
+      "title": "무기 나노입자의 항균성 및 독성 단기 평가 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 영남대학교 산학협력단",
+      "date": "2019-11-27"
+    },
+    {
+      "title": "복수 노즐을 포함한 다류체 정전분무 방식을 이용한 적혈구 형상 나노 구조체의 제조 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2019-11-25"
+    },
+    {
+      "title": "초미세 나노복합체의 제조 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 영남대학교 산학협력단",
+      "date": "2019-11-20"
+    },
+    {
+      "title": "하전된 액적 생성 및 이를 이용하여 미세 먼지를 정화하는 미세 먼지 저감 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 영남대학교 산학협력단",
+      "date": "2019-10-15"
+    },
+    {
+      "title": "전기 집진장치 및 이를 이용한 바이오 에어로졸 포집 중 발생할 수 있는 미생물 손상 방지 시스템",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 재단법인 바이오나노헬스가드연구단",
+      "date": "2019-10-10"
+    },
+    {
+      "title": "기계학습을 이용한 바이오 에어로졸 모니터링 장치 및 그 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2019-10-10"
+    },
+    {
+      "title": "저장기기를 위한 필터",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2019-08-30"
+    },
+    {
+      "title": "나노 복합체 제조 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 영남대학교 산학협력단",
+      "date": "2019-08-22"
+    },
+    {
+      "title": "부유 미생물의 실시간 연속 측정장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 재단법인 바이오나노헬스가드연구단",
+      "date": "2019-08-08"
+    },
+    {
+      "title": "바이오에어로졸 모니터링 장치 및 그 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 재단법인 바이오나노헬스가드연구단",
+      "date": "2019-07-16"
+    },
+    {
+      "title": "부유미생물 측정장치 및 그 측정방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 엘지전자 주식회사",
+      "date": "2019-05-22"
+    },
+    {
+      "title": "포터블 바이오 에어로졸 포집 장치 및 분석방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 영남대학교 산학협력단",
+      "date": "2019-02-27"
+    },
+    {
+      "title": "공기 중 바이러스 및 곰팡이 측정 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 영남대학교 산학협력단",
+      "date": "2019-02-20"
+    },
+    {
+      "title": "기능성 고분자 나노 섬유 복합체의 제조 방법 및 이를 이용한 기능성 기재의 제조 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 영남대학교 산학협력단",
+      "date": "2019-02-12"
+    },
+    {
+      "title": "다기능성 활성 탄소 나노 섬유의 제조 방법 및 이를 이용한 다기능성 기재의 제조 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 영남대학교 산학협력단",
+      "date": "2019-02-12"
+    },
+    {
+      "title": "건식 세정형 전기 집진장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2019-02-11"
+    },
+    {
+      "title": "필터장치 및 이의 제조방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2019-01-28"
+    },
+    {
+      "title": "전기방사를 이용한 유분저항 항균필터 제조방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2018-12-17"
+    },
+    {
+      "title": "자성입자를 이용한 집진장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2018-12-03"
+    },
+    {
+      "title": "복수 노즐을 포함한 다류체 정전분무 방식을 이용한 적혈구 형상 나노 구조체의 제조 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 영남대학교 산학협력단",
+      "date": "2018-11-23"
+    },
+    {
+      "title": "전기 집진식 미생물 포집 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 재단법인 바이오나노헬스가드연구단",
+      "date": "2018-10-22"
+    },
+    {
+      "title": "나노 복합체 제조 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 영남대학교 산학협력단",
+      "date": "2018-08-22"
+    },
+    {
+      "title": "부유 미생물의 실시간 연속 측정장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, (재)바이오나노헬스가드연구단",
+      "date": "2018-08-10"
+    },
+    {
+      "title": "다공성 가스 흡착필터 제작방법 및 이를 이용하여 제작되는 가스 흡착필터",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2018-08-08"
+    },
+    {
+      "title": "전기 방사를 이용한 항균필터 제작방법 및 이를 이용하여 제작되는 항균필터",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2018-08-08"
+    },
+    {
+      "title": "공기 중 바이오 물질의 연속적 포집 및 농축장치, 그리고 그 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, (재)바이오나노헬스가드연구단",
+      "date": "2018-07-24"
+    },
+    {
+      "title": "공기 중 바이러스 및 곰팡이 측정 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 영남대학교 산학협력단",
+      "date": "2018-05-09"
+    },
+    {
+      "title": "휘발성 유기 화합물 저감을 위한 중공형 활성탄소 나노 섬유 및 그 제작 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2018-01-30"
+    },
+    {
+      "title": "전기 방사 섬유 중화 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2018-01-29"
+    },
+    {
+      "title": "미생물 측정장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2017-12-26"
+    },
+    {
+      "title": "건식 필터 제조장치 및 제조방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, (주)쓰리에이씨",
+      "date": "2017-11-28"
+    },
+    {
+      "title": "입자분류장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2017-10-23"
+    },
+    {
+      "title": "포터블 바이오 에어로졸 포집 장치 및 분석방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 영남대학교 산학협력단",
+      "date": "2017-09-12"
+    },
+    {
+      "title": "복합 금속 입자 제조장치 및 제조방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 영남대학교 산학협력단",
+      "date": "2017-06-14"
+    },
+    {
+      "title": "초음파를 이용한 전기 집진 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2017-05-18"
+    },
+    {
+      "title": "유연한 특성의 투명전극 및 이를 제조하는 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2017-04-28"
+    },
+    {
+      "title": "공기정화장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 엘지전자 주식회사",
+      "date": "2017-01-23"
+    },
+    {
+      "title": "전기 집진식 미생물 포집 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 재단법인 바이오나노헬스가드연구단",
+      "date": "2017-01-05"
+    },
+    {
+      "title": "펄스폭 변조 방식의 파워를 이용하는 스파크 방전 장치 및 그 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, (주)쓰리에이씨",
+      "date": "2016-11-04"
+    },
+    {
+      "title": "포터블 바이오 에어로졸 포집 장치 및 분석방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 영남대학교 산학협력단",
+      "date": "2016-09-12"
+    },
+    {
+      "title": "필터장치 및 이의 제조방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2016-09-08"
+    },
+    {
+      "title": "부유미생물 측정장치 및 그 측정방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 엘지전자 주식회사",
+      "date": "2016-08-23"
+    },
+    {
+      "title": "부유미생물 측정장치 및 그 측정방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 엘지전자 주식회사",
+      "date": "2016-08-18"
+    },
+    {
+      "title": "부유미생물 측정장치 및 그 측정방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 엘지전자 주식회사",
+      "date": "2016-08-11"
+    },
+    {
+      "title": "나노입자 분석방법 및 이의 시스템",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2016-07-28"
+    },
+    {
+      "title": "부유미생물 측정장치 및 그 측정방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 엘지전자 주식회사",
+      "date": "2016-07-21"
+    },
+    {
+      "title": "부유미생물 측정장치 및 그 측정방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 엘지전자 주식회사",
+      "date": "2016-07-21"
+    },
+    {
+      "title": "부유미생물 측정장치 및 그 측정방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 엘지전자 주식회사",
+      "date": "2016-07-13"
+    },
+    {
+      "title": "부유미생물 측정장치 및 그 측정방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 엘지전자 주식회사",
+      "date": "2016-07-12"
+    },
+    {
+      "title": "나노와이어의 직접 정렬방법을 이용한 나노와이어 기반 전계 효과 트랜지스터의 제조방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2016-07-08"
+    },
+    {
+      "title": "입자분류장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2016-04-08"
+    },
+    {
+      "title": "스파크 방전장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2016-03-31"
+    },
+    {
+      "title": "스위칭 회로를 이용한 스파크 방전 장치 및 그 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2016-03-31"
+    },
+    {
+      "title": "미생물 측정장치 및 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2016-02-19"
+    },
+    {
+      "title": "전기 집진장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, (재)바이오나노헬스가드연구단",
+      "date": "2016-02-03"
+    },
+    {
+      "title": "공기정화장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 엘지전자 주식회사",
+      "date": "2015-08-18"
+    },
+    {
+      "title": "유연한 특성의 투명전극 및 이를 제조하는 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2015-07-21"
+    },
+    {
+      "title": "이온을 이용하는 세포 용해 방법 및 그 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, (재)바이오나노헬스가드연구단",
+      "date": "2015-06-26"
+    },
+    {
+      "title": "이온을 이용하는 세포 용해 방법 및 그 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단,(재)바이오나노헬스가드연구단",
+      "date": "2015-06-26"
+    },
+    {
+      "title": "공기청정기용 필터 교체시기 알림장치, 판단방법 및 이를 통해 운용되는 공기청정기",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2015-06-19"
+    },
+    {
+      "title": "에어로졸의 하이드로졸화 장치 및 그 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2015-06-10"
+    },
+    {
+      "title": "에어로졸의 하이드로졸화 장치 및 그 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2015-06-10"
+    },
+    {
+      "title": "대기중의 바이오 입자 및 넌바이오 입자 실시간 검출장치 및 이를 이용한 검출방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2015-05-18"
+    },
+    {
+      "title": "부유미생물 측정장치 및 그 측정방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 엘지전자 주식회사",
+      "date": "2014-12-16"
+    },
+    {
+      "title": "ATP생물 발광법을 이용한 부유 미생물 농도 측정 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, LG 전자",
+      "date": "2014-12-06"
+    },
+    {
+      "title": "유전체 장벽 반응기를 활용한 유증기 제거 장치 및 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2014-12-05"
+    },
+    {
+      "title": "유전체 장벽 반응기를 활용한 유증기 제거 장치 및 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2014-12-05"
+    },
+    {
+      "title": "디스크 확산법을 이용한 항균 시편의 정량적 항균 평가 방법 및 그 방법을 이용한 측정 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2014-09-26"
+    },
+    {
+      "title": "공기정화장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 엘지전자 주식회사",
+      "date": "2014-08-18"
+    },
+    {
+      "title": "공기정화장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 엘지전자 주식회사(",
+      "date": "2014-08-18"
+    },
+    {
+      "title": "공기정화장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단,엘지전자 주식회사(",
+      "date": "2014-08-18"
+    },
+    {
+      "title": "공기역학적 입자 포집 장치 및 이를 포함하는 입자 검출 시스템",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2014-07-24"
+    },
+    {
+      "title": "유연한 특성의 투명전극 및 이를 제조하는 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2014-07-22"
+    },
+    {
+      "title": "유연한 특성의 투명전극 및 이를 제조하는 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2014-07-22"
+    },
+    {
+      "title": "양극 하전을 이용한 집진효율 상승 입자포집장치 및 이를 포함하는 입자포집 시스템",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2014-07-16"
+    },
+    {
+      "title": "양극 하전을 이용한 집진효율 상승 입자포집장치 및 이를 포함하는 입자포집 시스템",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2014-07-16"
+    },
+    {
+      "title": "대기중의 바이오 입자 및 넌바이오 입자 실시간 검출장치 및 이를 이용한 검출방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2014-05-16"
+    },
+    {
+      "title": "전계효과 트랜지스터를 이용한 라벨-프리 방식의 바이러스 검출 장치 및 이를 이용한 바이러스 검출방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2014-04-25"
+    },
+    {
+      "title": "나노입자 생성 및 프린팅 장치 및 이를 이용한 나노입자 프린팅 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2014-04-25"
+    },
+    {
+      "title": "전계효과 트랜지스터를 이용한 라벨-프리 방식의 바이러스 검출 장치 및 이를 이용한 바이러스 검출방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2014-04-25"
+    },
+    {
+      "title": "부유미생물 측정장치 및 그 측정방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 엘지전자 주식회사",
+      "date": "2014-02-27"
+    },
+    {
+      "title": "부유미생물 측정장치 및 그 측정방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2014-02-27"
+    },
+    {
+      "title": "저온 플라즈마 장치를 이용한 수성가스화 반응 시스템 및 수성가스화 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2013-12-11"
+    },
+    {
+      "title": "저온 플라즈마 장치를 이용한 수성가스화 반응 시스템 및 수성가스화 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2013-12-11"
+    },
+    {
+      "title": "디스크 확산법을 이용한 항균 시편의 정량적 항균 평가 방법 및 그 방법을 이용한 측정 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2013-09-26"
+    },
+    {
+      "title": "동축 노즐을 포함하는 나노 자성체 수용화 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2013-08-20"
+    },
+    {
+      "title": "진동식 곰팡이 공기 부유화 장치 및 방법, 그리고 진동식 곰팡이 공기 부유화 장치의 성능실험장비",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2013-07-29"
+    },
+    {
+      "title": "진동식 곰팡이 공기 부유화 장치 및 방법, 그리고 진동식 곰팡이 공기 부유화 장치의 성능실험장비",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2013-07-29"
+    },
+    {
+      "title": "미생물 용해 시스템과 ＡＴＰ발광을 이용한 기상 중 부유 미생물 실시간 측정장치 및 측정방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2013-07-26"
+    },
+    {
+      "title": "전자 공력 제트 프린팅 기법을 이용한 ＣＮＴ필터 제작 시스템 및 ＣＮＴ필터 제작 방법, 이 제작 방법에 의해 제작된 ＣＮＴ필터",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2013-04-05"
+    },
+    {
+      "title": "전자 공력 제트 프린팅 기법을 이용한 ＣＮＴ필터 제작 시스템 및 ＣＮＴ필터 제작 방법, 이 제작 방법에 의해 제작된 ＣＮＴ필터",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2013-04-05"
+    },
+    {
+      "title": "가스화 및 연소 반응 활성화를 위한 저온 플라즈마 장치 및 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2012-10-29"
+    },
+    {
+      "title": "공기 이오나이저와 전기장을 이용하여 미세입자와 부유균을 동시에 저감하는 공기정화장치 및 공기정화방법, 이 공기정화장치를 구비한 냉난방 시스템 및 덕트 시스템",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2012-02-21"
+    },
+    {
+      "title": "등온／비등온 열중량 분석장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2011-12-29"
+    },
+    {
+      "title": "등온／비등온 열중량 분석장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2011-12-29"
+    },
+    {
+      "title": "미생물 용해 시스템과 ＡＴＰ발광을 이용한 기상 중 부유 미생물 실시간 측정장치 및 측정방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2011-09-30"
+    },
+    {
+      "title": "미생물 용해 시스템과 ＡＴＰ발광을 이용한 기상 중 부유 미생물 실시간 측정장치 및 측정방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2011-09-30"
+    },
+    {
+      "title": "스파크 방전장치와 하전장치를 이용한 금속합금 제조장치 및 제조방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2011-05-11"
+    },
+    {
+      "title": "스파크 방전장치와 하전장치를 이용한 나노입자 생성장치 및 입자 크기 제어방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2011-05-11"
+    },
+    {
+      "title": "스파크 방전장치와 하전장치를 이용한 금속합금 제조장치 및 제조방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2011-05-11"
+    },
+    {
+      "title": "스파크 방전장치와 하전장치를 이용한 나노입자 생성장치 및 입자 크기 제어방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2011-05-11"
+    },
+    {
+      "title": "이온 발생장치를 이용한 부유 입자 및 부유 미생물 제거 방법 및 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, LG전자",
+      "date": "2011-04-07"
+    },
+    {
+      "title": "이온 발생장치를 이용한 부유 입자 및 부유 미생물 제거 방법 및 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단,LG전자(주)",
+      "date": "2011-04-07"
+    },
+    {
+      "title": "차량 배기가스 입자 모니터링 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, (주)에이치시티",
+      "date": "2011-03-31"
+    },
+    {
+      "title": "차량 배기 가스 입자 측정 센서",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, (주)에이치시티",
+      "date": "2011-03-31"
+    },
+    {
+      "title": "차량 배기 가스 입자 측정 센서",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단,(주)에이치시티",
+      "date": "2011-03-31"
+    },
+    {
+      "title": "차량 배기가스 입자 모니터링 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단,(주)에이치시티",
+      "date": "2011-03-31"
+    },
+    {
+      "title": "대기 나노 입자 측정 센서",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, (주)에이치시티",
+      "date": "2011-03-31"
+    },
+    {
+      "title": "덕트용 이온 발생장치 및 이를 이용한 이온 발생장치의 제어방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, LG전자",
+      "date": "2011-03-10"
+    },
+    {
+      "title": "미생물 용해 시스템과 ＡＴＰ발광을 이용한 기상 중 부유 미생물 실시간 측정장치 및 측정방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, LG전자",
+      "date": "2011-01-26"
+    },
+    {
+      "title": "이온풍 발생장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2010-10-26"
+    },
+    {
+      "title": "이온풍 발생장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2010-10-26"
+    },
+    {
+      "title": "미세입자 집속방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2010-05-25"
+    },
+    {
+      "title": "미생물 용해 시스템을 이용한 기상 중 부유 미생물 실시간 측정장치 및 측정방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2010-05-24"
+    },
+    {
+      "title": "미세유체 칩 및 그 제조방법, 상기 미세유체칩의 미세채널 구조 및 그 제조방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2010-03-15"
+    },
+    {
+      "title": "바이오 물질을 캡슐화시킨 다중 동축노즐을 이용한 전기수력학적 미생물 측정장치 및 측정방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2010-01-26"
+    },
+    {
+      "title": "열교환기의 항균 코팅방법 및 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2009-12-29"
+    },
+    {
+      "title": "열교환기의 항균 코팅방법 및 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2009-12-29"
+    },
+    {
+      "title": "열영동 방법으로 나노입자를 제어 및 증착하는 장치 및 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2009-12-07"
+    },
+    {
+      "title": "열영동 방법으로 나노입자를 제어 및 증착하는 장치 및 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2009-12-07"
+    },
+    {
+      "title": "서브마이크론입자의 실시간 크기분포측정을 위한 다중채널 확산하전기 시스템",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2009-09-03"
+    },
+    {
+      "title": "서브마이크론입자의 실시간 크기분포측정을 위한 다중채널 확산하전기 시스템",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2009-09-03"
+    },
+    {
+      "title": "드롭-온-디맨드(ｄｒｏ ｐ ｏｎ ｄｅｍａｎｄ) 구동방식의 전기수력학적 프린팅 헤드 및 그 제조 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2009-06-11"
+    },
+    {
+      "title": "정형 이종접합 유기태양전지와 그 제조방법 및 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2009-04-24"
+    },
+    {
+      "title": "정형 이종접합 유기태양전지와 그 제조방법 및 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2009-04-24"
+    },
+    {
+      "title": "비 전도성 핀이 삽입된 전기수력학적 분사노즐, 이를 구비한 미세 전도성라인 패터닝 장치, 및 이를 이용한 전기수력학적 패터닝 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2008-12-09"
+    },
+    {
+      "title": "패턴 간격을 조정가능한 전기수력학적 패터닝 장치 및 이를 이용한 전기수력학적 패터닝 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2008-10-30"
+    },
+    {
+      "title": "패턴 간격을 조정가능한 전기수력학적 패터닝 장치 및 이를 이용한 전기수력학적 패터닝 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2008-10-30"
+    },
+    {
+      "title": "서브마이크론 입자의 실시간 크기분포 측정을 위한 다중채널형 확산하전기 및 이를 이용한 서브마이크론 입자의 실시간 크기분포 측정방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2008-09-04"
+    },
+    {
+      "title": "서브마이크론 입자의 실시간 크기분포 측정을 위한 다중채널형 확산하전기 및 이를 이용한 서브마이크론 입자의 실시간 크기분포 측정방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2008-09-04"
+    },
+    {
+      "title": "전기수력학적 분무방식의 미세 전도성라인 패터닝 장치 및 이를 이용한 패터닝 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2008-09-03"
+    },
+    {
+      "title": "전기수력학적 분무방식의 미세 전도성라인 패터닝 장치 및 이를 이용한 패터닝 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2008-09-03"
+    },
+    {
+      "title": "전도성 라인형성을 위한 전기 수력학 프린팅 장치 및 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2008-04-25"
+    },
+    {
+      "title": "전도성 라인형성을 위한 전기 수력학 프린팅 장치 및 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2008-04-25"
+    },
+    {
+      "title": "전기수력학적 분사노즐, 이를 이용한 분사장치 및 패터닝방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2008-03-11"
+    },
+    {
+      "title": "전기수력학적 분사노즐, 이를 이용한 분사장치 및 패터닝방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2008-03-11"
+    },
+    {
+      "title": "부유미생물 측정을 위한 응축 포집기",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2008-03-10"
+    },
+    {
+      "title": "전기수력학 프린팅 기법을 이용한 살아있는 세포의 직접 패터닝 방법 및 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2008-02-13"
+    },
+    {
+      "title": "전기수력학 프린팅 기법을 이용한 살아있는 세포의 직접 패터닝 방법 및 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2008-02-13"
+    },
+    {
+      "title": "전기적으로 분류 입경 제어가 가능한 MEMS 기반 미세가상임팩터",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2008-01-25"
+    },
+    {
+      "title": "전기적으로 분류 입경 제어가 가능한 MEMS 기반 미세가상임팩터",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2008-01-25"
+    },
+    {
+      "title": "광촉매 나노입자 발생을 이용한 유해가스 제거 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2008-01-02"
+    },
+    {
+      "title": "광촉매 나노입자 발생을 이용한 유해가스 제거 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2008-01-02"
+    }
+  ]
+}

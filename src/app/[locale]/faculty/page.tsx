@@ -4,7 +4,7 @@ import type { Metadata } from 'next';
 import { Hero } from '@/components/Hero';
 import { Section } from '@/components/Section';
 import { FacultyDirectoryGrid } from '@/components/FacultyDirectoryGrid';
-import { getFacultyDirectory } from '@/lib/faculty';
+import { getFacultyDirectory, getFacultyProfileNames } from '@/lib/faculty';
 
 export async function generateMetadata({
   params,
@@ -29,7 +29,11 @@ export default function FacultyPage({ params }: { params: { locale: string } }) 
         breadcrumb={[{ label: tNav('faculty') }]}
       />
       <Section>
-        <FacultyDirectoryGrid items={faculty} moreLabel={t('moreLabel')} />
+        <FacultyDirectoryGrid
+          items={faculty}
+          moreLabel={t('moreLabel')}
+          profileNames={getFacultyProfileNames()}
+        />
       </Section>
     </>
   );

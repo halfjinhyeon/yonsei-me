@@ -1,0 +1,2370 @@
+{
+  "name": "이준상",
+  "nameEn": "Lee Joon Sang",
+  "email": "joonlee@yonsei.ac.kr",
+  "phone": "5820",
+  "office": "Eng 3, 327. 3공학관 327호",
+  "homepage": "http://mfdl.yonsei.ac.kr",
+  "sourceUrl": "https://me.yonsei.ac.kr/faculty/name_search.do?mode=view&userId=b2q9%2FrsniLTpqoJPWYQWVA%3D%3D&sosokcd=",
+  "crawledAt": "2026-07-27",
+  "articles": [
+    {
+      "date": "2026-08",
+      "title": "Synthesis of coronary 4D CT Image by denoising diffusion probabilistic model",
+      "journal": "Computer Methods and Programs in Biomedicine"
+    },
+    {
+      "date": "2026-03",
+      "title": "Influence of lightweight pumice on low velocity impact response of carbon fiber reinforced pumice epoxy core sandwich composites",
+      "journal": "Journal of Materials Research and Technology"
+    },
+    {
+      "date": "2026-01",
+      "title": "Experimental evaluation of Al2O3-water nanofluid for efficiency enhancement in a photovoltaic-thermal system under Western Indian climate",
+      "journal": "Scientific Reports"
+    },
+    {
+      "date": "2025-12",
+      "title": "Nature&apos;s nanofactories: biogenic synthesis of metal nanoparticles for sustainable technologies",
+      "journal": "Green Chemistry Letters and Reviews"
+    },
+    {
+      "date": "2025-09",
+      "title": "Time-series X-ray image prediction of dental skeleton treatment progress via neural networks",
+      "journal": "Computers in Biology and Medicine"
+    },
+    {
+      "date": "2025-06",
+      "title": "Enhanced Aerosol Containment Performance of a Negative Pressure Hood with an Aerodynamic Cap Design: Multi-Method Validation Using CFD, PAO Particles, and Microbial Testing",
+      "journal": "Bioengineering (Basel)"
+    },
+    {
+      "date": "2025-06",
+      "title": "A Physics-Integrated Deep Learning Approach for Patient-Specific Non-Newtonian Blood Viscosity Assessment using PPG",
+      "journal": "Computer Methods and Programs in Biomedicine"
+    },
+    {
+      "date": "2025-05",
+      "title": "Investigation of process parameter influence on the mechanical properties of FDM-printed PEEK-carbon fiber composites using RSM and Taguchi methods",
+      "journal": "Journal of Materials Research and Technology"
+    },
+    {
+      "date": "2025-02",
+      "title": "Generating synthetic CT images from unpaired head and neck CBCT images and validating the importance of detailed nasal cavity acquisition through simulations",
+      "journal": "Computers in Biology and Medicine"
+    },
+    {
+      "date": "2025-01",
+      "title": "Anomalous in-plane electrical anisotropy in elemental metal nanosheets",
+      "journal": "Nature Synthesis"
+    },
+    {
+      "date": "2025-01",
+      "title": "Biofuels spray and combustion characteristics in a new micro gas turbine combustion chamber design with internal exhaust recycling",
+      "journal": "Case Studies in Thermal Engineering"
+    },
+    {
+      "date": "2024-12",
+      "title": "Numerical Investigation of Water Transport and Effective Electrical Conductivity in Perforation of Gas Diffusion Layer Using Lattice Boltzmann Method",
+      "journal": "Fractal and Fractional"
+    },
+    {
+      "date": "2024-12",
+      "title": "Artificial intelligence based emission and performance prediction, and optimization of HHO-blended gasoline SI engine: A sustainable transition",
+      "journal": "Case Studies in Thermal Engineering"
+    },
+    {
+      "date": "2024-11",
+      "title": "Enhancing Aerosol Mitigation in Medical Procedures: A CFD-Informed Respiratory Barrier Enclosure",
+      "journal": "Bioengineering (Basel)"
+    },
+    {
+      "date": "2024-11",
+      "title": "Suppression of the coffee-ring effect using a contact-angle radial-band-patterned substrate: A lattice Boltzmann study",
+      "journal": "Physics of Fluids"
+    },
+    {
+      "date": "2024-10",
+      "title": "Effect of wheat bran filler particulates nettle fiber reinforced epoxy matrix composite - A novel material for thermal insulation application",
+      "journal": "Thermal Science and Engineering Progress"
+    },
+    {
+      "date": "2024-09",
+      "title": "Studies on parametric optimization of PLA/graphene composites synthesized by fused filament fabrication for thermal applications",
+      "journal": "Thermal Science and Engineering Progress"
+    },
+    {
+      "date": "2023-12",
+      "title": "Particle deposition dynamics in evaporating droplets using lattice Boltzmann and magnetic particle simulation",
+      "journal": "Physics of Fluids"
+    },
+    {
+      "date": "2023-11",
+      "title": "Dimensional accuracy, mechanical property, and optical stability of zirconia orthodontic bracket according to yttria proportions",
+      "journal": "Scientific Reports"
+    },
+    {
+      "date": "2023-09",
+      "title": "Optimization of a Solid Rocket Motor Design Through Neural Network-Assisted Performance Prediction",
+      "journal": "IEEE Transactions on Aerospace and Electronic Systems"
+    },
+    {
+      "date": "2023-07",
+      "title": "Physics-added neural networks: An image-based deep learning for material printing system",
+      "journal": "Additive Manufacturing"
+    },
+    {
+      "date": "2023-06",
+      "title": "Neural networks for the burn back performance of solid propellant grains",
+      "journal": "Aerospace Science and Technology"
+    },
+    {
+      "date": "2022-12",
+      "title": "Numerical simulation of gas-liquid transport in porous media using 3D color-gradient lattice Boltzmann method: trapped air and oxygen diffusion coefficient analysis",
+      "journal": "ENGINEERING APPLICATIONS OF COMPUTATIONAL FLUID MECHANICS"
+    },
+    {
+      "date": "2022-08",
+      "title": "Optimization of tricuspid membrane mechanism for effectiveness and leaflet longevity through hemodynamic analysis",
+      "journal": "ENGINEERING APPLICATIONS OF COMPUTATIONAL FLUID MECHANICS"
+    },
+    {
+      "date": "2022-08",
+      "title": "Effects of heat transfer on particle suspended Drop-on-Demand inkjet printing using lattice Boltzmann method",
+      "journal": "APPLIED THERMAL ENGINEERING"
+    },
+    {
+      "date": "2022-06",
+      "title": "Computational Fractional Flow Reserve From Coronary Computed Tomography Angiography-Optical Coherence Tomography Fusion Images in Assessing Functionally Significant Coronary Stenosis",
+      "journal": "FRONTIERS IN CARDIOVASCULAR MEDICINE"
+    },
+    {
+      "date": "2022-06",
+      "title": "Optimization of FFR prediction algorithm for gray zone by hemodynamic features with synthetic model and biometric data",
+      "journal": "COMPUTER METHODS AND PROGRAMS IN BIOMEDICINE"
+    },
+    {
+      "date": "2022-05",
+      "title": "Dynamic observation of dendrite growth on lithium metal anode during battery charging/discharging cycles",
+      "journal": "NPJ Computational Materials"
+    },
+    {
+      "date": "2022-01",
+      "title": "A metallic anti-biofouling surface with a hierarchical topography containing nanostructures on curved micro-riblets",
+      "journal": "MICROSYSTEMS & NANOENGINEERING"
+    },
+    {
+      "date": "2021-09",
+      "title": "Diagnosis of obstructive sleep apnea with prediction of flow characteristics according to airway morphology automatically extracted from medical images: Computational fluid dynamics and artificial intelligence approach",
+      "journal": "COMPUTER METHODS AND PROGRAMS IN BIOMEDICINE"
+    },
+    {
+      "date": "2021-06",
+      "title": "Binding characteristics of staphylococcal protein A and streptococcal protein G for fragment crystallizable portion of human immunoglobulin G",
+      "journal": "Computational and Structural Biotechnology Journal"
+    },
+    {
+      "date": "2021-01",
+      "title": "Infrared signature of NEPE, HTPB rocket plume under varying flight conditions and motor size",
+      "journal": "INFRARED PHYSICS & TECHNOLOGY"
+    },
+    {
+      "date": "2021-01",
+      "title": "Neuromorphic van der Waals crystals for substantial energy generation",
+      "journal": "NATURE COMMUNICATIONS"
+    },
+    {
+      "date": "2020-11",
+      "title": "Interfacial behavior of surfactant-covered double emulsion in extensional flow",
+      "journal": "PHYSICAL REVIEW E"
+    },
+    {
+      "date": "2020-10",
+      "title": "Synergistic effects of crystal structure and surface chemistry of stacked graphene-oxide membranes on the water-permeation mechanism",
+      "journal": "DESALINATION"
+    },
+    {
+      "date": "2020-07",
+      "title": "Effect of membrane insertion for tricuspid regurgitation using immersed-boundary lattice Boltzmann method",
+      "journal": "COMPUTER METHODS AND PROGRAMS IN BIOMEDICINE"
+    },
+    {
+      "date": "2020-06",
+      "title": "Flow boiling enhancement by bubble mobility on heterogeneous wetting surface in microchannel",
+      "journal": "INTERNATIONAL JOURNAL OF HEAT AND MASS TRANSFER"
+    },
+    {
+      "date": "2020-01",
+      "title": "Coronary artery decision algorithm trained by two-step machine learning algorithm",
+      "journal": "RSC ADVANCES"
+    },
+    {
+      "date": "2019-12",
+      "title": "Sparked Reduced Graphene Oxide for Low-Temperature SodiumBeta Alumina Batteries",
+      "journal": "NANO LETTERS"
+    },
+    {
+      "date": "2019-10",
+      "title": "Computational analysis of airflow dynamics for predicting collapsible sites in the upper airways: machine learning approach",
+      "journal": "JOURNAL OF APPLIED PHYSIOLOGY"
+    },
+    {
+      "date": "2019-08",
+      "title": "Effects of surface tension and inclined surface wettability on sliding bubble heat transfer",
+      "journal": "INTERNATIONAL JOURNAL OF THERMAL SCIENCES"
+    },
+    {
+      "date": "2019-07",
+      "title": "Anisotropic nanoscale and sub-nanoscale friction behaviors between phosphorene and silicon tip",
+      "journal": "APPLIED SURFACE SCIENCE"
+    },
+    {
+      "date": "2019-04",
+      "title": "Numerical study on the effects of inertia and wettability on subcooled flow boiling in microchannels",
+      "journal": "APPLIED THERMAL ENGINEERING"
+    },
+    {
+      "date": "2019-04",
+      "title": "Stochastic characteristics for the vortical structure of a 5-MW wind turbine wake",
+      "journal": "RENEWABLE ENERGY"
+    },
+    {
+      "date": "2019-02",
+      "title": "Rheological behavior of bimodal distribution emulsions on flow adoptability",
+      "journal": "BIOMICROFLUIDICS"
+    },
+    {
+      "date": "2019-02",
+      "title": "Numerical simulation of optical control for a soft particle in a microchannel",
+      "journal": "PHYSICAL REVIEW E"
+    },
+    {
+      "date": "2019-02",
+      "title": "Computational analysis of airflow dynamics for predicting collapsible sites in the upper airways: a preliminary study",
+      "journal": "JOURNAL OF APPLIED PHYSIOLOGY"
+    },
+    {
+      "date": "2018-10",
+      "title": "근사 최적 기법을 이용한 변성 폴리페닐렌 옥사이드 폴리머의 점소성 모델 보정 연구",
+      "journal": "Transactions of the Korean Society of Mechanical Engineers, A"
+    },
+    {
+      "date": "2018-08",
+      "title": "Optimal Patterned Wettability for Microchannel Flow Boiling Using the Lattice Boltzmann Method",
+      "journal": "Coatings"
+    },
+    {
+      "date": "2018-06",
+      "title": "Impact of Coronary Lesion Geometry on Fractional Flow Reserve Data From Interventional Cardiology Research In-Cooperation Society- Fractional Flow Reserve and Intravascular Ultrasound Registry",
+      "journal": "CIRCULATION-CARDIOVASCULAR IMAGING"
+    },
+    {
+      "date": "2018-06",
+      "title": "Effect of interactions between multiple interfaces on the rheological characteristics of double emulsions",
+      "journal": "PHYSICAL REVIEW E"
+    },
+    {
+      "date": "2018-03",
+      "title": "Large-eddy simulations of wind-farm wake characteristics associated with a low-level jet",
+      "journal": "WIND ENERGY"
+    },
+    {
+      "date": "2017-12",
+      "title": "Numerical study of hydrophobic-island shapes with patterned wettability for pool boiling",
+      "journal": "APPLIED THERMAL ENGINEERING"
+    },
+    {
+      "date": "2017-07",
+      "title": "Molecular dynamics study of the nanosized droplet spreading: The effect of the contact line forces on the kinetic energy dissipation",
+      "journal": "APPLIED SURFACE SCIENCE"
+    },
+    {
+      "date": "2017-03",
+      "title": "Effect of the Contact Geometry on Nanoscale and Subnanoscale Friction Behaviors",
+      "journal": "IEEE TRANSACTIONS ON MAGNETICS"
+    },
+    {
+      "date": "2017-02",
+      "title": "Surface wettability induced sliding bubble dynamics and its effects on convective heat transfer",
+      "journal": "APPLIED THERMAL ENGINEERING"
+    },
+    {
+      "date": "2017-01",
+      "title": "Conjugate heat transfer analysis for the effect of the eccentricity of hydrophobic dot arrays on pool boiling",
+      "journal": "APPLIED THERMAL ENGINEERING"
+    },
+    {
+      "date": "2016-10",
+      "title": "Molecular Dynamics Study of the Interfacial Structure of Water and Graphene:Density and Pressure Profile Analysis",
+      "journal": "JOURNAL OF NANOSCIENCE AND NANOTECHNOLOGY"
+    },
+    {
+      "date": "2016-09",
+      "title": "Numerical approach to the suppression of film boiling on hot-spots by radial control of patterned wettability",
+      "journal": "INTERNATIONAL JOURNAL OF MULTIPHASE FLOW"
+    },
+    {
+      "date": "2016-08",
+      "title": "Multiphase static droplet simulations in hierarchically structured super-hydrophobic surfaces",
+      "journal": "JOURNAL OF MECHANICAL SCIENCE AND TECHNOLOGY"
+    },
+    {
+      "date": "2016-08",
+      "title": "Analysis of wave reflection of a stenotic vessel blood pressure wave using the lattice Boltzmann method and impedance boundary condition",
+      "journal": "JOURNAL OF MECHANICAL SCIENCE AND TECHNOLOGY"
+    },
+    {
+      "date": "2016-08",
+      "title": "Numerical investigation of the effects of geometric parameters on transverse motion with slanted-groove micro-mixers",
+      "journal": "JOURNAL OF MECHANICAL SCIENCE AND TECHNOLOGY"
+    },
+    {
+      "date": "2016-08",
+      "title": "Assessing Computational Fractional Flow Reserve From Optical Coherence Tomography in Patients With Intermediate Coronary Stenosis in the Left Anterior Descending Artery.",
+      "journal": "CIRCULATION-CARDIOVASCULAR INTERVENTIONS"
+    },
+    {
+      "date": "2016-07",
+      "title": "A numerical study on the elastic modulus of volume and area dilation for a deformable cell in a microchannel",
+      "journal": "BIOMICROFLUIDICS"
+    },
+    {
+      "date": "2016-05",
+      "title": "Critical heat flux enhancement of pool boiling with adaptive fraction control of patterned wettability",
+      "journal": "INTERNATIONAL JOURNAL OF HEAT AND MASS TRANSFER"
+    },
+    {
+      "date": "2016-01",
+      "title": "Turbulent kinetics of a large wind farm and their impact in the neutral boundary layer",
+      "journal": "ENERGY"
+    },
+    {
+      "date": "2015-10",
+      "title": "Design and fabrication of a large-area superhydrophobic metal surfacewith anti-icing properties engineered using a top-down approach",
+      "journal": "APPLIED SURFACE SCIENCE"
+    },
+    {
+      "date": "2015-09",
+      "title": "The effect of sphere roughness on the rheology of concentrated suspensions",
+      "journal": "JOURNAL OF NON-NEWTONIAN FLUID MECHANICS"
+    },
+    {
+      "date": "2015-06",
+      "title": "Signal amplification in a microfluidic paper-based analytical device (μ-PAD) by confinement of the fluidic flow",
+      "journal": "BIOCHIP JOURNAL"
+    },
+    {
+      "date": "2015-05",
+      "title": "Jamming and unjamming transition of oil-in-water emulsions under continuous temperature change",
+      "journal": "BIOMICROFLUIDICS"
+    },
+    {
+      "date": "2015-04",
+      "title": "Molecular dynamics simulations of nanoscale and sub-nanoscale friction behavior between graphene and a silicon tip : Analysis of tip apex motion",
+      "journal": "NANOSCALE"
+    },
+    {
+      "date": "2015-04",
+      "title": "Numerical study of cloud cavitation effects on hydrophobic hydrofoils",
+      "journal": "INTERNATIONAL JOURNAL OF HEAT AND MASS TRANSFER"
+    },
+    {
+      "date": "2014-12",
+      "title": "Numerical simulations for the rheological characteristics of emulsions under several conditions including temperature, shear rate, surfactant concentration and droplet size",
+      "journal": "MICRO & NANO LETTERS"
+    },
+    {
+      "date": "2014-11",
+      "title": "Study of transporting of droplets on heterogeneous surface structure using the lattice Boltzmann approach",
+      "journal": "APPLIED THERMAL ENGINEERING"
+    },
+    {
+      "date": "2014-11",
+      "title": "Lattice Boltzmann-immersed Boundary Approach for Vesicle Navigation in Microfluidic Channel Networks",
+      "journal": "MICROFLUIDICS AND NANOFLUIDICS"
+    },
+    {
+      "date": "2014-10",
+      "title": "Fluid interfacial nanoroughness measurement through the morphological characteristics of graphene",
+      "journal": "BIOMICROFLUIDICS"
+    },
+    {
+      "date": "2014-10",
+      "title": "Film drainage mechanism between two immiscible droplets",
+      "journal": "MICROFLUIDICS AND NANOFLUIDICS"
+    },
+    {
+      "date": "2014-09",
+      "title": "Multi-scale approach for the rheological characteristics of emulsions using molecular dynamics and lattice Boltzmann method",
+      "journal": "BIOMICROFLUIDICS"
+    },
+    {
+      "date": "2014-07",
+      "title": "Investigation of Kelvin-Helmholtz instability in the stable boundary layer using large eddy simulation",
+      "journal": "JOURNAL OF GEOPHYSICAL RESEARCH-ATMOSPHERES"
+    },
+    {
+      "date": "2014-07",
+      "title": "The effects of air filled voids and water content on the momentum transferred from a shallow buried explosive to a rigid target",
+      "journal": "INTERNATIONAL JOURNAL OF IMPACT ENGINEERING"
+    },
+    {
+      "date": "2014-03",
+      "title": "Study for optical manipulation of a surfactant-covered droplet using lattice Boltzmann method",
+      "journal": "BIOMICROFLUIDICS"
+    },
+    {
+      "date": "2014-03",
+      "title": "The influence of water, dry sand, and unsaturated sand constitutive behavior on the blast response of a rigid target",
+      "journal": "INTERNATIONAL JOURNAL OF IMPACT ENGINEERING"
+    },
+    {
+      "date": "2014-02",
+      "title": "Considerations of Blood Properties, Outlet Boundary Conditions and Energy Loss Approaches in Computational Fluid Dynamics Modeling",
+      "journal": "Neurointervention"
+    },
+    {
+      "date": "2014-02",
+      "title": "Molecular dynamics simulations of the friction experienced by graphene flakes in rotational motion",
+      "journal": "TRIBOLOGY INTERNATIONAL"
+    },
+    {
+      "date": "2013-11",
+      "title": "Impedance boundary condition analysis of aging-induced wave reflections in blood flow",
+      "journal": "KOREA-AUSTRALIA RHEOLOGY JOURNAL"
+    },
+    {
+      "date": "2013-07",
+      "title": "Effect of hydrodynamic and fluid-solid interaction forces on the shape and stability of a droplet sedimenting on a horizontal wall",
+      "journal": "PHYSICAL REVIEW E"
+    },
+    {
+      "date": "2012-07",
+      "title": "Direct numerical simulation of modulation of isotropic turbulence by poly-dispersed particles",
+      "journal": "INTERNATIONAL JOURNAL FOR NUMERICAL METHODS IN FLUIDS"
+    },
+    {
+      "date": "2012-01",
+      "title": "Study of aggregational characteristics of emulsions on their rheological properties using the lattice Boltzmann approach",
+      "journal": "SOFT MATTER"
+    },
+    {
+      "date": "2011-11",
+      "title": "The response of small scale rigid targets to shallow buried explosive detonations",
+      "journal": "INTERNATIONAL JOURNAL OF IMPACT ENGINEERING"
+    },
+    {
+      "date": "2011-09",
+      "title": "A multi-component lattice Boltzmann model with non-uniform interfacial tension module for the study of blood flow in the microvasculature",
+      "journal": "INTERNATIONAL JOURNAL FOR NUMERICAL METHODS IN FLUIDS"
+    },
+    {
+      "date": "2011-08",
+      "title": "Suppressing the coalescence in the multi-component lattice Boltzmann method",
+      "journal": "MICROFLUIDICS AND NANOFLUIDICS"
+    },
+    {
+      "date": "2011-03",
+      "title": "Two-phase numerical model for thermal conductivity and convective heat transfer in nanofluids",
+      "journal": "NANOSCALE RESEARCH LETTERS"
+    },
+    {
+      "date": "2011-03",
+      "title": "A hybrid lattice Boltzmann model for surfactant-covered droplets",
+      "journal": "SOFT MATTER"
+    },
+    {
+      "date": "2011-01",
+      "title": "Effect of the multi-sized nanoparticle distribution on the thermal conductivity of nanofluids",
+      "journal": "MICROFLUIDICS AND NANOFLUIDICS"
+    },
+    {
+      "date": "2011-01",
+      "title": "Water droplet properties on periodically structured superhydrophobic surfaces: A lattice Boltzmann approach to multiphase flows with high water/air density ratio",
+      "journal": "MICROFLUIDICS AND NANOFLUIDICS"
+    },
+    {
+      "date": "2010-10",
+      "title": "Fundamentals of migrating multi-block lattice Boltzmann model for immiscible mixtures in 2D geometries",
+      "journal": "International Journal of Multiphase Flow"
+    },
+    {
+      "date": "2010-09",
+      "title": "Migrating multi-block lattice Boltzmann model for immiscible mixtures: 3D algorithm development and validation",
+      "journal": "Computers & Fluids"
+    },
+    {
+      "date": "2010-08",
+      "title": "Direct numerical simulation of preferential particle concentration in decaying turbulence under the influence of magnetic field",
+      "journal": "INTERNATIONAL JOURNAL FOR NUMERICAL METHODS IN FLUIDS"
+    },
+    {
+      "date": "2010-07",
+      "title": "The Effect of Stent Porosity and Strut Shape on Saccular Aneurysm and its Numerical Analysis with Lattice Boltzmann Method",
+      "journal": "Annals of Biomedical Engineering"
+    },
+    {
+      "date": "2010-06",
+      "title": "A high quality interpolation method for colocated polyhedral/polygonal control volume methods",
+      "journal": "Computers & Fluids"
+    },
+    {
+      "date": "2010-02",
+      "title": "Direct numerical simulation of thermal conductivity of nanofluids: The effect of temperature two-way coupling and coagulation of particles",
+      "journal": "International Journal of Heat and Mass Transfer"
+    },
+    {
+      "date": "2010-01",
+      "title": "Investigation of heat transfer in turbulent nanofluids using direct numerical simulations",
+      "journal": "Physical Review E"
+    },
+    {
+      "date": "2009-11",
+      "title": "Development and evaluation of a model for soil-air fluidized bed rheological behavior",
+      "journal": "INTERNATIONAL JOURNAL FOR NUMERICAL METHODS IN FLUIDS"
+    }
+  ],
+  "awards": [
+    {
+      "title": "서울특별시장상",
+      "contents": "인공지능 기반 심혈관질환 진단기, 비침습 요역검사기",
+      "date": "2022-11-14"
+    },
+    {
+      "title": "ISB-ISCH2015 Best Paper Award",
+      "contents": "\"Lattice Boltzmann-immersed Boundary Approach for Vesicle Motion and Trajectory in Bifurcated Vessel\"의 제목으로 국제학회에서 최우수 논문상 수상.",
+      "date": "2015-05-27"
+    },
+    {
+      "title": "우수논문상",
+      "contents": "임피던스 경계조건을 통한 시뮬레이션을 이용한 혈류 파형 분석이란 제목으로 순환기의공학회에서 우수논문상을 수상함.",
+      "date": "2014-12-13"
+    },
+    {
+      "title": "논문 우수발표상",
+      "contents": "분자 동역학을 이용한 그라핀의 회전 마찰 특성에 대한 연구란 제목으로 한국생산제조시스템학회에서 우수 발표상을 수여함.",
+      "date": "2013-10-17"
+    }
+  ],
+  "conferences": [
+    {
+      "title": "Surfactant Transport on Double Emulsion and its Influence on Interactions between Interfaces",
+      "conference": "The Second Pacific Rim Thermal Engineering",
+      "period": "2019.12.13~2019.12.17"
+    },
+    {
+      "title": "Effect of wettability pattern on heat transfer during flow boiling in microchannels",
+      "conference": "The Second Pacific Rim Thermal Engineering",
+      "period": "2019.12.13~2019.12.16"
+    },
+    {
+      "title": "Numerical study of the contact line effect on the multi-striped patterned wettability surface for pool boiling",
+      "conference": "The Second Pacific Rim Thermal Engineering",
+      "period": "2019.12.13~2019.12.17"
+    },
+    {
+      "title": "72nd Annual Meeting of the American Physical Society Division of Fluid Dynamics",
+      "conference": "Cardiovascular Diagnosis System using",
+      "period": "2019.11.23~2019.11.26"
+    },
+    {
+      "title": "Advanced machine learning algorithm for predicting Obstructive Sleep Apnea Syndrome (OSAS)",
+      "conference": "72nd Annual Meeting of the APS Division of Fluid Dynamics",
+      "period": "2019.11.23~2019.11.26"
+    },
+    {
+      "title": "Interfacial Behavior of Surfactant Covered Double Emulsion in Extensional Flow",
+      "conference": "72nd Annual Meeting of the APS Division of Fluid Dynamics",
+      "period": "2019.11.23~2019.11.26"
+    },
+    {
+      "title": "대면적 나노구조 패턴 제작을 위한 레이저 간섭 리소그래피 기술을 활용한 가간섭성 회절 기술에 관한 연구",
+      "conference": "한국생산제조학회 2019년도 추계학술대회",
+      "period": "2019.11.06~2019.11.08"
+    },
+    {
+      "title": "Coronaty artery diagnosis using 2-step machine learning algorithm",
+      "conference": "The 15th Asian Symposium on Visualization (ASV15)",
+      "period": "2019.09.25~2019.09.28"
+    },
+    {
+      "title": "Computational analysis of airflow dynamics for predicting collapsible sites in the upper airways: Advanced machine learning",
+      "conference": "The 15th Asian Symposium on Visulaization (ASV15)",
+      "period": "2019.09.25~2019.09.28"
+    },
+    {
+      "title": "Atomic-Scale Study of Water Permeation in Graphene Oxide",
+      "conference": "ASME, JSME, KSME",
+      "period": "2019.07.28~2019.07.31"
+    },
+    {
+      "title": "유동, 구조해석 연계를 통한 플라스틱 사출 성형 부품 품질 개선을 위한 동시해석법 개발",
+      "conference": "한국소성가공학회 2019년도 춘계학술대회",
+      "period": "2019.05.09~2019.05.10"
+    },
+    {
+      "title": "Anisotropic Nanoscale And Sub-nanoscale Friction Behavior of Phosphorene",
+      "conference": "advanced-energymaterials-conference2018",
+      "period": "2018.09.10~2018.09.12"
+    },
+    {
+      "title": "Investigation of bright collapsing ring by Lattice Boltzmann method",
+      "conference": "eschm-isb-isch 2018",
+      "period": "2018.07.02~2018.07.06"
+    },
+    {
+      "title": "직접적 주기 해석기법을 이용한 폴리머 소재 피로해석 기초연구",
+      "conference": "2018 한국 CDE학회 동계 학술 대회",
+      "period": "2018.01.23~2018.01.26"
+    },
+    {
+      "title": "Collaborative Optimization을 이용한 인사이드 도어 핸들 일체형 하우징 최적설계",
+      "conference": "한국소성가공학회 2017년도 춘계학술대회",
+      "period": "2017.05.11~2017.05.12"
+    },
+    {
+      "title": "습윤성 패턴 최적화를 통한 풀비등의 임계열속 및 열전달률 개선",
+      "conference": "제 5회 나노 임프린트 몰딩 프린트 학술대회",
+      "period": "2016.02.17~2016.02.18"
+    },
+    {
+      "title": "분자동역학을 이용한 액적의 퍼짐 현상 모사와 접촉선 근방에서의 힘 성분에 대한 연구",
+      "conference": "제 5회 나노 임프린트 몰딩 프린트 학술대회",
+      "period": "2016.02.17~2016.02.18"
+    },
+    {
+      "title": "연성 고체의 특성 변화에 따른 연성 고체 혼합 유체의 특성 연구",
+      "conference": "제 5회 나노 임프린트 몰딩 프린트 학술대회",
+      "period": "2016.02.17~2016.02.18"
+    },
+    {
+      "title": "표면젖음성이 버블역학과 대류열전달에 미치는 영향에 대한 연구",
+      "conference": "제 5회 나노 임프린트 몰딩 프린트 학술대회",
+      "period": "2016.02.17~2016.02.18"
+    },
+    {
+      "title": "피커링 에멀전에서 계면 나노입자분포와 비등방성 융합 액적에 대한 연구",
+      "conference": "제 5회 나노 임프린트 몰딩 프린트 학술대회",
+      "period": "2016.02.17~2016.02.18"
+    },
+    {
+      "title": "적혈구의 기계적 특성 변화에 따른 유변학 연구",
+      "conference": "2016 한국생산제조시스템학회 춘계학술대회",
+      "period": "2016.04.27~2016.04.27"
+    },
+    {
+      "title": "맥파와 협착된 혈관 간의 상관관계에 대한 연구",
+      "conference": "2016 한국생산제조시스템학회 춘계학술대회",
+      "period": "2016.04.27~2016.04.27"
+    },
+    {
+      "title": "표면 젖음성 정도에 따른 버블역학의 대류열전달에 대한 영향 분석",
+      "conference": "2016 한국생산제조시스템학회 춘계학술대회",
+      "period": "2016.04.27~2016.04.27"
+    },
+    {
+      "title": "나노 입자를 이용한 피커링 에멀젼의 유변학적 특징에 대한 수치해석 연구",
+      "conference": "2016 한국생산제조시스템학회 춘계학술대회",
+      "period": "2016.04.27~2016.04.27"
+    },
+    {
+      "title": "분자동역학을 이용한 액체, 고체, 기체, 세 가지 상이 만나는 contact line force 에 대한 연구",
+      "conference": "2016 한국생산제조시스템학회 춘계학술대회",
+      "period": "2016.04.27~2016.04.27"
+    },
+    {
+      "title": "격자볼츠만 시뮬레이션을 통한 풀비등의 임계열속 및 열전달률 개선",
+      "conference": "2016 한국생산제조시스템학회 춘계학술대회",
+      "period": "2016.04.27~2016.04.27"
+    },
+    {
+      "title": "The effect of wettability of channelon the rheology of suspension with red blood cells",
+      "conference": "2016 International Conference of Microfluidics, Nanofluidics and Lab-on-a-chip",
+      "period": "2016.06.10~2016.06.12"
+    },
+    {
+      "title": "Numerical investigation of the droplet condensation on the horizontal surface with patterned wettability",
+      "conference": "2016 International Conference of Microfluidics, Nanofluidics and Lab-on-a-chip",
+      "period": "2016.06.10~2016.06.12"
+    },
+    {
+      "title": "parametric study of hydrophobic dot shape for pool boiling",
+      "conference": "2016 International Conference of Microfluidics, Nanofluidics and Lab-on-a-chip",
+      "period": "2016.06.10~2016.06.12"
+    },
+    {
+      "title": "The wettability dependency of three phase contact line forces",
+      "conference": "2016 International Conference of Microfluidics, Nanofluidics and Lab-on-a-chip",
+      "period": "2016.06.10~2016.06.12"
+    },
+    {
+      "title": "분자동역학을 이용한 액적의 퍼짐 현상 모사와 접촉선 근방에서의 힘 성분에 대한 연구",
+      "conference": "제 5회 나노 임프린트 몰딩 프린트 학술대회",
+      "period": "2016.05.17~2016.05.17"
+    },
+    {
+      "title": "연성 고체의 특성 변화에 따른 연성 고체 혼합 유체의 특성 연구",
+      "conference": "제 5회 나노 임프린트 몰딩 프린트 학술대회",
+      "period": "2016.05.17~2016.05.17"
+    },
+    {
+      "title": "Turbulent kinetic analysis in a large wind farm and its environmental impacts",
+      "conference": "2016 Wind Energy Research Workshop",
+      "period": "2016.03.15~2016.03.18"
+    },
+    {
+      "title": "협착증 분석을 위한 순환계 시스템의 멀티스케일 모델링",
+      "conference": "2015년 순환기의공학회 동계학술대회",
+      "period": "2015.12.19~2015.12.19"
+    },
+    {
+      "title": "적혈구의 유변학적 특성 변화에 따른 적혈구 혼합 유체의 특성 연구",
+      "conference": "2015년 순환기의공학회 동계학술대회",
+      "period": "2015.12.19~2015.12.19"
+    },
+    {
+      "title": "Marangoni 효과에 따른 channel 내부의 기포 생성 수치 해석",
+      "conference": "한국생산제조시스템학회 추계학술대회",
+      "period": "2015.10.15~2015.10.16"
+    },
+    {
+      "title": "친-소수성 혼합 및 국부적 조절을 통한 풀비등의 임계 열속 개선",
+      "conference": "한국생산제조시스템학회 추계학술대회",
+      "period": "2015.10.15~2015.10.16"
+    },
+    {
+      "title": "분자동역학을 이용한 액체, 고체, 기체 세 가지 상의 contact line에서 발생하는 마찰력에 대한 연구",
+      "conference": "한국생산제조시스템학회 추계학술대회",
+      "period": "2015.10.15~2015.10.16"
+    },
+    {
+      "title": "딤플 배열을 추가한 블레이드의 유동 분석 및 와류 가시화",
+      "conference": "한국생산제조시스템학회 추계학술대회",
+      "period": "2015.10.15~2015.10.16"
+    },
+    {
+      "title": "대형 해상 풍력단지를 통한 허리케인 완화 효과 연구",
+      "conference": "한국생산제조시스템학회 추계학술대회",
+      "period": "2015.10.15~2015.10.16"
+    },
+    {
+      "title": "연속적인 온도 변화에 따른 에멀전의 점탄성 특성에 대한 연구",
+      "conference": "2015년 순환기의공학회 하계학술대회",
+      "period": "2015.07.04~2015.07.04"
+    },
+    {
+      "title": "미세혼합기의 형상 변수 효과에 따른 2차 유동 수치해석",
+      "conference": "2015 한국가시화정보학회 춘계학술대회",
+      "period": "2015.05.01~2015.05.01"
+    },
+    {
+      "title": "풍력터빈 와류 구조 가시화를 위한 vortex identification 기법 비교",
+      "conference": "2015 한국가시화정보학회 춘계학술대회",
+      "period": "2015.05.01~2015.05.01"
+    },
+    {
+      "title": "대규모 풍력단지의 반류 가시화 및 분석; Stable boundary layer에서의 영향 연구",
+      "conference": "2015 한국가시화정보학회 춘계학술대회",
+      "period": "2015.05.01~2015.05.01"
+    },
+    {
+      "title": "나노스케일에서의 그래핀과 결정질 실리콘 팁 사이 마찰패턴의 계층구조에 대한 연구",
+      "conference": "2015 한국생산제조시스템학회 춘계학술대회",
+      "period": "2015.04.28~2015.04.30"
+    },
+    {
+      "title": "Photophlethysmogram진단기법을 위한 협착 혈관에서의 혈압 반사파 분석",
+      "conference": "2015 한국생산제조시스템학회 춘계학술대회",
+      "period": "2015.04.28~2015.04.30"
+    },
+    {
+      "title": "습윤성 패턴 최적화를 통한 풀비등의 임계열속 및 열전달률 개선",
+      "conference": "제 5회 나노 임프린트 몰딩 프린트 학술대회",
+      "period": "2016.05.17~2016.05.17"
+    },
+    {
+      "title": "표면젖음성이 버블역학과 대류열전달에 미치는 영향에 대한 연구",
+      "conference": "제 5회 나노 임프린트 몰딩 프린트 학술대회",
+      "period": "2016.05.17~2016.05.17"
+    },
+    {
+      "title": "피커링 에멀전에서 계면 나노입자분포와 비등방성 융합 액적에 대한 연구",
+      "conference": "제 5회 나노 임프린트 몰딩 프린트 학술대회",
+      "period": "2016.05.17~2016.05.17"
+    },
+    {
+      "title": "대규모 풍력단지의 난류 특성 연구; 모수화, 환경적 영향 평가",
+      "conference": "제 8 회 한국유체공학학술대회",
+      "period": "2016.02.19~2016.02.19"
+    },
+    {
+      "title": "Boiling heat transfer using patterned wettability with CHF avoiding technology",
+      "conference": "ASME 2015 International Mechanical Engineering Congress & Exposition",
+      "period": "2015.11.17~2015.11.23"
+    },
+    {
+      "title": "Fabrication of a large-area hierarchical superhydrophobic metal surface with anti-icing properties",
+      "conference": "The 14th International Conference on Nanoimprint and Nanoprint",
+      "period": "2015.10.22~2015.10.24"
+    },
+    {
+      "title": "표면 젖음성 정도에 따른 버블역학의 대류열전달에 대한 영향 분석",
+      "conference": "한국생산제조시스템학회 추계학술대회",
+      "period": "2015.10.15~2015.10.16"
+    },
+    {
+      "title": "3차원 격자 볼츠만 잠입 경계 기법을 이용한 변형 가능한 입자들의 유변학적 특징 연구",
+      "conference": "한국생산제조시스템학회 추계학술대회",
+      "period": "2015.10.15~2015.10.16"
+    },
+    {
+      "title": "협착증 분석용 1D 모델링 기반 혈류역학 전산모사",
+      "conference": "한국생산제조시스템학회 추계학술대회",
+      "period": "2015.10.15~2015.10.16"
+    },
+    {
+      "title": "Rheological behavior of elastic particle suspensions:effect of shear rate, volume fraction, and particle size",
+      "conference": "ASME-JSME-KSME Joint Fluids Engineering Conference 2015",
+      "period": "2015.07.26~2015.07.30"
+    },
+    {
+      "title": "Molecular dynamics study of the hierarchical structure of nanoscale stick and slip motion",
+      "conference": "Nano Korea 2015 Symposium",
+      "period": "2015.07.01~2015.07.05"
+    },
+    {
+      "title": "Molecular dynamics study of the measurement of the nanoroughness of water surface using a graphene monolayer",
+      "conference": "Nano Korea 2015 Symposium",
+      "period": "2015.07.01~2015.07.04"
+    },
+    {
+      "title": "Analysis of emulsion elasticity under oscillatroy shear stresses",
+      "conference": "15th International Congress of Biorheology, 8th international conference on clinical hemorheology",
+      "period": "2015.05.24~2015.05.28"
+    },
+    {
+      "title": "Lattice Boltzmann-immersed Boundary Approach for Vesicle Motion and Trajectory in Bifucated Vessel",
+      "conference": "15th International Congress of Biorheology, 8th international conference on clinical hemorheology",
+      "period": "2015.05.24~2015.05.28"
+    },
+    {
+      "title": "Analysis of blood pressure waves in a stenosis by CFD",
+      "conference": "15th International Congress of Biorheology, 8th international conference on clinical hemorheology",
+      "period": "2015.05.24~2015.05.28"
+    },
+    {
+      "title": "대면적 초소수성 금속 표면의 성형 및 결빙 특성고찰",
+      "conference": "2015년도 한국소성가공학회 춘계학술대회",
+      "period": "2015.05.21~2015.05.22"
+    },
+    {
+      "title": "표면의 소수성이 결빙 형성 및 성장에 미치는 영향에 대한 연구",
+      "conference": "2015년도 (사)정보저장시스템학회 학술대회",
+      "period": "2015.02.26~2015.02.26"
+    },
+    {
+      "title": "Analysis of blood flow wave by computational method with impedane boundary condition",
+      "conference": "순환기의공학회",
+      "period": "2014.12.13~2014.12.13"
+    },
+    {
+      "title": "Study of Transporting of Droplets on Heterogeneous Surface Structure using the Lattice Boltzmann Approach",
+      "conference": "ASME 2014 International Mechanical Engineering Congress & Exposition",
+      "period": "2014.11.14~2014.11.21"
+    },
+    {
+      "title": "Diagnosis of femoral artery stenosis by impedance boundary condition",
+      "conference": "2014년도 대한기계학회 추계학술대회",
+      "period": "2014.11.11~2014.11.15"
+    },
+    {
+      "title": "수중익형 표면의 성질에 따른 구름공동현상 연구",
+      "conference": "2014년도 대한기계학회 추계학술대회",
+      "period": "2014.11.11~2014.11.15"
+    },
+    {
+      "title": "전단 유동에서 온도, 전단속도, 계면활성제 농도 변화에 따른 에멀전의 유변학적 특성",
+      "conference": "2014년도 대한기계학회 추계학술대회",
+      "period": "2014.11.11~2014.11.15"
+    },
+    {
+      "title": "Wake analysis of a large wind farm and its environmental impact",
+      "conference": "the 10th Asian Computational Fluid Dynamics Conference",
+      "period": "2014.10.19~2014.10.22"
+    },
+    {
+      "title": "Fabrication of signal amplified microfluidic paper-based analytical device(u-PAD) for confinement of the fluidic flow using wax printer",
+      "conference": "ICB 2014",
+      "period": "2014.09.28~2014.10.01"
+    },
+    {
+      "title": "Analysis of Blood Flow with Artificial Stenosis vessel by ABF-LBM and Impedance Boundary Condition",
+      "conference": "제 8 회 한국유체공학학술대회",
+      "period": "2014.08.27~2014.08.27"
+    },
+    {
+      "title": "Study of Transporting of Droplets on Heterogeneous Surface Structure using the Lattice Boltzmann Approach",
+      "conference": "제 8 회 한국유체공학학술대회",
+      "period": "2014.08.27~2014.08.27"
+    },
+    {
+      "title": "액적의 계면 물성과 에멀전 유변학적 특성 간의 상관관계에 대한 멀티스케일적 접근",
+      "conference": "제 8 회 한국유체공학학술대회",
+      "period": "2014.08.27~2014.08.27"
+    },
+    {
+      "title": "분자동역학을 이용한 액체 표면 위를 부유하는 그래핀의 거칠기에 대한 연구",
+      "conference": "제 8 회 한국유체공학학술대회",
+      "period": "2014.08.27~2014.08.27"
+    },
+    {
+      "title": "Static Droplet Simulation on Hierarchically Structured Surface",
+      "conference": "The 7th Asia-Pacific Conference on Transducers and Micro/Nano",
+      "period": "2014.06.29~2014.07.02"
+    },
+    {
+      "title": "The interfacial Nano-Roughness of Droplets and its Rheological Effects on micro-Emulsion",
+      "conference": "The 7th Asia-Pacific Conference on Transducers and Micro/Nano",
+      "period": "2014.06.29~2014.07.02"
+    },
+    {
+      "title": "The optimization of the pre-enhanced mixing device for the herringbone-grooved microchannel",
+      "conference": "Advances in Mirofluidics & Nanofluidics 2014",
+      "period": "2014.05.21~2014.05.24"
+    },
+    {
+      "title": "Multi-scale Approach for Relative Viscosity of Micro-emulsions using Molecular Dynamics and lattice Boltzmann Method",
+      "conference": "Advances in Mirofluidics & Nanofluidics 2014",
+      "period": "2014.05.21~2014.05.24"
+    },
+    {
+      "title": "Fluid Interfacial nanoroughness Measurement through the Morphological Characteristics of Graphene",
+      "conference": "Advances in Mirofluidics & Nanofluidics 2014",
+      "period": "2014.05.21~2014.05.24"
+    },
+    {
+      "title": "대규모 풍력단지의 낙류특성연구; 모수화, 환경으로의 영향 연구",
+      "conference": "한국 기상학회 - 대기역학, 물리분과",
+      "period": "2014.05.08~2014.05.08"
+    },
+    {
+      "title": "온도와 에멀전 시스템의 상대점도 간의 상관관계에 대한 멀티스케일적 접근",
+      "conference": "2014 한국생산제조시스템학회 춘계학술대회",
+      "period": "2014.04.28~2014.04.28"
+    },
+    {
+      "title": "분자동역학을 이용한 그래핀과 물표면 기계적 물성치의 상관관계에 대한 연구",
+      "conference": "2014 한국생산제조시스템학회 춘계학술대회",
+      "period": "2014.04.28~2014.04.28"
+    },
+    {
+      "title": "대규모 풍력단지의 반류 가시화 및 분석; 환경으로의 영향 연구",
+      "conference": "한국 가시화 학회",
+      "period": "2014.04.25~2014.04.25"
+    },
+    {
+      "title": "study for the friction of graphene flakes in rotational motion using molecular dynamics",
+      "conference": "제 3회 나노 임프린트 몰딩 프린트 학술대회",
+      "period": "2014.02.13~2014.02.13"
+    },
+    {
+      "title": "Organizer and Chiar",
+      "conference": "ASME International Mechanical Engineering Congress & Exposition",
+      "period": "2013.11.15~2013.11.21"
+    },
+    {
+      "title": "Medical Image Conversion and Fractional Flow Reserve Simulation Using Lattice Boltzmann Method",
+      "conference": "The 7th Asian Pacific Conference on Biomechanics (APCB2013)",
+      "period": "2013.08.29~2013.08.31"
+    },
+    {
+      "title": "Coupled Multidomain Method Applied as the Boundary Condition for the LBM-Based Modeling of Stenosed Blood Vessel",
+      "conference": "The 7th Asian Pacific Conference on Biomechanics (APCB2013)",
+      "period": "2013.08.29~2013.08.31"
+    },
+    {
+      "title": "Chair",
+      "conference": "The 7th Asian Pacific Conference on Biomechanics (APCB2013)",
+      "period": "2013.08.29~2013.08.31"
+    },
+    {
+      "title": "Study of Transporting of Droplets on Heterogeneous Surface Structure Using the Lattice Boltzmann Approach",
+      "conference": "The Asian Symposium on Computational Heat Transfer and Fluid Flow",
+      "period": "2013.06.03~2013.06.06"
+    },
+    {
+      "title": "Study of Microfluidic Systems for Investigating Path Selection of Soft Matter",
+      "conference": "The Asian Symposium on Computational Heat Transfer and Fluid Flow",
+      "period": "2013.06.03~2013.06.06"
+    },
+    {
+      "title": "Study of Transporting of Droplets on Heterogeneous Surface Structure Using the Lattice Boltzmann Approach",
+      "conference": "The 4th Asian Symposium on Computational Heat Transfer and Fluid Flow",
+      "period": "2013.06.03~2013.06.06"
+    },
+    {
+      "title": "마이크로 시스템 내에서 광력을 이용한 미세액적의 능동적 제어",
+      "conference": "2013년 한국생산제조 시스템학회 춘계학술대회",
+      "period": "2013.04.24~2013.04.25"
+    },
+    {
+      "title": "혼합 시료 내 특정 세포 분리를 위한 헤링본 형상의 미세유체 채널 설계 최적화",
+      "conference": "2013년 한국생산제조 시스템학회 춘계학술대회",
+      "period": "2013.04.24~2013.04.25"
+    },
+    {
+      "title": "마이크로터빈의 표면처리를 통한 캐비테이션 소음저감의 수치적 연구",
+      "conference": "한국생산제조시스템학회",
+      "period": "2013.04.24~2013.04.25"
+    },
+    {
+      "title": "분자동역학을 이용한 그라핀의 회전마찰 특성에 대한 연구",
+      "conference": "2013년 한국생산제조 시스템학회 춘계학술대회",
+      "period": "2013.04.24~2013.04.25"
+    },
+    {
+      "title": "A Lattice Boltzmann Approach for Directional Transporting of Droplets Using Heterogeneous Surface Roughness",
+      "conference": "ASME International Mechanical Engineering Congress & Exposition",
+      "period": "2012.11.09~2012.11.15"
+    },
+    {
+      "title": "SIMULATION OF MICROFLUIDIC SYSTEMS FOR INVESTIGATING PATH SELECTION OF A BUBBLE",
+      "conference": "International Symposium on Fluid Machinery and Fluids Engineering",
+      "period": "2012.10.24~2012.10.27"
+    },
+    {
+      "title": "STUDY OF DRIVING FORCE OF DIRECTIONAL TRANSPORTING OF DROPLETS ON HETEROGENEOUS SURFACE STRUCTURE USING THE LATTICE BOLTZMANN APPROACH",
+      "conference": "International Symposium on Fluid Machinery and Fluids Engineering",
+      "period": "2012.10.24~2012.10.27"
+    },
+    {
+      "title": "Study of transporting of droplets on geterogeneous surface structure using the lattice Boltzmann approach",
+      "conference": "International conference of manufacturing technology engineers",
+      "period": "2012.10.18~2012.10.20"
+    },
+    {
+      "title": "Study of transporting of droplets on geterogeneous surface structure using the lattice Boltzmann approach",
+      "conference": "International conference of manufacturing technology engineers",
+      "period": "2012.10.18~2012.10.20"
+    },
+    {
+      "title": "외력에 따른 액체미립자의 변형과 계면활성제 국부적 농도분포변화에 관한 수치적 연구",
+      "conference": "2012년 액체미립화 학회 학술 강연회",
+      "period": "2012.09.20~2012.09.21"
+    },
+    {
+      "title": "군 전자장비 냉각을 위한 마이크로채널 내의 나노유체 수치적 연구",
+      "conference": "2012년 군사과학기술학회 종합학술대회",
+      "period": "2012.06.07~2012.06.08"
+    },
+    {
+      "title": "다상 격자 볼츠만 기법을 이용한 계층적 표면 미세구조에 따른 기계 표면의 발수성 향상 시뮬레이션",
+      "conference": "2012년 군사과학기술학회 종합학술대회",
+      "period": "2012.06.07~2012.06.08"
+    },
+    {
+      "title": "다상/고밀도비 격자 볼츠만 기법을 이용한 불 균일 미세표면구조에 의한 액적 이송 모델링",
+      "conference": "2012년도 한국전산유체공학회 춘계학술대회",
+      "period": "2012.05.24~2012.05.25"
+    },
+    {
+      "title": "다상/고밀도비 격자 볼츠만기법을 이용한 불균일 미세 표면 구조의 부분-습윤성 조절 모델링",
+      "conference": "제 14회 한국 MEMS 학술대회",
+      "period": "2012.04.05~2012.04.07"
+    },
+    {
+      "title": "격자 볼츠만 잠입 경계 기법을 이용한 마이크로 로봇 제어 수치해석",
+      "conference": "제 14회 한국 MEMS 학술대회",
+      "period": "2012.04.06~2012.04.07"
+    },
+    {
+      "title": "분자동역학을 이용한 graphene layer 간의 상호작용에 대한 연구",
+      "conference": "제 14회 한국 MEMS 학술대회",
+      "period": "2012.04.05~2012.04.07"
+    },
+    {
+      "title": "Numerial Simulation of Thrust of Micro Robot using the Lattice Boltzmann Immersed Boundary Method",
+      "conference": "Thermal and Fluids Engineering Conference",
+      "period": "2012.03.18~2012.03.22"
+    },
+    {
+      "title": "Cooling Performance of 3 Dimensional Non-Newtonian Flow in Micro-Channel by Lattice Boltzmann Method",
+      "conference": "Thermal and Fluids Engineering Conference",
+      "period": "2012.03.18~2012.03.22"
+    }
+  ],
+  "fundings": [
+    {
+      "title": "[7차년도]사회지향 기계기술 글로벌 리더 양성 교육연구단",
+      "org": "한국연구재단",
+      "period": "2026-03-01~2027-02-28"
+    },
+    {
+      "title": "[서울대학교 병원/위탁] Pierre Robin Sequence 환아의 디지털 기반 비침습 정밀치료 프로토콜 개발(1/2)",
+      "org": "교육부",
+      "period": "2026-01-01~2026-12-31"
+    },
+    {
+      "title": "CT 영상 기반 실시간 4차원 혈류유동 시각화 기술 개발 (4D CT-FFR)",
+      "org": "한국보건산업진흥원",
+      "period": "2026-01-01~2026-12-31"
+    },
+    {
+      "title": "[AI혁신연구원]고전-양자 하이브리드 AI와 양자 클러스터링을 이용한 단일세포 기반 초고차원 데이터 분석 기술의 개발 및 검증",
+      "org": "연세대학교",
+      "period": "2025-11-24~2026-11-23"
+    },
+    {
+      "title": "[6차년도] 사회지향 기계기술 글로벌 리더 양성 교육연구단",
+      "org": "한국연구재단",
+      "period": "2025-03-01~2026-02-28"
+    },
+    {
+      "title": "[IRIS]CT 영상 기반 실시간 4차원 혈류유동 시각화 기술 개발 (4D CT-FFR)",
+      "org": "한국보건산업진흥원",
+      "period": "2025-01-01~2025-12-31"
+    },
+    {
+      "title": "[국방기술진흥연구소/국방벤처 혁신기술 지원사업/위탁] 나노구조 기반 전천후 시야확보용 필름 기술(3/3)",
+      "org": "국방기술진흥연구소",
+      "period": "2024-12-15~2025-12-14"
+    },
+    {
+      "title": "[YFL 포닥] 무하마드 내쉬 배쉬어 Effect of Co2S3 and ZnS on dendrite growth in lithium metal anode batteries (2)",
+      "org": "연세대학교",
+      "period": "2024-08-21~2025-08-20"
+    },
+    {
+      "title": "[IRIS]CT 영상 기반 실시간 4차원 혈류유동 시각화 기술 개발 (4D CT-FFR)",
+      "org": "한국보건산업진흥원",
+      "period": "2024-04-01~2024-12-31"
+    },
+    {
+      "title": "(통합Ezbaro)리튬-황 배터리 내 전주기/다중 스케일 이온 거동 메커니즘 규명(3/3)(2022.9.1~2025.2.28)",
+      "org": "한국연구재단",
+      "period": "2024-03-01~2025-02-28"
+    },
+    {
+      "title": "[5차년도] 사회지향 기계기술 글로벌 리더 양성 교육연구단",
+      "org": "한국연구재단",
+      "period": "2024-03-01~2025-02-28"
+    },
+    {
+      "title": "[통합이지바로/범부처/공동]3D심장프린팅 및 4D-CFD시뮬레이션을 활용한 환자맞춤 인체삽입형 삼첨판막 역류증 치료기술 및 치료기기 개발(2/2단계)(2/2)",
+      "org": "범부처",
+      "period": "2024-01-01~2025-12-31"
+    },
+    {
+      "title": "호흡기 차단을 위한 가변형 음압 터널의 개발",
+      "org": "한국보건산업진흥원",
+      "period": "2024-01-01~2024-12-31"
+    },
+    {
+      "title": "[국방기술진흥연구소/국방벤처 혁신기술 지원사업/위탁] 나노구조 기반 전천후 시야확보용 필름 기술(2/3)",
+      "org": "국방기술진흥연구소",
+      "period": "2023-12-15~2024-12-15"
+    },
+    {
+      "title": "[YFL 포닥] 무하마드 내쉬 배쉬어 Effect of Co2S3 and ZnS on dendrite growth in lithium metal anode batteries",
+      "org": "연세대학교",
+      "period": "2023-08-21~2024-08-20"
+    },
+    {
+      "title": "[어깨동무사업3차]경남권 빌딩풍 환경 유동 인자를 고려한 인공지능 기반 Building Profile 개발 연구",
+      "org": "연세대학교",
+      "period": "2023-04-21~2024-01-31"
+    },
+    {
+      "title": "[민간/현대엔지비] 현대자동차그룹 10기 계약학과 운영",
+      "org": "국내",
+      "period": "2023-03-02~2027-02-28"
+    },
+    {
+      "title": "(통합Ezbaro)리튬-황 배터리 내 전주기/다중 스케일 이온 거동 메커니즘 규명(2/3)(2022.9.1~2025.2.28)",
+      "org": "한국연구재단",
+      "period": "2023-03-01~2024-02-29"
+    },
+    {
+      "title": "[4차년도] 사회지향 기계기술 글로벌 리더 양성 교육연구단",
+      "org": "한국연구재단",
+      "period": "2023-03-01~2024-02-29"
+    },
+    {
+      "title": "[통합이지바로/범부처/공동]3D심장프린팅 및 4D-CFD시뮬레이션을 활용한 환자맞춤 인체삽입형 삼첨판막 역류증 치료기술 및 치료기기 개발(2/2단계)(1/2)",
+      "org": "범부처",
+      "period": "2023-01-01~2023-12-31"
+    },
+    {
+      "title": "2023년도 국산의료기기 교육·훈련 지원센터",
+      "org": "한국보건산업진흥원",
+      "period": "2023-01-01~2023-12-31"
+    },
+    {
+      "title": "호흡기 차단을 위한 가변형 음압 터널의 개발",
+      "org": "한국보건산업진흥원",
+      "period": "2023-01-01~2023-12-31"
+    },
+    {
+      "title": "[국방기술진흥연구소/국방벤처 혁신기술 지원사업/위탁] 나노구조 기반 전천후 시야확보용 필름 기술(1/3)",
+      "org": "국방기술진흥연구소",
+      "period": "2022-12-15~2023-12-14"
+    },
+    {
+      "title": "[민간/지티에이컴] 비침습식 커프리스 혈압, 전당뇨, 탈수 측정 개발",
+      "org": "국내",
+      "period": "2022-12-01~2024-11-30"
+    },
+    {
+      "title": "[민간/서울에스앤유 비뇨의학과의원] 기부금",
+      "org": "국내",
+      "period": "2022-09-28~2022-12-31"
+    },
+    {
+      "title": "[민간/삼성디스플레이]격자 볼츠만 기법을 이용한 잉크젯 프린팅의 액적 및 비정형입자 거동 예측 기술 개발",
+      "org": "국내",
+      "period": "2022-09-01~2023-08-31"
+    },
+    {
+      "title": "(통합Ezbaro)리튬-황 배터리 내 전주기/다중 스케일 이온 거동 메커니즘 규명(1/3)(2022.9.1~2025.2.28)",
+      "org": "한국연구재단",
+      "period": "2022-09-01~2023-02-28"
+    },
+    {
+      "title": "[RCMS](주)라온메디/인공지능을 활용한 폐쇄성 수면무호흡증 진단(1/1)",
+      "org": "한국산업기술진흥원",
+      "period": "2022-06-01~2022-07-31"
+    },
+    {
+      "title": "[민간/현대엔지비] 커넥터 수분 유입 방지 사출 기술",
+      "org": "국내",
+      "period": "2022-06-01~2023-12-31"
+    },
+    {
+      "title": "[어깨동무사업2차]경남권 빌딩풍 환경 유동 인자를 고려한 인공지능 기반 Building Profile 개발 연구",
+      "org": "연세대학교",
+      "period": "2022-05-01~2023-01-31"
+    },
+    {
+      "title": "[민간/삼성전자(주)] 가전용 금속 응결방지/방오/자가세정 기능성 표면 기술 개발 (연세대학교초정밀광기계기술연구센터-삼성전자 집단산학협력연구)",
+      "org": "국내",
+      "period": "2022-04-22~2024-03-31"
+    },
+    {
+      "title": "호흡기 차단을 위한 가변형 음압 터널의 개발",
+      "org": "한국보건산업진흥원",
+      "period": "2022-04-01~2022-12-31"
+    },
+    {
+      "title": "[통합이지바로/범부처/공동]3D심장프린팅 및 4D-CFD시뮬레이션을 활용한 환자맞춤 인체삽입형 삼첨판막 역류증 치료기술 및 치료기기 개발(1/2단계)(3/3)",
+      "org": "범부처",
+      "period": "2022-03-01~2022-12-31"
+    },
+    {
+      "title": "[3차년도] 사회지향 기계기술 글로벌 리더 양성 교육연구단",
+      "org": "한국연구재단",
+      "period": "2022-03-01~2023-02-28"
+    },
+    {
+      "title": "2022년도 국산의료기기 교육 훈련 지원센터",
+      "org": "한국보건산업진흥원",
+      "period": "2022-01-01~2022-12-31"
+    },
+    {
+      "title": "[민간/삼성디스플레이] 격자 볼츠만 기법을 활용한 잉크젯 프린팅의 액적 및 비정형 입자 거동 예측 기술 개발",
+      "org": "국내",
+      "period": "2021-09-01~2022-08-31"
+    },
+    {
+      "title": "[어깨동무사업] 경남권 빌딩풍 환경 유동 인자를 고려한 인공지능 기반 Building Profile 개발 연구",
+      "org": "연세대학교",
+      "period": "2021-06-07~2022-02-28"
+    },
+    {
+      "title": "[대형사업운영지원비](2021-11-0265/2021-11-0266) 초정밀 광기계기술연구센터",
+      "org": "연세대학교",
+      "period": "2021-03-01~2023-02-28"
+    },
+    {
+      "title": "[통합이지바로/범부처/공동]3D심장프린팅 및 4D-CFD시뮬레이션을 활용한 환자맞춤 인체삽입형 삼첨판막 역류증 치료기술 및 치료기기 개발(1/2단계)(2/3)",
+      "org": "범부처",
+      "period": "2021-03-01~2022-02-28"
+    },
+    {
+      "title": "[통합이지바로](비과세)초정밀 광 기계기술 연구센터(2단계,3/3)(2019.03.01.~2022.02. 28.)",
+      "org": "한국연구재단",
+      "period": "2021-03-01~2022-02-28"
+    },
+    {
+      "title": "[포닥]이준상(김영우)-전산유체기법과 인공지능을 활용한 삼첨판막 질환 진단",
+      "org": "연세대학교",
+      "period": "2021-03-01~2022-02-28"
+    },
+    {
+      "title": "[민간/라온피플 주식회사] 환자의 상부기도 CBCT 영상을 이용한 수면무호흡 진단 및 심각도 판별 소프트웨어",
+      "org": "국내",
+      "period": "2021-03-01~2026-03-20"
+    },
+    {
+      "title": "[2차년도] 사회지향 기계기술 글로벌 리더 양성 교육연구단",
+      "org": "한국연구재단",
+      "period": "2021-03-01~2022-02-28"
+    },
+    {
+      "title": "[민간/한국조선해양] 수상함 적외선 스텔스 해석 기술 개발(2차년도)",
+      "org": "국내",
+      "period": "2021-02-01~2022-03-31"
+    },
+    {
+      "title": "(이나라도움)2021년도 국산의료기기 교육훈련 지원센터",
+      "org": "한국보건산업진흥원",
+      "period": "2021-01-01~2021-12-31"
+    },
+    {
+      "title": "[통합이지바로] (2세부)심혈관 질환 진단-치료 의료현장용 고속 FFR simulator 개발 (2/2단계)(2/2)",
+      "org": "한국연구재단",
+      "period": "2021-01-01~2022-05-31"
+    },
+    {
+      "title": "[민간/이에이트 주식회사] 혈류유동 및 생체정보를 활용한 차세대 심혈관질병 진단기기 실용화",
+      "org": "국내",
+      "period": "2020-11-09~2022-02-28"
+    },
+    {
+      "title": "[민간/국도화학 주식회사] Epoxy 및 ACF 생산 관련 모니터링 및 해석기술 개발",
+      "org": "국내",
+      "period": "2020-11-01~2021-10-31"
+    },
+    {
+      "title": "2020년도 국산의료기기 교육·훈련 지원센터 사업",
+      "org": "보건복지부",
+      "period": "2020-09-25~2020-12-31"
+    },
+    {
+      "title": "[통합이지바로](2세부) 3D심장프린팅 및 4D-CFD시뮬레이션을 활용한 환자맞춤 인체삽입형 삼첨판막 역류증 치료기술 및 치료기기 개발(1/2단계)(1/3)",
+      "org": "범부처",
+      "period": "2020-09-01~2021-02-28"
+    },
+    {
+      "title": "[1차년도] 사회지향 기계기술 글로벌 리더 양성 교육연구단",
+      "org": "한국연구재단",
+      "period": "2020-09-01~2021-02-28"
+    },
+    {
+      "title": "[RCMS]생분해성 및 자성을 지닌 생체 유동관 내 다상 임플란트(1/1)",
+      "org": "한국산업기술평가관리원",
+      "period": "2020-09-01~2021-04-30"
+    },
+    {
+      "title": "[민간/삼성디스플레이]격자 볼츠만 기법을 활용한 잉크젯 프린팅의 액적 및 비정형 입자 거동 예측 기술 개발",
+      "org": "국내",
+      "period": "2020-09-01~2021-08-31"
+    },
+    {
+      "title": "(통합Ezbaro)[선도연구센터/ERC]초정밀 광 기계기술 연구센터(2/3,2단계)(2019.3.1~2022.2.28)",
+      "org": "한국연구재단",
+      "period": "2020-03-01~2021-02-28"
+    },
+    {
+      "title": "[8차년도]사회지향 기계기술 글로벌 리더 양성 사업단",
+      "org": "한국연구재단",
+      "period": "2020-03-01~2020-08-31"
+    },
+    {
+      "title": "[민간/이에이트(주)]LBM(Lattice Boltzman Method) 기반의 바이오 혈류 시뮬레이터 개발",
+      "org": "국내",
+      "period": "2020-02-10~2021-05-31"
+    },
+    {
+      "title": "[통합이지바로] (2세부)심혈관 질환 진단-치료 의료현장용 고속 FFR simulator 개발 (2/2단계)(1/3)",
+      "org": "한국연구재단",
+      "period": "2020-02-01~2020-12-31"
+    },
+    {
+      "title": "[민간/현대엔지비] 다공 구조 내 이상유동 예측을 위한 격자 볼츠만 기법 개발",
+      "org": "국내",
+      "period": "2019-12-15~2021-06-14"
+    },
+    {
+      "title": "[공동/한국건설기술연구원] 재난 환경유동인자를 고려한 인공지능 기반 Building Profile 개발 기획연구(1/3)",
+      "org": "한국건설기술연구원",
+      "period": "2019-11-15~2019-12-31"
+    },
+    {
+      "title": "[공동/한국건설기술연구원] 열성능 저하된 건축물 외피의 열화상 이미지 생성 및 기계학습모델 개발에 관한 기초 연구(1/3)",
+      "org": "한국건설기술연구원",
+      "period": "2019-11-15~2019-12-31"
+    },
+    {
+      "title": "[민간/현대엔지비] 고압주조 금형 냉각 최적화 이론 연구",
+      "org": "국내",
+      "period": "2019-05-01~2022-05-31"
+    },
+    {
+      "title": "[Ezbaro] (2세부)심혈관 질환 진단-치료 의료현장용 고속 FFR simulator 개발 (1/2단계)(3/3)",
+      "org": "한국연구재단",
+      "period": "2019-04-01~2020-01-31"
+    },
+    {
+      "title": "[RCMS]창의공학리더 양성사업(8/10)(2012.03.~2022.02.)",
+      "org": "한국산업기술진흥원",
+      "period": "2019-03-01~2020-02-29"
+    },
+    {
+      "title": "[선도연구센터/ERC]초정밀 광 기계기술 연구센터(1/3,2단계)(2019.3.1~2022.2.28)",
+      "org": "한국연구재단",
+      "period": "2019-03-01~2020-02-29"
+    },
+    {
+      "title": "[7차년도]사회지향 기계기술 글로벌 리더 양성 사업단",
+      "org": "한국연구재단",
+      "period": "2019-03-01~2020-02-29"
+    },
+    {
+      "title": "[민간/오스템임플란트(주)]&apos;Ready-Made Custom Abutment 시스템 개발&apos;에 관한 연구",
+      "org": "국내",
+      "period": "2018-12-17~2020-04-15"
+    },
+    {
+      "title": "ICT를 이용한 통합야뇨진단솔루션 및 개인맞춤형 야뇨치료",
+      "org": "한국과학창의재단",
+      "period": "2018-06-12~2018-12-21"
+    },
+    {
+      "title": "[Ezbaro] (2세부)심혈관 질환 진단-치료 의료현장용 고속 FFR simulator 개발 (1/2단계)(2/3)",
+      "org": "한국연구재단",
+      "period": "2018-06-01~2019-03-31"
+    },
+    {
+      "title": "[RCMS]창의공학리더 양성사업(7/10)(2012.03.~2022.02.)",
+      "org": "한국산업기술진흥원",
+      "period": "2018-03-01~2019-02-28"
+    },
+    {
+      "title": "[선도연구센터/ERC]초정밀 광 기계기술 연구센터(4/4,1단계)(2015.8.1~2019.2.28)",
+      "org": "한국연구재단",
+      "period": "2018-03-01~2019-02-28"
+    },
+    {
+      "title": "[6차년도]사회지향 기계기술 글로벌 리더 양성 사업단",
+      "org": "한국연구재단",
+      "period": "2018-03-01~2019-02-28"
+    },
+    {
+      "title": "삼성전자/반도체 설비/공정에서의 Nano/Micro-scale 유동시뮬레이션 분야 기술자문",
+      "org": "국내",
+      "period": "2018-02-20~2019-08-31"
+    },
+    {
+      "title": "[Ezbaro](2세부)심혈관 질환 진단-치료 의료현장용 고속 FFR simulator 개발(1/2단계)(1/3연차)",
+      "org": "한국연구재단",
+      "period": "2017-09-01~2018-05-31"
+    },
+    {
+      "title": "[민간/LG디스플레이] 초정밀 기계기술을 활용한 OLED Module의 Panel 온도 개선",
+      "org": "국내",
+      "period": "2017-06-01~2018-12-31"
+    },
+    {
+      "title": "[선도연구센터/ERC]초정밀 광 기계기술 연구센터(3/4,1단계,2015.08.01~2019.02.28)",
+      "org": "한국연구재단",
+      "period": "2017-03-01~2018-02-28"
+    },
+    {
+      "title": "[RCMS]창의공학리더 양성사업(6/10)(2012.03.~2022.02.)",
+      "org": "한국산업기술진흥원",
+      "period": "2017-03-01~2018-02-28"
+    },
+    {
+      "title": "[시드니] Cooperative Research in Multi-scale Analysis of Rheological Property of Blood Cell",
+      "org": "연세대학교",
+      "period": "2017-03-01~2018-02-28"
+    },
+    {
+      "title": "[5차년도]사회지향 기계기술 글로벌 리더 양성 사업단",
+      "org": "한국연구재단",
+      "period": "2017-03-01~2018-02-28"
+    },
+    {
+      "title": "삼성전자/반도체 설비/공정에서의 유동 시뮬레이션 분야 기술 자문",
+      "org": "국내",
+      "period": "2017-01-23~2018-03-31"
+    },
+    {
+      "title": "[RCMS]주민 수용성 향상을 위한 양력발생 디스크 방식의 풍력발전 시스템 개발(2/3)",
+      "org": "한국에너지기술평가원",
+      "period": "2017-01-01~2017-12-31"
+    },
+    {
+      "title": "유변학적 원리를 이용한 주변 유체와 능동적 상호작용을 하는 연성고체의 기계적 물성치 측정 시스템 개발(2/2)(2015.11.1~2017.10.31)",
+      "org": "한국연구재단",
+      "period": "2016-11-01~2017-10-31"
+    },
+    {
+      "title": "퀄컴/미래 통신 및 융합 기술에 관한 연구",
+      "org": "국외",
+      "period": "2016-09-01~2023-08-31"
+    },
+    {
+      "title": "[RCMS]주민 수용성 향상을 위한 양력발생 디스크 방식의 풍력발전 시스템 개발(1/3)",
+      "org": "한국에너지기술평가원",
+      "period": "2016-05-01~2016-12-31"
+    },
+    {
+      "title": "현대엔지비/플라스틱 소재 적용에 따른 볼트/너트 형상 및 성형성 해석 연구",
+      "org": "국내",
+      "period": "2016-04-01~2017-12-31"
+    },
+    {
+      "title": "삼성전자/Nano-scale 유동해석 방법론 개발",
+      "org": "국내",
+      "period": "2016-03-10~2021-08-31"
+    },
+    {
+      "title": "(4차년도) 사회지향 기계기술 글로벌 리더 양성 사업단",
+      "org": "한국연구재단",
+      "period": "2016-03-01~2017-02-28"
+    },
+    {
+      "title": "초정밀 광 기계기술 연구센터(2/4,1단계, 2015.08.01 ~ 2019.02.28)",
+      "org": "한국연구재단",
+      "period": "2016-03-01~2017-02-28"
+    },
+    {
+      "title": "환자맞춤식 심혈관 진단분석용 콘텐츠 개발을 위한 혈액 및 혈류 멀티 스케일 모델링 기술 연구",
+      "org": "국내",
+      "period": "2016-01-29~2021-08-31"
+    },
+    {
+      "title": "유변학적 원리를 이용한 주변 유체와 능동적 상호작용을 하는 연성고체의 기계적 물성치 측정 시스템 개발(1/2)(2015.11.1~2017.10.31)",
+      "org": "한국연구재단",
+      "period": "2015-11-01~2016-10-31"
+    },
+    {
+      "title": "(과제분리)LG전자 / 모바일 디바이스를 이용한 혈압 및 혈관나이 측정 기술개발",
+      "org": "국내",
+      "period": "2015-09-01~2021-08-31"
+    },
+    {
+      "title": "기하학적 형상 최적설계를 통해 열전달을 증대하는 건식 삼각형 변압기의 설계 및 제작",
+      "org": "중소기업청",
+      "period": "2015-06-01~2016-05-31"
+    },
+    {
+      "title": "에멀션의 유변학적 특성파악을 위한 계면상 나노 주름의 능동적 제어(3/3)",
+      "org": "한국연구재단",
+      "period": "2015-06-01~2016-05-31"
+    },
+    {
+      "title": "(분리-세부)현대엔지비주식회사/플라스틱 역량 강화를 위한 공동연구실-플라스틱 사출금형 냉각 해석",
+      "org": "국내",
+      "period": "2015-03-01~2020-06-30"
+    },
+    {
+      "title": "(분리-세부)현대엔지비주식회사/플라스틱 역량 강화를 위한 공동연구실-강화재에 따른 금형 수축율 예측 및 평가",
+      "org": "국내",
+      "period": "2015-03-01~2017-02-28"
+    },
+    {
+      "title": "LG전자(주)/미래기술센터 탐색과제",
+      "org": "국내",
+      "period": "2014-12-01~2021-06-30"
+    },
+    {
+      "title": "LG전자(주)/표면처리를 통한 축류팬의 성능 증대 및 설계 툴 개발",
+      "org": "국내",
+      "period": "2014-11-24~2016-08-31"
+    },
+    {
+      "title": "삼성전자(주)/Micro Scale 방열 기술 확보",
+      "org": "국내",
+      "period": "2014-06-10~2015-10-30"
+    },
+    {
+      "title": "에멀션의 유변학적 특성파악을 위한 계면상 나노 주름의 능동적 제어(2/3)",
+      "org": "한국연구재단",
+      "period": "2014-06-01~2015-05-31"
+    },
+    {
+      "title": "인체혈류 유동 생체역학 시뮬레이션을 위한 Solver 원천연구",
+      "org": "한국과학기술정보연구원",
+      "period": "2014-05-15~2014-11-15"
+    },
+    {
+      "title": "풍력터빈의 최적화 설계 및 제조",
+      "org": "중소기업청",
+      "period": "2013-12-01~2014-11-30"
+    },
+    {
+      "title": "한-인도 공동연구를 통한 공기 중 수분 채집 기술 개발",
+      "org": "한국연구재단",
+      "period": "2013-10-01~2015-09-30"
+    },
+    {
+      "title": "인간 스트레스 측정기기 연구회(1/1)",
+      "org": "중소기업청",
+      "period": "2013-08-01~2014-01-10"
+    },
+    {
+      "title": "[RCMS]전남대/만성완전협착 치료용 마이크로로봇 개발(4/4)(2007.09.01~2014.06.30)",
+      "org": "한국산업기술평가관리원",
+      "period": "2013-07-01~2014-06-30"
+    },
+    {
+      "title": "에멀션의 유변학적 특성파악을 위한 계면상 나노 주름의 능동적 제어(1/3)",
+      "org": "한국연구재단",
+      "period": "2013-06-01~2014-05-31"
+    },
+    {
+      "title": "광학-마이크로 유체역학을 이용한 순환 종양 마커의 고감도 감지기술",
+      "org": "국립암센터",
+      "period": "2012-10-01~2012-12-31"
+    },
+    {
+      "title": "전남대/만성완전협착 치료용 마이크로로봇 개발(3/4)(2007.9.1~2014.6.30)",
+      "org": "한국산업기술평가관리원",
+      "period": "2012-07-01~2013-06-30"
+    },
+    {
+      "title": "CFD광학 이미징을 사용한 혈액 관련 질병 진단기 개발 (3/3)",
+      "org": "한국과학재단",
+      "period": "2012-05-01~2013-04-30"
+    },
+    {
+      "title": "삼성전자(주)/다상 유동 방열시스템을 위한 마이크로쳉ㅃ括?최적화(2012.04.16~2012.09.30)",
+      "org": "국내",
+      "period": "2012-04-16~2013-09-30"
+    },
+    {
+      "title": "나노 마이크로 응용기계기술 인력양성사업",
+      "org": "학술진흥재단",
+      "period": "2012-03-01~2013-04-30"
+    },
+    {
+      "title": "삼성전자(주)/멀티스케일 형상을 갖는 몰드 제작을 위한 초미세 전주공정 기술 개발/2012.02.01~2012.10.31(2012.02.01~2012.10.31)- 2013.10.31- 2014.03.31",
+      "org": "국내",
+      "period": "2012-02-01~2014-03-31"
+    },
+    {
+      "title": "포항산업과학연구원 / FAST를 이용한 부유식 해상풍력터빈 시스템 해석 기술 개발",
+      "org": "민간기업",
+      "period": "2011-11-25~2012-05-31"
+    },
+    {
+      "title": "전남대/만성완전협착 치료용 마이크로로봇 개발(2차년도/2)(2010.07.01~2012.06.30)",
+      "org": "한국산업기술평가관리원",
+      "period": "2011-07-01~2012-06-30"
+    },
+    {
+      "title": "CDF광학 이미징을 사용한 혈액 관련 질병 진단기 개발 (2/3)",
+      "org": "한국과학재단",
+      "period": "2011-05-01~2012-04-30"
+    },
+    {
+      "title": "나노 마이크로 응용기계기술 인력양성사업",
+      "org": "학술진흥재단",
+      "period": "2011-03-01~2012-02-29"
+    },
+    {
+      "title": "나노마이크로응용기계기술인력양성사업단",
+      "org": "연세대학교",
+      "period": "2011-03-01~2012-02-29"
+    },
+    {
+      "title": "전남대/만성완전협착 치료용 마이크로로봇 개발",
+      "org": "지식경제부",
+      "period": "2010-07-01~2011-06-30"
+    },
+    {
+      "title": "CFD/광학 이미징을 사용한 혈액 관련 질병 진단기 개발",
+      "org": "한국과학재단",
+      "period": "2010-05-01~2011-04-30"
+    },
+    {
+      "title": "G-5-5-10나노마이크로응용기계기술인력양성사업단",
+      "org": "연세대학교",
+      "period": "2010-03-02~2011-06-30"
+    },
+    {
+      "title": "나노마이크로응용기계기술인력양성사업단",
+      "org": "연세대학교",
+      "period": "2010-03-01~2011-02-28"
+    },
+    {
+      "title": "나노 마이크로 응용기계기술 인력양성사업단",
+      "org": "학술진흥재단",
+      "period": "2010-03-01~2011-02-28"
+    },
+    {
+      "title": "마이크로/나노 스크라이빙을 이용한 발수성 표면의 하이어아키컬 텍스쳐링",
+      "org": "연세대학교산학단_간접비",
+      "period": "2009-09-01~2010-08-31"
+    },
+    {
+      "title": "마이크로 텍스쳐링을 이용한 유체입자의 특성연구와 표면에너지의 변화분포도 연구",
+      "org": "연세대학교",
+      "period": "2009-09-01~2010-08-31"
+    }
+  ],
+  "patents": [
+    {
+      "title": "양자 최적화 기반 폐 결절 진단 시스템 및 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2026-06-01"
+    },
+    {
+      "title": "양자 최적화 기반 폐 결절 진단 시스템 및 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2026-06-01"
+    },
+    {
+      "title": "초전도 및 이온트랩 양자컴퓨팅 기반 수치해석을 위한 노이즈 완화 기법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2026-02-11"
+    },
+    {
+      "title": "물리 정보 신경 연산자 기반 환자 맞춤형 관상동맥 혈류 예측 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 한양대학교 산학협력단, 한국보훈복지의료공단",
+      "date": "2026-01-08"
+    },
+    {
+      "title": "리튬 폴리설파이드 다단계 반응 예측 시스템 및 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2025-11-25"
+    },
+    {
+      "title": "인공지능 기반 배터리 이온 거동 및 덴드라이트 성장 예측 시스템 및 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2025-11-25"
+    },
+    {
+      "title": "딥러닝을 활용한 다상 관상동맥 CT 보간 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2025-11-21"
+    },
+    {
+      "title": "딥러닝을 활용한 다상 관상동맥 CT 보간 시스템 및 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2025-10-16"
+    },
+    {
+      "title": "인공지능 기반 3D 안면 분석을 통한 나이 예측 시스템 및 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2025-06-27"
+    },
+    {
+      "title": "양자 인공 신경망을 활용한 폐암 진단 알고리즘 및 시스템",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2025-05-30"
+    },
+    {
+      "title": "인공지능 기반 필러 시술 사후 예측 장치 및 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2025-04-16"
+    },
+    {
+      "title": "딥러닝 기반 초음파 영상 측정 가이드 제공 장치 및 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2025-03-07"
+    },
+    {
+      "title": "딥러닝 기반 초음파 영상 측정 가이드 제공 장치 및 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2025-03-04"
+    },
+    {
+      "title": "점성 예측 시스템에서 인공지능을 이용하여 점성을 예측하는 장치 및 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2025-02-21"
+    },
+    {
+      "title": "점성 예측 시스템에서 인공지능을 이용하여 점성을 예측하는 장치 및 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2025-02-19"
+    },
+    {
+      "title": "혈압 모니터링 장치 및 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2025-01-26"
+    },
+    {
+      "title": "환자의 움직임에 따른 동적 음압 제어 방법, 이 방법을 수행하는 음압 제어 장치 및 음압 제어 시스템",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 한국광기술원",
+      "date": "2025-01-24"
+    },
+    {
+      "title": "웨어러블 기기 기반 기온 변화에 따른 고연령층 혈관 상태 모니터링 기술",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 제주대학교 산학협력단",
+      "date": "2025-01-24"
+    },
+    {
+      "title": "기체 흐름이 최적화된 개방형 구조의 음압 챔버를 설계하는 방법, 그 장치 및 그 음압 챔버",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2024-12-30"
+    },
+    {
+      "title": "기체 흐름이 최적화된 개방형 구조의 음압 챔버를 설계하는 방법, 그 장치 및 그 음압 챔버",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2024-12-30"
+    },
+    {
+      "title": "기계학습 힘장을 활용한 리튬 폴리설파이드 생성 모사 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2024-11-26"
+    },
+    {
+      "title": "인공지능을 활용한 반복적인 충방전 사이클의 배터리 이온 거동 예측 시스템",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2024-11-26"
+    },
+    {
+      "title": "딥러닝을 활용한 다상 관상동맥 CT 보간 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2024-11-22"
+    },
+    {
+      "title": "리튬황 배터리 내 이온 분포 예측 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2024-11-21"
+    },
+    {
+      "title": "PPG신호 및 생체 정보를 통한 혈당 및 당뇨 예측 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2024-10-25"
+    },
+    {
+      "title": "녹내장의증 모니터링을 위한 웨어러블 장치 및 녹내장의증 모니터링 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2024-08-20"
+    },
+    {
+      "title": "환경유동 및 건축물 특성 인자를 고려한 인공지능 기반 빌딩풍 예측방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2024-07-25"
+    },
+    {
+      "title": "혈압 모니터링 장치 및 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2024-07-10"
+    },
+    {
+      "title": "인공지능 기반 3D 안면 분석 시스템",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2024-06-28"
+    },
+    {
+      "title": "CBCT 영상의 노이즈 저감 시스템 및 그 방",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2024-05-31"
+    },
+    {
+      "title": "인공지능 기반 3D 필러 시술 사후 안면 변화 예측 시스템",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2024-04-19"
+    },
+    {
+      "title": "딥러닝 기반 초음파 영상 측정 가이드 제공 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2024-03-12"
+    },
+    {
+      "title": "웨어러블 기기 기반 PPG 및 생체 정보를 통한 수축기 이완기 점성 예측 알고리즘",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2024-02-27"
+    },
+    {
+      "title": "웨어러블 기기 기반 PPG 및 생체 정보를 통한 환자 혈액의 비뉴턴유체 점성 모델링",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2024-02-23"
+    },
+    {
+      "title": "빌딩 풍압 예측 시스템 및 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2024-01-05"
+    },
+    {
+      "title": "리튬황 배터리 내 이온 분포 예측 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2023-12-18"
+    },
+    {
+      "title": "웨어러블 기기 기반 PPG 및 생체 정보를 통한 혈당 및 당뇨 예측 알고리즘",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2023-10-26"
+    },
+    {
+      "title": "녹내장의증 모니터링을 위한 웨어러블 장치 및 녹내장의증 모니터링 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2023-09-06"
+    },
+    {
+      "title": "환경유동 및 건축물 특성 인자를 고려한 인공지능 기반 빌딩풍 예측",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2023-07-25"
+    },
+    {
+      "title": "비접촉식 생체신호 기반 녹내장 진단 방법 및 그 시스템",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2023-06-20"
+    },
+    {
+      "title": "CBCT 영상의 노이즈 저감 시스템 및 그 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2023-06-01"
+    },
+    {
+      "title": "니들 및 이를 이용한 주사기",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2023-05-25"
+    },
+    {
+      "title": "리튬이온전지의 덴드라이트 생성 예측방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2023-05-24"
+    },
+    {
+      "title": "물리 정보를 반영한 시계열 이미지 예측 시스템 및 그 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2023-05-17"
+    },
+    {
+      "title": "단일 2차원 혈관조영 이미지로부터 3차원 혈관 형상을 재구성하는 방법 및 그 시스템",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2023-04-21"
+    },
+    {
+      "title": "인공지능 기반의 호흡기 분리형 음압 챔버",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 한국광기술원",
+      "date": "2022-12-23"
+    },
+    {
+      "title": "비말의 토출 방향 예측에 기반한 음압 제어 장치 및 방법",
+      "type": "특허",
+      "applicant": "한국광기술원, 연세대학교 산학협력단",
+      "date": "2022-12-16"
+    },
+    {
+      "title": "전당뇨 예측과 탈수 측정을 위한 산소포화도 및 혈류량 기반 비침습적 혈액 점성 측정 방법 및 시스템",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2022-12-09"
+    },
+    {
+      "title": "전당뇨 예측과 탈수 측정을 위한 산소포화도 및 혈류량 기반 비침습적 혈액 점성 측정 방법 및 시스템",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2022-12-09"
+    },
+    {
+      "title": "전당뇨 예측과 탈수 측정을 위한 산소포화도 및 혈류량 기반 비침습적 혈액 점성 측정 방법 및 시스템",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2022-11-03"
+    },
+    {
+      "title": "목적단일 2차원 혈관조영 이미지로부터 3차원 혈관 형상을 재구성하는 방법 및 그 시스템",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2022-09-30"
+    },
+    {
+      "title": "분획 혈류 예비력 기반 관상동맥 내 병변 예측을 위한 인공지능 알고리즘의 최적화 시스템 및 그 최적화 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2022-08-18"
+    },
+    {
+      "title": "하이브리드 방식을 통한 관상동맥 CT 이미지에서의 관상동맥 및 상행 대동맥 자동 추출 시스템 및 그 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2022-08-17"
+    },
+    {
+      "title": "기계학습을 이용한 수면무호흡증 진단방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2022-08-11"
+    },
+    {
+      "title": "인공지능 기반의 비침습적 요역동학 검사 방법 및 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2022-07-12"
+    },
+    {
+      "title": "하이브리드 방식을 통한 관상동맥 CT 이미지에서의 관상동맥 및 상행 대동맥 자동 추출 시스템 및 그 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2022-07-11"
+    },
+    {
+      "title": "리튬이온전지의 덴드라이트 생성 예측방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2022-05-25"
+    },
+    {
+      "title": "딥러닝을 활용한 뇌 MRI 데이터로부터 뇌 영역 분할 시스템 및 그 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2022-05-12"
+    },
+    {
+      "title": "건물의 안전 판단 시스템 및 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 경상국립대학교산학협력단, 부산대학교 산학협력단",
+      "date": "2022-04-19"
+    },
+    {
+      "title": "구순 구개열의 개선 또는 치료용 자성 세포 및 이의 제조 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2022-03-23"
+    },
+    {
+      "title": "수면 무호흡증의 예방 또는 치료용 자성 세포 및 이의 제조 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2022-03-23"
+    },
+    {
+      "title": "자성 세포의 적정 주입량을 결정하기 위한 정보 제공 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2022-03-23"
+    },
+    {
+      "title": "비강 형상 자동 분할 시스템 및 그 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2022-03-18"
+    },
+    {
+      "title": "혈관 확장 유발을 위한 혈관 내 자성 물질 주입 방법 개발 및 이의 용도",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2022-03-18"
+    },
+    {
+      "title": "분획 혈류 예비력 기반 관상동맥 내 병변 예측을 위한 인공지능 알고리즘의 최적화 시스템 및 그 최적화 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2022-03-10"
+    },
+    {
+      "title": "안면 비대칭성 분석 시스템 및 그 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2022-03-04"
+    },
+    {
+      "title": "흉부 CT 이미지에서의 호흡기계 구조물 자동 분할 시스템 및 그 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2022-03-03"
+    },
+    {
+      "title": "하이브리드 방식을 통한 관상동맥 CT 이미지에서의 관상동맥 및 상행 대동맥 자동 추출 시스템 및 그 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2022-03-03"
+    },
+    {
+      "title": "혈관 확장 유발을 위한 혈관 내 자성 물질 주입 방법 개발 및 이의 용도",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2022-02-17"
+    },
+    {
+      "title": "유동관 형상 제어용 자성 세포, 이의 제조방법, 유동관 형상 제어 시스템 및 자성 세포를 이용한 인공지능 유동관 형상 제어계획 수립 시스템",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2021-12-06"
+    },
+    {
+      "title": "유동관 형상 제어용 자성 세포, 이의 제조방법, 유동관 형상 제어 시스템 및 자성 세포를 이용한 인공지능 유동관 형상 제어계획 수립 시스템",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2021-12-04"
+    },
+    {
+      "title": "수면무호흡증 환자의 심혈관 질환 진단을 위한 혈류 유동 분석 시뮬레이터",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2021-11-22"
+    },
+    {
+      "title": "니들 및 이를 이용한 주사기",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2021-11-18"
+    },
+    {
+      "title": "수면 무호흡증 인자를 고려한 심혈관 질환 위험도 분석 시스템 및 그 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2021-10-05"
+    },
+    {
+      "title": "AR 및 VR의 상호 작용을 이용한 비-대면 수술실 구현, 실시간 수술 참관 및 수술 교육 제공 방법 및 그 시스템",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2021-07-12"
+    },
+    {
+      "title": "자성 세포의 적정 주입량을 결정하기 위한 정보 제공 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2021-03-29"
+    },
+    {
+      "title": "구순 구개열의 개선 또는 치료용 자성 세포 및 이의 제조 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2021-03-24"
+    },
+    {
+      "title": "수면 무호흡증의 예방 또는 치료용 자성 세포 및 이의 제조 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2021-03-23"
+    },
+    {
+      "title": "혈관 확장 유발을 위한 혈관 내 자성 물질 주입 방법 개발 및 이의 용도",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2021-03-23"
+    },
+    {
+      "title": "기계학습을 이용한 수면무호흡증 진단방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2021-01-15"
+    },
+    {
+      "title": "유동관 형상 제어용 자성 세포, 이의 제조방법, 유동관 형상 제어 시스템 및 자성 세포를 이용한 인공지능 유동관 형상 제어계획 수립 시스템",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2020-12-04"
+    },
+    {
+      "title": "니들 및 이를 이용한 주사기",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2020-11-25"
+    },
+    {
+      "title": "기계학습을 이용한 수면무호흡증 진단방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2020-07-20"
+    },
+    {
+      "title": "매설 배관의 누수 예측 방법 및 그를 위한 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2020-07-14"
+    },
+    {
+      "title": "혈관 질환을 진단하는 방법 및 그를 위한 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2020-07-09"
+    },
+    {
+      "title": "혈관 질환을 진단하는 방법 및 그를 위한 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2020-03-18"
+    },
+    {
+      "title": "유체 해석 시뮬레이션에서 ＳＴＬ 파일의 전처리 방법 및 유체 해석 시뮬레이션 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2020-03-03"
+    },
+    {
+      "title": "기계학습을 이용한 수면무호흡증 진단방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2020-01-17"
+    },
+    {
+      "title": "비접촉식 생체신호 측정 시스템",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2019-12-05"
+    },
+    {
+      "title": "스파크된 환원 그래핀 옥사이드 시트를 포함하는 이차전지 및 이의 제조방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 재단법인 포항산업과학연구원",
+      "date": "2019-10-10"
+    },
+    {
+      "title": "의료용 주사바늘",
+      "type": "디자인",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2018-11-09"
+    },
+    {
+      "title": "의료용 주사바늘",
+      "type": "디자인",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2018-11-09"
+    },
+    {
+      "title": "의료용 주사바늘",
+      "type": "디자인",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2018-11-09"
+    },
+    {
+      "title": "요관 스텐트의 설계 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2018-01-05"
+    },
+    {
+      "title": "초미세 와류를 발생시켜 자가발전을 통한 열 발생이 가능한 표면 구조체",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2017-11-15"
+    },
+    {
+      "title": "풍력 발전 시스템",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2017-09-18"
+    },
+    {
+      "title": "이동 단말기",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 엘지전자 주식회사",
+      "date": "2016-12-09"
+    },
+    {
+      "title": "풍력 발전 시스템",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2016-11-15"
+    },
+    {
+      "title": "변압기",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2016-05-10"
+    },
+    {
+      "title": "풍력 발전 시스템",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2016-03-21"
+    },
+    {
+      "title": "항력 저감 및 미생물 부착 방지용 마이크로-나노 프랙탈 구조.",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2015-10-15"
+    },
+    {
+      "title": "PPG를 이용한 사지 혈관 진단 및 정확도 상승 피드백 시스템 및 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 한국광기술원",
+      "date": "2015-04-20"
+    },
+    {
+      "title": "태풍에너지 소산장치 및 이를 운용하는 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2015-04-01"
+    },
+    {
+      "title": "경사진 블레이드를 가지는 수직축 풍력 터빈",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 한오백년",
+      "date": "2015-03-23"
+    },
+    {
+      "title": "나노입자를 이용한 탈수기 및 이를 포함하는 세탁기",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2014-12-05"
+    },
+    {
+      "title": "항력 저감 및 미생물 부착 방지용 마이크로-나노 프랙탈 구조.",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2014-11-27"
+    },
+    {
+      "title": "그래핀 박막을 이용한 유체물성 측정장치 및 이를 이용한 유체물성 측정방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2014-09-24"
+    },
+    {
+      "title": "그래핀 박막을 이용한 유체물성 측정장치 및 이를 이용한 유체물성 측정방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2014-09-24"
+    },
+    {
+      "title": "갈고리 형상 구조물을 이용한 미세유동 혼합채널 및 그 제작방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2014-05-12"
+    },
+    {
+      "title": "GPU 기반의 격자 볼츠만 기법을 활용한 환자 맞춤형 혈류 영상 진단 방법 및 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2014-05-02"
+    }
+  ]
+}

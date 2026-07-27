@@ -1,0 +1,583 @@
+{
+  "name": "이남규",
+  "nameEn": "Lee Namkyu",
+  "email": "NK.LEE@YONSEI.AC.KR",
+  "phone": "02-2123-2820",
+  "office": "Engineering Building #1, Room N207",
+  "homepage": "https://sites.google.com/view/httd-yonsei",
+  "sourceUrl": "https://me.yonsei.ac.kr/faculty/name_search.do?mode=view&userId=wLefcjV8lUCv2Zzs9J5RAQ%3D%3D&sosokcd=0000405",
+  "crawledAt": "2026-07-27",
+  "articles": [
+    {
+      "date": "2026-05",
+      "title": "Conceptual comparison of Rankine and helium Brayton cycles for future Korean DEMO fusion power plant",
+      "journal": "Energy Conversion and Management"
+    },
+    {
+      "date": "2026-03",
+      "title": "The detrimental impact of surface fouling on the critical heat flux of microstructures in boiling heat transfer",
+      "journal": "Applied Thermal Engineering"
+    },
+    {
+      "date": "2026-01",
+      "title": "3D-manufactured non-isothermal glass cell for thermophoretic measurements",
+      "journal": "Applied Thermal Engineering"
+    },
+    {
+      "date": "2025-07",
+      "title": "Thermo-economic analysis of balance of plant for energy conversion system in Korean DEMO fusion power plant",
+      "journal": "Energy Conversion and Management"
+    },
+    {
+      "date": "2025-07",
+      "title": "Evaluating the economic feasibility of K-DEMO fusion power plants through cost analysis of blanket and BoP",
+      "journal": "Energy"
+    },
+    {
+      "date": "2025-02",
+      "title": "Low-Temperature IR Camouflage Materials by Dual Resonances for Enhanced Thermal Management without Energy Consumption",
+      "journal": "ACS Applied Materials & Interfaces"
+    },
+    {
+      "date": "2025-01",
+      "title": "Enhancing pool boiling heat transfer performance via deposition of nanoparticles with different sizes on micropillar surfaces",
+      "journal": "International Communications in Heat and Mass Transfer"
+    },
+    {
+      "date": "2024-11",
+      "title": "Active adaptation in infrared and visible vision through multispectral thermal Lens",
+      "journal": "International Communications in Heat and Mass Transfer"
+    },
+    {
+      "date": "2024-11",
+      "title": "Enhanced cooling performance of blade tip slot cooling: Effect of slot open length",
+      "journal": "International Communications in Heat and Mass Transfer"
+    },
+    {
+      "date": "2024-10",
+      "title": "Thermal design of a non-isothermal microfluidic channel for measuring thermophoresis",
+      "journal": "International Journal of Heat and Mass Transfer"
+    },
+    {
+      "date": "2024-10",
+      "title": "Thermal design for enhanced temperature uniformity on spark plasma sintering device",
+      "journal": "Finite Elements in Analysis and Design"
+    },
+    {
+      "date": "2024-09",
+      "title": "Heat transfer measurement near injection hole of supersonic nozzle with a sonic jet injection",
+      "journal": "Aerospace Science and Technology"
+    },
+    {
+      "date": "2024-09",
+      "title": "Heat transfer on secondary injection surface with backward-facing step influenced by hole location in supersonic flow field",
+      "journal": "International Communications in Heat and Mass Transfer"
+    },
+    {
+      "date": "2024-05",
+      "title": "Thermal design of operating parameter for reliable AlSi7Mg selective laser melting",
+      "journal": "Journal of Materials Research and Technology"
+    },
+    {
+      "date": "2024-04",
+      "title": "Surface roughening and hemi-wicking: Synergistic impact on flow boiling",
+      "journal": "International Journal of Mechanical Sciences"
+    },
+    {
+      "date": "2024-03",
+      "title": "Multiresonant Selective Emitter with Enhanced Thermal Management for Infrared Camouflage",
+      "journal": "ACS Applied Materials & Interfaces"
+    },
+    {
+      "date": "2024-02",
+      "title": "Non-monotonic Soret coefficients of aqueous LiCl solutions with varying concentrations",
+      "journal": "Physical Chemistry Chemical Physics"
+    }
+  ],
+  "awards": [],
+  "conferences": [
+    {
+      "title": "건조 시스템의 전열 실린더 표면 온도 추정을 위한 물리 기반 피처 엔지니어링 및 잔차 기반 예측 기법",
+      "conference": "2025 대한기계학회 창립 80주년 기념 학술대회",
+      "period": "2025.12.10~2025.12.13"
+    },
+    {
+      "title": "열저항 최소화를 통한 배터리 냉각 채널 성능 향상 연구",
+      "conference": "2025 대한기계학회 창립 80주년 기념 학술대회",
+      "period": "2025.12.10~2025.12.13"
+    },
+    {
+      "title": "전기화학-열 모델 기반 리튬이온전지의 열적 분석 기반 재료 설계 연구",
+      "conference": "2025 대한기계학회 창립 80주년 기념 학술대회",
+      "period": "2025.12.10~2025.12.13"
+    },
+    {
+      "title": "비정질 및 반결정 적층 소재 특성에 따른 후가공 성능 분석",
+      "conference": "2025 대한기계학회 창립 80주년 기념 학술대회",
+      "period": "2025.12.10~2025.12.13"
+    },
+    {
+      "title": "금속-유전체-금속 구조의 금속 두께 변화에 따른 VIS-IR 선택적 흡수 특성 연구",
+      "conference": "2025 대한기계학회 창립 80주년 기념 학술대회",
+      "period": "2025.12.10~2025.12.13"
+    },
+    {
+      "title": "패브리-페로 공진 기반 파장-각도 선택적 적외선 방사체 설계 연구",
+      "conference": "2025 대한기계학회 창립 80주년 기념 학술대회",
+      "period": "2025.12.10~2025.12.13"
+    },
+    {
+      "title": "핵융합 발전용 Balance of Plant 내 증기 랭킨 사이클과 헬륨 브레이튼 사이클의 열역학적 성능 비교 연구",
+      "conference": "2025 대한기계학회 창립 80주년 기념 학술대회",
+      "period": "2025.12.10~2025.12.13"
+    },
+    {
+      "title": "고밀도 데이터센터 폐열 회수용 히트펌프 및 ORC 시스템의 열역학적 분석",
+      "conference": "대한설비공학회 2025년도 동계학술발표대회",
+      "period": "2025.11.28~2025.11.28"
+    },
+    {
+      "title": "Comparative Analysis of Rankine Cycle and Helium Brayton Cycle for Imaginary Power Conversion System of Nuclear Fusion Power Plants",
+      "conference": "16th International Symposium on Fusion Nuclear Technology",
+      "period": "2025.11.09~2025.11.14"
+    },
+    {
+      "title": "Design and Performance Analysis of Nitrogen Condensation Heat Exchanger Utilizing a 150-Class Cryocooler for Biostorage Process",
+      "conference": "2025년도 한국초전도저온학회 하계학술대회",
+      "period": "2025.08.19~2025.08.21"
+    },
+    {
+      "title": "Energy-Free Thermal Management for Low Temperature with Dual Resonance Radiative Energy Dissipation",
+      "conference": "2025 MRS Spring Meeting",
+      "period": "2025.04.07~2025.04.11"
+    },
+    {
+      "title": "핵융합로 에너지 변환 계통 사이클 내 요소별 수치 변화에 따른 열효율 변화 분석 연구",
+      "conference": "2024 한국유체기계학회 동계학술대회",
+      "period": "2024.12.04~2024.12.06"
+    },
+    {
+      "title": "컴퓨터 비전을 활용한 비등 열전달 내 기포 변수 추출 연구",
+      "conference": "대한설비공학회 2024년도 동계학술발표대회",
+      "period": "2024.11.29~2024.11.29"
+    },
+    {
+      "title": "고대역 메모리의 구성 요소에 따른 유효 열전도도 분석",
+      "conference": "대한기계학회 2024년 학술대회",
+      "period": "2024.11.06~2024.11.09"
+    },
+    {
+      "title": "적외선 위장표면의 선택적 적외선 열방출을 통한 열관리 성능 향상",
+      "conference": "대한기계학회 2024년 학술대회",
+      "period": "2024.11.06~2024.11.08"
+    },
+    {
+      "title": "적층형 선택적 방사체를 통한 적외선 위장 표면의 열관리 성능 향상",
+      "conference": "2024년 한국군사과학기술학회 종합학술대회",
+      "period": "2024.06.12~2024.06.14"
+    },
+    {
+      "title": "입자 군집 최적화 알고리즘 기반 선택적 방사체의 적외선 위장 및 에너지 소산 성능 변화 연구",
+      "conference": "대한기계학회 열공학부문 2024년 춘계학술대회",
+      "period": "2024.04.24~2040.42.7"
+    },
+    {
+      "title": "적외선 선택 방사체에서 금속 원판의 간격과 지름 조절이 최대 방사율의 크기와 위치에 주는 영향",
+      "conference": "대한기계학회 열공학부문 2024년 춘계학술대회",
+      "period": "2024.04.24~2024.04.27"
+    },
+    {
+      "title": "적외선 방사율 제어를 통한 적외선 스텔스 물질 연구",
+      "conference": "제24회 한국열물성학회 학술대회",
+      "period": "2024.04.04~2024.04.05"
+    },
+    {
+      "title": "Durable camouflage materials with energy dissipation by coating polyimide nanofilm for controlling radiative energy",
+      "conference": "2023 MRS Fall meeting & exhibit",
+      "period": "2023.11.26~2023.12.01"
+    },
+    {
+      "title": "초음속 내 적외선 스텔스 메타 물질의 운용성 검증 연구",
+      "conference": "2023년 한국군사과학기술학회 추계학술대회",
+      "period": "2023.11.09~2023.11.10"
+    },
+    {
+      "title": "온도 및 방사율 변화에 따른 적외선 스텔스 성능 지표 연구",
+      "conference": "2023년 대한기계학회 추계 학술대회",
+      "period": "2023.11.01~2023.11.04"
+    },
+    {
+      "title": "고분자 나노 필름에 따른 적외선 방사체 방사율 변화 연구",
+      "conference": "2023년 대한기계학회 추계 학술대회",
+      "period": "2023.11.01~2023.11.04"
+    },
+    {
+      "title": "Thermal management for future space and energy applications",
+      "conference": "EKC 2023",
+      "period": "2023.08.14~2023.08.18"
+    }
+  ],
+  "fundings": [
+    {
+      "title": "[민간/고등기술연구원연구조합]CO₂상변화 해석 기초자료 도출을 위한 열전달 성능 해석",
+      "org": "국내",
+      "period": "2026-06-22~2026-09-30"
+    },
+    {
+      "title": "[RCMS]한양대학교산학협력단/200 Gb/s/λ급 Tx-Rx 고집적 Co-Packaged Optics·초미세 인터커넥트 고신뢰 통합 설계·검증 플랫폼 구축(1/3, 1/2단계)",
+      "org": "한국산업기술기획평가원",
+      "period": "2026-04-01~2026-12-31"
+    },
+    {
+      "title": "[통합이지바로/한국핵융합에너지연구원/위탁] KSTAR NBI 이온원 그리드 열/유체/구조 통합 설계 기술 개발",
+      "org": "한국핵융합에너지연구원",
+      "period": "2026-03-01~2026-12-31"
+    },
+    {
+      "title": "열화상 산술 영상 연구센터",
+      "org": "연세대학교",
+      "period": "2026-03-01~2027-02-28"
+    },
+    {
+      "title": "[통합이지바로/IRIS]기후위기 대응 도심 열섬 완화를 위한 투명-지향성 무동력 복사 냉각 메타표면 개발(1/3)",
+      "org": "한국연구재단",
+      "period": "2026-03-01~2027-02-28"
+    },
+    {
+      "title": "[RCMS]첨단산업특성화대학원지원(배터리)(3/3, 1/2단계)",
+      "org": "한국산업기술진흥원",
+      "period": "2026-03-01~2027-02-28"
+    },
+    {
+      "title": "[7차년도]사회지향 기계기술 글로벌 리더 양성 교육연구단",
+      "org": "한국연구재단",
+      "period": "2026-03-01~2027-02-28"
+    },
+    {
+      "title": "[통합이지바로/한국핵융합에너지연구원/위탁] 핵융합로 열에너지 변환 시스템 설계 및 경제성 분석(2/2)",
+      "org": "한국핵융합에너지연구원",
+      "period": "2026-01-01~2026-12-31"
+    },
+    {
+      "title": "[RCMS]능동형 적외선 신호 통합제어 기술(4/6)",
+      "org": "국방기술진흥연구소",
+      "period": "2026-01-01~2026-12-31"
+    },
+    {
+      "title": "[통합이지바로/한중협력연구사업] 회전 상태에서의 터빈 선단부용 충돌제트/스월/막냉각 효율에 관한 연구(1/2)",
+      "org": "한국연구재단",
+      "period": "2025-10-01~2026-09-30"
+    },
+    {
+      "title": "[한국핵융합에너지연구원/용역] NB 출력 feedback 제어시스템 성능향상 용역(KSTAR NBI 이온원 그리드 열/유체/구조 상세 분석 및 개선 연구)",
+      "org": "한국핵융합에너지연구원",
+      "period": "2025-09-15~2025-12-31"
+    },
+    {
+      "title": "[2025-1 신임교원 3차년도] 에너지 변환을 위한 양/음이온 용액 열영동 측정 장비 연구",
+      "org": "연세대학교",
+      "period": "2025-05-01~2026-04-30"
+    },
+    {
+      "title": "[한국에너지기술연구원/위탁연구/면세] 데이터센터 폐열 회수용 히트펌프 시스템의 열시스템 설계 방안 연구",
+      "org": "한국에너지기술연구원",
+      "period": "2025-03-01~2026-02-28"
+    },
+    {
+      "title": "[통합이지바로/한국핵융합에너지연구원] 핵융합로 열에너지 변환 시스템 설계 및 경제성 분석",
+      "org": "한국핵융합에너지연구원",
+      "period": "2025-03-01~2025-12-31"
+    },
+    {
+      "title": "[RCMS]첨단산업특성화대학원지원(배터리)(2/3, 1/2단계)",
+      "org": "한국산업기술진흥원",
+      "period": "2025-03-01~2026-02-28"
+    },
+    {
+      "title": "[6차년도] 사회지향 기계기술 글로벌 리더 양성 교육연구단",
+      "org": "한국연구재단",
+      "period": "2025-03-01~2026-02-28"
+    },
+    {
+      "title": "[2024-11-0747/사업단대응자금][참여기업_엠에스티]대학 내 산학연협력단지 조성사업_입주기업 공동과제 연구비",
+      "org": "한국산업기술진흥원",
+      "period": "2025-01-01~2025-03-31"
+    },
+    {
+      "title": "[RCMS]능동형 적외선 신호 통합제어 기술(3/6)",
+      "org": "국방기술진흥연구소",
+      "period": "2025-01-01~2026-07-31"
+    },
+    {
+      "title": "[민간/㈜두산에너빌리티] 이차유로 퍼징시스템 리그 구축_선행요소기술화 및 기술로드맵 연구 용역",
+      "org": "국내",
+      "period": "2025-01-01~2026-10-31"
+    },
+    {
+      "title": "[참여기업_엠에스티]대학 내 산학연협력단지 조성사업_입주기업 공동과제 연구비",
+      "org": "한국산업기술진흥원",
+      "period": "2025-01-01~2025-03-31"
+    },
+    {
+      "title": "[민간/삼성물산]핵융합 실증로 증식블랑켓 개발을 위한 기술 타당성 분석(PoC)",
+      "org": "국내",
+      "period": "2024-06-10~2025-06-30"
+    },
+    {
+      "title": "[2024-1 신임교원 2차년도]에너지 변환을 위한 양/음이온 용액 열영동 측정 장비 연구",
+      "org": "연세대학교",
+      "period": "2024-05-01~2025-04-30"
+    },
+    {
+      "title": "[RCMS]첨단산업특성화대학원지원(배터리)(1/3, 1/2단계)",
+      "org": "한국산업기술진흥원",
+      "period": "2024-03-01~2025-02-28"
+    },
+    {
+      "title": "[5차년도] 사회지향 기계기술 글로벌 리더 양성 교육연구단",
+      "org": "한국연구재단",
+      "period": "2024-03-01~2025-02-28"
+    },
+    {
+      "title": "[RCMS]능동형 적외선 신호 통합제어 기술(2/6)",
+      "org": "국방기술진흥연구소",
+      "period": "2024-01-01~2024-12-31"
+    },
+    {
+      "title": "[RCMS]능동형 적외선 신호 통합제어 기술(1/6)",
+      "org": "국방기술진흥연구소",
+      "period": "2023-12-01~2023-12-31"
+    },
+    {
+      "title": "[2023-1 신임교원 1차년도] 에너지 변환을 위한 양/음이온 용액 열영동 측정 장비 연구",
+      "org": "연세대학교",
+      "period": "2023-05-01~2024-04-30"
+    },
+    {
+      "title": "[4차년도] 사회지향 기계기술 글로벌 리더 양성 교육연구단",
+      "org": "한국연구재단",
+      "period": "2023-03-01~2024-02-29"
+    },
+    {
+      "title": "[ADD/무인기용 고효율 터빈기술 특화연구센터(2단계)/T-31] 고온터빈 냉각/구조 성능 실증 시험기술 개발",
+      "org": "산하기관",
+      "period": "2022-06-17~2025-03-31"
+    },
+    {
+      "title": "(통합Ezbaro)콜로이드 및 바이오 입자 비접촉 제어를 위한 열영동칩 연구",
+      "org": "한국연구재단",
+      "period": "2019-09-01~2020-08-31"
+    },
+    {
+      "title": "[RCMS]차세대 가스터빈 고온부품 GET-FUTURE 연구실(3/3, 3단계)",
+      "org": "한국에너지기술평가원",
+      "period": "2019-03-01~2019-12-31"
+    },
+    {
+      "title": "[RCMS]한화에어로스페이스(주)/General Aviation 항공기 가스터빈용 저압터빈 모듈 설계 해석 제작 시험 평가 및 엔진 시험 기술 개발(1/3,1단계)",
+      "org": "한국산업기술평가관리원",
+      "period": "2018-09-01~2019-02-28"
+    },
+    {
+      "title": "[민간/한화시스템(주)]인텔리전트 생존보호 최적구현 시제<적외선 저피탐지/카멜레온 위장> 개발",
+      "org": "국내",
+      "period": "2018-05-18~2023-08-31"
+    },
+    {
+      "title": "[RCMS]차세대 가스터빈 고온부품 GET-FUTURE 연구실(2/3,3단계)",
+      "org": "한국에너지기술평가원",
+      "period": "2018-05-01~2019-02-28"
+    },
+    {
+      "title": "[6차년도]사회지향 기계기술 글로벌 리더 양성 사업단",
+      "org": "한국연구재단",
+      "period": "2018-03-01~2019-02-28"
+    },
+    {
+      "title": "[RCMS]차세대 가스터빈 고온부품 GET-FUTURE 연구실(1/3,3단계)(2013.06.01~2019.12.31)",
+      "org": "한국에너지기술평가원",
+      "period": "2017-07-01~2018-04-30"
+    },
+    {
+      "title": "[5차년도]사회지향 기계기술 글로벌 리더 양성 사업단",
+      "org": "한국연구재단",
+      "period": "2017-03-01~2018-02-28"
+    },
+    {
+      "title": "[LO-23]항공기 적외선 에너지 측정 및 저피탐 형상 연구(3/3단계-3/3차년도)",
+      "org": "산하기관",
+      "period": "2017-01-01~2017-12-15"
+    },
+    {
+      "title": "직물형 레이돔 열-구조 설계 및 해석 기법 연구",
+      "org": "산하기관",
+      "period": "2016-12-23~2018-12-15"
+    },
+    {
+      "title": "LG전자/열전소재 소결 대형화 장비 개발을 위한 균일가열 전산해석",
+      "org": "국내",
+      "period": "2016-11-28~2019-03-31"
+    },
+    {
+      "title": "(주)한화/열유동장 및 내열재 열반응 평가 용역",
+      "org": "국내",
+      "period": "2016-07-15~2019-12-31"
+    },
+    {
+      "title": "(1/3)미츠비시/국내 운전특성을 고려한 터빈 블레이드의 손상 매커니즘 분석 및 개선안 도출",
+      "org": "국외",
+      "period": "2016-07-01~2021-03-31"
+    },
+    {
+      "title": "[RCMS]차세대 가스터빈 고온부품 GET-FUTURE 연구실(3/7,2단계)(2013.06.01~2023.05.31)",
+      "org": "한국에너지기술평가원",
+      "period": "2016-06-01~2017-05-31"
+    },
+    {
+      "title": "남동발전(주)/발전효율 향상 위한 GGH 열소자의 열전달 및 차압 개선 최적화 연구",
+      "org": "국내",
+      "period": "2016-05-01~2018-04-30"
+    },
+    {
+      "title": "(4차년도) 사회지향 기계기술 글로벌 리더 양성 사업단",
+      "org": "한국연구재단",
+      "period": "2016-03-01~2017-02-28"
+    },
+    {
+      "title": "[LO-23]항공기 적외선 에너지 측정 및 저피탐 형상 연구(3/3단계-2/3차년도)",
+      "org": "산하기관",
+      "period": "2016-01-01~2016-12-31"
+    },
+    {
+      "title": "[RCMS](주)성일터빈/100MW급 가스터빈 upgrade 적용 설계기술 및 제작기술 개발(2/2, 2단계)(2011.07.01.~2016.06.30.)",
+      "org": "한국에너지기술평가원",
+      "period": "2015-07-01~2016-12-31"
+    },
+    {
+      "title": "[RCMS]차세대 가스터빈 고온부품 GET-FUTURE 연구실(2/3,2단계)(2013.06.01~2023.05.31)",
+      "org": "한국에너지기술평가원",
+      "period": "2015-06-01~2016-05-31"
+    },
+    {
+      "title": "(주)한국화이바/레이돔 열해석 용역",
+      "org": "국내",
+      "period": "2015-01-08~2018-10-31"
+    }
+  ],
+  "patents": [
+    {
+      "title": "온도감응형 적외선 방사 능동 제어 시트",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2025-11-04"
+    },
+    {
+      "title": "온도감응형 적외선 방사 능동 제어 시트",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2025-10-17"
+    },
+    {
+      "title": "온도감응형 적외선 방사 능동 제어 시트",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2024-11-04"
+    },
+    {
+      "title": "다중 및 광대역 스텔스 구조체",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2024-03-06"
+    },
+    {
+      "title": "다중 및 광대역 스텔스 구조체",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2024-01-22"
+    },
+    {
+      "title": "내열성을 가지는 적외선 선택적 방사체",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2023-10-26"
+    },
+    {
+      "title": "다중 대역 스텔스 구조체",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2023-06-08"
+    },
+    {
+      "title": "광대역 및 고방사가 가능한 3차원 공진구조를 갖는 적외선 선택적 방사체",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2023-04-05"
+    },
+    {
+      "title": "다중 및 광대역 스텔스 구조체",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2023-03-23"
+    },
+    {
+      "title": "투명 적외선 선택적 방사체",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2023-03-07"
+    },
+    {
+      "title": "내마모성이 향상된 적외선 선택적 방사체",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2023-02-22"
+    },
+    {
+      "title": "플렉서블 적외선 선택적 방사체",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2022-12-22"
+    },
+    {
+      "title": "광대역 및 고방사가 가능한 3차원 공진구조를 갖는 적외선 선택적 방사체",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2022-04-05"
+    },
+    {
+      "title": "투명 적외선 선택적 방사체",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2022-03-10"
+    },
+    {
+      "title": "내마모성이 향상된 적외선 선택적 방사체",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2022-02-22"
+    },
+    {
+      "title": "플렉서블 적외선 선택적 방사체",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2022-01-11"
+    },
+    {
+      "title": "익형의 베인이 구비된 선회 유동 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 주식회사 한종이엔지",
+      "date": "2018-07-25"
+    },
+    {
+      "title": "레이더-적외선 영역 흡수율-방사율 제어 복합 구조",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 파동에너지극한제어연구단",
+      "date": "2017-03-08"
+    },
+    {
+      "title": "레이더-적외선 영역 흡수율-방사율 제어 복합 구조",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 파동에너지극한제어연구단",
+      "date": "2016-09-02"
+    }
+  ]
+}

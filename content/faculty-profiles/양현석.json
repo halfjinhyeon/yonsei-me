@@ -1,0 +1,2991 @@
+{
+  "name": "양현석",
+  "nameEn": "Yang, Hyun Seok",
+  "email": "hsyang@yonsei.ac.kr",
+  "phone": "02)2123-2824",
+  "office": null,
+  "homepage": null,
+  "sourceUrl": "https://me.yonsei.ac.kr/faculty/name_search.do?mode=view&userId=unA5vq9t8ID%2BONEoTLKWKQ%3D%3D&sosokcd=0000405",
+  "crawledAt": "2026-07-27",
+  "articles": [
+    {
+      "date": "2024-06",
+      "title": "Dynamic Analysis of the Locomotion Mechanism in Foxtail Robots: Frictional Anisotropy and Bristle Diversity",
+      "journal": "BIOMIMETICS"
+    },
+    {
+      "date": "2024-05",
+      "title": "UaMPNet: Uncertainty-Aware Motion Planning Network for Manipulator Motion Planning",
+      "journal": "IEEE Access"
+    },
+    {
+      "date": "2023-08",
+      "title": "MURM: Utilization of Multi-Views for Goal-Conditioned Reinforcement Learning in Robotic Manipulation",
+      "journal": "Robotics"
+    },
+    {
+      "date": "2023-03",
+      "title": "Real-Time Observability-Aware Inertia Parameter Estimation for Quadrotors",
+      "journal": "IEEE Access"
+    },
+    {
+      "date": "2023-02",
+      "title": "Multilayer-perceptron-based Slip Detection Algorithm Using Normal Force Sensor Arrays",
+      "journal": "Sensors and Materials"
+    },
+    {
+      "date": "2023-01",
+      "title": "Robust and fast auto-focusing using convolutional neural networks for off-axis digital holography",
+      "journal": "Japanese Journal of Applied Physics"
+    },
+    {
+      "date": "2022-11",
+      "title": "Vision-based Reinforcement learning: Moving object grasping with a Single Active-view Camera",
+      "journal": "International Conference on Control, Automation and Systems"
+    },
+    {
+      "date": "2022-11",
+      "title": "High Path Converging Reward Space: Imitating Human Behavior in Robot Arm Control",
+      "journal": "International Conference on Control, Automation and Systems"
+    },
+    {
+      "date": "2022-10",
+      "title": "Comparison between Genetic Programming and Dynamic Models for Compact Electrohydraulic Actuators",
+      "journal": "MACHINES"
+    },
+    {
+      "date": "2021-05",
+      "title": "Slag foaming estimation in the electric arc furnace using machine learning based long short-term memory networks",
+      "journal": "JOURNAL OF MATERIALS RESEARCH AND TECHNOLOGY-JMR&T"
+    },
+    {
+      "date": "2020-02",
+      "title": "Modeling of slag foaming height of electric arc furnace using stepwise regression analysis",
+      "journal": "METALLURGICAL RESEARCH & TECHNOLOGY"
+    },
+    {
+      "date": "2019-04",
+      "title": "Suppression algorithm of speckle noise for parallel phase-shift digital holography",
+      "journal": "OPTICS AND LASER TECHNOLOGY"
+    },
+    {
+      "date": "2018-12",
+      "title": "위상차 모션을 이용한 협소공간 주행 강아지풀 로봇 메커니즘 개발",
+      "journal": "Transactions of the Korean Society of Mechanical Engineers, B"
+    },
+    {
+      "date": "2018-09",
+      "title": "Speckle noise reduction for digital holographic images using multi-scale convolutional neural networks",
+      "journal": "OPTICS LETTERS"
+    },
+    {
+      "date": "2018-09",
+      "title": "Autofocusing algorithm for a digital holographic imaging system using convolutional neural networks",
+      "journal": "JAPANESE JOURNAL OF APPLIED PHYSICS"
+    },
+    {
+      "date": "2017-03",
+      "title": "An Adaptive Disturbance Rejection Method with Stability Enhancement Using Adjustable Dead Zone for Hard Disk Drives",
+      "journal": "IEEE TRANSACTIONS ON MAGNETICS"
+    },
+    {
+      "date": "2017-01",
+      "title": "Design of a transformable mobile robot for enhancing mobility",
+      "journal": "INTERNATIONAL JOURNAL OF ADVANCED ROBOTIC SYSTEMS"
+    },
+    {
+      "date": "2016-09",
+      "title": "Tilt measurement and compensation algorithm for holographic data storage with optimized quadratic windows",
+      "journal": "JAPANESE JOURNAL OF APPLIED PHYSICS"
+    },
+    {
+      "date": "2016-07",
+      "title": "Speckle noise reduction algorithm for parallel phase-shift digital holography",
+      "journal": "Optics InfoBase Conference Papers"
+    },
+    {
+      "date": "2015-12",
+      "title": "Intelligence control system compensation by DNA coding method in holographic data storage system",
+      "journal": "MICROSYSTEM TECHNOLOGIES-MICRO-AND NANOSYSTEMS-INFORMATION STORAGE AND PROCESSING SYSTEMS"
+    },
+    {
+      "date": "2015-10",
+      "title": "Estimation of a Pipe’s Features with In-pipe Robot",
+      "journal": "Applied Mechanics and Materials"
+    },
+    {
+      "date": "2015-09",
+      "title": "Image compensation using wavelet transform for tilt servo control in holographic data storage system",
+      "journal": "JAPANESE JOURNAL OF APPLIED PHYSICS"
+    },
+    {
+      "date": "2015-03",
+      "title": "옵티컬 라이브러리 시스템에서의 어드레싱을 위한 광학 문자 인식 알고리즘 제안",
+      "journal": "정보저장시스템학회 논문집"
+    },
+    {
+      "date": "2014-08",
+      "title": "Measurement of slot misalignment in an optical archive data storage system using dual sensing",
+      "journal": "MICROSYSTEM TECHNOLOGIES-MICRO-AND NANOSYSTEMS-INFORMATION STORAGE AND PROCESSING SYSTEMS"
+    },
+    {
+      "date": "2014-08",
+      "title": "Generation of fuzzy rules and learning algorithm for servo control in holographic data storage system",
+      "journal": "MICROSYSTEM TECHNOLOGIES-MICRO-AND NANOSYSTEMS-INFORMATION STORAGE AND PROCESSING SYSTEMS"
+    },
+    {
+      "date": "2014-08",
+      "title": "An intelligent distortion-detection algorithm for restoring data in a holographic data storage system",
+      "journal": "MICROSYSTEM TECHNOLOGIES-MICRO-AND NANOSYSTEMS-INFORMATION STORAGE AND PROCESSING SYSTEMS"
+    },
+    {
+      "date": "2014-03",
+      "title": "아카이브 정보저장기기에서의 디스크 돌출 모니터링 기술",
+      "journal": "정보저장시스템학회 논문집"
+    },
+    {
+      "date": "2013-09",
+      "title": "Improvement of Bit Error Rate in Holographic Data Storage Using the Extended High-Frequency Enhancement Filter",
+      "journal": "JAPANESE JOURNAL OF APPLIED PHYSICS"
+    },
+    {
+      "date": "2013-09",
+      "title": "Improved Nanogap Servo System Using an Error-Based Disturbance Observer for High-Speed in Solid Immersion Lens-Based Plasmonic Lithography",
+      "journal": "JAPANESE JOURNAL OF APPLIED PHYSICS"
+    },
+    {
+      "date": "2013-09",
+      "title": "Twyman-Green interferometer using virtual optics for eliminating reference wave",
+      "journal": "MICROSYSTEM TECHNOLOGIES-MICRO-AND NANOSYSTEMS-INFORMATION STORAGE AND PROCESSING SYSTEMS"
+    },
+    {
+      "date": "2013-09",
+      "title": "Disturbances Analysis Considering an Effective Servo System for Holographic Disc Drive",
+      "journal": "JAPANESE JOURNAL OF APPLIED PHYSICS"
+    },
+    {
+      "date": "2013-09",
+      "title": "Tilt Servo Control by Intelligent Algorithm in Holographic Data Storage System",
+      "journal": "JAPANESE JOURNAL OF APPLIED PHYSICS"
+    },
+    {
+      "date": "2013-05",
+      "title": "Analytical Approach of the In-Pipe Robot on Branched Pipe Navigation and Its Solution",
+      "journal": "International Journal of Mechanical and Mechatronics Engineering"
+    },
+    {
+      "date": "2013-03",
+      "title": "최소제곱평균 추정기법 알고리즘을 이용한 트랙서보패턴 간격 최적화",
+      "journal": "정보저장시스템학회논문집"
+    },
+    {
+      "date": "2013-02",
+      "title": "Design and control method for a high-mobility in-pipe robot with flexible links",
+      "journal": "INDUSTRIAL ROBOT-AN INTERNATIONAL JOURNAL"
+    },
+    {
+      "date": "2012-10",
+      "title": "An auto-focus lens actuator using ionic polymer metal composites: design, fabrication and control",
+      "journal": "International Journal of Precision Engineering and Manufacturing"
+    },
+    {
+      "date": "2012-10",
+      "title": "Novel Mechanisms and Simple Locomotion Strategies for an In-pipe Robot that can Inspect Various Pipe Types",
+      "journal": "MECHANISM AND MACHINE THEORY"
+    },
+    {
+      "date": "2012-09",
+      "title": "위상천이 디지털 홀로그래피를 이용한 평판의 표면 평면도 측정",
+      "journal": "정보저장시스템학회논문집"
+    },
+    {
+      "date": "2012-09",
+      "title": "홀로그래픽 정보저장기기의 재생 이미지 패턴을 이용한 디스크 틸트 오차 측정",
+      "journal": "정보저장시스템학회 논문집"
+    },
+    {
+      "date": "2012-09",
+      "title": "Pattern analysis for tilt servo control in holographic data storage system",
+      "journal": "MICROSYSTEM TECHNOLOGIES-MICRO-AND NANOSYSTEMS-INFORMATION STORAGE AND PROCESSING SYSTEMS"
+    },
+    {
+      "date": "2012-09",
+      "title": "Tracking servo method for holographic data storage using discrete pre-patterns",
+      "journal": "MICROSYSTEM TECHNOLOGIES-MICRO-AND NANOSYSTEMS-INFORMATION STORAGE AND PROCESSING SYSTEMS"
+    },
+    {
+      "date": "2012-09",
+      "title": "Analysis of inter-symbol-interference caused by shift misalignment of two objective lenses in high-NA micro holographic storage",
+      "journal": "MICROSYSTEM TECHNOLOGIES-MICRO-AND NANOSYSTEMS-INFORMATION STORAGE AND PROCESSING SYSTEMS"
+    },
+    {
+      "date": "2012-08",
+      "title": "Application of Solid Immersion Lens-Based Near-Field Recording Technology to High-Speed Plasmonic Nanolithography",
+      "journal": "JAPANESE JOURNAL OF APPLIED PHYSICS"
+    },
+    {
+      "date": "2012-08",
+      "title": "Line Tracking Applied Data Acquisition Method for Holographic Data Storage System",
+      "journal": "JAPANESE JOURNAL OF APPLIED PHYSICS"
+    },
+    {
+      "date": "2012-03",
+      "title": "마이크로 홀로그래픽 저장장치의 기계적 에러 보상기법",
+      "journal": "정보저장시스템학회 논문집"
+    },
+    {
+      "date": "2012-01",
+      "title": "Practical Implementation of the Normalized Dynamic Energy Stability Margin for Wheeled Robots",
+      "journal": "International Journal of Precision Engineering and Manufacturing"
+    },
+    {
+      "date": "2011-12",
+      "title": "Normal-Force Control for an In-Pipe Robot According to the Inclination of Pipelines",
+      "journal": "IEEE TRANSACTIONS ON INDUSTRIAL ELECTRONICS"
+    },
+    {
+      "date": "2011-09",
+      "title": "High-Speed Gap Servo Control for Solid-Immersion-Lens-Based Near-Field Recording System with a Flexible Optical Disk",
+      "journal": "JAPANESE JOURNAL OF APPLIED PHYSICS"
+    },
+    {
+      "date": "2011-09",
+      "title": "Focusing error detection method in microholographic data storage system using polarization characteristics",
+      "journal": "JAPANESE JOURNAL OF APPLIED PHYSICS"
+    },
+    {
+      "date": "2011-06",
+      "title": "Increasing the storage density of a page-based holographic data storage system by image upscaling using the PSF of the Nyquist aperture",
+      "journal": "OPTICS EXPRESS"
+    },
+    {
+      "date": "2011-06",
+      "title": "Tracking servo method using reflective optical filter for holographic data storage system",
+      "journal": "MICROSYSTEM TECHNOLOGIES-MICRO-AND NANOSYSTEMS-INFORMATION STORAGE AND PROCESSING SYSTEMS"
+    },
+    {
+      "date": "2011-06",
+      "title": "Improved safety mode considering external shock direction for near-field recording system using SIL",
+      "journal": "MICROSYSTEM TECHNOLOGIES-MICRO-AND NANOSYSTEMS-INFORMATION STORAGE AND PROCESSING SYSTEMS"
+    },
+    {
+      "date": "2011-05",
+      "title": "Optical design of a single-sided microholographic data-storage system using a diffractive optical element and a blue laser",
+      "journal": "JOURNAL OF OPTICS"
+    },
+    {
+      "date": "2011-03",
+      "title": "홀로그래픽 정보 저장장치에서의 간섭 비율 마스크를 이용한 인접 픽셀 간섭의 개선을 위한 연구",
+      "journal": "정보저장시스템학회 논문집"
+    },
+    {
+      "date": "2011-03",
+      "title": "마이크로 홀로그래픽 시스템에서 미디어의 소진효과",
+      "journal": "정보저장시스템학회 논문집"
+    },
+    {
+      "date": "2011-03",
+      "title": "각 다중화 방식의 홀로그래픽 정보저장기기의 양방향틸트 보상시스템 설계",
+      "journal": "정보저장시스템학회 논문집"
+    },
+    {
+      "date": "2011-03",
+      "title": "각 다중화 홀로그래픽 정보 저장장치를 위한 각 보상 기법",
+      "journal": "정보저장시스템학회 논문집"
+    },
+    {
+      "date": "2011-03",
+      "title": "Micro Holographic Recording Characteristic With Defocused Micrograting",
+      "journal": "IEEE TRANSACTIONS ON MAGNETICS"
+    },
+    {
+      "date": "2011-03",
+      "title": "Improved Air Gap Control With Acceleration Feedforward Controller Using Time Delay for Solid Immersion Lens-Based Near-Field Storage System",
+      "journal": "IEEE TRANSACTIONS ON MAGNETICS"
+    },
+    {
+      "date": "2011-03",
+      "title": "Applications of Next Generation Optical Data Storage Technologies",
+      "journal": "IEEE TRANSACTIONS ON MAGNETICS"
+    },
+    {
+      "date": "2010-09",
+      "title": "마이크로홀로그래픽 스토로지를 위한 편광다중화기법",
+      "journal": "정보저장시스템학회 논문집"
+    },
+    {
+      "date": "2010-08",
+      "title": "Improved Antishock Air-Gap Control Algorithm with Acceleration Feedforward Control for High-Numerical Aperture Near-Field Storage System Using Solid Immersion Lens",
+      "journal": "Japanese Journal of Applied Physics"
+    },
+    {
+      "date": "2010-06",
+      "title": "Variable stiffness mechanism for human-friendly robots",
+      "journal": "Mechanism And Machine Theory"
+    },
+    {
+      "date": "2010-03",
+      "title": "Dead-reckoning sensor system and tracking algorithm for 3-D pipeline mapping",
+      "journal": "Mechatronics"
+    },
+    {
+      "date": "2010-03",
+      "title": "홀로그래픽 정보저장장치에서 디지털 이미지 마스크를 이용한 실시간 광량 제어 알고리즘",
+      "journal": "정보저장시스템학회 논문집"
+    },
+    {
+      "date": "2010-03",
+      "title": "서브클러스터링을 이용한 홀로그래픽 정보저장 시스템의 비트 에러 보정 기법",
+      "journal": "정보저장시스템학회 논문집"
+    },
+    {
+      "date": "2010-03",
+      "title": "마이크로 홀로그래픽 저장장치의 공초점 필터의 효과",
+      "journal": "정보저장시스템학회 논문집"
+    },
+    {
+      "date": "2010-01",
+      "title": "Improved gap servo system using a brake pulse for a SIL-based near-field recording system",
+      "journal": "Microsystem Technologies-Micro-And Nanosystems-Information Storage And Processing Systems"
+    },
+    {
+      "date": "2009-12",
+      "title": "Differential optical navigation sensor for mobile robots",
+      "journal": "SENSORS AND ACTUATORS A-PHYSICAL"
+    },
+    {
+      "date": "2009-10",
+      "title": "Design of micromirror actuator by ionic polymer metal composites",
+      "journal": "Microsystem Technologies-Micro-And Nanosystems-Information Storage And Processing Systems"
+    },
+    {
+      "date": "2009-10",
+      "title": "Design of tracking servo control system for holographic data storage",
+      "journal": "Microsystem Technologies-Micro-And Nanosystems-Information Storage And Processing Systems"
+    },
+    {
+      "date": "2009-10",
+      "title": "Tilt detection and servo control method for the holographic data storage system",
+      "journal": "Microsystem Technologies-Micro-And Nanosystems-Information Storage And Processing Systems"
+    },
+    {
+      "date": "2009-10",
+      "title": "New multiplexing method of holographic data storage system",
+      "journal": "Microsystem Technologies-Micro-And Nanosystems-Information Storage And Processing Systems"
+    },
+    {
+      "date": "2009-05",
+      "title": "Tilt Error Measurement and Compensation Method for the Holographic Data Storage System Using Disturbance Observer",
+      "journal": "IEEE TRANSACTIONS ON MAGNETICS"
+    },
+    {
+      "date": "2009-05",
+      "title": "Ramp Tolerance Analysis Considering Geometric Errors",
+      "journal": "IEEE TRANSACTIONS ON MAGNETICS"
+    },
+    {
+      "date": "2009-05",
+      "title": "Effect of Air Bearing Surface on Shock Resistance of Optical Head for Solid Immersion Lens Based Near Field Recording System",
+      "journal": "IEEE TRANSACTIONS ON MAGNETICS"
+    },
+    {
+      "date": "2009-05",
+      "title": "Anti-Shock Air Gap Control for SIL-Based Near-Field Recording System",
+      "journal": "IEEE TRANSACTIONS ON MAGNETICS"
+    },
+    {
+      "date": "2009-03",
+      "title": "Improved Air Gap Controller for Solid Immersion Lens-Based Near-Field Recording Servo System",
+      "journal": "Japanese Journal of Applied Physics"
+    },
+    {
+      "date": "2009-03",
+      "title": "Improvement of Protection Process Using Observer for Soild Imersion Lens-Based Near-Field Recording",
+      "journal": "Japanese Journal of Applied Physics"
+    },
+    {
+      "date": "2009-03",
+      "title": "SIL 기반 근접장 기록 시스템의 간극 제어를 위한 최적화된 PID 제어 알고리즘 성능평가",
+      "journal": "정보저장시스템학회논문집"
+    },
+    {
+      "date": "2008-08",
+      "title": "A Study on Enhancing Data Storage Capacity and Mechanical Reliability of Solid Immersion Lens-Based Near-Field Recording System",
+      "journal": "Japanese Journal of Applied Physics"
+    },
+    {
+      "date": "2008-07",
+      "title": "Improved gap control system using a disturbance observer for near-field recording",
+      "journal": "Japanese Journal of Applied Physics"
+    },
+    {
+      "date": "2008-03",
+      "title": "선형 다변수 입출력 시스템에서 좌 고유벡터의 방향 지정",
+      "journal": "제어.로봇.시스템학회 논문지"
+    },
+    {
+      "date": "2007-11",
+      "title": "Novel pull-in process using input shaping for solid immersion lens-based near-field recording system",
+      "journal": "JAPANESE JOURNAL OF APPLIED PHYSICS PART 1-REGULAR PAPERS BRIEF COMMUNICATIONS & REVIEW PAPERS"
+    },
+    {
+      "date": "2007-06",
+      "title": "IMP를 이용한 근접장 기록 장치의 디스크 진동 및 편심 보상",
+      "journal": "한국소음진동공학회논문집"
+    },
+    {
+      "date": "2007-06",
+      "title": "Analysis on effect of external shock in near-field recording system",
+      "journal": "JAPANESE JOURNAL OF APPLIED PHYSICS PART 1-REGULAR PAPERS BRIEF COMMUNICATIONS & REVIEW PAPERS"
+    },
+    {
+      "date": "2007-06",
+      "title": "Integration of overall error reduction algorithms for holographic data storage system",
+      "journal": "JAPANESE JOURNAL OF APPLIED PHYSICS PART 1-REGULAR PAPERS BRIEF COMMUNICATIONS & REVIEW PAPERS"
+    },
+    {
+      "date": "2007-05",
+      "title": "Angle compensation of the reference beam in a retrieving process of the holographic data storage system",
+      "journal": "MICROSYSTEM TECHNOLOGIES-MICRO-AND NANOSYSTEMS-INFORMATION STORAGE AND PROCESSING SYSTEMS"
+    },
+    {
+      "date": "2007-05",
+      "title": "Suggest a format for intelligence control and structure of holographic data storage system",
+      "journal": "MICROSYSTEM TECHNOLOGIES-MICRO-AND NANOSYSTEMS-INFORMATION STORAGE AND PROCESSING SYSTEMS"
+    },
+    {
+      "date": "2007-05",
+      "title": "Real time servo control of the holographic data storage system with an additional servo beam",
+      "journal": "MICROSYSTEM TECHNOLOGIES-MICRO-AND NANOSYSTEMS-INFORMATION STORAGE AND PROCESSING SYSTEMS"
+    },
+    {
+      "date": "2007-03",
+      "title": "홀로그래픽 정보 저장 장치에서의 실시간 틸트 서보 제어",
+      "journal": "정보저장시스템학회논문집"
+    },
+    {
+      "date": "2007-03",
+      "title": "SIL을 이용한 근접장 기록계에서의 서보 방식의 개발",
+      "journal": "정보저장시스템학회논문집"
+    },
+    {
+      "date": "2007-02",
+      "title": "Improved air-gap control for SIL-based near-field recording system",
+      "journal": "IEEE TRANSACTIONS ON MAGNETICS"
+    },
+    {
+      "date": "2006-09",
+      "title": "Introduction to Optical Storage Researches in CISD (특별기고논문)",
+      "journal": "정보저장시스템학회논문집"
+    },
+    {
+      "date": "2006-06",
+      "title": "로드/언로드 성능향상을 위한 서스팬션의 구조최적화",
+      "journal": "정보저장시스템학회논문집"
+    },
+    {
+      "date": "2006-06",
+      "title": "역기전력을 이용한 슬림형 광 픽업의 연성 해석 및 비연성 제어기 설계",
+      "journal": "정보저장시스템학회논문집"
+    },
+    {
+      "date": "2006-06",
+      "title": "초소형 하드디스크에서 램프 형상 분석 및 설계 프로세스 연구",
+      "journal": "정보저장시스템학회논문집"
+    },
+    {
+      "date": "2006-06",
+      "title": "Implementation of the avoidance algorithm for autonomous mobile robots using fuzzy rules",
+      "journal": "LECTURE NOTES IN COMPUTER SCIENCE"
+    },
+    {
+      "date": "2006-03",
+      "title": "X-Y 갈바노 미러를 이용한 홀로그래픽 저장 장치의 프랙탈/각 다중화 구현 및 임의 탐색 성능의 평가",
+      "journal": "정보저장시스템학회논문집"
+    },
+    {
+      "date": "2006-02",
+      "title": "Angle/fractal multiplexing using x-y Galvano mirror system and new method of improving random-access performance",
+      "journal": "JAPANESE JOURNAL OF APPLIED PHYSICS PART 1-REGULAR PAPERS BRIEF COMMUNICATIONS & REVIEW PAPERS"
+    },
+    {
+      "date": "2006-01",
+      "title": "모델 기반 외란 관측기와 Waterfall 해석을 이용한 광 디스크 외란 분석",
+      "journal": "한국소음진동공학회논문집"
+    },
+    {
+      "date": "2005-11",
+      "title": "탐색 과정시 2단 액추에이터의 상호 작용 분석 및 트랙 끌어들임 성능 향상을 위한 제어",
+      "journal": "한국소음진동공학회논문집"
+    },
+    {
+      "date": "2005-11",
+      "title": "램프 형상에 대한 램프 상의 로드/언로드 동특성 해석",
+      "journal": "한국소음진동공학회논문집"
+    },
+    {
+      "date": "2005-09",
+      "title": "차세대 정보저장시스템 최신 기술 동향",
+      "journal": "정보저장시스템학회지"
+    },
+    {
+      "date": "2005-09",
+      "title": "광 디스크 드라이브 서보 설계를 위한 강건 제어 적용 및 평가: H∞ vs. QFT",
+      "journal": "한국소음진동공학회논문집"
+    },
+    {
+      "date": "2005-09",
+      "title": "Repetitive controller design for minimum track misregistration in hard disk drives",
+      "journal": "IEEE TRANSACTIONS ON MAGNETICS"
+    },
+    {
+      "date": "2005-08",
+      "title": "Design of swing arm type actuator and suspension for micro optical disk drive",
+      "journal": "MICROSYSTEM TECHNOLOGIES-MICRO-AND NANOSYSTEMS-INFORMATION STORAGE AND PROCESSING SYSTEMS"
+    },
+    {
+      "date": "2005-07",
+      "title": "Design of suspension and swing arm for improved shock resistance in the micro optical disk drives",
+      "journal": "MICROSYSTEM TECHNOLOGIES-MICRO-AND NANOSYSTEMS-INFORMATION STORAGE AND PROCESSING SYSTEMS"
+    },
+    {
+      "date": "2005-05",
+      "title": "Coupled-field-analysis and dynamic improvement of ultraslim optical pickup actuator",
+      "journal": "JAPANESE JOURNAL OF APPLIED PHYSICS PART 1-REGULAR PAPERS BRIEF COMMUNICATIONS & REVIEW PAPERS"
+    },
+    {
+      "date": "2005-05",
+      "title": "Design of slider and suspension for 4 × 1 probe array type near-field scanning optical microscope",
+      "journal": "JAPANESE JOURNAL OF APPLIED PHYSICS PART 1-REGULAR PAPERS BRIEF COMMUNICATIONS & REVIEW PAPERS"
+    },
+    {
+      "date": "2005-04",
+      "title": "Generation of fuzzy rules and learning algorithms for cooperative behavior of Autonomouse Mobile Robots(AMRs)",
+      "journal": "LECTURE NOTES IN ARTIFICIAL INTELLIGENCE"
+    },
+    {
+      "date": "2005-02",
+      "title": "마이크로 광디스크 드라이브용 4×1 근접장 탐침 어레이를 위한 슬라이더와 서스펜션의 설계",
+      "journal": "한국소음진동공학회논문집"
+    },
+    {
+      "date": "2005-02",
+      "title": "Improvement of loading/unloading performance using control input position and considering disk vibration characteristics",
+      "journal": "IEEE TRANSACTIONS ON MAGNETICS"
+    },
+    {
+      "date": "2005-01",
+      "title": "고밀도 광학헤드를 위한 Bimorph 압전 액추에이터의 동특성 해석 및 위치제어",
+      "journal": "한국소음진동공학회논문집"
+    },
+    {
+      "date": "2005-01",
+      "title": "위상 평면을 이용한 광 디스크 트랙 끌어들임의 동적 해석 및 영향 인자의 평가",
+      "journal": "한국소음진동공학회논문집"
+    },
+    {
+      "date": "2004-12",
+      "title": "초소형 광자기 드라이브용 HGA의 신뢰성 및 충격 해석",
+      "journal": "한국소음진동공학회논문집"
+    },
+    {
+      "date": "2004-05",
+      "title": "PZT를 이용한 광 정보저장기기용 액추에이터의 트랙 추적제어",
+      "journal": "한국소음진동공학회논문집"
+    },
+    {
+      "date": "2004-02",
+      "title": "반복제어기를 이용한 하드디스크의 주기적인 외란 보상",
+      "journal": "한국소음진동공학회논문집"
+    },
+    {
+      "date": "2003-12",
+      "title": "이중 구동 시스템을 위한 압전 밀리액추에이터의 제어기 설계",
+      "journal": "한국소음진동공학회논문집"
+    },
+    {
+      "date": "2003-05",
+      "title": "고밀도,소형화를 위한 하드디스크 기술동향",
+      "journal": "기계채널"
+    },
+    {
+      "date": "2003-05",
+      "title": "시변절환면을 갖는 슬라이딩 모드에 의한 차량의 요-모멘트 제어",
+      "journal": "대한기계학회논문집 A"
+    },
+    {
+      "date": "2003-05",
+      "title": "정보저장기기에서의 제어 이론의 응용",
+      "journal": "제어.로봇.시스템학회 논문지"
+    },
+    {
+      "date": "2003-01",
+      "title": "인체진동을 고려한 재활훈련용 이족보행 RGO 보조기 PLS의 생체역학적 설계와 해석(I)",
+      "journal": "한국소음진동공학회논문집"
+    },
+    {
+      "date": "2002-12",
+      "title": "폭발 충격 발생기구의 인체전달 충격력 및완충시스템 해석",
+      "journal": "한국정밀공학회지"
+    },
+    {
+      "date": "2002-09",
+      "title": "Position/vibration control of two-degree-of-freedom arms having one flexible link with artificial pneumatic muscle actuators",
+      "journal": "ROBOTICS AND AUTONOMOUS SYSTEMS"
+    },
+    {
+      "date": "2002-08",
+      "title": "Robust roll control of a vehicle: Experimental study using a hardware-in-the-loop set-up",
+      "journal": "PROCEEDINGS OF THE INSTITUTION OF MECHANICAL ENGINEERS PART D-JOURNAL OF AUTOMOBILE ENGINEERING"
+    },
+    {
+      "date": "2002-06",
+      "title": "Improving the vehicle performance with active suspension using road-sensing algorithm",
+      "journal": "MICROPOROUS AND MESOPOROUS MATERIALS"
+    },
+    {
+      "date": "2002-05",
+      "title": "고충격 발생기구의 완충시스템 해석",
+      "journal": "한국소음진동공학회논문집"
+    },
+    {
+      "date": "2002-05",
+      "title": "Swing-arm-type PZT dual actuator with fast seeking for optical disk drive",
+      "journal": "MICROSYSTEM TECHNOLOGIES-MICRO-AND NANOSYSTEMS-INFORMATION STORAGE AND PROCESSING SYSTEMS"
+    },
+    {
+      "date": "2002-03",
+      "title": "Robust vibration/force control of a 2 D.O.F. arm having one flexible link with artificial pneumatic actuators",
+      "journal": "JOURNAL OF VIBRATION AND CONTROL"
+    },
+    {
+      "date": "2001-09",
+      "title": "고밀도 기록,재생의 기계 기술 동향",
+      "journal": "방송공학회 논문지"
+    },
+    {
+      "date": "2001-07",
+      "title": "Vibration isolation of digital VDR deck using sensitivity analysis",
+      "journal": "Journal of Information Storage and Processing Systems"
+    },
+    {
+      "date": "2001-05",
+      "title": "선회 조향시 강건 제어에 의한 롤 안정성 개선",
+      "journal": "한국자동차공학회 논문집"
+    },
+    {
+      "date": "2001-04",
+      "title": "고속/고정밀 위치 제어를 위한 이중 구동기를 이용한 회전 이송기구의 진동 제어",
+      "journal": "한국정밀공학회지"
+    },
+    {
+      "date": "2001-04",
+      "title": "고기록밀도 HDD 개발 기술의 동향",
+      "journal": "한국정밀공학회지"
+    },
+    {
+      "date": "2001-03",
+      "title": "Identification of contributors to HDD servo errors by measuring PES only",
+      "journal": "IEEE TRANSACTIONS ON MAGNETICS"
+    },
+    {
+      "date": "2001-01",
+      "title": "Design and dynamic analysis of suspension for dual actuator type HDD",
+      "journal": "Journal of Information Storage and Processing Systems"
+    },
+    {
+      "date": "2000-03",
+      "title": "유연한 로봇암의 강건진동제어",
+      "journal": "한국정밀공학회지"
+    },
+    {
+      "date": "1999-07",
+      "title": "Position and vibration control of a flexible robot manipulator using hybrid controller",
+      "journal": "ROBOTICS AND AUTONOMOUS SYSTEMS"
+    },
+    {
+      "date": "1998-03",
+      "title": "Control of a Flexible Manipulator With Artificial Muscle-Type Pneumatic Actuators, Using mu-Synthesis",
+      "journal": "JOURNAL OF VIBRATION AND CONTROL"
+    },
+    {
+      "date": "1997-02",
+      "title": "유압계의 동특성을 고려한 능동 현가계의 합성 제어",
+      "journal": "한국소음진동공학회논문집"
+    },
+    {
+      "date": "1996-12",
+      "title": "유연한 링크를 가진 3자유도 로봇조작기 진동의 퍼지제어",
+      "journal": "대한기계학회논문집 A"
+    },
+    {
+      "date": "1996-10",
+      "title": "H∞제어를 이용한 방진대의 능동제어",
+      "journal": "대한기계학회논문집 A"
+    },
+    {
+      "date": "1996-10",
+      "title": "μ-합성법에 의한 유연한 조작기의 위치 및 진동제어",
+      "journal": "대한기계학회논문집 A"
+    },
+    {
+      "date": "1996-06",
+      "title": "공압인공근육을 이용한 조작기 위치의 강인제어",
+      "journal": "대한기계학회논문집 A"
+    }
+  ],
+  "awards": [
+    {
+      "title": "한국정밀공학회 2014 춘계학술대회 부문별 최우수논문",
+      "contents": "아카이브 정보저장기기에서의 디스크 돌출 감지 방법",
+      "date": "2014-10-31"
+    },
+    {
+      "title": "한국정밀공학회 2013 춘계학술대회 부문별 최우수논문",
+      "contents": "유연한 링크를 가진 파이프 로봇의 기구학 분석",
+      "date": "2013-11-01"
+    },
+    {
+      "title": "APDSC&apos;08 OUSTANDING POSTER AWARD",
+      "contents": "Improved Gap Servo System Using Brake Pulse for SIL based Near-Field Recording System",
+      "date": "2008-12-16"
+    },
+    {
+      "title": "ASME&apos;08 BEST PAPER AWARD",
+      "contents": "Tilt compensation method based on disturbance observer for holographic data storage system",
+      "date": "2008-06-17"
+    },
+    {
+      "title": "2008년 한국 소음진동공학회 추계학술대회 포스터 세션 우수 발표",
+      "contents": "외란 관측기를 이용한 근접장 기록 시스템의 트랙킹 서보성능 향상",
+      "date": "2008-04-17"
+    },
+    {
+      "title": "APDSC&apos;06 OUTSTANDING POSTER AWARD",
+      "contents": "NOVEL GAP CONTROL FOR SIL BASED NEAR-FIELD RECORDING SYSTEM",
+      "date": "2006-08-29"
+    }
+  ],
+  "conferences": [
+    {
+      "title": "그리퍼의 수직항력 데이터만으로 물체의 슬립을 감지하는 알고리즘",
+      "conference": "대한기계학회 호남지회 2021년 춘계학술대회",
+      "period": "2021.06.17~2021.06.17"
+    },
+    {
+      "title": "순차적 데이터 세그먼테이션을 통한 Pick-and-Place 작업의 기본작업 연쇄 표현",
+      "conference": "한국정밀공학회 2020 통합학술대회",
+      "period": "2020.09.14~2020.09.18"
+    },
+    {
+      "title": "Reinforcement Learning with Converging Goal Space and Binary Reward Function",
+      "conference": "2020 IEEE 16th International Conference on Automation Science and Engineering",
+      "period": "2020.08.20~2020.08.21"
+    },
+    {
+      "title": "Determine the Predictive Model of the Slag Foaming Height in the Electric Arc Furnace with LSTM",
+      "conference": "Spatial Statistics 2019: Towards Spatial Data Science",
+      "period": "2019.07.10~2019.07.13"
+    },
+    {
+      "title": "Development of the Slag Foaming Height Predictive Model in Electric Arc Furnace using Stepwise Regression Analysis",
+      "conference": "Spatial Statistics 2019: Towards Spatial Data Science",
+      "period": "2019.07.10~2019.07.13"
+    },
+    {
+      "title": "촉각 센서와 자가 수용성 감각을 이용한 직렬 탄성 구동기 기반 기계식 그리퍼 힘 추정",
+      "conference": "한국소음진동공학회 2019년도 춘계학술대회",
+      "period": "2019.02.20~2019.02.23"
+    },
+    {
+      "title": "사족 보행 로봇의 동적 균형에 관한 연구",
+      "conference": "한국소음진동공학회 2019년도 춘계학술대회",
+      "period": "2019.02.20~2019.02.23"
+    },
+    {
+      "title": "Design, Modeling and Optimal Control Strategy for an Under-actuated Anthropomorphic Robotic Finger",
+      "conference": "IEEE International Conference on Robotics and Biomimetics",
+      "period": "2018.12.12~2018.12.15"
+    },
+    {
+      "title": "메카넘 휠 이동로봇의 바퀴 슬립을 고려한 위치 추정",
+      "conference": "한국정밀공학회 2018년도 추계학술대회",
+      "period": "2018.10.24~2018.10.26"
+    },
+    {
+      "title": "Autofocusing using deep learning in off-axis digital holography",
+      "conference": "Imaging and Applied Optics 2018",
+      "period": "2018.06.25~2018.06.28"
+    },
+    {
+      "title": "Analysis of 3D Image Reconstruction for Spherical Object Using Convolutional Neural Network in Digital Holography",
+      "conference": "Imaging and Applied Optics 2018",
+      "period": "2018.06.25~2018.06.28"
+    },
+    {
+      "title": "위상차 모션을 이용한 협소공간 주행 강아지풀 로봇의 전후 진행방향 전환 메커니즘 설계",
+      "conference": "대한기계학회 바이오공학부문 2018년도 춘계학술대회",
+      "period": "2018.04.25~2018.04.27"
+    },
+    {
+      "title": "위상차 모션을 이용한 협소공간 주행 강아지풀 로봇 설계",
+      "conference": "한국정밀공학회 2017 추계학술대회",
+      "period": "2017.12.13~2017.12.15"
+    },
+    {
+      "title": "IPI Noise Reduction by Image Mask Using Deep Learning Method in Holographic Data Storage System",
+      "conference": "International Symposium on Imaging, Sensing, and Optical Memory 2017 (ISOM2017)",
+      "period": "2017.10.22~2017.10.25"
+    },
+    {
+      "title": "Speckle Noise Reduction for Digital Holography Using Efficient Sub-pixel Convolutional Neural Network",
+      "conference": "International Symposium on Imaging, Sensing, and Optical Memory 2017 (ISOM2017)",
+      "period": "2017.10.22~2017.10.25"
+    },
+    {
+      "title": "High-range Autofocusing Algorithm for Digital Holographic Imaging System Using Convolutional Neural Networks",
+      "conference": "International Symposium on Imaging, Sensing, and Optical Memory 2017 (ISOM2017)",
+      "period": "2017.10.22~2017.10.25"
+    },
+    {
+      "title": "A new conceptual idea of wind turbine",
+      "conference": "2017 3rd International Conference on Renewable Energy and Development",
+      "period": "2017.09.25~2017.09.29"
+    },
+    {
+      "title": "Automatic Page-Turning Mechanism with Near-Field Electroadhesive Force for Linearly Correctable Imaging",
+      "conference": "2017 IEEE/RSJ International Conference on Intelligent Robotics and Systems",
+      "period": "2017.09.24~2017.09.28"
+    },
+    {
+      "title": "Image Reconstruction Algorithm for Speckle Noise Reduction of 2-Step Parallel Phase-Shift Digital Holography",
+      "conference": "Imaging and Applied Optics 2017",
+      "period": "2017.06.26~2017.06.29"
+    },
+    {
+      "title": "Carangiform Locomotion을 이용한 강아지풀 로봇의 전후 진행방향 전환 메커니즘 설계",
+      "conference": "한국정밀공학회 2017 춘계학술대회",
+      "period": "2017.05.17~2017.05.19"
+    },
+    {
+      "title": "미지 로봇 모듈을 부착한 Quad-Tilt-Rotor 형 무인비행체의 추적 적응제어",
+      "conference": "한국정밀공학회 2017 춘계학술대회",
+      "period": "2017.05.17~2017.05.19"
+    },
+    {
+      "title": "간섭리소그래피 공정을 통한 임의의 자유곡면 패터닝을 위한 오차 보정 모델링에 관한 연구",
+      "conference": "한국생산제조학회 2017년도 춘계학술대회",
+      "period": "2017.04.26~2017.04.28"
+    },
+    {
+      "title": "Advanced channel modeling of holographic data storage considering degradation shapes of reconstructed image",
+      "conference": "SPIE Photonics West 2017",
+      "period": "2017.01.28~2017.02.02"
+    },
+    {
+      "title": "Modeling, analysis and optimizing the power transmission mechanism for a new type of wind turbine",
+      "conference": "대한기계학회 2016년도 학술대회",
+      "period": "2016.12.14~2016.12.16"
+    },
+    {
+      "title": "Misalignment Calibration of Low-cost Accelerometer for UAV Attitude Estimation",
+      "conference": "대한기계학회 2016년도 학술대회",
+      "period": "2016.12.14~2016.12.16"
+    },
+    {
+      "title": "Speckle Noise Reduction Algorithm for Parallel Phase-Shift Digital Holography",
+      "conference": "2016 Imaging and Applied Optics Congress",
+      "period": "2016.07.25~2016.07.28"
+    },
+    {
+      "title": "Development of Stability Enhancement Algorithm for Adaptive DOB",
+      "conference": "Asia-Pacific Magnetic Recording Conference 2016",
+      "period": "2016.07.13~2016.07.15"
+    },
+    {
+      "title": "홀로그래피 암호화를 이용한 RFID의 보안 인증 시스템",
+      "conference": "한국정밀공학회 2016 춘계학술대회",
+      "period": "2016.05.11~2016.05.13"
+    },
+    {
+      "title": "형태변형 모바일 로봇의 바퀴 토크 소비 분석",
+      "conference": "한국정밀공학회 2016 춘계학술대회",
+      "period": "2016.05.11~2016.05.13"
+    },
+    {
+      "title": "부정형 협소구역 주행을 위한 강아지풀 메커니즘과 Carangiform Locomotion을 이용한 로봇 제작 및 실험",
+      "conference": "대한기계학회 동역학 및 제어부문 2016년도 춘계학술대회",
+      "period": "2016.04.27~2016.04.29"
+    },
+    {
+      "title": "수평방향 가이드 휠이 부착된 소형궤도차량의 동역학 해석을 위한 시뮬레이션 환경 구축 및 결과",
+      "conference": "대한기계학회 동역학 및 제어부문 2016년도 춘계학술대회",
+      "period": "2016.04.27~2016.04.29"
+    },
+    {
+      "title": "고속회전 환경에서의 관성항법 시스템 성능향상",
+      "conference": "한국정밀공학회 2015년도 추계학술대회",
+      "period": "2015.12.16~2015.12.18"
+    },
+    {
+      "title": "Intelligence Intensity Reduction Using Hybrid algorithm for the Holographic Data Storage System",
+      "conference": "International Symposium on Optical Memory 2015",
+      "period": "2015.10.04~2015.10.08"
+    },
+    {
+      "title": "Complex Tilt Measurement and Compensation Algorithm with Quadratic Window in Holographic Data Storage",
+      "conference": "International Symposium on Optical Memory 2015",
+      "period": "2015.10.04~2015.10.08"
+    },
+    {
+      "title": "Estimation of a Pipe’s Features with In-pipe Robot",
+      "conference": "2015 International Conference on Mechanical and Electrical Technology",
+      "period": "2015.07.01~2015.07.02"
+    },
+    {
+      "title": "Design a Transformable Wheel for Enhancing Mobility of 4-Wheeled Mobile Robot",
+      "conference": "2015 International Conference on Mechanical and Electrical Technology",
+      "period": "2015.07.01~2015.07.02"
+    },
+    {
+      "title": "Design a New Worm-Type Mechanism of Mobile Robot Applicable in Colonoscopy",
+      "conference": "2015 International Conference on Mechanical and Electrical Technology",
+      "period": "2015.07.01~2015.07.02"
+    },
+    {
+      "title": "Noise reduction method using extended kalman filter for tilt servo control in holographic data storage system",
+      "conference": "2015 JSME-IIP/ASME-ISPS Joint Conference on Micromechatronics for Information and Precision Equipment",
+      "period": "2015.06.14~2015.06.17"
+    },
+    {
+      "title": "Intelligence CGH for holographic 3D displays",
+      "conference": "2015 JSME-IIP/ASME-ISPS Joint Conference on Micromechatronics for Information and Precision Equipment",
+      "period": "2015.06.14~2015.06.17"
+    },
+    {
+      "title": "System identification using genetic programming for Electro-Hydaulic actuator",
+      "conference": "2014 The 3rd International Conference on Control, Robotics and Informatics (ICCRI 2014)",
+      "period": "2014.12.26~2014.12.28"
+    },
+    {
+      "title": "클릭비틀(Click-beetle)의 점프 메커니즘을 적용한 모바일 로봇 개발을 위한 시뮬레이션 환경 구축",
+      "conference": "한국정밀공학회 2014 년도 추계학술대회",
+      "period": "2014.10.29~2014.10.31"
+    },
+    {
+      "title": "형태 변형이 있는 6-wheel-모바일 로봇의 수직항력 분포 해석",
+      "conference": "한국정밀공학회 2014 년도 추계학술대회",
+      "period": "2014.10.29~2014.10.31"
+    },
+    {
+      "title": "철도 차량용 현가장치를 위한 강인 제어기 설계",
+      "conference": "한국정밀공학회 2014 년도 추계학술대회",
+      "period": "2014.10.29~2014.10.31"
+    },
+    {
+      "title": "Image Compensation Using Wavelet Transform for Tilt Servo Control in Hologarphic Data Storage System",
+      "conference": "International Symposium on Optical Memory 2014 (ISOM 2014)",
+      "period": "2014.10.20~2014.10.23"
+    },
+    {
+      "title": "Intelligent Complex Distortion-detection Algorithm for Data Restoration in a Holographic Data Storage System",
+      "conference": "International Symposium on Optical Memory 2014 (ISOM 2014)",
+      "period": "2014.10.20~2014.10.23"
+    },
+    {
+      "title": "Complex Amplitude Acquisition for Holographic Data Storage",
+      "conference": "International Symposium on Optical Memory 2014 (ISOM 2014)",
+      "period": "2014.10.20~2014.10.23"
+    },
+    {
+      "title": "ANALYSIS FOR RANDOM PHASE MASK KEY IN HOLOGRAPHIC ENCRYPTION",
+      "conference": "International Workshop on Holography and Related Technologies (IWH2014)",
+      "period": "2014.10.15~2014.10.17"
+    },
+    {
+      "title": "Development of non-linear controller considering with change of viscous friction with temperature of hydraulic manipulator for decommissioning of nuclear power plant",
+      "conference": "6th International Symposium on Application of Chemical and Analytical Technologies in Nuclear Industries",
+      "period": "2014.09.25~2014.09.26"
+    },
+    {
+      "title": "Design Morphological Changing All-Terrain-Rover and Optimizing with Genetic Algorithm for Enhancing Mobility",
+      "conference": "International Conference on Mechanical and Electrical Technology (ICMET 2014)",
+      "period": "2014.07.17~2014.07.18"
+    },
+    {
+      "title": "Mechanism Design and Manipulating Algorithm for Orientation Changing Module with Three Flexible Links",
+      "conference": "International Conference on Mechanical and Electrical Technology (ICMET 2014)",
+      "period": "2014.07.17~2014.07.18"
+    },
+    {
+      "title": "Wavelet Based Binary Data Compensation in Holographic Data Storage System",
+      "conference": "ASME 2014 Conference on Information Storage and Processing Systems",
+      "period": "2014.06.23~2014.06.24"
+    },
+    {
+      "title": "Intelligent Control System Compensation by DNA Coding Method in Holographic Data Storage System",
+      "conference": "ASME 2014 Conference on Information Storage and Processing Systems",
+      "period": "2014.06.23~2014.06.24"
+    },
+    {
+      "title": "패시브 조인트를 활용한 그립 메커니즘 설계",
+      "conference": "제9회 한국로봇종합학술대회",
+      "period": "2014.06.19~2014.06.20"
+    },
+    {
+      "title": "형태학적 변형이 있는 모바일 로봇의 이동성 향상을 위한 유전-퍼지 제어",
+      "conference": "한국정밀공학회 2014 춘계학술대회",
+      "period": "2014.05.14~2014.05.16"
+    },
+    {
+      "title": "지렁이 움직임을 모방한 협소구역 주행 메커니즘 개발",
+      "conference": "한국정밀공학회 2014 춘계학술대회",
+      "period": "2014.05.14~2014.05.16"
+    },
+    {
+      "title": "유전 알고리즘을 이용한 모바일 로봇의 장애물 회피와 이동 경로의 최적화에 관한 연구",
+      "conference": "한국정밀공학회 2014 춘계학술대회",
+      "period": "2014.05.14~2014.05.16"
+    },
+    {
+      "title": "유전 알고리즘을 이용한 Legged-wheel 모바일 로봇의 Gait Generation 에 관한 연구",
+      "conference": "한국정밀공학회 2014 춘계학술대회",
+      "period": "2014.05.14~2014.05.16"
+    },
+    {
+      "title": "아카이브 정보저장기기에서의 디스크 돌출 탐지 방법",
+      "conference": "한국정밀공학회 2014 춘계학술대회",
+      "period": "2014.05.14~2014.05.16"
+    },
+    {
+      "title": "봅슬레이의 이동성 향상을 위한 조향각 최적 제어에 관한 연구",
+      "conference": "한국정밀공학회 2014 춘계학술대회",
+      "period": "2014.05.14~2014.05.16"
+    },
+    {
+      "title": "강아지풀 메커니즘과 Carangiform Locomotion 을 이용한 부정형 협소구역 주행 로봇 설계",
+      "conference": "한국정밀공학회 2014 춘계학술대회",
+      "period": "2014.05.14~2014.05.16"
+    },
+    {
+      "title": "홀로그래픽 정보저장기기에서의 데이터 복원을 위한 인공지능 회전 왜곡크기 감지 알고리즘",
+      "conference": "2014년도 정보저장시스템학회 학술대회",
+      "period": "2014.02.28~2014.02.28"
+    },
+    {
+      "title": "홀로그래픽 암호화의 위상암호키 분해능 분석",
+      "conference": "2014년도 정보저장시스템학회 학술대회",
+      "period": "2014.02.28~2014.02.28"
+    },
+    {
+      "title": "Assisting Strategy of Walking Assistive Device on Inclined Terrain",
+      "conference": "The 10th International Conference on Ubiquitous Robots and Ambient Intelligence(URAI 2013)",
+      "period": "2013.10.30~2013.11.02"
+    },
+    {
+      "title": "Servo pattern interval optimization using least mean square algorithm for angle-multiplexed holographic data storage",
+      "conference": "International Workshop on Holography and Related Technologies 2013",
+      "period": "2013.10.15~2013.10.17"
+    },
+    {
+      "title": "Generation of Fuzzy Rules and Learning Algorithms for Servo control in Holographic Data Storage System",
+      "conference": "ASME 2013 Conference on Information Storage and Processing Systems",
+      "period": "2013.06.24~2013.06.25"
+    },
+    {
+      "title": "Slot Misalignment Measurement for Archive Data Storage using Dual Sensing Method",
+      "conference": "ASME 2013 Conference on Information Storage and Processing Systems",
+      "period": "2013.06.24~2013.06.25"
+    },
+    {
+      "title": "Intelligence Compensation Algorithm for Data Restoration in Holographic Data Storage System",
+      "conference": "ASME 2013 Conference on Information Storage and Processing Systems",
+      "period": "2013.06.24~2013.06.25"
+    },
+    {
+      "title": "곡선구간 능동현가장치 탑재 철도차량의 제어에 따른 횡 방향 진동 특성 분석",
+      "conference": "한국정밀공학회 2013 춘계학술대회",
+      "period": "2013.05.29~2013.05.31"
+    },
+    {
+      "title": "부정 지형 이동성 향상을 위한 형태학적 변형 가능한 모바일 로봇",
+      "conference": "한국정밀공학회 2013 춘계학술대회",
+      "period": "2013.05.29~2013.05.31"
+    },
+    {
+      "title": "유연한 링크를 가진 파이프 로봇의 기구학 분석",
+      "conference": "한국정밀공학회 2013 춘계학술대회",
+      "period": "2013.05.29~2013.05.31"
+    },
+    {
+      "title": "Measurement of a Subwavelength Resolution using High-NA Phase-Conjugating Holography with Optical Refocusing",
+      "conference": "International Workshop on Holography and related Technologies 2012",
+      "period": "2012.11.12~2012.11.14"
+    },
+    {
+      "title": "Imbalance Disc Analysis Considering Servo System for Holographic Disc Drive",
+      "conference": "International Symposium on Optical Memory 2012",
+      "period": "2012.09.30~2012.10.04"
+    },
+    {
+      "title": "Tilt Servo Control by Intelligent Algorithm in Holographic Data Storage System",
+      "conference": "International Symposium on Optical Memory 2012",
+      "period": "2012.09.30~2012.10.04"
+    },
+    {
+      "title": "Line Tracking applied Synchronous Mark for Holographic Data Storage System",
+      "conference": "International Symposium on Optical Memory 2012",
+      "period": "2012.09.30~2012.10.04"
+    },
+    {
+      "title": "Improvement of SNR and BER in Holographic Data Storage using Adjusted CLSF Filter",
+      "conference": "International Symposium on Optical Memory 2012(ISOM&apos;12)",
+      "period": "2012.09.30~2012.10.04"
+    },
+    {
+      "title": "스마트 모바일 워커(SMW)의 부정 지형 주행 지원을 위한 자세 측정 및 레귤레이션 제어",
+      "conference": "제7회 한국로봇종합학술대회(KRoC 2012)",
+      "period": "2012.06.21~2012.06.23"
+    },
+    {
+      "title": "스마트 모바일 워커(SMW)의 사용자 앉기/서기 동작 지원을 위한 프로파일 트래킹 제어",
+      "conference": "제7회 한국로봇종합학술대회(KRoC 2012)",
+      "period": "2012.06.21~2012.06.23"
+    },
+    {
+      "title": "Abberation analysis of interferogram using a virtual reference wave",
+      "conference": "2012 ASME-ISPS /JSME-IIP Joint International Conference on Micromechatronics for Information and Precision Equipment",
+      "period": "2012.06.18~2012.06.20"
+    },
+    {
+      "title": "Contrast enhancement of polarization and simultaneous recording and reconstruction of two measure object in TIR holography",
+      "conference": "2012 ASME-ISPS/JSME-IIP Joint International Conference on Micromechatronics for Information and Precision Equipment (MIPE2012)",
+      "period": "2012.06.18~2012.06.20"
+    },
+    {
+      "title": "트랙 타입 관내 주행 로봇의 자유도 해석",
+      "conference": "한국정밀공학회 2012년도 춘계학술대회",
+      "period": "2012.05.30~2012.06.01"
+    },
+    {
+      "title": "트랙 타입 관내 주행 로봇과 병렬형 로봇의 상사성",
+      "conference": "한국정밀공학회 2012년도 춘계학술대회",
+      "period": "2012.05.30~2012.06.01"
+    },
+    {
+      "title": "마스크리스 리소그래피 시스템에서 측정신호를 이용한 외란 대응 보상기의 설계",
+      "conference": "2012 대한기계학회 동역학 및 제어부문 춘계학술대회",
+      "period": "2012.04.11~2012.04.13"
+    },
+    {
+      "title": "Increasing Storage Density of Page-based Holographic Data Storage System by Image Restoration using PSF of Nyquist",
+      "conference": "Joint International Symposium on Optical Memory & Optical Data Storage (ISOM/ODS)",
+      "period": "2011.07.17~2011.07.20"
+    },
+    {
+      "title": "Development of high mobility in-pipe inspection robot",
+      "conference": "System Integration (SII), 2011 IEEE/SICE International Symposium",
+      "period": "2011.12.20~2011.12.22"
+    },
+    {
+      "title": "Shift and Polarization Multiplexing for SIL Based Near-Field Holographic Recording",
+      "conference": "ISOM/ODS 2011",
+      "period": "2011.07.17~2011.07.20"
+    },
+    {
+      "title": "Increasing Storage Density of Page-based Holographic Data Storage",
+      "conference": "ISOM/ODS 2011",
+      "period": "2011.07.17~2011.07.20"
+    },
+    {
+      "title": "Application of Solid Immersion Lens Based Near-Field Recording Technology to High Speed Nano Patterning",
+      "conference": "ISOM/ODS 2011",
+      "period": "2011.07.17~2011.07.20"
+    },
+    {
+      "title": "Application of SIL based Near Field Recording Technology to High Speed Nano Patterning",
+      "conference": "Joint International Symposium on Optical Memory & Optical Data Storage (ISOM/ODS)",
+      "period": "2011.07.17~2011.07.20"
+    },
+    {
+      "title": "Line Tracking applied Data Acquisition Method for Holographic Data Storage",
+      "conference": "ISOM/ODS 2011",
+      "period": "2011.07.17~2011.07.21"
+    },
+    {
+      "title": "Effects of Micrograting with Shift Misalignment of Recording Beams in High-NA Micro Holographic Storage",
+      "conference": "ISPS&apos;11",
+      "period": "2011.07.13~2011.07.14"
+    },
+    {
+      "title": "노인 및 장애인 보조 기구의 앉기/서기 모션을 위한 기구학 해석",
+      "conference": "제 6회 한국로봇종합학술대회",
+      "period": "2011.06.30~2011.07.02"
+    },
+    {
+      "title": "Kinematic Analysis of Sit-To-Stand Assistive Device for the Elderly and Disabled",
+      "conference": "2011 IEEE International Conference on Rehabilitation Robotics",
+      "period": "2011.06.29~2011.07.01"
+    },
+    {
+      "title": "Pattern Analysis for Tilt Servo Control in Holographic Data Storage System",
+      "conference": "ISPS&apos;11",
+      "period": "2011.06.13~2011.06.14"
+    },
+    {
+      "title": "TRACKING SERVO METHOD USING DISCRETE PRE-PATTERNS FOR HOLOGRAPHIC DATA STORAGE",
+      "conference": "ISPS&apos;11",
+      "period": "2011.06.13~2011.06.14"
+    },
+    {
+      "title": "MARK POSITION RECORDING FOR MICRO HOLOGRAPHIC STORAGE SYSTEM",
+      "conference": "ISPS&apos;11",
+      "period": "2011.06.13~2011.06.14"
+    },
+    {
+      "title": "홀로그래픽 정보저장기기의 트래킹 서보 제어를 위한 서보 패턴 연구",
+      "conference": "한국정밀공학회 2011년도 춘계학술대회",
+      "period": "2011.06.01~2011.06.03"
+    },
+    {
+      "title": "GPS를 활용한 독립항법시스템의 성능 개선",
+      "conference": "한국정밀공학회 2011년도 춘계학술대회",
+      "period": "2011.06.01~2011.06.03"
+    },
+    {
+      "title": "초음파 센서를 사용한 위험 지형 검출의 실험적 검증",
+      "conference": "한국정밀공학회 2011년도 춘계학술대회",
+      "period": "2011.06.01~2011.06.04"
+    },
+    {
+      "title": "마이크로 홀로그래픽 저장장치의 기록공차",
+      "conference": "광전자 및 광통신 학술회의",
+      "period": "2011.05.25~2011.05.27"
+    },
+    {
+      "title": "고체침지렌즈 기반의 근접장 홀로그래픽 기록시스템의 설계",
+      "conference": "광전자 및 광통신 학술회의",
+      "period": "2011.05.25~2011.05.27"
+    },
+    {
+      "title": "Instantaneous Kinematic Analysis for a Crawler Type In-pipe robot",
+      "conference": "2011 IEEE International Conference on Mechatronics",
+      "period": "2011.04.13~2011.04.15"
+    },
+    {
+      "title": "마이크로홀로그래픽 스토로지의 z방향 기록공차분석",
+      "conference": "정보저장시스템학회 2011년도 춘계학술대회",
+      "period": "2011.01.20~2011.01.20"
+    },
+    {
+      "title": "페이지 기반 홀로그래픽 스토리지를 위한 고해상도 영상 복원 기법",
+      "conference": "정보저장시스템학회 2011년도 춘계학술대회",
+      "period": "2011.01.20~2011.01.20"
+    },
+    {
+      "title": "유연매체를 적용한 근접장 기록 시스템의 간극 제어 성능 개선",
+      "conference": "정보저장시스템학회 2011년도 춘계학술대회",
+      "period": "2011.01.20~2011.01.20"
+    },
+    {
+      "title": "홀로그래픽 정보저장장치의 추가 p 편광 빔을 이용한 광 노출시간 보상법",
+      "conference": "정보저장시스템학회 2011년도 춘계학술대회",
+      "period": "2011.01.20~2011.01.20"
+    },
+    {
+      "title": "마이크로 홀로그래픽 시스템에서 미디어의 소진효과",
+      "conference": "정보저장시스템학회 2011년도 춘계학술대회",
+      "period": "2011.01.20~2011.01.20"
+    },
+    {
+      "title": "Active Compensation Method of Exposure Time for Holographic Data Storage System",
+      "conference": "International Workshop on Holographic Memory",
+      "period": "2010.11.15~2010.11.16"
+    },
+    {
+      "title": "Disk Focusing Error Detection Method in Microholographic Data Storage System Using Polarization Characteristics",
+      "conference": "INTERNATIONAL SYMPOSIUM ON OPTICAL MEMORY 2010",
+      "period": "2010.10.24~2010.10.28"
+    },
+    {
+      "title": "Improved Anti-shock Air Gap Controller using Acceleration Feedforward Controller for Solid Immersion Lens-Based Near-Field Storage System",
+      "conference": "Asia-Pacific Data Storage Conference (APDSC&apos;10)",
+      "period": "2010.10.27~2010.10.29"
+    },
+    {
+      "title": "Micro Holographic Recording Characteristic with Defocused Micrograting",
+      "conference": "Asia-Pacific Data Storage Conference (APDSC&apos;10)",
+      "period": "2010.10.27~2010.10.29"
+    },
+    {
+      "title": "Air Gap Control Algorithm Technologies for High NA Near-Field Storage System using Solid Immersion Lens",
+      "conference": "INTERNATIONAL SYMPOSIUM ON OPTICAL MEMORY 2010",
+      "period": "2010.10.24~2010.10.28"
+    },
+    {
+      "title": "High Resolution Image Restoration Method for Page based Holographic Data Storage System",
+      "conference": "INTERNATIONAL SYMPOSIUM ON OPTICAL MEMORY 2010",
+      "period": "2010.10.24~2010.10.28"
+    },
+    {
+      "title": "SIL based Near Field Recording System with Flexible Optical Disk",
+      "conference": "INTERNATIONAL SYMPOSIUM ON OPTICAL MEMORY 2010",
+      "period": "2010.10.24~2010.10.28"
+    },
+    {
+      "title": "Compact self-contained navigation system with MEMS inertial sensor and optical navigation sensor for 3-D pipeline mapping",
+      "conference": "2010 IEEE IROS",
+      "period": "2010.10.18~2010.10.22"
+    },
+    {
+      "title": "Shift and Polarization Multiplexing for SIL Based Near-Field Holographic Recording",
+      "conference": "ISOM/ODS 2011",
+      "period": "2011.07.17~2011.07.20"
+    },
+    {
+      "title": "마이크로 홀로그래픽 데이터 저장장치에서 회절소자를 이용한 디스크 포커싱 방법",
+      "conference": "2010년도 SISS 학술대회 & Shizuoka Univ. Joint Workshop",
+      "period": "2010.06.25~2010.06.25"
+    },
+    {
+      "title": "마이크로 홀로그램 저장장치의 초점에러신",
+      "conference": "2010년도 SISS 학술대회 & Shizuoka Univ. Joint Workshop",
+      "period": "2010.06.25~2010.06.25"
+    },
+    {
+      "title": "마이크로홀로그래픽 저장장치의 단일 레이저 광원을 이용한 기록/재생과 디스크 포커싱 방법",
+      "conference": "2010년도 SISS 학술대회 & Shizuoka Univ. Joint Workshop",
+      "period": "2010.06.25~2010.06.25"
+    },
+    {
+      "title": "홀로그래픽 정보저장장치를 위한 반사형 옵티컬 필터를 이용한 트래킹 에러 검출 방법",
+      "conference": "2010년도 SISS 학술대회 & Shizuoka Univ. Joint Workshop",
+      "period": "2010.06.25~2010.06.25"
+    },
+    {
+      "title": "동적 광 분할 장치를 이용한 홀로그래픽 정보 저장 장치에서의 영상 처리 성능 향상 연구",
+      "conference": "2010년도 SISS 학술대회 & Shizuoka Univ. Joint Workshop",
+      "period": "2010.06.25~2010.06.25"
+    },
+    {
+      "title": "홀로그래픽 저장장치의 실시간 광 노출시간 제어",
+      "conference": "2010년도 SISS 학술대회 & Shizuoka Univ. Joint Workshop",
+      "period": "2010.06.25~2010.06.25"
+    },
+    {
+      "title": "Brake pulse를 통한 SIL 기반 근접장 기록 시스템의 안전 모드 성능 향상",
+      "conference": "2010년도 SISS 학술대회 & Shizuoka Univ. Joint Workshop",
+      "period": "2010.06.25~2010.06.25"
+    },
+    {
+      "title": "Tracking servo method using reflective optical filter for holographic data storage system",
+      "conference": "20th Annual ASME Conference on Imformation Storage and Processing Systems",
+      "period": "2010.06.14~2010.06.15"
+    },
+    {
+      "title": "Improved Safety Mode for Near-Field Recording System using SIL",
+      "conference": "20th ASME Annual Conference on Information Storage and Processing Systems",
+      "period": "2010.06.14~2010.06.15"
+    },
+    {
+      "title": "SINGLE-SIDED MICROHOLOGRAPHIC DATA STORAGE SYSTEM USING DIFFRACTIVE OPTICAL ELEMENT",
+      "conference": "20th Annual ASME Conference on Information Storage and Processing Systems (ISPS&apos;10)",
+      "period": "2010.06.14~2010.06.15"
+    },
+    {
+      "title": "고체침지렌즈 기반 근접장 기록 시스템의 개선된 대충격 제어 방법",
+      "conference": "2010년도 동역학 및 제어부문 춘계학술대회",
+      "period": "2010.06.03~2010.06.04"
+    },
+    {
+      "title": "평지 및 계단주행이 가능한 하이브리드 휠에 대한 연구",
+      "conference": "한국정밀공학회 2010춘계학술대회",
+      "period": "2010.05.26~2010.05.28"
+    },
+    {
+      "title": "메카넘 휠을 이용한 관외주행용 로봇 설계",
+      "conference": "한국정밀공학회 2010춘계학술대회",
+      "period": "2010.05.26~2010.05.28"
+    },
+    {
+      "title": "관외 주행 로봇의 주행면 접지력 보완을 위한 메커니즘 연구",
+      "conference": "한국정밀공학회 2012춘계학술대회",
+      "period": "2010.05.26~2010.05.28"
+    },
+    {
+      "title": "외륜 로봇(Unicycle Robot)의 자세및 방향 제어",
+      "conference": "한국정밀공학회 2012춘계학술대회",
+      "period": "2010.05.26~2010.05.28"
+    },
+    {
+      "title": "곡관에서 관내 주행 로봇의 항법 제어",
+      "conference": "한국정밀공학회 2010춘계학술대회",
+      "period": "2010.05.26~2010.05.28"
+    },
+    {
+      "title": "광 분할 및 광량조절장치를 이용한 홀로그래픽 데이터 스토리지 시스템에서의 성능 향상 연구",
+      "conference": "한국정밀공학회 2010년도 춘계 학술대회",
+      "period": "2010.05.26~2010.05.29"
+    },
+    {
+      "title": "홀로그래픽 저장장치의 균일한 기록을 위한 광 노출 시간 제어",
+      "conference": "한국정밀공학회 2010년도 춘계 학술대회",
+      "period": "2010.05.26~2010.05.28"
+    },
+    {
+      "title": "고체침지렌즈 기반의 근접장 기록 시스템에서 퍼지 알고리즘을 이용한 안전 모드",
+      "conference": "한국 소음진동공학회 2010년 춘계 학술대회",
+      "period": "2010.05.12~2010.05.14"
+    },
+    {
+      "title": "각 다중화 방식의 홀로그래픽 정보저장장치의 양방향틸트 보상의 위한 제어시스템 설계",
+      "conference": "한국 소음진동공학회 2010년 춘계 학술대회",
+      "period": "2010.05.12~2010.05.14"
+    },
+    {
+      "title": "Optimal Focal Position and Vector Diffraction Theory for Micro Holographic Data Storage System",
+      "conference": "7th International Conference on Optics-photonics Design & Fabrication",
+      "period": "2010.04.19~2010.04.21"
+    },
+    {
+      "title": "홀로그래픽 정보저장 장치에서의 오버샘플링 재생 데이터 개선을 위한 간섭 픽셀 필터 설계",
+      "conference": "한국 소음진동공학회 2009년도 추계 학술대회",
+      "period": "2009.10.29~2009.10.30"
+    },
+    {
+      "title": "Improved Anti-Shock Air Gap Control Algorithm with Acceleration Feedforward Control for High NA Near-Field Storage System using SIL",
+      "conference": "International Symposium on Optical Memory 2009",
+      "period": "2009.10.04~2009.10.08"
+    },
+    {
+      "title": "Kalman Filter based Safety Mode for Stability of Near-Field Recording System using SIL",
+      "conference": "International Symposium on Optical Memory 2009",
+      "period": "2009.10.04~2009.10.08"
+    },
+    {
+      "title": "Data page quality improvement by interference ratio mask in oversampling retrieval process for holographic data storage",
+      "conference": "International symposium on optical memory 2009",
+      "period": "2009.10.04~2009.10.08"
+    },
+    {
+      "title": "Improved Robust Control Algorithm using Disturbance Observer for SIL-Based Near-Field Recording System",
+      "conference": "International Symposium on Optical Memory 2009",
+      "period": "2009.10.04~2009.10.08"
+    },
+    {
+      "title": "Improved Air Gap Control Using Optimized Antishock Control Algorithm for SIL-based Near-Field Storage System",
+      "conference": "International Symposium on Optomechatronic Technologies",
+      "period": "2009.09.21~2009.09.23"
+    },
+    {
+      "title": "SIL 기반 근접장 저장시스템에서 가속도계와 inverse impulse를 이용한 외부 충격 감쇠 방법",
+      "conference": "정보저장시스템학회 2009년도 하계학술대회",
+      "period": "2009.08.27~2009.08.27"
+    },
+    {
+      "title": "홀로그래픽 정보저장장치를 위한 트래킹 서보 방법과 액추에이터의 제작 및 성능 평가",
+      "conference": "정보저장시스템학회 2009년도 하계학술대회",
+      "period": "2009.08.27~2009.08.27"
+    },
+    {
+      "title": "홀로그래픽 정보저장장치에서 디지털 이미지 마스크를 이용한 실시간 광량 제어 알고리즘",
+      "conference": "정보저장시스템학회 2009년도 하계학술대회",
+      "period": "2009.08.27~2009.08.27"
+    },
+    {
+      "title": "홀로그래픽 정보저장 장치의 오버샘플링 재생 데이터 개선을 위한 필터설계",
+      "conference": "정보저장시스템학회 2009년도 하계학술대회",
+      "period": "2009.08.27~2009.08.27"
+    },
+    {
+      "title": "SIL 기반 근접장 저장 시스템에서 충격 대응 제어기를 통한 개선된 간극 제어 서보 시스템 설계",
+      "conference": "정보저장시스템학회 2009년도 하계학술대회",
+      "period": "2009.08.27~2009.08.27"
+    },
+    {
+      "title": "충격 대응 제어기를 통한 SIL 기반 근접장 저장 시스템에 대한 강건한 충격 대응 알고리즘 설계",
+      "conference": "정보저장시스템학회 2009년도 하계학술대회",
+      "period": "2009.08.27~2009.08.27"
+    },
+    {
+      "title": "외란 관측기를 이용하여 SIL 기반 근접장 기록 시스템에 대한 강건한 충격 대응 알고리즘 설계",
+      "conference": "정보저장시스템학회 2009년도 하계학술대회",
+      "period": "2009.08.27~2009.08.27"
+    },
+    {
+      "title": "SIL 기반 근접장 저장시스템에서 Kalman filter를 이용한 충격 회피 방법",
+      "conference": "정보저장시스템학회 2009년도 하계학술대회",
+      "period": "2009.08.27~2009.08.27"
+    },
+    {
+      "title": "SIL 기반 근접장 기록 시스템에 대한 충격 대응 피드포워드 능동제어 알고리즘 설계",
+      "conference": "한국정밀공학회 2009년도 춘계학술대회논문",
+      "period": "2009.06.03~2009.06.05"
+    },
+    {
+      "title": "Improvement of Optical Resolution and Mechanical Robustness for Near-Field Recording System",
+      "conference": "the 2009 OPTICAL DATA STORAGE",
+      "period": "2009.05.10~2009.05.13"
+    },
+    {
+      "title": "IPI Noise Reduction by Fuzzy Rules and Data Compression Using Wavelet Transform Method in a Holographic Data Storage System",
+      "conference": "The Optical Data Storage Topical Meeting",
+      "period": "2009.05.11~2009.05.13"
+    },
+    {
+      "title": "SIL 기반 근접장 시스템에 대한 충격 대응 제어 알고리즘 설계",
+      "conference": "한국 소음진동공학회 2009년도 춘계 학술대회",
+      "period": "2009.04.23~2009.04.24"
+    },
+    {
+      "title": "최적화된 PID 제어기를 사용한 고체침지렌즈를 기반으로 한 시스템 간극제어",
+      "conference": "정보저장시스템학회 2008년도 동계학술대회",
+      "period": "2008.12.18~2008.12.18"
+    },
+    {
+      "title": "브레이크 펄스를 사용한 향상된 고체침지렌즈 기반의 근접장 시스템",
+      "conference": "정보저장시스템학회 2008년도 동계학술대회",
+      "period": "2008.12.18~2008.12.18"
+    },
+    {
+      "title": "SIL을 이용한 근접장 광 정보저장 장치의 제어시스템 성능평가",
+      "conference": "정보저장시스템학회 2008년도 동계학술대회",
+      "period": "2008.12.18~2008.12.18"
+    },
+    {
+      "title": "SIL 기반 근접장 시스템의 대충격 제어 성능 평가",
+      "conference": "정보저장시스템학회 2008년도 동계학술대회",
+      "period": "2008.12.18~2008.12.18"
+    },
+    {
+      "title": "홀로그래픽 정보 저장 시스템에서 미디어의 틸트 에러 측정 및 외란 관측기를 이용한 틸트 서보 제어기 설계",
+      "conference": "정보저장시스템학회 2008년도 동계학술대회",
+      "period": "2008.12.18~2008.12.18"
+    },
+    {
+      "title": "관측기를 사용한 근접장 기록용 SIL의 보호 방법 개선",
+      "conference": "정보저장시스템학회 2008년도 동계학술대회",
+      "period": "2008.12.18~2008.12.18"
+    },
+    {
+      "title": "Improved Gap Servo System using Brake Pulse for SIL based Near-Field Recording System",
+      "conference": "APDSC&apos;08",
+      "period": "2008.12.15~2008.12.17"
+    },
+    {
+      "title": "TILT ERROR MEASUREMENT AND COMPENSATION METHOD FOR THE HOLOGRAPHIC DATA STORAGE SYSTEM USING DISTURBANCE OBSEVER",
+      "conference": "2008 ASIA-PACIFIC DATA STORAGE CONFERENCE DIGEST",
+      "period": "2008.12.15~2008.12.17"
+    },
+    {
+      "title": "ANTI-SHOCK AIR GAP CONTROLLER FOR SIL BASED NEAR-FIELD RECORDING SYSTEM",
+      "conference": "2008 ASIA-PACIFIC DATA STORAGE CONFERENCE DIGEST",
+      "period": "2008.12.15~2008.12.17"
+    },
+    {
+      "title": "A COLLISION PROTECTION METHOD USING OBSERVER FOR SIL BASED NEAR-FIELD RECORDING",
+      "conference": "2008 ASIA-PACIFIC DATA STORAGE CONFERENCE DIGEST",
+      "period": "2008.12.15~2008.12.17"
+    },
+    {
+      "title": "IMPROVED AIR GAP CONTROLLER FOR SIL BASED NEAR-FIELD RECORDING SERVO SYSTEM",
+      "conference": "2008 ASIA-PACIFIC DATA STORAGE CONFERENCE DIGEST",
+      "period": "2008.12.15~2008.12.17"
+    },
+    {
+      "title": "AIR GAP CONTROL FOR SIL BASED NEAR-FIELD RECORDING SYSTEM USING OPTIMAL PID CONTROLLER",
+      "conference": "2008 ASIA-PACIFIC DATA STORAGE CONFERENCE DIGEST",
+      "period": "2008.12.15~2008.12.17"
+    },
+    {
+      "title": "IMPROVED GAP SERVO SYSTEM USING BREAK PULSE FOR SIL BASED NEAR-FIELD RECORDING SYSTEM",
+      "conference": "2008 ASIA-PACIFIC DATA STORAGE CONFERENCE DIGEST",
+      "period": "2008.12.15~2008.12.17"
+    },
+    {
+      "title": "SIL을 기반으로 한 NFR 시스템의 갭 서보 성능 향상을 위한 브레이크 펄스 기법",
+      "conference": "정보저장시스템학회 2008년도 하계학술대회",
+      "period": "2008.08.21~2008.08.21"
+    },
+    {
+      "title": "IMPROVEMENT OF PROTECTION PROCESS USING OBSERVER",
+      "conference": "THE JOINT INTERNATIONAL SYMPOSIUM ON OPTICAL MEMORY AND OPTICAL DATA STORAGE",
+      "period": "2008.07.13~2008.07.17"
+    },
+    {
+      "title": "TILT ERROR MEASUREMENT AND COMPENSATION METHOD FOR THE HOLOGRAPHIC DATA STORAGE SYSTEM",
+      "conference": "THE JOINT INTERNATIONAL SYMPOSIUM ON OPTICAL MEMORY AND OPTICAL DATA STORAGE",
+      "period": "2008.07.13~2008.07.17"
+    },
+    {
+      "title": "TRACKING SERVO CONTROL USING POLE PLACEMENT BASED ON LUENBERGER OBSERVER FOR HOLOGRAPHIC DATA STORAGE SYSTEM",
+      "conference": "THE JOINT INTERNATIONAL SYMPOSIUM ON OPTICAL MEMORY AND OPTICAL DATA STORAGEV",
+      "period": "2008.07.13~2008.07.17"
+    },
+    {
+      "title": "HYBRID IMAGE PROCESSING FOR HOLOGRAPHIC DATA STORAGE SYSTEM",
+      "conference": "THE JOINT INTERNATIONAL SYMPOSIUM ON OPTICAL MEMORY AND OPTICAL DATA STORAGE",
+      "period": "2008.07.13~2008.07.17"
+    },
+    {
+      "title": "IMPROVED AIR GAP CONTROLLER FOR SIL BASED NEAR-FI ELD RECORDING SERVO SYSTEM",
+      "conference": "THE JOINT INTERNATIONAL SYMPOSIUM ON OPTICAL MEMORY AND OPTICAL DATA STORAGE",
+      "period": "2008.07.13~2008.07.17"
+    },
+    {
+      "title": "DESIGN OF RAMP PROFILE TO IMPROVE THE UNLOADING PERFORMANCE IN SMALL FORM FACTOR HDD",
+      "conference": "15TH INTERNATIONAL CONGRESS ON SOUND AND VIBRATION(ICSV15)",
+      "period": "2008.07.06~2008.07.10"
+    },
+    {
+      "title": "Real Time Light Intensity Control Algorithm Using Digital Image Mask for the Holographic Data Storage System",
+      "conference": "18TH ANNUAL ASME CONFERENCE ON INFORMATION STORAGE AND PROCESSING SYSTEMS",
+      "period": "2008.06.16~2008.06.17"
+    },
+    {
+      "title": "A COLLISION PROTECTION METHOD BY VELOCITY CONTROL FOR SIL BASED NEAR-FILED RECORDING SYSTEM",
+      "conference": "18TH ANNUAL ASME CONFERENCE ON INFORMATION STORAGE AND PROCESSING SYSTEMS",
+      "period": "2008.06.16~2008.06.17"
+    },
+    {
+      "title": "TILT COMPENSATION METHOD BASED ON DISTURBANCE OBSERVER FOR HOLOGRAPHIC DATA STORAGE SYSTEM",
+      "conference": "18TH ANNUAL ASME CONFERENCE ON INFORMATION STORAGE AND PROCESSING SYSTEMS",
+      "period": "2008.06.16~2008.06.17"
+    },
+    {
+      "title": "REAL TIME LIGHT INTENSITY CONTROL ALGORITHM USING DIGITAL IMAGE MASK FOR THE HOLOGRAPHIC DATA STORAG",
+      "conference": "18TH ANNUAL ASME CONFERENCE ON INFORMATION STORAGE AND PROCESSING SYSTEMS",
+      "period": "2008.06.16~2008.06.17"
+    },
+    {
+      "title": "WAVELET BASED BINARY DATA COMPRESSION IN HOLOGRAPHIC DATA STORAGE SYSTEM",
+      "conference": "18TH ANNUAL ASME CONFERENCE ON INFORMATION STORAGE AND PROCESSING SYSTEMS",
+      "period": "2008.06.16~2008.06.17"
+    },
+    {
+      "title": "AN EXPEROMENTAL STUDY OF DESIGNED DISK BUMP TO IMPROVE THE UNLOADING PERFORMANCE IN HDD",
+      "conference": "18TH ANNUAL ASME CONFERENCE ON INFORMATION STORAGE AND PROCESSING SYSTEMS",
+      "period": "2008.06.16~2008.06.17"
+    },
+    {
+      "title": "IMPROVED GAP SERVO SYSTEM USING BRAKE PULSE FOR SIL BASED NEAR-FIELD RECORDING SYSTEM",
+      "conference": "18TH ANNUAL ASME CONFERENCE ON INFORMATION STORAGE AND PROCESSING SYSTEMS",
+      "period": "2008.06.16~2008.06.17"
+    },
+    {
+      "title": "Inch-worm 형태의 파이프 로봇의 관내 전후진 메커니즘 설계",
+      "conference": "한국정밀공학회 2008년도 춘계학술대회",
+      "period": "2008.06.11~2008.06.13"
+    },
+    {
+      "title": "지형 적응 가능한 관내 주행 로봇의 성능 검증",
+      "conference": "한국정밀공학회 2008년도 춘계학술대회",
+      "period": "2008.06.11~2008.06.13"
+    },
+    {
+      "title": "Torque-Speed 기울기를 통한 PWM구동 DC모터의 토크 구동",
+      "conference": "한국정밀공학회 2008년도 춘계학술대회",
+      "period": "2008.06.11~2008.06.13"
+    },
+    {
+      "title": "센서 퓨전을 이용한 이동로봇의 위치 추정",
+      "conference": "한국정밀공학회 2008년도 춘계학술대회",
+      "period": "2008.06.11~2008.06.13"
+    },
+    {
+      "title": "LRF를 이용한 그리드 타입의 장애물 형상 지도 작성",
+      "conference": "한국정밀공학회 2008년도 춘계학술대회",
+      "period": "2008.06.11~2008.06.13"
+    },
+    {
+      "title": "물고기 로봇의 직진 주행 시뮬레이션과 실험",
+      "conference": "한국 정밀공학회 2008년도 춘계학술대회",
+      "period": "2008.06.11~2008.06.13"
+    },
+    {
+      "title": "외란 관측기를 이용한 근접장 기록 시스템의 트랙킹 서보성능 향상",
+      "conference": "한국 소음진동공학회 2008년도 춘계학술대회",
+      "period": "2008.04.16~2008.04.17"
+    },
+    {
+      "title": "협소구역 수직 주행을 위한 지형 적응/인지 로봇의 설계",
+      "conference": "대한기계학회 2007년도 추계학술대회",
+      "period": "2007.10.31~2007.11.02"
+    },
+    {
+      "title": "강아지풀 형상을 닮은 관내 주행로봇 개발",
+      "conference": "대한기계학회 2007년도 추계학술대회",
+      "period": "2007.10.31~2007.11.02"
+    },
+    {
+      "title": "관성센서와 광류 센서를 이용한 이동로봇의 위치 추정 및 지도 작성",
+      "conference": "대한기계학회 2007년도 추계학술대회",
+      "period": "2007.10.31~2007.11.02"
+    },
+    {
+      "title": "물고기의 추진을 모방한 로봇의 개발",
+      "conference": "대한기계학회 2007년도 추계학술대회",
+      "period": "2007.10.31~2007.11.02"
+    },
+    {
+      "title": "NEAR-FIELD RECORDING TECHNOLOGY USING SOLID IMMERSION LENS",
+      "conference": "13TH MICROOPTICS CONFERENCE",
+      "period": "2007.10.28~2007.10.31"
+    },
+    {
+      "title": "DATA PAGE COUNTER METHOD OF HOLOGRAPHIC DATA STORAGE SYSTEM",
+      "conference": "INTERNATIONAL SYMPOSIUM OF OPTICAL MEMORY",
+      "period": "2007.10.21~2007.10.25"
+    },
+    {
+      "title": "IMPROVED GAP CONTROL SYSTEM USING DISTURBANCE OBSERVER FOR NEAR-FIELD RECORDING",
+      "conference": "INTERNATIONAL SYMPOSIUM OF OPTICAL MEMORY",
+      "period": "2007.10.21~2007.10.25"
+    },
+    {
+      "title": "INTRODUCTION OF NEAR-FIELD RECORDING AND HEAT ASSISTED MAGNETIC RECORDING RESEARCHES IN CISD",
+      "conference": "MORIS 2007 - Workshop on Thermal and Optical Magnetic Materials and Devices",
+      "period": "2007.09.24~2007.09.26"
+    },
+    {
+      "title": "DNA coding method and neural network based hybrid fuzzy system for backward movement of truck-trailer",
+      "conference": "LSMS2007(LIFE SYSTEM MODELING AND SIMULATION 2007)",
+      "period": "2007.09.14~2007.09.17"
+    },
+    {
+      "title": "Generation of intelligent group behavior of autonomous mobile robots using sensors",
+      "conference": "LSMS2007(LIFE SYSTEM MODELING AND SIMULATION 2007)",
+      "period": "2007.09.14~2007.09.17"
+    }
+  ],
+  "fundings": [
+    {
+      "title": "[RCMS]한국기계산업진흥회/디지털 제조장비 R&D 전문인력양성(5/5)",
+      "org": "한국산업기술진흥원",
+      "period": "2024-03-01~2025-02-28"
+    },
+    {
+      "title": "[RCMS]한국기계산업진흥회/디지털 제조장비 R&D 전문인력양성(4/5)",
+      "org": "한국산업기술진흥원",
+      "period": "2023-03-01~2024-02-29"
+    },
+    {
+      "title": "[민간/현대로보틱스(주)]지형 및 부하 능동적응형 모바일 플랫폼 개발",
+      "org": "국내",
+      "period": "2023-03-01~2024-06-30"
+    },
+    {
+      "title": "[RCMS](주)대경엔지니어링/V2G 전기차 충전기를 활용한 AI 기반 소비전력 모니터링 및 최적 분산 시스템 구축(2/2)",
+      "org": "중소기업기술정보진흥원",
+      "period": "2023-01-01~2023-12-31"
+    },
+    {
+      "title": "[RCMS](주)대경엔지니어링/V2G 전기차 충전기를 활용한 AI 기반 소비전력 모니터링 및 최적 분산 시스템 구축(1/2)",
+      "org": "중소기업기술정보진흥원",
+      "period": "2022-04-01~2022-12-31"
+    },
+    {
+      "title": "[RCMS]한국기계산업진흥회/디지털 제조장비 R&D 전문인력양성(3/5)",
+      "org": "한국산업기술진흥원",
+      "period": "2022-03-01~2023-02-28"
+    },
+    {
+      "title": "[민간/현대로보틱스] 로봇 팔의 기계적 중력보상 장치 개발",
+      "org": "국내",
+      "period": "2021-12-01~2022-11-30"
+    },
+    {
+      "title": "[포닥]양현석(손경찬)-로봇의 파지 작업을 위한 양방향 원격제어 기반 모방 학습 연구",
+      "org": "연세대학교",
+      "period": "2021-09-01~2022-08-31"
+    },
+    {
+      "title": "[RCMS]스마트 오프더그라운드 모빌리티 개발(1/1)",
+      "org": "한국산업기술평가관리원",
+      "period": "2021-05-01~2022-02-28"
+    },
+    {
+      "title": "[RCMS]한국기계산업진흥회/디지털 제조장비 R&D 전문인력양성(2/5)",
+      "org": "한국산업기술진흥원",
+      "period": "2021-03-01~2022-02-28"
+    },
+    {
+      "title": "[RCMS]듀얼 암 장착 이동로봇의 지능 주행 및 조작을 위한 딥러닝과 역강화학습 기반 인공지능 원천기술 개발(5/5)",
+      "org": "한국산업기술평가관리원",
+      "period": "2021-01-01~2021-11-30"
+    },
+    {
+      "title": "[1차년도] 사회지향 기계기술 글로벌 리더 양성 교육연구단",
+      "org": "한국연구재단",
+      "period": "2020-09-01~2021-02-28"
+    },
+    {
+      "title": "[RCMS]에이블맥스/철강 제조 빅데이터 기반 스마트 조업 시스템 개발(4/4)",
+      "org": "한국에너지기술평가원",
+      "period": "2020-07-01~2021-09-30"
+    },
+    {
+      "title": "디지털 제조장비 R&D 전문인력양성(1/5)",
+      "org": "한국산업기술진흥원",
+      "period": "2020-03-01~2021-02-28"
+    },
+    {
+      "title": "(통합Ezbaro)다중모드 햅틱 인터페이스 연구실(3/3)(2018.6.1~2021.2.28)",
+      "org": "한국연구재단",
+      "period": "2020-03-01~2021-02-28"
+    },
+    {
+      "title": "[통합이지바로] Dexterous grasping 작업을 위한 인간형 로봇 손 설계 및 모사학습 기반 지능제어 알고리즘 개발(3/3)(2018.6.1~2020.5.31)",
+      "org": "한국연구재단",
+      "period": "2020-03-01~2020-08-31"
+    },
+    {
+      "title": "[8차년도]사회지향 기계기술 글로벌 리더 양성 사업단",
+      "org": "한국연구재단",
+      "period": "2020-03-01~2020-08-31"
+    },
+    {
+      "title": "[RCMS]듀얼 암 장착 이동로봇의 지능 주행 및 조작을 위한 딥러닝과 역강화학습 기반 인공지능 원천기술 개발(4/5)",
+      "org": "한국산업기술평가관리원",
+      "period": "2020-01-01~2020-12-31"
+    },
+    {
+      "title": "Dexterous grasping 작업을 위한 인간형 로봇 손 설계 및 모사학습 기반 지능제어 알고리즘 개발(2/3)(2018.6.1~2020.5.31)",
+      "org": "한국연구재단",
+      "period": "2019-03-01~2020-02-29"
+    },
+    {
+      "title": "다중모드 햅틱 인터페이스 연구실(2/3)(2018.6.1~2021.2.28)",
+      "org": "한국연구재단",
+      "period": "2019-03-01~2020-02-29"
+    },
+    {
+      "title": "[7차년도]사회지향 기계기술 글로벌 리더 양성 사업단",
+      "org": "한국연구재단",
+      "period": "2019-03-01~2020-02-29"
+    },
+    {
+      "title": "[RCMS]에이블맥스/철강 제조 빅데이터 기반 스마트 조업 시스템 개발(3/4)",
+      "org": "한국에너지기술평가원",
+      "period": "2019-01-01~2020-06-30"
+    },
+    {
+      "title": "[RCMS]듀얼 암 장착 이동로봇의 지능 주행 및 조작을 위한 딥러닝과 역강화학습 기반 인공지능 원천기술 개발(3/5)",
+      "org": "한국산업기술평가관리원",
+      "period": "2019-01-01~2019-12-31"
+    },
+    {
+      "title": "다중모드 햅틱 인터페이스 연구실(1/3)(2018.6.1~2021.2.28)",
+      "org": "한국연구재단",
+      "period": "2018-06-01~2019-02-28"
+    },
+    {
+      "title": "Dexterous grasping 작업을 위한 인간형 로봇 손 설계 및 모사학습 기반 지능제어 알고리즘 개발(1/3)(2018.6.1~2020.5.31)",
+      "org": "한국연구재단",
+      "period": "2018-06-01~2019-02-28"
+    },
+    {
+      "title": "[6차년도]사회지향 기계기술 글로벌 리더 양성 사업단",
+      "org": "한국연구재단",
+      "period": "2018-03-01~2019-02-28"
+    },
+    {
+      "title": "[RCMS]듀얼 암 장착 이동로봇의 지능 주행 및 조작을 위한 딥러닝과 역강화학습 기반 인공지능 원천기술 개발(2/5)",
+      "org": "한국산업기술평가관리원",
+      "period": "2018-01-01~2018-12-31"
+    },
+    {
+      "title": "[RCMS]에이블맥스/철강 제조 빅데이터 기반 스마트 조업 시스템 개발(2/4)",
+      "org": "한국에너지기술평가원",
+      "period": "2018-01-01~2018-12-31"
+    },
+    {
+      "title": "디지털 홀로그래피 기반의 매크로 3차원 정보 획득 센서의 스페클 노이즈 감소와 이미지 품질 향상을 위한 연구(2/2)(2016.11.1~2018.10.31)",
+      "org": "한국연구재단",
+      "period": "2017-11-01~2018-10-31"
+    },
+    {
+      "title": "[SM] 기초연구실지원사업/한국연구재단/2017.9.6.~ 2018.4.23.",
+      "org": "연세대학교",
+      "period": "2017-09-06~2018-06-30"
+    },
+    {
+      "title": "[RCMS]에이블맥스/철강 제조 빅데이터 기반 스마트 조업 시스템 개발(1/4)",
+      "org": "한국에너지기술평가원",
+      "period": "2017-05-01~2017-12-31"
+    },
+    {
+      "title": "(원자력연구원 위탁)원격절단 시스템을 위한 자세제어 기술 개발",
+      "org": "한국연구재단",
+      "period": "2017-03-01~2017-12-31"
+    },
+    {
+      "title": "[5차년도]사회지향 기계기술 글로벌 리더 양성 사업단",
+      "org": "한국연구재단",
+      "period": "2017-03-01~2018-02-28"
+    },
+    {
+      "title": "[RCMS]주민 수용성 향상을 위한 양력발생 디스크 방식의 풍력발전 시스템 개발(2/3)",
+      "org": "한국에너지기술평가원",
+      "period": "2017-01-01~2017-12-31"
+    },
+    {
+      "title": "[RCMS]듀얼 암 장착 이동로봇의 지능 주행 및 조작을 위한 딥러닝과 역강화학습 기반 인공지능 원천기술 개발(1/5)",
+      "org": "한국산업기술평가관리원",
+      "period": "2016-12-01~2017-12-31"
+    },
+    {
+      "title": "Ezbaro_디지털 홀로그래피 기반의 매크로 3차원 정보 획득 센서의 스페클 노이즈 감소와 이미지 품질 향상을 위한 연구(1/2)",
+      "org": "한국연구재단",
+      "period": "2016-11-01~2017-10-31"
+    },
+    {
+      "title": "[RCMS]주민 수용성 향상을 위한 양력발생 디스크 방식의 풍력발전 시스템 개발(1/3)",
+      "org": "한국에너지기술평가원",
+      "period": "2016-05-01~2016-12-31"
+    },
+    {
+      "title": "[원자력연구원 위탁]차세대 원격 해체 시스템을 위한 통합 제어 기술 개발(2/2,이월불가)",
+      "org": "한국연구재단",
+      "period": "2016-03-01~2017-02-28"
+    },
+    {
+      "title": "(4차년도) 사회지향 기계기술 글로벌 리더 양성 사업단",
+      "org": "한국연구재단",
+      "period": "2016-03-01~2017-02-28"
+    },
+    {
+      "title": "HLDS / 조인트랩 설립 및 협력 연구 (2016년)",
+      "org": "국내",
+      "period": "2016-02-01~2017-01-31"
+    },
+    {
+      "title": "[포닥]양현석(임성용)-역 전파모사 알고리즘을 이용한 홀로그래픽 정보저장기기의 포커스 및 정렬 오차 보상방법",
+      "org": "연세대학교",
+      "period": "2015-09-01~2016-02-29"
+    },
+    {
+      "title": "Printed Nano RFID 기반에 적용되는 인공지능 홀로그래픽 보안 인증 시스템 연구(3/3)",
+      "org": "한국연구재단",
+      "period": "2015-06-01~2016-05-31"
+    },
+    {
+      "title": "[원자력연구원 위탁]차세대 원격 해체 시스템을 위한 통합 제어 기술 개발(1/2,이월불가)",
+      "org": "한국연구재단",
+      "period": "2015-03-01~2016-02-29"
+    },
+    {
+      "title": "[주관/성균관대학교]치료시간 30% 단축을 위한 자동 병변 추적 기술기반 악성종양 치료용 500 cGy급 dual-head 갠트리 방사선 치료시스템 개발",
+      "org": "정보통신기술진흥센터(NIPA산하)",
+      "period": "2015-03-01~2016-02-29"
+    },
+    {
+      "title": "HLDS / 조인트랩 설립 및 협력 연구 (2015년)",
+      "org": "국내",
+      "period": "2015-01-01~2016-06-30"
+    },
+    {
+      "title": "(주)포스코/PRT 차량 내구성개선 요소기술 개발(1/1)",
+      "org": "국내",
+      "period": "2014-12-23~2015-12-22"
+    },
+    {
+      "title": "Printed Nano RFID 기반에 적용되는 인공지능 홀로그래픽 보안 인증 시스템 연구(2/3)",
+      "org": "한국연구재단(교과부)",
+      "period": "2014-06-01~2015-05-31"
+    },
+    {
+      "title": "[RCMS]첨단기공(주)/원전 고방사선구역 작업환경 모니터링 로봇 시스템 개발(3/3)(2011.12.01~2014.11.30)",
+      "org": "한국산업기술평가관리원",
+      "period": "2014-03-01~2015-03-31"
+    },
+    {
+      "title": "치료시간 30% 단축을 위한 자동 병변 추적 기술기반 악성종양 치료용 500 cGy급 dual-head 갠트리 방사선 치료시스템 개발",
+      "org": "한국방송통신전파진흥원",
+      "period": "2014-03-01~2015-02-28"
+    },
+    {
+      "title": "[원자력연구원 위탁]차세대 원격 해체 시스템을 위한 통합 제어 기술 개발(1/3)",
+      "org": "한국연구재단",
+      "period": "2014-03-01~2015-02-28"
+    },
+    {
+      "title": "Seagate Korea/Design of stability guaranteed adaptive DOB with dynamic dead-zone",
+      "org": "국외",
+      "period": "2014-02-14~2016-02-29"
+    },
+    {
+      "title": "HLDS/조인트 랩 설립 및 협력 연구(2014년도)",
+      "org": "국내",
+      "period": "2014-01-01~2015-07-31"
+    },
+    {
+      "title": "PRINTED NANO RFID 기반에 적용되는 인공지능 홀로그래픽 보안 인증 시스템 연구 (1/3)",
+      "org": "한국연구재단",
+      "period": "2013-06-01~2014-05-31"
+    },
+    {
+      "title": "엘지전자(주)/SMART MOBILE WALKER 제어 시스템 개발(4/4)(2010.04.01~2014.03.31)",
+      "org": "한국산업기술평가관리원",
+      "period": "2013-06-01~2014-03-31"
+    },
+    {
+      "title": "[RCMS]한국철도기술연구원/철도차량 능동형 현가시스 템 기반기술 및 성능시험 기술개발(4/5)(2010.04.01~2015.03.31)",
+      "org": "한국산업기술평가관리원",
+      "period": "2013-04-01~2014-03-31"
+    },
+    {
+      "title": "[글로벌] 미래융합기계기술사업단",
+      "org": "연세대학교",
+      "period": "2013-03-01~2014-03-31"
+    },
+    {
+      "title": "유압 구동식 매니플레이터의 정밀 제어 기술 개발",
+      "org": "한국연구재단",
+      "period": "2013-03-01~2014-02-28"
+    },
+    {
+      "title": "[RCMS]첨단기공(주)/원전 고방사선구역 작업환경 모니터링 로봇 시스템 개발(2/3)(2011.12.01~2014.11.30)",
+      "org": "한국산업기술평가관리원",
+      "period": "2013-03-01~2014-02-28"
+    },
+    {
+      "title": "SEAGATE/Development of stability enhancement algorithm of adaptive DOB",
+      "org": "국내",
+      "period": "2013-02-04~2014-03-31"
+    },
+    {
+      "title": "HITACHI-LG/조인트 랩 설립 및 협력연구",
+      "org": "국내",
+      "period": "2013-01-01~2014-12-31"
+    },
+    {
+      "title": "[RCMS]성균관대/치료시간 30% 단축을 위한 자동 병변 추적 기술기반 악성종양 치료용 500 CGY급 DUAL-HEAD 갠트리 방사선 치료시스템 개발(1/5)(2012.12.1~2018.2.28)",
+      "org": "한국산업기술평가관리원",
+      "period": "2012-12-01~2014-02-28"
+    },
+    {
+      "title": "원전 고방사선구역 작업환경 모니터링 로봇의 문 개폐 기술 개발 1식",
+      "org": "한국원자력연구원",
+      "period": "2012-06-25~2013-01-31"
+    },
+    {
+      "title": "엘지전자(주)/SMART MOBILE WALKER 제어 시스템 개발(3/4)(2010.4.1~2014.3.31)",
+      "org": "한국산업기술평가관리원",
+      "period": "2012-06-01~2013-03-31"
+    },
+    {
+      "title": "I-DISCOVERY/지능형 로봇 기술 연구",
+      "org": "기업체/공사",
+      "period": "2012-05-01~2012-07-31"
+    },
+    {
+      "title": "한국철도기술연구원/철도차량 능동형 현가시스템 기반기술 및 성능시험 기술개발(3/5)(2010.4.1~2015.3.31)",
+      "org": "한국산업기술평가관리원",
+      "period": "2012-04-01~2013-03-31"
+    },
+    {
+      "title": "나노마이크로응용기계기술인력양성사업단",
+      "org": "연세대학교",
+      "period": "2012-03-01~2014-02-28"
+    },
+    {
+      "title": "정보저장 메카트로닉스 연구단 (2/2,2단계)",
+      "org": "한국연구재단",
+      "period": "2012-03-01~2013-02-28"
+    },
+    {
+      "title": "현대중공업(주) / LCD 로봇 사행 예측 및 보상 모션의 적용 기술 개발 (2012.03.01-2013.02.28)- 2013.08.31",
+      "org": "국내",
+      "period": "2012-03-01~2013-08-31"
+    },
+    {
+      "title": "나노 마이크로 응용기계기술 인력양성사업",
+      "org": "학술진흥재단",
+      "period": "2012-03-01~2013-04-30"
+    },
+    {
+      "title": "HLDS(주)/ODD Mechanism의 구조·진동·sensing·유동 해석에 대한 연구/(2012.01.01~2012.12.31- 2013.12.31)",
+      "org": "국내",
+      "period": "2012-01-01~2013-12-31"
+    },
+    {
+      "title": "Solid immersion lens 기반의 마이크로홀로그래픽 정보 저장 장치의 차세대 통합 서보 제어 기술 및 디지털 신호처리 정보 이론 연구 (3/3)",
+      "org": "한국연구재단(과학재단)",
+      "period": "2011-09-01~2012-08-31"
+    },
+    {
+      "title": "삼성전기(주) / Tied type HDD motor design과 air-oil계면예측",
+      "org": "민간기업",
+      "period": "2011-09-01~2012-09-30"
+    },
+    {
+      "title": "엘지전자(주)/Smart Mobile Walker 제어 시스템 개발(2차년도/4)(2010.04.01~2014.03.31)",
+      "org": "한국산업기술평가관리원",
+      "period": "2011-06-01~2012-03-31"
+    },
+    {
+      "title": "철기연/철도차량 능동형 현가시스템 기반기술 및 성능시험 기술개발(2차년도/5)(2010.04.01~2015.03.31)",
+      "org": "한국산업기술평가관리원",
+      "period": "2011-04-01~2012-03-31"
+    },
+    {
+      "title": "나노 마이크로 응용기계기술 인력양성사업",
+      "org": "학술진흥재단",
+      "period": "2011-03-01~2012-02-29"
+    },
+    {
+      "title": "(주)두산인프라코어 / 연세대학교산학협력협의회 (2011.03.01~2012.06.30->2011.03.01~2013.02.28)",
+      "org": "민간기업",
+      "period": "2011-03-01~2013-02-28"
+    },
+    {
+      "title": "나노마이크로응용기계기술인력양성사업단",
+      "org": "연세대학교",
+      "period": "2011-03-01~2012-02-29"
+    },
+    {
+      "title": "나노마이크로응용기계기술인력양성사업단(이월액과제)",
+      "org": "연세대학교",
+      "period": "2011-03-01~2012-02-29"
+    },
+    {
+      "title": "현대중공업(주) / 사행경감을 위한 고강성 LCD로봇 암 설계기술 개발",
+      "org": "민간기업",
+      "period": "2011-03-01~2012-04-30"
+    },
+    {
+      "title": "G-5-5-10나노마이크로응용기계기술인력양성사업단",
+      "org": "연세대학교",
+      "period": "2011-03-01~2012-02-29"
+    },
+    {
+      "title": "정보저장 메카트로닉스 연구단",
+      "org": "한국과학재단",
+      "period": "2011-03-01~2012-02-29"
+    },
+    {
+      "title": "(주)엔지비-연구장학금 현대.기아자동차 연구장학생 응洋閨？지급 협약",
+      "org": "민간기업",
+      "period": "2010-12-01~2013-02-28"
+    },
+    {
+      "title": "Solid immersion lens 기반의 마이크로홀로그래픽 정 보 저장 장치의 차세대 통합 서보 제어 기술 및 디지 털 신호처리 정보 이론 연구",
+      "org": "한국연구재단(과학재단)",
+      "period": "2010-09-01~2011-08-31"
+    },
+    {
+      "title": "(주)엔지비-연구장학금 현대.기아자동차 연구장학생 장학대여금 지급 협약",
+      "org": "민간기업",
+      "period": "2010-07-01~2011-02-28"
+    },
+    {
+      "title": "엘지전자(주)/Smart Mobile Walker 메커니즘 개발",
+      "org": "지식경제부",
+      "period": "2010-06-01~2011-03-31"
+    },
+    {
+      "title": "한국철도기술연구원/철도차량용 전자기식 선형액츄에 이터 설계기술 개발",
+      "org": "지식경제부",
+      "period": "2010-04-01~2011-03-31"
+    },
+    {
+      "title": "삼성전기(주) HDD Set에서 Head의 Mechanical PES 측정 시스템 개발",
+      "org": "민간기업",
+      "period": "2010-04-01~2011-07-31"
+    },
+    {
+      "title": "G-5-5-10나노마이크로응용기계기술인력양성사업단",
+      "org": "연세대학교",
+      "period": "2010-03-02~2011-06-30"
+    },
+    {
+      "title": "나노마이크로응용기계기술인력양성사업단",
+      "org": "연세대학교",
+      "period": "2010-03-01~2011-02-28"
+    },
+    {
+      "title": "나노 마이크로 응용기계기술 인력양성사업단",
+      "org": "학술진흥재단",
+      "period": "2010-03-01~2011-02-28"
+    },
+    {
+      "title": "나노마이크로응용기계기술인력양성사업단 (이월액 과제)",
+      "org": "연세대학교",
+      "period": "2010-03-01~2011-02-28"
+    },
+    {
+      "title": "(주)두산인프라코어-연세대학교산학협력단 산학협력",
+      "org": "민간기업",
+      "period": "2010-03-01~2013-02-28"
+    },
+    {
+      "title": "현대중공업(주) 벨트 전동 방식의 암 제어기술 개발",
+      "org": "민간기업",
+      "period": "2010-03-01~2011-02-28"
+    },
+    {
+      "title": "(주)엔지비-연구장학금 현대.기아자동차 연구장학생 장학대여금 지급 협약",
+      "org": "민간기업",
+      "period": "2010-03-01~2011-02-28"
+    },
+    {
+      "title": "[125 학술행사] 나노,바이오,에너지,환경,인포메이션 기술의 기계기술 응용",
+      "org": "연세대학교산학단_간접비",
+      "period": "2010-03-01~2010-08-31"
+    },
+    {
+      "title": "정보저장 메카트로닉스 연구단",
+      "org": "한국과학재단",
+      "period": "2010-03-01~2011-02-28"
+    },
+    {
+      "title": "[다학제간] 로봇공학/로보틱스:지능형 로봇 연구회(2차)",
+      "org": "연세대학교산학단_간접비",
+      "period": "2010-01-01~2011-02-28"
+    },
+    {
+      "title": "조인트 랩 설립 및 협력연구에 관한 계약 ODD Mechanism의 진동 소음 특성 개선에 대한 연구",
+      "org": "(주)히타치엘지데이터스토리지",
+      "period": "2010-01-01~2011-03-31"
+    },
+    {
+      "title": "(주)로보젠 매설 상수관로 지도화 시스템 개발",
+      "org": "국내",
+      "period": "2009-10-01~2011-05-31"
+    },
+    {
+      "title": "(주)로보젠 상수관로 내부 주행 로봇 개발",
+      "org": "국내",
+      "period": "2009-10-01~2011-05-31"
+    },
+    {
+      "title": "Solid immersion lens 기반의 마이크로홀로그래픽 정볶？저장 장치의 차세대 통합 서버 제어 기술 및 디지 털 신호처리 정보 이론 연구",
+      "org": "한국연구재단(과학재단)",
+      "period": "2009-09-01~2010-08-31"
+    },
+    {
+      "title": "차세대 협업 생산 로봇을 위한 다자유도 Robot Arm 및 응용기술 개발",
+      "org": "(주)스맥",
+      "period": "2009-08-01~2010-07-31"
+    },
+    {
+      "title": "서보 알고리즘 최적화를 통한 NFR Pickup에서의 대 충격 안정화와 대응 및 SIL오염 저감에 대한 연구",
+      "org": "(주)LG전자",
+      "period": "2009-07-27~2010-05-31"
+    },
+    {
+      "title": "대형 로켓엔진 추진제 공급제어 기술",
+      "org": "한국과학재단",
+      "period": "2009-06-01~2010-03-31"
+    },
+    {
+      "title": "상변화 바이오칩 개발을 위한 나노입자의 전자기파 및 열적 거동 해석 기술 개발",
+      "org": "(주)나노스토리지",
+      "period": "2009-06-01~2010-05-31"
+    },
+    {
+      "title": "G5-5-10/나노마이크로응용기계기술인력양성사업",
+      "org": "연세대학교",
+      "period": "2009-03-02~2010-06-30"
+    },
+    {
+      "title": "나노마이크로응용기계기술인력양성사업단",
+      "org": "연세대학교",
+      "period": "2009-03-01~2010-02-28"
+    },
+    {
+      "title": "나노마이크로응용기계기술인력양성사업단",
+      "org": "학술진흥재단",
+      "period": "2009-03-01~2010-02-28"
+    },
+    {
+      "title": "(주)엔지비 - 연구장학금",
+      "org": "민간기업",
+      "period": "2009-03-01~2010-02-28"
+    },
+    {
+      "title": "정보저장 메카트로닉스 연구단",
+      "org": "한국과학재단",
+      "period": "2009-03-01~2010-02-28"
+    },
+    {
+      "title": "[학제간] 로봇: 지능 로봇 연구회",
+      "org": "연세대학교산학단_간접비",
+      "period": "2009-01-01~2009-12-31"
+    },
+    {
+      "title": "HDDS용 DATA FORMAT 관련 기술개발(4차년도)",
+      "org": "(주)대우일렉트로닉스",
+      "period": "2008-08-01~2009-07-31"
+    },
+    {
+      "title": "(주)로보젠-상수관로 내부 주행 로봇 개발",
+      "org": "민간기업",
+      "period": "2008-08-01~2009-05-31"
+    },
+    {
+      "title": "(주)로보젠-매설 상수관로 지도화 시스템 개발",
+      "org": "민간기업",
+      "period": "2008-08-01~2009-05-31"
+    },
+    {
+      "title": "(주)삼성전기-ISM 렌즈 표면 및 렌즈 조립 3D 측정 기술",
+      "org": "민간기업",
+      "period": "2008-08-01~2009-07-31"
+    },
+    {
+      "title": "차세대 협업 생산 로봇을 위한 다자유도 Robot Arm 및 응용기술 개발",
+      "org": "(주)스맥",
+      "period": "2008-08-01~2009-07-31"
+    },
+    {
+      "title": "NFR PICKUP의 대충격 안정화 및 대응",
+      "org": "기업체/공사",
+      "period": "2008-07-01~2008-12-31"
+    },
+    {
+      "title": "대형 로켓엔진 추진제 공급제어 기술",
+      "org": "한국과학재단",
+      "period": "2008-06-01~2009-05-31"
+    },
+    {
+      "title": "상변화 바이오칩 개발을 위한 나노입자의 전자기파 및 열적 거동 해석 기술 개발",
+      "org": "(주)나노스토리지",
+      "period": "2008-06-01~2009-05-31"
+    },
+    {
+      "title": "구동속도 및 구동력 향상을 위한 저전력 카메라 모듈 설계 및 특성연구",
+      "org": "한국전자통신연구원",
+      "period": "2008-06-01~2009-01-31"
+    },
+    {
+      "title": "정보저장메카트로닉스 연구단",
+      "org": "한국과학재단",
+      "period": "2008-06-01~2009-02-28"
+    },
+    {
+      "title": "두산중공업(주) 연구장학금",
+      "org": "민간기업",
+      "period": "2008-05-01~2009-12-31"
+    },
+    {
+      "title": "나노마이크로응용기계기술인력양성사업단",
+      "org": "학술진흥재단",
+      "period": "2008-03-01~2009-02-28"
+    },
+    {
+      "title": "G5-5-10/나노마이크로응용기계기술인력양성사업",
+      "org": "연세대학교",
+      "period": "2008-03-01~2009-02-28"
+    },
+    {
+      "title": "나노마이크로응용기계기술인력양성사업단",
+      "org": "연세대학교",
+      "period": "2008-03-01~2009-02-28"
+    },
+    {
+      "title": "SERVO QUALITY 평가법 및 NEW PLATFORM 모델의 LOAD/ UNLOAD 성능 평가(CISD JOINT LAB과제)",
+      "org": "삼성전자(주)",
+      "period": "2008-03-01~2009-02-28"
+    },
+    {
+      "title": "재난극복 로봇의 지능형 이동 기술 개발",
+      "org": "한국원자력연구원",
+      "period": "2008-02-01~2009-09-30"
+    },
+    {
+      "title": "CISD-HLDS JOINT LAB 운영",
+      "org": "(주)히타치엘지데이터스토리지",
+      "period": "2008-01-03~2009-01-02"
+    },
+    {
+      "title": "HDDS용 DATA FORMAT 관련 기술 개발",
+      "org": "(주)대우일렉트로닉스",
+      "period": "2007-08-01~2008-07-31"
+    },
+    {
+      "title": "바이오 정보 시스템용 광 헤드 엑츄에이터 설계 및 제어알고리즘 개발",
+      "org": "한국전자통신연구원",
+      "period": "2007-06-01~2008-05-31"
+    },
+    {
+      "title": "연세대 첨단공학 교육관 POSCO 신강종 적용기술 개발",
+      "org": "포스코건설",
+      "period": "2007-06-01~2009-05-31"
+    },
+    {
+      "title": "삼성전기 ISM렌즈 표면 측정 기술 및 설계 최적",
+      "org": "민간기업",
+      "period": "2007-06-01~2008-05-31"
+    },
+    {
+      "title": "저전력 폴리머 구동기 설계 및 특성 연구",
+      "org": "한국전자통신연구원",
+      "period": "2007-04-16~2008-01-31"
+    },
+    {
+      "title": "삼성전자(주) 가변강성 조인트 메커니즘 개발",
+      "org": "민간기업",
+      "period": "2007-04-01~2007-08-31"
+    },
+    {
+      "title": "(주)NGV 실차 시험 더미 데이터를 이용한 승객거동 시뮬레이션프로그램 개발",
+      "org": "민간기업",
+      "period": "2007-03-16~2007-10-15"
+    },
+    {
+      "title": "나노/마이크로 응용 기계기술 인력양성사업단",
+      "org": "학술진흥재단",
+      "period": "2007-03-01~2008-02-29"
+    },
+    {
+      "title": "나노/마이크로 응용 기계기술 인력양성사업단",
+      "org": "연세대학교",
+      "period": "2007-03-01~2008-02-29"
+    },
+    {
+      "title": "G5-5-10/나노마이크로응용기계기술인력양성사업",
+      "org": "연세대학교",
+      "period": "2007-03-01~2008-05-31"
+    },
+    {
+      "title": "(주)로보젠 매설 상수관로 지도화 시스템",
+      "org": "민간기업",
+      "period": "2006-10-01~2008-05-30"
+    },
+    {
+      "title": "로봇 제어성능 예측 시스템 개발",
+      "org": "스페이스솔루션",
+      "period": "2006-10-01~2007-09-30"
+    },
+    {
+      "title": "해냄 시스템 부정형 지형 극복을 위한 로봇 개발 - TAMRY",
+      "org": "민간기업",
+      "period": "2006-09-01~2007-03-31"
+    },
+    {
+      "title": "HDDS용 DATA FORMAT 관련 기술 개발",
+      "org": "(주)대우일렉트로닉스",
+      "period": "2006-08-01~2007-07-31"
+    },
+    {
+      "title": "(주) 엔지비 - 연구장학금",
+      "org": "민간기업",
+      "period": "2006-07-01~2009-04-30"
+    },
+    {
+      "title": "바이오 정보 시스템용 광 헤드 엑츄에이터 설계 및 제어알고리즘 개발",
+      "org": "한국전자통신연구원",
+      "period": "2006-06-01~2007-05-31"
+    },
+    {
+      "title": "삼성전기",
+      "org": "민간기업",
+      "period": "2006-06-01~2007-05-31"
+    },
+    {
+      "title": "나노 광변조 측정/평가 시스템",
+      "org": "삼성전기(주)",
+      "period": "2006-03-01~2007-02-28"
+    },
+    {
+      "title": "나노 마이크로 응용기계기술 인력양성사업단",
+      "org": "학술진흥재단",
+      "period": "2006-03-01~2007-02-28"
+    },
+    {
+      "title": "나노마이크로응용기계기술인역양성사업단",
+      "org": "연세대학교",
+      "period": "2006-03-01~2007-02-28"
+    },
+    {
+      "title": "광경화 폴리머를 이용한 수지접합 비구면 렌즈 성형 장비 제어기 및 성형 공정 기술 개발",
+      "org": "삼양옵틱스",
+      "period": "2005-11-01~2006-10-31"
+    },
+    {
+      "title": "DEVELOPMENT OF SWING ARM ACTUATORS FOR SMALL FORM-FACTOR OPTICAL DISC DRIVES",
+      "org": "HITACHI LTD",
+      "period": "2005-10-01~2006-03-31"
+    },
+    {
+      "title": "로봇 제어성능 예측 시스템 개발",
+      "org": "스페이스솔루션",
+      "period": "2005-10-01~2006-09-30"
+    },
+    {
+      "title": "HDDS용 DATA FORMAT 관련 기술 개발",
+      "org": "(주)대우일렉트로닉스",
+      "period": "2005-08-01~2006-07-31"
+    },
+    {
+      "title": "초정밀 기계공학기반 복합기술사업단(2단계 BK21 SEED2차 BK21 SEED MONEY 지원 1단계 1,700,000원",
+      "org": "연세대학교",
+      "period": "2005-08-01~2006-03-31"
+    },
+    {
+      "title": "초정밀 VCM 구동기의 위치결정 정밀도 향상을 위한 동역학-제어연동 초정밀계 해석/설계 연구",
+      "org": "삼성전자(주)",
+      "period": "2005-06-08~2005-12-07"
+    },
+    {
+      "title": "DEVELOPMENT OF SWING ARM ACTUATORS FOR SMALL FORM-FACTOR OPTICAL DISC DRIVES",
+      "org": "HITACHI LTD",
+      "period": "2005-04-01~2005-09-30"
+    },
+    {
+      "title": "개구형 고밀도 광학헤드의 정밀 위치 및 간극 제어",
+      "org": "한국전자통신연구원",
+      "period": "2005-04-01~2006-02-28"
+    },
+    {
+      "title": "지팡이형 보행보조기기의 메카니즘 설계기술",
+      "org": "고등기술연구원",
+      "period": "2005-04-01~2006-03-31"
+    },
+    {
+      "title": "HDD 충격/진동 방지를 위한 NOTE PC 구조 설계 가이드 연구",
+      "org": "삼성전자(주)",
+      "period": "2005-03-09~2005-11-30"
+    },
+    {
+      "title": "카메라 모듈의 AF/OZ를 위한 초소형 엑추에이터 개발",
+      "org": "국내",
+      "period": "2005-03-01~2006-02-28"
+    },
+    {
+      "title": "ERC/정보저장기기연구센터/1-2공통",
+      "org": "과학재단",
+      "period": "2005-03-01~2006-02-28"
+    },
+    {
+      "title": "ERC/정보저장기기연구센터/1-1공통",
+      "org": "과학재단",
+      "period": "2005-03-01~2006-02-28"
+    },
+    {
+      "title": "ERC/정보저장기기연구센터/1-2세부",
+      "org": "과학재단",
+      "period": "2005-03-01~2006-02-28"
+    },
+    {
+      "title": "환류식 지폐 입출금 장치 개발",
+      "org": "노틸러스효성",
+      "period": "2005-02-01~2006-08-31"
+    },
+    {
+      "title": "FULL 3D 자동측정 기술개발",
+      "org": "솔루션닉스",
+      "period": "2004-12-01~2005-11-30"
+    },
+    {
+      "title": "광경화 폴리머를 이용한 수지접합 비구면 렌즈 성형 장비 제어기 및 성형 공정 기술 개발",
+      "org": "삼양옵틱스",
+      "period": "2004-11-01~2005-10-31"
+    },
+    {
+      "title": "DEVELOPMENT OF SWING ARM ACTUATORS FOR SMALL FORM-FACTOR OPTICAL DISC DRIVES",
+      "org": "HITACHI LTD",
+      "period": "2004-10-29~2005-10-28"
+    },
+    {
+      "title": "생체 MECHANISM의 분석을 통한 NEW MECHANISM CONCEPT개발",
+      "org": "삼성전자(주)",
+      "period": "2004-10-01~2004-12-30"
+    },
+    {
+      "title": "로봇 제어성능 예측 시스템 개발",
+      "org": "스페이스솔루션",
+      "period": "2004-10-01~2005-09-30"
+    },
+    {
+      "title": "개구형 고밀도 광학헤드의 정밀 위치 및 간극 제 어",
+      "org": "한국전자통신연구원",
+      "period": "2004-08-15~2005-03-31"
+    },
+    {
+      "title": "DEVELOPMENT OF OBJECTIVE LENS UNIT AND ACTUATING SYSTEM FOR FLEXIBLE DISK SYSTEM",
+      "org": "RICOH COMPANY",
+      "period": "2004-06-01~2005-05-30"
+    },
+    {
+      "title": "지팡이형 보행보조기기의 메카니즘 설계기술",
+      "org": "고등과학원",
+      "period": "2004-04-01~2005-03-31"
+    },
+    {
+      "title": "정보저장/1총괄2세부_양현석",
+      "org": "과학재단",
+      "period": "2004-03-01~2005-02-28"
+    },
+    {
+      "title": "정보저장/1총괄2세부_공통",
+      "org": "과학재단",
+      "period": "2004-03-01~2005-02-28"
+    },
+    {
+      "title": "FULL 3D 자동측정 기술개발",
+      "org": "한국산업기술평가원",
+      "period": "2004-01-31~2004-11-30"
+    },
+    {
+      "title": "광픽업 성능 평가를 위한 ODD 제어기 SIMULATOR 개발",
+      "org": "(주)삼성전기",
+      "period": "2004-01-01~2004-12-31"
+    },
+    {
+      "title": "광경화 폴리머를 이용한 수지접합 비구면 렌즈 개발",
+      "org": "한국산업기술평가원",
+      "period": "2003-11-01~2004-10-30"
+    },
+    {
+      "title": "지팡이형 보행보조기기의 메카니즘 설계기술",
+      "org": "고등과학원",
+      "period": "2003-10-01~2004-03-31"
+    },
+    {
+      "title": "개구형 고밀도 광학헤드의 정밀 위치 및 간극 제어",
+      "org": "한국전자통신연구원",
+      "period": "2003-07-28~2004-04-27"
+    },
+    {
+      "title": "정보저장_1총괄2세부",
+      "org": "과학재단",
+      "period": "2003-03-01~2004-02-28"
+    },
+    {
+      "title": "정보저장_1총괄2세부",
+      "org": "과학재단",
+      "period": "2003-03-01~2004-02-28"
+    },
+    {
+      "title": "HDDS용 DATA FORMAT 관련 기술 개발",
+      "org": "(주)대우일렉트로닉스",
+      "period": "2002-10-01~2005-07-31"
+    },
+    {
+      "title": "(1-2세부/양현석) 고밀도 정보저장기기용 광학헤드 및 구동기 개발",
+      "org": "과학재단",
+      "period": "2002-03-01~2003-02-28"
+    },
+    {
+      "title": "(양현석)",
+      "org": "과학재단",
+      "period": "2001-03-01~2002-02-28"
+    },
+    {
+      "title": "복합충격력을 받는 구조물의 완충구조 최적설계",
+      "org": "국방과학연구소",
+      "period": "2000-10-01~2002-09-30"
+    },
+    {
+      "title": "OPTICAL DISC DRIVE 기술 개발 과제",
+      "org": "삼성전자(주)",
+      "period": "2000-09-01~2001-08-31"
+    },
+    {
+      "title": "SELF-SERVO WRITING 기술 개발",
+      "org": "삼성전자(주)",
+      "period": "2000-07-01~2001-06-30"
+    },
+    {
+      "title": "고밀도 CD-RW 기술개발",
+      "org": "LG 전자",
+      "period": "2000-06-01~2000-12-10"
+    },
+    {
+      "title": "정보저장기기연구센터-1총괄(양현석)",
+      "org": "과학재단",
+      "period": "2000-03-01~2001-02-28"
+    },
+    {
+      "title": "광기록방식 정보저장기기의 동적 설계",
+      "org": "연세대학교",
+      "period": "2000-02-01~2001-01-30"
+    },
+    {
+      "title": "3자유도 로봇조작기의 힘/위치 제어 연구",
+      "org": "학술진흥재단",
+      "period": "1996-07-01~1997-06-30"
+    }
+  ],
+  "patents": [
+    {
+      "title": "중력보상장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 현대로보틱스 주식회사",
+      "date": "2023-01-12"
+    },
+    {
+      "title": "고중량을 다룰 수 있는 중력보상장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 현대로보틱스",
+      "date": "2023-01-12"
+    },
+    {
+      "title": "풍력 발전 시스템을 위한 양력 발생 구조체",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2017-12-14"
+    },
+    {
+      "title": "풍력 발전 시스템",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2017-09-18"
+    },
+    {
+      "title": "풍력 발전 시스템",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2016-11-15"
+    },
+    {
+      "title": "풍력 발전 시스템",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2016-03-21"
+    },
+    {
+      "title": "웜타입 이동로봇, 이를 운용하는 방법 및 이를 포함하는 모니터링 시스템",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2015-07-17"
+    },
+    {
+      "title": "웜타입 이동로봇, 이를 운용하는 방법 및 이를 포함하는 모니터링 시스템",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2015-07-17"
+    },
+    {
+      "title": "불감 영역 필터를 사용하는 적합한 외란 비간섭",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, Seagate",
+      "date": "2015-03-31"
+    },
+    {
+      "title": "다수의 돌기를 포함하는 이동로봇",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2015-03-31"
+    },
+    {
+      "title": "다수의 돌기를 포함하는 이동로봇",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2015-03-31"
+    },
+    {
+      "title": "케이블 이동로봇",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2014-08-08"
+    },
+    {
+      "title": "관내 이동로봇을 위한 케이블 가이드 모듈 및 이를 운용하는 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2014-01-15"
+    },
+    {
+      "title": "유연한 링크를 포함하는 관내 이동로봇 및 이를 포함하는 관내 작업장비",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2013-08-09"
+    },
+    {
+      "title": "가변링크를 포함하는 주행체 및 이를 포함하는 이동로봇",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2013-08-09"
+    },
+    {
+      "title": "케이블 이동로봇",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2013-08-09"
+    },
+    {
+      "title": "디스크 슬롯 검출 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, (주)HLDS",
+      "date": "2013-03-20"
+    },
+    {
+      "title": "관 내 이동용 로봇",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2012-09-06"
+    },
+    {
+      "title": "이동거리 측정 장치 및 측정 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2012-06-29"
+    },
+    {
+      "title": "도로 경고 시스템",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2012-06-29"
+    },
+    {
+      "title": "이동거리 측정 장치 및 측정 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2012-06-29"
+    },
+    {
+      "title": "휠 구조체",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2012-06-29"
+    },
+    {
+      "title": "자동 광경로 정렬장치 및 방법, 이를 구비한 홀로그래픽 광 메모리 시스템",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2012-03-21"
+    },
+    {
+      "title": "광학 시스템의 이미지 복원 방법 및 이미지 복원 장치, 이미지 복원 장치를 구비한 디지털 홀로그래픽 마이크로스코피 시스템",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2012-03-20"
+    },
+    {
+      "title": "외부 공진기 레이저 시스템",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2012-03-20"
+    },
+    {
+      "title": "관 내 이동용 로봇",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2011-11-02"
+    },
+    {
+      "title": "원통형 전자기식 모터용 코어 및 이를 이용한 원통형 전자기식 모터",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 철도기술연구원",
+      "date": "2011-10-12"
+    },
+    {
+      "title": "능동 근접장 간극제어가 가능한 고속 마스크리스 나노리소그래피 방법, 이에 사용되는 나노 개구 기반 광학렌즈 및 광학헤드",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2011-02-11"
+    },
+    {
+      "title": "관외 주행용 로봇",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2010-11-30"
+    },
+    {
+      "title": "평지 및 계단 주행이 가능한 변형 바퀴, 바퀴조립체 및 이를 구비한 이동 로봇",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2010-11-17"
+    },
+    {
+      "title": "고체침지렌즈를 사용한 홀로그래픽 데이터 기록장치, 이를 이용한 기록방법 및 재생방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2010-11-17"
+    },
+    {
+      "title": "마이크로 홀로그래픽 데이터 기록장치, 이를 이용한 기록방법 및 재생방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2010-05-18"
+    },
+    {
+      "title": "근접장 광디스크 구동기에서 갭 서보 제어 방법 및 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2008-07-10"
+    },
+    {
+      "title": "근접장 광디스크 구동기에서 갭 서보 제어 방법 및 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2008-06-30"
+    },
+    {
+      "title": "근접장 광디스크 구동기에서 갭 풀인 방법 및 그와 같은 기능을 갖는 광디스크 구동 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 삼성전자",
+      "date": "2008-05-22"
+    },
+    {
+      "title": "부정형 지형 주행을 위한 지형적응 메커니즘을 이용한 이동 로봇",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2008-02-19"
+    },
+    {
+      "title": "근접장 광디스크 구동기에서 갭 서보 제어 방법 및 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 삼성전자",
+      "date": "2008-01-18"
+    },
+    {
+      "title": "광 디스크 장치 및 그 구동방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 삼성전자주식회사",
+      "date": "2007-09-05"
+    },
+    {
+      "title": "협소구역 수직 주행을 위한 지형 적응/인지 이동 로봇",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2007-06-29"
+    },
+    {
+      "title": "4절 링크를 이용한 이동장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2006-10-24"
+    },
+    {
+      "title": "광학식 미세 간격 측정장치 및 이를 이용한 광픽업 장치",
+      "type": "특허",
+      "applicant": "연세대학교산학협력단",
+      "date": "2002-02-22"
+    },
+    {
+      "title": "비구면 고체 침지렌즈를 이용한 광픽업 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2001-06-08"
+    },
+    {
+      "title": "광픽업의 구동장치",
+      "type": "특허",
+      "applicant": "연세대학교산학협력단",
+      "date": "2001-02-20"
+    },
+    {
+      "title": "광픽업의 대물렌즈 구동장치",
+      "type": "특허",
+      "applicant": "연세대학교산학협력단",
+      "date": "2001-01-19"
+    },
+    {
+      "title": "압전구동장치",
+      "type": "특허",
+      "applicant": "연세대학교산학협력단",
+      "date": "2001-01-15"
+    },
+    {
+      "title": "광픽업의 대물렌즈 구동장치",
+      "type": "특허",
+      "applicant": "연세대학교산학협력단",
+      "date": "2001-01-10"
+    }
+  ]
+}

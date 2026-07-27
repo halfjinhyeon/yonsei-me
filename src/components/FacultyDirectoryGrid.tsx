@@ -3,6 +3,7 @@
 import { useMemo, useState } from 'react';
 import Image from 'next/image';
 import { useTranslations } from 'next-intl';
+import { Link } from '@/i18n/navigation';
 import { UnderlineTabs } from '@/components/UnderlineTabs';
 import { EagleLoader } from '@/components/EagleLoader';
 import { cn } from '@/lib/utils';
@@ -58,10 +59,30 @@ function MailIcon() {
   );
 }
 
+/** "상세정보 보기" 링크 — 내부 라우트(Link)와 외부 원문(a) 두 갈래가 같은 모양이라 공유 */
+const MORE_LINK_CLASS =
+  'group/link mt-auto inline-flex items-center gap-1 pt-3 text-xs font-semibold text-yonsei-blue focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yonsei-blue';
+
+function MoreArrow() {
+  return (
+    <svg
+      aria-hidden="true"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      className="h-3.5 w-3.5 transition-transform duration-200 group-hover/link:translate-x-1"
+    >
+      <path d="M4 12h15M13 6l6 6-6 6" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
 type Filter = 'all' | 'active' | 'emeritus';
 
-/** 별도 필드가 없으므로 yearRange(재직 기간)로 명예·퇴임 여부를 파생한다. */
-const isEmeritus = (f: FacultyRecord) => Boolean(f.yearRange);
+/** 명예·퇴임 판정 — 재직 기간(yearRange)이 적혀 있으면 그것으로 파생하고, 기간을 모르는
+ *  교원은 CMS 의 '명예·퇴임 교원' 체크(emeritus)로 직접 지정한다. 둘 중 하나만 있으면 된다. */
+const isEmeritus = (f: FacultyRecord) => f.emeritus === true || Boolean(f.yearRange);
 
 /**
  * 교수진 인명록. 상단 언더라인 탭으로 전체 / 교수 / 명예·퇴임 교수를 필터링하고
@@ -72,11 +93,16 @@ const isEmeritus = (f: FacultyRecord) => Boolean(f.yearRange);
 export function FacultyDirectoryGrid({
   items,
   moreLabel,
+  profileNames,
 }: {
   items: FacultyRecord[];
   moreLabel: string;
+  /** 사이트 안에 상세 페이지(/faculty/<이름>)가 있는 교수 이름 목록.
+   *  여기 있으면 "상세정보 보기"가 외부 학과 사이트 대신 내부 라우트로 간다. */
+  profileNames?: readonly string[];
 }) {
   const t = useTranslations('faculty');
+  const profileSet = useMemo(() => new Set(profileNames ?? []), [profileNames]);
   // 기본 선택 = 첫 탭(교수). 탭 순서를 교수→명예·퇴임→전체로 두었으므로 로드 시
   // 밑줄이 첫 탭에 오도록 초기값도 'active'로 맞춘다(사용자 지시).
   const [filter, setFilter] = useState<Filter>('active');
@@ -267,27 +293,30 @@ export function FacultyDirectoryGrid({
                   </dl>
                 )}
 
-                {/* 교수 개인 상세(moreInfoUrl)가 있을 때만 하단 링크 — 연구실 링크는 위 버튼이 담당 */}
-                {f.moreInfoUrl && (
-                  <a
-                    href={f.moreInfoUrl}
-                    target={f.moreInfoUrl.startsWith('http') ? '_blank' : undefined}
-                    rel={f.moreInfoUrl.startsWith('http') ? 'noopener noreferrer' : undefined}
+                {/* 상세정보 보기 — 사이트 안에 상세 페이지가 있으면 내부 라우트(같은 탭),
+                    없으면 기존대로 학과 사이트 원문(moreInfoUrl)으로 나간다. */}
+                {profileSet.has(f.name) ? (
+                  <Link
+                    href={`/faculty/${encodeURIComponent(f.name)}`}
                     aria-label={`${f.name} ${moreLabel}`}
-                    className="group/link mt-auto inline-flex items-center gap-1 pt-3 text-xs font-semibold text-yonsei-blue focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yonsei-blue"
+                    className={MORE_LINK_CLASS}
                   >
                     {moreLabel}
-                    <svg
-                      aria-hidden="true"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      className="h-3.5 w-3.5 transition-transform duration-200 group-hover/link:translate-x-1"
+                    <MoreArrow />
+                  </Link>
+                ) : (
+                  f.moreInfoUrl && (
+                    <a
+                      href={f.moreInfoUrl}
+                      target={f.moreInfoUrl.startsWith('http') ? '_blank' : undefined}
+                      rel={f.moreInfoUrl.startsWith('http') ? 'noopener noreferrer' : undefined}
+                      aria-label={`${f.name} ${moreLabel}`}
+                      className={MORE_LINK_CLASS}
                     >
-                      <path d="M4 12h15M13 6l6 6-6 6" strokeLinecap="round" strokeLinejoin="round" />
-                    </svg>
-                  </a>
+                      {moreLabel}
+                      <MoreArrow />
+                    </a>
+                  )
                 )}
               </div>
             </li>

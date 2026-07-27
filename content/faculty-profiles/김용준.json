@@ -1,0 +1,3359 @@
+{
+  "name": "김용준",
+  "nameEn": "Kim, Yong-Jun",
+  "email": "yjk@yonsei.ac.kr",
+  "phone": "02)2123-2844",
+  "office": null,
+  "homepage": null,
+  "sourceUrl": "https://me.yonsei.ac.kr/faculty/name_search.do?mode=view&userId=rF3EfB2KwpYgW%2F3mA9hWYQ%3D%3D&sosokcd=",
+  "crawledAt": "2026-07-27",
+  "articles": [
+    {
+      "date": "2026-01",
+      "title": "Electric field manipulated droplet encapsulation for airborne virus monitoring at indoor environmental levels",
+      "journal": "Sensors and Actuators, B: Chemical"
+    },
+    {
+      "date": "2025-06",
+      "title": "An integrated bioaerosol sampler with simultaneous sampling and droplet encapsulation for the monitoring of airborne bacteria",
+      "journal": "Biosensors and Bioelectronics"
+    },
+    {
+      "date": "2024-11",
+      "title": "Microfluidics-based condensation bioaerosol sampler for multipoint airborne virus monitoring",
+      "journal": "Biosensors and Bioelectronics"
+    },
+    {
+      "date": "2024-10",
+      "title": "Sense-Based User Interface (SUI) Platforms to Detect Children&apos;s Physical and Emotional Behaviors",
+      "journal": "Proceedings of IEEE Sensors"
+    },
+    {
+      "date": "2024-05",
+      "title": "Integrated microfluidic-based ultrafine water condensation particle counter (UWCPC) for monitoring of airborne nanoparticle generation and growth mechanisms",
+      "journal": "Environmental Science: Nano"
+    },
+    {
+      "date": "2023-01",
+      "title": "Mems-Based Water Collection Condensation Particle Counter (WCCPC) Optimized for Multi-Point Monitoring of Airborne Nanoparticles",
+      "journal": "Proceedings of the IEEE International Conference on Micro Electro Mechanical Systems (MEMS)"
+    },
+    {
+      "date": "2023-01",
+      "title": "Intelligent PM 2.5 mass concentration analyzer using deep learning algorithm and improved density measurement chip for high-accuracy airborne particle sensor network",
+      "journal": "Journal of Aerosol Science"
+    },
+    {
+      "date": "2022-08",
+      "title": "Mechanical Characterization and Analysis of Different-Type Polyimide Feedthroughs Based on Tensile Test and FEM Simulation for an Implantable Package",
+      "journal": "MICROMACHINES"
+    },
+    {
+      "date": "2022-07",
+      "title": "Airborne nanoparticle analysis mini-system using a parallel-type inertial impaction technique for real-time monitoring size distribution and effective density",
+      "journal": "SENSORS AND ACTUATORS A-PHYSICAL"
+    },
+    {
+      "date": "2022-06",
+      "title": "An integrated electrical condensation particle counter for compact and low-cost ultrafine particle measurement system",
+      "journal": "JOURNAL OF AEROSOL SCIENCE"
+    },
+    {
+      "date": "2022-04",
+      "title": "A Study on Biocompatible Polymer-Based Packaging of Neural Interface for Chronic Implantation",
+      "journal": "MICROMACHINES"
+    },
+    {
+      "date": "2022-02",
+      "title": "Lab-on-printed circuit board based water harvesting condensation particle counter for ubiquitous monitoring of airborne ultrafine particles",
+      "journal": "JOURNAL OF AEROSOL SCIENCE"
+    },
+    {
+      "date": "2022-01",
+      "title": "Portable multilateral measurement system employing Optical Particle Counter and one-stage Quartz Crystal Microbalance to measure PM10",
+      "journal": "SENSORS AND ACTUATORS A-PHYSICAL"
+    },
+    {
+      "date": "2021-12",
+      "title": "Inductive particle detection system for real-time monitoring of metals in airborne particles",
+      "journal": "SENSORS AND ACTUATORS A-PHYSICAL"
+    },
+    {
+      "date": "2021-07",
+      "title": "Development of a real-time total suspended particle mass concentration measurement system based on light scattering for monitoring fugitive dust in construction sites",
+      "journal": "SENSORS AND ACTUATORS A-PHYSICAL"
+    },
+    {
+      "date": "2021-07",
+      "title": "Microfluidic Airborne Metal Particle Sensor Using Oil Microcirculation for Real-Time and Continuous Monitoring of Metal Particle Emission",
+      "journal": "MICROMACHINES"
+    },
+    {
+      "date": "2021-04",
+      "title": "Microfluidic ultrafine particle dosimeter using an electrical detection method with a machinelearning- aided algorithm for real-time monitoring of particle density and size distribution",
+      "journal": "LAB ON A CHIP"
+    },
+    {
+      "date": "2021-01",
+      "title": "Monitoring the Effective Density of Airborne Nanoparticles in Real Time Using a Microfluidic Nanoparticle Analysis Chip",
+      "journal": "ACS Sensors"
+    },
+    {
+      "date": "2020-04",
+      "title": "DMA 내 막대형 시스 유동 층류화 장치에 의한 샘플 유동 정렬 및 입자 분류 효율 향상",
+      "journal": "Transactions of the Korean Society of Mechanical Engineers, B"
+    },
+    {
+      "date": "2020-03",
+      "title": "Microfluidic condensation nanoparticle counter using water as the condensing liquid for assessing individual exposure to airborne nanoparticles",
+      "journal": "LAB ON A CHIP"
+    },
+    {
+      "date": "2019-10",
+      "title": "Microelectromechanical-system-based condensation particle counter for real-time monitoring of airborne ultrafine particles",
+      "journal": "ATMOSPHERIC MEASUREMENT TECHNIQUES"
+    },
+    {
+      "date": "2019-04",
+      "title": "MEMS-based condensation particle growth chip for optically measuring airborne nanoparticle concentration",
+      "journal": "LAB ON A CHIP"
+    },
+    {
+      "date": "2018-11",
+      "title": "Tightly Sealed 3D Lipid Structure Monolithically Generated on Transparent SU‑8 Microwell Arrays for Biosensor Applications",
+      "journal": "ACS APPLIED MATERIALS & INTERFACES"
+    },
+    {
+      "date": "2018-11",
+      "title": "An ant-clogging method for improving the performance and lifespan of blood plasma separation devices in real-time and continuous microfluidic systems",
+      "journal": "SCIENTIFIC REPORTS"
+    },
+    {
+      "date": "2018-10",
+      "title": "MEMS-based particle detection system for measuring airborne ultrafine particles",
+      "journal": "SENSORS AND ACTUATORS A-PHYSICAL"
+    },
+    {
+      "date": "2018-08",
+      "title": "Particle size spectrometer using inertial classification and electrical measurement techniques for real-time monitoring of particle size distribution",
+      "journal": "LAB ON A CHIP"
+    },
+    {
+      "date": "2018-01",
+      "title": "Plasma extraction rate enhancement scheme for a real-time and continuous blood plasma separation device using a sheathless cell concentrator",
+      "journal": "JOURNAL OF MICROMECHANICS AND MICROENGINEERING"
+    },
+    {
+      "date": "2017-10",
+      "title": "Wearable triboelectric nanogenerator using a plasma-etched PDMS?CNT composite for a physical activity sensor",
+      "journal": "RSC ADVANCES"
+    },
+    {
+      "date": "2017-08",
+      "title": "Design of wearable hybrid generator for harvesting heat energy from human body depending on physiological activity",
+      "journal": "SMART MATERIALS AND STRUCTURES"
+    },
+    {
+      "date": "2017-03",
+      "title": "Electrodeposition and Characterization of Nanocrystalline Ni-B with Low Boron Content for MEMS Applications",
+      "journal": "SENSORS AND MATERIALS"
+    },
+    {
+      "date": "2017-01",
+      "title": "MEMS-based Ni-B probe with enhanced mechanical properties for fine pitch testing",
+      "journal": "Micro and Nano Systems Letters"
+    },
+    {
+      "date": "2016-11",
+      "title": "Triboelectric-thermoelectric hybrid nanogenerator for harvesting frictional energy",
+      "journal": "SMART MATERIALS AND STRUCTURES"
+    },
+    {
+      "date": "2016-09",
+      "title": "An Exploratory Study on the Feasibility of a Foot Gear Type Energy Harvester Using a Textile Coil Inductor",
+      "journal": "JOURNAL OF ELECTRICAL ENGINEERING & TECHNOLOGY"
+    },
+    {
+      "date": "2016-08",
+      "title": "Batch-processed semiconductor gas sensor array for the selective detection of NOx in automotive exhaust gas",
+      "journal": "Micro and Nano Systems Letters"
+    },
+    {
+      "date": "2016-06",
+      "title": "Refraction-Assisted Solar Thermoelectric Generator based on Phase-Change Lens",
+      "journal": "SCIENTIFIC REPORTS"
+    },
+    {
+      "date": "2015-09",
+      "title": "An Anti-Adhesion Technique in Microfluidic Channel Using Dielectrophoresis for Particle Processing Microfluidic Chip Applications",
+      "journal": "JOURNAL OF BIOMEDICAL NANOTECHNOLOGY"
+    },
+    {
+      "date": "2015-05",
+      "title": "Modeling of a honeycomb-shaped pyroelectric energy harvester forhuman body heat harvesting",
+      "journal": "SMART MATERIALS AND STRUCTURES"
+    },
+    {
+      "date": "2014-10",
+      "title": "Wearable thermoelectric generator for harvesting human body heat energy",
+      "journal": "SMART MATERIALS AND STRUCTURES"
+    },
+    {
+      "date": "2014-06",
+      "title": "A dome-shaped piezoelectric tactile sensor arrays fabricated by an air inflation technique",
+      "journal": "SENSORS AND ACTUATORS A-PHYSICAL"
+    },
+    {
+      "date": "2014-02",
+      "title": "Inductor array for minimising transfer efficiency decrease of wireless power transmission components at misalignment",
+      "journal": "ELECTRONICS LETTERS"
+    },
+    {
+      "date": "2014-01",
+      "title": "Sheathless microfluidic particle focusing technique using slanted microstructure array",
+      "journal": "MICROFLUIDICS AND NANOFLUIDICS"
+    },
+    {
+      "date": "2013-12",
+      "title": "An integrated microchannel with continuous electrodynamic anti-adhesion capability for particle loss reduction in air-based microfluidic chips",
+      "journal": "JOURNAL OF ADHESION SCIENCE AND TECHNOLOGY"
+    },
+    {
+      "date": "2013-11",
+      "title": "Power generation of a thermoelectric generator with phase change materials",
+      "journal": "Smart Materials and Structures"
+    },
+    {
+      "date": "2013-06",
+      "title": "Drop-on-demand hybrid printing using a piezoelectric MEMS printhead at various waveforms, high voltages and jetting frequencies",
+      "journal": "JOURNAL OF MICROMECHANICS AND MICROENGINEERING"
+    },
+    {
+      "date": "2012-10",
+      "title": "Facile fabrication of sub-20-nm nanochannels based on crystallinity- dependent anisotropic etching of silicon",
+      "journal": "Microelectronic Engineering"
+    },
+    {
+      "date": "2012-09",
+      "title": "Improvement of wireless power transmission efficiency of implantable subcutaneous devices by closed magnetic circuit mechanism",
+      "journal": "MEDICAL & BIOLOGICAL ENGINEERING & COMPUTING"
+    },
+    {
+      "date": "2012-08",
+      "title": "Flexible thermoelectric generator for human body heat energy harvesting",
+      "journal": "ELECTRONICS LETTERS"
+    },
+    {
+      "date": "2012-07",
+      "title": "Electromagnetic human vibration energy harvester comprising planar coils",
+      "journal": "ELECTRONICS LETTERS"
+    },
+    {
+      "date": "2012-07",
+      "title": "Miniaturized One-Point Detectable Electrocardiography Sensor for Portable Physiological Monitoring Systems",
+      "journal": "IEEE Sensors Journal"
+    },
+    {
+      "date": "2012-06",
+      "title": "실내공기오염 제어 및 평가 - 실내 공기오염 감지 기술",
+      "journal": "공기청정기술"
+    },
+    {
+      "date": "2012-04",
+      "title": "An electrodynamic preconcentrator integrated thermoelectric biosensor chip for continuous monitoring of biochemical process",
+      "journal": "JOURNAL OF MICROMECHANICS AND MICROENGINEERING"
+    },
+    {
+      "date": "2012-04",
+      "title": "A hybrid electrohydrodynamic drop-on-demand printing system using a piezoelectric MEMS nozzle",
+      "journal": "JOURNAL OF MICROMECHANICS AND MICROENGINEERING"
+    },
+    {
+      "date": "2012-04",
+      "title": "Spontaneous synchronized burst firing of subthalamic nucleus neurons in rat brain slices measured on multi-electrode arrays",
+      "journal": "NEUROSCIENCE RESEARCH"
+    },
+    {
+      "date": "2012-01",
+      "title": "A resonant frequency switching scheme of a cantilever based on polyvinylidene fluoride for vibration energy harvesting",
+      "journal": "SMART MATERIALS & STRUCTURES"
+    },
+    {
+      "date": "2011-11",
+      "title": "Application and performance test of a micro-machined unipolar charger for real-time measurements of exhaust particles from a diesel engine vehicle",
+      "journal": "JOURNAL OF AEROSOL SCIENCE"
+    },
+    {
+      "date": "2011-09",
+      "title": "유전영동을 이용한 미세유체채널 내부의 입자 손실 저감 기술",
+      "journal": "센서학회지"
+    },
+    {
+      "date": "2010-12",
+      "title": "A FLEXIBLE RF TRANSMITTER MODULE BASED ON FLEXIBLE PRINTED CIRCUIT BOARD BY USING MICRO-MACHINING FABRICATION PROCESS",
+      "journal": "Microwave and Optical Technology Letters"
+    },
+    {
+      "date": "2010-10",
+      "title": "A flexible tactile sensor based on a thermoelectric device for simultaneous detection of contact heat and contact force",
+      "journal": "JOURNAL OF MICROMECHANICS AND MICROENGINEERING"
+    },
+    {
+      "date": "2010-09",
+      "title": "Hybrid cell sorters for on-chip cell separation by hydrodynamics and magnetophoresis",
+      "journal": "JOURNAL OF MICROMECHANICS AND MICROENGINEERING"
+    },
+    {
+      "date": "2010-05",
+      "title": "Development and performance test of a micromachined unipolar charger for measurements of submicron aerosol particles having a log-normal size distribution",
+      "journal": "JOURNAL OF AEROSOL SCIENCE"
+    },
+    {
+      "date": "2010-03",
+      "title": "Wall loss reduction technique using an electrodynamic disturbance for airborne particle processing chip applications",
+      "journal": "JOURNAL OF MICROMECHANICS AND MICROENGINEERING"
+    },
+    {
+      "date": "2010-01",
+      "title": "Conversion of NO to NO2 in air by a micro electric NOx converter based on a corona discharge process",
+      "journal": "Analyst"
+    },
+    {
+      "date": "2010-01",
+      "title": "Detection of hydrogen and NOx gases based on a thermoelectric gas sensor with an embedded tin oxide catalyst",
+      "journal": "Sensors And Materials"
+    },
+    {
+      "date": "2009-10",
+      "title": "On-demand electrohydrodynamic jetting with meniscus control by a piezoelectric actuator for ultra-fine patterns",
+      "journal": "JOURNAL OF MICROMECHANICS AND MICROENGINEERING"
+    },
+    {
+      "date": "2009-09",
+      "title": "MEMS 기술과 유연인쇄회로기판 기술을 이용한 단일지점 검침 심전도 센서",
+      "journal": "센서학회지"
+    },
+    {
+      "date": "2009-07",
+      "title": "Gas sensing properties of WO3 doped rutile TiO2 thick film at high operating temperature",
+      "journal": "Current Applied Physics"
+    },
+    {
+      "date": "2009-07",
+      "title": "size classification of airborne particle for air-based lab-on-a-chip using micromachaned electrical mobility analyzer",
+      "journal": "Current Applied Physics"
+    },
+    {
+      "date": "2009-07",
+      "title": "Electrical Characterization of a Microstrip Line Patterned by Electrohydrodynamic Jet Printing of Silver Nanoparticles",
+      "journal": "Journal Of Imaging Science And Technology"
+    },
+    {
+      "date": "2009-05",
+      "title": "수정된 라플라시안 센서를 이용한 심박변이도 측정에 관한 연구",
+      "journal": "전기학회논문지A"
+    },
+    {
+      "date": "2009-05",
+      "title": "폴리머 재료를 이용한 유연 수직/수평 힘 센서 어레이 개발 및 응용",
+      "journal": "한국정밀공학회지"
+    },
+    {
+      "date": "2009-05",
+      "title": "New bio-aerosol collector using a micromachined virtual impactor",
+      "journal": "JOURNAL OF AEROSOL SCIENCE"
+    },
+    {
+      "date": "2009-03",
+      "title": "Robust and real-time monitoring of nerve regeneration using implantable flexible microelectrode array",
+      "journal": "Biosensors & Bioelectronics"
+    },
+    {
+      "date": "2009-02",
+      "title": "전기적으로 분류 입경의 제어가 가능한 가상 임팩터를 이용한 대기 중 나노 입자의 분류",
+      "journal": "한국정밀공학회지"
+    },
+    {
+      "date": "2009-02",
+      "title": "A micro-thermoelectric gas sensor for detection of hydrogen and atomic oxygen",
+      "journal": "Analyst"
+    },
+    {
+      "date": "2009-01",
+      "title": "A hybrid chip based on aerodynamics and electrostatics for the size-dependent classification of ultrafine and nano particles",
+      "journal": "Lab on a Chip"
+    },
+    {
+      "date": "2009-01",
+      "title": "Wireless power transmission for implantable devices using inductive component of closed magnetic circuit",
+      "journal": "Electronics Letters"
+    },
+    {
+      "date": "2008-12",
+      "title": "Structuring of conductive silver line by electrohydrodynamic jet printing and its electrical characterization",
+      "journal": "JOURNAL OF PHYSICS: CONFERENCE SERIES"
+    },
+    {
+      "date": "2008-12",
+      "title": "Design and evaluation of a silicon based multi-nozzle for addressable jetting using a controlled flow rate in electrohydrodynamic jet printing",
+      "journal": "Applied Physics Letters"
+    },
+    {
+      "date": "2008-11",
+      "title": "Integrated particle detection chip for environmental monitoring",
+      "journal": "Lab on a Chip"
+    },
+    {
+      "date": "2008-08",
+      "title": "A micromachined microcalorimeter with split-flow microchannel for biochemical sensing applications",
+      "journal": "Sensors and Actuators B-Chemical"
+    },
+    {
+      "date": "2008-06",
+      "title": "Neisseria meningitidis detection based on a microcalorimetric biosensor with a split-flow microchannel",
+      "journal": "Journal Of Microelectromechanical Systems"
+    },
+    {
+      "date": "2008-05",
+      "title": "실시간 박테리아 감지를 위한 정전용량방식의 MEMS 바이오센서",
+      "journal": "센서학회지"
+    },
+    {
+      "date": "2008-05",
+      "title": "Flexible contact force sensing device using metal/polymer multilayer structure for robotic applications",
+      "journal": "Sensors And Materials"
+    },
+    {
+      "date": "2008-03",
+      "title": "BCG detection based on a split-flow microcalorimetric biosensor for the diagnosis of tuberculosis",
+      "journal": "Biochip Journal"
+    },
+    {
+      "date": "2008-03",
+      "title": "A simple and direct biomolecule detection scheme based on a microwave resonator",
+      "journal": "Sensors and Actuators B-Chemical"
+    },
+    {
+      "date": "2007-12",
+      "title": "Low-loss thin film microstrip lines and filters based on magnetorheological finishing",
+      "journal": "IEEE TRANSACTIONS ON COMPONENTS AND PACKAGING TECHNOLOGIES"
+    },
+    {
+      "date": "2007-09",
+      "title": "Function-inspection scheme for an injured peripheral nerve using a polymer based microelectrode array",
+      "journal": "SENSORS AND ACTUATORS A-PHYSICAL"
+    },
+    {
+      "date": "2007-07",
+      "title": "Micromachined cascade virtual impactor with a flow rate distributor for wide range airborne particle classification",
+      "journal": "APPLIED PHYSICS LETTERS"
+    },
+    {
+      "date": "2007-06",
+      "title": "나노 입자를 이용한 PCB 기반 후막 가스 센서",
+      "journal": "마이크전자 및 패키징학회지"
+    },
+    {
+      "date": "2007-06",
+      "title": "A polymer-based flexible tactile sensor for both normal and shear load detections and its application for robotics",
+      "journal": "JOURNAL OF MICROELECTROMECHANICAL SYSTEMS"
+    },
+    {
+      "date": "2007-03",
+      "title": "Functional antenna integrated with relative humidity sensor using synthesised polyimide for passive RFID sensing",
+      "journal": "ELECTRONICS LETTERS"
+    },
+    {
+      "date": "2006-10",
+      "title": "A novel relative humidity sensor based on microwave resonators and a customized polymeric film",
+      "journal": "SENSORS AND ACTUATORS B-CHEMICAL"
+    },
+    {
+      "date": "2006-10",
+      "title": "Miniaturized CBCPW bandpass filter based on thin film polyimide on lossy silicon",
+      "journal": "IEEE MICROWAVE AND WIRELESS COMPONENTS LETTERS"
+    },
+    {
+      "date": "2006-10",
+      "title": "Micromachined elevated CPWs for high-performance microwave circuits",
+      "journal": "JOURNAL OF MICROMECHANICS AND MICROENGINEERING"
+    },
+    {
+      "date": "2006-10",
+      "title": "Mechanical detection of liposomes using piezoresistive cantilever",
+      "journal": "SENSORS AND ACTUATORS B-CHEMICAL"
+    },
+    {
+      "date": "2006-09",
+      "title": "Large displacement out-of-plane bimorph actuator for optical application",
+      "journal": "KEY ENGINEERING MATERIALS"
+    },
+    {
+      "date": "2006-06",
+      "title": "Large Displacement Polymer Bimorph Actuator for Out-of-Plane Motion",
+      "journal": "JOURNAL OF ELECTRICAL ENGINEERING & TECHNOLOGY"
+    },
+    {
+      "date": "2006-05",
+      "title": "벌크 마이크로 머시닝을 이용한 고감도 미세 칼로리미터의 설계 및 제작",
+      "journal": "센서학회지"
+    },
+    {
+      "date": "2006-03",
+      "title": "Front-to-back alignment techniques in microelectronics/MEMS fabrication: A review",
+      "journal": "SENSOR LETTERS"
+    },
+    {
+      "date": "2006-03",
+      "title": "Structuring of micro line conductor using electro-hydrodynamic printing of a silver nanoparticle suspension",
+      "journal": "APPLIED PHYSICS A-MATERIALS SCIENCE & PROCESSING"
+    },
+    {
+      "date": "2005-09",
+      "title": "핀-핀 형 전극의 전기수력학 프린팅에서 전극 직경이 미세 세라믹 패턴 형성에 미치는 영향",
+      "journal": "정보저장시스템학회지"
+    },
+    {
+      "date": "2005-09",
+      "title": "트레킹 및 조깅을 위한 스마트 스포츠웨어의 프로토타입 개발",
+      "journal": "감성과학(Korean Journal of the Science of Emotion & Sensibility)"
+    },
+    {
+      "date": "2005-09",
+      "title": "Flexible wireless pressure sensor module",
+      "journal": "SENSORS AND ACTUATORS A-PHYSICAL"
+    },
+    {
+      "date": "2005-05",
+      "title": "고감도 압저항 외팔보 센서를 이용한 Liposome의 검침",
+      "journal": "센서학회지"
+    },
+    {
+      "date": "2005-04",
+      "title": "전기-수력학 프린팅을 이용한 세라믹 미세입자 패턴에 관한 연구",
+      "journal": "대한기계학회논문집 B"
+    },
+    {
+      "date": "2005-04",
+      "title": "Fabrication and evaluation of a flexible sieve-type microelectrode array for monitoring the regenerating state of peripheral nerves",
+      "journal": "SENSORS AND MATERIALS"
+    },
+    {
+      "date": "2005-03",
+      "title": "Polymer/metal based flexible MEMS biosensors for signal monitoring and sensitive skin",
+      "journal": "JOURNAL OF SEMICONDUCTOR TECHNOLOGY AND SCIENCE"
+    },
+    {
+      "date": "2004-12",
+      "title": "폴리머/ 금속 다층 공정 기술을 이용한 실시간 혈압 모니터링을 위한 유연한 생체 삽입형 센서",
+      "journal": "의공학회지 (Journal of Biomedical Engineering Research)"
+    },
+    {
+      "date": "2004-09",
+      "title": "Conductor loss reduction for high frequency transmission lines based on magnetorheological fluid polishing method",
+      "journal": "MICROWAVE AND OPTICAL TECHNOLOGY LETTERS"
+    },
+    {
+      "date": "2004-09",
+      "title": "Compact integrated combline band-pass filter with interdigital capacitive loads using LTCC technology",
+      "journal": "MICROWAVE AND OPTICAL TECHNOLOGY LETTERS"
+    },
+    {
+      "date": "2004-08",
+      "title": "Flexible Devices : Flexible Micro Sensor",
+      "journal": "전기전자재료학회논문지"
+    },
+    {
+      "date": "2004-07",
+      "title": "마이크로 패키지의 밀폐도 측정을 위한 정전용량형 폴리이미드 습도센서",
+      "journal": "센서학회지"
+    },
+    {
+      "date": "2004-06",
+      "title": "A Highly Sensitive Humidity Sensor Using a Modified Polyimide Film",
+      "journal": "journal of semiconductor technology and science"
+    },
+    {
+      "date": "2004-03",
+      "title": "초 박형 실리콘 칩을 이용한 유연 패키징 기술 및 집적 회로 삽입형 패키징 기술",
+      "journal": "마이크전자 및 패키징학회지"
+    },
+    {
+      "date": "2004-03",
+      "title": "LTCC 기술을 이용한 집적형 컴라인 대역 통과 여파기",
+      "journal": "마이크전자 및 패키징학회지"
+    },
+    {
+      "date": "2004-03",
+      "title": "Flexible polysilicon sensor array modules using &quot;etch-release&quot; packaging scheme",
+      "journal": "SENSORS AND ACTUATORS A-PHYSICAL"
+    },
+    {
+      "date": "2004-01",
+      "title": "A compact integrated band-pass filter on a low-dielectric constant polyimide dry film",
+      "journal": "MICROWAVE AND OPTICAL TECHNOLOGY LETTERS"
+    },
+    {
+      "date": "2004-01",
+      "title": "A highly sensitive capacitive-type humidity sensor using customized polyimide film without hydrophobic elements",
+      "journal": "SENSORS AND MATERIALS"
+    },
+    {
+      "date": "2003-11",
+      "title": "A Compact Integrated Band Pass Filter on a Low-Dielectric",
+      "journal": "MICROWAVE AND OPTICAL TECHNOLOGY LETTERS"
+    },
+    {
+      "date": "2003-11",
+      "title": "Design and characterization of low-loss and low-dispersion micromachined elevated CPW",
+      "journal": "MICROWAVE AND OPTICAL TECHNOLOGY LETTERS"
+    },
+    {
+      "date": "2003-07",
+      "title": "Flexible polysilicon strain gauge array",
+      "journal": "JAPANESE JOURNAL OF APPLIED PHYSICS PART 1-REGULAR PAPERS BRIEF COMMUNICATIONS & REVIEW PAPERS"
+    },
+    {
+      "date": "2003-06",
+      "title": "Forced Potential Scheme 미세가열기를 이용한 부분가열 저온 hermetic 패키징",
+      "journal": "JOURNAL OF THE MICROELECTROCS AND PACKAGING SOCIETY"
+    },
+    {
+      "date": "2003-01",
+      "title": "The electromechanical principle of electrorheological fluid-assisted polishing",
+      "journal": "INTERNATIONAL JOURNAL OF MACHINE TOOLS & MANUFACTURE"
+    },
+    {
+      "date": "2002-12",
+      "title": "ER유체를 이용한 미세3차원 형상의 초정밀연마",
+      "journal": "한국정밀공학회지"
+    },
+    {
+      "date": "1999-06",
+      "title": "In-Situ Measurement of Mechanical Properties of Polyimide Films Using Micromachined Resonant String Structures",
+      "journal": "IEEE TRANSACTIONS ON COMPONENTS AND PACKAGING TECHNOLOGIES"
+    },
+    {
+      "date": "1998-01",
+      "title": "Surface micromachined solenoid inductors for high frequency applications",
+      "journal": "IEEE Transactions on Components Packaging and Manufacturing Technology"
+    },
+    {
+      "date": "1994-09",
+      "title": "A Fully Integrated Planar Toroidal Inductor with a Micromachined Nickel-Iron Magnetic Bar",
+      "journal": "IEEE TRANSACTIONS ON COMPONENTS AND PACKAGING TECHNOLOGIES"
+    },
+    {
+      "date": "1993-12",
+      "title": "A Planar Variable Reluctance Magnetic Micromotor with Fully Integrated Stator and Coils",
+      "journal": "IEEE Journal of Microelectromechanical Systems"
+    }
+  ],
+  "awards": [
+    {
+      "title": "2023년 제25회 KMEMS 학술대회 구두발표 우수 논문상",
+      "contents": "구두발표 우수 논문상",
+      "date": "2023-03-24"
+    },
+    {
+      "title": "2022년도 한국입자에어로졸학회 학술대회 우수논문발표상",
+      "contents": "2022년도 한국입자에어로졸학회 학술대회의 구두 논문발표 부문에서 Lab-on-a PCB based bio-aerosol sampler using electrostatic precipitation collection and electro-wetting transportation method for multi-point sampling 논문을 발표하여 연구의 우수성을 인정 받음.",
+      "date": "2022-06-30"
+    },
+    {
+      "title": "2022년 제24회 KMEMS 학술대회 구두발표 우수 논문상",
+      "contents": "구두발표 우수 논문상",
+      "date": "2022-04-08"
+    },
+    {
+      "title": "2021 마이크로나노시스템학회 추계학술대회 우수논문상",
+      "contents": "우수논문상",
+      "date": "2021-11-12"
+    },
+    {
+      "title": "2021년 연차학술대회 우수논문상",
+      "contents": "본 연구진은 한국실내환경학회에서 개최한 2021년 연차학술대회에서 상기 논문을 발표하여 실내환경분야의 학술 및 기술발전에 기여하였기에 이 상을 드립니다.",
+      "date": "2021-11-05"
+    },
+    {
+      "title": "한국정밀공학회 2020 통합학술대회 최우수논문상",
+      "contents": "한국정밀공학회 2020 통합학술대회에서 실시간 공기 중 금속입자 모니터링을 위한 자기용량식 금속입자 측정 시스템 개발 논문을 발표하여 연구의 우수성을 인정받음.",
+      "date": "2020-11-13"
+    },
+    {
+      "title": "한국정밀공학회 2020 통합학술대회 최우수논문상",
+      "contents": "한국정밀공학회 2020 통합학술대회에서 MEMS 기반 센서를 활용한 실제 환경에서의 나노입자 밀도 모니터링 및 정밀 분석 장비와의 비교평가 논문을 발표하여 연구의 우수성을 인정받음.",
+      "date": "2020-11-13"
+    },
+    {
+      "title": "2019년 연차학술대회 우수논문상",
+      "contents": "본 연구진은 한국실내환경학회에서 개최한 2019년 연차학술대회에서 상기 논문을 발표하여 실내환경분야의 학술 및 기술발전에 기여하였기에 이 상을 드립니다.",
+      "date": "2019-10-31"
+    },
+    {
+      "title": "2018한국정밀공학회 추계학술대회 부문별 최우수 논문상",
+      "contents": "2018한국정밀공학회 추계학술대회의 구두 논문발표 부문에서 공기 중 나노입자의 실시간 모니터링을 위한 고정밀 MEMS 기반 응축핵 입자 계수기 논문을 발표하여 연구의 우수성을 인정 받음.",
+      "date": "2019-07-30"
+    },
+    {
+      "title": "2019년도 한국입자에어로졸학회 학술대회 우수포스터 발표상",
+      "contents": "2019년도 한국입자에어로졸학회 학술대회의 포스터발표 부문에서개인 노출 환경 모니터링 적용을 위하여 입자 하전기와 정전식 입자 분류기를 집적화한 초소형 나노입자 크기 분포 측정기 논문을 발표하여 연구의 우수성을 인정 받음.",
+      "date": "2019-07-08"
+    },
+    {
+      "title": "2019년도 한국입자에어로졸학회 학술대회 우수논문발표상",
+      "contents": "2019년도 한국입자에어로졸학회 학술대회의 구두 논문발표 부문에서 현장에서의 나노입자 정밀 모니터링을 위한 MEMS 기반 WCPC 논문을 발표하여 연구의 우수성을 인정 받음.",
+      "date": "2019-07-08"
+    },
+    {
+      "title": "2018년도 한국입자에어로졸학회 학술대회 우수논문발표상",
+      "contents": "2018년도 한국입자에어로졸학회 학술대회에서 &apos;대기 중 초 저농도 나노 입자 측정을 위한 MEMS 기반 입자 응축 핵 계수기&apos; 논문을 발표하여 우수논문 발표상을 수상함.",
+      "date": "2018-10-12"
+    },
+    {
+      "title": "2014년 한국센서학회 종합학술대회 우수 논문 발표상",
+      "contents": "2014년 한국센서학회 종합학술대회에서 &apos;A miniaturized airborne particle sensor using MEMS technology&apos; 논문을 발표하여 우수 발표 상을 수상함",
+      "date": "2014-11-14"
+    },
+    {
+      "title": "환경부 환경기술개발사업 환경기술 우수상",
+      "contents": "2010년부터 2012년까지 진행한 &apos;개인 노출 환경의 미세먼지(PM2.5)와 TVOCs 동시 분석을 위한 통합 측정기 개발&apos; 연구로 한국환경산업기술원이 선정한 올해의 환경기술 우수성과 50선에 선정",
+      "date": "2013-06-12"
+    },
+    {
+      "title": "한국바이오칩학회 2009 춘계학술대회 우수 신진연구자 구두발표상",
+      "contents": "빠른 분류 속도를 확보하고 입자의 분류 효율을 높이기 위하여 하이브리드 형태의 세포 분류기를 제안한 \"MEMS Based Hybrid Cell Sorter with Adjustable Classification Efficiency\" 논문으로 우수 신진연구자 구두 발표상을 수상함.",
+      "date": "2009-06-04"
+    }
+  ],
+  "conferences": [
+    {
+      "title": "Direct Ink Writing Based Dielectrophoretic Alignment of Carbon Nanotube Composites for Strain Sensor Applications",
+      "conference": "제28회 한국 MEMS 학술대회",
+      "period": "2026.03.25~2026.03.27"
+    },
+    {
+      "title": "3D-printed liquid-metal inductive aerosol sensing platform for multi-point monitoring of respirable metal aerosols",
+      "conference": "제28회 한국 MEMS 학술대회",
+      "period": "2026.03.25~2026.03.27"
+    },
+    {
+      "title": "Real time prediction of 3D printing quality using machine learning based on aerosol signature",
+      "conference": "제28회 한국 MEMS 학술대회",
+      "period": "2026.03.25~2026.03.27"
+    },
+    {
+      "title": "Miniaturized Integrated Collection Analysis System for MultiPoint, Real Time Surveillance of Airborne Viruses",
+      "conference": "제28회 한국 MEMS 학술대회",
+      "period": "2026.03.25~2026.03.27"
+    },
+    {
+      "title": "Integrated real-time airborne virus sampling and detection system",
+      "conference": "2025년 한국실내환경학회 제22회 연차학술대회",
+      "period": "2025.09.24~2025.09.26"
+    },
+    {
+      "title": "In-situ electric field-based nanoparticle alignment platform for tuning physical properties of 3D structures",
+      "conference": "제27회 한국 MEMS 학술대회",
+      "period": "2025.03.26~2025.03.28"
+    },
+    {
+      "title": "공기 중 바이러스 실시간 모니터링을 위한 통합형 샘플링 및 감지 시스템",
+      "conference": "제27회 한국 MEMS 학술대회",
+      "period": "2025.03.26~2025.03.28"
+    },
+    {
+      "title": "Gallium and 3D printing based inductive detection sensor for real-time underwater heavy metal particle monitoring",
+      "conference": "제27회 한국 MEMS 학술대회",
+      "period": "2025.03.26~2025.03.28"
+    },
+    {
+      "title": "Sense-based user interface (SUI) platforms to detect children’s physical and emotional behaviors",
+      "conference": "IEEE Sensors 2024",
+      "period": "2024.10.20~2024.10.23"
+    },
+    {
+      "title": "Microfluidic-based ultrafine water condensation particle counter for monitoring of nanoparticle generation and growth",
+      "conference": "2024년 한국입자에어로졸학회 학술대회",
+      "period": "2024.07.03~2024.07.05"
+    },
+    {
+      "title": "Microfluidics-based condensation virus sampler for multipoint simultaneous monitoring of bioaerosol",
+      "conference": "2024년 한국입자에어로졸학회 학술대회",
+      "period": "2024.07.03~2024.07.05"
+    },
+    {
+      "title": "공기 중 나노입자 생성 및 성장 메커니즘 모니터링을 위한 집적형 미세유체 기반 초미세 물 응축 나노입자 계수기",
+      "conference": "제26회 한국 MEMS 학술대회",
+      "period": "2024.03.27~2024.03.29"
+    },
+    {
+      "title": "다양한 형태의 감각기반 유저 인터페이스를 이용한 유아의 행동 패턴 감지 및 발달 특성 분석",
+      "conference": "2024년 제26회 한국 MEMS학술대회",
+      "period": "2024.03.27~2024.03.29"
+    },
+    {
+      "title": "공기 중 나노미터 크기 입자의 다지점 모니터링을 위한 Lab-On-Printed Circuit Board(PCB)와 3D 프린팅 통합 기술 기반의 UWCPC (Ultrafine Water Condensation Particle Counter)",
+      "conference": "2023년 제20회 한국실내환경학회 연차학술대회",
+      "period": "2023.09.20~2023.09.22"
+    },
+    {
+      "title": "공기 중 나노 입자의 유비쿼터스 모니터링을 위한 MEMS 기반 정전용량식 나노 입자 계수기",
+      "conference": "제25회 한국 MEMS 학술대회",
+      "period": "2023.03.22~2023.03.24"
+    },
+    {
+      "title": "MEMS-based water collection condensation particle counter(WCCPC) optimized for multi-point monitoring of airborne nanoparticles",
+      "conference": "2023 IEEE International Conference on Micro Electro Mechanical Systems (MEMS 2023)",
+      "period": "2023.01.15~2023.01.19"
+    },
+    {
+      "title": "Lab-on-a PCB based bio-aerosol sampler using electrostatic precipitation collection and electrowetting transportation method for multi-point sampling.",
+      "conference": "11th International Aerosol Conference (IAC) 2022",
+      "period": "2022.09.04~2022.09.09"
+    },
+    {
+      "title": "MEMS-based electrical nanoparticle counter using heterogeneous growth of water droplets and capacitive counting methods for ubiquitous monitoring of airborne nanoparticle",
+      "conference": "11th International Aerosol Conference (IAC) 2022",
+      "period": "2022.09.04~2022.09.09"
+    },
+    {
+      "title": "딥러닝을 활용한 MEMS 기반의 고정밀 초미세입자 질량농도 분석기",
+      "conference": "2022년 한국입자에어로졸학회 학술대회",
+      "period": "2022.06.29~2022.07.01"
+    },
+    {
+      "title": "Lab-on-a PCB based bio-aerosol sampler using electrostatic precipitation collection and electro-wetting transportation method for multi-point sampling",
+      "conference": "2022년 한국입자에어로졸학회 학술대회",
+      "period": "2022.06.29~2022.07.01"
+    },
+    {
+      "title": "Lab-on-printed circuit board based water harvesting condensation particle counter for ubiquitous monitoring of airborne ultrafine particle",
+      "conference": "2022년 한국입자에어로졸학회 학술대회",
+      "period": "2022.06.29~2022.07.01"
+    },
+    {
+      "title": "나노입자의 밀도 및 크기분포 측정을 위한 MEMS 기반 나노입자 선량계",
+      "conference": "제24회 한국 MEMS 학술대회",
+      "period": "2022.04.06~2022.04.08"
+    },
+    {
+      "title": "공기 중 나노입자 다중 모니터링을 위한 집적형 인쇄회로기판 기반 물 수집 응축 핵 입자 계수기",
+      "conference": "제24회 한국 MEMS 학술대회",
+      "period": "2022.04.06~2022.04.08"
+    },
+    {
+      "title": "Integrated electrostatic precipitation bio-sampler for high efficiency collection of airborne bioaerosol",
+      "conference": "제24회 한국 MEMS 학술대회",
+      "period": "2022.04.06~2022.04.08"
+    },
+    {
+      "title": "실시간 전기화학적 세포반응 측정 및 광학적 모니터링을 위한 수직 측면 전극이 통합된 Placenta barrier-on-a-chip",
+      "conference": "2021 마이크로나노시스템학회 추계학술대회",
+      "period": "2021.11.11~2021.11.12"
+    },
+    {
+      "title": "나노입자의 크기분포와 밀도를 동시에 분석가능한 MEMS 기반 나노입자 선량계",
+      "conference": "2021대한환경공학회 국내학술대회",
+      "period": "2021.11.03~2021.11.05"
+    },
+    {
+      "title": "실내외 나노입자의 상시 모니터링을 위한 Lab-on-printed circuit board(PCB) 기반 물수집 응축 핵 입자 계수기",
+      "conference": "2021 제18회 한국 실내환경학회 연차학술대회",
+      "period": "2021.11.04~2021.11.05"
+    },
+    {
+      "title": "공기 중 나노입자 다중 모니터링을 위한 집적형 인쇄회로기판 기반 물 수집 응축 핵 입자 계수기",
+      "conference": "2021년 한국대기환경학회 제64회 정기학술대회",
+      "period": "2021.10.20~2021.10.22"
+    },
+    {
+      "title": "공기 중 나노입자의 크기 분포와 밀도를 동시에 분석가능한 미세유체 선량계",
+      "conference": "2021년 한국대기환경학회 제64회 정기학술대회",
+      "period": "2021.10.20~2021.10.22"
+    },
+    {
+      "title": "공기 중 나노입자의 크기분포와 밀도를 동시에 분석가능한 미세유체 나노입자 선량계",
+      "conference": "한국정밀공학회 2021 춘계학술대회",
+      "period": "2021.05.12~2021.05.14"
+    },
+    {
+      "title": "MEMS-based airborne metal particle sensor using microcirculation for real-time monitoring of metal contamination",
+      "conference": "제23회 한국 MEMS 학술대회",
+      "period": "2021.04.07~2021.04.09"
+    },
+    {
+      "title": "MEMS-based aerosol dosimeter for simultaneous monitoring of nanoparticle size distribution and density",
+      "conference": "제23회 한국 MEMS 학술대회",
+      "period": "2021.04.07~2021.04.09"
+    },
+    {
+      "title": "MEMS-based electrical particle counter(EPC) using heterogeneous growth of water droplets and their capacitive counting methods",
+      "conference": "제23회 한국 MEMS 학술대회",
+      "period": "2021.04.07~2021.04.09"
+    },
+    {
+      "title": "나노입자의 응축 성장 및 정전용량식 액적 계수법을 이용한 MEMS 기반 electrical particle counter(EPC) 개발",
+      "conference": "2020년 한국입자에어로졸학회 학술대회",
+      "period": "2020.10.28~2020.10.30"
+    },
+    {
+      "title": "MEMS 기반 센서를 활용한 실제 환경에서의 나노입자 밀도 모니터링 및 정밀 분석 장비와의 비교평가",
+      "conference": "한국정밀공학회 2020년도 통합학술대회",
+      "period": "2020.09.14~2020.09.18"
+    },
+    {
+      "title": "광산란 기반 실시간 TSP(Total Suspended Particle) 측정기 개발 및 공사장 환경에서의 특성평가",
+      "conference": "한국정밀공학회 2020년도 통합학술대회",
+      "period": "2020.09.14~2020.09.18"
+    },
+    {
+      "title": "입자의 수 농도, 질량 농도, 유효 밀도 측정을 위한 미세입자 다각적 분석 시스템 구축 및 유효성 검증",
+      "conference": "한국정밀공학회 2020년도 통합학술대회",
+      "period": "2020.09.14~2020.09.18"
+    },
+    {
+      "title": "미세 유체 채널을 이용한 MEMS 기반 정전용량식 마모 입자 측정 시스템 개발",
+      "conference": "한국정밀공학회 2020년도 통합학술대회",
+      "period": "2020.09.14~2020.09.18"
+    },
+    {
+      "title": "실시간 공기 중 금속입자 모니터링을 위한 자기용량식 금속입자 측정 시스템 개발",
+      "conference": "한국정밀공학회 2020년도 통합학술대회",
+      "period": "2020.09.14~2020.09.18"
+    },
+    {
+      "title": "Microfluidic nanoparticle analysis chip for electrically measuring the effective density and size distribution of airborne nanoparticles",
+      "conference": "European aerosol conference",
+      "period": "2020.08.31~2020.09.04"
+    },
+    {
+      "title": "공기 중 나노 입자의 밀도와 크기 분포 측정이 가능한 마이크로플루이딕 칩",
+      "conference": "제22회 한국 MEMS 학술대회",
+      "period": "2020.08.19~2020.08.21"
+    },
+    {
+      "title": "공기 중 나노입자의 정밀 모니터링을 위한 MEMS 기반 Water-based Condensation Particle Counter(WCPC) 특성평가",
+      "conference": "제22회 한국 MEMS 학술대회",
+      "period": "2020.08.19~2020.08.21"
+    },
+    {
+      "title": "공기 중 나노입자의 실시간 모니터링을 위한 MEMS 기반 물 응축 핵 입자 계수기",
+      "conference": "제 16회 한국실내환경학회 연차학술대회",
+      "period": "2019.10.31~2019.10.31"
+    },
+    {
+      "title": "Micro-electro-mechanical systems (MEMS)-based water condensation particle counter for monitoring airborne nanoparticles at a particular point of interest",
+      "conference": "European Aerosol Conference (EAC) 2019",
+      "period": "2019.08.25~2019.08.30"
+    },
+    {
+      "title": "입자 크기 분포의 현장 모니터링을 위해 뉴럴 네트워크 알고리즘을 이용한 MEMS 기반 전기식 다단 임팩터",
+      "conference": "2019 한국입자에어로졸학회 학술대회",
+      "period": "2019.07.03~2019.07.05"
+    },
+    {
+      "title": "외부환경에서 나노입자 모니터링을 위한 MEMS 기반 Laminar flow Condensation Particle Counter(LCPC)의 개발 및 특성평가",
+      "conference": "2019 한국입자에어로졸학회 학술대회",
+      "period": "2019.07.03~2019.07.05"
+    },
+    {
+      "title": "현장에서의 나노입자 정밀 모니터링을 위한 MEMS 기반 WCPC",
+      "conference": "2019 한국입자에어로졸학회 학술대회",
+      "period": "2019.07.03~2019.07.05"
+    },
+    {
+      "title": "개인 노출 환경 모니터링 적용을 위하여 입자 하전기와 정전식 입자 분류기를 집적화한 초소형 나노입자 크기 분포 측정기",
+      "conference": "2019 한국입자에어로졸학회 학술대회",
+      "period": "2019.07.03~2019.07.05"
+    },
+    {
+      "title": "MEMS BASED PARTICLE SIZE ANALYZER USING ELECTROSTATIC MEASURING TECHNIQUES",
+      "conference": "The 20th International Conference on Solid-State Sensors, Actuators and Microsystems & Eurosensors XXXIII (TRANSDUCERS 2019 & EUROSENSORS XXXIII)",
+      "period": "2019.06.23~2019.06.27"
+    },
+    {
+      "title": "AMMONIA CROSS-SENSITIVITY ELIMINATIN METHOD OF NOX SENSOR FOR UREA-SCR (SELECTIVE CATALYTIC REDUCTION) SYSTEM",
+      "conference": "The 20th International Conference on Solid-State Sensors, Actuators and Microsystems & Eurosensors XXXIII (TRANSDUCERS 2019 & EUROSENSORS XXXIII)",
+      "period": "2019.06.23~2019.06.27"
+    },
+    {
+      "title": "공기 중 나노 입자를 광학적으로 모니터링하기 위하여 응축 유체로 수증기를 사용하는 MEMS 기반 응축 입자 계수기",
+      "conference": "제21회 한국 MEMS 학술대회",
+      "period": "2019.04.04~2019.04.06"
+    },
+    {
+      "title": "초소형 대기 중 나노 입자 크기 분포 측정기",
+      "conference": "제21회 한국 MEMS 학술대회",
+      "period": "2019.04.04~2019.04.06"
+    },
+    {
+      "title": "A MEMS-BASED CONDENSATION PARTICLE COUNTER FOR ACCURATE AND REAL-TIME MONITORING OF AIRBORNE NANOPARTICLES AT POINTS OF INTEREST",
+      "conference": "2019 IEEE 32th International Conference on Micro Electro Mechanical Systems (MEMS 2019)",
+      "period": "2019.01.27~2019.01.31"
+    },
+    {
+      "title": "공기 중 나노입자의 실시간 모니터링을 위한 고정밀 MEMS 기반 응축핵 입자 계수기",
+      "conference": "한국정밀공학회 2018년도 추계학술대회",
+      "period": "2018.10.24~2018.10.26"
+    },
+    {
+      "title": "MEMS 기반 필라 어레이를 이용한 전기식 나노입자 크기분포 측정",
+      "conference": "한국정밀공학회 2018년도 추계학술대회",
+      "period": "2018.10.24~2018.10.26"
+    },
+    {
+      "title": "입자 크기 분포를 실시간으로 모니터링하기 위한 MEMS 기반 센서",
+      "conference": "제 15회 한국실내환경학회 연차학술대회",
+      "period": "2018.09.18~2018.09.19"
+    },
+    {
+      "title": "Sheathless concentrator with blood plasma separation device for extraction rate enhancement",
+      "conference": "NANO KOREA 2018",
+      "period": "2018.07.10~2018.07.13"
+    },
+    {
+      "title": "MEMS-based particle size magnifier for optically monitoring airborne nanoparticles in extremely low particle concentration environment",
+      "conference": "NANO KOREA 2018",
+      "period": "2018.07.10~2018.07.13"
+    },
+    {
+      "title": "MEMS-based Condensation Particle Counter for monitoring ultra-low nanoparticle concentration",
+      "conference": "2018년 한국입자에어로졸학회 학술대회",
+      "period": "2018.06.27~2018.06.27"
+    },
+    {
+      "title": "나노입자의 성장을 위한 MEMS 기반 층류 응축기",
+      "conference": "제20회 한국 MEMS 학술대회",
+      "period": "2018.04.05~2018.04.07"
+    },
+    {
+      "title": "대기 중 초 저농도 나노 입자 측정을 위한 MEMS 기반 입자 성장 소자",
+      "conference": "제20회 한국 MEMS 학술대회",
+      "period": "2018.04.05~2018.04.07"
+    },
+    {
+      "title": "Frequency 변화를 통한 3D 인지질 이중층 구조물 어레이의 sealing",
+      "conference": "제20회 한국 MEMS 학술대회",
+      "period": "2018.04.05~2018.04.07"
+    },
+    {
+      "title": "MEMS-BASED PARTICLE SIZE MAGNIFIER FOR MEASURING ULTRA LOW NANOPARTICLE CONCENTRATION",
+      "conference": "2018 IEEE 31th International Conference on Micro Electro Mechanical Systems (MEMS)",
+      "period": "2018.02.21~2018.02.25"
+    },
+    {
+      "title": "미세유체채널의 막힘 방지를 통한 장시간 사용이 가능한 실시간 연속적 혈장분리장치",
+      "conference": "제19회 한국 MEMS 학술대회",
+      "period": "2017.03.30~2017.04.01"
+    },
+    {
+      "title": "공기 중 부유 입자 크기 분포 측정을 위한 MEMS 기반 다단임팩터",
+      "conference": "제19회 한국 MEMS 학술대회",
+      "period": "2017.03.30~2017.04.01"
+    },
+    {
+      "title": "PDMS/CNT 기반 마찰 전기 에너지 수확소자의 에너지 변환 효율 향상에 관한 연구",
+      "conference": "제19회 한국 MEMS 학술대회",
+      "period": "2017.03.30~2017.04.01"
+    },
+    {
+      "title": "AEROSOL PARTICLE SIZE SPECTROMETER USING A MICROMACHINED CASCADE IMPACTOR",
+      "conference": "2017 IEEE 30th International Conference on Micro Electro Mechanical Systems (MEMS)",
+      "period": "2017.01.22~2017.01.26"
+    },
+    {
+      "title": "MEMS 소자를 위한 나노결정립 저농도 붕소-니켈 도금의 특성평가",
+      "conference": "제 18회 한국 MEMS 학술대회",
+      "period": "2016.04.07~2016.04.09"
+    },
+    {
+      "title": "반도체 미세피치 검사를 위한 Ni-B MEMS 프로브의 향상된 기계적 특성",
+      "conference": "제 18회 한국 MEMS 학술대회",
+      "period": "2016.04.07~2016.04.09"
+    },
+    {
+      "title": "공기 중 부유 미세먼지 측정 성능 향상을 위한 이온 발생부와 입자 하전부가 분리된 구조의 마이크로 코로나 하전 장치",
+      "conference": "제 18회 한국 MEMS 학술대회",
+      "period": "2016.04.07~2016.04.09"
+    },
+    {
+      "title": "An implantable wireless optogenetic stimulation system for peripheral nerve control",
+      "conference": "37th Annual International Conference of the IEEE Engineering in Medicine and Biology Society (EMBC 2015)",
+      "period": "2015.08.25~2015.08.29"
+    },
+    {
+      "title": "Micro Electrostatic Precipitation Sampler for Personal Bioaerosol Sampling",
+      "conference": "Asia-Pacific Conference of Transducers and Micro-Nano Technology 2016 (APCOT 2016)",
+      "period": "2016.06.26~2016.06.29"
+    },
+    {
+      "title": "A hybrid nanogenerator based on triboelectric and thermoelectric mechanisms for sliding friction energy",
+      "conference": "Asia-Pacific Conference of Transducers and Micro-Nano Technology 2016 (APCOT 2016)",
+      "period": "2016.06.26~2016.06.29"
+    },
+    {
+      "title": "CHARACTERIZATION OF ELECTRODEPOSITED NANOCRYSTALLINE NICKEL WITH A LOW BORON CONTENT FOR MEMS APPLICATION",
+      "conference": "Asia-Pacific Conference of Transducers and Micro-Nano Technology 2016 (APCOT 2016)",
+      "period": "2016.06.26~2016.06.29"
+    },
+    {
+      "title": "Ni-B MEMS Probe Tip for a Fine Pitch Test with Advanced Mechanical Properties",
+      "conference": "Asia-Pacific Conference of Transducers and Micro-Nano Technology 2016 (APCOT 2016)",
+      "period": "2016.06.26~2016.06.29"
+    },
+    {
+      "title": "μTAS 적용을 위한 고농도 단시간 포집 가능한 바이오에어로졸 샘플러",
+      "conference": "제 18회 한국 MEMS 학술대회",
+      "period": "2016.04.07~2016.04.09"
+    },
+    {
+      "title": "슬라이딩 마찰을 이용한 마찰-열 하이브리드 에너지 하베스터 연구",
+      "conference": "제 18회 한국 MEMS 학술대회",
+      "period": "2016.04.07~2016.04.09"
+    },
+    {
+      "title": "A MICROMACHINED CORONA-BASED UNIPOLAR AEROSOL CHARGER HAVING SEPARATED IONIZATION AND CHARGING ZONES FOR REDUCING THE ELECTRICAL LOSSES OF CHARGED PARTICLES",
+      "conference": "The 29th IEEE International Conference on Micro Electro Mechanical Systems(MEMS 2016)",
+      "period": "2016.01.24~2016.01.28"
+    },
+    {
+      "title": "A LIGHT GUIDE PLATE BASED FLEXIBLE OPTICAL CUFF FOR OPTOGENETIC STIMULATION OF MOTOR UNITS",
+      "conference": "The 18th International Conference on Solid-State Sensors, Actuators and Microsystems (Transducers 2015)",
+      "period": "2015.06.21~2015.06.25"
+    },
+    {
+      "title": "전자기 유도 방식의 무선전력전송 시스템을 위한 복합코일 연구",
+      "conference": "제 17회 한국 MEMS 학술대회",
+      "period": "2015.04.02~2015.04.04"
+    },
+    {
+      "title": "공기 중 부유 미세먼지 모니터링을 위한 MEMS 기반의 입자 감지 시스템",
+      "conference": "제 17회 한국 MEMS 학술대회",
+      "period": "2015.04.02~2015.04.04"
+    },
+    {
+      "title": "마이크로 주름 패턴을 통한 진동 에너지 수확소자의 출력 향상에 관한 연구",
+      "conference": "제 17회 한국 MEMS 학술대회",
+      "period": "2015.04.02~2015.04.04"
+    },
+    {
+      "title": "BIDIRECTIONAL THERMOELECTRIC ENERGY GENERATOR BASED ON A PHASE-CHANGE LENS FOR CONCENTRATING SOLAR POWER",
+      "conference": "The 28th IEEE International Conference on Micro Electro Mechanical Systems (MEMS 2015)",
+      "period": "2015.01.18~2015.01.22"
+    },
+    {
+      "title": "ULTRAFINE PARTICLE COUNTER USING A MEMS-BASED PARTICLE PROCESSING CHIP",
+      "conference": "The 28th IEEE International Conference on Micro Electro Mechanical Systems (MEMS 2015)",
+      "period": "2015.01.18~2015.01.22"
+    },
+    {
+      "title": "A miniaturized airborne particle sensor using MEMS technology",
+      "conference": "2014년 한국센서학회 종합학술대회",
+      "period": "2014.11.14~2014.11.15"
+    },
+    {
+      "title": "마이크로혈장추출장치의 채널막힘현상 방지를 통한 성능향상",
+      "conference": "한국정밀공학회 2014년도 추계학술대회",
+      "period": "2014.10.29~2014.10.31"
+    },
+    {
+      "title": "MEMS 기반 입자 분석 칩을 이용한 초미립자 감지 시스템",
+      "conference": "2014년도 한국실내환경학회 제11회 연차학술대회",
+      "period": "2014.09.19~2014.09.20"
+    },
+    {
+      "title": "A CONCENTRATED SOLAR THERMOELCTRIC ENERGY GENERATOR USING A LENS ARRAY",
+      "conference": "The 7th Asia-Pacific Conference on Transducers and Micro/Nano Technologies (APCOT 2014)",
+      "period": "2014.06.29~2014.07.02"
+    },
+    {
+      "title": "ANTI-CLOGGING HYBRID BLOOD PLASMA SEPARATION DEVICE FOR REAL-TIME AND CONTINUOUS SYSTEM",
+      "conference": "The 7th Asia-Pacific Conference on Transducers and Micro/Nano Technologies (APCOT 2014)",
+      "period": "2014.06.29~2014.07.02"
+    },
+    {
+      "title": "CamouFAB: Real-Time Generation of Camouflage Pattern Using Optic Fiber Display",
+      "conference": "HCII 2014(16th International Conference on Human-Computer Interaction)",
+      "period": "2014.06.22~2014.06.27"
+    },
+    {
+      "title": "LED array 및 광섬유를 이용한 실시간 패터닝 능동형 시각위장 기술",
+      "conference": "2014 한국군사과학기술학회 종합학술대회",
+      "period": "2014.06.19~2014.06.20"
+    },
+    {
+      "title": "혈장추출비율을 높이기 위한 실시간 연속 혈장추출장치",
+      "conference": "제 16회 한국 MEMS 학술대회",
+      "period": "2014.04.03~2014.04.05"
+    },
+    {
+      "title": "선박 배기가스의 무선탐지를 위한 PCM 적용 NOx 가스센서",
+      "conference": "제 16회 한국 MEMS 학술대회",
+      "period": "2014.04.03~2014.04.05"
+    },
+    {
+      "title": "태양 에너지 수확을 위한 렌즈 구조를 포함한 열전 발전기",
+      "conference": "제 16회 한국 MEMS 학술대회",
+      "period": "2014.04.03~2014.04.05"
+    },
+    {
+      "title": "열영동을 이용한 기체기반 미세채널의 입자벽면부착 저감 기술 개발",
+      "conference": "제 16회 한국 MEMS 학술대회",
+      "period": "2014.04.03~2014.04.05"
+    },
+    {
+      "title": "WEARABLE THERMOELECTRIC GENERATOR FOR HUMAN CLOTHING APPLICATION",
+      "conference": "The 17th International Conference on Solid-State Sensors, Actuators and Microsystems (Transducers 2013)",
+      "period": "2013.06.16~2013.06.20"
+    },
+    {
+      "title": "A DOME SHAPED PIEZOELECTRIC TACTILE SENSOR ARRAY USING CONTROLLED INFLATION TECHNIQUE",
+      "conference": "The 17th International Conference on Solid-State Sensors, Actuators and Microsystems (Transducers 2013)",
+      "period": "2013.06.16~2013.06.20"
+    },
+    {
+      "title": "상변화 물질을 사용한 실리콘 기판의 열충격 감소 기술",
+      "conference": "한국정밀공학회 2013년도 춘계학술대회",
+      "period": "2013.05.30~2013.05.31"
+    },
+    {
+      "title": "열전도도 차이를 이용한 평면형 열전 발전기의 성능 연구",
+      "conference": "제 15회 한국 MEMS 학술대회",
+      "period": "2013.04.04~2013.04.06"
+    },
+    {
+      "title": "체열 수확을 위한 초전 발전기 및 그 구조의 최적화",
+      "conference": "제 15회 한국 MEMS 학술대회",
+      "period": "2013.04.04~2013.04.06"
+    },
+    {
+      "title": "PDMS와 유리 기판의 직접 접합을 통한 마이크로플루이딕 채널 제작 방법",
+      "conference": "제 15회 한국 MEMS 학술대회",
+      "period": "2013.04.04~2013.04.06"
+    },
+    {
+      "title": "혈장 추출 수율(plasma yield)을 높이기 위한 하이브리드 혈장 분류 장치",
+      "conference": "제 15회 한국 MEMS 학술대회",
+      "period": "2013.04.04~2013.04.06"
+    },
+    {
+      "title": "HEAT ENERGY MANAGEMENT SCHEME OF THERMOELECTRIC GENERATOR USING PHASE CHANGE MATERIAL",
+      "conference": "The 26th IEEE International Conference on Micro Electro Mechanical Systems (MEMS 2013)",
+      "period": "2013.01.20~2013.01.24"
+    },
+    {
+      "title": "MICROMACHINED TIP-TO-PLATE CORONA DISCHARGER WITH SLIT DIELECTRIC BARRIER FOR MEASURING THE AIRBORNE PARTICLE NUMBER CONCENTRATION",
+      "conference": "The 26th IEEE International Conference on Micro Electro Mechanical Systems (MEMS 2013)",
+      "period": "2013.01.20~2013.01.24"
+    },
+    {
+      "title": "HUMAN BODY HEAT ENERGY HARVESTING USING FLEXIBLE THERMOELECTRIC GENERATOR FOR AUTONOMOUS MICROSYSTEMS",
+      "conference": "The 16th International Conference on Miniaturized Systems for Chemistry and Life Sciences (MicroTAS 2012)",
+      "period": "2012.10.28~2012.11.01"
+    },
+    {
+      "title": "부유 입자 수농도 측정을 위한 슬릿 유전체 장벽을 갖는 마이크로 코로나 하전 장치",
+      "conference": "한국정밀공학회 2012년도 추계학술대회",
+      "period": "2012.10.24~2012.10.26"
+    },
+    {
+      "title": "Sheathless Blood Cell Sorter Using Hydrodynamics and Magnetophoresis",
+      "conference": "International Conference on Biosensors, Biochips, and Bioelectronic Devices (Biotronics 2012)",
+      "period": "2012.10.17~2012.10.17"
+    },
+    {
+      "title": "Sheathless Microfluidic Cell Concentrator in Microchannel with Obstacle Structure Array",
+      "conference": "International Conference on Biosensors, Biochips, and Bioelectronic Devices (Biotronics 2012)",
+      "period": "2012.10.17~2012.10.17"
+    },
+    {
+      "title": "공기 중 입자 측정의 높은 효율을 위한 초소형 코로나 방전기 향상",
+      "conference": "2012년도 한국실내환경학회",
+      "period": "2012.09.20~2013.07.25"
+    },
+    {
+      "title": "무전전력전송 유도코일간 비정렬 발생시 전력전송효율감소의 최소화를 위한 유도코일 어레이",
+      "conference": "2012년도 제14회 한국 MEMS 학술대회",
+      "period": "2012.04.05~2012.04.07"
+    },
+    {
+      "title": "볼록한 반구형 구조의 PVDF 기반 압전 촉각 센서 어레이",
+      "conference": "2012년도 제14회 한국 MEMS 학술대회",
+      "period": "2012.04.05~2012.04.07"
+    },
+    {
+      "title": "평면 유도코일 기반의 저주파 진동에너지 수확 소자",
+      "conference": "2012년도 제14회 한국 MEMS 학술대회",
+      "period": "2012.04.05~2012.04.07"
+    },
+    {
+      "title": "열전도도 차이를 이용한 평면형 열전발전소자",
+      "conference": "2012년도 제14회 한국 MEMS 학술대회",
+      "period": "2012.04.05~2012.04.07"
+    },
+    {
+      "title": "DEP 유체 집속 효과를 이용한 자기영동법 기반의 혈액세포 분류 소자",
+      "conference": "2012년도 제14회 한국 MEMS 학술대회",
+      "period": "2012.04.05~2012.04.07"
+    },
+    {
+      "title": "유전영동을 이용한 미세유체채널 내부 입자의 벽면부착 저감 기술 및 응용",
+      "conference": "2012년도 제14회 한국 MEMS 학술대회",
+      "period": "2012.04.05~2012.04.07"
+    },
+    {
+      "title": "An Anti-Adhesion Technique in Microfluidic Channel Based on Dielectrophoresis",
+      "conference": "2011 IEEE NANOMED",
+      "period": "2011.11.09~2011.11.11"
+    },
+    {
+      "title": "Blood Cell Sorter of High Efficiency for Lab-on-a-Chip Applications",
+      "conference": "2011 IEEE NANOMED",
+      "period": "2011.11.09~2011.11.11"
+    },
+    {
+      "title": "엠보싱 구조 기반 압전 촉각 센서 어레이",
+      "conference": "2011년 한국센서학회 종합학술대회",
+      "period": "2011.11.04~2011.11.04"
+    },
+    {
+      "title": "혈액세포분류기의 분류효율 극대화를 위한 유전영동기반의 세포농축기",
+      "conference": "2011년 한국센서학회 종합학술대회",
+      "period": "2011.11.04~2011.11.04"
+    },
+    {
+      "title": "무선전력전송장치의 비정렬시 전송효율 최대화를 위한 인덕터 어레이",
+      "conference": "한국정밀공학회 2011년도 추계학술대회",
+      "period": "2011.10.26~2011.10.28"
+    },
+    {
+      "title": "유체역학과 전기역학의 융합을 통한 High throughput의 미세입자 크기별 분류 장치",
+      "conference": "한국정밀공학회 2011년도 추계학술대회",
+      "period": "2011.10.26~2011.10.28"
+    },
+    {
+      "title": "전기수력학 기반 하이브리드 젯팅 시스템을 이용한 DOD구현",
+      "conference": "한국정밀공학회 2011년도 추계학술대회",
+      "period": "2011.10.26~2011.10.28"
+    },
+    {
+      "title": "AN ELECTRODYNMIC PRECONCENTRATOR FOR APPLICATION OF LAB-ON-",
+      "conference": "The 15th International Conference on Miniaturized Systems for Chemistry and Life Science(MicroTAS 2011)",
+      "period": "2011.10.02~2011.10.06"
+    },
+    {
+      "title": "PASSIVE-SELF-TUNABLE VIBRATIONAL ENERGY HARVESTER",
+      "conference": "The 16th International Conference on Solid-State Sensors, Actuators and Microsystems (Transducers 2011)",
+      "period": "2011.06.05~2011.06.09"
+    },
+    {
+      "title": "HIGH THROUGHPUT SEPARATION OF BLOOD CELLS BY USING HYDRODYNAMICS AND MAGNETOPHORESIS",
+      "conference": "The 16th International Conference on Solid-State Sensors, Actuators and Microsystems (Transducers 2011)",
+      "period": "2011.06.05~2011.06.09"
+    },
+    {
+      "title": "인체의 움직임과 열을 이용한 PVDF 기반 에너지 수확 소자",
+      "conference": "한국정밀공학회 2011년도 춘계학술대회",
+      "period": "2011.06.01~2011.06.03"
+    },
+    {
+      "title": "실시간 환경 모니터링을 위한 기체 기반 입자 분석 칩",
+      "conference": "한국정밀공학회 2011년도 춘계학술대회",
+      "period": "2011.06.01~2011.06.03"
+    },
+    {
+      "title": "공기중 입자측정의 높은 효율을 위한 초소형 멀티팁 코로나 방전기",
+      "conference": "한국정밀공학회 2011년도 춘계학술대회",
+      "period": "2011.06.01~2011.06.03"
+    },
+    {
+      "title": "생체 삽입용 의료기기를 위한 전력 및 데이터 동시 전송 모듈",
+      "conference": "한국정밀공학회 2011년도 춘계학술대회",
+      "period": "2011.06.01~2011.06.03"
+    },
+    {
+      "title": "생화학 물질의 연속적인 농축과 검침을 위한 통합형 열전 바이오센서 칩",
+      "conference": "제 13회 한국 MEMS 학술대회",
+      "period": "2011.04.07~2011.04.09"
+    },
+    {
+      "title": "Passive Self tunable 진동에너지 수확소자",
+      "conference": "제 13회 한국 MEMS 학술대회",
+      "period": "2011.04.07~2011.04.09"
+    },
+    {
+      "title": "접촉력과 접촉열의 동시 감지를 위한 PVDF 기반의 유연 촉각 센서 어레이",
+      "conference": "제 13회 한국 MEMS 학술대회",
+      "period": "2011.04.07~2011.04.09"
+    },
+    {
+      "title": "유전영동을 이용한 미세유체채널 내부 입자의 벽면부착 저감 기술",
+      "conference": "제 13회 한국 MEMS 학술대회",
+      "period": "2011.04.07~2011.04.09"
+    },
+    {
+      "title": "AN ELECTRODYNAMIC PRECONCENTRATOR-INTEGRATED THERMOELECTRIC BIOSENSOR CHIP FOR CONTINUOUS MONITORING",
+      "conference": "The 24th IEEE International Conference on Micro Electro Mechanical Systems (MEMS 2011)",
+      "period": "2011.01.23~2011.01.27"
+    },
+    {
+      "title": "INTEGRATED TOTAL-NOX-EVALUATION-CHIP FOR SIMULTANEOUS CONVERSION AND DETECTION OF NOX IN AIR",
+      "conference": "The 24th IEEE International Conference on Micro Electro Mechanical Systems (MEMS 2011)",
+      "period": "2011.01.23~2011.01.27"
+    },
+    {
+      "title": "미세유체채널의 입자 손실을 줄이기 위한 전기적 부착 방지 기술",
+      "conference": "한국정밀공학회 2010년도 추계학술대회",
+      "period": "2010.11.10~2011.11.12"
+    },
+    {
+      "title": "PVDF를 이용한 촉각센서 개발",
+      "conference": "한국정밀공학회 2010년도 추계학술대회",
+      "period": "2010.11.10~2010.11.12"
+    },
+    {
+      "title": "PVDF를 이용한 촉각센서 개발",
+      "conference": "한국정밀공학회 2010년도 추계학술대회",
+      "period": "2010.11.10~2010.11.12"
+    },
+    {
+      "title": "광대역 저주파수 진동에너지 수확을 위한 PVDF 외팔보 어레이",
+      "conference": "한국정밀공학회 2010년도 추계학술대회",
+      "period": "2010.11.10~2010.11.12"
+    },
+    {
+      "title": "환경 모니터링을 위한 기체 기반 입자 분석 칩",
+      "conference": "2010년도 한국실내환경학회 연차학술대회",
+      "period": "2010.09.16~2010.09.16"
+    },
+    {
+      "title": "환경 모니터링을 위한 기체 기반 입자 분석 칩",
+      "conference": "2010년도 한국실내환경학회 연차학술대회",
+      "period": "2010.09.16~2010.09.16"
+    },
+    {
+      "title": "고감도 열전생화학센서에 적용을 위한 미세유체기반 전처리 농축장치의 설계 및 제작",
+      "conference": "한국정밀공학회 2010년도 춘계학술대회",
+      "period": "2010.05.26~2010.05.28"
+    },
+    {
+      "title": "유연 열전 촉각 센서를 이용한 접촉력과 접촉열의 동시 감지 기법",
+      "conference": "한국정밀공학회 2010년도 춘계학술대회",
+      "period": "2010.05.26~2010.05.28"
+    },
+    {
+      "title": "링형태 추출장치를 이용한 전기수력학 기반 하이브리드 젯팅 시스템",
+      "conference": "한국정밀공학회 2010년도 춘계학술대회",
+      "period": "2010.05.26~2010.05.28"
+    },
+    {
+      "title": "박막 및 다공성의 CuO-BaTio3 감지막을 이용한 CO2 가스 센서",
+      "conference": "한국정밀공학회 2010년도 춘계학술대회",
+      "period": "2010.05.26~2010.05.28"
+    },
+    {
+      "title": "피하삽입용 무선전력전송 유도코일의 비정렬 감지 기법",
+      "conference": "2010년 의용생체공학회 춘계학술대회",
+      "period": "2010.05.14~2010.05.14"
+    },
+    {
+      "title": "접촉력과 접촉열의 동시 감지가 가능한 폴리머 기반 열전 촉각 센서",
+      "conference": "2010년도 제 12회 한국 멤스학회",
+      "period": "2010.04.01~2010.04.03"
+    },
+    {
+      "title": "CO2 가스의 빠른 검침을 위한 다공성 구조의 박막 가스센서",
+      "conference": "2010년도 제 12회 한국 멤스학회",
+      "period": "2010.04.01~2010.04.03"
+    },
+    {
+      "title": "공기질 모니터링을 위한 코로나 방전 기반의 마이크로 전기적 NOx 변환기",
+      "conference": "2010년도 제 12회 한국 멤스학회",
+      "period": "2010.04.01~2010.04.03"
+    },
+    {
+      "title": "Wall Loss Reduction Using Electrodynamic Anti-adhesion Technique for Air-based Microfludic Devices",
+      "conference": "한국바이오칩학회 2009 춘계학술대회",
+      "period": "2009.06.04~2009.06.05"
+    },
+    {
+      "title": "MEMS Based Hybrid Cell Sorter with Adjustable Classification Effiency",
+      "conference": "한국바이오칩학회 2009 춘계학술대회",
+      "period": "2009.06.04~2009.06.05"
+    },
+    {
+      "title": "전기수력학 기반의 Hybrid jetting 시스템을 이용한 미세 액적의 토출 제어",
+      "conference": "한국정밀공학회 2009년도 춘계학술대회",
+      "period": "2009.06.03~2009.06.05"
+    },
+    {
+      "title": "Fly back 현상을 줄이기 위한 EHD 노즐 설계",
+      "conference": "한국정밀공학회 2009년도 춘계학술대회",
+      "period": "2009.06.03~2009.06.05"
+    },
+    {
+      "title": "압전 액츄에이터의 메니스커스 제어를 통한 온 디멘드(On-demand) 전기 수력학 프린팅",
+      "conference": "한국정밀공학회 2009년도 춘계학술대회",
+      "period": "2009.06.03~2009.06.05"
+    },
+    {
+      "title": "마이크로머시닝을 이용한 패러데이 케이지의 전기적 가상 임팩터 적용",
+      "conference": "한국정밀공학회 2009년도 춘계학술대회",
+      "period": "2009.06.03~2009.06.05"
+    },
+    {
+      "title": "실시간 가스 검침을 위한 삽입형 틴옥사이드 촉매 기반 열전 가스 센서",
+      "conference": "한국정밀공학회 2009년도 춘계학술대회",
+      "period": "2009.06.03~2009.06.05"
+    },
+    {
+      "title": "포토닉 의류를 위한 광원 색채 연구",
+      "conference": "2009 한국감성과학회 춘계학술대회",
+      "period": "2009.05.22~2009.05.23"
+    },
+    {
+      "title": "유연인쇄회로기판 기술을 이용한 초소형 심전도 센서",
+      "conference": "제11회 한국MEMS 학술대회",
+      "period": "2009.04.02~2009.04.04"
+    },
+    {
+      "title": "미세채널에서의 입자 손실을 줄이기 위한 전기적 부착 방지 기술",
+      "conference": "제11회 한국MEMS 학술대회",
+      "period": "2009.04.02~2009.04.04"
+    },
+    {
+      "title": "전기수력학적 프린팅에서 유량 조절을 통한 액적 분열 위치 제어",
+      "conference": "제11회 한국MEMS 학술대회",
+      "period": "2009.04.02~2009.04.04"
+    },
+    {
+      "title": "고온 NOx 검침을 위한 WO3 가 첨가된 Rutile-TiO2 기반 반도체형 NOx 센서",
+      "conference": "제11회 한국MEMS 학술대회",
+      "period": "2009.04.02~2009.04.04"
+    },
+    {
+      "title": "공기 기반 Lab-on-a-Chip을 위한 전기 영동 법을 이용한 공기 중 나노 입자의 크기 별 분류",
+      "conference": "제11회 한국MEMS 학술대회",
+      "period": "2009.04.02~2009.04.04"
+    },
+    {
+      "title": "자기영동법과 유체역학 기반의 세포분류",
+      "conference": "제11회 한국MEMS 학술대회",
+      "period": "2009.04.02~2009.04.04"
+    },
+    {
+      "title": "저온 레이저 소결 기술을 이용한 PCB 기반 가스센서",
+      "conference": "제11회 한국MEMS 학술대회",
+      "period": "2009.04.02~2009.04.04"
+    },
+    {
+      "title": "ELECTROHYDRODYNAMIC JET PRINTING CAPABLE OF REMOVING SUBSTRATE EFFECTS AND MODULATING PRINTING CHARACTERISTICS",
+      "conference": "The 22th IEEE International Conference on Micro Electro Mechanical Systems",
+      "period": "2009.01.25~2009.01.29"
+    },
+    {
+      "title": "HYBRID ON DEMAND JETTING SYSTEM FOR ULTRA FINE DROPLET BASED ON ELECTROHYDRODYNAMIC AND PIEZOELECTRIC ACTUATION",
+      "conference": "The 22th IEEE International Conference on Micro Electro Mechanical Systems",
+      "period": "2009.01.25~2009.01.29"
+    },
+    {
+      "title": "CLASSIFICATION AND CONDENSATION OF NANO-SIZED AIRBORNE PARTICLES BY ELECTRICALLY TUNNING COLLECTION SIZE",
+      "conference": "The 22th IEEE International Conference on Micro Electro Mechanical Systems",
+      "period": "2009.01.25~2009.01.29"
+    },
+    {
+      "title": "A THERMOELECTRIC GAS SENSOR BASED ON AN EMBEDDED TIN OXIDE CATALYST FOR DETECTING HYDROGEN AND NOX GASES",
+      "conference": "The 22th IEEE International Conference on Micro Electro Mechanical Systems",
+      "period": "2009.01.25~2009.01.29"
+    },
+    {
+      "title": "Design and fabrication of a thermoelectric gas sensor for Nox gas detection",
+      "conference": "2008년 대한센서학회 종합학술대회",
+      "period": "2008.11.28~2008.11.29"
+    },
+    {
+      "title": "무선통신이 가능한 생체삽입 혈압센서",
+      "conference": "2008년 대한센서학회 종합학술대회",
+      "period": "2008.11.28~2008.11.29"
+    },
+    {
+      "title": "MEMS 기술기반 전극을 이용한 심전도의 단일지점 검침",
+      "conference": "2008 한국정밀공학회 추계학술대회",
+      "period": "2008.11.13~2008.11.14"
+    },
+    {
+      "title": "멤스 기반 전기 이동도 분석기를 이용한 대기 중 나노 입자의 분류",
+      "conference": "2008 한국정밀공학회 추계학술대회",
+      "period": "2008.11.13~2008.11.14"
+    },
+    {
+      "title": "스크린프린팅법으로 제작한 WO3 가 첨가된 SnO2 후막센서의 NO2 감지특성",
+      "conference": "2008 한국정밀공학회 추계학술대회",
+      "period": "2008.11.13~2008.11.14"
+    },
+    {
+      "title": "체내 삽입형 장치를 위한 유연 기판 기반 무선 전력 전송 모듈",
+      "conference": "제 16회 지상무기학술대회",
+      "period": "2008.11.11~2008.11.11"
+    },
+    {
+      "title": "Thermopile과 삽입된 SnO2 Catalyst를 이용한 NOx 센서",
+      "conference": "대한기계학회 2008 추계학술대회",
+      "period": "2008.11.05~2008.11.07"
+    },
+    {
+      "title": "기판으로부터의 영향을 제거한 전기수력학 젯 프린팅 및 그 특성 조절",
+      "conference": "대한기계학회 2008 추계학술대회",
+      "period": "2008.11.05~2008.11.07"
+    },
+    {
+      "title": "포집크기의 전기적 튜닝 기술을 이용한 나노크기의 공기중 입자 분류 및 수농도 응축",
+      "conference": "대한기계학회 2008 추계학술대회",
+      "period": "2008.11.05~2008.11.07"
+    },
+    {
+      "title": "Polymer-based flexible sensor for blood pressure monitoring",
+      "conference": "NanoBio-seoul 2008",
+      "period": "2008.10.30~2008.10.31"
+    },
+    {
+      "title": "Characterization of Photocatalytic Activity of TiO2 Nanowire Synthesized by Wet Corrosion Process",
+      "conference": "NanoBio-seoul 2008",
+      "period": "2008.10.30~2008.10.31"
+    },
+    {
+      "title": "Electrocardiography sensor using MEMS technology",
+      "conference": "NanoBio-seoul 2008",
+      "period": "2008.10.30~2008.10.31"
+    },
+    {
+      "title": "In-plane EHD droplet generator based on MEMS for a Lab-on-a chip application",
+      "conference": "NanoBio-seoul 2008",
+      "period": "2008.10.30~2008.10.31"
+    },
+    {
+      "title": "Micromachined virtual impactor with rectangular single nozzle for aerodynamic size classification",
+      "conference": "European Aerosol Conference",
+      "period": "2008.08.24~2008.08.29"
+    },
+    {
+      "title": "Miniature Electrocardiography Sensor using Flexible Printed Circuit and MEMS Technology",
+      "conference": "IEEE Multisensor Fusion and Integration for intelligent systems",
+      "period": "2008.08.20~2008.08.22"
+    },
+    {
+      "title": "Wireless Power Transmission for implantable Devices Using Inductive Component of Closed-Magnetic Circuit Structure",
+      "conference": "IEEE Multisensor Fusion and Integration for intelligent systems",
+      "period": "2008.08.20~2008.08.22"
+    },
+    {
+      "title": "MEMS based EHD drop generator for Lab-on-a-chip application",
+      "conference": "2008 한국바이오칩학회 춘계학술대회",
+      "period": "2008.06.12~2008.06.13"
+    },
+    {
+      "title": "Size-classification of Airborne Particle for Air-based Lab-on-a-Chip",
+      "conference": "2008 한국바이오칩학회 춘계학술대회",
+      "period": "2008.06.12~2008.06.13"
+    },
+    {
+      "title": "전기수력을 이용한 미세노즐",
+      "conference": "2008 한국정밀공학회 춘계학술대회",
+      "period": "2008.06.11~2008.06.13"
+    },
+    {
+      "title": "BCG 결핵균 검침을 위한 열전 바이오센서의 설계 및 제작",
+      "conference": "2008 대한 기계학회 바이오공학부문 학술대회",
+      "period": "2008.05.22~2008.05.23"
+    },
+    {
+      "title": "삽입형 미세전극을 이용한 재생신경 모니터링",
+      "conference": "2008 대한 기계학회 바이오공학부문 학술대회",
+      "period": "2008.05.22~2008.05.23"
+    },
+    {
+      "title": "생체 삽입형 기기를 위한 유연 인쇄 기판 폐쇄 자기회로 구조의 무선 전력 전송 모듈",
+      "conference": "2008 대한 의용생체공학회 춘계학술대회",
+      "period": "2008.05.09~2008.05.10"
+    },
+    {
+      "title": "유연인쇄회로기판과 MEMS 기술을 이용한 초소형 심전도 센서",
+      "conference": "2008 대한 의용생체공학회 춘계학술대회",
+      "period": "2008.05.09~2008.05.10"
+    },
+    {
+      "title": "MEMS 기반 노즐을 이용한 전기수력학 프린팅",
+      "conference": "제10회 한국MEMS 학술대회",
+      "period": "2008.04.03~2008.04.05"
+    },
+    {
+      "title": "체내 삽입형 의료 기기를 위한 폐쇄 자기회로 구조의 무선 전송 모듈",
+      "conference": "제10회 한국MEMS 학술대회",
+      "period": "2008.04.03~2008.04.05"
+    },
+    {
+      "title": "입자의 크기 별 분류를 위한 멤스 기반 전기적 이동도 분석기",
+      "conference": "제10회 한국MEMS 학술대회",
+      "period": "2008.04.03~2008.04.05"
+    },
+    {
+      "title": "전기적으로 분류입경 제어가 가능한 가상임팩터 기반 공기 중 부유입자 분류기",
+      "conference": "제10회 한국MEMS 학술대회",
+      "period": "2008.04.03~2008.04.05"
+    },
+    {
+      "title": "결핵 진단용 분배유로 미세열량측정 바이오센서 기반의 BCG 검침",
+      "conference": "제10회 한국MEMS 학술대회",
+      "period": "2008.04.03~2008.04.05"
+    },
+    {
+      "title": "MEMS 기반 칩 타입 노즐을 이용한 전기수력학 프린팅에서 안정된 원뿔형 액주 모드를 이용한 전도성 라인 패턴",
+      "conference": "정보저장시스템학회 동계학술대회",
+      "period": "2008.02.14~2008.02.14"
+    },
+    {
+      "title": "Electrically tunable airborne particle classifier using a virtual impactor",
+      "conference": "The 21th IEEE International Conference on Micro Electro Mechanical Systems",
+      "period": "2008.01.13~2008.01.17"
+    },
+    {
+      "title": "Micromachined electrical mobility analyzer for wide range airborne particle classification",
+      "conference": "The 21th IEEE International Conference on Micro Electro Mechanical Systems",
+      "period": "2008.01.13~2008.01.17"
+    },
+    {
+      "title": "Micromachined Particle Classification Chips for Wide Range Airborne Particles",
+      "conference": "Proceedings of IEEE Seoul Section 2007",
+      "period": "2007.12.08~2007.12.08"
+    }
+  ],
+  "fundings": [
+    {
+      "title": "(통합Ezbaro/IRIS) 공기 중 나노미터급 바이러스 에어로졸의 다지점 동시 모니터링을 위한 MEMS 기반 고효율 응축성장식 바이오 에어로졸 샘플러(3/3)",
+      "org": "한국연구재단",
+      "period": "2026-05-01~2027-04-30"
+    },
+    {
+      "title": "[RCMS]반도체특성화대학지원사업(3/4)",
+      "org": "한국산업기술진흥원",
+      "period": "2026-03-01~2027-02-28"
+    },
+    {
+      "title": "[통합이지바로](선도연구센터/ERC)다상소재 혁신 생산공정 연구센터(4/4,1단계)(2023.6.1.~2027.2.28.)",
+      "org": "한국연구재단",
+      "period": "2026-03-01~2027-02-28"
+    },
+    {
+      "title": "[7차년도]사회지향 기계기술 글로벌 리더 양성 교육연구단",
+      "org": "한국연구재단",
+      "period": "2026-03-01~2027-02-28"
+    },
+    {
+      "title": "소프트 센서가 통합된 감각기반 유저 인터페이스 개발과 이를 이용한 유아 인지 및 놀이행동 발달 지원 체계 개발",
+      "org": "한국연구재단",
+      "period": "2026-01-01~2026-12-31"
+    },
+    {
+      "title": "(통합Ezbaro/IRIS) 공기 중 나노미터급 바이러스 에어로졸의 다지점 동시 모니터링을 위한 MEMS 기반 고효율 응축성장식 바이오 에어로졸 샘플러(2/3)",
+      "org": "한국연구재단",
+      "period": "2025-05-01~2026-04-30"
+    },
+    {
+      "title": "[통합이지바로](선도연구센터/ERC)다상소재 혁신 생산공정 연구센터(3/4,1단계)(2023.6.1.~2027.2.28.)",
+      "org": "한국연구재단",
+      "period": "2025-03-01~2026-02-28"
+    },
+    {
+      "title": "[RCMS]반도체특성화대학지원사업(2/4)",
+      "org": "한국산업기술진흥원",
+      "period": "2025-03-01~2026-02-28"
+    },
+    {
+      "title": "[6차년도] 사회지향 기계기술 글로벌 리더 양성 교육연구단",
+      "org": "한국연구재단",
+      "period": "2025-03-01~2026-02-28"
+    },
+    {
+      "title": "소프트 센서가 통합된 감각기반 유저 인터페이스 개발과 이를 이용한 유아 인지 및 놀이행동 발달 지원 체계 개발",
+      "org": "한국연구재단",
+      "period": "2025-01-01~2025-12-31"
+    },
+    {
+      "title": "(통합Ezbaro/IRIS) 공기 중 나노미터급 바이러스 에어로졸의 다지점 동시 모니터링을 위한 MEMS 기반 고효율 응축성장식 바이오 에어로졸 샘플러(1/3)",
+      "org": "한국연구재단",
+      "period": "2024-05-01~2025-04-30"
+    },
+    {
+      "title": "[RCMS]반도체특성화대학지원사업(1/4)",
+      "org": "한국산업기술진흥원",
+      "period": "2024-03-01~2025-02-28"
+    },
+    {
+      "title": "[통합이지바로](선도연구센터/ERC)다상소재 혁신 생산공정 연구센터(2/4,1단계)(2023.6.1.~2027.2.28.)",
+      "org": "한국연구재단",
+      "period": "2024-03-01~2025-02-28"
+    },
+    {
+      "title": "[5차년도] 사회지향 기계기술 글로벌 리더 양성 교육연구단",
+      "org": "한국연구재단",
+      "period": "2024-03-01~2025-02-28"
+    },
+    {
+      "title": "[통합이지바로](2세부)On-site 모니터링 모듈의 측정 신뢰도 향상을 위한 인공지능 기반 보정 기법 개발(2/2단계)(2/2)",
+      "org": "한국연구재단",
+      "period": "2024-01-30~2024-12-29"
+    },
+    {
+      "title": "소프트 센서가 통합된 감각기반 유저 인터페이스 개발과 이를 이용한 유아 인지 및 놀이행동 발달 지원 체계 개발",
+      "org": "한국연구재단",
+      "period": "2024-01-01~2024-12-31"
+    },
+    {
+      "title": "[통합이지바로](선도연구센터/ERC)다상소재 혁신 생산공정 연구센터(1/4,1단계)(2023.6.1.~2027.2.28.)",
+      "org": "한국연구재단",
+      "period": "2023-06-01~2024-02-29"
+    },
+    {
+      "title": "[통합이지바로](공동1)소프트 센서가 통합된 감각기반 유저 인터페이스 개발과 이를 이용한 유아 인지 및 놀이행동 발달 지원 체계 개발(1/2단계)(2/3)",
+      "org": "한국연구재단",
+      "period": "2023-03-01~2023-12-31"
+    },
+    {
+      "title": "[4차년도] 사회지향 기계기술 글로벌 리더 양성 교육연구단",
+      "org": "한국연구재단",
+      "period": "2023-03-01~2024-02-29"
+    },
+    {
+      "title": "[통합이지바로](2세부)On-site 모니터링 모듈의 측정 신뢰도 향상을 위한 인공지능 기반 보정 기법 개발(2/2단계)(1/2)",
+      "org": "한국연구재단",
+      "period": "2023-01-30~2024-01-29"
+    },
+    {
+      "title": "[통합이지바로] (공동1)소프트 센서가 통합된 감각기반 유저 인터페이스 개발과 이를 이용한 유아 인지 및 놀이행동 발달 지원 체계 개발(1/2단계)(1/3)",
+      "org": "한국연구재단",
+      "period": "2022-06-01~2023-02-28"
+    },
+    {
+      "title": "[3차년도] 사회지향 기계기술 글로벌 리더 양성 교육연구단",
+      "org": "한국연구재단",
+      "period": "2022-03-01~2023-02-28"
+    },
+    {
+      "title": "[통합이지바로](2세부)On-site 모니터링 모듈의 측정 신뢰도 향상을 위한 인공지능 기반 보정 기법 개발(1/2단계)(3/3)",
+      "org": "한국연구재단",
+      "period": "2022-01-30~2023-01-29"
+    },
+    {
+      "title": "[RCMS/주관/환경산업기술원] 유해인자 DB구축 및 IoT기반 공기포집-농축-전처리-상시진단 연계기술개발(1/2단계)(2/2)",
+      "org": "한국환경산업기술원",
+      "period": "2022-01-01~2022-12-31"
+    },
+    {
+      "title": "[RCMS/주관/환경산업기술원] 유해인자 DB구축 및 IoT기반 공기포집-농축-전처리-상시진단 연계기술개발(1/2단계)(1/2)",
+      "org": "한국환경산업기술원",
+      "period": "2021-04-01~2021-12-31"
+    },
+    {
+      "title": "[통합이지바로](2세부)On-site 모니터링 모듈의 측정 신뢰도 향상을 위한 인공지능 기반 보정 기법 개발(1/2단계)(2/3)",
+      "org": "한국연구재단",
+      "period": "2021-03-30~2022-01-29"
+    },
+    {
+      "title": "[2차년도] 사회지향 기계기술 글로벌 리더 양성 교육연구단",
+      "org": "한국연구재단",
+      "period": "2021-03-01~2022-02-28"
+    },
+    {
+      "title": "[1차년도] 사회지향 기계기술 글로벌 리더 양성 교육연구단",
+      "org": "한국연구재단",
+      "period": "2020-09-01~2021-02-28"
+    },
+    {
+      "title": "[RCMS]유해물질 감지 및 차단 기능의 스마트 수트 개발(1/1)",
+      "org": "한국산업기술기획평가원",
+      "period": "2020-09-01~2021-04-30"
+    },
+    {
+      "title": "[삼성미래기술육성사업/주관/2단계] MEMS 기반 실시간 입자 밀도 측정기와 이를 이용한 고정밀 초미세먼지 측정 기술",
+      "org": "국내",
+      "period": "2020-09-01~2021-08-31"
+    },
+    {
+      "title": "[통합이지바로](2세부)On-site 모니터링 모듈의 측정 신뢰도 향상을 위한 인공지능 기반 보정 기법 개발(1/2단계)(1/3)",
+      "org": "한국연구재단",
+      "period": "2020-06-30~2021-03-29"
+    },
+    {
+      "title": "[민간/LG전자(주)]부유 금속입자의 실시간 감지 시스템 개발",
+      "org": "국내",
+      "period": "2020-04-01~2021-02-28"
+    },
+    {
+      "title": "[8차년도]사회지향 기계기술 글로벌 리더 양성 사업단",
+      "org": "한국연구재단",
+      "period": "2020-03-01~2020-08-31"
+    },
+    {
+      "title": "[공동/한국건설기술연구원] 머신러닝 기법을 이용한 실시간 초미세먼지 센서의 정확도 향상기술 개발 기획연구(1/3)",
+      "org": "한국건설기술연구원",
+      "period": "2019-11-15~2019-12-31"
+    },
+    {
+      "title": "[지자체/서울시] IoT 기반 공사장 비산먼지 모니터링 및 능동적 저감 솔루션 개발 (3/3)",
+      "org": "서울산업진흥원",
+      "period": "2019-11-01~2020-10-31"
+    },
+    {
+      "title": "[민간/LG전자(주)]부유 금속입자의 실시간 감지 시스템 개발",
+      "org": "국내",
+      "period": "2019-09-01~2019-12-31"
+    },
+    {
+      "title": "[RCMS]울산과학기술원/공중부유형 다종 나노소자 기반 초소형 유해가스 센서 시스템 기술개발(5/5)",
+      "org": "한국산업기술기획평가원",
+      "period": "2019-04-01~2019-10-31"
+    },
+    {
+      "title": "[7차년도]사회지향 기계기술 글로벌 리더 양성 사업단",
+      "org": "한국연구재단",
+      "period": "2019-03-01~2020-02-29"
+    },
+    {
+      "title": "[민간/삼성전자] 공기질 분과 - 미세먼지 센싱 분야 컨설팅 및 아이디어 발굴",
+      "org": "국내",
+      "period": "2019-02-15~2019-11-30"
+    },
+    {
+      "title": "[RCMS]제이시스퀘어(주)/인공지능 기반 환경 감지 융합센서 시스템 개발(3/3)",
+      "org": "한국산업기술평가관리원",
+      "period": "2019-01-01~2019-12-31"
+    },
+    {
+      "title": "[민간/주식회사 옴니센스]미세먼지 local information을 현장에서 실시간으로 측정 가능한 calibrator 개발",
+      "org": "국내",
+      "period": "2018-12-01~2020-03-31"
+    },
+    {
+      "title": "[지자체/서울시] IoT 기반 공사장 비산먼지 모니터링 및 능동적 저감 솔루션 개발(2/3)",
+      "org": "서울산업진흥원",
+      "period": "2018-11-01~2019-10-31"
+    },
+    {
+      "title": "[삼성미래기술육성사업/주관] MEMS 기반 실시간 입자 밀도 측정기와 이를 이용한 고정밀 초미세먼지 측정 기술",
+      "org": "국내",
+      "period": "2018-09-01~2020-08-31"
+    },
+    {
+      "title": "[RCMS]울산과학기술원/공중부유형 다종 나노소자 기반 초소형 유해가스 센서 시스템 기술개발(4/5)",
+      "org": "한국산업기술기획평가원",
+      "period": "2018-06-01~2019-03-31"
+    },
+    {
+      "title": "[6차년도]사회지향 기계기술 글로벌 리더 양성 사업단",
+      "org": "한국연구재단",
+      "period": "2018-03-01~2019-02-28"
+    },
+    {
+      "title": "[RCMS]제이시스퀘어(주)/인공지능 기반 환경 감지 융합센서 시스템 개발(2/3)",
+      "org": "한국산업기술평가관리원",
+      "period": "2018-01-01~2018-12-31"
+    },
+    {
+      "title": "[Ezbaro](0위탁)이동형 미세먼지 측정기 패키징 기법 및 측정 알고리즘 개발(1/3)",
+      "org": "한국연구재단",
+      "period": "2017-11-08~2018-11-07"
+    },
+    {
+      "title": "[지자체/서울시] IoT 기반 공사장 비산먼지 모니터링 및 능동적 저감 솔루션 개발",
+      "org": "서울산업진흥원",
+      "period": "2017-11-01~2018-10-31"
+    },
+    {
+      "title": "[RCMS]울산과학기술원/공중부유형 다종 나노소자 기반 초소형 유해가스 센서 시스템 기술개발(3/5)",
+      "org": "한국산업기술기획평가원",
+      "period": "2017-08-01~2018-05-31"
+    },
+    {
+      "title": "주식회사 옴니센스/&apos;Aerosol electrometer 및 전기하전식 초소형 PM2.5 센서 개발&apos;에 관한 연구",
+      "org": "국내",
+      "period": "2017-06-01~2018-10-31"
+    },
+    {
+      "title": "[RCMS]제이시스퀘어(주)/인공지능 기반 환경 감지 융합센서 시스템 개발(1/3)",
+      "org": "한국산업기술기획평가원",
+      "period": "2017-04-01~2017-12-31"
+    },
+    {
+      "title": "[LO-11]능동형 시각 및 광학 위장 기술 연구(3/3단계-3/3차년도)",
+      "org": "산하기관",
+      "period": "2017-01-01~2017-12-15"
+    },
+    {
+      "title": "현대케피코/PM 센서 보호튜브 유동해석",
+      "org": "국내",
+      "period": "2016-06-15~2016-12-31"
+    },
+    {
+      "title": "[LO-11]능동형 시각 및 광학 위장 기술 연구(3/3단계-2/3차년도)",
+      "org": "산하기관",
+      "period": "2016-01-01~2016-12-31"
+    },
+    {
+      "title": "[미래선도-산업체/교내] MEMS 기술을 이용한 초소형 초미세먼지(PM2.5) 감지기기 개발",
+      "org": "연세대학교",
+      "period": "2015-09-01~2016-08-31"
+    },
+    {
+      "title": "[미래선도-산업체]에이치케이엠엔에스(주)/MEMS 기술을 이용한 초소형 초미세먼지(PM2.5)감지기기 개발",
+      "org": "국내",
+      "period": "2015-07-20~2016-08-31"
+    },
+    {
+      "title": "현대케피코/기술자문",
+      "org": "국내",
+      "period": "2015-04-20~2015-07-20"
+    },
+    {
+      "title": "[LO-11]능동형 시각 및 광학 위장 기술 연구(3/3단계-1차년도)",
+      "org": "방위사업청",
+      "period": "2015-03-31~2015-12-31"
+    },
+    {
+      "title": "에이치케이엠엔에스(주)/산업자문",
+      "org": "국내",
+      "period": "2015-03-01~2016-02-29"
+    },
+    {
+      "title": "[구매용역/한국과학기술연구원] AI 바이러스 농축장치가 통합된 미세유체기반 열전 센서와 그 제조방법 개발용역",
+      "org": "한국과학기술연구원",
+      "period": "2014-11-28~2015-12-28"
+    },
+    {
+      "title": "삼성전자(주)/Graphene을 포함한 MEMS Probe Array 개발",
+      "org": "국내",
+      "period": "2014-08-01~2017-08-31"
+    },
+    {
+      "title": "화재환경 환경가스 분석모듈 제작 용역",
+      "org": "기타정부기관",
+      "period": "2013-12-16~2015-12-31"
+    },
+    {
+      "title": "[글로벌] 미래융합기계기술사업단",
+      "org": "연세대학교",
+      "period": "2013-03-01~2014-03-31"
+    },
+    {
+      "title": "LG디스플레이(주)/DISPLAY용 저온 FLEXIBLE ARRAY 재료 및 공정 개발(2012.06.01~2013.05.31)- 2014.05.31",
+      "org": "국내",
+      "period": "2012-06-01~2016-12-31"
+    },
+    {
+      "title": "(LO-11)국방 피탐지 감소기술 특화연구센터(2/3단계)",
+      "org": "방위사업청",
+      "period": "2012-03-09~2014-12-15"
+    },
+    {
+      "title": "두산인프라코어(주)/연세대학교 산학협력협의회 (2012.03.01~2013.02.28)- 2014.02.28",
+      "org": "국내",
+      "period": "2012-03-01~2019-12-31"
+    },
+    {
+      "title": "나노 마이크로 응용기계기술 인력양성사업",
+      "org": "학술진흥재단",
+      "period": "2012-03-01~2013-04-30"
+    },
+    {
+      "title": "차세대 RFID/USN 기술연구개발(2004.09.01~2012.12.31)",
+      "org": "정보통신산업진흥원",
+      "period": "2012-01-01~2012-12-31"
+    },
+    {
+      "title": "삼성전자(주) / Medical RF Sensor 연구 (2011.12.01~2012.11.30- 2013.11.30)",
+      "org": "국내",
+      "period": "2011-12-01~2013-11-30"
+    },
+    {
+      "title": "나노융합 그린에너지 원천기술 개발 (3/3,1단계)",
+      "org": "학술진흥재단",
+      "period": "2011-09-01~2012-08-31"
+    },
+    {
+      "title": "폐쇄자기회로 구조의 유도코일을 이용한 고효율 체내외 전력전송 기술(2/2, 1단계)",
+      "org": "한국연구재단(과학재단)",
+      "period": "2011-08-01~2012-07-31"
+    },
+    {
+      "title": "실내오염물질 모니터링을 위한 초소형 감지 모듈 개발 (1/3, 2단계)",
+      "org": "한국연구재단(과학재단)",
+      "period": "2011-07-01~2012-06-30"
+    },
+    {
+      "title": "개인 노출 환경의 미세먼지(PM2.5)와 TVOCs 동시 분석을 위한 통합 측정기 개발(2차년도/2)(2010.06.01~2012.05.31)",
+      "org": "한국환경산업기술원",
+      "period": "2011-06-01~2012-05-31"
+    },
+    {
+      "title": "나노 마이크로 응용기계기술 인력양성사업",
+      "org": "학술진흥재단",
+      "period": "2011-03-01~2012-02-29"
+    },
+    {
+      "title": "나노마이크로응용기계기술인력양성사업단",
+      "org": "연세대학교",
+      "period": "2011-03-01~2012-02-29"
+    },
+    {
+      "title": "인체 에너지 수확을 위한 재료 및 패키징 기술 (2/3, 1단계)",
+      "org": "한국과학재단",
+      "period": "2011-03-01~2012-02-29"
+    },
+    {
+      "title": "총괄과제 운영 및 관리 (2/3, 1단계)",
+      "org": "한국과학재단",
+      "period": "2011-03-01~2012-02-29"
+    },
+    {
+      "title": "차세대 RFID/USN 기술연구개발(2004.09.01~2012.12.31)",
+      "org": "정보통신산업진흥원",
+      "period": "2011-01-01~2012-02-29"
+    },
+    {
+      "title": "나노융합 그린에너지 원천기술 개발(2/3,1단계)",
+      "org": "학술진흥재단",
+      "period": "2010-09-01~2011-08-31"
+    },
+    {
+      "title": "고감도 나노바이오센서 및 진단키트 개발",
+      "org": "한국과학재단",
+      "period": "2010-09-01~2011-08-31"
+    },
+    {
+      "title": "[2010-8-1810] 나노융합 그린에너지 원천기술개발",
+      "org": "연세대학교",
+      "period": "2010-09-01~2011-08-31"
+    },
+    {
+      "title": "인체 삽입용 신경전극소자를 위한 안정적인 전력 공급 기술-창조성발굴과제(2차년도)",
+      "org": "한국과학기술연구원",
+      "period": "2010-09-01~2011-08-31"
+    },
+    {
+      "title": "나노선 기반 고감도 선택적 환경 센서 어레이 개발",
+      "org": "한국과학재단",
+      "period": "2010-09-01~2011-08-31"
+    },
+    {
+      "title": "폐쇄자기회로 구조의 유도코일을 이용한 고효율 체내외 전력전송 기술(1/2,1단계)",
+      "org": "한국연구재단(과학재단)",
+      "period": "2010-08-16~2011-07-31"
+    },
+    {
+      "title": "분산형 실시간 환경 모니터링을 위한 환경 분석 모듈 개발",
+      "org": "서울시정개발연구원",
+      "period": "2010-08-01~2011-07-31"
+    },
+    {
+      "title": "PM/NOx 동시저감을 위한 입자상물질 실시간 측정 및 제거기술",
+      "org": "산업자원부",
+      "period": "2010-08-01~2011-07-31"
+    },
+    {
+      "title": "5차년도/나노기술을 이용한 바이오 융합산업 혁신 클러스터",
+      "org": "서울시정개발연구원",
+      "period": "2010-08-01~2011-07-31"
+    },
+    {
+      "title": "실리콘 기반 MEMS 헤드형 multi e-jetting 기술 이용 고효율 유기 태양전지 제작(3차년도)",
+      "org": "한국에너지기술평가원",
+      "period": "2010-08-01~2011-07-31"
+    },
+    {
+      "title": "인체의 물리적 에너지 수확을 위한 인체적용 패키징 굇茱",
+      "org": "한국과학재단",
+      "period": "2010-07-01~2011-02-28"
+    },
+    {
+      "title": "실내 오염 물질 모니터링을 위한 초소형 감지모듈 개뭐",
+      "org": "한국연구재단(과학재단)",
+      "period": "2010-07-01~2011-06-30"
+    },
+    {
+      "title": "개인 노출 환경의 미세먼지(PM2.5)와 TVOC 동시 분석을 위한 통합 측정기 개발",
+      "org": "한국환경산업기술원",
+      "period": "2010-06-01~2011-05-31"
+    },
+    {
+      "title": "MEMS 기반 차세대 기상 감지 소자 연구회",
+      "org": "기상지진기술개발사업단",
+      "period": "2010-06-01~2010-09-30"
+    },
+    {
+      "title": "G-5-5-10나노마이크로응용기계기술인력양성사업단",
+      "org": "연세대학교",
+      "period": "2010-03-02~2011-06-30"
+    },
+    {
+      "title": "나노마이크로응용기계기술인력양성사업단",
+      "org": "연세대학교",
+      "period": "2010-03-01~2011-02-28"
+    },
+    {
+      "title": "나노 마이크로 응용기계기술 인력양성사업단",
+      "org": "학술진흥재단",
+      "period": "2010-03-01~2011-02-28"
+    },
+    {
+      "title": "(주)두산인프라코어-연세대학교산학협력단 산학협력",
+      "org": "민간기업",
+      "period": "2010-03-01~2013-02-28"
+    },
+    {
+      "title": "[125 학술행사] 나노,바이오,에너지,환경,인포메이션 기술의 기계기술 응용",
+      "org": "연세대학교산학단_간접비",
+      "period": "2010-03-01~2010-08-31"
+    },
+    {
+      "title": "[SM] 교육과학기술부 - 원천기술개발사업",
+      "org": "연세대학교산학단_간접비",
+      "period": "2010-02-28~2010-05-31"
+    },
+    {
+      "title": "차세대 RFID/USN 기술연구개발",
+      "org": "정보통신연구진흥원",
+      "period": "2010-01-01~2010-12-31"
+    },
+    {
+      "title": "무표지/비고정화 방식의 유체시스템 통합형 MEMS 기반 열전 바이오센서 개발",
+      "org": "한국생명공학연구원",
+      "period": "2010-01-01~2010-12-31"
+    },
+    {
+      "title": "능동형 시각 및 광학 위장 기술 연구(LO-11)",
+      "org": "국방과학연구소",
+      "period": "2009-11-26~2011-12-31"
+    },
+    {
+      "title": "인체의 물리적 에너지를 이용한 전력생산 기술",
+      "org": "한국과학재단",
+      "period": "2009-10-01~2010-04-30"
+    },
+    {
+      "title": "나노선 기반 고감도 선택적 환경 센서 어레이 개발",
+      "org": "한국연구재단",
+      "period": "2009-09-01~2010-08-31"
+    },
+    {
+      "title": "[2009-8-1655] 나노융합 그린에너지 원천기술개발",
+      "org": "연세대학교",
+      "period": "2009-09-01~2010-08-31"
+    },
+    {
+      "title": "나노융합 그린에너지 원천기술 개발 (1/3,1단계)",
+      "org": "학술진흥재단",
+      "period": "2009-09-01~2010-08-31"
+    },
+    {
+      "title": "고감도 나노바이오센서 및 진단키트 개발",
+      "org": "한국과학재단",
+      "period": "2009-09-01~2010-08-31"
+    },
+    {
+      "title": "인체 삽입용 신경전극소자를 위한 안정적인 전력 공급 기술",
+      "org": "한국과학기술연구원",
+      "period": "2009-09-01~2010-08-31"
+    },
+    {
+      "title": "분산형 실시간 환경 모니터링을 위한 환경 분석 모듈 개발",
+      "org": "서울시정개발연구원",
+      "period": "2009-08-01~2010-07-31"
+    },
+    {
+      "title": "PM/NOx 동시저감을 위한 입자상물질 실시간 측정 및 제거기술",
+      "org": "산업자원부",
+      "period": "2009-08-01~2010-07-31"
+    },
+    {
+      "title": "4차년도 /나노기술을 이용한 바이오 융합산업 혁신 클러스터",
+      "org": "서울시정개발연구원",
+      "period": "2009-08-01~2010-07-31"
+    },
+    {
+      "title": "실리콘 기반 MEMS 헤드형 multi e-jetting 기술 이용 고효율 유기 태양전지 제작",
+      "org": "에너지관리공단",
+      "period": "2009-08-01~2010-07-31"
+    },
+    {
+      "title": "실내 오염 물질 모니터링을 위한 초소형 감지모듈 개발",
+      "org": "한국연구재단(과학재단)",
+      "period": "2009-07-10~2010-06-30"
+    },
+    {
+      "title": "[SM] 교과부-도약연구(대기오염의 실시간 평가를 위한 기체기반 Lab-on-a-chip)",
+      "org": "연세대학교산학단_간접비",
+      "period": "2009-04-02~2009-08-13"
+    },
+    {
+      "title": "G5-5-10/나노마이크로응용기계기술인력양성사업",
+      "org": "연세대학교",
+      "period": "2009-03-02~2010-06-30"
+    },
+    {
+      "title": "[SM] 국방과학연구소 - 특화연구센터",
+      "org": "연세대학교산학단_간접비",
+      "period": "2009-03-01~2009-07-24"
+    },
+    {
+      "title": "나노마이크로응용기계기술인력양성사업단",
+      "org": "연세대학교",
+      "period": "2009-03-01~2010-02-28"
+    },
+    {
+      "title": "나노마이크로응용기계기술인력양성사업단",
+      "org": "학술진흥재단",
+      "period": "2009-03-01~2010-02-28"
+    },
+    {
+      "title": "무표지/비고정화 방식의 유체시스템 통합형 MEMS 기반 열전 바이오센서 개발",
+      "org": "한국생명공학연구원",
+      "period": "2009-03-01~2009-12-31"
+    },
+    {
+      "title": "(주)유카이트 폴리머 기반 ECG 센서를 이용한 실시간 맥박 감지",
+      "org": "민간기업",
+      "period": "2009-02-18~2009-08-17"
+    },
+    {
+      "title": "차세대 RFID/USN 기술연구개발",
+      "org": "정보통신산업진흥원",
+      "period": "2009-01-01~2009-12-31"
+    },
+    {
+      "title": "실리콘 기반 MEMS 헤드형 multi e-jetting 기술 이용 고효율 유기 태양전지 제작",
+      "org": "한국에너지기술연구원",
+      "period": "2008-10-01~2009-07-31"
+    },
+    {
+      "title": "나노메디컬 1-2세부-공통",
+      "org": "한국과학재단",
+      "period": "2008-09-01~2009-08-31"
+    },
+    {
+      "title": "(주)파이컴-고주파 probing",
+      "org": "민간기업",
+      "period": "2008-09-01~2009-08-31"
+    },
+    {
+      "title": "나노메디컬 1-1세부-김용준",
+      "org": "한국과학재단",
+      "period": "2008-09-01~2009-08-31"
+    },
+    {
+      "title": "나노선 기반 고감도 선택적 환경 센서 어레이 개발",
+      "org": "한국과학재단",
+      "period": "2008-09-01~2009-08-31"
+    },
+    {
+      "title": "3차년도 수소연료전지 특성화 대학원 사업",
+      "org": "연세대학교",
+      "period": "2008-08-01~2009-10-31"
+    },
+    {
+      "title": "3차/나노기술을 이용한 바이오 융합산업 혁신 클러스터",
+      "org": "서울시정개발연구원",
+      "period": "2008-08-01~2009-07-31"
+    },
+    {
+      "title": "분산형 실시간 환경 모니터링을 위한 환경 분석 모듈 개발",
+      "org": "서울시정개발연구원",
+      "period": "2008-08-01~2009-07-31"
+    },
+    {
+      "title": "스마트 의류 제품화",
+      "org": "산업자원부",
+      "period": "2008-08-01~2009-07-31"
+    },
+    {
+      "title": "PM/NOx 동시저감을 위한 입자상물질 실시간 측정 및 제거기술",
+      "org": "산업자원부",
+      "period": "2008-08-01~2009-07-31"
+    },
+    {
+      "title": "(주)LG마이크론 NOX/NH3 듀얼 센서 개발",
+      "org": "민간기업",
+      "period": "2008-04-01~2009-03-31"
+    },
+    {
+      "title": "생체신호처리기반 IMPLANTABLE SYSTEM 개발",
+      "org": "정보통신연구진흥원",
+      "period": "2008-03-01~2009-02-28"
+    },
+    {
+      "title": "나노마이크로응용기계기술인력양성사업단",
+      "org": "학술진흥재단",
+      "period": "2008-03-01~2009-02-28"
+    },
+    {
+      "title": "G5-5-10/나노마이크로응용기계기술인력양성사업",
+      "org": "연세대학교",
+      "period": "2008-03-01~2009-02-28"
+    },
+    {
+      "title": "나노마이크로응용기계기술인력양성사업단",
+      "org": "연세대학교",
+      "period": "2008-03-01~2009-02-28"
+    },
+    {
+      "title": "차세대 RFID/USN 기술연구개발",
+      "org": "정보통신연구진흥원",
+      "period": "2008-01-01~2008-12-31"
+    },
+    {
+      "title": "3차년도 수소연료전지 특성화 대학원 사업",
+      "org": "에너지관리공단",
+      "period": "2007-12-01~2008-11-30"
+    },
+    {
+      "title": "MEMS 기술을 이용한 생체 신호 측정",
+      "org": "한국보건산업진흥원",
+      "period": "2007-11-01~2008-10-31"
+    },
+    {
+      "title": "차세대 RFID/USN 기술연구개발",
+      "org": "정보통신연구진흥원",
+      "period": "2007-09-01~2007-12-31"
+    },
+    {
+      "title": "나노메디컬1총괄1세부-김용준",
+      "org": "한국과학재단",
+      "period": "2007-09-01~2008-08-31"
+    },
+    {
+      "title": "(주)파이컴 고주파 PROBING",
+      "org": "민간기업",
+      "period": "2007-09-01~2008-08-31"
+    },
+    {
+      "title": "분산형 실시간 환경 모니터링을 위한 환경 분석 모듈 유연(FLEXIBLE)센서 모듈에 관한 기반 기술 연구",
+      "org": "서울시정개발연구원",
+      "period": "2007-08-01~2008-07-31"
+    },
+    {
+      "title": "나노기술을 이용한 바이오 융합산업 혁신 클러스터",
+      "org": "서울시정개발연구원",
+      "period": "2007-08-01~2011-05-31"
+    },
+    {
+      "title": "스마트 의류 제품화",
+      "org": "산업자원부",
+      "period": "2007-08-01~2008-07-31"
+    },
+    {
+      "title": "PM/NOX 동시저감을 위한 입자상물질 실시간 측정 및 제거기술",
+      "org": "산업자원부",
+      "period": "2007-08-01~2008-07-31"
+    },
+    {
+      "title": "여학생공학교육-2차년도-교육부",
+      "org": "학술진흥재단",
+      "period": "2007-07-01~2008-06-30"
+    },
+    {
+      "title": "여학생공학교육-2차년도-산자부",
+      "org": "학술진흥재단",
+      "period": "2007-07-01~2008-06-30"
+    },
+    {
+      "title": "여학생공학교육-2차년도-기업체대응",
+      "org": "학술진흥재단",
+      "period": "2007-07-01~2008-06-30"
+    },
+    {
+      "title": "전기수력학 프린팅 방법을 이용한 JETTING HEAD SYSTEM 연구",
+      "org": "(주)에이스테크",
+      "period": "2007-06-01~2008-05-31"
+    },
+    {
+      "title": "병사의 생체 신호 (VITAL SIGNAL) 실시간 감지를 위한유연(FLEXIBLE)센서 모듈에 관한 기반 기술 연구",
+      "org": "국방과학연구소",
+      "period": "2007-05-01~2009-12-31"
+    },
+    {
+      "title": "생체신호 처리기반 IMPLANTABLE SYSTEM",
+      "org": "정보통신연구진흥원",
+      "period": "2007-03-01~2008-02-28"
+    },
+    {
+      "title": "나노/마이크로 응용 기계기술 인력양성사업단",
+      "org": "학술진흥재단",
+      "period": "2007-03-01~2008-02-29"
+    },
+    {
+      "title": "나노/마이크로 응용 기계기술 인력양성사업단",
+      "org": "연세대학교",
+      "period": "2007-03-01~2008-02-29"
+    },
+    {
+      "title": "열 반응을 이용한 암 진단용 THERMAL BIOSENSOR 연구",
+      "org": "한국과학재단",
+      "period": "2007-03-01~2008-02-29"
+    },
+    {
+      "title": "G5-5-10/나노마이크로응용기계기술인력양성사업",
+      "org": "연세대학교",
+      "period": "2007-03-01~2008-05-31"
+    },
+    {
+      "title": "마이크로 나노 점선가공 기반구축",
+      "org": "한국산업기술평가원",
+      "period": "2007-02-01~2008-01-31"
+    },
+    {
+      "title": "수소연료전지 특성화 대학원 사업",
+      "org": "에너지관리공단",
+      "period": "2006-12-01~2007-11-30"
+    },
+    {
+      "title": "MEMS 기술을 이용한 생체 신호 측정",
+      "org": "한국보건산업진흥원",
+      "period": "2006-11-01~2007-10-31"
+    },
+    {
+      "title": "차세대 RFID/USN 기술연구 개발",
+      "org": "정보통신연구진흥원",
+      "period": "2006-09-01~2007-08-31"
+    },
+    {
+      "title": "파이컴 고속 디지털 데이터 PROBING 개발",
+      "org": "민간기업",
+      "period": "2006-09-01~2007-08-31"
+    },
+    {
+      "title": "나노메디컬1총괄1세부-김용준",
+      "org": "과학재단",
+      "period": "2006-09-01~2007-08-31"
+    },
+    {
+      "title": "나노 바이오 소재의 적용화 기술 개발",
+      "org": "서울시정개발연구원",
+      "period": "2006-08-01~2007-07-31"
+    },
+    {
+      "title": "나노기술을 이용한 바이오 융합산업 혁신 클러스터",
+      "org": "연세대학교",
+      "period": "2006-08-01~2007-07-31"
+    },
+    {
+      "title": "스마트 의류 제품화",
+      "org": "산업자원부",
+      "period": "2006-08-01~2007-07-31"
+    },
+    {
+      "title": "나노기술을 이용한 바이오 융합산업 혁신 클러스터",
+      "org": "서울시정개발연구원",
+      "period": "2006-08-01~2007-07-31"
+    },
+    {
+      "title": "스마트의류 제품화",
+      "org": "산업자원부",
+      "period": "2006-08-01~2007-07-31"
+    },
+    {
+      "title": "주행자동차배출나노PM실시간측정/분석및초소형극미량 나노-PM검출측정기법연구",
+      "org": "산업기술평가원",
+      "period": "2006-07-31~2007-07-30"
+    },
+    {
+      "title": "열 반응을 이용한 암 진단용 THERMAL BIOSENSOR 연구",
+      "org": "과학재단",
+      "period": "2006-04-01~2007-02-28"
+    },
+    {
+      "title": "나노 마이크로 응용기계기술 인력양성사업단",
+      "org": "학술진흥재단",
+      "period": "2006-03-01~2007-02-28"
+    },
+    {
+      "title": "생체신호 처리기반 IMPLANTABLE SYSTEM",
+      "org": "정보통신연구진흥원",
+      "period": "2006-03-01~2007-02-28"
+    },
+    {
+      "title": "나노마이크로응용기계기술인역양성사업단",
+      "org": "연세대학교",
+      "period": "2006-03-01~2007-02-28"
+    },
+    {
+      "title": "(주)파이컴 기판의 전기적특성 및 구조물 형상이 MEMS 기반 PROBE의 전기적 특성에 미치는 영향분석",
+      "org": "민간기업",
+      "period": "2006-03-01~2006-08-31"
+    },
+    {
+      "title": "마이크로 나노 점선가공",
+      "org": "산업기술평가원",
+      "period": "2006-02-01~2007-01-31"
+    },
+    {
+      "title": "MEMS기술을 이용한 생체신호 측정",
+      "org": "한국보건산업진흥원",
+      "period": "2005-12-01~2006-10-31"
+    },
+    {
+      "title": "환경칩사업단",
+      "org": "연구처",
+      "period": "2005-09-01~2007-02-28"
+    },
+    {
+      "title": "나노융합연성공학사업단",
+      "org": "연구처",
+      "period": "2005-09-01~2007-02-28"
+    },
+    {
+      "title": "차세대 RFID/USN 기술연구개발",
+      "org": "정보통신연구진흥원",
+      "period": "2005-09-01~2006-08-31"
+    },
+    {
+      "title": "UWB & RF 핵심기술개발",
+      "org": "삼성전자종합기술원",
+      "period": "2005-09-01~2006-08-31"
+    },
+    {
+      "title": "UWB & RF 핵심기술개발",
+      "org": "삼성전자종합기술원",
+      "period": "2005-09-01~2006-08-31"
+    },
+    {
+      "title": "창의적 공학교육 사업",
+      "org": "삼성전자(주)",
+      "period": "2005-09-01~2006-02-28"
+    },
+    {
+      "title": "나노메디컬1총괄1세부-김용준",
+      "org": "과학재단",
+      "period": "2005-09-01~2006-08-31"
+    },
+    {
+      "title": "스마트의류 제품화",
+      "org": "산업자원부",
+      "period": "2005-08-01~2006-07-31"
+    },
+    {
+      "title": "미래 일상생활용 스마트 의류 기술 개발",
+      "org": "산업자원부",
+      "period": "2005-08-01~2006-07-31"
+    },
+    {
+      "title": "USN 센서 노드를 위한 저가형 바이오환경 감지기법 연구",
+      "org": "한국전자통신연구원",
+      "period": "2005-08-01~2006-01-31"
+    },
+    {
+      "title": "주행자동차배출나노PM실시간측정/분석및초소형극미량 나노-PM검출측정기법연구",
+      "org": "산업기술평가원",
+      "period": "2005-07-31~2006-07-30"
+    },
+    {
+      "title": "이식형 초미세전극을 이용한 구강악안면 신경결손의 재건술",
+      "org": "한국보건산업진흥원",
+      "period": "2005-05-01~2006-03-31"
+    },
+    {
+      "title": "창의적 공학교육 프로그램 개발 및 확산 지원 사업",
+      "org": "한국산업기술재단",
+      "period": "2005-05-01~2006-02-28"
+    },
+    {
+      "title": "열 반응을 이용한 암 진단용 THERMAL BIOSENSOR 연구",
+      "org": "과학재단",
+      "period": "2005-04-01~2006-03-31"
+    },
+    {
+      "title": "발친환경 패터닝을 이용한 복합 전자기판 제조기술개",
+      "org": "에픽슨",
+      "period": "2005-04-01~2006-03-31"
+    },
+    {
+      "title": "STATIC FORCE/SLIP/TEXTURE/TEMPERATURE 감지가 가능",
+      "org": "서울대학교",
+      "period": "2005-04-01~2006-03-31"
+    },
+    {
+      "title": "생체신호 처리기반 IMPLANTABLE SYSTEM 개발",
+      "org": "정보통신연구진흥원",
+      "period": "2005-03-02~2006-02-28"
+    },
+    {
+      "title": "마이크로-나노 점선가공 기반구축",
+      "org": "산업기술평가원",
+      "period": "2005-02-01~2006-01-31"
+    },
+    {
+      "title": "MEMS 기술을 이용한 생체신호 측정",
+      "org": "한국보건산업진흥원",
+      "period": "2004-12-01~2005-11-30"
+    },
+    {
+      "title": "나노메디컬1총괄1세부-김용준",
+      "org": "과학재단",
+      "period": "2004-12-01~2005-08-31"
+    },
+    {
+      "title": "다학제간 교육 및 연구체제 구축을 통한 차세대 생명 공학 경쟁력 강화",
+      "org": "교육부",
+      "period": "2004-11-01~2006-02-02"
+    },
+    {
+      "title": "교육인적자원부 특성화지원사업 대응자금",
+      "org": "연세대학교",
+      "period": "2004-09-01~2005-06-30"
+    },
+    {
+      "title": "스마트의류 제품화",
+      "org": "산업자원부",
+      "period": "2004-08-01~2005-07-31"
+    },
+    {
+      "title": "STATIC FORCE/SLIP/TEXTURE/TEMPERATURE 감지가 가능 한 FLEXIBLE 촉각센서 개발",
+      "org": "서울대학교",
+      "period": "2004-04-01~2005-03-31"
+    },
+    {
+      "title": "MEMS데이터링크연구",
+      "org": "국방과학연구소",
+      "period": "2004-03-06~2006-12-20"
+    },
+    {
+      "title": "FLEXIBLE WIRELESS SENSOR MODULE 개발",
+      "org": "삼성전자(주)",
+      "period": "2004-03-02~2005-02-28"
+    }
+  ],
+  "patents": [
+    {
+      "title": "미세유체 기반 초미세 물 응축핵 계수기",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2023-11-29"
+    },
+    {
+      "title": "입자 계수기",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2022-06-16"
+    },
+    {
+      "title": "입자 계수기",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2022-06-16"
+    },
+    {
+      "title": "MEMS 기반 응축 성장식 바이러스 에어로졸 샘플링 장치 및 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2021-12-06"
+    },
+    {
+      "title": "입자 분석 장치, 분석 방법 및 제조 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2021-05-21"
+    },
+    {
+      "title": "입자 계수기",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2021-03-26"
+    },
+    {
+      "title": "입자 계수기",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2021-03-26"
+    },
+    {
+      "title": "입자 계수기",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2021-03-26"
+    },
+    {
+      "title": "전기식 계수기 및 전기식 계수기를 이용하는 입자 계수기",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2021-03-25"
+    },
+    {
+      "title": "전기식 계수기 및 전기식 계수기를 이용하는 입자 계수기",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2021-03-25"
+    },
+    {
+      "title": "입자 분석 장치, 분석 방법 및 제조 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2020-07-15"
+    },
+    {
+      "title": "입자 분석 장치, 분석 방법 및 제조 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2020-06-02"
+    },
+    {
+      "title": "입자 계수기",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2020-01-30"
+    },
+    {
+      "title": "입자 계수기",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2020-01-30"
+    },
+    {
+      "title": "입자 계수기",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2020-01-29"
+    },
+    {
+      "title": "전기식 계수기 및 전기식 계수기를 이용하는 입자 계수기",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2020-01-29"
+    },
+    {
+      "title": "응축 입자 계수기",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2019-12-26"
+    },
+    {
+      "title": "인공지능 기반의 유해가스 감지 방법 및 그를 위한 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2019-11-25"
+    },
+    {
+      "title": "비산먼지 실시간 측정시스템",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2019-10-21"
+    },
+    {
+      "title": "MEMS 기반의 응축 입자 계수기",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2019-10-18"
+    },
+    {
+      "title": "초미세먼지 분석 시스템 및 이를 이용한 초미세먼지의 분석 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2019-10-10"
+    },
+    {
+      "title": "MEMS 기반의 응축 입자 계수기",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2018-10-18"
+    },
+    {
+      "title": "미세먼지 농도 측정시스템",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2017-09-29"
+    },
+    {
+      "title": "미세입자 측정시스템",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2017-05-10"
+    },
+    {
+      "title": "표면공진 원리를 이용한 가스 센서",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2017-04-28"
+    },
+    {
+      "title": "빠른 응답속도의 이온화 방식 가스 센서 및 가스 센싱방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2017-04-25"
+    },
+    {
+      "title": "미세먼지 농도 측정시스템",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2016-03-23"
+    },
+    {
+      "title": "상변화 렌즈를 이용한 태양 열전 발전 장치 및 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2014-11-11"
+    },
+    {
+      "title": "상변화 렌즈를 이용한 태양 열전 발전 장치 및 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2014-11-11"
+    },
+    {
+      "title": "인덕터코일을 이용한 복합약물전달장치 및 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2014-10-28"
+    },
+    {
+      "title": "인덕터코일을 이용한 복합약물전달장치 및 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2014-10-28"
+    },
+    {
+      "title": "전자기유도를 이용하여 전력을 생산하는 유연한 구조의 자가발전장치를 구비하는 풋기어 및 이를 포함하는 자가발전 시스템",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2014-04-17"
+    },
+    {
+      "title": "전자기유도를 이용하여 전력을 생산하는 유연한 구조의 자가발전장치를 구비하는 풋기어 및 이를 포함하는 자가발전 시스템",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2014-04-17"
+    },
+    {
+      "title": "열발생부재를 포함하는 미세유동 채널 및 이를 구비하는 미세입자 모니터링 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2013-07-22"
+    },
+    {
+      "title": "열발생부재를 포함하는 미세유동 채널 및 이를 구비하는 미세입자 모니터링 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2013-07-22"
+    },
+    {
+      "title": "광유전학적 자극을 위한 발광소자",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2013-06-24"
+    },
+    {
+      "title": "에너지 수확 시스템",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2013-02-04"
+    },
+    {
+      "title": "에너지 수확 시스템",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2013-02-04"
+    },
+    {
+      "title": "에너지 수확 시스템",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2013-01-21"
+    },
+    {
+      "title": "에너지 수확 시스템",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2013-01-21"
+    },
+    {
+      "title": "PCM에 저장된 열 에너지를 이용한 열전 발전기의 에너지 변환 효율 향상",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2012-11-15"
+    },
+    {
+      "title": "전자기 유도방식의 무선전력 전송 시스템",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2012-06-29"
+    },
+    {
+      "title": "전자기 유도방식의 무선전력 전송 시스템",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2012-06-29"
+    },
+    {
+      "title": "슬릿 유전체 장벽을 이용한 ＭＥＭＳ기반 초소형 입자 하전장치 및 그 제조방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2012-05-31"
+    },
+    {
+      "title": "슬릿 유전체 장벽을 이용한 ＭＥＭＳ기반 초소형 입자 하전장치 및 그 제조방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2012-05-31"
+    },
+    {
+      "title": "폐열 회수를 위한 평면형 열전소자 및 그 제조방법, 평면형 열전소자를 구비한 열전발전장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2012-03-23"
+    },
+    {
+      "title": "인덕터 위치 정렬을 이용한 무선전력 전송 시스템 및 비정렬감지 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2011-08-19"
+    },
+    {
+      "title": "인덕터 위치 정렬을 이용한 무선전력 전송 시스템 및 비정렬감지 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2011-08-19"
+    },
+    {
+      "title": "공진주파수의 자가조정이 가능한 진동에너지 변환장치, 이에 이용가능한 외팔보 진동체 및 그 제작방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2011-07-19"
+    },
+    {
+      "title": "압전-초전기 기반 에너지 수확 소자, 인체의 움직임과 열을 이용한 압전-초전기 기반 에너지 수확 소자 및 그 제조방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2011-05-31"
+    },
+    {
+      "title": "압전-초전기 기반 에너지 수확 소자, 인체의 움직임과 열을 이용한 압전-초전기 기반 에너지 수확 소자 및 그 제조방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2011-05-31"
+    },
+    {
+      "title": "전처리-농축장치가 통합된 미세유체기반 열전 센서와 그 제조 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2010-11-05"
+    },
+    {
+      "title": "전처리-농축장치가 통합된 미세유체기반 열전 센서와 그 제조 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2010-11-05"
+    },
+    {
+      "title": "인체-환경간 에너지 수집 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2010-06-18"
+    },
+    {
+      "title": "인체-환경간 에너지 수집 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2010-06-18"
+    },
+    {
+      "title": "비가압 캐패시터 타입의 접촉센서 및 그 제조방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2010-06-14"
+    },
+    {
+      "title": "인체-환경간 온도차를 이용한 에너지 하베스팅 시스템",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2010-04-02"
+    },
+    {
+      "title": "인체-환경간 온도차를 이용한 에너지 하베스팅 시스템",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2010-04-02"
+    },
+    {
+      "title": "미세유체 칩 및 그 제조방법, 상기 미세유체칩의 미세채널 구조 및 그 제조방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2010-03-15"
+    },
+    {
+      "title": "압전소자 및 이를 포함하는 전력발생장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2010-02-26"
+    },
+    {
+      "title": "압전소자 및 이를 포함하는 전력발생장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2010-02-26"
+    },
+    {
+      "title": "비정렬 감지가 가능한 전자기 유도 방식의 무선전력 전송 시스템, 비정렬감지 장치 및 비정렬 감지 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 한국과학기술연구원(KIST)",
+      "date": "2010-02-26"
+    },
+    {
+      "title": "ＮＯｘ 가스 변환장치 및 분석시스템과, 이를 이용한 ＮＯｘ 가스 분석방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2009-12-18"
+    },
+    {
+      "title": "퍼셉트론 인공신경망의 가중치 부여 장치와 이를 이용한 탐지 장치, 탐지 시스템 및 탐지 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2009-09-11"
+    },
+    {
+      "title": "드롭-온-디맨드(ｄｒｏ ｐ ｏｎ ｄｅｍａｎｄ) 구동방식의 전기수력학적 프린팅 헤드 및 그 제조 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2009-06-11"
+    },
+    {
+      "title": "접촉센서 및 전력 발전기 적용을 위한 열전소자와 그 제조방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2009-02-24"
+    },
+    {
+      "title": "접촉센서 및 전력 발전기 적용을 위한 열전소자와 그 제조방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2009-02-24"
+    },
+    {
+      "title": "반도체 가스센서",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 엘지이노텍 주식회사",
+      "date": "2008-11-28"
+    },
+    {
+      "title": "반도체 가스센서",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, LG 마이크론",
+      "date": "2008-11-28"
+    },
+    {
+      "title": "패턴 간격을 조정가능한 전기수력학적 패터닝 장치 및 이를 이용한 전기수력학적 패터닝 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2008-10-30"
+    },
+    {
+      "title": "패턴 간격을 조정가능한 전기수력학적 패터닝 장치 및 이를 이용한 전기수력학적 패터닝 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2008-10-30"
+    },
+    {
+      "title": "MEMS 전극모듈을 이용한 단일지점 검침 ECG 측정센서 및 그 제작방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2008-10-07"
+    },
+    {
+      "title": "전도성 라인형성을 위한 전기 수력학 프린팅 장치 및 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2008-04-25"
+    },
+    {
+      "title": "전도성 라인형성을 위한 전기 수력학 프린팅 장치 및 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2008-04-25"
+    },
+    {
+      "title": "전기적으로 분류 입경 제어가 가능한 MEMS 기반 미세가상임팩터",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2008-01-25"
+    },
+    {
+      "title": "전기적으로 분류 입경 제어가 가능한 MEMS 기반 미세가상임팩터",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2008-01-25"
+    },
+    {
+      "title": "스마트주머니와 이를 이용한 의류내 무선연결시스템",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2007-12-20"
+    },
+    {
+      "title": "스마트주머니와 이를 이용한 의류내 무선연결시스템",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2007-12-20"
+    },
+    {
+      "title": "광섬유직물의 문양 형성 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2007-08-17"
+    },
+    {
+      "title": "열 센서를 사용한 가스 센서 및 그 제조공정과 차동 증폭기를 사용한 측정 module",
+      "type": "특허",
+      "applicant": "연세대학교산학협력단",
+      "date": "2007-05-28"
+    },
+    {
+      "title": "열 센서를 사용한 가스 센서 및 그 제조공정과 차동 증폭기를 사용한 측정 module",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2007-05-28"
+    },
+    {
+      "title": "멤스기반 초소형 전기적 임팩터",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2007-02-21"
+    },
+    {
+      "title": "발광다이오드와 광섬유다발과의 결합구조와 이를 위한 커넥터",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2006-11-24"
+    },
+    {
+      "title": "발광다이오드와 광섬유다발과의 결합구조와 이를 위한 커넥터",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2006-11-24"
+    },
+    {
+      "title": "습도 센서 및 그 제조방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2006-10-24"
+    },
+    {
+      "title": "바이오 칼로리메타용 미세열 측정장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2006-08-29"
+    },
+    {
+      "title": "대기중 병원성 미생물의 유무및 농도를 측정하는 측정장치및 그 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2006-06-27"
+    },
+    {
+      "title": "분배 유로를 갖는 열센서와 그 제조방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2006-05-04"
+    },
+    {
+      "title": "색상변화기능을 갖는 스마트의류",
+      "type": "특허",
+      "applicant": "연세대학교산학협력단",
+      "date": "2006-04-13"
+    },
+    {
+      "title": "밝기조절기능을 갖는 스마트의류",
+      "type": "특허",
+      "applicant": "연세대학교산학협력단",
+      "date": "2006-04-13"
+    },
+    {
+      "title": "색상변화기능을 갖는 스마트의류",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2006-04-13"
+    },
+    {
+      "title": "밝기조절기능을 갖는 스마트의류",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2006-04-13"
+    },
+    {
+      "title": "환경칩",
+      "type": "특허",
+      "applicant": "연세대학교산학협력단",
+      "date": "2006-02-22"
+    },
+    {
+      "title": "환경칩",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2006-02-22"
+    },
+    {
+      "title": "전도성 라인 형성을 위한 패터닝 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2006-02-15"
+    },
+    {
+      "title": "전도성 라인 형성을 위한 패터닝 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2006-02-15"
+    },
+    {
+      "title": "다중 유전율을 갖는 인쇄기로기판의 제조방법과 임피던스 매칭",
+      "type": "특허",
+      "applicant": "연세대학교산학협력단",
+      "date": "2005-07-26"
+    },
+    {
+      "title": "습도 센서 및 그 제조방법",
+      "type": "특허",
+      "applicant": "연세대학교산학협력단",
+      "date": "2005-07-25"
+    },
+    {
+      "title": "스마트 의류용 직물 신호선구조",
+      "type": "특허",
+      "applicant": "연세대학교산학협력단",
+      "date": "2005-06-23"
+    },
+    {
+      "title": "스마트 의류용 직물 신호선구조",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2005-06-23"
+    },
+    {
+      "title": "색상변화기능을 갖는 광섬유직물제품",
+      "type": "특허",
+      "applicant": "연세대학교산학협력단",
+      "date": "2005-06-21"
+    },
+    {
+      "title": "색상변화기능을 갖는 광섬유직물제품",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2005-06-21"
+    },
+    {
+      "title": "층상형 마이크로 열유속 센서",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2005-06-13"
+    },
+    {
+      "title": "기판상에서의 패터닝 방법 및 장치와, 그 방법에 의해 제조된 인쇄회로기판",
+      "type": "특허",
+      "applicant": "연세대학교산학협력단",
+      "date": "2004-09-17"
+    }
+  ]
+}

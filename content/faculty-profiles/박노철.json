@@ -1,0 +1,3484 @@
+{
+  "name": "박노철",
+  "nameEn": "Park No Cheol",
+  "email": "pnch@yonsei.ac.kr",
+  "phone": "02)2123-4530",
+  "office": null,
+  "homepage": null,
+  "sourceUrl": "https://me.yonsei.ac.kr/faculty/name_search.do?mode=view&userId=0fw0kb%2Brd1T%2BAnxOWIWCMg%3D%3D&sosokcd=",
+  "crawledAt": "2026-07-27",
+  "articles": [
+    {
+      "date": "2026-08",
+      "title": "Finite-element analysis methodology for sequential impact events of dry storage containers",
+      "journal": "Nuclear Engineering and Technology"
+    },
+    {
+      "date": "2026-03",
+      "title": "Design and optimization of multi-angle dome-shaped LED lighting system",
+      "journal": "Journal of Engineering Research"
+    },
+    {
+      "date": "2026-02",
+      "title": "고속조준거울의 구동 성능을 고려한 변위 증폭형 압전 액추에이터 구조 설계",
+      "journal": "한국소음진동공학회논문집"
+    },
+    {
+      "date": "2026-02",
+      "title": "모델 기반 이력특성 및 커플링 보상을 통한 압전형 고속 조준 거울의 정밀 제어 시스템 설계",
+      "journal": "Journal of the Korean Society for Precision Engineering"
+    },
+    {
+      "date": "2025-12",
+      "title": "Vibrotactile rendering for uniform sound power on haptic display with minimum number of actuators",
+      "journal": "Journal of the Acoustical Society of America"
+    },
+    {
+      "date": "2025-12",
+      "title": "Torsional deformation-transferring waveguide for generating perfectly omnidirectional shear-horizontal waves in plate structures",
+      "journal": "MECHANICAL SYSTEMS AND SIGNAL PROCESSING"
+    },
+    {
+      "date": "2025-12",
+      "title": "Design and feasibility study on a compact wide-field LiDAR optical system using polygonal mirrors",
+      "journal": "Optics and Lasers in Engineering"
+    },
+    {
+      "date": "2025-11",
+      "title": "고속 조종 거울 설계 및 성능 시험",
+      "journal": "Journal of the Korean Society for Precision Engineering"
+    },
+    {
+      "date": "2025-10",
+      "title": "원통형 도파관을 이용한 평판 전단파의 무지향성 수신 연구",
+      "journal": "한국소음진동공학회논문집"
+    },
+    {
+      "date": "2025-10",
+      "title": "Dynamic modeling of hairpin-type stator core assemblies using finite element-based estimation of equivalent orthotropic properties",
+      "journal": "Journal of Mechanical Science and Technology"
+    },
+    {
+      "date": "2025-09",
+      "title": "Self-powered, frequency selective resonator array type artificial basilar membrane for the totally implanted cochlear implant",
+      "journal": "Nano Energy"
+    },
+    {
+      "date": "2025-08",
+      "title": "Resource-constrained stereo matching for greenhouse tomatoes and napa cabbages: An efficient and accurate approach with optimized memory usage",
+      "journal": "Computers and Electronics in Agriculture"
+    },
+    {
+      "date": "2025-07",
+      "title": "Dynamic behavior of duplex stainless steel with improved chloride-induced stress corrosion cracking resistance in drop scenarios for dry storage containers",
+      "journal": "Nuclear Engineering and Technology"
+    },
+    {
+      "date": "2025-07",
+      "title": "A novel approach to surface roughness quantification in semiconductor packaging using quantitative metrics based on BRDF analysis",
+      "journal": "Optics & Laser Technology"
+    },
+    {
+      "date": "2025-05",
+      "title": "Modal Analysis of Stator Core Assembly of Electric Traction Motors With Self-Bonding Core and Bar-Type Windings",
+      "journal": "IEEE Access"
+    },
+    {
+      "date": "2025-04",
+      "title": "Optimization of elastic support locations for reducing sound radiation from printed circuit board with multilayer ceramic capacitor",
+      "journal": "Journal of Mechanical Science and Technology"
+    },
+    {
+      "date": "2025-04",
+      "title": "An experimental study on the multi-way valve for ensuring durability under temperature conditions in the automotive environment",
+      "journal": "Engineering Failure Analysis"
+    },
+    {
+      "date": "2025-03",
+      "title": "Evaluating the effect of wood composition on the performance of impact limiters for dry storage containers",
+      "journal": "Nuclear Engineering and Technology"
+    },
+    {
+      "date": "2025-02",
+      "title": "휴대용 광학 장비의 시선 안정화 제어기 설계 시뮬레이션 연구",
+      "journal": "Journal of the Korean Society for Precision Engineering"
+    },
+    {
+      "date": "2024-12",
+      "title": "햅틱 초음파 프로브의 균일한 촉각 진동 렌더링",
+      "journal": "한국소음진동공학회논문집"
+    },
+    {
+      "date": "2024-11",
+      "title": "압전형 고속 조준 거울의 주파수 영역에서의 이력 특성 분석",
+      "journal": "Journal of the Korean Society for Precision Engineering"
+    },
+    {
+      "date": "2024-10",
+      "title": "단방향 FSI 해석을 이용한 잠수함 항해레이더 안테나장치의 구조건전성 분석",
+      "journal": "한국소음진동공학회논문집"
+    },
+    {
+      "date": "2024-08",
+      "title": "Acoustic-noise reduction in printed circuit boards based on location and direction of multilayer ceramic capacitors",
+      "journal": "Journal of Mechanical Science and Technology"
+    },
+    {
+      "date": "2024-06",
+      "title": "릴럭턴스 액추에이터를 적용한 고속 조종 거울의 구조 설계",
+      "journal": "한국소음진동공학회논문집"
+    },
+    {
+      "date": "2024-06",
+      "title": "고각 구동 유닛을 포함한 대형 레이더 구조물의 구조 안전성 분석",
+      "journal": "한국소음진동공학회논문집"
+    },
+    {
+      "date": "2024-04",
+      "title": "회전 설비 고장 진단을 위한물리 정보 기반 인공지능의 매개변수 연구 및 설명가능성 확보",
+      "journal": "비파괴검사학회지"
+    },
+    {
+      "date": "2024-04",
+      "title": "인공지진파를 활용한 시간이력 입력 생성에 따른 기기 내진 응답에 관한 연구",
+      "journal": "한국소음진동공학회논문집"
+    },
+    {
+      "date": "2024-02",
+      "title": "동특성 기반 유체-구조 연성의 부가 질량 효과 분석을 위한 변수 선정에 관한 연구",
+      "journal": "한국소음진동공학회논문집"
+    },
+    {
+      "date": "2024-02",
+      "title": "소노부이 수중 진동 예측을 위한 동유체력 반영 집중소자 모델",
+      "journal": "한국소음진동공학회논문집"
+    },
+    {
+      "date": "2023-12",
+      "title": "충격 하중의 주파수 특성을 고려한 안테나 구조물의 모드 기반 구조 경량화",
+      "journal": "한국소음진동공학회논문집"
+    },
+    {
+      "date": "2023-12",
+      "title": "교전 운용에 따른 충격하중을 고려한 안테나 장치의 구조건전성 및 성능 분석",
+      "journal": "한국소음진동공학회논문집"
+    },
+    {
+      "date": "2023-10",
+      "title": "Frequency Selectivity via Inner Boundary Conditions for A Self‐Powered Multiresonant Acoustic Sensing Array with Broad Bandwidth",
+      "journal": "Advanced Functional Materials"
+    },
+    {
+      "date": "2023-09",
+      "title": "Design of illumination system using characterized illuminances for smartphone-based fundus camera",
+      "journal": "Optics and Lasers in Engineering"
+    },
+    {
+      "date": "2023-09",
+      "title": "Verification of wide-angle beam steering based on two- dimensional translation of objective lens, and design of relay optics to improve optical performances",
+      "journal": "Optics and Laser Technology"
+    },
+    {
+      "date": "2023-03",
+      "title": "Evaluation of vibrotactile sensation level for vehicle accelerator pedal vibration considering the sensitivity of the foot sole",
+      "journal": "Journal of Mechanical Science and Technology"
+    },
+    {
+      "date": "2022-12",
+      "title": "압전효과를 고려한 고속조종거울의 유한요소 해석 모델 구축",
+      "journal": "한국소음진동공학회논문집"
+    },
+    {
+      "date": "2022-11",
+      "title": "Effect of material properties of impact limiter steel on drop accident of spent nuclear fuel transport cask",
+      "journal": "Journal of Mechanical Science and Technology"
+    },
+    {
+      "date": "2022-10",
+      "title": "풍하중을 고려한 대형 레이더 구동부의 구조 안전성 평가",
+      "journal": "한국소음진동공학회논문집"
+    },
+    {
+      "date": "2022-10",
+      "title": "Sensitivity of SNF transport cask response to uncertainty in properties of wood inside the impact limiter under drop accident conditions",
+      "journal": "Nuclear Engineering and Technology"
+    },
+    {
+      "date": "2022-09",
+      "title": "Phase-shift digital holography using multilayer ceramic capacitor actuators",
+      "journal": "OPTICS AND LASERS IN ENGINEERING"
+    },
+    {
+      "date": "2022-08",
+      "title": "대형 레이더의 수송 진동 해석을 위한 주요 모드 결정 방법론",
+      "journal": "한국소음진동공학회논문집"
+    },
+    {
+      "date": "2022-04",
+      "title": "Vibration reduction of cables with pendulum-type elastic metamaterials",
+      "journal": "INTERNATIONAL JOURNAL OF MECHANICAL SCIENCES"
+    },
+    {
+      "date": "2022-03",
+      "title": "Bidirectional Reflectance Distribution Function (BRDF)-Based Coarseness Prediction of Textured Metal Surface",
+      "journal": "IEEE Access"
+    },
+    {
+      "date": "2022-03",
+      "title": "Localization of rattle noise sources in the vehicle underbody using acceleration signals",
+      "journal": "MECHANICAL SYSTEMS AND SIGNAL PROCESSING"
+    },
+    {
+      "date": "2022-02",
+      "title": "건식저장용기의 연속 충돌 경사낙하 유한요소해석",
+      "journal": "한국소음진동공학회논문집"
+    },
+    {
+      "date": "2022-02",
+      "title": "Determination of Fourier expansion number for elasto-plastic analysis of piping systems using flexibility factor",
+      "journal": "JOURNAL OF MECHANICAL SCIENCE AND TECHNOLOGY"
+    },
+    {
+      "date": "2021-10",
+      "title": "배관계 시간이력 다지점 가진 해석의 입력 방법에 관한 연구",
+      "journal": "한국소음진동공학회논문집"
+    },
+    {
+      "date": "2021-08",
+      "title": "Voice Coil Actuator를 이용한 고속조준기의 구조설계 및 신뢰성 검증 연구",
+      "journal": "한국소음진동공학회논문집"
+    },
+    {
+      "date": "2021-04",
+      "title": "Vibrotactile rendering on a touch surface with reduced sound radiation",
+      "journal": "JOURNAL OF SOUND AND VIBRATION"
+    },
+    {
+      "date": "2021-04",
+      "title": "Fourier Expansion Number를 적용한 Beam 요소 기반 유한요소해석모델을 이용한 배관계 탄소성 해석 기법",
+      "journal": "한국소음진동공학회논문집"
+    },
+    {
+      "date": "2021-03",
+      "title": "Investigation of seismic responses of reactor vessel and internals for beyond-design basis earthquake using elasto-plastic time history analysis",
+      "journal": "NUCLEAR ENGINEERING AND TECHNOLOGY"
+    },
+    {
+      "date": "2020-12",
+      "title": "대형팬 구동 환경에서의 이동식 위성통신 안테나 진동 저감 방법론",
+      "journal": "한국소음진동공학회논문집"
+    },
+    {
+      "date": "2020-11",
+      "title": "Resolution enhancement in continuous-wave stimulated emission depletion microscopy by excitation beam with modulated vortex-phased azimuthally polarized light",
+      "journal": "OPTICS AND LASERS IN ENGINEERING"
+    },
+    {
+      "date": "2020-11",
+      "title": "Development of a wide-width raster scanning optical system for high-resolution ultraviolet laser direct micro-patterning",
+      "journal": "OPTICS AND LASERS IN ENGINEERING"
+    },
+    {
+      "date": "2020-11",
+      "title": "Bandgap analysis of a tunable elastic-metamaterial-based vibration absorber with electromagnetic stiffness",
+      "journal": "MICROSYSTEM TECHNOLOGIES-MICRO-AND NANOSYSTEMS-INFORMATION STORAGE AND PROCESSING SYSTEMS"
+    },
+    {
+      "date": "2020-10",
+      "title": "Calculation and reduction of sound radiation from a thin plate structure excited by complex inputs",
+      "journal": "JOURNAL OF SOUND AND VIBRATION"
+    },
+    {
+      "date": "2020-08",
+      "title": "주행특성을 이용한 온 마운트 장비 추적 차량의진동 프로파일 개발",
+      "journal": "한국소음진동공학회논문집"
+    },
+    {
+      "date": "2020-07",
+      "title": "Experiment and analysis of a space tether with pendulum-type elastic metamaterials",
+      "journal": "INTERNATIONAL JOURNAL OF MECHANICAL SCIENCES"
+    },
+    {
+      "date": "2020-06",
+      "title": "자주식 가정용 다목적 이승 장치 설계 및 제어",
+      "journal": "한국소음진동공학회논문집"
+    },
+    {
+      "date": "2020-06",
+      "title": "Fourier ptychographic microscopy for extended focus range with conjugated optics",
+      "journal": "OPTICS AND LASERS IN ENGINEERING"
+    },
+    {
+      "date": "2020-04",
+      "title": "축소 모델을 활용한 통합마스트의 구조건전성 검증 방안 연구",
+      "journal": "한국소음진동공학회논문집"
+    },
+    {
+      "date": "2020-04",
+      "title": "내부 유체에 의한 고유진동수 분리 효과를 고려한 배관계의 적절한 시간이력해석 방법론",
+      "journal": "한국소음진동공학회논문집"
+    },
+    {
+      "date": "2020-01",
+      "title": "Optical system design for light detection and ranging with ultra-wide field-of-view using liquid lenses",
+      "journal": "MICROSYSTEM TECHNOLOGIES-MICRO-AND NANOSYSTEMS-INFORMATION STORAGE AND PROCESSING SYSTEMS"
+    },
+    {
+      "date": "2020-01",
+      "title": "Minimization of mixed-color image noise caused by shape error of polygonal mirror in color-laser printing system",
+      "journal": "MICROSYSTEM TECHNOLOGIES-MICRO-AND NANOSYSTEMS-INFORMATION STORAGE AND PROCESSING SYSTEMS"
+    },
+    {
+      "date": "2019-10",
+      "title": "Analysis on improvement in resolution by excitation beam modulation in stimulated emission depletion nanoscopy",
+      "journal": "OPTICAL REVIEW"
+    },
+    {
+      "date": "2019-10",
+      "title": "Digital holography free of 2π ambiguity, using coherence modulation",
+      "journal": "OPTICS LETTERS"
+    },
+    {
+      "date": "2019-09",
+      "title": "Pendulum-type elastic metamaterial for reducing the vibration of a space tether",
+      "journal": "ACTA ASTRONAUTICA"
+    },
+    {
+      "date": "2019-09",
+      "title": "Seismic responses of nuclear reactor vessel internals considering coolant flow under operating conditions",
+      "journal": "NUCLEAR ENGINEERING AND TECHNOLOGY"
+    },
+    {
+      "date": "2019-09",
+      "title": "Enhanced lateral resolution in continuous wave stimulated emission depletion microscopy using tightly focused annular radially polarized excitation beam",
+      "journal": "JOURNAL OF BIOPHOTONICS"
+    },
+    {
+      "date": "2019-04",
+      "title": "EDS 방식 자기부상열차 해석 단순화를 위한 유도전류 추출 방법",
+      "journal": "Transactions of the Korean Society of Mechanical Engineers, A"
+    },
+    {
+      "date": "2019-04",
+      "title": "Suppression algorithm of speckle noise for parallel phase-shift digital holography",
+      "journal": "OPTICS AND LASER TECHNOLOGY"
+    },
+    {
+      "date": "2019-03",
+      "title": "Sensitivity Analysis of Cable Parameters on Tension of a Suspended Cable under Combination Resonances",
+      "journal": "INTERNATIONAL JOURNAL OF STRUCTURAL STABILITY AND DYNAMICS"
+    },
+    {
+      "date": "2019-02",
+      "title": "Efficacy and Safety of Ultrasonic Longitudinal-Axis Vibration for the Reduction of Ureteral Access Sheath Insertion Force: A Randomized Controlled Trial in a Porcine Model",
+      "journal": "JOURNAL OF ENDOUROLOGY"
+    },
+    {
+      "date": "2019-01",
+      "title": "Investigation of Slider Dynamics Considering Bias Voltage and Lubricant Charge in the Unsteady Proximity Condition",
+      "journal": "TRIBOLOGY TRANSACTIONS"
+    },
+    {
+      "date": "2018-10",
+      "title": "Wavelength-multiplexed digital holography for quantitative phase measurement using quantum dot film",
+      "journal": "OPTICS EXPRESS"
+    },
+    {
+      "date": "2018-07",
+      "title": "Dual-wavelength Fourier ptychography using a single LED",
+      "journal": "OPTICS LETTERS"
+    },
+    {
+      "date": "2018-06",
+      "title": "The Impact of Preoperative alpha-Adrenergic Antagonists on Ureteral Access Sheath Insertion Force and the Upper Limit of Force Required to Avoid Ureteral Mucosal Injury: A Randomized Controlled Study",
+      "journal": "JOURNAL OF UROLOGY"
+    },
+    {
+      "date": "2018-05",
+      "title": "Control of electromechanical properties of multilayer ceramic capacitors for vibration reduction",
+      "journal": "JOURNAL OF THE AMERICAN CERAMIC SOCIETY"
+    },
+    {
+      "date": "2018-04",
+      "title": "Acoustic noise and vibration analysis of solid state drive induced by multi-layer ceramic capacitors",
+      "journal": "MICROELECTRONICS RELIABILITY"
+    },
+    {
+      "date": "2018-04",
+      "title": "Investigation on improvement of lateral resolution of continuous wave STED microscopy by standing wave illumination",
+      "journal": "OPTICS EXPRESS"
+    },
+    {
+      "date": "2018-04",
+      "title": "Effect of birefringence of lens material on polarization status and optical imaging characteristics",
+      "journal": "OPTICS COMMUNICATIONS"
+    },
+    {
+      "date": "2018-04",
+      "title": "Analysis of the diffracted field near the focal region due to the birefringence of the field flattening lens of the laser scanning system",
+      "journal": "POLYMER TESTING"
+    },
+    {
+      "date": "2018-02",
+      "title": "공간적 제한 하의 전자기-열 연성 해석을 통한 철도차량 2차 현가장치용 선형 전자기식 액추에이터의 설계",
+      "journal": "Transactions of the Korean Society of Mechanical Engineers, A"
+    },
+    {
+      "date": "2018-01",
+      "title": "Dual-wavelength off-axis digital holography using a single light-emitting diode",
+      "journal": "OPTICS EXPRESS"
+    },
+    {
+      "date": "2018-01",
+      "title": "Scalar-based speckle simulation model from the angular surface scattering based on generalized Harvey-Shack theory for laser displays",
+      "journal": "DISPLAYS"
+    },
+    {
+      "date": "2018-01",
+      "title": "Material interface detection based on secondary electron images for focused ion beam machining",
+      "journal": "ULTRAMICROSCOPY"
+    },
+    {
+      "date": "2017-12",
+      "title": "Dual-wavelength digital holography with a low-coherence light source based on a quantum dot film",
+      "journal": "OPTICS LETTERS"
+    },
+    {
+      "date": "2017-11",
+      "title": "Design of a moving bed for a radiation therapy system with multiple linear accelerators",
+      "journal": "MICROSYSTEM TECHNOLOGIES-MICRO-AND NANOSYSTEMS-INFORMATION STORAGE AND PROCESSING SYSTEMS"
+    },
+    {
+      "date": "2017-11",
+      "title": "Design and analysis of the multi?bent leaf spring considering incomplete insertion in an automatic disc storage system",
+      "journal": "MICROSYSTEM TECHNOLOGIES-MICRO-AND NANOSYSTEMS-INFORMATION STORAGE AND PROCESSING SYSTEMS"
+    },
+    {
+      "date": "2017-08",
+      "title": "유한요소 모델을 이용한 차량 전륜 서스펜션의 동적 응답 분석",
+      "journal": "한국소음진동공학회논문집"
+    },
+    {
+      "date": "2017-07",
+      "title": "Investigation on achieving super-resolution by solid immersion lens based STED microscopy",
+      "journal": "OPTICS EXPRESS"
+    },
+    {
+      "date": "2017-05",
+      "title": "Identification of the electromechanical material properties of a multilayer ceramic capacitor",
+      "journal": "INTERNATIONAL JOURNAL OF APPLIED CERAMIC TECHNOLOGY"
+    },
+    {
+      "date": "2017-03",
+      "title": "Operational shock analysis for 2.5-inch multi-disk HDD considering ramp-disk gap irregularity",
+      "journal": "IEEE TRANSACTIONS ON MAGNETICS"
+    },
+    {
+      "date": "2017-03",
+      "title": "Analysis of Slider Dynamics Considering the Mechanical Spacing in the Slider-Lubricant Contact Regime",
+      "journal": "IEEE TRANSACTIONS ON MAGNETICS"
+    },
+    {
+      "date": "2017-03",
+      "title": "Analysis of the Influence of the Ramp and Disk Dynamics on the HDI Response of 2.5-in Hard Disk Drive to a Shock",
+      "journal": "IEEE TRANSACTIONS ON MAGNETICS"
+    },
+    {
+      "date": "2017-03",
+      "title": "Seismic analysis of the APR1400 nuclear reactor system using a verified beam element model",
+      "journal": "NUCLEAR ENGINEERING AND DESIGN"
+    },
+    {
+      "date": "2017-02",
+      "title": "Design of a Tubular Permanent Magnet Actuator for Active Lateral Secondary Suspension of a Railway Vehicle",
+      "journal": "APPLIED SCIENCES-BASEL"
+    },
+    {
+      "date": "2016-11",
+      "title": "광 디스크 아카이브 시스템에서 디스크 삽입 상태의동적 특성 분석 및 시뮬레이션 모델 검증",
+      "journal": "한국소음진동공학회논문집"
+    },
+    {
+      "date": "2016-08",
+      "title": "Seismic analysis of the APR 1400 reactor vessel internals using the model reduction method",
+      "journal": "JOURNAL OF NUCLEAR SCIENCE AND TECHNOLOGY"
+    },
+    {
+      "date": "2016-08",
+      "title": "Dual-wavelength digital holography with a single low-coherence light source",
+      "journal": "OPTICS EXPRESS"
+    },
+    {
+      "date": "2016-06",
+      "title": "Influence of disk curvature on slider attitude under operational shock conditions for a 2.5-in. hard disk drive",
+      "journal": "MICROSYSTEM TECHNOLOGIES-MICRO-AND NANOSYSTEMS-INFORMATION STORAGE AND PROCESSING SYSTEMS"
+    },
+    {
+      "date": "2016-06",
+      "title": "Structural modification of a blu-ray type archiving system for high-speed transportation",
+      "journal": "MICROSYSTEM TECHNOLOGIES-MICRO-AND NANOSYSTEMS-INFORMATION STORAGE AND PROCESSING SYSTEMS"
+    },
+    {
+      "date": "2016-06",
+      "title": "Reduction of multilayer ceramic capacitor vibration by changing the cover thickness",
+      "journal": "MICROSYSTEM TECHNOLOGIES-MICRO-AND NANOSYSTEMS-INFORMATION STORAGE AND PROCESSING SYSTEMS"
+    },
+    {
+      "date": "2016-06",
+      "title": "Analysis of high-pitched noise from solid-state drives generated by multilayer ceramic capacitors",
+      "journal": "MICROSYSTEM TECHNOLOGIES-MICRO-AND NANOSYSTEMS-INFORMATION STORAGE AND PROCESSING SYSTEMS"
+    },
+    {
+      "date": "2016-06",
+      "title": "AN IMAGE FILTER BASED ON PRIMARY FREQUENCY ANALYSIS TO IMPROVE THE BIT ERROR RATE IN HOLOGRAPHIC DATA STORAGE SYSTEMS",
+      "journal": "MICROSYSTEM TECHNOLOGIES-MICRO-AND NANOSYSTEMS-INFORMATION STORAGE AND PROCESSING SYSTEMS"
+    },
+    {
+      "date": "2016-02",
+      "title": "Model reduction methods for cylindrical structures in reactor internals considering the fluid-structure interaction",
+      "journal": "JOURNAL OF NUCLEAR SCIENCE AND TECHNOLOGY"
+    },
+    {
+      "date": "2015-12",
+      "title": "Analysis of the influence of soldering parameters on multi-layer ceramic capacitor vibration",
+      "journal": "MICROSYSTEM TECHNOLOGIES-MICRO-AND NANOSYSTEMS-INFORMATION STORAGE AND PROCESSING SYSTEMS"
+    },
+    {
+      "date": "2015-12",
+      "title": "Crosstalk analysis for multiple-image encryption and image-quality equalization technology",
+      "journal": "MICROSYSTEM TECHNOLOGIES-MICRO-AND NANOSYSTEMS-INFORMATION STORAGE AND PROCESSING SYSTEMS"
+    },
+    {
+      "date": "2015-12",
+      "title": "Design parametric study on the influence of anti-shock performance during operational condition for a 2.5 inch HDD",
+      "journal": "MICROSYSTEM TECHNOLOGIES-MICRO-AND NANOSYSTEMS-INFORMATION STORAGE AND PROCESSING SYSTEMS"
+    },
+    {
+      "date": "2015-12",
+      "title": "Advanced operational shock analysis considering ramp-disk contact for 2.5-inch stamped base HDD",
+      "journal": "MICROSYSTEM TECHNOLOGIES-MICRO-AND NANOSYSTEMS-INFORMATION STORAGE AND PROCESSING SYSTEMS"
+    },
+    {
+      "date": "2015-12",
+      "title": "Analysis of thermal flying-height control slider in a hard disk drive under humid air condition",
+      "journal": "MICROSYSTEM TECHNOLOGIES-MICRO-AND NANOSYSTEMS-INFORMATION STORAGE AND PROCESSING SYSTEMS"
+    },
+    {
+      "date": "2015-12",
+      "title": "Analysis and improvement of shock performance of a container for the cartridge in a Blu-ray type archiving system",
+      "journal": "MICROSYSTEM TECHNOLOGIES-MICRO-AND NANOSYSTEMS-INFORMATION STORAGE AND PROCESSING SYSTEMS"
+    },
+    {
+      "date": "2015-12",
+      "title": "Flying stability of a slider with a damaged diamond like carbon layer induced by confined optical energy in a thermally assisted magnetic recording system",
+      "journal": "MICROSYSTEM TECHNOLOGIES-MICRO-AND NANOSYSTEMS-INFORMATION STORAGE AND PROCESSING SYSTEMS"
+    },
+    {
+      "date": "2015-08",
+      "title": "Three dimensional measurement of micro-optical components using digital holography and pattern recognition",
+      "journal": "JAPANESE JOURNAL OF APPLIED PHYSICS"
+    },
+    {
+      "date": "2015-02",
+      "title": "Experimental demonstration of line-width modulation in plasmonic lithography using a solid immersion lens-based active nano-gap control",
+      "journal": "APPLIED PHYSICS LETTERS"
+    },
+    {
+      "date": "2015-02",
+      "title": "Application of seismic analysis methodology to small modular integral reactor internals",
+      "journal": "JOURNAL OF NUCLEAR SCIENCE AND TECHNOLOGY"
+    },
+    {
+      "date": "2014-10",
+      "title": "Modal characteristic analysis of the APR1400 nuclear reactor internals for seismic analysis",
+      "journal": "NUCLEAR ENGINEERING AND TECHNOLOGY"
+    },
+    {
+      "date": "2014-08",
+      "title": "Iterative design method for an image filter to improve the bit error rate in holographic data storage systems",
+      "journal": "MICROSYSTEM TECHNOLOGIES-MICRO-AND NANOSYSTEMS-INFORMATION STORAGE AND PROCESSING SYSTEMS"
+    },
+    {
+      "date": "2014-08",
+      "title": "Analysis of the correlation between acoustic noise and vibration generated by a multi-layer ceramic capacitor",
+      "journal": "MICROSYSTEM TECHNOLOGIES-MICRO-AND NANOSYSTEMS-INFORMATION STORAGE AND PROCESSING SYSTEMS"
+    },
+    {
+      "date": "2014-07",
+      "title": "Design Modifications to Improve the Antishock Performance of a Stamped Base for a 2.5-in HDD",
+      "journal": "IEEE TRANSACTIONS ON MAGNETICS"
+    },
+    {
+      "date": "2014-07",
+      "title": "Selective Interpolation Method for Two-Step Parallel Phase-Shifting Digital Holography",
+      "journal": "IEEE TRANSACTIONS ON MAGNETICS"
+    },
+    {
+      "date": "2014-07",
+      "title": "Protected nanoaperture based on multi-excitation of the localized surface plasmon between a ridge nanoaperture and metal nanoparticle",
+      "journal": "JAPANESE JOURNAL OF APPLIED PHYSICS"
+    },
+    {
+      "date": "2014-03",
+      "title": "SIL 기반 플라즈모닉 리소그래피에서 주파수 적응형 필터를 이용한 나노간극 제어의 성능향상",
+      "journal": "정보저장시스템학회 논문집"
+    },
+    {
+      "date": "2014-03",
+      "title": "Diffraction Focal Position and Vector Diffraction Theory for Micro Holographic Storage Systems",
+      "journal": "Applied Sciences"
+    },
+    {
+      "date": "2013-09",
+      "title": "하드 디스크 드라이브 비 동작 충격 시에 내부 파트들의 동 특성에 대한 연구",
+      "journal": "정보저장시스템학회논문집"
+    },
+    {
+      "date": "2013-09",
+      "title": "프레임이 적용된 스탬프 베이스의 동특성 분석",
+      "journal": "정보저장시스템학회논문집"
+    },
+    {
+      "date": "2013-09",
+      "title": "HDD Stamped base의 강성 증가를 위한 최적 설계",
+      "journal": "정보저장시스템학회논문집"
+    },
+    {
+      "date": "2013-09",
+      "title": "Improvement of Bit Error Rate in Holographic Data Storage Using the Extended High-Frequency Enhancement Filter",
+      "journal": "JAPANESE JOURNAL OF APPLIED PHYSICS"
+    },
+    {
+      "date": "2013-09",
+      "title": "Improved Nanogap Servo System Using an Error-Based Disturbance Observer for High-Speed in Solid Immersion Lens-Based Plasmonic Lithography",
+      "journal": "JAPANESE JOURNAL OF APPLIED PHYSICS"
+    },
+    {
+      "date": "2013-09",
+      "title": "Study of Flying Stability of a Thermally Assisted Magnetic Recording System with Laser Diode Mount Light Delivery",
+      "journal": "JAPANESE JOURNAL OF APPLIED PHYSICS"
+    },
+    {
+      "date": "2013-09",
+      "title": "Analysis of contact phenomena between a head stack assembly and disk during operational shock",
+      "journal": "MICROSYSTEM TECHNOLOGIES-MICRO-AND NANOSYSTEMS-INFORMATION STORAGE AND PROCESSING SYSTEMS"
+    },
+    {
+      "date": "2013-09",
+      "title": "Design of an auto-focusing actuator with a flexure-based compliant mechanism for mobile imaging devices",
+      "journal": "MICROSYSTEM TECHNOLOGIES-MICRO-AND NANOSYSTEMS-INFORMATION STORAGE AND PROCESSING SYSTEMS"
+    },
+    {
+      "date": "2013-09",
+      "title": "Twyman-Green interferometer using virtual optics for eliminating reference wave",
+      "journal": "MICROSYSTEM TECHNOLOGIES-MICRO-AND NANOSYSTEMS-INFORMATION STORAGE AND PROCESSING SYSTEMS"
+    },
+    {
+      "date": "2013-09",
+      "title": "Effect of temperature and helium ratio for performance of thermal flying control in air-helium gas mixture",
+      "journal": "MICROSYSTEM TECHNOLOGIES-MICRO-AND NANOSYSTEMS-INFORMATION STORAGE AND PROCESSING SYSTEMS"
+    },
+    {
+      "date": "2013-09",
+      "title": "Design of modified shock isolators for the optical pickup in an ODD by analytical and experimental methods",
+      "journal": "MICROSYSTEM TECHNOLOGIES-MICRO-AND NANOSYSTEMS-INFORMATION STORAGE AND PROCESSING SYSTEMS"
+    },
+    {
+      "date": "2013-09",
+      "title": "Disturbances Analysis Considering an Effective Servo System for Holographic Disc Drive",
+      "journal": "JAPANESE JOURNAL OF APPLIED PHYSICS"
+    },
+    {
+      "date": "2013-06",
+      "title": "Analysis on the Characteristics of Stamped Base for 2.5 in HDD",
+      "journal": "IEEE TRANSACTIONS ON MAGNETICS"
+    },
+    {
+      "date": "2013-06",
+      "title": "Thermal Deformation of Thermally Assisted Magnetic Recording Head in Binary Gas Mixture at Various Temperatures",
+      "journal": "IEEE TRANSACTIONS ON MAGNETICS"
+    },
+    {
+      "date": "2013-03",
+      "title": "최소제곱평균 추정기법 알고리즘을 이용한 트랙서보패턴 간격 최적화",
+      "journal": "정보저장시스템학회논문집"
+    },
+    {
+      "date": "2013-02",
+      "title": "Dynamic characteristics identification of reactor internals in SMART considering fluid-structure interaction",
+      "journal": "NUCLEAR ENGINEERING AND DESIGN"
+    },
+    {
+      "date": "2013-01",
+      "title": "SAW signal conditioner-based dynamic capacitive sensor for high-speed gap measurement",
+      "journal": "SENSORS AND ACTUATORS A-PHYSICAL"
+    },
+    {
+      "date": "2012-10",
+      "title": "An auto-focus lens actuator using ionic polymer metal composites: design, fabrication and control",
+      "journal": "International Journal of Precision Engineering and Manufacturing"
+    },
+    {
+      "date": "2012-10",
+      "title": "High-speed plasmonic nanolithography with a solid immersion lens-based plasmonic optical head",
+      "journal": "APPLIED PHYSICS LETTERS"
+    },
+    {
+      "date": "2012-09",
+      "title": "열 보조 자기기록 시스템 헤드의 touch-down과 take-off 해석",
+      "journal": "정보저장시스템학회논문집"
+    },
+    {
+      "date": "2012-09",
+      "title": "위상천이 디지털 홀로그래피를 이용한 평판의 표면 평면도 측정",
+      "journal": "정보저장시스템학회논문집"
+    },
+    {
+      "date": "2012-09",
+      "title": "Design of mirror system in digital single lens reflex camera for high-speed continuous shooting",
+      "journal": "MICROSYSTEM TECHNOLOGIES-MICRO-AND NANOSYSTEMS-INFORMATION STORAGE AND PROCESSING SYSTEMS"
+    },
+    {
+      "date": "2012-09",
+      "title": "Analysis of the unloading performance considering dimple-flexure behavior in HDD",
+      "journal": "MICROSYSTEM TECHNOLOGIES-MICRO-AND NANOSYSTEMS-INFORMATION STORAGE AND PROCESSING SYSTEMS"
+    },
+    {
+      "date": "2012-09",
+      "title": "Shock and vibration isolation of laptop hard disk drive using rubber mount",
+      "journal": "MICROSYSTEM TECHNOLOGIES-MICRO-AND NANOSYSTEMS-INFORMATION STORAGE AND PROCESSING SYSTEMS"
+    },
+    {
+      "date": "2012-09",
+      "title": "홀로그래픽 정보저장기기의 재생 이미지 패턴을 이용한 디스크 틸트 오차 측정",
+      "journal": "정보저장시스템학회 논문집"
+    },
+    {
+      "date": "2012-09",
+      "title": "Tracking servo method for holographic data storage using discrete pre-patterns",
+      "journal": "MICROSYSTEM TECHNOLOGIES-MICRO-AND NANOSYSTEMS-INFORMATION STORAGE AND PROCESSING SYSTEMS"
+    },
+    {
+      "date": "2012-09",
+      "title": "Analysis of inter-symbol-interference caused by shift misalignment of two objective lenses in high-NA micro holographic storage",
+      "journal": "MICROSYSTEM TECHNOLOGIES-MICRO-AND NANOSYSTEMS-INFORMATION STORAGE AND PROCESSING SYSTEMS"
+    },
+    {
+      "date": "2012-09",
+      "title": "Improvement of slider off-track vibration through design parameter modifications of a compatible FDB spindle system",
+      "journal": "MICROSYSTEM TECHNOLOGIES-MICRO-AND NANOSYSTEMS-INFORMATION STORAGE AND PROCESSING SYSTEMS"
+    },
+    {
+      "date": "2012-09",
+      "title": "Design of a new triple electro-magnetic optical image stabilization actuator to compensate for hand trembling",
+      "journal": "MICROSYSTEM TECHNOLOGIES-MICRO-AND NANOSYSTEMS-INFORMATION STORAGE AND PROCESSING SYSTEMS"
+    },
+    {
+      "date": "2012-08",
+      "title": "Modal Analysis of Optical Disk Rotating at 15,000 rpm Close to a Rigid Wall",
+      "journal": "JAPANESE JOURNAL OF APPLIED PHYSICS"
+    },
+    {
+      "date": "2012-08",
+      "title": "Application of Solid Immersion Lens-Based Near-Field Recording Technology to High-Speed Plasmonic Nanolithography",
+      "journal": "JAPANESE JOURNAL OF APPLIED PHYSICS"
+    },
+    {
+      "date": "2012-08",
+      "title": "Line Tracking Applied Data Acquisition Method for Holographic Data Storage System",
+      "journal": "JAPANESE JOURNAL OF APPLIED PHYSICS"
+    },
+    {
+      "date": "2012-04",
+      "title": "Effects of dielectric substrate properties for optical phenomena in a nanoscale ridge aperture",
+      "journal": "JOURNAL OF OPTICS"
+    },
+    {
+      "date": "2012-03",
+      "title": "열보조 자기기록 시스템의 로드/언로드 분석",
+      "journal": "정보저장시스템학회 논문집"
+    },
+    {
+      "date": "2012-03",
+      "title": "광디스크 드라이브의 진동 원인 규명 및 유한요소 모델 구축",
+      "journal": "정보저장시스템학회 논문집"
+    },
+    {
+      "date": "2012-03",
+      "title": "집중 소자를 이용한 표면 탄성파 장치 기반의 용량 성 센서 보정 및 이를 이용한 초정밀 간극 측정",
+      "journal": "정보저장시스템학회 논문집"
+    },
+    {
+      "date": "2012-03",
+      "title": "마이크로 홀로그래픽 저장장치의 기계적 에러 보상기법",
+      "journal": "정보저장시스템학회 논문집"
+    },
+    {
+      "date": "2011-10",
+      "title": "Optimal Design of a Ferromagnetic Yoke for Reducing Crosstalk in Optical Image Stabilization Actuators",
+      "journal": "IEEE TRANSACTIONS ON MAGNETICS"
+    },
+    {
+      "date": "2011-10",
+      "title": "Dynamic characteristics of a perforated cylindrical shell for flow distribution in SMART",
+      "journal": "NUCLEAR ENGINEERING AND DESIGN"
+    },
+    {
+      "date": "2011-09",
+      "title": "High-Speed Gap Servo Control for Solid-Immersion-Lens-Based Near-Field Recording System with a Flexible Optical Disk",
+      "journal": "JAPANESE JOURNAL OF APPLIED PHYSICS"
+    },
+    {
+      "date": "2011-09",
+      "title": "통합설계방법을 적용한 가동자석형 3축 액추에이터의 설계",
+      "journal": "정보저장시스템학회 논문집"
+    },
+    {
+      "date": "2011-09",
+      "title": "손 떨림 방지를 위한 OIS액추에이터의 설계",
+      "journal": "정보저장시스템학회 논문집"
+    },
+    {
+      "date": "2011-09",
+      "title": "노치 대역을 개선한 이미지 흔들림 보정 장치의 동특성 향상과 이미지 분석",
+      "journal": "정보저장시스템학회 논문집"
+    },
+    {
+      "date": "2011-09",
+      "title": "Focusing error detection method in microholographic data storage system using polarization characteristics",
+      "journal": "JAPANESE JOURNAL OF APPLIED PHYSICS"
+    },
+    {
+      "date": "2011-07",
+      "title": "Operating Shock Analysis of a Thermally Assisted Magnetic Recording Head Gimbal Assembly Considering the Thermal Effects During Writing to Record the Data",
+      "journal": "IEEE TRANSACTIONS ON MAGNETICS"
+    },
+    {
+      "date": "2011-07",
+      "title": "Investigation of the Dynamic Characteristics of Light Delivery for Thermal Assisted Magnetic Recording",
+      "journal": "IEEE TRANSACTIONS ON MAGNETICS"
+    },
+    {
+      "date": "2011-06",
+      "title": "Increasing the storage density of a page-based holographic data storage system by image upscaling using the PSF of the Nyquist aperture",
+      "journal": "OPTICS EXPRESS"
+    },
+    {
+      "date": "2011-06",
+      "title": "Tracking servo method using reflective optical filter for holographic data storage system",
+      "journal": "MICROSYSTEM TECHNOLOGIES-MICRO-AND NANOSYSTEMS-INFORMATION STORAGE AND PROCESSING SYSTEMS"
+    },
+    {
+      "date": "2011-06",
+      "title": "Improved safety mode considering external shock direction for near-field recording system using SIL",
+      "journal": "MICROSYSTEM TECHNOLOGIES-MICRO-AND NANOSYSTEMS-INFORMATION STORAGE AND PROCESSING SYSTEMS"
+    },
+    {
+      "date": "2011-06",
+      "title": "Analysis of slip characteristics between dimple and flexure in hard disk drives",
+      "journal": "MICROSYSTEM TECHNOLOGIES-MICRO-AND NANOSYSTEMS-INFORMATION STORAGE AND PROCESSING SYSTEMS"
+    },
+    {
+      "date": "2011-06",
+      "title": "Flexible auto balancer design for the reduction of optical disk drive vibration",
+      "journal": "MICROSYSTEM TECHNOLOGIES-MICRO-AND NANOSYSTEMS-INFORMATION STORAGE AND PROCESSING SYSTEMS"
+    },
+    {
+      "date": "2011-06",
+      "title": "Design of a hybrid optical image stabilization actuator to compensate for hand trembling",
+      "journal": "MICROSYSTEM TECHNOLOGIES-MICRO-AND NANOSYSTEMS-INFORMATION STORAGE AND PROCESSING SYSTEMS"
+    },
+    {
+      "date": "2011-06",
+      "title": "Improvement of an asymmetric actuator for optical image stabilization",
+      "journal": "MICROSYSTEM TECHNOLOGIES-MICRO-AND NANOSYSTEMS-INFORMATION STORAGE AND PROCESSING SYSTEMS"
+    },
+    {
+      "date": "2011-05",
+      "title": "Optical design of a single-sided microholographic data-storage system using a diffractive optical element and a blue laser",
+      "journal": "JOURNAL OF OPTICS"
+    },
+    {
+      "date": "2011-04",
+      "title": "Single crystal-like Si patterns for photonic crystal color filters",
+      "journal": "NANOTECHNOLOGY"
+    },
+    {
+      "date": "2011-03",
+      "title": "홀로그래픽 정보 저장장치에서의 간섭 비율 마스크를 이용한 인접 픽셀 간섭의 개선을 위한 연구",
+      "journal": "정보저장시스템학회 논문집"
+    },
+    {
+      "date": "2011-03",
+      "title": "마이크로 홀로그래픽 시스템에서 미디어의 소진효과",
+      "journal": "정보저장시스템학회 논문집"
+    },
+    {
+      "date": "2011-03",
+      "title": "각 다중화 방식의 홀로그래픽 정보저장기기의 양방향틸트 보상시스템 설계",
+      "journal": "정보저장시스템학회 논문집"
+    },
+    {
+      "date": "2011-03",
+      "title": "비대칭 형상을 갖는 슬림형 듀얼 렌즈 액추에이터의 개선",
+      "journal": "정보저장시스템학회 논문집"
+    }
+  ],
+  "awards": [
+    {
+      "title": "26th International Conference on Structural Mechanics in Reactor Technology Poster Award 2022",
+      "contents": "Analysis of dynamic characteristics of reactor vessel including adjacent equipment",
+      "date": "2022-07-11"
+    },
+    {
+      "title": "2022년도 한국원자력학회 춘계학술발표회 우수포스터",
+      "contents": "Methodology for Generating Single Spectrum Considering Height of Reactor Coolant System",
+      "date": "2022-06-03"
+    },
+    {
+      "title": "2019년 한국소음진동공학회 춘계학술대회 논문우수발표상",
+      "contents": "원자로용기 및 내부구조물 형상 경계조건의 보정에 따른 동특성 변화",
+      "date": "2019-10-24"
+    },
+    {
+      "title": "Fellowship & Scholarship Award",
+      "contents": "Bandgap Analysis of Elastic Metamaterial Tunable Vibration Absorber with Electromagnetic Stiffness",
+      "date": "2019-06-27"
+    },
+    {
+      "title": "국제학술상",
+      "contents": "국제 학술활동",
+      "date": "2018-10-18"
+    },
+    {
+      "title": "2018년 한국소음진동공학회 추계학술대회 우수발표논문상",
+      "contents": "페달 진동 감지를 위한 시뮬레이터 설계",
+      "date": "2018-10-17"
+    },
+    {
+      "title": "제 28회 태성에스엔이 CAE conference 아카데믹 경진대회 우수작",
+      "contents": "중성자 조사에 따른 기계적 재료 거동방정식 변화",
+      "date": "2018-09-06"
+    },
+    {
+      "title": "우수업적교수상(연구부문)",
+      "contents": "우수연구업적 교수 표창",
+      "date": "2014-02-19"
+    },
+    {
+      "title": "우수연구실적표창",
+      "contents": "우수업적 교수 표창",
+      "date": "2013-01-31"
+    },
+    {
+      "title": "우수연구실적표창",
+      "contents": "우수업적교수 표창",
+      "date": "2010-12-08"
+    },
+    {
+      "title": "한국소음진동공학회 학술상",
+      "contents": "소음 진동 분야 학술발전에 기여한 공로 수상",
+      "date": "2010-10-28"
+    },
+    {
+      "title": "언더우드특훈교수",
+      "contents": "우수 연구업적",
+      "date": "2010-00"
+    },
+    {
+      "title": "2009년 한국 소음진동공학회 춘계학술대회 포스터 세션 우수 발표",
+      "contents": "패턴미디어에서 트랙추종운동을 고려한 초저 부상 슬라이더의 동적 거동에 대한 수치적 연구",
+      "date": "2009-10-09"
+    },
+    {
+      "title": "INNOVATION IN OPTOMECHATRONIC RESEARCH AWARD",
+      "contents": "Development of Small Sized Actuator for Optical Image Stabilization",
+      "date": "2009-09-23"
+    },
+    {
+      "title": "2008년 정보저장시스템학회 동계학술대회 포스터 세션 우수 발표",
+      "contents": "내충격 성능 향상을 위한 노트북용 하드디스크 드라이브의 구조 동특성 변경",
+      "date": "2008-12-17"
+    },
+    {
+      "title": "APDSC&apos;08 OUTSTANDING POSTER AWARD",
+      "contents": "Improved Gap Servo System Using Brake Pulse for SIL based Near-Field Recording System",
+      "date": "2008-12-16"
+    },
+    {
+      "title": "2008년 한국 소음진동공학회 추계학술대회 포스터 세션 우수 발표",
+      "contents": "유한 요소 해석을 통한 슬림형 광디스크 드라이브의 진동 해석 및 구조동특성 변경",
+      "date": "2008-04-17"
+    },
+    {
+      "title": "2008년 한국 소음진동공학회 추계학술대회 포스터 세션 우수 발표",
+      "contents": "외란 관측기를 이용한 근접장 기록 시스템의 트랙킹 서보성능 향상",
+      "date": "2008-04-17"
+    },
+    {
+      "title": "APDSC&apos;06 OUTSTANDING POSTER AWARD",
+      "contents": "NOVEL GAP CONTROL FOR SIL BASED NEAR-FIELD RECORDING SYSTEM",
+      "date": "2006-08-29"
+    },
+    {
+      "title": "연구업적우수교수",
+      "contents": "연세대학교논문",
+      "date": "2006-06-02"
+    },
+    {
+      "title": "APDSC&apos;04 OUTSTANDING POSTER AWARD",
+      "contents": "Design and Optimization of a Linear Actuator for Sub-miniature Optical Stroage Devices",
+      "date": "2004-09-29"
+    },
+    {
+      "title": "우수연구성과 30선",
+      "contents": "3축 엑츄에이터 개발 및 통합해석 툴 개발",
+      "date": "2003-05-06"
+    }
+  ],
+  "conferences": [
+    {
+      "title": "전자기형 레이저 고속조준기 구조설계 및 구동 신뢰성 검증 연구",
+      "conference": "한국소음진동공학회 2021년 춘계 소음진동 학술대회",
+      "period": "2021.05.26~2021.05.29"
+    },
+    {
+      "title": "Simulation and Fabrication to the Speckle Reduction in Compact Optical Engine for Laser Projection Displays",
+      "conference": "LDC &apos;17 (Laser Display and Lighting Conference)",
+      "period": "2017.04.19~2017.04.21"
+    },
+    {
+      "title": "Non-zero Padding Algorithm for Expanding Field-of-View in Digital Holography",
+      "conference": "ISOM &apos;16 (International Symposium on Optical Memory)",
+      "period": "2016.10.16~2016.10.20"
+    },
+    {
+      "title": "Scalar-based Numerical Simulation Model for the Speckle Pattern with Considering Human Perception in Laser Projection Display",
+      "conference": "ISOM &apos;16 (International Symposium on Optical Memory)",
+      "period": "2016.10.16~2016.10.20"
+    },
+    {
+      "title": "Numerical Speckle Simulation Model Using Generalized Harvey-Shack Method",
+      "conference": "IAO &apos;16 (Imaging and Applied Optics)",
+      "period": "2016.07.25~2016.07.28"
+    },
+    {
+      "title": "축소모형 실험 및 상사성 해석에 기반한 APR1400원자로 내부 구조물의 동특성 예측",
+      "conference": "2014년도 KPVP 연차학술대회",
+      "period": "2014.12.04~2014.12.05"
+    },
+    {
+      "title": "Mach-Zehnder Interferometer using Small Diameter Single Mode Fiber for Refractive Index Sensing",
+      "conference": "Asia Communications and Photonics Conference",
+      "period": "2014.11.11~2014.11.14"
+    },
+    {
+      "title": "온도에 따른 형상기억합금 AF 액추에이터의 동특성 변화",
+      "conference": "대한기계학회 2014년도 추계학술대회",
+      "period": "2014.11.11~2014.11.14"
+    },
+    {
+      "title": "연성해석을 이용한 원통형 전자기식 엑추에이터의 설계",
+      "conference": "대한기계학회 2014년도 추계학술대회",
+      "period": "2014.11.11~2014.11.14"
+    },
+    {
+      "title": "Hertzian Contact Force에 의한 HDD Pivot Ball Bearing의 동적 반응 분석",
+      "conference": "2014 추계 소음진동학술대회",
+      "period": "2014.10.29~2014.10.31"
+    },
+    {
+      "title": "하드디스크 드라이브에서 슬라이더의 DLC층 손상에 의한 진동 특성 변화에 관한 연구",
+      "conference": "2014 추계 소음진동학술대회",
+      "period": "2014.10.29~2014.10.31"
+    },
+    {
+      "title": "하드 디스크 드라이브 동작 상태 충격 시에 램프 충돌 유무에 따른 디스크와 슬라이더의 거동해석",
+      "conference": "2014 추계 소음진동학술대회",
+      "period": "2014.10.29~2014.10.31"
+    },
+    {
+      "title": "구조 동특성 분석을 통한 군용 차량 프레임 진동 저감",
+      "conference": "2014 추계 소음진동학술대회",
+      "period": "2014.10.29~2014.10.31"
+    },
+    {
+      "title": "주행 시험을 통한 군용 차량 구조 동특성 분석",
+      "conference": "2014 추계 소음진동학술대회",
+      "period": "2014.10.29~2014.10.31"
+    },
+    {
+      "title": "Dynamic Substructuring 기법을 이용한 원통형 접수구조물의 동특성 확인",
+      "conference": "2014 추계 소음진동학술대회",
+      "period": "2014.10.29~2014.10.31"
+    },
+    {
+      "title": "표면탄성파를 이용한 이송장치의 IDT 형상변화에 따른 특성 연구",
+      "conference": "2014 추계 소음진동학술대회",
+      "period": "2014.10.29~2014.10.31"
+    },
+    {
+      "title": "MLCC에 의해 기판에서 발생하는 소음 분석 및 예측",
+      "conference": "2014 추계 소음진동학술대회",
+      "period": "2014.10.29~2014.10.31"
+    },
+    {
+      "title": "적층 세라믹 콘덴서의 압전 유한요소 해석모델 구축",
+      "conference": "2014 추계 소음진동학술대회",
+      "period": "2014.10.29~2014.10.31"
+    },
+    {
+      "title": "Barium Titanate의 재료 특성을 고려한 MLCC의 거동 분석",
+      "conference": "2014 추계 소음진동학술대회",
+      "period": "2014.10.29~2014.10.31"
+    },
+    {
+      "title": "철도 차량용 현가장치를 위한 강인 제어기 설계",
+      "conference": "한국정밀공학회 2014 년도 추계학술대회",
+      "period": "2014.10.29~2014.10.31"
+    },
+    {
+      "title": "3D Measurement Using Phase Shifting Digital Holography and Image Recognition",
+      "conference": "International Symposium on Optical Memory 2014",
+      "period": "2014.10.20~2014.10.23"
+    },
+    {
+      "title": "Plasmonic Lithography Using an Active Nanogap-Controlled Solid Immersion Lens-Based Plasmonic Optical Head with a Sharp-Ridged Aperture",
+      "conference": "International Symposium on Optical Memory 2014",
+      "period": "2014.10.20~2014.10.23"
+    },
+    {
+      "title": "Fabrication of plasmonic nanohole array for fiber-optic chemical sensing",
+      "conference": "International Conference of Manufacturing Technology Engineers (ICMTE) 2014",
+      "period": "2014.09.30~2014.10.02"
+    },
+    {
+      "title": "A study on dynamic behaviors of slider considering ramp disk contact during operational shock",
+      "conference": "The 12th International Conference on Motion and Vibration",
+      "period": "2014.08.03~2014.08.07"
+    },
+    {
+      "title": "A study on dynamic behaviors of integrated reactor internals about an earthquake",
+      "conference": "The 12th International Conference on Motion and Vibration",
+      "period": "2014.08.03~2014.08.07"
+    },
+    {
+      "title": "A FLYING STABILITY OF THE SLIDER WITH DAMAGED DLC LAYER BY CONFINED OPTICAL ENERGY IN TAMR SYSTEM",
+      "conference": "ASME 2014 Conference on Information Storage and Processing Systems (ISPS2014)",
+      "period": "2014.06.23~2014.06.24"
+    },
+    {
+      "title": "ANALYSIS OF THERMAL FLYING-HEIGHT CONTROL SYSTEM ABOUT HUMID AIR CONDITION IN HARD DISK DRIVE",
+      "conference": "ASME 2014 Conference on Information Storage and Processing Systems (ISPS2014)",
+      "period": "2014.06.23~2014.06.24"
+    },
+    {
+      "title": "Shock Analysis and structure dynamics modificiation of shock container for cartridge in a blu-ray disc type archiving system",
+      "conference": "ASME 2014 Conference on Information Storage and Processing Systems (ISPS2014)",
+      "period": "2014.06.23~2014.06.24"
+    },
+    {
+      "title": "NOVEL METHOD OF CROSSTALK ANALYSIS IN MULTIPLE IMAGE ENCRYPTION AND IMAGE QUALITY EQUALZTION TECHNOLOGY",
+      "conference": "ASME 2014 Conference on Information Storage and Processing Systems (ISPS2014)",
+      "period": "2014.06.23~2014.06.24"
+    },
+    {
+      "title": "ADVANCED OPERATIONAL SHOCK ANALYSIS CONSIDERING RAMP-DISK CONTACT FOR 2.5 INCH STAMPED BASE HDD",
+      "conference": "ASME 2014 Conference on Information Storage and Processing Systems (ISPS2014)",
+      "period": "2014.06.23~2014.06.24"
+    },
+    {
+      "title": "EFFICIENT AIR BEARING MODELING FOR OPERATIONAL SHOCK ANALYSIS IN 2.5-INCH HDD",
+      "conference": "ASME 2014 Conference on Information Storage and Processing Systems (ISPS2014)",
+      "period": "2014.06.23~2014.06.24"
+    },
+    {
+      "title": "DESIGN PARAMETER STUDY ON THE INFLUENCE OF ANTI-SHOCK PERFORMANCE DURING OPERATIONAL CONDITION FOR A 2.5-INCH HDD",
+      "conference": "ASME 2014 Conference on Information Storage and Processing Systems (ISPS2014)",
+      "period": "2014.06.23~2014.06.24"
+    },
+    {
+      "title": "Simplified model design of multilayer ceramic capacitor for acoustic noise and vibration analysis",
+      "conference": "ASME 2014 Conference on Information Storage and Processing Systems (ISPS2014)",
+      "period": "2014.06.23~2014.06.24"
+    },
+    {
+      "title": "철도차량용 능동현가시스템을 위한 전자기식 액추에이터의 코깅력 저감",
+      "conference": "한국물류과학기술학회 2014 춘계 학술대회",
+      "period": "2014.06.10~2014.06.11"
+    },
+    {
+      "title": "MLCC에서 발생하는 진동의 비선형성에 관한 연구",
+      "conference": "2014 춘계 소음진동학술대회",
+      "period": "2014.04.23~2014.04.25"
+    },
+    {
+      "title": "표면 탄성파를 이용한 정밀 이송제어 장치의특성 분석 및 설계",
+      "conference": "2014 춘계 소음진동학술대회",
+      "period": "2014.04.23~2014.04.25"
+    },
+    {
+      "title": "Reduced Model Design of Multilayer Ceramic Capacitor for Vibration Analysis",
+      "conference": "2014 춘계 소음진동학술대회",
+      "period": "2014.04.23~2014.04.25"
+    },
+    {
+      "title": "Unbalance force에 의한 HDD pivot ball bearing의 동적 반응 분석",
+      "conference": "2014 춘계 소음진동학술대회",
+      "period": "2014.04.23~2014.04.25"
+    },
+    {
+      "title": "하드디스크드라이브의 TFC 시스템에서의 슬라이더의 충돌면적을 고려한 마찰열 발생에 관한 연구",
+      "conference": "2014 춘계 소음진동학술대회",
+      "period": "2014.04.23~2014.04.25"
+    },
+    {
+      "title": "축소모형을 이용한 APR 1400 원자로 내부구조물의 동특성 예측",
+      "conference": "2014 춘계 소음진동학술대회",
+      "period": "2014.04.23~2014.04.25"
+    },
+    {
+      "title": "고온동작을 고려한 SMA AF 액추에이터의 바이어스 스프링 설계",
+      "conference": "2014년도 춘계 대한기계학회 동역학 및 제어부문",
+      "period": "2014.04.16~2014.04.18"
+    },
+    {
+      "title": "철도차량용 능동현가시스템을 위한 전자기식 액추에이터",
+      "conference": "2014년도 춘계 대한기계학회 동역학 및 제어부문",
+      "period": "2014.04.16~2014.04.18"
+    },
+    {
+      "title": "SIL 기반의 갭서보 시스템에서 협대역 외란을 억제하기 위한 주파수 예측 필터설계",
+      "conference": "2014년도 정보저장시스템학회 학술대회",
+      "period": "2014.02.28~2014.02.28"
+    },
+    {
+      "title": "적층 세라믹 콘덴서의 내부설계에 따른 진동 및 소음 경향성 분석",
+      "conference": "2014년도 정보저장시스템학회 학술대회",
+      "period": "2014.02.28~2014.02.28"
+    },
+    {
+      "title": "열보조자기기록 시스템에서의 에폭시에 의한 슬라이더의 부상특성에 관한 연구",
+      "conference": "2014년도 정보저장시스템학회 학술대회",
+      "period": "2014.02.28~2014.02.28"
+    },
+    {
+      "title": "능동현가시스템을 위한 원통형 전자기식 액추에이터의 최적설계",
+      "conference": "2013년도 추계 대한기계학회 동역학 및 제어부문",
+      "period": "2013.12.18~2013.12.20"
+    },
+    {
+      "title": "원통형 액추에이터의 손실을 고려한 열 특성 분석",
+      "conference": "2013년도 추계 대한기계학회 동역학 및 제어부문",
+      "period": "2013.12.18~2013.12.20"
+    },
+    {
+      "title": "Advanced Operational Shock Analysis for 2.5inch stamped base HDD",
+      "conference": "Asia-Pacific Data Storage Conference 2013",
+      "period": "2013.11.20~2013.11.22"
+    },
+    {
+      "title": "A Thermal Effect of Coating Layer of Slider in Thermally Assisted Magnetic Recording",
+      "conference": "Asia-Pacific Data Storage Conference 2013",
+      "period": "2013.11.20~2013.11.22"
+    },
+    {
+      "title": "Selective Interpolation Method for Parallel Phase-shifting Digital Holography",
+      "conference": "Asia-Pacific Data Storage Conference 2013",
+      "period": "2013.11.20~2013.11.22"
+    },
+    {
+      "title": "하드디스크 드라이브 비 동작 상태 충격 시에 스핀들 시스템의 경계조건에 따른 영향에 대한 연구",
+      "conference": "한국정밀공학회 2013 추계학술대회",
+      "period": "2013.10.30~2013.11.01"
+    },
+    {
+      "title": "APR1400 원자로 내부구조물의 유체-구조 연성에 따른 동특성 분석",
+      "conference": "2013년도 추계 소음진동공학회 학술대회",
+      "period": "2013.10.23~2013.10.25"
+    },
+    {
+      "title": "Intelligence Compensation Algorithm for Data Restoration in Holographic Data Storage System",
+      "conference": "ASME 2013 Conference on Information Storage and Processing Systems",
+      "period": "2013.06.24~2013.06.25"
+    },
+    {
+      "title": "A modification of stamped base to improve operational shock performance in 2.5 inch HDD",
+      "conference": "15th Asia Pacific Vibration Conference",
+      "period": "2013.06.02~2013.06.06"
+    },
+    {
+      "title": "A Study on Thermal Effect of Thermally Assisted Magnetic Recording System with Laser Diode Mount Light Delivery in Air-helium Mixture",
+      "conference": "15th Asia Pacific Vibration Conference",
+      "period": "2013.06.02~2013.06.06"
+    },
+    {
+      "title": "Dynamic Analysis of Reactor Internals in SMART for Structural Integrity Evaluation",
+      "conference": "15th Asia Pacific Vibration Conference",
+      "period": "2013.06.02~2013.06.06"
+    },
+    {
+      "title": "Modification of Auto Ball Balancer for Reducing Vibration on Half Height Optical Disk Drive",
+      "conference": "15th Asia Pacific Vibration Conference",
+      "period": "2013.06.02~2013.06.06"
+    },
+    {
+      "title": "Analysis of acoustic noise and mechanical vibration generated by MLCCs",
+      "conference": "15th Asia Pacific Vibration Conference",
+      "period": "2013.06.02~2013.06.06"
+    },
+    {
+      "title": "곡선구간 능동현가장치 탑재 철도차량의 제어에 따른 횡 방향 진동 특성 분석",
+      "conference": "한국정밀공학회 2013 춘계학술대회",
+      "period": "2013.05.29~2013.05.31"
+    },
+    {
+      "title": "선형 공진 진동자를 사용한 스마트 폰의 진동 특성 향상",
+      "conference": "2013년도 춘계 소음진동 학술대회",
+      "period": "2013.04.25~2013.04.26"
+    },
+    {
+      "title": "하드디스크 스탬프 베이스의 엠보싱 효과에 따른 동특성 변화 연구",
+      "conference": "2013년도 춘계 소음진동 학술대회",
+      "period": "2013.04.25~2013.04.26"
+    },
+    {
+      "title": "적층형 세라믹 콘덴서에 의해 발생하는 진동 및 소음 메커니즘 분석",
+      "conference": "2013년도 춘계 소음진동 학술대회",
+      "period": "2013.04.25~2013.04.26"
+    },
+    {
+      "title": "유전체의 압전효과를 고려한 적층 세라믹 콘덴서의 해석 모델 구축",
+      "conference": "2013년도 춘계 소음진동 학술대회",
+      "period": "2013.04.25~2013.04.26"
+    },
+    {
+      "title": "Measurement of a Subwavelength Resolution using High-NA Phase-Conjugating Holography with Optical Refocusing",
+      "conference": "International Workshop on Holography and related Technologies 2012",
+      "period": "2012.11.12~2012.11.14"
+    },
+    {
+      "title": "Thermal Protrusion of thermally assisted magnetic recording for binary gas mixture with temperature",
+      "conference": "Asia-Pacific Magnetic Recording Conference (APMRC 2012)",
+      "period": "2012.10.31~2012.11.02"
+    },
+    {
+      "title": "Design modification to improve anti-shock performance of the stamped base using 2.5 inch HDD",
+      "conference": "Asia-Pacific Magnetic Recording Conference (APMRC 2012)",
+      "period": "2012.10.31~2012.11.02"
+    },
+    {
+      "title": "MLCC 에서 발생하는 소음 메커니즘 분석",
+      "conference": "2012년도 추계 소음진동 학술대회",
+      "period": "2012.10.25~2012.10.27"
+    },
+    {
+      "title": "MLCC 에서 발생하는 소음 저감방법 연구",
+      "conference": "2012년도 추계 소음진동 학술대회",
+      "period": "2012.10.25~2012.10.27"
+    },
+    {
+      "title": "열보조자기기록시스템에서의 슬라이더 부착을 위한 에폭시에 의한 영향",
+      "conference": "2012년도 추계 소음진동 학술대회",
+      "period": "2012.10.25~2012.10.27"
+    },
+    {
+      "title": "작동상태에서의 충격에 의한 디스크와 HSA의 거동해석",
+      "conference": "2012년도 추계 소음진동 학술대회",
+      "period": "2012.10.25~2012.10.27"
+    },
+    {
+      "title": "하드디스크드라이브의 TFC 형상 확인 및 nano gap의 영향에 따른 연구",
+      "conference": "2012년도 추계 소음진동 학술대회",
+      "period": "2012.10.25~2012.10.27"
+    },
+    {
+      "title": "철도차량 능동현가장치용 전자기식 액추에이터의 열 해석",
+      "conference": "2012년도 추계 소음진동 학술대회",
+      "period": "2012.10.25~2012.10.27"
+    },
+    {
+      "title": "Fabrication of a nano-metallic plasmonic lens with complex geometry embedded in optical material",
+      "conference": "International Conference of Manufacturing Technology Engineers 2012",
+      "period": "2012.10.18~2012.10.19"
+    },
+    {
+      "title": "Imbalance Disc Analysis Considering Servo System for Holographic Disc Drive",
+      "conference": "International Symposium on Optical Memory 2012",
+      "period": "2012.09.30~2012.10.04"
+    },
+    {
+      "title": "Nano-Gap Servo Algorithm for a High-Speed Plasmonic Nanolithography",
+      "conference": "International Symposium on Optical Memory 2012(ISOM&apos;12)",
+      "period": "2012.09.30~2012.10.04"
+    },
+    {
+      "title": "High speed plasmonic nanolithography with plasmonic solid immersion lens optical head",
+      "conference": "International Symposium on Optical Memory",
+      "period": "2012.09.30~2012.10.04"
+    },
+    {
+      "title": "Line Tracking applied Synchronous Mark for Holographic Data Storage System",
+      "conference": "International Symposium on Optical Memory 2012",
+      "period": "2012.09.30~2012.10.04"
+    },
+    {
+      "title": "Improvement of SNR and BER in Holographic Data Storage using Adjusted CLSF Filter",
+      "conference": "International Symposium on Optical Memory 2012(ISOM&apos;12)",
+      "period": "2012.09.30~2012.10.04"
+    },
+    {
+      "title": "A study on flying stability of TAMR system with LD mount light delivery",
+      "conference": "International Symposium on Optical Memory 2012(ISOM&apos;12)",
+      "period": "2012.09.30~2012.10.04"
+    },
+    {
+      "title": "Design a new type guide feeding system in an optical disk drive",
+      "conference": "International Symposium on Optical Memory 2012",
+      "period": "2012.09.30~2012.10.04"
+    },
+    {
+      "title": "Investigation of Unloading Performance for Change of FDB Transient Behavior in Low Temperature",
+      "conference": "The 2012 IEEE/ASME International Conference on Advanced Intelligent Mechatronics",
+      "period": "2012.07.11~2012.07.14"
+    },
+    {
+      "title": "Design of auto-focusing actuator with flexure hinge for mobile devices",
+      "conference": "2012 ASME-ISPS /JSME-IIP Joint International Conference on Micromechatronics for Information and Precision Equipment",
+      "period": "2012.06.18~2012.06.20"
+    },
+    {
+      "title": "Abberation analysis of interferogram using a virtual reference wave",
+      "conference": "2012 ASME-ISPS /JSME-IIP Joint International Conference on Micromechatronics for Information and Precision Equipment",
+      "period": "2012.06.18~2012.06.20"
+    },
+    {
+      "title": "DESIGN OF FEEDING SYSTEM IN OPTICAL DISK DRIVE",
+      "conference": "2012 ASME-ISPS /JSME-IIP Joint International Conference on Micromechatronics for Information and Precision Equipment",
+      "period": "2012.06.18~2012.06.20"
+    },
+    {
+      "title": "Contrast enhancement of polarization and simultaneous recording and reconstruction of two measure object in TIR holography",
+      "conference": "2012 ASME-ISPS/JSME-IIP Joint International Conference on Micromechatronics for Information and Precision Equipment (MIPE2012)",
+      "period": "2012.06.18~2012.06.20"
+    },
+    {
+      "title": "Effect of temperature and fraction ratio of helium for performance of thermal flying control slider in air-helium gas mixture at head disk interface",
+      "conference": "2012 ASME-ISPS/JSME-IIP Joint International Conference on Micromechatronics for Information and Precision Equipment (MIPE2012)",
+      "period": "2012.06.18~2012.06.20"
+    },
+    {
+      "title": "Analysis of Touch Phenomena between Disk and Head Stack Assembly in Operational Shock",
+      "conference": "2012 ASME-ISPS /JSME-IIP Joint International Conference on Micromechatronics for Information and Precision Equipment",
+      "period": "2012.06.18~2012.06.20"
+    },
+    {
+      "title": "Integrated Design of a Tubular Permanent Magnet Actuator for Improved Thrust and Reduced Cogging Force",
+      "conference": "INTERMAG2012",
+      "period": "2012.05.07~2012.05.11"
+    },
+    {
+      "title": "Development of a voice coil actuator for auto-focusing using double ferromagnetic yoke array in cideo camera",
+      "conference": "INTERMAG2012",
+      "period": "2012.05.08~2012.05.11"
+    },
+    {
+      "title": "원자로 내부 다공구조물의 설계변수에 따른 유체의 부가질량효과 확인",
+      "conference": "한국 소음진동공학회 2012년 춘계학술대회",
+      "period": "2012.04.26~2012.04.28"
+    },
+    {
+      "title": "MLCC에서 발생하는 소음 저감을 위한 설계변수 설정",
+      "conference": "한국 소음진동공학회 2012년 춘계학술대회",
+      "period": "2012.04.26~2012.04.28"
+    },
+    {
+      "title": "수냉시스템을 고려한 원통형 전자기식 액추에이터의 설계",
+      "conference": "한국 소음진동공학회 2012년 춘계학술대회",
+      "period": "2012.04.26~2012.04.28"
+    },
+    {
+      "title": "Experimental Verification of Triple EM Actuator",
+      "conference": "한국 소음진동공학회 2012년 춘계학술대회",
+      "period": "2012.04.26~2012.04.28"
+    },
+    {
+      "title": "광디스크 드라이브 측압 안정화를 위한 가이드 피드 설계",
+      "conference": "한국 소음진동공학회 2012년 춘계학술대회",
+      "period": "2012.04.26~2012.04.28"
+    },
+    {
+      "title": "베어링 위치에 따른 FDB 스핀들 모터의 락킹모드",
+      "conference": "한국 소음진동공학회 2012년 춘계학술대회",
+      "period": "2012.04.26~2012.04.27"
+    },
+    {
+      "title": "유체-구조연성 해석의 상사성을 이용한 동축 원통형 구조물의 동특성 해석",
+      "conference": "한국 소음진동공학회 2012년 춘계학술대회",
+      "period": "2012.04.26~2012.04.28"
+    },
+    {
+      "title": "접수된 동축 원통형 구조물의 간극유체를 고려한 유한요소모델링",
+      "conference": "한국 소음진동공학회 2012년 춘계학술대회",
+      "period": "2012.04.26~2012.04.28"
+    },
+    {
+      "title": "하드디스크의 언로드 과정에서 로테이션과 슬립 현상을 고려한 딤플-플렉셔간 거동 연구",
+      "conference": "2012년도 춘계 소음진동 학술대회",
+      "period": "2012.04.26~2012.04.27"
+    },
+    {
+      "title": "마스크리스 리소그래피 시스템에서 측정신호를 이용한 외란 대응 보상기의 설계",
+      "conference": "2012 대한기계학회 동역학 및 제어부문 춘계학술대회",
+      "period": "2012.04.11~2012.04.13"
+    },
+    {
+      "title": "연성해석을 이용한 원통형 전자기식 액추에이터 설계",
+      "conference": "대한기계학회 2012년도 동역학 및 제어부문 춘계학술대회",
+      "period": "2012.04.11~2012.04.13"
+    },
+    {
+      "title": "냉각시스템을 고려한 원통형 전자기식 선형 액추에이터의 동특성 연구",
+      "conference": "대한기계학회 2012년도 동역학 및 제어부문 춘계학술대회",
+      "period": "2012.04.11~2012.04.13"
+    },
+    {
+      "title": "Increasing Storage Density of Page-based Holographic Data Storage System by Image Restoration using PSF of Nyquist",
+      "conference": "Joint International Symposium on Optical Memory & Optical Data Storage (ISOM/ODS)",
+      "period": "2011.07.17~2011.07.20"
+    },
+    {
+      "title": "TWO-PORT NETWORK MODEL OF FLUID-LOADED SAW DELAY-LINE SENSORS",
+      "conference": "ASME 2011 International Mechanical Engineering Congress & Exposition",
+      "period": "2011.11.11~2011.11.17"
+    },
+    {
+      "title": "능가현가시스템을 위한 원통형 전자기식 액추에이터의 설계",
+      "conference": "한국소음진동공학회 2011년 추계학술대회",
+      "period": "2011.10.27~2011.10.28"
+    },
+    {
+      "title": "광디스크 드라이브 가이드피드의 측압 안정화를 위한 실험 및 유한요소해석",
+      "conference": "한국소음진동공학회 2011년 추계학술대회",
+      "period": "2011.10.27~2011.10.28"
+    },
+    {
+      "title": "전파 경로상의 유체에 의한 표면 탄성파 장치의 응답 특성 해석",
+      "conference": "한국소음진동공학회 2011년 추계학술대회",
+      "period": "2011.10.27~2011.10.28"
+    },
+    {
+      "title": "3자유도 비선형 Head-Disk Interface 유한요소모델을 통한 Touch-Down Harmonic Frequency 해석 및 동 특성에 관한 연구",
+      "conference": "한국소음진동공학회 2011년 추계학술대회",
+      "period": "2011.10.27~2011.10.28"
+    },
+    {
+      "title": "헬륨 상태를 고려한 하드디스크드라이브의 TFC 분석",
+      "conference": "한국소음진동공학회 2011년 추계학술대회",
+      "period": "2011.10.27~2011.10.28"
+    },
+    {
+      "title": "유한요소 해석을 이용한 일체형원자로 축소모형의 자유진동 해석",
+      "conference": "한국소음진동공학회 2011년 추계학술대회",
+      "period": "2011.10.27~2011.10.28"
+    },
+    {
+      "title": "유체-구조 연성 해석의 상사성을 이용한 원자로 내부구조물의 동특성 예측",
+      "conference": "한국 소음진동공학회 2011년 추계학술대회",
+      "period": "2011.10.27~2011.10.28"
+    },
+    {
+      "title": "Modal Test of Scaled-down Reactor Internals in SMART considering the Fluid-Structure Interaction",
+      "conference": "ASME 2011 Small Modular Reactors Symposium",
+      "period": "2011.09.28~2011.09.30"
+    },
+    {
+      "title": "Hydroelastic Modal Analysis of the Perforated Cylindrical Shell in SMART",
+      "conference": "ASME 2011 Small Modular Reactors Symposium",
+      "period": "2011.09.28~2011.09.30"
+    },
+    {
+      "title": "Shift and Polarization Multiplexing for SIL Based Near-Field Holographic Recording",
+      "conference": "ISOM/ODS 2011",
+      "period": "2011.07.17~2011.07.20"
+    },
+    {
+      "title": "Increasing Storage Density of Page-based Holographic Data Storage",
+      "conference": "ISOM/ODS 2011",
+      "period": "2011.07.17~2011.07.20"
+    },
+    {
+      "title": "Application of Solid Immersion Lens Based Near-Field Recording Technology to High Speed Nano Patterning",
+      "conference": "ISOM/ODS 2011",
+      "period": "2011.07.17~2011.07.20"
+    },
+    {
+      "title": "Shock Isolation of Optical Pickup in Optical Disk Drive",
+      "conference": "ISOM/ODS 2011",
+      "period": "2011.07.17~2011.07.20"
+    },
+    {
+      "title": "Application of SIL based Near Field Recording Technology to High Speed Nano Patterning",
+      "conference": "Joint International Symposium on Optical Memory & Optical Data Storage (ISOM/ODS)",
+      "period": "2011.07.17~2011.07.20"
+    },
+    {
+      "title": "Dynamic Characteristics of Optical Disk over 15,000 rpm Close to a Rigid Wall",
+      "conference": "ISOM/ODS 2011",
+      "period": "2011.07.17~2011.07.20"
+    },
+    {
+      "title": "Line Tracking applied Data Acquisition Method for Holographic Data Storage",
+      "conference": "ISOM/ODS 2011",
+      "period": "2011.07.17~2011.07.21"
+    },
+    {
+      "title": "Design of Triple Electro-Magnetic Optical Image Stabilzation Actuator to Compensate For Hand Trembling",
+      "conference": "ISPS&apos;11",
+      "period": "2011.07.13~2011.07.14"
+    },
+    {
+      "title": "Vibration Analysis and Reduction of Slot-Type Optical Disk Drive",
+      "conference": "ISPS&apos;11",
+      "period": "2011.07.13~2011.07.14"
+    },
+    {
+      "title": "Analysis of FDB Motor Dynamic Characteristics for Reducing Slider Off-Track Virbation Due to Disk Vibration",
+      "conference": "ISPS&apos;11",
+      "period": "2011.07.13~2011.07.14"
+    },
+    {
+      "title": "Effects of Micrograting with Shift Misalignment of Recording Beams in High-NA Micro Holographic Storage",
+      "conference": "ISPS&apos;11",
+      "period": "2011.07.13~2011.07.14"
+    },
+    {
+      "title": "Ramp and Suspension Design to Reduce Dimple-Flexure Slip during the Unload Process",
+      "conference": "ISPS&apos;11",
+      "period": "2011.07.13~2011.07.14"
+    },
+    {
+      "title": "Design of Mirror System in Digital Single Lnes Reflex Camera for High-Speed Continuous Shooting",
+      "conference": "ISPS&apos;11",
+      "period": "2011.07.13~2011.07.14"
+    },
+    {
+      "title": "Shock and Vibration Isolation of Laptop Hard Disk Drive Using Rubber Mount",
+      "conference": "ISPS&apos;11",
+      "period": "2011.07.13~2011.07.14"
+    },
+    {
+      "title": "TRACKING SERVO METHOD USING DISCRETE PRE-PATTERNS FOR HOLOGRAPHIC DATA STORAGE",
+      "conference": "ISPS&apos;11",
+      "period": "2011.06.13~2011.06.14"
+    },
+    {
+      "title": "MARK POSITION RECORDING FOR MICRO HOLOGRAPHIC STORAGE SYSTEM",
+      "conference": "ISPS&apos;11",
+      "period": "2011.06.13~2011.06.14"
+    },
+    {
+      "title": "홀로그래픽 정보저장기기의 트래킹 서보 제어를 위한 서보 패턴 연구",
+      "conference": "한국정밀공학회 2011년도 춘계학술대회",
+      "period": "2011.06.01~2011.06.03"
+    },
+    {
+      "title": "마이크로 홀로그래픽 저장장치의 기록공차",
+      "conference": "광전자 및 광통신 학술회의",
+      "period": "2011.05.25~2011.05.27"
+    },
+    {
+      "title": "고체침지렌즈 기반의 근접장 홀로그래픽 기록시스템의 설계",
+      "conference": "광전자 및 광통신 학술회의",
+      "period": "2011.05.25~2011.05.27"
+    },
+    {
+      "title": "모바일 장치의 손떨림 보정 시스템에 대한 기구적 영향의 실험적 검증",
+      "conference": "대한기계학회 2011년도 동역학 및 제어부문 춘계학술대회",
+      "period": "2011.05.25~2011.05.27"
+    },
+    {
+      "title": "모바일 장치의 손떨림 보정 시스템에 대한 기구적 영향의 실험적 검증",
+      "conference": "대한기계확회 2011년도 동역학 및 제어부문 춘계학술대회",
+      "period": "2011.05.25~2011.05.27"
+    },
+    {
+      "title": "Dynamic Characteristics of Tubular Permanent Magnet Actuator for an Acitive Suspension System of a Railway Vehicle",
+      "conference": "The Second Korea-Japan Joint Symposium on Dynamics and Cotrol",
+      "period": "2011.05.25~2011.05.27"
+    },
+    {
+      "title": "모바일 장치의 손떨림 보정 시스템에 대한 기구적 영향의 실험적 검증",
+      "conference": "대한기계학회 2011년도 동역학 및 제어부문 춘계학술대회",
+      "period": "2011.05.25~2011.05.27"
+    },
+    {
+      "title": "Optimal Design of a Ferromagnetic Yoke for Reducing Crosstalk in Optical Image Stabilization Actuators",
+      "conference": "InterMag 2011",
+      "period": "2011.04.25~2011.04.29"
+    },
+    {
+      "title": "연성해석을 이용한 원통형 전자기식 액추에이터 설계",
+      "conference": "한국소음진동공학회 2011년도 춘계학술대회",
+      "period": "2011.04.27~2011.04.29"
+    },
+    {
+      "title": "광픽업의 내충격 성능 향상을 위한 완충 구조 설계",
+      "conference": "한국소음진동공학회 2011년도 춘계학술대회",
+      "period": "2011.04.27~2011.04.29"
+    },
+    {
+      "title": "모터 동적 특성을 고려한 언로드 성능 변화 연구",
+      "conference": "한국소음진동공학회 2011년도 춘계학술대회",
+      "period": "2011.04.27~2011.04.29"
+    },
+    {
+      "title": "언로드 성능향상을 위한 로드/언로드 시스템 매개변수 연구",
+      "conference": "한국소음진동공학회 2011년도 춘계학술대회",
+      "period": "2011.04.27~2011.04.29"
+    },
+    {
+      "title": "유체 저장 용기 내에서의 슬로싱 현상에 관한 매개변수 연구",
+      "conference": "한국소음진동공학회 2011년도 춘계학술대회",
+      "period": "2011.04.27~2011.04.29"
+    },
+    {
+      "title": "탄성 지지된 원통 셸의 수중 동특성 해석",
+      "conference": "한국소음진동공학회 2011년도 춘계학술대회",
+      "period": "2011.04.27~2011.04.29"
+    },
+    {
+      "title": "Design of Tubular Permanent Magnet Actuator using Coupled-field Analysis for High Thrust Force",
+      "conference": "InterMag 2011",
+      "period": "2011.04.25~2011.04.29"
+    },
+    {
+      "title": "모터의 특성을 고려한 로드/언로드시에 성능 연구",
+      "conference": "정보저장시스템학회 2011년도 춘계학술대회",
+      "period": "2011.01.20~2011.01.20"
+    },
+    {
+      "title": "표면 플라즈몬 공명 현상을 이용한 Al 필름에서의 Sharp-Ridge 나노개구 설계",
+      "conference": "정보저장시스템학회 2011년도 춘계학술대회",
+      "period": "2011.01.20~2011.01.20"
+    },
+    {
+      "title": "슬롯형 광디스크 드라이브의 구조변경을 통한 진동저감",
+      "conference": "정보저장시스템학회 2011년도 춘계학술대회",
+      "period": "2011.01.20~2011.01.20"
+    },
+    {
+      "title": "열 보조 자기기록용 HGA의 충격해석",
+      "conference": "정보저장시스템학회 2011년도 춘계학술대회",
+      "period": "2011.01.20~2011.01.20"
+    },
+    {
+      "title": "언로드 성능 향상을 위한 딤플-플랙셔 슬립에 대한 매개변수 연구",
+      "conference": "정보저장시스템학회 2011년도 춘계학술대회",
+      "period": "2011.01.20~2011.01.20"
+    },
+    {
+      "title": "마이크로홀로그래픽 스토로지의 z방향 기록공차분석",
+      "conference": "정보저장시스템학회 2011년도 춘계학술대회",
+      "period": "2011.01.20~2011.01.20"
+    },
+    {
+      "title": "하드디스크 드라이브의 모터 부상높이 변화에 따른 램프 공차 해석",
+      "conference": "정보저장시스템학회 2011년도 춘계학술대회",
+      "period": "2011.01.20~2011.01.20"
+    },
+    {
+      "title": "페이지 기반 홀로그래픽 스토리지를 위한 고해상도 영상 복원 기법",
+      "conference": "정보저장시스템학회 2011년도 춘계학술대회",
+      "period": "2011.01.20~2011.01.20"
+    },
+    {
+      "title": "유전 알고리즘을 이용한 2차원 유연 구조물 설계",
+      "conference": "정보저장시스템학회 2011년도 춘계학술대회",
+      "period": "2011.01.20~2011.01.20"
+    },
+    {
+      "title": "유연매체를 적용한 근접장 기록 시스템의 간극 제어 성능 개선",
+      "conference": "정보저장시스템학회 2011년도 춘계학술대회",
+      "period": "2011.01.20~2011.01.20"
+    },
+    {
+      "title": "홀로그래픽 정보저장장치의 추가 p 편광 빔을 이용한 광 노출시간 보상법",
+      "conference": "정보저장시스템학회 2011년도 춘계학술대회",
+      "period": "2011.01.20~2011.01.20"
+    },
+    {
+      "title": "마이크로 홀로그래픽 시스템에서 미디어의 소진효과",
+      "conference": "정보저장시스템학회 2011년도 춘계학술대회",
+      "period": "2011.01.20~2011.01.20"
+    },
+    {
+      "title": "Active Compensation Method of Exposure Time for Holographic Data Storage System",
+      "conference": "International Workshop on Holographic Memory",
+      "period": "2010.11.15~2010.11.16"
+    },
+    {
+      "title": "Parametric Studies of dimple-flexure slip at the moment of ramp contact in unloading process",
+      "conference": "Asia-Pacific Magnetic Recording Conference (APMRC 2010)",
+      "period": "2010.11.10~2010.11.12"
+    },
+    {
+      "title": "Investigation of unloading performance for motor flying height change during emergency parking",
+      "conference": "Asia-Pacific Magnetic Recording Conference (APMRC 2010)",
+      "period": "2010.11.10~2010.11.13"
+    },
+    {
+      "title": "Operation Shock analysis of a Thermally Assisted Magnetic Recording Syspension considering the Thermal Effects",
+      "conference": "Asia-Pacific Magnetic Recording Conference (APMRC 2010)",
+      "period": "2010.11.10~2010.11.12"
+    },
+    {
+      "title": "Investigation of Dynamic Characteristics of Thermal assisted Magnetic Recording Light Delivery",
+      "conference": "Asia-Pacific Magnetic Recording Conference (APMRC 2010)",
+      "period": "2010.11.10~2010.11.12"
+    },
+    {
+      "title": "Disk Focusing Error Detection Method in Microholographic Data Storage System Using Polarization Characteristics",
+      "conference": "INTERNATIONAL SYMPOSIUM ON OPTICAL MEMORY 2010",
+      "period": "2010.10.24~2010.10.28"
+    },
+    {
+      "title": "Design of a Leaf Spring by the Genetic Algorithm",
+      "conference": "Asia-Pacific Data Storage Conference (APDSC&apos;10)",
+      "period": "2010.10.27~2010.10.29"
+    },
+    {
+      "title": "Improved Anti-shock Air Gap Controller using Acceleration Feedforward Controller for Solid Immersion Lens-Based Near-Field Storage System",
+      "conference": "Asia-Pacific Data Storage Conference (APDSC&apos;10)",
+      "period": "2010.10.27~2010.10.29"
+    },
+    {
+      "title": "램프충격에 의한 언로드 성능에 영향을 미치는 매개변수 연구",
+      "conference": "한국 소음진동공학회 2010년 추계학술대회",
+      "period": "2010.10.27~2010.10.29"
+    },
+    {
+      "title": "모델차수축소법을 이용한 유체 구조 연성해석",
+      "conference": "한국 소음진동공학회 2010년 추계학술대회",
+      "period": "2010.10.27~2010.10.29"
+    },
+    {
+      "title": "모터 부상높이 변화에 따른 언로드 특성 연구",
+      "conference": "한국 소음진동공학회 2010년 추계학술대회",
+      "period": "2010.10.27~2010.10.29"
+    },
+    {
+      "title": "반사 신호를 이용한 용량 성 센서의 신호처리 및 이를 이용한 초정밀 간극 측정",
+      "conference": "한국 소음진동공학회 2010년 추계학술대회",
+      "period": "2010.10.27~2010.10.29"
+    },
+    {
+      "title": "슬롯형 광디스크 드라이브의 진동 해석 및 저감",
+      "conference": "한국 소음진동공학회 2010년 추계학술대회",
+      "period": "2010.10.27~2010.10.29"
+    },
+    {
+      "title": "유한요소법을 이용한 유체와 연성된 다공 평판의 해석",
+      "conference": "한국 소음진동공학회 2010년 추계학술대회",
+      "period": "2010.10.27~2010.10.29"
+    },
+    {
+      "title": "철도 차량용 원통형 선형 구동기의 설계",
+      "conference": "한국 소음진동공학회 2010년 추계학술대회",
+      "period": "2010.10.27~2010.10.29"
+    },
+    {
+      "title": "Prospects of Recording Technologies for Higher Storage Performances",
+      "conference": "Asia-Pacific Data Storage Conference (APDSC&apos;10)",
+      "period": "2010.10.27~2010.10.29"
+    },
+    {
+      "title": "Micro Holographic Recording Characteristic with Defocused Micrograting",
+      "conference": "Asia-Pacific Data Storage Conference (APDSC&apos;10)",
+      "period": "2010.10.27~2010.10.29"
+    },
+    {
+      "title": "Analysis for Tolerance of Pitch Static Attitude of Thermally-Assisted Magnetic Recording System with Optical Fiber and Prism",
+      "conference": "Asia-Pacific Data Storage Conference (APDSC&apos;10)",
+      "period": "2010.10.27~2010.10.29"
+    },
+    {
+      "title": "Air Gap Control Algorithm Technologies for High NA Near-Field Storage System using Solid Immersion Lens",
+      "conference": "INTERNATIONAL SYMPOSIUM ON OPTICAL MEMORY 2010",
+      "period": "2010.10.24~2010.10.28"
+    },
+    {
+      "title": "High Resolution Image Restoration Method for Page based Holographic Data Storage System",
+      "conference": "INTERNATIONAL SYMPOSIUM ON OPTICAL MEMORY 2010",
+      "period": "2010.10.24~2010.10.28"
+    },
+    {
+      "title": "SIL based Near Field Recording System with Flexible Optical Disk",
+      "conference": "INTERNATIONAL SYMPOSIUM ON OPTICAL MEMORY 2010",
+      "period": "2010.10.24~2010.10.28"
+    },
+    {
+      "title": "Shift and Polarization Multiplexing for SIL Based Near-Field Holographic Recording",
+      "conference": "ISOM/ODS 2011",
+      "period": "2011.07.17~2011.07.20"
+    },
+    {
+      "title": "하이브리드 메커니즘 적용한 손떨림보정기기 설계",
+      "conference": "2010년도 SISS 학술대회 & Shizuoka Univ. Joint Workshop",
+      "period": "2010.06.25~2010.06.25"
+    },
+    {
+      "title": "광이미지 스테빌라이징 시스템의 피드포워드 제어기 성능평가",
+      "conference": "2010년도 SISS 학술대회 & Shizuoka Univ. Joint Workshop",
+      "period": "2010.06.25~2010.06.25"
+    },
+    {
+      "title": "마이크로 홀로그래픽 데이터 저장장치에서 회절소자를 이용한 디스크 포커싱 방법",
+      "conference": "2010년도 SISS 학술대회 & Shizuoka Univ. Joint Workshop",
+      "period": "2010.06.25~2010.06.25"
+    },
+    {
+      "title": "초소형 OIS를 위한 비대칭 음성코일구동기 설계",
+      "conference": "2010년도 SISS 학술대회 & Shizuoka Univ. Joint Workshop",
+      "period": "2010.06.25~2010.06.25"
+    },
+    {
+      "title": "마이크로 홀로그램 저장장치의 초점에러신",
+      "conference": "2010년도 SISS 학술대회 & Shizuoka Univ. Joint Workshop",
+      "period": "2010.06.25~2010.06.25"
+    },
+    {
+      "title": "마이크로홀로그래픽 저장장치의 단일 레이저 광원을 이용한 기록/재생과 디스크 포커싱 방법",
+      "conference": "2010년도 SISS 학술대회 & Shizuoka Univ. Joint Workshop",
+      "period": "2010.06.25~2010.06.25"
+    },
+    {
+      "title": "Solid Immersion Lens 기반의 근접장 광학계를 이용한 마스크리스 리소그래피",
+      "conference": "2010년도 SISS 학술대회 & Shizuoka Univ. Joint Workshop",
+      "period": "2010.06.25~2010.06.25"
+    },
+    {
+      "title": "표면 탄성파 장치 기반의 용량 성 간극 센서 및 하드 디스크 미디어 전극을 이용한 초정밀 측정",
+      "conference": "2010년도 SISS 학술대회 & Shizuoka Univ. Joint Workshop",
+      "period": "2010.06.25~2010.06.25"
+    },
+    {
+      "title": "광섬유와 프리즘을 이용한 열 보조 자기기록용 서스펜션의 TD/TO 특성 분석",
+      "conference": "2010년도 SISS 학술대회 & Shizuoka Univ. Joint Workshop",
+      "period": "2010.06.25~2010.06.25"
+    },
+    {
+      "title": "광디스크 드라이브의 광대역 진동 저감을 위한 유연 구조의 자동평형장치 설계",
+      "conference": "2010년도 SISS 학술대회 & Shizuoka Univ. Joint Workshop",
+      "period": "2010.06.25~2010.06.26"
+    },
+    {
+      "title": "하드디스크 드라이브의 로드/언로드 과정에서 발생하는 램프 충격에 대한 연구",
+      "conference": "2010년도 SISS 학술대회 & Shizuoka Univ. Joint Workshop",
+      "period": "2010.06.25~2010.06.25"
+    },
+    {
+      "title": "하드디스크 드라이브의 딤플-플랙셔 슬립에 대한 연구",
+      "conference": "2010년도 SISS 학술대회 & Shizuoka Univ. Joint Workshop",
+      "period": "2010.06.25~2010.06.25"
+    },
+    {
+      "title": "홀로그래픽 정보저장장치를 위한 반사형 옵티컬 필터를 이용한 트래킹 에러 검출 방법",
+      "conference": "2010년도 SISS 학술대회 & Shizuoka Univ. Joint Workshop",
+      "period": "2010.06.25~2010.06.25"
+    },
+    {
+      "title": "동적 광 분할 장치를 이용한 홀로그래픽 정보 저장 장치에서의 영상 처리 성능 향상 연구",
+      "conference": "2010년도 SISS 학술대회 & Shizuoka Univ. Joint Workshop",
+      "period": "2010.06.25~2010.06.25"
+    },
+    {
+      "title": "홀로그래픽 저장장치의 실시간 광 노출시간 제어",
+      "conference": "2010년도 SISS 학술대회 & Shizuoka Univ. Joint Workshop",
+      "period": "2010.06.25~2010.06.25"
+    },
+    {
+      "title": "Brake pulse를 통한 SIL 기반 근접장 기록 시스템의 안전 모드 성능 향상",
+      "conference": "2010년도 SISS 학술대회 & Shizuoka Univ. Joint Workshop",
+      "period": "2010.06.25~2010.06.25"
+    }
+  ],
+  "fundings": [
+    {
+      "title": "[민간/LIG 디펜스&에어로스페이스]안테나 구조건전성 분석",
+      "org": "국내",
+      "period": "2026-06-01~2027-05-31"
+    },
+    {
+      "title": "(통합Ezbaro/IRIS) 소형모듈원전 내부 구조물의 냉각재 동적 효과를 고려한 구조해석 방법론에 관한 연구(1/3)(2026.03.01~2029.02.28)",
+      "org": "한국연구재단",
+      "period": "2026-03-01~2027-02-28"
+    },
+    {
+      "title": "[RCMS]미래형자동차 핵심기술 R&D 전문인력양성(1/1, 3/3단계)",
+      "org": "한국산업기술진흥원",
+      "period": "2026-03-01~2027-02-28"
+    },
+    {
+      "title": "[7차년도]사회지향 기계기술 글로벌 리더 양성 교육연구단",
+      "org": "한국연구재단",
+      "period": "2026-03-01~2027-02-28"
+    },
+    {
+      "title": "[민간/알에프시스템즈(주)]LRS-M체계 다기능레이다부 구조적 건전성 검토 및 개선",
+      "org": "국내",
+      "period": "2026-01-02~2026-09-30"
+    },
+    {
+      "title": "[민간/두산에너빌리티(주)]소형모듈원자로 제어봉구동장치 구동코일 전자기력 성능 분석 용역",
+      "org": "국내",
+      "period": "2025-12-09~2026-09-30"
+    },
+    {
+      "title": "[민간/제노레이] PAPS 기반 Mobile C-Arm 장비의 환자 영역 인식 및 지능형 제어 기술 개발",
+      "org": "국내",
+      "period": "2025-10-24~2027-10-23"
+    },
+    {
+      "title": "[민간/알에프시스템즈] P-MFR 하우징조립체 등 3종 구조 건전성 분석",
+      "org": "국내",
+      "period": "2025-10-01~2026-10-01"
+    },
+    {
+      "title": "[민간/KS시스템] LRS-M체계 다기능레이다부 구조적 건전성 검토 및 개선",
+      "org": "국내",
+      "period": "2025-03-01~2026-10-30"
+    },
+    {
+      "title": "[RCMS]미래형자동차 핵심기술 R&D 전문인력양성(2/2,2/3단계)",
+      "org": "한국산업기술진흥원",
+      "period": "2025-03-01~2026-02-28"
+    },
+    {
+      "title": "[국방부/삼정오토메이션/위탁연구용역] 소형 고속 조준기 및 제어 기술연구",
+      "org": "국방부",
+      "period": "2024-12-16~2028-12-15"
+    },
+    {
+      "title": "[민간/유진기업] 진동 장치를 사용한 콘크리트 혼합물 상분리 분석",
+      "org": "국내",
+      "period": "2024-11-01~2027-06-30"
+    },
+    {
+      "title": "[민간/두산에너빌리티]신한울 3,4 RVI 유동유발진동 하중 해석 및 응력 산출",
+      "org": "국내",
+      "period": "2024-11-01~2026-10-31"
+    },
+    {
+      "title": "[민간/현대기아]모터 NVH 성능 향상 기술 개발",
+      "org": "국내",
+      "period": "2024-07-15~2027-07-14"
+    },
+    {
+      "title": "[민간/현대엔지비] 현대자동차 계약학과 12기 위탁 운영",
+      "org": "국내",
+      "period": "2024-03-04~2027-02-28"
+    },
+    {
+      "title": "[RCMS]미래형자동차 핵심기술 R&D 전문인력양성(1/2,2/3단계)",
+      "org": "한국산업기술진흥원",
+      "period": "2024-03-01~2025-02-28"
+    },
+    {
+      "title": "[국방부/LIG넥스원] 잠수함용 항해레이더 Wave Slap 환경에서의 구조건전성 분석",
+      "org": "국방부",
+      "period": "2023-11-01~2026-11-30"
+    },
+    {
+      "title": "[민간/히타치엘지데이터스토리지코리아] 후석 Armrest 적용 공기 청정기 소음 저감 및 청정 효율 향상 구조 연구",
+      "org": "국내",
+      "period": "2023-09-01~2027-02-28"
+    },
+    {
+      "title": "[민간/RF시스템즈]사단급 대포병탐지레이더 안테나 세트 구조 건전성 분석",
+      "org": "국내",
+      "period": "2023-09-01~2027-06-30"
+    },
+    {
+      "title": "[국방부/LIG넥스원(주)] 고분해능 관측카메라용 복합 안정화 기술",
+      "org": "국방부",
+      "period": "2023-06-01~2026-11-20"
+    },
+    {
+      "title": "[민간/두산에너빌리티] 신한울 3,4 RVI 피로 (환경피로) 방법론 수립 및 평가 용역",
+      "org": "국내",
+      "period": "2023-05-30~2027-04-30"
+    },
+    {
+      "title": "[민간/삼성전자]진동 Haptic설계 이해(자문)",
+      "org": "국내",
+      "period": "2023-04-01~2024-03-31"
+    },
+    {
+      "title": "[민간/LIG넥스원] 전자기형 FSM 구동제어 기술연구",
+      "org": "국내",
+      "period": "2023-03-01~2025-08-23"
+    },
+    {
+      "title": "[국방부/이오시스템/위탁연구용역] 소화기 자세감지 및 고속조준거울 제어 알고리즘 최적화 연구",
+      "org": "국방부",
+      "period": "2023-03-01~2025-08-31"
+    },
+    {
+      "title": "[RCMS]미래형자동차 핵심기술 R&D 전문인력양성(2/2,1/3단계)",
+      "org": "한국산업기술진흥원",
+      "period": "2023-03-01~2024-02-29"
+    },
+    {
+      "title": "[4차년도] 사회지향 기계기술 글로벌 리더 양성 교육연구단",
+      "org": "한국연구재단",
+      "period": "2023-03-01~2024-02-29"
+    },
+    {
+      "title": "[민간/오스템임플란트] 치과용 스캐너 소프트웨어 알고리즘 연구개발",
+      "org": "국내",
+      "period": "2023-02-16~2027-02-14"
+    },
+    {
+      "title": "[민간/두산에너빌리티] 기장연구로 상부구조물 응력 산출 용역",
+      "org": "국내",
+      "period": "2023-01-19~2026-11-30"
+    },
+    {
+      "title": "[민간/대영엠텍] 근접방어 무기체계 탐색 안테나 하우징 조립체 구조건전성 분석 및 최적화 설계",
+      "org": "국내",
+      "period": "2023-01-09~2026-12-22"
+    },
+    {
+      "title": "[RCMS](주)이미지스테크놀로지/자동차 디스플레이용 액추에이팅 구현 기술 개발(4/4)",
+      "org": "한국산업기술기획평가원",
+      "period": "2023-01-01~2023-12-31"
+    },
+    {
+      "title": "[RCMS]한국전력기술(주)/해외 내진분석 기술기준을 적용한 표준형원전 설계초과지진 대응 기술개발(2/2, 2단계)",
+      "org": "한국에너지기술평가원",
+      "period": "2023-01-01~2023-12-31"
+    },
+    {
+      "title": "[민간/케이에스시스템] CIWS-II 추적안테나 구조건전성 분석 및 최적화 설계",
+      "org": "국내",
+      "period": "2022-12-28~2026-12-22"
+    },
+    {
+      "title": "[민간/삼성전자]PKG 표면 미세 특징 정량화 계측 기술 연구",
+      "org": "국내",
+      "period": "2022-09-15~2026-03-14"
+    },
+    {
+      "title": "[민간/현대엔지비] PCB 기판 발생 NVH 검토 위한 MLCC 가진력 고려 진동 해석 기반 기술 개발",
+      "org": "국내",
+      "period": "2022-08-15~2026-10-14"
+    },
+    {
+      "title": "[민간/현대엔지비(주)] 구동모터 스테이터 코어 해석 모델 개발",
+      "org": "국내",
+      "period": "2022-08-01~2026-05-31"
+    },
+    {
+      "title": "[국방부/LIG넥스원(주)] 수동 음파탐지부표 연구 개발 진동차단 M&S 분석 검토",
+      "org": "국방부",
+      "period": "2022-08-01~2024-01-31"
+    },
+    {
+      "title": "[ADD/용역과제] 추진기관 음원 분석 기술 개념설계",
+      "org": "국방부",
+      "period": "2022-07-08~2022-11-30"
+    },
+    {
+      "title": "[민간/히타치엘지데이터스토리지코리아] HLDS 공기 청정기 소음 저감 및 청정 효율 향상 구조 연구",
+      "org": "국내",
+      "period": "2022-07-01~2025-08-20"
+    },
+    {
+      "title": "[민간/삼성전자(주)] 이미지 기반 패턴 컬러 검사법",
+      "org": "국내",
+      "period": "2022-06-15~2023-07-30"
+    },
+    {
+      "title": "[RCMS]미래형자동차 핵심기술 R&D 전문인력양성(1/2년차,1/3단계)",
+      "org": "한국산업기술진흥원",
+      "period": "2022-03-01~2023-02-28"
+    },
+    {
+      "title": "[3차년도] 사회지향 기계기술 글로벌 리더 양성 교육연구단",
+      "org": "한국연구재단",
+      "period": "2022-03-01~2023-02-28"
+    },
+    {
+      "title": "[민간/엘아이지넥스원] 초소형 정밀 빔 구동/제어 기술연구",
+      "org": "국내",
+      "period": "2022-02-01~2024-01-31"
+    },
+    {
+      "title": "[RCMS]한국전력기술(주)/해외 내진분석 기술기준을 적용한 표준형원전 설계초과지진 대응 기술개발(1/2, 2단계)",
+      "org": "한국에너지기술평가원",
+      "period": "2022-01-01~2022-12-31"
+    },
+    {
+      "title": "[RCMS](주)이미지스테크놀로지/자동차 디스플레이용 액추에이팅 구현 기술 개발(3/4)",
+      "org": "한국산업기술기획평가원",
+      "period": "2022-01-01~2022-12-31"
+    },
+    {
+      "title": "[통합이지바로](한국원자력안전기술원 위탁)설계기준초과 동하중에 대한 국내 가동 원전 건전성 평가 방법론 적용성 검토",
+      "org": "원자력안전재단",
+      "period": "2022-01-01~2022-12-31"
+    },
+    {
+      "title": "[민간/알에프시스템즈] 장거리 레이더 안테나장치 구조적 안정성 분석 연구",
+      "org": "국내",
+      "period": "2021-11-15~2025-08-25"
+    },
+    {
+      "title": "[민간/LIG넥스원] LIG넥스원 협의체-연세대학교 기계융복합 공동연구소",
+      "org": "국내",
+      "period": "2021-11-01~2026-10-31"
+    },
+    {
+      "title": "[민간/(주)케이에스시스템] 장거리레이더 플랫폼 및 구동장치 구조적 안정성 분석 연구",
+      "org": "국내",
+      "period": "2021-10-27~2025-08-25"
+    },
+    {
+      "title": "[민간/현대엔지비]차량 BSR 강건성 확보를 위한 내장 시스템 입력점 강성 평가법 원리 연구",
+      "org": "국내",
+      "period": "2021-04-01~2025-09-30"
+    },
+    {
+      "title": "[민간/삼성전기] 레이저 공명 비파괴 검사 시스템 개발",
+      "org": "국내",
+      "period": "2021-03-22~2022-08-31"
+    },
+    {
+      "title": "(통합Ezbaro)3차원 미세 표면 형상을 반영한 고정밀 색 측정법 및 시스템에 관한 연구(3/3)(2019.3.1~2022.2.28)",
+      "org": "한국연구재단",
+      "period": "2021-03-01~2022-02-28"
+    },
+    {
+      "title": "[통합이지바로](비과세)초정밀 광 기계기술 연구센터(2단계,3/3)(2019.03.01.~2022.02. 28.)",
+      "org": "한국연구재단",
+      "period": "2021-03-01~2022-02-28"
+    },
+    {
+      "title": "[2차년도] 사회지향 기계기술 글로벌 리더 양성 교육연구단",
+      "org": "한국연구재단",
+      "period": "2021-03-01~2022-02-28"
+    },
+    {
+      "title": "[RCMS](주)이미지스테크놀로지/자동차 디스플레이용 액추에이팅 구현 기술 개발(2/4)",
+      "org": "한국산업기술기획평가원",
+      "period": "2021-01-01~2021-12-31"
+    },
+    {
+      "title": "[RCMS]한국전력기술(주)/해외 내진분석 기술기준을 적용한 표준형원전 설계초과지진 대응 기술개발(3/3, 1단계)",
+      "org": "한국에너지기술평가원",
+      "period": "2021-01-01~2021-12-31"
+    },
+    {
+      "title": "(통합Ezbaro)[한국원자력안전기술원 위탁]설계 초과 동적 하중을 고려한 원자로 용기 및 내부구조물 건전성평가 필수요건 분석",
+      "org": "원자력안전재단",
+      "period": "2021-01-01~2021-12-31"
+    },
+    {
+      "title": "[민간/LIG넥스원] 레이저 고속 조준기 구동/제어 기술 연구",
+      "org": "국내",
+      "period": "2020-10-01~2022-09-30"
+    },
+    {
+      "title": "[1차년도] 사회지향 기계기술 글로벌 리더 양성 교육연구단",
+      "org": "한국연구재단",
+      "period": "2020-09-01~2021-02-28"
+    },
+    {
+      "title": "[민간/현대엔지비]미래 모빌리티 환경 대응을 위한 NVH 핵심 요소기술 개발 (공동연구실) 1-2단계",
+      "org": "국내",
+      "period": "2020-08-01~2023-04-30"
+    },
+    {
+      "title": "[RCMS](주)이미지스테크놀로지/자동차 디스플레이용 액추에이팅 구현 기술 개발(1/4)",
+      "org": "한국산업기술기획평가원",
+      "period": "2020-04-01~2020-12-31"
+    },
+    {
+      "title": "[민간/현대엔지비]미래 모빌리티 NVH분야 글로벌 네트워크 협력을 통한 기술협력 방안 수립 및 기술자문",
+      "org": "국내",
+      "period": "2020-03-09~2024-03-31"
+    },
+    {
+      "title": "(통합Ezbaro)[선도연구센터/ERC]초정밀 광 기계기술 연구센터(2/3,2단계)(2019.3.1~2022.2.28)",
+      "org": "한국연구재단",
+      "period": "2020-03-01~2021-02-28"
+    },
+    {
+      "title": "(통합Ezbaro)3차원 미세 표면 형상을 반영한 고정밀 색 측정법 및 시스템에 관한 연구(2/3)(2019.3.1~2022.2.28)",
+      "org": "한국연구재단",
+      "period": "2020-03-01~2021-02-28"
+    },
+    {
+      "title": "[8차년도]사회지향 기계기술 글로벌 리더 양성 사업단",
+      "org": "한국연구재단",
+      "period": "2020-03-01~2020-08-31"
+    },
+    {
+      "title": "[RCMS]한국전력기술(주)/해외 내진분석 기술기준을 적용한 표준형원전 설계초과지진 대응 기술개발(2/3, 1단계)",
+      "org": "한국에너지기술평가원",
+      "period": "2020-02-01~2020-12-31"
+    },
+    {
+      "title": "(통합Ezbaro)[한국원자력안전기술원위탁]설계 초과 동적 하중에 대한 원자로냉각재계통의 변형률 기반 평가 방법론 개발",
+      "org": "원자력안전재단",
+      "period": "2020-01-01~2020-12-31"
+    },
+    {
+      "title": "(통합Ezbaro)인공위성 궤도제어 및 폐기를 위한 탄성 메타물질 테더 시스템 개발(4/4)(2017.4.25~2020.3.31)",
+      "org": "한국연구재단",
+      "period": "2020-01-01~2020-03-31"
+    },
+    {
+      "title": "[민간/LG전자(주)]Haptic Feedback 구동에 의한 진동 및 소음 개선 연구(Ⅱ)",
+      "org": "국내",
+      "period": "2019-12-01~2023-08-31"
+    },
+    {
+      "title": "[민간/LIG넥스원(주)]KDDX 통합마스트의 구조체에 대한 건전성(수중폭발응답 등) 및 축소모델을 통한 시험/검증에 관한 연구",
+      "org": "국내",
+      "period": "2019-09-02~2023-08-31"
+    },
+    {
+      "title": "[민간/현대엔지비] 페달 진동 평가법 개발을 위한 시뮬레이터 구축",
+      "org": "국내",
+      "period": "2019-06-17~2023-01-01"
+    },
+    {
+      "title": "[RCMS]한국전력기술(주)/해외 내진분석 기술기준을 적용한 표준형원전 설계초과지진 대응 기술개발(1/3, 1단계)",
+      "org": "한국에너지기술평가원",
+      "period": "2019-05-01~2020-01-31"
+    },
+    {
+      "title": "[민간/현대엔지비] 차량 하부 BSR 조사 기술 확보를 위한 전달 경로 분석기법 연구",
+      "org": "국내",
+      "period": "2019-04-01~2023-08-31"
+    },
+    {
+      "title": "[선도연구센터/ERC]초정밀 광 기계기술 연구센터(1/3,2단계)(2019.3.1~2022.2.28)",
+      "org": "한국연구재단",
+      "period": "2019-03-01~2020-02-29"
+    },
+    {
+      "title": "[민간/LG전자(주)]haptic feedback 구동에 의한 진동 소음 개선 연구",
+      "org": "국내",
+      "period": "2019-03-01~2020-09-29"
+    },
+    {
+      "title": "3차원 미세 표면 형상을 반영한 고정밀 색 측정법 및 시스템에 관한 연구(1/3)(2019.3.1~2022.2.28)",
+      "org": "한국연구재단",
+      "period": "2019-03-01~2020-02-29"
+    },
+    {
+      "title": "[7차년도]사회지향 기계기술 글로벌 리더 양성 사업단",
+      "org": "한국연구재단",
+      "period": "2019-03-01~2020-02-29"
+    },
+    {
+      "title": "[한국원자력안전기술원위탁]원자로내부구조물 시간이력 탄소성 해석 모델 개발 및 중성자 조사 취화에 따른 구조물 응답 변화 분석(2/5)(2018.4.1~2022.12.31)",
+      "org": "한국방사선안전재단",
+      "period": "2019-01-01~2019-12-31"
+    },
+    {
+      "title": "인공위성 궤도제어 및 폐기를 위한 탄성 메타물질 테더 시스템 개발(3/4)(2017.4.25~2020.3.31)",
+      "org": "한국연구재단",
+      "period": "2019-01-01~2019-12-31"
+    },
+    {
+      "title": "[민간/주식회사 에이엠티]사외위탁연구용역",
+      "org": "국내",
+      "period": "2018-11-24~2022-02-28"
+    },
+    {
+      "title": "위탁/원자로내부구조물 시간이력 탄소성 해석 방법론 개발",
+      "org": "한국방사선안전재단",
+      "period": "2018-04-01~2018-12-31"
+    },
+    {
+      "title": "[선도연구센터/ERC]초정밀 광 기계기술 연구센터(4/4,1단계)(2015.8.1~2019.2.28)",
+      "org": "한국연구재단",
+      "period": "2018-03-01~2019-02-28"
+    },
+    {
+      "title": "[6차년도]사회지향 기계기술 글로벌 리더 양성 사업단",
+      "org": "한국연구재단",
+      "period": "2018-03-01~2019-02-28"
+    },
+    {
+      "title": "인공위성 궤도제어 및 폐기를 위한 탄성 메타물질 테더 시스템 개발(2/4)(2017.4.25~2020.3.31)",
+      "org": "한국연구재단",
+      "period": "2018-01-01~2018-12-31"
+    },
+    {
+      "title": "[e나라도움]2018년 지식재산 교육 선도대학 운영지원 사업",
+      "org": "특허청",
+      "period": "2018-01-01~2018-12-31"
+    },
+    {
+      "title": "[국토부/주관] 600km/h 이상 초고속 자기부상열차용 초안정성 평가를 위한 전자기-구조 연계 해석기술 개발 및 안정성 평가기술 개발(2/2)",
+      "org": "국토교통과학기술진흥원",
+      "period": "2018-01-01~2018-12-31"
+    },
+    {
+      "title": "[RCMS]원자력발전소 내진안전성 향상 핵심기술 고급트랙(1단계, 2/2)",
+      "org": "한국에너지기술평가원",
+      "period": "2018-01-01~2018-12-31"
+    },
+    {
+      "title": "인간친화형 협업 매니퓰레이터 로봇을 위한 안전기능이 내재된 스마트 액추에이터 개발",
+      "org": "중소기업청",
+      "period": "2017-09-15~2018-09-14"
+    },
+    {
+      "title": "(분리-공동)루트로닉/레이저 치료ㆍ진단 기술 개발을 위한 공동연구실 운영(1차년도)",
+      "org": "국내",
+      "period": "2017-09-01~2019-08-31"
+    },
+    {
+      "title": "비앤씨테크(주)/고출력/고감도 레이더 구조해석 및 방열해석 연구",
+      "org": "국내",
+      "period": "2017-07-24~2019-07-23"
+    },
+    {
+      "title": "계양전기 주식회사/수전동공구의 동 흡진기 설계 이론 및 진동 저감 방법론 정립",
+      "org": "국내",
+      "period": "2017-07-01~2019-06-30"
+    },
+    {
+      "title": "[국토부/주관] 600km/h 이상 초고속 자기부상열차용 초안정성 평가를 위한 전자기-구조 연계 해석기술 개발 및 안정성 평가기술 개발(1/2)",
+      "org": "국토교통과학기술진흥원",
+      "period": "2017-06-30~2017-12-31"
+    },
+    {
+      "title": "원전 가동 조건을 고려한 원자로 및 내부구조물의 내진여유도 분석 및 향상 방법론(1/1, 1단계)",
+      "org": "한국연구재단",
+      "period": "2017-06-10~2018-02-28"
+    },
+    {
+      "title": "[민간/현대엔지비] 시스템 단위개발을 위한 인체민감도 연구(발에 대한 민감도)",
+      "org": "국내",
+      "period": "2017-06-01~2019-11-30"
+    },
+    {
+      "title": "LG전자/차량 내 스마트 제품의 진동 개선을 위한 시험 및 해석 방안",
+      "org": "국내",
+      "period": "2017-06-01~2019-05-31"
+    },
+    {
+      "title": "[위탁]한국원자력안전기술원/원자로 운전 시 발생하는 유체유발진동을 고려한 지진응답분석",
+      "org": "한국방사선안전재단",
+      "period": "2017-05-01~2018-04-30"
+    },
+    {
+      "title": "인공위성 궤도제어 및 폐기를 위한 탄성 메타물질 테더 시스템 개발(1/4)",
+      "org": "한국연구재단",
+      "period": "2017-04-25~2017-12-31"
+    },
+    {
+      "title": "[RCMS]원자력발전소 내진안전성 향상 핵심기술 고급트랙(1단계, 1/2)",
+      "org": "한국에너지기술평가원",
+      "period": "2017-04-01~2017-12-31"
+    },
+    {
+      "title": "[선도연구센터/ERC]초정밀 광 기계기술 연구센터(3/4,1단계,2015.08.01~2019.02.28)",
+      "org": "한국연구재단",
+      "period": "2017-03-01~2018-02-28"
+    },
+    {
+      "title": "[5차년도]사회지향 기계기술 글로벌 리더 양성 사업단",
+      "org": "한국연구재단",
+      "period": "2017-03-01~2018-02-28"
+    },
+    {
+      "title": "HLDS/2D LiDAR(LDS) 센서용 광학 구조 개발",
+      "org": "국내",
+      "period": "2017-02-01~2019-05-31"
+    },
+    {
+      "title": "현대엔지비/자문/BSR 산학자문단 (샤시 진동계측 분야)",
+      "org": "국내",
+      "period": "2017-02-01~2018-10-30"
+    },
+    {
+      "title": "[e나라도움]2017년 지식재산 교육 선도대학 운영지원 사업",
+      "org": "특허청",
+      "period": "2017-01-01~2017-12-31"
+    },
+    {
+      "title": "[위탁]한국원자력안전기술원/단순화 모델 기반 원자로내부구조물의 내진 해석 및 설계 여유도 평가방법 개발",
+      "org": "한국방사선안전재단",
+      "period": "2016-05-01~2017-04-30"
+    },
+    {
+      "title": "[원자력연구원 위탁]스마트베드 연동 방사선 치료기의 운동학 해석 및 고정도 제어기법 개발(2/2, 이월불가)",
+      "org": "한국연구재단",
+      "period": "2016-03-01~2017-02-28"
+    },
+    {
+      "title": "(4차년도) 사회지향 기계기술 글로벌 리더 양성 사업단",
+      "org": "한국연구재단",
+      "period": "2016-03-01~2017-02-28"
+    },
+    {
+      "title": "[포닥]박노철(문형배)-고체침지렌즈 기반 다파장 STED 현미경을 통한 초고해상도 이미징 기술 연구",
+      "org": "연세대학교",
+      "period": "2016-03-01~2017-02-28"
+    },
+    {
+      "title": "초정밀 광 기계기술 연구센터(2/4,1단계, 2015.08.01 ~ 2019.02.28)",
+      "org": "한국연구재단",
+      "period": "2016-03-01~2017-02-28"
+    },
+    {
+      "title": "HLDS / 조인트랩 설립 및 협력 연구 (2016년)",
+      "org": "국내",
+      "period": "2016-02-01~2017-01-31"
+    },
+    {
+      "title": "한국전력기술(주)/기술자문",
+      "org": "국내",
+      "period": "2015-11-16~2015-12-15"
+    },
+    {
+      "title": "삼성전기/MLCC에서 발생하는 소음 및 고주파 진동 저감 연구 검출",
+      "org": "국내",
+      "period": "2015-08-20~2017-07-31"
+    },
+    {
+      "title": "ERC/초정밀 광 기계기술 연구센터(1/4,1단계)(2015.8.1~2019.2.28)",
+      "org": "한국연구재단",
+      "period": "2015-08-01~2016-02-29"
+    },
+    {
+      "title": "[위탁]한국원자력안전기술원/해석모델 단순화 절차/지침 및 내진설계 규제검증용 해석모델 개발",
+      "org": "한국원자력안전기술원",
+      "period": "2015-07-01~2016-04-30"
+    },
+    {
+      "title": "나노 점광원 생성과 이를 이용한 극초고해상 SELF 현미경 연구(3/3)(2013.6.1~2016.5.31)",
+      "org": "한국연구재단",
+      "period": "2015-06-01~2016-05-31"
+    },
+    {
+      "title": "[원자력연구원 위탁]스마트베드 연동 방사선 치료기의 운동학 해석 및 고정도 제어기법 개발(1/2, 이월불가)",
+      "org": "한국연구재단",
+      "period": "2015-03-01~2016-02-29"
+    },
+    {
+      "title": "[주관/성균관대학교]치료시간 30% 단축을 위한 자동 병변 추적 기술기반 악성종양 치료용 500 cGy급 dual-head 갠트리 방사선 치료시스템 개발",
+      "org": "정보통신기술진흥센터(NIPA산하)",
+      "period": "2015-03-01~2016-02-29"
+    },
+    {
+      "title": "HLDS / 조인트랩 설립 및 협력 연구 (2015년)",
+      "org": "국내",
+      "period": "2015-01-01~2016-06-30"
+    },
+    {
+      "title": "금호타이어(주)/타이어/차량 매칭특성 분석을 통한 소음 예측기술 개발",
+      "org": "국내",
+      "period": "2015-01-01~2017-12-30"
+    },
+    {
+      "title": "(주)포스코/PRT 차량 내구성개선 요소기술 개발(1/1)",
+      "org": "국내",
+      "period": "2014-12-23~2015-12-22"
+    },
+    {
+      "title": "원전 주요기기 동특성 파악을 위한 축소모형 모드 시험/해석모델 구축을 통한 내진설계 타당성 평가",
+      "org": "한국원자력안전기술원",
+      "period": "2014-12-01~2015-06-30"
+    },
+    {
+      "title": "[구매용역/한국철도기술연구원] 능동액추에이터 조립 및 성능시험",
+      "org": "한국철도기술연구원",
+      "period": "2014-08-11~2015-01-31"
+    },
+    {
+      "title": "나노 점광원 생성과 이를 이용한 극초고해상 SELF 현미경 연구(2/3)(2013.6.1~2016.5.31)",
+      "org": "한국연구재단",
+      "period": "2014-06-01~2015-05-31"
+    },
+    {
+      "title": "홀로그래피 기반 3차원 형상 취득 측정 및 해석 기술 개발(3/3)",
+      "org": "한국연구재단(교과부)",
+      "period": "2014-05-01~2015-04-30"
+    },
+    {
+      "title": "엘아이지넥스원(주)/차량부동특성분석 위탁연구",
+      "org": "방위사업청",
+      "period": "2014-04-17~2015-10-30"
+    },
+    {
+      "title": "치료시간 30% 단축을 위한 자동 병변 추적 기술기반 악성종양 치료용 500 cGy급 dual-head 갠트리 방사선 치료시스템 개발",
+      "org": "한국방송통신전파진흥원",
+      "period": "2014-03-01~2015-02-28"
+    },
+    {
+      "title": "Seagate Korea/Analysis of Shock Performance using Dynamic Behavior Analysis method",
+      "org": "국외",
+      "period": "2014-02-14~2015-06-30"
+    },
+    {
+      "title": "HLDS/조인트 랩 설립 및 협력 연구(2014년도)",
+      "org": "국내",
+      "period": "2014-01-01~2015-07-31"
+    },
+    {
+      "title": "초미세 가공을 이용한 광섬유 기반 고성능 기계/화학 센서 설계 및 제작",
+      "org": "한국과학기술단체총연합회",
+      "period": "2013-12-11~2014-12-10"
+    },
+    {
+      "title": "MULTI-MLCC의 진동특성 분석 및 소음원 검출",
+      "org": "국내",
+      "period": "2013-11-15~2015-03-31"
+    },
+    {
+      "title": "ACOUSTIC NOISE 연구센터 설립 및 운영(2차년도)",
+      "org": "국내",
+      "period": "2013-11-15~2015-06-30"
+    },
+    {
+      "title": "나노 점광원 생성과 이를 이용한 극초고해상 SELF 현미경 연구(1/3)",
+      "org": "한국연구재단",
+      "period": "2013-06-01~2014-05-31"
+    },
+    {
+      "title": "(주)옵티스/SMA를 이용한 HINGE 타입 AF 엑추에이터 설계",
+      "org": "국내",
+      "period": "2013-06-01~2013-11-30"
+    },
+    {
+      "title": "[한국원자력안전기술원]원자로용기 및 내부구조물의 내진평가 규제검증 해석모델 구축",
+      "org": "기타정부기관",
+      "period": "2013-05-01~2014-02-28"
+    },
+    {
+      "title": "홀로그래피 기반 3차원 형상 취득 측정 및 해석 기술 개발 (2/3)",
+      "org": "한국연구재단",
+      "period": "2013-05-01~2014-04-30"
+    },
+    {
+      "title": "[RCMS]한국철도기술연구원/철도차량 능동형 현가시스 템 기반기술 및 성능시험 기술개발(4/5)(2010.04.01~2015.03.31)",
+      "org": "한국산업기술평가관리원",
+      "period": "2013-04-01~2014-03-31"
+    },
+    {
+      "title": "SEGATE KOREA/MECHANICAL MODIFICATION & DESIGN TO IMPROVE NOP SHOCK PERFORMANCE",
+      "org": "국외",
+      "period": "2013-03-15~2014-06-30"
+    },
+    {
+      "title": "[글로벌] 미래융합기계기술사업단",
+      "org": "연세대학교",
+      "period": "2013-03-01~2014-03-31"
+    },
+    {
+      "title": "HITACHI-LG/조인트 랩 설립 및 협력연구",
+      "org": "국내",
+      "period": "2013-01-01~2014-12-31"
+    },
+    {
+      "title": "[RCMS]성균관대/치료시간 30% 단축을 위한 자동 병변 추적 기술기반 악성종양 치료용 500 CGY급 DUAL-HEAD 갠트리 방사선 치료시스템 개발(1/5)(2012.12.1~2018.2.28)",
+      "org": "한국산업기술평가관리원",
+      "period": "2012-12-01~2014-02-28"
+    },
+    {
+      "title": "삼성전기(주)/모터 기술 개발",
+      "org": "국내",
+      "period": "2012-11-01~2014-06-30"
+    },
+    {
+      "title": "삼성전기(주)/모터기술 연구센터",
+      "org": "국내",
+      "period": "2012-11-01~2014-12-31"
+    },
+    {
+      "title": "삼성전기(주)/ACOUSTIC NOISE 연구센터 설립 및 운영",
+      "org": "국내",
+      "period": "2012-09-11~2014-12-30"
+    },
+    {
+      "title": "삼성전기(주)/축소 모델 기반의 MLCC의 진동 해석 및 최적 형상 설계",
+      "org": "국내",
+      "period": "2012-09-11~2013-12-31"
+    },
+    {
+      "title": "삼성전자(주)/13M용 Actuator 개발을 위한 전자기장 해석 (2012.07.09~2012.09.08->2012.11.08)",
+      "org": "민간기업",
+      "period": "2012-07-09~2012-11-08"
+    },
+    {
+      "title": "[글로벌] 미래융합기계기술사업단",
+      "org": "연세대학교",
+      "period": "2012-05-01~2013-05-31"
+    },
+    {
+      "title": "홀로그래피 기반 3차원 형상 취득 측정 및 해석 기술 개발 (1/3)",
+      "org": "한국과학재단",
+      "period": "2012-05-01~2013-04-30"
+    },
+    {
+      "title": "한국철도기술연구원/철도차량 능동형 현가시스템 기반기술 및 성능시험 기술개발(3/5)(2010.4.1~2015.3.31)",
+      "org": "한국산업기술평가관리원",
+      "period": "2012-04-01~2013-03-31"
+    },
+    {
+      "title": "두산인프라코어(주)/연세대학교 산학협력협의회 (2012.03.01~2013.02.28)- 2014.02.28",
+      "org": "국내",
+      "period": "2012-03-01~2019-12-31"
+    },
+    {
+      "title": "나노마이크로응용기계기술인력양성사업단(이월액과제)",
+      "org": "연세대학교",
+      "period": "2012-03-01~2014-02-28"
+    },
+    {
+      "title": "나노마이크로응용기계기술인력양성사업단",
+      "org": "연세대학교",
+      "period": "2012-03-01~2014-02-28"
+    },
+    {
+      "title": "나노 마이크로 응용기계기술 인력양성사업",
+      "org": "학술진흥재단",
+      "period": "2012-03-01~2013-04-30"
+    },
+    {
+      "title": "현대엔지비(주)/현대자동차 연구장학생 장학대여금",
+      "org": "기업체/공사",
+      "period": "2012-03-01~2013-02-28"
+    },
+    {
+      "title": "HLDS(주)/ODD Mechanism의 구조·진동·sensing·유동 해석에 대한 연구/(2012.01.01~2012.12.31- 2013.12.31)",
+      "org": "국내",
+      "period": "2012-01-01~2013-12-31"
+    },
+    {
+      "title": "LG전자(주) / 단말기 진동특성 최적화를 위한 방법론 정립(2011.12.01~2012.11.30- 2012.12.31- 2013.01.31 2013.03.31)",
+      "org": "국내",
+      "period": "2011-12-01~2013-03-31"
+    },
+    {
+      "title": "Solid immersion lens 기반의 마이크로홀로그래픽 정보 저장 장치의 차세대 통합 서보 제어 기술 및 디지털 신호처리 정보 이론 연구 (3/3)",
+      "org": "한국연구재단(과학재단)",
+      "period": "2011-09-01~2012-08-31"
+    },
+    {
+      "title": "나노 금속 도파로가 형성된 SIL을 이용한 고속 마스 크리스 나노리소그래피 기술 (3/3)",
+      "org": "한국과학재단",
+      "period": "2011-09-01~2012-08-31"
+    },
+    {
+      "title": "삼성전기(주) / Tied type HDD motor design과 air-oil계면예측",
+      "org": "민간기업",
+      "period": "2011-09-01~2012-09-30"
+    },
+    {
+      "title": "표면 탄성파를 이용한 초정밀 무선 변위/간극 센서 및 구동기 개발 (3/3)",
+      "org": "한국과학재단",
+      "period": "2011-05-01~2012-04-30"
+    },
+    {
+      "title": "철기연/철도차량 능동형 현가시스템 기반기술 및 성능시험 기술개발(2차년도/5)(2010.04.01~2015.03.31)",
+      "org": "한국산업기술평가관리원",
+      "period": "2011-04-01~2012-03-31"
+    },
+    {
+      "title": "삼성전기 / MLCC에서 발생하는 Acoustic Noise 분석 뭐？평가(2011.04.01~2012.05.31->2012.06.30)",
+      "org": "민간기업",
+      "period": "2011-04-01~2012-07-10"
+    },
+    {
+      "title": "나노 마이크로 응용기계기술 인력양성사업",
+      "org": "학술진흥재단",
+      "period": "2011-03-01~2012-02-29"
+    },
+    {
+      "title": "(주)두산인프라코어 / 연세대학교산학협력협의회 (2011.03.01~2012.06.30->2011.03.01~2013.02.28)",
+      "org": "민간기업",
+      "period": "2011-03-01~2013-02-28"
+    },
+    {
+      "title": "나노마이크로응용기계기술인력양성사업단",
+      "org": "연세대학교",
+      "period": "2011-03-01~2012-02-29"
+    },
+    {
+      "title": "냉각재 유동으로 발생하는 원자로 내부 구조물의 하중평가 방법론 연구(3차년도/3)(2009.08.10~2011.09.30)",
+      "org": "한국원자력연구원",
+      "period": "2011-01-01~2011-09-30"
+    },
+    {
+      "title": "HLDS(주) / ODD Mechanism의 진동 소음 특성 개선에 ？연구",
+      "org": "기업체/공사",
+      "period": "2011-01-01~2012-03-31"
+    },
+    {
+      "title": "삼성전자 / L/UL 신뢰성 및 HGA Flying 안정성 향상을 위한 Ramp & Suspension 설계",
+      "org": "민간기업",
+      "period": "2010-12-01~2011-12-31"
+    },
+    {
+      "title": "(주)엔지비-연구장학금 현대.기아자동차 연구장학생 응洋閨？지급 협약",
+      "org": "민간기업",
+      "period": "2010-12-01~2013-02-28"
+    },
+    {
+      "title": "(주)IM / 광기기용 및 LED조명용 핵심 요소기술 (2010.11.01~2011.10.30- 2012.10.30- 2013.08.31)",
+      "org": "국내",
+      "period": "2010-11-01~2014-12-31"
+    },
+    {
+      "title": "Solid immersion lens 기반의 마이크로홀로그래픽 정 보 저장 장치의 차세대 통합 서보 제어 기술 및 디지 털 신호처리 정보 이론 연구",
+      "org": "한국연구재단(과학재단)",
+      "period": "2010-09-01~2011-08-31"
+    },
+    {
+      "title": "나노 금속 도파로가 형성된 SIL을 이용한 고속 마스크리스 나노리소그래피 기술",
+      "org": "한국과학재단",
+      "period": "2010-09-01~2011-08-31"
+    },
+    {
+      "title": "표면 탄성파를 이용한 초정밀 무선 변위/간극 센서 및 구동기 개발",
+      "org": "한국과학재단",
+      "period": "2010-05-01~2011-04-30"
+    },
+    {
+      "title": "한국철도기술연구원/철도차량용 전자기식 선형액츄에 이터 설계기술 개발",
+      "org": "지식경제부",
+      "period": "2010-04-01~2011-03-31"
+    },
+    {
+      "title": "냉각재유동으로 발생하는 원자로 내부구조물의 유동 하중평가 방법론 연구",
+      "org": "한국원자력연구원",
+      "period": "2010-04-01~2010-12-31"
+    },
+    {
+      "title": "커넥트코리아 5차년도사업",
+      "org": "학술진흥재단",
+      "period": "2010-04-01~2011-03-31"
+    },
+    {
+      "title": "삼성전기(주) HDD Set에서 Head의 Mechanical PES 측정 시스템 개발",
+      "org": "민간기업",
+      "period": "2010-04-01~2011-07-31"
+    },
+    {
+      "title": "G-5-5-10나노마이크로응용기계기술인력양성사업단",
+      "org": "연세대학교",
+      "period": "2010-03-02~2011-06-30"
+    },
+    {
+      "title": "나노마이크로응용기계기술인력양성사업단",
+      "org": "연세대학교",
+      "period": "2010-03-01~2011-02-28"
+    },
+    {
+      "title": "나노 마이크로 응용기계기술 인력양성사업단",
+      "org": "학술진흥재단",
+      "period": "2010-03-01~2011-02-28"
+    },
+    {
+      "title": "(주)두산인프라코어-연세대학교산학협력단 산학협력",
+      "org": "민간기업",
+      "period": "2010-03-01~2013-02-28"
+    },
+    {
+      "title": "조인트 랩 설립 및 협력연구에 관한 계약 ODD Mechanism의 진동 소음 특성 개선에 대한 연구",
+      "org": "(주)히타치엘지데이터스토리지",
+      "period": "2010-01-01~2011-03-31"
+    },
+    {
+      "title": "Solid immersion lens 기반의 마이크로홀로그래픽 정볶？저장 장치의 차세대 통합 서버 제어 기술 및 디지 털 신호처리 정보 이론 연구",
+      "org": "한국연구재단(과학재단)",
+      "period": "2009-09-01~2010-08-31"
+    },
+    {
+      "title": "나노 금속 도파로가 형성된 SIL을 이용한 고속 마스크리스 나노리소그래피 기술",
+      "org": "한국과학재단",
+      "period": "2009-09-01~2010-08-31"
+    },
+    {
+      "title": "서보 알고리즘 최적화를 통한 NFR Pickup에서의 대 충격 안정화와 대응 및 SIL오염 저감에 대한 연구",
+      "org": "(주)LG전자",
+      "period": "2009-07-27~2010-05-31"
+    },
+    {
+      "title": "나노 스케일 가공 및 조작기술 개발과 이를 응용한 차세대 광 정보저장기기 개발",
+      "org": "한국과학재단",
+      "period": "2009-07-01~2010-06-30"
+    },
+    {
+      "title": "다중빔 방식의 고효율 이온빔 가공 공정 및 In-line 시스템 개발",
+      "org": "한국산업기술대학교",
+      "period": "2009-07-01~2010-06-30"
+    },
+    {
+      "title": "상변화 바이오칩 개발을 위한 나노입자의 전자기파 및 열적 거동 해석 기술 개발",
+      "org": "(주)나노스토리지",
+      "period": "2009-06-01~2010-05-31"
+    },
+    {
+      "title": "표면 탄성파를 이용한 초정밀 무선 변위/간극 센서 및 구동기 개발",
+      "org": "한국과학재단",
+      "period": "2009-05-01~2010-04-30"
+    },
+    {
+      "title": "G5-5-10/나노마이크로응용기계기술인력양성사업",
+      "org": "연세대학교",
+      "period": "2009-03-02~2010-06-30"
+    },
+    {
+      "title": "나노마이크로응용기계기술인력양성사업단",
+      "org": "연세대학교",
+      "period": "2009-03-01~2010-02-28"
+    },
+    {
+      "title": "나노마이크로응용기계기술인력양성사업단",
+      "org": "학술진흥재단",
+      "period": "2009-03-01~2010-02-28"
+    },
+    {
+      "title": "CISD-HLDS JOINT LAB 운영",
+      "org": "(주)히타치엘지데이터스토리지",
+      "period": "2009-01-01~2010-02-27"
+    },
+    {
+      "title": "마이크로 액추에이터를 이용한 HAMR용 광전송 모듈 기술 개발",
+      "org": "재영솔루텍(주)",
+      "period": "2008-12-01~2009-09-30"
+    },
+    {
+      "title": "광정보저장기기용 광픽업 기술 및 LED조명기기용 열해석",
+      "org": "(주)IM",
+      "period": "2008-10-01~2011-03-31"
+    },
+    {
+      "title": "Analysis and Flyability Test of TAMR",
+      "org": "KONICA",
+      "period": "2008-09-01~2010-08-31"
+    },
+    {
+      "title": "HDDS용 DATA FORMAT 관련 기술개발(4차년도)",
+      "org": "(주)대우일렉트로닉스",
+      "period": "2008-08-01~2009-07-31"
+    },
+    {
+      "title": "(주)삼성전기-초소형 복합 ISM 모듈 및 메커니즘 개발",
+      "org": "민간기업",
+      "period": "2008-08-01~2009-12-31"
+    },
+    {
+      "title": "다중빔 방식의 고효율 이온빔 가공 공정 및 IN-LINE 시스템 개발",
+      "org": "한국산업기술대학교",
+      "period": "2008-07-01~2009-06-30"
+    },
+    {
+      "title": "나노 스케일 가공 및 조작기술 개발과 이를 응용한 차세대 광 정보저장기기 개발",
+      "org": "한국과학재단",
+      "period": "2008-07-01~2009-06-30"
+    },
+    {
+      "title": "NFR PICKUP의 대충격 안정화 및 대응",
+      "org": "기업체/공사",
+      "period": "2008-07-01~2008-12-31"
+    },
+    {
+      "title": "상변화 바이오칩 개발을 위한 나노입자의 전자기파 및 열적 거동 해석 기술 개발",
+      "org": "(주)나노스토리지",
+      "period": "2008-06-01~2009-05-31"
+    },
+    {
+      "title": "구동속도 및 구동력 향상을 위한 저전력 카메라 모듈 설계 및 특성연구",
+      "org": "한국전자통신연구원",
+      "period": "2008-06-01~2009-01-31"
+    }
+  ],
+  "patents": [
+    {
+      "title": "반도체 패키지 표면 거칠기 정량화를 위한 다각도 조명 측정 장치 및 검사 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 삼성전자",
+      "date": "2024-08-27"
+    },
+    {
+      "title": "반도체 패키지 검사 방법 및 이를 포함하는 반도체 소자 제조 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 삼성전자 주식회사",
+      "date": "2023-11-30"
+    },
+    {
+      "title": "구조 건전성을 검증하는 방법 및 시스템",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, LIG넥스원(주)",
+      "date": "2023-10-17"
+    },
+    {
+      "title": "모달 해석 기반 위상 처리 시스템 및 위상 처리 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, LIG 넥스원",
+      "date": "2023-10-12"
+    },
+    {
+      "title": "넓은 주파수 범위에서 햅틱 피드백이 가능한 피에조 액추에이터 모듈",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2022-11-23"
+    },
+    {
+      "title": "T형 배관의 비선형 진동 해석 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2022-10-19"
+    },
+    {
+      "title": "햅틱 피드백을 제공하는 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2022-01-11"
+    },
+    {
+      "title": "햅틱 피드백을 제공하는 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2022-01-11"
+    },
+    {
+      "title": "넓은 주파수 범위에서 햅틱 피드백이 가능한 피에조 액추에이터 모듈",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2021-11-25"
+    },
+    {
+      "title": "인지적 거칠기 데이터의 예측 시스템 및 그 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2021-11-23"
+    },
+    {
+      "title": "서브 모델링 해석 장치 및 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 고려대학교 산학협력단",
+      "date": "2021-11-16"
+    },
+    {
+      "title": "표면 반사 정보를 이용한 광학적 반사 특성 산출 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2021-05-18"
+    },
+    {
+      "title": "표면 형상 정보를 이용한 광학적 속성 측정 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2021-05-18"
+    },
+    {
+      "title": "햅틱 피드백을 제공하는 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2021-01-12"
+    },
+    {
+      "title": "탄성메타물질 및 이의 진동 저감성능 개선방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2021-01-07"
+    },
+    {
+      "title": "탄성메타물질 및 이의 진동 저감성능 개선방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2020-01-08"
+    },
+    {
+      "title": "측색 장치 및 측색 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2019-09-30"
+    },
+    {
+      "title": "내시경 수술장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2019-09-18"
+    },
+    {
+      "title": "탄성 메타물질 및 이를 이용한 진동의 저감 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2019-07-22"
+    },
+    {
+      "title": "초점거리 조절이 가능한 ＬＥＤ 어레이 기반 3차원 이미징 장치 및 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 건양대학교 산학협력단",
+      "date": "2019-01-23"
+    },
+    {
+      "title": "자기부상열차의 주행 안정성 예측 시스템 및 그 예측 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2018-12-07"
+    },
+    {
+      "title": "내시경 수술장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2018-09-20"
+    },
+    {
+      "title": "원전 운전 조건에 따른 냉각제의 유동을 고려한 원자로구조물의 지진해석방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2017-12-29"
+    },
+    {
+      "title": "탄성메타물질을 이용한 인공위성 테더 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2017-12-08"
+    },
+    {
+      "title": "코히런스 조절이 가능한 디지털 홀로그래피 시스템",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2017-06-27"
+    },
+    {
+      "title": "MLCC 엑추에이터를 이용한 디지털 홀로그래피 시스템",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2017-04-13"
+    },
+    {
+      "title": "유도방출억제를 이용한 형광 현미경",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2017-02-14"
+    },
+    {
+      "title": "오프축 디지털 홀로그래피의 확장성을 이용한 대면적 측정 시스템",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2017-01-19"
+    },
+    {
+      "title": "내부 전반사 형광 현미경",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2016-10-31"
+    },
+    {
+      "title": "코히런스 조절이 가능한 디지털 홀로그래피 시스템",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2016-06-29"
+    },
+    {
+      "title": "다파장 디지털 홀로그래피 시스템",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2016-05-24"
+    },
+    {
+      "title": "내부 전반사 형광 현미경",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2015-11-30"
+    },
+    {
+      "title": "진동 저감을 위한 분극 처리를 이용한 적층형 세라믹 커패시터",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2015-10-05"
+    },
+    {
+      "title": "투명판 두께검사 장치, 이를 포함하는 투명판 두께검사 시스템, 및 이를 운용하는 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2015-09-15"
+    },
+    {
+      "title": "펄스레이저 광학 시스템에서 디지털 오실로스코프를 이용한 시간 정보 측정방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2015-09-14"
+    },
+    {
+      "title": "하이필 팩터 샘플에 대한 디지털 홀로그래피 시스템의 수차 보상 기법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2015-06-30"
+    },
+    {
+      "title": "패턴 인식을 이용한 마이크로 광학계를 위한 수차 보상 기법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2015-06-30"
+    },
+    {
+      "title": "나노어퍼쳐와 나노 입자 간의 플라즈모닉 커플링을 이용한 플라즈모닉 광 도파로",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2015-04-24"
+    },
+    {
+      "title": "디지털 홀로그래피 방법을 결합한 다중모드 STED 현미경시스템",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2015-04-23"
+    },
+    {
+      "title": "진동 저감을 위한 분극 처리를 이용한 적층형 세라믹 커패시터",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2015-04-21"
+    },
+    {
+      "title": "디지털 홀로그램 데이터를 이용한 마이크로 광학 소자의 3차원 측정방법 및 이를 통해 운용되는 측정장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2015-04-15"
+    },
+    {
+      "title": "홀로그래픽 데이터 스토리지의 비트 에러 비율(BER;bit error rate) 향상을 위한 홀로그래픽 데이터 스토리지에 정보를 기록하여 재생하는 장치 및 방법.",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2014-05-30"
+    },
+    {
+      "title": "나노어퍼쳐와 나노 입자 간의 플라즈모닉 커플링을 이용한 플라즈모닉 광 도파로",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2014-04-25"
+    },
+    {
+      "title": "나노어퍼쳐와 나노 입자 간의 플라즈모닉 커플링을 이용한 플라즈모닉 광 도파로",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2014-04-25"
+    },
+    {
+      "title": "진동 저감을 위한 분극 처리를 이용한 적층형 세라믹 커패시터",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2014-04-22"
+    },
+    {
+      "title": "금속 나노 입자의 국소 표면 플라즈몬 공명을 이용한 패터닝 장치 및 이를 이용한 패턴 형성방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2014-04-16"
+    },
+    {
+      "title": "다단계 보간법을 이용한 디지털 홀로그래피의 분해능 향상 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2014-03-27"
+    },
+    {
+      "title": "광루미네선스 원리를 이용한 광학헤드 및 이를 제조하는 방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2013-09-10"
+    },
+    {
+      "title": "위상변조기를 이용한 휴대용 홀로그래피 현미경",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2012-10-31"
+    },
+    {
+      "title": "자동 광경로 정렬장치 및 방법, 이를 구비한 홀로그래픽 광 메모리 시스템",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2012-03-21"
+    },
+    {
+      "title": "광학 시스템의 이미지 복원 방법 및 이미지 복원 장치, 이미지 복원 장치를 구비한 디지털 홀로그래픽 마이크로스코피 시스템",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2012-03-20"
+    },
+    {
+      "title": "외부 공진기 레이저 시스템",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2012-03-20"
+    },
+    {
+      "title": "손 떨림 보정 엑츄에이터 및 이를 포함하는 카메라 모듈",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2011-10-24"
+    },
+    {
+      "title": "원통형 전자기식 모터용 코어 및 이를 이용한 원통형 전자기식 모터",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 철도기술연구원",
+      "date": "2011-10-12"
+    },
+    {
+      "title": "능동 근접장 간극제어가 가능한 고속 마스크리스 나노리소그래피 방법, 이에 사용되는 나노 개구 기반 광학렌즈 및 광학헤드",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2011-02-11"
+    },
+    {
+      "title": "내부에 나노 개구 구비 금속막이 형성된 소자의 제조방법, 그 방법으로 제조된 나노 소자, 광학렌즈 및 플라즈모닉 광학헤드",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2011-01-28"
+    },
+    {
+      "title": "열팽창을 이용한 하드디스크 슬라이더의 부상성능 개선을 위한 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2010-12-20"
+    },
+    {
+      "title": "렌즈 구동용 엑츄에이터 및 이를 포함하는 카메라 모듈",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2010-12-03"
+    },
+    {
+      "title": "표면 탄성파 센서 및 구동기 통합 장치와 이를 이용한 초정밀 이송장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2010-11-23"
+    },
+    {
+      "title": "고체침지렌즈를 사용한 홀로그래픽 데이터 기록장치, 이를 이용한 기록방법 및 재생방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2010-11-17"
+    },
+    {
+      "title": "마이크로 홀로그래픽 데이터 기록장치, 이를 이용한 기록방법 및 재생방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2010-05-18"
+    },
+    {
+      "title": "복합형 광 도파로, 이를 이용한 광증폭기 및 광 증폭방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2009-11-23"
+    },
+    {
+      "title": "표면 탄성파 센서 및 이를 구비한 위치 측정 장치 및 정보 저장 기기",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2009-06-24"
+    },
+    {
+      "title": "미러진동 저감장치, 그를 구비한 미러박스 및 이미지 생성 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 삼성전자주식회사",
+      "date": "2009-01-21"
+    },
+    {
+      "title": "근접장 광디스크 구동기에서 갭 서보 제어 방법 및 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2008-07-10"
+    },
+    {
+      "title": "근접장 광디스크 구동기에서 갭 서보 제어 방법 및 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2008-06-30"
+    },
+    {
+      "title": "근접장 광디스크 구동기에서 갭 풀인 방법 및 그와 같은 기능을 갖는 광디스크 구동 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 삼성전자",
+      "date": "2008-05-22"
+    },
+    {
+      "title": "근접장 광디스크 구동기에서 갭 서보 제어 방법 및 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 삼성전자",
+      "date": "2008-01-18"
+    },
+    {
+      "title": "광 디스크 장치 및 그 구동방법",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단, 삼성전자주식회사",
+      "date": "2007-09-05"
+    },
+    {
+      "title": "표면 탄성파 회전 모터를 이용한 렌즈 모듈 구동기",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2007-02-27"
+    },
+    {
+      "title": "광픽업 구동기",
+      "type": "특허",
+      "applicant": "연세대학교산학협력단",
+      "date": "2003-10-29"
+    },
+    {
+      "title": "광픽업의 선형구동장치",
+      "type": "특허",
+      "applicant": "연세대학교산학협력단",
+      "date": "2002-08-19"
+    },
+    {
+      "title": "내부 반사식 미세 간격 측정장치 및 이를 이용한 광픽업 장치",
+      "type": "특허",
+      "applicant": "연세대학교산학협력단",
+      "date": "2002-03-06"
+    },
+    {
+      "title": "광학식 미세 간격 측정장치 및 이를 이용한 광픽업 장치",
+      "type": "특허",
+      "applicant": "연세대학교산학협력단",
+      "date": "2002-02-22"
+    },
+    {
+      "title": "비구면 고체 침지렌즈를 이용한 광픽업 장치",
+      "type": "특허",
+      "applicant": "연세대학교 산학협력단",
+      "date": "2001-06-08"
+    },
+    {
+      "title": "광픽업의 구동장치",
+      "type": "특허",
+      "applicant": "연세대학교산학협력단",
+      "date": "2001-02-20"
+    },
+    {
+      "title": "광픽업의 대물렌즈 구동장치",
+      "type": "특허",
+      "applicant": "연세대학교산학협력단",
+      "date": "2001-01-19"
+    },
+    {
+      "title": "압전구동장치",
+      "type": "특허",
+      "applicant": "연세대학교산학협력단",
+      "date": "2001-01-15"
+    },
+    {
+      "title": "광픽업의 대물렌즈 구동장치",
+      "type": "특허",
+      "applicant": "연세대학교산학협력단",
+      "date": "2001-01-10"
+    }
+  ]
+}
