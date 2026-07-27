@@ -1,7 +1,9 @@
 import { Marked } from 'marked';
 import { Link } from '@/i18n/navigation';
+import { AttachmentsZipButton } from '@/components/AttachmentsZipButton';
 import type { Attachment } from '@/lib/content';
 import type { Locale } from '@/i18n/routing';
+import { formatBytes } from '@/lib/files';
 import { formatDate } from '@/lib/utils';
 
 // 게시물 본문 마크다운 — breaks:true 로 단일 개행도 줄바꿈으로 살린다
@@ -15,6 +17,14 @@ export interface PostArticleLabels {
   metaRow: string;
   attachments: string;
   backToList: string;
+  /** 첨부 전체 ZIP 버튼 문구 3종 — 셋이 모두 오고 첨부가 2개 이상일 때만 버튼이 뜬다.
+   *  (선택적으로 둔 이유: 뉴스 상세·CMS 미리보기처럼 postId 로 API 를 부를 수 없는
+   *   호출부는 아무것도 넘기지 않는 것만으로 버튼이 사라진다.) */
+  attachmentsZip?: string;
+  zipPreparing?: string;
+  zipFailed?: string;
+  /** 서버가 Content-Disposition 을 안 줬을 때 쓸 zip 파일명 (로케일별) */
+  zipFileName?: string;
 }
 
 /**
@@ -29,10 +39,13 @@ export function PostArticle({
   title,
   date,
   metaValue,
+  categoryLabel,
+  categoryValue,
   body,
   bodyFormat = 'markdown',
   attachments,
   attachmentLabels,
+  postId,
   backHref,
   labels,
   locale,
@@ -43,6 +56,9 @@ export function PostArticle({
   date: string;
   /** 세 번째 메타 행 값 — 카테고리 라벨 또는 작성자 */
   metaValue: string;
+  /** 네 번째 메타 행(선택) — 라벨/값이 다 있을 때만 그린다. 자료실의 '분류: 행정 서식'용 */
+  categoryLabel?: string;
+  categoryValue?: string;
   /** 본문 원문 — bodyFormat 에 따라 마크다운 또는 정화된 HTML */
   body: string;
   /** 'markdown'(기본, marked 로 렌더) | 'html'(DB 저장 산출물 — 서버 정화 전제) */
@@ -50,11 +66,23 @@ export function PostArticle({
   attachments?: Attachment[];
   /** 각 첨부의 로케일 라벨 (부모에서 pick 처리해 전달) */
   attachmentLabels?: string[];
+  /** ZIP 다운로드 API 에 넘길 게시물 id — 게시판 글 상세만 갖는다 */
+  postId?: string;
   backHref: string;
   labels: PostArticleLabels;
   locale: Locale;
 }) {
   const hasAttachments = attachments && attachments.length > 0;
+
+  // ZIP 버튼은 "한 번에 받을 게 여럿"일 때만 의미가 있다 — 첨부 1개면 파일 링크가 곧 답이다.
+  // 라벨 3종과 postId 가 모두 온 호출부에서만 켜지므로, 넘기지 않는 화면(CMS 미리보기 등)엔 안 생긴다.
+  const showZip =
+    hasAttachments &&
+    attachments!.length >= 2 &&
+    !!postId &&
+    !!labels.attachmentsZip &&
+    !!labels.zipPreparing &&
+    !!labels.zipFailed;
 
   return (
     <article className="anim-panel">
@@ -78,6 +106,14 @@ export function PostArticle({
             <dt className="font-semibold text-content-faint">{labels.metaRow}</dt>
             <dd className="text-content-soft">{metaValue}</dd>
           </div>
+          {/* 분류는 자료실처럼 게시판 자체 분류를 가진 글에만 붙는다 —
+              라벨·값이 다 있을 때만 그려 다른 게시판의 두 줄 메타를 그대로 둔다 */}
+          {categoryLabel && categoryValue && (
+            <div className="flex items-baseline gap-2">
+              <dt className="font-semibold text-content-faint">{categoryLabel}</dt>
+              <dd className="text-content-soft">{categoryValue}</dd>
+            </div>
+          )}
         </dl>
       </header>
 
@@ -101,6 +137,8 @@ export function PostArticle({
             {attachments!.map((att, i) => {
               // 외부 스토리지(Blob)·외부 링크는 새 탭에서 — 게시물 읽기 흐름 유지
               const external = /^https?:\/\//.test(att.href);
+              // 크기를 모르는 첨부(레거시 링크)는 괄호째 생략한다 — 빈 괄호가 더 나쁘다
+              const size = formatBytes(att.size);
               return (
                 <li key={i}>
                   <a
@@ -122,12 +160,25 @@ export function PostArticle({
                         strokeLinejoin="round"
                       />
                     </svg>
-                    {attachmentLabels?.[i] ?? ''}
+                    <span>
+                      {attachmentLabels?.[i] ?? ''}
+                      {size && <span className="font-normal text-content-faint"> ({size})</span>}
+                    </span>
                   </a>
                 </li>
               );
             })}
           </ul>
+
+          {showZip && (
+            <AttachmentsZipButton
+              postId={postId!}
+              idleLabel={labels.attachmentsZip!}
+              pendingLabel={labels.zipPreparing!}
+              failedLabel={labels.zipFailed!}
+              fallbackFileName={labels.zipFileName ?? 'attachments.zip'}
+            />
+          )}
         </div>
       )}
 

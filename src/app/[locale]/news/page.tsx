@@ -5,7 +5,9 @@ import { TabbedContent, type TabItem } from '@/components/TabbedContent';
 import { type BoardRow } from '@/components/BoardList';
 import { FilterableBoardList } from '@/components/FilterableBoardList';
 import { EventCalendar, type CalendarEntry } from '@/components/EventCalendar';
+import { ResourceLibrary, type ResourceItem } from '@/components/ResourceLibrary';
 import { pick } from '@/lib/content';
+import { fileFormat } from '@/lib/files';
 import { parseDateLabelRange } from '@/lib/calendar';
 import { fetchNews, fetchBoardData, fetchCalendarPosts } from '@/lib/posts';
 import type { Locale } from '@/i18n/routing';
@@ -168,15 +170,33 @@ export default async function NewsPage({ params }: { params: { locale: string } 
     })),
   ];
 
-  // 자료실: 공지사항과 동일한 게시판 구조 (클릭 → 상세, 검색·날짜 필터)
-  const resourceRows: BoardRow[] = board.resources.map((r) => ({
-    id: r.id,
-    date: r.date,
-    title: pick(r.title, locale),
-    subtitle: r.excerpt ? pick(r.excerpt, locale) : undefined,
-    href: `/news/post/${r.id}`,
-    image: r.image,
-  }));
+  // 자료실: 다른 게시판과 달리 "받아 가는 파일"이라 전용 목록(ResourceLibrary)을 쓴다.
+  // 검색 인덱스(searchText)는 여기 서버에서 만든다 — 본문 HTML 을 클라이언트로 통째로
+  // 넘기지 않기 위해 태그를 지우고 공백을 접어 소문자 한 줄로 눌러 둔다
+  // (본문은 관리자가 쓴 신뢰 소스라 정규식 제거로 충분하다).
+  const resourceItems: ResourceItem[] = board.resources.map((r) => {
+    const title = pick(r.title, locale);
+    const desc = r.excerpt ? pick(r.excerpt, locale) : undefined;
+    const attachments = (r.attachments ?? []).map((a) => {
+      const label = pick(a.label, locale);
+      return { label, href: a.href, size: a.size, format: fileFormat(label, a.href) };
+    });
+    const plainBody = pick(r.body, locale).replace(/<[^>]*>/g, ' ');
+    return {
+      id: r.id,
+      date: r.date,
+      title,
+      desc,
+      category: r.category === 'form' || r.category === 'rule' ? r.category : undefined,
+      href: `/news/post/${r.id}`,
+      attachments,
+      searchText: [title, desc ?? '', plainBody, ...attachments.map((a) => a.label)]
+        .join(' ')
+        .replace(/\s+/g, ' ')
+        .trim()
+        .toLowerCase(),
+    };
+  });
 
   const tabs: TabItem[] = [
     { key: 'notices', label: tMenu('news.items.notices'), markdown: null, content: <FilterableBoardList items={notices} categories={noticeCategories} locale={locale} emptyLabel={tStub('empty')} /> },
@@ -187,7 +207,7 @@ export default async function NewsPage({ params }: { params: { locale: string } 
       content: <FilterableBoardList items={newsItems} locale={locale} emptyLabel={tStub('empty')} />,
     },
     { key: 'thesis', label: tMenu('news.items.thesis'), markdown: null, content: <FilterableBoardList items={thesisRows} locale={locale} emptyLabel={tStub('empty')} /> },
-    { key: 'resources', label: tMenu('news.items.resources'), markdown: null, content: <FilterableBoardList items={resourceRows} locale={locale} emptyLabel={tStub('empty')} /> },
+    { key: 'resources', label: tMenu('news.items.resources'), markdown: null, content: <ResourceLibrary items={resourceItems} locale={locale} /> },
     { key: 'career', label: tMenu('news.items.career'), markdown: null, content: <FilterableBoardList items={careerRows} locale={locale} emptyLabel={tStub('empty')} /> },
     { key: 'events', label: tMenu('news.items.events'), markdown: null, content: <FilterableBoardList items={eventRows} locale={locale} emptyLabel={tStub('empty')} /> },
     { key: 'seminars', label: tMenu('news.items.seminars'), markdown: null, content: <FilterableBoardList items={seminarRows} locale={locale} emptyLabel={tStub('empty')} /> },

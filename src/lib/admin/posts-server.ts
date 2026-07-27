@@ -100,7 +100,7 @@ export interface AdminPostPayload {
   linkUrl?: string;
   isEvent?: boolean;
   image?: string;
-  attachments?: { labelKo?: string; labelEn?: string; href: string }[];
+  attachments?: { labelKo?: string; labelEn?: string; href: string; size?: number }[];
 }
 
 const BOARDS = new Set([
@@ -158,6 +158,8 @@ export function payloadToRow(p: AdminPostPayload) {
   let category: string | null = null;
   if (isNews) category = nn(p.category) ?? 'notice';
   else if (p.board === 'calendar') category = nn(p.category) ?? 'academic';
+  // 자료실은 미분류를 허용한다 — 분류 없는 글은 목록의 '전체' 탭에만 잡힌다
+  else if (p.board === 'resources') category = nn(p.category);
   return {
     board: p.board,
     slug: isNews ? nn(p.slug) : null,
@@ -209,7 +211,13 @@ export interface DbPostRow {
   date_label_ko: string | null;
   date_label_en: string | null;
   thumbnail_url: string | null;
-  attachments?: { label_ko: string | null; label_en: string | null; url: string; sort: number }[];
+  attachments?: {
+    label_ko: string | null;
+    label_en: string | null;
+    url: string;
+    sort: number;
+    size_bytes?: number | null;
+  }[];
 }
 
 /** DB 행 → CMS 편집 레코드(마크다운 우선, 없으면 빈 문자열 — 구 데이터 호환) */
@@ -252,6 +260,11 @@ export function rowToEditRecord(r: DbPostRow) {
     attachments: (r.attachments ?? [])
       .slice()
       .sort((a, b) => a.sort - b.sort)
-      .map((a) => ({ labelKo: a.label_ko ?? '', labelEn: a.label_en ?? '', href: a.url })),
+      .map((a) => ({
+        labelKo: a.label_ko ?? '',
+        labelEn: a.label_en ?? '',
+        href: a.url,
+        ...(a.size_bytes ? { size: a.size_bytes } : {}),
+      })),
   };
 }

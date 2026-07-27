@@ -64,6 +64,8 @@ interface DbAttachment {
   label_en: string | null;
   url: string;
   sort: number;
+  /** 바이트 크기 — 구 행은 null(스키마 추가 이전). 자료실 목록의 크기 표기에 쓴다 */
+  size_bytes: number | null;
 }
 interface DbPost {
   id: number;
@@ -120,7 +122,11 @@ function dateOf(r: DbPost): string {
 function attsOf(r: DbPost): Attachment[] | undefined {
   const list = (r.attachments ?? []).slice().sort((a, b) => a.sort - b.sort);
   if (list.length === 0) return undefined;
-  return list.map((a) => ({ label: loc(a.label_ko, a.label_en), href: a.url }));
+  return list.map((a) => ({
+    label: loc(a.label_ko, a.label_en),
+    href: a.url,
+    ...(a.size_bytes && a.size_bytes > 0 ? { size: a.size_bytes } : {}),
+  }));
 }
 
 /** 본문 HTML(정화 저장분)에서 첫 <img> 의 src 추출 — 썸네일 미지정 시 목록 폴백.
@@ -160,6 +166,8 @@ function toNotice(r: DbPost): Notice {
     ...(thumb ? { image: thumb } : {}),
     ...(r.excerpt_ko || r.excerpt_en ? { excerpt: loc(r.excerpt_ko, r.excerpt_en) } : {}),
     ...(attsOf(r) ? { attachments: attsOf(r) } : {}),
+    // 게시판 자체 분류(자료실의 서식/규정 등) — 값이 있을 때만 실어 보낸다
+    ...(r.category ? { category: r.category } : {}),
   };
 }
 

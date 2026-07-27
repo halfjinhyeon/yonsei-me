@@ -16,8 +16,11 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import type { Editor } from '@tiptap/react';
 import { cn } from '@/lib/utils';
-import type { BoardMeta, EditRecord } from '@/lib/admin/boards';
+import type { BoardMeta, EditAttachment, EditRecord } from '@/lib/admin/boards';
 import { emptyAttachment } from '@/lib/admin/boards';
+// 첨부 크기 표기는 사이트 목록("PDF · 1.2MB")과 같은 함수를 쓴다 — 관리자와 학생이
+// 같은 문자열을 보게 해야 "왜 다르게 보이냐"는 문의가 생기지 않는다.
+import { formatBytes } from '@/lib/files';
 import {
   clearPostDraft,
   draftAgeLabel,
@@ -199,7 +202,14 @@ export function PostForm({
 
   function updateAtt(i: number, key: 'labelKo' | 'labelEn' | 'href', value: string) {
     setRec((prev) => {
-      const attachments = prev.attachments.map((a, idx) => (idx === i ? { ...a, [key]: value } : a));
+      const attachments = prev.attachments.map((a, idx) => {
+        if (idx !== i) return a;
+        const next: EditAttachment = { ...a, [key]: value };
+        // href 를 손으로 고치면 업로드 때 기록해 둔 size 는 더 이상 그 파일의 크기가
+        // 아니다. 틀린 용량을 목록에 띄우느니 아예 표기하지 않는 편이 낫다.
+        if (key === 'href') delete next.size;
+        return next;
+      });
       return { ...prev, attachments };
     });
   }
@@ -240,6 +250,9 @@ export function PostForm({
                   // 라벨이 비어 있으면 파일명으로 채워 한 번에 입력을 끝낸다
                   labelKo: a.labelKo || file.name,
                   labelEn: a.labelEn || file.name,
+                  // 목록의 "PDF · 1.2MB" 표기에 쓸 용량. 사용자가 칠 값이 아니라
+                  // 고른 파일에서만 알 수 있으므로 업로드 성공 시점에 여기서 함께 넣는다.
+                  size: file.size,
                 }
               : a,
           );
@@ -575,7 +588,8 @@ export function PostForm({
             </>
           )}
 
-          {/* 뉴스형 — 분류 */}
+          {/* 뉴스형 — 분류. 뉴스의 3종은 사이트 곳곳(카드 배지·필터)이 값 자체를 알고
+              있어 데이터로 빼지 않고 여기 그대로 둔다(기본값 notice). */}
           {meta.isNews && (
             <MetaField label="분류" htmlFor="pf-category">
               <select
@@ -587,6 +601,34 @@ export function PostForm({
                 <option value="notice">공지 (notice)</option>
                 <option value="seminar">세미나 (seminar)</option>
                 <option value="achievement">성과 (achievement)</option>
+              </select>
+            </MetaField>
+          )}
+
+          {/* 뉴스형이 아닌 분류 게시판(자료실) — 선택지는 BoardMeta.categories 가 쥐고
+              있으므로 화면은 그 목록만 그린다. 일정(calendarGrid)은 전용 편집기
+              (CalendarEditor)가 분류를 따로 다루므로 제외한다 — 지금은 캘린더가
+              PostForm 을 아예 쓰지 않지만, 쓰게 되더라도 분류 입력이 두 곳으로
+              갈라지지 않게 막아 두는 방어 조건이다. */}
+          {!meta.isNews && meta.categories && !meta.calendarGrid && (
+            <MetaField
+              label="분류"
+              htmlFor="pf-category"
+              hint="자료실 목록 상단 탭(행정 서식 / 규정·내규)을 가르는 값입니다. 비워 두면 ‘전체’ 탭에만 나옵니다."
+            >
+              <select
+                id="pf-category"
+                value={rec.category ?? ''}
+                onChange={(e) => set('category', e.target.value)}
+                className={cn(fieldClass, 'cursor-pointer')}
+              >
+                {/* 미분류를 맨 앞에 — 자료실은 분류를 비워 둔 채로 저장할 수 있다 */}
+                <option value="">미분류</option>
+                {meta.categories.map((c) => (
+                  <option key={c.value} value={c.value}>
+                    {c.label}
+                  </option>
+                ))}
               </select>
             </MetaField>
           )}
@@ -610,8 +652,9 @@ export function PostForm({
             </MetaField>
           )}
 
-          {/* 뉴스형 — 요약(목록 카드에 2줄로 노출) */}
-          {meta.isNews && (
+          {/* 요약 — 뉴스형은 목록 카드에 2줄로, 자료실(hasExcerpt)은 목록의 제목 아래
+              한 줄 설명으로 쓰인다. 본문에서 뽑아 쓸 수 없는 자리라 직접 받는다. */}
+          {(meta.isNews || meta.hasExcerpt) && (
             <>
               <MetaField label="요약" htmlFor="pf-excerpt-ko">
                 <textarea
@@ -889,7 +932,10 @@ export function PostForm({
                 </button>
               </div>
               <div className="mt-3 space-y-2.5">
-                {rec.attachments.map((att, i) => (
+                {rec.attachments.map((att, i) => {
+                  // 업로드로 알게 된 용량만 표기한다(직접 붙여넣은 URL 은 크기를 알 수 없다)
+                  const sizeLabel = formatBytes(att.size);
+                  return (
                   <div key={i}>
                     <div className="grid gap-2 sm:grid-cols-[1fr_1fr_1.5fr_auto_auto]">
                       <input
@@ -908,14 +954,21 @@ export function PostForm({
                         placeholder="Label (en)"
                         className={fieldClass}
                       />
-                      <input
-                        type="text"
-                        aria-label={`첨부 ${i + 1} 링크`}
-                        value={att.href}
-                        onChange={(e) => updateAtt(i, 'href', e.target.value)}
-                        placeholder="href — 파일 업로드 시 자동 기입"
-                        className={fieldClass}
-                      />
+                      {/* 링크 아래에 용량을 읽기 전용으로 붙인다 — 목록·상세의
+                          "PDF · 1.2MB" 가 어디서 오는 값인지 그 자리에서 보이게 */}
+                      <div className="min-w-0">
+                        <input
+                          type="text"
+                          aria-label={`첨부 ${i + 1} 링크`}
+                          value={att.href}
+                          onChange={(e) => updateAtt(i, 'href', e.target.value)}
+                          placeholder="href — 파일 업로드 시 자동 기입"
+                          className={fieldClass}
+                        />
+                        {sizeLabel && (
+                          <p className="mt-1 text-[11px] text-content-faint">{sizeLabel}</p>
+                        )}
+                      </div>
                       {onUploadFile && (
                         <button
                           type="button"
@@ -944,7 +997,8 @@ export function PostForm({
                       </div>
                     )}
                   </div>
-                ))}
+                  );
+                })}
               </div>
               {onUploadFile && (
                 <p className="mt-2 text-[11px] text-content-faint">

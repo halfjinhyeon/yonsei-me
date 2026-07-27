@@ -78,6 +78,8 @@ export interface EditAttachment {
   labelKo: string;
   labelEn: string;
   href: string;
+  /** 바이트 크기 — 업로드 시 File.size 로 자동 기입(직접 URL 을 붙여넣으면 비어 있다) */
+  size?: number;
 }
 
 export interface BoardMeta {
@@ -111,7 +113,17 @@ export interface BoardMeta {
   categories?: { value: string; label: string }[];
   /** true 면 목록을 표·카드가 아니라 월 그리드(달력)로 그린다 — 일정. */
   calendarGrid?: boolean;
+  /** true 면 뉴스형이 아니어도 '요약' 필드를 노출한다 — 자료실 목록은 제목 아래
+   *  한 줄 설명을 쓰므로 관리자가 직접 써야 한다(뉴스는 isNews 로 이미 켜져 있다). */
+  hasExcerpt?: boolean;
 }
+
+/** 자료실 분류 — posts.category 에 저장. 목록 상단 탭(전체·행정 서식·규정·내규)의 근거이며,
+ *  값은 프런트(ResourceLibrary)와 공유하므로 바꾸면 기존 글의 분류가 풀린다. */
+export const RESOURCE_CATEGORIES: { value: string; label: string }[] = [
+  { value: 'form', label: '행정 서식' },
+  { value: 'rule', label: '규정·내규' },
+];
 
 /** 일정 분류 4종 — posts.category 에 저장되는 값 집합 */
 export const CALENDAR_CATEGORIES: { value: string; label: string }[] = [
@@ -142,7 +154,7 @@ export const BOARDS: BoardMeta[] = [
   // 라벨은 저장 시 서버(formatPeriodLabel)가 자동 생성한다.
   { key: 'events', label: '행사', file: 'board.json', idPrefix: 'evt-', hasHost: false, hasDateLabel: false, hasDateRange: true, isNews: false, dateIsEvent: true },
   { key: 'thesis', label: '학위논문심사', file: 'board.json', idPrefix: 'th-', hasHost: false, hasDateLabel: false, isNews: false },
-  { key: 'resources', label: '자료실', file: 'board.json', idPrefix: 'res-', hasHost: false, hasDateLabel: false, isNews: false },
+  { key: 'resources', label: '자료실', file: 'board.json', idPrefix: 'res-', hasHost: false, hasDateLabel: false, isNews: false, categories: RESOURCE_CATEGORIES, hasExcerpt: true },
   { key: 'career', label: '취업 정보', file: 'board.json', idPrefix: 'cr-', hasHost: false, hasDateLabel: false, isNews: false },
   { key: 'internships', label: '인턴 모집', file: 'board.json', idPrefix: 'int-', hasHost: false, hasDateLabel: false, isNews: false },
   { key: 'alumniNews', label: '동문 뉴스', file: 'news.json', idPrefix: '', hasHost: false, hasDateLabel: false, isNews: true, newsFile: 'content/alumni-news.json' },
@@ -197,7 +209,12 @@ export function suggestId(meta: BoardMeta, existingIds: string[]): string {
 // ---- 도메인 레코드 ↔ 편집 레코드 변환 ----
 
 function attsToEdit(atts?: Attachment[]): EditAttachment[] {
-  return (atts ?? []).map((a) => ({ labelKo: a.label.ko, labelEn: a.label.en, href: a.href }));
+  return (atts ?? []).map((a) => ({
+    labelKo: a.label.ko,
+    labelEn: a.label.en,
+    href: a.href,
+    ...(a.size ? { size: a.size } : {}),
+  }));
 }
 
 /** board.json 내 임의 레코드를 편집 폼 형태로 */
@@ -239,8 +256,13 @@ export function toEditRecord(meta: BoardMeta, raw: unknown): EditRecord {
     base.isEvent = r.isEvent === true;
   }
   if (meta.isNews) {
-    const excerpt = loc(r.excerpt);
     base.category = String(r.category ?? 'notice');
+  } else if (meta.categories) {
+    // 뉴스 외 분류 게시판(자료실 등) — 미분류('')를 허용하므로 기본값을 넣지 않는다
+    base.category = String(r.category ?? '');
+  }
+  if (meta.isNews || meta.hasExcerpt) {
+    const excerpt = loc(r.excerpt);
     base.excerptKo = excerpt.ko ?? '';
     base.excerptEn = excerpt.en ?? '';
   }
@@ -259,7 +281,11 @@ function localized(ko: string, en: string): { ko: string; en: string } {
 function editToAtts(atts: EditAttachment[]): Attachment[] | undefined {
   const filled = atts.filter((a) => a.href.trim() !== '' || a.labelKo.trim() !== '');
   if (filled.length === 0) return undefined;
-  return filled.map((a) => ({ label: localized(a.labelKo, a.labelEn), href: a.href.trim() }));
+  return filled.map((a) => ({
+    label: localized(a.labelKo, a.labelEn),
+    href: a.href.trim(),
+    ...(a.size ? { size: a.size } : {}),
+  }));
 }
 
 /** 편집 레코드를 board.json에 넣을 Notice/Seminar/EventItem으로 */

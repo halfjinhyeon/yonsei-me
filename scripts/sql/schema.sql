@@ -45,13 +45,18 @@ create index if not exists posts_published_idx on posts (published);
 
 -- ── attachments: 첨부 메타 (실체는 R2, 여기엔 URL 만) ──────────────────
 create table if not exists attachments (
-  id       bigint generated always as identity primary key,
-  post_id  bigint not null references posts (id) on delete cascade,
-  label_ko text,
-  label_en text,
-  url      text not null,
-  sort     int not null default 0
+  id         bigint generated always as identity primary key,
+  post_id    bigint not null references posts (id) on delete cascade,
+  label_ko   text,
+  label_en   text,
+  url        text not null,
+  sort       int not null default 0,
+  size_bytes bigint            -- 파일 크기. 자료실 목록의 "PDF · 1.2MB" 표기용, null 이면 생략
 );
+
+-- (기존 설치 업그레이드) 새 칼럼은 alter 로도 보강 — 이 파일 재실행이 곧 업그레이드.
+-- 구 첨부의 크기는 `node tools/backfill-attachment-sizes.mjs` 로 한 번 채운다.
+alter table attachments add column if not exists size_bytes bigint;
 
 create index if not exists attachments_post_idx on attachments (post_id);
 

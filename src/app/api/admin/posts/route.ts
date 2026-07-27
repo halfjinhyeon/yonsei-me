@@ -72,6 +72,8 @@ export async function POST(request: Request): Promise<Response> {
         label_en: a.labelEn?.trim() || null,
         url: a.href.trim(),
         sort: i,
+        // 업로드로 붙인 첨부만 크기를 안다(URL 직접 입력은 null → 목록에서 크기 생략)
+        size_bytes: a.size && a.size > 0 ? a.size : null,
       })),
     );
     if (r.error) return Response.json({ error: r.error.message }, { status: 500 });

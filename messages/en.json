@@ -529,6 +529,31 @@
     "noticeCats": {
       "external": "External",
       "scholarship": "Scholarship"
+    },
+    "library": {
+      "all": "All",
+      "categoryLabel": "File category",
+      "zipFileName": "attachments.zip",
+      "catForm": "Administrative forms",
+      "catRule": "Regulations",
+      "searchPlaceholder": "Search titles, text, and file names",
+      "searchLabel": "Search files",
+      "results": "{count} results",
+      "empty": "No files match your filters.",
+      "new": "NEW",
+      "download": "Download",
+      "downloadAll": "Download all",
+      "attachCount": "{count} files",
+      "formatEtc": "{format} and more",
+      "selectMode": "Select multiple",
+      "selected": "{count} selected",
+      "selectedTotal": "{size} total",
+      "selectRow": "Select {title}",
+      "clearSelection": "Clear selection",
+      "batchDownload": "Download selected (ZIP)",
+      "attachmentsZip": "Download all attachments (ZIP)",
+      "zipPreparing": "Preparing…",
+      "zipFailed": "The download failed. Please try again in a moment."
     }
   },
   "admission": {

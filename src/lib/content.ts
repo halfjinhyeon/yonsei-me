@@ -19,6 +19,10 @@ export function pick<T>(value: Localized<T>, locale: Locale): T {
 export interface Attachment {
   label: Localized;
   href: string;
+  /** 바이트 단위 파일 크기 — 자료실 목록의 "PDF · 1.2MB" 표기용.
+   *  CMS 업로드 시 File.size 로 기록되고, 구 데이터(레거시 사이트 링크)는
+   *  tools/backfill-attachment-sizes.mjs 가 채운다. 없으면 크기를 생략한다. */
+  size?: number;
 }
 
 export type FacultyField = 'energy' | 'robotics' | 'design' | 'bio';
@@ -142,6 +146,10 @@ export interface Notice {
   /** 목록 발췌 — 없으면 목록에서 생략 */
   excerpt?: Localized;
   attachments?: Attachment[];
+  /** 게시판 자체 분류(posts.category) — 자료실의 '행정 서식'/'규정·내규' 처럼
+   *  BoardMeta.categories 를 가진 게시판만 채운다. 공지 4종의 '학부/대학원'은
+   *  게시판 키로 갈리므로 이 필드를 쓰지 않는다. */
+  category?: string;
 }
 
 /** 동문 소식·네트워크 항목 — 세미나형 + "특정 날짜 행사" 플래그.
@@ -175,6 +183,9 @@ export interface BoardPost {
   /** 부가 정보 한 줄 — 세미나 연사, 행사 기간, 공지 구분(학부/대학원) 등 */
   meta?: Localized;
   attachments?: Attachment[];
+  /** 게시판 자체 분류(Notice.category 가 그대로 실려 온다) — 자료실의 'form'/'rule'.
+   *  상세 화면의 '분류' 메타 줄이 이 값을 읽는다. */
+  category?: string;
 }
 
 export function getAllBoardPosts(): BoardPost[] {

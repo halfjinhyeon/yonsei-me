@@ -64,6 +64,8 @@ export async function PUT(
         label_en: a.labelEn?.trim() || null,
         url: a.href.trim(),
         sort: i,
+        // 업로드로 붙인 첨부만 크기를 안다(URL 직접 입력은 null → 목록에서 크기 생략)
+        size_bytes: a.size && a.size > 0 ? a.size : null,
       })),
     );
     if (ins.error) return Response.json({ error: ins.error.message }, { status: 500 });

@@ -84,6 +84,13 @@ export default async function BoardPostPage({
   const sectionHref = isResearch ? '/research' : '/news';
   const author = post.meta ? pick(post.meta, locale) : t('detail.defaultAuthor');
 
+  // 자료실만 '분류' 메타 행을 한 줄 더 세운다. 공지의 학부/대학원 구분은 이미 위
+  // author(post.meta) 칸에 실려 있어 여기 또 쓰면 같은 말이 두 번 나온다.
+  const libraryCategory =
+    post.boardKey === 'resources' && (post.category === 'form' || post.category === 'rule')
+      ? t(post.category === 'form' ? 'library.catForm' : 'library.catRule')
+      : undefined;
+
   return (
     <>
       <Hero
@@ -97,10 +104,13 @@ export default async function BoardPostPage({
           title={pick(post.title, locale)}
           date={post.date}
           metaValue={author}
+          categoryLabel={libraryCategory ? t('detail.categoryLabel') : undefined}
+          categoryValue={libraryCategory}
           body={pick(post.body, locale)}
           bodyFormat={postsBodyFormat()}
           attachments={post.attachments}
           attachmentLabels={post.attachments?.map((a) => pick(a.label, locale))}
+          postId={post.id}
           backHref={`${sectionHref}#${post.boardKey}`}
           labels={{
             title: t('detail.titleLabel'),
@@ -108,6 +118,12 @@ export default async function BoardPostPage({
             metaRow: t('detail.authorLabel'),
             attachments: t('detail.attachmentsLabel'),
             backToList: t('backToList'),
+            // ZIP 문구는 게시판을 가리지 않고 넘긴다 — 첨부가 여럿인 글이면 자료실이든
+            // 공지든 한 번에 받는 편이 낫고, /api/download-zip 도 게시판을 구분하지 않는다.
+            attachmentsZip: t('library.attachmentsZip'),
+            zipPreparing: t('library.zipPreparing'),
+            zipFailed: t('library.zipFailed'),
+            zipFileName: t('library.zipFileName'),
           }}
           locale={locale}
         />
