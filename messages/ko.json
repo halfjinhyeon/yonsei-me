@@ -203,13 +203,17 @@
       "viewMore": "VIEW MORE",
       "prev": "이전 일정",
       "next": "다음 일정",
-      "empty": "예정된 일정이 없습니다."
+      "empty": "예정된 일정이 없습니다.",
+      "prevMonth": "이전 달",
+      "nextMonth": "다음 달",
+      "emptyMonth": "등록된 일정이 없습니다."
     },
     "notices": {
       "title": "공지&일정",
       "listLabel": "공지사항",
       "more": "MORE",
       "empty": "등록된 공지가 없습니다.",
+      "newBadge": "새 글",
       "filters": {
         "all": "전체",
         "undergrad": "학부",

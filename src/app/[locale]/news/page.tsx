@@ -4,7 +4,7 @@ import { Hero } from '@/components/Hero';
 import { TabbedContent, type TabItem } from '@/components/TabbedContent';
 import { type BoardRow } from '@/components/BoardList';
 import { FilterableBoardList } from '@/components/FilterableBoardList';
-import { EventCalendar, type CalendarEntry } from '@/components/EventCalendar';
+import { EventCalendar, CALENDAR_KIND, type CalendarEntry } from '@/components/EventCalendar';
 import { ResourceLibrary, type ResourceItem } from '@/components/ResourceLibrary';
 import { pick } from '@/lib/content';
 import { fileFormat } from '@/lib/files';
@@ -14,16 +14,6 @@ import type { Locale } from '@/i18n/routing';
 
 // DB 소스 전환(Phase 2): 목록도 ISR — revalidateTag('posts') 가 즉시 갱신, 이 값은 안전망
 export const revalidate = 300;
-
-// CMS '일정 (캘린더)' 게시판의 분류 → 캘린더 kind. CMS 의 '행사'는 행사 게시판과 같은
-// 'event' 로 접는다 — 학생에게는 둘 다 그냥 행사라 범례가 '행사'로 두 줄 나오면 안 된다.
-// 모르는 값(분류가 늘어난 경우)은 학사일정으로 떨어뜨려 최소한 달력에는 뜨게 한다.
-const CALENDAR_KIND: Record<string, CalendarEntry['kind']> = {
-  academic: 'academic',
-  event: 'event',
-  recruit: 'recruit',
-  exam: 'exam',
-};
 
 export async function generateMetadata({
   params,

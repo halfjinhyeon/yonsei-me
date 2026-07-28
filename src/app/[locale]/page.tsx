@@ -4,10 +4,11 @@ import { LabsSection } from '@/components/LabsSection';
 import { NewsEventsSection } from '@/components/NewsEventsSection';
 import { InstagramSection } from '@/components/InstagramSection';
 import { GoalsSection } from '@/components/GoalsSection';
-import { CalendarSection } from '@/components/CalendarSection';
+import { HomeCalendarPanel } from '@/components/HomeCalendarPanel';
+import { CALENDAR_KIND, type CalendarEntry } from '@/components/EventCalendar';
 import { NoticeSection, type NoticeCategory } from '@/components/NoticeSection';
 import { pick } from '@/lib/content';
-import { formatPeriodLabel } from '@/lib/calendar';
+import { parseDateLabelRange } from '@/lib/calendar';
 import { formatDate } from '@/lib/utils';
 import {
   fetchNews,
@@ -102,64 +103,69 @@ export default async function HomePage({ params }: { params: { locale: string } 
     .sort((a, b) => (a.date < b.date ? 1 : -1))
     .slice(0, 12);
 
-  // 학과 일정 — 행사 게시판(dateLabel 포함) + 동문 행사(isEvent) 를 합쳐 '예정→과거' 순.
-  // 대부분 데이터가 과거일 수 있어 하드 필터 대신 예정(오늘 이후) 오름차순 + 과거 내림차순으로
-  // 정렬해 항상 관련 항목을 노출한다. 날짜 pill 은 dateLabel(예: "7/20~7/24")을 쓰되,
-  // 비어 있으면 date 를 'YY.MM.DD' 로 폴백한다.
-  // ⚠️ 정렬·분류는 e.date 를 행사일로 간주한다 — board.json 의 event.date 가 게시일이 아닌
-  //    실제 행사일이어야 '예정/과거' 순서가 맞는다(dateLabel 은 자유형식이라 정렬 키로 못 씀).
+  // 학과 일정 — 홈 일정 패널(HomeCalendarPanel)이 '달' 단위로 잘라 보여주므로, 여기서는
+  // 정렬·건수 제한 없이 소스 넷을 CalendarEntry[] 로 합치기만 한다(예전에는 '예정→과거'로
+  // 정렬해 12건을 잘랐는데, 그러면 화면에 지금이 몇 월인지가 남지 않았다).
+  // 소스: 행사 게시판 · 세미나 게시판 · 동문 행사(isEvent) · CMS '일정 (캘린더)' 게시판.
+  // 조립 문법은 뉴스 '일정' 탭(news/page.tsx)과 같게 두어 두 화면이 같은 것을 보게 한다.
   // 로케일 값이 비어 있으면 기본 로케일(ko)로 폴백 — pick 은 빈 문자열("")을 폴백하지 않으므로
-  // 직접 처리해, 부분 번역 데이터에서 빈 제목 카드나 로케일 간 날짜 불일치를 막는다.
+  // 직접 처리해, 부분 번역 데이터에서 빈 제목 행이 생기는 것을 막는다.
   const orKo = (v: { ko: string; en: string }) => pick(v, locale).trim() || v.ko;
-  // '오늘'은 KST 기준(서버가 UTC 여도 한국 날짜 경계를 쓴다).
+  // '오늘'은 KST 기준(서버가 UTC 여도 한국 날짜 경계를 쓴다). 패널이 처음 펼칠 달의 기준이며,
+  // 서버에서 계산해 내려야 클라이언트 타임존과 어긋나는 하이드레이션 불일치가 없다.
   const calToday = new Intl.DateTimeFormat('en-CA', { timeZone: 'Asia/Seoul' }).format(new Date());
-  const calRaw = [
-    ...board.events.map((e) => ({
-      date: e.date,
-      label: orKo(e.dateLabel), // en 이 비면 ko dateLabel 로 폴백 → 로케일 간 동일 행사일 표기
-      title: orKo(e.title),
-      href: `/news/post/${e.id}`,
-    })),
-    ...board.alumniEvents
-      .filter((a) => a.isEvent && a.date)
-      .map((a) => {
-        // 종료일(end_date)이 있으면 기간 라벨을 렌더 시 생성, 없으면 '' → 아래 'YY.MM.DD' 폴백
-        const pl = a.endDate ? formatPeriodLabel(a.date, a.endDate) : null;
-        return {
-          date: a.date,
-          label: pl ? pl[locale] : '',
-          title: orKo(a.title),
-          href: `/alumni/post/${a.id}`,
-        };
-      }),
-    // 캘린더 전용 일정 — 개강·수강신청 변경·시험 기간처럼 게시글 없이 캘린더에만
-    // 올려야 하는 학사일정. 저장처는 위 두 항목과 같은 Supabase posts 테이블이고
-    // (board='calendar', CMS '일정 (캘린더)' 게시판), CMS 저장이 revalidateTag('posts')
-    // 를 부르므로 재배포 없이 수 초 내 반영된다 — 한 달력 안에서 두 종류가 다른
-    // 속도로 갱신되던 문제를 이렇게 없앴다. 모양도 게시판 기반 항목과 같게 만들어
-    // 아래 정렬에 그대로 섞는다(별도 구역을 두지 않는다 — 학생에게는 둘 다 그냥
-    // "다가오는 일정"이다). href 가 비면 링크 없는 정적 카드가 된다.
-    ...calendarPosts.map((ev) => {
-      const pl = ev.end ? formatPeriodLabel(ev.start, ev.end) : null;
+  const initialMonth = calToday.slice(0, 7);
+  const calendarEntries: CalendarEntry[] = [
+    ...board.events.map((e) => {
+      // 구조화된 endDate(DB end_date)가 있으면 그것을 신뢰하고, 없으면(구 데이터) 사람이
+      // 손으로 적은 dateLabel 을 파싱한 범위로 폴백한다.
+      const r = e.endDate
+        ? { start: e.date, end: e.endDate }
+        : parseDateLabelRange(e.date, orKo(e.dateLabel));
       return {
-        date: ev.start,
-        label: pl ? pl[locale] : '',
-        title: orKo(ev.title),
-        href: ev.href ?? '',
+        id: e.id,
+        date: r.start,
+        endDate: r.end,
+        title: orKo(e.title),
+        kind: 'event' as const,
+        href: `/news/post/${e.id}`,
       };
     }),
+    ...board.seminars.map((s) => ({
+      id: s.id,
+      date: s.date,
+      endDate: s.endDate ?? s.date, // 종료일 없으면 하루
+      title: orKo(s.title),
+      kind: 'seminar' as const,
+      href: `/news/post/${s.id}`,
+    })),
+    // 동문 행사는 전용 kind 를 두지 않고 'event' 로 접는다 — 캘린더의 종류는 5종
+    // (행사/세미나/학사일정/모집·신청/시험)으로 고정돼 있고, 학생에게 동문 행사도
+    // 그냥 행사다. 별도 색·배지를 늘리면 범례만 길어지고 구분 실익이 없다.
+    ...board.alumniEvents
+      .filter((a) => a.isEvent && a.date)
+      .map((a) => ({
+        id: `al-${a.id}`, // 게시판 글과 id 공간이 겹치므로(둘 다 DB 연번) 접두사로 분리
+        date: a.date,
+        endDate: a.endDate ?? a.date,
+        title: orKo(a.title),
+        kind: 'event' as const,
+        href: `/alumni/post/${a.id}`,
+      })),
+    // 캘린더 전용 일정 — 개강·수강신청 변경·시험 기간처럼 게시글 없이 캘린더에만
+    // 올려야 하는 학사일정. 저장처는 위 항목들과 같은 Supabase posts 테이블이고
+    // (board='calendar', CMS '일정 (캘린더)' 게시판), CMS 저장이 revalidateTag('posts')
+    // 를 부르므로 재배포 없이 수 초 내 반영된다. href 가 없으면 키 자체를 빼서
+    // 패널이 링크 아닌 정적 행으로 그리게 한다(누를 곳이 없는데 눌리면 안 된다).
+    ...calendarPosts.map((ev) => ({
+      id: `cal-${ev.id}`,
+      date: ev.start,
+      endDate: ev.end ?? ev.start,
+      title: orKo(ev.title),
+      kind: CALENDAR_KIND[ev.category] ?? 'academic',
+      ...(ev.href ? { href: ev.href } : {}),
+    })),
   ];
-  const byDateAsc = (a: { date: string }, b: { date: string }) =>
-    a.date < b.date ? -1 : a.date > b.date ? 1 : 0;
-  const calendarItems = [
-    ...calRaw.filter((e) => e.date >= calToday).sort(byDateAsc),
-    ...calRaw.filter((e) => e.date < calToday).sort((a, b) => -byDateAsc(a, b)),
-  ]
-    .slice(0, 12)
-    .map((e) => {
-      const [y, m, d] = e.date.split('-');
-      return { href: e.href, dateLabel: e.label.trim() || `${y.slice(2)}.${m}.${d}`, title: e.title };
-    });
 
   // 학과 공지 — 4개 공지 배열(학부/대학원/외부기관/장학)을 최신순으로 합쳐 카테고리 태그.
   // 행 링크는 게시물 상세(/news/post/[id]). 탭 필터·2열 배치는 NoticeSection 이 담당.
@@ -236,8 +242,10 @@ export default async function HomePage({ params }: { params: { locale: string } 
           />
         </div>
 
-        {/* 2. 공지 & 일정 — 학과 공지와 학과 일정을 한 섹션으로 통합(사용자 지시). 헤더는 공지
-            것만("공지&일정"), 리스트 아래 구분선. 일정은 헤더 없는 bare 모드로 구분선 아래 임베드. */}
+        {/* 2. 공지 & 일정 — 한 섹션에 좌 공지 리스트(탭 필터 + 4건) / 우 월간 일정 패널.
+            예전에는 공지 8건(2열) 아래에 일정 캐러셀을 붙였는데, 세로로 길기만 하고
+            "이번 달에 뭐가 있나"를 못 읽었다. 지금은 두 게시판을 좌우로 나란히 놓고
+            각 열이 자기 MORE 를 갖는다(가는 곳이 서로 다른 게시판이다). */}
         <div id="sec-notices" className="scroll-mt-16 lg:scroll-mt-20">
           <NoticeSection
             items={noticeItems}
@@ -246,17 +254,19 @@ export default async function HomePage({ params }: { params: { locale: string } 
             moreLabel={t('notices.more')}
             moreHref="/news#notices"
             emptyLabel={t('notices.empty')}
+            newBadgeLabel={t('notices.newBadge')}
             filters={noticeFilters}
           >
-            <CalendarSection
-              bare
-              items={calendarItems}
+            <HomeCalendarPanel
+              entries={calendarEntries}
+              initialMonth={initialMonth}
+              locale={locale}
               title={t('calendar.title')}
-              viewMoreLabel={t('calendar.viewMore')}
-              viewMoreHref="/news#calendar"
-              prevLabel={t('calendar.prev')}
-              nextLabel={t('calendar.next')}
-              emptyLabel={t('calendar.empty')}
+              moreLabel={t('calendar.viewMore')}
+              moreHref="/news#calendar"
+              prevLabel={t('calendar.prevMonth')}
+              nextLabel={t('calendar.nextMonth')}
+              emptyLabel={t('calendar.emptyMonth')}
             />
           </NoticeSection>
         </div>

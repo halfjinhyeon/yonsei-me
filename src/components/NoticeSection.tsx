@@ -1,6 +1,6 @@
 'use client';
 
-import { useMemo, useState, type ReactNode } from 'react';
+import { useEffect, useMemo, useState, type ReactNode } from 'react';
 import { Link } from '@/i18n/navigation';
 import { UnderlineTabs } from './UnderlineTabs';
 import { cn } from '@/lib/utils';
@@ -33,14 +33,27 @@ const BADGE: Record<NoticeCategory, string> = {
   scholarship: 'bg-teal-500/10 text-teal-700 dark:text-teal-400',
 };
 
-/** 공지 한 행 — 날짜 → 제목(1줄 말줄임) → 카테고리 배지. 행 전체가 게시물 Link. */
+/** 목록에 노출할 공지 건수 — 1열로 펴면서 4건으로 줄였다(우열 일정 패널과 높이를 맞춘다). */
+const ROWS = 4;
+/** 'N' 배지를 붙일 기간(일). 게시일로부터 이 안이면 새 글로 본다. */
+const NEW_DAYS = 7;
+
+/**
+ * 공지 한 행 — 1행 제목(+N 배지), 2행 날짜 · 카테고리 배지.
+ * 날짜를 제목 아래로 내린 이유: 제목이 읽는 순서의 첫 자리이고, 날짜·분류는 그 글을
+ * 이미 고른 뒤에 확인하는 부가 정보다. 행 전체가 게시물 Link.
+ */
 function NoticeRow({
   item,
   label,
+  isNew,
+  newBadgeLabel,
   delayIndex,
 }: {
   item: NoticeSectionItem;
   label: string;
+  isNew: boolean;
+  newBadgeLabel: string;
   delayIndex: number;
 }) {
   return (
@@ -48,41 +61,50 @@ function NoticeRow({
       className="anim-nav-item border-b border-surface-border"
       style={{ animationDelay: `${Math.min(delayIndex, 8) * 45}ms` }}
     >
-      {/* 모바일은 컴팩트 한 줄(날짜·제목 말줄임·배지) — 데스크톱 모드의 밀도를 읽히는 크기로 재현 */}
       <Link
         href={`/news/post/${item.id}`}
-        className="group flex items-center gap-2.5 py-3 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yonsei-blue sm:gap-4 sm:py-4"
+        className="group block px-0.5 py-[22px] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yonsei-blue"
       >
-        <time dateTime={item.date} className="shrink-0 text-xs tabular-nums text-content-faint sm:text-sm">
-          {item.dateText}
-        </time>
-        <span className="min-w-0 flex-1 truncate text-sm font-medium text-content transition-colors group-hover:text-yonsei-blue sm:text-base">
-          {item.title}
-        </span>
-        <span
-          className={cn(
-            'shrink-0 whitespace-nowrap px-2 py-0.5 text-xs font-bold sm:px-2.5 sm:py-1',
-            BADGE[item.category],
+        <div className="flex items-center gap-2">
+          <span className="min-w-0 truncate text-base font-semibold leading-snug text-content transition-colors group-hover:text-yonsei-blue sm:text-[19px]">
+            {item.title}
+          </span>
+          {isNew && (
+            <span className="inline-grid h-[18px] w-[18px] shrink-0 place-items-center bg-yonsei-navy/[0.12] text-[11px] font-bold leading-none text-yonsei-navy">
+              N<span className="sr-only">{newBadgeLabel}</span>
+            </span>
           )}
-        >
-          {label}
-        </span>
+        </div>
+        <div className="mt-2.5 flex items-center gap-3">
+          <time dateTime={item.date} className="text-sm tabular-nums text-content-faint">
+            {item.dateText}
+          </time>
+          <span aria-hidden="true" className="h-3 w-px bg-surface-border" />
+          <span
+            className={cn(
+              'whitespace-nowrap px-[9px] py-[3px] text-xs font-bold',
+              BADGE[item.category],
+            )}
+          >
+            {label}
+          </span>
+        </div>
       </Link>
     </li>
   );
 }
 
 /**
- * '공지 & 일정' 통합 섹션 — 학과 공지 리스트 + (children 으로 받은) 학과 일정을 한 섹션에
- * 담는다(사용자 지시로 두 섹션 통합). 헤더는 공지 것 하나만("공지&일정"), children 앞에
- * 가로 구분선(border-t)을 둔다.
+ * '공지 & 일정' 통합 섹션 — 학과 공지 리스트(좌) + (children 으로 받은) 학과 일정 패널(우)을
+ * 한 섹션에 나란히 담는다.
  *
  * 구성:
- *  - 헤더 행: 좌측 네이비 박스 제목 + 헤어라인 + 우측 'MORE ›'(공지 게시판).
- *  - 필터 탭: 사이트 공통 UnderlineTabs(전체 + 학부/대학원/외부기관/장학, 건수 배지).
- *  - 리스트: 2열 grid(모바일 1열). 좌열 = 최신 앞 절반, 우열 = 뒤 절반 — grid-cols-1 에선
- *    두 열이 세로로 쌓여 좌→우 순서가 그대로 보존된다(중복 렌더 없이 반응형 처리).
- *  - children: 구분선 아래에 학과 일정(CalendarSection bare)을 임베드.
+ *  - 섹션 헤더 행: 네이비 박스 제목 + 헤어라인. MORE 는 여기 두지 않는다 — 좌·우 두 열이
+ *    각자 다른 게시판으로 가므로, 섹션 전체를 대표하는 '더보기'가 성립하지 않는다.
+ *  - 2열 grid(모바일 1열, lg 부터 우열 고정폭). 좌열 = 소제목 + 필터 탭 + 공지 4건,
+ *    우열 = children(HomeCalendarPanel).
+ *  - 공지 리스트를 2열 8건에서 1열 4건으로 줄인 이유: 우열에 일정 패널이 들어오면서
+ *    가로 폭이 절반이 됐고, 제목이 잘려 무슨 공지인지 못 읽히는 게 더 큰 손실이다.
  *
  * 데이터(4개 공지 배열: 학부/대학원/외부기관/장학)는 page.tsx(서버)가 최신순으로 합쳐
  * props 로 넘긴다. 탭 전환은 클라이언트에서 필터링. reduced-motion: 정적 노출.
@@ -94,6 +116,7 @@ export function NoticeSection({
   moreLabel,
   moreHref,
   emptyLabel,
+  newBadgeLabel,
   filters,
   children,
 }: {
@@ -104,12 +127,19 @@ export function NoticeSection({
   moreLabel: string;
   moreHref: string;
   emptyLabel: string;
+  /** 'N' 배지의 스크린리더 문구(예: "새 글") */
+  newBadgeLabel: string;
   /** [전체, 학부, 대학원, 외부기관, 장학] — key='all' 포함 */
   filters: NoticeFilter[];
-  /** 소제목 행 아래 임베드할 콘텐츠(학과 일정 CalendarSection bare 등) */
+  /** 우열에 놓을 콘텐츠(학과 일정 패널 HomeCalendarPanel) */
   children?: ReactNode;
 }) {
   const [active, setActive] = useState('all');
+
+  // 'N' 배지 기준 시각 — 서버에서 계산하면 정적 생성 시점에 굳어 버리고, 첫 렌더에서
+  // 계산하면 서버 HTML 과 달라져 하이드레이션 불일치가 난다. 마운트 후에 채운다.
+  const [now, setNow] = useState<number | null>(null);
+  useEffect(() => setNow(Date.now()), []);
 
   // 탭별 건수(배지) — 'all' 은 전체, 나머지는 카테고리별.
   const counts = useMemo(() => {
@@ -122,19 +152,22 @@ export function NoticeSection({
   // 카테고리 → 배지 라벨(필터 라벨 재사용)
   const catLabel = (cat: NoticeCategory) => filters.find((f) => f.key === cat)?.label ?? cat;
 
-  // 필터 적용 후 상위 8건 → 2열 분배(좌: 앞 절반 / 우: 뒤 절반).
+  // 최근 NEW_DAYS 일 이내면 새 글. now 가 아직 null(마운트 전)이면 배지를 달지 않아
+  // 서버가 그린 HTML 과 첫 렌더가 정확히 일치한다. 날짜가 깨져 NaN 이어도 false 다.
+  const isNew = (date: string) => now !== null && now - Date.parse(date) <= NEW_DAYS * 86400e3;
+
+  // 필터 적용 후 상위 ROWS 건(1열).
   const visible = useMemo(
-    () => (active === 'all' ? items : items.filter((i) => i.category === active)).slice(0, 8),
+    () => (active === 'all' ? items : items.filter((i) => i.category === active)).slice(0, ROWS),
     [items, active],
   );
-  const half = Math.ceil(visible.length / 2);
-  const columns = [visible.slice(0, half), visible.slice(half)];
 
   return (
     // 모바일 밀도 최적화: 상하 패딩 py-12, sm+ 은 기존 리듬(py-section-lg) 유지
     <section aria-labelledby="notices-heading" className="full-bleed bg-surface py-12 sm:py-section-lg">
       <div className="mx-auto w-full max-w-[1360px] px-6 sm:px-10 lg:px-16">
-        {/* 헤더 — 네이비 박스 제목(다른 홈 섹션과 통일) + 헤어라인 + MORE */}
+        {/* 섹션 헤더 — 네이비 박스 제목(다른 홈 섹션과 통일) + 헤어라인.
+            MORE 는 좌·우 각 열의 소헤더로 내려갔다(가는 곳이 서로 다른 게시판이다). */}
         <div className="flex items-center gap-6">
           <h2
             id="notices-heading"
@@ -143,77 +176,83 @@ export function NoticeSection({
             {heading}
           </h2>
           <span aria-hidden="true" className="h-px flex-1 bg-surface-border" />
-          <Link
-            href={moreHref}
-            className="group inline-flex shrink-0 items-center gap-1.5 text-sm font-bold text-content transition-colors hover:text-yonsei-blue focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yonsei-blue"
-          >
-            {moreLabel}
-            <span aria-hidden="true" className="transition-transform group-hover:translate-x-1">
-              ›
-            </span>
-          </Link>
         </div>
 
-        {/* 소제목 '공지사항' — 각진 네이비 사각 마커 + 볼드. 아래 학과 일정(CalendarSection
-            bare) 소제목과 동일한 장치로, 한 섹션 안 두 반쪽이 형제임을 시각적으로 드러낸다. */}
-        <h3 className="mt-7 flex items-center gap-2.5 text-base font-bold text-content sm:mt-9">
-          <span aria-hidden="true" className="h-2 w-2 bg-yonsei-navy" />
-          {listLabel}
-        </h3>
+        {/* 2열 — 좌 공지 / 우 일정 패널. lg 미만에서는 세로로 쌓인다(우열 폭 고정값이
+            좁은 화면에서는 성립하지 않는다). 우열 폭은 lg 416px → xl 512px. */}
+        <div className="mt-10 grid grid-cols-1 gap-y-12 lg:grid-cols-[minmax(0,1fr)_416px] lg:gap-x-12 xl:grid-cols-[minmax(0,1fr)_512px] xl:gap-x-[72px]">
+          {/* ── 좌: 공지 ── */}
+          <div className="min-w-0">
+            {/* 소헤더 — 사각 마커 + 라벨 ─ 헤어라인 ─ MORE. 우열 일정 패널 소헤더와 같은
+                장치로, 두 열이 한 섹션 안의 형제임을 드러낸다. */}
+            <div className="flex items-center gap-5">
+              <h3 className="flex shrink-0 items-center gap-2.5 text-base font-bold text-content">
+                <span aria-hidden="true" className="h-2 w-2 bg-yonsei-navy" />
+                {listLabel}
+              </h3>
+              <span aria-hidden="true" className="h-px flex-1 bg-surface-border" />
+              <Link
+                href={moreHref}
+                className="group inline-flex shrink-0 items-center gap-1.5 text-sm font-bold text-content transition-colors hover:text-yonsei-blue focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yonsei-blue"
+              >
+                {moreLabel}
+                <span aria-hidden="true" className="transition-transform group-hover:translate-x-1">
+                  ›
+                </span>
+              </Link>
+            </div>
 
-        {/* 필터 탭 — 사이트 공통 UnderlineTabs(건수 배지). 좁은 화면은 가로 스크롤. */}
-        <div className="mt-3 overflow-x-auto">
-          <UnderlineTabs
-            active={active}
-            onChange={setActive}
-            ariaLabel={heading}
-            tabs={filters.map((f) => ({
-              id: f.key,
-              label: (
-                <>
-                  <span className="whitespace-nowrap">{f.label}</span>
-                  <span
-                    className={cn(
-                      'text-xs font-medium tabular-nums',
-                      active === f.key ? 'text-yonsei-blue' : 'text-content-faint',
-                    )}
-                  >
-                    {counts[f.key] ?? 0}
-                  </span>
-                </>
-              ),
-            }))}
-          />
-        </div>
+            {/* 필터 탭 — 사이트 공통 UnderlineTabs(건수 배지). 좁은 화면은 가로 스크롤. */}
+            <div className="mt-3 overflow-x-auto">
+              <UnderlineTabs
+                active={active}
+                onChange={setActive}
+                ariaLabel={heading}
+                tabs={filters.map((f) => ({
+                  id: f.key,
+                  label: (
+                    <>
+                      <span className="whitespace-nowrap">{f.label}</span>
+                      <span
+                        className={cn(
+                          'text-xs font-medium tabular-nums',
+                          active === f.key ? 'text-yonsei-blue' : 'text-content-faint',
+                        )}
+                      >
+                        {counts[f.key] ?? 0}
+                      </span>
+                    </>
+                  ),
+                }))}
+              />
+            </div>
 
-        {visible.length > 0 ? (
-          // key={active} 로 필터 전환 시 행 스태거 등장을 재트리거(교과목 편람과 동일 패턴).
-          <div key={active} className="mt-4 grid grid-cols-1 lg:grid-cols-2 lg:gap-x-14">
-            {columns.map((col, ci) => (
-              <ul key={ci}>
-                {col.map((it, i) => (
+            {visible.length > 0 ? (
+              // key={active} 로 필터 전환 시 행 스태거 등장을 재트리거(교과목 편람과 동일 패턴).
+              <ul key={active} className="mt-4">
+                {visible.map((it, i) => (
                   <NoticeRow
                     key={it.id}
                     item={it}
                     label={catLabel(it.category)}
-                    delayIndex={ci * half + i}
+                    isNew={isNew(it.date)}
+                    newBadgeLabel={newBadgeLabel}
+                    delayIndex={i}
                   />
                 ))}
               </ul>
-            ))}
+            ) : (
+              <div className="mt-10 flex flex-col items-center justify-center gap-4 py-16 text-center">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src="/img/eagle_empty.png" alt="" aria-hidden="true" className="h-16 w-auto opacity-70" />
+                <p className="text-sm font-medium text-content-faint">{emptyLabel}</p>
+              </div>
+            )}
           </div>
-        ) : (
-          <div className="mt-10 flex flex-col items-center justify-center gap-4 py-16 text-center">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/img/eagle_empty.png" alt="" aria-hidden="true" className="h-16 w-auto opacity-70" />
-            <p className="text-sm font-medium text-content-faint">{emptyLabel}</p>
-          </div>
-        )}
 
-        {/* 학과 일정(children = CalendarSection bare) — 두 섹션 통합(사용자 지시).
-            별도 border-t 를 두지 않는다: 일정 쪽 소제목 행([마커+라벨 ─ 헤어라인 ─ 화살표])이
-            구분선 역할을 겸해, 맨민한 선 하나로 붙어 있던 이질감을 없앤다. */}
-        {children && <div className="mt-10 sm:mt-14">{children}</div>}
+          {/* ── 우: 학과 일정 패널(children = HomeCalendarPanel) ── */}
+          {children && <div className="min-w-0">{children}</div>}
+        </div>
       </div>
     </section>
   );

@@ -32,7 +32,9 @@ export interface CalendarEntry {
 // 종류별 색 (골드 액센트는 금지). 바는 각지고 그림자 없음 — 면은 8% 틴트, 좌측 액센트 보더.
 // hover 를 bar 에서 분리한 이유: href 없는 일정은 클릭할 곳이 없으므로 hover 강조를 주면
 // 안 된다. 링크로 렌더될 때만 barHover 를 덧붙인다.
-const KIND_STYLES: Record<
+// export 하는 이유: 홈의 일정 패널(HomeCalendarPanel)이 같은 색·라벨·정렬 규칙을 쓴다.
+// 두 화면에서 '행사'의 색이 다르면 같은 일정이 다른 것처럼 읽힌다 — 단일 출처로 묶는다.
+export const KIND_STYLES: Record<
   CalendarEntry['kind'],
   { bar: string; barHover: string; accent: string; dot: string; badge: string }
 > = {
@@ -75,7 +77,7 @@ const KIND_STYLES: Record<
 
 // 종류별 라벨 — 배지·스크린리더는 단수(en), 범례는 복수(enPlural). 한국어는 둘이 같다.
 // 삼항을 겹치지 않고 맵으로 둔 이유: 종류가 5개로 늘어 삼항 사슬은 읽을 수 없다.
-const KIND_LABELS: Record<
+export const KIND_LABELS: Record<
   CalendarEntry['kind'],
   { ko: string; en: string; enPlural: string }
 > = {
@@ -88,8 +90,19 @@ const KIND_LABELS: Record<
 
 // 목록 정렬용 종류 우선순위. 예전 비교자는 'event 면 -1, 아니면 1' 이라 종류가 둘일 때만
 // 성립했다(academic vs seminar 가 양쪽 다 1 을 돌려주는 비대칭 비교자가 된다).
-const KIND_ORDER = Object.keys(KIND_STYLES) as CalendarEntry['kind'][];
-const kindRank = (k: CalendarEntry['kind']) => KIND_ORDER.indexOf(k);
+export const KIND_ORDER = Object.keys(KIND_STYLES) as CalendarEntry['kind'][];
+export const kindRank = (k: CalendarEntry['kind']) => KIND_ORDER.indexOf(k);
+
+// CMS '일정 (캘린더)' 게시판의 분류 → 캘린더 kind. CMS 의 '행사'는 행사 게시판과 같은
+// 'event' 로 접는다 — 학생에게는 둘 다 그냥 행사라 범례가 '행사'로 두 줄 나오면 안 된다.
+// 모르는 값(분류가 늘어난 경우)은 학사일정으로 떨어뜨려 최소한 달력에는 뜨게 한다.
+// news/page.tsx 에 있던 정의를 여기로 옮겼다 — 홈 패널도 같은 매핑을 써야 한다.
+export const CALENDAR_KIND: Record<string, CalendarEntry['kind']> = {
+  academic: 'academic',
+  event: 'event',
+  recruit: 'recruit',
+  exam: 'exam',
+};
 
 /** 엔트리가 해당 날짜를 포함하는가 — 멀티데이는 시작~종료 사이 모든 날에 참(ISO 사전순 비교) */
 const coversDay = (e: CalendarEntry, iso: string) => e.date <= iso && iso <= e.endDate;

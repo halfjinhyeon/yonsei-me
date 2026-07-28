@@ -203,13 +203,17 @@
       "viewMore": "VIEW MORE",
       "prev": "Previous",
       "next": "Next",
-      "empty": "No scheduled events."
+      "empty": "No scheduled events.",
+      "prevMonth": "Previous month",
+      "nextMonth": "Next month",
+      "emptyMonth": "No events this month."
     },
     "notices": {
       "title": "Notices & Calendar",
       "listLabel": "Notices",
       "more": "MORE",
       "empty": "No notices posted.",
+      "newBadge": "New",
       "filters": {
         "all": "All",
         "undergrad": "Undergraduate",
