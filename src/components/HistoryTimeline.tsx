@@ -149,10 +149,29 @@ export function HistoryTimeline({
     };
   }, [reducedMotion]);
 
-  // 전역 항목 인덱스(좌우 교차 배치용)
-  let itemIndex = -1;
-  // 사진 보유 연대끼리 좌우 교대 — 첫 사진은 오른쪽(레퍼런스와 동일)
-  let imageCount = -1;
+  // 좌우 배치를 렌더 전에 확정한다.
+  //
+  // 예전엔 렌더 도중 카운터를 증가시켜(`itemIndex += 1`, `imageCount += 1`) 배치를 정했다.
+  // React 는 같은 트리를 여러 번 렌더할 수 있어서(하이드레이션·StrictMode) 그때마다
+  // 카운터가 이어서 증가했고, 서버가 계산한 좌/우와 클라이언트 결과가 어긋나
+  // "Prop className did not match" 경고가 났다. 입력(groups·images)만으로 결정되는
+  // 값이므로 useMemo 로 한 번 계산해 두면 몇 번을 렌더해도 같은 결과가 나온다.
+  const layout = useMemo(() => {
+    let imageCount = -1;
+    let itemIndex = 0;
+    return groups.map((group) => {
+      const startIndex = itemIndex;
+      itemIndex += group.events.length;
+      return {
+        // 사진 보유 연대끼리 좌우 교대 — 첫 사진은 오른쪽(레퍼런스와 동일)
+        imageSide: images?.[group.decade]
+          ? ((imageCount += 1) % 2 === 0 ? ('right' as const) : ('left' as const))
+          : undefined,
+        // 이 연대 첫 항목의 전역 인덱스 — 항목은 startIndex + i 로 자기 번호를 안다
+        startIndex,
+      };
+    });
+  }, [groups, images]);
 
   return (
     <div ref={containerRef} className="relative mx-auto max-w-4xl">
@@ -169,23 +188,17 @@ export function HistoryTimeline({
       </div>
 
       <div className="space-y-20">
-        {groups.map((group) => {
-          const image = images?.[group.decade];
-          const imageSide: 'left' | 'right' | undefined = image
-            ? ((imageCount += 1) % 2 === 0 ? 'right' : 'left')
-            : undefined;
-          return (
-            <DecadeSection
-              key={group.decade}
-              group={group}
-              locale={locale}
-              reducedMotion={reducedMotion}
-              nextIndex={() => (itemIndex += 1)}
-              image={image}
-              imageSide={imageSide}
-            />
-          );
-        })}
+        {groups.map((group, i) => (
+          <DecadeSection
+            key={group.decade}
+            group={group}
+            locale={locale}
+            reducedMotion={reducedMotion}
+            startIndex={layout[i].startIndex}
+            image={images?.[group.decade]}
+            imageSide={layout[i].imageSide}
+          />
+        ))}
       </div>
     </div>
   );
@@ -195,14 +208,15 @@ function DecadeSection({
   group,
   locale,
   reducedMotion,
-  nextIndex,
+  startIndex,
   image,
   imageSide,
 }: {
   group: DecadeGroup;
   locale: Locale;
   reducedMotion: boolean;
-  nextIndex: () => number;
+  /** 이 연대 첫 항목의 전역 인덱스 — 항목은 startIndex + i 로 좌우를 정한다 */
+  startIndex: number;
   /** 이 연대 옆에 놓을 사진 (없으면 기존 좌우 교차 배치 그대로) */
   image?: string;
   /** 사진이 놓이는 쪽 — 항목들은 반대쪽으로 모인다 */
@@ -261,13 +275,13 @@ function DecadeSection({
       )}
 
       <ol className="space-y-12">
-        {group.events.map((ev) => (
+        {group.events.map((ev, i) => (
           <TimelineItem
             key={ev.date + ev.title.en}
             event={ev}
             locale={locale}
             reducedMotion={reducedMotion}
-            index={nextIndex()}
+            index={startIndex + i}
             forcedSide={forcedSide}
           />
         ))}

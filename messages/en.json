@@ -45,7 +45,7 @@
         "clubs": "Student Clubs",
         "scholarship": "Scholarships",
         "checker": "Degree Checker",
-      "mileage": "Mileage Planner"
+        "mileage": "Mileage Planner"
       }
     },
     "graduate": {
@@ -579,6 +579,15 @@
     "hero": {
       "title": "Admissions",
       "subtitle": "Application information and career paths."
+    },
+    "intro": "Undergraduate and graduate admissions are administered by the Yonsei Admissions Office and the Graduate School. The links below go straight to the official guides.",
+    "newWindow": "opens in a new window",
+    "note": "※ Schedules and requirements change every year. Always check the official pages for the latest information.",
+    "links": {
+      "rolling": "Early Admission",
+      "regular": "Regular Admission",
+      "transfer": "Transfer Admission",
+      "graduate": "Graduate School"
     }
   },
   "alumni": {

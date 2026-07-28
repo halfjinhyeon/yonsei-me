@@ -28,15 +28,19 @@ export async function generateMetadata({
       template: `%s · ${t('shortName')}`,
     },
     description: t('description'),
-    metadataBase: new URL('https://me.yonsei.ac.kr'),
+    // 배포 도메인 단일 출처(robots·sitemap·JSON-LD 와 동일). 예전엔 여기만 학교
+    // 도메인이 하드코딩돼 있어 sitemap 이 가리키는 주소와 어긋났다.
+    metadataBase: new URL(SITE_URL),
     openGraph: {
       title: t('siteName'),
       description: t('description'),
       locale: params.locale === 'ko' ? 'ko_KR' : 'en_US',
       type: 'website',
     },
+    // './' 는 현재 경로로 해석된다 — 하위 페이지가 각자 자기 URL 을 정본으로 갖는다.
+    // 절대 경로를 쓰면 모든 페이지가 한 URL 을 가리켜 색인에서 사라진다.
     alternates: {
-      languages: { ko: '/ko', en: '/en' },
+      canonical: './',
     },
   };
 }
