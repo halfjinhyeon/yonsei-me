@@ -36,7 +36,21 @@ export async function generateMetadata({
       description: t('description'),
       locale: params.locale === 'ko' ? 'ko_KR' : 'en_US',
       type: 'website',
+      // 정적 커버(public/og/cover.png) — 처음엔 opengraph-image.tsx 라우트였지만
+      // @vercel/og 가 woff2 폰트를 못 읽어 빌드가 깨졌다(Unsupported OpenType
+      // signature wOF2). 같은 디자인을 헤드리스 Chrome 으로 한 번 구워 정적 자산으로
+      // 쓴다 — 런타임 폰트 파싱이 사라져 어떤 환경에서도 깨질 수 없다.
+      images: [
+        {
+          url: '/og/cover.png',
+          width: 2400,
+          height: 1260,
+          alt: '연세대학교 기계공학부 · School of Mechanical Engineering',
+        },
+      ],
     },
+    // 트위터/X 카드 — og:image 를 그대로 쓰되 큰 이미지 카드로 표시되게 한다
+    twitter: { card: 'summary_large_image' },
     // './' 는 현재 경로로 해석된다 — 하위 페이지가 각자 자기 URL 을 정본으로 갖는다.
     // 절대 경로를 쓰면 모든 페이지가 한 URL 을 가리켜 색인에서 사라진다.
     alternates: {
