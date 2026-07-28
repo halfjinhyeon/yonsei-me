@@ -172,14 +172,27 @@ export function Header() {
             onFocus={() => setMegaSuppressed(false)}
             className="group/nav hidden min-w-0 self-stretch xl:flex xl:flex-1 xl:items-center"
           >
+            {/* 딤 스크림 — 메뉴가 열리면 헤더 아래 페이지를 살짝 눌러 글라스 시트가
+                배경 사진 위에서도 또렷이 읽히게 하고 시선을 메뉴로 모은다. ko/en 시트가
+                공유하며, 시트보다 먼저 그려져 항상 그 뒤(아래)에 깔린다 */}
+            <div
+              aria-hidden="true"
+              className={cn(
+                'pointer-events-none invisible fixed inset-x-0 bottom-0 top-16 bg-black/15 opacity-0 transition-all duration-200 lg:top-20',
+                !megaSuppressed &&
+                  'group-hover/nav:visible group-hover/nav:opacity-100 group-focus-within/nav:visible group-focus-within/nav:opacity-100',
+              )}
+            />
+
             {/* [정렬형 전용] 공용 백드롭 시트 — 뷰포트 전폭. 높이는 가장 긴 목록에 맞춰
-                측정(panelH). megaSuppressed 면 열림 클래스를 제거해 클릭 직후 즉시 닫힌다 */}
+                측정(panelH). megaSuppressed 면 열림 클래스를 제거해 클릭 직후 즉시 닫힌다.
+                글라스는 mega-glass(globals.css) — 미지원·투명도 감소 환경은 CSS 폴백으로 불투명. */}
             {!gridMega && (
               <div
                 aria-hidden="true"
                 style={{ height: panelH }}
                 className={cn(
-                  'pointer-events-none invisible fixed inset-x-0 top-16 border-b border-t border-surface-border bg-surface opacity-0 shadow-card-hover transition-all duration-200 lg:top-20',
+                  'pointer-events-none invisible fixed inset-x-0 top-16 border-b border-t border-surface-border mega-glass opacity-0 transition-all duration-200 lg:top-20',
                   !megaSuppressed &&
                     'group-hover/nav:visible group-hover/nav:opacity-100 group-focus-within/nav:visible group-focus-within/nav:opacity-100',
                 )}
@@ -254,7 +267,7 @@ export function Header() {
                     'group-hover/nav:visible group-hover/nav:translate-y-0 group-hover/nav:opacity-100 group-focus-within/nav:visible group-focus-within/nav:translate-y-0 group-focus-within/nav:opacity-100',
                 )}
               >
-                <div className="border-b border-t border-surface-border bg-surface text-content shadow-card-hover">
+                <div className="border-b border-t border-surface-border mega-glass text-content">
                   <div className="mx-auto w-full max-w-6xl px-6">
                     <div className="grid grid-cols-7 divide-x divide-surface-border">
                       {menu.map((group) => (

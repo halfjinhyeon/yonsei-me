@@ -634,6 +634,28 @@
     }
   }
 
+  /* 메가메뉴 글라스 시트 — 기본은 불투명 표면(구형 브라우저 폴백).
+     backdrop-filter 지원 시에만 반투명+블러+새추레이션으로 승격하고,
+     투명 효과를 끈 사용자(Windows "투명 효과" 끄기 → prefers-reduced-transparency)는
+     다시 불투명으로 되돌린다. JS 감지 없이 CSS만으로 3단 폴백. */
+  .mega-glass {
+    background-color: rgb(var(--surface));
+  }
+  @supports (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px)) {
+    .mega-glass {
+      background-color: rgb(var(--surface) / 0.75);
+      -webkit-backdrop-filter: blur(20px) saturate(1.5);
+      backdrop-filter: blur(20px) saturate(1.5);
+    }
+    @media (prefers-reduced-transparency: reduce) {
+      .mega-glass {
+        background-color: rgb(var(--surface));
+        -webkit-backdrop-filter: none;
+        backdrop-filter: none;
+      }
+    }
+  }
+
   html.club-snap {
     scroll-snap-type: y mandatory;
   }
