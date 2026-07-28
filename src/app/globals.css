@@ -85,6 +85,17 @@
        가로로 삐져나가는 것을 차단. clip 은 hidden 과 달리 스크롤 컨테이너를 만들지
        않아 sticky/anchor 동작에 부작용이 없다. 풀블리드 배경은 양끝까지 그대로. */
     overflow-x: clip;
+
+    /* 본문 한 줄 길이(measure) 상한 — max-w-prose 와 .prose-content 가 공유한다.
+       en 은 라틴 관행 65ch. 브레이크포인트 분기는 두지 않는다: measure 는 상한이고,
+       좁은 화면에선 컨테이너 패딩이 자연 제한이 된다. */
+    --measure-prose: 65ch;
+  }
+
+  /* ko: ch 는 숫자 '0' 폭 기준이라 한글 measure 로 못 쓴다(68ch ≈ 한글 60자+).
+     한글 자폭 ≈ 1em 이므로 38em ≈ 한 줄 최대 ~38자 — 본문 권장선(35~40자). */
+  html:lang(ko) {
+    --measure-prose: 38em;
   }
 
   body {
@@ -228,11 +239,12 @@
   .prose-content h4:first-child {
     @apply mt-0;
   }
-  /* 본문 문단·목록은 가독성을 위해 한 줄 길이를 제한 (표는 예외) */
+  /* 본문 문단·목록은 가독성을 위해 한 줄 길이를 제한 (표는 예외).
+     상한은 로케일별 --measure-prose (en 65ch / ko 38em) — max-w-prose 와 동일 기준. */
   .prose-content p,
   .prose-content ul,
   .prose-content ol {
-    @apply max-w-2xl;
+    max-width: var(--measure-prose);
   }
   .prose-content p {
     @apply my-5 text-base leading-[1.8] text-content-soft;

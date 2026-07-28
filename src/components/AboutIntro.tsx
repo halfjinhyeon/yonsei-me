@@ -1,10 +1,31 @@
+import type { ReactNode } from 'react';
 import { getTranslations } from 'next-intl/server';
 import { pick } from '@/lib/content';
 import { LandingScope } from '@/components/LandingScope';
+import { guardKoreanBreaks } from '@/lib/typography';
 import type { Locale } from '@/i18n/routing';
 import aboutStatsData from '@content/about-stats.json';
 
 const visionKeys = ['0', '1', '2'] as const;
+
+/**
+ * 수동 줄바꿈 마커 핸들러 — messages 문자열의 <nb>/<brd>/<brm> 태그를 렌더로 바꾼다.
+ *   <nb>…</nb>     항상 한 덩어리(기기 무관)
+ *   <brd></brd>    md(768px) 이상 전용 줄바꿈
+ *   <brm></brm>    md 미만 전용 줄바꿈
+ * next-intl 은 self-closing 태그를 지원하지 않아 빈 쌍태그로 쓴다. 케이스를 2개(md
+ * 경계)로 제한한 이유: 중간 구간은 measure(max-w-prose)가 흡수하고, 케이스가 늘수록
+ * 문구를 고칠 때마다 손봐야 할 지점이 함께 는다. 현재 사용처는 학과 소개 간판 문단
+ * 뿐 — 다른 문단으로 확산하게 되면 이 헬퍼를 lib 로 승격한다.
+ */
+function richBreaks(extra: Record<string, (chunks: ReactNode) => ReactNode> = {}) {
+  return {
+    nb: (chunks: ReactNode) => <span className="whitespace-nowrap">{chunks}</span>,
+    brd: () => <br className="hidden md:inline" />,
+    brm: () => <br className="md:hidden" />,
+    ...extra,
+  };
+}
 
 /** 숫자로 보는 학부 — content/about-stats.json (수치·라벨 모두 콘텐츠) */
 const aboutStats = aboutStatsData as { value: string; label: { ko: string; en: string } }[];
@@ -28,29 +49,34 @@ export async function AboutIntro({ locale }: { locale: string }) {
         <p data-land="rise" data-land-order="0" className="eyebrow">
           ABOUT
         </p>
-        {/* 세부탭 소제목 서체 = Paperlogy 7 Bold(사용자 지정) — EditorialTab 제목과 통일 */}
+        {/* 세부탭 소제목 서체 = Paperlogy 7 Bold(사용자 지정) — EditorialTab 제목과 통일.
+            text-pretty: 수동 줄바꿈 마커(brd/brm)를 쓰는 요소라 전역 h1~h4 의
+            text-wrap: balance 를 로컬 해제한다(수동 br + balance 는 결과가 갈린다). */}
         <h3
           data-land="rise"
           data-land-order="1"
           style={{ fontFamily: 'var(--font-subhead), var(--font-sans), sans-serif' }}
-          className="mt-4 max-w-3xl text-[clamp(1.8rem,4vw,3rem)] font-bold leading-[1.1] tracking-tight text-content"
+          className="mt-4 max-w-3xl text-pretty text-[clamp(1.8rem,4vw,3rem)] font-bold leading-[1.1] tracking-tight text-content"
         >
           {/* <u> 태그(ko 메시지의 "기계공학부")를 멀티라인 형광 밑줄 span 으로 렌더 —
               CodePen 원본 그대로 시범(사용자 지시). en 메시지는 태그 없음(그대로 통과). */}
-          {t.rich('intro.title', {
+          {t.rich('intro.title', richBreaks({
             u: (chunks) => (
               <span data-land="underline" data-land-order="2" className="underline-magical">
                 {chunks}
               </span>
             ),
-          })}
+          }))}
         </h3>
         <p
           data-land="rise"
           data-land-order="3"
           className="mt-6 max-w-prose text-lg leading-relaxed text-content-soft"
         >
-          {t('intro.body')}
+          {/* 본문은 마커 없이 guard + measure 로 해결 — · 복합어 6개는 guard 가 통째로
+              지키고, 38em 상한이 줄을 다듬는다. t.rich 로 바꾸면 문자열이 조각나
+              guard 를 못 태우므로 plain t 를 유지한다. */}
+          {guardKoreanBreaks(t('intro.body'))}
         </p>
       </div>
 
@@ -77,7 +103,7 @@ export async function AboutIntro({ locale }: { locale: string }) {
                 {t(`vision.items.${key}.title`)}
               </h5>
               <p className="mt-2 text-sm leading-relaxed text-content-soft">
-                {t(`vision.items.${key}.body`)}
+                {guardKoreanBreaks(t(`vision.items.${key}.body`))}
               </p>
             </li>
           ))}

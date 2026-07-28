@@ -78,7 +78,10 @@ const config: Config = {
         'card-hover': '0 2px 4px rgb(0 40 94 / 0.06), 0 20px 40px -16px rgb(0 40 94 / 0.25)',
       },
       maxWidth: {
-        prose: '68ch',
+        // 본문 한 줄 길이(measure) — 값은 globals.css 의 --measure-prose 가 로케일별로
+        // 정한다(en 65ch / ko 38em). 예전 68ch 고정값은 한글에서 ch 가 숫자 '0' 폭
+        // 기준이라 실제 줄이 권장선(35~40자)을 크게 넘겼다.
+        prose: 'var(--measure-prose)',
       },
       transitionTimingFunction: {
         'out-expo': 'cubic-bezier(0.16, 1, 0.3, 1)',

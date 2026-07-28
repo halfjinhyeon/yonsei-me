@@ -5,6 +5,7 @@ import { Link } from '@/i18n/navigation';
 import gsap from 'gsap';
 import { SplitText } from 'gsap/SplitText';
 import { FlowLines } from './FlowLines';
+import { guardKoreanBreaks } from '@/lib/typography';
 
 // SplitText 는 무료 public gsap 패키지에 포함(Club 토큰 불필요) — 히어로와 동일.
 gsap.registerPlugin(SplitText);
@@ -172,8 +173,9 @@ export function GoalsSection({
                 {goal.sub}
               </p>
             )}
-            <p data-goal-fade className="mt-2 max-w-3xl text-sm leading-relaxed text-content-soft sm:text-base">
-              {goal.body}
+            {/* measure 는 사이트 공통 상한(max-w-prose)으로 — 3xl(48rem)은 한글 본문에 과대 */}
+            <p data-goal-fade className="mt-2 max-w-prose text-sm leading-relaxed text-content-soft sm:text-base">
+              {guardKoreanBreaks(goal.body)}
             </p>
           </div>
 

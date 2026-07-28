@@ -5,6 +5,7 @@ import type { HistoryEvent } from '@/lib/content';
 import { pick } from '@/lib/content';
 import type { Locale } from '@/i18n/routing';
 import { cn } from '@/lib/utils';
+import { guardKoreanBreaks } from '@/lib/typography';
 
 /**
  * "스크롤 스파인" 연혁 타임라인.
@@ -349,8 +350,18 @@ function TimelineItem({
             {monthLabel(event.date, locale)}
           </span>
         </time>
-        <p className="mt-3 text-lg leading-relaxed text-content">
-          {pick(event.title, locale)}
+        {/* 본문 — measure(26rem ≈ 한글 23자) + balance 로 1~3줄을 고르게 나눈다.
+            좌측 열은 우측 정렬이라 줄 길이가 들쭉날쭉하면 래그가 특히 거슬린다
+            (베타 피드백). balance 는 전역 p{text-wrap:pretty} 를 요소에서 덮는다.
+            좌측 열에선 ml-auto 로 measure 박스를 스파인 쪽에 붙인다 — 없으면
+            박스가 셀 왼쪽에 붙어 스파인 옆에 구멍이 생긴다. */}
+        <p
+          className={cn(
+            'mt-3 max-w-[26rem] text-balance text-lg leading-relaxed text-content',
+            isLeft && 'lg:ml-auto',
+          )}
+        >
+          {guardKoreanBreaks(pick(event.title, locale))}
         </p>
       </div>
     </li>

@@ -2,6 +2,7 @@ import editorialTabs from '@content/editorial-tabs.json';
 import { pick } from '@/lib/content';
 import { EditorialShowcaseItems } from '@/components/EditorialShowcaseItems';
 import { LandingScope } from '@/components/LandingScope';
+import { guardKoreanBreaks } from '@/lib/typography';
 import type { Locale } from '@/i18n/routing';
 
 /** 한/영 문자열 쌍 */
@@ -190,7 +191,8 @@ export function EditorialTab({
           data-land-order="3"
           className="mt-6 max-w-prose text-lg leading-relaxed text-content-soft"
         >
-          {renderWithEmailLinks(pick(data.lead, locale))}
+          {/* 이메일 분리보다 먼저 guard — 이메일 문자열엔 ·/짧은 괄호가 없어 안전 */}
+          {renderWithEmailLinks(guardKoreanBreaks(pick(data.lead, locale)))}
         </p>
       )}
 
@@ -202,7 +204,7 @@ export function EditorialTab({
           data-land-order="4"
           className={`${i === 0 ? firstBodyMargin : 'mt-5'} max-w-prose text-lg leading-relaxed text-content-soft`}
         >
-          {renderWithEmailLinks(pick(para, locale))}
+          {renderWithEmailLinks(guardKoreanBreaks(pick(para, locale)))}
         </p>
       ))}
 
