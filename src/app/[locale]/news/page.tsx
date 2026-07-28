@@ -4,7 +4,9 @@ import { Hero } from '@/components/Hero';
 import { TabbedContent, type TabItem } from '@/components/TabbedContent';
 import { type BoardRow } from '@/components/BoardList';
 import { FilterableBoardList } from '@/components/FilterableBoardList';
-import { EventCalendar, CALENDAR_KIND, type CalendarEntry } from '@/components/EventCalendar';
+import { EventCalendar } from '@/components/EventCalendar';
+// 분류 상수는 클라이언트 컴포넌트가 아니라 순수 모듈에서 가져온다 — 이유는 그 파일 주석 참조.
+import { CALENDAR_KIND, type CalendarEntry } from '@/lib/calendar-kinds';
 import { ResourceLibrary, type ResourceItem } from '@/components/ResourceLibrary';
 import { pick } from '@/lib/content';
 import { fileFormat } from '@/lib/files';

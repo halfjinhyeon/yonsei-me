@@ -3,7 +3,7 @@
 import { useMemo, useState } from 'react';
 import { Link } from '@/i18n/navigation';
 import { cn } from '@/lib/utils';
-import { KIND_LABELS, KIND_STYLES, kindRank, type CalendarEntry } from './EventCalendar';
+import { KIND_LABELS, KIND_STYLES, kindRank, type CalendarEntry } from '@/lib/calendar-kinds';
 import type { Locale } from '@/i18n/routing';
 
 /**

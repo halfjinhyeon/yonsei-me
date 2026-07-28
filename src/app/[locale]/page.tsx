@@ -5,7 +5,8 @@ import { NewsEventsSection } from '@/components/NewsEventsSection';
 import { InstagramSection } from '@/components/InstagramSection';
 import { GoalsSection } from '@/components/GoalsSection';
 import { HomeCalendarPanel } from '@/components/HomeCalendarPanel';
-import { CALENDAR_KIND, type CalendarEntry } from '@/components/EventCalendar';
+// 분류 상수는 클라이언트 컴포넌트가 아니라 순수 모듈에서 가져온다 — 이유는 그 파일 주석 참조.
+import { CALENDAR_KIND, type CalendarEntry } from '@/lib/calendar-kinds';
 import { NoticeSection, type NoticeCategory } from '@/components/NoticeSection';
 import { pick } from '@/lib/content';
 import { parseDateLabelRange } from '@/lib/calendar';
