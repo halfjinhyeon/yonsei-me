@@ -36,6 +36,22 @@ export interface SectionMeta extends SectionKey {
   timeText: string;
   /** 정원. 미상이면 null */
   capacity: number | null;
+  /**
+   * 이 분반에 걸 수 있는 **실제 만점**(mileage_summary.max_allowed).
+   *
+   * 전교 상한 36 이 아니라 과목마다 다르다 — 기계공학 전공과목 다수가 18 이다. 이 값을
+   * 모르고 36 을 쓰면 σ 상한(만점/2.5)이 두 배로 헐거워져 확률 곡선이 평평해진다.
+   * 미상이면 undefined → 36 으로 본다.
+   */
+  maxAllowed?: number;
+  /**
+   * 만점 동점 시의 대략적 승률(= 가장 최근 학기의 학년별 합격률 Σwon/Σapplied).
+   *
+   * 컷이 만점에 닿은 분반은 정규 CDF 로 설명할 수 없다 — 만점을 걸어도 동점자끼리
+   * 총이수학점·졸업예정 등으로 갈린다. 그때의 승률을 데이터로 주입한다. 전처리(precompute·
+   * backtest)에서 계산해 넣는다. 미상이면 null.
+   */
+  tieWin?: number | null;
 }
 
 /** 과거 한 학기의 수강신청 결과 관측치 — 모델 적합의 원재료 */
@@ -48,7 +64,29 @@ export interface HistoryPoint {
    * 이 경우 "분반 계보"(같은 분반 번호 = 같은 흐름)로 취급한다.
    */
   professor?: string;
-  /** 합격자 중 최저 배점(= 컷). 미달(전원 수용)이면 0 */
+  /**
+   * **이 관측이 실제로 나온 분반.**
+   *
+   * 이력은 교수 기준으로 재배치되므로(`SectionHistory.division` = 지금 분반), 관측 하나하나가
+   * 어느 분반의 것이었는지는 따로 들고 있어야 한다. 경쟁분반 보정이 "그 학기에 이 교수가
+   * 어느 자리에 있었나"를 알아야 형제 분반을 골라낼 수 있다. 없으면 `SectionHistory.division`
+   * 으로 본다(하위 호환).
+   */
+  division?: string;
+  /**
+   * 최신성 가중용 학기 서수 오버라이드. 라인업(형제 교수 구성)이 대상 학기와 같은 과거
+   * 학기를 "최신 학기처럼" 취급할 때 쓴다 — 예: 응용고체역학(MEU3600)의 2026-2 라인업은
+   * 2025-2가 아니라 2024-2와 같으므로(전흥재+장용훈), 2024-2 관측에 대상 학기 서수를 준다
+   * (사용자 지시 + 형제분반 조사 보고서). 없으면 실제 학기 서수.
+   */
+  recencyOrd?: number;
+  /**
+   * 합격자 중 최저 배점(= 컷). 미달(전원 수용)이면 0.
+   *
+   * **청중 그룹 기준이다** — 학정번호가 MEU 면 전공자(major 'Y*') 합격자만, 그 밖이면
+   * 비전공자 합격자만 본다(우리 사용자는 기계공학부 학생이라 교양·타과에서는 비전공자다).
+   * 그 그룹에 합격자가 없으면 전체 합격자로 폴백한다. 근거는 precompute.mjs ① 절 주석.
+   */
   cutoff: number;
   /** 정원. 미상이면 null */
   capacity: number | null;
@@ -60,6 +98,25 @@ export interface HistoryPoint {
 export interface SectionHistory extends SectionKey {
   professor: string;
   points: HistoryPoint[];
+}
+
+/**
+ * 과거 한 학기의 **분반 편성 관측** — 컷이 아니라 "그 학기에 누가 몇 자리를 열었나"이다.
+ *
+ * 왜 `SectionHistory` 로 부족한가: 이력은 교수 소유로 재배치되면서 **일부 관측이 탈락한다**
+ * (그 교수가 올해 개설하지 않으면 그 분반의 기록은 어느 이력에도 실리지 않는다). 경쟁분반
+ * 보정은 "그 학기 형제 분반 **전부**"를 알아야 하므로, 재배치를 거치지 않은 원본 편성표를
+ * 따로 받는다. 컷이 없는 분반(신청자 0 등)도 정원을 차지했으므로 포함한다.
+ */
+export interface CourseObservation {
+  code: string;
+  division: string;
+  year: string;
+  semester: string;
+  /** 그 학기의 담당 교수. 미상이면 빈 문자열(흡인력 α = 1 중립으로 처리) */
+  professor: string;
+  capacity: number | null;
+  applicants: number | null;
 }
 
 /**
@@ -76,8 +133,34 @@ export interface SectionPrediction extends SectionKey {
   basis: PredictionBasis;
   /** 유효 표본 수(축소 전 실제 관측 개수) */
   samples: number;
-  /** 이 과목에 걸 수 있는 최대 마일리지(정책상 상한) */
+  /** 이 과목에 걸 수 있는 최대 마일리지(정책상 상한 = max_allowed, 미상이면 36) */
   maxMileage: number;
+  /**
+   * 만점 포화 확률 π — 과거 이력 중 "컷이 만점이었다"(= 만점끼리 동점으로 갈렸다)는
+   * 학기의 최신성 가중 비율(0~1).
+   *
+   * π 가 크면 그 분반은 정규 CDF 가 아니라 "만점을 걸고 동점 경쟁"이 실제 모형이다.
+   * `admitProbability` 가 이 비율만큼 곡선을 동점 승률(`tieWin`)로 갈아끼운다.
+   *
+   * ⚠️ 하위 호환을 위해 선택 필드다(구 번들에는 없다). 없으면 0 = 포화 없음으로 본다.
+   */
+  piSat?: number;
+  /** 만점 동점 시 승률(0~1). 미상이면 null → 기본 0.6 */
+  tieWin?: number | null;
+  /**
+   * 미달 분반 — 가장 최근 학기에 신청자 ≤ 정원이었다.
+   * 이런 분반은 1점만 걸어도 사실상 들어간다(컷 0). 모형이 σ 로 만들어 내는
+   * "낮은 배점의 위험"이 실제로는 존재하지 않으므로 확률에 바닥을 깐다.
+   */
+  underEnrolled?: boolean;
+  /**
+   * **형제 분반의 교수 라인업이 직전 학기와 달라졌다.**
+   *
+   * 같은 과목의 다른 분반 교수가 바뀌면 수요 쏠림이 바뀌어 컷이 움직인다. 이 플래그가 켜진
+   * 분반은 "작년 컷이 올해에도 통한다"는 가정이 특히 약하다는 뜻이므로 UI 가 경고를 붙일 수
+   * 있다. 하위 호환을 위한 선택 필드(구 번들에는 없다).
+   */
+  lineupChanged?: boolean;
 }
 
 /** 추정 근거 계층 — 낮을수록 정확 */
