@@ -1,7 +1,6 @@
 {
   "sections": [
     {
-      "num": "1",
       "graphic": "logo",
       "title": { "ko": "연세대학교 총동문회", "en": "Yonsei University Alumni Association" },
       "body": {

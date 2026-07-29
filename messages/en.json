@@ -85,7 +85,7 @@
     "alumni": {
       "label": "Alumni",
       "items": {
-        "greeting": "Greeting",
+        "association": "Alumni Association",
         "news": "Alumni News",
         "network": "News & Network"
       }
@@ -200,7 +200,7 @@
     },
     "calendar": {
       "title": "Calendar",
-      "viewMore": "VIEW MORE",
+      "viewMore": "CALENDAR",
       "prev": "Previous",
       "next": "Next",
       "empty": "No scheduled events.",
@@ -211,7 +211,7 @@
     "notices": {
       "title": "Notices & Calendar",
       "listLabel": "Notices",
-      "more": "MORE",
+      "more": "VIEW MORE",
       "empty": "No notices posted.",
       "newBadge": "New",
       "filters": {

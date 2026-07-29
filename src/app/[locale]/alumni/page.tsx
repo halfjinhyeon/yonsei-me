@@ -4,7 +4,6 @@ import { Hero } from '@/components/Hero';
 import { TabbedContent, type TabItem } from '@/components/TabbedContent';
 import { type BoardRow } from '@/components/BoardList';
 import { FilterableBoardList } from '@/components/FilterableBoardList';
-import { AlumniGreeting } from '@/components/AlumniContent';
 import { GuideSections, type GuideSection } from '@/components/AdmissionGuide';
 import { pick } from '@/lib/content';
 import { fetchAlumniNews, fetchAlumniEvents } from '@/lib/posts';
@@ -61,14 +60,11 @@ export default async function AlumniPage({ params }: { params: { locale: string 
 
   const tabs: TabItem[] = [
     {
-      key: 'greeting',
-      label: tMenu('alumni.items.greeting'),
+      key: 'association',
+      label: tMenu('alumni.items.association'),
       markdown: null,
       content: (
-        <div className="space-y-24">
-          <AlumniGreeting locale={locale} />
-          <GuideSections sections={assocSections} locale={locale} landingName="alumni-association" />
-        </div>
+        <GuideSections sections={assocSections} locale={locale} landingName="alumni-association" />
       ),
     },
     {

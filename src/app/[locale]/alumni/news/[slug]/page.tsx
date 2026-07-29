@@ -16,7 +16,7 @@ export const revalidate = 300;
 async function getAlumniTabs(locale: Locale): Promise<BoardShellTab[]> {
   const tMenu = await getTranslations({ locale, namespace: 'menu' });
   return [
-    { key: 'greeting', label: tMenu('alumni.items.greeting') },
+    { key: 'association', label: tMenu('alumni.items.association') },
     { key: 'news', label: tMenu('alumni.items.news') },
     { key: 'network', label: tMenu('alumni.items.network') },
   ];

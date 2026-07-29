@@ -85,7 +85,7 @@
     "alumni": {
       "label": "동문",
       "items": {
-        "greeting": "동문 인사말",
+        "association": "동문회 소개",
         "news": "동문 뉴스",
         "network": "동문 소식·네트워크"
       }
@@ -200,7 +200,7 @@
     },
     "calendar": {
       "title": "학과 일정",
-      "viewMore": "VIEW MORE",
+      "viewMore": "CALENDAR",
       "prev": "이전 일정",
       "next": "다음 일정",
       "empty": "예정된 일정이 없습니다.",
@@ -211,7 +211,7 @@
     "notices": {
       "title": "공지&일정",
       "listLabel": "공지사항",
-      "more": "MORE",
+      "more": "VIEW MORE",
       "empty": "등록된 공지가 없습니다.",
       "newBadge": "새 글",
       "filters": {

@@ -79,7 +79,7 @@ export const menu: MenuGroup[] = [
     key: 'alumni',
     href: '/alumni',
     items: [
-      { key: 'greeting', href: '/alumni#greeting' },
+      { key: 'association', href: '/alumni#association' },
       { key: 'news', href: '/alumni#news' },
       { key: 'network', href: '/alumni#network' },
     ],

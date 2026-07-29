@@ -5,7 +5,8 @@ import type { Locale } from '@/i18n/routing';
 
 /** content/admission-guide.json 의 형태 */
 export interface GuideSection {
-  num: string;
+  /** 섹션 순번. 단일 섹션(동문회 소개 등)에서는 생략 — 룰만 남고 번호는 찍히지 않는다 */
+  num?: string;
   /** 좌측 그래픽 — 'logo'(연세 엠블럼 logo.svg) | 'eagle'(독수리 실루엣 eagle.png 마스크) */
   graphic: 'logo' | 'eagle';
   title: { ko: string; en: string };
@@ -42,12 +43,18 @@ export function GuideSections({
             "룰이 그어지며 번호 노출 → 제목 → 엠블럼이 차오름 → 본문 → 버튼"으로 전개된다.
             둘째 섹션은 대개 화면 밖이라 훅이 알아서 ScrollTrigger 로 넘긴다. */}
         {sections.map((sec, si) => (
-        <section key={sec.num} aria-label={pick(sec.title, locale)}>
-          {/* 번호 + 전폭 네이비 룰 (레퍼런스의 1/2 헤어라인) */}
+        <section key={si} aria-label={pick(sec.title, locale)}>
+          {/* 번호 + 전폭 네이비 룰 (레퍼런스의 1/2 헤어라인).
+              num 이 없으면 룰만 긋는다 — 섹션이 하나뿐인 곳에서 홀로 선 '1'은
+              순번이 아니라 정체불명의 숫자로 읽힌다 */}
           <div
             data-land="wipe"
             data-land-order={si * 10}
-            className="border-b-2 border-yonsei-navy pb-2 text-sm font-bold text-content"
+            className={
+              sec.num
+                ? 'border-b-2 border-yonsei-navy pb-2 text-sm font-bold text-content'
+                : 'border-b-2 border-yonsei-navy'
+            }
           >
             {sec.num}
           </div>
