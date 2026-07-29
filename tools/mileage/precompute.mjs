@@ -357,7 +357,7 @@ if (monotonic) {
 const courses = db
   .prepare(
     `SELECT course_code, division, title, credits, grade, classification,
-            professor, time_slot, college, dept
+            professor, time_slot, room, college, dept
        FROM courses`,
   )
   .all();
@@ -377,6 +377,9 @@ const sections = courses.map((c) => ({
   classification: c.classification ?? '',
   grade: c.grade ?? '',
   timeText: c.time_slot ?? '',
+  // 강의실 원문("공D402", 복수 시간대면 "공D604/동영상" 처럼 슬래시로 이어진다).
+  // 미니 시간표 칸이 교수와 함께 보여 준다.
+  room: (c.room ?? '').trim(),
   capacity: null,
   // 이 과목의 **실제 만점**. 36 은 전교 상한일 뿐 과목마다 다르다(기계공학 전공 다수가 18).
   // 모델이 σ 상한과 확률 곡선의 정의역을 여기서 잡는다.
@@ -512,7 +515,7 @@ const bundle = {
     gradeShift,
   },
   // [code, division, name, professor, credits, deptName, classification, grade, timeText,
-  //  mu, sigma, basis, samples, maxMileage, piSat, tieWin, underEnrolled, lineupChanged]
+  //  mu, sigma, basis, samples, maxMileage, piSat, tieWin, underEnrolled, lineupChanged, room]
   // ⚠️ 14번 이후는 **뒤에 덧붙인** 열이다 — 기존 파서(0…13 고정 인덱스)는 그대로 동작한다.
   rows: sections.map((s, i) => {
     const p = predictions[i];
@@ -521,6 +524,7 @@ const bundle = {
       s.classification, s.grade, s.timeText,
       p.mu, p.sigma, p.basis, p.samples, p.maxMileage,
       p.piSat, p.tieWin, p.underEnrolled ? 1 : 0, p.lineupChanged ? 1 : 0,
+      s.room,
     ];
   }),
 };
@@ -671,7 +675,9 @@ for (const s of sections) {
       : [],
     // 학년별 컷 + 동점 시 총이수학점 비율 경계
     perGrade: Object.keys(perGrade).length ? perGrade : null,
-    tieCredit: tc && tc.winMin !== null ? { winMin: +tc.winMin.toFixed(3), loseMax: tc.loseMax !== null ? +tc.loseMax.toFixed(3) : null } : null,
+    // 소수 4자리 — 원장의 이수율이 그 정밀도로 나오고(예: 0.2103), 승부선은 내 이수율과
+    // 소수점에서 갈리는 일이 실제로 있어 3자리로 뭉개면 판정이 뒤집힐 수 있다.
+    tieCredit: tc && tc.winMin !== null ? { winMin: +tc.winMin.toFixed(4), loseMax: tc.loseMax !== null ? +tc.loseMax.toFixed(4) : null } : null,
     /**
      * perGrade·tieCredit(그리고 본 번들 rows 의 tieWin)이 근거로 삼은 학기 "YYYY-SS".
      * 최신 학기를 그대로 쓴 보통의 분반에는 **없다** — 기존 파서와 하위호환을 지키려는 것이다.

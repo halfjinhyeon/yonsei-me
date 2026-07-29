@@ -34,6 +34,8 @@ export interface SectionMeta extends SectionKey {
   grade: string;
   /** 강의 시간 원문 (시간표 충돌 판정에 사용) */
   timeText: string;
+  /** 강의실 원문("공D402"). 복수 시간대면 슬래시로 이어진다. 미상이면 빈 문자열 */
+  room?: string;
   /** 정원. 미상이면 null */
   capacity: number | null;
   /**

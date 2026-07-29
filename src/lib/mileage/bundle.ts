@@ -37,6 +37,8 @@ interface RawBundle {
     number?, // 14 piSat   만점 포화 확률 0~1
     (number | null)?, // 15 tieWin  만점 동점 시 승률 0~1
     (0 | 1)?, // 16 underEnrolled 작년 미달 여부
+    (0 | 1)?, // 17 lineupChanged 형제 분반 교수 라인업이 직전 학기와 다름
+    string?, // 18 room  강의실 원문("공D402")
   ][];
 }
 
@@ -122,6 +124,7 @@ export function decodeBundle(raw: RawBundle): MileageData {
       piSat: r[14] ?? 0,
       tieWin: r[15] ?? null,
       underEnrolled: r[16] === 1,
+      room: r[18] ?? '',
       slots: parseTimeSlots(timeText),
     };
   });

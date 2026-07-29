@@ -21,6 +21,7 @@ import {
   fetchDetails,
   findConflicts,
   majorQuotaCount,
+  parseTimeSlots,
   searchSections,
   siblingSections,
   type MileageData,
@@ -79,8 +80,29 @@ interface PlanRow {
   verdict: 'win' | 'lose' | null;
 }
 
-/** 숫자만 남기고 3자리로 자른다 — 학점 입력에 NaN 이 들어오는 길을 아예 막는다 */
-const digitsOnly = (v: string) => v.replace(/[^0-9]/g, '').slice(0, 3);
+/**
+ * 학점 입력 정규화 — 정수부 3자리 + 소수점 1자리까지 허용한다.
+ *
+ * ⚠️ 이수학점은 실제로 **0.5 단위**로 나온다(원장 값이 "26.5/126" 형태). 예전처럼 숫자만
+ * 남기면 "94.5" 가 "945" 가 돼 이수율이 7배로 튄다. 소수점은 하나만 남기고, 소수 둘째
+ * 자리부터는 버린다(학사 규정상 0.5 단위라 그 아래는 의미가 없다).
+ */
+const creditInput = (v: string) => {
+  const cleaned = v.replace(/[^0-9.]/g, '');
+  const [intPart, ...rest] = cleaned.split('.');
+  const head = intPart.slice(0, 3);
+  if (rest.length === 0) return head;
+  return `${head}.${rest.join('').slice(0, 1)}`;
+};
+
+/**
+ * 비율 → 백분율 문자열. 원장 비율이 소수 4자리(예: 0.2103)로 오므로 백분율은 소수
+ * 둘째 자리까지 살리고, 뒤에 붙는 0 은 떨군다(50% / 67.9% / 21.03%).
+ *
+ * 정수로 반올림하면 안 된다 — 내 이수율과 승부선이 소수점에서 갈리는 일이 실제로 있어
+ * 둘 다 "21%" 로 보이는데 판정만 갈리는 모순이 생긴다(판정 자체는 원값으로 한다).
+ */
+const pct = (r: number) => `${Number((r * 100).toFixed(2))}%`;
 
 /** 빈 문자열·비정상 입력은 null(= 미입력) */
 function numOrNull(v: string): number | null {
@@ -447,16 +469,17 @@ export function MileagePlanner({ locale }: { locale: Locale }) {
                   >
                     {ko ? '총이수학점' : 'Earned'}
                   </label>
+                  {/* type=number 가 아니라 text 다 — number 는 "94." 같은 입력 중간 상태에서
+                      value 를 빈 문자열로 돌려줘 소수점을 찍는 순간 지워진다. 검증은
+                      creditInput(정수 3자리+소수 1자리)과 numOrNull 이 대신한다. */}
                   <input
                     id="mileage-earned"
-                    type="number"
-                    inputMode="numeric"
-                    min={0}
-                    max={300}
-                    step={1}
+                    type="text"
+                    inputMode="decimal"
+                    autoComplete="off"
                     value={earnedInput}
-                    onChange={(e) => setEarnedInput(digitsOnly(e.target.value))}
-                    placeholder={ko ? '예: 94' : 'e.g. 94'}
+                    onChange={(e) => setEarnedInput(creditInput(e.target.value))}
+                    placeholder={ko ? '예: 94.5' : 'e.g. 94.5'}
                     className={CREDIT_INPUT_CLASS}
                   />
                 </div>
@@ -469,13 +492,11 @@ export function MileagePlanner({ locale }: { locale: Locale }) {
                   </label>
                   <input
                     id="mileage-required"
-                    type="number"
-                    inputMode="numeric"
-                    min={1}
-                    max={300}
-                    step={1}
+                    type="text"
+                    inputMode="decimal"
+                    autoComplete="off"
                     value={requiredInput}
-                    onChange={(e) => setRequiredInput(digitsOnly(e.target.value))}
+                    onChange={(e) => setRequiredInput(creditInput(e.target.value))}
                     placeholder={String(DEFAULT_REQUIRED_CREDITS)}
                     className={CREDIT_INPUT_CLASS}
                   />
@@ -489,7 +510,7 @@ export function MileagePlanner({ locale }: { locale: Locale }) {
                   }}
                   className="shrink-0 text-[30px] font-bold leading-none tabular-nums"
                 >
-                  {creditRatio === null ? '—' : `${Math.round(creditRatio * 100)}%`}
+                  {creditRatio === null ? '—' : pct(creditRatio)}
                 </span>
                 <span className="text-[10.5px] leading-tight text-content-faint">
                   {creditRatio === null
@@ -860,8 +881,8 @@ export function MileagePlanner({ locale }: { locale: Locale }) {
                           {/* 승부선은 근거 학기 원장에서 나온 수치다 — 작년이 아니면 그 학기를 밝힌다.
                               여기선 짧은 term 만 쓴다(full 은 괄호가 겹쳐 읽기 나쁘다). */}
                           {ko
-                            ? `내 이수율 ${Math.round(creditRatio * 100)}% ${verdict === 'win' ? '≥' : '<'} 승부선${basis ? `(${basis.term} 기준)` : ''} ${Math.round(winMin * 100)}% — ${verdict === 'win' ? '동점전 우위' : '동점 시 밀립니다'}`
-                            : `Your ratio ${Math.round(creditRatio * 100)}% ${verdict === 'win' ? '≥' : '<'} tie line${basis ? ` (${basis.term})` : ''} ${Math.round(winMin * 100)}% — ${verdict === 'win' ? 'you win ties' : 'you lose ties'}`}
+                            ? `내 이수율 ${pct(creditRatio)} ${verdict === 'win' ? '≥' : '<'} 승부선${basis ? `(${basis.term} 기준)` : ''} ${pct(winMin)} — ${verdict === 'win' ? '동점전 우위' : '동점 시 밀립니다'}`
+                            : `Your ratio ${pct(creditRatio)} ${verdict === 'win' ? '≥' : '<'} tie line${basis ? ` (${basis.term})` : ''} ${pct(winMin)} — ${verdict === 'win' ? 'you win ties' : 'you lose ties'}`}
                         </p>
                       )}
 
@@ -1508,6 +1529,39 @@ const SLOT_COLORS = [
  * 강의시간 표기가 제각각이라 파싱에 실패하는 과목이 있다 — 그런 과목은 조용히 빠뜨리지 않고
  * 아래에 따로 명시한다(빠뜨리면 "내 과목이 시간표에 없다"는 혼란이 생긴다).
  */
+/** 시간표 칸 툴팁 — 과목명 · 교수 · 강의실을 한 줄로(없는 항목은 건너뛴다) */
+function describeSlot(s: Section): string {
+  return [s.name, s.professor, s.room].filter(Boolean).join(' · ');
+}
+
+/**
+ * 칸(요일:교시) → 그 시간의 강의실.
+ *
+ * 강의실 원문은 시간대별 값을 슬래시로 이어 붙인 형태다(예: 시간 "화1,2/목8",
+ * 강의실 "동영상(중복수강불가)/공B040"). 전체 문자열을 모든 칸에 그대로 쓰면 좁은
+ * 칸이 넘칠뿐더러 **그 시간에 가지 않는 강의실까지 보여 주게 된다.**
+ *
+ * 시간 그룹 수와 강의실 수가 같을 때만 순서대로 짝지어 칸별 강의실을 잡는다.
+ * 표기가 어긋나면(괄호형 등) 짝짓기를 포기하고, 강의실이 하나뿐일 때만 전 칸에
+ * 같은 값을 쓴다. 어느 경우든 전체 원문은 툴팁(describeSlot)이 그대로 보여 준다.
+ */
+function roomByCell(s: Section): Map<string, string> {
+  const map = new Map<string, string>();
+  const room = (s.room ?? '').trim();
+  if (!room) return map;
+  const groups = s.timeText.split('/');
+  const rooms = room.split('/').map((x) => x.trim());
+  if (groups.length > 1 && groups.length === rooms.length) {
+    groups.forEach((g, i) => {
+      if (!rooms[i]) return;
+      for (const sl of parseTimeSlots(g)) map.set(`${sl.day}:${sl.period}`, rooms[i]);
+    });
+    return map;
+  }
+  if (rooms.length === 1) for (const sl of s.slots) map.set(`${sl.day}:${sl.period}`, room);
+  return map;
+}
+
 function MiniTimetable({
   rows,
   ko,
@@ -1525,6 +1579,9 @@ function MiniTimetable({
   const periods = withSlots.flatMap((r) => r.section.slots.map((s) => s.period));
   const minP = periods.length ? Math.min(...periods) : 1;
   const maxP = periods.length ? Math.max(...periods) : 6;
+
+  /** 과목별 (칸 → 강의실) — 시간대마다 강의실이 다른 과목을 칸별로 정확히 표시한다 */
+  const roomMaps = withSlots.map((r) => roomByCell(r.section));
 
   /** cell[day][period] = 그 칸을 점유한 과목 인덱스들 */
   const cell = new Map<string, number[]>();
@@ -1562,7 +1619,7 @@ function MiniTimetable({
               return (
                 <div
                   key={d}
-                  title={owners.map((i) => withSlots[i].section.name).join(' / ')}
+                  title={owners.map((i) => describeSlot(withSlots[i].section)).join(' / ')}
                   // 한 칸 높이 19→49px(사용자 지시). 높아진 만큼 이름을 잘라내지 않고
                   // 줄바꿈해 보여 준다(break-keep 으로 단어 중간 끊김 방지).
                   className="min-h-[49px] overflow-hidden break-keep px-[3px] py-[3px] text-[9px] font-semibold leading-tight"
@@ -1576,7 +1633,26 @@ function MiniTimetable({
                       : { background: '#FFFFFF' }
                   }
                 >
-                  {clash ? '!' : (withSlots[first]?.section.name ?? '')}
+                  {/* 충돌 칸은 어느 과목의 정보를 보여도 거짓이 되므로 '!' 만 두고
+                      상세는 title 툴팁으로 넘긴다. 교수·강의실은 과목명보다 한 단
+                      작고 흐리게 — 칸의 주인공은 과목명이다. */}
+                  {clash ? (
+                    '!'
+                  ) : (
+                    <>
+                      <span className="block">{withSlots[first]?.section.name ?? ''}</span>
+                      {withSlots[first]?.section.professor && (
+                        <span className="mt-[2px] block text-[8px] font-medium opacity-75">
+                          {withSlots[first].section.professor}
+                        </span>
+                      )}
+                      {roomMaps[first]?.get(`${d}:${p}`) && (
+                        <span className="block text-[8px] font-medium opacity-75">
+                          {roomMaps[first].get(`${d}:${p}`)}
+                        </span>
+                      )}
+                    </>
+                  )}
                 </div>
               );
             })}
