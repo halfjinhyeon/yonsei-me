@@ -95,11 +95,13 @@ export function LabsSection({ labs, locale }: { labs: LabDirectoryEntry[]; local
         <div className="relative">
           {/* 우측 포인트: 대형 네이비 독수리 워터마크(장식). 옅음은 배경 알파로,
               등장은 [data-reveal-eagle] 페이드인으로. 좁은 화면에선 숨겨 여백을 아낀다.
-              다크모드에선 네이비가 배경에 묻혀 안 보이므로 밝은 블루로 대체. */}
+              다크모드에선 네이비가 배경에 묻혀 안 보이므로 밝은 블루로 대체.
+              top 오프셋: 헤더보다 뒤에 그려지는 캐러셀(relative)이 하단을 가리지 않도록
+              섹션 상단 여백 쪽으로 끌어올린 값(실측 — sm 오버랩 28px, lg 68px 해소). */}
           <span
             data-reveal-eagle
             aria-hidden="true"
-            className="eagle-mask pointer-events-none absolute -top-6 right-0 hidden h-44 w-44 bg-yonsei-navy/10 dark:bg-yonsei-blue/15 sm:block lg:h-56 lg:w-56"
+            className="eagle-mask pointer-events-none absolute -top-16 right-0 hidden h-44 w-44 bg-yonsei-navy/10 dark:bg-yonsei-blue/15 sm:block lg:-top-24 lg:h-56 lg:w-56"
           />
 
           {/* 제목 — 뉴스&행사 섹션과 동일한 네이비 라벨 박스(각지게) + 오른쪽으로 뻗는

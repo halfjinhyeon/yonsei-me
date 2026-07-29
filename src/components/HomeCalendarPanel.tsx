@@ -103,9 +103,9 @@ export function HomeCalendarPanel({
     return s === en ? s : `${s} ~ ${en}`;
   };
 
-  // 원형 화살표 버튼 — 폐기한 일정 캐러셀의 버튼 문법을 그대로 이식(30px).
+  // 원형 화살표 버튼 — 폐기한 일정 캐러셀의 버튼 문법을 그대로 이식(35px).
   const arrowBtnClass =
-    'grid h-[30px] w-[30px] place-items-center rounded-full border border-content/40 text-content transition-colors hover:border-yonsei-blue hover:text-yonsei-blue disabled:cursor-not-allowed disabled:opacity-30 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yonsei-blue';
+    'grid h-[35px] w-[35px] place-items-center rounded-full border border-content/40 text-content transition-colors hover:border-yonsei-blue hover:text-yonsei-blue disabled:cursor-not-allowed disabled:opacity-30 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yonsei-blue';
 
   return (
     <div>

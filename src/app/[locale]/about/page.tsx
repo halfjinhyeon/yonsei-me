@@ -41,7 +41,8 @@ export default async function AboutPage({ params }: { params: { locale: string }
   const tStub = await getTranslations({ locale: params.locale, namespace: 'stub' });
 
   const contactRows = [
-    { label: tContact('addressLabel'), value: `${tFooter('address')} (03722)` },
+    // footer.address 가 이미 "[03722] …" 로 시작한다 — 뒤에 우편번호를 또 붙이지 말 것
+    { label: tContact('addressLabel'), value: tFooter('address') },
     { label: tContact('phoneLabel'), value: '02-2123-2810' },
     { label: tContact('emailLabel'), value: 'me@yonsei.ac.kr', href: 'mailto:me@yonsei.ac.kr' },
   ];

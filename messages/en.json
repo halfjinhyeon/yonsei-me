@@ -193,9 +193,9 @@
       "linksLabel": "Quick links",
       "links": {
         "faculty": "Meet the professors leading each field, with research areas and contacts.",
+        "labs": "Explore thirty-three labs across six research fields.",
         "courses": "Browse undergraduate courses and the year-by-year roadmap.",
-        "checker": "Enter your courses to automatically check graduation requirements.",
-        "labs": "Explore thirty-three labs across six research fields."
+        "careers": "See three tracks — industry, graduate school, and the public sector — and how to prepare."
       }
     },
     "calendar": {

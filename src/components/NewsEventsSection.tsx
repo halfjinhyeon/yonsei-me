@@ -276,7 +276,7 @@ export function CircleArrowButton({
       onClick={onClick}
       disabled={disabled}
       aria-label={label}
-      className="grid h-[30px] w-[30px] place-items-center rounded-full border border-content/40 text-content transition-colors hover:border-yonsei-blue hover:text-yonsei-blue disabled:cursor-not-allowed disabled:opacity-30 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yonsei-blue"
+      className="grid h-[35px] w-[35px] place-items-center rounded-full border border-content/40 text-content transition-colors hover:border-yonsei-blue hover:text-yonsei-blue disabled:cursor-not-allowed disabled:opacity-30 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yonsei-blue"
     >
       <svg
         viewBox="0 0 24 24"

@@ -59,17 +59,13 @@ export default async function HomePage({ params }: { params: { locale: string } 
   // desc(연결 탭 설명)만 home.goals.links.* 신규 키.
   const goalLinks = [
     { label: tMenu('about.items.faculty'), href: '/about#faculty', desc: t('goals.links.faculty') },
+    { label: tMenu('research.items.labs'), href: '/research#labs', desc: t('goals.links.labs') },
     {
       label: tMenu('undergraduate.items.courses'),
       href: '/undergraduate#courses',
       desc: t('goals.links.courses'),
     },
-    {
-      label: tMenu('undergraduate.items.checker'),
-      href: '/undergraduate#checker',
-      desc: t('goals.links.checker'),
-    },
-    { label: tMenu('research.items.labs'), href: '/research#labs', desc: t('goals.links.labs') },
+    { label: tMenu('about.items.careers'), href: '/about#careers', desc: t('goals.links.careers') },
   ];
 
   // 히어로 슬라이드(content/hero-slides.json) — 로케일 라벨 해석 후 클라이언트로 전달.
