@@ -11,6 +11,14 @@ export interface InstagramTile {
   caption: string;
 }
 
+/** 밴드에 함께 노출하는 보조 계정(아웃라인 버튼) */
+export interface InstagramAccount {
+  /** @ 없는 핸들 */
+  handle: string;
+  /** 계정 URL(새 창) */
+  url: string;
+}
+
 /** 공용 인스타그램 아이콘(선형) — currentColor */
 function InstagramGlyph({ className }: { className?: string }) {
   return (
@@ -44,9 +52,12 @@ const placeholderStyle: CSSProperties = {
 
 /**
  * 인스타그램 섹션 — 홈 맨 아래(연구실 아래, 푸터 위).
- * 상단 밴드(헤드라인 + 팔로우 버튼, 옅은 인스타 그라디언트 워시 배경 유지 — 사용자 지시)
+ * 상단 밴드(헤드라인 + 계정 버튼들, 옅은 인스타 그라디언트 워시 배경 유지 — 사용자 지시)
  * + 실제 게시물 그리드. 게시물은 CMS '인스타그램' 게시판(Supabase)에 캡션·대표 이미지·
  * 게시물 URL 로 등록하면 즉시 반영된다(revalidateTag). 게시물이 없으면 밴드만 렌더.
+ *
+ * 밴드 우측은 '버튼 확장형' — 대표 계정은 채운 네이비 버튼, 보조 계정은 아웃라인 버튼
+ * (hover 시 네이비로 반전). 계정이 하나뿐이면 자동으로 기존 단일 버튼 모습이 된다.
  *
  * 그리드 디자인 — 인스타그램 프로필 그리드의 문법을 사이트 톤으로:
  *  - 정사각 타일 + 촘촘한 간격(모자이크), 각진 모서리(사이트 직각 엣지와 통일)
@@ -54,7 +65,7 @@ const placeholderStyle: CSSProperties = {
  *  - 타일 전체가 실제 게시물로 가는 새 창 링크(캡션이 접근성 라벨)
  *
  * 문구는 부모(page)가 messages 에서 해석해 props 로 넘긴다(서버 컴포넌트 유지).
- * 핸들·URL 은 content/instagram.json — 계정이 바뀌면 JSON 만 수정.
+ * 핸들·URL·보조 계정(accounts)은 content/instagram.json — 계정이 바뀌면 JSON 만 수정.
  */
 export function InstagramSection({
   handle,
@@ -63,6 +74,7 @@ export function InstagramSection({
   followLabel,
   externalLabel,
   openLabel,
+  accounts = [],
   items = [],
 }: {
   handle: string;
@@ -75,6 +87,8 @@ export function InstagramSection({
   externalLabel: string;
   /** 타일 링크 안내("인스타그램에서 보기") */
   openLabel: string;
+  /** 대표 계정 외 보조 계정 — 아웃라인 버튼으로 이어 붙는다 */
+  accounts?: InstagramAccount[];
   /** 게시물 타일(최신순, 부모가 개수 제한) — 비어 있으면 그리드 생략 */
   items?: InstagramTile[];
 }) {
@@ -86,12 +100,11 @@ export function InstagramSection({
     >
       {/* 배경 워시 (장식) — 인스타그램 컨셉 컬러 유지(사용자 지시) */}
       <div aria-hidden="true" className="absolute inset-0" style={washStyle} />
-      {/* 우측 대형 글리프 워터마크 (장식) — 좁은 화면에선 숨김 */}
-      <InstagramGlyph className="pointer-events-none absolute -right-8 -top-10 hidden h-56 w-56 text-yonsei-navy/[0.07] dark:text-white/[0.06] sm:block" />
-
       <div
         className={
-          'relative mx-auto flex w-full max-w-[1360px] flex-col gap-6 px-6 pt-12 sm:flex-row sm:items-center sm:justify-between sm:px-10 lg:px-16 lg:pt-14 ' +
+          // 계정 버튼이 셋이라 헤드라인과 한 줄에 들어가는 xl 부터만 좌우 배치,
+          // 그 아래는 세로 스택(버튼 셋은 여전히 한 줄에 나란히 들어간다).
+          'relative mx-auto flex w-full max-w-[1360px] flex-col gap-6 px-6 pt-12 sm:px-10 lg:px-16 lg:pt-14 xl:flex-row xl:items-center xl:justify-between ' +
           (hasItems ? 'pb-8' : 'pb-12 lg:pb-14')
         }
       >
@@ -103,20 +116,36 @@ export function InstagramSection({
           </h2>
         </div>
 
-        {/* 우: 단일 버튼 — 계정으로 새 창 이동 */}
-        <a
-          href={url}
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label={`@${handle} ${followLabel} — ${externalLabel}`}
-          className="inline-flex items-center justify-center gap-2.5 bg-yonsei-navy px-7 py-3.5 text-sm font-bold text-white transition-colors hover:bg-yonsei-blue sm:shrink-0"
-        >
-          <InstagramGlyph className="h-[1.1em] w-[1.1em]" />
-          <span>
-            @{handle} {followLabel}
-          </span>
-          <span aria-hidden="true">↗</span>
-        </a>
+        {/* 우: 계정 버튼들 — 대표 계정은 채운 네이비, 보조 계정은 아웃라인 */}
+        <div className="flex flex-wrap items-center gap-2.5 xl:justify-end">
+          <a
+            href={url}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`@${handle} ${followLabel} — ${externalLabel}`}
+            className="inline-flex items-center justify-center gap-2.5 bg-yonsei-navy px-6 py-3.5 text-sm font-bold text-white transition-colors hover:bg-yonsei-blue"
+          >
+            <InstagramGlyph className="h-[1.1em] w-[1.1em]" />
+            <span>
+              @{handle} {followLabel}
+            </span>
+            <span aria-hidden="true">↗</span>
+          </a>
+
+          {accounts.map((a) => (
+            <a
+              key={a.url}
+              href={a.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`@${a.handle} ${followLabel} — ${externalLabel}`}
+              className="inline-flex items-center justify-center gap-2 border border-yonsei-navy/45 bg-white/60 px-5 py-[13px] text-sm font-bold text-yonsei-navy transition-colors hover:border-yonsei-navy hover:bg-yonsei-navy hover:text-white dark:border-white/40 dark:bg-white/5 dark:text-white dark:hover:border-white dark:hover:bg-white dark:hover:text-yonsei-navy"
+            >
+              <span>@{a.handle}</span>
+              <span aria-hidden="true">↗</span>
+            </a>
+          ))}
+        </div>
       </div>
 
       {/* 게시물 그리드 — 정사각 모자이크(모바일 2열 → sm 3열 → lg 4열) */}

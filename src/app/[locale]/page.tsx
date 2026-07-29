@@ -284,8 +284,8 @@ export default async function HomePage({ params }: { params: { locale: string } 
         </div>
 
         {/* 5. 인스타그램 (맨 아래) — 밴드 + 실제 게시물 그리드. 게시물은 CMS
-            '인스타그램' 게시판(Supabase)에서 즉시 반영, 핸들·URL 은
-            content/instagram.json 에서 관리. 게시물이 없으면 밴드만 렌더. */}
+            '인스타그램' 게시판(Supabase)에서 즉시 반영, 대표 핸들·URL 과 보조 계정
+            (accounts)은 content/instagram.json 에서 관리. 게시물이 없으면 밴드만 렌더. */}
         <InstagramSection
           handle={instagramData.handle}
           url={instagramData.url}
@@ -293,6 +293,7 @@ export default async function HomePage({ params }: { params: { locale: string } 
           followLabel={t('instagram.follow')}
           externalLabel={t('instagram.external')}
           openLabel={t('instagram.open')}
+          accounts={instagramData.accounts}
           items={instagramItems}
         />
       </div>

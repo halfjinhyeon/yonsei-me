@@ -1,4 +1,14 @@
 {
   "handle": "yonsei_mech",
-  "url": "https://www.instagram.com/yonsei_mech/"
+  "url": "https://www.instagram.com/yonsei_mech/",
+  "accounts": [
+    {
+      "handle": "yonsei_mech7",
+      "url": "https://www.instagram.com/yonsei_mech7/"
+    },
+    {
+      "handle": "yonsei_me4",
+      "url": "https://www.instagram.com/yonsei_me4/"
+    }
+  ]
 }
