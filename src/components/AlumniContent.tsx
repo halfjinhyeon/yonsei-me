@@ -1,17 +1,11 @@
 import type { Locale } from '@/i18n/routing';
 
-/** 큰 타이포 헤딩 — prose-content 헤딩과 동일한 굵기 */
-function GreetingHeading({ children }: { children: string }) {
-  return (
-    <h3 className="text-4xl font-bold leading-tight tracking-tight text-content sm:text-5xl">
-      {children}
-    </h3>
-  );
-}
-
 /**
- * 동문 인사말 — 좌측 동문회장 사진(플레이스홀더), 우측 큰 타이포 헤딩 + 본문.
- * (Cornell 편집형 레이아웃)
+ * 동문 인사말 — 본문 + 서명의 단일 컬럼.
+ * (동문회장 사진 플레이스홀더는 삭제했다 — 실제 사진이 없어 2단 좌측이 비어 보였다.
+ *  캡션에 있던 인물 정보는 맨 아래 서명 줄이 대신한다. 내부 헤딩도 두지 않는다 —
+ *  탭 자체 헤딩이 이미 '동문 인사말'이라, 단일 컬럼에서는 같은 문구가 연달아
+ *  두 번 쌓이는 중복이 된다.)
  */
 export function AlumniGreeting({ locale }: { locale: Locale }) {
   const ko = locale === 'ko';
@@ -29,43 +23,19 @@ export function AlumniGreeting({ locale }: { locale: Locale }) {
       ];
 
   return (
-    <div className="grid gap-10 lg:grid-cols-[minmax(0,2fr)_minmax(0,3fr)] lg:gap-16">
-      {/* 동문회장 사진 (실제 사진 확보 전까지 플레이스홀더) */}
-      <figure className="anim-nav-item">
-        <div className="relative aspect-[4/5] overflow-hidden bg-gradient-to-br from-yonsei-navy to-yonsei-blue">
-          <div aria-hidden="true" className="absolute inset-0 flex items-center justify-center">
-            <span className="text-7xl font-bold text-white/20">朴</span>
-          </div>
-        </div>
-        <figcaption className="mt-4">
-          <p className="font-bold text-content">
-            {ko ? '박정호' : 'Jungho Park'}
-            <span className="ml-2 text-sm font-medium text-content-faint">
-              {ko ? '기계공학과 82학번' : "Class of '82"}
-            </span>
+    <div className="anim-nav-item">
+      <div className="space-y-5">
+        {paragraphs.map((p, i) => (
+          <p key={i} className="max-w-2xl text-base leading-[1.8] text-content-soft">
+            {p}
           </p>
-          <p className="mt-0.5 text-sm text-content-soft">
-            {ko ? '연세대학교 기계공학부 동문회장' : 'President, Yonsei ME Alumni Association'}
-          </p>
-        </figcaption>
-      </figure>
-
-      {/* 큰 타이포 헤딩 + 본문 */}
-      <div className="anim-nav-item" style={{ animationDelay: '90ms' }}>
-        <GreetingHeading>{ko ? '동문 인사말' : 'A greeting'}</GreetingHeading>
-        <div className="mt-8 space-y-5">
-          {paragraphs.map((p, i) => (
-            <p key={i} className="max-w-2xl text-base leading-[1.8] text-content-soft">
-              {p}
-            </p>
-          ))}
-        </div>
-        <p className="mt-8 font-bold text-content">
-          {ko
-            ? '연세대학교 기계공학부 동문회장 박정호'
-            : 'Jungho Park, President of the Alumni Association'}
-        </p>
+        ))}
       </div>
+      <p className="mt-8 font-bold text-content">
+        {ko
+          ? '연세대학교 기계공학부 동문회장 박정호'
+          : 'Jungho Park, President of the Alumni Association'}
+      </p>
     </div>
   );
 }

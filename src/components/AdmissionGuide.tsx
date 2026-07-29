@@ -4,7 +4,7 @@ import { LandingScope } from '@/components/LandingScope';
 import type { Locale } from '@/i18n/routing';
 
 /** content/admission-guide.json 의 형태 */
-interface GuideSection {
+export interface GuideSection {
   num: string;
   /** 좌측 그래픽 — 'logo'(연세 엠블럼 logo.svg) | 'eagle'(독수리 실루엣 eagle.png 마스크) */
   graphic: 'logo' | 'eagle';
@@ -23,10 +23,20 @@ const sections = (guide as { sections: GuideSection[] }).sections;
  * 학부 = 연세 엠블럼(logo.svg), 대학원 = 독수리 실루엣(eagle-mask, 네이비 틴트).
  * 문안·버튼은 content/admission-guide.json 에서 공급(콘텐츠/코드 분리) —
  * 버튼 href 는 추후 실제 입학처 링크로 교체 예정(현재 '#' 플레이스홀더).
+ * 렌더러는 GuideSections 로 분리해 두었다 — 동문 탭(총동문회 안내) 등에서
+ * 같은 형태의 JSON 을 다른 landingName 으로 재사용한다.
  */
-export function AdmissionGuide({ locale }: { locale: Locale }) {
+export function GuideSections({
+  sections,
+  locale,
+  landingName,
+}: {
+  sections: GuideSection[];
+  locale: Locale;
+  landingName: string;
+}) {
   return (
-    <LandingScope name="admission-guide">
+    <LandingScope name={landingName}>
       <div className="space-y-24">
         {/* 랜딩 순서(data-land-order) — 섹션마다 10단위로 띄워 학부 → 대학원이 각각
             "룰이 그어지며 번호 노출 → 제목 → 엠블럼이 차오름 → 본문 → 버튼"으로 전개된다.
@@ -123,4 +133,9 @@ export function AdmissionGuide({ locale }: { locale: Locale }) {
       </div>
     </LandingScope>
   );
+}
+
+/** 소개 › 입학 안내 탭 — admission-guide.json 을 위 렌더러에 그대로 흘려보낸다. */
+export function AdmissionGuide({ locale }: { locale: Locale }) {
+  return <GuideSections sections={sections} locale={locale} landingName="admission-guide" />;
 }

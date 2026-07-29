@@ -5,12 +5,17 @@ import { TabbedContent, type TabItem } from '@/components/TabbedContent';
 import { type BoardRow } from '@/components/BoardList';
 import { FilterableBoardList } from '@/components/FilterableBoardList';
 import { AlumniGreeting } from '@/components/AlumniContent';
+import { GuideSections, type GuideSection } from '@/components/AdmissionGuide';
 import { pick } from '@/lib/content';
 import { fetchAlumniNews, fetchAlumniEvents } from '@/lib/posts';
+import assoc from '@content/alumni-association.json';
 
 // DB 소스 전환(Phase 2): 목록도 ISR — revalidateTag('posts') 가 즉시 갱신, 이 값은 안전망
 export const revalidate = 300;
 import type { Locale } from '@/i18n/routing';
+
+// 인사말 아래에 이어 붙는 총동문회 안내 — 입학 안내와 같은 섹션 렌더러를 재사용
+const assocSections = (assoc as { sections: GuideSection[] }).sections;
 
 export async function generateMetadata({
   params,
@@ -59,7 +64,12 @@ export default async function AlumniPage({ params }: { params: { locale: string 
       key: 'greeting',
       label: tMenu('alumni.items.greeting'),
       markdown: null,
-      content: <AlumniGreeting locale={locale} />,
+      content: (
+        <div className="space-y-24">
+          <AlumniGreeting locale={locale} />
+          <GuideSections sections={assocSections} locale={locale} landingName="alumni-association" />
+        </div>
+      ),
     },
     {
       key: 'news',

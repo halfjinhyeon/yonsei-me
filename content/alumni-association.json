@@ -1,0 +1,25 @@
+{
+  "sections": [
+    {
+      "num": "1",
+      "graphic": "logo",
+      "title": { "ko": "연세대학교 총동문회", "en": "Yonsei University Alumni Association" },
+      "body": {
+        "ko": "연세대학교 총동문회는 신촌 연세동문회관에 자리한, 전체 단과대학과 대학원 동문을 아우르는 연세 동문 네트워크의 구심점입니다. 동문장학금과 연세동문장학회 운영, 동문회보·연세미디어 발간, 각종 행사와 동문 혜택 서비스를 통해 모교와 동문 사회를 잇고 있습니다.",
+        "en": "Headquartered at the Yonsei Alumni Hall in Sinchon, the Yonsei University Alumni Association is the hub of the Yonsei alumni network, embracing graduates of every college and graduate school. It connects alumni and their alma mater through scholarship programs, the alumni bulletin and Yonsei media, events, and member benefit services."
+      },
+      "notes": [
+        {
+          "ko": "회비·장학금 납부, 행사 일정, Y카드를 비롯한 동문 혜택 등 자세한 안내는 총동문회 홈페이지에서 확인할 수 있습니다.",
+          "en": "Details on membership dues, scholarship contributions, event schedules, and alumni benefits including the Y-Card are available on the association's website."
+        }
+      ],
+      "buttons": [
+        {
+          "label": { "ko": "총동문회 홈페이지 바로가기", "en": "Alumni Association Website" },
+          "href": "https://www.yonsein.net/"
+        }
+      ]
+    }
+  ]
+}
