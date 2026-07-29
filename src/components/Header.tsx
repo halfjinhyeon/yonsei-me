@@ -2,7 +2,7 @@
 
 import { useLocale, useTranslations } from 'next-intl';
 import { Link, usePathname } from '@/i18n/navigation';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { cn } from '@/lib/utils';
 import { menu } from './menu';
 import { LocaleToggle } from './LocaleToggle';
@@ -33,19 +33,12 @@ export function Header() {
   const t = useTranslations('nav');
   const tMenu = useTranslations('menu');
   const pathname = usePathname();
-  // 영문은 라벨·항목이 길어 "라벨 아래 정렬형" 목록이 잘게 줄바꿈된다 →
-  // 영문 로케일은 그리드형 패널(컬럼 상단에 카테고리명)로 분기한다.
-  const gridMega = useLocale() === 'en';
+  // 메가메뉴 시트 폭만 로케일로 갈린다(레이아웃 문법은 동일 — 아래 그리드 주석 참고).
+  // 국문은 항목이 짧아 영문 폭(5xl)을 쓰면 글자 주위가 허해진다.
+  const isKo = useLocale() === 'ko';
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [expanded, setExpanded] = useState<string | null>(null); // 모바일 아코디언
-
-  // 메가메뉴 측정 — 마운트/리사이즈 시:
-  // 1) 각 하위 목록의 최대폭 = 이웃 라벨 중간점 사이(라벨은 justify-between 으로
-  //    글자 사이 여백이 균일하게 퍼지므로, 목록 겹침 방지는 폭 측정으로 보장)
-  // 2) 시트 높이 = 가장 긴 목록 높이 (목록이 li 기준 absolute 라 시트가 스스로 못 늘어남)
-  const navRef = useRef<HTMLElement | null>(null);
-  const [panelH, setPanelH] = useState(0);
 
   // 메가메뉴는 CSS hover/focus-within 으로 열리므로, 항목 클릭 후에도 마우스가
   // 제자리면 계속 떠 있다 → 클릭 시 억제(suppress)해 즉시 닫고, 마우스가 nav 를
@@ -58,36 +51,6 @@ export function Header() {
       (document.activeElement as HTMLElement | null)?.blur?.();
     }
   }
-  useEffect(() => {
-    const measure = () => {
-      const nav = navRef.current;
-      if (!nav) return;
-      const lis = Array.from(nav.querySelectorAll<HTMLElement>(':scope > ul > li'));
-      if (lis.length === 0) return;
-      const navRect = nav.getBoundingClientRect();
-      if (navRect.width === 0) return; // 모바일(숨김) — 측정 불가
-      const centers = lis.map((li) => {
-        const r = li.querySelector(':scope > a')!.getBoundingClientRect();
-        return r.left + r.width / 2;
-      });
-      const GUTTER = 16; // 이웃 목록과의 최소 여백
-      const lists: HTMLElement[] = [];
-      lis.forEach((li, i) => {
-        const list = li.querySelector<HTMLElement>('[data-mega-list]');
-        if (!list) return;
-        const leftEdge = i === 0 ? navRect.left - 24 : (centers[i - 1] + centers[i]) / 2;
-        const rightEdge =
-          i === lis.length - 1 ? navRect.right + 24 : (centers[i] + centers[i + 1]) / 2;
-        const half = Math.min(centers[i] - leftEdge, rightEdge - centers[i]) - GUTTER / 2;
-        list.style.maxWidth = `${Math.max(Math.floor(half * 2), 72)}px`;
-        lists.push(list);
-      });
-      if (lists.length > 0) setPanelH(Math.max(...lists.map((el) => el.offsetHeight)));
-    };
-    measure();
-    window.addEventListener('resize', measure);
-    return () => window.removeEventListener('resize', measure);
-  }, []);
 
   // 라우트 변경 시 메뉴 닫기
   useEffect(() => {
@@ -159,13 +122,12 @@ export function Header() {
             <Logo onLight={solid} />
           </Link>
 
-          {/* 데스크톱 내비게이션 — 상단 항목 아무거나 호버/포커스하면 전체 하위 목록이
-              "각자 자기 메뉴 항목 바로 아래" 동시에 펼쳐진다(개별 드롭다운과 같은 위치
-              문법, 전부 열리는 것만 다름 → 상단 배치와 어긋나지 않는다).
+          {/* 데스크톱 내비게이션 — 상단 항목 아무거나 호버/포커스하면 전폭 시트가 한 번에
+              열리고, 6개 메뉴 그룹이 구분선으로 나뉜 컬럼에 모두 펼쳐진다(어느 항목을
+              가리켜도 전체 지도를 한눈에 보여주는 방식).
               self-stretch: nav 를 헤더 전체 높이로 늘려 링크→패널 마우스 이동 중
               hover 가 끊기는 데드존을 없앤다 */}
           <nav
-            ref={navRef}
             aria-label="주 메뉴"
             onClick={onNavClick}
             onMouseLeave={() => setMegaSuppressed(false)}
@@ -173,8 +135,8 @@ export function Header() {
             className="group/nav hidden min-w-0 self-stretch xl:flex xl:flex-1 xl:items-center"
           >
             {/* 딤 스크림 — 메뉴가 열리면 헤더 아래 페이지를 살짝 눌러 글라스 시트가
-                배경 사진 위에서도 또렷이 읽히게 하고 시선을 메뉴로 모은다. ko/en 시트가
-                공유하며, 시트보다 먼저 그려져 항상 그 뒤(아래)에 깔린다 */}
+                배경 사진 위에서도 또렷이 읽히게 하고 시선을 메뉴로 모은다.
+                시트보다 먼저 그려져 항상 그 뒤(아래)에 깔린다 */}
             <div
               aria-hidden="true"
               className={cn(
@@ -184,28 +146,12 @@ export function Header() {
               )}
             />
 
-            {/* [정렬형 전용] 공용 백드롭 시트 — 뷰포트 전폭. 높이는 가장 긴 목록에 맞춰
-                측정(panelH). megaSuppressed 면 열림 클래스를 제거해 클릭 직후 즉시 닫힌다.
-                글라스는 mega-glass(globals.css) — 미지원·투명도 감소 환경은 CSS 폴백으로 불투명. */}
-            {!gridMega && (
-              <div
-                aria-hidden="true"
-                style={{ height: panelH }}
-                className={cn(
-                  'pointer-events-none invisible fixed inset-x-0 top-16 border-b border-t border-surface-border mega-glass opacity-0 transition-all duration-200 lg:top-20',
-                  !megaSuppressed &&
-                    'group-hover/nav:visible group-hover/nav:opacity-100 group-focus-within/nav:visible group-focus-within/nav:opacity-100',
-                )}
-              />
-            )}
-
             {/* justify-evenly: 바깥 2 + 사이 6 = 8개 여백을 모두 동일하게 분배 →
                 "글자 사이 여백"이 일정하고, 로고·우측 버튼과의 경계 간격도 같아진다.
-                목록 겹침 방지는 위 measure() 가 이웃 라벨 중간점 기준으로 목록
-                최대폭을 지정해 보장. li 를 헤더 높이까지 늘려 top-full = 시트 상단 */}
+                li 를 헤더 높이까지 늘려 top-full = 시트 상단 */}
             <ul className="flex h-full w-full items-stretch justify-evenly">
               {menu.map((group) => (
-                <li key={group.key} className="relative flex items-center">
+                <li key={group.key} className="flex items-center">
                   <Link
                     href={group.href}
                     aria-current={isActive(group.href) ? 'page' : undefined}
@@ -228,75 +174,61 @@ export function Header() {
                       )}
                     />
                   </Link>
-
-                  {/* [정렬형: ko] 하위 목록 — 자기 라벨 아래 중앙 정렬, 최대폭은
-                      measure() 가 지정(이웃 라벨 중간점까지 → 겹침 없음) */}
-                  {!gridMega && (
-                    <ul
-                      data-mega-list
-                      className={cn(
-                        'invisible absolute left-1/2 top-full w-max -translate-x-1/2 translate-y-1 pb-7 pt-5 text-center opacity-0 transition-all duration-200',
-                        !megaSuppressed &&
-                          'group-hover/nav:visible group-hover/nav:translate-y-0 group-hover/nav:opacity-100 group-focus-within/nav:visible group-focus-within/nav:translate-y-0 group-focus-within/nav:opacity-100',
-                      )}
-                    >
-                      {group.items.map((sub) => (
-                        <li key={sub.key}>
-                          <Link
-                            href={sub.href}
-                            className="block py-1.5 text-sm leading-snug text-content-soft transition-colors hover:text-yonsei-navy"
-                          >
-                            {tMenu(`${group.key}.items.${sub.key}`)}
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-                  )}
                 </li>
               ))}
             </ul>
 
-            {/* [그리드형: en] 전폭 시트 + 가운데 정렬 그리드(정렬형보다 조금 좁게).
-                긴 영문 라벨이 라벨 폭에 갇혀 잘게 줄바꿈되는 문제를 컬럼 그리드로 해결.
-                각 컬럼 상단에 카테고리명(구분선 포함)을 표시한다. */}
-            {gridMega && (
-              <div
-                className={cn(
-                  'invisible fixed inset-x-0 top-16 translate-y-1 opacity-0 transition-all duration-200 lg:top-20',
-                  !megaSuppressed &&
-                    'group-hover/nav:visible group-hover/nav:translate-y-0 group-hover/nav:opacity-100 group-focus-within/nav:visible group-focus-within/nav:translate-y-0 group-focus-within/nav:opacity-100',
-                )}
-              >
-                <div className="border-b border-t border-surface-border mega-glass text-content">
-                  <div className="mx-auto w-full max-w-6xl px-6">
-                    <div className="grid grid-cols-7 divide-x divide-surface-border">
-                      {menu.map((group) => (
-                        <div key={group.key} className="px-2.5 pb-8 pt-6 text-center">
-                          <Link
-                            href={group.href}
-                            className="block border-b border-surface-border pb-3 text-sm font-bold text-content transition-colors hover:text-yonsei-blue"
-                          >
-                            {tMenu(`${group.key}.label`)}
-                          </Link>
-                          <ul className="mt-3.5 space-y-0.5">
-                            {group.items.map((sub) => (
-                              <li key={sub.key}>
-                                <Link
-                                  href={sub.href}
-                                  className="block py-1.5 text-[13px] leading-snug text-content-soft transition-colors hover:text-yonsei-navy"
-                                >
-                                  {tMenu(`${group.key}.items.${sub.key}`)}
-                                </Link>
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                      ))}
-                    </div>
+            {/* 전폭 시트 + 가운데 정렬 그리드 — 국문·영문 공통.
+                각 컬럼 상단에 카테고리명(구분선 포함)을 표시한다. 이전의 라벨정렬형은
+                폐기(영문 라벨이 라벨 폭에서 잘게 줄바꿈되는 문제 + 두 벌 유지 비용).
+                컬럼 수는 메뉴 그룹 수(6)와 같아야 한다 — 7이면 남는 한 칸이
+                오른쪽 死공간이 되어 내용 전체가 컬럼 절반(약 79px)만큼 왼쪽으로
+                치우쳐 보인다. 폭을 5xl 로 좁혀 6등분해도 컬럼 폭은 그대로 유지된다.
+
+                시트 폭은 로케일별 — "가장 긴 항목 좌우로 20px" 기준을 각 언어의 실측
+                글자폭에 적용한 값이다. 국문 최장은 '동문 소식·네트워크' 96.5px 라
+                컬럼 136.5px(=96.5+20*2) × 6 + 좌우 px-6 = 867px 이고, 서브픽셀
+                반올림으로 한쪽이 19.5px 로 깎여 874px 로 올려 잡았다. 영문은 최장이
+                'Social Challenge Board' 133.8px 로 훨씬 길어 5xl(1024px)을 유지한다
+                — 국문 폭을 영문에 씌우면 항목 절반이 줄바꿈된다. 컬럼 안쪽 패딩
+                (px-2.5)은 두 언어가 공유하므로 건드리지 말 것: 여기를 키우면 영문
+                내용상자가 좁아져 'Social Challenge Board' 가 두 줄로 깨진다. */}
+            <div
+              className={cn(
+                'invisible fixed inset-x-0 top-16 translate-y-1 opacity-0 transition-all duration-200 lg:top-20',
+                !megaSuppressed &&
+                  'group-hover/nav:visible group-hover/nav:translate-y-0 group-hover/nav:opacity-100 group-focus-within/nav:visible group-focus-within/nav:translate-y-0 group-focus-within/nav:opacity-100',
+              )}
+            >
+              <div className="border-b border-t border-surface-border mega-glass text-content">
+                <div className={cn('mx-auto w-full px-6', isKo ? 'max-w-[874px]' : 'max-w-5xl')}>
+                  <div className="grid grid-cols-6 divide-x divide-surface-border">
+                    {menu.map((group) => (
+                      <div key={group.key} className="px-2.5 pb-8 pt-6 text-center">
+                        <Link
+                          href={group.href}
+                          className="block border-b border-surface-border pb-3 text-sm font-bold text-content transition-colors hover:text-yonsei-blue"
+                        >
+                          {tMenu(`${group.key}.label`)}
+                        </Link>
+                        <ul className="mt-3.5 space-y-0.5">
+                          {group.items.map((sub) => (
+                            <li key={sub.key}>
+                              <Link
+                                href={sub.href}
+                                className="block py-1.5 text-[13px] leading-snug text-content-soft transition-colors hover:text-yonsei-navy"
+                              >
+                                {tMenu(`${group.key}.items.${sub.key}`)}
+                              </Link>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    ))}
                   </div>
                 </div>
               </div>
-            )}
+            </div>
           </nav>
 
           <div className="flex items-center gap-3">
