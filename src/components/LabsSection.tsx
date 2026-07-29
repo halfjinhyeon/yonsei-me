@@ -7,7 +7,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Link } from '@/i18n/navigation';
 import { FlowLines } from '@/components/FlowLines';
 import { LabCarousel, type LabCarouselHandle } from '@/components/LabCarousel';
-import { ArrowIcon } from '@/components/NewsEventsSection';
+import { CircleArrowButton } from '@/components/NewsEventsSection';
 import type { LabDirectoryEntry } from '@/lib/faculty';
 import type { Locale } from '@/i18n/routing';
 
@@ -113,23 +113,17 @@ export function LabsSection({ labs, locale }: { labs: LabDirectoryEntry[]; local
               {t('people.intro.label')}
             </h2>
             <span aria-hidden="true" className="h-px flex-1 bg-surface-border" />
-            <div data-reveal className="flex items-center gap-4">
-              <button
-                type="button"
+            <div data-reveal className="flex items-center gap-2.5">
+              <CircleArrowButton
+                dir="left"
                 onClick={() => carouselRef.current?.nudge(-1)}
-                aria-label={t('newsEvents.prev')}
-                className="grid h-11 w-14 place-items-center text-content transition-colors hover:text-yonsei-blue focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yonsei-blue"
-              >
-                <ArrowIcon dir="left" />
-              </button>
-              <button
-                type="button"
+                label={t('newsEvents.prev')}
+              />
+              <CircleArrowButton
+                dir="right"
                 onClick={() => carouselRef.current?.nudge(1)}
-                aria-label={t('newsEvents.next')}
-                className="grid h-11 w-14 place-items-center text-content transition-colors hover:text-yonsei-blue focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yonsei-blue"
-              >
-                <ArrowIcon dir="right" />
-              </button>
+                label={t('newsEvents.next')}
+              />
             </div>
           </div>
 

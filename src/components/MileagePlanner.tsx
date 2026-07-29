@@ -740,14 +740,14 @@ export function MileagePlanner({ locale }: { locale: Locale }) {
   );
 }
 
-/** 섹션 라벨 — 사이트 공통 네이비 사각 라벨 + 헤어라인 */
+/** 섹션 라벨 — 사이트 공통 네이비 사각 라벨 + 헤어라인.
+ *  Pretendard(--font-sans) + font-bold 로, GraduationChecker·EventCalendar 등의
+ *  라벨과 같은 글자체다. --font-subhead(Paperlogy)를 덧씌우지 말 것 — 이 탭만
+ *  글자체가 달라 보인다. */
 function SectionLabel({ children }: { children: React.ReactNode }) {
   return (
     <div className="flex items-center gap-3">
-      <h3
-        style={{ fontFamily: 'var(--font-subhead), var(--font-sans), sans-serif' }}
-        className="inline-block shrink-0 bg-yonsei-navy px-3.5 py-1.5 text-sm font-semibold text-white"
-      >
+      <h3 className="inline-block shrink-0 bg-yonsei-navy px-3.5 py-1.5 text-sm font-bold text-white">
         {children}
       </h3>
       <span aria-hidden="true" className="h-px flex-1 bg-surface-border" />

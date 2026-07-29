@@ -109,14 +109,13 @@ export function HomeCalendarPanel({
 
   return (
     <div>
-      {/* 소헤더 행 — 좌열 '공지사항' 소헤더와 같은 장치(사각 마커 + 라벨 ─ 헤어라인 ─ MORE)로
-          두 열이 형제임을 드러낸다. */}
-      <div className="flex items-center gap-5">
+      {/* 소헤더 행 — 좌열 '공지사항' 소헤더와 같은 장치(사각 마커 + 라벨, 우측 끝 더보기)로
+          두 열이 형제임을 드러낸다. 라벨과 더보기를 잇던 헤어라인은 삭제(사용자 지시). */}
+      <div className="flex items-center justify-between gap-5">
         <h3 className="flex shrink-0 items-center gap-2.5 text-base font-bold text-content">
           <span aria-hidden="true" className="h-2 w-2 bg-yonsei-navy" />
           {title}
         </h3>
-        <span aria-hidden="true" className="h-px flex-1 bg-surface-border" />
         <Link
           href={moreHref}
           className="group inline-flex shrink-0 items-center gap-1.5 text-sm font-bold text-content transition-colors hover:text-yonsei-blue focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yonsei-blue"

@@ -180,17 +180,18 @@ export function NoticeSection({
 
         {/* 2열 — 좌 공지 / 우 일정 패널. lg 미만에서는 세로로 쌓인다(우열 폭 고정값이
             좁은 화면에서는 성립하지 않는다). 우열 폭은 lg 416px → xl 512px. */}
-        <div className="mt-10 grid grid-cols-1 gap-y-12 lg:grid-cols-[minmax(0,1fr)_416px] lg:gap-x-12 xl:grid-cols-[minmax(0,1fr)_512px] xl:gap-x-[72px]">
+        <div className="mt-[25px] grid grid-cols-1 gap-y-12 lg:grid-cols-[minmax(0,1fr)_416px] lg:gap-x-12 xl:grid-cols-[minmax(0,1fr)_512px] xl:gap-x-[72px]">
           {/* ── 좌: 공지 ── */}
           <div className="min-w-0">
-            {/* 소헤더 — 사각 마커 + 라벨 ─ 헤어라인 ─ MORE. 우열 일정 패널 소헤더와 같은
-                장치로, 두 열이 한 섹션 안의 형제임을 드러낸다. */}
-            <div className="flex items-center gap-5">
+            {/* 소헤더 — 사각 마커 + 라벨, 우측 끝에 더보기. 우열 일정 패널 소헤더와 같은
+                장치로, 두 열이 한 섹션 안의 형제임을 드러낸다.
+                라벨과 더보기를 잇던 헤어라인은 삭제(사용자 지시) — 그 선이 폭을 채우던
+                역할을 justify-between 이 대신한다. */}
+            <div className="flex items-center justify-between gap-5">
               <h3 className="flex shrink-0 items-center gap-2.5 text-base font-bold text-content">
                 <span aria-hidden="true" className="h-2 w-2 bg-yonsei-navy" />
                 {listLabel}
               </h3>
-              <span aria-hidden="true" className="h-px flex-1 bg-surface-border" />
               <Link
                 href={moreHref}
                 className="group inline-flex shrink-0 items-center gap-1.5 text-sm font-bold text-content transition-colors hover:text-yonsei-blue focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yonsei-blue"

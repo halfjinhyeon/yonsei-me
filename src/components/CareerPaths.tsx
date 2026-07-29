@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { Link } from '@/i18n/navigation';
 import { cn } from '@/lib/utils';
-import { ArrowIcon } from '@/components/NewsEventsSection';
+import { CircleArrowButton } from '@/components/NewsEventsSection';
 import careerData from '@content/career-paths.json';
 import { useLandingAnimation } from '@/components/LandingScope';
 import type { Locale } from '@/i18n/routing';
@@ -93,11 +93,13 @@ function SectionHead({
 }) {
   return (
     <div className="flex items-center gap-5">
+      {/* 네이비 사각 라벨 — 사이트 공통 문법(GraduationChecker·EventCalendar 등과 동일).
+          Pretendard(--font-sans) + font-bold 이며, 여기에 --font-subhead(Paperlogy)를
+          덧씌우지 말 것: 이 탭만 글자체가 달라 보인다. */}
       <h3
         data-land="wipe"
         data-land-order={order}
-        style={{ fontFamily: 'var(--font-subhead), var(--font-sans), sans-serif' }}
-        className="inline-block shrink-0 bg-yonsei-navy px-3.5 py-1.5 text-sm font-semibold text-white"
+        className="inline-block shrink-0 bg-yonsei-navy px-3.5 py-1.5 text-sm font-bold text-white"
       >
         {title}
       </h3>
@@ -487,23 +489,17 @@ export function CareerPaths({ locale }: { locale: Locale }) {
       {/* ─────────── ② 진로 분야 ─────────── */}
       <section aria-labelledby="career-fields" className="mt-16 lg:mt-24">
         <SectionHead title={ko ? '진로 분야' : 'Career Fields'} order={30}>
-          <div className="flex shrink-0 items-center gap-3">
-            <button
-              type="button"
+          <div className="flex shrink-0 items-center gap-2.5">
+            <CircleArrowButton
+              dir="left"
               onClick={() => setFieldWrapped(field - 1)}
-              aria-label={ko ? '이전 분야' : 'Previous field'}
-              className="grid h-11 w-13 place-items-center text-content transition-colors hover:text-yonsei-blue focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yonsei-blue"
-            >
-              <ArrowIcon dir="left" />
-            </button>
-            <button
-              type="button"
+              label={ko ? '이전 분야' : 'Previous field'}
+            />
+            <CircleArrowButton
+              dir="right"
               onClick={() => setFieldWrapped(field + 1)}
-              aria-label={ko ? '다음 분야' : 'Next field'}
-              className="grid h-11 w-13 place-items-center text-content transition-colors hover:text-yonsei-blue focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yonsei-blue"
-            >
-              <ArrowIcon dir="right" />
-            </button>
+              label={ko ? '다음 분야' : 'Next field'}
+            />
           </div>
         </SectionHead>
         <h4 id="career-fields" className="sr-only">

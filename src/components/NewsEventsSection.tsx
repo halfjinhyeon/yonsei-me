@@ -142,25 +142,19 @@ export function NewsEventsSection({ items }: { items: NewsEventItem[] }) {
 
           {/* 카드가 있을 때만 화살표 노출(빈 상태에선 조작 대상이 없음) */}
           {hasItems && (
-            <div data-reveal className="flex items-center gap-4">
-              <button
-                type="button"
+            <div data-reveal className="flex items-center gap-2.5">
+              <CircleArrowButton
+                dir="left"
                 onClick={() => scrollByCard(-1)}
                 disabled={!canPrev}
-                aria-label={t('newsEvents.prev')}
-                className="grid h-11 w-14 place-items-center text-content transition-colors hover:text-yonsei-blue disabled:cursor-not-allowed disabled:text-content-faint disabled:opacity-40 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yonsei-blue"
-              >
-                <ArrowIcon dir="left" />
-              </button>
-              <button
-                type="button"
+                label={t('newsEvents.prev')}
+              />
+              <CircleArrowButton
+                dir="right"
                 onClick={() => scrollByCard(1)}
                 disabled={!canNext}
-                aria-label={t('newsEvents.next')}
-                className="grid h-11 w-14 place-items-center text-content transition-colors hover:text-yonsei-blue disabled:cursor-not-allowed disabled:text-content-faint disabled:opacity-40 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yonsei-blue"
-              >
-                <ArrowIcon dir="right" />
-              </button>
+                label={t('newsEvents.next')}
+              />
             </div>
           )}
         </div>
@@ -262,29 +256,42 @@ function NewsEventCard({ item }: { item: NewsEventItem }) {
   );
 }
 
-/** 헤더 우측 화살표 아이콘 — 레퍼런스식: 몸통 대비 머리가 큰(전체 높이) 각진 화살표.
- *  캐러셀 섹션 공용(뉴스&행사·연구실). 모서리는 라운드 없이 날카롭게(미터 조인). */
-export function ArrowIcon({ dir }: { dir: 'left' | 'right' }) {
+/** 캐러셀 이동 버튼 — 원형 보더 + 셰브런. 학과 일정 위젯(HomeCalendarPanel)의
+ *  버튼 문법을 그대로 승격한 공용판(뉴스&행사·연구실·진로 분야). 이전의 긴 화살표
+ *  아이콘(ArrowIcon)은 이 버튼으로 대체되어 삭제했다. */
+export function CircleArrowButton({
+  dir,
+  onClick,
+  disabled,
+  label,
+}: {
+  dir: 'left' | 'right';
+  onClick: () => void;
+  disabled?: boolean;
+  label: string;
+}) {
   return (
-    <svg
-      viewBox="0 0 44 24"
-      className="h-6 w-11"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth={2}
-      aria-hidden="true"
+    <button
+      type="button"
+      onClick={onClick}
+      disabled={disabled}
+      aria-label={label}
+      className="grid h-[30px] w-[30px] place-items-center rounded-full border border-content/40 text-content transition-colors hover:border-yonsei-blue hover:text-yonsei-blue disabled:cursor-not-allowed disabled:opacity-30 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yonsei-blue"
     >
-      {dir === 'left' ? (
-        <>
-          <path d="M43 12H2" />
-          <path d="M13 2 2 12l11 10" />
-        </>
-      ) : (
-        <>
-          <path d="M1 12h41" />
-          <path d="M31 2l11 10-11 10" />
-        </>
-      )}
-    </svg>
+      <svg
+        viewBox="0 0 24 24"
+        className="h-4 w-4"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth={1.8}
+        aria-hidden="true"
+      >
+        {dir === 'left' ? (
+          <path d="M15 5l-7 7 7 7" strokeLinecap="round" strokeLinejoin="round" />
+        ) : (
+          <path d="M9 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" />
+        )}
+      </svg>
+    </button>
   );
 }

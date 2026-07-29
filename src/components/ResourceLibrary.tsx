@@ -271,7 +271,10 @@ function ResourceRow({
           <p className="mt-2.5 text-[0.8125rem] tabular-nums text-content-faint">{meta}</p>
         </div>
 
-        {/* 우: 다운로드 — 첨부 1개는 직접 링크, 2개 이상은 ZIP API, 0개면 비운다 */}
+        {/* 우: 다운로드 — 첨부 1개는 직접 링크, 2개 이상은 ZIP API, 0개면 비운다.
+            폭은 w-40 고정 — '다운로드'와 '전체 다운로드'가 같은 위계라 행마다 버튼
+            크기가 달라 보이면 안 된다(실측 최대 라벨 en 'Download all' 154px < 160px,
+            busy 라벨 포함 전 로케일 줄바꿈 없음). 짧은 라벨은 justify-center 로 중앙 정렬 */}
         <div className="flex flex-col items-start gap-1.5 tab:items-end">
           {files.length === 1 && (
             <a
@@ -280,7 +283,7 @@ function ResourceRow({
               {...(isExternal(files[0].href)
                 ? { target: '_blank', rel: 'noopener noreferrer' }
                 : {})}
-              className="inline-flex items-center gap-2 border border-yonsei-navy bg-surface px-[1.375rem] py-3 text-sm font-bold text-yonsei-navy transition-colors hover:bg-yonsei-navy hover:text-white"
+              className="inline-flex w-40 items-center justify-center gap-2 border border-yonsei-navy bg-surface py-3 text-sm font-bold text-yonsei-navy transition-colors hover:bg-yonsei-navy hover:text-white"
             >
               <DownloadIcon />
               {t('library.download')}
@@ -292,7 +295,7 @@ function ResourceRow({
                 type="button"
                 onClick={onZip}
                 disabled={busy}
-                className="inline-flex items-center gap-2 border border-yonsei-navy bg-surface px-[1.375rem] py-3 text-sm font-bold text-yonsei-navy transition-colors hover:bg-yonsei-navy hover:text-white disabled:opacity-60 disabled:hover:bg-surface disabled:hover:text-yonsei-navy"
+                className="inline-flex w-40 items-center justify-center gap-2 border border-yonsei-navy bg-surface py-3 text-sm font-bold text-yonsei-navy transition-colors hover:bg-yonsei-navy hover:text-white disabled:opacity-60 disabled:hover:bg-surface disabled:hover:text-yonsei-navy"
               >
                 <DownloadIcon />
                 {busy ? t('library.zipPreparing') : t('library.downloadAll')}
