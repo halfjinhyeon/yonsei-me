@@ -32,6 +32,11 @@ interface RawBundle {
     PredictionBasis, // 11 basis
     number, // 12 samples
     number, // 13 maxMileage
+    // ── 아래 셋은 만점 포화·미달 모형이 들어오며 추가된 열이다. 구 번들에는 없으므로
+    //    선택 요소로 둔다(없으면 0 / null / false 로 본다 = 예전 동작 그대로).
+    number?, // 14 piSat   만점 포화 확률 0~1
+    (number | null)?, // 15 tieWin  만점 동점 시 승률 0~1
+    (0 | 1)?, // 16 underEnrolled 작년 미달 여부
   ][];
 }
 
@@ -112,6 +117,11 @@ export function decodeBundle(raw: RawBundle): MileageData {
       basis: r[11],
       samples: r[12],
       maxMileage: r[13],
+      // 만점 포화 혼합·미달 바닥값을 admitProbability 가 소비한다(predict.ts 참고).
+      // 이 셋을 빠뜨리면 컷이 만점에 닿은 분반과 미달 분반의 확률이 조용히 틀어진다.
+      piSat: r[14] ?? 0,
+      tieWin: r[15] ?? null,
+      underEnrolled: r[16] === 1,
       slots: parseTimeSlots(timeText),
     };
   });
@@ -192,10 +202,19 @@ export interface SectionDetail {
    * [학기, 그때의 분반, 컷, 정원, 신청자]
    */
   professorHistory?: [string, string, number, number | null, number | null][];
-  /** 학년별 컷(최근 학기) — 학년 정원이 걸린 과목은 학년마다 컷이 다르다 */
-  perGrade: Record<string, { cut: number; applied: number; won: number }> | null;
+  /** 학년별 컷(근거 학기) — 학년 정원이 걸린 과목은 학년마다 컷이 다르다.
+   *  cut 이 null 이면 그 학년 합격자가 0명이라 컷이 정의되지 않는다(그 학년 전멸). */
+  perGrade: Record<string, { cut: number | null; applied: number; won: number }> | null;
   /** 동점(배점=컷) 시 갈린 총이수학점 비율 경계 */
   tieCredit: { winMin: number; loseMax: number | null } | null;
+  /**
+   * `perGrade`·`tieCredit`(그리고 본 번들 rows 의 `tieWin`)이 근거로 삼은 학기 "YYYY-SS".
+   *
+   * 보통은 최신 학기라 **없다**. 라인업 일치 학기 오버라이드(precompute 의 `RECENCY_ALIAS`)가
+   * 걸린 분반만 값을 갖는다 — 대상 학기의 교수 구성이 직전 학기가 아니라 더 과거 학기와
+   * 같을 때, 동점 통계도 그 학기 원장으로 산출한 것이다. 화면은 "작년" 대신 이 학기를 말해야 한다.
+   */
+  tieBasis?: string;
 }
 
 let detailCache: Record<string, SectionDetail> | null = null;

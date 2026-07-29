@@ -4,11 +4,13 @@ import { Fragment, useCallback, useEffect, useMemo, useState } from 'react';
 import { cn } from '@/lib/utils';
 import { SegmentedControl } from '@/components/SegmentedControl';
 import {
+  adjustTieWin,
   admitProbability,
   allocate,
   distributionFor,
   efficientFrontier,
   histogramBars,
+  mileageForProbability,
   probabilityAtLeast,
   type AllocEntry,
 } from '@/lib/mileage';
@@ -44,23 +46,96 @@ interface Planned {
   weight: number;
 }
 
+/** 이수율 입력 보존 키 — 학기 내내 같은 값을 다시 치게 하지 않는다 */
+const CREDIT_RATIO_KEY = 'me-mileage-credit-ratio';
+
+/** 졸업학점 기본값 — 기계공학부 단일전공 기준 */
+const DEFAULT_REQUIRED_CREDITS = 130;
+
+/**
+ * 담은 과목 한 줄 — 원본 분반(section)과 **신청자 속성이 반영된 예측(pred)** 을 함께 들고 다닌다.
+ *
+ * 카드의 확률, 우측 리스크 분포, 자동 배분이 모두 `pred` 를 쓴다. 하나라도 `section` 을
+ * 그대로 쓰면 "카드는 94%인데 목표 확률은 88% 기준으로 계산되는" 어긋남이 생긴다.
+ */
+interface PlanRow {
+  plan: Planned;
+  section: Section;
+  /** section 에 보정된 동점 승률을 얹은 예측(보정할 것이 없으면 section 과 동일 객체) */
+  pred: Section;
+  /** 상세의 perGrade[사용자 학년] — 근거 학기(보통 작년) 이 분반에서 내 학년의 실적 */
+  perGrade: { cut: number | null; applied: number; won: number } | null;
+  /** 컷이 만점에 닿아 동점 규칙으로 갈렸던 분반 */
+  satTie: boolean;
+  /** 근거 학기 동점자 중 합격한 최저 이수율(승부선). null 이면 그 학기 동점자의
+   *  이수율 기록이 전부 결측이라 계산 불가(0 은 나오지 않는다 — precompute 가 결측 0/ 을 제외) */
+  winMin: number | null;
+  /**
+   * perGrade·winMin 이 나온 학기 "YYYY-SS". 보통은 최신 학기라 null 이고, 라인업 일치
+   * 오버라이드가 걸린 분반만 값이 있다 — 그때는 화면이 "작년" 대신 이 학기를 말해야 한다.
+   */
+  tieBasis: string | null;
+  /** 이수율 판정 — 'win' 우위 / 'lose' 열세 / null 판정 불가 */
+  verdict: 'win' | 'lose' | null;
+}
+
+/** 숫자만 남기고 3자리로 자른다 — 학점 입력에 NaN 이 들어오는 길을 아예 막는다 */
+const digitsOnly = (v: string) => v.replace(/[^0-9]/g, '').slice(0, 3);
+
+/** 빈 문자열·비정상 입력은 null(= 미입력) */
+function numOrNull(v: string): number | null {
+  if (!v.trim()) return null;
+  const n = Number(v);
+  return Number.isFinite(n) && n >= 0 ? n : null;
+}
+
+/** 학점 입력칸 — 졸업요건 체커와 같은 각진 인풋(네이티브 스핀 버튼은 숨긴다) */
+const CREDIT_INPUT_CLASS =
+  'mt-1 h-10 w-full min-w-0 border border-surface-border bg-surface px-2 text-[15px] font-bold tabular-nums text-content outline-none [appearance:textfield] focus:border-yonsei-blue [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none';
+
 const WEIGHT_LABELS: Record<number, { ko: string; en: string }> = {
   3: { ko: '필수', en: 'Required' },
   2: { ko: '권장', en: 'Recommended' },
   1: { ko: '선택', en: 'Elective' },
 };
 
-/** 합격 가능성 구간 — 색과 라벨 */
+/**
+ * 합격 가능성 구간 — 색과 라벨.
+ *
+ * 25~50% 구간은 원래 '불안'이었는데, 수강신청에서 이 구간은 "피해야 할 상태"가 아니라
+ * **알고 거는 선택**이다(입시의 소신지원과 같은 뜻). 겁을 주는 말 대신 판단의 이름을 준다.
+ */
 function levelOf(p: number, ko: boolean) {
   if (p >= 0.8) return { color: '#0F7B3E', label: ko ? '안정' : 'Safe' };
   if (p >= 0.5) return { color: '#0057A8', label: ko ? '적정' : 'Likely' };
-  if (p >= 0.25) return { color: '#A16207', label: ko ? '불안' : 'Risky' };
+  if (p >= 0.25) return { color: '#A16207', label: ko ? '소신' : 'Reach' };
   return { color: '#DC2626', label: ko ? '위험' : 'Unlikely' };
 }
 
 /** 데이터 부족 경고색 — 흰 배경 대비 4.82:1 로 11px 글씨에서도 WCAG AA 통과 */
 const WARN_AMBER = '#A16207';
 const WARN_RED = '#DC2626';
+/** 좋은 소식(미달) 표시색 — levelOf '안정'과 같은 그린, 흰 배경 대비 5.3:1 */
+const OK_GREEN = '#0F7B3E';
+
+/**
+ * "만점 동점전" 배지를 띄우는 기준 — 만점 포화 확률 π.
+ *
+ * π 는 이미 축소 추정된 값이라(predict.ts 의 PI_TAU) 날것의 비율보다 보수적이다.
+ * 0.25 는 "직전 학기가 포화였고 그 이력이 하나뿐"인 분반이 대략 얻는 값(1/(1+2)=0.33)보다
+ * 한 단계 아래로, 포화 이력이 실제로 있는 분반만 걸리게 하는 선이다.
+ */
+const SAT_TIE_THRESHOLD = 0.25;
+
+/** 배지 보조문구 — 툴팁과 카드 본문에 같은 글을 쓴다 */
+const SAT_TIE_NOTE = {
+  ko: '작년 만점 지원자끼리 동점자 규칙으로 갈렸습니다 — 이수율이 승부처입니다.',
+  en: 'Last year everyone bid the cap and tie-breakers decided it — your credit ratio is what counts.',
+};
+const UNDER_NOTE = {
+  ko: '작년엔 1점만 넣어도 들어갔습니다.',
+  en: 'Last year a single point was enough to get in.',
+};
 
 /**
  * 마일리지가 같을 때 적용되는 우선순위 기준(연세대 안내 기준).
@@ -106,6 +181,11 @@ export function MileagePlanner({ locale }: { locale: Locale }) {
   const [loadError, setLoadError] = useState<string | null>(null);
   const [grade, setGrade] = useState(3);
   const [budget, setBudget] = useState(76);
+  /** 이수율 입력 — 문자열로 들고 있어야 "미입력"과 "0"을 구분할 수 있다 */
+  const [earnedInput, setEarnedInput] = useState('');
+  const [requiredInput, setRequiredInput] = useState(String(DEFAULT_REQUIRED_CREDITS));
+  /** localStorage 를 읽기 전에는 저장하지 않는다(빈 값으로 덮어쓰는 사고 방지) */
+  const [ratioLoaded, setRatioLoaded] = useState(false);
   const [planned, setPlanned] = useState<Planned[]>([]);
   const [query, setQuery] = useState('');
   const [target, setTarget] = useState(9);
@@ -113,6 +193,8 @@ export function MileagePlanner({ locale }: { locale: Locale }) {
   const [advancedOpen, setAdvancedOpen] = useState(false);
   /** 상세 패널을 펼친 과목 id (한 번에 하나만) */
   const [openDetail, setOpenDetail] = useState<string | null>(null);
+  /** 분반 상세(지연 로딩) — 카드의 '작년컷' 칩이 이 자료를 쓴다 */
+  const [details, setDetails] = useState<Record<string, SectionDetail> | null>(null);
 
   // 번들 로드
   useEffect(() => {
@@ -126,6 +208,44 @@ export function MileagePlanner({ locale }: { locale: Locale }) {
       alive = false;
     };
   }, []);
+
+  // 이수율 입력 복원 — SSR 불일치를 피하려 마운트 후에 읽는다
+  useEffect(() => {
+    try {
+      const raw = window.localStorage.getItem(CREDIT_RATIO_KEY);
+      if (raw) {
+        const saved = JSON.parse(raw) as { earned?: unknown; required?: unknown };
+        if (typeof saved.earned === 'string') setEarnedInput(saved.earned.slice(0, 3));
+        if (typeof saved.required === 'string' && saved.required) setRequiredInput(saved.required.slice(0, 3));
+      }
+    } catch {
+      /* 사생활 보호 모드 등 localStorage 불가 → 기본값으로 시작 */
+    }
+    setRatioLoaded(true);
+  }, []);
+
+  useEffect(() => {
+    if (!ratioLoaded) return;
+    try {
+      window.localStorage.setItem(
+        CREDIT_RATIO_KEY,
+        JSON.stringify({ earned: earnedInput, required: requiredInput }),
+      );
+    } catch {
+      /* 저장 불가 환경은 조용히 무시 — 이번 세션에서는 그대로 동작한다 */
+    }
+  }, [earnedInput, requiredInput, ratioLoaded]);
+
+  /**
+   * 이수율 = 총이수학점 / 졸업학점.
+   * 동점자 규정 5번은 학점의 '양'이 아니라 '비율'이라, 졸업학점이 다른 전공을 같은 자로 잰다.
+   */
+  const earnedCredits = numOrNull(earnedInput);
+  const requiredCredits = numOrNull(requiredInput);
+  const creditRatio =
+    earnedCredits !== null && requiredCredits !== null && requiredCredits > 0
+      ? earnedCredits / requiredCredits
+      : null;
 
   // 진입 경로 ① — 졸업요건 체커에서 넘어온 과목 자동 담기
   useEffect(() => {
@@ -158,16 +278,50 @@ export function MileagePlanner({ locale }: { locale: Locale }) {
 
   const gradeShift = data?.gradeShift?.[String(grade)] ?? 0;
 
-  /** 담은 과목의 Section + 계획을 합친 뷰 */
-  const rows = useMemo(() => {
+  /**
+   * 담은 과목의 Section + 계획 + **신청자 속성 보정**을 합친 뷰.
+   *
+   * 보정은 여기 한 곳에서만 한다 — 카드·분포·자동 배분이 전부 이 `pred` 를 쓰므로
+   * 화면 어디를 봐도 같은 모형이 된다. 상세(details)가 아직 안 왔으면 보정 없이 원본 그대로다.
+   */
+  const rows = useMemo<PlanRow[]>(() => {
     if (!data) return [];
     return planned
       .map((p) => {
         const s = data.byId.get(p.id);
-        return s ? { plan: p, section: s } : null;
+        if (!s) return null;
+        const detail = details?.[p.id] ?? null;
+        // ⚠️ perGrade·tieCredit 은 보통 **분반 번호 기준** 최근 학기 집계다(교수 이력과 달리
+        //    분반을 따라간다). 교수가 바뀐 분반이면 "이 자리의 작년"으로 읽어야 한다.
+        //    단 tieBasis 가 있으면 라인업이 같은 과거 학기 원장이므로 그 학기로 읽어야 한다.
+        const perGrade = detail?.perGrade?.[String(grade)] ?? null;
+        const winMin = detail?.tieCredit?.winMin ?? null;
+        const tieBasis = detail?.tieBasis ?? null;
+        const satTie = (s.piSat ?? 0) >= SAT_TIE_THRESHOLD;
+        const adj = adjustTieWin({ tieWin: s.tieWin, perGrade, satTie, winMin, ratio: creditRatio });
+        const pred = adj.tieWin === (s.tieWin ?? null) ? s : { ...s, tieWin: adj.tieWin };
+        return { plan: p, section: s, pred, perGrade, satTie, winMin, tieBasis, verdict: adj.verdict };
       })
-      .filter((x): x is { plan: Planned; section: Section } => x !== null);
-  }, [planned, data]);
+      .filter((x): x is PlanRow => x !== null);
+  }, [planned, data, details, grade, creditRatio]);
+
+  /**
+   * 상세 자료는 원래 상세 패널을 펼칠 때만 받았다(원본 915KB). 카드의 '작년컷' 칩이 이 자료를
+   * 쓰므로, **담은 과목이 생긴 뒤에** 한 번만 배경으로 받아 둔다 — 첫 화면에는 여전히 영향이
+   * 없고, 전송량은 압축되어 75KB 남짓이다. 실패하면 칩만 빠지고 나머지는 그대로 돈다.
+   */
+  useEffect(() => {
+    if (details || rows.length === 0) return;
+    let alive = true;
+    fetchDetails()
+      .then((d) => {
+        if (alive) setDetails(d);
+      })
+      .catch(() => undefined);
+    return () => {
+      alive = false;
+    };
+  }, [rows.length, details]);
 
   const conflicts = useMemo(() => findConflicts(rows.map((r) => r.section)), [rows]);
   const used = planned.reduce((a, p) => a + p.mileage, 0);
@@ -176,7 +330,7 @@ export function MileagePlanner({ locale }: { locale: Locale }) {
   const dist = useMemo(
     () =>
       distributionFor(
-        rows.map((r) => ({ pred: r.section, mileage: r.plan.mileage, credits: r.section.credits })),
+        rows.map((r) => ({ pred: r.pred, mileage: r.plan.mileage, credits: r.section.credits })),
         gradeShift,
       ),
     [rows, gradeShift],
@@ -185,7 +339,7 @@ export function MileagePlanner({ locale }: { locale: Locale }) {
   const bars = useMemo(() => histogramBars(dist, target), [dist, target]);
 
   const allocEntries: AllocEntry[] = useMemo(
-    () => rows.map((r) => ({ pred: r.section, credits: r.section.credits, weight: r.plan.weight })),
+    () => rows.map((r) => ({ pred: r.pred, credits: r.section.credits, weight: r.plan.weight })),
     [rows],
   );
 
@@ -278,6 +432,77 @@ export function MileagePlanner({ locale }: { locale: Locale }) {
                 className="w-full"
               />
             </div>
+            {/* 이수율 — 아코디언(고급) 안이 아니라 프로필 본문에 둔다.
+                만점 동점전 분반에서는 마일리지가 아니라 이 값이 당락을 가르므로,
+                "고급 설정"으로 숨기면 정작 필요한 사람이 못 찾는다(사용자 지시). */}
+            <div className="mt-4 border border-surface-border px-3 py-3">
+              <p className="text-[11px] font-semibold text-content-faint">
+                {ko ? '이수율' : 'Credit ratio'}
+              </p>
+              <div className="mt-2 grid grid-cols-2 gap-2">
+                <div>
+                  <label
+                    htmlFor="mileage-earned"
+                    className="block text-[10.5px] font-semibold text-content-faint"
+                  >
+                    {ko ? '총이수학점' : 'Earned'}
+                  </label>
+                  <input
+                    id="mileage-earned"
+                    type="number"
+                    inputMode="numeric"
+                    min={0}
+                    max={300}
+                    step={1}
+                    value={earnedInput}
+                    onChange={(e) => setEarnedInput(digitsOnly(e.target.value))}
+                    placeholder={ko ? '예: 94' : 'e.g. 94'}
+                    className={CREDIT_INPUT_CLASS}
+                  />
+                </div>
+                <div>
+                  <label
+                    htmlFor="mileage-required"
+                    className="block text-[10.5px] font-semibold text-content-faint"
+                  >
+                    {ko ? '졸업학점' : 'Required'}
+                  </label>
+                  <input
+                    id="mileage-required"
+                    type="number"
+                    inputMode="numeric"
+                    min={1}
+                    max={300}
+                    step={1}
+                    value={requiredInput}
+                    onChange={(e) => setRequiredInput(digitsOnly(e.target.value))}
+                    placeholder={String(DEFAULT_REQUIRED_CREDITS)}
+                    className={CREDIT_INPUT_CLASS}
+                  />
+                </div>
+              </div>
+              <div className="mt-2.5 flex items-baseline gap-2 border-t border-surface-border pt-2.5">
+                <span
+                  style={{
+                    fontFamily: 'var(--font-subhead), var(--font-sans), sans-serif',
+                    color: creditRatio === null ? '#6E6E6E' : '#003377',
+                  }}
+                  className="shrink-0 text-[30px] font-bold leading-none tabular-nums"
+                >
+                  {creditRatio === null ? '—' : `${Math.round(creditRatio * 100)}%`}
+                </span>
+                <span className="text-[10.5px] leading-tight text-content-faint">
+                  {creditRatio === null
+                    ? ko
+                      ? '입력하면 만점 동점전 분반에서 우열을 판정합니다'
+                      : 'Enter both to see how you place in cap tie-breaks'
+                    : ko
+                      ? '졸업학점 대비 이수학점 — 동점 시 순위를 가르는 비율입니다'
+                      : 'Earned / required — the ratio that breaks ties'}
+                </span>
+              </div>
+            </div>
+
             <p className="mb-1.5 mt-4 text-[11px] font-semibold text-content-faint">
               {ko ? '학기 예산' : 'Budget'}
             </p>
@@ -430,13 +655,36 @@ export function MileagePlanner({ locale }: { locale: Locale }) {
               </div>
             ) : (
               <ul className="mt-4 space-y-3">
-                {rows.map(({ plan, section }) => {
-                  const p = admitProbability(section, plan.mileage, gradeShift);
+                {rows.map(({ plan, section, pred, perGrade, satTie, winMin, tieBasis, verdict }) => {
+                  // 확률·기준 배점은 모두 보정된 pred 로 계산한다(원본 section 과 섞지 말 것)
+                  const p = admitProbability(pred, plan.mileage, gradeShift);
                   const lv = levelOf(p, ko);
                   const conf = confidenceOf(section);
                   const reason = confidenceReason(section, ko);
                   const conflictWith = conflicts.get(section.id);
                   const siblings = siblingSections(data, section.code);
+                  const gradeRate = perGrade && perGrade.applied > 0 ? perGrade.won / perGrade.applied : null;
+                  // 동점 통계가 "작년"이 아닌 학기에서 왔으면 그 학기를 밝힌다(null 이면 기존 문구)
+                  const basis = tieBasisText(tieBasis, ko);
+                  /**
+                   * 컷 안내 칩 — 슬라이더를 감으로 밀지 않게 기준점을 준다.
+                   * 예측 두 개(적정 50% · 안전 90%)와 사실 하나(작년컷)를 같은 크기로 놓되,
+                   * 안전이 적정과 같은 값이면 같은 숫자를 두 번 보이지 않는다.
+                   */
+                  const fitMp = mileageForProbability(pred, 0.5, gradeShift);
+                  const safeMp = mileageForProbability(pred, 0.9, gradeShift);
+                  const lastCut = details?.[section.id]?.professorHistory?.[0]?.[2];
+                  const chips: { key: string; label: string; value: number }[] = [
+                    { key: 'fit', label: ko ? '적정' : 'Likely', value: fitMp },
+                  ];
+                  if (safeMp !== fitMp) chips.push({ key: 'safe', label: ko ? '안전' : 'Safe', value: safeMp });
+                  if (lastCut !== undefined) {
+                    chips.push({
+                      key: 'last',
+                      label: ko ? '작년컷' : 'Last cut',
+                      value: Math.min(lastCut, section.maxMileage),
+                    });
+                  }
                   return (
                     <li key={plan.id} className="border border-surface-border px-3.5 py-3">
                       <div className="flex items-start justify-between gap-3">
@@ -446,6 +694,17 @@ export function MileagePlanner({ locale }: { locale: Locale }) {
                             <span className="ml-1.5 text-[12px] font-medium text-content-faint">
                               {section.credits}학점
                             </span>
+                            {/* 모형이 정규 CDF 를 벗어난 두 상태 — 숫자만으로는 안 보이므로 이름을 붙인다 */}
+                            {satTie && (
+                              <StateBadge color={WARN_AMBER} note={ko ? SAT_TIE_NOTE.ko : SAT_TIE_NOTE.en}>
+                                {ko ? '만점 동점전' : 'Cap tie-break'}
+                              </StateBadge>
+                            )}
+                            {section.underEnrolled && (
+                              <StateBadge color={OK_GREEN} note={ko ? UNDER_NOTE.ko : UNDER_NOTE.en}>
+                                {ko ? '작년 미달' : 'Under-enrolled'}
+                              </StateBadge>
+                            )}
                           </p>
                           <p className="mt-0.5 text-[11.5px] text-content-faint">
                             {section.code}-{section.division} · {section.deptName}
@@ -530,6 +789,82 @@ export function MileagePlanner({ locale }: { locale: Locale }) {
                         </div>
                       )}
 
+                      {/* 상태 배지 보조문구 — 배지 이름만으로는 무엇을 하라는 말인지 알 수 없다 */}
+                      {(satTie || section.underEnrolled) && (
+                        <div className="mt-2 space-y-1 text-[11px] leading-relaxed text-content-soft">
+                          {satTie && <p>{ko ? SAT_TIE_NOTE.ko : SAT_TIE_NOTE.en}</p>}
+                          {/* 이수율을 아직 안 넣은 사람에게 어디에 넣는지 알려 준다 */}
+                          {satTie && creditRatio === null && winMin !== null && winMin > 0 && (
+                            <p className="text-content-faint">
+                              {ko
+                                ? '왼쪽 내 프로필에 이수율을 넣으면 이 분반의 동점전 우열을 판정합니다.'
+                                : 'Enter your credit ratio in the profile panel to see where you place.'}
+                            </p>
+                          )}
+                          {/* 승부선을 낼 자료가 없는 분반 — 동점 합격자의 이수율이 전부 결측인 경우다.
+                              (예전에는 결측을 0 으로 읽어 "이수율 0%도 합격 → 승부선 미형성"이라는
+                               사실과 다른 안내가 떴다. precompute 에서 0/ 을 제외해 바로잡았다) */}
+                          {satTie && creditRatio !== null && winMin === null && (
+                            <p className="text-content-faint">
+                              {ko
+                                ? `다만 ${basis ? basis.term : '작년'} 이 분반은 동점자 이수율 기록이 없어 승부선을 계산하지 못했습니다.`
+                                : `Credit-ratio records are missing for the tied bids ${basis ? `in ${basis.term}` : 'last year'}, so no threshold could be computed.`}
+                            </p>
+                          )}
+                          {section.underEnrolled && <p>{ko ? UNDER_NOTE.ko : UNDER_NOTE.en}</p>}
+                        </div>
+                      )}
+
+                      {/* 내 학년의 실적 — 같은 분반이어도 학년마다 결과가 크게 다르다.
+                          근거 학기는 보통 작년이지만, 라인업이 같은 과거 학기일 수도 있다. */}
+                      {perGrade && gradeRate !== null && (
+                        <p className="mt-2 text-[11.5px] leading-relaxed text-content-soft">
+                          {ko
+                            ? `내 학년(${grade}학년) ${basis ? `${basis.full} 기준` : '작년'}: `
+                            : `Your year (Y${grade}) ${basis ? `in ${basis.full}` : 'last year'}: `}
+                          <b className="font-bold text-content">
+                            {ko
+                              ? `${perGrade.applied}명 지원 · ${perGrade.won}명 합격`
+                              : `${perGrade.applied} applied · ${perGrade.won} admitted`}
+                          </b>{' '}
+                          <b className="font-bold" style={{ color: levelOf(gradeRate, ko).color }}>
+                            ({Math.round(gradeRate * 100)}%)
+                          </b>
+                          {/* 합격자 0명이면 컷이 없다 — 숫자 대신 그 사실을 말한다(경고색) */}
+                          {perGrade.cut === null ? (
+                            <span className="font-bold" style={{ color: WARN_RED }}>
+                              {ko ? ' · 내 학년 합격자 없음' : ' · none admitted in my year'}
+                            </span>
+                          ) : (
+                            perGrade.cut !== section.maxMileage && (
+                              <span className="text-content-faint">
+                                {/* 줄머리에서 이미 근거 학기를 밝혔으면 "작년"을 되풀이하지 않는다 */}
+                                {ko
+                                  ? ` · 내 학년 ${basis ? '' : '작년 '}컷 ${perGrade.cut}mp`
+                                  : ` · Y${grade} cut ${perGrade.cut}mp`}
+                              </span>
+                            )
+                          )}
+                        </p>
+                      )}
+
+                      {/* 이수율 판정 — 만점 동점전에서 실제로 순위를 가르는 한 줄이라 배지보다 크게 */}
+                      {verdict && creditRatio !== null && winMin !== null && (
+                        <p
+                          className="mt-2 border-l-2 bg-surface py-1.5 pl-2.5 text-[13px] font-bold leading-snug"
+                          style={{
+                            borderColor: verdict === 'win' ? OK_GREEN : WARN_RED,
+                            color: verdict === 'win' ? OK_GREEN : WARN_RED,
+                          }}
+                        >
+                          {/* 승부선은 근거 학기 원장에서 나온 수치다 — 작년이 아니면 그 학기를 밝힌다.
+                              여기선 짧은 term 만 쓴다(full 은 괄호가 겹쳐 읽기 나쁘다). */}
+                          {ko
+                            ? `내 이수율 ${Math.round(creditRatio * 100)}% ${verdict === 'win' ? '≥' : '<'} 승부선${basis ? `(${basis.term} 기준)` : ''} ${Math.round(winMin * 100)}% — ${verdict === 'win' ? '동점전 우위' : '동점 시 밀립니다'}`
+                            : `Your ratio ${Math.round(creditRatio * 100)}% ${verdict === 'win' ? '≥' : '<'} tie line${basis ? ` (${basis.term})` : ''} ${Math.round(winMin * 100)}% — ${verdict === 'win' ? 'you win ties' : 'you lose ties'}`}
+                        </p>
+                      )}
+
                       {/* 슬라이더 + 확률 */}
                       <div className="mt-3 flex items-center gap-4">
                         <div className="min-w-0 flex-1">
@@ -579,6 +914,34 @@ export function MileagePlanner({ locale }: { locale: Locale }) {
                       </div>
                       <div className="mt-2 h-1.5 w-full bg-surface-border">
                         <div className="h-1.5" style={{ width: `${p * 100}%`, background: lv.color }} />
+                      </div>
+
+                      {/* 컷 안내 칩 — 누르면 그 값으로 배점된다 */}
+                      <div className="mt-2.5 flex flex-wrap items-center gap-x-2 gap-y-1.5">
+                        <span className="text-[11px] font-semibold text-content-faint">
+                          {ko ? '기준 배점' : 'Reference'}
+                        </span>
+                        {chips.map((c) => (
+                          <button
+                            key={c.key}
+                            type="button"
+                            onClick={() => setMileage(plan.id, c.value)}
+                            aria-pressed={plan.mileage === c.value}
+                            aria-label={
+                              ko
+                                ? `${section.name} ${c.label} ${c.value}mp 로 배점`
+                                : `Set ${c.value}mp (${c.label}) for ${section.name}`
+                            }
+                            className={cn(
+                              'min-h-[30px] border px-2 text-[11px] font-semibold tabular-nums transition-colors',
+                              plan.mileage === c.value
+                                ? 'border-yonsei-navy bg-yonsei-navy text-white'
+                                : 'border-surface-border bg-surface text-content-soft hover:border-yonsei-blue hover:text-yonsei-blue',
+                            )}
+                          >
+                            {c.label} {c.value}mp
+                          </button>
+                        ))}
                       </div>
 
                       {/* 상세 — 기본 통계 / 정원·규정 / 과거 이력 (열 때만 1MB 상세 데이터를 받는다) */}
@@ -756,6 +1119,33 @@ function SectionLabel({ children }: { children: React.ReactNode }) {
 }
 
 
+/**
+ * 상태 배지 — 과목명 옆에 붙는 소형 라벨(만점 동점전 · 작년 미달).
+ *
+ * 경고 배지(WarnBadge)와 달리 아이콘이 없다. 제목 줄에 끼어드는 요소라 조용해야 하고,
+ * 이 둘은 "잘못됐다"가 아니라 "이 분반은 성격이 다르다"는 정보이기 때문이다.
+ * 보조문구는 카드 본문에도 나오지만 `title` 로 한 번 더 달아 둔다.
+ */
+function StateBadge({
+  color,
+  note,
+  children,
+}: {
+  color: string;
+  note: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <span
+      title={note}
+      className="ml-1.5 inline-block border bg-surface px-[5px] py-px align-middle text-[10px] font-bold"
+      style={{ borderColor: color, color }}
+    >
+      {children}
+    </span>
+  );
+}
+
 /** 경고 배지 — 시간 충돌(빨강)과 데이터 부족(노랑)이 같은 형태를 공유한다 */
 function WarnBadge({
   color,
@@ -890,6 +1280,8 @@ function SectionDetailPanel({ section, ko }: { section: Section; ko: boolean }) 
   }
 
   const { stats, rules, perGrade, tieCredit } = detail;
+  // 학년별 컷·승부선은 ①기본 통계와 다른 학기에서 올 수 있다(라인업 일치 오버라이드)
+  const basis = tieBasisText(detail.tieBasis ?? null, ko);
   const profHist = detail.professorHistory ?? [];
   const majorN = majorQuotaCount(rules.majorQuota);
   const rate =
@@ -940,7 +1332,16 @@ function SectionDetailPanel({ section, ko }: { section: Section; ko: boolean }) 
                   >
                     <b className="font-bold">{g}{ko ? '학년' : 'Y'}</b>{' '}
                     {seats > 0 ? `${seats}${ko ? '석' : ''}` : ko ? '배정 없음' : '—'}
-                    {pg && <span className="ml-1 text-yonsei-blue">· {ko ? '컷' : 'cut'} {pg.cut}mp</span>}
+                    {pg &&
+                      (pg.cut === null ? (
+                        <span className="ml-1" style={{ color: WARN_RED }}>
+                          · {ko ? '합격 0명' : 'none admitted'}
+                        </span>
+                      ) : (
+                        <span className="ml-1 text-yonsei-blue">
+                          · {ko ? '컷' : 'cut'} {pg.cut}mp
+                        </span>
+                      ))}
                   </li>
                 );
               })}
@@ -949,6 +1350,8 @@ function SectionDetailPanel({ section, ko }: { section: Section; ko: boolean }) 
               {ko
                 ? '학년별로 정원을 따로 채우므로 같은 분반이어도 학년마다 컷이 다릅니다.'
                 : 'Seats fill per year, so the cutoff differs by year.'}
+              {/* 학년별 컷이 ①의 기준 학기와 다른 학기에서 왔으면 반드시 밝힌다 */}
+              {basis && (ko ? ` 학년별 컷은 ${basis.full} 기준입니다.` : ` Per-year cuts are from ${basis.full}.`)}
             </p>
           </div>
         ) : (
@@ -965,6 +1368,7 @@ function SectionDetailPanel({ section, ko }: { section: Section; ko: boolean }) 
               (ko
                 ? ` · 탈락 최고 ${(tieCredit.loseMax * 100).toFixed(0)}%`
                 : ` (lost up to ${(tieCredit.loseMax * 100).toFixed(0)}%)`)}
+            {basis && (ko ? ` · ${basis.full} 기준` : ` · from ${basis.full}`)}
           </p>
         )}
       </div>
@@ -1021,6 +1425,13 @@ function SectionDetailPanel({ section, ko }: { section: Section; ko: boolean }) 
                   : 'Terms in other sections are included — the same professor tends to draw similar demand.'}
               </p>
             )}
+            {/* 컷의 모집단을 밝힌다 — 전공자·비전공자 자리는 따로 채워지므로 두 컷이 크게 다르다.
+                기계공학부 학생 기준이라 MEU 과목은 전공자 컷, 그 밖은 비전공자 컷을 싣는다. */}
+            <p className="mt-1 text-[10.5px] leading-relaxed text-content-faint">
+              {ko
+                ? `컷은 ${section.code.startsWith('MEU') ? '전공자' : '비전공자(기계공학부 학생)'} 기준입니다 — 전공자 자리와 비전공자 자리를 따로 채우므로 두 컷이 다릅니다.`
+                : `Cutoffs are for ${section.code.startsWith('MEU') ? 'majors' : 'non-majors (i.e. ME students)'} — the two groups fill separate seats.`}
+            </p>
           </div>
         ) : (
           <p className="mt-1.5 text-[11.5px] leading-relaxed" style={{ color: WARN_AMBER }}>
@@ -1051,6 +1462,22 @@ function Stat({ label, value }: { label: string; value: string | number | null }
       <dd className="font-semibold tabular-nums text-content">{value ?? '—'}</dd>
     </div>
   );
+}
+
+/**
+ * 동점 통계(학년별 실적·승부선)의 근거 학기 문구 — 상세의 `tieBasis` 가 있을 때만.
+ *
+ * 보통 이 통계는 "작년"에서 나오지만, 대상 학기의 교수 구성이 직전 학기가 아니라 더 과거
+ * 학기와 같으면 precompute 가 그 학기 원장으로 산출한다(RECENCY_ALIAS). 그때 화면이 계속
+ * "작년"이라고 하면 거짓말이 되므로 실제 학기를 말하게 한다.
+ *
+ *   term  "2024년 2학기"            — 문장 중간에 짧게 끼워 넣을 때
+ *   full  "2024년 2학기(동일 라인업)" — 왜 작년이 아닌지까지 밝혀야 할 때
+ */
+function tieBasisText(basis: string | null, ko: boolean): { term: string; full: string } | null {
+  if (!basis) return null;
+  const term = fmtTerm(basis, ko);
+  return { term, full: ko ? `${term}(동일 라인업)` : `${term} (same lineup)` };
 }
 
 /** "2025-20" → "2025년 2학기" */
