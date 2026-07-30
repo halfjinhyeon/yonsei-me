@@ -225,7 +225,16 @@ export function EditorialTab({
             {data.items.map((item, i) => (
               <li key={i} data-land="rise" data-land-order="6" className="border-t border-surface-border pt-5">
                 {item.stat ? (
-                  <span data-land="count" data-land-order="7" className="block text-4xl font-light text-yonsei-blue">
+                  // 지표(stat) = 가장 큰 글자 — 검정 + Paperlogy Bold(사용자 지시).
+                  // 이 분기는 stat 을 쓰는 탭에서만 도는데, 지금 그런 탭은 '연구 역량'
+                  // (research-capacity) 하나뿐이다. 아래 번호 분기는 다른 탭(학과 목표·
+                  // 교수 초빙)이 쓰므로 건드리지 않는다.
+                  <span
+                    data-land="count"
+                    data-land-order="7"
+                    style={{ fontFamily: 'var(--font-subhead), var(--font-sans), sans-serif' }}
+                    className="block text-4xl font-bold text-content"
+                  >
                     {pick(item.stat, locale)}
                   </span>
                 ) : (
@@ -233,7 +242,9 @@ export function EditorialTab({
                     {String(i + 1).padStart(2, '0')}
                   </span>
                 )}
-                <h4 className="mt-4 text-lg font-bold text-content">
+                {/* 두 번째로 큰 글자(제목)는 stat 레이아웃에서만 파랑 — 번호 방식 탭은
+                    지표가 없어 제목이 사실상 주인공이라, 거기까지 파랗게 하면 위계가 흔들린다. */}
+                <h4 className={`mt-4 text-lg font-bold ${hasStat ? 'text-yonsei-blue' : 'text-content'}`}>
                   {pick(item.title, locale)}
                 </h4>
                 <p className="mt-2 text-sm leading-relaxed text-content-soft">
