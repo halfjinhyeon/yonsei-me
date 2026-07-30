@@ -1,11 +1,14 @@
-import { useTranslations } from 'next-intl';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import type { Metadata } from 'next';
 import { Hero } from '@/components/Hero';
 import { Section } from '@/components/Section';
 import { DetailNavBar } from '@/components/DetailNavBar';
 import { FacultyDirectoryGrid } from '@/components/FacultyDirectoryGrid';
-import { getFacultyDirectory, getFacultyProfileNames } from '@/lib/faculty';
+import { getFacultyProfileNames } from '@/lib/faculty';
+import { getFacultyDirectoryRuntime } from '@/lib/content-runtime';
+
+// 콘텐츠 소스 전환(Stage A): 교수진이 데이터 레이어를 읽는다 — ISR 안전망
+export const revalidate = 300;
 
 export async function generateMetadata({
   params,
@@ -16,12 +19,14 @@ export async function generateMetadata({
   return { title: t('hero.title'), description: t('hero.subtitle') };
 }
 
-export default function FacultyPage({ params }: { params: { locale: string } }) {
+// 데이터 레이어가 async 라 페이지도 async — useTranslations 는 async 컴포넌트에서
+// 쓸 수 없으므로 다른 페이지들과 같은 getTranslations 로 맞춘다(라벨 출처는 동일).
+export default async function FacultyPage({ params }: { params: { locale: string } }) {
   setRequestLocale(params.locale);
-  const t = useTranslations('faculty');
-  const tNav = useTranslations('nav');
-  const tCrumb = useTranslations('breadcrumb');
-  const faculty = getFacultyDirectory();
+  const t = await getTranslations({ locale: params.locale, namespace: 'faculty' });
+  const tNav = await getTranslations({ locale: params.locale, namespace: 'nav' });
+  const tCrumb = await getTranslations({ locale: params.locale, namespace: 'breadcrumb' });
+  const faculty = await getFacultyDirectoryRuntime();
 
   return (
     <>

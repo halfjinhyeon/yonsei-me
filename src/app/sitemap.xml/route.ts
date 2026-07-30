@@ -6,7 +6,7 @@ import {
   fetchAlumniNews,
   fetchAlumniEvents,
 } from '@/lib/posts';
-import { getClubs } from '@/lib/faculty';
+import { getClubsRuntime } from '@/lib/content-runtime';
 
 // 검색엔진용 XML 사이트맵 → /sitemap.xml
 // 기존 metadata route(sitemap.ts) 대신 커스텀 핸들러를 쓰는 이유: 사람이 브라우저로
@@ -64,7 +64,7 @@ export async function GET() {
     for (const post of await fetchAllBoardPosts()) addAll(`news/post/${post.id}`);
   });
   await safe('clubs', async () => {
-    for (const club of getClubs()) addAll(`undergraduate/clubs/${club.slug}`);
+    for (const club of await getClubsRuntime()) addAll(`undergraduate/clubs/${club.slug}`);
   });
   await safe('alumni-news', async () => {
     for (const a of await fetchAlumniNews()) addAll(`alumni/news/${a.slug}`);

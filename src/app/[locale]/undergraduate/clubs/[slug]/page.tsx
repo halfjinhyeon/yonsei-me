@@ -5,12 +5,15 @@ import { Hero } from '@/components/Hero';
 import { Container } from '@/components/Container';
 import { Link } from '@/i18n/navigation';
 import { ClubCardNews } from '@/components/ClubCardNews';
-import { parseClubMarkdown } from '@/lib/pages';
-import { getClubs } from '@/lib/faculty';
+import { parseClubContent } from '@/lib/pages';
+import { getClubsRuntime, getPageMarkdownRuntime } from '@/lib/content-runtime';
 import { routing } from '@/i18n/routing';
 
-export function generateStaticParams() {
-  const clubs = getClubs();
+// 콘텐츠 소스 전환(Stage A): 동아리 인덱스·소개 본문이 데이터 레이어를 읽는다 — ISR 안전망
+export const revalidate = 300;
+
+export async function generateStaticParams() {
+  const clubs = await getClubsRuntime();
   return routing.locales.flatMap((locale) => clubs.map((c) => ({ locale, slug: c.slug })));
 }
 
@@ -19,7 +22,7 @@ export async function generateMetadata({
 }: {
   params: { locale: string; slug: string };
 }): Promise<Metadata> {
-  const club = getClubs().find((c) => c.slug === params.slug);
+  const club = (await getClubsRuntime()).find((c) => c.slug === params.slug);
   return { title: club?.name, description: club?.teaser };
 }
 
@@ -29,11 +32,13 @@ export default async function ClubDetailPage({
   params: { locale: string; slug: string };
 }) {
   setRequestLocale(params.locale);
-  const club = getClubs().find((c) => c.slug === params.slug);
+  const club = (await getClubsRuntime()).find((c) => c.slug === params.slug);
   if (!club) notFound();
 
   const tMenu = await getTranslations({ locale: params.locale, namespace: 'menu' });
-  const content = parseClubMarkdown(club.slug);
+  // 카드뉴스 파싱은 순수 함수(parseClubContent) — 원문만 데이터 레이어에서 받아 넘긴다.
+  const raw = await getPageMarkdownRuntime(`club-${club.slug}`);
+  const content = raw ? parseClubContent(raw) : { panels: [], links: [] };
 
   return (
     <>

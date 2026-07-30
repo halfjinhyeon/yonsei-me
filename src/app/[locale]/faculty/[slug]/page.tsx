@@ -5,11 +5,14 @@ import { Hero } from '@/components/Hero';
 import { Section } from '@/components/Section';
 import { DetailNavBar } from '@/components/DetailNavBar';
 import { FacultyProfileArticle } from '@/components/FacultyProfileArticle';
-import { getFacultyDirectory, getFacultyProfile, getFacultyProfileNames } from '@/lib/faculty';
+import { getFacultyProfile, getFacultyProfileNames } from '@/lib/faculty';
+import { getFacultyDirectoryRuntime } from '@/lib/content-runtime';
 import { routing } from '@/i18n/routing';
 
-// content/faculty-profiles 의 파일명(한글 이름)이 그대로 slug 다. CMS 연동 없는
-// 정적 페이지라 빌드 시 전수 프리렌더한다(revalidate 불필요).
+// 콘텐츠 소스 전환(Stage A): 직위·연구실을 채우는 인명록이 데이터 레이어를 읽는다 — ISR 안전망
+export const revalidate = 300;
+
+// content/faculty-profiles 의 파일명(한글 이름)이 그대로 slug 다 — 빌드 시 전수 프리렌더.
 export function generateStaticParams() {
   const names = getFacultyProfileNames();
   return routing.locales.flatMap((locale) => names.map((slug) => ({ locale, slug })));
@@ -22,7 +25,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const profile = getFacultyProfile(decodeURIComponent(params.slug));
   if (!profile) return {};
-  const record = getFacultyDirectory().find((f) => f.name === profile.name) ?? null;
+  const record = (await getFacultyDirectoryRuntime()).find((f) => f.name === profile.name) ?? null;
   return {
     title: profile.nameEn ? `${profile.name} (${profile.nameEn})` : profile.name,
     description: record?.title ?? undefined,
@@ -40,7 +43,7 @@ export default async function FacultyProfilePage({
   if (!profile) notFound();
 
   // 직위·보직·연구실·사진은 프로필 JSON 에 없다 — 같은 이름의 인명록 레코드에서 가져온다
-  const record = getFacultyDirectory().find((f) => f.name === profile.name) ?? null;
+  const record = (await getFacultyDirectoryRuntime()).find((f) => f.name === profile.name) ?? null;
 
   const t = await getTranslations({ locale: params.locale, namespace: 'faculty' });
   const tNav = await getTranslations({ locale: params.locale, namespace: 'nav' });

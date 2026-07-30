@@ -11,10 +11,18 @@ import { CareerPaths } from '@/components/CareerPaths';
 import { FacultyDirectoryGrid } from '@/components/FacultyDirectoryGrid';
 import { HistoryTimeline } from '@/components/HistoryTimeline';
 import { KakaoMap } from '@/components/KakaoMap';
-import { getFacultyDirectory, getFacultyProfileNames } from '@/lib/faculty';
+import { getFacultyProfileNames } from '@/lib/faculty';
 import { getHistoryImages } from '@/lib/history-images';
-import { history, staff, pick } from '@/lib/content';
+import { pick } from '@/lib/content';
+import {
+  getHistoryRuntime,
+  getStaffRuntime,
+  getFacultyDirectoryRuntime,
+} from '@/lib/content-runtime';
 import type { Locale } from '@/i18n/routing';
+
+// 콘텐츠 소스 전환(Stage A): 연혁·교수진·교직원이 데이터 레이어를 읽는다 — ISR 안전망
+export const revalidate = 300;
 
 export async function generateMetadata({
   params,
@@ -39,6 +47,12 @@ export default async function AboutPage({ params }: { params: { locale: string }
   const tContact = await getTranslations({ locale: params.locale, namespace: 'contact' });
   const tFooter = await getTranslations({ locale: params.locale, namespace: 'footer' });
   const tStub = await getTranslations({ locale: params.locale, namespace: 'stub' });
+
+  // 콘텐츠 데이터 — 소스(db/git)는 lib/content-runtime 이 판별. 기존 매핑 코드를
+  // 그대로 쓰기 위해 모듈 상수와 같은 이름(history/staff)의 지역 변수로 받는다.
+  const history = await getHistoryRuntime();
+  const staff = await getStaffRuntime();
+  const faculty = await getFacultyDirectoryRuntime();
 
   const contactRows = [
     // footer.address 가 이미 "[03722] …" 로 시작한다 — 뒤에 우편번호를 또 붙이지 말 것
@@ -70,7 +84,7 @@ export default async function AboutPage({ params }: { params: { locale: string }
       markdown: null,
       content: (
         <FacultyDirectoryGrid
-          items={getFacultyDirectory()}
+          items={faculty}
           moreLabel={tFaculty('moreLabel')}
           profileNames={getFacultyProfileNames()}
         />

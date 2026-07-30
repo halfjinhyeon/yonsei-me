@@ -20,7 +20,7 @@ import {
 import heroSlidesData from '@content/hero-slides.json';
 import instagramData from '@content/instagram.json';
 import editorialTabs from '@content/editorial-tabs.json';
-import { getLabsDirectory } from '@/lib/faculty';
+import { getLabsDirectoryRuntime } from '@/lib/content-runtime';
 import type { Locale } from '@/i18n/routing';
 
 // DB 소스 전환(Phase 2): 홈의 뉴스&행사가 DB 를 읽는다 — ISR 안전망
@@ -31,7 +31,7 @@ export default async function HomePage({ params }: { params: { locale: string } 
   const locale = params.locale as Locale;
   const t = await getTranslations({ locale, namespace: 'home' });
   const tMenu = await getTranslations({ locale, namespace: 'menu' });
-  const labs = getLabsDirectory();
+  const labs = await getLabsDirectoryRuntime();
 
   // 게시판 데이터 — 기존 매핑 코드 유지를 위해 모듈 상수와 같은 이름의 지역 변수로
   const news = await fetchNews();

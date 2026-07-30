@@ -6,8 +6,13 @@ import { ClubGrid } from '@/components/ClubGrid';
 import { RequirementsAccordion } from '@/components/RequirementsAccordion';
 import { GraduationChecker } from '@/components/GraduationChecker';
 import { MileagePlanner } from '@/components/MileagePlanner';
-import { getPageMarkdown, getUndergraduateRequirementSections } from '@/lib/pages';
-import { getClubs } from '@/lib/faculty';
+import { getUndergraduateRequirementSections } from '@/lib/pages';
+import {
+  getClubsRuntime,
+  getCoursesUndergraduateRuntime,
+  getCourseDescriptionsRuntime,
+  getPageMarkdownRuntime,
+} from '@/lib/content-runtime';
 import { getCheckerData } from '@/lib/checker';
 import { EditorialTab, getEditorialTab } from '@/components/EditorialTab';
 import {
@@ -16,8 +21,10 @@ import {
   type CatalogCourse,
 } from '@/components/CourseCatalog';
 import { CurriculumFlow } from '@/components/CurriculumFlow';
-import coursesUndergraduate from '@content/courses-undergraduate.json';
 import type { Locale } from '@/i18n/routing';
+
+// 콘텐츠 소스 전환(Stage A): 교과목·설명·동아리·장학금 본문이 데이터 레이어를 읽는다 — ISR 안전망
+export const revalidate = 300;
 
 export async function generateMetadata({
   params,
@@ -78,15 +85,22 @@ export default async function UndergraduatePage({ params }: { params: { locale: 
     to: pad(Math.max(...earlierAll)),
   });
 
-  const tabs: TabItem[] = Object.entries(SECTION_SLUGS).map(([key, slug]) => ({
+  // 콘텐츠 데이터 — 소스(db/git)는 lib/content-runtime 이 판별.
+  const coursesUndergraduate = await getCoursesUndergraduateRuntime();
+  const courseDescriptions = await getCourseDescriptionsRuntime();
+  const clubs = await getClubsRuntime();
+
+  // 탭 본문 마크다운은 비동기 조회라 map 안에서 await 할 수 없다 — Promise.all 로 받는다.
+  const tabs: TabItem[] = await Promise.all(
+    Object.entries(SECTION_SLUGS).map(async ([key, slug]) => ({
     key,
     label: tMenu(`undergraduate.items.${key}`),
-    markdown: slug ? getPageMarkdown(slug) : null,
+    markdown: slug ? await getPageMarkdownRuntime(slug) : null,
     content:
       key === 'goals' ? (
         <EditorialTab data={getEditorialTab('undergraduate-goals')} locale={locale} showcaseItems />
       ) : key === 'clubs' ? (
-        <ClubGrid items={getClubs()} moreLabel={tFaculty('moreLabel')} />
+        <ClubGrid items={clubs} moreLabel={tFaculty('moreLabel')} />
       ) : key === 'requirements' ? (
         <RequirementsAccordion items={reqSections} earlierLabel={earlierLabel} />
       ) : key === 'checker' ? (
@@ -104,9 +118,14 @@ export default async function UndergraduatePage({ params }: { params: { locale: 
         />
       ) : key === 'curriculum' ? (
         // 교과목 체계도 — 스윔레인 + 선수·연계 직각 화살표(구 CurriculumRoadmap 대체)
-        <CurriculumFlow locale={locale} />
+        <CurriculumFlow
+          locale={locale}
+          courses={coursesUndergraduate}
+          descriptions={courseDescriptions}
+        />
       ) : undefined,
-  }));
+    })),
+  );
 
   return (
     <>

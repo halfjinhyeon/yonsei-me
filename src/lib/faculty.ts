@@ -143,11 +143,20 @@ function readJson<T>(name: string): T {
   return JSON.parse(readFileSync(path, 'utf-8')) as T;
 }
 
-/** public/img/faculty 에 있는 "{교수 이름}.{ext}" 프로필 사진을 이름 기준으로 매핑 */
-function getFacultyPhotoMap(): Map<string, string> {
+/** public/img/faculty 에 있는 "{교수 이름}.{ext}" 프로필 사진을 이름 기준으로 매핑.
+ *  readdir 실패는 빈 Map — ISR 전환으로 이 함수가 요청 시점에 실행되므로, public/ 이
+ *  서버리스 번들에 없는 배포(파일 추적 누락 등)에서도 페이지가 죽지 않게 한다.
+ *  사진이 비면 JSON 의 명시적 photo 만 쓰이고, 나머지는 이름 매칭 없이 null 이 된다. */
+export function getFacultyPhotoMap(): Map<string, string> {
   const dir = join(process.cwd(), 'public', 'img', 'faculty');
   const map = new Map<string, string>();
-  for (const file of readdirSync(dir)) {
+  let files: string[] = [];
+  try {
+    files = readdirSync(dir);
+  } catch {
+    return map;
+  }
+  for (const file of files) {
     const dot = file.lastIndexOf('.');
     if (dot <= 0) continue;
     map.set(file.slice(0, dot), `/img/faculty/${file}`);
@@ -155,26 +164,36 @@ function getFacultyPhotoMap(): Map<string, string> {
   return map;
 }
 
-/** content/faculty-directory.json — 교수진 게시판에서 구조화 추출한 실제 데이터.
- *  사진은 JSON 의 명시적 photo(관리자 콘솔 업로드가 채움)를 우선하고, 없으면
- *  기존 컨벤션대로 public/img/faculty 의 "<이름>.<ext>" 파일을 이름으로 매칭한다. */
+/** 교수진 원본 레코드 배열 → 사진이 채워진 FacultyRecord[] (파일 I/O 없는 순수 어댑터).
+ *  사진은 JSON 의 명시적 photo(관리자 콘솔 업로드가 채움)를 우선하고, 없으면 기존
+ *  컨벤션대로 photoMap 의 "<이름>" 매칭을 쓴다. 파일(git)·DB 어느 소스에서 읽었든
+ *  같은 규칙을 적용하기 위해 데이터 주입형으로 분리했다(lib/content-runtime.ts 가 재사용). */
+export function adaptFacultyRecords(
+  records: (Omit<FacultyRecord, 'photo'> & { photo?: string | null })[],
+  photoMap: Map<string, string>,
+): FacultyRecord[] {
+  return records.map(({ photo, ...rest }) => {
+    const explicit = typeof photo === 'string' && photo.trim() !== '' ? photo.trim() : null;
+    return { ...rest, photo: explicit ?? photoMap.get(rest.name) ?? null };
+  });
+}
+
+/** 동아리 원본 배열 → 로고가 채워진 ClubSummary[] (파일 I/O 없는 순수 어댑터) */
+export function adaptClubs(raw: ClubSummary[]): ClubSummary[] {
+  return raw.map((c) => ({ ...c, logo: CLUB_LOGOS[c.slug] }));
+}
+
+/** content/faculty-directory.json — 교수진 게시판에서 구조화 추출한 실제 데이터 */
 export function getFacultyDirectory(): FacultyRecord[] {
   const records = readJson<(Omit<FacultyRecord, 'photo'> & { photo?: string | null })[]>(
     'faculty-directory.json',
   );
-  const photos = getFacultyPhotoMap();
-  return records.map(({ photo, ...rest }) => {
-    const explicit = typeof photo === 'string' && photo.trim() !== '' ? photo.trim() : null;
-    return { ...rest, photo: explicit ?? photos.get(rest.name) ?? null };
-  });
+  return adaptFacultyRecords(records, getFacultyPhotoMap());
 }
 
 /** content/clubs.json — 동아리 인덱스(슬러그/이름/티저) + 로고 매핑 */
 export function getClubs(): ClubSummary[] {
-  return readJson<ClubSummary[]>('clubs.json').map((c) => ({
-    ...c,
-    logo: CLUB_LOGOS[c.slug],
-  }));
+  return adaptClubs(readJson<ClubSummary[]>('clubs.json'));
 }
 
 /** content/labs-directory.json — 연구실 목록(지도교수·위치·연락처·사이트 링크) */

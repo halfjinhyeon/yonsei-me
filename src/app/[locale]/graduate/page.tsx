@@ -2,8 +2,11 @@ import { getTranslations, setRequestLocale } from 'next-intl/server';
 import type { Metadata } from 'next';
 import { Hero } from '@/components/Hero';
 import { TabbedContent, type TabItem } from '@/components/TabbedContent';
-import { getPageMarkdown } from '@/lib/pages';
-import { getLabsDirectory } from '@/lib/faculty';
+import {
+  getCoursesGraduateRuntime,
+  getLabsDirectoryRuntime,
+  getPageMarkdownRuntime,
+} from '@/lib/content-runtime';
 import { LabVideoGallery } from '@/components/LabVideoGallery';
 import { GraduateRequirementSteps } from '@/components/GraduateRequirementSteps';
 import {
@@ -11,8 +14,10 @@ import {
   type CatalogColumn,
   type CatalogCourse,
 } from '@/components/CourseCatalog';
-import coursesGraduate from '@content/courses-graduate.json';
 import type { Locale } from '@/i18n/routing';
+
+// 콘텐츠 소스 전환(Stage A): 대학원 교과목·연구실이 데이터 레이어를 읽는다 — ISR 안전망
+export const revalidate = 300;
 
 export async function generateMetadata({
   params,
@@ -47,17 +52,24 @@ export default async function GraduatePage({ params }: { params: { locale: strin
   const tPages = await getTranslations({ locale: params.locale, namespace: 'pages' });
   const tStub = await getTranslations({ locale: params.locale, namespace: 'stub' });
 
-  const tabs: TabItem[] = Object.entries(SECTION_SLUGS).map(([key, slug]) => ({
+  // 콘텐츠 데이터 — 소스(db/git)는 lib/content-runtime 이 판별.
+  const coursesGraduate = await getCoursesGraduateRuntime();
+  const labs = await getLabsDirectoryRuntime();
+  const requirementsMarkdown = (await getPageMarkdownRuntime('graduate-requirements')) ?? '';
+
+  // 탭 본문 마크다운은 비동기 조회라 map 안에서 await 할 수 없다 — Promise.all 로 받는다.
+  const tabs: TabItem[] = await Promise.all(
+    Object.entries(SECTION_SLUGS).map(async ([key, slug]) => ({
     key,
     label: tMenu(`graduate.items.${key}`),
-    markdown: slug ? getPageMarkdown(slug) : null,
+    markdown: slug ? await getPageMarkdownRuntime(slug) : null,
     content:
       key === 'labs' ? (
-        <LabVideoGallery items={getLabsDirectory()} locale={params.locale as Locale} />
+        <LabVideoGallery items={labs} locale={params.locale as Locale} />
       ) : key === 'requirements' ? (
         // 졸업 요건 — STEP 스크롤 문법: 좌측 sticky 단계 목차(스크롤스파이) +
         // 좌우 교대 STEP 헤더 + 유의사항 콜아웃 (나열식 EditorialProse 대체)
-        <GraduateRequirementSteps markdown={getPageMarkdown('graduate-requirements') ?? ''} />
+        <GraduateRequirementSteps markdown={requirementsMarkdown} />
       ) : key === 'courses' ? (
         <CourseCatalog
           courses={coursesGraduate as CatalogCourse[]}
@@ -67,7 +79,8 @@ export default async function GraduatePage({ params }: { params: { locale: strin
           grouped="field"
         />
       ) : undefined,
-  }));
+    })),
+  );
 
   return (
     <>

@@ -6,9 +6,13 @@ import { UnderlineTabs } from '@/components/UnderlineTabs';
 import { cn } from '@/lib/utils';
 import type { ResearchField } from '@/lib/faculty';
 import type { Locale } from '@/i18n/routing';
-import coursesUndergraduate from '@content/courses-undergraduate.json';
-import courseDescriptions from '@content/course-descriptions.json';
+// 교과목·설명은 CMS 대상이라 정적 import 를 걷고 서버(page.tsx)에서 props 로 받는다.
+// 타입만 파일에서 가져온다(type-only import — 런타임 번들에 데이터가 들어가지 않는다).
+// 관계 데이터(course-flow.json)는 CMS 대상이 아니라 그대로 정적 import 한다.
 import courseFlow from '@content/course-flow.json';
+
+type CoursesData = typeof import('@content/courses-undergraduate.json');
+type DescriptionsData = typeof import('@content/course-descriptions.json');
 
 /**
  * 교과목 체계도 — 기존 스윔레인 로드맵(레인 라벨·학기 열·과목 칩)에 선수·연계
@@ -45,8 +49,6 @@ interface RoadmapCourse {
 }
 
 type CourseDesc = { nameEn: string; desc: string };
-const DESCRIPTIONS = courseDescriptions as Record<string, CourseDesc>;
-const COURSES = coursesUndergraduate as RoadmapCourse[];
 
 interface FlowEdge {
   from: string;
@@ -104,9 +106,20 @@ interface Line {
   idx: number;
 }
 
-export function CurriculumFlow({ locale }: { locale: Locale }) {
+export function CurriculumFlow({
+  locale,
+  courses,
+  descriptions,
+}: {
+  locale: Locale;
+  courses: CoursesData;
+  descriptions: DescriptionsData;
+}) {
   const t = useTranslations('research');
   const ko = locale === 'ko';
+  // 캐스팅은 참조를 바꾸지 않으므로(같은 객체) 아래 useMemo 의 의존성으로 안전하다.
+  const COURSES = courses as RoadmapCourse[];
+  const DESCRIPTIONS = descriptions as Record<string, CourseDesc>;
   const [filter, setFilter] = useState<Filter>('all');
   const [selected, setSelected] = useState<string | null>(null);
   // 보기 모드 — 기본형(수정 전 원래 스윔레인, 화살표 없음) ↔ 트리형(선수·연계 화살표).
@@ -227,7 +240,7 @@ export function CurriculumFlow({ locale }: { locale: Locale }) {
     }
 
     return { byCode, gridCourses, specials, columns, colOfCode, orderedCells: cells, baseCells };
-  }, []);
+  }, [COURSES]);
   const { byCode, specials, columns, colOfCode, orderedCells, baseCells } = model;
 
   const counts = useMemo(() => {
@@ -235,7 +248,7 @@ export function CurriculumFlow({ locale }: { locale: Locale }) {
     for (const f of FIELD_TABS) map[f] = 0;
     for (const c of COURSES) if (c.field) map[c.field] += 1;
     return map;
-  }, []);
+  }, [COURSES]);
 
   // 레인 × 열 → 과목 목록 — 트리형은 교차 최소화 순서, 기본형은 원래(파일) 순서.
   const lanes = useMemo(() => {

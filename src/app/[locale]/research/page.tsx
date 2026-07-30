@@ -8,7 +8,8 @@ import { type BoardRow } from '@/components/BoardList';
 import { EditorialTab, getEditorialTab } from '@/components/EditorialTab';
 import { VisionInfographic } from '@/components/VisionInfographic';
 import { getPageMarkdown } from '@/lib/pages';
-import { getLabsDirectory, type ResearchField } from '@/lib/faculty';
+import { type ResearchField } from '@/lib/faculty';
+import { getLabsDirectoryRuntime } from '@/lib/content-runtime';
 import { pick } from '@/lib/content';
 import { fetchBoardData } from '@/lib/posts';
 import galleryData from '@content/research-gallery.json';
@@ -45,6 +46,8 @@ export default async function ResearchPage({ params }: { params: { locale: strin
 
   // 인턴 모집 게시판 — 소스(db/git)는 lib/posts 가 판별. 다른 게시판과 동일한 에디토리얼 목록.
   const board = await fetchBoardData();
+  // 연구실 목록 — 소스(db/git)는 lib/content-runtime 이 판별.
+  const labs = await getLabsDirectoryRuntime();
   const internItems: BoardRow[] = board.internships.map((n) => ({
     id: n.id,
     date: n.date,
@@ -72,7 +75,7 @@ export default async function ResearchPage({ params }: { params: { locale: strin
     markdown: slug ? getPageMarkdown(slug) : null,
     content:
       key === 'labs' ? (
-        <LabList items={getLabsDirectory()} fieldIntros={fieldIntros} />
+        <LabList items={labs} fieldIntros={fieldIntros} />
       ) : key === 'internships' ? (
         <FilterableBoardList items={internItems} locale={locale} emptyLabel={tStub('empty')} />
       ) : key === 'vision' ? (

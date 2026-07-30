@@ -4,6 +4,8 @@
 // (한국어 UI 문자열은 내부 운영 도구라 모듈에 직접 둔다.)
 
 import type { BoardKey } from '@/lib/admin/boards';
+// 파일 경로는 여기 적지 않는다 — 저장소·DB 양쪽의 "관리 대상" 판정과 같은 목록을 쓴다.
+import { MANAGED_FILES, SCHOLARSHIP_MD } from '@/lib/admin/managed-content';
 
 // ---- 폼 값 모델 ----
 // RecordForm 이 다루는 평면 값: 필드 kind 에 따라 문자열 / 한·영 쌍 / 문자열 배열.
@@ -285,7 +287,7 @@ const facultyDirectory: ResourceDef = {
   label: '교수진',
   description:
     '교수진 페이지와 학부 소개 > 교수진 탭 카드에 반영됩니다. 프로필 사진은 public/img/faculty/ 폴더에 "<이름>.jpg" 형식으로 넣으면 이름 기준으로 자동 연결됩니다.',
-  file: 'content/faculty-directory.json',
+  file: MANAGED_FILES.facultyDirectory,
   format: 'array',
   listColumns: [
     { key: 'name', label: '이름' },
@@ -331,7 +333,7 @@ const history: ResourceDef = {
   label: '연혁',
   description:
     '학부 소개 > 연혁 탭 타임라인에 반영됩니다. 사이트에서 연월 내림차순(최근→과거)으로 자동 정렬되므로 입력 순서는 무관합니다.',
-  file: 'content/history.json',
+  file: MANAGED_FILES.history,
   format: 'array',
   listColumns: [
     { key: 'date', label: '연월' },
@@ -352,7 +354,7 @@ const staff: ResourceDef = {
   key: 'staff',
   label: '교직원',
   description: '학부 소개 > 교직원 탭 표에 반영됩니다. 표에는 입력한 순서대로 표시됩니다.',
-  file: 'content/staff.json',
+  file: MANAGED_FILES.staff,
   format: 'array',
   listColumns: [
     { key: 'role', label: '담당' },
@@ -379,7 +381,7 @@ const coursesUndergraduate: ResourceDef = {
   label: '학부 교과목',
   description:
     '학부 > 개설 교과목 표와 교과목 체계도(로드맵)가 모두 이 데이터로 그려집니다. 체계도에서 과목 클릭 시 나오는 설명은 "교과목 설명"에서 편집하세요.',
-  file: 'content/courses-undergraduate.json',
+  file: MANAGED_FILES.coursesUndergraduate,
   format: 'array',
   listColumns: [
     { key: 'year', label: '학년' },
@@ -423,7 +425,7 @@ const courseDescriptions: ResourceDef = {
   label: '교과목 설명',
   description:
     '교과목 체계도에서 과목을 클릭하면 나오는 상세 설명입니다. 학정번호가 학부 교과목의 학정번호와 일치해야 체계도에 연결됩니다.',
-  file: 'content/course-descriptions.json',
+  file: MANAGED_FILES.courseDescriptions,
   format: 'record',
   idField: 'code',
   listColumns: [
@@ -446,7 +448,7 @@ const coursesGraduate: ResourceDef = {
   key: 'coursesGraduate',
   label: '대학원 교과목',
   description: '대학원 > 교과목 소개 표에 반영됩니다.',
-  file: 'content/courses-graduate.json',
+  file: MANAGED_FILES.coursesGraduate,
   format: 'array',
   listColumns: [
     { key: 'code', label: '학정번호' },
@@ -473,7 +475,7 @@ const clubs: ResourceDef = {
   label: '동아리 소개',
   description:
     '학부 > 동아리 소개 카드와 동아리 상세 페이지에 반영됩니다. 카드 로고는 코드의 slug 매핑을 사용하므로 새 동아리 로고는 개발자에게 요청하세요.',
-  file: 'content/clubs.json',
+  file: MANAGED_FILES.clubs,
   format: 'array',
   listColumns: [
     { key: 'slug', label: 'slug' },
@@ -536,7 +538,7 @@ const labs: ResourceDef = {
   label: '연구실 · 소개 영상',
   description:
     '연구 메뉴의 연구실 목록과 대학원 > 연구실 탭의 소개 영상 갤러리에 반영됩니다. 소개 영상 URL을 채우면 영상 갤러리에 노출됩니다. "학부 인턴 모집 중"을 체크하면 연구실 목록에 배지가 표시됩니다.',
-  file: 'content/labs-directory.json',
+  file: MANAGED_FILES.labs,
   format: 'array',
   listColumns: [
     { key: 'nameKo', label: '연구실명' },
@@ -601,7 +603,7 @@ export const MARKDOWN_PAGES: MarkdownPageDef[] = [
   {
     key: 'scholarship',
     label: '장학금',
-    file: 'content/pages/undergraduate-scholarship.md',
+    file: SCHOLARSHIP_MD,
     description: '학부 > 장학금 탭 본문입니다. 마크다운 형식으로 작성합니다.',
   },
 ];
