@@ -87,18 +87,55 @@ export default async function HomePage({ params }: { params: { locale: string } 
     linkLabel: t('heroSlideshow.fieldLink', { field: pick(s.title, locale) }),
   }));
 
-  // 뉴스 섹션 데이터: 뉴스(news.json)만 날짜 내림차순 상위 12건(사용자 지시로 행사 제외 —
-  // 행사는 아래 '학사 일정' 섹션이 이미 담당한다). 카드가 쓰는 단일 형태로 정규화한다.
+  // 뉴스 카드 발췌문 — excerpt 를 먼저 쓰고, 비어 있으면 본문을 평문으로 눌러 첫 문단만 쓴다.
+  // ⚠️ body 의 형식은 소스에 따라 다르다(posts.ts 주석): db=정화된 HTML, git=마크다운.
+  // 그래서 태그 제거와 마크다운 기호 제거를 둘 다 통과시킨다. 문단 경계는 블록 종료 태그
+  // (</p>, <br>, </li>…)와 빈 줄 양쪽을 인정하고, 공백을 접은 뒤 220자에서 자른다
+  // (카드는 4줄 말줄임이라 그 이상은 어차피 보이지 않는다).
+  const toPlainSummary = (raw: string) => {
+    const plain = raw
+      .replace(/<(script|style)[\s\S]*?<\/\1>/gi, '') // 스크립트·스타일 통째로 제거
+      .replace(/<\/(p|div|li|h[1-6]|blockquote)>|<br\s*\/?>/gi, '\n\n') // 블록 경계 → 빈 줄
+      .replace(/<[^>]+>/g, '') // 나머지 태그 제거
+      .replace(/&nbsp;/g, ' ')
+      .replace(/&amp;/g, '&')
+      .replace(/&lt;/g, '<')
+      .replace(/&gt;/g, '>')
+      .replace(/&quot;/g, '"')
+      .replace(/&#39;/g, "'")
+      .replace(/!\[[^\]]*\]\([^)]*\)/g, '') // ![alt](src) 이미지 삭제
+      .replace(/\[([^\]]*)\]\([^)]*\)/g, '$1') // [텍스트](url) → 텍스트
+      .split(/\n\s*\n/)
+      .map((p) => p.trim())
+      .find((p) => p.length > 0) // 첫 '내용 있는' 문단
+      ?.replace(/^\s*(?:[#>*-]+|\d+\.)\s*/gm, '') // 줄머리 기호 제거
+      .replace(/\s+/g, ' ')
+      .trim();
+    if (!plain) return '';
+    return plain.length > 220 ? `${plain.slice(0, 220).trimEnd()}…` : plain;
+  };
+
+  // 뉴스 섹션 데이터: 뉴스(news.json)만 날짜 내림차순 상위 6건(사용자 지시로 행사 제외 —
+  // 행사는 아래 '학사 일정' 섹션이 이미 담당한다). 리디자인 후 한 페이지에 대형 카드 한 장이라
+  // 12건이면 화살표를 열두 번 눌러야 해서 6건으로 줄였다. 카드가 쓰는 단일 형태로 정규화한다.
   const newsEventItems = news
-    .map((n) => ({
-      date: n.date,
-      title: pick(n.title, locale),
-      image: n.image || undefined, // 빈 문자열이면 플레이스홀더로 처리되도록 undefined
-      href: `/news/${n.slug}`,
-      kind: 'news' as const,
-    }))
+    .map((n) => {
+      // 로케일 값이 비면 ko 로 폴백(pick 은 빈 문자열을 폴백하지 않는다 — en 이 비는 데이터가 흔하다).
+      // excerpt/body 는 타입상 필수지만 git JSON 이 부분적으로 비어 있을 수 있어 방어적으로 읽는다.
+      const excerpt = n.excerpt ? (pick(n.excerpt, locale).trim() || n.excerpt.ko).trim() : '';
+      const body = n.body ? (pick(n.body, locale).trim() || n.body.ko).trim() : '';
+      const summary = excerpt || (body ? toPlainSummary(body) : '');
+      return {
+        date: n.date,
+        title: pick(n.title, locale).trim() || n.title.ko,
+        image: n.image || undefined, // 빈 문자열이면 플레이스홀더로 처리되도록 undefined
+        href: `/news/${n.slug}`,
+        kind: 'news' as const,
+        ...(summary ? { summary } : {}),
+      };
+    })
     .sort((a, b) => (a.date < b.date ? 1 : -1))
-    .slice(0, 12);
+    .slice(0, 6);
 
   // 학과 일정 — 홈 일정 패널(HomeCalendarPanel)이 '달' 단위로 잘라 보여주므로, 여기서는
   // 정렬·건수 제한 없이 소스 넷을 CalendarEntry[] 로 합치기만 한다(예전에는 '예정→과거'로

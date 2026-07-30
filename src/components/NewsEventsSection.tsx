@@ -1,22 +1,15 @@
 'use client';
 
-import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { useCallback, useRef, useState, type PointerEvent as ReactPointerEvent } from 'react';
 import Image from 'next/image';
 import { useTranslations } from 'next-intl';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Link } from '@/i18n/navigation';
 import { FlowLines } from './FlowLines';
 
-// ScrollTrigger 는 무료 public gsap 패키지에 포함(Club 멤버십 불필요).
-gsap.registerPlugin(ScrollTrigger);
-
-// SSR 안전 layout effect — 클라이언트에선 페인트 전에 from-state 를 잡아 깜빡임을
-// 막고, 서버 렌더 시 useLayoutEffect 경고를 피한다(LabsSection 동일 패턴).
-const useIsoLayoutEffect = typeof window !== 'undefined' ? useLayoutEffect : useEffect;
-
-// 카드 사이 gap(=gap-8, 32px). 화살표 스크롤 스텝(카드 1장 폭 + gap) 계산에 쓴다.
-const CARD_GAP = 32;
+/** 우측 '이전 뉴스' 목록에 세우는 최대 건수(시안 3건) */
+const SIDE_COUNT = 3;
+/** 스와이프 한 장 넘김 임계(px) */
+const SWIPE_PX = 50;
 
 export interface NewsEventItem {
   date: string; // 'YYYY-MM-DD'
@@ -24,98 +17,141 @@ export interface NewsEventItem {
   image?: string;
   href: string;
   kind: 'news' | 'event';
+  /** 카드 본문 발췌 — excerpt 우선, 없으면 body 평문 첫 문단(page.tsx 에서 조립) */
+  summary?: string;
 }
 
+/** '01', '06' — 카운터는 두 자리 고정폭이라 숫자가 바뀌어도 폭이 흔들리지 않는다. */
+const pad2 = (n: number) => String(n).padStart(2, '0');
+
+/** 'YYYY-MM-DD' → 'YYYY. MM. DD' */
+const dotDate = (iso: string) => {
+  const [y, m, d] = iso.split('-');
+  return `${y}. ${m}. ${d}`;
+};
+
+/** 원형 아이콘 버튼(35px)의 공용 클래스. ⚠️ CircleArrowButton 의 기존 클래스 문자열과
+ *  완전히 동일해야 한다 — LabsSection·CareerPaths 가 그 버튼을 그대로 재사용한다. */
+const CIRCLE_BTN_CLASS =
+  'grid h-[35px] w-[35px] place-items-center rounded-full border border-content/40 text-content transition-colors hover:border-yonsei-blue hover:text-yonsei-blue disabled:cursor-not-allowed disabled:opacity-30 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yonsei-blue';
+
 /**
- * 뉴스 & 행사 단독 섹션 — 홍익대 조형대학 '뉴스&이벤트' 시안을 연세 톤(네이비/블루,
- * 각진 스타일)으로 옮긴 리디자인. 위→아래:
- *  - 헤더 행: 좌측 네이비 라벨 박스(제목) / 우측 ← → 화살표 버튼 2개.
- *  - 카드 트랙: 가로 스크롤(스크롤-스냅) 4열. 각 카드는 대형 날짜 → 구분선 →
- *    분류 라벨(뉴스/행사) → 제목 → 각진 이미지 프레임 순. 카드 전체가 게시물 Link.
- *  - 하단 우측: '자세히보기 →' → /news.
+ * 뉴스 단독 섹션 — "좌 대표 뉴스 1건 + 우 목록 3건" 레이아웃. **정적 섹션이다**:
+ * 자동 전환·진행 인디케이터·진입 애니메이션을 모두 걷어냈고, 화면이 바뀌는 것은 오직
+ * 사용자가 조작했을 때뿐이다(GSAP 의존성 없음).
  *
- * 데이터는 page.tsx(서버 컴포넌트)가 news + board.events 를 합쳐 props 로 넘긴다.
- * 자동재생 없음 — 시안대로 화살표/스와이프 수동 조작만.
+ * 위→아래:
+ *  - 헤더 행: 네이비 라벨 박스(제목) / 헤어라인 / 카운터(01 / 04) / ← → 버튼.
+ *    화살표는 양끝에서 막히지 않고 순환한다(disabled 없음).
+ *  - 본문 그리드(lg 이상 1fr + 424px): 좌측 대표 카드(이미지가 남는 높이를 flex:1 로
+ *    흡수) + 우측 '이전 뉴스' 3행. 우측 행은 링크가 아니라 **버튼**이라 누르면 그 기사가
+ *    대표 자리로 올라온다(본문으로 이동은 대표 카드가 담당).
  *
- * 진입 애니메이션(ScrollTrigger 1회, 다른 홈 섹션과 동일): 헤더 y:24 스태거 상승 +
- * 카드 stagger 0.06. reduced-motion 시 gsap.set 을 걸지 않아 정적으로 노출된다.
+ * 대표 기사를 바꾸는 경로는 셋뿐 — ← → 화살표, 우측 행 클릭, 터치 스와이프. 전부
+ * 사용자 입력이라 카운터의 aria-live 는 항상 'polite' 로 둔다(자동으로 읽히는 일이 없다).
+ *
+ * ⚠️ lg 이상에서 이 섹션은 **한 화면(100svh)에 반드시 들어간다**. 예전처럼 그리드에
+ * 높이를 박아 두고 바깥 패딩·헤더를 더해 가며 산수로 맞추면 화면을 넘긴다. 그래서
+ * 섹션 = 100svh 고정, 컨테이너 = h-full 세로 flex, 헤더 = shrink-0, 그리드 = flex-1 +
+ * min-h-0 으로 두어 **남는 높이를 그리드가 받아 가는 구조** 자체가 '한 화면 안'을
+ * 보장하게 한다(1440p 에서 과하게 커지지 않도록 max-h 640px 만 상한).
+ * ⚠️ vh 가 아니라 **svh** — 모바일 브라우저 크롬이 접힐 때 vh 는 점프한다.
  */
 export function NewsEventsSection({ items }: { items: NewsEventItem[] }) {
   const t = useTranslations('home');
   const tStub = useTranslations('stub');
-  const rootRef = useRef<HTMLElement | null>(null);
-  const trackRef = useRef<HTMLUListElement | null>(null);
-  // 트랙 양끝 도달 여부 → 화살표 disabled 갱신에 사용.
-  const [canPrev, setCanPrev] = useState(false);
-  const [canNext, setCanNext] = useState(false);
 
-  const hasItems = items.length > 0;
+  const total = items.length;
+  const hasItems = total > 0;
+  // 2건 이상일 때만 조작(화살표·스와이프)이 의미를 갖는다.
+  const canCycle = total > 1;
 
-  // 스크롤 위치로 화살표 활성/비활성 계산. 초기·리사이즈·스크롤마다 호출한다.
-  const updateArrows = useCallback(() => {
-    const track = trackRef.current;
-    if (!track) return;
-    const { scrollLeft, scrollWidth, clientWidth } = track;
-    setCanPrev(scrollLeft > 1);
-    // 부동소수 오차로 끝에서 1px 남는 경우가 있어 여유(1px)를 둔다.
-    setCanNext(scrollLeft < scrollWidth - clientWidth - 1);
+  // 대표 자리에 올라와 있는 기사 인덱스. 포인터 핸들러는 렌더와 무관하게 최신값을 읽어야
+  // 해서(제스처 도중 클로저가 낡는다) state 와 ref 를 함께 둔다.
+  const [j, setJ] = useState(0);
+  const jRef = useRef(0);
+
+  // 스와이프로 끝난 포인터 제스처가 그대로 링크 클릭으로 이어지는 것을 막는 플래그.
+  const suppressClickRef = useRef(false);
+
+  const goTo = useCallback(
+    (next: number) => {
+      if (total === 0) return;
+      const i = ((next % total) + total) % total; // 음수 포함 순환
+      jRef.current = i;
+      setJ(i);
+    },
+    [total],
+  );
+
+  const hero = hasItems ? items[j] : undefined;
+  // 우측 목록 = 대표 다음 3건(순환). 1건뿐이면 빈 배열이라 열 자체가 렌더되지 않는다.
+  const sideIdx = Array.from({ length: Math.max(0, Math.min(SIDE_COUNT, total - 1)) }, (_, k) =>
+    (j + k + 1) % total,
+  );
+
+  // ── 포인터 스와이프(터치 전용) ───────────────────────────────────────────
+  // 세로 의도(|dy|>|dx|)면 즉시 손을 떼 페이지 세로 스크롤을 가로채지 않는다
+  // (그리드에 touch-action:pan-y 도 함께 건다).
+  const dragRef = useRef<{ id: number; x: number; y: number; t: number; axis: 'none' | 'x' } | null>(
+    null,
+  );
+
+  const onPointerDown = useCallback((e: ReactPointerEvent<HTMLDivElement>) => {
+    // 마우스는 화살표로 조작한다. 드래그를 열면 본문 텍스트 선택과 부딪힌다.
+    if (e.pointerType === 'mouse') return;
+    // 직전 스와이프가 남긴 억제 플래그를 흘려보내면 다음 탭이 삼켜진다 — 제스처마다 초기화.
+    suppressClickRef.current = false;
+    dragRef.current = { id: e.pointerId, x: e.clientX, y: e.clientY, t: performance.now(), axis: 'none' };
   }, []);
 
-  // 카드 1장 폭 + gap 만큼 좌/우로 부드럽게 스크롤. 카드가 없거나 트랙이 없으면 무시.
-  const scrollByCard = useCallback((dir: 1 | -1) => {
-    const track = trackRef.current;
-    if (!track) return;
-    const firstCard = track.querySelector<HTMLElement>('[data-card]');
-    const step = firstCard ? firstCard.offsetWidth + CARD_GAP : track.clientWidth;
-    track.scrollBy({ left: dir * step, behavior: 'smooth' });
+  const onPointerMove = useCallback((e: ReactPointerEvent<HTMLDivElement>) => {
+    const d = dragRef.current;
+    if (!d || d.id !== e.pointerId) return;
+    if (d.axis !== 'none') return;
+    const dx = e.clientX - d.x;
+    const dy = e.clientY - d.y;
+    if (Math.abs(dx) < 8 && Math.abs(dy) < 8) return;
+    if (Math.abs(dy) > Math.abs(dx)) {
+      // 세로 스와이프 — 섹션은 관여하지 않고 제스처를 버린다.
+      dragRef.current = null;
+      return;
+    }
+    d.axis = 'x';
   }, []);
 
-  // 마운트·리사이즈 시 화살표 상태 초기화(카드 유무와 무관하게 안전).
-  useEffect(() => {
-    updateArrows();
-    window.addEventListener('resize', updateArrows);
-    return () => window.removeEventListener('resize', updateArrows);
-  }, [updateArrows, hasItems]);
+  const onPointerEnd = useCallback(
+    (e: ReactPointerEvent<HTMLDivElement>) => {
+      const d = dragRef.current;
+      if (!d || d.id !== e.pointerId) return;
+      dragRef.current = null;
+      if (d.axis !== 'x' || !canCycle) return;
 
-  // 헤더·카드 진입 리빌 — LabsSection 과 동일한 set+to 플래시 방지 패턴.
-  useIsoLayoutEffect(() => {
-    const root = rootRef.current;
-    if (!root) return;
-    // 모션 최소화 선호 → gsap.set 을 걸지 않아 콘텐츠가 정적으로 그대로 보이게 둔다.
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-
-    const ctx = gsap.context(() => {
-      const heads = Array.from(root.querySelectorAll<HTMLElement>('[data-reveal]'));
-      const cards = Array.from(root.querySelectorAll<HTMLElement>('[data-card]'));
-
-      if (heads.length) gsap.set(heads, { y: 24, autoAlpha: 0 });
-      if (cards.length) gsap.set(cards, { y: 24, autoAlpha: 0 });
-
-      const tl = gsap.timeline({
-        scrollTrigger: { trigger: root, start: 'top 75%', once: true },
-      });
-      if (heads.length) {
-        tl.to(heads, { y: 0, autoAlpha: 1, duration: 0.6, stagger: 0.08, ease: 'power3.out' }, 0);
-      }
-      if (cards.length) {
-        tl.to(cards, { y: 0, autoAlpha: 1, duration: 0.5, stagger: 0.06, ease: 'power3.out' }, 0.15);
-      }
-    }, root);
-
-    // context.revert() 가 트윈 kill + 인라인 스타일 원복 + ScrollTrigger 정리를 함께 처리.
-    return () => ctx.revert();
-  }, [hasItems]);
+      const dx = e.clientX - d.x;
+      // 짧고 빠른 플릭도 한 장 넘김으로 인정한다(임계 50px 를 못 채워도).
+      const flick = Math.abs(dx) > 20 && performance.now() - d.t < 250;
+      // 스와이프 끝의 click 이 대표 카드 링크를 열어 버리는 것을 막는다.
+      suppressClickRef.current = Math.abs(dx) > 10;
+      if (dx <= -SWIPE_PX || (flick && dx < 0)) goTo(jRef.current + 1);
+      else if (dx >= SWIPE_PX || (flick && dx > 0)) goTo(jRef.current - 1);
+    },
+    [canCycle, goTo],
+  );
 
   return (
     <section
-      ref={rootRef}
       aria-labelledby="news-events-heading"
-      // 자유 스크롤 홈 섹션 — 자연 높이 + 통일된 상하 리듬(모바일 py-12, sm+ py-section-lg).
-      className="full-bleed relative flex flex-col bg-surface py-12 sm:py-section-lg"
+      // lg 미만: 자유 스크롤 홈 섹션 — 자연 높이 + 통일된 상하 리듬(py-12 / py-section-lg).
+      // lg 이상: 한 화면 고정(100svh) + 좁힌 상하 패딩. py-section-lg(최대 128px×2)를
+      // 그대로 두면 본문에 줄 높이가 남지 않는다.
+      // ⚠️ 상단 패딩 하한은 6.5rem(104px) — 사이트 헤더가 position:fixed 81px 라 100svh
+      // 섹션의 위 81px 은 늘 헤더 밑에 깔린다. 이보다 좁으면 '뉴스' 라벨이 헤더에
+      // 달라붙어 읽힌다(아래쪽은 가릴 것이 없으니 그대로 좁게 둔다).
+      className="full-bleed relative flex flex-col bg-surface py-12 sm:py-section-lg lg:h-[100svh] lg:pb-[clamp(2rem,5vh,3.5rem)] lg:pt-[clamp(6.5rem,10vh,8rem)]"
     >
       {/* 배경 유선 장식(Cornell CHE) — 상단 패딩·헤더 행의 '기존' 여백에만 겹치는 0-높이
-          absolute 레이어(자체 높이를 가지는 스트립 금지 — 사용자 지시). 카드 텍스트에
-          닿기 전에 아래로 마스크 소멸. 콘텐츠 컨테이너가 relative 라 항상 텍스트 뒤. */}
+          absolute 레이어(자체 높이를 가지는 스트립 금지 — 사용자 지시). 본문에 닿기 전에
+          아래로 마스크 소멸. 콘텐츠 컨테이너가 relative 라 항상 텍스트 뒤. */}
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-x-0 top-0 hidden h-56 overflow-hidden sm:block lg:h-64"
@@ -127,76 +163,156 @@ export function NewsEventsSection({ items }: { items: NewsEventItem[] }) {
           className="absolute inset-0 h-full w-full -scale-x-100 opacity-10 [-webkit-mask-image:linear-gradient(to_bottom,black_55%,transparent_100%)] [mask-image:linear-gradient(to_bottom,black_55%,transparent_100%)]"
         />
       </div>
-      <div className="relative mx-auto w-full max-w-[1360px] px-6 sm:px-10 lg:px-16">
-        {/* 헤더 행 — 좌: 네이비 라벨 박스(각지게) / 사이: 헤어라인(학과 목표 섹션과
-            동일한 선 문법) / 우: ← → 화살표 버튼 2개 */}
-        <div className="flex items-center gap-6">
+
+      {/* 헤더와 본문이 한 컨테이너 안에 있다(구 캐러셀과 달리 full-bleed 요소 없음).
+          lg 이상에서는 이 컨테이너가 섹션 높이를 그대로 받는 세로 flex 다 — 헤더는
+          shrink-0, 그리드만 flex-1 이라 남는 높이가 전부 본문으로 간다. 그리드가 max-h 에
+          걸려 여백이 남는 큰 모니터에서는 justify-center 가 전체를 세로 가운데로 모은다. */}
+      <div className="relative mx-auto w-full max-w-[1360px] px-6 sm:px-10 lg:flex lg:h-full lg:flex-col lg:justify-center lg:px-16">
+        {/* 헤더 행 — 좌: 네이비 라벨 박스(각지게) / 사이: 헤어라인(학과 목표 섹션과 동일한
+            선 문법) / 우: 카운터 + ← → 화살표(양끝 막힘 없이 순환) */}
+        <div className="flex items-center gap-6 lg:shrink-0">
           <h2
             id="news-events-heading"
-            data-reveal
             className="inline-block bg-yonsei-navy px-4 py-2 text-base font-bold text-white sm:px-5 sm:py-2.5 sm:text-lg"
           >
             {t('newsEvents.title')}
           </h2>
           <span aria-hidden="true" className="h-px flex-1 bg-surface-border" />
 
-          {/* 카드가 있을 때만 화살표 노출(빈 상태에선 조작 대상이 없음) */}
           {hasItems && (
-            <div data-reveal className="flex items-center gap-2.5">
+            // 자동 전환이 없으니 live 를 끌 이유가 없다 — 카운터가 바뀌는 건 사용자가
+            // 화살표·목록·스와이프로 직접 넘겼을 때뿐이라 그때 읽어 주는 것이 맞다.
+            <span
+              aria-live="polite"
+              className="text-[15px] font-bold tabular-nums tracking-[0.02em] text-content-faint"
+            >
+              {t('newsEvents.counter', { current: pad2(j + 1), total: pad2(total) })}
+            </span>
+          )}
+          {canCycle && (
+            <div className="flex items-center gap-2.5">
               <CircleArrowButton
                 dir="left"
-                onClick={() => scrollByCard(-1)}
-                disabled={!canPrev}
+                onClick={() => goTo(j - 1)}
                 label={t('newsEvents.prev')}
               />
               <CircleArrowButton
                 dir="right"
-                onClick={() => scrollByCard(1)}
-                disabled={!canNext}
+                onClick={() => goTo(j + 1)}
                 label={t('newsEvents.next')}
               />
             </div>
           )}
         </div>
 
-        {hasItems ? (
-          <>
-            {/* 카드 트랙 — 가로 스크롤 + 스냅. no-scrollbar 로 스크롤바 숨김(globals 유틸). */}
-            <ul
-              ref={trackRef}
-              onScroll={updateArrows}
-              className="no-scrollbar mt-6 flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-smooth sm:mt-[35px] sm:gap-8"
-            >
-              {items.map((item, i) => (
-                <li
-                  key={`${item.href}-${i}`}
-                  data-card
-                  // 모바일 카드 2장 보이게(48%) — 캐러셀 어포던스 확보(데스크톱 모드의 밀도 재현)
-                  className="snap-start w-[48%] shrink-0 sm:w-[46%] lg:w-[calc(25%-24px)]"
-                >
-                  <NewsEventCard item={item} />
-                </li>
-              ))}
-            </ul>
+        {hasItems && hero ? (
+          /* 본문 그리드 — lg 이상에서 컨테이너의 남는 높이를 전부 받는다(고정 높이 금지).
+             ⚠️ min-h-0 이 없으면 flex 자식의 기본 min-height:auto 때문에 내용보다 작게
+             줄어들지 못해 섹션이 화면을 넘긴다. max-h 는 1440p 에서 그리드가 부풀어
+             이미지만 거대해지는 것을 막는 상한이다(기준 높이 640px).
+             그 미만에서는 단순 세로 스택. 카드 안 텍스트는 줄 수 단위로 높이를 고정해
+             두었으므로(HeroNewsCard 주석 참조) 기사가 바뀌어도 박스 크기는 변하지 않는다. */
+          <div
+            className="mt-6 flex flex-col gap-4 lg:mt-7 lg:grid lg:max-h-[640px] lg:min-h-0 lg:flex-1 lg:grid-cols-[minmax(0,1fr)_424px] lg:items-stretch lg:gap-6"
+            style={{ touchAction: 'pan-y' }}
+            onPointerDown={onPointerDown}
+            onPointerMove={onPointerMove}
+            onPointerUp={onPointerEnd}
+            onPointerCancel={onPointerEnd}
+            onClickCapture={(e) => {
+              if (!suppressClickRef.current) return;
+              suppressClickRef.current = false;
+              e.preventDefault();
+              e.stopPropagation();
+            }}
+          >
+            <HeroNewsCard item={hero} />
 
-            {/* 하단 우측 — 자세히보기 → /news */}
-            <div data-reveal className="mt-6 flex justify-end sm:mt-8">
-              <Link
-                href="/news"
-                className="group inline-flex items-center gap-2 text-sm font-bold text-content transition-colors hover:text-yonsei-blue"
-              >
-                {t('newsEvents.more')}
-                <span aria-hidden="true" className="transition-transform group-hover:translate-x-1">
-                  →
-                </span>
-              </Link>
-            </div>
-          </>
+            {/* 우측 '이전 뉴스' 목록 — 각 행은 링크가 아니라 버튼이라, 누르면 그 기사가
+                대표 자리로 올라온다(본문으로 이동은 대표 카드가 담당).
+                ⚠️ flex + flex-1 이 아니라 **grid-rows-3**. flex-1 은 자식 내용이 길어지면
+                기본 min-height:auto 에 걸려 행마다 높이가 달라지지만, grid 트랙은
+                (전체높이 − 20px×2) / 3 로 수학적으로 균등하다. 좌측 카드와 같은 그리드
+                행에 stretch 로 놓이므로 위·아래 끝선은 구조상 정확히 일치한다. */}
+            {sideIdx.length > 0 && (
+              <div className="flex flex-col gap-4 lg:grid lg:h-full lg:grid-rows-3 lg:gap-5">
+                {sideIdx.map((idx) => {
+                  const it = items[idx];
+                  return (
+                    <button
+                      key={`${it.href}-side-${idx}`}
+                      type="button"
+                      onClick={() => goTo(idx)}
+                      aria-label={t('newsEvents.goToTitle', { title: it.title })}
+                      // 면은 대표 카드·학사일정 패널과 같은 토큰 한 쌍(rounded-card +
+                      // surface-soft) — 다크 모드까지 따라온다.
+                      // min-h-0 + overflow-hidden: 안쪽 내용이 무슨 일이 있어도 트랙을
+                      // 밀어 늘리지 못하게 잠근다(세 행 높이가 어긋나는 유일한 경로).
+                      className="group flex w-full items-center gap-4 rounded-card bg-surface-soft p-4 text-left focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yonsei-blue lg:min-h-0 lg:gap-[18px] lg:overflow-hidden lg:p-5"
+                    >
+                      <span className="relative aspect-[4/3] w-[104px] shrink-0 overflow-hidden bg-[#c9daee] lg:w-[132px]">
+                        {it.image ? (
+                          <Image
+                            src={it.image}
+                            alt=""
+                            fill
+                            draggable={false}
+                            sizes="132px"
+                            className="object-cover"
+                          />
+                        ) : (
+                          <span className="absolute inset-0 grid place-items-center">
+                            {/* eslint-disable-next-line @next/next/no-img-element */}
+                            <img
+                              src="/img/eagle_empty.png"
+                              alt=""
+                              aria-hidden="true"
+                              draggable={false}
+                              className="h-10 w-auto opacity-60"
+                            />
+                          </span>
+                        )}
+                      </span>
+
+                      <span className="min-w-0 flex-1">
+                        <span className="block text-[13px] font-bold tabular-nums text-yonsei-navy">
+                          {dotDate(it.date)}
+                        </span>
+                        {/* button 안에는 phrasing content 만 올 수 있어 p 가 아니라 span 을 쓴다
+                            (p 를 넣으면 HTML 검증 위반 + 브라우저가 버튼 밖으로 밀어낼 수 있다). */}
+                        {/* 대표 카드와 같은 이유로 제목 2줄·요약 2줄 높이를 항상 잡아 둔다
+                            (요약이 비어도 렌더한다) — 트랙 높이는 grid-rows-3 로 균등해도
+                            안쪽 내용이 들쭉날쭉하면 세로 가운데 정렬이 매 전환마다 흔들린다. */}
+                        {/* block 을 같이 주면 line-clamp 의 display:-webkit-box 를 덮어
+                            말줄임(…)이 사라진다 — 높이·여백은 바깥 span 이 맡는다. */}
+                        <span className="mt-1.5 block lg:h-[46px]">
+                          <span className="line-clamp-2 text-[15px] font-bold leading-[1.45] tracking-[-0.01em] text-content transition-colors group-hover:text-yonsei-blue lg:text-base lg:leading-[23px]">
+                            {it.title}
+                          </span>
+                        </span>
+                        <span className="mt-1.5 block lg:h-[44px]">
+                          <span className="line-clamp-2 text-[13px] leading-[1.6] text-content lg:text-[13.5px] lg:leading-[22px]">
+                            {it.summary ?? ''}
+                          </span>
+                        </span>
+                      </span>
+                    </button>
+                  );
+                })}
+              </div>
+            )}
+          </div>
         ) : (
           // 빈 상태 — 기존 빈 게시판 관례(eagle_empty 마스코트 + stub.empty 문구).
-          <div data-reveal className="flex flex-col items-center justify-center gap-4 py-20 text-center">
+          <div className="flex flex-col items-center justify-center gap-4 py-20 text-center">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/img/eagle_empty.png" alt="" aria-hidden="true" className="h-20 w-auto opacity-70" />
+            <img
+              src="/img/eagle_empty.png"
+              alt=""
+              aria-hidden="true"
+              className="h-20 w-auto opacity-70"
+            />
             <p className="text-sm font-medium text-content-faint">{tStub('empty')}</p>
           </div>
         )}
@@ -206,52 +322,103 @@ export function NewsEventsSection({ items }: { items: NewsEventItem[] }) {
 }
 
 /**
- * 카드 한 장 — 카드 전체가 게시물로 가는 Link. 위→아래:
- * 날짜(YYYY. MM. DD 한 줄) → 가는 구분선 → 분류 라벨(블루) → 제목(1줄 말줄임)
- * → 각진 이미지 프레임(없으면 단색 플레이스홀더 + eagle_empty). hover 시 제목만 블루로.
+ * 좌측 대표 카드 — 분류 칩 + 날짜 → 제목 → 요약 → 사진 → 바닥에 못박은 CTA 순.
+ * 카드 전체가 게시물로 가는 Link 다.
+ *
+ * 면은 학사일정 패널(HomeCalendarPanel)과 같은 토큰 한 쌍 — `rounded-card`(8px) +
+ * `bg-surface-soft`. 예전의 인라인 그라디언트는 다크 모드를 따라오지 못해 걷어냈다.
+ * 교표 워터마크는 사용자 지시로 제거했다(되살리지 말 것).
  */
-function NewsEventCard({ item }: { item: NewsEventItem }) {
+function HeroNewsCard({ item }: { item: NewsEventItem }) {
   const t = useTranslations('home');
-  // 'YYYY-MM-DD' → 'YYYY. MM. DD' 한 줄 포맷(사용자 결정 — 같은 크기 숫자 두 개가
-  // 나란히 있던 대형 표기(07 07)는 중복처럼 읽혀 폐기).
-  const [year, month, day] = item.date.split('-');
   const kindLabel = item.kind === 'news' ? t('newsEvents.kindNews') : t('newsEvents.kindEvent');
 
   return (
-    <Link href={item.href} className="group block">
-      {/* 날짜 — 한 줄 포맷, 명료한 중간 크기(모바일은 카드 2장 밀도에 맞춰 축소) */}
-      <p className="text-sm font-semibold leading-none tabular-nums text-content sm:text-lg">
-        {year}. {month}. {day}
-      </p>
-
-      {/* 가는 수평 구분선 */}
-      <div className="mt-3 border-b border-surface-border sm:mt-[7px]" />
-
-      {/* 분류 라벨 — 시안의 주황 대신 연세 블루 */}
-      <p className="mt-3 text-xs font-bold text-yonsei-blue sm:mt-[19px] sm:text-sm">{kindLabel}</p>
-
-      {/* 제목 — 한 줄 말줄임, hover 시 블루 전환 */}
-      <p className="mt-1.5 truncate text-sm font-medium text-content transition-colors group-hover:text-yonsei-blue sm:mt-2 sm:text-lg">
-        {item.title}
-      </p>
-
-      {/* 이미지 — 각진 aspect-[4/3] 프레임. 없으면 단색 블록 + eagle_empty 중앙 배치. */}
-      <div className="relative mt-3 aspect-[4/3] w-full overflow-hidden bg-surface-soft sm:mt-6">
-        {item.image ? (
-          <Image
-            src={item.image}
-            alt=""
-            fill
-            sizes="(min-width: 1024px) 25vw, (min-width: 640px) 46vw, 48vw"
-            className="object-cover"
-          />
-        ) : (
-          <div className="absolute inset-0 grid place-items-center">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/img/eagle_empty.png" alt="" aria-hidden="true" className="h-14 w-auto opacity-60" />
+    <Link href={item.href} draggable={false} className="group relative block lg:h-full">
+      {/* ⚠️ lg 이상 아래 패딩 92px — 자세히보기가 absolute 라 흐름에서 빠져 있다. 그만큼
+          자리를 비워 두지 않으면 마지막 요소(사진)가 CTA 를 덮는다(짧은 화면에서 실제로
+          겹쳤다). 92 = CTA 가 차지하는 76(밑변 50 + 높이 26) + 사진과의 간격 16. */}
+      <article className="relative flex h-full flex-col overflow-hidden rounded-card bg-surface-soft p-5 sm:p-7 lg:p-8 lg:pb-[92px] xl:p-10 xl:pb-[92px]">
+        {/* 순서: 날짜 → 제목 → 본문 → 사진 → (바닥 고정) 자세히보기.
+            텍스트 블록은 lg 이상에서 **블록 전체**가 고정 높이다(제목·본문에 각각 높이를
+            박지 않는다). 안쪽은 위에서부터 자연스럽게 쌓이고, 줄 수가 모자라 남는 높이는
+            블록 아래쪽(= 사진 바로 위)으로 떨어진다 — 글자 사이에 구멍이 생기지 않고,
+            사진의 시작 위치와 크기가 기사와 무관하게 일정해진다.
+            높이 = 칩행 30 + (18 + 제목 2줄 68) + (30 + 본문 2~3줄) + 여유. */}
+        <div className="relative lg:h-[198px] lg:shrink-0 [@media(min-height:820px)]:lg:h-[224px]">
+          <div className="flex items-center gap-[14px]">
+            <span className="bg-yonsei-navy px-3 py-[5px] text-[13px] font-bold text-white">
+              {kindLabel}
+            </span>
+            <span className="text-[15px] font-bold tabular-nums text-yonsei-navy">
+              {dotDate(item.date)}
+            </span>
           </div>
-        )}
-      </div>
+
+        {/* ⚠️ line-clamp 를 거는 요소는 여백을 맡는 바깥 div 와 분리해 둔다 — 안쪽 h3/p 가
+            line-clamp 를 맡는 두 겹 구조(말줄임 보존). 제목은 최대 2줄에서 …로 잘린다. */}
+          <div className="mt-4 lg:mt-[18px]">
+            <h3 className="line-clamp-2 text-xl font-bold leading-[1.4] tracking-[-0.02em] text-content lg:text-2xl lg:leading-[34px]">
+              {item.title}
+            </h3>
+          </div>
+
+        {/* 요약은 뷰포트 '높이'에 따라 줄 수가 달라진다 — 높은 화면(≥820px)에서는 3줄,
+            짧은 노트북에서는 2줄. 한 화면 안에 넣어야 하므로 짧은 화면에서 세 줄을 고집하면
+            이미지가 min-h 아래로 밀려 섹션이 넘친다(바깥 텍스트 블록 높이도 같은 조건으로
+            함께 바뀐다). lg 이상의 mt-[30px] 이 사용자가 지정한 제목→본문 고정 간격이다.
+            ⚠️ item.summary 가 비어도 이 요소는 '항상' 렌더한다 — 조건부로 지우면 아래
+            CTA 가 위로 올라붙어 기사마다 위치가 달라진다. */}
+          <div className="mt-3 lg:mt-[30px]">
+            <p className="line-clamp-3 text-[15px] leading-[1.8] text-content lg:line-clamp-2 lg:text-[15px] lg:leading-[26px] [@media(min-height:820px)]:lg:line-clamp-3">
+              {item.summary ?? ''}
+            </p>
+          </div>
+        </div>
+
+        {/* 사진 — CMS 업로드가 가로로 긴 배너(약 2.75:1)라 프레임을 그 비율에 맞춰 두었다.
+            비율이 맞으면 object-cover 가 잘라 낼 것이 없어 사진이 통째로 보인다(예전에는
+            프레임이 '남는 높이'를 받아 3:1 넘게 납작해지면서 세로를 50% 넘게 잘라 냈다).
+            ⚠️ 짧은 노트북에서는 카드 높이가 모자라 flex 가 이 칸을 줄인다 — 그때만 비율이
+            살짝 깨지며 위아래가 조금 잘린다(섹션이 한 화면을 넘기지 않는 쪽을 택했다). */}
+        <div className="relative mt-5 aspect-[11/4] w-full min-h-0 overflow-hidden bg-[#c9daee] lg:mt-4">
+          {item.image ? (
+            <Image
+              src={item.image}
+              alt=""
+              fill
+              draggable={false}
+              sizes="(min-width:1024px) 800px, 100vw"
+              className="object-cover"
+            />
+          ) : (
+            <div className="absolute inset-0 grid place-items-center">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/img/eagle_empty.png"
+                alt=""
+                aria-hidden="true"
+                draggable={false}
+                className="h-14 w-auto opacity-60"
+              />
+            </div>
+          )}
+        </div>
+
+        {/* 자세히보기 — lg 이상에서는 흐름에서 빼내 **카드 밑변 기준 50px 위**에 못박는다.
+            흐름에 두면 제목이 1줄인 기사에서 그만큼 위로 올라붙어 기사마다 위치가 달라진다
+            (사용자 지시로 고정). absolute 의 bottom 은 카드의 패딩 박스 = 테두리 안쪽 기준이라
+            카드 아래 패딩값과 무관하게 정확히 50px 이 된다. 좌측은 카드 패딩(lg 32 / xl 40)에
+            맞춰 눈금을 유지한다. lg 미만에서는 카드 높이가 자유라 그대로 흐름에 둔다. */}
+        <div className="mt-5 lg:absolute lg:bottom-[50px] lg:left-8 lg:mt-0 xl:left-10">
+          <span className="inline-flex items-center gap-2 border-b border-yonsei-blue pb-0.5 text-[15px] font-bold text-yonsei-blue">
+            {t('newsEvents.more')}
+            <span aria-hidden="true" className="transition-transform group-hover:translate-x-1">
+              →
+            </span>
+          </span>
+        </div>
+      </article>
     </Link>
   );
 }
@@ -276,7 +443,7 @@ export function CircleArrowButton({
       onClick={onClick}
       disabled={disabled}
       aria-label={label}
-      className="grid h-[35px] w-[35px] place-items-center rounded-full border border-content/40 text-content transition-colors hover:border-yonsei-blue hover:text-yonsei-blue disabled:cursor-not-allowed disabled:opacity-30 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yonsei-blue"
+      className={CIRCLE_BTN_CLASS}
     >
       <svg
         viewBox="0 0 24 24"

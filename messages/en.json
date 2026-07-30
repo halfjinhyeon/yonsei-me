@@ -314,8 +314,13 @@
     "newsEvents": {
       "title": "News",
       "more": "View more",
+      "counter": "{current} / {total}",
+      "goTo": "Go to item {n}",
+      "goToTitle": "Feature this item: {title}",
       "prev": "Previous items",
       "next": "Next items",
+      "pause": "Pause news rotation",
+      "play": "Play news rotation",
       "kindNews": "News",
       "kindEvent": "Event"
     },

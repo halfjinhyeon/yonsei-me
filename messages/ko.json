@@ -314,8 +314,13 @@
     "newsEvents": {
       "title": "뉴스",
       "more": "자세히보기",
+      "counter": "{current} / {total}",
+      "goTo": "{n}번째 소식 보기",
+      "goToTitle": "{title} — 대표 뉴스로 보기",
       "prev": "이전 소식 보기",
       "next": "다음 소식 보기",
+      "pause": "뉴스 자동 전환 멈춤",
+      "play": "뉴스 자동 전환 재생",
       "kindNews": "뉴스",
       "kindEvent": "행사"
     },
