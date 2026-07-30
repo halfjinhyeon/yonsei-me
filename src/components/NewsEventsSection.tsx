@@ -351,7 +351,7 @@ function HeroNewsCard({ item }: { item: NewsEventItem }) {
             블록 아래쪽(= 사진 바로 위)으로 떨어진다 — 글자 사이에 구멍이 생기지 않고,
             사진의 시작 위치와 크기가 기사와 무관하게 일정해진다.
             높이 = 칩행 30 + (18 + 제목 2줄 68) + (30 + 본문 2~3줄) + 여유. */}
-        <div className="relative lg:h-[198px] lg:shrink-0 [@media(min-height:820px)]:lg:h-[224px]">
+        <div className="relative lg:h-[224px] lg:shrink-0">
           <div className="flex items-center gap-[14px]">
             <span className="bg-yonsei-navy px-3 py-[5px] text-[13px] font-bold text-white">
               {kindLabel}
@@ -369,14 +369,16 @@ function HeroNewsCard({ item }: { item: NewsEventItem }) {
             </h3>
           </div>
 
-        {/* 요약은 뷰포트 '높이'에 따라 줄 수가 달라진다 — 높은 화면(≥820px)에서는 3줄,
-            짧은 노트북에서는 2줄. 한 화면 안에 넣어야 하므로 짧은 화면에서 세 줄을 고집하면
-            이미지가 min-h 아래로 밀려 섹션이 넘친다(바깥 텍스트 블록 높이도 같은 조건으로
-            함께 바뀐다). lg 이상의 mt-[30px] 이 사용자가 지정한 제목→본문 고정 간격이다.
+        {/* 본문은 화면 크기와 무관하게 **항상 딱 3줄**, 넘치면 …로 자른다(사용자 지시).
+            예전에는 짧은 화면에서 2줄로 줄였는데, 그러면 같은 기사가 화면마다 다르게 보였다.
+            바깥 블록 높이(224)도 3줄 기준 하나로 고정 —
+            30(칩행) + 18 + 68(제목 2줄×34) + 30 + 78(본문 3줄×26) = 224.
+            짧은 노트북에서 자리가 모자라면 아래 사진 칸이 줄어든다(contain 이라 잘리지 않고
+            작아지기만 한다). lg 이상의 mt-[30px] 이 사용자가 지정한 제목→본문 고정 간격이다.
             ⚠️ item.summary 가 비어도 이 요소는 '항상' 렌더한다 — 조건부로 지우면 아래
-            CTA 가 위로 올라붙어 기사마다 위치가 달라진다. */}
+            사진이 위로 올라붙어 기사마다 위치가 달라진다. */}
           <div className="mt-3 lg:mt-[30px]">
-            <p className="line-clamp-3 text-[15px] leading-[1.8] text-content lg:line-clamp-2 lg:text-[15px] lg:leading-[26px] [@media(min-height:820px)]:lg:line-clamp-3">
+            <p className="line-clamp-3 text-[15px] leading-[1.8] text-content lg:leading-[26px]">
               {item.summary ?? ''}
             </p>
           </div>

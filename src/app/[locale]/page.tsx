@@ -112,7 +112,8 @@ export default async function HomePage({ params }: { params: { locale: string } 
       .replace(/\s+/g, ' ')
       .trim();
     if (!plain) return '';
-    return plain.length > 220 ? `${plain.slice(0, 220).trimEnd()}…` : plain;
+    // 상한은 카드 3줄(한글 기준 150자 안팎)보다 넉넉히 — 실제로 자르는 건 line-clamp 다.
+    return plain.length > 400 ? `${plain.slice(0, 400).trimEnd()}…` : plain;
   };
 
   // 본문 첫 이미지 — 홈 뉴스 카드는 thumbnail 이 아니라 **이것**을 먼저 쓴다.
@@ -136,7 +137,11 @@ export default async function HomePage({ params }: { params: { locale: string } 
       // excerpt/body 는 타입상 필수지만 git JSON 이 부분적으로 비어 있을 수 있어 방어적으로 읽는다.
       const excerpt = n.excerpt ? (pick(n.excerpt, locale).trim() || n.excerpt.ko).trim() : '';
       const body = n.body ? (pick(n.body, locale).trim() || n.body.ko).trim() : '';
-      const summary = excerpt || (body ? toPlainSummary(body) : '');
+      // 홈 대표 카드는 **본문**을 3줄까지 보여 준다(사용자 지시). excerpt 는 한두 문장짜리
+      // 요약이라 3줄을 채우지 못해 카드가 휑했다 — 본문이 없을 때만 폴백으로 쓴다.
+      // 자르는 일은 line-clamp-3 이 하고(…까지 붙여 준다), 아래 글자 수 상한은 3줄보다
+      // 넉넉히 잡아 두어 '…'가 두 번 붙는 일이 없게 한다.
+      const summary = (body ? toPlainSummary(body) : '') || excerpt;
       return {
         date: n.date,
         title: pick(n.title, locale).trim() || n.title.ko,
