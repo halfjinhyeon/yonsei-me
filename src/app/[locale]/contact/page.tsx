@@ -43,12 +43,14 @@ export default function ContactPage({ params }: { params: { locale: string } }) 
       />
       <Section>
         {/* 연락처 패널과 지도를 한 카드로 합침 — 모서리는 rounded-lg로 각지게 */}
-        <div className="grid overflow-hidden rounded-lg border border-surface-border shadow-card lg:grid-cols-[1fr_1.5fr]">
-          {/* 연락처 정보 — 동아리 카드 스타일 비주얼 패널 */}
+        <div className="grid overflow-hidden rounded-lg border border-surface-border shadow-card lg:grid-cols-[minmax(0,1fr)_minmax(0,1.5fr)]">
+          {/* 연락처 정보 — 동아리 카드 스타일 비주얼 패널. 카드(그리드 행)의
+              높이는 이 패널이 혼자 정한다 → 지도는 그 높이를 따라가기만 한다. */}
           <ContactInfoPanel rows={info} />
 
-          {/* 지도 — 하단 링크 바 없이 카드 바닥까지 채우고, 약도 링크는 지도 위 배지로 */}
-          <div className="relative flex flex-col">
+          {/* 지도 — 하단 링크 바 없이 카드 바닥까지 채우고, 약도 링크는 지도 위 배지로.
+              min-w-0: 지도가 그리드 트랙보다 넓어지지 못하게(KakaoMap 주석 참고) */}
+          <div className="relative flex min-w-0 flex-col">
             <KakaoMap className="h-[360px] w-full lg:h-auto lg:flex-1" />
             <a
               href={KAKAO_MAP_LINK}

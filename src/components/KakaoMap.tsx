@@ -50,92 +50,78 @@ function landerScriptSrc(): string | null {
 
 /**
  * 카카오맵 퍼가기(roughmap) 지도.
- * 퍼가기 지도는 고정 픽셀 크기로만 렌더되므로, 래퍼의 실측 크기를 넘겨 그리고
- * 창 크기가 바뀌면 디바운스 후 다시 그린다. 로더 스크립트는 전역 1회만 주입.
+ * 퍼가기 지도는 고정 픽셀 크기로만 렌더되므로 래퍼의 실측 크기를 넘겨 그리고,
+ * 래퍼 크기가 실제로 바뀌면 디바운스 후 다시 그린다. 로더는 전역 1회만 주입.
  * 로드 실패 시 한국어 안내와 카카오맵 링크로 폴백한다.
+ *
+ * ⚠️ 반응형 계약: **래퍼의 크기는 오직 CSS가 정한다.** 지도(콘텐츠)가 래퍼 크기를
+ * 되밀 수 있으면 "관찰 → 재렌더 → 크기 변화 → 관찰"이 닫힌 루프가 되어 지도가
+ * 300ms마다 다시 그려진다(=깜빡임). 소수점 레이아웃에서는 잔차가 0으로 수렴하지
+ * 않아 영구 진동한다. 되먹임을 막는 장치는 두 겹이다 — 래퍼의 `min-h-0 min-w-0`
+ * (아래 참고)와, 크기가 실제로 달라졌을 때만 다시 그리는 draw()의 가드.
  */
 export function KakaoMap({ className }: { className?: string }) {
   const wrapRef = useRef<HTMLDivElement>(null);
   const [failed, setFailed] = useState(false);
 
   useEffect(() => {
+    const wrap = wrapRef.current;
+    if (!wrap) return;
+    const container = wrap.querySelector<HTMLElement>('.root_daum_roughmap');
+    if (!container) return;
+
     let cancelled = false;
     let resizeTimer: ReturnType<typeof setTimeout> | undefined;
-    const dedupeTimers: number[] = [];
+    // 마지막으로 그린 크기 — 같은 크기로는 다시 그리지 않는다(루프 차단).
+    let drawnW = 0;
+    let drawnH = 0;
 
-    // roughmapLander는 내부적으로 데이터를 비동기 로드한 뒤 컨테이너에 append 한다.
-    // 재렌더 직전 innerHTML을 비워도 "이전 렌더"의 비동기 결과가 늦게 도착해
-    // 지도 세트(.wrap_map + 부속 노드)가 두 개 쌓일 수 있다(간헐적 지도 2개 버그).
-    // 렌더 후 몇 차례 훑어서 마지막 세트만 남기고 앞의 노드를 제거한다.
-    const scheduleDedupe = (container: HTMLElement) => {
-      [400, 1200, 2500].forEach((delay) => {
-        dedupeTimers.push(
-          window.setTimeout(() => {
-            if (cancelled) return;
-            while (
-              container.querySelectorAll('.wrap_map').length > 1 &&
-              container.firstChild
-            ) {
-              container.removeChild(container.firstChild);
-            }
-          }, delay),
-        );
-      });
-    };
+    // Lander는 데이터를 비동기 로드한 뒤 append 하므로, 렌더 직전 컨테이너를
+    // 비워도 직전 렌더(또는 StrictMode 이중 마운트)의 결과가 늦게 도착해 지도
+    // 세트가 둘 쌓일 수 있다. 노드가 추가될 때마다 마지막 세트만 남긴다
+    // — 언제 도착할지 추측하는 타이머보다 확정적이다.
+    const trim = new MutationObserver(() => {
+      while (
+        container.querySelectorAll('.wrap_map').length > 1 &&
+        container.firstChild
+      ) {
+        container.removeChild(container.firstChild);
+      }
+    });
+    trim.observe(container, { childList: true });
 
     const draw = () => {
-      const wrap = wrapRef.current;
       const Lander = window.daum?.roughmap?.Lander;
-      if (cancelled || !wrap || !Lander) return;
-      const container = wrap.querySelector<HTMLElement>('.root_daum_roughmap');
-      if (!container) return;
+      if (cancelled || !Lander) return;
+
       // 래퍼 실측 크기 (숨김 상태 등으로 0이면 퍼가기 기본값 사용)
       const width = Math.round(wrap.clientWidth) || 640;
       const height = Math.round(wrap.clientHeight) || 360;
+      if (width === drawnW && height === drawnH) return;
+      drawnW = width;
+      drawnH = height;
 
-      // StrictMode 이중 마운트·리사이즈 재렌더 대비 컨테이너 초기화 후 렌더
-      const render = (mapHeight: number) => {
-        container.innerHTML = '';
-        new Lander({
-          timestamp: ROUGHMAP_TIMESTAMP,
-          key: ROUGHMAP_KEY,
-          mapWidth: String(width),
-          mapHeight: String(mapHeight),
-        }).render();
-        scheduleDedupe(container);
-      };
-      render(height);
-
-      // mapHeight는 하단 컨트롤/주소 블록을 포함한 전체 높이라, 그 블록들을
-      // CSS로 숨긴 만큼(래퍼 높이 - 실제 지도 영역 높이) 보정해 1회 재렌더
-      // → 지도가 래퍼를 꽉 채운다.
-      requestAnimationFrame(() => {
-        if (cancelled) return;
-        const mapArea = container.querySelector<HTMLElement>('.wrap_map');
-        const deficit = mapArea ? height - mapArea.clientHeight : 0;
-        if (deficit > 0) render(height + deficit);
-      });
+      container.innerHTML = '';
+      new Lander({
+        timestamp: ROUGHMAP_TIMESTAMP,
+        key: ROUGHMAP_KEY,
+        mapWidth: String(width),
+        mapHeight: String(height),
+      }).render();
     };
 
     const handleError = () => {
       if (!cancelled) setFailed(true);
     };
 
+    // 래퍼 크기가 바뀔 때(창 크기, 탭 표시, 그리드 트랙 확정 등) 다시 그린다.
+    // ResizeObserver는 관찰 직후 1회 발화하므로 초기 렌더도 이 경로로 덮인다.
     const onResize = () => {
       clearTimeout(resizeTimer);
       resizeTimer = setTimeout(draw, 300);
     };
-    window.addEventListener('resize', onResize);
-
-    // 래퍼 실측 크기가 바뀔 때(탭 표시, 그리드 트랙 확정 등) 다시 그린다.
-    // 초기 마운트 draw()가 레이아웃 확정 전 폭으로 그려 컨테이너보다 넓게(clip)
-    // 렌더되는 경우를 바로잡는다. 지도 폭은 그리드가 정하므로 재렌더가 래퍼
-    // 크기를 바꾸지 않아 관찰 루프는 생기지 않는다.
-    let ro: ResizeObserver | undefined;
-    if (typeof ResizeObserver !== 'undefined' && wrapRef.current) {
-      ro = new ResizeObserver(onResize);
-      ro.observe(wrapRef.current);
-    }
+    const ro = new ResizeObserver(onResize);
+    ro.observe(wrap);
 
     // 정리 대상 리스너를 한곳에 모아 unmount 시 해제
     const cleanups: (() => void)[] = [];
@@ -185,9 +171,8 @@ export function KakaoMap({ className }: { className?: string }) {
     return () => {
       cancelled = true;
       clearTimeout(resizeTimer);
-      dedupeTimers.forEach((id) => window.clearTimeout(id));
-      window.removeEventListener('resize', onResize);
-      ro?.disconnect();
+      ro.disconnect();
+      trim.disconnect();
       cleanups.forEach((fn) => fn());
     };
   }, []);
@@ -217,8 +202,16 @@ export function KakaoMap({ className }: { className?: string }) {
 
   return (
     // 임베드 하단의 카카오맵 바(.wrap_controllers)와 주소 패널(.cont)은 globals.css
-    // 규칙으로 숨기고 지도만 남긴다 (숨긴 높이는 draw()에서 보정).
-    <div ref={wrapRef} className={cn('overflow-hidden', className)}>
+    // 규칙으로 숨기고 지도만 남긴다. Lander가 mapHeight를 .wrap_map에 그대로
+    // 부여하므로, 숨긴 만큼의 높이 보정은 따로 필요 없다(실측 gap 0).
+    <div
+      ref={wrapRef}
+      // min-h-0/min-w-0 는 이 컴포넌트의 불변식이다: flex·grid 자식의 기본
+      // min-*: auto 를 끄지 않으면 안에 그려 넣은 고정 픽셀 지도가 래퍼를 되밀어
+      // "관찰 → 재렌더 → 크기 변화" 루프(깜빡임)와, 좁힐 때 지도 폭이 그대로
+      // 남아 다시 못 그리는 정지 상태를 만든다. 크기는 언제나 CSS가 정한다.
+      className={cn('min-h-0 min-w-0 overflow-hidden', className)}
+    >
       {/* 퍼가기 스크립트가 id로 찾는 지도 노드 — id/클래스는 퍼가기 규격 고정 */}
       <div
         id={`daumRoughmapContainer${ROUGHMAP_TIMESTAMP}`}
