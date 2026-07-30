@@ -376,12 +376,18 @@ function HeroNewsCard({ item }: { item: NewsEventItem }) {
           </div>
         </div>
 
-        {/* 사진 — CMS 업로드가 가로로 긴 배너(약 2.75:1)라 프레임을 그 비율에 맞춰 두었다.
-            비율이 맞으면 object-cover 가 잘라 낼 것이 없어 사진이 통째로 보인다(예전에는
-            프레임이 '남는 높이'를 받아 3:1 넘게 납작해지면서 세로를 50% 넘게 잘라 냈다).
-            ⚠️ 짧은 노트북에서는 카드 높이가 모자라 flex 가 이 칸을 줄인다 — 그때만 비율이
-            살짝 깨지며 위아래가 조금 잘린다(섹션이 한 화면을 넘기지 않는 쪽을 택했다). */}
-        <div className="relative mt-5 aspect-[11/4] w-full min-h-0 overflow-hidden bg-[#c9daee] lg:mt-4">
+        {/* 사진 — object-contain. **어떤 비율이 올라와도 한 픽셀도 자르지 않는다.**
+            ⚠️ cover 를 쓰면 안 된다: 프로덕션 업로드 비율을 실측하니 1.20 ~ 2.63 으로
+            두 배 넘게 벌어져(연구실 로고·인물·논문 그림이 한 장에 조합된 형태) 어떤 고정
+            비율을 잡아도 6건 중 5건이 39~56% 잘려 나갔다. 잘리면 정보가 실제로 사라진다.
+            프레임 배경은 카드와 같은 bg-surface-soft — 남는 자리가 눈에 띄지 않아 '사진이
+            조금 작게 놓인' 것처럼 보인다(다크 모드도 토큰이 따라온다).
+            비율 8/3 은 카드가 허용하는 최대 높이(카드 안쪽 - 텍스트 블록 - 여백)에서 왔다.
+            세로로 더 키우면 정사각에 가까운 사진이 커지지만, 그만큼 그리드 상한 640 을
+            올려야 한다(= 섹션이 한 화면을 넘길 여지).
+            ⚠️ 짧은 노트북에서는 카드 높이가 모자라 flex 가 이 칸을 줄인다 — contain 이라
+            그때도 잘리지 않고 사진이 작아지기만 한다. */}
+        <div className="relative mt-5 aspect-[8/3] w-full min-h-0 overflow-hidden bg-surface-soft lg:mt-4">
           {item.image ? (
             <Image
               src={item.image}
@@ -389,7 +395,7 @@ function HeroNewsCard({ item }: { item: NewsEventItem }) {
               fill
               draggable={false}
               sizes="(min-width:1024px) 800px, 100vw"
-              className="object-cover"
+              className="object-contain"
             />
           ) : (
             <div className="absolute inset-0 grid place-items-center">
