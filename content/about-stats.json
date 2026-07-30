@@ -1,6 +1,6 @@
 [
-  { "value": "33", "label": { "ko": "전임 교수", "en": "Faculty Members" } },
-  { "value": "32", "label": { "ko": "연구실", "en": "Laboratories" } },
+  { "value": "42", "label": { "ko": "전임 교수", "en": "Faculty Members" } },
+  { "value": "33", "label": { "ko": "연구실", "en": "Laboratories" } },
   { "value": "183", "label": { "ko": "대학원 교과목", "en": "Graduate Courses" } },
-  { "value": "40", "label": { "ko": "학부 교과목", "en": "Undergraduate Courses" } }
+  { "value": "47", "label": { "ko": "학부 교과목", "en": "Undergraduate Courses" } }
 ]

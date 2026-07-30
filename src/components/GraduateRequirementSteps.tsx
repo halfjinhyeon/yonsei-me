@@ -7,8 +7,8 @@ import { LandingScope } from '@/components/LandingScope';
  *  - 좌측: 01~09 번호 목차가 sticky 로 화면을 따라오고(StepRailNav), 클릭 시 해당
  *    STEP 으로 부드럽게 스크롤·스크롤 위치에 따라 활성 항목이 갱신된다(스크롤스파이).
  *  - 우측: 각 STEP = 네이비 박스 헤더(STEP NN · 제목 — 학부 '나의 졸업요건' StepLabel 과
- *    동일 디자인·폰트) + 리드 문장 + 본문(불릿/표/콜아웃). 헤더 블록은 섹션마다 좌/우 교대
- *    정렬 + 좌우 여백 인셋(사용자 지시), 섹션 사이 헤어라인 구분.
+ *    동일 디자인·폰트) + 리드 문장 + 본문(불릿/표/콜아웃). 헤더 블록은 모든 섹션이 왼쪽
+ *    정렬 + 왼쪽 여백 인셋(사용자 지시), 섹션 사이 헤어라인 구분.
  *  - 마크다운 규칙: '####' 헤딩 = STEP 경계, 헤딩 직후 첫 평문 단락 = 리드(헤더로 분리),
  *    인용구(>) = '유의사항' 콜아웃(step-prose 스코프, globals.css).
  * 콘텐츠 출처는 자체 자료(신뢰 소스) — Prose 와 동일하게 정적 인라인 렌더.
@@ -83,8 +83,8 @@ export function GraduateRequirementSteps({ markdown }: { markdown: string }) {
             className="scroll-mt-40 py-12 tab:scroll-mt-36 tab:py-16"
           >
             {/* 헤더 블록 — 학부 '나의 졸업요건' StepLabel 과 동일한 네이비 박스(STEP NN · 제목).
-                짝수(0-base) 왼쪽 / 홀수 오른쪽 교대 + 좌우 여백 인셋(사용자 지시). */}
-            <div className={i % 2 === 1 ? 'flex flex-col items-end text-right tab:pr-12' : 'tab:pl-12'}>
+                모든 섹션 왼쪽 정렬 + 왼쪽 여백 인셋(좌/우 교대는 폐기 — 사용자 지시). */}
+            <div className="tab:pl-12">
               <h3
                 id={`${s.id}-h`}
                 data-land="wipe"
