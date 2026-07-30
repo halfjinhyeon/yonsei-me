@@ -11,7 +11,7 @@ export interface BoardRow {
   subtitle?: string;
   tag?: string;
   href?: string;
-  /** 우측 썸네일 — 없으면 흰 공백(데스크톱)으로 레이아웃 유지 */
+  /** 우측 썸네일 — 없으면 우측 칸을 그리지 않는다(행 높이 = 좌측 내용 높이) */
   image?: string;
   /** 카테고리 필터용 식별자 (FilterableBoardList 의 categories 와 매칭). 표시엔 안 씀 */
   category?: string;
@@ -21,8 +21,8 @@ export interface BoardRow {
 
 /**
  * 게시판 목록 — 에디토리얼 행 스타일 (홍익 조형대 뉴스 레퍼런스).
- * 좌: 네이비 배지(tag) + 큰 볼드 제목 + 발췌 2줄(subtitle) + 하단 날짜,
- * 우: 16:10 썸네일(없으면 흰 공백 유지). 행 사이는 헤어라인.
+ * 좌: 네이비 배지(tag) + 큰 볼드 제목 + 발췌 2줄(subtitle) + 날짜,
+ * 우: 16:10 썸네일(없으면 칸 자체를 생략 — 행 높이는 내용만큼). 행 사이는 헤어라인.
  * 공지/뉴스/세미나/행사/학위논문/자료실/취업 등 모든 게시판 탭 공용.
  */
 export function BoardList({
@@ -82,34 +82,36 @@ export function BoardList({
                   {item.subtitle}
                 </p>
               )}
+              {/* 날짜 — 썸네일이 있는 행만 바닥 정렬(이미지 높이에 맞춘 균형).
+                  공지처럼 발췌·썸네일이 없는 행은 제목 바로 아래 30px 에 붙인다. */}
               {item.date && (
                 <time
                   dateTime={item.date}
-                  className="mt-auto block pt-4 text-sm tabular-nums text-content-faint"
+                  className={cn(
+                    'block text-sm tabular-nums text-content-faint',
+                    item.image && 'mt-auto',
+                    item.subtitle ? 'pt-4' : 'pt-[1.875rem]',
+                  )}
                 >
                   {formatDate(item.date, locale)}
                 </time>
               )}
             </div>
 
-            {/* 우: 썸네일 — 없으면 흰 공백(데스크톱만, 모바일은 통째로 생략) */}
-            <div
-              aria-hidden={item.image ? undefined : 'true'}
-              className={cn(
-                'aspect-[16/10] w-full overflow-hidden bg-surface',
-                !item.image && 'hidden sm:block',
-              )}
-            >
-              {item.image && (
-                // eslint-disable-next-line @next/next/no-img-element -- R2/외부 썸네일
+            {/* 우: 썸네일 — 없으면 칸 자체를 내지 않는다. 예전엔 흰 공백으로 자리를 지켰지만
+                그 높이(15rem 의 16:10)가 공지 행까지 늘려 제목·날짜 사이를 벌렸다.
+                좌측 칸 너비는 grid-template 이 잡으므로 빈 칸 없이도 행 간 정렬은 유지된다. */}
+            {item.image && (
+              <div className="aspect-[16/10] w-full overflow-hidden bg-surface">
+                {/* eslint-disable-next-line @next/next/no-img-element -- R2/외부 썸네일 */}
                 <img
                   src={item.image}
                   alt=""
                   loading="lazy"
                   className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
                 />
-              )}
-            </div>
+              </div>
+            )}
           </div>
         );
 
