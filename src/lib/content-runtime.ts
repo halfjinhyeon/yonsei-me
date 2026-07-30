@@ -6,8 +6,8 @@
 //          CMS 쓰기가 revalidateTag('content') 를 호출하면 재배포 없이 갱신된다.
 //  - git : 기존 정적 파일(content.ts / faculty.ts / pages.ts) — 롤백·오프라인 폴백.
 //
-// ⚠️ Stage A 의 기본값은 'git' 이다 — 이 모듈을 배포해도 동작이 바뀌지 않는다.
-// DB 읽기 경로는 코드로만 존재하고, CONTENT_SOURCE=db 를 켤 때 활성된다.
+// 기본값(Stage B): 프로덕션 + Supabase 구성 시 db, dev 는 항상 git(로컬 작업 트리
+// 워크플로 보존). CONTENT_SOURCE=git 이 긴급 롤백 스위치다 — contentSource() 참고.
 //
 // 폴백은 항상 호출측(각 getter)에서 처리한다: DB 조회 실패·JSON 파싱 실패는 조용히
 // 삼키고 파일 스냅샷으로 떨어진다. 콘텐츠 한 덩이가 깨져도 페이지는 뜬다.
@@ -42,12 +42,14 @@ import coursesGraduateJson from '@content/courses-graduate.json';
 // ── 소스 판별 ──────────────────────────────────────────────────────────
 export type ContentSource = 'db' | 'git';
 
-/** 콘텐츠 읽기 소스. 미설정이면 'git' — Stage A 는 파일이 계속 진실이다.
- *  (Stage B 에서 시딩·검증을 마친 뒤 프로덕션 기본을 db 로 전환할 예정) */
+/** 콘텐츠 읽기 소스. 미설정 기본값(Stage B): 프로덕션에서 Supabase 가 구성돼 있으면
+ *  db, 아니면 git. dev 는 항상 git — dev 서버가 로컬 작업 트리를 그대로 서빙하는
+ *  워크플로(파일 수정 → 즉시 반영)를 깨지 않기 위해서다.
+ *  CONTENT_SOURCE=git 은 긴급 롤백 스위치(BOARDS_SOURCE 와 같은 관례). */
 export function contentSource(): ContentSource {
   const v = process.env.CONTENT_SOURCE;
   if (v === 'db' || v === 'git') return v;
-  return 'git';
+  return process.env.NODE_ENV === 'production' && process.env.SUPABASE_URL ? 'db' : 'git';
 }
 
 // ── Supabase 클라이언트 (lazy, 서버 전용 service key) ───────────────────
