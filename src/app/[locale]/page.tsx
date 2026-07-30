@@ -115,6 +115,18 @@ export default async function HomePage({ params }: { params: { locale: string } 
     return plain.length > 220 ? `${plain.slice(0, 220).trimEnd()}…` : plain;
   };
 
+  // 본문 첫 이미지 — 홈 뉴스 카드는 thumbnail 이 아니라 **이것**을 먼저 쓴다.
+  // ⚠️ 이유(실측): 같은 기사에 파일이 두 벌인데 thumbnail 쪽이 원본을 가로로 잘라 낸 별개
+  // 파일이다. 예) 2026-07-28-post-6 — 본문 653x241(2.71, 연구실 로고+인물+그림이 다 든
+  // 원본) / 썸네일 378x225(1.68, 왼쪽 로고·인물을 잘라 낸 조각). 잘린 쪽을 쓰면 CSS 로
+  // 무엇을 하든 사라진 픽셀은 돌아오지 않는다.
+  // body 형식은 소스마다 다르다(posts.ts): db=정화된 HTML, git=마크다운 → 둘 다 훑는다.
+  const firstBodyImage = (raw: string) => {
+    const html = raw.match(/<img[^>]+src=["']([^"']+)["']/i);
+    if (html?.[1]) return html[1];
+    return raw.match(/!\[[^\]]*\]\(\s*([^)\s]+)/)?.[1];
+  };
+
   // 뉴스 섹션 데이터: 뉴스(news.json)만 날짜 내림차순 상위 6건(사용자 지시로 행사 제외 —
   // 행사는 아래 '학사 일정' 섹션이 이미 담당한다). 리디자인 후 한 페이지에 대형 카드 한 장이라
   // 12건이면 화살표를 열두 번 눌러야 해서 6건으로 줄였다. 카드가 쓰는 단일 형태로 정규화한다.
@@ -128,7 +140,8 @@ export default async function HomePage({ params }: { params: { locale: string } 
       return {
         date: n.date,
         title: pick(n.title, locale).trim() || n.title.ko,
-        image: n.image || undefined, // 빈 문자열이면 플레이스홀더로 처리되도록 undefined
+        // 본문 원본 우선, 없으면 thumbnail 폴백(빈 문자열이면 플레이스홀더로 처리되도록 undefined)
+        image: (body ? firstBodyImage(body) : undefined) || n.image || undefined,
         href: `/news/${n.slug}`,
         kind: 'news' as const,
         ...(summary ? { summary } : {}),
