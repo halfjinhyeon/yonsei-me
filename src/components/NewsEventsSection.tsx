@@ -429,16 +429,17 @@ function HeroNewsCard({ item }: { item: NewsEventItem }) {
             (사용자 지시로 고정). absolute 의 bottom 은 카드의 패딩 박스 = 테두리 안쪽 기준이라
             카드 아래 패딩값과 무관하게 정확히 50px 이 된다. 좌측은 카드 패딩(lg 32 / xl 40)에
             맞춰 눈금을 유지한다. lg 미만에서는 카드 높이가 자유라 그대로 흐름에 둔다. */}
-        <div className="mt-5 lg:absolute lg:bottom-[50px] lg:left-8 lg:mt-0 xl:left-10">
-          {/* VIEW MORE › — 사용자 지시로 '자세히보기 →' 밑줄 링크를 대체한다. 밑줄·블루를
-              빼고 본문색 볼드 + 얇은 셰브런으로. 라벨은 로케일과 무관하게 영문 고정이라
-              messages 양쪽에 같은 값을 둔다(히어로의 'About →'와 같은 관례). */}
-          <span className="inline-flex items-center gap-2 text-[15px] font-bold tracking-[0.06em] text-content transition-colors group-hover:text-yonsei-blue">
+        {/* 위치: 카드 밑변에서 30px 위, 좌측 패딩 + 10px (사용자 지시로 오른쪽 10 · 아래 20
+            이동). absolute 의 bottom/left 는 카드 패딩 박스 기준이라 패딩값과 무관하게
+            정확한 거리다. lg 미만에서는 카드 높이가 자유라 그대로 흐름에 둔다. */}
+        {/* lg:flex — 인라인 배치로 두면 baseline 아래 descender 여백 2px 이 붙어 실제
+            거리가 30 이 아니라 32 로 잰다. flex 로 감싸면 안쪽 span 밑변 = 이 박스 밑변. */}
+        <div className="mt-5 lg:absolute lg:bottom-[30px] lg:left-[42px] lg:mt-0 lg:flex xl:left-[50px]">
+          {/* VIEW MORE › — 공지 섹션(NoticeSection)의 더보기 링크와 **완전히 같은 문법**.
+              예전에는 이 카드만 text-[15px] + tracking-[0.06em] 이라 자간이 겉돌았다. */}
+          <span className="inline-flex shrink-0 items-center gap-1.5 text-sm font-bold text-content transition-colors group-hover:text-yonsei-blue">
             {t('newsEvents.more')}
-            <span
-              aria-hidden="true"
-              className="text-lg leading-none transition-transform group-hover:translate-x-1"
-            >
+            <span aria-hidden="true" className="transition-transform group-hover:translate-x-1">
               ›
             </span>
           </span>
