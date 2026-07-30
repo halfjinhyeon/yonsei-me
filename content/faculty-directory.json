@@ -789,5 +789,20 @@
       "nameEn": "Multiphysics Energy System Lab.",
       "url": "http://mes.yonsei.ac.kr/"
     }
+  },
+  {
+    "name": "홍명보",
+    "title": "Professor",
+    "role": null,
+    "email": "wlsgus2006@gmail.com",
+    "phone": null,
+    "room": null,
+    "specialty": null,
+    "yearRange": null,
+    "emeritus": false,
+    "moreInfoUrl": null,
+    "photoAlt": "홍명보",
+    "photo": "/img/faculty/홍명보.jpeg",
+    "lab": null
   }
 ]
