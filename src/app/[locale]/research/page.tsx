@@ -52,6 +52,7 @@ export default async function ResearchPage({ params }: { params: { locale: strin
     subtitle: n.excerpt ? pick(n.excerpt, locale) : undefined,
     href: `/news/post/${n.id}`,
     image: n.image,
+    pinned: n.pinned,
   }));
 
   // 분야 인트로 — research-gallery.json(분야명·설명·대표 이미지)을 로케일 해석해

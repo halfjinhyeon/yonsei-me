@@ -127,7 +127,8 @@
       "empty": "일정 없음",
       "catEvent": "행사",
       "catAlumni": "동문"
-    }
+    },
+    "pinned": "고정"
   },
   "pages": {
     "undergraduate": {

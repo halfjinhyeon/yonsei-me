@@ -58,9 +58,14 @@ export default async function NewsPage({ params }: { params: { locale: string } 
         href: `/news/post/${n.id}`,
         image: n.image,
         category,
+        pinned: n.pinned,
       })),
     )
-    .sort((a, b) => ((a.date ?? '') < (b.date ?? '') ? 1 : -1));
+    // 4개 게시판을 병합하는 자리라 소스별 정렬이 흩어진다 — 고정 우선을 여기서 다시 세운다
+    .sort(
+      (a, b) =>
+        (b.pinned ? 1 : 0) - (a.pinned ? 1 : 0) || ((a.date ?? '') < (b.date ?? '') ? 1 : -1),
+    );
 
   // 공지 필터 탭(전체/학부/대학원/외부기관/장학생 선발)
   const noticeCategories = [
@@ -79,6 +84,7 @@ export default async function NewsPage({ params }: { params: { locale: string } 
     tag: tNews(`categories.${item.category}`),
     href: `/news/${item.slug}`,
     image: item.image || undefined,
+    pinned: item.pinned,
   }));
 
   const eventRows: BoardRow[] = board.events.map((e) => ({
@@ -89,6 +95,7 @@ export default async function NewsPage({ params }: { params: { locale: string } 
     tag: pick(e.dateLabel, locale),
     href: `/news/post/${e.id}`,
     image: e.image,
+    pinned: e.pinned,
   }));
 
   const seminarRows: BoardRow[] = board.seminars.map((s) => ({
@@ -98,6 +105,7 @@ export default async function NewsPage({ params }: { params: { locale: string } 
     subtitle: `${tBoard('seminars.hostLabel')}: ${pick(s.host, locale)}`,
     href: `/news/post/${s.id}`,
     image: s.image,
+    pinned: s.pinned,
   }));
 
   const thesisRows: BoardRow[] = board.thesis.map((t) => ({
@@ -107,6 +115,7 @@ export default async function NewsPage({ params }: { params: { locale: string } 
     subtitle: t.excerpt ? pick(t.excerpt, locale) : undefined,
     href: `/news/post/${t.id}`,
     image: t.image,
+    pinned: t.pinned,
   }));
 
   const careerRows: BoardRow[] = board.career.map((c) => ({
@@ -116,6 +125,7 @@ export default async function NewsPage({ params }: { params: { locale: string } 
     subtitle: c.excerpt ? pick(c.excerpt, locale) : undefined,
     href: `/news/post/${c.id}`,
     image: c.image,
+    pinned: c.pinned,
   }));
 
   // 캘린더('일정' 탭)는 행사·세미나 게시판 + CMS '일정 (캘린더)' 게시판을 함께 읽는다.
@@ -181,6 +191,7 @@ export default async function NewsPage({ params }: { params: { locale: string } 
       desc,
       category: r.category === 'form' || r.category === 'rule' ? r.category : undefined,
       href: `/news/post/${r.id}`,
+      pinned: r.pinned,
       attachments,
       searchText: [title, desc ?? '', plainBody, ...attachments.map((a) => a.label)]
         .join(' ')

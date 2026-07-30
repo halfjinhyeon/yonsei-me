@@ -16,7 +16,7 @@ async function requireAdmin(): Promise<Response | null> {
 }
 
 interface BulkBody {
-  action: 'delete' | 'move';
+  action: 'delete' | 'move' | 'pin' | 'unpin';
   ids: (number | string)[];
   targetBoard?: string;
 }
@@ -33,6 +33,18 @@ export async function POST(request: Request): Promise<Response> {
 
   if (body.action === 'delete') {
     const { error } = await adminDb().from('posts').delete().in('id', ids);
+    if (error) return Response.json({ error: error.message }, { status: 500 });
+    revalidateTag('posts');
+    return Response.json({ ok: true, count: ids.length });
+  }
+
+  // 고정/해제 — 행마다 다른 값을 계산할 게 없어 한 번의 update 로 끝난다.
+  // 행별 토글 버튼도 ids 한 개짜리로 이 경로를 함께 쓴다(경로가 갈리면 규칙도 갈린다).
+  if (body.action === 'pin' || body.action === 'unpin') {
+    const { error } = await adminDb()
+      .from('posts')
+      .update({ pinned: body.action === 'pin' })
+      .in('id', ids);
     if (error) return Response.json({ error: error.message }, { status: 500 });
     revalidateTag('posts');
     return Response.json({ ok: true, count: ids.length });

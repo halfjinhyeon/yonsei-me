@@ -99,6 +99,8 @@ export interface AdminPostPayload {
   /** 게시물 링크(URL) — 인스타그램 전용(타일 클릭 목적지) */
   linkUrl?: string;
   isEvent?: boolean;
+  /** 목록 최상단 고정 — 글 목록이 아닌 게시판(noBody)은 보내지 않는다 */
+  pinned?: boolean;
   image?: string;
   attachments?: { labelKo?: string; labelEn?: string; href: string; size?: number }[];
 }
@@ -184,6 +186,8 @@ export function payloadToRow(p: AdminPostPayload) {
     // 링크 — 같은 칼럼이지만 성격이 다르다. 인스타그램은 타일이 반드시 가야 할
     // 필수 목적지고, 캘린더는 있으면 좋은 선택 링크(비면 홈에서 링크 없는 카드).
     link_url: p.board === 'instagram' || p.board === 'calendar' ? nn(p.linkUrl) : null,
+    // 고정 — 페이로드에 없으면(고정 대상이 아닌 게시판) 항상 false 로 눕힌다
+    pinned: p.pinned === true,
     thumbnail_url: nn(p.image),
     created_at: `${p.date}T00:00:00+09:00`,
   };
@@ -199,6 +203,8 @@ export interface DbPostRow {
   end_date: string | null;
   link_url: string | null;
   is_event: boolean | null;
+  /** 목록 최상단 고정 — 구 행은 null(스키마 추가 이전) */
+  pinned: boolean | null;
   title_ko: string | null;
   title_en: string | null;
   body_html_ko: string | null;
@@ -256,6 +262,7 @@ export function rowToEditRecord(r: DbPostRow) {
     dateLabelEn: r.date_label_en ?? '',
     linkUrl: r.link_url ?? '',
     isEvent: r.is_event === true,
+    pinned: r.pinned === true,
     image: r.thumbnail_url ?? '',
     attachments: (r.attachments ?? [])
       .slice()

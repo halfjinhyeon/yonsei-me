@@ -1,3 +1,4 @@
+import { useTranslations } from 'next-intl';
 import { Link } from '@/i18n/navigation';
 import { cn, formatDate } from '@/lib/utils';
 import type { Locale } from '@/i18n/routing';
@@ -14,6 +15,8 @@ export interface BoardRow {
   image?: string;
   /** 카테고리 필터용 식별자 (FilterableBoardList 의 categories 와 매칭). 표시엔 안 씀 */
   category?: string;
+  /** 목록 최상단 고정 글 — 핀 배지를 붙인다(정렬은 상류가 이미 마쳤다) */
+  pinned?: boolean;
 }
 
 /**
@@ -31,6 +34,8 @@ export function BoardList({
   locale: Locale;
   emptyLabel: string;
 }) {
+  const t = useTranslations('board');
+
   if (items.length === 0) {
     return (
       <div className="flex flex-col items-center gap-5 rounded-card border border-surface-border bg-surface-soft px-6 py-20 text-center">
@@ -49,9 +54,24 @@ export function BoardList({
           <div className="grid gap-5 py-7 sm:grid-cols-[minmax(0,1fr)_15rem] sm:gap-10 sm:py-8">
             {/* 좌: 배지 · 제목 · 발췌 · 날짜(하단 고정) */}
             <div className="flex flex-col items-start">
-              {item.tag && (
-                <span className="mb-3 inline-block bg-yonsei-navy px-2.5 py-1 text-xs font-bold text-white">
-                  {item.tag}
+              {/* 배지 줄 — 고정 핀이 먼저, 그 뒤에 게시판 태그. 둘 다 없으면 줄 자체를 내지 않는다.
+                  외곽선 배지의 패딩을 0.0625rem 씩 줄인 이유는 1px 테두리 때문 — 칠한 배지와
+                  나란히 설 때 높이가 어긋나면 안 된다(자료실 목록과 같은 보정). */}
+              {(item.pinned || item.tag) && (
+                <span className="mb-3 flex flex-wrap items-center gap-2">
+                  {item.pinned && (
+                    <span className="inline-flex items-center gap-1.5 border border-yonsei-navy bg-surface px-[0.5625rem] py-[0.1875rem] text-xs font-bold text-yonsei-navy">
+                      <svg aria-hidden="true" viewBox="0 0 24 24" className="h-3.5 w-3.5 fill-current">
+                        <path d="M16 3v2l-1 1v5l3 3v2h-5v5l-1 1-1-1v-5H6v-2l3-3V6L8 5V3h8Z" />
+                      </svg>
+                      {t('pinned')}
+                    </span>
+                  )}
+                  {item.tag && (
+                    <span className="inline-block bg-yonsei-navy px-2.5 py-1 text-xs font-bold text-white">
+                      {item.tag}
+                    </span>
+                  )}
                 </span>
               )}
               <h3 className="line-clamp-2 text-lg font-bold leading-snug tracking-tight text-content transition-colors group-hover:text-yonsei-blue sm:text-xl">

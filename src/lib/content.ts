@@ -59,6 +59,8 @@ export interface NewsItem {
   body: Localized;
   image: string;
   attachments?: Attachment[];
+  /** 목록 최상단 고정 — DB posts.pinned. git JSON 에는 보통 없다 */
+  pinned?: boolean;
 }
 
 /** 행정 교직원 (학부 소개 > 교직원 탭) */
@@ -119,6 +121,8 @@ export interface Seminar {
   /** 목록 발췌 — 없으면 목록에서 생략 */
   excerpt?: Localized;
   attachments?: Attachment[];
+  /** 목록 최상단 고정 — DB posts.pinned. git JSON 에는 보통 없다 */
+  pinned?: boolean;
 }
 
 export interface EventItem {
@@ -134,6 +138,8 @@ export interface EventItem {
   /** 목록 발췌 — 없으면 목록에서 생략 */
   excerpt?: Localized;
   attachments?: Attachment[];
+  /** 목록 최상단 고정 — DB posts.pinned. git JSON 에는 보통 없다 */
+  pinned?: boolean;
 }
 
 export interface Notice {
@@ -150,6 +156,8 @@ export interface Notice {
    *  BoardMeta.categories 를 가진 게시판만 채운다. 공지 4종의 '학부/대학원'은
    *  게시판 키로 갈리므로 이 필드를 쓰지 않는다. */
   category?: string;
+  /** 목록 최상단 고정 — DB posts.pinned. git JSON 에는 보통 없다 */
+  pinned?: boolean;
 }
 
 /** 동문 소식·네트워크 항목 — 세미나형 + "특정 날짜 행사" 플래그.

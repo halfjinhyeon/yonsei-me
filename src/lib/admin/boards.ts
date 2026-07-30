@@ -61,6 +61,8 @@ export interface EditRecord {
   linkUrl?: string;
   // 동문 소식·네트워크 전용 — 특정 날짜가 정해진 행사인지(체크 시 캘린더 '동문'에 표시)
   isEvent?: boolean;
+  // 목록 최상단 고정 — 글 목록이 아닌 게시판(noBody: 일정·인스타그램)은 대상이 아니다
+  pinned?: boolean;
   // 뉴스 전용 + 일정(캘린더) 전용.
   // ⚠️ 타입을 string 으로 넓힌 이유: 뉴스는 notice|seminar|achievement 를, 캘린더는
   // academic|event|recruit|exam 을 쓰는데 저장처가 posts.category 한 칼럼으로 같다.
@@ -255,6 +257,10 @@ export function toEditRecord(meta: BoardMeta, raw: unknown): EditRecord {
   if (meta.hasEventFlag) {
     base.isEvent = r.isEvent === true;
   }
+  if (!meta.noBody) {
+    // 글 목록이 있는 게시판만 고정을 다룬다(일정·인스타그램은 목록 개념 자체가 다르다)
+    base.pinned = r.pinned === true;
+  }
   if (meta.isNews) {
     base.category = String(r.category ?? 'notice');
   } else if (meta.categories) {
@@ -297,6 +303,8 @@ export function toBoardEntry(meta: BoardMeta, rec: EditRecord): Notice | Seminar
     title: localized(rec.titleKo, rec.titleEn),
     body: localized(rec.bodyKo, rec.bodyEn),
     ...(attachments ? { attachments } : {}),
+    // 고정은 켜졌을 때만 키를 남긴다 — 미체크 글에 pinned:false 를 흩뿌리지 않는다
+    ...(rec.pinned ? { pinned: true } : {}),
   };
   if (meta.hasHost) {
     return {
@@ -326,6 +334,7 @@ export function toNewsEntry(rec: EditRecord): NewsItem {
     body: localized(rec.bodyKo, rec.bodyEn),
     image: (rec.image ?? '').trim(),
     ...(attachments ? { attachments } : {}),
+    ...(rec.pinned ? { pinned: true } : {}),
   };
 }
 
@@ -363,6 +372,10 @@ export function convertRecordForBoard(
   }
   if (target.hasEventFlag) {
     rec.isEvent = src.isEvent === true;
+  }
+  if (!target.noBody) {
+    // 고정 상태는 게시판을 옮겨도 따라간다 — 대상이 고정 대상 게시판일 때만
+    rec.pinned = src.pinned === true;
   }
   if (target.isNews) {
     // 원본도 뉴스면 분류를 승계, 아니면 기본 'notice'. (toEditRecord는 뉴스가

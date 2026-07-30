@@ -102,6 +102,8 @@ function blankRecord(key: BoardKey, suggestedId: string): EditRecord {
     ...(meta.hasDateRange ? { endDate: '' } : {}),
     ...(meta.hasLink ? { linkUrl: '' } : {}),
     ...(meta.hasEventFlag ? { isEvent: false } : {}),
+    // 고정 대상 게시판(글 목록이 있는 곳)만 필드를 갖는다 — 새 글은 언제나 고정 해제로 시작
+    ...(meta.noBody ? {} : { pinned: false }),
     ...(meta.isNews ? { category: 'notice' as const, excerptKo: '', excerptEn: '', image: '' } : {}),
     attachments: [emptyAttachment()],
   };
@@ -303,6 +305,7 @@ export function BoardEditor({ config, boardKey, onDirtyChange }: Props) {
       endDate: rec.endDate || undefined,
       linkUrl: rec.linkUrl || undefined,
       isEvent: rec.isEvent,
+      pinned: rec.pinned,
       image: rec.image,
       attachments: rec.attachments.filter((a) => a.href.trim() !== '' || a.labelKo.trim() !== ''),
     };
@@ -417,6 +420,49 @@ export function BoardEditor({ config, boardKey, onDirtyChange }: Props) {
       finishSave(`${ids.length}건 삭제되었습니다`);
     } catch (err) {
       failSave(err, '삭제에 실패했습니다.');
+    } finally {
+      setSaving(false);
+    }
+  }
+
+  /**
+   * 선택 글 고정/해제 — 확인 모달 없이 바로 실행한다. 삭제와 달리 되돌릴 수 있는
+   * 동작이라(반대 버튼 한 번) 한 단계를 더 물으면 방해만 된다.
+   */
+  async function doBulkPin(pin: boolean) {
+    if (selected.size === 0) return;
+    const ids = Array.from(selected);
+    setSaving(true);
+    setSaveError(null);
+    setSuccess(null);
+    try {
+      await api('/api/admin/posts/bulk', {
+        method: 'POST',
+        body: JSON.stringify({ action: pin ? 'pin' : 'unpin', ids }),
+      });
+      finishSave(
+        pin ? `${ids.length}건을 최상단에 고정했습니다` : `${ids.length}건의 고정을 해제했습니다`,
+      );
+    } catch (err) {
+      failSave(err, '고정 상태 변경에 실패했습니다.');
+    } finally {
+      setSaving(false);
+    }
+  }
+
+  /** 행별 빠른 토글 — 선택하지 않고 그 자리에서 켜고 끈다(같은 bulk API, ids 한 개) */
+  async function togglePin(dbId: string, pin: boolean) {
+    setSaving(true);
+    setSaveError(null);
+    setSuccess(null);
+    try {
+      await api('/api/admin/posts/bulk', {
+        method: 'POST',
+        body: JSON.stringify({ action: pin ? 'pin' : 'unpin', ids: [dbId] }),
+      });
+      finishSave(pin ? '최상단에 고정했습니다' : '고정을 해제했습니다');
+    } catch (err) {
+      failSave(err, '고정 상태 변경에 실패했습니다.');
     } finally {
       setSaving(false);
     }
@@ -659,6 +705,27 @@ export function BoardEditor({ config, boardKey, onDirtyChange }: Props) {
                 <button type="button" onClick={handleBulkDelete} disabled={saving} className="cms-btn-danger cms-btn-sm">
                   선택 삭제
                 </button>
+                {/* 고정은 글 목록이 있는 게시판에만 — 판정은 meta 플래그로 (키 하드코딩 금지) */}
+                {!meta.noBody && (
+                  <>
+                    <button
+                      type="button"
+                      onClick={() => void doBulkPin(true)}
+                      disabled={saving}
+                      className="cms-btn cms-btn-sm"
+                    >
+                      선택 고정
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => void doBulkPin(false)}
+                      disabled={saving}
+                      className="cms-btn cms-btn-sm"
+                    >
+                      고정 해제
+                    </button>
+                  </>
+                )}
                 <select
                   value={moveTarget}
                   onChange={(e) => setMoveTarget(e.target.value as BoardKey | '')}
@@ -701,9 +768,11 @@ export function BoardEditor({ config, boardKey, onDirtyChange }: Props) {
               selected={selected}
               busy={busy}
               saving={saving}
+              pinnable={!meta.noBody}
               onToggle={toggleSelect}
               onEdit={startEdit}
               onDelete={handleDelete}
+              onTogglePin={(id, pin) => void togglePin(id, pin)}
             />
           ) : variant === 'tiles' ? (
             <InstaTiles
@@ -711,6 +780,7 @@ export function BoardEditor({ config, boardKey, onDirtyChange }: Props) {
               selected={selected}
               busy={busy}
               saving={saving}
+              pinnable={false}
               onToggle={toggleSelect}
               onEdit={startEdit}
               onDelete={handleDelete}
@@ -722,9 +792,11 @@ export function BoardEditor({ config, boardKey, onDirtyChange }: Props) {
               selected={selected}
               busy={busy}
               saving={saving}
+              pinnable={!meta.noBody}
               onToggle={toggleSelect}
               onEdit={startEdit}
               onDelete={handleDelete}
+              onTogglePin={(id, pin) => void togglePin(id, pin)}
             />
           )}
 
@@ -750,9 +822,13 @@ interface ListProps {
   selected: Set<string>;
   busy: boolean;
   saving: boolean;
+  /** 이 게시판이 고정을 다루는가 — 배지·토글 버튼 노출 여부(noBody 게시판은 false) */
+  pinnable: boolean;
   onToggle: (id: string) => void;
   onEdit: (id: string) => void;
   onDelete: (id: string) => void;
+  /** 행별 고정 토글 — pinnable 인 목록만 넘겨받는다 */
+  onTogglePin?: (id: string, pin: boolean) => void;
 }
 
 /** 공지형 — 날짜 + 제목이 전부인 게시판. 표가 아니라 촘촘한 행 목록으로 읽는다 */
@@ -762,9 +838,11 @@ function NoticeRows({
   selected,
   busy,
   saving,
+  pinnable,
   onToggle,
   onEdit,
   onDelete,
+  onTogglePin,
 }: ListProps & { meta: BoardMeta }) {
   return (
     <div className="anim-panel">
@@ -808,6 +886,12 @@ function NoticeRows({
                 className="min-w-0 flex-1 text-left disabled:opacity-50"
               >
                 <span className="flex flex-wrap items-center gap-x-2 gap-y-1">
+                  {/* 고정 배지는 줄 맨 앞 — 왜 이 글이 위에 있는지가 제목보다 먼저 읽혀야 한다 */}
+                  {pinnable && rec.pinned && (
+                    <span className="cms-badge border border-yonsei-navy/40 bg-yonsei-navy/[0.06] text-yonsei-navy">
+                      고정
+                    </span>
+                  )}
                   <span className="truncate text-sm font-semibold text-content">{item.titleKo}</span>
                   {/* 배지는 BoardMeta 로 알 수 있는 것만 — 없는 정보를 지어내지 않는다 */}
                   {meta.hasHost && host !== '' && (
@@ -832,6 +916,21 @@ function NoticeRows({
                 )}
               </button>
               <span className="flex shrink-0 items-center gap-3">
+                {pinnable && onTogglePin && (
+                  <button
+                    type="button"
+                    onClick={() => onTogglePin(item.id, !rec.pinned)}
+                    disabled={saving}
+                    className={cn(
+                      'text-xs font-semibold transition-colors disabled:opacity-40',
+                      rec.pinned
+                        ? 'text-content-faint hover:text-content'
+                        : 'text-yonsei-blue hover:text-yonsei-navy',
+                    )}
+                  >
+                    {rec.pinned ? '해제' : '고정'}
+                  </button>
+                )}
                 <button
                   type="button"
                   onClick={() => onEdit(item.id)}
@@ -858,7 +957,17 @@ function NoticeRows({
 }
 
 /** 뉴스형 — 대표 이미지와 요약이 판단 근거라 카드로 편다 */
-function NewsCards({ items, selected, busy, saving, onToggle, onEdit, onDelete }: ListProps) {
+function NewsCards({
+  items,
+  selected,
+  busy,
+  saving,
+  pinnable,
+  onToggle,
+  onEdit,
+  onDelete,
+  onTogglePin,
+}: ListProps) {
   return (
     <div className="anim-panel mt-6 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
       {items.map((item) => {
@@ -891,6 +1000,12 @@ function NewsCards({ items, selected, busy, saving, onToggle, onEdit, onDelete }
                   대표 이미지 없음
                 </span>
               )}
+              {/* 고정 배지는 좌상단 — 분류 배지가 이미 우상단을 쓰고 있다 */}
+              {pinnable && rec.pinned && (
+                <span className="absolute left-0 top-0 bg-yonsei-navy px-2 py-1 text-[10px] font-extrabold tracking-wide text-white">
+                  고정
+                </span>
+              )}
               <span className="absolute right-0 top-0 bg-yonsei-navy/85 px-2 py-1 text-[10px] font-extrabold tracking-wide text-white">
                 {CATEGORY_LABELS[rec.category ?? 'notice'] ?? '공지'}
               </span>
@@ -921,6 +1036,21 @@ function NewsCards({ items, selected, busy, saving, onToggle, onEdit, onDelete }
                 <span className="truncate text-[11px] text-content-faint">/{item.subId}</span>
               </label>
               <span className="flex shrink-0 items-center gap-3">
+                {pinnable && onTogglePin && (
+                  <button
+                    type="button"
+                    onClick={() => onTogglePin(item.id, !rec.pinned)}
+                    disabled={saving}
+                    className={cn(
+                      'text-xs font-semibold transition-colors disabled:opacity-40',
+                      rec.pinned
+                        ? 'text-content-faint hover:text-content'
+                        : 'text-yonsei-blue hover:text-yonsei-navy',
+                    )}
+                  >
+                    {rec.pinned ? '해제' : '고정'}
+                  </button>
+                )}
                 <button
                   type="button"
                   onClick={() => onEdit(item.id)}

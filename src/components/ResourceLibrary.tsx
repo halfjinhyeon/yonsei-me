@@ -36,6 +36,8 @@ export interface ResourceItem {
   category?: 'form' | 'rule';
   /** 상세 경로 (`/news/post/{id}`) */
   href: string;
+  /** 목록 최상단 고정 글 — 핀 배지를 붙인다(정렬은 상류 fetchBoardData 가 이미 마쳤다) */
+  pinned?: boolean;
   attachments: ResourceAttachment[];
   /** 소문자 검색 인덱스 — 제목·발췌·본문 평문·첨부 라벨을 이어 붙인 것 */
   searchText: string;
@@ -231,6 +233,8 @@ function ResourceRow({
   onZip: () => void;
 }) {
   const t = useTranslations('news');
+  // 고정 라벨은 게시판 공통 문구라 board 네임스페이스에서 가져온다(BoardList 와 같은 키)
+  const tBoard = useTranslations('board');
   const files = item.attachments;
   const meta = buildMeta(item, locale, t);
 
@@ -238,22 +242,36 @@ function ResourceRow({
     <li className="border-b border-surface-border last:border-b-0">
       <div className="grid grid-cols-1 items-start gap-x-8 gap-y-4 py-6 tab:grid-cols-[minmax(0,1fr)_13.75rem] tab:items-center tab:py-[1.625rem]">
         <div className="flex min-w-0 flex-col items-start">
-          {item.category && (
-            <span
-              className={cn(
-                'inline-block text-xs font-bold',
-                item.category === 'form'
-                  ? 'bg-yonsei-navy px-2.5 py-1 text-white'
-                  : 'border border-yonsei-navy px-[0.5625rem] py-[0.1875rem] text-yonsei-navy',
+          {/* 배지 줄 — 고정 핀이 먼저, 그 뒤에 분류(서식/규정). BoardList 와 같은 문법이되
+              자료실 행은 메타가 촘촘해 한 치수 작게 쓴다. */}
+          {(item.pinned || item.category) && (
+            <span className="flex flex-wrap items-center gap-2">
+              {item.pinned && (
+                <span className="inline-flex items-center gap-1 border border-yonsei-navy bg-surface px-2 py-[0.125rem] text-[0.6875rem] font-bold text-yonsei-navy">
+                  <svg aria-hidden="true" viewBox="0 0 24 24" className="h-3 w-3 fill-current">
+                    <path d="M16 3v2l-1 1v5l3 3v2h-5v5l-1 1-1-1v-5H6v-2l3-3V6L8 5V3h8Z" />
+                  </svg>
+                  {tBoard('pinned')}
+                </span>
               )}
-            >
-              {t(item.category === 'form' ? 'library.catForm' : 'library.catRule')}
+              {item.category && (
+                <span
+                  className={cn(
+                    'inline-block text-xs font-bold',
+                    item.category === 'form'
+                      ? 'bg-yonsei-navy px-2.5 py-1 text-white'
+                      : 'border border-yonsei-navy px-[0.5625rem] py-[0.1875rem] text-yonsei-navy',
+                  )}
+                >
+                  {t(item.category === 'form' ? 'library.catForm' : 'library.catRule')}
+                </span>
+              )}
             </span>
           )}
           <h3
             className={cn(
               'flex flex-wrap items-center gap-2 text-lg font-bold leading-snug text-content tab:text-[1.1875rem]',
-              item.category && 'mt-2.5',
+              (item.pinned || item.category) && 'mt-2.5',
             )}
           >
             <Link href={item.href} className="transition-colors hover:text-yonsei-blue">

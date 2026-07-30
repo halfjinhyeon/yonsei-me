@@ -35,6 +35,9 @@ export async function GET(request: Request): Promise<Response> {
     .from('posts')
     .select('*, attachments(*)')
     .eq('board', board)
+    // 고정 글을 맨 위로 — CMS 목록이 사이트 목록과 같은 순서로 보여야 관리자가
+    // "고정한 결과"를 이 화면에서 그대로 확인할 수 있다(클라이언트 재정렬 불필요).
+    .order('pinned', { ascending: false })
     .order('created_at', { ascending: false });
   if (error) return Response.json({ error: error.message }, { status: 500 });
   return Response.json({ items: (data ?? []).map(rowToEditRecord) });

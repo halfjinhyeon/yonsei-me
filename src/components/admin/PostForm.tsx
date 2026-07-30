@@ -516,6 +516,28 @@ export function PostForm({
             </div>
           </MetaField>
 
+          {/* 목록 고정 — 글 목록을 가진 게시판에만. 일정·인스타그램(noBody)은 목록이
+              달력·그리드라 "맨 위"라는 개념이 성립하지 않는다. */}
+          {!meta.noBody && (
+            <MetaField label="목록 고정" full>
+              <label className="flex items-start gap-2.5 text-[13px] text-content">
+                <input
+                  type="checkbox"
+                  checked={!!rec.pinned}
+                  onChange={(e) => set('pinned', e.target.checked)}
+                  className="mt-0.5 h-4 w-4 shrink-0 accent-yonsei-blue"
+                />
+                <span>
+                  <span className="font-semibold">이 글을 목록 최상단에 고정합니다</span>
+                  <span className="mt-0.5 block text-[11px] leading-relaxed text-content-faint">
+                    고정된 글은 게시판 목록과 홈 등 이 게시판을 읽는 모든 영역에서 맨 위에 옵니다.
+                    고정 글이 여럿이면 서로는 최신순입니다.
+                  </span>
+                </span>
+              </label>
+            </MetaField>
+          )}
+
           {/* 동문 소식·네트워크: 특정 날짜가 정해진 행사인지 — 체크 시 캘린더 '동문'에 표시 */}
           {meta.hasEventFlag && (
             <MetaField label="행사 여부" full>

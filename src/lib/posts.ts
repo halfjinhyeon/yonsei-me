@@ -86,6 +86,8 @@ interface DbPost {
   event_date: string | null;
   end_date: string | null;
   link_url: string | null;
+  /** 목록 최상단 고정 — 구 행은 null(스키마 추가 이전) */
+  pinned: boolean | null;
   thumbnail_url: string | null;
   created_at: string;
   attachments: DbAttachment[] | null;
@@ -152,6 +154,8 @@ function toNews(r: DbPost): NewsItem {
     body: loc(r.body_html_ko, r.body_html_en),
     image: thumbOf(r) ?? '',
     ...(attsOf(r) ? { attachments: attsOf(r) } : {}),
+    // 고정은 켜졌을 때만 실어 보낸다 — 값이 있을 때만 넣는 다른 선택 필드와 같은 관례
+    ...(r.pinned ? { pinned: true } : {}),
   };
 }
 
@@ -168,6 +172,8 @@ function toNotice(r: DbPost): Notice {
     ...(attsOf(r) ? { attachments: attsOf(r) } : {}),
     // 게시판 자체 분류(자료실의 서식/규정 등) — 값이 있을 때만 실어 보낸다
     ...(r.category ? { category: r.category } : {}),
+    // 고정(toSeminar·toEvent·toAlumniEvent 가 스프레드로 상속받는다)
+    ...(r.pinned ? { pinned: true } : {}),
   };
 }
 
@@ -195,6 +201,18 @@ function toAlumniEvent(r: DbPost): AlumniEvent {
 const byDateDesc = <T extends { date: string }>(arr: T[]) =>
   arr.slice().sort((a, b) => (a.date < b.date ? 1 : -1));
 
+/** 고정 글 먼저, 그 안에서(그리고 나머지도) 최신순 — 게시판 목록 공통 정렬 */
+const byPinnedDate = <T extends { date: string; pinned?: boolean }>(arr: T[]) =>
+  arr.slice().sort(
+    (a, b) => (b.pinned ? 1 : 0) - (a.pinned ? 1 : 0) || (a.date < b.date ? 1 : -1),
+  );
+
+/** git 폴백용 — 날짜 재정렬 없이 고정만 앞으로(파일 순서 보존, 안정 분할) */
+const pinnedFirst = <T extends { pinned?: boolean }>(arr: T[]) => [
+  ...arr.filter((p) => p.pinned),
+  ...arr.filter((p) => !p.pinned),
+];
+
 async function rowsOf(board: string): Promise<DbPost[]> {
   return (await fetchAllRows()).filter((r) => r.board === board);
 }
@@ -202,13 +220,13 @@ async function rowsOf(board: string): Promise<DbPost[]> {
 // ── 공개 API (기존 content.ts 이름과 대응) ─────────────────────────────
 
 export async function fetchNews(): Promise<NewsItem[]> {
-  if (postsSource() === 'git') return gitNews;
-  return byDateDesc((await rowsOf('news')).map(toNews));
+  if (postsSource() === 'git') return pinnedFirst(gitNews);
+  return byPinnedDate((await rowsOf('news')).map(toNews));
 }
 
 export async function fetchAlumniNews(): Promise<NewsItem[]> {
-  if (postsSource() === 'git') return gitAlumniNews;
-  return byDateDesc((await rowsOf('alumniNews')).map(toNews));
+  if (postsSource() === 'git') return pinnedFirst(gitAlumniNews);
+  return byPinnedDate((await rowsOf('alumniNews')).map(toNews));
 }
 
 export async function fetchNewsBySlug(slug: string): Promise<NewsItem | undefined> {
@@ -279,21 +297,36 @@ export async function fetchAlumniNewsBySlug(slug: string): Promise<NewsItem | un
 
 /** board.json 대응 — 게시판별 배열 묶음 */
 export async function fetchBoardData(): Promise<typeof gitBoard> {
-  if (postsSource() === 'git') return gitBoard;
+  if (postsSource() === 'git') {
+    // 폴백에서도 고정은 지킨다 — 같은 모양을 그대로 돌려주되 각 배열만 앞당긴다
+    return {
+      seminars: pinnedFirst(gitBoard.seminars),
+      events: pinnedFirst(gitBoard.events),
+      noticesUndergrad: pinnedFirst(gitBoard.noticesUndergrad),
+      noticesGraduate: pinnedFirst(gitBoard.noticesGraduate),
+      noticesExternal: pinnedFirst(gitBoard.noticesExternal),
+      noticesScholarship: pinnedFirst(gitBoard.noticesScholarship),
+      thesis: pinnedFirst(gitBoard.thesis),
+      career: pinnedFirst(gitBoard.career),
+      resources: pinnedFirst(gitBoard.resources),
+      internships: pinnedFirst(gitBoard.internships),
+      alumniEvents: pinnedFirst(gitBoard.alumniEvents),
+    };
+  }
   const rows = await fetchAllRows();
   const of = (b: string) => rows.filter((r) => r.board === b);
   return {
-    seminars: byDateDesc(of('seminars').map(toSeminar)),
-    events: byDateDesc(of('events').map(toEvent)),
-    noticesUndergrad: byDateDesc(of('noticesUndergrad').map(toNotice)),
-    noticesGraduate: byDateDesc(of('noticesGraduate').map(toNotice)),
-    noticesExternal: byDateDesc(of('noticesExternal').map(toNotice)),
-    noticesScholarship: byDateDesc(of('noticesScholarship').map(toNotice)),
-    thesis: byDateDesc(of('thesis').map(toNotice)),
-    career: byDateDesc(of('career').map(toNotice)),
-    resources: byDateDesc(of('resources').map(toNotice)),
-    internships: byDateDesc(of('internships').map(toNotice)),
-    alumniEvents: byDateDesc(of('alumniEvents').map(toAlumniEvent)),
+    seminars: byPinnedDate(of('seminars').map(toSeminar)),
+    events: byPinnedDate(of('events').map(toEvent)),
+    noticesUndergrad: byPinnedDate(of('noticesUndergrad').map(toNotice)),
+    noticesGraduate: byPinnedDate(of('noticesGraduate').map(toNotice)),
+    noticesExternal: byPinnedDate(of('noticesExternal').map(toNotice)),
+    noticesScholarship: byPinnedDate(of('noticesScholarship').map(toNotice)),
+    thesis: byPinnedDate(of('thesis').map(toNotice)),
+    career: byPinnedDate(of('career').map(toNotice)),
+    resources: byPinnedDate(of('resources').map(toNotice)),
+    internships: byPinnedDate(of('internships').map(toNotice)),
+    alumniEvents: byPinnedDate(of('alumniEvents').map(toAlumniEvent)),
   };
 }
 
@@ -339,8 +372,8 @@ export async function fetchBoardPost(id: string): Promise<BoardPost | undefined>
 
 /** 동문 소식·네트워크 (동문 전용 라우트) */
 export async function fetchAlumniEvents(): Promise<AlumniEvent[]> {
-  if (postsSource() === 'git') return gitAlumniEvents;
-  return byDateDesc((await rowsOf('alumniEvents')).map(toAlumniEvent));
+  if (postsSource() === 'git') return pinnedFirst(gitAlumniEvents);
+  return byPinnedDate((await rowsOf('alumniEvents')).map(toAlumniEvent));
 }
 
 export async function fetchAlumniEventById(id: string): Promise<AlumniEvent | undefined> {

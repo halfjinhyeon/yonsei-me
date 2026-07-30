@@ -46,6 +46,7 @@ export default async function AlumniPage({ params }: { params: { locale: string 
     tag: tNews(`categories.${item.category}`),
     href: `/alumni/news/${item.slug}`,
     image: item.image || undefined,
+    pinned: item.pinned,
   }));
 
   // 동문 소식·네트워크: 세미나형 게시판(alumniEvents) → 게시판 행
@@ -56,6 +57,7 @@ export default async function AlumniPage({ params }: { params: { locale: string 
     subtitle: pick(e.host, locale),
     href: `/alumni/post/${e.id}`,
     image: e.image,
+    pinned: e.pinned,
   }));
 
   const tabs: TabItem[] = [

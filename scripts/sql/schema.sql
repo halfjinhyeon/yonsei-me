@@ -27,6 +27,7 @@ create table if not exists posts (
   event_date    date,                     -- 캘린더용 시작일(있으면)
   end_date      date,                     -- 행사·세미나·동문행사 종료일(null = 하루)
   link_url      text,                     -- 링크형 게시판(인스타그램): 실제 게시물 URL
+  pinned        boolean not null default false, -- 목록 최상단 고정(공지형 게시판의 '중요' 글)
   thumbnail_url text,
   published     boolean not null default true,
   created_at    timestamptz not null default now(),
@@ -39,6 +40,7 @@ alter table posts add column if not exists body_md_ko text;
 alter table posts add column if not exists body_md_en text;
 alter table posts add column if not exists end_date date;
 alter table posts add column if not exists link_url text;
+alter table posts add column if not exists pinned boolean not null default false;
 
 create index if not exists posts_board_created_idx on posts (board, created_at desc);
 create index if not exists posts_published_idx on posts (published);

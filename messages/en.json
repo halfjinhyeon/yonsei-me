@@ -127,7 +127,8 @@
       "empty": "No events",
       "catEvent": "Event",
       "catAlumni": "Alumni"
-    }
+    },
+    "pinned": "Pinned"
   },
   "pages": {
     "undergraduate": {
