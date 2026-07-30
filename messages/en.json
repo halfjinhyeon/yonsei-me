@@ -313,7 +313,7 @@
     },
     "newsEvents": {
       "title": "News",
-      "more": "View more",
+      "more": "VIEW MORE",
       "counter": "{current} / {total}",
       "goTo": "Go to item {n}",
       "goToTitle": "Feature this item: {title}",

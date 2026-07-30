@@ -313,7 +313,7 @@
     },
     "newsEvents": {
       "title": "뉴스",
-      "more": "자세히보기",
+      "more": "VIEW MORE",
       "counter": "{current} / {total}",
       "goTo": "{n}번째 소식 보기",
       "goToTitle": "{title} — 대표 뉴스로 보기",

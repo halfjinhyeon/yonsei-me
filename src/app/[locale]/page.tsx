@@ -140,8 +140,11 @@ export default async function HomePage({ params }: { params: { locale: string } 
       return {
         date: n.date,
         title: pick(n.title, locale).trim() || n.title.ko,
-        // 본문 원본 우선, 없으면 thumbnail 폴백(빈 문자열이면 플레이스홀더로 처리되도록 undefined)
+        // 좌측 대표 카드 = 본문 원본 우선, 없으면 thumbnail 폴백
+        // (빈 문자열이면 플레이스홀더로 처리되도록 undefined)
         image: (body ? firstBodyImage(body) : undefined) || n.image || undefined,
+        // 우측 목록 3행 = 게시물 대표사진 그대로(사용자 지시 — 작은 칸에는 썸네일이 맞다)
+        thumb: n.image || undefined,
         href: `/news/${n.slug}`,
         kind: 'news' as const,
         ...(summary ? { summary } : {}),

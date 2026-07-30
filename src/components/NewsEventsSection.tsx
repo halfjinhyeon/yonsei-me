@@ -14,9 +14,13 @@ const SWIPE_PX = 50;
 export interface NewsEventItem {
   date: string; // 'YYYY-MM-DD'
   title: string;
-  image?: string;
   href: string;
   kind: 'news' | 'event';
+  /** 좌측 대표 카드용 — 본문 첫 이미지(원본). 없으면 thumb 로 폴백(page.tsx 에서 조립) */
+  image?: string;
+  /** 우측 목록용 — 게시물 대표사진(thumbnail). 원본을 가로로 잘라 낸 별개 파일이라
+   *  대표 카드에는 쓰지 않지만, 132px 짜리 작은 칸에는 이쪽이 알맞다. */
+  thumb?: string;
   /** 카드 본문 발췌 — excerpt 우선, 없으면 body 평문 첫 문단(page.tsx 에서 조립) */
   summary?: string;
 }
@@ -251,10 +255,12 @@ export function NewsEventsSection({ items }: { items: NewsEventItem[] }) {
                       // 밀어 늘리지 못하게 잠근다(세 행 높이가 어긋나는 유일한 경로).
                       className="group flex w-full items-center gap-4 rounded-card bg-surface-soft p-4 text-left focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yonsei-blue lg:min-h-0 lg:gap-[18px] lg:overflow-hidden lg:p-5"
                     >
+                      {/* 목록 썸네일은 thumb(=게시물 대표사진)을 쓴다 — 대표 카드만 본문
+                          원본을 쓰고, 작은 칸에서는 잘린 썸네일이 오히려 알맞다(사용자 지시). */}
                       <span className="relative aspect-[4/3] w-[104px] shrink-0 overflow-hidden bg-[#c9daee] lg:w-[132px]">
-                        {it.image ? (
+                        {it.thumb || it.image ? (
                           <Image
-                            src={it.image}
+                            src={(it.thumb || it.image) as string}
                             alt=""
                             fill
                             draggable={false}
@@ -417,10 +423,16 @@ function HeroNewsCard({ item }: { item: NewsEventItem }) {
             카드 아래 패딩값과 무관하게 정확히 50px 이 된다. 좌측은 카드 패딩(lg 32 / xl 40)에
             맞춰 눈금을 유지한다. lg 미만에서는 카드 높이가 자유라 그대로 흐름에 둔다. */}
         <div className="mt-5 lg:absolute lg:bottom-[50px] lg:left-8 lg:mt-0 xl:left-10">
-          <span className="inline-flex items-center gap-2 border-b border-yonsei-blue pb-0.5 text-[15px] font-bold text-yonsei-blue">
+          {/* VIEW MORE › — 사용자 지시로 '자세히보기 →' 밑줄 링크를 대체한다. 밑줄·블루를
+              빼고 본문색 볼드 + 얇은 셰브런으로. 라벨은 로케일과 무관하게 영문 고정이라
+              messages 양쪽에 같은 값을 둔다(히어로의 'About →'와 같은 관례). */}
+          <span className="inline-flex items-center gap-2 text-[15px] font-bold tracking-[0.06em] text-content transition-colors group-hover:text-yonsei-blue">
             {t('newsEvents.more')}
-            <span aria-hidden="true" className="transition-transform group-hover:translate-x-1">
-              →
+            <span
+              aria-hidden="true"
+              className="text-lg leading-none transition-transform group-hover:translate-x-1"
+            >
+              ›
             </span>
           </span>
         </div>
