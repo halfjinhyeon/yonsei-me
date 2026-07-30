@@ -8,8 +8,9 @@
 //   · 그 외 11개 필드 전부        : 카드의 "자세히"로 폼을 열어 편집
 // 표 + 화면 전환 왕복 대신, 목록을 보면서 즉시 수정하는 흐름을 만든다.
 //
-// 값 편집은 트레이에 모였다가 한 번에 커밋된다. 사진 업로드만은 즉시 저장소에
-// 커밋된다(이미지 바이너리는 JSON 커밋과 별개 경로라 배칭할 수 없다).
+// 값 편집은 트레이에 모였다가 한 번에 저장된다. 사진 업로드만은 즉시 스토리지에
+// 올라간다(이미지 바이너리는 JSON 저장과 별개 경로라 배칭할 수 없다) — 다만 그
+// 결과 URL 은 photo 값 변경으로 트레이에 쌓여 다른 값들과 함께 저장된다.
 // (한국어 UI 문자열은 내부 운영 도구라 컴포넌트에 직접 둔다.)
 
 import { useEffect, useMemo, useRef, useState } from 'react';
@@ -38,8 +39,8 @@ function accentFor(name: string): string {
 export interface FacultyCardsEditorProps extends InlineEditorProps {
   inlineKeys: string[];
   filterKey?: string;
-  /** 사진 업로드 — repoPath 로 즉시 커밋 */
-  onUploadPhoto: (repoPath: string, file: File) => Promise<void>;
+  /** 사진 업로드 — 즉시 올리고 저장할 공개 URL 을 돌려준다 */
+  onUploadPhoto: (file: File) => Promise<string>;
 }
 
 /** 카드에서 바로 고치는 연락 필드 (라벨은 resources.ts 정의를 따른다) */
@@ -190,7 +191,7 @@ function FacultyCard({
   onDelete: (i: number) => void;
   onMove: (i: number, d: -1 | 1) => void;
   onPatch: (i: number, path: string, value: string) => void;
-  onUploadPhoto: (repoPath: string, file: File) => Promise<void>;
+  onUploadPhoto: (file: File) => Promise<string>;
 }) {
   const name = cellText(form, 'name');
   const title = cellText(form, 'title');
@@ -225,25 +226,17 @@ function FacultyCard({
     setPhotoBroken(false);
   }, [name]);
 
-  // 사진 필드 정의에서 저장 폴더를 읽는다(resources.ts 와 경로가 어긋나지 않도록)
-  const photoField = resource.fields.find((f) => f.kind === 'imageUpload' && f.key === 'photo');
-  const folder =
-    photoField && photoField.kind === 'imageUpload' ? photoField.folder : 'public/img/faculty';
-
+  // 업로드가 돌려준 공개 URL 을 photo 값으로 그대로 쓴다.
+  // ⚠️ 예전에는 `public/img/faculty/<이름>.<확장자>` 를 조립해 저장소에 커밋하고 그
+  // 경로를 값으로 넣었다(그래서 이름을 먼저 입력해야 했다). 저장이 Git 커밋을 떠난
+  // 뒤로는 저장 위치를 스토리지가 정하므로 여기서 경로를 만들지 않는다.
   async function upload(file: File) {
-    if (!name.trim()) {
-      setUploadError('이름을 먼저 입력하세요 — 파일명이 이름 기준입니다.');
-      return;
-    }
-    const ext = (file.name.split('.').pop() ?? 'jpg').toLowerCase();
-    const repoPath = `${folder}/${name.trim()}.${ext}`;
     setUploading(true);
-    setUploadPath(repoPath);
+    setUploadPath(file.name);
     setUploadError(null);
     try {
-      await onUploadPhoto(repoPath, file);
-      // public/ 를 제외한 웹 경로로 필드에 반영
-      onPatch(index, 'photo', repoPath.replace(/^public/, ''));
+      const url = await onUploadPhoto(file);
+      onPatch(index, 'photo', url);
       setBust((b) => b + 1);
     } catch (err) {
       setUploadError(err instanceof Error ? err.message : '업로드에 실패했습니다.');

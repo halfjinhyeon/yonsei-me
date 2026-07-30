@@ -1,11 +1,13 @@
 'use client';
 
 // 단일 마크다운 파일 편집기 (장학금 안내 등). 편집/미리보기 토글을 제공하고
-// 저장 시 GitHub Contents API 로 커밋한다("Git이 곧 DB").
+// 저장은 /api/admin/content(Supabase content_files + revalidateTag)로 한다 —
+// 재배포 없이 수 초 내 사이트에 반영된다.
 // (한국어 UI 문자열은 내부 운영 도구라 컴포넌트에 직접 둔다.)
 
 import { useCallback, useEffect, useState } from 'react';
-import { commitText, loadText, savedBanner, type RepoConfig } from '@/lib/admin/github';
+import { commitText, loadText, savedBanner } from '@/lib/admin/content-api';
+import type { RepoConfig } from '@/lib/admin/github';
 import { hasTableBlock } from '@/lib/admin/markdown-blocks';
 import type { MarkdownPageDef } from '@/lib/admin/resources';
 import { Prose } from '@/components/Prose';
@@ -77,15 +79,10 @@ export function MarkdownEditor({ config, page, onDirtyChange }: Props) {
     setSuccess(null);
     try {
       const next = withTrailingNewline(text);
-      const result = await commitText(
-        config,
-        page.file,
-        next,
-        sha,
-        `content: ${page.label} 페이지 수정`,
-      );
-      setSuccess(savedBanner(config, result.sha));
-      // 커밋 sha 는 blob sha 가 아니므로 새 sha/데이터 확보를 위해 재로드
+      await commitText(config, page.file, next, sha, `content: ${page.label} 페이지 수정`);
+      setSuccess(savedBanner(config));
+      // 저장으로 버전이 올라갔으므로 새 버전/데이터 확보를 위해 재로드
+      // (안 받으면 이어지는 저장이 버전 불일치로 409 가 된다)
       await load();
     } catch (err) {
       setSaveError(err instanceof Error ? err.message : '저장에 실패했습니다.');

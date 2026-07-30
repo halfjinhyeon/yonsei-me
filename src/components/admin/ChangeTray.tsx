@@ -14,7 +14,7 @@ import { useChangeTray, type PendingChange } from './ChangeTrayContext';
 
 export function ChangeTray() {
   const { source, saving, error, runSave } = useChangeTray();
-  const { showToast, setDeploy, saveBlock } = useAdminShell();
+  const { showToast, saveBlock } = useAdminShell();
 
   // 등록된 소스가 없거나 대기 변경이 없으면 트레이 자체를 그리지 않는다
   if (!source || source.changes.length === 0) return null;
@@ -36,10 +36,11 @@ export function ChangeTray() {
     if (blocked) return;
     const ok = await runSave();
     if (!ok) return;
-    showToast('저장했습니다 — 1~2분 내 사이트에 반영됩니다.');
-    // 배포 상태를 idle 로 되돌리는 타이머는 셸(AdminConsole)이 든다. 저장이 끝나면
-    // 대기 변경이 0이 되어 이 컴포넌트가 곧바로 언마운트되기 때문이다.
-    setDeploy('deploying');
+    // ⚠️ 배포 칩(setDeploy('deploying'))을 올리지 않는다. 트레이를 쓰는 화면은
+    // 콘텐츠 편집(CollectionEditor)뿐이고, 콘텐츠 저장은 Supabase 행 갱신 +
+    // revalidateTag('content') 라 재배포를 기다리지 않는다 — "배포 중 · 1~2분" 칩은
+    // 이미 반영이 끝난 변경을 두고 더 기다리라는 거짓 안내가 된다(BoardEditor 와 동일).
+    showToast('저장했습니다 — 곧 사이트에 반영됩니다.');
   }
 
   return (

@@ -1,8 +1,9 @@
 'use client';
 
 // 스키마 기반 컬렉션 편집기 — resources.ts 의 ResourceDef 를 읽어 목록·검색·
-// 순서 변경·폼 편집을 자동 구성한다. 정적 사이트라 서버 DB가 없어 GitHub
-// Contents API 로 content/*.json 을 직접 커밋한다("Git이 곧 DB").
+// 순서 변경·폼 편집을 자동 구성한다. 저장은 /api/admin/content(Supabase
+// content_files + revalidateTag)로 하며 재배포 없이 수 초 내 사이트에 반영된다.
+// (Stage C 이전에는 브라우저가 GitHub Contents API 로 직접 커밋했다.)
 //
 // 디프 최소화 원칙: 저장 시 전체를 재직렬화하지 않고, 원본 배열(raw)에서
 // 수정=해당 인덱스만 교체 / 추가=push / 삭제=splice 만 적용해 나머지 항목의
@@ -21,9 +22,9 @@ import {
   loadJson,
   loadTextOptional,
   savedBanner,
-  uploadImageToRepo,
-  type RepoConfig,
-} from '@/lib/admin/github';
+} from '@/lib/admin/content-api';
+import type { RepoConfig } from '@/lib/admin/github';
+import { uploadAttachment } from '@/lib/admin/storage';
 import {
   arrayToRecord,
   cellText,
@@ -92,7 +93,7 @@ export function CollectionEditor({ config, resource, onDirtyChange }: Props) {
   // 저장 결과를 화면 한 곳(상단 토스트·배포 칩·권한 배너)에서만 말하게 한다.
   // 트레이 저장은 ChangeTray 가 이미 토스트를 띄우므로, 여기서는 트레이를 거치지
   // 않는 경로(폼 저장·삭제)만 직접 알린다 — 아래 finishSave 의 notify 인자 참고.
-  const { showToast, setDeploy, setWriteDenied } = useAdminShell();
+  const { showToast, setWriteDenied } = useAdminShell();
 
   const toForm = useCallback(
     (r: unknown): FormRecord =>
@@ -105,10 +106,19 @@ export function CollectionEditor({ config, resource, onDirtyChange }: Props) {
     [resource],
   );
 
-  // imageUpload 필드가 호출: 이미지를 저장소에 커밋(dev 는 로컬 파일)
+  /**
+   * imageUpload 필드·교수 카드 사진이 호출: 이미지를 외부 스토리지(R2, dev 는
+   * public/uploads/)에 올리고 **저장할 공개 URL 을 돌려준다.**
+   *
+   * ⚠️ 예전에는 저장소에 `public/img/faculty/<이름>.<확장자>` 로 커밋하고 그 경로를
+   * 필드 값으로 조립했다. 콘텐츠 저장이 Git 커밋을 떠난 지금은 저장소에 바이너리를
+   * 넣을 경로가 없으므로, 첨부와 같은 업로드 경로를 쓰고 결과 URL 을 그대로 값으로
+   * 쓴다(파일명이 더 이상 이름과 묶이지 않는다 → 이름 매칭 규칙에 의존하지 않는다).
+   */
   const uploadImage = useCallback(
-    async (repoPath: string, file: File): Promise<void> => {
-      await uploadImageToRepo(config, repoPath, file);
+    async (file: File): Promise<string> => {
+      const { url } = await uploadAttachment(config, 'faculty', file);
+      return url;
     },
     [config],
   );
@@ -332,25 +342,22 @@ export function CollectionEditor({ config, resource, onDirtyChange }: Props) {
   );
 
   /**
-   * 커밋 후 재로드 (커밋 sha 는 blob sha 가 아니므로 새 sha 확보 필수).
+   * 저장 후 재로드 (버전이 올라갔으므로 새 버전 확보 필수 — 안 받으면 다음 저장이 409).
    *
    * notice: 트레이를 거치지 않은 저장(폼 저장·삭제)만 문구를 넘긴다. 트레이 경로는
-   * ChangeTray.handleSave 가 이미 토스트와 배포 칩을 올리므로 여기서 또 올리면
-   * 같은 말이 두 번 뜬다.
+   * ChangeTray.handleSave 가 이미 토스트를 올리므로 여기서 또 올리면 같은 말이 두 번 뜬다.
    */
-  function finishSave(commitSha: string, notice?: string) {
+  function finishSave(notice?: string) {
     setEditing(null);
     setMd(null);
     setOrderedRaw(null);
-    setSuccess(savedBanner(config, commitSha));
-    // 쓰기가 통했으니 권한 배너를 내린다 — 토큰 권한은 나중에 부여될 수 있고,
+    setSuccess(savedBanner(config));
+    // 쓰기가 통했으니 권한 배너를 내린다 — 권한은 나중에 부여될 수 있고,
     // 한 번 뜬 배너가 남아 있으면 이미 되는 일을 안 된다고 말하게 된다.
     setWriteDenied(false);
-    if (notice) {
-      showToast(notice);
-      // content/*.json 커밋은 재배포를 거쳐야 사이트에 반영된다(게시판과 다르다).
-      setDeploy('deploying');
-    }
+    // ⚠️ setDeploy('deploying') 를 부르지 않는다. 콘텐츠 저장은 Supabase 행 갱신 +
+    // revalidateTag('content') 라 재배포를 기다리지 않는다(BoardEditor 와 같은 이유).
+    if (notice) showToast(notice);
     void load();
   }
 
@@ -370,7 +377,7 @@ export function CollectionEditor({ config, resource, onDirtyChange }: Props) {
       // 폼 편집 중이면 잃는 것은 지금 폼 1건, 목록이면 트레이의 대기 변경 전부다
       setConflict({ pending: editing ? 1 : trayChanges.length });
     }
-    // 권한 부족은 이 화면이 판정하지 않는다 — github.ts 가 만든 문구를 신호로만
+    // 권한 부족은 이 화면이 판정하지 않는다 — 서버(admin API)가 만든 문구를 신호로만
     // 올리고, 배너와 저장 잠금은 셸이 한 곳에서 그린다.
     if (msg.includes('403') || msg.includes('권한이 부족합니다') || msg.includes('권한이 없습니다')) {
       setWriteDenied(true);
@@ -444,8 +451,8 @@ export function CollectionEditor({ config, resource, onDirtyChange }: Props) {
     }
 
     try {
-      // 로드 시점 배열 + sha 로 커밋한다. 그 사이 원격이 바뀌었으면 sha 불일치
-      // (409/422)로 GitHub가 거부하므로, 어긋난 인덱스로 다른 항목을 덮어쓸 일이 없다.
+      // 로드 시점 배열 + 버전(sha 자리)으로 저장한다. 그 사이 원본이 바뀌었으면
+      // 버전 불일치(409)로 서버가 거부하므로, 어긋난 인덱스로 다른 항목을 덮어쓸 일이 없다.
       const record = fromForm(form) as RawItem;
       const next = raw.slice();
       let action: string;
@@ -460,14 +467,14 @@ export function CollectionEditor({ config, resource, onDirtyChange }: Props) {
       const payload =
         resource.format === 'record' ? arrayToRecord(next, resource.idField!) : next;
       const message = `content: ${resource.label} ${action} — ${resource.summarize(form)}`;
-      const result = await commitJson(config, resource.file, payload, sha, message);
+      await commitJson(config, resource.file, payload, sha, message);
 
-      // 연결 마크다운 커밋 (본 파일 커밋 성공 후)
+      // 연결 마크다운 저장 (본 파일 저장 성공 후)
       if (resource.linkedMarkdown && md) {
         const path = resource.linkedMarkdown.pathOf(form);
         const content = md.text.trim();
         if (md.existed) {
-          // 기존 md 가 있고 내용이 바뀌었으면 커밋
+          // 기존 md 가 있고 내용이 바뀌었으면 저장
           if (md.text !== md.loaded) {
             await commitText(
               config,
@@ -489,7 +496,7 @@ export function CollectionEditor({ config, resource, onDirtyChange }: Props) {
         }
       }
 
-      finishSave(result.sha, '저장했습니다 — 1~2분 내 사이트에 반영됩니다.');
+      finishSave('저장했습니다 — 곧 사이트에 반영됩니다.');
     } catch (err) {
       handleSaveError(err, '저장에 실패했습니다.');
     } finally {
@@ -499,7 +506,7 @@ export function CollectionEditor({ config, resource, onDirtyChange }: Props) {
 
   // ---- 삭제 ----
 
-  // ⚠️ 삭제는 트레이에 쌓지 않고 확인 즉시 커밋한다. 삭제를 배칭하면 대기 중인
+  // ⚠️ 삭제는 트레이에 쌓지 않고 확인 즉시 저장한다. 삭제를 배칭하면 대기 중인
   // 다른 변경의 인덱스가 앞으로 밀려 엉뚱한 항목을 지우거나 덮어쓸 수 있다
   // (inlineEdits 의 키가 배열 인덱스다). 같은 이유로 삭제를 확정할 때는 대기 중인
   // 변경을 먼저 버린다 — 아래 모달이 그 사실을 미리 알린다.
@@ -511,19 +518,19 @@ export function CollectionEditor({ config, resource, onDirtyChange }: Props) {
     setSaveError(null);
     setSuccess(null);
     try {
-      // 저장과 동일하게 로드 시점 배열 + sha 사용 — 인덱스 어긋남은 sha 충돌로 방어
+      // 저장과 동일하게 로드 시점 배열 + 버전 사용 — 인덱스 어긋남은 버전 충돌로 방어
       const next = raw.slice();
       next.splice(index, 1);
       const payload =
         resource.format === 'record' ? arrayToRecord(next, resource.idField!) : next;
-      const result = await commitJson(
+      await commitJson(
         config,
         resource.file,
         payload,
         sha,
         `content: ${resource.label} 삭제 — ${resource.summarize(form)}`,
       );
-      finishSave(result.sha, '삭제했습니다 — 1~2분 내 사이트에 반영됩니다.');
+      finishSave('삭제했습니다 — 곧 사이트에 반영됩니다.');
     } catch (err) {
       handleSaveError(err, '삭제에 실패했습니다.');
     } finally {
@@ -586,7 +593,7 @@ export function CollectionEditor({ config, resource, onDirtyChange }: Props) {
         .slice(0, 3)
         .join(', ');
       const more = indices.length > 3 ? ` 외 ${indices.length - 3}건` : '';
-      const result = await commitJson(
+      await commitJson(
         config,
         resource.file,
         payload,
@@ -594,7 +601,7 @@ export function CollectionEditor({ config, resource, onDirtyChange }: Props) {
         `content: ${resource.label} 수정 — ${names}${more}`,
       );
       setInlineEdits({});
-      finishSave(result.sha);
+      finishSave();
     } catch (err) {
       // 오류 문구는 트레이가 띄운다. 여기서는 409/422 재로드만 하고 다시 던져
       // 트레이가 "실패했으니 변경을 지우지 않는다"를 판단할 수 있게 한다.
@@ -630,14 +637,14 @@ export function CollectionEditor({ config, resource, onDirtyChange }: Props) {
         resource.format === 'record'
           ? arrayToRecord(orderedRaw, resource.idField!)
           : orderedRaw;
-      const result = await commitJson(
+      await commitJson(
         config,
         resource.file,
         payload,
         sha,
         `content: ${resource.label} 순서 변경`,
       );
-      finishSave(result.sha);
+      finishSave();
     } catch (err) {
       handleSaveError(err, '순서 저장에 실패했습니다.', true);
       throw err;
@@ -997,7 +1004,7 @@ export function CollectionEditor({ config, resource, onDirtyChange }: Props) {
               <p className="font-semibold text-content">
                 {resource.summarize(formOf(deleting))}
               </p>
-              <p className="mt-2">삭제는 즉시 커밋되며 되돌리려면 저장소에서 복구해야 합니다.</p>
+              <p className="mt-2">삭제는 즉시 저장되어 사이트에 반영되며, 화면에서 되돌릴 수 없습니다.</p>
               {trayChanges.length > 0 && (
                 <p className="mt-2 text-[#b42318]">
                   저장 대기 중인 변경 {trayChanges.length}건은 함께 사라집니다 — 삭제하면 항목

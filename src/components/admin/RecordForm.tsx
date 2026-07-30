@@ -35,8 +35,9 @@ interface Props {
   onCancel: () => void;
   linkedMarkdown?: LinkedMarkdownField | null;
   onDirty?: () => void;
-  /** imageUpload 필드가 이미지를 저장소에 커밋할 때 호출 (config 를 가진 상위가 주입) */
-  onUploadImage?: (repoPath: string, file: File) => Promise<void>;
+  /** imageUpload 필드가 이미지를 올릴 때 호출 — 저장할 공개 URL 을 돌려준다
+   *  (업로드 경로·파일명은 상위/스토리지가 정한다. config 를 가진 상위가 주입) */
+  onUploadImage?: (file: File) => Promise<string>;
 }
 
 // 그리드 폭 → col-span 매핑 (컨테이너는 sm:grid-cols-6)
@@ -123,8 +124,11 @@ export function RecordForm({
     onSubmit(form);
   }
 
-  // 이미지 업로드: 파일명은 fileNameFrom 필드 값 기준(기존 이름-매칭 컨벤션과 일치),
-  // 저장소에 커밋 후 필드 값에 공개 URL 을 넣는다.
+  // 이미지 업로드: 업로드가 돌려준 공개 URL 을 그대로 필드 값으로 쓴다.
+  // ⚠️ 예전에는 `<folder>/<이름>.<확장자>` 를 조립해 저장소에 커밋하고 그 경로를
+  // 값으로 넣었다. 콘텐츠 저장이 Git 커밋을 떠난 뒤로는 저장 위치를 스토리지가
+  // 정하므로, 화면이 경로를 만들지 않고 결과 URL 을 받아 적는다(그래서 이름을 먼저
+  // 입력하라는 제약도 사라졌다 — 파일명이 더 이상 이름에 묶이지 않는다).
   async function handleUpload(
     f: Extract<FieldDef, { kind: 'imageUpload' }>,
     file: File | null | undefined,
@@ -134,20 +138,12 @@ export function RecordForm({
       setUploadState((s) => ({ ...s, [f.key]: { busy: false, error } }));
 
     if (!onUploadImage) return setErr('업로드를 사용할 수 없습니다.');
-    const nameLabel = fields.find((x) => x.key === f.fileNameFrom)?.label ?? f.fileNameFrom;
-    const base = String(form[f.fileNameFrom] ?? '').trim().replace(/[\\/:*?"<>|]/g, '');
-    if (!base) return setErr(`${nameLabel}을(를) 먼저 입력하세요.`);
     if (file.size > 5 * 1024 * 1024) return setErr('5MB 이하 이미지만 올릴 수 있습니다.');
-
-    const dot = file.name.lastIndexOf('.');
-    const ext = (dot > 0 ? file.name.slice(dot + 1) : 'jpg').toLowerCase().replace(/[^a-z0-9]/g, '') || 'jpg';
-    const repoPath = `${f.folder}/${base}.${ext}`;
-    const publicUrl = `/${repoPath.replace(/^public\//, '')}`;
 
     setUploadState((s) => ({ ...s, [f.key]: { busy: true, error: null } }));
     try {
-      await onUploadImage(repoPath, file);
-      setValue(f.key, publicUrl);
+      const url = await onUploadImage(file);
+      setValue(f.key, url);
       setPreviewBust((n) => n + 1);
       setUploadState((s) => ({ ...s, [f.key]: { busy: false, error: null } }));
     } catch (err) {
@@ -353,7 +349,9 @@ export function RecordForm({
     if (f.kind === 'imageUpload') {
       const url = str;
       const up = uploadState[f.key];
-      const hasImg = url.startsWith('/');
+      // 값은 사이트 내부 경로(/img/faculty/…)이거나 스토리지 절대 URL(업로드 결과)이다.
+      // 둘 다 미리보기를 띄운다 — 절대 URL 을 빼면 방금 올린 사진이 안 보인다.
+      const hasImg = url.startsWith('/') || /^https?:\/\//.test(url);
       return (
         <div>
           {labelEl}

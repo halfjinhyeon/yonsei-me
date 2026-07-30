@@ -10,15 +10,16 @@
 // 제목은 페이지 히어로(사이트 공용 <Hero>)가 이미 말했으므로 여기서 h1 을 다시
 // 두지 않는다 — 대시보드는 곧바로 "무엇을 할 수 있는지" 한 줄과 검색으로 시작한다.
 //
-// "지금 할 일"은 저장소 content/ 를 실제로 읽어 비어 있는 곳을 세어 보여준다.
-// 새 API 를 만들지 않고 기존 loadJson(GitHub Contents / dev 로컬 백엔드)만 쓴다.
+// "지금 할 일"은 콘텐츠를 실제로 읽어 비어 있는 곳을 세어 보여준다. 콘텐츠 파일은
+// 기존 loadJson(이제 /api/admin/content), 게시글 수는 게시판 admin API 로 센다.
 //
 // 내부 운영 도구라 한국어 UI 문자열을 컴포넌트에 직접 둔다.
 
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { cn } from '@/lib/utils';
-import { BOARDS } from '@/lib/admin/boards';
-import { loadJson, type RepoConfig } from '@/lib/admin/github';
+import { BOARDS, type BoardMeta } from '@/lib/admin/boards';
+import { loadJson } from '@/lib/admin/content-api';
+import type { RepoConfig } from '@/lib/admin/github';
 import { MENU_GROUPS, RESOURCES, type MenuEntry } from '@/lib/admin/resources';
 import {
   ALL_ENTRIES,
@@ -70,7 +71,7 @@ function Intro() {
     <p className="max-w-[62ch] text-sm leading-[1.8] text-content-soft">
       항목을 고르면 <strong className="font-semibold text-content">목록에서 바로</strong> 고칩니다.
       고친 내용은 아래 <strong className="font-semibold text-content">변경 트레이</strong>에 모이고,
-      한 번에 저장(커밋)하면 1~2분 내 사이트에 반영됩니다.
+      한 번에 저장하면 수 초 내 사이트에 반영됩니다.
     </p>
   );
 }
@@ -217,6 +218,38 @@ interface CourseRow {
   code?: string;
 }
 
+/**
+ * 글이 한 건도 없는 게시판. 게시글은 Supabase 에 살므로 게시판 admin API 로 센다
+ * (예전에는 레거시 content/board.json 을 읽어 세었고, 그 파일은 이미 낡은 데이터라
+ * 실제와 어긋났다). 대상은 종전과 같은 board.json 계열 — 뉴스형 2종은 원래 집계
+ * 대상이 아니었다.
+ *
+ * ⚠️ 게시판마다 목록을 한 번 받아 길이만 센다(카운트 전용 엔드포인트가 없다).
+ * 대상이 13종이라 요청이 적지 않으므로 대시보드 진입 때만 부른다 — 카운트 API 가
+ * 생기면 한 번으로 줄일 자리다.
+ *
+ * 실패하면 null(=판단 근거 없음)을 돌려주고 카드를 내린다. 이 집계 하나가 실패해
+ * 나머지 카드까지 사라지면 안 된다(dev 에 Supabase 설정이 없는 경우가 그렇다).
+ */
+async function findEmptyBoards(): Promise<BoardMeta[] | null> {
+  const targets = BOARDS.filter((b) => b.file === 'board.json');
+  try {
+    const counts = await Promise.all(
+      targets.map(async (b) => {
+        const res = await fetch(`/api/admin/posts?board=${encodeURIComponent(b.key)}`, {
+          cache: 'no-store',
+        });
+        if (!res.ok) throw new Error(`게시판 조회 실패 (${b.key})`);
+        const body = (await res.json()) as { items?: unknown[] };
+        return (body.items ?? []).length;
+      }),
+    );
+    return targets.filter((_, i) => counts[i] === 0);
+  } catch {
+    return null;
+  }
+}
+
 function TaskSection({ config, onOpen }: Props) {
   // null = 로딩 중, [] = 빈 곳 없음, undefined = 불러오기 실패(섹션 자체를 숨김)
   const [tasks, setTasks] = useState<TaskCard[] | null | undefined>(null);
@@ -226,8 +259,8 @@ function TaskSection({ config, onOpen }: Props) {
 
     async function run() {
       try {
-        const [board, faculty, labs, courses, descs] = await Promise.all([
-          loadJson<Record<string, unknown[]>>(config, 'content/board.json'),
+        const [emptyBoards, faculty, labs, courses, descs] = await Promise.all([
+          findEmptyBoards(),
           loadJson<FacultyRow[]>(config, RESOURCES.facultyDirectory.file),
           loadJson<LabRow[]>(config, RESOURCES.labs.file),
           loadJson<CourseRow[]>(config, RESOURCES.coursesUndergraduate.file),
@@ -237,20 +270,8 @@ function TaskSection({ config, onOpen }: Props) {
 
         const next: TaskCard[] = [];
 
-        // (1) 글이 한 건도 없는 게시판. board.json 에 사는 게시판만 대상
-        //     (뉴스류는 별도 파일이라 여기서 세지 않는다).
-        //
-        // ⚠️ 이 집계는 Supabase 가 아니라 레거시 content/board.json 을 본다. 그래서
-        //    그 파일에 아예 배열이 없는 게시판(일정·인스타그램 — 처음부터 DB 전용)은
-        //    "비었다"가 아니라 "판단 근거가 없다"가 맞다. 배열 부재를 0건으로 세면
-        //    글을 아무리 올려도 영원히 "글 없는 게시판"으로 잡힌다.
-        const emptyBoards = BOARDS.filter((b) => {
-          if (b.file !== 'board.json') return false;
-          const rows = board.data[b.key];
-          if (!Array.isArray(rows)) return false;
-          return rows.length === 0;
-        });
-        if (emptyBoards.length > 0) {
+        // (1) 글이 한 건도 없는 게시판 (findEmptyBoards — 실패 시 null 이라 카드를 낸다)
+        if (emptyBoards && emptyBoards.length > 0) {
           next.push({
             key: 'emptyBoards',
             n: emptyBoards.length,
@@ -305,7 +326,7 @@ function TaskSection({ config, onOpen }: Props) {
 
         setTasks(next);
       } catch {
-        // 토큰 없음·rate limit·네트워크 오류 — 대시보드 본체를 깨뜨리지 않고 조용히 숨긴다.
+        // 권한 없음·네트워크 오류 등 — 대시보드 본체를 깨뜨리지 않고 조용히 숨긴다.
         if (!cancelled) setTasks(undefined);
       }
     }
@@ -320,7 +341,7 @@ function TaskSection({ config, onOpen }: Props) {
 
   return (
     <section className="mt-14">
-      <SectionHead title="지금 할 일" caption="저장소 content/ 를 훑어 자동으로 찾은 빈 곳" />
+      <SectionHead title="지금 할 일" caption="콘텐츠를 훑어 자동으로 찾은 빈 곳" />
       {tasks === null ? (
         <div className="grid grid-cols-1 gap-[18px] sm:grid-cols-2 xl:grid-cols-4">
           {[0, 1, 2, 3].map((i) => (
@@ -436,8 +457,8 @@ function SectionHead({ title, caption }: { title: string; caption: string }) {
 const FIRST_TIME_STEPS = [
   { t: '콘텐츠 선택', b: '왼쪽 메뉴나 위 목록에서 편집할 항목(게시판·연혁·교수진·교과목 등)을 고릅니다.' },
   { t: '내용 편집', b: '한국어와 English를 입력합니다. “한→영 번역” 버튼으로 영문 초안을 채우고, 사진은 파일을 올리면 됩니다.' },
-  { t: '저장 = 커밋', b: '“저장” 버튼을 누르면 변경 내용이 GitHub 저장소에 바로 커밋됩니다.' },
-  { t: '자동 반영', b: 'Vercel이 1~2분 내 사이트에 자동 배포해 실제 페이지에 나타납니다.' },
+  { t: '저장', b: '“저장” 버튼을 누르면 변경 내용이 사이트 데이터베이스에 바로 기록됩니다.' },
+  { t: '자동 반영', b: '재배포를 기다릴 필요 없이 수 초 내 실제 페이지에 나타납니다.' },
 ];
 
 const NEW_ADMIN_STEPS = [
