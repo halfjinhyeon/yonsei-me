@@ -86,7 +86,14 @@ export function PostArticle({
 
   return (
     <article className="anim-panel">
-      <h2 className="mb-10 scroll-mt-24 text-display tracking-tight text-content">
+      {/* ⚠️ 탭 화면(TabbedContent)의 게시판명 h2 와 **완전히 같은 문법**이어야 한다 —
+          글꼴 var(--font-subhead)(Paperlogy) + text-display-sm + font-semibold.
+          예전에는 여기만 text-display(clamp 2~3rem, Pretendard 700)라, 목록에서 보던
+          '공지사항·뉴스'와 게시물에 들어갔을 때의 크기·서체가 서로 달랐다(사용자 지적). */}
+      <h2
+        style={{ fontFamily: 'var(--font-subhead), var(--font-sans), sans-serif' }}
+        className="mb-10 scroll-mt-24 text-display-sm font-semibold tracking-tight text-content"
+      >
         {boardName}
       </h2>
 

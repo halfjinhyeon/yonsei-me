@@ -151,7 +151,12 @@ export function NewsEventsSection({ items }: { items: NewsEventItem[] }) {
       // ⚠️ 상단 패딩 하한은 6.5rem(104px) — 사이트 헤더가 position:fixed 81px 라 100svh
       // 섹션의 위 81px 은 늘 헤더 밑에 깔린다. 이보다 좁으면 '뉴스' 라벨이 헤더에
       // 달라붙어 읽힌다(아래쪽은 가릴 것이 없으니 그대로 좁게 둔다).
-      className="full-bleed relative flex flex-col bg-surface py-12 sm:py-section-lg lg:h-[100svh] lg:pb-[clamp(2rem,5vh,3.5rem)] lg:pt-[clamp(6.5rem,10vh,8rem)]"
+      // ⚠️ h- 가 아니라 **min-h-** 여야 한다. 고정 높이로 두면 카드가 더 줄어들 수 없는
+      // 지점(텍스트 블록 224 + 사진 8/3 + 패딩 ≈ 636)에서 내용이 섹션 밖으로 넘쳐
+      // 아래 '우리의 연구실' 섹션이 그 위를 덮어 버린다(뷰포트 높이 820px 이하에서 실측,
+      // 최대 76px 침범). min-h 면 모자랄 때만 섹션이 늘어나고, 넉넉한 화면에서는
+      // 그대로 정확히 한 화면이다.
+      className="full-bleed relative flex flex-col bg-surface py-12 sm:py-section-lg lg:min-h-[100svh] lg:pb-[clamp(2rem,5vh,3.5rem)] lg:pt-[clamp(6.5rem,10vh,8rem)]"
     >
       {/* 배경 유선 장식(Cornell CHE) — 상단 패딩·헤더 행의 '기존' 여백에만 겹치는 0-높이
           absolute 레이어(자체 높이를 가지는 스트립 금지 — 사용자 지시). 본문에 닿기 전에
