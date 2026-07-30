@@ -489,6 +489,7 @@
     },
     "search": {
       "courses": "Search by course name or code",
+      "coursesDesc": "Search by name, code, or description",
       "labs": "Search labs or professors",
       "empty": "No results found. Try a different search term."
     },
@@ -502,7 +503,10 @@
       "elective": "Major Elective",
       "general": "General Education"
     },
-    "commonGroup": "Core & Common Courses"
+    "commonGroup": "Core & Common Courses",
+    "descColumn": "Description",
+    "descShow": "Description",
+    "descHide": "Hide"
   },
   "news": {
     "hero": {

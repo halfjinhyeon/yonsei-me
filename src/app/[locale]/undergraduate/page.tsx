@@ -115,6 +115,8 @@ export default async function UndergraduatePage({ params }: { params: { locale: 
           ariaLabel="교과목 분야 필터"
           emptyLabel={tStub('body')}
           grouped="semester"
+          // 교과목 소개 본문 — 체계도(CurriculumFlow)와 같은 원본을 편람 표에도 노출
+          descriptions={courseDescriptions}
         />
       ) : key === 'curriculum' ? (
         // 교과목 체계도 — 스윔레인 + 선수·연계 직각 화살표(구 CurriculumRoadmap 대체)

@@ -28,6 +28,9 @@ export interface CatalogColumn {
   label: string;
 }
 
+/** 학정번호 → 교과목 소개(content/course-descriptions.json). 체계도(CurriculumFlow)와 같은 원본. */
+export type CatalogDescriptions = Record<string, { nameEn?: string; desc?: string } | undefined>;
+
 /** 분야 탭 표시 순서 (research.fieldFilter 메시지 키와 동일) */
 const FIELDS: ResearchField[] = [
   'bioNano',
@@ -100,6 +103,10 @@ function matchesNum(raw: string | undefined, sel: string): boolean {
  * select(데이터에 있을 때만)와 과목명·학정번호 검색으로 함께 좁힌다. 기초/공통 과목
  * (field: null)은 '전체'에서만 보이고, 필터 전환 시 tbody 리마운트로 행 스태거
  * 등장을 재생한다 (교수진 탭 FacultyDirectoryGrid 패턴).
+ *
+ * descriptions 를 넘기면 grouped 표에 교과목 소개(설명) 열이 붙는다 — lg+ 는 과목명
+ * 옆 전용 열, lg 미만은 과목명 아래 토글로 펼치는 표 폭 전체 행(가로 스크롤 없이
+ * 같은 정보를 주되 기본은 접혀 있다).
  */
 export function CourseCatalog({
   courses,
@@ -107,11 +114,14 @@ export function CourseCatalog({
   ariaLabel,
   emptyLabel,
   grouped,
+  descriptions,
 }: {
   courses: CatalogCourse[];
   columns: CatalogColumn[];
   ariaLabel?: string;
   emptyLabel: string;
+  /** 교과목 소개 본문(+영문 과목명). 없으면 설명 열 자체가 렌더되지 않는다. */
+  descriptions?: CatalogDescriptions;
   /** 그룹 에디토리얼 표(홍익대 레퍼런스 스타일) 기준 — 대형 그룹 제목 + 널찍한 행.
    *  'semester' = 학년·학기 그룹(학부, year/semester 필요),
    *  'field' = 연구 분야 그룹(대학원, field 기반. null 은 공통·기초 그룹). */
@@ -122,6 +132,16 @@ export function CourseCatalog({
   const [query, setQuery] = useState('');
   const [year, setYear] = useState('all');
   const [semester, setSemester] = useState('all');
+  // 좁은 화면 설명 펼침 상태(행 단위) — 기본은 모두 접힘. 학정번호가 중복되는 과목이
+  // 있어(스페셜 토픽 등) 그룹 라벨·인덱스까지 넣은 키를 쓴다. lg 이상은 열로 보여
+  // 이 상태와 무관하다.
+  const [openDesc, setOpenDesc] = useState<ReadonlySet<string>>(new Set());
+  const toggleDesc = (key: string) =>
+    setOpenDesc((prev) => {
+      const next = new Set(prev);
+      if (!next.delete(key)) next.add(key);
+      return next;
+    });
 
   const counts = useMemo(() => {
     const map = { all: courses.length } as Record<Filter, number>;
@@ -160,10 +180,17 @@ export function CourseCatalog({
     );
     const q = query.trim().toLowerCase();
     if (!q) return rows;
-    return rows.filter(
-      (c) => c.name.toLowerCase().includes(q) || c.code.toLowerCase().includes(q),
-    );
-  }, [courses, filter, query, year, semester]);
+    // 설명을 노출하는 표에서는 설명 본문·영문 과목명까지 검색 대상(플레이스홀더도 함께 바뀐다)
+    return rows.filter((c) => {
+      const d = descriptions?.[c.code];
+      return (
+        c.name.toLowerCase().includes(q) ||
+        c.code.toLowerCase().includes(q) ||
+        (d?.nameEn ?? '').toLowerCase().includes(q) ||
+        (d?.desc ?? '').toLowerCase().includes(q)
+      );
+    });
+  }, [courses, filter, query, year, semester, descriptions]);
 
   // grouped 변형: 필터·검색을 통과한 과목을 그룹 기준(학기/분야)으로 묶어 정렬
   const groups = useMemo(() => {
@@ -185,6 +212,14 @@ export function CourseCatalog({
   // 에디토리얼 표에서 실제 데이터가 있는 컬럼만 노출(대학원은 종별·시간이 없다)
   const hasKind = useMemo(() => visible.some((c) => c.kind), [visible]);
   const hasHours = useMemo(() => visible.some((c) => c.hours), [visible]);
+  // 설명 열은 descriptions 를 받았고 본문이 하나라도 있을 때만. 필터 결과(visible)가
+  // 아니라 전체 목록 기준 — 필터를 바꿀 때마다 열이 생겼다 사라지지 않게 한다.
+  // (대학원 과목은 현재 nameEn 만 있고 desc 가 비어 있어 열이 붙지 않는다.)
+  const hasDesc = useMemo(
+    () => !!descriptions && courses.some((c) => descriptions[c.code]?.desc?.trim()),
+    [courses, descriptions],
+  );
+  const searchLabel = t(hasDesc ? 'search.coursesDesc' : 'search.courses');
 
   /** columns prop 에서 라벨 조회(페이지가 정의한 원본 표 라벨 재사용) */
   const colLabel = (key: CatalogColumn['key']) => columns.find((c) => c.key === key)?.label ?? key;
@@ -260,7 +295,7 @@ export function CourseCatalog({
         )}
         <div className="relative w-full sm:max-w-xs">
           <label htmlFor="course-search" className="sr-only">
-            {t('search.courses')}
+            {searchLabel}
           </label>
           <span
             aria-hidden="true"
@@ -276,7 +311,7 @@ export function CourseCatalog({
             type="search"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            placeholder={t('search.courses')}
+            placeholder={searchLabel}
             className="w-full rounded-lg border border-surface-border bg-surface py-2 pl-9 pr-3 text-sm text-content transition-colors placeholder:text-content-faint focus:border-yonsei-blue focus:outline-none"
           />
         </div>
@@ -320,9 +355,21 @@ export function CourseCatalog({
               <table className="mt-4 w-full border-collapse text-sm">
                   <thead>
                     <tr className="border-b border-t-2 border-surface-border border-t-yonsei-navy">
-                      <th className="py-3 pr-4 text-left text-xs font-bold text-content-faint">
+                      <th
+                        className={cn(
+                          'py-3 pr-4 text-left text-xs font-bold text-content-faint',
+                          // 설명 열이 있으면 과목명은 좁게 고정하고 남는 폭을 설명에 준다
+                          hasDesc && 'lg:w-[28%]',
+                        )}
+                      >
                         {colLabel('name')}
                       </th>
+                      {/* 설명 — 과목명 바로 옆(lg+ 전용 열). 좁은 화면에서는 과목 아래 별도 행 */}
+                      {hasDesc && (
+                        <th className="hidden px-5 py-3 text-left text-xs font-bold text-content-faint lg:table-cell">
+                          {t('descColumn')}
+                        </th>
+                      )}
                       {hasKind && (
                         <th className="w-16 px-2 py-3 text-center text-xs font-bold text-content-faint">
                           {colLabel('kind')}
@@ -341,25 +388,85 @@ export function CourseCatalog({
                   </thead>
                   <tbody>
                     {g.rows.map((course, i) => {
-                      // "한글명 (English Title)" 형태(대학원)는 영문을 보조 줄로 분리
+                      // "한글명 (English Title)" 형태(대학원)는 영문을 보조 줄로 분리.
+                      // 괄호 안에 라틴 문자가 있을 때만 — '공학수학(1)' 같은 국문 분번은
+                      // 과목명의 일부라 분리하면 안 된다.
+                      // 학부처럼 국문뿐이면 설명 데이터의 영문명(nameEn)으로 보충한다.
                       const m = course.name.match(/^(.+?)\s*\((.+)\)\s*$/);
-                      const mainName = m ? m[1] : course.name;
-                      const subName = m ? m[2] : null;
-                      return (
+                      const enTitle = m && /[A-Za-z]/.test(m[2]) ? m : null;
+                      const mainName = enTitle ? enTitle[1] : course.name;
+                      const info = descriptions?.[course.code];
+                      const subName = enTitle ? enTitle[2] : info?.nameEn ?? null;
+                      const body = info?.desc?.trim() ? info.desc : undefined;
+                      // 좁은 화면 설명 — 표 폭을 다 쓰는 별도 행(과목명 셀 안에 넣으면
+                      // 종별·학점 열이 자리를 잡아 두어 3~4단어마다 줄바꿈된다)을
+                      // 기본 접힘으로 두고 과목명 아래 토글로 펼친다. 49행이 전부
+                      // 펼쳐져 있으면 목록으로 훑기가 어렵다.
+                      const rowKey = `${g.label}-${course.code}-${i}`;
+                      const open = openDesc.has(rowKey);
+                      const descRow = hasDesc && body ? (
                         <tr
-                          key={`${course.code}-${i}`}
-                          className="anim-nav-item border-b border-surface-border"
+                          key={`${rowKey}-desc`}
+                          id={`desc-${rowKey}`}
+                          className={cn('border-b border-surface-border lg:hidden', !open && 'hidden')}
+                        >
+                          <td colSpan={2 + (hasKind ? 1 : 0) + (hasHours ? 1 : 0)} className="pb-5 pr-4 align-top">
+                            <p className="text-[13px] leading-relaxed text-content-soft">{body}</p>
+                          </td>
+                        </tr>
+                      ) : null;
+                      return [
+                        <tr
+                          key={rowKey}
+                          className={cn(
+                            'anim-nav-item border-b border-surface-border',
+                            // 펼친 상태에서는 과목 행과 설명 행 사이 구분선을 지운다(한 과목 = 한 덩어리)
+                            descRow && open && 'max-lg:border-b-0',
+                          )}
                           style={{ animationDelay: `${Math.min(i, 10) * 40}ms` }}
                         >
-                          <td className="py-5 pr-4 align-top">
+                          <td className={cn('py-5 pr-4 align-top', descRow && open && 'max-lg:pb-3')}>
                             <span className="block text-base font-bold leading-snug text-content">
                               {mainName}
                             </span>
                             <span className="mt-1 block text-xs font-medium tracking-wide text-content-faint">
                               {course.code}
-                              {subName && <> · {subName}</>}
+                              {/* 과목명에 붙어 있던 영문(대학원)은 그대로, 설명 데이터에서
+                                  보충한 영문명은 좁은 화면에서 생략 — 3~4줄로 접혀 난잡해진다 */}
+                              {subName &&
+                                (enTitle ? (
+                                  <> · {subName}</>
+                                ) : (
+                                  <span className="hidden lg:inline"> · {subName}</span>
+                                ))}
                             </span>
+                            {descRow && (
+                              <button
+                                type="button"
+                                onClick={() => toggleDesc(rowKey)}
+                                aria-expanded={open}
+                                aria-controls={`desc-${rowKey}`}
+                                className="mt-2.5 inline-flex items-center gap-1 rounded-[2px] border border-surface-border px-2 py-1 text-[11px] font-semibold text-content-soft transition-colors hover:border-yonsei-navy hover:text-yonsei-navy focus-visible:outline focus-visible:outline-2 focus-visible:outline-yonsei-blue lg:hidden"
+                              >
+                                {t(open ? 'descHide' : 'descShow')}
+                                <svg
+                                  viewBox="0 0 10 6"
+                                  className={cn('h-1.5 w-2.5 transition-transform', open && 'rotate-180')}
+                                  fill="none"
+                                  stroke="currentColor"
+                                  strokeWidth="1.6"
+                                  aria-hidden="true"
+                                >
+                                  <path d="M1 1l4 4 4-4" strokeLinecap="round" />
+                                </svg>
+                              </button>
+                            )}
                           </td>
+                          {hasDesc && (
+                            <td className="hidden px-5 py-5 align-top text-sm leading-relaxed text-content-soft lg:table-cell">
+                              {body ?? <span className="text-content-faint">—</span>}
+                            </td>
+                          )}
                           {hasKind && (
                             <td className="px-2 py-5 text-center align-top">
                               <KindBadge kind={course.kind} />
@@ -373,8 +480,9 @@ export function CourseCatalog({
                               {course.hours}
                             </td>
                           )}
-                        </tr>
-                      );
+                        </tr>,
+                        descRow,
+                      ];
                     })}
                   </tbody>
               </table>

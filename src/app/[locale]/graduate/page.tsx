@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import { Hero } from '@/components/Hero';
 import { TabbedContent, type TabItem } from '@/components/TabbedContent';
 import {
+  getCourseDescriptionsRuntime,
   getCoursesGraduateRuntime,
   getLabsDirectoryRuntime,
   getPageMarkdownRuntime,
@@ -54,6 +55,7 @@ export default async function GraduatePage({ params }: { params: { locale: strin
 
   // 콘텐츠 데이터 — 소스(db/git)는 lib/content-runtime 이 판별.
   const coursesGraduate = await getCoursesGraduateRuntime();
+  const courseDescriptions = await getCourseDescriptionsRuntime();
   const labs = await getLabsDirectoryRuntime();
   const requirementsMarkdown = (await getPageMarkdownRuntime('graduate-requirements')) ?? '';
 
@@ -77,6 +79,10 @@ export default async function GraduatePage({ params }: { params: { locale: strin
           ariaLabel="교과목 분야 필터"
           emptyLabel={tStub('body')}
           grouped="field"
+          // 교과목 소개 본문 — 현재 대학원 과목은 영문명만 있고 desc 가 모두 비어 있어
+          // 설명 열이 렌더되지 않는다(CourseCatalog 가 본문 유무로 판단). CMS 에서
+          // 채우는 즉시 학부와 같은 모양으로 열이 붙는다.
+          descriptions={courseDescriptions}
         />
       ) : undefined,
     })),

@@ -489,6 +489,7 @@
     },
     "search": {
       "courses": "과목명·학정번호 검색",
+      "coursesDesc": "과목명·학정번호·설명 검색",
       "labs": "연구실·교수명 검색",
       "empty": "검색 결과가 없습니다. 다른 검색어를 입력해 보세요."
     },
@@ -502,7 +503,10 @@
       "elective": "전공선택",
       "general": "대학교양"
     },
-    "commonGroup": "공통·기초 과목"
+    "commonGroup": "공통·기초 과목",
+    "descColumn": "교과목 소개",
+    "descShow": "교과목 소개",
+    "descHide": "접기"
   },
   "news": {
     "hero": {
