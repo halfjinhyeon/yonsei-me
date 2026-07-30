@@ -1,7 +1,8 @@
 // 콘텐츠 파일(JSON·마크다운) → Supabase content_files 이전 스크립트 (백엔드 전환 Stage A).
 //
 // 실행:
-//   node scripts/migrate-content.mjs                    # origin/main 원문을 적재(upsert)
+//   node scripts/migrate-content.mjs                    # 적재 — 단 DB 와 다른 파일은 건너뛴다
+//   node scripts/migrate-content.mjs --force            # DB 와 달라도 소스로 덮어쓴다
 //   node scripts/migrate-content.mjs --verify           # 쓰기 없이 DB↔git 바이트 비교만
 //   node scripts/migrate-content.mjs --source=worktree  # 로컬 작업 트리 파일을 소스로
 //   node scripts/migrate-content.mjs --enrich-photos    # 교수 사진 경로 채워서 적재
@@ -11,7 +12,13 @@
 // 그대로 적재하면 배포된 사이트에 없는 내용이 DB 에 들어간다. --source=worktree 는
 // 그 사실을 아는 사람이 명시적으로 켤 때만 쓴다.
 //
-// upsert 규칙: 같은 path 행이 있으면 body 를 update 하고 version 을 +1 한다
+// ⚠️ 덮어쓰기 가드 — 이 스크립트는 초기 시딩용이지만 실수로 재실행되기 쉽다. 이제 CMS 가
+// DB 를 직접 편집하므로, 기존 행의 body 가 소스와 다르면 "DB 쪽이 더 최신(CMS 편집분)"일
+// 가능성이 있다. 그래서 기본 동작은 **다르면 건너뛰기**이고, 덮어쓰려면 --force 가 필요하다.
+// 차이의 실물이 궁금하면 `node scripts/export-content.mjs`(드라이런)로 확인한다.
+//
+// 적재 규칙: 행이 없으면 insert(v1). 있고 내용이 같으면 아무것도 하지 않는다(불필요한
+// version 증가 금지). 있고 내용이 다르면 건너뛰거나(기본) --force 시 update + version+1
 // (supabase upsert 로는 version+1 같은 산술을 표현할 수 없어 존재 확인 후 분기).
 
 import { readFileSync, existsSync, readdirSync } from 'node:fs';
@@ -51,6 +58,7 @@ const FACULTY_JSON = 'content/faculty-directory.json';
 const args = process.argv.slice(2);
 const verifyOnly = args.includes('--verify');
 const enrichPhotos = args.includes('--enrich-photos');
+const force = args.includes('--force');
 const sourceArg = args.find((a) => a.startsWith('--source='))?.slice('--source='.length) ?? 'origin';
 if (sourceArg !== 'origin' && sourceArg !== 'worktree') {
   console.error(`알 수 없는 --source 값: ${sourceArg} (origin | worktree)`);
@@ -173,12 +181,14 @@ if (verifyOnly) {
   process.exit(diff > 0 || absent > 0 ? 1 : 0);
 }
 
-// ── 적재 (존재 확인 후 update/insert 분기 — version 산술 때문) ──
-const { data: existingRows, error: readErr } = await sb.from('content_files').select('path, version');
+// ── 적재 (존재 확인 후 update/insert 분기 — version 산술 + 덮어쓰기 가드 때문) ──
+const { data: existingRows, error: readErr } = await sb.from('content_files').select('path, body, version');
 if (readErr) { console.error('content_files 조회 실패:', readErr.message); process.exit(1); }
-const existing = new Map((existingRows ?? []).map((r) => [r.path, r.version]));
+const existing = new Map((existingRows ?? []).map((r) => [r.path, r]));
 
-let inserted = 0, updated = 0;
+if (force) console.log('⚠ --force: DB 내용이 소스와 달라도 덮어씁니다(CMS 편집분이 있으면 소실됩니다).');
+
+let inserted = 0, updated = 0, unchanged = 0, skippedDiff = 0;
 for (const [path, body] of bodies) {
   const prev = existing.get(path);
   if (prev === undefined) {
@@ -186,16 +196,36 @@ for (const [path, body] of bodies) {
     if (error) { console.error(`insert 실패: ${path} —`, error.message); process.exit(1); }
     console.log(`  + 신규     ${path} (${body.length}자, v1)`);
     inserted += 1;
-  } else {
-    const { error } = await sb
-      .from('content_files')
-      .update({ body, version: prev + 1 })
-      .eq('path', path);
-    if (error) { console.error(`update 실패: ${path} —`, error.message); process.exit(1); }
-    console.log(`  ↑ 갱신     ${path} (${body.length}자, v${prev} → v${prev + 1})`);
-    updated += 1;
+    continue;
   }
+  if (prev.body === body) {
+    // 내용이 같으면 아무것도 하지 않는다 — 의미 없는 version 증가를 만들지 않기 위해
+    console.log(`  = 동일     ${path} (v${prev.version}, 변경 없음)`);
+    unchanged += 1;
+    continue;
+  }
+  if (!force) {
+    console.log(
+      `  · 건너뜀   ${path} (v${prev.version}, DB ${prev.body.length}자 / 소스 ${body.length}자)` +
+        ' — DB 쪽이 더 최신일 수 있습니다(CMS 편집분). 덮어쓰려면 --force',
+    );
+    skippedDiff += 1;
+    continue;
+  }
+  const { error } = await sb
+    .from('content_files')
+    .update({ body, version: prev.version + 1 })
+    .eq('path', path);
+  if (error) { console.error(`update 실패: ${path} —`, error.message); process.exit(1); }
+  console.log(`  ↑ 갱신     ${path} (${body.length}자, v${prev.version} → v${prev.version + 1})`);
+  updated += 1;
 }
 
-console.log(`\n완료: 신규 ${inserted} · 갱신 ${updated} · 건너뜀 ${missing.length}`);
+console.log(
+  `\n완료: 신규 ${inserted} · 갱신 ${updated} · 변경 없음 ${unchanged}` +
+    ` · 건너뜀(DB가 다름) ${skippedDiff} · 없음(소스) ${missing.length}`,
+);
+if (skippedDiff > 0) {
+  console.log('차이를 보려면 `node scripts/export-content.mjs`(드라이런)로 확인하세요.');
+}
 if (enrichPhotos) console.log(`사진 보강: ${enrichedFilled}개 레코드의 photo 를 채웠습니다.`);
