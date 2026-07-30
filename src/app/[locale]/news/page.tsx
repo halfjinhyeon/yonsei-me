@@ -223,8 +223,11 @@ export default async function NewsPage({ params }: { params: { locale: string } 
         title={tNews('hero.title')}
         subtitle={tNews('hero.subtitle')}
         breadcrumb={[{ label: tMenu('news.label') }]}
+        narrow
       />
-      <TabbedContent tabs={tabs} emptyLabel={tStub('empty')} navTitle={tMenu('news.label')} />
+      {/* narrow: 게시판 목록 페이지는 한 화면에 글이 많이 들어와야 한다 — 컨테이너를
+          NARROW_MAX_W(1284px)로 좁혀 브라우저 90% 축소와 비슷한 밀도를 100%에서 낸다 */}
+      <TabbedContent tabs={tabs} emptyLabel={tStub('empty')} navTitle={tMenu('news.label')} narrow />
     </>
   );
 }

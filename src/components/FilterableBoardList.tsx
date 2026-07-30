@@ -1,11 +1,16 @@
 'use client';
 
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { BoardList, type BoardRow } from '@/components/BoardList';
 import { BoardFilterBar, emptyFilter, isFilterActive, matchesFilter } from '@/components/BoardFilterBar';
+import { BoardPagination } from '@/components/BoardPagination';
 import { UnderlineTabs } from '@/components/UnderlineTabs';
 import type { Locale } from '@/i18n/routing';
+
+/** 한 페이지에 싣는 글 수 — 행 높이 ~180px 기준으로 한 페이지가 대략 2,000px.
+ *  이보다 길어지면 "스크롤로 끝까지 훑는" 목록이 되어 페이지 넘김의 의미가 사라진다. */
+const PAGE_SIZE = 10;
 
 /** 카테고리 필터 탭 정의 (예: 공지사항의 학부/대학원) */
 export interface BoardCategory {
@@ -37,6 +42,8 @@ export function FilterableBoardList({
   const t = useTranslations('news');
   const [filter, setFilter] = useState(emptyFilter);
   const [cat, setCat] = useState('all');
+  const [page, setPage] = useState(1);
+  const rootRef = useRef<HTMLDivElement>(null);
 
   const searchActive = isFilterActive(filter);
   const catActive = !!categories && cat !== 'all';
@@ -48,11 +55,36 @@ export function FilterableBoardList({
     return list;
   }, [items, catActive, cat, searchActive, filter]);
 
+  // 조건이 바뀌면 1페이지로 — 3페이지를 보던 중 검색하면 결과가 1페이지뿐일 수 있다
+  useEffect(() => setPage(1), [cat, filter]);
+
+  const pageCount = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE));
+  const current = Math.min(page, pageCount);
+  const paged = useMemo(
+    () => filtered.slice((current - 1) * PAGE_SIZE, current * PAGE_SIZE),
+    [filtered, current],
+  );
+
+  /** 페이지를 넘기면 목록 머리로 되돌린다 — 안 그러면 새 페이지의 중간부터 보인다.
+   *  헤더(64/80) + sticky 탭 바(48) 아래에 목록 첫 줄이 오도록 오프셋을 준다.
+   *  Lenis 가 있으면 그쪽 위치까지 맞춰야 다음 휠에서 옛 위치로 튀지 않는다. */
+  function goToPage(next: number) {
+    setPage(next);
+    const el = rootRef.current;
+    if (!el) return;
+    const headerH = window.matchMedia('(min-width: 1024px)').matches ? 80 : 64;
+    const top = Math.max(0, el.getBoundingClientRect().top + window.scrollY - headerH - 60);
+    const lenis = (window as unknown as { lenis?: { scrollTo: (t: number, o?: object) => void } })
+      .lenis;
+    if (lenis) lenis.scrollTo(top, { immediate: true });
+    else window.scrollTo(0, top);
+  }
+
   // 검색어가 적용돼 있으면 건수 노출(카테고리만으로는 목록이 곧 결과라 생략)
   const showCount = searchActive;
 
   return (
-    <div>
+    <div ref={rootRef}>
       {categories && categories.length > 0 && (
         <div className="mb-5 overflow-x-auto">
           <UnderlineTabs
@@ -80,10 +112,14 @@ export function FilterableBoardList({
       )}
       <BoardFilterBar value={filter} onChange={setFilter} resultCount={showCount ? filtered.length : null} />
       <BoardList
-        items={filtered}
+        items={paged}
         locale={locale}
         emptyLabel={searchActive ? t('search.empty') : emptyLabel}
       />
+      {/* 빈 목록에서는 페이지 컨트롤이 의미가 없다 — 빈 상태 안내만 남긴다 */}
+      {filtered.length > 0 && (
+        <BoardPagination page={current} pageCount={pageCount} onChange={goToPage} />
+      )}
     </div>
   );
 }

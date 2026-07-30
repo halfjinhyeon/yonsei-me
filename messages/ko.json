@@ -128,7 +128,13 @@
       "catEvent": "행사",
       "catAlumni": "동문"
     },
-    "pinned": "고정"
+    "pinned": "고정",
+    "pagination": {
+      "label": "게시물 페이지",
+      "prev": "이전 페이지",
+      "next": "다음 페이지",
+      "page": "{page}페이지"
+    }
   },
   "pages": {
     "undergraduate": {

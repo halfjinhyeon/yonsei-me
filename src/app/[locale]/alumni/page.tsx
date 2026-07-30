@@ -89,8 +89,10 @@ export default async function AlumniPage({ params }: { params: { locale: string 
         title={tAlumni('hero.title')}
         subtitle={tAlumni('hero.subtitle')}
         breadcrumb={[{ label: tMenu('alumni.label') }]}
+        narrow
       />
-      <TabbedContent tabs={tabs} emptyLabel={tStub('empty')} navTitle={tMenu('alumni.label')} />
+      {/* narrow: 동문 소식·행사도 게시판 목록이라 /news 와 같은 폭·밀도를 쓴다 */}
+      <TabbedContent tabs={tabs} emptyLabel={tStub('empty')} navTitle={tMenu('alumni.label')} narrow />
     </>
   );
 }

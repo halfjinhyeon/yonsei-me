@@ -23,6 +23,7 @@ export interface BoardRow {
  * 게시판 목록 — 에디토리얼 행 스타일 (홍익 조형대 뉴스 레퍼런스).
  * 좌: 네이비 배지(tag) + 큰 볼드 제목 + 발췌 2줄(subtitle) + 날짜,
  * 우: 16:10 썸네일(없으면 칸 자체를 생략 — 행 높이는 내용만큼). 행 사이는 헤어라인.
+ * 고정 글(pinned)은 행 전체를 옅은 바탕 + 좌측 네이비 룰로 구분한다.
  * 공지/뉴스/세미나/행사/학위논문/자료실/취업 등 모든 게시판 탭 공용.
  */
 export function BoardList({
@@ -51,34 +52,40 @@ export function BoardList({
     <ul className="divide-y divide-surface-border border-y border-surface-border">
       {items.map((item) => {
         const row = (
-          <div className="grid gap-5 py-7 sm:grid-cols-[minmax(0,1fr)_15rem] sm:gap-10 sm:py-8">
+          <div
+            className={cn(
+              'grid gap-4 py-6 sm:grid-cols-[minmax(0,1fr)_13.5rem] sm:gap-9 sm:py-7',
+              // 고정 글의 바탕색이 글자에 바로 붙지 않도록 좌우 여백을 준다
+              item.pinned && 'px-3.5 sm:px-[1.125rem]',
+            )}
+          >
             {/* 좌: 배지 · 제목 · 발췌 · 날짜(하단 고정) */}
             <div className="flex flex-col items-start">
               {/* 배지 줄 — 고정 핀이 먼저, 그 뒤에 게시판 태그. 둘 다 없으면 줄 자체를 내지 않는다.
                   외곽선 배지의 패딩을 0.0625rem 씩 줄인 이유는 1px 테두리 때문 — 칠한 배지와
                   나란히 설 때 높이가 어긋나면 안 된다(자료실 목록과 같은 보정). */}
               {(item.pinned || item.tag) && (
-                <span className="mb-3 flex flex-wrap items-center gap-2">
+                <span className="mb-2.5 flex flex-wrap items-center gap-2">
                   {item.pinned && (
-                    <span className="inline-flex items-center gap-1.5 border border-yonsei-navy bg-surface px-[0.5625rem] py-[0.1875rem] text-xs font-bold text-yonsei-navy">
-                      <svg aria-hidden="true" viewBox="0 0 24 24" className="h-3.5 w-3.5 fill-current">
+                    <span className="inline-flex items-center gap-1.5 border border-yonsei-navy bg-surface px-2 py-[0.125rem] text-[11px] font-bold text-yonsei-navy">
+                      <svg aria-hidden="true" viewBox="0 0 24 24" className="h-3 w-3 fill-current">
                         <path d="M16 3v2l-1 1v5l3 3v2h-5v5l-1 1-1-1v-5H6v-2l3-3V6L8 5V3h8Z" />
                       </svg>
                       {t('pinned')}
                     </span>
                   )}
                   {item.tag && (
-                    <span className="inline-block bg-yonsei-navy px-2.5 py-1 text-xs font-bold text-white">
+                    <span className="inline-block bg-yonsei-navy px-2 py-[0.1875rem] text-[11px] font-bold text-white">
                       {item.tag}
                     </span>
                   )}
                 </span>
               )}
-              <h3 className="line-clamp-2 text-lg font-bold leading-snug tracking-tight text-content transition-colors group-hover:text-yonsei-blue sm:text-xl">
+              <h3 className="line-clamp-2 text-base font-bold leading-snug tracking-tight text-content transition-colors group-hover:text-yonsei-blue sm:text-lg">
                 {item.title}
               </h3>
               {item.subtitle && (
-                <p className="mt-2.5 line-clamp-2 text-sm leading-relaxed text-content-soft">
+                <p className="mt-2 line-clamp-2 text-[13px] leading-relaxed text-content-soft">
                   {item.subtitle}
                 </p>
               )}
@@ -88,9 +95,9 @@ export function BoardList({
                 <time
                   dateTime={item.date}
                   className={cn(
-                    'block text-sm tabular-nums text-content-faint',
+                    'block text-[13px] tabular-nums text-content-faint',
                     item.image && 'mt-auto',
-                    item.subtitle ? 'pt-4' : 'pt-[1.875rem]',
+                    item.subtitle ? 'pt-3.5' : 'pt-[1.875rem]',
                   )}
                 >
                   {formatDate(item.date, locale)}
@@ -116,7 +123,12 @@ export function BoardList({
         );
 
         return (
-          <li key={item.id}>
+          // 고정 글은 옅은 블루그레이 바탕 + 좌측 네이비 룰 — 목록에서 먼저 잡히게 한다
+          // (본문 콜아웃과 같은 조합. 핀 배지는 흰 바탕이라 이 위에서 오히려 더 또렷하다)
+          <li
+            key={item.id}
+            className={cn(item.pinned && 'border-l-2 border-yonsei-navy bg-surface-soft')}
+          >
             {item.href ? (
               <Link href={item.href} className="group block">
                 {row}

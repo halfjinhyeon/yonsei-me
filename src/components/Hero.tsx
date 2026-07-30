@@ -1,6 +1,6 @@
 import { cn } from '@/lib/utils';
 import type { ReactNode } from 'react';
-import { Container } from './Container';
+import { Container, NARROW_MAX_W } from './Container';
 import { Link } from '@/i18n/navigation';
 import { useLocale, useTranslations } from 'next-intl';
 import { MeshCanvas } from './MeshCanvas';
@@ -24,6 +24,9 @@ interface HeroProps {
   image?: string;
   /** page variant에서 제목 위에 표시할 브레드크럼 (현재 페이지 항목만 전달) */
   breadcrumb?: HeroCrumb[];
+  /** 아래 본문이 좁은 폭(NARROW_MAX_W)을 쓰는 페이지에서 히어로 글줄의 좌측선을 맞춘다.
+   *  TabbedContent 의 narrow 와 같은 값을 넘겨야 히어로→탭바→목록이 한 선에 선다. */
+  narrow?: boolean;
 }
 
 /**
@@ -37,6 +40,7 @@ export function Hero({
   variant = 'page',
   image = '/img/hero.svg',
   breadcrumb,
+  narrow = false,
 }: HeroProps) {
   const lines = title.split('\n');
   const isLanding = variant === 'landing';
@@ -103,7 +107,13 @@ export function Hero({
         </>
       )}
 
-      <Container className={cn('relative w-full', isLanding ? 'pb-16 pt-28 sm:pb-20' : 'pb-10 pt-24')}>
+      <Container
+        className={cn(
+          'relative w-full',
+          isLanding ? 'pb-16 pt-28 sm:pb-20' : 'pb-10 pt-24',
+          narrow && NARROW_MAX_W,
+        )}
+      >
         {crumbs.length > 0 && (
           <ol className="anim-crumb mb-5 flex flex-wrap items-center gap-2 text-sm text-white/70">
             {crumbs.map((c, i) => {

@@ -128,7 +128,13 @@
       "catEvent": "Event",
       "catAlumni": "Alumni"
     },
-    "pinned": "Pinned"
+    "pinned": "Pinned",
+    "pagination": {
+      "label": "Post pages",
+      "prev": "Previous page",
+      "next": "Next page",
+      "page": "Page {page}"
+    }
   },
   "pages": {
     "undergraduate": {

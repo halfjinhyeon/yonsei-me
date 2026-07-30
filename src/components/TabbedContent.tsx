@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState, type ReactNode } from 'react';
 import gsap from 'gsap';
-import { Container } from '@/components/Container';
+import { Container, NARROW_MAX_W } from '@/components/Container';
 import { Prose } from '@/components/Prose';
 import { Link } from '@/i18n/navigation';
 import { cn } from '@/lib/utils';
@@ -24,12 +24,18 @@ export function TabbedContent({
   tabs,
   emptyLabel,
   navTitle,
+  narrow = false,
 }: {
   tabs: TabItem[];
   emptyLabel: string;
   /** 바의 드롭다운 앞에 표시할 그룹명 (예: "학부") */
   navTitle?: string;
+  /** 게시판 목록처럼 한 화면에 많은 항목을 보여야 하는 페이지용 좁은 폭(NARROW_MAX_W).
+   *  바와 본문 컨테이너에 함께 걸어 좌측 정렬선이 어긋나지 않게 한다.
+   *  같은 페이지의 Hero 에도 narrow 를 넘겨야 히어로까지 한 선에 선다. */
+  narrow?: boolean;
 }) {
+  const containerWidth = narrow ? NARROW_MAX_W : undefined;
   const [activeKey, setActiveKey] = useState(tabs[0]?.key);
   const active = tabs.find((t) => t.key === activeKey) ?? tabs[0];
 
@@ -204,7 +210,7 @@ export function TabbedContent({
         ref={barRef}
         className="sticky top-16 z-30 w-full border-b border-white/10 bg-yonsei-navy lg:top-20"
       >
-        <Container>
+        <Container className={containerWidth}>
           <nav aria-label="섹션 탭" className="flex h-12 items-stretch">
             {/* 홈 아이콘 — 흰색, hover 시 골드. 우측 구분선으로 그룹과 분리 */}
             <Link
@@ -289,7 +295,7 @@ export function TabbedContent({
         </Container>
       </div>
 
-      <Container className="py-10 lg:py-16">
+      <Container className={cn('py-10 lg:py-16', containerWidth)}>
         {/* 본문 (레이아웃에 이미 <main id="main">이 있어 중첩 방지를 위해 section 사용) */}
         <section className="min-w-0" aria-labelledby={`${active?.key}-title`}>
           <div key={active?.key} className="anim-panel relative isolate">

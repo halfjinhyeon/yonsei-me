@@ -41,8 +41,10 @@ export function matchesFilter(
   return inTitle() || inContent();
 }
 
+// 글자는 13px — 게시판 영역 전체를 기본 타이포의 90%로 낮춘 눈금에 맞춘다.
+// 패딩(py-2)은 그대로 둔다: 더 줄이면 터치 목표가 32px 밑으로 떨어진다.
 const inputClass =
-  'border border-surface-border bg-surface px-3 py-2 text-sm text-content transition-colors placeholder:text-content-faint focus:border-yonsei-blue focus:outline-none';
+  'border border-surface-border bg-surface px-3 py-2 text-[13px] text-content transition-colors placeholder:text-content-faint focus:border-yonsei-blue focus:outline-none';
 
 /**
  * 단일 게시판용 검색 바 — 실제 학부 사이트 게시판 UI 이식(사용자 캡처 기준).
@@ -115,7 +117,7 @@ export function BoardFilterBar({
         {/* 검색 실행 — 입력 오른쪽에 붙인다(일반적인 검색 바 문법) */}
         <button
           type="submit"
-          className="shrink-0 bg-yonsei-navy px-4 py-2 text-sm font-bold text-white transition-colors hover:bg-yonsei-blue sm:px-6"
+          className="shrink-0 bg-yonsei-navy px-4 py-2 text-[13px] font-bold text-white transition-colors hover:bg-yonsei-blue sm:px-6"
         >
           {t('search.submit')}
         </button>
@@ -128,7 +130,7 @@ export function BoardFilterBar({
               setDraft(emptyFilter);
               onChange(emptyFilter);
             }}
-            className="shrink-0 border border-surface-border px-4 py-2 text-sm font-medium text-content-soft transition-colors hover:border-yonsei-blue hover:text-yonsei-blue"
+            className="shrink-0 border border-surface-border px-4 py-2 text-[13px] font-medium text-content-soft transition-colors hover:border-yonsei-blue hover:text-yonsei-blue"
           >
             {t('search.clear')}
           </button>
@@ -137,7 +139,7 @@ export function BoardFilterBar({
 
       {/* 결과 건수 (조건 활성 + 건수 전달 시) — 우측 정렬로 검색 바와 나란히 */}
       {active && resultCount !== null && (
-        <p className="mt-2 text-right text-sm text-content-soft" aria-live="polite">
+        <p className="mt-2 text-right text-[13px] text-content-soft" aria-live="polite">
           {t('search.results', { count: resultCount })}
         </p>
       )}
