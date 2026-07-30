@@ -20,6 +20,7 @@ import {
   fetchBundle,
   fetchDetails,
   findConflicts,
+  formatTerm,
   majorQuotaCount,
   parseTimeSlots,
   searchSections,
@@ -1320,7 +1321,7 @@ function SectionDetailPanel({ section, ko }: { section: Section; ko: boolean }) 
             <Stat label={ko ? '경쟁률' : 'Ratio'} value={rate ? `${rate}:1` : null} />
             <Stat label={ko ? '평균 배점' : 'Avg'} value={stats.avg} />
             <Stat label={ko ? '최고 배점' : 'Max bid'} value={stats.max} />
-            <Stat label={ko ? '기준 학기' : 'Term'} value={fmtTerm(stats.semester, ko)} />
+            <Stat label={ko ? '기준 학기' : 'Term'} value={formatTerm(stats.semester, ko)} />
           </dl>
         ) : (
           <p className="mt-1 text-[11px] text-content-faint">{ko ? '자료 없음' : 'No data'}</p>
@@ -1416,7 +1417,7 @@ function SectionDetailPanel({ section, ko }: { section: Section; ko: boolean }) 
                 {profHist.map(([term, div, cut, cap, app], i) => (
                   <tr key={`${term}-${div}`} className="border-b border-surface-border">
                     <td className="py-1">
-                      {fmtTerm(term, ko)}
+                      {formatTerm(term, ko)}
                       {i === 0 && (
                         <span className="ml-1 bg-yonsei-navy px-1 py-px text-[9px] font-bold text-white">
                           {ko ? '최신' : 'latest'}
@@ -1497,16 +1498,8 @@ function Stat({ label, value }: { label: string; value: string | number | null }
  */
 function tieBasisText(basis: string | null, ko: boolean): { term: string; full: string } | null {
   if (!basis) return null;
-  const term = fmtTerm(basis, ko);
+  const term = formatTerm(basis, ko);
   return { term, full: ko ? `${term}(동일 라인업)` : `${term} (same lineup)` };
-}
-
-/** "2025-20" → "2025년 2학기" */
-function fmtTerm(t: string, ko: boolean): string {
-  const [y, s] = t.split('-');
-  const n = s === '10' ? 1 : s === '11' ? 0 : s === '21' ? 0 : 2;
-  if (!n) return ko ? `${y} 계절` : `${y} season`;
-  return ko ? `${y}년 ${n}학기` : `${y} S${n}`;
 }
 
 /** 시간표 칸 색 — 브랜드 블루 계열만 쓴다(금색 금지). 담은 순서대로 순환. */

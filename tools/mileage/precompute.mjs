@@ -1,7 +1,14 @@
 /**
  * 마일리지 예측 번들 생성기 (개발 전용 · 학기마다 1회 실행)
  *
- *   node tools/mileage/precompute.mjs <mileage_history.db> [출력경로]
+ *   node tools/mileage/precompute.mjs [--target 2026-20] [--db <경로>] [--out <경로>]
+ *
+ *   · `--db` 생략 시 tools/mileage/data/mileage-history.db (없으면 `.db.gz` 를 자동 해제).
+ *     DB 는 tools/mileage/build-db.mjs 가 크롤 JSON 에서 만든다.
+ *   · `--out` 생략 시 public/data/mileage-<년>-<학기>.json (+ `-detail.json`).
+ *   · 위치 인자 `<db> [출력경로]` 도 예전처럼 받는다.
+ *   · 학기를 바꿀 때는 아래 RECENCY_ALIAS 와 src/lib/mileage/bundle.ts 의 MILEAGE_TERM 을
+ *     함께 손봐야 한다 — 자세한 절차는 tools/mileage/README.md.
  *
  * 하는 일
  *   ① SQLite 이력에서 **진짜 컷**을 계산한다 — 합격자(success='Y') 중 최저 배점.
@@ -18,6 +25,7 @@ import { DatabaseSync } from 'node:sqlite';
 import { writeFileSync, mkdirSync, readFileSync, existsSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { resolveDbPath } from './db-util.mjs';
 
 /**
  * 과거 학기 담당 교수 보강표(tools/mileage/professor-history.csv).
@@ -41,19 +49,36 @@ function loadProfessorHistory() {
 }
 const profHistory = loadProfessorHistory();
 
-const dbPath = process.argv[2];
-const outPath = process.argv[3] ?? 'public/data/mileage-2026-20.json';
-if (!dbPath) {
-  console.error('사용법: node tools/mileage/precompute.mjs <mileage_history.db> [출력경로]');
+// ── 인자 ───────────────────────────────────────────────────────
+// 학기·경로를 상수로 박아 두면 다음 학기에 "어디를 고쳐야 하는지" 를 다시 찾아야 한다.
+// 기본값은 현재 배포 학기(2026-2)라 인자 없이 돌려도 지금과 같은 결과가 나온다.
+const argv = process.argv.slice(2);
+const flags = {};
+const positional = [];
+for (let i = 0; i < argv.length; i++) {
+  if (argv[i].startsWith('--')) flags[argv[i].slice(2)] = argv[++i];
+  else positional.push(argv[i]);
+}
+if (flags.help !== undefined) {
+  console.error('사용법: node tools/mileage/precompute.mjs [--target 2026-20] [--db <경로>] [--out <경로>]');
+  process.exit(0);
+}
+
+/** 예측 대상 학기 — "YYYY-SS"(10=1학기 · 20=2학기 · 11=여름 · 21=겨울) */
+const [TARGET_YEAR, TARGET_SEM] = (flags.target ?? '2026-20').split('-');
+if (!/^\d{4}$/.test(TARGET_YEAR ?? '') || !/^\d{2}$/.test(TARGET_SEM ?? '')) {
+  console.error(`--target 형식이 잘못됐다: ${flags.target} (예: 2026-20)`);
   process.exit(1);
 }
 
-/** 예측 대상 학기 */
-const TARGET_YEAR = '2026';
-const TARGET_SEM = '20';
+const dbPath = resolveDbPath(flags.db ?? positional[0]);
+const outPath = flags.out ?? positional[1] ?? `public/data/mileage-${TARGET_YEAR}-${TARGET_SEM}.json`;
 
 /**
  * 라인업 일치 학기 오버라이드 — {과목코드: {'년-학기': 부여할 학기 서수}}.
+ *
+ * 🔁 **학기 갱신 시 재검토 항목** — 특정 학기의 교수 구성에만 유효한 수동 보정이다.
+ *    `--target` 을 바꿨다면 이 표를 먼저 다시 확인하라(아래 ⚠️ 참고).
  *
  * 컷은 형제 분반 라인업(교수 구성)의 함수인데 최신성 가중은 시간만 본다. 대상 학기의
  * 라인업이 직전 학기가 아니라 더 과거 학기와 일치하면, 그 학기 관측에 대상 학기 서수를
@@ -68,7 +93,8 @@ const TARGET_SEM = '20';
  * 바뀌면 이 항목은 삭제해야 한다. 백테스트는 이 파일을 거치지 않으므로 영향 없음.
  */
 const RECENCY_ALIAS = {
-  MEU3600: { '2024-20': Number(TARGET_YEAR) * 2 + 1 },
+  // 서수 계산은 predict.ts semesterOrdinal 과 같아야 한다(여름 11 은 1학기, 겨울 21 은 2학기 자리)
+  MEU3600: { '2024-20': Number(TARGET_YEAR) * 2 + (TARGET_SEM === '10' || TARGET_SEM === '11' ? 0 : 1) },
 };
 
 const db = new DatabaseSync(dbPath);

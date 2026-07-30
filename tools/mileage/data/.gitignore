@@ -1,0 +1,5 @@
+# 원본 SQLite 는 28MB 가 넘는다 — gzip 본(`*.db.gz`)만 추적하고, 실행 시 자동 해제해 쓴다
+# (tools/mileage/db-util.mjs). 해제본을 커밋하지 않도록 여기서 막는다.
+*.db
+*.db-wal
+*.db-shm

@@ -1,7 +1,10 @@
 /**
  * 마일리지 예측 백테스트 (개발 전용)
  *
- *   node --experimental-strip-types tools/mileage/backtest.mjs <mileage_history.db> [target=2026-10]
+ *   node --experimental-strip-types tools/mileage/backtest.mjs [db] [target=2026-10]
+ *
+ *   db 를 생략하면 tools/mileage/data/mileage-history.db (없으면 `.db.gz` 자동 해제)를 쓴다.
+ *   신·구 DB 비교처럼 특정 파일을 재려면 경로를 명시한다.
  *
  * 목표 학기의 실제 컷을 정답으로 두고, 그 이전 학기까지만 써서 예측한 뒤 오차를 잰다.
  * "최신 컷을 얼마나 중시할지"(반감기) 같은 모수를 감이 아니라 수치로 고르기 위한 자.
@@ -16,6 +19,7 @@ import { DatabaseSync } from 'node:sqlite';
 import { readFileSync, writeFileSync, existsSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
+import { resolveDbPath } from './db-util.mjs';
 
 /** 과거 담당 교수 보강표 — precompute 와 동일 자료 */
 function loadProfessorHistory() {
@@ -35,14 +39,15 @@ const profHistory = loadProfessorHistory();
 const ONLY = process.env.ONLY_COURSE || null;
 const ONLY_PREFIX = process.env.ONLY_PREFIX || null;
 
-const dbPath = process.argv[2];
-const target = process.argv[3] ?? '2026-10';
-if (!dbPath) {
-  console.error('사용법: node --experimental-strip-types tools/mileage/backtest.mjs <db> [2026-10]');
-  process.exit(1);
-}
+// DB 경로 생략 시 기본 DB(gz 자동 해제) — precompute 와 같은 자료를 재게 하려는 것이다.
+// 첫 인자가 "2026-10" 꼴이면 DB 를 생략하고 대상 학기만 준 것으로 본다.
+const args = process.argv.slice(2);
+const isTerm = (s) => /^\d{4}-\d{2}$/.test(s ?? '');
+const dbPath = resolveDbPath(isTerm(args[0]) ? undefined : args[0]);
+const target = (isTerm(args[0]) ? args[0] : args[1]) ?? '2026-10';
 const [TY, TS] = target.split('-');
 const db = new DatabaseSync(dbPath);
+console.log(`DB: ${dbPath}`);
 // 튜닝 모수 스윕용 — 환경변수로 덮어쓴다
 const TUNING = {};
 if (process.env.HALF_LIFE) TUNING.halfLife = Number(process.env.HALF_LIFE);

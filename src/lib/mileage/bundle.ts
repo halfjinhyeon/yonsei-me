@@ -1,11 +1,51 @@
 /**
  * 마일리지 번들 로딩·조회 헬퍼.
  *
- * 번들(public/data/mileage-2026-20.json)은 3천여 분반을 담느라 키를 없앤 배열로 눕혀
- * 저장돼 있다(286KB). 여기서 객체로 되살리고, 검색·시간충돌·신뢰도 판정을 제공한다.
+ * 번들(`public/data/mileage-<년>-<학기>.json`)은 3천여 분반을 담느라 키를 없앤 배열로 눕혀
+ * 저장돼 있다(약 480KB). 여기서 객체로 되살리고, 검색·시간충돌·신뢰도 판정을 제공한다.
  */
 
 import type { PredictionBasis, SectionMeta, SectionPrediction } from './types';
+
+/**
+ * **예측 대상 학기 — 이 파일이 유일한 출처다.**
+ *
+ * 번들 URL도 화면 표기도 여기서 파생시킨다. 예전에는 `fetchBundle`·`fetchDetails` 기본값에
+ * 학기가 각각 박혀 있어, 학기를 넘길 때 한쪽만 고치면 본 번들과 상세가 서로 다른 학기를
+ * 가리키는 사고가 가능했다.
+ *
+ * ⚠️ 학기 갱신 시 `tools/mileage/precompute.mjs --target` 과 **반드시 함께** 바꾼다.
+ *    절차 전체는 `tools/mileage/README.md`.
+ */
+export const MILEAGE_TERM = {
+  year: '2026',
+  /** 수강편람 학기 코드 — 10=1학기 · 20=2학기 · 11=여름계절 · 21=겨울계절 */
+  semester: '20',
+} as const;
+
+/** "2026-20" — precompute 의 `--target`, 번들 파일명, `formatTerm` 이 공유하는 키 */
+export const MILEAGE_TERM_KEY = `${MILEAGE_TERM.year}-${MILEAGE_TERM.semester}`;
+/** 본 번들 경로 */
+export const MILEAGE_BUNDLE_URL = `/data/mileage-${MILEAGE_TERM_KEY}.json`;
+/** 상세(지연 로딩) 번들 경로 — 본 번들과 같은 학기임이 구조적으로 보장된다 */
+export const MILEAGE_DETAIL_URL = `/data/mileage-${MILEAGE_TERM_KEY}-detail.json`;
+
+/**
+ * "2025-20" → "2025년 2학기" / "2025 S2". 계절학기(11·21)는 학기 번호가 없어 "계절"로 적는다.
+ *
+ * 화면 여러 곳(기준 학기·과거 이력 표·동점 근거 학기)이 같은 표기를 써야 하므로 여기 둔다.
+ */
+export function formatTerm(term: string, ko: boolean): string {
+  const [y, s] = term.split('-');
+  const n = s === '10' ? 1 : s === '20' ? 2 : 0;
+  if (!n) return ko ? `${y} 계절` : `${y} season`;
+  return ko ? `${y}년 ${n}학기` : `${y} S${n}`;
+}
+
+/** 현재 예측 대상 학기의 표기 — "2026년 2학기" */
+export function mileageTermLabel(ko = true): string {
+  return formatTerm(MILEAGE_TERM_KEY, ko);
+}
 
 /** 번들 원본(압축 형태) */
 interface RawBundle {
@@ -139,9 +179,10 @@ export function decodeBundle(raw: RawBundle): MileageData {
 }
 
 /** 번들을 받아온다(클라이언트 전용). 실패 시 예외를 던진다. */
-export async function fetchBundle(url = '/data/mileage-2026-20.json'): Promise<MileageData> {
+export async function fetchBundle(url = MILEAGE_BUNDLE_URL): Promise<MileageData> {
   const res = await fetch(url);
-  if (!res.ok) throw new Error(`마일리지 데이터를 불러오지 못했습니다 (${res.status})`);
+  if (!res.ok)
+    throw new Error(`마일리지 데이터(${mileageTermLabel()})를 불러오지 못했습니다 (${res.status})`);
   return decodeBundle((await res.json()) as RawBundle);
 }
 
@@ -179,7 +220,7 @@ export function confidenceReason(s: Pick<Section, 'basis' | 'samples'>, ko = tru
 
 /* ────────────────────────────────────────────────────────────────
  * 분반 상세 — 기본 통계 / 정원·규정 / 과거 이력 (지연 로딩)
- * 본 번들(286KB)과 분리해 두고, 사용자가 상세를 처음 열 때만 받는다(1MB).
+ * 본 번들(약 480KB)과 분리해 두고, 사용자가 상세를 처음 열 때만 받는다(약 950KB).
  * ──────────────────────────────────────────────────────────────── */
 
 export interface SectionDetail {
@@ -225,7 +266,7 @@ let detailPromise: Promise<Record<string, SectionDetail>> | null = null;
 
 /** 상세 데이터를 한 번만 받아 캐시한다. */
 export function fetchDetails(
-  url = '/data/mileage-2026-20-detail.json',
+  url = MILEAGE_DETAIL_URL,
 ): Promise<Record<string, SectionDetail>> {
   if (detailCache) return Promise.resolve(detailCache);
   detailPromise ??= fetch(url)
