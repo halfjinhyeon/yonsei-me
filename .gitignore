@@ -39,3 +39,9 @@ next-env.d.ts
 # vercel
 .vercel
 /public/fonts/
+
+# 게시판 이전 중간 산출물 — 원본 사이트 크롤 스냅샷(수 MB, 언제든 재생성 가능)
+/tools/boards-raw/
+/tools/link-report.json
+/tools/link-body-cache.json
+/tools/pre-import-snapshot.json

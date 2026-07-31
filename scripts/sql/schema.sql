@@ -41,9 +41,24 @@ alter table posts add column if not exists body_md_en text;
 alter table posts add column if not exists end_date date;
 alter table posts add column if not exists link_url text;
 alter table posts add column if not exists pinned boolean not null default false;
+-- 원문 게시물 주소 — 현행 학과 사이트에서 옮겨 온 글의 출처.
+-- 이전 스크립트(scripts/import-boards.mjs)의 멱등 키이자 중복 적재 방지선이고,
+-- 사람이 눌러 원문을 바로 대조할 수 있는 값이기도 하다. 손으로 옮긴 글은
+-- scripts/link-existing-posts.mjs 가 뒤늦게 채워 넣는다. 창작 글은 null 로 남는다.
+alter table posts add column if not exists source_url text;
+-- 이 행을 누가 만들었는가. true = 임포터가 만든 행(재크롤 시 제목·본문 갱신 대상),
+-- false = 사람이 손으로 쓴 행(불가침). 손으로 옮긴 글도 source_url 은 갖는다 —
+-- 중복 적재를 막아야 하기 때문이다. 하지만 그 본문은 원문을 그대로 베낀 게 아니라
+-- 다듬어 쓴 것이라, 재크롤이 원문으로 덮어쓰면 품질이 되레 떨어진다.
+-- 그래서 "중복 방지(source_url)" 와 "갱신 대상(import_managed)" 을 분리한다.
+-- 롤백도 이 값 하나로 정확해진다: delete from posts where import_managed;
+alter table posts add column if not exists import_managed boolean not null default false;
 
 create index if not exists posts_board_created_idx on posts (board, created_at desc);
 create index if not exists posts_published_idx on posts (published);
+-- 부분 유니크 — null(창작 글)끼리는 충돌하지 않으면서 같은 원문을 두 번 넣는 것만 막는다.
+create unique index if not exists posts_source_url_key
+  on posts (source_url) where source_url is not null;
 
 -- ── attachments: 첨부 메타 (실체는 R2, 여기엔 URL 만) ──────────────────
 create table if not exists attachments (

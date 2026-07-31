@@ -227,14 +227,25 @@ export interface DbPostRow {
   }[];
 }
 
+/** timestamptz → KST 달력 날짜(YYYY-MM-DD).
+ *  저장은 언제나 KST 자정(`${date}T00:00:00+09:00`)인데 Supabase 는 UTC 로 돌려주므로,
+ *  그대로 자르면 하루 전날이 된다. src/lib/posts.ts 의 kstDate 와 같은 규칙이다. */
+function kstDate(ts: string): string {
+  const t = Date.parse(ts);
+  if (Number.isNaN(t)) return ts.slice(0, 10);
+  return new Date(t + 9 * 60 * 60 * 1000).toISOString().slice(0, 10);
+}
+
 /** DB 행 → CMS 편집 레코드(마크다운 우선, 없으면 빈 문자열 — 구 데이터 호환) */
 export function rowToEditRecord(r: DbPostRow) {
   // 캘린더를 여기 넣는 이유: created_at 은 timestamptz(+09:00) 라 UTC 로 돌아오면
-  // slice(0,10) 이 하루 앞당겨질 수 있다. 일정은 날짜가 곧 내용이므로 그 하루가
+  // slice(0,10) 이 하루 앞당겨진다. 일정은 날짜가 곧 내용이므로 그 하루가
   // 그대로 오답이 된다 — 시작일의 진실은 언제나 event_date 다.
+  // 나머지 게시판도 사정은 같다: 예전에는 여기서 UTC 로 잘라 폼에 하루 이른 날짜가
+  // 뜨고, 그 상태로 저장하면 진짜 하루가 밀렸다(왕복할수록 누적). kstDate 로 바로잡는다.
   const date = (r.event_date && (r.board === 'events' || r.board === 'calendar' || r.is_event)
     ? r.event_date
-    : String(r.created_at).slice(0, 10)) as string;
+    : kstDate(String(r.created_at))) as string;
   // 종료일: end_date 우선. 없으면(구 데이터) 수동 기간 라벨을 파싱해 폼에 프리필한다 —
   // 라벨이 저장 시 자동 재생성되므로, 프리필 없이는 구 행사 글을 수정·저장하는 순간
   // "7/20~7/24" 같은 기간 정보가 하루짜리 라벨로 덮어써져 소실된다(프리필 → end_date 승격).

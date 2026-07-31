@@ -97,13 +97,28 @@ interface DbPost {
 // 학과 게시판 규모(수백 건)에선 파생 목록을 메모리에서 나누는 편이 낫다.
 const fetchAllRows = unstable_cache(
   async (): Promise<DbPost[]> => {
-    const { data, error } = await sb()
-      .from('posts')
-      .select('*, attachments(*)')
-      .eq('published', true)
-      .order('created_at', { ascending: false });
-    if (error) throw new Error(`게시글 조회 실패: ${error.message}`);
-    return (data ?? []) as DbPost[];
+    // ⚠️ PostgREST 는 응답 행 수에 상한(Supabase 기본 1,000)이 걸려 있고, 넘치면
+    //    오류가 아니라 조용히 잘라서 준다. 학과 사이트 게시물을 대량 이전한 뒤로
+    //    전체 공개 글이 1,000건을 넘으므로 range 로 끝까지 페이지를 넘겨 받는다.
+    //    이 루프가 없으면 오래된 글이 전 게시판에서 소리 없이 사라진다.
+    const PAGE = 1000;
+    const rows: DbPost[] = [];
+    for (let from = 0; ; from += PAGE) {
+      const { data, error } = await sb()
+        .from('posts')
+        .select('*, attachments(*)')
+        .eq('published', true)
+        .order('created_at', { ascending: false })
+        // 같은 날짜가 여럿이면 정렬이 요청마다 흔들려 페이지 경계에서 행이
+        // 중복·누락될 수 있다 — id 로 순서를 확정한다.
+        .order('id', { ascending: false })
+        .range(from, from + PAGE - 1);
+      if (error) throw new Error(`게시글 조회 실패: ${error.message}`);
+      const page = (data ?? []) as DbPost[];
+      rows.push(...page);
+      if (page.length < PAGE) break;
+    }
+    return rows;
   },
   ['posts-all-published'],
   { tags: ['posts'], revalidate: 600 },
@@ -115,10 +130,25 @@ function loc(ko: string | null | undefined, en: string | null | undefined): Loca
   return { ko: k, en: en && en.trim() !== '' ? en : k };
 }
 
+/** timestamptz → KST 달력 날짜(YYYY-MM-DD).
+ *
+ *  created_at 은 저장 시 항상 KST 자정(`…T00:00:00+09:00`)으로 못박는다
+ *  (posts-server.ts 의 payloadToRow, scripts/import-boards.mjs 동일).
+ *  그런데 Supabase 는 이 값을 UTC(`…T15:00:00+00:00`)로 돌려주므로,
+ *  그대로 slice(0,10) 하면 **하루 전날**이 나온다. 게시판에서 날짜는 곧 내용이라
+ *  그 하루가 그대로 오답이 된다 — 반드시 KST 로 옮긴 뒤 잘라야 한다.
+ *  (같은 함정이 posts-server.ts 의 rowToEditRecord 주석에도 적혀 있다.) */
+function kstDate(ts: string): string {
+  const t = Date.parse(ts);
+  if (Number.isNaN(t)) return String(ts).slice(0, 10); // 파싱 실패 시 기존 동작 유지
+  return new Date(t + 9 * 60 * 60 * 1000).toISOString().slice(0, 10);
+}
+
 /** 표시용 날짜 — 행사(또는 isEvent)는 행사일, 그 외는 작성일 */
 function dateOf(r: DbPost): string {
+  // event_date 는 date 칼럼이라 시간대가 없다 — 그대로 쓴다.
   if ((r.board === 'events' || r.is_event) && r.event_date) return r.event_date;
-  return r.created_at.slice(0, 10);
+  return kstDate(r.created_at);
 }
 
 function attsOf(r: DbPost): Attachment[] | undefined {

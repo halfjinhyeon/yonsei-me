@@ -16,6 +16,10 @@ const nextConfig = {
     remotePatterns: [
       { protocol: 'https', hostname: '*.r2.dev' },
       { protocol: 'https', hostname: '*.public.blob.vercel-storage.com' },
+      // 현행 학과 사이트에서 옮겨 온 게시물은 썸네일·본문 이미지를 미러링하지 않고
+      // 원본 URL 을 그대로 가리킨다. 이 항목이 없으면 뉴스 목록·홈 캐러셀의
+      // next/image 가 전부 400 으로 떨어진다.
+      { protocol: 'https', hostname: 'me.yonsei.ac.kr' },
     ],
   },
   experimental: {
