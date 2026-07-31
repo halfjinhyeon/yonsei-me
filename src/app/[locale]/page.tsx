@@ -13,6 +13,7 @@ import { parseDateLabelRange } from '@/lib/calendar';
 import { formatDate } from '@/lib/utils';
 import {
   fetchNews,
+  fetchNewsBySlug,
   fetchBoardData,
   fetchInstagramPosts,
   fetchCalendarPosts,
@@ -131,7 +132,19 @@ export default async function HomePage({ params }: { params: { locale: string } 
   // 뉴스 섹션 데이터: 뉴스(news.json)만 날짜 내림차순 상위 6건(사용자 지시로 행사 제외 —
   // 행사는 아래 '학사 일정' 섹션이 이미 담당한다). 리디자인 후 한 페이지에 대형 카드 한 장이라
   // 12건이면 화살표를 열두 번 눌러야 해서 6건으로 줄였다. 카드가 쓰는 단일 형태로 정규화한다.
-  const newsEventItems = news
+  // ⚠️ 목록 조회(fetchNews)는 본문을 싣지 않는다 — 전체 게시물이 1,000건을 넘으면서
+  //    캐시 한도(2MB)를 넘겨 매 요청이 DB 를 다시 읽었기 때문이다(lib/posts.ts 주석 참조).
+  //    그런데 아래 대표 카드는 본문에서 요약 3줄과 첫 사진을 뽑아 쓴다. 그래서 먼저
+  //    상위 6건을 고른 뒤 **그 6건만** 상세 조회로 본문을 채운다(캐시 항목은 글 하나 크기).
+  const topNews = news
+    .slice()
+    .sort((a, b) => (a.date < b.date ? 1 : -1))
+    .slice(0, 6);
+  const topNewsWithBody = await Promise.all(
+    topNews.map(async (n) => (await fetchNewsBySlug(n.slug)) ?? n),
+  );
+
+  const newsEventItems = topNewsWithBody
     .map((n) => {
       // 로케일 값이 비면 ko 로 폴백(pick 은 빈 문자열을 폴백하지 않는다 — en 이 비는 데이터가 흔하다).
       // excerpt/body 는 타입상 필수지만 git JSON 이 부분적으로 비어 있을 수 있어 방어적으로 읽는다.

@@ -19,7 +19,9 @@ const nextConfig = {
       // 현행 학과 사이트에서 옮겨 온 게시물은 썸네일·본문 이미지를 미러링하지 않고
       // 원본 URL 을 그대로 가리킨다. 이 항목이 없으면 뉴스 목록·홈 캐러셀의
       // next/image 가 전부 400 으로 떨어진다.
-      { protocol: 'https', hostname: 'me.yonsei.ac.kr' },
+      // me 말고도 www·engineering·urban·devcms 등 교내 다른 서브도메인의 사진을
+      // 본문에 끌어다 쓴 글이 있어(뉴스 3건은 www) 학교 도메인 전체를 연다.
+      { protocol: 'https', hostname: '*.yonsei.ac.kr' },
     ],
   },
   experimental: {

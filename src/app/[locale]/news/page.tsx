@@ -11,7 +11,7 @@ import { ResourceLibrary, type ResourceItem } from '@/components/ResourceLibrary
 import { pick } from '@/lib/content';
 import { fileFormat } from '@/lib/files';
 import { parseDateLabelRange } from '@/lib/calendar';
-import { fetchNews, fetchBoardData, fetchCalendarPosts } from '@/lib/posts';
+import { fetchNews, fetchBoardData, fetchCalendarPosts, fetchResourceBodies } from '@/lib/posts';
 import type { Locale } from '@/i18n/routing';
 
 // DB 소스 전환(Phase 2): 목록도 ISR — revalidateTag('posts') 가 즉시 갱신, 이 값은 안전망
@@ -183,6 +183,9 @@ export default async function NewsPage({ params }: { params: { locale: string } 
   // 검색 인덱스(searchText)는 여기 서버에서 만든다 — 본문 HTML 을 클라이언트로 통째로
   // 넘기지 않기 위해 태그를 지우고 공백을 접어 소문자 한 줄로 눌러 둔다
   // (본문은 관리자가 쓴 신뢰 소스라 정규식 제거로 충분하다).
+  // 본문은 게시판 목록이 아니라 자료실 전용 조회로 따로 받는다 — 목록 조회는 Vercel
+  // Data Cache 2MB 한도 때문에 본문 컬럼을 싣지 않는다(lib/posts.ts 의 LIST_COLUMNS).
+  const resourceBodies = await fetchResourceBodies();
   const resourceItems: ResourceItem[] = board.resources.map((r) => {
     const title = pick(r.title, locale);
     const desc = r.excerpt ? pick(r.excerpt, locale) : undefined;
@@ -190,7 +193,8 @@ export default async function NewsPage({ params }: { params: { locale: string } 
       const label = pick(a.label, locale);
       return { label, href: a.href, size: a.size, format: fileFormat(label, a.href) };
     });
-    const plainBody = pick(r.body, locale).replace(/<[^>]*>/g, ' ');
+    const body = resourceBodies[r.id];
+    const plainBody = body ? pick(body, locale).replace(/<[^>]*>/g, ' ') : '';
     return {
       id: r.id,
       date: r.date,

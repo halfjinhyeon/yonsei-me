@@ -73,8 +73,11 @@ interface DbPost {
   slug: string | null;
   title_ko: string;
   title_en: string | null;
-  body_html_ko: string;
-  body_html_en: string | null;
+  /** 본문 — **목록 조회에는 실려 오지 않는다**(LIST_COLUMNS 주석 참조). 선택 필드인 이유가
+   *  그것이고, 어댑터들은 값이 없으면 빈 문자열을 낸다(loc 이 undefined→'' 로 접는다).
+   *  본문이 필요한 자리는 상세 조회(fetchRowById/fetchRowBySlug)뿐이다. */
+  body_html_ko?: string;
+  body_html_en?: string | null;
   excerpt_ko: string | null;
   excerpt_en: string | null;
   category: string | null;
@@ -93,9 +96,32 @@ interface DbPost {
   attachments: DbAttachment[] | null;
 }
 
-// 전체 공개 글 1회 조회(첨부 포함) — 'posts' 태그 하나로 단순·확실하게 캐시한다.
-// 학과 게시판 규모(수백 건)에선 파생 목록을 메모리에서 나누는 편이 낫다.
-const fetchAllRows = unstable_cache(
+// ⚠️⚠️ 목록 조회의 컬럼을 **명시**하는 이유 — `select('*')` 로 되돌리지 말 것.
+//
+// 이 조회 결과는 unstable_cache 로 Vercel Data Cache 에 들어가는데, 그 캐시는 항목
+// 하나가 **2MB** 를 넘으면 저장을 조용히 포기한다(오류도, 로그도 없다). 게시물을 대량
+// 이전한 뒤 공개 글이 1,275건이 되면서 `*, attachments(*)` 응답이 약 3MB 가 됐고,
+// 그래서 캐시는 한 번도 적중하지 못한 채 **매 요청이 전체 코퍼스를 다시 조회**하고
+// 있었다(사이트가 눈에 띄게 느려진 원인). 측정해 보니 그중 body_html_* 만 1.57MB —
+// 본문만 빼면 한도 아래로 넉넉히 내려온다.
+//
+// 그리고 목록은 본문을 **쓰지 않는다**. 본문이 필요한 곳은 상세 페이지 한 곳뿐이고
+// (fetchRowById/fetchRowBySlug), 자료실 검색 인덱스만 예외라 7건짜리 전용 조회
+// (fetchResourceBodies)로 따로 뗐다. 썸네일 폴백(firstBodyImage)도 thumbnail_url
+// 백필 이후로는 본문 없이 동작한다.
+//
+// 새 컬럼을 어댑터에서 읽기 시작했다면 이 목록에도 더해야 한다 — 빠뜨리면 undefined 다.
+const LIST_COLUMNS =
+  'id, board, slug, title_ko, title_en, excerpt_ko, excerpt_en, category, ' +
+  'host_ko, host_en, date_label_ko, date_label_en, is_event, event_date, end_date, ' +
+  'link_url, pinned, thumbnail_url, created_at, attachments(*)';
+
+/** 상세 조회용 — 본문 포함 전체 행 */
+const DETAIL_COLUMNS = '*, attachments(*)';
+
+// 전체 공개 글 1회 조회(본문 제외, 첨부 포함) — 'posts' 태그 하나로 단순·확실하게 캐시한다.
+// 목록을 파생하는 모든 API 가 이 하나를 공유하고 메모리에서 게시판별로 나눈다.
+const fetchListRows = unstable_cache(
   async (): Promise<DbPost[]> => {
     // ⚠️ PostgREST 는 응답 행 수에 상한(Supabase 기본 1,000)이 걸려 있고, 넘치면
     //    오류가 아니라 조용히 잘라서 준다. 학과 사이트 게시물을 대량 이전한 뒤로
@@ -106,7 +132,7 @@ const fetchAllRows = unstable_cache(
     for (let from = 0; ; from += PAGE) {
       const { data, error } = await sb()
         .from('posts')
-        .select('*, attachments(*)')
+        .select(LIST_COLUMNS)
         .eq('published', true)
         .order('created_at', { ascending: false })
         // 같은 날짜가 여럿이면 정렬이 요청마다 흔들려 페이지 경계에서 행이
@@ -114,15 +140,67 @@ const fetchAllRows = unstable_cache(
         .order('id', { ascending: false })
         .range(from, from + PAGE - 1);
       if (error) throw new Error(`게시글 조회 실패: ${error.message}`);
-      const page = (data ?? []) as DbPost[];
+      const page = (data ?? []) as unknown as DbPost[];
       rows.push(...page);
       if (page.length < PAGE) break;
     }
     return rows;
   },
-  ['posts-all-published'],
+  ['posts-list-nobody'],
   { tags: ['posts'], revalidate: 600 },
 );
+
+// ── 상세 조회 (본문 포함, 1행) ─────────────────────────────────────────
+// 목록에서 본문을 뺐으므로 상세는 자기 행을 직접 읽는다. 전체를 훑어 find 하던
+// 예전 방식과 달리 캐시 항목이 글 하나 크기라 2MB 한도와 무관하고, 재방문은
+// 같은 키로 바로 맞는다. 무효화는 목록과 같은 'posts' 태그 하나로 함께 걸린다.
+
+const fetchRowById = unstable_cache(
+  async (id: number): Promise<DbPost | null> => {
+    const { data, error } = await sb()
+      .from('posts')
+      .select(DETAIL_COLUMNS)
+      .eq('published', true)
+      .eq('id', id)
+      .maybeSingle();
+    if (error) throw new Error(`게시글 조회 실패(id=${id}): ${error.message}`);
+    return (data as unknown as DbPost | null) ?? null;
+  },
+  ['post-by-id'],
+  { tags: ['posts'], revalidate: 600 },
+);
+
+const fetchRowBySlugOnly = unstable_cache(
+  async (board: string, slug: string): Promise<DbPost | null> => {
+    const { data, error } = await sb()
+      .from('posts')
+      .select(DETAIL_COLUMNS)
+      .eq('published', true)
+      .eq('board', board)
+      .eq('slug', slug)
+      // 목록 정렬과 같은 규칙 — slug 가 중복된 행이 생겨도 고르는 글이 흔들리지 않는다
+      .order('created_at', { ascending: false })
+      .order('id', { ascending: false })
+      .limit(1);
+    if (error) throw new Error(`게시글 조회 실패(slug=${slug}): ${error.message}`);
+    return ((data ?? [])[0] as unknown as DbPost | undefined) ?? null;
+  },
+  ['post-by-slug'],
+  { tags: ['posts'], revalidate: 600 },
+);
+
+/** 뉴스형 상세 1건 — slug 로 찾되, slug 가 비어 있는 글은 목록이 id 를 slug 로 쓰므로
+ *  (toNews 의 `r.slug ?? String(r.id)`) 숫자 주소도 같은 규칙으로 받아 준다. */
+async function fetchRowBySlug(board: string, slug: string): Promise<DbPost | null> {
+  const hit = await fetchRowBySlugOnly(board, slug);
+  if (hit) return hit;
+  if (!/^\d+$/.test(slug)) return null;
+  const row = await fetchRowById(Number(slug));
+  // 목록이 만들어 냈을 주소와 정확히 같을 때만 인정한다 — slug 를 가진 글이
+  // id 주소로도 열리면 같은 글에 URL 이 둘 생긴다.
+  if (!row || row.board !== board) return null;
+  return (row.slug ?? String(row.id)) === slug ? row : null;
+}
 
 // ── DB 행 → 기존 타입 어댑터 ───────────────────────────────────────────
 function loc(ko: string | null | undefined, en: string | null | undefined): Localized {
@@ -161,8 +239,11 @@ function attsOf(r: DbPost): Attachment[] | undefined {
   }));
 }
 
-/** 본문 HTML(정화 저장분)에서 첫 <img> 의 src 추출 — 썸네일 미지정 시 목록 폴백.
- *  `<img` 바로 뒤 공백을 요구해 img 로 시작하는 다른 태그명 오탐을 차단한다. */
+/** 본문 HTML(정화 저장분)에서 첫 <img> 의 src 추출 — 썸네일 미지정 시 폴백.
+ *  `<img` 바로 뒤 공백을 요구해 img 로 시작하는 다른 태그명 오탐을 차단한다.
+ *  ⚠️ 목록 행에는 본문이 없어(LIST_COLUMNS) 이 폴백이 돌지 않는다. 대신 thumbnail_url 을
+ *  일괄 백필해 두었다(본문 사진이 있는데 썸네일이 없는 글은 4건뿐, 모두 이모지·추적
+ *  픽셀이라 의도적으로 제외한 것들이다). 상세 행에서는 그대로 동작한다. */
 const FIRST_IMG_RE = /<img\s[^>]*?src=["']([^"']+)["']/i;
 function firstBodyImage(r: DbPost): string | undefined {
   const m = (r.body_html_ko ?? '').match(FIRST_IMG_RE) ?? (r.body_html_en ?? '').match(FIRST_IMG_RE);
@@ -229,6 +310,49 @@ function toAlumniEvent(r: DbPost): AlumniEvent {
   return { ...toSeminar(r), ...(r.is_event ? { isEvent: true } : {}) };
 }
 
+// ── 통합 게시판 글(BoardPost) 라벨 — 단일 출처 ─────────────────────────
+// 목록(fetchAllBoardPosts)과 상세(fetchBoardPost)가 서로 다른 경로로 같은 글을 만들므로
+// boardKey·meta 표를 양쪽에 복사해 두면 언젠가 어긋난다. 여기 한 곳만 본다.
+// 표에 없는 게시판(news/alumniNews/alumniEvents/instagram/calendar)은 통합 목록의
+// 대상이 아니다 — 자기 전용 라우트를 쓴다.
+const BOARD_POST_META: Record<string, { boardKey: BoardPost['boardKey']; meta?: Localized }> = {
+  noticesUndergrad: { boardKey: 'notices', meta: { ko: '학부 공지', en: 'Undergraduate' } },
+  noticesGraduate: { boardKey: 'notices', meta: { ko: '대학원 공지', en: 'Graduate' } },
+  noticesExternal: { boardKey: 'notices', meta: { ko: '외부기관 공지', en: 'External' } },
+  noticesScholarship: { boardKey: 'notices', meta: { ko: '장학생 선발공고', en: 'Scholarship' } },
+  // 아래 넷은 meta 가 게시판 고정 라벨이 아니라 행마다 다른 값이라 표에 두지 않는다:
+  // 세미나는 연사(host), 행사는 기간(dateLabel), 나머지는 meta 없음.
+  seminars: { boardKey: 'seminars' },
+  events: { boardKey: 'events' },
+  thesis: { boardKey: 'thesis' },
+  career: { boardKey: 'career' },
+  resources: { boardKey: 'resources' },
+  internships: { boardKey: 'internships' },
+};
+
+function noticeToBoardPost(n: Notice, board: string): BoardPost {
+  const m = BOARD_POST_META[board];
+  return { ...n, boardKey: m.boardKey, ...(m.meta ? { meta: m.meta } : {}) };
+}
+
+const seminarToBoardPost = (s: Seminar): BoardPost => ({
+  id: s.id, date: s.date, title: s.title, body: s.body,
+  boardKey: 'seminars', meta: s.host, attachments: s.attachments,
+});
+
+const eventToBoardPost = (e: EventItem): BoardPost => ({
+  id: e.id, date: e.date, title: e.title, body: e.body,
+  boardKey: 'events', meta: e.dateLabel, attachments: e.attachments,
+});
+
+/** DB 행 → BoardPost. 통합 게시판 소속이 아니면 undefined(상세 페이지의 404 경로). */
+function rowToBoardPost(r: DbPost): BoardPost | undefined {
+  if (!BOARD_POST_META[r.board]) return undefined;
+  if (r.board === 'seminars') return seminarToBoardPost(toSeminar(r));
+  if (r.board === 'events') return eventToBoardPost(toEvent(r));
+  return noticeToBoardPost(toNotice(r), r.board);
+}
+
 const byDateDesc = <T extends { date: string }>(arr: T[]) =>
   arr.slice().sort((a, b) => (a.date < b.date ? 1 : -1));
 
@@ -245,7 +369,7 @@ const pinnedFirst = <T extends { pinned?: boolean }>(arr: T[]) => [
 ];
 
 async function rowsOf(board: string): Promise<DbPost[]> {
-  return (await fetchAllRows()).filter((r) => r.board === board);
+  return (await fetchListRows()).filter((r) => r.board === board);
 }
 
 // ── 공개 API (기존 content.ts 이름과 대응) ─────────────────────────────
@@ -260,8 +384,11 @@ export async function fetchAlumniNews(): Promise<NewsItem[]> {
   return byPinnedDate((await rowsOf('alumniNews')).map(toNews));
 }
 
+/** 뉴스 상세 1건 — 목록에는 본문이 없으므로(LIST_COLUMNS) 자기 행을 직접 읽는다 */
 export async function fetchNewsBySlug(slug: string): Promise<NewsItem | undefined> {
-  return (await fetchNews()).find((n) => n.slug === slug);
+  if (postsSource() === 'git') return gitNews.find((n) => n.slug === slug);
+  const r = await fetchRowBySlug('news', slug);
+  return r ? toNews(r) : undefined;
 }
 
 /** 홈 인스타그램 그리드용 게시물 — CMS '인스타그램' 게시판(DB 전용, git 폴백은 빈 목록).
@@ -322,8 +449,11 @@ export async function fetchCalendarPosts(): Promise<CalendarPost[]> {
     .sort((a, b) => (a.start < b.start ? -1 : a.start > b.start ? 1 : 0));
 }
 
+/** 동문 소식 상세 1건 — 뉴스와 같은 이유로 단건 조회 */
 export async function fetchAlumniNewsBySlug(slug: string): Promise<NewsItem | undefined> {
-  return (await fetchAlumniNews()).find((n) => n.slug === slug);
+  if (postsSource() === 'git') return gitAlumniNews.find((n) => n.slug === slug);
+  const r = await fetchRowBySlug('alumniNews', slug);
+  return r ? toNews(r) : undefined;
 }
 
 /** board.json 대응 — 게시판별 배열 묶음 */
@@ -344,7 +474,7 @@ export async function fetchBoardData(): Promise<typeof gitBoard> {
       alumniEvents: pinnedFirst(gitBoard.alumniEvents),
     };
   }
-  const rows = await fetchAllRows();
+  const rows = await fetchListRows();
   const of = (b: string) => rows.filter((r) => r.board === b);
   return {
     seminars: byPinnedDate(of('seminars').map(toSeminar)),
@@ -361,44 +491,32 @@ export async function fetchBoardData(): Promise<typeof gitBoard> {
   };
 }
 
-/** getAllBoardPosts 대응 — 상세/사이트맵용 통합 목록 (meta 라벨 규칙 동일) */
+/** getAllBoardPosts 대응 — 사이트맵·검색용 통합 목록 (meta 라벨 규칙 동일).
+ *  ⚠️ 여기서 나오는 글들의 body 는 빈 문자열이다(목록 조회에 본문이 없다).
+ *  본문이 필요하면 fetchBoardPost(id) 를 쓸 것. */
 export async function fetchAllBoardPosts(): Promise<BoardPost[]> {
   if (postsSource() === 'git') return gitAllBoardPosts();
   const b = await fetchBoardData();
   return [
-    ...b.noticesUndergrad.map(
-      (n): BoardPost => ({ ...n, boardKey: 'notices', meta: { ko: '학부 공지', en: 'Undergraduate' } }),
-    ),
-    ...b.noticesGraduate.map(
-      (n): BoardPost => ({ ...n, boardKey: 'notices', meta: { ko: '대학원 공지', en: 'Graduate' } }),
-    ),
-    ...b.noticesExternal.map(
-      (n): BoardPost => ({ ...n, boardKey: 'notices', meta: { ko: '외부기관 공지', en: 'External' } }),
-    ),
-    ...b.noticesScholarship.map(
-      (n): BoardPost => ({ ...n, boardKey: 'notices', meta: { ko: '장학생 선발공고', en: 'Scholarship' } }),
-    ),
-    ...b.seminars.map(
-      (s): BoardPost => ({
-        id: s.id, date: s.date, title: s.title, body: s.body,
-        boardKey: 'seminars', meta: s.host, attachments: s.attachments,
-      }),
-    ),
-    ...b.events.map(
-      (e): BoardPost => ({
-        id: e.id, date: e.date, title: e.title, body: e.body,
-        boardKey: 'events', meta: e.dateLabel, attachments: e.attachments,
-      }),
-    ),
-    ...b.thesis.map((t): BoardPost => ({ ...t, boardKey: 'thesis' })),
-    ...b.career.map((c): BoardPost => ({ ...c, boardKey: 'career' })),
-    ...b.resources.map((r): BoardPost => ({ ...r, boardKey: 'resources' })),
-    ...b.internships.map((n): BoardPost => ({ ...n, boardKey: 'internships' })),
+    ...b.noticesUndergrad.map((n) => noticeToBoardPost(n, 'noticesUndergrad')),
+    ...b.noticesGraduate.map((n) => noticeToBoardPost(n, 'noticesGraduate')),
+    ...b.noticesExternal.map((n) => noticeToBoardPost(n, 'noticesExternal')),
+    ...b.noticesScholarship.map((n) => noticeToBoardPost(n, 'noticesScholarship')),
+    ...b.seminars.map(seminarToBoardPost),
+    ...b.events.map(eventToBoardPost),
+    ...b.thesis.map((t) => noticeToBoardPost(t, 'thesis')),
+    ...b.career.map((c) => noticeToBoardPost(c, 'career')),
+    ...b.resources.map((r) => noticeToBoardPost(r, 'resources')),
+    ...b.internships.map((n) => noticeToBoardPost(n, 'internships')),
   ];
 }
 
+/** 게시판 글 상세 1건 — 본문 포함. 통합 목록을 훑지 않고 그 행만 읽는다. */
 export async function fetchBoardPost(id: string): Promise<BoardPost | undefined> {
-  return (await fetchAllBoardPosts()).find((p) => p.id === id);
+  if (postsSource() === 'git') return gitAllBoardPosts().find((p) => p.id === id);
+  if (!/^\d+$/.test(id)) return undefined; // DB id 는 연번 — 그 외 주소는 조회할 것도 없다
+  const r = await fetchRowById(Number(id));
+  return r ? rowToBoardPost(r) : undefined;
 }
 
 /** 동문 소식·네트워크 (동문 전용 라우트) */
@@ -407,8 +525,12 @@ export async function fetchAlumniEvents(): Promise<AlumniEvent[]> {
   return byPinnedDate((await rowsOf('alumniEvents')).map(toAlumniEvent));
 }
 
+/** 동문 행사 상세 1건 — 본문 포함 단건 조회 */
 export async function fetchAlumniEventById(id: string): Promise<AlumniEvent | undefined> {
-  return (await fetchAlumniEvents()).find((e) => e.id === id);
+  if (postsSource() === 'git') return gitAlumniEvents.find((e) => e.id === id);
+  if (!/^\d+$/.test(id)) return undefined;
+  const r = await fetchRowById(Number(id));
+  return r && r.board === 'alumniEvents' ? toAlumniEvent(r) : undefined;
 }
 
 /** 금주 캘린더 — 행사 전체 + 동문(isEvent) */
@@ -422,4 +544,38 @@ export async function fetchCalendarEntries(): Promise<CalendarEntry[]> {
     .filter((a) => a.isEvent && a.date)
     .map((a) => ({ id: a.id, date: a.date, title: a.title, category: 'alumni' }));
   return [...events, ...alumni];
+}
+
+// ── 자료실 검색 인덱스용 본문 ──────────────────────────────────────────
+// 목록에서 본문을 뺀 뒤 유일하게 남은 "목록인데 본문이 필요한" 자리. 자료실은 받아 가는
+// 파일 목록이라 제목·첨부만으로는 원하는 서식을 못 찾는 일이 있어 본문까지 훑는다.
+// 다행히 자료실은 7건뿐이라 전용 조회가 부담이 없다 — 전체 1,275건에 본문을 다시
+// 실어 2MB 한도를 넘기는 것과는 비교가 안 된다.
+const fetchResourceBodiesDb = unstable_cache(
+  async (): Promise<Record<string, Localized>> => {
+    const { data, error } = await sb()
+      .from('posts')
+      .select('id, body_html_ko, body_html_en')
+      .eq('published', true)
+      .eq('board', 'resources');
+    if (error) throw new Error(`자료실 본문 조회 실패: ${error.message}`);
+    const rows = (data ?? []) as unknown as Array<{
+      id: number;
+      body_html_ko: string | null;
+      body_html_en: string | null;
+    }>;
+    return Object.fromEntries(rows.map((r) => [String(r.id), loc(r.body_html_ko, r.body_html_en)]));
+  },
+  ['posts-resource-bodies'],
+  { tags: ['posts'], revalidate: 600 },
+);
+
+/** 자료실 글 id → 본문. 목록(fetchBoardData().resources)의 body 가 비어 있으므로
+ *  검색 인덱스를 만드는 쪽이 이걸 따로 받아 간다(서버에서만 쓰고 클라이언트로는
+ *  태그를 지운 검색 문자열만 나간다). */
+export async function fetchResourceBodies(): Promise<Record<string, Localized>> {
+  if (postsSource() === 'git') {
+    return Object.fromEntries(gitBoard.resources.map((r) => [r.id, r.body]));
+  }
+  return fetchResourceBodiesDb();
 }
