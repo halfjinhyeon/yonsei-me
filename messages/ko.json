@@ -526,9 +526,10 @@
     },
     "categories": {
       "all": "전체",
+      "general": "일반",
+      "achievement": "성과",
       "notice": "공지",
-      "seminar": "세미나",
-      "achievement": "성과"
+      "seminar": "세미나"
     },
     "readMore": "자세히 보기",
     "backToList": "목록으로",
@@ -546,7 +547,8 @@
     },
     "filter": {
       "all": "전체",
-      "categoryLabel": "공지 구분"
+      "categoryLabel": "공지 구분",
+      "newsCategoryLabel": "뉴스 구분"
     },
     "detail": {
       "titleLabel": "제목",

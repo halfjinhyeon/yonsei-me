@@ -155,10 +155,11 @@ export function payloadToRow(p: AdminPostPayload) {
   // 소비자는 무변경으로 동작하고, 그간 전부 공백이던 EN 라벨 문제도 함께 해결된다.
   const label = hasSchedule && p.date ? formatPeriodLabel(p.date, endDate) : null;
   // 분류 — 뉴스와 캘린더가 같은 category 칼럼을 쓰되 값 집합이 다르다. board 로
-  // 스코프가 갈리므로 섞이지 않고, 기본값만 각자의 것으로 준다(뉴스 '공지',
+  // 스코프가 갈리므로 섞이지 않고, 기본값만 각자의 것으로 준다(뉴스 '일반',
   // 일정 '학사일정'). 분류가 없는 게시판은 예전처럼 null 이다.
   let category: string | null = null;
-  if (isNews) category = nn(p.category) ?? 'notice';
+  // 뉴스 분류는 일반/성과 2종 — 구 값(notice/seminar)이 들어와도 '일반'으로 눕힌다
+  if (isNews) category = nn(p.category) === 'achievement' ? 'achievement' : 'general';
   else if (p.board === 'calendar') category = nn(p.category) ?? 'academic';
   // 자료실은 미분류를 허용한다 — 분류 없는 글은 목록의 '전체' 탭에만 잡힌다
   else if (p.board === 'resources') category = nn(p.category);

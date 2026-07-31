@@ -81,10 +81,9 @@ const BOARD_NOTES: Record<BoardKey, string> = {
   instagram: '홈 하단 인스타그램 그리드의 타일이 됩니다. 본문 없이 사진·캡션·게시물 URL만 씁니다.',
 };
 
-/** 뉴스형 카드의 분류 배지 문구 */
+/** 뉴스형 카드의 분류 배지 문구. 구 분류(notice/seminar)로 남은 글은 아래 폴백으로 '일반'이 된다 */
 const CATEGORY_LABELS: Record<string, string> = {
-  notice: '공지',
-  seminar: '세미나',
+  general: '일반',
   achievement: '성과',
 };
 
@@ -104,7 +103,7 @@ function blankRecord(key: BoardKey, suggestedId: string): EditRecord {
     ...(meta.hasEventFlag ? { isEvent: false } : {}),
     // 고정 대상 게시판(글 목록이 있는 곳)만 필드를 갖는다 — 새 글은 언제나 고정 해제로 시작
     ...(meta.noBody ? {} : { pinned: false }),
-    ...(meta.isNews ? { category: 'notice' as const, excerptKo: '', excerptEn: '', image: '' } : {}),
+    ...(meta.isNews ? { category: 'general' as const, excerptKo: '', excerptEn: '', image: '' } : {}),
     attachments: [emptyAttachment()],
   };
 }
@@ -1007,7 +1006,7 @@ function NewsCards({
                 </span>
               )}
               <span className="absolute right-0 top-0 bg-yonsei-navy/85 px-2 py-1 text-[10px] font-extrabold tracking-wide text-white">
-                {CATEGORY_LABELS[rec.category ?? 'notice'] ?? '공지'}
+                {CATEGORY_LABELS[rec.category ?? 'general'] ?? '일반'}
               </span>
             </button>
 

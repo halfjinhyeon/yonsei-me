@@ -84,8 +84,15 @@ export default async function NewsPage({ params }: { params: { locale: string } 
     tag: tNews(`categories.${item.category}`),
     href: `/news/${item.slug}`,
     image: item.image || undefined,
+    category: item.category,
     pinned: item.pinned,
   }));
+
+  // 뉴스 필터 탭(전체/일반/성과)
+  const newsCategories = [
+    { id: 'general', label: tNews('categories.general') },
+    { id: 'achievement', label: tNews('categories.achievement') },
+  ];
 
   const eventRows: BoardRow[] = board.events.map((e) => ({
     id: e.id,
@@ -207,7 +214,15 @@ export default async function NewsPage({ params }: { params: { locale: string } 
       key: 'news',
       label: tMenu('news.items.news'),
       markdown: null,
-      content: <FilterableBoardList items={newsItems} locale={locale} emptyLabel={tStub('empty')} />,
+      content: (
+        <FilterableBoardList
+          items={newsItems}
+          categories={newsCategories}
+          categoryLabel={tNews('filter.newsCategoryLabel')}
+          locale={locale}
+          emptyLabel={tStub('empty')}
+        />
+      ),
     },
     { key: 'thesis', label: tMenu('news.items.thesis'), markdown: null, content: <FilterableBoardList items={thesisRows} locale={locale} emptyLabel={tStub('empty')} /> },
     { key: 'resources', label: tMenu('news.items.resources'), markdown: null, content: <ResourceLibrary items={resourceItems} locale={locale} /> },

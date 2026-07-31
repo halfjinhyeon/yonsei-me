@@ -69,7 +69,9 @@ export async function POST(request: Request): Promise<Response> {
       const patch: Record<string, unknown> = { board: target };
       if (isNewsTarget) {
         patch.slug = r.slug ?? `${String(r.created_at).slice(0, 10)}-post-${r.id}`;
-        patch.category = r.category ?? 'notice';
+        // 뉴스 분류는 일반/성과 2종 — 다른 값 집합을 쓰던 게시판(자료실 form/rule)이나
+        // 구 뉴스 분류(notice/seminar)에서 옮겨 와도 '일반'으로 눕힌다.
+        patch.category = r.category === 'achievement' ? 'achievement' : 'general';
       } else {
         patch.slug = null;
       }

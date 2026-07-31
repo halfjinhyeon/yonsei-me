@@ -610,19 +610,26 @@ export function PostForm({
             </>
           )}
 
-          {/* 뉴스형 — 분류. 뉴스의 3종은 사이트 곳곳(카드 배지·필터)이 값 자체를 알고
-              있어 데이터로 빼지 않고 여기 그대로 둔다(기본값 notice). */}
-          {meta.isNews && (
-            <MetaField label="분류" htmlFor="pf-category">
+          {/* 뉴스형 — 분류. 선택지는 자료실과 마찬가지로 BoardMeta.categories 가 쥐고
+              있고(NEWS_CATEGORIES), 여기서는 그 목록만 그린다. 미분류 옵션은 없다 —
+              뉴스는 항상 둘 중 하나에 속하고 기본값은 '일반'이다. */}
+          {meta.isNews && meta.categories && (
+            <MetaField
+              label="분류"
+              htmlFor="pf-category"
+              hint="뉴스 목록 상단 탭(전체 / 일반 / 성과)을 가르는 값입니다."
+            >
               <select
                 id="pf-category"
-                value={rec.category ?? 'notice'}
+                value={rec.category ?? 'general'}
                 onChange={(e) => set('category', e.target.value as EditRecord['category'])}
                 className={cn(fieldClass, 'cursor-pointer')}
               >
-                <option value="notice">공지 (notice)</option>
-                <option value="seminar">세미나 (seminar)</option>
-                <option value="achievement">성과 (achievement)</option>
+                {meta.categories.map((c) => (
+                  <option key={c.value} value={c.value}>
+                    {c.label}
+                  </option>
+                ))}
               </select>
             </MetaField>
           )}

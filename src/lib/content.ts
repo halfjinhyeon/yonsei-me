@@ -48,7 +48,13 @@ export interface Research {
   image: string;
 }
 
-export type NewsCategory = 'notice' | 'seminar' | 'achievement';
+export type NewsCategory = 'general' | 'achievement';
+
+/** 구 분류(notice/seminar)를 '일반'으로 흡수한다 — 뉴스 분류를 일반/성과 2종으로
+ *  줄이면서 기존 글이 목록에서 사라지지 않게 하는 읽기 시점 폴백. */
+export function normalizeNewsCategory(v: string | null | undefined): NewsCategory {
+  return v === 'achievement' ? 'achievement' : 'general';
+}
 
 export interface NewsItem {
   slug: string;
@@ -77,18 +83,21 @@ export const faculty = facultyData as Faculty[];
 export const staff = staffData as StaffMember[];
 export const research = researchData as Research[];
 
-/** 뉴스는 항상 최신순 정렬해서 반환 */
+/** 뉴스는 항상 최신순 정렬해서 반환. 분류는 읽는 자리에서 정규화한다 —
+ *  JSON 스냅샷에는 아직 구 분류(notice/seminar)로 저장된 글이 남아 있다. */
 export const news = (newsData as NewsItem[])
   .slice()
+  .map((n) => ({ ...n, category: normalizeNewsCategory(n.category) }))
   .sort((a, b) => (a.date < b.date ? 1 : -1));
 
 export function getNewsBySlug(slug: string): NewsItem | undefined {
   return news.find((n) => n.slug === slug);
 }
 
-/** 동문 뉴스 — 별도 파일(content/alumni-news.json). 항상 최신순 정렬 */
+/** 동문 뉴스 — 별도 파일(content/alumni-news.json). 항상 최신순 정렬, 분류는 위와 같이 정규화 */
 export const alumniNews = (alumniNewsData as NewsItem[])
   .slice()
+  .map((n) => ({ ...n, category: normalizeNewsCategory(n.category) }))
   .sort((a, b) => (a.date < b.date ? 1 : -1));
 
 export function getAlumniNewsBySlug(slug: string): NewsItem | undefined {

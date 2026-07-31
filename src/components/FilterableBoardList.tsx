@@ -33,11 +33,15 @@ export function FilterableBoardList({
   locale,
   emptyLabel,
   categories,
+  categoryLabel,
 }: {
   items: BoardRow[];
   locale: Locale;
   emptyLabel: string;
   categories?: BoardCategory[];
+  /** 카테고리 탭 그룹의 스크린리더 이름. 기본값이 "공지 구분"이라 공지 외
+   *  게시판(뉴스 등)에서는 그 게시판의 문구를 넘겨야 한다. */
+  categoryLabel?: string;
 }) {
   const t = useTranslations('news');
   const [filter, setFilter] = useState(emptyFilter);
@@ -90,7 +94,7 @@ export function FilterableBoardList({
           <UnderlineTabs
             active={cat}
             onChange={setCat}
-            ariaLabel={t('filter.categoryLabel')}
+            ariaLabel={categoryLabel ?? t('filter.categoryLabel')}
             tabs={[
               { id: 'all', label: <span className="whitespace-nowrap">{t('filter.all')}</span> },
               ...categories.map((c) => ({

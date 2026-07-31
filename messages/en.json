@@ -526,9 +526,10 @@
     },
     "categories": {
       "all": "All",
+      "general": "General",
+      "achievement": "Achievement",
       "notice": "Notice",
-      "seminar": "Seminar",
-      "achievement": "Achievement"
+      "seminar": "Seminar"
     },
     "readMore": "Read more",
     "backToList": "Back to list",
@@ -546,7 +547,8 @@
     },
     "filter": {
       "all": "All",
-      "categoryLabel": "Notice type"
+      "categoryLabel": "Notice type",
+      "newsCategoryLabel": "News type"
     },
     "detail": {
       "titleLabel": "Title",

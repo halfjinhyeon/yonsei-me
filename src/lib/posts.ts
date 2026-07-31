@@ -21,8 +21,8 @@ import {
   getAllBoardPosts as gitAllBoardPosts,
   getCalendarEntries as gitCalendarEntries,
   alumniEvents as gitAlumniEvents,
+  normalizeNewsCategory,
   type NewsItem,
-  type NewsCategory,
   type Notice,
   type Seminar,
   type EventItem,
@@ -147,7 +147,8 @@ function thumbOf(r: DbPost): string | undefined {
 function toNews(r: DbPost): NewsItem {
   return {
     slug: r.slug ?? String(r.id),
-    category: (r.category ?? 'notice') as NewsCategory,
+    // 분류는 일반/성과 2종 — DB 에 남은 구 값(notice/seminar)은 '일반'으로 눕힌다
+    category: normalizeNewsCategory(r.category),
     date: dateOf(r),
     title: loc(r.title_ko, r.title_en),
     excerpt: loc(r.excerpt_ko, r.excerpt_en),

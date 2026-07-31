@@ -64,7 +64,7 @@ export interface EditRecord {
   // 목록 최상단 고정 — 글 목록이 아닌 게시판(noBody: 일정·인스타그램)은 대상이 아니다
   pinned?: boolean;
   // 뉴스 전용 + 일정(캘린더) 전용.
-  // ⚠️ 타입을 string 으로 넓힌 이유: 뉴스는 notice|seminar|achievement 를, 캘린더는
+  // ⚠️ 타입을 string 으로 넓힌 이유: 뉴스는 general|achievement 를, 캘린더는
   // academic|event|recruit|exam 을 쓰는데 저장처가 posts.category 한 칼럼으로 같다.
   // 두 집합은 board 값으로 스코프가 갈리므로 한 칼럼을 공유해도 충돌하지 않는다.
   // 여기서 유니온으로 좁히면 게시판이 늘 때마다 이 자리를 고쳐야 하고, 실제 판정은
@@ -108,9 +108,9 @@ export interface BoardMeta {
   /** isNews 게시판이 읽고 쓰는 뉴스 파일 경로 (기본 'content/news.json'). 동문 뉴스처럼 별도 파일을 쓰는 뉴스형 게시판에서 지정 */
   newsFile?: string;
   /**
-   * 분류 선택지 — 값은 posts.category 칼럼에 저장한다. 뉴스의
-   * notice|seminar|achievement 와는 board 로 스코프가 갈리므로 같은 칼럼을 써도
-   * 충돌하지 않는다. 화면은 이 목록만 보고 버튼을 그린다(상수를 직접 참조하지 않는다).
+   * 분류 선택지 — 값은 posts.category 칼럼에 저장한다. 뉴스의 general|achievement
+   * 와는 board 로 스코프가 갈리므로 같은 칼럼을 써도 충돌하지 않는다. 화면은 이
+   * 목록만 보고 버튼을 그린다(상수를 직접 참조하지 않는다).
    */
   categories?: { value: string; label: string }[];
   /** true 면 목록을 표·카드가 아니라 월 그리드(달력)로 그린다 — 일정. */
@@ -125,6 +125,15 @@ export interface BoardMeta {
 export const RESOURCE_CATEGORIES: { value: string; label: string }[] = [
   { value: 'form', label: '행정 서식' },
   { value: 'rule', label: '규정·내규' },
+];
+
+/** 뉴스 분류 — posts.category 에 저장. 뉴스 목록 상단 탭(전체·일반·성과)을 가르는 값이며,
+ *  값은 프런트(content.ts NewsCategory)와 공유하므로 바꾸면 기존 글의 분류가 풀린다.
+ *  content.ts 에서 값을 import 하지 않는 이유는 RESOURCE_CATEGORIES 와 같다 — 이 파일은
+ *  클라이언트 번들에 들어가는데 content.ts 는 content/*.json 을 통째로 import 한다. */
+export const NEWS_CATEGORIES: { value: string; label: string }[] = [
+  { value: 'general', label: '일반' },
+  { value: 'achievement', label: '성과' },
 ];
 
 /** 일정 분류 4종 — posts.category 에 저장되는 값 집합 */
@@ -150,7 +159,7 @@ export const BOARDS: BoardMeta[] = [
   { key: 'noticesGraduate', label: '대학원 공지', file: 'board.json', idPrefix: 'ng-', hasHost: false, hasDateLabel: false, isNews: false },
   { key: 'noticesExternal', label: '외부기관 공지', file: 'board.json', idPrefix: 'nx-', hasHost: false, hasDateLabel: false, isNews: false },
   { key: 'noticesScholarship', label: '장학생 선발공고', file: 'board.json', idPrefix: 'nsch-', hasHost: false, hasDateLabel: false, isNews: false },
-  { key: 'news', label: '뉴스', file: 'news.json', idPrefix: '', hasHost: false, hasDateLabel: false, isNews: true },
+  { key: 'news', label: '뉴스', file: 'news.json', idPrefix: '', hasHost: false, hasDateLabel: false, isNews: true, categories: NEWS_CATEGORIES },
   { key: 'seminars', label: '세미나', file: 'board.json', idPrefix: 'sem-', hasHost: true, hasDateLabel: false, hasDateRange: true, isNews: false },
   // events: 기간 라벨 수동 입력(hasDateLabel)을 폐지하고 시작–종료일 피커(hasDateRange)로 전환 —
   // 라벨은 저장 시 서버(formatPeriodLabel)가 자동 생성한다.
@@ -159,7 +168,7 @@ export const BOARDS: BoardMeta[] = [
   { key: 'resources', label: '자료실', file: 'board.json', idPrefix: 'res-', hasHost: false, hasDateLabel: false, isNews: false, categories: RESOURCE_CATEGORIES, hasExcerpt: true },
   { key: 'career', label: '취업 정보', file: 'board.json', idPrefix: 'cr-', hasHost: false, hasDateLabel: false, isNews: false },
   { key: 'internships', label: '인턴 모집', file: 'board.json', idPrefix: 'int-', hasHost: false, hasDateLabel: false, isNews: false },
-  { key: 'alumniNews', label: '동문 뉴스', file: 'news.json', idPrefix: '', hasHost: false, hasDateLabel: false, isNews: true, newsFile: 'content/alumni-news.json' },
+  { key: 'alumniNews', label: '동문 뉴스', file: 'news.json', idPrefix: '', hasHost: false, hasDateLabel: false, isNews: true, newsFile: 'content/alumni-news.json', categories: NEWS_CATEGORIES },
   { key: 'alumniEvents', label: '동문 소식·네트워크', file: 'board.json', idPrefix: 'ae-', hasHost: true, hasDateLabel: false, hasDateRange: true, isNews: false, hasEventFlag: true },
   // 인스타그램 — 홈 하단 그리드에 노출. 캡션(제목)·대표 이미지·게시물 URL만 받는 링크형 게시판.
   { key: 'instagram', label: '인스타그램', file: 'board.json', idPrefix: 'ig-', hasHost: false, hasDateLabel: false, isNews: false, hasLink: true, noBody: true },
@@ -262,7 +271,9 @@ export function toEditRecord(meta: BoardMeta, raw: unknown): EditRecord {
     base.pinned = r.pinned === true;
   }
   if (meta.isNews) {
-    base.category = String(r.category ?? 'notice');
+    // 구 분류(notice/seminar)로 저장된 글도 '일반'으로 열린다 — 매칭되는 option 이
+    // 없으면 select 가 빈칸으로 뜨고, 그대로 저장하면 옛 값이 되살아난다.
+    base.category = r.category === 'achievement' ? 'achievement' : 'general';
   } else if (meta.categories) {
     // 뉴스 외 분류 게시판(자료실 등) — 미분류('')를 허용하므로 기본값을 넣지 않는다
     base.category = String(r.category ?? '');
@@ -326,8 +337,8 @@ export function toNewsEntry(rec: EditRecord): NewsItem {
   return {
     slug: rec.id.trim(),
     // 편집 레코드의 category 는 자유 문자열(캘린더 분류와 칼럼을 공유)이라, 뉴스
-    // 파일로 내보낼 때만 뉴스 분류 유니온으로 되돌린다.
-    category: (rec.category as NewsItem['category']) ?? 'notice',
+    // 파일로 내보낼 때만 뉴스 분류 유니온(general|achievement)으로 되돌린다.
+    category: (rec.category as NewsItem['category']) ?? 'general',
     date: rec.date,
     title: localized(rec.titleKo, rec.titleEn),
     excerpt: localized(rec.excerptKo ?? '', rec.excerptEn ?? ''),
@@ -378,9 +389,9 @@ export function convertRecordForBoard(
     rec.pinned = src.pinned === true;
   }
   if (target.isNews) {
-    // 원본도 뉴스면 분류를 승계, 아니면 기본 'notice'. (toEditRecord는 뉴스가
-    // 아닌 원본에는 category를 채우지 않으므로 ?? 폴백으로 안전하다.)
-    rec.category = src.category ?? 'notice';
+    // 원본도 뉴스면 분류를 승계, 아니면 기본 '일반'. 자료실처럼 다른 값 집합을
+    // 쓰는 게시판(form/rule)에서 옮겨 오면 뉴스 분류가 아니므로 함께 눕힌다.
+    rec.category = src.category === 'achievement' ? 'achievement' : 'general';
     rec.excerptKo = src.excerptKo ?? '';
     rec.excerptEn = src.excerptEn ?? '';
   }
