@@ -45,7 +45,7 @@
         "clubs": "동아리 소개",
         "scholarship": "장학금",
         "checker": "나의 졸업요건",
-        "mileage": "마일리지 전략"
+        "mileage": "수강신청 도우미"
       }
     },
     "graduate": {
@@ -247,7 +247,7 @@
       "intro": {
         "eyebrow": "RESEARCH LABS",
         "label": "우리의 연구실",
-        "tagline": "여섯 갈래의 연구, 서른세 곳의 연구실 — 카드를 넘기며 관심 분야의 문을 두드려 보세요."
+        "tagline": "여섯 갈래의 연구, 서른세 곳의 연구실"
       },
       "detail": "연구실 보기",
       "cta": "모든 연구실 보기",

@@ -45,7 +45,7 @@
         "clubs": "Student Clubs",
         "scholarship": "Scholarships",
         "checker": "Degree Checker",
-        "mileage": "Mileage Planner"
+        "mileage": "Course Registration Helper"
       }
     },
     "graduate": {
@@ -247,7 +247,7 @@
       "intro": {
         "eyebrow": "RESEARCH LABS",
         "label": "RESEARCH LABS",
-        "tagline": "Six branches of research, thirty-three labs — browse the cards and knock on the door of your field."
+        "tagline": "Six branches of research, thirty-three labs"
       },
       "detail": "View lab",
       "cta": "See all labs",

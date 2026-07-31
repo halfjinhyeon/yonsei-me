@@ -108,22 +108,25 @@ export function InstagramSection({
           (hasItems ? 'pb-8' : 'pb-12 lg:pb-14')
         }
       >
-        {/* 좌: 아이콘 + 헤드라인 */}
-        <div className="flex items-center gap-4">
+        {/* 좌: 아이콘 + 헤드라인 (버튼이 한 줄에 다 못 들어가는 lg 미만에선 가운데 정렬) */}
+        <div className="flex items-center justify-center gap-4 lg:justify-start">
           <InstagramGlyph className="h-9 w-9 shrink-0 text-yonsei-navy dark:text-white" />
           <h2 id="instagram-heading" className="text-xl font-bold tracking-tight text-content sm:text-2xl">
             {tagline}
           </h2>
         </div>
 
-        {/* 우: 계정 버튼들 — 대표 계정은 채운 네이비, 보조 계정은 아웃라인 */}
-        <div className="flex flex-wrap items-center gap-2.5 xl:justify-end">
+        {/* 우: 계정 버튼들 — 대표 계정은 채운 네이비, 보조 계정은 아웃라인.
+            lg 미만에선 버튼 셋이 한 줄에 안 들어가 대표 계정만 따로 떨어지므로 2열 그리드로
+            바꾸고 대표 계정에 col-span-2 를 줘, 폭이 아래 두 버튼 + 간격의 합과 정확히 맞게 한다
+            (보조 계정이 셋 이상이면 2열로 이어지며 대표 계정은 계속 전체 폭). */}
+        <div className="grid grid-cols-2 gap-2.5 lg:flex lg:flex-wrap lg:items-center xl:justify-end">
           <a
             href={url}
             target="_blank"
             rel="noopener noreferrer"
             aria-label={`@${handle} ${followLabel} — ${externalLabel}`}
-            className="inline-flex items-center justify-center gap-2.5 bg-yonsei-navy px-6 py-3.5 text-sm font-bold text-white transition-colors hover:bg-yonsei-blue"
+            className="col-span-2 inline-flex items-center justify-center gap-2.5 bg-yonsei-navy px-6 py-3.5 text-sm font-bold text-white transition-colors hover:bg-yonsei-blue lg:col-auto"
           >
             <InstagramGlyph className="h-[1.1em] w-[1.1em]" />
             <span>

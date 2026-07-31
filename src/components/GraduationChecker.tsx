@@ -1080,7 +1080,7 @@ export function GraduationChecker({ data, locale }: { data: CheckerData; locale:
             </p>
             <p className="mt-1 text-xs leading-relaxed text-content-soft">
               {ko
-                ? `남은 과목 ${remainingForMileage.length}개를 마일리지 플래너로 그대로 가져갑니다. 다시 입력할 필요 없어요.`
+                ? `남은 과목 ${remainingForMileage.length}개를 수강신청 도우미로 그대로 가져갑니다. 다시 입력할 필요 없어요.`
                 : `Carries your ${remainingForMileage.length} remaining course(s) over — no re-entry needed.`}
             </p>
             <button
@@ -1098,7 +1098,7 @@ export function GraduationChecker({ data, locale }: { data: CheckerData; locale:
               }}
               className="group mt-3 inline-flex min-h-[44px] items-center gap-2 bg-yonsei-navy px-5 text-sm font-bold text-white transition-colors hover:bg-yonsei-blue"
             >
-              {ko ? '마일리지 전략 플래너로' : 'Go to Mileage Planner'}
+              {ko ? '수강신청 도우미로' : 'Go to Course Registration Helper'}
               <span aria-hidden="true" className="transition-transform group-hover:translate-x-1">
                 →
               </span>
