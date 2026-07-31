@@ -374,8 +374,11 @@
         }
       }
     },
+    "stats": {
+      "title": "The School in Numbers"
+    },
     "history": {
-      "title": "History",
+      "title": "Our Timeline",
       "milestones": {
         "0": {
           "year": "1950s",

@@ -374,6 +374,9 @@
         }
       }
     },
+    "stats": {
+      "title": "학과 현황"
+    },
     "history": {
       "title": "연혁",
       "milestones": {
