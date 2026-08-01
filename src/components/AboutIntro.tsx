@@ -123,9 +123,12 @@ export async function AboutIntro({ locale }: { locale: string }) {
         <h4 data-land="rise" data-land-order="6" style={SUBHEAD_FONT} className={SUBHEAD_CLASS}>
           {t('stats.title')}
         </h4>
-        <dl className="mt-7 grid grid-cols-2 gap-x-5 gap-y-6 text-center md:mt-10 md:grid-cols-4 md:gap-10">
+        <dl className="mt-7 grid grid-cols-2 gap-x-5 gap-y-8 text-center md:mt-10 md:grid-cols-4 md:gap-10">
           {aboutStats.map((stat) => (
-            <div key={stat.label.en} className="border-t border-surface-border pt-4 md:pt-5">
+            // pt = 아래 여백과 같은 값(모바일 32 = gap-y-8/블록 간격, md 44 = 다음 블록 mt-11).
+            // 수치+라벨이 위 헤어라인과 아래 헤어라인 정중앙에 오도록 맞춘 값이라 임의로
+            // 줄이면 다시 위로 붙어 보인다.
+            <div key={stat.label.en} className="border-t border-surface-border pt-8 md:pt-11">
               {/* leading-none: 숫자 라인박스의 여분 공간을 제거해 라벨과의 간격을 고르게.
                   ⚠️ 카운트업(data-land="count")이 textContent 를 파싱하므로 순수 숫자만 둔다 */}
               <dd
