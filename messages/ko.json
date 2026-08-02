@@ -581,14 +581,10 @@
       "scholarship": "장학생 선발"
     },
     "library": {
-      "all": "전체",
       "categoryLabel": "자료 분류",
       "zipFileName": "자료실 첨부.zip",
       "catForm": "행정 서식",
       "catRule": "규정·내규",
-      "searchPlaceholder": "제목·본문·파일명으로 검색",
-      "searchLabel": "자료 검색",
-      "results": "검색 결과 {count}건",
       "empty": "조건에 맞는 자료가 없습니다.",
       "new": "NEW",
       "download": "다운로드",

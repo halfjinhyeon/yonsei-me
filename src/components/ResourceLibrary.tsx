@@ -3,6 +3,8 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { Link } from '@/i18n/navigation';
+import { BoardFilterBar, emptyFilter, isFilterActive, matchesFilter } from '@/components/BoardFilterBar';
+import { BoardCategoryTabs } from '@/components/BoardCategoryTabs';
 import { cn, formatDate } from '@/lib/utils';
 import { filenameFromDisposition, formatBytes } from '@/lib/files';
 import type { Locale } from '@/i18n/routing';
@@ -12,10 +14,12 @@ import type { Locale } from '@/i18n/routing';
  * 행의 무게중심을 썸네일이 아닌 다운로드 버튼과 파일 메타(형식·용량)에 둔다.
  *
  * 구성(디자인 시안 "자료실 - 최종" — 이후 사용자 지시로 '여러 개 선택'(일괄 다운로드)은 삭제):
- *  - 상단 한 줄에 분류 탭(전체·행정 서식·규정·내규, 옆에 건수)과 검색을 같이 놓는다.
+ *  - 헤더는 다른 게시판과 같은 문법이다: 위 줄에 공용 분류 탭(BoardCategoryTabs —
+ *    전체·행정 서식·규정·내규, 옆에 건수), 아래 줄에 공용 검색 바(BoardFilterBar).
  *    분류가 지정된 글이 하나도 없으면 0건 탭만 두 개 뜨므로 탭 그룹 자체를 렌더하지 않는다.
- *  - 검색은 제출 버튼 없는 실시간 필터. 대상은 서버에서 만들어 준 searchText
- *    (제목+발췌+본문 평문+첨부 파일명)라 "파일명으로 찾기"가 그대로 동작한다.
+ *  - 검색은 제출형(범위 select + 검색 버튼)이고 매칭도 공용 matchesFilter 를 그대로 쓴다.
+ *    다만 '내용' 범위에 서버가 만들어 준 contentText(발췌+본문 평문+첨부 파일명)를 물려서
+ *    다른 게시판이 발췌만 훑는 자리에서 자료실은 "파일명으로 찾기"까지 그대로 동작한다.
  *  - 첨부가 2개 이상인 행의 전체 다운로드는 POST /api/download-zip 을 쓴다
  *    (본문은 zip 바이트, 실패 시 JSON {error}). 진행 중에는 해당 버튼만 잠근다.
  *
@@ -39,8 +43,9 @@ export interface ResourceItem {
   /** 목록 최상단 고정 글 — 핀 배지를 붙인다(정렬은 상류 fetchBoardData 가 이미 마쳤다) */
   pinned?: boolean;
   attachments: ResourceAttachment[];
-  /** 소문자 검색 인덱스 — 제목·발췌·본문 평문·첨부 라벨을 이어 붙인 것 */
-  searchText: string;
+  /** 소문자 검색 인덱스 — 발췌·본문 평문·첨부 라벨을 이어 붙인 것.
+   *  제목은 title 필드로 따로 내려가므로(검색 범위를 가르기 위해) 여기에 넣지 않는다. */
+  contentText: string;
 }
 
 export interface ResourceAttachment {
@@ -65,7 +70,7 @@ export function ResourceLibrary({
   const t = useTranslations('news');
 
   const [cat, setCat] = useState<'all' | 'form' | 'rule'>('all');
-  const [query, setQuery] = useState('');
+  const [filter, setFilter] = useState(emptyFilter);
   /** 진행 중인 ZIP 요청의 행 id (행별 전체 다운로드) */
   const [zipBusy, setZipBusy] = useState<string | null>(null);
   /** 실패 메시지를 붙일 행 id */
@@ -78,19 +83,26 @@ export function ResourceLibrary({
   // 분류가 하나라도 붙어 있을 때만 탭을 노출한다 (전부 미분류면 0건 탭 두 개가 뜬다)
   const hasCategories = useMemo(() => items.some((it) => it.category), [items]);
 
-  const searched = useMemo(() => {
-    const q = query.trim().toLowerCase();
-    if (!q) return items;
-    return items.filter((it) => it.searchText.includes(q));
-  }, [items, query]);
+  // 매칭은 공용 matchesFilter 에 위임한다 — 범위(제목/내용/제목+내용)의 의미가 다른
+  // 게시판과 100% 같아야 하기 때문. subtitle 자리에 발췌가 아니라 contentText 를 넣는 건
+  // 자료실의 '내용' 범위가 발췌뿐 아니라 본문·첨부 파일명까지 덮게 하려는 의도적 선택이다.
+  // (matchesFilter 가 양쪽을 소문자화+공백접기 하는데 contentText 는 이미 그 형태라 멱등)
+  const searchActive = isFilterActive(filter);
+  const searched = useMemo(
+    () => (searchActive
+      ? items.filter((it) => matchesFilter({ title: it.title, subtitle: it.contentText }, filter))
+      : items),
+    [items, searchActive, filter],
+  );
 
+  // 탭 건수는 검색과 무관하게 전체(items) 기준 — FilterableBoardList 와 같은 규칙이다.
+  // 검색할 때마다 탭 숫자가 흔들리면 분류의 규모를 가늠하는 지표로 쓸 수 없다.
   const counts = useMemo(
     () => ({
-      all: searched.length,
-      form: searched.filter((it) => it.category === 'form').length,
-      rule: searched.filter((it) => it.category === 'rule').length,
+      form: items.filter((it) => it.category === 'form').length,
+      rule: items.filter((it) => it.category === 'rule').length,
     }),
-    [searched],
+    [items],
   );
 
   const visible = useMemo(
@@ -127,67 +139,27 @@ export function ResourceLibrary({
     }
   };
 
-  const tabs: { id: 'all' | 'form' | 'rule'; label: string; count: number }[] = [
-    { id: 'all', label: t('library.all'), count: counts.all },
-    { id: 'form', label: t('library.catForm'), count: counts.form },
-    { id: 'rule', label: t('library.catRule'), count: counts.rule },
-  ];
-
   return (
     <div>
-      {/* 1) 탭 + 컨트롤 줄 — 데스크톱은 한 줄 양끝, 모바일은 세로 스택 */}
-      <div className="mb-6 flex flex-col gap-3 border-b border-surface-border tab:flex-row tab:items-end tab:justify-between tab:gap-6">
-        {hasCategories ? (
-          <div role="group" aria-label={t('library.categoryLabel')} className="-mb-px overflow-x-auto">
-            <div className="flex gap-7">
-              {tabs.map((tab) => (
-                <button
-                  key={tab.id}
-                  type="button"
-                  onClick={() => setCat(tab.id)}
-                  aria-pressed={cat === tab.id}
-                  className={cn(
-                    'inline-flex shrink-0 items-center gap-1.5 whitespace-nowrap border-b-2 pb-[0.625rem] text-[0.9375rem] font-semibold transition-colors',
-                    cat === tab.id
-                      ? 'border-yonsei-navy text-yonsei-navy'
-                      : 'border-transparent text-content-faint hover:text-yonsei-navy',
-                  )}
-                >
-                  {tab.label}
-                  <span className="text-xs font-medium tabular-nums text-content-faint">
-                    {tab.count}
-                  </span>
-                </button>
-              ))}
-            </div>
-          </div>
-        ) : (
-          /* 분류가 전혀 없으면 탭 자리를 비운다 — 모바일에선 빈 간격도 남기지 않는다 */
-          <span aria-hidden="true" className="hidden tab:block" />
-        )}
-
-        {/* 검색 — 모바일은 남는 폭 전부, tab 이상은 시안의 고정 폭 */}
-        <div className="pb-2.5">
-          <div className="relative min-w-0 flex-1 tab:w-[21.25rem] tab:flex-none">
-            <SearchIcon />
-            <input
-              type="search"
-              value={query}
-              onChange={(e) => setQuery(e.target.value)}
-              aria-label={t('library.searchLabel')}
-              placeholder={t('library.searchPlaceholder')}
-              className="w-full border border-surface-border bg-surface py-[0.5625rem] pl-[2.375rem] pr-3 text-sm text-content transition-colors placeholder:text-content-faint focus:border-yonsei-blue"
-            />
-          </div>
-        </div>
-      </div>
-
-      {/* 2) 검색 결과 건수 — 검색어가 있을 때만 */}
-      {query.trim() && (
-        <p className="mb-2 text-right text-sm text-content-faint" aria-live="polite">
-          {t('library.results', { count: visible.length })}
-        </p>
+      {/* 1) 분류 탭 — 분류가 전혀 없으면 줄 자체를 렌더하지 않는다(0건 탭 두 개 방지) */}
+      {hasCategories && (
+        <BoardCategoryTabs
+          active={cat}
+          onChange={(id) => setCat(id as 'all' | 'form' | 'rule')}
+          ariaLabel={t('library.categoryLabel')}
+          categories={[
+            { id: 'form', label: t('library.catForm'), count: counts.form },
+            { id: 'rule', label: t('library.catRule'), count: counts.rule },
+          ]}
+        />
       )}
+
+      {/* 2) 검색 바 — 결과 건수도 이 안에서 그린다(다른 게시판과 같은 자리·같은 문구) */}
+      <BoardFilterBar
+        value={filter}
+        onChange={setFilter}
+        resultCount={searchActive ? visible.length : null}
+      />
 
       {/* 3) 목록 / 4) 빈 상태 */}
       {visible.length === 0 ? (
@@ -195,7 +167,9 @@ export function ResourceLibrary({
           {/* 빈 상태 마스코트 — BoardList 와 동일 자산 */}
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src="/img/eagle_empty.png" alt="" aria-hidden="true" className="h-20 w-auto opacity-70" />
-          <p className="max-w-sm text-content-soft">{t('library.empty')}</p>
+          <p className="max-w-sm text-content-soft">
+            {searchActive ? t('search.empty') : t('library.empty')}
+          </p>
         </div>
       ) : (
         <ul className="border-y border-surface-border">
@@ -380,26 +354,6 @@ function DownloadIcon() {
       <path d="M12 3v12" />
       <path d="m7 10 5 5 5-5" />
       <path d="M4 21h16" />
-    </svg>
-  );
-}
-
-function SearchIcon() {
-  return (
-    <svg
-      width="16"
-      height="16"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden="true"
-      className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-content-faint"
-    >
-      <circle cx="11" cy="11" r="7" />
-      <path d="m20 20-3.6-3.6" />
     </svg>
   );
 }

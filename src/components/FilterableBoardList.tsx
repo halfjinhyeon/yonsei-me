@@ -5,7 +5,7 @@ import { useTranslations } from 'next-intl';
 import { BoardList, type BoardRow } from '@/components/BoardList';
 import { BoardFilterBar, emptyFilter, isFilterActive, matchesFilter } from '@/components/BoardFilterBar';
 import { BoardPagination } from '@/components/BoardPagination';
-import { UnderlineTabs } from '@/components/UnderlineTabs';
+import { BoardCategoryTabs } from '@/components/BoardCategoryTabs';
 import type { Locale } from '@/i18n/routing';
 
 /** 한 페이지에 싣는 글 수 — 행 높이 ~180px 기준으로 한 페이지가 대략 2,000px.
@@ -90,29 +90,15 @@ export function FilterableBoardList({
   return (
     <div ref={rootRef}>
       {categories && categories.length > 0 && (
-        <div className="mb-5 overflow-x-auto">
-          <UnderlineTabs
-            active={cat}
-            onChange={setCat}
-            ariaLabel={categoryLabel ?? t('filter.categoryLabel')}
-            tabs={[
-              { id: 'all', label: <span className="whitespace-nowrap">{t('filter.all')}</span> },
-              ...categories.map((c) => ({
-                id: c.id,
-                label: (
-                  <span className="inline-flex items-center gap-1.5 whitespace-nowrap">
-                    {c.label}
-                    <span
-                      className={cnCount(cat === c.id)}
-                    >
-                      {items.filter((it) => it.category === c.id).length}
-                    </span>
-                  </span>
-                ),
-              })),
-            ]}
-          />
-        </div>
+        <BoardCategoryTabs
+          active={cat}
+          onChange={setCat}
+          ariaLabel={categoryLabel ?? t('filter.categoryLabel')}
+          categories={categories.map((c) => ({
+            ...c,
+            count: items.filter((it) => it.category === c.id).length,
+          }))}
+        />
       )}
       <BoardFilterBar value={filter} onChange={setFilter} resultCount={showCount ? filtered.length : null} />
       <BoardList
@@ -126,11 +112,4 @@ export function FilterableBoardList({
       )}
     </div>
   );
-}
-
-/** 카테고리 탭 건수 배지 클래스 (활성/비활성) */
-function cnCount(active: boolean): string {
-  return active
-    ? 'text-xs font-medium tabular-nums text-yonsei-blue'
-    : 'text-xs font-medium tabular-nums text-content-faint';
 }

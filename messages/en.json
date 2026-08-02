@@ -581,14 +581,10 @@
       "scholarship": "Scholarship"
     },
     "library": {
-      "all": "All",
       "categoryLabel": "File category",
       "zipFileName": "attachments.zip",
       "catForm": "Administrative forms",
       "catRule": "Regulations",
-      "searchPlaceholder": "Search titles, text, and file names",
-      "searchLabel": "Search files",
-      "results": "{count} results",
       "empty": "No files match your filters.",
       "new": "NEW",
       "download": "Download",

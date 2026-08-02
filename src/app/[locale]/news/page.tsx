@@ -180,9 +180,11 @@ export default async function NewsPage({ params }: { params: { locale: string } 
   ];
 
   // 자료실: 다른 게시판과 달리 "받아 가는 파일"이라 전용 목록(ResourceLibrary)을 쓴다.
-  // 검색 인덱스(searchText)는 여기 서버에서 만든다 — 본문 HTML 을 클라이언트로 통째로
+  // 검색 인덱스(contentText)는 여기 서버에서 만든다 — 본문 HTML 을 클라이언트로 통째로
   // 넘기지 않기 위해 태그를 지우고 공백을 접어 소문자 한 줄로 눌러 둔다
   // (본문은 관리자가 쓴 신뢰 소스라 정규식 제거로 충분하다).
+  // 제목은 여기서 뺀다 — ResourceItem.title 로 이미 내려가고, 공용 검색 바의
+  // 범위(제목/내용/제목+내용)를 가르려면 제목과 내용 인덱스가 분리돼 있어야 한다.
   // 본문은 게시판 목록이 아니라 자료실 전용 조회로 따로 받는다 — 목록 조회는 Vercel
   // Data Cache 2MB 한도 때문에 본문 컬럼을 싣지 않는다(lib/posts.ts 의 LIST_COLUMNS).
   const resourceBodies = await fetchResourceBodies();
@@ -204,7 +206,7 @@ export default async function NewsPage({ params }: { params: { locale: string } 
       href: `/news/post/${r.id}`,
       pinned: r.pinned,
       attachments,
-      searchText: [title, desc ?? '', plainBody, ...attachments.map((a) => a.label)]
+      contentText: [desc ?? '', plainBody, ...attachments.map((a) => a.label)]
         .join(' ')
         .replace(/\s+/g, ' ')
         .trim()
