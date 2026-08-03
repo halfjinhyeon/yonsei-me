@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { Analytics } from '@vercel/analytics/next';
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, getTranslations, setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
@@ -118,6 +119,9 @@ export default async function LocaleLayout({
           </main>
           <Footer />
         </NextIntlClientProvider>
+        {/* Vercel Web Analytics — 프로덕션에서만 /_vercel/insights 로 집계(퍼스트파티
+            경로라 광고 차단기에 잘 안 걸린다). 쿠키를 심지 않아 동의 배너가 필요 없다. */}
+        <Analytics />
       </body>
     </html>
   );
