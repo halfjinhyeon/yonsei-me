@@ -148,10 +148,28 @@ export function Header() {
 
             {/* justify-evenly: 바깥 2 + 사이 6 = 8개 여백을 모두 동일하게 분배 →
                 "글자 사이 여백"이 일정하고, 로고·우측 버튼과의 경계 간격도 같아진다.
-                li 를 헤더 높이까지 늘려 top-full = 시트 상단 */}
-            <ul className="flex h-full w-full items-stretch justify-evenly">
+                li 를 헤더 높이까지 늘려 top-full = 시트 상단.
+
+                국문 ≥1360px: 상단 항목을 메가메뉴 시트처럼 뷰포트 중앙의 6등분
+                그리드에 얹는다(fixed 전폭 + mx-auto + px-6 + grid-cols-6) —
+                evenly 는 항목 폭 따라 중심이 흔들려 컬럼과 최대 ±31px 어긋났다.
+                폭은 시트(874px)보다 좁은 3xl(768px) — 사용자 지시로 상단 글자
+                사이 간격만 한 단계 좁힌 값이라 컬럼 중심과는 바깥쪽일수록 조금
+                어긋나지만(중앙 대칭이라 좌우 균형은 유지) 시트는 건드리지 않는다.
+                1360px 미만은 첫 라벨이 로고를 침범해(1280px에서 약 27px) evenly 로
+                폴백. 영문은 시트가 5xl(1024px)라 1440px에서도 로고와 겹쳐 제외. */}
+            <ul
+              className={cn(
+                'flex h-full w-full items-stretch justify-evenly',
+                isKo &&
+                  'min-[1360px]:fixed min-[1360px]:inset-x-0 min-[1360px]:top-0 min-[1360px]:mx-auto min-[1360px]:grid min-[1360px]:h-20 min-[1360px]:max-w-3xl min-[1360px]:grid-cols-6 min-[1360px]:px-6',
+              )}
+            >
               {menu.map((group) => (
-                <li key={group.key} className="flex items-center">
+                <li
+                  key={group.key}
+                  className={cn('flex items-center', isKo && 'min-[1360px]:justify-center')}
+                >
                   <Link
                     href={group.href}
                     aria-current={isActive(group.href) ? 'page' : undefined}

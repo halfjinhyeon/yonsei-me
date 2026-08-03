@@ -70,7 +70,7 @@
       }
     },
     "news": {
-      "label": "뉴스 및 공지사항",
+      "label": "소식",
       "items": {
         "notices": "공지사항",
         "news": "뉴스",
