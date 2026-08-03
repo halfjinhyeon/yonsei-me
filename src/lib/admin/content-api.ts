@@ -72,6 +72,17 @@ export async function loadJson<T>(cfg: RepoConfig, path: string): Promise<Loaded
   return { data: JSON.parse(file.data) as T, sha: file.sha };
 }
 
+/** loadJson 과 같되 파일이 없으면(404) null — 아직 만들어지지 않은 공유 파일 지원
+ *  (연구실 AI 요약처럼 항목 폼이 곁들여 편집하는 파일은 없을 수도 있다) */
+export async function loadJsonOptional<T>(
+  cfg: RepoConfig,
+  path: string,
+): Promise<LoadedFile<T> | null> {
+  const file = await loadTextOptional(cfg, path);
+  if (!file) return null;
+  return { data: JSON.parse(file.data) as T, sha: file.sha };
+}
+
 /**
  * 텍스트 파일을 저장한다. sha 가 비어 있으면 신규 생성 의도로 보낸다(서버가 insert).
  * _message 는 시그니처 호환용으로만 받는다 — 저장이 Git 커밋이 아니라 행 갱신이라

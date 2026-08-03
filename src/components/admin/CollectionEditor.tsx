@@ -20,6 +20,7 @@ import {
   commitJson,
   commitText,
   loadJson,
+  loadJsonOptional,
   loadTextOptional,
   savedBanner,
 } from '@/lib/admin/content-api';
@@ -32,6 +33,7 @@ import {
   defaultToForm,
   recordToArray,
   type FormRecord,
+  type LinkedSummary,
   type ResourceDef,
 } from '@/lib/admin/resources';
 import {
@@ -85,6 +87,23 @@ interface MdState {
   loading: boolean;
 }
 
+/** 연결 요약 상태 — 공유 record 파일 전체와 그중 편집 중인 키 하나.
+ *  md 와 마찬가지로 폼을 열 때만 존재하므로 별도 dirty 플래그가 필요 없다
+ *  (dirty 는 editing 이 열려 있는 것만으로 이미 참이다). */
+interface SummaryState {
+  ko: string;
+  en: string;
+  loadedKo: string;
+  loadedEn: string;
+  /** 편집 시작 시점의 record 키(지도교수명) — 키가 바뀌면 옛 키를 지운다 */
+  loadedKey: string;
+  /** 파일 전체(다른 연구실 요약 포함) — 저장 시 병합 원본 */
+  all: Record<string, { ko: string; en: string }>;
+  sha?: string;
+  existed: boolean;
+  loading: boolean;
+}
+
 function withTrailingNewline(text: string): string {
   return text.endsWith('\n') ? text : `${text}\n`;
 }
@@ -134,6 +153,7 @@ export function CollectionEditor({ config, resource, onDirtyChange }: Props) {
   /** 삭제 확인 모달의 대상 인덱스 (null = 닫힘) — window.confirm 대체 */
   const [deleting, setDeleting] = useState<number | null>(null);
   const [md, setMd] = useState<MdState | null>(null);
+  const [summary, setSummary] = useState<SummaryState | null>(null);
 
   // 로컬 순서 변경 상태 (미저장). null 이면 순서 변경 없음.
   const [orderedRaw, setOrderedRaw] = useState<RawItem[] | null>(null);
@@ -191,6 +211,7 @@ export function CollectionEditor({ config, resource, onDirtyChange }: Props) {
     setEditing(null);
     setDeleting(null);
     setMd(null);
+    setSummary(null);
     setOrderedRaw(null);
     setSearch('');
     setSuccess(null);
@@ -350,6 +371,7 @@ export function CollectionEditor({ config, resource, onDirtyChange }: Props) {
   function finishSave(notice?: string) {
     setEditing(null);
     setMd(null);
+    setSummary(null);
     setOrderedRaw(null);
     setSuccess(savedBanner(config));
     // 쓰기가 통했으니 권한 배너를 내린다 — 권한은 나중에 부여될 수 있고,
@@ -386,15 +408,59 @@ export function CollectionEditor({ config, resource, onDirtyChange }: Props) {
 
   // ---- 편집 진입 ----
 
+  /**
+   * 공유 요약 파일 전체를 읽어 편집 상태로 만든다. 신규 항목은 키(지도교수명)가 아직
+   * 없으므로 key='' 로 들어와 빈 값에서 시작하지만, **파일은 그래도 읽는다** — 저장
+   * 시 다른 연구실 요약을 지우지 않으려면 병합 원본(all)과 버전(sha)이 필요하다.
+   */
+  async function loadSummary(link: LinkedSummary, key: string) {
+    const empty = (loading: boolean): SummaryState => ({
+      ko: '', en: '', loadedKo: '', loadedEn: '', loadedKey: key,
+      all: {}, sha: undefined, existed: false, loading,
+    });
+    setSummary(empty(true));
+    try {
+      const file = await loadJsonOptional<Record<string, { ko: string; en: string }>>(
+        config,
+        link.file,
+      );
+      // 파일이 아직 없으면 빈 record 에서 시작한다(sha 없음 = 저장 시 신규 생성).
+      const all = file?.data ?? {};
+      const cur = key === '' ? undefined : all[key];
+      setSummary({
+        ko: cur?.ko ?? '',
+        en: cur?.en ?? '',
+        loadedKo: cur?.ko ?? '',
+        loadedEn: cur?.en ?? '',
+        loadedKey: key,
+        all,
+        sha: file?.sha,
+        existed: cur !== undefined,
+        loading: false,
+      });
+    } catch {
+      // 로드 실패는 마크다운과 같은 규약 — 빈 값으로 내려 폼 자체를 막지 않는다.
+      // ⚠️ all 이 비어 있으면 저장 시 다른 요약을 날린다. 그래서 existed=false 이고
+      //    본인 요약도 비어 있는 상태가 되어, 아래 저장 로직이 PUT 자체를 건너뛴다.
+      setSummary(empty(false));
+    }
+  }
+
   function startNew() {
     setSuccess(null);
     setSaveError(null);
-    setEditing({ index: -1, form: defaultToForm(resource.fields, {}) });
+    const form = defaultToForm(resource.fields, {});
+    setEditing({ index: -1, form });
     // 새 항목은 로드 없이 빈 마크다운에서 시작
     if (resource.linkedMarkdown) {
       setMd({ text: '', loaded: '', sha: undefined, existed: false, loading: false });
     } else {
       setMd(null);
+    }
+    if (resource.linkedSummary) {
+      void loadSummary(resource.linkedSummary, resource.linkedSummary.keyOf(form));
+    } else {
+      setSummary(null);
     }
   }
 
@@ -405,6 +471,12 @@ export function CollectionEditor({ config, resource, onDirtyChange }: Props) {
     // 상세 화면에서 사라져 보이면 같은 값을 두 번 고치게 된다.
     const form = formOf(index);
     setEditing({ index, form });
+
+    if (resource.linkedSummary) {
+      void loadSummary(resource.linkedSummary, resource.linkedSummary.keyOf(form));
+    } else {
+      setSummary(null);
+    }
 
     if (!resource.linkedMarkdown) {
       setMd(null);
@@ -496,6 +568,51 @@ export function CollectionEditor({ config, resource, onDirtyChange }: Props) {
         }
       }
 
+      // 연결 요약 저장 (본 파일 저장 성공 후 — 마크다운과 같은 순서·같은 한계).
+      // ⚠️ 두 파일을 한 트랜잭션으로 묶지 않는다(linkedMarkdown 의 선례를 그대로 따른다).
+      //    본 파일이 저장된 뒤 여기서 실패하면 요약만 옛 값으로 남는다.
+      if (resource.linkedSummary && summary) {
+        const link = resource.linkedSummary;
+        const newKey = link.keyOf(form);
+        const ko = summary.ko.trim();
+        const en = summary.en.trim();
+        // 지도교수 이름을 고치면 요약의 키도 따라가야 한다 — 옛 키는 지운다.
+        const keyChanged = summary.existed && newKey !== summary.loadedKey;
+        const textChanged =
+          ko !== summary.loadedKo.trim() || en !== summary.loadedEn.trim();
+        if (newKey !== '' && (keyChanged || textChanged)) {
+          // 기존 키 갱신은 스프레드 복사라 제자리를 지키고, 개명은 끝에 붙는다(허용).
+          const next = { ...summary.all };
+          let changed = false;
+          if (keyChanged && summary.loadedKey in next) {
+            delete next[summary.loadedKey];
+            changed = true;
+          }
+          if (ko === '') {
+            // 비우면 레코드를 지운다 = 사이트에서 이 연구실의 AI 요약 버튼이 사라진다
+            if (summary.existed && newKey in next) {
+              delete next[newKey];
+              changed = true;
+            }
+          } else {
+            // 영어를 비우면 한국어를 복사한다 — pick 의 en 폴백이 `??` 라 빈 문자열은
+            // 폴백되지 않아 영문 패널이 통째로 비어 버린다(localizedValue 와 같은 규칙).
+            next[newKey] = { ko, en: en === '' ? ko : en };
+            changed = true;
+          }
+          // 파일이 없었으면 sha 가 없다 → 빈 문자열로 넘겨 신규 생성 경로를 탄다
+          if (changed) {
+            await commitJson(
+              config,
+              link.file,
+              next,
+              summary.sha ?? '',
+              `content: ${link.label} — ${newKey}`,
+            );
+          }
+        }
+      }
+
       finishSave('저장했습니다 — 곧 사이트에 반영됩니다.');
     } catch (err) {
       handleSaveError(err, '저장에 실패했습니다.');
@@ -510,6 +627,10 @@ export function CollectionEditor({ config, resource, onDirtyChange }: Props) {
   // 다른 변경의 인덱스가 앞으로 밀려 엉뚱한 항목을 지우거나 덮어쓸 수 있다
   // (inlineEdits 의 키가 배열 인덱스다). 같은 이유로 삭제를 확정할 때는 대기 중인
   // 변경을 먼저 버린다 — 아래 모달이 그 사실을 미리 알린다.
+  //
+  // 연결 파일(동아리 소개 본문·연구실 AI 요약)은 항목을 지워도 **남긴다**. 사이트는
+  // 항목이 없으면 그 문안을 읽지 않아 화면상 사라지고, 잘못 지운 항목을 되살릴 때
+  // 본문까지 다시 쓰게 하는 편이 더 나쁘다.
   async function handleDelete(index: number) {
     const form = formOf(index);
     setInlineEdits({});
@@ -714,6 +835,7 @@ export function CollectionEditor({ config, resource, onDirtyChange }: Props) {
               onClick={() => {
                 setEditing(null);
                 setMd(null);
+                setSummary(null);
                 setSaveError(null);
               }}
               className="cms-btn cms-btn-sm"
@@ -737,6 +859,7 @@ export function CollectionEditor({ config, resource, onDirtyChange }: Props) {
           onCancel={() => {
             setEditing(null);
             setMd(null);
+            setSummary(null);
             setSaveError(null);
           }}
           linkedMarkdown={
@@ -748,6 +871,19 @@ export function CollectionEditor({ config, resource, onDirtyChange }: Props) {
                   value: md.text,
                   loading: md.loading,
                   onChange: (v) => setMd((prev) => (prev ? { ...prev, text: v } : prev)),
+                }
+              : null
+          }
+          linkedSummary={
+            resource.linkedSummary && summary
+              ? {
+                  label: resource.linkedSummary.label,
+                  hint: resource.linkedSummary.hint,
+                  ko: summary.ko,
+                  en: summary.en,
+                  loading: summary.loading,
+                  onChangeKo: (v) => setSummary((prev) => (prev ? { ...prev, ko: v } : prev)),
+                  onChangeEn: (v) => setSummary((prev) => (prev ? { ...prev, en: v } : prev)),
                 }
               : null
           }

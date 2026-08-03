@@ -26,6 +26,18 @@ export interface LinkedMarkdownField {
   onChange: (v: string) => void;
 }
 
+// 공유 record 파일 속 이 항목의 레코드(연구실 AI 요약)를 폼 하단에서 함께 편집하는 계약.
+// 값이 한·영 두 문자열뿐이라 linkedMarkdown 처럼 원문 편집기를 두지 않는다.
+export interface LinkedSummaryField {
+  label: string;
+  hint?: string;
+  ko: string;
+  en: string;
+  loading?: boolean;
+  onChangeKo: (v: string) => void;
+  onChangeEn: (v: string) => void;
+}
+
 interface Props {
   fields: FieldDef[];
   initial: FormRecord;
@@ -34,6 +46,7 @@ interface Props {
   onSubmit: (form: FormRecord) => void;
   onCancel: () => void;
   linkedMarkdown?: LinkedMarkdownField | null;
+  linkedSummary?: LinkedSummaryField | null;
   onDirty?: () => void;
   /** imageUpload 필드가 이미지를 올릴 때 호출 — 저장할 공개 URL 을 돌려준다
    *  (업로드 경로·파일명은 상위/스토리지가 정한다. config 를 가진 상위가 주입) */
@@ -60,6 +73,7 @@ export function RecordForm({
   onSubmit,
   onCancel,
   linkedMarkdown,
+  linkedSummary,
   onDirty,
   onUploadImage,
 }: Props) {
@@ -506,6 +520,67 @@ export function RecordForm({
               }}
               className={`${fieldClass} font-mono`}
             />
+          )}
+        </fieldset>
+      )}
+
+      {linkedSummary && (
+        <fieldset className="rounded-lg border border-surface-border p-4">
+          <legend className="px-1 text-sm font-semibold text-content">{linkedSummary.label}</legend>
+          {linkedSummary.hint && (
+            <p className="mb-3 text-xs text-content-faint">{linkedSummary.hint}</p>
+          )}
+          {linkedSummary.loading ? (
+            <p className="text-sm text-content-soft">불러오는 중…</p>
+          ) : (
+            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+              <div>
+                <label htmlFor="rf-summary-ko" className="block text-sm font-semibold text-content">
+                  요약 (한국어)
+                </label>
+                <textarea
+                  id="rf-summary-ko"
+                  rows={6}
+                  value={linkedSummary.ko}
+                  onChange={(e) => {
+                    onDirty?.();
+                    linkedSummary.onChangeKo(e.target.value);
+                  }}
+                  className={fieldClass}
+                />
+              </div>
+              <div>
+                <div className="flex flex-wrap items-center justify-between gap-2">
+                  <label htmlFor="rf-summary-en" className="block text-sm font-semibold text-content">
+                    요약 (English)
+                  </label>
+                  <TranslateButton
+                    source={linkedSummary.ko}
+                    onTranslated={(en) => {
+                      onDirty?.();
+                      linkedSummary.onChangeEn(en);
+                    }}
+                  />
+                </div>
+                <textarea
+                  id="rf-summary-en"
+                  rows={6}
+                  value={linkedSummary.en}
+                  onChange={(e) => {
+                    onDirty?.();
+                    linkedSummary.onChangeEn(e.target.value);
+                  }}
+                  className={fieldClass}
+                />
+              </div>
+            </div>
+          )}
+          {/* 한·영 짝이라 localized 필드와 같은 규칙을 쓴다 — 위 안내(hasLocalized)는
+              fields 기준이라 이 칸까지 말해 주지 않으므로 여기에 따로 적는다. */}
+          {!linkedSummary.loading && (
+            <p className="mt-2 text-xs text-content-faint">
+              English를 비우면 저장 시 한국어 값이 복사됩니다.
+            </p>
           )}
         </fieldset>
       )}

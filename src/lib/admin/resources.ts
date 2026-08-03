@@ -93,6 +93,17 @@ export interface LinkedMarkdown {
   structured?: 'clubCards';
 }
 
+/** 항목 폼에서 함께 편집하는 "공유 record 파일 속 레코드 하나" — 연구실 AI 요약.
+ *  linkedMarkdown(항목↔파일 1:1)과 달리 여러 항목이 한 파일을 나눠 쓴다. */
+export interface LinkedSummary {
+  label: string;
+  hint?: string;
+  /** 공유 record 파일 경로 */
+  file: string;
+  /** 폼 값 → record 키 (연구실은 지도교수 한글 이름) */
+  keyOf: (form: FormRecord) => string;
+}
+
 export interface ResourceDef {
   key: ResourceKey;
   /** 사이드바·제목 라벨 */
@@ -118,6 +129,8 @@ export interface ResourceDef {
   listView?: ListView;
   /** 항목별 연결 마크다운 (동아리 소개 본문) */
   linkedMarkdown?: LinkedMarkdown;
+  /** 공유 record 파일 속 이 항목의 레코드 (연구실 AI 요약) */
+  linkedSummary?: LinkedSummary;
   /** 도메인 레코드 → 폼 값 (기본: defaultToForm) */
   toForm?: (raw: unknown) => FormRecord;
   /** 폼 값 → 도메인 레코드 (기본: defaultFromForm) */
@@ -134,8 +147,7 @@ export type ResourceKey =
   | 'courseDescriptions'
   | 'coursesGraduate'
   | 'clubs'
-  | 'labs'
-  | 'labSummaries';
+  | 'labs';
 
 // ---- 변환 헬퍼 ----
 
@@ -538,7 +550,7 @@ const labs: ResourceDef = {
   key: 'labs',
   label: '연구실 · 소개 영상',
   description:
-    '연구 메뉴의 연구실 목록과 대학원 > 연구실 탭의 소개 영상 갤러리에 반영됩니다. 소개 영상 URL을 채우면 영상 갤러리에 노출됩니다. "학부 인턴 모집 중"을 체크하면 연구실 목록에 배지가 표시됩니다.',
+    '연구 메뉴의 연구실 목록과 대학원 > 연구실 탭의 소개 영상 갤러리에 반영됩니다. 소개 영상 URL을 채우면 영상 갤러리에 노출됩니다. "학부 인턴 모집 중"을 체크하면 연구실 목록에 배지가 표시됩니다. 연구실 목록의 "AI 연구요약" 패널 문안도 각 연구실의 "자세히" 폼 아래쪽에서 함께 편집합니다.',
   file: MANAGED_FILES.labs,
   format: 'array',
   listColumns: [
@@ -563,6 +575,14 @@ const labs: ResourceDef = {
     ],
     filterKey: 'field',
   },
+  // AI 요약은 연구실마다 파일이 따로 있는 게 아니라 지도교수 이름을 키로 한 공유
+  // record 파일 하나를 나눠 쓴다 — 저장 시 그 레코드 한 칸만 갈아 끼운다.
+  linkedSummary: {
+    label: 'AI 연구요약',
+    hint: '연구 > 연구실 목록의 AI 연구요약 패널 문안입니다. 한 문단으로 쓰세요(줄바꿈은 빈 줄로 노출). 분량 기준: 한국어 180~230자, 영어 320~420자. 비워 두면 이 연구실에는 버튼이 뜨지 않습니다.',
+    file: MANAGED_FILES.labSummaries,
+    keyOf: (form) => String(form.professorKo ?? '').trim(),
+  },
   fromForm: (form) => {
     const out = defaultFromForm(LABS_FIELDS, form);
     // 모집 인원: 숫자로 저장. "모집 중"이 아니거나 값이 없으면 생략한다.
@@ -576,49 +596,6 @@ const labs: ResourceDef = {
   summarize: (f) => cellText(f, 'nameKo'),
 };
 
-// 연구실 AI 요약: 값이 { ko, en } 쌍이지만 record 의 값 자체가 그 모양이라
-// localized(중첩) 가 아니라 평면 필드 둘로 편집한다 — fromForm 에서 후처리하므로 분리한다.
-const LAB_SUMMARY_FIELDS: FieldDef[] = [
-  {
-    kind: 'text', key: 'professorKo', label: '지도교수 (한국어)', required: true, width: 'third',
-    readOnlyOnEdit: true, placeholder: '강건욱',
-    hint: '연구실 목록의 "지도교수 (한국어)"와 같은 표기여야 연결됩니다',
-  },
-  {
-    kind: 'textarea', key: 'ko', label: '요약 (한국어)', rows: 6, required: true,
-    hint: '한 문단으로 작성하세요(줄바꿈은 빈 줄로 노출됩니다). 180~230자 기준',
-  },
-  {
-    kind: 'textarea', key: 'en', label: '요약 (English)', rows: 6,
-    hint: '한 문단으로 작성하세요. 320~420자 기준',
-  },
-];
-
-const labSummaries: ResourceDef = {
-  key: 'labSummaries',
-  label: '연구실 AI 요약',
-  description:
-    '연구 > 연구실 탭에서 연구실을 열면 나오는 "AI 연구요약" 패널 문안입니다. 지도교수 이름이 연구실 목록의 지도교수(한국어)와 정확히 일치해야 그 연구실에 연결됩니다. 줄바꿈을 넣으면 패널에 빈 줄로 그대로 노출되므로 한 문단으로 쓰세요. 분량은 한국어 180~230자, 영어 320~420자(패널에서 약 3줄)가 기준입니다.',
-  file: MANAGED_FILES.labSummaries,
-  format: 'record',
-  idField: 'professorKo',
-  listColumns: [
-    { key: 'professorKo', label: '지도교수' },
-    { key: 'ko', label: '요약 (한국어)' },
-  ],
-  searchKeys: ['professorKo', 'ko'],
-  fields: LAB_SUMMARY_FIELDS,
-  orderable: false,
-  fromForm: (form) => {
-    const out = defaultFromForm(LAB_SUMMARY_FIELDS, form);
-    // 영어를 비우면 한국어를 복사한다 — pick 의 en 폴백이 `??` 라 빈 문자열은 폴백되지
-    // 않아 영문 패널이 통째로 비어 버린다(localizedValue 와 같은 규칙).
-    if (out.en === '') out.en = out.ko;
-    return out;
-  },
-  summarize: (f) => cellText(f, 'professorKo'),
-};
-
 export const RESOURCES: Record<ResourceKey, ResourceDef> = {
   history,
   facultyDirectory,
@@ -628,7 +605,6 @@ export const RESOURCES: Record<ResourceKey, ResourceDef> = {
   coursesGraduate,
   clubs,
   labs,
-  labSummaries,
 };
 
 export function getResource(key: ResourceKey): ResourceDef {
@@ -719,9 +695,6 @@ export const MENU_GROUPS: MenuGroup[] = [
     entries: [
       { type: 'collection', resourceKey: 'clubs' },
       { type: 'collection', resourceKey: 'labs' },
-      // 연구실 카드 바로 아래 — 같은 연구실을 지도교수 이름으로 조인하는 문안이라
-      // 연구실 목록을 고친 다음 손대는 자리다.
-      { type: 'collection', resourceKey: 'labSummaries' },
       { type: 'board', boardKey: 'internships' },
     ],
   },
