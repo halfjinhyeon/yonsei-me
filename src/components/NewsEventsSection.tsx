@@ -25,6 +25,12 @@ export interface NewsEventItem {
   summary?: string;
 }
 
+/** 뉴스 **제목** 전용 서체 — Paperlogy(--font-subhead). 후보 서체를 실제 화면에 갈아 끼워
+ *  비교한 뒤 사용자가 확정했다(2026-08-03). 굵기는 **600**(font-semibold)이라
+ *  Paperlogy-6SemiBold 파일이 그대로 쓰인다 — 700(font-bold)으로 바꾸면 다른 파일이 걸린다.
+ *  ⚠️ 본문·요약은 그대로 Pretendard 다. 제목에만 건다. */
+const TITLE_FONT = { fontFamily: 'var(--font-subhead), var(--font-sans), sans-serif' };
+
 /** '01', '06' — 카운터는 두 자리 고정폭이라 숫자가 바뀌어도 폭이 흔들리지 않는다. */
 const pad2 = (n: number) => String(n).padStart(2, '0');
 
@@ -298,7 +304,10 @@ export function NewsEventsSection({ items }: { items: NewsEventItem[] }) {
                         {/* block 을 같이 주면 line-clamp 의 display:-webkit-box 를 덮어
                             말줄임(…)이 사라진다 — 높이·여백은 바깥 span 이 맡는다. */}
                         <span className="mt-1.5 block lg:h-[46px]">
-                          <span className="line-clamp-2 text-[15px] font-bold leading-[1.45] tracking-[-0.01em] text-content transition-colors group-hover:text-yonsei-blue lg:text-base lg:leading-[23px]">
+                          <span
+                            style={TITLE_FONT}
+                            className="line-clamp-2 text-[15px] font-semibold leading-[1.45] tracking-[-0.01em] text-content transition-colors group-hover:text-yonsei-blue lg:text-base lg:leading-[23px]"
+                          >
                             {it.title}
                           </span>
                         </span>
@@ -369,7 +378,10 @@ function HeroNewsCard({ item }: { item: NewsEventItem }) {
         {/* ⚠️ line-clamp 를 거는 요소는 여백을 맡는 바깥 div 와 분리해 둔다 — 안쪽 h3/p 가
             line-clamp 를 맡는 두 겹 구조(말줄임 보존). 제목은 최대 2줄에서 …로 잘린다. */}
           <div className="mt-4 lg:mt-[18px]">
-            <h3 className="line-clamp-2 text-xl font-bold leading-[1.4] tracking-[-0.02em] text-content lg:text-2xl lg:leading-[34px]">
+            <h3
+              style={TITLE_FONT}
+              className="line-clamp-2 text-xl font-semibold leading-[1.4] tracking-[-0.02em] text-content lg:text-2xl lg:leading-[34px]"
+            >
               {item.title}
             </h3>
           </div>
