@@ -1,6 +1,7 @@
 import guide from '@content/admission-guide.json';
 import { pick } from '@/lib/content';
 import { LandingScope } from '@/components/LandingScope';
+import { AdmissionCalendar } from '@/components/AdmissionCalendar';
 import type { Locale } from '@/i18n/routing';
 
 /** content/admission-guide.json 의 형태 */
@@ -142,7 +143,19 @@ export function GuideSections({
   );
 }
 
-/** 소개 › 입학 안내 탭 — admission-guide.json 을 위 렌더러에 그대로 흘려보낸다. */
+/**
+ * 소개 › 입학 안내 탭 — admission-guide.json 을 위 렌더러에 그대로 흘려보내고,
+ * 그 뒤에 3번 섹션(입학 캘린더)을 잇는다. 캘린더는 필터·스크롤이 있어 클라이언트
+ * 컴포넌트라 GuideSections(서버 렌더) 안이 아니라 형제로 둔다 — 번호 '3'과 네이비 룰은
+ * AdmissionCalendar 가 같은 문법으로 직접 그린다.
+ */
 export function AdmissionGuide({ locale }: { locale: Locale }) {
-  return <GuideSections sections={sections} locale={locale} landingName="admission-guide" />;
+  return (
+    <>
+      <GuideSections sections={sections} locale={locale} landingName="admission-guide" />
+      <div className="mt-24">
+        <AdmissionCalendar locale={locale} />
+      </div>
+    </>
+  );
 }
