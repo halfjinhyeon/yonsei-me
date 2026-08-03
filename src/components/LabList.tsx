@@ -215,8 +215,9 @@ function LabRow({
         )}
       </div>
 
-      {/* 우: 연구실 이미지(없으면 더미 순환) — 레퍼런스 우측 박스, 높이 축소판 */}
-      <div className="relative aspect-[16/10] w-full overflow-hidden bg-surface-soft md:aspect-auto md:h-40 md:self-center">
+      {/* 우: 연구실 이미지(없으면 더미 순환) — 레퍼런스 우측 박스, 높이 축소판.
+          모바일은 16:10 전폭 이미지가 화면을 지배해 96px 슬림 배너로 캡(시안 1b). */}
+      <div className="relative h-24 w-full overflow-hidden bg-surface-soft md:h-40 md:self-center">
         <Image src={image} alt="" fill sizes="(min-width: 768px) 240px, 100vw" className="object-cover" />
       </div>
 
