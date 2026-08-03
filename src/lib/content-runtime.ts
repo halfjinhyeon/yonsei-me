@@ -24,6 +24,7 @@ import {
 import {
   getFacultyDirectory as gitFacultyDirectory,
   getLabsDirectory as gitLabsDirectory,
+  getLabSummaries as gitLabSummaries,
   getClubs as gitClubs,
   getFacultyPhotoMap,
   adaptFacultyRecords,
@@ -135,6 +136,16 @@ export async function getFacultyDirectoryRuntime(): Promise<FacultyRecord[]> {
 export async function getLabsDirectoryRuntime(): Promise<LabDirectoryEntry[]> {
   const raw = await getManagedJson<LabDirectoryEntry[]>(MANAGED_FILES.labs);
   return raw ?? gitLabsDirectory();
+}
+
+/** 연구실 AI 연구요약 — 지도교수 한글 이름을 키로 하는 객체(로케일 해석은 소비처가) */
+export async function getLabSummariesRuntime(): Promise<
+  Record<string, { ko: string; en: string }>
+> {
+  const raw = await getManagedJson<Record<string, { ko: string; en: string }>>(
+    MANAGED_FILES.labSummaries,
+  );
+  return raw ?? gitLabSummaries();
 }
 
 /** 동아리 인덱스 — 로고(slug 매핑)는 소스와 무관하게 같은 어댑터로 적용 */

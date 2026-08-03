@@ -1,5 +1,6 @@
 import { readFileSync, readdirSync } from 'node:fs';
 import { join } from 'node:path';
+import labSummariesData from '@content/lab-summaries.json';
 
 export interface FacultyLab {
   nameKo: string;
@@ -199,6 +200,14 @@ export function getClubs(): ClubSummary[] {
 /** content/labs-directory.json — 연구실 목록(지도교수·위치·연락처·사이트 링크) */
 export function getLabsDirectory(): LabDirectoryEntry[] {
   return readJson<LabDirectoryEntry[]>('labs-directory.json');
+}
+
+/** content/lab-summaries.json — 연구실 'AI 연구요약' 문안(지도교수 한글 이름 → 로케일별
+ *  문장). 실시간 생성이 아니라 미리 써 둔 문장이며, 키는 labs-directory.json 의
+ *  professorKo 와 조인한다. 파일 최상위가 곧 이 객체다(CMS record 포맷).
+ *  정적 import 라 빌드 시 인라인된다(런타임 파일 I/O 없음) — DB 소스의 폴백 스냅샷이다. */
+export function getLabSummaries(): Record<string, { ko: string; en: string }> {
+  return labSummariesData;
 }
 
 /** content/faculty-profiles/*.json 파일명(확장자 제거) = 교수 상세 페이지 slug 목록.

@@ -491,6 +491,12 @@
       "phone": "연락처"
     },
     "labVisit": "바로가기",
+    "labAi": {
+      "button": "AI 연구요약",
+      "panelLabel": "AI Research Summary",
+      "beta": "BETA",
+      "disclaimer": "※ 이 요약은 각 연구실 홈페이지와 학부 소개 자료를 바탕으로 사전 생성되었습니다."
+    },
     "fieldFilter": {
       "all": "전체",
       "basics": "기초·공통",

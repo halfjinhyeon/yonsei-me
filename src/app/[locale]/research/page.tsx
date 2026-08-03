@@ -9,7 +9,7 @@ import { EditorialTab, getEditorialTab } from '@/components/EditorialTab';
 import { VisionInfographic } from '@/components/VisionInfographic';
 import { getPageMarkdown } from '@/lib/pages';
 import { type ResearchField } from '@/lib/faculty';
-import { getLabsDirectoryRuntime } from '@/lib/content-runtime';
+import { getLabsDirectoryRuntime, getLabSummariesRuntime } from '@/lib/content-runtime';
 import { pick } from '@/lib/content';
 import { fetchBoardData } from '@/lib/posts';
 import galleryData from '@content/research-gallery.json';
@@ -69,13 +69,23 @@ export default async function ResearchPage({ params }: { params: { locale: strin
     image: g.image,
   }));
 
+  // 연구실 AI 연구요약 — 지도교수 한글 이름으로 조인한다(lab-summaries.json 키 = professorKo).
+  // 로케일 해석을 서버에서 끝내 한쪽 언어만 클라이언트로 보낸다(번들에 한/영 양쪽 금지).
+  // 개행은 공백으로 접는다 — 패널이 whitespace-pre-line 이라 개행이 그대로 빈 줄이 된다.
+  const labSummaries = Object.fromEntries(
+    Object.entries(await getLabSummariesRuntime()).map(([professorKo, text]) => [
+      professorKo,
+      pick(text, locale).replace(/\r\n|\r|\n/g, ' ').replace(/\s{2,}/g, ' ').trim(),
+    ]),
+  );
+
   const tabs: TabItem[] = Object.entries(SECTION_SLUGS).map(([key, slug]) => ({
     key,
     label: tMenu(`research.items.${key}`),
     markdown: slug ? getPageMarkdown(slug) : null,
     content:
       key === 'labs' ? (
-        <LabList items={labs} fieldIntros={fieldIntros} />
+        <LabList items={labs} fieldIntros={fieldIntros} summaries={labSummaries} />
       ) : key === 'internships' ? (
         <FilterableBoardList items={internItems} locale={locale} emptyLabel={tStub('empty')} />
       ) : key === 'vision' ? (

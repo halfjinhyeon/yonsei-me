@@ -49,6 +49,7 @@ const MANAGED_JSON = [
   'content/courses-graduate.json',
   'content/clubs.json',
   'content/labs-directory.json',
+  'content/lab-summaries.json',
 ];
 const SCHOLARSHIP_MD = 'content/pages/undergraduate-scholarship.md';
 const CLUBS_JSON = 'content/clubs.json';

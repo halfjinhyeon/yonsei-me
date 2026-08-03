@@ -1,0 +1,134 @@
+{
+  "강건욱": {
+    "ko": "고온·방사선·수소에 노출된 재료의 거동을 원자 단위 분자동역학에서 거시 스케일까지 멀티스케일로 전산모사합니다. 대규모 병렬 코드로 조사(irradiation) 손상을 모사해 핵융합로 플라즈마 대면재용 텅스텐의 수소 침투와 전위(dislocation) 거동을 해석하고 합금을 설계합니다. 실리카 에어로겔 같은 저유전율·경량 소재와 우주 방사선에 의한 전자소자 결함도 다룹니다.",
+    "en": "Simulations trace how materials behave under extreme heat, radiation and hydrogen exposure, linking atomistic molecular dynamics to macroscale models. Large-scale parallel codes reproduce irradiation damage, resolving hydrogen uptake and dislocation behaviour in tungsten for fusion plasma-facing components. Silica aerogels, low-k insulators and radiation-induced defects in space electronics are also covered."
+  },
+  "강신일": {
+    "ko": "레이저 스캐닝 간섭 리소그래피와 급속 표면 가열 패터닝으로 미세 구조를 새겨, 자동차·선박·항공우주용 저항 저감·착빙 방지 기능성 표면을 설계합니다. 같은 공정 기술로 현장진단(POCT)용 수직입사 표면 플라즈몬 공명 단백질 센서와 병렬 검출용 다중 광학 프로브 센서를 제작합니다. 마이크로광학 분야에서는 픽셀 라이트와 다중 광학 프로브 공초점 현미경을 연구합니다.",
+    "en": "Laser scanning interference lithography and rapid surface heating pattern glass and metal, yielding functional surfaces that reduce drag and prevent icing on cars, ships and aircraft. The same fabrication route produces normal-incidence surface plasmon resonance protein sensors for point-of-care testing and multi-probe sensors for parallel detection. Micro-optics work covers pixel lighting and confocal microscopy."
+  },
+  "김경식": {
+    "ko": "빛을 매개로 하는 양자컴퓨팅과 광 연산을 다룹니다. AI를 적용한 위상 양자 오류 정정으로 포토닉 양자컴퓨팅의 성능을 높이고, 회절 광 신경망으로 저전력 AI 연산을 구현하며, 메타물질로 CNOT·Hadamard·Kerr 같은 광 양자 로직 게이트를 설계합니다. 위상 광학과 photonic spin Hall 효과는 암 진단용 고감도 센서로 이어집니다.",
+    "en": "Photonics, not electronics, is the computing medium here. AI-driven topological quantum error correction improves photonic quantum computing, diffractive optical neural networks run AI at low power, and metamaterials serve as CNOT, Hadamard and Kerr logic gates. Topological photonics, the photonic spin Hall effect and photonic Majorana zero modes point toward room-temperature operation and cancer-diagnosis sensors."
+  },
+  "김대은": {
+    "ko": "마찰·마멸·윤활·표면공학을 나노트라이볼로지, 바이오트라이볼로지, 신뢰성 공학 세 축으로 연구합니다. 분자동역학 시뮬레이션과 주사탐침현미경으로 Si 프로브 팁, 탄소나노튜브, 자기조립단분자막의 나노 마찰 기구를 규명합니다. 이를 캡슐내시경용 기능성 표면, 혈관벽 손상 없이 혈전을 제거하는 의료기기, 기계 부품 가속수명시험 기법에 적용합니다.",
+    "en": "Friction, wear, lubrication and surface engineering are studied across nanotribology, biotribology and reliability engineering. Molecular dynamics and scanning probe microscopy resolve nanoscale friction on probe tips, carbon nanotubes and self-assembled monolayers. Applications include functional surfaces for capsule endoscopes, clot-removal devices that spare the vessel wall, and accelerated life testing."
+  },
+  "김석": {
+    "ko": "비대칭·비주기 구조로 기존 설계의 상충 관계를 푸는 물리지능 기반 설계를 축으로, 기계 메타물질과 멀티스케일 셀룰러 구조체, 외부 자극에 반응하는 발수·슬리퍼리 표면, 3D 격자의 무아레 역학을 다룹니다. 대면적 미세패턴 stitching과 고속 금속 3D 프린팅 펜 같은 극한제조, 반응형 소재 기반 3D/4D 프린팅으로 이를 생산 규모까지 연결합니다.",
+    "en": "Asymmetric, aperiodic architectures resolve trade-offs conventional design cannot, an approach called physical intelligence design. It is applied to mechanical metamaterials, multiscale cellular structures, adaptive water-repellent surfaces and the moire mechanics of 3D lattices. Extreme manufacturing such as large-area pattern stitching and a high-speed metal 3D printing pen carries them toward production."
+  },
+  "김영주": {
+    "ko": "디스플레이·광전자 응용의 공학 문제를 광학 설계와 열해석을 함께 써서 다룹니다. 양자점(QD) 디스플레이 기술과 디스플레이용 광학 소자를 설계하고, 화면이 지글거리는 스페클을 억제한 레이저 기반 디스플레이·이미징 시스템을 구현합니다. 성능을 개선한 OLED와 태양전지 소자를 직접 시제작하고, 광학과 열을 함께 보는 광-열 해석으로 성능을 검증합니다.",
+    "en": "Engineering problems in optoelectronics and display applications are addressed by pairing optical design with thermal analysis. Quantum dot display technology and optical elements for various displays are designed here, along with laser-based display systems in which speckle is suppressed. OLED and solar cell devices are prototyped in-house, and opto-thermal analysis assesses how they perform."
+  },
+  "김용준": {
+    "ko": "MEMS 공정으로 마이크로 센서와 소자를 설계·제작합니다. Seebeck 효과를 이용한 열전 바이오센서(thermopile)는 열 절연 구조로 감도를 높이고 보정 단계를 없애 측정을 단순화하며, 다전극 어레이(MEA)·촉각 센서·ECG 센서도 함께 개발합니다. 랩온어칩 총합분석시스템과 혈구·입자 분리기, 환경 모니터링, 에너지 하베스터, 센서 데이터의 AI 응용이 나머지 축입니다.",
+    "en": "MEMS processes are used to design and fabricate micro-scale sensors. A thermopile biosensor based on the Seebeck effect gains sensitivity from thermal isolation and needs no calibration step, simplifying measurement; multi-electrode arrays, tactile and ECG sensors follow. Other themes are lab-on-a-chip analysis systems, blood cell separators, environmental monitoring, energy harvesting and AI applied to sensor data."
+  },
+  "김우철": {
+    "ko": "열에너지 수송, 멀티스케일 열전달, 체열 하베스팅, 열관리를 네 축으로 하는 열공학을 다룹니다. 여러 길이 스케일을 가로지르는 멀티스케일 열전달 관점에서 열에너지가 물질 속을 어떻게 이동하는지 규명합니다. 그 이해를 인체에서 나오는 열을 전기로 회수하는 체열 하베스팅과, 소자·시스템이 과열되지 않게 다스리는 열관리 기술로 연결합니다.",
+    "en": "Four themes organise the work: thermal energy transport, multiscale heat transfer, body heat harvesting and thermal management. Heat transport is examined across length scales rather than at a single one, clarifying how thermal energy moves through matter. Those results feed into recovering electricity from body heat and into managing heat in devices and systems."
+  },
+  "김원정": {
+    "ko": "기포·액적·액막처럼 작은 스케일에서 계면력이 지배하는 유체 현상을 다양한 형상과 조건에서 실험으로 규명합니다. 음향장 속 기포가 주변 액체에 만드는 마이크로 스케일 유동으로 흐름을 제어하고, 유동성과 전기전도성을 함께 갖는 갈륨계 액체금속의 역학을 다룹니다. 응용은 리튬이온전지 전극 제조의 슬러리 코팅 제어와 치과 근관치료용 의료기기입니다.",
+    "en": "Experiments map how bubbles, droplets and liquid films behave at scales where interfacial forces dominate. Bubbles driven by an acoustic pressure field set the surrounding liquid in motion, a route to micro-scale flow control, and gallium-based liquid metals are studied for their fluidity and conductivity. Applications include slurry coating control in lithium-ion battery electrodes and dental root canal instruments."
+  },
+  "김종백": {
+    "ko": "MEMS/NEMS 소자에 나노물질을 통합해 성능과 내구성을 높입니다. 탄소나노튜브를 접점 소재로 쓴 마이크로 스위치는 금 대비 1000배 이상의 접촉수명과 300도 고온 동작을 달성했습니다. 이를 바탕으로 유연 촉각센서, 가스센서, 에너지 하베스터, 햅틱 인터페이스, 의료 MEMS와 뉴럴 인터페이스로 응용을 넓히고 있습니다.",
+    "en": "Nanomaterials are integrated into MEMS and NEMS devices to raise their performance and durability. Micro-switches that use carbon nanotubes as the contact material achieve contact lifetimes more than a thousand times longer than gold and operate at 300 degrees Celsius. The same platform extends to flexible tactile sensors, gas sensors, energy harvesters, haptic interfaces, medical MEMS and neural interfaces."
+  },
+  "김해진": {
+    "ko": "감지·기억·연산을 한 소자에서 수행하는 인공 시냅스와 뉴로모픽 소자를 만듭니다. 딱딱한 칩을 유연한 껍질에 넣는 대신 반도체·전도체·센서 자체가 늘어나는 본질적 신축성 전자소자를 구현하고, 이를 위해 고해상도 패터닝과 직접 잉크 쓰기(DIW) 3D 프린팅, 리프트오프 공정을 개발합니다. 인쇄·제조 파라미터는 머신러닝으로 튜닝해 재현성과 수율을 높입니다.",
+    "en": "Artificial synapses and neuromorphic devices sense, store and compute within a single element. Instead of encasing a rigid chip in a soft shell, the semiconductors, conductors and sensors themselves are made stretchable, which calls for high-resolution patterning, direct ink writing 3D printing and lift-off processes. Machine learning tunes the printing and process parameters to improve reproducibility and yield."
+  },
+  "류원형": {
+    "ko": "마이크로니들로 혈관·안구 질환 치료제를 전달하고 포도당·도파민 같은 바이오마커를 센싱하는 기술이 대표 주제입니다. 살아 있는 광합성 세포에서 전자를 직접 뽑아내는 바이오에너지 하베스팅도 다룹니다. 이런 소자를 만드는 공정으로 실리콘 MEMS/NEMS 미세가공, 전기방사, EHD 프린팅, 전자·에너지·의료용 기능성 3D 프린팅을 함께 개발합니다.",
+    "en": "Microneedle arrays deliver drugs for vascular and ocular disease and sense biomarkers such as glucose and dopamine. A separate line harvests electricity directly from living photosynthetic cells. Silicon MEMS and NEMS processing, electrospinning, EHD printing and functional 3D printing are developed to build these devices."
+  },
+  "민경민": {
+    "ko": "조성·구조·공정을 하나의 표현으로 담는 소재 파운데이션 모델과, 문헌을 읽어 다음 계산을 스스로 정하는 LLM 기반 자율 탐색 에이전트를 개발합니다. 기계학습 원자간 퍼텐셜(MLIP)과 다중스케일 시뮬레이션·대리모델로 원자 단위 계산을 공학 스케일까지 연결합니다. 리튬·나트륨·칼슘·아연계 양극과 고체전해질 고속 스크리닝, ALD 전구체 등 반도체 공정 소재, 키리가미 메타물질 설계에 적용합니다.",
+    "en": "A materials foundation model encodes composition, structure and process in one representation, while LLM-based agents mine the literature and decide what to compute next. Machine-learned interatomic potentials, multiscale simulation and surrogate models carry atomic-scale results up to engineering scale. Targets include Li, Na, Ca and Zn battery materials, ALD precursors, and kirigami metamaterials."
+  },
+  "민병권": {
+    "ko": "고속·고정밀 공구경로 생성과 디지털 트윈 기반 사이버물리시스템으로 CNC 가공의 정밀도를 높입니다. 로봇 가공에서는 강성 모델과 기구학 파라미터 식별로 가공력에 의한 오차를 예측·보상합니다. 컴퓨터 비전 HMI와 VR 원격조작으로 작업자와 공장의 상호작용을 개선하고, CFRP·티타늄합금·글래시카본 같은 난삭재 가공 공정도 다룹니다.",
+    "en": "High-speed, high-precision toolpath generation and a digital-twin cyber-physical system raise the accuracy of CNC machining. In robotic machining, stiffness models and kinematic parameter identification predict and compensate cutting-force errors. Vision-based HMI and VR teleoperation reshape human-factory interaction, alongside machining of hard-to-cut CFRP, titanium alloys and glassy carbon."
+  },
+  "박노철": {
+    "ko": "원자력발전소·군용 장비·차량 같은 대형 구조물이 충격을 받을 때의 진동을 해석하는 것이 한 축입니다. 마이크로칩과 메타물질의 진동에서 햅틱 디스플레이의 진동촉각 렌더링, 자기부상열차까지 스케일이 다른 멀티피직스 진동 문제를 함께 다룹니다. 광메카트로닉스 축에서는 해상도를 끌어올리는 전산 영상 기법과 고정밀 색측정 시스템을 연구합니다.",
+    "en": "Shock and vibration analysis covers large structures such as nuclear power plants, military equipment and vehicles. A multiphysics track spans the vibration of microchips and metamaterials, vibrotactile rendering on haptic displays, and magnetic levitation trains. Optomechatronics work pursues computational imaging for higher resolution and high-accuracy color measurement systems."
+  },
+  "송순호": {
+    "ko": "수소 생산을 위한 산소전달입자와 촉매를 합성·분석하고 반응 속도론을 해석하는 연료 개질이 한 축입니다. 다른 축은 수소를 첨가해 T-GDI 가솔린 엔진의 연소 특성과 효율을 개선하는 연구이며, 급속압축장치(RCM) 실험과 화학 반응 수치 해석으로 연소 현상을 규명합니다. 엔진·차량 모델링으로 천연가스-디젤 이중연료 연소를 해석하고, 가스터빈 반응기 내 연소는 LES로 다룹니다.",
+    "en": "One track synthesizes oxygen carriers and catalysts for hydrogen production and analyzes their reaction kinetics. Another adds hydrogen to T-GDI gasoline engines to improve combustion and efficiency, with rapid compression machine tests and numerical kinetics probing the combustion process. Engine and vehicle models cover natural gas-diesel dual fuel combustion, and LES resolves combustion in gas turbine reactors."
+  },
+  "신동준": {
+    "ko": "소프트 액추에이터·센서와 웨어러블 하드웨어를 만들고, 사람과 로봇이 힘을 나눠 쓰는 하이브리드 구동과 AI 기반 모션 제어를 함께 연구합니다. 인체 동작 분석·평가를 토대로 보조·재활 로봇, 로봇 모빌리티, 협동로봇을 개발합니다. 세부 과제로는 척추 보조 로봇과 소프트 스마트 슬리브 같은 인체 증강 장치, Twisted String Actuation 기반 조작 시스템이 있습니다.",
+    "en": "Soft actuators, sensors and wearable hardware are built alongside human-robot hybrid actuation and AI-based motion control. Human motion analysis and evaluation ground the design of assistive and rehabilitation robots, robotic mobility and collaborative robots. Projects include a spine assistive robot, a soft smart sleeve, a bionic arm and manipulation systems using twisted string actuation."
+  },
+  "양현석": {
+    "ko": "모바일 로봇, 매니퓰레이터, 로봇 핸드의 기구를 직접 설계하고 제작하는 것이 연구의 출발점입니다. 여기에 두 팔로 물체를 다루는 양팔 매니퓰레이션과 햅틱을 이용한 원격조작 기술을 더해 로봇 시스템을 정밀하게 제어하는 연구를 수행합니다. 단일 팔과 양팔 모두에 강화학습을 적용한 학습 기반 지능 제어까지 세 축으로 연구를 구성합니다.",
+    "en": "Mechanism design and manufacture come first, covering mobile robots, manipulators and robotic hands. Control work spans dual-arm manipulation together with haptics and teleoperation. A third track applies reinforcement learning to single-arm and dual-arm operation for learning-based intelligent control of the whole system."
+  },
+  "유정훈": {
+    "ko": "설계영역 안의 최적 물질 분포를 찾는 위상최적설계를 중심에 두고, Phase field·Density·SIMP 기법에 신경망 기반 최적화와 응력 제약 조건을 더해 확장합니다. 매크로 스케일 위상최적화와 마이크로 스케일 RVE·머신러닝을 결합해 복합재 경량화 구조를 멀티스케일로 설계합니다. 다중 재료 기계 부품의 구조해석부터 자기장·마이크로파 영역 구조와 클로킹 설계까지 다룹니다.",
+    "en": "Topology optimization finds the best material distribution inside a design domain, using phase field, density and SIMP methods extended with neural-network optimization and stress constraints. Macro-scale topology optimization couples with micro-scale RVE and machine learning for multiscale composite lightweighting. The same methods reach multi-material machine parts, magnetic and microwave structures, and cloaking."
+  },
+  "윤준영": {
+    "ko": "전기차 인휠 모터와 중앙집중식 모터처럼 새로운 구조의 모터를 전자기적으로 설계하고, 일부가 고장 나도 동작을 유지하는 결함 허용 제어를 연구합니다. 정밀 시스템 쪽에서는 마찰 미소동역학을 실시간으로 식별·보상하고 자기부상·능동 베어링, 진공 이송용 히스테리시스 모터를 다룹니다. 장기칩용 메카트로닉스로는 산소 공급을 제어하는 3D 관류 간칩과 쌍안정 액추에이터 기반 마이크로펌프·능동 밸브를 만듭니다.",
+    "en": "Novel motor designs for electric vehicles and intelligent robots, including in-wheel and centralized types, come with fault-tolerant control that keeps them turning when part fails. Friction micro-dynamics are identified and compensated in real time, alongside magnetic levitation, active bearings and hysteresis motors. Organ-on-a-chip mechatronics yields a 3D perfusion liver chip and bistable-actuator micropumps."
+  },
+  "이남규": {
+    "ko": "미래 모빌리티용 에너지 저장장치의 열설계와, 에너지·모빌리티 응용을 위한 첨단 냉각 기술을 연구합니다. 복사 열전달을 조절하는 열 메타물질로 적외선 위장을 구현하는 것도 주요 주제입니다. 청정에너지 응용 열설계와 표면 근처의 열·유동 거동을 다루는 기초 수송 현상도 함께 다루며, 마이크로 스케일에서 매크로 시스템까지 아우릅니다.",
+    "en": "Thermal design for energy storage in future mobility systems sits alongside advanced cooling techniques for energy and mobility applications. Thermal metamaterials regulate radiative heat transfer to achieve infrared camouflage. Clean-energy thermal design and fundamental transport phenomena near surfaces round out a scope that runs from micro devices to macro systems."
+  },
+  "이종수": {
+    "ko": "기계 시스템을 정역학·동역학뿐 아니라 열·유체까지 함께 고려해 형상을 최적화하고, 물리·모델링·통계적 불확실성을 정량화해 신뢰성 기반 최적설계를 수행합니다. 다른 축은 기계의 이상 신호를 미리 감지하고 고장 유형을 예지·분석해 잔여 유효 수명(RUL)을 예측하는 PHM입니다. 모델 기반, 데이터 기반, 두 방식을 병용하는 하이브리드 세 갈래로 접근합니다.",
+    "en": "Machine systems are optimized with heat and fluid flow weighed alongside statics and dynamics, and uncertainty quantification feeds reliability-based design optimization. The other half is prognostics and health management: detecting abnormal signals early, diagnosing failure modes, and predicting remaining useful life. PHM is pursued through model-based, data-driven and hybrid routes."
+  },
+  "이준상": {
+    "ko": "격자 볼츠만법 기반 멀티스케일 모델링으로 혈류역학, 도시 바람, 유체-구조 연성을 해석합니다. 여기에 물리 정보를 반영한 머신러닝과 대리모델을 결합해 혈액 점도, 심혈관 질환, 폐암을 예측하고, CT 영상으로 관상동맥 혈류를 추정합니다. 양자 격자 볼츠만법(QLBM)과 양자 신경망을 NISQ 양자 하드웨어에서 구동하는 하이브리드 양자-고전 알고리즘도 함께 개발합니다.",
+    "en": "Lattice Boltzmann methods drive multiscale simulations of hemodynamics, urban wind, and fluid-structure interaction. Physics-informed machine learning and surrogate models predict blood viscosity, cardiovascular disease, and lung cancer, with coronary flow estimated from CT images. Quantum lattice Boltzmann and quantum neural networks run as hybrid quantum-classical algorithms on NISQ hardware."
+  },
+  "이창훈": {
+    "ko": "직접수치모사로 난류와 유한 크기 입자·기포의 상호작용을 규명합니다. 침강 타원체 입자, 입자를 포함한 레일리-베나르 대류, 난류 속 기포의 경로 불안정성이 주요 대상입니다. 여기에 CycleGAN 기반 비지도학습으로 저해상도 난류장을 초해상도로 재구성하고, LES와 몰입경계법을 결합해 실내 오염물질 확산과 고에너지 폭발 버섯구름을 모사합니다.",
+    "en": "Direct numerical simulation resolves turbulence interacting with finite-size particles and bubbles, from settling ellipsoids to particle-laden Rayleigh-Benard convection. Deep learning adds a CycleGAN that reconstructs super-resolved turbulence fields from unpaired data. Large eddy simulation with an immersed boundary method models indoor pollutant dispersion and the mushroom cloud of a high-energy explosion."
+  },
+  "이형석": {
+    "ko": "음파가 유체 속에 만드는 압력장을 이용해 미세입자와 세포를 접촉 없이 원하는 자리로 옮기는 음향유체역학이 연구의 중심입니다. 이 음향영동 기법을 조직공학에 적용하고, 기포의 생성과 거동을 다루는 동역학도 주요 주제로 삼습니다. 생체의 움직임을 모사한 칩과 액추에이터, 디스플레이 소자까지 연성재료와 유체 계면에서 생기는 역학 문제로 범위를 넓힙니다.",
+    "en": "Acoustofluidics is the core: pressure fields generated by sound in a liquid move microparticles and cells to chosen positions without contact. Acoustophoresis is applied to tissue engineering, and bubble dynamics is studied alongside it. Biomimetic chips and actuators, along with display devices, extend the work to mechanics at soft-material and fluid interfaces."
+  },
+  "장용훈": {
+    "ko": "두 표면이 맞닿는 미시 접촉면에서 하중이 어떻게 분포하고 전기 접촉 저항이 어떻게 결정되는지를 접촉역학과 열탄성학으로 해석합니다. 여기에 딥러닝을 결합해 마찰·마모와 진동 현상을 규명하고, 조립·접합 공정의 용접해석을 기업과 함께 수행합니다. 주된 응용 분야는 배터리 조립·용접 기술, 전기 커넥터, 브레이크·클러치 등 수송장치 부품입니다.",
+    "en": "Contact mechanics and thermoelasticity describe what happens where two surfaces meet: how load spreads across the microscopic contact spots and how electrical contact resistance is set. Deep learning is added to analyze friction, wear, and vibration and to model welding in assembly and joining. Applications include battery welding, electrical connectors, and transport components such as brakes and clutches."
+  },
+  "전성찬": {
+    "ko": "그래핀과 탄소나노튜브의 전자적 특성을 활용해 고주파 영역에서 신호가 어떻게 전달되는지를 규명하고 나노 전자·포토닉스 소자를 만듭니다. 하이브리드 전기차 등의 수요에 대응해 슈퍼커패시터 전극 소재도 개발합니다. 가스·바이오·광학 센서를 어레이로 집적해 여러 물질의 신호를 동시에 얻고, 이를 인공지능으로 분석하는 다중 진단 센서를 연구합니다.",
+    "en": "Graphene and carbon nanotubes are used to build nanoelectronic and photonic devices, with a focus on how signals propagate at high frequencies. The same carbon materials serve as supercapacitor electrodes for energy storage in applications such as hybrid electric vehicles. Gas, bio, and optical sensors are integrated into arrays that read many substances at once, and the data feed AI analysis."
+  },
+  "전흥재": {
+    "ko": "복합재료 구조를 미시·거시 역학 모델로 해석하고 형상과 기능을 최적화합니다. CFRP 미러, 항공기 수리 해석, 레이돔과 능동 주파수선택표면(FSS)이 대표 응용이며, 구조가 스스로 손상을 감지하도록 비파괴 검사와 건전성 모니터링도 연구합니다. 생체 쪽으로는 인체 부위 시뮬레이션과 수술 시뮬레이션, 무릎 임플란트와 나노복합재 스텐트의 역학을 다룹니다.",
+    "en": "Composite structures are analyzed with micro and macro mechanics models and optimized for shape and function, from CFRP mirrors to aircraft radomes and active frequency selective surfaces. Intelligent structures gain their own sensing and actuation, with nondestructive inspection and health monitoring. Biomechanics covers simulation models of body parts, surgical simulation, knee implants, and nanocomposite stents."
+  },
+  "정효일": {
+    "ko": "미세유체 칩으로 인공 엑소좀을 대량 생산하고, 액체생검 시료에서 종양 유래 엑소좀 같은 생물학적 활성 입자를 분리·정제합니다. 나노소재를 결합한 전기화학 바이오센서를 미세유체 소자에 집적해 현장진단용 휴대형 장치를 만들고, 약물 스크리닝용 오가노이드와 장기칩도 개발합니다. 머신러닝으로 센서 신호를 해석하고 인공 엑소좀의 배합을 예측하며, 생산 플랫폼을 자동화합니다.",
+    "en": "Microfluidic chips mass-produce artificial exosomes and isolate tumor-derived exosomes from liquid biopsy samples. Nanomaterial-based electrochemical biosensors integrated on the same chips give compact point-of-care devices, and organoids and organ-on-a-chip platforms serve drug screening. Machine learning interprets sensor data and predicts artificial exosome formulations, and the production platform is automated."
+  },
+  "주철민": {
+    "ko": "렌즈에만 의존하지 않고 측정된 빛의 세기를 알고리즘으로 역산해 영상을 복원하는 전산 광학 영상을 연구합니다. 푸리에 타이코그래피와 강도 회절 단층촬영, 단일 픽셀 위상 단층촬영으로 세포의 정량 위상과 3차원 굴절률·복굴절 정보를 얻습니다. 물리 모델을 결합한 딥러닝으로 광학계 자체를 설계하고, 광간섭 단층촬영(OCT)을 의료·산업 검사에 적용합니다.",
+    "en": "Computational imaging reconstructs an image from raw intensity measurements instead of a lens alone. Fourier ptychography, intensity diffraction tomography, and single-pixel phase tomography recover quantitative phase and three-dimensional refractive index in cells. Physics-informed deep learning designs the optical system itself, and optical coherence tomography serves biomedical and industrial inspection."
+  },
+  "최종은": {
+    "ko": "물리 세계에서 동작하는 인공지능과 체화 지능, 특히 자율 시스템의 공간 지능을 다룹니다. 파운데이션 모델과 시각-언어-행동(VLA) 모델, 월드 모델, 확산 기반 생성 모델, 강화학습, 등변 신경망 같은 기하학적 기계학습을 결합해 데이터 효율이 높은 학습·제어 알고리즘을 만듭니다. 로봇 매니퓰레이션과 휴머노이드, 다중 로봇, 자율주행·자율 레이싱, 인간-로봇 상호작용에 적용합니다.",
+    "en": "The focus is physical AI and embodied intelligence, emphasizing spatial intelligence for autonomous systems. Foundation models, vision-language-action models, world models, diffusion-based generative models, and reinforcement learning yield data-efficient learning and control algorithms. Targets include robot manipulation, humanoids, multi-robot systems, autonomous driving and racing, and human-robot interaction."
+  },
+  "현재상": {
+    "ko": "Digital Fringe Projection 방식으로 물체에 줄무늬 패턴을 투영하고 그 변형된 위상을 풀어 표면 형상을 고속·고정밀로 측정합니다. 하드웨어뿐 아니라 측정 성능을 좌우하는 투영 패턴과 복원 알고리즘을 함께 설계하고, 텍스처·프린지·위상을 합친 멀티모달 이미징을 다룹니다. 확장현실과 3차원 원격 통신, 차량용 3D 센서, 인프라 점검, 법과학 현장 분석에 적용합니다.",
+    "en": "Fringe patterns projected onto an object distort with its surface, and unwrapping their phase yields high-speed, high-accuracy 3D shape measurement. Projection patterns and reconstruction algorithms are designed alongside the hardware, with multimodal imaging that fuses texture, fringe, and phase. Uses span 3D machine vision, extended reality, automotive 3D sensors, infrastructure inspection, and forensic science."
+  },
+  "홍종섭": {
+    "ko": "수전해와 암모니아 분해, 메탄 개질에 쓰이는 촉매를 스크리닝하고, 표면에서 일어나는 불균일 반응 메커니즘과 열화 과정을 규명합니다. 고체산화물 연료전지·수전해 셀(SOFC/SOEC) 내부의 반응과 열·유동을 3차원으로 모델링해 스택과 핫박스 설계를 최적화합니다. 상용급 1kW 이상 스택을 대상으로 성능을 실험 평가하고 장기 내구성 시험을 수행합니다.",
+    "en": "Catalysts for water electrolysis, ammonia cracking, and methane reforming are screened, along with the heterogeneous surface reactions and degradation that govern them. High-fidelity 3D models of reaction, heat, and flow inside solid oxide fuel and electrolysis cells guide stack and hot-box design. Stacks above one kilowatt are evaluated experimentally, including long-term durability testing."
+  }
+}

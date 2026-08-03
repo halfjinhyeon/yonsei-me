@@ -491,6 +491,12 @@
       "phone": "Phone"
     },
     "labVisit": "Visit site",
+    "labAi": {
+      "button": "AI Research Summary",
+      "panelLabel": "AI Research Summary",
+      "beta": "BETA",
+      "disclaimer": "※ Generated in advance from each lab's website and the department's introductory materials."
+    },
     "fieldFilter": {
       "all": "All",
       "basics": "Foundations",

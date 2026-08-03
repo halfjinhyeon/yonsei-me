@@ -471,7 +471,7 @@
   }
 
   /* AI 연구요약 — 버튼 아이콘의 반짝임 두 개(엇갈린 딜레이)와 타이핑 캐럿.
-     교수 상세의 AI 요약 토글에서만 쓴다. */
+     교수 상세와 연구실 목록의 AI 요약 토글에서 쓴다(AiResearchSummary). */
   @keyframes aiSparkle {
     0%, 100% { opacity: 0.35; transform: scale(0.6) rotate(0deg); }
     50% { opacity: 1; transform: scale(1.1) rotate(20deg); }

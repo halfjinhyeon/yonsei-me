@@ -4,6 +4,7 @@ import { useEffect, useMemo, useState } from 'react';
 import Image from 'next/image';
 import { useLocale, useTranslations } from 'next-intl';
 import { cn } from '@/lib/utils';
+import { AiSummaryPanel, AiSummaryToggle, useAiSummaryTyping } from '@/components/AiResearchSummary';
 import type { LabDirectoryEntry, ResearchField } from '@/lib/faculty';
 
 /** 분야 탭 표시 순서 (research.fieldFilter 메시지 키와 동일) */
@@ -89,12 +90,161 @@ function FieldBarTabs({
 }
 
 /**
+ * 연구실 한 행 — [좌: 이름·메타·액션] [우: 이미지] + (열었을 때) 행 전폭 AI 요약 패널.
+ *
+ * 행마다 토글 상태가 따로 필요해 별도 컴포넌트로 뺐다(훅을 map 안에서 조건부로 부를 수
+ * 없다). 패널은 좌측 컬럼 안이 아니라 li 그리드의 직접 자식이라 col-span-full 로 이미지
+ * 칸까지 덮는다 — 자식 순서가 [좌, 이미지, 패널]이어야 이미지가 1행에 남는다(패널을
+ * 가운데 끼우면 자동 배치가 이미지를 다음 행으로 밀어낸다).
+ */
+function LabRow({
+  lab,
+  image,
+  index,
+  summary,
+}: {
+  lab: LabDirectoryEntry;
+  /** 연구실 이미지(없으면 호출부가 더미를 골라 넘긴다) */
+  image: string;
+  /** 스태거 지연 계산용 목록 내 순번 */
+  index: number;
+  /** 로케일 해석이 끝난 AI 요약문. 없으면 버튼 자체를 그리지 않는다. */
+  summary?: string;
+}) {
+  const t = useTranslations('research');
+  const locale = useLocale();
+  // 훅은 조건부로 부를 수 없으므로 요약문이 없어도 호출한다(빈 문자열 = 열 일이 없음)
+  const ai = useAiSummaryTyping(summary ?? '');
+  const desc = lab.description ? (locale === 'ko' ? lab.description.ko : lab.description.en) : null;
+
+  return (
+    <li
+      className="anim-nav-item grid gap-5 border-b border-surface-border py-7 last:border-b-0 md:grid-cols-[minmax(0,1fr)_15rem] md:gap-10"
+      style={{ animationDelay: `${Math.min(index, 12) * 40}ms` }}
+    >
+      {/* 좌: 이름·영문·(소개)·라벨 메타·액션 */}
+      <div className="flex min-w-0 flex-col items-start">
+        <h3 className="text-xl font-bold leading-snug tracking-tight text-content sm:text-2xl">
+          {lab.url ? (
+            <a
+              href={lab.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="transition-colors hover:text-yonsei-blue"
+            >
+              {lab.nameKo}
+            </a>
+          ) : (
+            lab.nameKo
+          )}
+        </h3>
+        <p className="mt-1 text-xs font-medium tracking-wide text-content-faint">{lab.nameEn}</p>
+
+        {lab.internRecruiting && (
+          <span className="mt-2.5 inline-flex items-center gap-1.5 rounded-full bg-emerald-50 px-2.5 py-1 text-xs font-semibold text-emerald-700 dark:bg-emerald-950/40 dark:text-emerald-300">
+            <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
+            {t('intern.badge')}
+            {lab.internCount ? (
+              <span className="font-medium text-emerald-600 dark:text-emerald-400">
+                · {t('intern.count', { n: lab.internCount })}
+              </span>
+            ) : null}
+          </span>
+        )}
+
+        {/* 소개 문단 — labs-directory.json description 이 있을 때만 */}
+        {desc && <p className="mt-3 max-w-2xl text-sm leading-relaxed text-content-soft">{desc}</p>}
+
+        {/* 라벨 메타 — 레퍼런스의 2열 라벨 그리드(지도교수/분야/위치/연락처) */}
+        <dl className="mt-4 grid w-full max-w-xl grid-cols-[auto_minmax(0,1fr)] gap-x-5 gap-y-1.5 text-sm sm:grid-cols-[auto_minmax(0,1fr)_auto_minmax(0,1fr)] sm:gap-x-6">
+          <dt className="font-bold text-content">{t('labMeta.professor')}</dt>
+          <dd className="min-w-0 text-content-soft">
+            {lab.professorKo}
+            {lab.professorEn && (
+              <span className="ml-1.5 text-xs text-content-faint">{lab.professorEn}</span>
+            )}
+          </dd>
+          <dt className="font-bold text-content">{t('labMeta.field')}</dt>
+          <dd className="min-w-0 text-content-soft">{t(`fieldFilter.${lab.field}`)}</dd>
+          <dt className="font-bold text-content">{t('labMeta.location')}</dt>
+          <dd className="min-w-0 text-content-soft">{lab.location}</dd>
+          {lab.phone ? (
+            <>
+              <dt className="font-bold text-content">{t('labMeta.phone')}</dt>
+              <dd className="min-w-0 text-content-soft">{lab.phone}</dd>
+            </>
+          ) : null}
+        </dl>
+
+        {/* 액션 — 시안 순서대로 'AI 연구요약'이 먼저, '바로가기 ↗' 보더 버튼이 다음.
+            aria-label 로 연구실명을 붙여 목록의 버튼들을 스크린리더에서 구분한다. */}
+        {(summary || lab.url) && (
+          <div className="mt-4 flex flex-wrap items-center gap-2">
+            {summary && (
+              <AiSummaryToggle
+                open={ai.open}
+                onToggle={ai.toggle}
+                panelId={ai.panelId}
+                label={t('labAi.button')}
+                ariaLabel={`${lab.nameKo} ${t('labAi.button')}`}
+                size="sm"
+              />
+            )}
+            {lab.url && (
+              <a
+                href={lab.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`${lab.nameKo} ${t('labVisit')}`}
+                className="inline-flex items-center gap-2 border border-surface-border px-4 py-2 text-xs font-bold text-content transition-colors hover:border-yonsei-blue hover:bg-yonsei-blue hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yonsei-blue"
+              >
+                {t('labVisit')}
+                <svg
+                  aria-hidden="true"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2.2"
+                  className="h-3 w-3"
+                >
+                  <path d="M7 17 17 7M9 7h8v8" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </a>
+            )}
+          </div>
+        )}
+      </div>
+
+      {/* 우: 연구실 이미지(없으면 더미 순환) — 레퍼런스 우측 박스, 높이 축소판 */}
+      <div className="relative aspect-[16/10] w-full overflow-hidden bg-surface-soft md:aspect-auto md:h-40 md:self-center">
+        <Image src={image} alt="" fill sizes="(min-width: 768px) 240px, 100vw" className="object-cover" />
+      </div>
+
+      {/* AI 요약 패널 — 행 전폭(grid-column: 1 / -1). md:gap-10 이 세로에도 걸려 버튼과
+          너무 떨어져 보이므로 모바일 간격(1.25rem)만큼만 남기고 끌어올린다. */}
+      {summary && ai.open && (
+        <AiSummaryPanel
+          panelId={ai.panelId}
+          text={summary.slice(0, ai.typed)}
+          done={ai.done}
+          panelLabel={t('labAi.panelLabel')}
+          betaLabel={t('labAi.beta')}
+          disclaimer={t('labAi.disclaimer')}
+          className="col-span-full w-full md:-mt-5"
+        />
+      )}
+    </li>
+  );
+}
+
+/**
  * 연구실 목록 — 나열식 표를 버리고 연구실별 특색이 드러나는 에디토리얼 행으로 개편.
  *
  * 구성: [분야 필터 탭(활성 위·아래 바)] → [특정 분야 선택 시 분야 인트로: 제목 +
  * 설명 패널 + 대표 이미지 배너(fieldIntros, research-gallery.json 재사용)] →
  * [연구실 행: 좌 = 큰 이름·영문·(소개문단)·라벨 메타(지도교수/분야/위치/연락처)·
- * 바로가기 버튼 / 우 = 연구실 이미지(없으면 더미 3장 순환)].
+ * AI 연구요약·바로가기 버튼 / 우 = 연구실 이미지(없으면 더미 3장 순환) /
+ * 요약을 열면 행 전폭 패널].
  * 소개문단은 labs-directory.json 의 description(옵션) — 채우는 즉시 표시된다.
  *
  * 기존 기능 유지: ?field= 딥링크 초기 필터, 검색(연구실·교수명), 학부 인턴 필터·배지,
@@ -103,12 +253,15 @@ function FieldBarTabs({
 export function LabList({
   items,
   fieldIntros = [],
+  summaries = {},
 }: {
   items: LabDirectoryEntry[];
   fieldIntros?: LabFieldIntro[];
+  /** AI 연구요약 — 지도교수 한글 이름 → 로케일 해석이 끝난 문장(서버에서 주입).
+   *  한/영 양쪽을 클라이언트 번들에 싣지 않으려고 페이지가 한쪽만 골라 넘긴다. */
+  summaries?: Record<string, string>;
 }) {
   const t = useTranslations('research');
-  const locale = useLocale();
   const [filter, setFilter] = useState<Filter>('all');
   const [query, setQuery] = useState('');
   const [internOnly, setInternOnly] = useState(false);
@@ -246,114 +399,15 @@ export function LabList({
       ) : (
         /* key 로 필터 전환 시 행들을 리마운트해 스태거 등장을 재트리거한다. */
         <ul key={`list-${filter}`}>
-          {visible.map((lab, i) => {
-            const img = lab.image ?? FALLBACK_IMAGES[i % FALLBACK_IMAGES.length];
-            const desc = lab.description
-              ? locale === 'ko'
-                ? lab.description.ko
-                : lab.description.en
-              : null;
-            return (
-              <li
-                key={lab.nameKo}
-                className="anim-nav-item grid gap-5 border-b border-surface-border py-7 last:border-b-0 md:grid-cols-[minmax(0,1fr)_15rem] md:gap-10"
-                style={{ animationDelay: `${Math.min(i, 12) * 40}ms` }}
-              >
-                {/* 좌: 이름·영문·(소개)·라벨 메타·바로가기 */}
-                <div className="flex min-w-0 flex-col items-start">
-                  <h3 className="text-xl font-bold leading-snug tracking-tight text-content sm:text-2xl">
-                    {lab.url ? (
-                      <a
-                        href={lab.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="transition-colors hover:text-yonsei-blue"
-                      >
-                        {lab.nameKo}
-                      </a>
-                    ) : (
-                      lab.nameKo
-                    )}
-                  </h3>
-                  <p className="mt-1 text-xs font-medium tracking-wide text-content-faint">
-                    {lab.nameEn}
-                  </p>
-
-                  {lab.internRecruiting && (
-                    <span className="mt-2.5 inline-flex items-center gap-1.5 rounded-full bg-emerald-50 px-2.5 py-1 text-xs font-semibold text-emerald-700 dark:bg-emerald-950/40 dark:text-emerald-300">
-                      <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
-                      {t('intern.badge')}
-                      {lab.internCount ? (
-                        <span className="font-medium text-emerald-600 dark:text-emerald-400">
-                          · {t('intern.count', { n: lab.internCount })}
-                        </span>
-                      ) : null}
-                    </span>
-                  )}
-
-                  {/* 소개 문단 — labs-directory.json description 이 있을 때만 */}
-                  {desc && (
-                    <p className="mt-3 max-w-2xl text-sm leading-relaxed text-content-soft">{desc}</p>
-                  )}
-
-                  {/* 라벨 메타 — 레퍼런스의 2열 라벨 그리드(지도교수/분야/위치/연락처) */}
-                  <dl className="mt-4 grid w-full max-w-xl grid-cols-[auto_minmax(0,1fr)] gap-x-5 gap-y-1.5 text-sm sm:grid-cols-[auto_minmax(0,1fr)_auto_minmax(0,1fr)] sm:gap-x-6">
-                    <dt className="font-bold text-content">{t('labMeta.professor')}</dt>
-                    <dd className="min-w-0 text-content-soft">
-                      {lab.professorKo}
-                      {lab.professorEn && (
-                        <span className="ml-1.5 text-xs text-content-faint">{lab.professorEn}</span>
-                      )}
-                    </dd>
-                    <dt className="font-bold text-content">{t('labMeta.field')}</dt>
-                    <dd className="min-w-0 text-content-soft">{t(`fieldFilter.${lab.field}`)}</dd>
-                    <dt className="font-bold text-content">{t('labMeta.location')}</dt>
-                    <dd className="min-w-0 text-content-soft">{lab.location}</dd>
-                    {lab.phone ? (
-                      <>
-                        <dt className="font-bold text-content">{t('labMeta.phone')}</dt>
-                        <dd className="min-w-0 text-content-soft">{lab.phone}</dd>
-                      </>
-                    ) : null}
-                  </dl>
-
-                  {/* 바로가기 — 레퍼런스의 '바로가기 ↗' 보더 버튼 */}
-                  {lab.url && (
-                    <a
-                      href={lab.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label={`${lab.nameKo} ${t('labVisit')}`}
-                      className="mt-4 inline-flex items-center gap-2 border border-surface-border px-4 py-2 text-xs font-bold text-content transition-colors hover:border-yonsei-blue hover:bg-yonsei-blue hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yonsei-blue"
-                    >
-                      {t('labVisit')}
-                      <svg
-                        aria-hidden="true"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2.2"
-                        className="h-3 w-3"
-                      >
-                        <path d="M7 17 17 7M9 7h8v8" strokeLinecap="round" strokeLinejoin="round" />
-                      </svg>
-                    </a>
-                  )}
-                </div>
-
-                {/* 우: 연구실 이미지(없으면 더미 순환) — 레퍼런스 우측 박스, 높이 축소판 */}
-                <div className="relative aspect-[16/10] w-full overflow-hidden bg-surface-soft md:aspect-auto md:h-40 md:self-center">
-                  <Image
-                    src={img}
-                    alt=""
-                    fill
-                    sizes="(min-width: 768px) 240px, 100vw"
-                    className="object-cover"
-                  />
-                </div>
-              </li>
-            );
-          })}
+          {visible.map((lab, i) => (
+            <LabRow
+              key={lab.nameKo}
+              lab={lab}
+              image={lab.image ?? FALLBACK_IMAGES[i % FALLBACK_IMAGES.length]}
+              index={i}
+              summary={summaries[lab.professorKo]}
+            />
+          ))}
         </ul>
       )}
     </div>
