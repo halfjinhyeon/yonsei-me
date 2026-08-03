@@ -3,6 +3,7 @@
 import { useMemo, useState } from 'react';
 import guide from '@content/admission-guide.json';
 import { pick } from '@/lib/content';
+import { useLandingAnimation } from '@/components/LandingScope';
 import { cn } from '@/lib/utils';
 import type { Locale } from '@/i18n/routing';
 
@@ -104,9 +105,15 @@ function compressMonths(months: number[], ko: boolean): string {
  *
  * 필터 매칭 규칙: '전체'=모두, '재외국민'=track 매칭(재외국민 일정은 type 이 '공통'이라
  * type 으로는 잡히지 않는다), 그 외는 type 매칭.
+ *
+ * 랜딩 애니메이션은 1·2번 섹션(GuideSections)과 같은 어휘로 정적인 헤더 영역에만 건다 —
+ * 룰 wipe → 제목·본문 rise → 연도 wipe(아래에서) → 카드 rise → 칩·스트립 fade.
+ * 월별 타임라인은 제외: 필터로 마운트/언마운트가 일어나는 영역이라, 마운트 1회짜리
+ * 초기 숨김(gsap.set)과 ScrollTrigger 위치가 재렌더와 어긋나 숨김 잔여물이 남을 수 있다.
  */
 export function AdmissionCalendar({ locale }: { locale: Locale }) {
   const ko = locale === 'ko';
+  const landRef = useLandingAnimation<HTMLElement>('admission-calendar');
   // 오늘 자정 — D-day 는 날짜 단위 비교라 시각을 떨어뜨린다
   const today = useMemo(() => new Date(), []);
   const startOfToday = useMemo(
@@ -190,18 +197,32 @@ export function AdmissionCalendar({ locale }: { locale: Locale }) {
   const chips = [{ key: 'all', label: { ko: '전체', en: 'All' } }, ...calendar.types];
 
   return (
-    <section aria-label={pick(calendar.title, locale)}>
+    <section ref={landRef} aria-label={pick(calendar.title, locale)}>
       {/* 번호 + 전폭 네이비 룰 — 1·2번 섹션(GuideSections)과 같은 문법으로 이어 붙는다 */}
-      <div className="border-b-2 border-yonsei-navy pb-2 text-sm font-bold text-content">3</div>
+      <div
+        data-land="wipe"
+        data-land-order={0}
+        className="border-b-2 border-yonsei-navy pb-2 text-sm font-bold text-content"
+      >
+        3
+      </div>
 
       <div className="mt-10 grid gap-10 lg:grid-cols-[minmax(0,2fr)_minmax(0,3fr)] lg:gap-16">
         {/* 좌: 대형 제목 + 연도 */}
         <div>
-          <h3 className="text-3xl font-black tracking-tight text-content sm:text-4xl">
+          <h3
+            data-land="rise"
+            data-land-order={1}
+            className="text-3xl font-black tracking-tight text-content sm:text-4xl"
+          >
             {pick(calendar.title, locale)}
           </h3>
+          {/* 연도 숫자 — 1·2번 섹션의 엠블럼과 같은 자리·같은 등장(아래에서 차오름) */}
           <div
             aria-hidden="true"
+            data-land="wipe"
+            data-land-from="bottom"
+            data-land-order={3}
             className="mt-10 text-[55px] font-bold leading-none tracking-[-0.03em] text-yonsei-navy"
             style={SUBHEAD_FONT}
           >
@@ -211,15 +232,27 @@ export function AdmissionCalendar({ locale }: { locale: Locale }) {
 
         {/* 우: 안내문 + 유의사항 + 다음 일정 카드 */}
         <div>
-          <p className="text-base leading-[1.9] text-content sm:text-lg">
+          <p
+            data-land="rise"
+            data-land-order={2}
+            className="text-base leading-[1.9] text-content sm:text-lg"
+          >
             {pick(calendar.intro, locale)}
           </p>
-          <p className="mt-8 text-[15px] leading-relaxed text-content-faint">
+          <p
+            data-land="rise"
+            data-land-order={3}
+            className="mt-8 text-[15px] leading-relaxed text-content-faint"
+          >
             {pick(calendar.disclaimer, locale)}
           </p>
 
           {next && (
-            <div className="mt-8 flex items-center gap-5 border border-surface-border bg-surface-soft px-6 py-5">
+            <div
+              data-land="rise"
+              data-land-order={4}
+              className="mt-8 flex items-center gap-5 border border-surface-border bg-surface-soft px-6 py-5"
+            >
               <div className="shrink-0 text-center">
                 <div
                   className="text-[28px] font-bold leading-none text-yonsei-navy"
@@ -265,6 +298,9 @@ export function AdmissionCalendar({ locale }: { locale: Locale }) {
               type="button"
               aria-pressed={active}
               onClick={() => setFilter(chip.key)}
+              // 클릭 대상이라 이동 없이 페이드만 — 누르려는 순간 움직이면 미스클릭이 난다
+              data-land="fade"
+              data-land-order={5}
               className={cn(
                 'inline-flex items-center gap-2 border px-4 py-[9px] text-[13px] font-bold transition-colors',
                 active
@@ -287,6 +323,9 @@ export function AdmissionCalendar({ locale }: { locale: Locale }) {
       <div
         role="group"
         aria-label={ko ? '연간 일정 분포' : 'Yearly schedule distribution'}
+        // 12개 셀을 개별 스태거하면 꼬리가 길어져 컨테이너 통째로 한 번만 페이드
+        data-land="fade"
+        data-land-order={6}
         className="mt-6 grid grid-cols-6 border border-surface-border sm:grid-cols-12"
       >
         {Array.from({ length: 12 }, (_, i) => i + 1).map((m) => {
