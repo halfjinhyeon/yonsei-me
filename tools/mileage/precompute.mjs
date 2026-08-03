@@ -603,6 +603,37 @@ const tieCreditIdx = new Map(
 );
 const summaryByKey = new Map(summaryRows.map((r) => [sumKey(r), r]));
 
+/**
+ * 한 학기·한 분반의 **학년별 실적** — `{ 학년: [컷, 학년 정원, 신청, 합격] }`.
+ *
+ * 화면의 '과거 이력'을 보는 사람은 전 학년의 컷이 아니라 **자기 학년의 컷**을 알고 싶다.
+ * 학년 정원이 걸린 과목은 학년마다 자리를 따로 채우므로 같은 분반이어도 컷이 크게 다르다
+ * (아래 ②정원&규정의 perGrade 와 같은 자료를 학기별로 편 것이다).
+ *
+ * - 컷이 `null` = 그 학년 합격자 0명(전멸). 행을 지우지 않고 신청 수만 싣는다 —
+ *   "그 학년은 한 명도 못 들었다"가 지원자에게 가장 중요한 정보다.
+ * - 학년 정원이 `null` = 그 학기엔 학년별 배정이 없었다(전 학년이 같은 정원에서 경쟁).
+ *   이때는 학년별 컷이 실질적 의미가 없으므로 **화면이 전체 컷을 대신 보여야 한다.**
+ * - 신청·합격은 컷과 같은 청중 그룹(전공자/비전공자) 기준이다(`gradeCutIdx` 가 이미 좁혔다).
+ */
+function gradeSlices(code, division, year, semester, sum) {
+  let quotas = null;
+  try {
+    quotas = sum?.year_quotas ? JSON.parse(sum.year_quotas) : null;
+  } catch {
+    quotas = null;
+  }
+  const out = {};
+  for (const g of ['1', '2', '3', '4']) {
+    const r = gradeCutIdx.get(`${code}|${division}|${year}|${semester}|${g}`);
+    const seats = Number(quotas?.[g] ?? 0) || 0;
+    const applied = r?.applied ?? 0;
+    if (!applied && !seats) continue; // 자리도 없고 지원도 없던 학년은 실을 것이 없다
+    out[g] = [r?.cut ?? null, seats || null, applied, r?.won ?? 0];
+  }
+  return Object.keys(out).length ? out : null;
+}
+
 const detail = {};
 for (const s of sections) {
   const k = `${s.code}|${s.division}`;
@@ -677,7 +708,10 @@ for (const s of sections) {
      *
      * 학생은 분반 번호가 아니라 "누가 가르치는가"를 보고 고르므로, 화면의 '과거 이력'은
      * 이것이 주(主)가 되어야 한다(사용자 지시). 예측 모델이 실제로 쓰는 자료와도 일치한다.
-     * [학기, 그때의 분반, 컷, 정원, 신청자]
+     * [학기, 그때의 분반, 컷, 정원, 신청자, 학년별 실적?]
+     *
+     * ⚠️ 6번째 칸(학년별 실적)은 **뒤에 덧붙인** 것이다 — 기존 파서(0…4 고정 구조분해)는
+     *    그대로 동작한다. 학년별 자료가 하나도 없는 학기에는 아예 넣지 않는다(용량).
      */
     professorHistory: s.professor
       ? [...histBySection.entries()]
@@ -688,13 +722,16 @@ for (const s of sections) {
               .filter((p) => p.professor && p.professor === s.professor)
               .map((p) => {
                 const sm = summaryByKey.get(`${s.code}|${div}|${p.year}|${p.semester}`);
-                return [
+                const byGrade = gradeSlices(s.code, div, p.year, p.semester, sm);
+                const row = [
                   `${p.year}-${p.semester}`,
                   div,
                   p.cutoff,
                   sm?.capacity ?? null,
                   sm?.applicants ?? null,
                 ];
+                if (byGrade) row.push(byGrade);
+                return row;
               });
           })
           .sort((a, b) => b[0].localeCompare(a[0]))

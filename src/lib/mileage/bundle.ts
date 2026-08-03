@@ -223,6 +223,21 @@ export function confidenceReason(s: Pick<Section, 'basis' | 'samples'>, ko = tru
  * 본 번들(약 480KB)과 분리해 두고, 사용자가 상세를 처음 열 때만 받는다(약 950KB).
  * ──────────────────────────────────────────────────────────────── */
 
+/**
+ * 한 학기·한 학년의 실적 — `[컷, 학년 정원, 신청, 합격]`.
+ *
+ * - 컷이 `null` = 그 학년 합격자가 0명이라 컷이 정의되지 않는다(그 학년 전멸).
+ * - 학년 정원이 `null` = 그 학기엔 학년별 배정이 없었다. 전 학년이 같은 정원에서 겨뤘으므로
+ *   **그 학기의 학년별 컷은 실질적 의미가 없다** — 화면은 그 학기만 전체 기준으로 되돌린다.
+ * - 신청·합격은 컷과 같은 청중 그룹(전공자/비전공자) 기준이다.
+ */
+export type GradeSlice = [
+  cut: number | null,
+  seats: number | null,
+  applied: number,
+  won: number,
+];
+
 export interface SectionDetail {
   /** ① 기본 통계 — 가장 최근 학기 기준 */
   stats: {
@@ -243,9 +258,19 @@ export interface SectionDetail {
   /**
    * 현재 담당 교수의 이 과목 이력 — 분반을 옮겼어도 전부 따라온다.
    * 학생은 분반 번호가 아니라 담당 교수를 보고 고르므로 화면의 '과거 이력'은 이것이 주가 된다.
-   * [학기, 그때의 분반, 컷, 정원, 신청자]
+   * [학기, 그때의 분반, 컷, 정원, 신청자, 학년별 실적?]
+   *
+   * ⚠️ 6번째 칸은 **뒤에 덧붙인** 것이라 없을 수 있다(구 번들·학년 자료가 없는 학기).
+   *    없으면 전체 기준 컷·정원·신청만 있는 셈이다.
    */
-  professorHistory?: [string, string, number, number | null, number | null][];
+  professorHistory?: [
+    string,
+    string,
+    number,
+    number | null,
+    number | null,
+    Record<string, GradeSlice>?,
+  ][];
   /** 학년별 컷(근거 학기) — 학년 정원이 걸린 과목은 학년마다 컷이 다르다.
    *  cut 이 null 이면 그 학년 합격자가 0명이라 컷이 정의되지 않는다(그 학년 전멸). */
   perGrade: Record<string, { cut: number | null; applied: number; won: number }> | null;

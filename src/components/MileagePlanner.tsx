@@ -25,6 +25,7 @@ import {
   parseTimeSlots,
   searchSections,
   siblingSections,
+  type GradeSlice,
   type MileageData,
   type Section,
   type SectionDetail,
@@ -976,7 +977,9 @@ export function MileagePlanner({ locale }: { locale: Locale }) {
                         {ko ? '정원 · 규정 · 과거 이력 보기' : 'Quotas, rules & history'}
                         <span aria-hidden="true">{openDetail === plan.id ? '−' : '+'}</span>
                       </button>
-                      {openDetail === plan.id && <SectionDetailPanel section={section} ko={ko} />}
+                      {openDetail === plan.id && (
+                        <SectionDetailPanel section={section} grade={grade} ko={ko} />
+                      )}
                     </li>
                   );
                 })}
@@ -1271,8 +1274,19 @@ function monotonePath(pts: { x: number; y: number }[]): string {
 /**
  * 분반 상세 — 기본 통계 / 정원·규정 / 과거 이력 (사용자 지시 4).
  * 상세 데이터(1MB)는 이 패널을 처음 열 때만 받는다.
+ *
+ * `grade` 는 화면 상단에서 고른 내 학년이다. 학년 정원이 걸린 과목은 학년마다 자리를 따로
+ * 채우므로 컷이 크게 다르다 — 과거 이력도 전 학년 평균이 아니라 **내 학년 기준**으로 읽는다.
  */
-function SectionDetailPanel({ section, ko }: { section: Section; ko: boolean }) {
+function SectionDetailPanel({
+  section,
+  grade,
+  ko,
+}: {
+  section: Section;
+  grade: number;
+  ko: boolean;
+}) {
   const [detail, setDetail] = useState<SectionDetail | null>(null);
   const [state, setState] = useState<'idle' | 'loading' | 'error'>('idle');
 
@@ -1305,7 +1319,26 @@ function SectionDetailPanel({ section, ko }: { section: Section; ko: boolean }) 
   // 학년별 컷·승부선은 ①기본 통계와 다른 학기에서 올 수 있다(라인업 일치 오버라이드)
   const basis = tieBasisText(detail.tieBasis ?? null, ko);
   const profHist = detail.professorHistory ?? [];
+  /** 각 행을 내 학년 기준으로 한 번만 읽어 둔다 — 표와 각주가 같은 판정을 써야 한다 */
+  const histRows = profHist.map((row) => [row, gradeRowView(row, grade)] as const);
+  /** 한 학기라도 학년 기준으로 읽혔는가 — 각주가 "N학년 기준"이라 말해도 되는 조건 */
+  const anyScoped = histRows.some(([, v]) => v.scoped);
+  /**
+   * 컷의 모집단 — 우리 사용자는 기계공학부 학생이라 MEU 과목에서는 전공자, 그 밖에서는
+   * 비전공자다. 전공자석·비전공자석은 따로 채워지므로 모집단을 밝히지 않은 컷은 어느 쪽의
+   * 컷도 아니다(precompute 의 청중 그룹 컷과 같은 기준).
+   */
+  const audience = section.code.startsWith('MEU')
+    ? ko
+      ? '전공자'
+      : 'majors'
+    : ko
+      ? '비전공자(기계공학부 학생)'
+      : 'non-majors (i.e. ME students)';
   const majorN = majorQuotaCount(rules.majorQuota);
+  /** 학년별 정원에 다른 그룹의 자리가 섞여 있는가 — 전공자 정원 < 전체 정원이면 그렇다 */
+  const mixedYearSeats =
+    majorN !== null && stats?.capacity != null && majorN > 0 && majorN < stats.capacity;
   const rate =
     stats?.applicants && stats?.capacity ? (stats.applicants / stats.capacity).toFixed(2) : null;
 
@@ -1372,6 +1405,12 @@ function SectionDetailPanel({ section, ko }: { section: Section; ko: boolean }) 
               {ko
                 ? '학년별로 정원을 따로 채우므로 같은 분반이어도 학년마다 컷이 다릅니다.'
                 : 'Seats fill per year, so the cutoff differs by year.'}
+              {/* 학년별 정원은 원장에 전공자·비전공자 구분 없이 한 수로만 나온다. 컷은
+                  청중 그룹만 세므로, 두 수의 모집단이 다르다는 사실을 밝혀야 한다. */}
+              {mixedYearSeats &&
+                (ko
+                  ? ` 학년별 정원은 전공자·비전공자를 합한 자리 수이고, 컷은 ${audience}만 센 수입니다.`
+                  : ` Per-year seats include both majors and non-majors; the cut counts ${audience} only.`)}
               {/* 학년별 컷이 ①의 기준 학기와 다른 학기에서 왔으면 반드시 밝힌다 */}
               {basis && (ko ? ` 학년별 컷은 ${basis.full} 기준입니다.` : ` Per-year cuts are from ${basis.full}.`)}
             </p>
@@ -1396,10 +1435,13 @@ function SectionDetailPanel({ section, ko }: { section: Section; ko: boolean }) 
       </div>
 
       {/* ③ 과거 이력 — 학생은 분반 번호가 아니라 담당 교수를 보고 고르므로,
-             "이 교수의 이 과목 이력"이 주가 된다(예측 모델이 쓰는 자료와도 일치). */}
+             "이 교수의 이 과목 이력"이 주가 된다(예측 모델이 쓰는 자료와도 일치).
+             수치는 ②와 같은 이유로 **내 학년 기준**이다(학년마다 자리를 따로 채운다). */}
       <div>
         <DetailHead>
-          {ko ? `과거 이력 · ${section.professor || '담당 미정'}` : `History · ${section.professor || 'TBA'}`}
+          {ko
+            ? `과거 이력 · ${section.professor || '담당 미정'} · ${grade}학년 기준`
+            : `History · ${section.professor || 'TBA'} · Year ${grade}`}
         </DetailHead>
         {profHist.length > 0 ? (
           <div className="mt-1.5 overflow-x-auto">
@@ -1409,35 +1451,72 @@ function SectionDetailPanel({ section, ko }: { section: Section; ko: boolean }) 
                   <th scope="col" className="py-1 text-left font-semibold">{ko ? '학기' : 'Term'}</th>
                   <th scope="col" className="py-1 text-left font-semibold">{ko ? '분반' : 'Sec.'}</th>
                   <th scope="col" className="py-1 text-right font-semibold">{ko ? '컷' : 'Cut'}</th>
-                  <th scope="col" className="py-1 text-right font-semibold">{ko ? '정원' : 'Cap.'}</th>
                   <th scope="col" className="py-1 text-right font-semibold">{ko ? '신청' : 'Applied'}</th>
+                  <th scope="col" className="py-1 text-right font-semibold">{ko ? '합격' : 'Admitted'}</th>
                 </tr>
               </thead>
               <tbody>
-                {profHist.map(([term, div, cut, cap, app], i) => (
-                  <tr key={`${term}-${div}`} className="border-b border-surface-border">
-                    <td className="py-1">
-                      {formatTerm(term, ko)}
-                      {i === 0 && (
-                        <span className="ml-1 bg-yonsei-navy px-1 py-px text-[9px] font-bold text-white">
-                          {ko ? '최신' : 'latest'}
-                        </span>
-                      )}
-                    </td>
-                    <td className="py-1">
-                      {div}
-                      {ko ? '분반' : ''}
-                      {div !== section.division && (
-                        <span className="ml-1 text-[9.5px] text-content-faint">
-                          {ko ? '(당시)' : '(then)'}
-                        </span>
-                      )}
-                    </td>
-                    <td className="py-1 text-right font-bold tabular-nums text-content">{cut}mp</td>
-                    <td className="py-1 text-right tabular-nums text-content-faint">{cap ?? '—'}</td>
-                    <td className="py-1 text-right tabular-nums text-content-faint">{app ?? '—'}</td>
-                  </tr>
-                ))}
+                {histRows.map(([row, v], i) => {
+                  const [term, div] = row;
+                  return (
+                    <tr key={`${term}-${div}`} className="border-b border-surface-border">
+                      <td className="py-1">
+                        {formatTerm(term, ko)}
+                        {i === 0 && (
+                          <span className="ml-1 bg-yonsei-navy px-1 py-px text-[9px] font-bold text-white">
+                            {ko ? '최신' : 'latest'}
+                          </span>
+                        )}
+                      </td>
+                      <td className="py-1">
+                        {div}
+                        {ko ? '분반' : ''}
+                        {div !== section.division && (
+                          <span className="ml-1 text-[9.5px] text-content-faint">
+                            {ko ? '(당시)' : '(then)'}
+                          </span>
+                        )}
+                      </td>
+                      {/* 컷 — 내 학년 자리가 따로 있던 학기는 그 학년 컷, 아니면 전체 컷('전체' 표시) */}
+                      <td className="py-1 text-right tabular-nums">
+                        {v.absent ? (
+                          <span className="text-content-faint">{ko ? '배정 없음' : 'no seats'}</span>
+                        ) : v.cut === null ? (
+                          <b className="font-bold" style={{ color: WARN_RED }}>
+                            {ko ? '없음' : 'none'}
+                          </b>
+                        ) : (
+                          <>
+                            <b className="font-bold text-content">{v.cut}mp</b>
+                            {!v.scoped && (
+                              <span className="ml-1 text-[9.5px] font-normal text-content-faint">
+                                {ko ? '(전체)' : '(all)'}
+                              </span>
+                            )}
+                          </>
+                        )}
+                      </td>
+                      {/* 신청·합격은 컷과 같은 모집단(내 학년 · 전공자/비전공자)이다.
+                          분반 전체 정원·신청자를 싣던 자리인데, 그 수에는 비전공자 자리가
+                          섞여 있어 전공자 컷과 다른 모집단을 말하게 됐다(사용자 지시). */}
+                      <td className="py-1 text-right tabular-nums text-content-faint">
+                        {v.applied ?? '—'}
+                      </td>
+                      <td className="py-1 text-right tabular-nums">
+                        {v.won === null ? (
+                          <span className="text-content-faint">—</span>
+                        ) : v.won === 0 && (v.applied ?? 0) > 0 ? (
+                          // 지원했는데 한 명도 못 붙은 학기 — 컷만 봐서는 놓치는 사실이다
+                          <b className="font-bold" style={{ color: WARN_RED }}>
+                            0
+                          </b>
+                        ) : (
+                          <span className="text-content-faint">{v.won}</span>
+                        )}
+                      </td>
+                    </tr>
+                  );
+                })}
               </tbody>
             </table>
             {profHist.some(([, d]) => d !== section.division) && (
@@ -1447,12 +1526,22 @@ function SectionDetailPanel({ section, ko }: { section: Section; ko: boolean }) 
                   : 'Terms in other sections are included — the same professor tends to draw similar demand.'}
               </p>
             )}
-            {/* 컷의 모집단을 밝힌다 — 전공자·비전공자 자리는 따로 채워지므로 두 컷이 크게 다르다.
-                기계공학부 학생 기준이라 MEU 과목은 전공자 컷, 그 밖은 비전공자 컷을 싣는다. */}
+            {/* 수치의 모집단을 밝힌다 — 학년석·전공자석·비전공자석은 각각 따로 채워지므로
+                모집단을 말하지 않은 컷은 어느 쪽의 컷도 아니다. 기계공학부 학생 기준이라
+                MEU 과목은 전공자, 그 밖은 비전공자 기준을 싣는다(비전공자 자리는 뺀다). */}
             <p className="mt-1 text-[10.5px] leading-relaxed text-content-faint">
               {ko
-                ? `컷은 ${section.code.startsWith('MEU') ? '전공자' : '비전공자(기계공학부 학생)'} 기준입니다 — 전공자 자리와 비전공자 자리를 따로 채우므로 두 컷이 다릅니다.`
-                : `Cutoffs are for ${section.code.startsWith('MEU') ? 'majors' : 'non-majors (i.e. ME students)'} — the two groups fill separate seats.`}
+                ? `컷·신청·합격은 ${grade}학년 · ${audience}만 센 수입니다 — 학년과 전공 여부로 자리를 따로 채우므로 섞으면 어느 쪽의 컷도 아니게 됩니다.`
+                : `Cut, applicants and admits count only year ${grade} · ${audience} — seats are filled separately per year and per major status, so mixing them yields neither group's cut.`}
+              {/* 학년 기준으로 읽은 컷이 하나도 없으면 "학년별 컷"이라 말해선 안 된다 */}
+              {histRows.some(([, v]) => !v.scoped && !v.absent) &&
+                (anyScoped
+                  ? ko
+                    ? " '(전체)' 학기는 학년별 정원이 없어 전 학년이 같은 정원에서 겨뤘으므로 컷만 전 학년 공통입니다."
+                    : " In terms marked '(all)' there was no per-year quota, so the cut is the one shared by every year."
+                  : ko
+                    ? ' 이 분반은 학년별 정원이 없어 전 학년이 같은 정원에서 겨뤘으므로 컷은 전 학년 공통입니다.'
+                    : ' This section has no per-year quota, so the cut is shared by every year.')}
             </p>
           </div>
         ) : (
@@ -1466,6 +1555,49 @@ function SectionDetailPanel({ section, ko }: { section: Section; ko: boolean }) 
 
     </div>
   );
+}
+
+/** 과거 이력 한 행을 내 학년 기준으로 읽은 결과 */
+interface GradeRowView {
+  /** 표시할 컷. null = 합격자가 0명이라 컷이 정의되지 않는다 */
+  cut: number | null;
+  /** 내 학년 신청자(청중 그룹 한정). null = 그 학기 학년 자료가 없다 */
+  applied: number | null;
+  /** 내 학년 합격자(청중 그룹 한정). null = 그 학기 학년 자료가 없다 */
+  won: number | null;
+  /** 컷을 학년 기준으로 읽었는가 — false 면 컷만 전 학년 공통으로 되돌린 것이다 */
+  scoped: boolean;
+  /** 그 학기엔 내 학년에 자리도 지원자도 없었다 */
+  absent: boolean;
+}
+
+/**
+ * 과거 이력 한 행 → **내 학년 기준**.
+ *
+ * ⚠️ 학년별 정원이 있던 학기만 학년 컷이 뜻을 갖는다. 전 학년이 같은 정원에서 겨룬 학기에
+ *    "내 학년 합격자 중 최저 배점"을 컷이라 부르면 실제 컷보다 높은 수를 컷으로 읽게 된다
+ *    (그 학년에 낮은 배점으로 붙은 사람이 없었을 뿐이다). 그 학기의 **컷만** 전 학년 공통으로
+ *    되돌린다 — 신청·합격은 그래도 내 학년 것이 맞다.
+ */
+function gradeRowView(
+  row: NonNullable<SectionDetail['professorHistory']>[number],
+  grade: number,
+): GradeRowView {
+  const byGrade = row[5];
+  const whole: GradeRowView = {
+    cut: row[2],
+    applied: null,
+    won: null,
+    scoped: false,
+    absent: false,
+  };
+  if (!byGrade) return whole; // 학년 자료가 없는 학기(구 번들 포함)
+  const slice: GradeSlice | undefined = byGrade[String(grade)];
+  // 한 학년이라도 제 몫의 자리가 있었으면 그 학기는 학년별로 정원을 채운 학기다
+  const perYear = Object.values(byGrade).some((g) => g[1] !== null);
+  if (!slice) return { ...whole, applied: 0, won: 0, absent: perYear };
+  if (!perYear) return { ...whole, applied: slice[2], won: slice[3] };
+  return { cut: slice[0], applied: slice[2], won: slice[3], scoped: true, absent: false };
 }
 
 function DetailHead({ children }: { children: React.ReactNode }) {
