@@ -44,6 +44,8 @@ export async function GET() {
     'faculty',
     'contact',
     'sitemap',
+    'privacy',
+    'legal',
   ];
   for (const p of STATIC_PATHS) addAll(p);
 

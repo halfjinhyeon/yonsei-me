@@ -7,11 +7,6 @@ import { pick } from '@/lib/content';
 import relatedSitesData from '@content/related-sites.json';
 import type { Locale } from '@/i18n/routing';
 
-// 개인정보처리방침·법적고지 — 학과 자체 페이지가 없어 대학 대표 사이트로 임시 연결한다.
-// 실제 방침 페이지 URL 이 확정되면 이 상수만 교체하면 된다.
-const PRIVACY_URL = 'https://www.yonsei.ac.kr';
-const LEGAL_URL = 'https://www.yonsei.ac.kr';
-
 /**
  * 사이트 공통 푸터 — 레퍼런스(이화여대) 구조의 연세 네이비 버전.
  * 3열: [엠블럼 + 워드마크] [카피라이트 + 법적링크·주소(작게)]
@@ -52,23 +47,13 @@ export function Footer() {
               © {year} {t('copyright')}
             </p>
             <p className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-xs font-semibold text-white/70">
-              <a
-                href={PRIVACY_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="-my-1 py-1 transition-colors hover:text-white"
-              >
+              <Link href="/privacy" className="-my-1 py-1 transition-colors hover:text-white">
                 {t('privacy')}
-              </a>
+              </Link>
               <span aria-hidden="true" className="text-white/25">|</span>
-              <a
-                href={LEGAL_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="-my-1 py-1 transition-colors hover:text-white"
-              >
+              <Link href="/legal" className="-my-1 py-1 transition-colors hover:text-white">
                 {t('legal')}
-              </a>
+              </Link>
               <span aria-hidden="true" className="text-white/25">|</span>
               <Link href="/sitemap" className="-my-1 py-1 transition-colors hover:text-white">
                 {t('sitemap')}
