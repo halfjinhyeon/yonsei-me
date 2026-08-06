@@ -9,9 +9,10 @@ import {
 import { getClubsRuntime } from '@/lib/content-runtime';
 
 // 검색엔진용 XML 사이트맵 → /sitemap.xml
-// 기존 metadata route(sitemap.ts) 대신 커스텀 핸들러를 쓰는 이유: 사람이 브라우저로
-// 열었을 때 사이트 디자인으로 렌더되도록 XSL 스타일시트(/sitemap.xsl) 처리 지시문을
-// 붙이기 위해서다(크롤러는 PI 를 무시하므로 SEO 동작은 동일).
+// 커스텀 핸들러를 쓰는 이유: 게시판(DB) 페처가 죽어도 그룹만 생략하고 200 을
+// 유지하기 위해서다(아래 safe 참고 — metadata route 는 throw 시 통째로 500).
+// 한때 XSL 스타일시트(사람용 디자인) 처리 지시문을 붙였으나 GSC 가 사이트맵을
+// 읽지 못하는 문제가 반복되어 제거 — 순수 XML 만 응답한다.
 // 게시판(DB) 항목 포함 — ISR 로 주기 갱신.
 export const revalidate = 300;
 
@@ -77,7 +78,6 @@ export async function GET() {
 
   const body = [
     '<?xml version="1.0" encoding="UTF-8"?>',
-    '<?xml-stylesheet type="text/xsl" href="/sitemap.xsl"?>',
     '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
     ...urls.map(
       (u) => `  <url><loc>${esc(u)}</loc><lastmod>${now}</lastmod></url>`,
