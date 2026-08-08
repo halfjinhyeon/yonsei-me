@@ -12,6 +12,10 @@ interface LiberalRow {
   area: string;
   name: string;
   code: string;
+  /** 실측 학점 (수강편람 크롤, tools/checker/build-catalog.mjs 대조) — 없으면 표준 학점 추정 */
+  credits?: number;
+  /** 개명 전 옛 이름들 (다학기 편람 통합에서 확인된 것) */
+  aliases?: string[];
 }
 
 interface ReqCourse {
@@ -41,8 +45,9 @@ function readJson<T>(name: string): T {
   return JSON.parse(readFileSync(join(process.cwd(), 'content', name), 'utf-8')) as T;
 }
 
-/** 교양 과목 학점 추정 (CSV에 학점 정보가 없어 표준 학점으로 가정) */
+/** 교양 과목 학점 — 실측(credits 필드)이 있으면 그 값, 없으면 표준 학점 추정 */
 function liberalCredits(row: LiberalRow): number {
+  if (typeof row.credits === 'number') return row.credits;
   if (row.area === '체육과건강') return 1;
   if (row.category === 'RC교육') return 1;
   return 3;
@@ -119,7 +124,7 @@ export function getCheckerData(): CheckerData {
       category: row.category,
       area: row.area,
       level: levelFromCode(row.code),
-      aliases: LIBERAL_ALIASES[row.name] ?? [],
+      aliases: [...(row.aliases ?? []), ...(LIBERAL_ALIASES[row.name] ?? [])],
     });
   }
   for (const s of CATALOG_SUPPLEMENT) {

@@ -5,61 +5,70 @@
       "credits": 3,
       "aliases": [
         "공학수학1"
-      ]
+      ],
+      "code": "MAT1011"
     },
     {
       "name": "공학수학(2)",
       "credits": 3,
       "aliases": [
         "공학수학2"
-      ]
+      ],
+      "code": "MAT1012"
     },
     {
       "name": "공학수학(3)",
       "credits": 3,
       "aliases": [
         "공학수학3"
-      ]
+      ],
+      "code": "MAT2016"
     },
     {
       "name": "공학수학(4)",
       "credits": 3,
       "aliases": [
         "공학수학4"
-      ]
+      ],
+      "code": "MAT2017"
     },
     {
       "name": "공학정보처리",
       "credits": 3,
-      "aliases": []
+      "aliases": [],
+      "code": "ENG1108"
     },
     {
       "name": "공학물리학및실험(1)",
       "credits": 3,
       "aliases": [
         "공학물리학및실험1"
-      ]
+      ],
+      "code": "PHY1011"
     },
     {
       "name": "공학물리학및실험(2)",
       "credits": 3,
       "aliases": [
         "공학물리학및실험2"
-      ]
+      ],
+      "code": "PHY1012"
     },
     {
       "name": "공학화학및실험(1)",
       "credits": 3,
       "aliases": [
         "공학화학및실험1"
-      ]
+      ],
+      "code": "CHE1011"
     },
     {
       "name": "공학화학및실험(2)",
       "credits": 3,
       "aliases": [
         "공학화학및실험2"
-      ]
+      ],
+      "code": "CHE1012"
     }
   ],
   "majorRequiredBase": [
@@ -93,7 +102,7 @@
       "aliases": [
         "기계공학실험1"
       ],
-      "code": "MEU2104"
+      "code": "MEU2105"
     },
     {
       "name": "기계공학실험(2)",
@@ -106,7 +115,9 @@
     {
       "name": "창의제품설계",
       "credits": 3,
-      "aliases": [],
+      "aliases": [
+        "창의제품설계(종합설계)"
+      ],
       "code": "MEU4300"
     },
     {
@@ -241,16 +252,25 @@
     {
       "name": "기계공학세미나",
       "credits": 3,
+      "aliases": [
+        "기계공학세미나(2)"
+      ],
       "code": "MEU4002"
+    },
+    {
+      "name": "기계공학세미나(1)",
+      "credits": 3,
+      "code": "MEU4001"
     },
     {
       "name": "스페셜토픽",
       "credits": 1,
       "aliases": [
         "스페셜 토픽",
-        "주니어세미나"
+        "주니어세미나",
+        "주니어세미나(정밀기계를위한임베디드시스템)"
       ],
-      "code": "MEU2001"
+      "code": "MEU2900"
     },
     {
       "name": "학부연구(1)",
@@ -291,7 +311,8 @@
     },
     {
       "name": "확률통계",
-      "credits": 3
+      "credits": 3,
+      "code": "MAT2013"
     }
   ],
   "electiveAreas": [

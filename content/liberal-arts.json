@@ -620,7 +620,10 @@
   {
     "category": "대학교양",
     "area": "언어와표현",
-    "name": "DESIGN AND BEAUTY IN ENGLINEERING",
+    "name": "ENGLISH FOR ENGINEERING AND DESIGN",
+    "aliases": [
+      "DESIGN AND BEAUTY IN ENGINEERING"
+    ],
     "code": "YCF1430"
   },
   {
@@ -1058,7 +1061,10 @@
   {
     "category": "대학교양",
     "area": "지역과세계",
-    "name": "중국문화의이해",
+    "name": "중국문화와예술",
+    "aliases": [
+      "중국문화의이해"
+    ],
     "code": "YCI1701"
   },
   {
@@ -1160,13 +1166,19 @@
   {
     "category": "대학교양",
     "area": "논리와수리",
-    "name": "미분적분학과벡터해석(심화)(1)",
+    "name": "미분적분학과벡터해석(1)(심화)",
+    "aliases": [
+      "미분적분학과벡터해석(심화)(1)"
+    ],
     "code": "MAT1016"
   },
   {
     "category": "대학교양",
     "area": "논리와수리",
-    "name": "미분적분학과벡터해석(심화)(2)",
+    "name": "미분적분학과벡터해석(2)(심화)",
+    "aliases": [
+      "미분적분학과벡터해석(심화)(2)"
+    ],
     "code": "MAT1017"
   },
   {
@@ -1881,24 +1893,28 @@
     "category": "RC교육",
     "area": "RC 운영교과",
     "name": "RA리더십개발론",
+    "credits": 2,
     "code": "UCR1010"
   },
   {
     "category": "RC교육",
     "area": "RC 운영교과",
     "name": "RC자기주도활동(1)",
+    "credits": 0.5,
     "code": "UCR1013"
   },
   {
     "category": "RC교육",
     "area": "RC 운영교과",
     "name": "RC자기주도활동(2)",
+    "credits": 0.5,
     "code": "UCR1014"
   },
   {
     "category": "RC교육",
     "area": "RC 운영교과",
     "name": "학생자율연구1",
+    "credits": 2,
     "code": "UCR1023"
   },
   {
@@ -1917,6 +1933,7 @@
     "category": "자율선택",
     "area": "자율선택",
     "name": "연세정신과인권",
+    "credits": 1,
     "code": "UCI1175"
   },
   {
@@ -1971,30 +1988,35 @@
     "category": "자율선택",
     "area": "자율선택",
     "name": "사회봉사",
+    "credits": 1,
     "code": "UCI2001"
   },
   {
     "category": "자율선택",
     "area": "자율선택",
     "name": "연세대학합창(랩콰이어)",
+    "credits": 1,
     "code": "UCJ1135"
   },
   {
     "category": "자율선택",
     "area": "자율선택",
     "name": "BOOK CLUB(1)",
+    "credits": 1,
     "code": "UCK1162"
   },
   {
     "category": "자율선택",
     "area": "자율선택",
     "name": "BOOK CLUB(2)",
+    "credits": 1,
     "code": "UCK1163"
   },
   {
     "category": "자율선택",
     "area": "자율선택",
     "name": "BOOK CLUB(3)",
+    "credits": 1,
     "code": "UCK1164"
   }
 ]

@@ -20,6 +20,8 @@ interface RawCatalogEntry {
   name: string;
   credits: number;
   level: number;
+  /** 개명 전 옛 이름들 (다학기 편람 통합 시 생성) — 옛 시간표 캡처 대응 */
+  aliases?: string[];
 }
 
 interface UploadedFile {
@@ -264,7 +266,7 @@ export function GraduationChecker({ data, locale }: { data: CheckerData; locale:
             kind: 'other' as const,
             level: r.level || undefined,
             fuzzy: false, // 대용량 카탈로그는 정확 매치만 (오탐·성능 방지)
-            aliases: [],
+            aliases: r.aliases ?? [],
           })),
         );
       })
