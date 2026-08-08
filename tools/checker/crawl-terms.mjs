@@ -16,13 +16,16 @@
  * ⚠️ 크롤러 저장소는 **읽기 전용으로 취급**한다(수정 금지). 다만 크롤러가 출력 경로를
  *    `process.cwd()/courses.json` 로 고정(courses.js:162)해 두어, cwd 를 크롤러 repo 로 두고
  *    돌릴 수밖에 없다. 그런데 그 `courses.json` 은 **마일리지 파이프라인의 정본 입력**이다
- *    (`tools/mileage/build-db.mjs --courses`). 그래서 이 스크립트는
+ *    (`tools/mileage/build-db.mjs --courses`). 그래서 이 스크립트의 계약은
+ *    "찾은 그대로 되돌려 놓는다"이다:
+ *      · 시작 시 현재 `courses.json` 을 `courses.json.pre-checker` 로 **스냅샷**하고
  *      · 크롤 전 `courses.json` 을 지우고(이전 학기 잔재가 남아 오염되는 것 방지)
  *      · 학기별 산출물을 곧바로 이 저장소의 raw/ 로 옮기며
- *      · 성공·실패·예외 무엇이든 **종료 시 `courses.json.mileage-bak` 을 `courses.json` 으로
- *        복원**한다(백업 파일 자체는 그대로 둔다).
- *    2026-20 은 그 백업이 곧 정답이므로 크롤하지 않고 검증 후 복사해 시드한다 — 서버 부하와
- *    크롤 1회(수십 분)를 아끼려는 것이다.
+ *      · 성공·실패·예외 무엇이든 **종료 시 스냅샷을 `courses.json` 으로 복원**한다.
+ *    백업을 매 실행 시점에 새로 뜨는 이유: 고정 백업 파일을 복원하면 다음 학기에
+ *    마일리지가 방금 크롤한 최신 courses.json 을 낡은 백업으로 덮어쓰는 사고가 난다.
+ *    스냅샷이 곧 어느 대상 학기의 카탈로그(예: 마일리지가 크롤해 둔 2026-20)면
+ *    그 학기는 크롤하지 않고 검증 후 복사해 시드한다 — 서버 부하와 크롤 1회를 아낀다.
  *
  * ⚠️ 쿠키 만료가 이 작업의 상수다. 한 번에 19학기를 다 받기 어려우니, 끊기면
  *    `<크롤러repo>/.env` 의 YONSEI_COOKIE 를 갱신하고 같은 명령을 다시 돌리면 된다.
@@ -39,7 +42,7 @@ const HERE = dirname(fileURLToPath(import.meta.url));
 const CRAWLER_DIR = resolve(process.env.CRAWLER_DIR || 'C:\\Users\\aquae\\Desktop\\크롤링');
 const CRAWLER_ENTRY = join(CRAWLER_DIR, 'src', 'index.js');
 const CRAWLER_OUT = join(CRAWLER_DIR, 'courses.json'); // 크롤러가 고정 출력하는 경로
-const MILEAGE_BAK = join(CRAWLER_DIR, 'courses.json.mileage-bak'); // 마일리지 정본 백업
+const SNAPSHOT = join(CRAWLER_DIR, 'courses.json.pre-checker'); // 실행 전 courses.json 스냅샷
 const RAW_DIR = join(HERE, 'data', 'raw');
 const LOG_PATH = join(RAW_DIR, 'crawl-log.json');
 
@@ -55,8 +58,28 @@ for (const syy of ['2022', '2023', '2024', '2025', '2026']) {
   }
 }
 
-/** 백업으로 시드하는 특례 학기 — 마일리지 파이프라인이 쓰던 크롤 결과가 곧 이 학기다. */
-const SEED_TERM = '2026-20';
+/**
+ * 카탈로그 JSON 이 어느 학기의 것인지 판별한다 — 전 레코드의 syy/smtDivCd 가
+ * 단일 학기로 일치할 때만 그 학기 문자열을 돌려준다(아니면 null).
+ * 스냅샷 시드 판단과 --list 표시에 쓴다.
+ */
+function detectCatalogTerm(path) {
+  if (!existsSync(path)) return null;
+  try {
+    const records = JSON.parse(readFileSync(path, 'utf-8'));
+    if (!Array.isArray(records) || records.length === 0) return null;
+    let term = null;
+    for (const r of records) {
+      if (r == null || r.syy == null) continue;
+      const t = `${r.syy}-${r.smtDivCd}`;
+      if (term == null) term = t;
+      else if (term !== t) return null;
+    }
+    return term;
+  } catch {
+    return null;
+  }
+}
 
 /** 결과 건수 하한 — 이보다 적으면 수집은 하되 sparse 로 경고한다. */
 const MIN_COUNT = { regular: 500, seasonal: 50 };
@@ -80,8 +103,8 @@ const USAGE = `사용법: node tools/checker/crawl-terms.mjs [옵션]
 동작 요약
   · 대상 학기를 순차로 크롤해 tools/checker/data/raw/courses-<yyyy>-<code>.json 에 저장한다.
   · 이미 있는 파일은 건너뛴다 — 쿠키가 만료돼 중단돼도 갱신 후 재실행하면 이어서 진행된다.
-  · ${SEED_TERM} 은 크롤 대신 크롤러 저장소의 courses.json.mileage-bak 을 검증·복사해 시드한다.
-  · 종료 시 크롤러의 courses.json 은 항상 마일리지 백업본으로 복원된다.`;
+  · 실행 전 courses.json 은 courses.json.pre-checker 로 스냅샷 후 종료 시 그대로 복원된다.
+  · 스냅샷이 곧 어느 대상 학기의 카탈로그면 그 학기는 크롤 없이 검증·복사로 시드된다.`;
 
 const argv = process.argv.slice(2);
 const opt = { list: false, force: false, help: false, only: null };
@@ -177,24 +200,27 @@ function judge(count, t) {
   return count < minCountOf(t.code) ? 'sparse' : 'ok';
 }
 
-/** 크롤러의 courses.json 을 마일리지 백업본으로 되돌린다(백업 파일 자체는 유지). */
-function restoreMileageInput() {
-  if (!existsSync(MILEAGE_BAK)) {
-    console.warn(`\n! 마일리지 백업이 없어 courses.json 을 복원하지 못했다: ${MILEAGE_BAK}`);
+/** 크롤러의 courses.json 을 실행 전 스냅샷으로 되돌린다(스냅샷 파일 자체는 유지). */
+function restoreCrawlerOut() {
+  if (!existsSync(SNAPSHOT)) {
+    // 시작 시 courses.json 이 없었다 — 없던 상태로 되돌린다(크롤 잔재 제거)
+    rmSync(CRAWLER_OUT, { force: true });
     return;
   }
   try {
-    copyFileSync(MILEAGE_BAK, CRAWLER_OUT);
-    console.log(`\n· 크롤러 courses.json 을 마일리지 백업본으로 복원했다.`);
+    copyFileSync(SNAPSHOT, CRAWLER_OUT);
+    console.log(`\n· 크롤러 courses.json 을 실행 전 스냅샷으로 복원했다.`);
   } catch (err) {
     console.error(`\n! courses.json 복원 실패: ${err.message}`);
-    console.error(`  수동 복구: copy "${MILEAGE_BAK}" "${CRAWLER_OUT}"`);
+    console.error(`  수동 복구: copy "${SNAPSHOT}" "${CRAWLER_OUT}"`);
   }
 }
 
 // ── --list ────────────────────────────────────────────────────
 if (opt.list) {
   const log = new Map(readLog().map((e) => [e?.term, e]));
+  // 스냅샷이 있으면 그것이, 없으면 현재 courses.json 이 시드 후보다
+  const seedTerm = detectCatalogTerm(existsSync(SNAPSHOT) ? SNAPSHOT : CRAWLER_OUT);
   console.log(`계획된 학기 ${TERMS.length}개 (raw: ${RAW_DIR})\n`);
   let done = 0;
   for (const t of TERMS) {
@@ -206,10 +232,8 @@ if (opt.list) {
       const n = prev?.count != null ? `${prev.count}건` : '건수 미상';
       const warn = prev?.status === 'sparse' ? ' ⚠ 건수 부족(sparse)' : '';
       state = `수집됨 · ${n}${warn}`;
-    } else if (t.term === SEED_TERM) {
-      state = existsSync(MILEAGE_BAK)
-        ? '미수집 · 시드 가능(크롤러 courses.json.mileage-bak 복사)'
-        : '미수집 · 시드 불가(백업 파일 없음 → 크롤 필요)';
+    } else if (t.term === seedTerm) {
+      state = '미수집 · 시드 가능(크롤러 courses.json 스냅샷 복사)';
     } else if (prev?.status === 'empty') {
       state = '미수집 · 지난 실행에서 결번(0건)';
     } else {
@@ -231,6 +255,11 @@ if (!existsSync(CRAWLER_ENTRY)) {
 }
 mkdirSync(RAW_DIR, { recursive: true });
 
+// 실행 전 상태 보존 — 현재 courses.json 은 마일리지 파이프라인의 최신 입력일 수 있다.
+// 종료 시 이 스냅샷으로 복원해 "찾은 그대로 되돌려 놓는다".
+if (existsSync(CRAWLER_OUT)) copyFileSync(CRAWLER_OUT, SNAPSHOT);
+const seedTerm = detectCatalogTerm(SNAPSHOT);
+
 // ── 학기 1개 처리 ──────────────────────────────────────────────
 /**
  * @returns {'ok'|'sparse'|'empty'|'skip'}
@@ -245,21 +274,21 @@ function runTerm(t) {
     return 'skip';
   }
 
-  // ② 2026-20 특례: 마일리지 백업을 검증 후 복사해 시드한다 (크롤 1회 절약)
-  if (t.term === SEED_TERM && existsSync(MILEAGE_BAK)) {
-    console.log(`  · 크롤 생략 — 마일리지 백업본을 검증해 시드한다`);
+  // ② 시드 특례: 스냅샷(실행 전 courses.json)이 곧 이 학기의 카탈로그면 크롤을 생략한다
+  if (t.term === seedTerm && existsSync(SNAPSHOT)) {
+    console.log(`  · 크롤 생략 — 실행 전 courses.json 스냅샷을 검증해 시드한다`);
     let records;
     try {
-      records = JSON.parse(readFileSync(MILEAGE_BAK, 'utf-8'));
+      records = JSON.parse(readFileSync(SNAPSHOT, 'utf-8'));
     } catch (err) {
-      throw new FatalError(`백업 JSON 파싱 실패 (${MILEAGE_BAK}): ${err.message}`);
+      throw new FatalError(`스냅샷 JSON 파싱 실패 (${SNAPSHOT}): ${err.message}`);
     }
-    if (!Array.isArray(records)) throw new FatalError(`백업이 배열이 아니다: ${MILEAGE_BAK}`);
-    assertTermMatches(records, t, '백업(courses.json.mileage-bak)');
+    if (!Array.isArray(records)) throw new FatalError(`스냅샷이 배열이 아니다: ${SNAPSHOT}`);
+    assertTermMatches(records, t, '스냅샷(courses.json.pre-checker)');
 
     const status = judge(records.length, t);
-    if (status === 'empty') throw new FatalError(`백업이 비어 있어 시드할 수 없다: ${MILEAGE_BAK}`);
-    copyFileSync(MILEAGE_BAK, dest);
+    if (status === 'empty') throw new FatalError(`스냅샷이 비어 있어 시드할 수 없다: ${SNAPSHOT}`);
+    copyFileSync(SNAPSHOT, dest);
     console.log(`  → ${records.length}건 시드 완료 (${dest})`);
     if (status === 'sparse') console.warn(`  ⚠ 건수가 하한(${minCountOf(t.code)})보다 적다 — sparse`);
     writeLogEntry({ term: t.term, status, count: records.length, at: new Date().toISOString(), source: 'seed' });
@@ -339,7 +368,7 @@ try {
   );
   console.error(`────────────────────────────────────────────────`);
 } finally {
-  restoreMileageInput();
+  restoreCrawlerOut();
 }
 
 console.log(
