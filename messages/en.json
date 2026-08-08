@@ -420,6 +420,12 @@
     "empty": "Nothing has been posted yet.",
     "back": "Back to home"
   },
+  "notFound": {
+    "title": "Page not found",
+    "body": "The address may have changed, or the post may have been removed. Use a link below to continue.",
+    "home": "Back to home",
+    "news": "News board"
+  },
   "faculty": {
     "hero": {
       "title": "Faculty",

@@ -6,6 +6,7 @@ import { DetailNavBar } from '@/components/DetailNavBar';
 import { FacultyDirectoryGrid } from '@/components/FacultyDirectoryGrid';
 import { getFacultyProfileNames } from '@/lib/faculty';
 import { getFacultyDirectoryRuntime } from '@/lib/content-runtime';
+import { pageAlternates } from '@/lib/seo';
 
 // 콘텐츠 소스 전환(Stage A): 교수진이 데이터 레이어를 읽는다 — ISR 안전망
 export const revalidate = 300;
@@ -16,7 +17,11 @@ export async function generateMetadata({
   params: { locale: string };
 }): Promise<Metadata> {
   const t = await getTranslations({ locale: params.locale, namespace: 'faculty' });
-  return { title: t('hero.title'), description: t('hero.subtitle') };
+  return {
+    title: t('hero.title'),
+    description: t('hero.subtitle'),
+    alternates: pageAlternates('faculty'),
+  };
 }
 
 // 데이터 레이어가 async 라 페이지도 async — useTranslations 는 async 컴포넌트에서

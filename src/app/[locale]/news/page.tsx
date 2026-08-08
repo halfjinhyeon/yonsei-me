@@ -12,6 +12,7 @@ import { pick } from '@/lib/content';
 import { fileFormat } from '@/lib/files';
 import { parseDateLabelRange } from '@/lib/calendar';
 import { fetchNews, fetchBoardData, fetchCalendarPosts, fetchResourceBodies } from '@/lib/posts';
+import { pageAlternates } from '@/lib/seo';
 import type { Locale } from '@/i18n/routing';
 
 // DB 소스 전환(Phase 2): 목록도 ISR — revalidateTag('posts') 가 즉시 갱신, 이 값은 안전망
@@ -23,7 +24,11 @@ export async function generateMetadata({
   params: { locale: string };
 }): Promise<Metadata> {
   const t = await getTranslations({ locale: params.locale, namespace: 'news' });
-  return { title: t('hero.title'), description: t('hero.subtitle') };
+  return {
+    title: t('hero.title'),
+    description: t('hero.subtitle'),
+    alternates: pageAlternates('news'),
+  };
 }
 
 export default async function NewsPage({ params }: { params: { locale: string } }) {

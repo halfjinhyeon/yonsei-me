@@ -4,6 +4,7 @@ import { Hero } from '@/components/Hero';
 import { Container } from '@/components/Container';
 import { Prose } from '@/components/Prose';
 import { getPageMarkdown } from '@/lib/pages';
+import { pageAlternates } from '@/lib/seo';
 
 export async function generateMetadata({
   params,
@@ -11,7 +12,7 @@ export async function generateMetadata({
   params: { locale: string };
 }): Promise<Metadata> {
   const t = await getTranslations({ locale: params.locale, namespace: 'footer' });
-  return { title: t('legal') };
+  return { title: t('legal'), alternates: pageAlternates('legal') };
 }
 
 /** 법적고지 — 본문은 content/pages/legal.md (콘텐츠/코드 분리) */

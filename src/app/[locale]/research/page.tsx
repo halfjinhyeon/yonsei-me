@@ -12,6 +12,7 @@ import { type ResearchField } from '@/lib/faculty';
 import { getLabsDirectoryRuntime, getLabSummariesRuntime } from '@/lib/content-runtime';
 import { pick } from '@/lib/content';
 import { fetchBoardData } from '@/lib/posts';
+import { pageAlternates } from '@/lib/seo';
 import galleryData from '@content/research-gallery.json';
 import type { Locale } from '@/i18n/routing';
 
@@ -22,7 +23,11 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const t = await getTranslations({ locale: params.locale, namespace: 'menu' });
   const tR = await getTranslations({ locale: params.locale, namespace: 'research' });
-  return { title: t('research.label'), description: tR('hero.subtitle') };
+  return {
+    title: t('research.label'),
+    description: tR('hero.subtitle'),
+    alternates: pageAlternates('research'),
+  };
 }
 
 // 인턴 모집 게시판이 DB(posts)를 읽으므로 페이지를 ISR — revalidateTag('posts')가 즉시 갱신

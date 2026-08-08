@@ -7,6 +7,7 @@ import { DetailNavBar } from '@/components/DetailNavBar';
 import { FacultyProfileArticle } from '@/components/FacultyProfileArticle';
 import { getFacultyProfile, getFacultyProfileNames } from '@/lib/faculty';
 import { getFacultyDirectoryRuntime } from '@/lib/content-runtime';
+import { pageAlternates } from '@/lib/seo';
 import { routing } from '@/i18n/routing';
 
 // 콘텐츠 소스 전환(Stage A): 직위·연구실을 채우는 인명록이 데이터 레이어를 읽는다 — ISR 안전망
@@ -23,12 +24,16 @@ export async function generateMetadata({
 }: {
   params: { locale: string; slug: string };
 }): Promise<Metadata> {
-  const profile = getFacultyProfile(decodeURIComponent(params.slug));
+  const name = decodeURIComponent(params.slug);
+  const profile = getFacultyProfile(name);
   if (!profile) return {};
   const record = (await getFacultyDirectoryRuntime()).find((f) => f.name === profile.name) ?? null;
   return {
     title: profile.nameEn ? `${profile.name} (${profile.nameEn})` : profile.name,
     description: record?.title ?? undefined,
+    // 교수 프로필은 항상 양 로케일이 존재한다(같은 데이터를 두 언어 셸로 렌더) → koOnly 아님.
+    // 디코드한 이름을 넘긴다 — pageAlternates 가 세그먼트를 다시 퍼센트 인코딩한다.
+    alternates: pageAlternates(`faculty/${name}`),
   };
 }
 

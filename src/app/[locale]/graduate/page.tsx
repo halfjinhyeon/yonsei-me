@@ -15,6 +15,7 @@ import {
   type CatalogColumn,
   type CatalogCourse,
 } from '@/components/CourseCatalog';
+import { pageAlternates } from '@/lib/seo';
 import type { Locale } from '@/i18n/routing';
 
 // 콘텐츠 소스 전환(Stage A): 대학원 교과목·연구실이 데이터 레이어를 읽는다 — ISR 안전망
@@ -27,7 +28,11 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const t = await getTranslations({ locale: params.locale, namespace: 'menu' });
   const tP = await getTranslations({ locale: params.locale, namespace: 'pages' });
-  return { title: t('graduate.label'), description: tP('graduate.subtitle') };
+  return {
+    title: t('graduate.label'),
+    description: tP('graduate.subtitle'),
+    alternates: pageAlternates('graduate'),
+  };
 }
 
 // labs 는 마크다운 대신 LabVideoGallery(연구실 소개 영상 갤러리)로,

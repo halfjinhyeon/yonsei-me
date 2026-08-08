@@ -1,12 +1,13 @@
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import type { Metadata } from 'next';
-import { Section } from '@/components/Section';
+import { notFound } from 'next/navigation';
 import { Hero } from '@/components/Hero';
 import { BoardShell, type BoardShellTab } from '@/components/BoardShell';
 import { PostArticle } from '@/components/PostArticle';
-import { Link } from '@/i18n/navigation';
 import { pick } from '@/lib/content';
 import { fetchAlumniEventById, postsBodyFormat } from '@/lib/posts';
+import { documentMetadata } from '@/lib/seo';
+import { htmlToDescription } from '@/lib/excerpt';
 import type { Locale } from '@/i18n/routing';
 
 // DB 소스 전환(Phase 2): 요청 시 렌더 + ISR (revalidateTag('posts') 가 즉시 갱신)
@@ -28,8 +29,24 @@ export async function generateMetadata({
   params: { locale: string; id: string };
 }): Promise<Metadata> {
   const event = await fetchAlumniEventById(params.id);
+  // 없는 글은 notFound() 로 떨어져 not-found 페이지가 자기 메타를 갖는다 → 여기선 빈 객체.
   if (!event) return {};
-  return { title: pick(event.title, params.locale as Locale) };
+  const locale = params.locale as Locale;
+  // description 이 비면 레이아웃의 사이트 기본 설명이 그대로 붙어 문서마다 같아진다
+  // (GSC 중복 신호). 요약이 있으면 그것을, 없으면 본문에서 만들어 쓴다.
+  const description =
+    (event.excerpt ? pick(event.excerpt, locale).trim() : '') ||
+    htmlToDescription(pick(event.body, locale));
+  return {
+    title: pick(event.title, locale),
+    ...(description ? { description } : {}),
+    // 판정 필드는 사이트맵(목록 조회)과 동일한 제목·요약만 — 본문은 넘기지 않는다.
+    ...documentMetadata({
+      path: `alumni/post/${params.id}`,
+      locale,
+      fields: [event.title, event.excerpt],
+    }),
+  };
 }
 
 export default async function AlumniPostPage({
@@ -43,18 +60,8 @@ export default async function AlumniPostPage({
   const t = await getTranslations({ locale, namespace: 'news' });
   const tMenu = await getTranslations({ locale, namespace: 'menu' });
 
-  if (!event) {
-    return (
-      <Section>
-        <div className="mx-auto max-w-prose text-center">
-          <p className="text-lg text-content-soft">{t('notFound')}</p>
-          <Link href="/alumni" className="btn-secondary mt-6">
-            ← {t('backToList')}
-          </Link>
-        </div>
-      </Section>
-    );
-  }
+  // 없는 글은 진짜 404 다(예전 인라인 "찾을 수 없음" 렌더는 HTTP 200 → GSC Soft 404).
+  if (!event) notFound();
 
   const boardName = tMenu('alumni.items.network');
   const tabs = await getAlumniTabs(locale);

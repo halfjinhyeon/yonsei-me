@@ -1,12 +1,12 @@
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import type { Metadata } from 'next';
-import { Section } from '@/components/Section';
+import { notFound } from 'next/navigation';
 import { Hero } from '@/components/Hero';
 import { BoardShell, type BoardShellTab } from '@/components/BoardShell';
 import { PostArticle } from '@/components/PostArticle';
-import { Link } from '@/i18n/navigation';
 import { pick } from '@/lib/content';
 import { fetchNewsBySlug, postsBodyFormat } from '@/lib/posts';
+import { documentMetadata } from '@/lib/seo';
 import type { Locale } from '@/i18n/routing';
 
 // DB 소스 전환(Phase 2): 글이 DB 에 살므로 빌드 시 열거하지 않고 요청 시 렌더 + ISR.
@@ -34,10 +34,20 @@ export async function generateMetadata({
   params: { locale: string; slug: string };
 }): Promise<Metadata> {
   const item = await fetchNewsBySlug(params.slug);
+  // 없는 글은 notFound() 로 떨어져 not-found 페이지가 자기 메타를 갖는다 → 여기선 빈 객체.
   if (!item) return {};
+  const locale = params.locale as Locale;
   return {
-    title: pick(item.title, params.locale as Locale),
-    description: pick(item.excerpt, params.locale as Locale),
+    title: pick(item.title, locale),
+    description: pick(item.excerpt, locale),
+    // hreflang + (영문 번역이 없으면) /en noindex. ⚠️ 판정 필드는 사이트맵이 목록 조회로
+    // 보는 것과 같아야 한다 — 제목·요약만 넘기고 **본문은 넘기지 않는다**(본문은 목록에
+    // 실려 오지 않아, 쓰면 두 곳 판정이 갈리고 hreflang 상호 참조가 깨진다).
+    ...documentMetadata({
+      path: `news/${params.slug}`,
+      locale,
+      fields: [item.title, item.excerpt],
+    }),
   };
 }
 
@@ -52,18 +62,9 @@ export default async function NewsDetailPage({
   const t = await getTranslations({ locale, namespace: 'news' });
   const tMenu = await getTranslations({ locale, namespace: 'menu' });
 
-  if (!item) {
-    return (
-      <Section>
-        <div className="mx-auto max-w-prose text-center">
-          <p className="text-lg text-content-soft">{t('notFound')}</p>
-          <Link href="/news" className="btn-secondary mt-6">
-            ← {t('backToList')}
-          </Link>
-        </div>
-      </Section>
-    );
-  }
+  // 없는 글은 진짜 404 다. 예전에는 "찾을 수 없음" 문구를 200 으로 렌더해 GSC 가
+  // Soft 404 로 적발했다 — notFound() 로 [locale]/not-found.tsx 를 띄운다.
+  if (!item) notFound();
 
   const boardName = tMenu('news.items.news');
   const tabs = await getNewsTabs(locale);

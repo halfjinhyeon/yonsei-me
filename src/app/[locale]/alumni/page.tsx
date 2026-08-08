@@ -7,6 +7,7 @@ import { FilterableBoardList } from '@/components/FilterableBoardList';
 import { GuideSections, type GuideSection } from '@/components/AdmissionGuide';
 import { pick } from '@/lib/content';
 import { fetchAlumniNews, fetchAlumniEvents } from '@/lib/posts';
+import { pageAlternates } from '@/lib/seo';
 import assoc from '@content/alumni-association.json';
 
 // DB 소스 전환(Phase 2): 목록도 ISR — revalidateTag('posts') 가 즉시 갱신, 이 값은 안전망
@@ -22,7 +23,11 @@ export async function generateMetadata({
   params: { locale: string };
 }): Promise<Metadata> {
   const t = await getTranslations({ locale: params.locale, namespace: 'alumni' });
-  return { title: t('hero.title'), description: t('hero.subtitle') };
+  return {
+    title: t('hero.title'),
+    description: t('hero.subtitle'),
+    alternates: pageAlternates('alumni'),
+  };
 }
 
 export default async function AlumniPage({ params }: { params: { locale: string } }) {

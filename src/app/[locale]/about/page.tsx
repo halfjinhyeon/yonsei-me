@@ -19,6 +19,7 @@ import {
   getStaffRuntime,
   getFacultyDirectoryRuntime,
 } from '@/lib/content-runtime';
+import { pageAlternates } from '@/lib/seo';
 import type { Locale } from '@/i18n/routing';
 
 // 콘텐츠 소스 전환(Stage A): 연혁·교수진·교직원이 데이터 레이어를 읽는다 — ISR 안전망
@@ -30,7 +31,13 @@ export async function generateMetadata({
   params: { locale: string };
 }): Promise<Metadata> {
   const t = await getTranslations({ locale: params.locale, namespace: 'about' });
-  return { title: t('hero.title'), description: t('hero.subtitle') };
+  return {
+    title: t('hero.title'),
+    description: t('hero.subtitle'),
+    // hreflang(ko/en/x-default) + 자기 canonical. 통째로 대입해야 한다 — 부분만 넣으면
+    // 얕은 병합이라 레이아웃의 canonical 이 사라진다.
+    alternates: pageAlternates('about'),
+  };
 }
 
 // 연세대 신촌캠퍼스 제4공학관 좌표 기반 카카오맵 링크 (한글 포함 → encodeURI)

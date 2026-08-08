@@ -4,6 +4,7 @@ import { Hero } from '@/components/Hero';
 import { Container } from '@/components/Container';
 import { Link } from '@/i18n/navigation';
 import { menu } from '@/components/menu';
+import { pageAlternates } from '@/lib/seo';
 
 export async function generateMetadata({
   params,
@@ -11,7 +12,7 @@ export async function generateMetadata({
   params: { locale: string };
 }): Promise<Metadata> {
   const t = await getTranslations({ locale: params.locale, namespace: 'footer' });
-  return { title: t('sitemap') };
+  return { title: t('sitemap'), alternates: pageAlternates('sitemap') };
 }
 
 /**

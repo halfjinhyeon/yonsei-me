@@ -1,12 +1,12 @@
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import type { Metadata } from 'next';
-import { Section } from '@/components/Section';
+import { notFound } from 'next/navigation';
 import { Hero } from '@/components/Hero';
 import { BoardShell, type BoardShellTab } from '@/components/BoardShell';
 import { PostArticle } from '@/components/PostArticle';
-import { Link } from '@/i18n/navigation';
 import { pick } from '@/lib/content';
 import { fetchAlumniNewsBySlug, postsBodyFormat } from '@/lib/posts';
+import { documentMetadata } from '@/lib/seo';
 import type { Locale } from '@/i18n/routing';
 
 // DB 소스 전환(Phase 2): 요청 시 렌더 + ISR (revalidateTag('posts') 가 즉시 갱신)
@@ -28,10 +28,18 @@ export async function generateMetadata({
   params: { locale: string; slug: string };
 }): Promise<Metadata> {
   const item = await fetchAlumniNewsBySlug(params.slug);
+  // 없는 글은 notFound() 로 떨어져 not-found 페이지가 자기 메타를 갖는다 → 여기선 빈 객체.
   if (!item) return {};
+  const locale = params.locale as Locale;
   return {
-    title: pick(item.title, params.locale as Locale),
-    description: pick(item.excerpt, params.locale as Locale),
+    title: pick(item.title, locale),
+    description: pick(item.excerpt, locale),
+    // 판정 필드는 사이트맵(목록 조회)과 동일한 제목·요약만 — 본문은 넘기지 않는다.
+    ...documentMetadata({
+      path: `alumni/news/${params.slug}`,
+      locale,
+      fields: [item.title, item.excerpt],
+    }),
   };
 }
 
@@ -46,18 +54,8 @@ export default async function AlumniNewsDetailPage({
   const t = await getTranslations({ locale, namespace: 'news' });
   const tMenu = await getTranslations({ locale, namespace: 'menu' });
 
-  if (!item) {
-    return (
-      <Section>
-        <div className="mx-auto max-w-prose text-center">
-          <p className="text-lg text-content-soft">{t('notFound')}</p>
-          <Link href="/alumni" className="btn-secondary mt-6">
-            ← {t('backToList')}
-          </Link>
-        </div>
-      </Section>
-    );
-  }
+  // 없는 글은 진짜 404 다(예전 인라인 "찾을 수 없음" 렌더는 HTTP 200 → GSC Soft 404).
+  if (!item) notFound();
 
   const boardName = tMenu('alumni.items.news');
   const tabs = await getAlumniTabs(locale);

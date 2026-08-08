@@ -22,10 +22,17 @@ import heroSlidesData from '@content/hero-slides.json';
 import instagramData from '@content/instagram.json';
 import editorialTabs from '@content/editorial-tabs.json';
 import { getLabsDirectoryRuntime } from '@/lib/content-runtime';
+import { pageAlternates } from '@/lib/seo';
+import type { Metadata } from 'next';
 import type { Locale } from '@/i18n/routing';
 
 // DB 소스 전환(Phase 2): 홈의 뉴스&행사가 DB 를 읽는다 — ISR 안전망
 export const revalidate = 300;
+
+// 홈은 제목·설명을 레이아웃 기본값 그대로 쓰므로 로케일 의존 값이 없다 → 정적 metadata.
+// alternates 는 **통째로** 대입한다: metadata 병합이 top-level 얕은 병합이라 일부만
+// 넣으면 레이아웃의 canonical 이 사라진다(pageAlternates 가 canonical 을 함께 돌려준다).
+export const metadata: Metadata = { alternates: pageAlternates('') };
 
 export default async function HomePage({ params }: { params: { locale: string } }) {
   setRequestLocale(params.locale);

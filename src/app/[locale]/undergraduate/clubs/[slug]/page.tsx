@@ -7,6 +7,7 @@ import { Link } from '@/i18n/navigation';
 import { ClubCardNews } from '@/components/ClubCardNews';
 import { parseClubContent } from '@/lib/pages';
 import { getClubsRuntime, getPageMarkdownRuntime } from '@/lib/content-runtime';
+import { pageAlternates } from '@/lib/seo';
 import { routing } from '@/i18n/routing';
 
 // 콘텐츠 소스 전환(Stage A): 동아리 인덱스·소개 본문이 데이터 레이어를 읽는다 — ISR 안전망
@@ -23,7 +24,12 @@ export async function generateMetadata({
   params: { locale: string; slug: string };
 }): Promise<Metadata> {
   const club = (await getClubsRuntime()).find((c) => c.slug === params.slug);
-  return { title: club?.name, description: club?.teaser };
+  return {
+    title: club?.name,
+    description: club?.teaser,
+    // 동아리 상세는 두 로케일 모두 같은 셸로 존재한다 → 항상 ko/en 양쪽 hreflang.
+    alternates: pageAlternates(`undergraduate/clubs/${params.slug}`),
+  };
 }
 
 export default async function ClubDetailPage({

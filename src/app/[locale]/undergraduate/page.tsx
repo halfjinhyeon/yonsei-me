@@ -21,6 +21,7 @@ import {
   type CatalogCourse,
 } from '@/components/CourseCatalog';
 import { CurriculumFlow } from '@/components/CurriculumFlow';
+import { pageAlternates } from '@/lib/seo';
 import type { Locale } from '@/i18n/routing';
 
 // 콘텐츠 소스 전환(Stage A): 교과목·설명·동아리·장학금 본문이 데이터 레이어를 읽는다 — ISR 안전망
@@ -33,7 +34,11 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const t = await getTranslations({ locale: params.locale, namespace: 'menu' });
   const tP = await getTranslations({ locale: params.locale, namespace: 'pages' });
-  return { title: t('undergraduate.label'), description: tP('undergraduate.subtitle') };
+  return {
+    title: t('undergraduate.label'),
+    description: tP('undergraduate.subtitle'),
+    alternates: pageAlternates('undergraduate'),
+  };
 }
 
 // 학부 하위 섹션: key → 임포트 마크다운 슬러그 (없으면 준비 중)
