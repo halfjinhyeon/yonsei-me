@@ -2,31 +2,18 @@ import { getTranslations, setRequestLocale } from 'next-intl/server';
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { Hero } from '@/components/Hero';
-import { BoardShell, type BoardShellTab } from '@/components/BoardShell';
+import { BoardShell } from '@/components/BoardShell';
 import { PostArticle } from '@/components/PostArticle';
 import { pick } from '@/lib/content';
 import { fetchNewsBySlug, postsBodyFormat } from '@/lib/posts';
 import { documentMetadata } from '@/lib/seo';
+import { DEFAULT_NEWS_TAB, newsTabHref } from '@/lib/board-links';
+import { getNewsTabs } from '../../_shared/tabs';
 import type { Locale } from '@/i18n/routing';
 
 // DB 소스 전환(Phase 2): 글이 DB 에 살므로 빌드 시 열거하지 않고 요청 시 렌더 + ISR.
 // CMS 쓰기의 revalidateTag('posts') 가 즉시 갱신하고, 이 값은 안전망이다.
 export const revalidate = 300;
-
-// 목록 페이지(/news)와 동일한 8개 탭 (key/label)
-async function getNewsTabs(locale: Locale): Promise<BoardShellTab[]> {
-  const tMenu = await getTranslations({ locale, namespace: 'menu' });
-  return [
-    { key: 'notices', label: tMenu('news.items.notices') },
-    { key: 'news', label: tMenu('news.items.news') },
-    { key: 'thesis', label: tMenu('news.items.thesis') },
-    { key: 'resources', label: tMenu('news.items.resources') },
-    { key: 'career', label: tMenu('news.items.career') },
-    { key: 'events', label: tMenu('news.items.events') },
-    { key: 'seminars', label: tMenu('news.items.seminars') },
-    { key: 'calendar', label: tMenu('news.items.calendar') },
-  ];
-}
 
 export async function generateMetadata({
   params,
@@ -44,14 +31,19 @@ export async function generateMetadata({
     // 보는 것과 같아야 한다 — 제목·요약만 넘기고 **본문은 넘기지 않는다**(본문은 목록에
     // 실려 오지 않아, 쓰면 두 곳 판정이 갈리고 hreflang 상호 참조가 깨진다).
     ...documentMetadata({
-      path: `news/${params.slug}`,
+      path: `news/press/${params.slug}`,
       locale,
       fields: [item.title, item.excerpt],
     }),
   };
 }
 
-export default async function NewsDetailPage({
+/**
+ * 뉴스 기사 상세 (구 `/news/[slug]`).
+ * URL 만 `press` 로 갈렸다 — `/news/news/<slug>` 중첩을 피하려는 것이고, 탭 키·라벨은
+ * 그대로 '뉴스'다. 구 주소는 `news/[slug]/page.tsx` 리졸버가 308 로 여기 보낸다.
+ */
+export default async function NewsArticlePage({
   params,
 }: {
   params: { locale: string; slug: string };
@@ -74,9 +66,12 @@ export default async function NewsDetailPage({
       <Hero
         title={t('hero.title')}
         subtitle={t('hero.subtitle')}
-        breadcrumb={[{ label: tMenu('news.label'), href: '/news' }, { label: boardName }]}
+        breadcrumb={[
+          { label: tMenu('news.label'), href: newsTabHref(DEFAULT_NEWS_TAB) },
+          { label: boardName },
+        ]}
       />
-      <BoardShell tabs={tabs} activeKey="news" navTitle={tMenu('news.label')}>
+      <BoardShell tabs={tabs} activeKey="press" navTitle={tMenu('news.label')}>
         <PostArticle
           boardName={boardName}
           title={pick(item.title, locale)}
@@ -86,7 +81,7 @@ export default async function NewsDetailPage({
           bodyFormat={postsBodyFormat()}
           attachments={item.attachments}
           attachmentLabels={item.attachments?.map((a) => pick(a.label, locale))}
-          backHref="/news#news"
+          backHref={newsTabHref('press')}
           labels={{
             title: t('detail.titleLabel'),
             date: t('detail.dateLabel'),

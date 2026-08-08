@@ -1,6 +1,12 @@
 /** 현행 학부 홈페이지의 6개 대분류 메뉴 구조.
  *  labelKey는 messages의 menu.<group>.label / menu.<group>.items.<key> 를 가리킨다.
- *  세부항목 추가/수정은 이 파일과 메시지 파일만 편집하면 된다. */
+ *  세부항목 추가/수정은 이 파일과 메시지 파일만 편집하면 된다.
+ *
+ *  ⚠️ 소식·동문 그룹의 세부항목은 해시가 아니라 **경로**다(게시판이 각자 URL 을 갖는다).
+ *     경로 문법의 단일 출처는 @/lib/board-links — 여기서 문자열을 조립하지 말 것.
+ *     key 는 라벨 조회 키라 URL 세그먼트와 다를 수 있다(뉴스: key 'news' ↔ /news/press). */
+import { newsTabHref } from '@/lib/board-links';
+
 export interface MenuSubItem {
   key: string;
   href: string;
@@ -65,23 +71,25 @@ export const menu: MenuGroup[] = [
     key: 'news',
     href: '/news',
     items: [
-      { key: 'notices', href: '/news#notices' },
-      { key: 'news', href: '/news#news' },
-      { key: 'thesis', href: '/news#thesis' },
-      { key: 'resources', href: '/news#resources' },
-      { key: 'career', href: '/news#career' },
-      { key: 'events', href: '/news#events' },
-      { key: 'seminars', href: '/news#seminars' },
-      { key: 'calendar', href: '/news#calendar' },
+      { key: 'notices', href: newsTabHref('notices') },
+      // 라벨 키는 'news' 지만 URL 세그먼트는 'press' 다(/news/news 중첩 회피 — board-links 참고)
+      { key: 'news', href: newsTabHref('press') },
+      { key: 'thesis', href: newsTabHref('thesis') },
+      { key: 'resources', href: newsTabHref('resources') },
+      { key: 'career', href: newsTabHref('career') },
+      { key: 'events', href: newsTabHref('events') },
+      { key: 'seminars', href: newsTabHref('seminars') },
+      { key: 'calendar', href: newsTabHref('calendar') },
     ],
   },
   {
     key: 'alumni',
     href: '/alumni',
     items: [
-      { key: 'association', href: '/alumni#association' },
-      { key: 'news', href: '/alumni#news' },
-      { key: 'network', href: '/alumni#network' },
+      // /alumni 자체가 '동문회 소개' 페이지다(리다이렉트가 아니라 그 콘텐츠를 직접 렌더)
+      { key: 'association', href: '/alumni' },
+      { key: 'news', href: '/alumni/news' },
+      { key: 'network', href: '/alumni/network' },
     ],
   },
 ];

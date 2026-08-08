@@ -2,25 +2,16 @@ import { getTranslations, setRequestLocale } from 'next-intl/server';
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { Hero } from '@/components/Hero';
-import { BoardShell, type BoardShellTab } from '@/components/BoardShell';
+import { BoardShell } from '@/components/BoardShell';
 import { PostArticle } from '@/components/PostArticle';
 import { pick } from '@/lib/content';
 import { fetchAlumniNewsBySlug, postsBodyFormat } from '@/lib/posts';
 import { documentMetadata } from '@/lib/seo';
+import { getAlumniTabs } from '../../_shared/tabs';
 import type { Locale } from '@/i18n/routing';
 
 // DB 소스 전환(Phase 2): 요청 시 렌더 + ISR (revalidateTag('posts') 가 즉시 갱신)
 export const revalidate = 300;
-
-// 동문 페이지(/alumni)와 동일한 3개 탭 (key/label)
-async function getAlumniTabs(locale: Locale): Promise<BoardShellTab[]> {
-  const tMenu = await getTranslations({ locale, namespace: 'menu' });
-  return [
-    { key: 'association', label: tMenu('alumni.items.association') },
-    { key: 'news', label: tMenu('alumni.items.news') },
-    { key: 'network', label: tMenu('alumni.items.network') },
-  ];
-}
 
 export async function generateMetadata({
   params,
@@ -70,7 +61,7 @@ export default async function AlumniNewsDetailPage({
           { label: boardName },
         ]}
       />
-      <BoardShell tabs={tabs} activeKey="news" navTitle={tMenu('alumni.label')} basePath="/alumni">
+      <BoardShell tabs={tabs} activeKey="news" navTitle={tMenu('alumni.label')}>
         <PostArticle
           boardName={boardName}
           title={pick(item.title, locale)}
@@ -80,7 +71,7 @@ export default async function AlumniNewsDetailPage({
           bodyFormat={postsBodyFormat()}
           attachments={item.attachments}
           attachmentLabels={item.attachments?.map((a) => pick(a.label, locale))}
-          backHref="/alumni#news"
+          backHref="/alumni/news"
           labels={{
             title: t('detail.titleLabel'),
             date: t('detail.dateLabel'),

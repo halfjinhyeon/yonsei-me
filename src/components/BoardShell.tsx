@@ -6,28 +6,27 @@ import { cn } from '@/lib/utils';
 export interface BoardShellTab {
   key: string;
   label: string;
+  /** 탭이 이동할 실제 경로 (예: '/news/notices') — @/lib/board-links 헬퍼로 만든다 */
+  href: string;
 }
 
 /**
- * TabbedContent의 주변 레이아웃(모바일 상단 스크롤 탭 + 데스크톱 우측 목차)을
- * 상세 페이지용 "링크 내비"로 재현하는 셸. TabbedContent는 클라이언트 상태로 탭을
- * 전환하지만, 여기서는 상태가 없으므로 각 탭을 목록 페이지의 `/news#<key>` 해시로
- * 이동하는 Link로 렌더한다. 현재 게시판(activeKey)만 활성 스타일을 갖는다.
- * 마크업/클래스는 TabbedContent와 시각적으로 동일하게 맞춘다.
+ * 게시판 목록·상세 공용 셸(모바일 상단 스크롤 탭 + 데스크톱 우측 목차).
+ * 탭은 **실제 경로 링크**다 — 예전에는 `/news#<key>` 해시였는데, 해시는 서버로
+ * 전송되지 않아 게시판 8개가 검색엔진에게 URL 하나로 보였다(색인·크롤 발견 불가).
+ * 경로 기반이라 각 게시판이 고유 URL·메타·hreflang 을 갖고, 크롤 가능한 내부
+ * 링크가 탭 수만큼 생긴다. 마크업/클래스는 TabbedContent와 시각적으로 동일.
  */
 export function BoardShell({
   tabs,
   activeKey,
   navTitle,
-  basePath = '/news',
   children,
 }: {
   tabs: BoardShellTab[];
   activeKey: string;
   /** 우측 목차 박스 상단에 표시할 그룹명 (예: "뉴스 및 공지사항") */
   navTitle?: string;
-  /** 탭 링크가 이동할 목록 페이지 경로 (기본 '/news'). 동문 상세는 '/alumni' 를 준다 */
-  basePath?: string;
   children: ReactNode;
 }) {
   return (
@@ -37,7 +36,7 @@ export function BoardShell({
         {tabs.map((t, i) => (
           <Link
             key={t.key}
-            href={`${basePath}#${t.key}`}
+            href={t.href}
             className={cn(
               'anim-nav-item whitespace-nowrap rounded-full px-4 py-1.5 text-xs font-semibold transition-all',
               activeKey === t.key
@@ -75,7 +74,7 @@ export function BoardShell({
                   style={{ animationDelay: `${i * 60}ms` }}
                 >
                   <Link
-                    href={`${basePath}#${t.key}`}
+                    href={t.href}
                     className={cn(
                       'group flex w-full items-center justify-between gap-3 py-3 text-left text-sm transition-colors',
                       activeKey === t.key

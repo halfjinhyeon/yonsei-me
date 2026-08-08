@@ -22,6 +22,7 @@ import heroSlidesData from '@content/hero-slides.json';
 import instagramData from '@content/instagram.json';
 import editorialTabs from '@content/editorial-tabs.json';
 import { getLabsDirectoryRuntime } from '@/lib/content-runtime';
+import { alumniEventHref, boardPostHref, newsArticleHref, newsTabHref } from '@/lib/board-links';
 import { pageAlternates } from '@/lib/seo';
 import type { Metadata } from 'next';
 import type { Locale } from '@/i18n/routing';
@@ -170,7 +171,8 @@ export default async function HomePage({ params }: { params: { locale: string } 
         image: (body ? firstBodyImage(body) : undefined) || n.image || undefined,
         // 우측 목록 3행 = 게시물 대표사진 그대로(사용자 지시 — 작은 칸에는 썸네일이 맞다)
         thumb: n.image || undefined,
-        href: `/news/${n.slug}`,
+        // 뉴스 기사 상세는 /news/press/<slug> (탭 세그먼트와 자리를 나눠 쓰므로 헬퍼로만 만든다)
+        href: newsArticleHref(n.slug),
         kind: 'news' as const,
         ...(summary ? { summary } : {}),
       };
@@ -203,7 +205,8 @@ export default async function HomePage({ params }: { params: { locale: string } 
         endDate: r.end,
         title: orKo(e.title),
         kind: 'event' as const,
-        href: `/news/post/${e.id}`,
+        // 게시판 글 경로는 boardPostHref 단일 출처 — 행사 게시판이라 boardKey 는 'events'
+        href: boardPostHref({ id: e.id, boardKey: 'events' }),
       };
     }),
     ...board.seminars.map((s) => ({
@@ -212,7 +215,7 @@ export default async function HomePage({ params }: { params: { locale: string } 
       endDate: s.endDate ?? s.date, // 종료일 없으면 하루
       title: orKo(s.title),
       kind: 'seminar' as const,
-      href: `/news/post/${s.id}`,
+      href: boardPostHref({ id: s.id, boardKey: 'seminars' }),
     })),
     // 동문 행사는 전용 kind 를 두지 않고 'event' 로 접는다 — 캘린더의 종류는 5종
     // (행사/세미나/학사일정/모집·신청/시험)으로 고정돼 있고, 학생에게 동문 행사도
@@ -225,7 +228,7 @@ export default async function HomePage({ params }: { params: { locale: string } 
         endDate: a.endDate ?? a.date,
         title: orKo(a.title),
         kind: 'event' as const,
-        href: `/alumni/post/${a.id}`,
+        href: alumniEventHref(a.id),
       })),
     // 캘린더 전용 일정 — 개강·수강신청 변경·시험 기간처럼 게시글 없이 캘린더에만
     // 올려야 하는 학사일정. 저장처는 위 항목들과 같은 Supabase posts 테이블이고
@@ -327,7 +330,7 @@ export default async function HomePage({ params }: { params: { locale: string } 
             heading={t('notices.title')}
             listLabel={t('notices.listLabel')}
             moreLabel={t('notices.more')}
-            moreHref="/news#notices"
+            moreHref={newsTabHref('notices')}
             emptyLabel={t('notices.empty')}
             newBadgeLabel={t('notices.newBadge')}
             filters={noticeFilters}
@@ -338,7 +341,7 @@ export default async function HomePage({ params }: { params: { locale: string } 
               locale={locale}
               title={t('calendar.title')}
               moreLabel={t('calendar.viewMore')}
-              moreHref="/news#calendar"
+              moreHref={newsTabHref('calendar')}
               prevLabel={t('calendar.prevMonth')}
               nextLabel={t('calendar.nextMonth')}
               emptyLabel={t('calendar.emptyMonth')}

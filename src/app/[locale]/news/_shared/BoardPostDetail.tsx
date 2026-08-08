@@ -1,0 +1,137 @@
+/**
+ * 게시판 글 상세 공용 빌더 — 구 `/news/post/[id]` 한 라우트가 하던 일을
+ * 게시판별 라우트 7개(notices·seminars·events·thesis·career·resources·internships)가
+ * 얇게 감싸 쓴다. 화면·메타 로직은 전부 여기 한 곳이다.
+ *
+ * 왜 라우트를 쪼갰나
+ *   URL 에 소속 게시판이 드러나야(`/news/seminars/123`) 검색엔진과 사람이 글의 맥락을
+ *   읽을 수 있고, 목록↔상세가 같은 경로 트리에 놓인다. 인턴 모집만 연구 메뉴 소속이라
+ *   `/research/internships/<id>` 로 간다(board-links.boardPostHref 가 단일 출처).
+ *
+ * ⚠️ canonical 가드: 라우트가 기대한 게시판과 글의 실제 boardKey 가 다르면 308 로
+ *    제 주소에 보낸다. 안 그러면 같은 글이 게시판 수만큼의 URL 로 열려 전부 중복이 된다.
+ */
+import { getTranslations } from 'next-intl/server';
+import type { Metadata } from 'next';
+import { notFound, permanentRedirect } from 'next/navigation';
+import { Hero } from '@/components/Hero';
+import { PostArticle } from '@/components/PostArticle';
+import { BoardShell } from '@/components/BoardShell';
+import { pick, type BoardPost } from '@/lib/content';
+import { fetchBoardPost, postsBodyFormat } from '@/lib/posts';
+import { documentMetadata } from '@/lib/seo';
+import { htmlToDescription } from '@/lib/excerpt';
+import { DEFAULT_NEWS_TAB, boardPostHref, newsTabHref } from '@/lib/board-links';
+import { getNewsTabs, getResearchTabs } from './tabs';
+import type { Locale } from '@/i18n/routing';
+
+/** 라우트가 기대하는 게시판 (= URL 세그먼트) */
+export type BoardKey = BoardPost['boardKey'];
+
+export interface BoardPostRouteParams {
+  locale: string;
+  id: string;
+  /** 이 라우트가 맡은 게시판 — 글의 boardKey 와 다르면 제 주소로 308 */
+  board: BoardKey;
+}
+
+export async function boardPostMetadata({
+  locale,
+  id,
+  board,
+}: BoardPostRouteParams): Promise<Metadata> {
+  const post = await fetchBoardPost(id);
+  // 없는 글은 notFound() 로 떨어져 not-found 페이지가 자기 메타를 갖는다 → 여기선 빈 객체.
+  if (!post) return {};
+  // 게시판이 어긋난 주소는 페이지가 308 로 보낸다 — 메타를 낼 자리가 아니다.
+  if (post.boardKey !== board) return {};
+  const l = locale as Locale;
+  // 게시판 글에는 excerpt 필드가 없어 description 이 비어 있었고, 그러면 레이아웃의
+  // 사이트 기본 설명이 수천 문서에 똑같이 붙는다(GSC 중복 신호) — 본문에서 만들어 준다.
+  const description = htmlToDescription(pick(post.body, l));
+  return {
+    title: pick(post.title, l),
+    ...(description ? { description } : {}),
+    // ⚠️ 번역 판정 필드는 사이트맵(목록 조회)과 같아야 한다. BoardPost 에는 excerpt 가
+    //    없으므로 **제목만** 넘긴다. 본문을 넣으면 사이트맵과 결론이 갈린다.
+    //    path 는 글의 정본 주소(선행 슬래시 제거) — hreflang 이 제 URL 을 가리키게 한다.
+    ...documentMetadata({ path: boardPostHref(post).slice(1), locale: l, fields: [post.title] }),
+  };
+}
+
+export async function BoardPostDetail({ locale, id, board }: BoardPostRouteParams) {
+  const l = locale as Locale;
+  const post = await fetchBoardPost(id);
+  const t = await getTranslations({ locale: l, namespace: 'news' });
+  const tMenu = await getTranslations({ locale: l, namespace: 'menu' });
+
+  // 없는 글은 진짜 404 다(예전 인라인 "찾을 수 없음" 렌더는 HTTP 200 → GSC Soft 404).
+  if (!post) notFound();
+  // 같은 글이 여러 게시판 URL 로 열리는 중복 차단 — 정본 주소로 영구 이동.
+  if (post.boardKey !== board) permanentRedirect(`/${locale}${boardPostHref(post)}`);
+
+  // 인턴 모집은 연구 메뉴 소속 — 브레드크럼·목록 링크·셸을 연구 컨텍스트로 전환한다.
+  const isResearch = post.boardKey === 'internships';
+  const tResearch = await getTranslations({ locale: l, namespace: 'research' });
+  const boardName = isResearch
+    ? tMenu('research.items.internships')
+    : tMenu(`news.items.${post.boardKey}`);
+  const tabs = isResearch ? await getResearchTabs(l) : await getNewsTabs(l);
+  const sectionLabel = isResearch ? tMenu('research.label') : tMenu('news.label');
+  // 섹션 크럼: 연구는 페이지가 한 장이고, 뉴스는 기본 탭이 곧 섹션 첫 화면이다
+  // (`/news` 로 걸면 308 을 한 번 더 탄다).
+  const sectionHref = isResearch ? '/research' : newsTabHref(DEFAULT_NEWS_TAB);
+  // 목록으로 돌아가기: 뉴스는 그 게시판의 목록 경로, 인턴은 연구의 콘텐츠 탭(해시가 현역).
+  // isResearch 대신 boardKey 를 직접 비교하는 것은 타입 좁히기용이다 — newsTabHref 는
+  // 뉴스 탭 세그먼트만 받는데, boolean 을 거치면 'internships' 가 걸러지지 않는다.
+  const backHref =
+    post.boardKey === 'internships' ? '/research#internships' : newsTabHref(post.boardKey);
+  const author = post.meta ? pick(post.meta, l) : t('detail.defaultAuthor');
+
+  // 자료실만 '분류' 메타 행을 한 줄 더 세운다. 공지의 학부/대학원 구분은 이미 위
+  // author(post.meta) 칸에 실려 있어 여기 또 쓰면 같은 말이 두 번 나온다.
+  const libraryCategory =
+    post.boardKey === 'resources' && (post.category === 'form' || post.category === 'rule')
+      ? t(post.category === 'form' ? 'library.catForm' : 'library.catRule')
+      : undefined;
+
+  return (
+    <>
+      <Hero
+        title={isResearch ? tResearch('hero.title') : t('hero.title')}
+        subtitle={isResearch ? tResearch('hero.subtitle') : t('hero.subtitle')}
+        breadcrumb={[{ label: sectionLabel, href: sectionHref }, { label: boardName }]}
+      />
+      <BoardShell tabs={tabs} activeKey={post.boardKey} navTitle={sectionLabel}>
+        <PostArticle
+          boardName={boardName}
+          title={pick(post.title, l)}
+          date={post.date}
+          metaValue={author}
+          categoryLabel={libraryCategory ? t('detail.categoryLabel') : undefined}
+          categoryValue={libraryCategory}
+          body={pick(post.body, l)}
+          bodyFormat={postsBodyFormat()}
+          attachments={post.attachments}
+          attachmentLabels={post.attachments?.map((a) => pick(a.label, l))}
+          postId={post.id}
+          backHref={backHref}
+          labels={{
+            title: t('detail.titleLabel'),
+            date: t('detail.dateLabel'),
+            metaRow: t('detail.authorLabel'),
+            attachments: t('detail.attachmentsLabel'),
+            backToList: t('backToList'),
+            // ZIP 문구는 게시판을 가리지 않고 넘긴다 — 첨부가 여럿인 글이면 자료실이든
+            // 공지든 한 번에 받는 편이 낫고, /api/download-zip 도 게시판을 구분하지 않는다.
+            attachmentsZip: t('library.attachmentsZip'),
+            zipPreparing: t('library.zipPreparing'),
+            zipFailed: t('library.zipFailed'),
+            zipFileName: t('library.zipFileName'),
+          }}
+          locale={l}
+        />
+      </BoardShell>
+    </>
+  );
+}

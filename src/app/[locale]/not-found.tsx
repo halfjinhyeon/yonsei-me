@@ -33,7 +33,8 @@ export default function NotFound() {
           <Link href="/" className="btn-secondary">
             ← {t('home')}
           </Link>
-          <Link href="/news" className="btn-secondary">
+          {/* /news 는 기본 탭으로 308 — 한 홉을 아끼려 목적지를 직접 건다 */}
+          <Link href="/news/notices" className="btn-secondary">
             {t('news')}
           </Link>
         </div>

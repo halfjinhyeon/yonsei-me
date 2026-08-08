@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useState, type ReactNode } from 'react';
 import { Link } from '@/i18n/navigation';
 import { UnderlineTabs } from './UnderlineTabs';
+import { boardPostHref } from '@/lib/board-links';
 import { cn } from '@/lib/utils';
 
 export type NoticeCategory = 'undergrad' | 'graduate' | 'external' | 'scholarship';
@@ -62,7 +63,9 @@ function NoticeRow({
       style={{ animationDelay: `${Math.min(delayIndex, 8) * 45}ms` }}
     >
       <Link
-        href={`/news/post/${item.id}`}
+        // 이 섹션이 받는 네 소스(학부/대학원/외부기관/장학)는 모두 boardKey 가 'notices' 다
+        // (posts.ts 의 BOARD_POST_META). 그래서 항목마다 키를 들고 다니지 않고 여기서 고정한다.
+        href={boardPostHref({ id: item.id, boardKey: 'notices' })}
         className="group block px-0.5 py-[22px] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yonsei-blue"
       >
         <div className="flex items-center gap-2">

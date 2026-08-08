@@ -8,6 +8,14 @@ import {
 } from '@/lib/posts';
 import { getClubsRuntime } from '@/lib/content-runtime';
 import { getFacultyProfileNames } from '@/lib/faculty';
+import {
+  NEWS_TABS,
+  alumniEventHref,
+  alumniNewsHref,
+  boardPostHref,
+  newsArticleHref,
+  newsTabHref,
+} from '@/lib/board-links';
 
 // 검색엔진용 XML 사이트맵 → /sitemap.xml
 // 커스텀 핸들러를 쓰는 이유: 게시판(DB) 페처가 죽어도 그룹만 생략하고 200 을
@@ -25,6 +33,12 @@ import { getFacultyProfileNames } from '@/lib/faculty';
 //    그대로다. 이런 /en 문서 1,200여 개가 크롤 예산을 먹고 중복 판정을 받아
 //    정작 실제 콘텐츠가 '발견됨-미색인'(2,451)으로 밀려 있었다.
 //    → koOnly 로 판정되면 /en URL 자체를 싣지 않는다.
+// 3) 게시판 URL 은 경로 기반(2026-08 개편): /news/<탭>, /news/<탭>/<id>,
+//    /news/press/<slug>, /research/internships/<id>, /alumni/news|network[/<id>].
+//    구 경로(/news, /news/post/<id>, /alumni/post/<id>)는 308 리다이렉트라 사이트맵에
+//    싣지 않는다 — 리다이렉트 URL 은 색인 대상이 아니고 크롤 홉만 늘린다.
+//    ⚠️ 경로를 여기서 문자열로 조립하지 마라. @/lib/board-links 헬퍼가 단일 출처이고,
+//       손으로 적으면 다음 개편 때 사이트맵만 옛 경로를 광고하게 된다.
 export const revalidate = 300;
 
 /** XML 특수문자 이스케이프.
@@ -85,8 +99,12 @@ export async function GET() {
     'academics',
     'admission',
     'research',
-    'news',
-    'alumni',
+    // 소식 게시판 8개 — 탭이 곧 경로다(/news 자체는 기본 탭으로 308, 그래서 빠졌다).
+    // NEWS_TABS 에서 뽑아 오므로 탭이 늘면 사이트맵도 따라온다.
+    ...NEWS_TABS.map((t) => newsTabHref(t.seg).slice(1)),
+    'alumni', // /alumni 는 '동문회 소개' 콘텐츠 페이지 자신이다(리다이렉트 아님)
+    'alumni/news',
+    'alumni/network',
     'faculty',
     'contact',
     'sitemap',
@@ -116,7 +134,7 @@ export async function GET() {
   await safe('news', async () => {
     for (const n of await fetchNews()) {
       add({
-        path: `news/${n.slug}`,
+        path: newsArticleHref(n.slug).slice(1),
         koOnly: !hasEnglishVersion(n.title, n.excerpt),
         lastmod: w3cDate(n.date),
       });
@@ -128,7 +146,8 @@ export async function GET() {
     // 실측상 이관 게시글은 title_en 이 null 이라 이것만으로 전부 걸러진다.
     for (const p of await fetchAllBoardPosts()) {
       add({
-        path: `news/post/${p.id}`,
+        // boardKey 가 소속 섹션까지 결정한다 — internships 는 /research 아래로 간다.
+        path: boardPostHref(p).slice(1),
         koOnly: !hasEnglishVersion(p.title),
         lastmod: w3cDate(p.date),
       });
@@ -151,7 +170,7 @@ export async function GET() {
   await safe('alumni-news', async () => {
     for (const a of await fetchAlumniNews()) {
       add({
-        path: `alumni/news/${a.slug}`,
+        path: alumniNewsHref(a.slug).slice(1),
         koOnly: !hasEnglishVersion(a.title, a.excerpt),
         lastmod: w3cDate(a.date),
       });
@@ -162,7 +181,7 @@ export async function GET() {
     // AlumniEvent 는 Seminar 확장이라 excerpt 가 선택 필드다 — 있으면 함께 본다.
     for (const e of await fetchAlumniEvents()) {
       add({
-        path: `alumni/post/${e.id}`,
+        path: alumniEventHref(e.id).slice(1),
         koOnly: !hasEnglishVersion(e.title, e.excerpt),
         lastmod: w3cDate(e.date),
       });

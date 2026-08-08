@@ -12,6 +12,7 @@ import { type ResearchField } from '@/lib/faculty';
 import { getLabsDirectoryRuntime, getLabSummariesRuntime } from '@/lib/content-runtime';
 import { pick } from '@/lib/content';
 import { fetchBoardData } from '@/lib/posts';
+import { boardPostHref } from '@/lib/board-links';
 import { pageAlternates } from '@/lib/seo';
 import galleryData from '@content/research-gallery.json';
 import type { Locale } from '@/i18n/routing';
@@ -58,7 +59,8 @@ export default async function ResearchPage({ params }: { params: { locale: strin
     date: n.date,
     title: pick(n.title, locale),
     subtitle: n.excerpt ? pick(n.excerpt, locale) : undefined,
-    href: `/news/post/${n.id}`,
+    // 인턴 모집 상세는 연구 소속이라 /research/internships/<id> 로 간다 — boardPostHref 가 단일 출처
+    href: boardPostHref({ id: n.id, boardKey: 'internships' }),
     image: n.image,
     pinned: n.pinned,
   }));

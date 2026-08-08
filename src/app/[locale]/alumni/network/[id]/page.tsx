@@ -2,26 +2,17 @@ import { getTranslations, setRequestLocale } from 'next-intl/server';
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { Hero } from '@/components/Hero';
-import { BoardShell, type BoardShellTab } from '@/components/BoardShell';
 import { PostArticle } from '@/components/PostArticle';
+import { BoardShell } from '@/components/BoardShell';
 import { pick } from '@/lib/content';
 import { fetchAlumniEventById, postsBodyFormat } from '@/lib/posts';
 import { documentMetadata } from '@/lib/seo';
 import { htmlToDescription } from '@/lib/excerpt';
+import { getAlumniTabs } from '../../_shared/tabs';
 import type { Locale } from '@/i18n/routing';
 
 // DB 소스 전환(Phase 2): 요청 시 렌더 + ISR (revalidateTag('posts') 가 즉시 갱신)
 export const revalidate = 300;
-
-// 동문 페이지(/alumni)와 동일한 3개 탭 (key/label)
-async function getAlumniTabs(locale: Locale): Promise<BoardShellTab[]> {
-  const tMenu = await getTranslations({ locale, namespace: 'menu' });
-  return [
-    { key: 'association', label: tMenu('alumni.items.association') },
-    { key: 'news', label: tMenu('alumni.items.news') },
-    { key: 'network', label: tMenu('alumni.items.network') },
-  ];
-}
 
 export async function generateMetadata({
   params,
@@ -42,14 +33,14 @@ export async function generateMetadata({
     ...(description ? { description } : {}),
     // 판정 필드는 사이트맵(목록 조회)과 동일한 제목·요약만 — 본문은 넘기지 않는다.
     ...documentMetadata({
-      path: `alumni/post/${params.id}`,
+      path: `alumni/network/${params.id}`,
       locale,
       fields: [event.title, event.excerpt],
     }),
   };
 }
 
-export default async function AlumniPostPage({
+export default async function AlumniNetworkDetailPage({
   params,
 }: {
   params: { locale: string; id: string };
@@ -76,7 +67,7 @@ export default async function AlumniPostPage({
           { label: boardName },
         ]}
       />
-      <BoardShell tabs={tabs} activeKey="network" navTitle={tMenu('alumni.label')} basePath="/alumni">
+      <BoardShell tabs={tabs} activeKey="network" navTitle={tMenu('alumni.label')}>
         <PostArticle
           boardName={boardName}
           title={pick(event.title, locale)}
@@ -86,7 +77,7 @@ export default async function AlumniPostPage({
           bodyFormat={postsBodyFormat()}
           attachments={event.attachments}
           attachmentLabels={event.attachments?.map((a) => pick(a.label, locale))}
-          backHref="/alumni#network"
+          backHref="/alumni/network"
           labels={{
             title: t('detail.titleLabel'),
             date: t('detail.dateLabel'),
