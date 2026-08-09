@@ -6,6 +6,7 @@ import { useTranslations } from 'next-intl';
 import { Link } from '@/i18n/navigation';
 import { UnderlineTabs } from '@/components/UnderlineTabs';
 import { EagleLoader } from '@/components/EagleLoader';
+import { MailIcon, PhoneIcon } from '@/components/icons';
 import { cn } from '@/lib/utils';
 import type { FacultyRecord } from '@/lib/faculty';
 
@@ -20,43 +21,6 @@ function accentFor(name: string): string {
   let hash = 0;
   for (const ch of name) hash = (hash * 31 + ch.charCodeAt(0)) % 997;
   return ACCENTS[hash % ACCENTS.length];
-}
-
-/** 전화 픽토그램 (장식 — 라벨은 인접 텍스트) */
-function PhoneIcon() {
-  return (
-    <svg
-      aria-hidden="true"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.8"
-      className="h-3.5 w-3.5 shrink-0"
-    >
-      <path
-        d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.9a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c.9.3 1.9.6 2.9.7a2 2 0 0 1 1.7 2Z"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-}
-
-/** 메일 픽토그램 (장식 — 라벨은 인접 텍스트) */
-function MailIcon() {
-  return (
-    <svg
-      aria-hidden="true"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.8"
-      className="h-3.5 w-3.5 shrink-0"
-    >
-      <rect x="2.5" y="4.5" width="19" height="15" rx="1.5" />
-      <path d="m3 6 9 7 9-7" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  );
 }
 
 /** "상세정보 보기" 링크 — 내부 라우트(Link)와 외부 원문(a) 두 갈래가 같은 모양이라 공유 */

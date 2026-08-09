@@ -1,23 +1,16 @@
 // 게시글 admin API — 수정(PUT)·삭제(DELETE). 백엔드 전환 Phase 3.
 
 import { revalidateTag } from 'next/cache';
-import { auth } from '@/auth';
 import {
   adminDb,
   endDateError,
   isValidBoard,
   payloadToRow,
+  requireAdmin,
   type AdminPostPayload,
 } from '@/lib/admin/posts-server';
 
 export const runtime = 'nodejs';
-
-async function requireAdmin(): Promise<Response | null> {
-  if (process.env.NODE_ENV !== 'production') return null;
-  const session = await auth();
-  if (!session?.user) return Response.json({ error: '로그인이 필요합니다.' }, { status: 401 });
-  return null;
-}
 
 function parseId(raw: string): number | null {
   const id = Number(raw);

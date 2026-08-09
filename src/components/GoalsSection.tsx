@@ -6,6 +6,7 @@ import gsap from 'gsap';
 import { SplitText } from 'gsap/SplitText';
 import { FlowLines } from './FlowLines';
 import { guardKoreanBreaks } from '@/lib/typography';
+import { prefersReducedMotion } from '@/lib/utils';
 
 // SplitText 는 무료 public gsap 패키지에 포함(Club 토큰 불필요) — 히어로와 동일.
 gsap.registerPlugin(SplitText);
@@ -15,13 +16,6 @@ const useIsoLayoutEffect = typeof window !== 'undefined' ? useLayoutEffect : use
 
 // 목표 교체 간격(ms) — 사용자 지정 3.5초.
 const ROTATE_MS = 3500;
-
-function prefersReducedMotion() {
-  return (
-    typeof window !== 'undefined' &&
-    window.matchMedia('(prefers-reduced-motion: reduce)').matches
-  );
-}
 
 /** 로케일 해석이 끝난 교육 목표 한 건 */
 export interface GoalItem {

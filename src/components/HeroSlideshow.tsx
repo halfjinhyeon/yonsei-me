@@ -6,6 +6,7 @@ import gsap from 'gsap';
 import { SplitText } from 'gsap/SplitText';
 import { CustomEase } from 'gsap/CustomEase';
 import styles from './HeroSlideshow.module.css';
+import { prefersReducedMotion } from '@/lib/utils';
 
 // SplitText·CustomEase 는 이제 무료 public gsap 패키지에 포함(Club 토큰 불필요).
 gsap.registerPlugin(SplitText, CustomEase);
@@ -40,13 +41,6 @@ function buildSrcSet(src: string): string {
 // (높이에 맞춰 확대되므로). 100vw 로 알리면 그만큼 모자란 파일을 받아 뿌옇게 나온다.
 // 원본이 1620px 이라 과요청해도 그 이상은 안 나가므로 넉넉히 잡는다.
 const PORTRAIT_SIZES = '135vw';
-
-function prefersReducedMotion() {
-  return (
-    typeof window !== 'undefined' &&
-    window.matchMedia('(prefers-reduced-motion: reduce)').matches
-  );
-}
 
 export type HeroSlide = {
   /** 연구 분야 키(research-gallery.json 과 동일) */

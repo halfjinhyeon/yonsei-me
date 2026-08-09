@@ -8,7 +8,9 @@
 import { createClient, type SupabaseClient } from '@supabase/supabase-js';
 import { Marked } from 'marked';
 import sanitizeHtml from 'sanitize-html';
+import { auth } from '@/auth';
 import { formatPeriodLabel, isoToDays, parseDateLabelRange } from '@/lib/calendar';
+import { kstDate } from '@/lib/utils';
 
 // 사이트 렌더와 동일 설정(breaks: 단일 개행도 줄바꿈 — 게시판 본문 관례)
 const marked = new Marked({ gfm: true, breaks: true });
@@ -65,6 +67,15 @@ export function sanitizeEditorHtml(html: string | null | undefined): string {
   const h = (html ?? '').trim();
   if (!h) return '';
   return sanitizeHtml(h, SANITIZE_OPTS);
+}
+
+/** admin API 라우트 공용 인증 가드 — 프로덕션은 Auth.js 세션(=GitHub allowlist) 필수,
+ *  dev 는 CMS 개방 모드로 우회. 거부면 401 Response, 통과면 null (4개 라우트 공유). */
+export async function requireAdmin(): Promise<Response | null> {
+  if (process.env.NODE_ENV !== 'production') return null; // dev 개방 모드
+  const session = await auth();
+  if (!session?.user) return Response.json({ error: '로그인이 필요합니다.' }, { status: 401 });
+  return null;
 }
 
 // ── Supabase 서비스 클라이언트 (RLS 우회 — 라우트에서 인증 확인 후에만 사용) ──
@@ -227,14 +238,6 @@ export interface DbPostRow {
   }[];
 }
 
-/** timestamptz → KST 달력 날짜(YYYY-MM-DD).
- *  저장은 언제나 KST 자정(`${date}T00:00:00+09:00`)인데 Supabase 는 UTC 로 돌려주므로,
- *  그대로 자르면 하루 전날이 된다. src/lib/posts.ts 의 kstDate 와 같은 규칙이다. */
-function kstDate(ts: string): string {
-  const t = Date.parse(ts);
-  if (Number.isNaN(t)) return ts.slice(0, 10);
-  return new Date(t + 9 * 60 * 60 * 1000).toISOString().slice(0, 10);
-}
 
 /** DB 행 → CMS 편집 레코드(마크다운 우선, 없으면 빈 문자열 — 구 데이터 호환) */
 export function rowToEditRecord(r: DbPostRow) {

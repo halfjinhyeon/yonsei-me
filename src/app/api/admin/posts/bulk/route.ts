@@ -3,17 +3,9 @@
 // SQL 업데이트 한 번으로 줄어드는 지점.
 
 import { revalidateTag } from 'next/cache';
-import { auth } from '@/auth';
-import { adminDb, isValidBoard } from '@/lib/admin/posts-server';
+import { adminDb, isValidBoard, requireAdmin } from '@/lib/admin/posts-server';
 
 export const runtime = 'nodejs';
-
-async function requireAdmin(): Promise<Response | null> {
-  if (process.env.NODE_ENV !== 'production') return null;
-  const session = await auth();
-  if (!session?.user) return Response.json({ error: '로그인이 필요합니다.' }, { status: 401 });
-  return null;
-}
 
 interface BulkBody {
   action: 'delete' | 'move' | 'pin' | 'unpin';

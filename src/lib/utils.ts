@@ -73,3 +73,24 @@ export function formatDate(dateStr: string, locale: string): string {
     day: 'numeric',
   }).format(date);
 }
+
+/** timestamptz → KST 달력 날짜(YYYY-MM-DD).
+ *
+ *  게시글 created_at 은 저장 시 항상 KST 자정(`…T00:00:00+09:00`)으로 못박는데
+ *  (posts-server.ts 의 payloadToRow, scripts/import-boards.mjs 동일) Supabase 는
+ *  이 값을 UTC(`…T15:00:00+00:00`)로 돌려준다. 그대로 slice(0,10) 하면 **하루
+ *  전날**이 나온다 — 게시판에서 날짜는 곧 내용이라 그 하루가 그대로 오답이 된다.
+ *  반드시 KST 로 옮긴 뒤 잘라야 한다. (posts.ts 와 posts-server.ts 가 공유) */
+export function kstDate(ts: string): string {
+  const t = Date.parse(ts);
+  if (Number.isNaN(t)) return ts.slice(0, 10); // 파싱 실패 시 기존 동작 유지
+  return new Date(t + 9 * 60 * 60 * 1000).toISOString().slice(0, 10);
+}
+
+/** 사용자가 OS 에서 동작 줄이기를 켰는지 — SSR 에서는 false (클라이언트 전용 판별) */
+export function prefersReducedMotion(): boolean {
+  return (
+    typeof window !== 'undefined' &&
+    window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  );
+}

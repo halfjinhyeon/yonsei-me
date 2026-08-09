@@ -3,24 +3,17 @@
 // 쓰기 성공 시 revalidateTag('posts') → 사이트(ISR)가 재배포 없이 수 초 내 갱신된다.
 
 import { revalidateTag } from 'next/cache';
-import { auth } from '@/auth';
 import {
   adminDb,
   endDateError,
   isValidBoard,
   payloadToRow,
+  requireAdmin,
   rowToEditRecord,
   type AdminPostPayload,
 } from '@/lib/admin/posts-server';
 
 export const runtime = 'nodejs';
-
-async function requireAdmin(): Promise<Response | null> {
-  if (process.env.NODE_ENV !== 'production') return null; // dev 개방 모드
-  const session = await auth();
-  if (!session?.user) return Response.json({ error: '로그인이 필요합니다.' }, { status: 401 });
-  return null;
-}
 
 /** GET /api/admin/posts?board=news — 게시판 글 목록(편집 레코드 형태, 최신순) */
 export async function GET(request: Request): Promise<Response> {

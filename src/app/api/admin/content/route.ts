@@ -15,9 +15,8 @@
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { dirname, resolve, sep } from 'node:path';
 import { revalidateTag } from 'next/cache';
-import { auth } from '@/auth';
 import { isManagedPath } from '@/lib/admin/managed-content';
-import { adminDb } from '@/lib/admin/posts-server';
+import { adminDb, requireAdmin } from '@/lib/admin/posts-server';
 
 export const runtime = 'nodejs';
 
@@ -27,13 +26,6 @@ const CONFLICT_MESSAGE = '파일이 다른 곳에서 변경되었습니다 (409)
 
 function isDev(): boolean {
   return process.env.NODE_ENV !== 'production';
-}
-
-async function requireAdmin(): Promise<Response | null> {
-  if (isDev()) return null; // dev 개방 모드
-  const session = await auth();
-  if (!session?.user) return Response.json({ error: '로그인이 필요합니다.' }, { status: 401 });
-  return null;
 }
 
 // ── dev 로컬 파일 경로 해석 ────────────────────────────────────────────
