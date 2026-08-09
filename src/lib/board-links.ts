@@ -81,3 +81,41 @@ export const LEGACY_ALUMNI_HASH: Record<string, string> = {
  * CMS slug 검증에서 이 목록을 거부해야 한다.
  */
 export const RESERVED_NEWS_SLUGS: readonly string[] = [...NEWS_TABS.map((t) => t.seg), 'post'];
+
+// ── 콘텐츠 섹션 탭 (2026-08 2차 개편: about·undergraduate·graduate·research 도 경로화) ──
+// 탭 키 = URL 세그먼트 = menu.<섹션>.items.<키> 메시지 키 (menu.ts 와 동일한 키 체계).
+// 첫 항목이 기본 탭 — 섹션 루트(/about 등)는 그리로 308 한다.
+export const CONTENT_SECTIONS = {
+  about: ['history', 'faculty', 'staff', 'directions', 'admission', 'careers'],
+  undergraduate: [
+    'goals',
+    'requirements',
+    'checker',
+    'mileage',
+    'courses',
+    'curriculum',
+    'clubs',
+    'scholarship',
+  ],
+  graduate: ['requirements', 'courses', 'labs', 'bk21'],
+  research: ['vision', 'capacity', 'labs', 'internships', 'social', 'recruit'],
+} as const;
+
+export type ContentSection = keyof typeof CONTENT_SECTIONS;
+
+/** 콘텐츠 섹션 탭의 목록 경로 ('/undergraduate/checker' 형태) */
+export function sectionTabHref(section: ContentSection, key: string): string {
+  return `/${section}/${key}`;
+}
+
+/** 섹션 루트가 308 하는 기본 탭 */
+export function sectionDefaultHref(section: ContentSection): string {
+  return sectionTabHref(section, CONTENT_SECTIONS[section][0]);
+}
+
+/** 레거시 해시(/undergraduate#checker 등) → 새 경로 — LegacyBoardHash 용 */
+export function legacySectionHash(section: ContentSection): Record<string, string> {
+  return Object.fromEntries(
+    CONTENT_SECTIONS[section].map((key) => [key, sectionTabHref(section, key)]),
+  );
+}

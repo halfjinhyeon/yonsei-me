@@ -3,6 +3,8 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { cn } from '@/lib/utils';
 import { useLandingAnimation } from '@/components/LandingScope';
+import { useRouter } from '@/i18n/navigation';
+import { sectionTabHref } from '@/lib/board-links';
 import { MILEAGE_HANDOFF_KEY } from '@/components/MileagePlanner';
 import { SegmentedControl } from '@/components/SegmentedControl';
 import {
@@ -233,6 +235,8 @@ export function GraduationChecker({ data, locale }: { data: CheckerData; locale:
   const ko = locale === 'ko';
   // 탭 진입 랜딩 — 리드 문단 → STEP 01~04 라벨이 차례로 채워진다(아래 스텝은 스크롤 시)
   const landingRef = useLandingAnimation<HTMLDivElement>('graduation-checker');
+  // 마일리지 전략 페이지로 넘길 때 쓰는 로케일 인지 라우터(`/ko/undergraduate/mileage`)
+  const router = useRouter();
   const [cohortId, setCohortId] = useState(data.cohorts[0].id);
   const [files, setFiles] = useState<UploadedFile[]>([]);
   const [manualIds, setManualIds] = useState<string[]>([]);
@@ -1074,7 +1078,8 @@ export function GraduationChecker({ data, locale }: { data: CheckerData; locale:
         )}
 
         {/* 마일리지 전략으로 이어가기 — 남은 과목을 그대로 넘겨 재입력을 없앤다(사용자 지시 4).
-            sessionStorage 로 건네고 해시를 바꾸면 TabbedContent 가 탭을 전환한다. */}
+            sessionStorage 로 건네고 마일리지 페이지로 이동하면, 플래너가 마운트되며
+            그 값을 읽어 담는다(탭이 경로가 되기 전에는 해시로 탭을 갈아 끼웠다). */}
         {remainingForMileage.length > 0 && (
           <div className="mt-8 border border-yonsei-navy/25 bg-surface-soft px-5 py-4">
             <p className="text-sm font-bold text-content">
@@ -1096,7 +1101,7 @@ export function GraduationChecker({ data, locale }: { data: CheckerData; locale:
                 } catch {
                   /* 저장이 막혀 있어도 이동은 시킨다(빈 상태로 시작) */
                 }
-                window.location.hash = 'mileage';
+                router.push(sectionTabHref('undergraduate', 'mileage'));
               }}
               className="group mt-3 inline-flex min-h-[44px] items-center gap-2 bg-yonsei-navy px-5 text-sm font-bold text-white transition-colors hover:bg-yonsei-blue"
             >

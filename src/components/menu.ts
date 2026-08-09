@@ -2,10 +2,12 @@
  *  labelKey는 messages의 menu.<group>.label / menu.<group>.items.<key> 를 가리킨다.
  *  세부항목 추가/수정은 이 파일과 메시지 파일만 편집하면 된다.
  *
- *  ⚠️ 소식·동문 그룹의 세부항목은 해시가 아니라 **경로**다(게시판이 각자 URL 을 갖는다).
+ *  ⚠️ 세부항목은 이제 **전부 경로**다 — 해시(`/about#history`)는 서버로 전송되지 않아
+ *     검색엔진에게 섹션 하나가 URL 하나로 보였다. 2026-08 2차 개편에서 콘텐츠 4개 섹션
+ *     (소개·학부·대학원·연구)도 게시판처럼 탭마다 진짜 경로를 갖는다.
  *     경로 문법의 단일 출처는 @/lib/board-links — 여기서 문자열을 조립하지 말 것.
  *     key 는 라벨 조회 키라 URL 세그먼트와 다를 수 있다(뉴스: key 'news' ↔ /news/press). */
-import { newsTabHref } from '@/lib/board-links';
+import { newsTabHref, sectionTabHref } from '@/lib/board-links';
 
 export interface MenuSubItem {
   key: string;
@@ -23,48 +25,49 @@ export const menu: MenuGroup[] = [
     key: 'about',
     href: '/about',
     items: [
-      { key: 'history', href: '/about#history' },
-      { key: 'faculty', href: '/about#faculty' },
-      { key: 'staff', href: '/about#staff' },
-      { key: 'directions', href: '/about#directions' },
-      { key: 'admission', href: '/about#admission' },
-      { key: 'careers', href: '/about#careers' },
+      { key: 'history', href: sectionTabHref('about', 'history') },
+      { key: 'faculty', href: sectionTabHref('about', 'faculty') },
+      { key: 'staff', href: sectionTabHref('about', 'staff') },
+      { key: 'directions', href: sectionTabHref('about', 'directions') },
+      { key: 'admission', href: sectionTabHref('about', 'admission') },
+      { key: 'careers', href: sectionTabHref('about', 'careers') },
     ],
   },
   {
     key: 'undergraduate',
     href: '/undergraduate',
     items: [
-      { key: 'goals', href: '/undergraduate#goals' },
-      { key: 'requirements', href: '/undergraduate#requirements' },
-      { key: 'checker', href: '/undergraduate#checker' },
-      { key: 'mileage', href: '/undergraduate#mileage' },
-      { key: 'courses', href: '/undergraduate#courses' },
-      { key: 'curriculum', href: '/undergraduate#curriculum' },
-      { key: 'clubs', href: '/undergraduate#clubs' },
-      { key: 'scholarship', href: '/undergraduate#scholarship' },
+      { key: 'goals', href: sectionTabHref('undergraduate', 'goals') },
+      { key: 'requirements', href: sectionTabHref('undergraduate', 'requirements') },
+      { key: 'checker', href: sectionTabHref('undergraduate', 'checker') },
+      { key: 'mileage', href: sectionTabHref('undergraduate', 'mileage') },
+      { key: 'courses', href: sectionTabHref('undergraduate', 'courses') },
+      { key: 'curriculum', href: sectionTabHref('undergraduate', 'curriculum') },
+      { key: 'clubs', href: sectionTabHref('undergraduate', 'clubs') },
+      { key: 'scholarship', href: sectionTabHref('undergraduate', 'scholarship') },
     ],
   },
   {
     key: 'graduate',
     href: '/graduate',
     items: [
-      { key: 'requirements', href: '/graduate#requirements' },
-      { key: 'courses', href: '/graduate#courses' },
-      { key: 'labs', href: '/graduate#labs' },
-      { key: 'bk21', href: '/graduate#bk21' },
+      { key: 'requirements', href: sectionTabHref('graduate', 'requirements') },
+      { key: 'courses', href: sectionTabHref('graduate', 'courses') },
+      { key: 'labs', href: sectionTabHref('graduate', 'labs') },
+      { key: 'bk21', href: sectionTabHref('graduate', 'bk21') },
     ],
   },
   {
     key: 'research',
     href: '/research',
     items: [
-      { key: 'vision', href: '/research#vision' },
-      { key: 'capacity', href: '/research#capacity' },
-      { key: 'labs', href: '/research#labs' },
-      { key: 'internships', href: '/research#internships' },
-      { key: 'social', href: '/research#social' },
-      { key: 'recruit', href: '/research#recruit' },
+      { key: 'vision', href: sectionTabHref('research', 'vision') },
+      { key: 'capacity', href: sectionTabHref('research', 'capacity') },
+      { key: 'labs', href: sectionTabHref('research', 'labs') },
+      // 인턴 모집은 목록이 곧 게시판 목록이다(상세는 /research/internships/<id>)
+      { key: 'internships', href: sectionTabHref('research', 'internships') },
+      { key: 'social', href: sectionTabHref('research', 'social') },
+      { key: 'recruit', href: sectionTabHref('research', 'recruit') },
     ],
   },
   {

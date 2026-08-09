@@ -5,6 +5,7 @@ import { useTranslations } from 'next-intl';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Link } from '@/i18n/navigation';
+import { sectionTabHref } from '@/lib/board-links';
 import { FlowLines } from '@/components/FlowLines';
 import { LabCarousel, type LabCarouselHandle } from '@/components/LabCarousel';
 import { CircleArrowButton } from '@/components/NewsEventsSection';
@@ -146,7 +147,7 @@ export function LabsSection({ labs, locale }: { labs: LabDirectoryEntry[]; local
       <div className="relative mx-auto mt-6 flex w-full max-w-[1360px] justify-end px-6 sm:mt-8 sm:px-10 lg:px-16">
         <Link
           data-reveal
-          href="/research#labs"
+          href={sectionTabHref('research', 'labs')}
           className="group inline-flex items-center gap-2 text-sm font-bold text-content transition-colors hover:text-yonsei-blue"
         >
           {t('people.cta')}

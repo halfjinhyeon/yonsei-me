@@ -1,7 +1,7 @@
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import type { Metadata } from 'next';
 import { Hero } from '@/components/Hero';
-import { BoardShell } from '@/components/BoardShell';
+import { TabPageShell } from '@/components/TabPageShell';
 import { LegacyBoardHash } from '@/components/LegacyBoardHash';
 import { GuideSections, type GuideSection } from '@/components/AdmissionGuide';
 import { LEGACY_ALUMNI_HASH } from '@/lib/board-links';
@@ -37,14 +37,23 @@ export default async function AlumniPage({ params }: { params: { locale: string 
 
   return (
     <>
+      {/* narrow: 히어로 → 남색 바 → 본문이 한 좌측선에 선다(뉴스 목록과 동일) */}
       <Hero
         title={tAlumni('hero.title')}
         subtitle={tAlumni('hero.subtitle')}
+        narrow
         breadcrumb={[{ label: tMenu('alumni.label') }]}
       />
-      <BoardShell tabs={tabs} activeKey="association" navTitle={tMenu('alumni.label')}>
+      {/* 히어로 하단 남색 내비게이션 바 + 본문 — title 은 h2 큰 제목(현재 탭 라벨) */}
+      <TabPageShell
+        navTitle={tMenu('alumni.label')}
+        tabs={tabs}
+        activeKey="association"
+        title={tMenu('alumni.items.association')}
+        narrow
+      >
         <GuideSections sections={assocSections} locale={locale} landingName="alumni-association" />
-      </BoardShell>
+      </TabPageShell>
       {/* 구 링크 /alumni#news · /alumni#network 를 새 경로로 보낸다 */}
       <LegacyBoardHash map={LEGACY_ALUMNI_HASH} />
     </>

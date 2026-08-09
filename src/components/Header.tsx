@@ -5,6 +5,7 @@ import { Link, usePathname } from '@/i18n/navigation';
 import { useEffect, useState } from 'react';
 import { cn } from '@/lib/utils';
 import { menu } from './menu';
+import { sectionTabHref } from '@/lib/board-links';
 import { LocaleToggle } from './LocaleToggle';
 import { Container } from './Container';
 import { Logo } from './Logo';
@@ -257,7 +258,7 @@ export function Header() {
 
             {/* CTA — Cornell 'Give →' 스타일. 소개 페이지의 '입학 안내' 탭으로 연결 */}
             <Link
-              href="/about#admission"
+              href={sectionTabHref('about', 'admission')}
               className={cn(
                 'group hidden items-center gap-2 px-4 py-2 text-sm font-semibold transition-colors lg:inline-flex',
                 solid

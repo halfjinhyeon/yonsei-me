@@ -1,7 +1,7 @@
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import type { Metadata } from 'next';
 import { Hero } from '@/components/Hero';
-import { BoardShell } from '@/components/BoardShell';
+import { TabPageShell } from '@/components/TabPageShell';
 import { LegacyBoardHash } from '@/components/LegacyBoardHash';
 import { type BoardRow } from '@/components/BoardList';
 import { FilterableBoardList } from '@/components/FilterableBoardList';
@@ -56,14 +56,23 @@ export default async function AlumniNewsListPage({ params }: { params: { locale:
 
   return (
     <>
+      {/* narrow: 히어로 → 남색 바 → 목록이 한 좌측선에 선다(뉴스 목록과 동일) */}
       <Hero
         title={tAlumni('hero.title')}
         subtitle={tAlumni('hero.subtitle')}
+        narrow
         breadcrumb={[{ label: tMenu('alumni.label'), href: '/alumni' }, { label: boardName }]}
       />
-      <BoardShell tabs={tabs} activeKey="news" navTitle={tMenu('alumni.label')}>
+      {/* 히어로 하단 남색 내비게이션 바 + 목록 — title 은 h2 큰 제목(게시판 라벨) */}
+      <TabPageShell
+        navTitle={tMenu('alumni.label')}
+        tabs={tabs}
+        activeKey="news"
+        title={boardName}
+        narrow
+      >
         <FilterableBoardList items={newsItems} locale={locale} emptyLabel={tStub('empty')} />
-      </BoardShell>
+      </TabPageShell>
       {/* 구 링크 /alumni#news 가 여기로 떨어졌을 때(해시 잔류) 자기 자신이면 무시된다 */}
       <LegacyBoardHash map={LEGACY_ALUMNI_HASH} />
     </>

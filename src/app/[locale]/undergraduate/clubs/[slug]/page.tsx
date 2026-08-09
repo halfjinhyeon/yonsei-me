@@ -7,6 +7,7 @@ import { Link } from '@/i18n/navigation';
 import { ClubCardNews } from '@/components/ClubCardNews';
 import { parseClubContent } from '@/lib/pages';
 import { getClubsRuntime, getPageMarkdownRuntime } from '@/lib/content-runtime';
+import { sectionDefaultHref, sectionTabHref } from '@/lib/board-links';
 import { pageAlternates } from '@/lib/seo';
 import { routing } from '@/i18n/routing';
 
@@ -52,16 +53,17 @@ export default async function ClubDetailPage({
         title={club.name}
         subtitle={club.teaser}
         breadcrumb={[
-          { label: tMenu('undergraduate.label'), href: '/undergraduate' },
-          { label: tMenu('undergraduate.items.clubs'), href: '/undergraduate#clubs' },
+          // 그룹 크럼은 기본 탭으로 — `/undergraduate` 로 걸면 클릭마다 308 을 한 번 더 탄다
+          { label: tMenu('undergraduate.label'), href: sectionDefaultHref('undergraduate') },
+          { label: tMenu('undergraduate.items.clubs'), href: sectionTabHref('undergraduate', 'clubs') },
           { label: club.name },
         ]}
       />
-      {/* 뒤로가기 — 동아리 목록(학부#clubs)으로. history.back 대신 명시적 링크라
+      {/* 뒤로가기 — 동아리 목록(/undergraduate/clubs)으로. history.back 대신 명시적 링크라
           진입 경로와 무관하게 항상 목록으로 돌아간다. */}
       <Container className="pt-8 lg:pt-10">
         <Link
-          href="/undergraduate#clubs"
+          href={sectionTabHref('undergraduate', 'clubs')}
           className="group inline-flex items-center gap-2 text-sm font-semibold text-content-soft transition-colors hover:text-yonsei-navy focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yonsei-blue"
         >
           <span

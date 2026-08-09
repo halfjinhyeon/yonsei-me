@@ -21,7 +21,13 @@ import { pick, type BoardPost } from '@/lib/content';
 import { fetchBoardPost, postsBodyFormat } from '@/lib/posts';
 import { documentMetadata } from '@/lib/seo';
 import { htmlToDescription } from '@/lib/excerpt';
-import { DEFAULT_NEWS_TAB, boardPostHref, newsTabHref } from '@/lib/board-links';
+import {
+  DEFAULT_NEWS_TAB,
+  boardPostHref,
+  newsTabHref,
+  sectionDefaultHref,
+  sectionTabHref,
+} from '@/lib/board-links';
 import { getNewsTabs, getResearchTabs } from './tabs';
 import type { Locale } from '@/i18n/routing';
 
@@ -78,14 +84,18 @@ export async function BoardPostDetail({ locale, id, board }: BoardPostRouteParam
     : tMenu(`news.items.${post.boardKey}`);
   const tabs = isResearch ? await getResearchTabs(l) : await getNewsTabs(l);
   const sectionLabel = isResearch ? tMenu('research.label') : tMenu('news.label');
-  // 섹션 크럼: 연구는 페이지가 한 장이고, 뉴스는 기본 탭이 곧 섹션 첫 화면이다
-  // (`/news` 로 걸면 308 을 한 번 더 탄다).
-  const sectionHref = isResearch ? '/research' : newsTabHref(DEFAULT_NEWS_TAB);
-  // 목록으로 돌아가기: 뉴스는 그 게시판의 목록 경로, 인턴은 연구의 콘텐츠 탭(해시가 현역).
+  // 섹션 크럼: 양쪽 다 기본 탭이 곧 섹션 첫 화면이다
+  // (`/news`·`/research` 로 걸면 308 을 한 번 더 탄다).
+  const sectionHref = isResearch
+    ? sectionDefaultHref('research')
+    : newsTabHref(DEFAULT_NEWS_TAB);
+  // 목록으로 돌아가기: 뉴스는 그 게시판의 목록 경로, 인턴은 연구의 인턴 모집 목록 경로.
   // isResearch 대신 boardKey 를 직접 비교하는 것은 타입 좁히기용이다 — newsTabHref 는
   // 뉴스 탭 세그먼트만 받는데, boolean 을 거치면 'internships' 가 걸러지지 않는다.
   const backHref =
-    post.boardKey === 'internships' ? '/research#internships' : newsTabHref(post.boardKey);
+    post.boardKey === 'internships'
+      ? sectionTabHref('research', 'internships')
+      : newsTabHref(post.boardKey);
   const author = post.meta ? pick(post.meta, l) : t('detail.defaultAuthor');
 
   // 자료실만 '분류' 메타 행을 한 줄 더 세운다. 공지의 학부/대학원 구분은 이미 위

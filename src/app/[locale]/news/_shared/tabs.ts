@@ -9,7 +9,7 @@
  */
 import { getTranslations } from 'next-intl/server';
 import type { BoardShellTab } from '@/components/BoardShell';
-import { NEWS_TABS, newsTabHref } from '@/lib/board-links';
+import { NEWS_TABS, newsTabHref, sectionTabHref } from '@/lib/board-links';
 import type { Locale } from '@/i18n/routing';
 
 /**
@@ -28,8 +28,8 @@ export async function getNewsTabs(locale: Locale): Promise<BoardShellTab[]> {
 
 /**
  * 인턴 모집 상세(`/research/internships/<id>`)가 쓰는 연구 탭.
- * 연구 페이지는 아직 **콘텐츠 탭(TabbedContent)** 이라 해시가 현역 문법이다 —
- * 그래서 href 가 `/research#<key>` 다. 뉴스처럼 경로로 쪼개지 않는다.
+ * 연구 탭도 경로가 됐으므로(`/research/<key>`) href 는 sectionTabHref 로 만든다 —
+ * 해시 문법은 폐기됐다.
  *
  * 목록에 'recruit'(교수 초빙)가 빠져 있는 것은 기존 동작 그대로다 — 상세 셸의 탭 구성을
  * 이번 개편에서 바꾸지 않는다(연구 탭 자체 개편 때 함께 정리할 일).
@@ -41,6 +41,6 @@ export async function getResearchTabs(locale: Locale): Promise<BoardShellTab[]> 
   return RESEARCH_TAB_KEYS.map((key) => ({
     key,
     label: tMenu(`research.items.${key}`),
-    href: `/research#${key}`,
+    href: sectionTabHref('research', key),
   }));
 }

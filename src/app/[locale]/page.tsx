@@ -22,7 +22,13 @@ import heroSlidesData from '@content/hero-slides.json';
 import instagramData from '@content/instagram.json';
 import editorialTabs from '@content/editorial-tabs.json';
 import { getLabsDirectoryRuntime } from '@/lib/content-runtime';
-import { alumniEventHref, boardPostHref, newsArticleHref, newsTabHref } from '@/lib/board-links';
+import {
+  alumniEventHref,
+  boardPostHref,
+  newsArticleHref,
+  newsTabHref,
+  sectionTabHref,
+} from '@/lib/board-links';
 import { pageAlternates } from '@/lib/seo';
 import type { Metadata } from 'next';
 import type { Locale } from '@/i18n/routing';
@@ -67,14 +73,26 @@ export default async function HomePage({ params }: { params: { locale: string } 
   // 바로가기 4종 — menu.ts 와 동일 라우트, 라벨은 기존 menu.* 키 재사용.
   // desc(연결 탭 설명)만 home.goals.links.* 신규 키.
   const goalLinks = [
-    { label: tMenu('about.items.faculty'), href: '/about#faculty', desc: t('goals.links.faculty') },
-    { label: tMenu('research.items.labs'), href: '/research#labs', desc: t('goals.links.labs') },
+    {
+      label: tMenu('about.items.faculty'),
+      href: sectionTabHref('about', 'faculty'),
+      desc: t('goals.links.faculty'),
+    },
+    {
+      label: tMenu('research.items.labs'),
+      href: sectionTabHref('research', 'labs'),
+      desc: t('goals.links.labs'),
+    },
     {
       label: tMenu('undergraduate.items.courses'),
-      href: '/undergraduate#courses',
+      href: sectionTabHref('undergraduate', 'courses'),
       desc: t('goals.links.courses'),
     },
-    { label: tMenu('about.items.careers'), href: '/about#careers', desc: t('goals.links.careers') },
+    {
+      label: tMenu('about.items.careers'),
+      href: sectionTabHref('about', 'careers'),
+      desc: t('goals.links.careers'),
+    },
   ];
 
   // 히어로 슬라이드(content/hero-slides.json) — 로케일 라벨 해석 후 클라이언트로 전달.

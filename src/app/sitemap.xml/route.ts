@@ -9,12 +9,15 @@ import {
 import { getClubsRuntime } from '@/lib/content-runtime';
 import { getFacultyProfileNames } from '@/lib/faculty';
 import {
+  CONTENT_SECTIONS,
   NEWS_TABS,
   alumniEventHref,
   alumniNewsHref,
   boardPostHref,
   newsArticleHref,
   newsTabHref,
+  sectionTabHref,
+  type ContentSection,
 } from '@/lib/board-links';
 
 // 검색엔진용 XML 사이트맵 → /sitemap.xml
@@ -35,8 +38,11 @@ import {
 //    → koOnly 로 판정되면 /en URL 자체를 싣지 않는다.
 // 3) 게시판 URL 은 경로 기반(2026-08 개편): /news/<탭>, /news/<탭>/<id>,
 //    /news/press/<slug>, /research/internships/<id>, /alumni/news|network[/<id>].
-//    구 경로(/news, /news/post/<id>, /alumni/post/<id>)는 308 리다이렉트라 사이트맵에
-//    싣지 않는다 — 리다이렉트 URL 은 색인 대상이 아니고 크롤 홉만 늘린다.
+//    2차 개편에서 콘텐츠 4개 섹션(소개·학부·대학원·연구)의 세부탭도 경로가 됐다:
+//    /about/history … /research/recruit (CONTENT_SECTIONS 24개).
+//    구 경로(/news, /about, /undergraduate, /graduate, /research, /news/post/<id>,
+//    /alumni/post/<id>)는 전부 308 리다이렉트라 사이트맵에 싣지 않는다 —
+//    리다이렉트 URL 은 색인 대상이 아니고 크롤 홉만 늘린다.
 //    ⚠️ 경로를 여기서 문자열로 조립하지 마라. @/lib/board-links 헬퍼가 단일 출처이고,
 //       손으로 적으면 다음 개편 때 사이트맵만 옛 경로를 광고하게 된다.
 export const revalidate = 300;
@@ -93,12 +99,18 @@ export async function GET() {
   // lastmod 는 넣지 않는다 — 배포 시각은 문서의 수정일이 아니다.
   const STATIC_PATHS = [
     '',
-    'about',
-    'undergraduate',
-    'graduate',
     'academics',
     'admission',
-    'research',
+    // 콘텐츠 세부탭 24개 — 소개 6 · 학부 8 · 대학원 4 · 연구 6.
+    // 섹션 루트(/about 등)는 기본 탭으로 308 이라 싣지 않는다(그래서 여기 없다).
+    // CONTENT_SECTIONS 에서 뽑아 오므로 탭이 늘면 사이트맵도 따라온다.
+    // (CONTENT_SECTIONS 가 as const 라 값이 서로 다른 리터럴 튜플이다 —
+    //  유니온 튜플에는 .map 을 바로 못 부르므로 readonly string[] 으로 넓힌다)
+    ...(Object.keys(CONTENT_SECTIONS) as ContentSection[]).flatMap((section) =>
+      (CONTENT_SECTIONS[section] as readonly string[]).map((key) =>
+        sectionTabHref(section, key).slice(1),
+      ),
+    ),
     // 소식 게시판 8개 — 탭이 곧 경로다(/news 자체는 기본 탭으로 308, 그래서 빠졌다).
     // NEWS_TABS 에서 뽑아 오므로 탭이 늘면 사이트맵도 따라온다.
     ...NEWS_TABS.map((t) => newsTabHref(t.seg).slice(1)),
