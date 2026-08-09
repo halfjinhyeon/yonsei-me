@@ -27,7 +27,7 @@ import {
   type BoardMeta,
   type EditRecord,
 } from '@/lib/admin/boards';
-import type { RepoConfig } from '@/lib/admin/github';
+import type { RepoConfig } from '@/lib/admin/content-api';
 import { clearPostDraft, postDraftKey } from '@/lib/admin/post-draft';
 import { uploadAttachment } from '@/lib/admin/storage';
 import { CalendarEditor } from './CalendarEditor';

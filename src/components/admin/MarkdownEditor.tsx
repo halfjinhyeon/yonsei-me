@@ -6,8 +6,7 @@
 // (한국어 UI 문자열은 내부 운영 도구라 컴포넌트에 직접 둔다.)
 
 import { useCallback, useEffect, useState } from 'react';
-import { commitText, loadText, savedBanner } from '@/lib/admin/content-api';
-import type { RepoConfig } from '@/lib/admin/github';
+import { commitText, loadText, savedBanner, type RepoConfig } from '@/lib/admin/content-api';
 import { hasTableBlock } from '@/lib/admin/markdown-blocks';
 import type { MarkdownPageDef } from '@/lib/admin/resources';
 import { Prose } from '@/components/Prose';

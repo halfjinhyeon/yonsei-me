@@ -1,19 +1,38 @@
 // 관리자 콘솔 전용 콘텐츠 저장 클라이언트 — 백엔드 전환 Stage C. (클라이언트에서만 사용)
 //
-// github.ts(브라우저 → GitHub Contents API 직접 커밋 → Vercel 재배포 1~2분)를 대체한다.
+// 구 github.ts(브라우저 → GitHub Contents API 직접 커밋 → Vercel 재배포 1~2분)를
+// 대체했다(그 파일은 제거됨 — 타입과 시그니처는 여기로 옮겨 호환을 유지한다).
 // 읽기·쓰기 모두 같은 출처의 /api/admin/content 를 거치고, 서버가 Supabase
 // content_files 를 갱신한 뒤 revalidateTag('content') 를 호출해 재배포 없이 수 초 내
 // 사이트에 반영된다. 브라우저는 저장소 토큰을 더 이상 쓰지 않는다(세션으로 인증).
 //
-// ⚠️ 함수 시그니처는 github.ts 와 일부러 똑같이 맞췄다 — 호출부(CollectionEditor·
+// ⚠️ 함수 시그니처는 구 github.ts 와 일부러 똑같이 맞췄다 — 호출부(CollectionEditor·
 // MarkdownEditor·AdminDashboard) 디프를 최소화하기 위한 호환이다. 그래서
 // RepoConfig 인자와 커밋 메시지 인자를 받되 사용하지 않는다(아래 각 함수 주석 참고).
 // sha 자리에는 GitHub blob sha 대신 행 버전(version)의 문자열이 들어간다
 // (빈 문자열 = 버전 없음 = dev 로컬 파일 저장 — 충돌 검사를 하지 않는다).
 //
-// (한국어 문자열은 내부 운영 도구의 UI 문구라 모듈에 직접 둔다 — github.ts 와 동일.)
+// (한국어 문자열은 내부 운영 도구의 UI 문구라 모듈에 직접 둔다.)
 
-import type { CommitResult, LoadedFile, RepoConfig } from './github';
+/** 구 GitHub 커밋 경로의 저장소 설정 — 이제 UI 라벨과 dev 판별(token 유무)에만 쓰인다 */
+export interface RepoConfig {
+  token: string;
+  owner: string;
+  repo: string;
+  branch: string;
+}
+
+/** 파일 로드 결과: 파싱된 값과 저장에 필요한 최신 sha(=행 버전 문자열) */
+export interface LoadedFile<T> {
+  data: T;
+  sha: string;
+}
+
+/** 저장 성공 응답 중 호출부가 쓰는 필드 (htmlUrl 은 GitHub 커밋 링크 자리 — 항상 빈 문자열) */
+export interface CommitResult {
+  sha: string;
+  htmlUrl: string;
+}
 
 const API = '/api/admin/content';
 

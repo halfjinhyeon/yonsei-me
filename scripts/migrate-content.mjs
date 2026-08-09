@@ -26,7 +26,7 @@ import { join } from 'node:path';
 import { spawnSync } from 'node:child_process';
 import { createClient } from '@supabase/supabase-js';
 
-// ── .env.local 로더 (scripts/migrate-boards.mjs 와 동일) ──
+// ── .env.local 로더 (dotenv 없이 최소 구현 — check-backend.mjs 와 동일) ──
 if (existsSync('.env.local')) {
   for (const line of readFileSync('.env.local', 'utf8').split(/\r?\n/)) {
     const m = line.match(/^([A-Za-z_][A-Za-z0-9_]*)=(.*)$/);

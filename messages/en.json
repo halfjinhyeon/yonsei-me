@@ -8,7 +8,6 @@
   "nav": {
     "about": "About",
     "faculty": "Faculty",
-    "academics": "Academics",
     "research": "Research",
     "news": "News",
     "admission": "Admissions",
@@ -290,10 +289,6 @@
     "shortcuts": {
       "title": "Quick Links",
       "subtitle": "Jump straight to what you need.",
-      "academics": {
-        "title": "Academics",
-        "desc": "Undergraduate & graduate curriculum"
-      },
       "research": {
         "title": "Research",
         "desc": "Labs and research themes"
@@ -474,12 +469,6 @@
         "awards": "Awards",
         "conferences": "Conference Papers"
       }
-    }
-  },
-  "academics": {
-    "hero": {
-      "title": "Academics",
-      "subtitle": "A structured undergraduate and graduate curriculum."
     }
   },
   "research": {

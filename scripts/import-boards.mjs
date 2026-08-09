@@ -42,8 +42,9 @@
 //
 // 두 번째 줄이 핵심이다. 손으로 옮긴 53건 중 뉴스 7건은 본문이 원문 복사가 아니라
 // 다듬어 다시 쓴 글이다. 원문(가공 전 Froala)으로 덮으면 그냥 품질 하락이다.
-// link-existing-posts.mjs 가 그 글들에 source_url 을 채우는 목적은 "중복 적재를
-// 막는 것"이지 "갱신 대상으로 삼는 것"이 아니다 — 그래서 import_managed=false 인
+// 그 글들에 source_url 을 채운 목적(구 link-existing-posts.mjs — 완료 후 삭제, git
+// 이력에 있음)은 "중복 적재를 막는 것"이지 "갱신 대상으로 삼는 것"이 아니다
+// — 그래서 import_managed=false 인
 // 행을 만나면 created_at 하나도 건드리지 않고 건너뛰고, 그 수를 건너뜀(수동)으로
 // 따로 보고한다(손 작업이 살아남았다는 증거).
 //
@@ -60,7 +61,7 @@ import { createClient } from '@supabase/supabase-js';
 import { S3Client, PutObjectCommand, HeadObjectCommand } from '@aws-sdk/client-s3';
 import sanitizeHtml from 'sanitize-html';
 
-// ── .env.local 로더 (scripts/migrate-boards.mjs 와 동일 방식) ──
+// ── .env.local 로더 (scripts/migrate-content.mjs 와 동일 방식) ──
 // cwd 가 yonsei-me 인 것이 정상이지만, 스크립트 위치 기준 경로도 한 번 더 본다.
 {
   const here = dirname(fileURLToPath(import.meta.url));

@@ -14,7 +14,7 @@
 
 import { createContext, useContext, useEffect } from 'react';
 import { cn } from '@/lib/utils';
-import type { RepoConfig } from '@/lib/admin/github';
+import type { RepoConfig } from '@/lib/admin/content-api';
 import type { MenuEntry } from '@/lib/admin/resources';
 import type { CmsBannerData } from './CmsBanner';
 

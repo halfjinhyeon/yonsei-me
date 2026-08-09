@@ -21,7 +21,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { cn } from '@/lib/utils';
 import { type BoardKey } from '@/lib/admin/boards';
-import { type RepoConfig } from '@/lib/admin/github';
+import { type RepoConfig } from '@/lib/admin/content-api';
 import { getMarkdownPage, getResource, MENU_GROUPS, type MenuEntry } from '@/lib/admin/resources';
 import { AdminDashboard } from './AdminDashboard';
 import {

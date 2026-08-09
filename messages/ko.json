@@ -8,7 +8,6 @@
   "nav": {
     "about": "학부소개",
     "faculty": "교수진",
-    "academics": "교육과정",
     "research": "연구",
     "news": "소식",
     "admission": "입학 안내",
@@ -290,10 +289,6 @@
     "shortcuts": {
       "title": "주요 바로가기",
       "subtitle": "자주 찾는 정보로 빠르게 이동하세요.",
-      "academics": {
-        "title": "교육과정",
-        "desc": "학부·대학원 커리큘럼과 학사 안내"
-      },
       "research": {
         "title": "연구분야",
         "desc": "연구실과 연구 주제 소개"
@@ -474,12 +469,6 @@
         "awards": "수상 (Awards)",
         "conferences": "학술활동 (Conference Papers)"
       }
-    }
-  },
-  "academics": {
-    "hero": {
-      "title": "교육과정",
-      "subtitle": "학부와 대학원의 체계적인 커리큘럼과 학사 안내."
     }
   },
   "research": {

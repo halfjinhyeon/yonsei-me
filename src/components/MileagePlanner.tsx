@@ -3,17 +3,9 @@
 import { Fragment, useCallback, useEffect, useMemo, useState } from 'react';
 import { cn } from '@/lib/utils';
 import { SegmentedControl } from '@/components/SegmentedControl';
-import {
-  adjustTieWin,
-  admitProbability,
-  allocate,
-  distributionFor,
-  efficientFrontier,
-  histogramBars,
-  mileageForProbability,
-  probabilityAtLeast,
-  type AllocEntry,
-} from '@/lib/mileage';
+import { allocate, efficientFrontier, type AllocEntry } from '@/lib/mileage/allocate';
+import { distributionFor, histogramBars, probabilityAtLeast } from '@/lib/mileage/distribute';
+import { adjustTieWin, admitProbability, mileageForProbability } from '@/lib/mileage/predict';
 import {
   confidenceOf,
   confidenceReason,

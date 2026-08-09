@@ -43,8 +43,8 @@ alter table posts add column if not exists link_url text;
 alter table posts add column if not exists pinned boolean not null default false;
 -- 원문 게시물 주소 — 현행 학과 사이트에서 옮겨 온 글의 출처.
 -- 이전 스크립트(scripts/import-boards.mjs)의 멱등 키이자 중복 적재 방지선이고,
--- 사람이 눌러 원문을 바로 대조할 수 있는 값이기도 하다. 손으로 옮긴 글은
--- scripts/link-existing-posts.mjs 가 뒤늦게 채워 넣는다. 창작 글은 null 로 남는다.
+-- 사람이 눌러 원문을 바로 대조할 수 있는 값이기도 하다. 손으로 옮긴 글은 일회성
+-- 연결 스크립트(구 link-existing-posts.mjs, 완료 후 삭제)가 채웠다. 창작 글은 null 로 남는다.
 alter table posts add column if not exists source_url text;
 -- 이 행을 누가 만들었는가. true = 임포터가 만든 행(재크롤 시 제목·본문 갱신 대상),
 -- false = 사람이 손으로 쓴 행(불가침). 손으로 옮긴 글도 source_url 은 갖는다 —

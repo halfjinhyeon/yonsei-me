@@ -18,8 +18,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { cn } from '@/lib/utils';
 import { BOARDS, type BoardMeta } from '@/lib/admin/boards';
-import { loadJson } from '@/lib/admin/content-api';
-import type { RepoConfig } from '@/lib/admin/github';
+import { loadJson, type RepoConfig } from '@/lib/admin/content-api';
 import { MENU_GROUPS, RESOURCES, type MenuEntry } from '@/lib/admin/resources';
 import {
   ALL_ENTRIES,

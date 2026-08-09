@@ -239,7 +239,7 @@ function DecadeSection({
         ref={header.ref}
         className={cn(
           // 연대 라벨 — 볼드 유지, 크기는 한 단계 축소(항목 연도 타이포에 주역을 양보)
-          'relative mb-10 pl-10 font-display text-2xl font-bold text-yonsei-navy transition-all duration-700 ease-out-expo motion-reduce:transition-none sm:text-3xl lg:pl-0 lg:text-center',
+          'relative mb-10 pl-10 text-2xl font-bold text-yonsei-navy transition-all duration-700 ease-out-expo motion-reduce:transition-none sm:text-3xl lg:pl-0 lg:text-center',
           header.visible ? 'translate-y-0 opacity-100' : 'translate-y-7 opacity-0',
         )}
       >

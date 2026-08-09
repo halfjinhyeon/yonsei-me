@@ -23,8 +23,8 @@ import {
   loadJsonOptional,
   loadTextOptional,
   savedBanner,
+  type RepoConfig,
 } from '@/lib/admin/content-api';
-import type { RepoConfig } from '@/lib/admin/github';
 import { uploadAttachment } from '@/lib/admin/storage';
 import {
   arrayToRecord,

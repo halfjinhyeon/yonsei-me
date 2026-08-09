@@ -52,7 +52,6 @@ const config: Config = {
       },
       fontFamily: {
         sans: ['var(--font-sans)', 'Pretendard', 'system-ui', 'sans-serif'],
-        display: ['var(--font-display)', 'var(--font-sans)', 'sans-serif'],
       },
       fontSize: {
         // 타이포 스케일

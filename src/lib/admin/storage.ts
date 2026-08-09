@@ -13,10 +13,25 @@
 //  - 큰 파일(>4MB, 서버리스 본문 한도 초과): /api/upload-url 에서 presigned PUT 을
 //    받아 R2 로 직접 업로드. ⚠ 교차 출처라 일부 사내망에서 막힐 수 있다(에러에 안내).
 
-import { base64FromBytes, isLocalBackend, type RepoConfig } from './github';
+import type { RepoConfig } from './content-api';
 import { MAX_UPLOAD_BYTES, SERVER_RELAY_MAX } from './upload-validate';
 
 export { MAX_UPLOAD_BYTES };
+
+/** 이 설정이 dev 로컬 백엔드를 써야 하는지 (토큰 없음 = dev 개방 모드) — 구 github.ts 에서 이식 */
+function isLocalBackend(cfg: RepoConfig): boolean {
+  return !cfg.token;
+}
+
+/** 원시 바이트를 base64 로 (dev 로컬 백엔드가 JSON 본문에 바이너리를 실을 때) */
+function base64FromBytes(bytes: Uint8Array): string {
+  let binary = '';
+  const chunk = 0x8000; // 큰 파일에서 스택 초과 방지용 청크
+  for (let i = 0; i < bytes.length; i += chunk) {
+    binary += String.fromCharCode(...bytes.subarray(i, i + chunk));
+  }
+  return btoa(binary);
+}
 
 /** 업로드 진행 단계 — 폼이 사용자에게 "지금 무엇을 하는 중인지" 표시하는 데 쓴다. */
 export type UploadPhase = 'preparing' | 'requesting' | 'uploading' | 'done';

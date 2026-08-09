@@ -99,7 +99,6 @@ export async function GET() {
   // lastmod 는 넣지 않는다 — 배포 시각은 문서의 수정일이 아니다.
   const STATIC_PATHS = [
     '',
-    'academics',
     'admission',
     // 콘텐츠 세부탭 24개 — 소개 6 · 학부 8 · 대학원 4 · 연구 6.
     // 섹션 루트(/about 등)는 기본 탭으로 308 이라 싣지 않는다(그래서 여기 없다).
