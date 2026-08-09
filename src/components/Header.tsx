@@ -28,7 +28,7 @@ function Chevron({ className }: { className?: string }) {
 /**
  * 상단 글로벌 헤더 — Cornell식 편집형 내비게이션.
  * 히어로 위에서는 투명(흰 텍스트), 스크롤/드로어 열림 시 흰 배경 + 진한 텍스트로 반전.
- * 같은 페이지 해시 링크의 탭 전환은 TabbedContent가 클릭/해시 변경을 감지해 처리한다.
+ * 메뉴 항목은 전부 실제 경로 링크다(탭 경로화 이후 해시 문법 폐기 — menu.ts 참고).
  */
 export function Header() {
   const t = useTranslations('nav');
@@ -317,9 +317,9 @@ export function Header() {
       </Container>
 
       {/* 모바일 드로어 (아코디언) — 흰 배경.
-          닫기는 pathname 변경 effect 만으로는 부족하다 — 메뉴 항목 대부분이 해시
-          링크(/undergraduate#checker 등)라 같은 페이지 내 이동은 pathname 이 안
-          바뀐다. 링크 클릭이면 무조건 닫는 클릭 위임을 함께 건다(버그 수정). */}
+          메뉴가 전부 경로 링크가 된 지금은 pathname 변경 effect 만으로도 대부분 닫히지만,
+          현재 페이지와 같은 경로를 다시 눌렀을 때(pathname 불변)도 닫혀야 하므로
+          링크 클릭이면 무조건 닫는 클릭 위임을 유지한다. */}
       <div
         id="mobile-menu"
         onClick={(e) => {
