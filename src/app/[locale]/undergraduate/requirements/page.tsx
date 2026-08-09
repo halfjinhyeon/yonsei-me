@@ -2,14 +2,14 @@ import type { Metadata } from 'next';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { RequirementsAccordion } from '@/components/RequirementsAccordion';
 import { getUndergraduateRequirementSections } from '@/lib/pages';
-import { UndergraduateTabPage, undergraduateTabMetadata } from '../_shared/UndergraduateTabPage';
+import { SectionTabPage, sectionTabMetadata } from '../../_shared/section-tabs';
 
 export async function generateMetadata({
   params,
 }: {
   params: { locale: string };
 }): Promise<Metadata> {
-  return undergraduateTabMetadata(params.locale, 'requirements');
+  return sectionTabMetadata(params.locale, 'undergraduate', 'requirements');
 }
 
 /** 졸업 요건 — 학번대별 아코디언 */
@@ -38,8 +38,8 @@ export default async function UndergraduateRequirementsPage({
   });
 
   return (
-    <UndergraduateTabPage locale={params.locale} tab="requirements">
+    <SectionTabPage locale={params.locale} section="undergraduate" tab="requirements">
       <RequirementsAccordion items={reqSections} earlierLabel={earlierLabel} />
-    </UndergraduateTabPage>
+    </SectionTabPage>
   );
 }

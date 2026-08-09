@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { ClubGrid } from '@/components/ClubGrid';
 import { getClubsRuntime } from '@/lib/content-runtime';
-import { UndergraduateTabPage, undergraduateTabMetadata } from '../_shared/UndergraduateTabPage';
+import { SectionTabPage, sectionTabMetadata } from '../../_shared/section-tabs';
 
 // 콘텐츠 소스 전환(Stage A): 동아리 인덱스가 데이터 레이어를 읽는다 — ISR 안전망
 export const revalidate = 300;
@@ -12,7 +12,7 @@ export async function generateMetadata({
 }: {
   params: { locale: string };
 }): Promise<Metadata> {
-  return undergraduateTabMetadata(params.locale, 'clubs');
+  return sectionTabMetadata(params.locale, 'undergraduate', 'clubs');
 }
 
 /**
@@ -28,8 +28,8 @@ export default async function UndergraduateClubsPage({ params }: { params: { loc
   const clubs = await getClubsRuntime();
 
   return (
-    <UndergraduateTabPage locale={params.locale} tab="clubs">
+    <SectionTabPage locale={params.locale} section="undergraduate" tab="clubs">
       <ClubGrid items={clubs} moreLabel={tFaculty('moreLabel')} />
-    </UndergraduateTabPage>
+    </SectionTabPage>
   );
 }

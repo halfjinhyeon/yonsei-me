@@ -1,8 +1,7 @@
 import type { Metadata } from 'next';
 import { setRequestLocale } from 'next-intl/server';
 import { getPageMarkdownRuntime } from '@/lib/content-runtime';
-import { GraduateTabPage } from '../_shared/GraduateTabPage';
-import { graduateTabMetadata } from '../_shared/tabs';
+import { SectionTabPage, sectionTabMetadata } from '../../_shared/section-tabs';
 
 // 콘텐츠 소스 전환(Stage A): 본문이 데이터 레이어를 읽는다 — ISR 안전망
 export const revalidate = 300;
@@ -12,7 +11,7 @@ export async function generateMetadata({
 }: {
   params: { locale: string };
 }): Promise<Metadata> {
-  return graduateTabMetadata(params.locale, 'bk21');
+  return sectionTabMetadata(params.locale, 'graduate', 'bk21');
 }
 
 /** BK21 FOUR — content/pages/graduate-bk21.md 를 Prose 로 렌더(셸이 처리) */
@@ -20,5 +19,5 @@ export default async function GraduateBk21Page({ params }: { params: { locale: s
   setRequestLocale(params.locale);
   const markdown = await getPageMarkdownRuntime('graduate-bk21');
 
-  return <GraduateTabPage locale={params.locale} tab="bk21" markdown={markdown} />;
+  return <SectionTabPage locale={params.locale} section="graduate" tab="bk21" markdown={markdown} />;
 }

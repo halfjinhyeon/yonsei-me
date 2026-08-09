@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { setRequestLocale } from 'next-intl/server';
 import { GraduationChecker } from '@/components/GraduationChecker';
 import { getCheckerData } from '@/lib/checker';
-import { UndergraduateTabPage, undergraduateTabMetadata } from '../_shared/UndergraduateTabPage';
+import { SectionTabPage, sectionTabMetadata } from '../../_shared/section-tabs';
 import type { Locale } from '@/i18n/routing';
 
 export async function generateMetadata({
@@ -10,7 +10,7 @@ export async function generateMetadata({
 }: {
   params: { locale: string };
 }): Promise<Metadata> {
-  return undergraduateTabMetadata(params.locale, 'checker');
+  return sectionTabMetadata(params.locale, 'undergraduate', 'checker');
 }
 
 /**
@@ -24,8 +24,8 @@ export default function UndergraduateCheckerPage({ params }: { params: { locale:
   const locale = params.locale as Locale;
 
   return (
-    <UndergraduateTabPage locale={params.locale} tab="checker">
+    <SectionTabPage locale={params.locale} section="undergraduate" tab="checker">
       <GraduationChecker data={getCheckerData()} locale={locale} />
-    </UndergraduateTabPage>
+    </SectionTabPage>
   );
 }

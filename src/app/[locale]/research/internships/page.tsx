@@ -5,7 +5,7 @@ import { type BoardRow } from '@/components/BoardList';
 import { pick } from '@/lib/content';
 import { fetchBoardData } from '@/lib/posts';
 import { boardPostHref } from '@/lib/board-links';
-import { ResearchTabPage, researchTabMetadata } from '../_shared/ResearchTabPage';
+import { SectionTabPage, sectionTabMetadata } from '../../_shared/section-tabs';
 import type { Locale } from '@/i18n/routing';
 
 // 인턴 모집 게시판이 DB(posts)를 읽으므로 페이지를 ISR — revalidateTag('posts')가 즉시 갱신
@@ -16,7 +16,7 @@ export async function generateMetadata({
 }: {
   params: { locale: string };
 }): Promise<Metadata> {
-  return researchTabMetadata(params.locale, 'internships');
+  return sectionTabMetadata(params.locale, 'research', 'internships');
 }
 
 /**
@@ -47,8 +47,8 @@ export default async function ResearchInternshipsPage({
   }));
 
   return (
-    <ResearchTabPage locale={params.locale} tab="internships">
+    <SectionTabPage locale={params.locale} section="research" tab="internships">
       <FilterableBoardList items={internItems} locale={locale} emptyLabel={tStub('empty')} />
-    </ResearchTabPage>
+    </SectionTabPage>
   );
 }

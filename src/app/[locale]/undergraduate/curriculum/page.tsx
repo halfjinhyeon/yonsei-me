@@ -5,7 +5,7 @@ import {
   getCoursesUndergraduateRuntime,
   getCourseDescriptionsRuntime,
 } from '@/lib/content-runtime';
-import { UndergraduateTabPage, undergraduateTabMetadata } from '../_shared/UndergraduateTabPage';
+import { SectionTabPage, sectionTabMetadata } from '../../_shared/section-tabs';
 import type { Locale } from '@/i18n/routing';
 
 // 콘텐츠 소스 전환(Stage A): 교과목·설명이 데이터 레이어를 읽는다 — ISR 안전망
@@ -16,7 +16,7 @@ export async function generateMetadata({
 }: {
   params: { locale: string };
 }): Promise<Metadata> {
-  return undergraduateTabMetadata(params.locale, 'curriculum');
+  return sectionTabMetadata(params.locale, 'undergraduate', 'curriculum');
 }
 
 /** 교과목 체계도 — 스윔레인 + 선수·연계 직각 화살표(구 CurriculumRoadmap 대체) */
@@ -33,12 +33,12 @@ export default async function UndergraduateCurriculumPage({
   const courseDescriptions = await getCourseDescriptionsRuntime();
 
   return (
-    <UndergraduateTabPage locale={params.locale} tab="curriculum">
+    <SectionTabPage locale={params.locale} section="undergraduate" tab="curriculum">
       <CurriculumFlow
         locale={locale}
         courses={coursesUndergraduate}
         descriptions={courseDescriptions}
       />
-    </UndergraduateTabPage>
+    </SectionTabPage>
   );
 }

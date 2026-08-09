@@ -1,9 +1,7 @@
 import type { Metadata } from 'next';
 import { setRequestLocale } from 'next-intl/server';
 import { EditorialTab, getEditorialTab } from '@/components/EditorialTab';
-import { LegacyBoardHash } from '@/components/LegacyBoardHash';
-import { legacySectionHash } from '@/lib/board-links';
-import { UndergraduateTabPage, undergraduateTabMetadata } from '../_shared/UndergraduateTabPage';
+import { SectionTabPage, sectionTabMetadata } from '../../_shared/section-tabs';
 import type { Locale } from '@/i18n/routing';
 
 export async function generateMetadata({
@@ -11,7 +9,7 @@ export async function generateMetadata({
 }: {
   params: { locale: string };
 }): Promise<Metadata> {
-  return undergraduateTabMetadata(params.locale, 'goals');
+  return sectionTabMetadata(params.locale, 'undergraduate', 'goals');
 }
 
 /** 교육 목표 — 학부 섹션의 기본 탭(`/undergraduate` 는 여기로 308) */
@@ -19,18 +17,14 @@ export default function UndergraduateGoalsPage({ params }: { params: { locale: s
   setRequestLocale(params.locale);
   const locale = params.locale as Locale;
 
+  // 구 해시 북마크 구제(LegacyBoardHash)는 셸이 기본 탭에 자동으로 얹는다
   return (
-    <>
-      <UndergraduateTabPage locale={params.locale} tab="goals">
-        <EditorialTab
-          data={getEditorialTab('undergraduate-goals')}
-          locale={locale}
-          showcaseItems
-        />
-      </UndergraduateTabPage>
-      {/* 구 `/undergraduate#checker` 북마크 구제 — 해시는 서버에 오지 않아 클라이언트에서만
-          잡힌다(`/undergraduate` 308 → 기본 탭이 해시를 물고 도착한다) */}
-      <LegacyBoardHash map={legacySectionHash('undergraduate')} />
-    </>
+    <SectionTabPage locale={params.locale} section="undergraduate" tab="goals">
+      <EditorialTab
+        data={getEditorialTab('undergraduate-goals')}
+        locale={locale}
+        showcaseItems
+      />
+    </SectionTabPage>
   );
 }

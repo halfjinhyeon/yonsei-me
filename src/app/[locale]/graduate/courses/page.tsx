@@ -9,8 +9,7 @@ import {
   getCourseDescriptionsRuntime,
   getCoursesGraduateRuntime,
 } from '@/lib/content-runtime';
-import { GraduateTabPage } from '../_shared/GraduateTabPage';
-import { graduateTabMetadata } from '../_shared/tabs';
+import { SectionTabPage, sectionTabMetadata } from '../../_shared/section-tabs';
 
 // 콘텐츠 소스 전환(Stage A): 대학원 교과목이 데이터 레이어를 읽는다 — ISR 안전망
 export const revalidate = 300;
@@ -20,7 +19,7 @@ export async function generateMetadata({
 }: {
   params: { locale: string };
 }): Promise<Metadata> {
-  return graduateTabMetadata(params.locale, 'courses');
+  return sectionTabMetadata(params.locale, 'graduate', 'courses');
 }
 
 // 교과목 표 컬럼 — content/pages/graduate-courses.md 원본 표와 동일한 구성
@@ -38,7 +37,7 @@ export default async function GraduateCoursesPage({ params }: { params: { locale
   const courseDescriptions = await getCourseDescriptionsRuntime();
 
   return (
-    <GraduateTabPage locale={params.locale} tab="courses">
+    <SectionTabPage locale={params.locale} section="graduate" tab="courses">
       <CourseCatalog
         courses={coursesGraduate as CatalogCourse[]}
         columns={COURSE_COLUMNS}
@@ -50,6 +49,6 @@ export default async function GraduateCoursesPage({ params }: { params: { locale
         // 채우는 즉시 학부와 같은 모양으로 열이 붙는다.
         descriptions={courseDescriptions}
       />
-    </GraduateTabPage>
+    </SectionTabPage>
   );
 }

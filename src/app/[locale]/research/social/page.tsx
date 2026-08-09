@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { setRequestLocale } from 'next-intl/server';
 import { EditorialTab, getEditorialTab } from '@/components/EditorialTab';
-import { ResearchTabPage, researchTabMetadata } from '../_shared/ResearchTabPage';
+import { SectionTabPage, sectionTabMetadata } from '../../_shared/section-tabs';
 import type { Locale } from '@/i18n/routing';
 
 export async function generateMetadata({
@@ -9,7 +9,7 @@ export async function generateMetadata({
 }: {
   params: { locale: string };
 }): Promise<Metadata> {
-  return researchTabMetadata(params.locale, 'social');
+  return sectionTabMetadata(params.locale, 'research', 'social');
 }
 
 /** 사회난제 신문고 */
@@ -18,7 +18,7 @@ export default function ResearchSocialPage({ params }: { params: { locale: strin
   const locale = params.locale as Locale;
 
   return (
-    <ResearchTabPage locale={params.locale} tab="social">
+    <SectionTabPage locale={params.locale} section="research" tab="social">
       {/* 신문고 절차는 각진 정사각 상자 + 셰브런 인포그래픽으로 */}
       <EditorialTab
         data={getEditorialTab('research-social')}
@@ -26,6 +26,6 @@ export default function ResearchSocialPage({ params }: { params: { locale: strin
         boxedSteps
         landing="research-social"
       />
-    </ResearchTabPage>
+    </SectionTabPage>
   );
 }

@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { setRequestLocale } from 'next-intl/server';
 import { MileagePlanner } from '@/components/MileagePlanner';
-import { UndergraduateTabPage, undergraduateTabMetadata } from '../_shared/UndergraduateTabPage';
+import { SectionTabPage, sectionTabMetadata } from '../../_shared/section-tabs';
 import type { Locale } from '@/i18n/routing';
 
 export async function generateMetadata({
@@ -9,7 +9,7 @@ export async function generateMetadata({
 }: {
   params: { locale: string };
 }): Promise<Metadata> {
-  return undergraduateTabMetadata(params.locale, 'mileage');
+  return sectionTabMetadata(params.locale, 'undergraduate', 'mileage');
 }
 
 /**
@@ -23,8 +23,8 @@ export default function UndergraduateMileagePage({ params }: { params: { locale:
   const locale = params.locale as Locale;
 
   return (
-    <UndergraduateTabPage locale={params.locale} tab="mileage">
+    <SectionTabPage locale={params.locale} section="undergraduate" tab="mileage">
       <MileagePlanner locale={locale} />
-    </UndergraduateTabPage>
+    </SectionTabPage>
   );
 }

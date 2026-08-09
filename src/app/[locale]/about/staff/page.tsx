@@ -2,8 +2,7 @@ import type { Metadata } from 'next';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { pick } from '@/lib/content';
 import { getStaffRuntime } from '@/lib/content-runtime';
-import { AboutTabPage } from '../_shared/AboutTabPage';
-import { aboutTabMetadata } from '../_shared/tabs';
+import { SectionTabPage, sectionTabMetadata } from '../../_shared/section-tabs';
 import type { Locale } from '@/i18n/routing';
 
 // 콘텐츠 소스 전환(Stage A): 교직원이 데이터 레이어를 읽는다 — ISR 안전망
@@ -14,7 +13,7 @@ export async function generateMetadata({
 }: {
   params: { locale: string };
 }): Promise<Metadata> {
-  return aboutTabMetadata(params.locale, 'staff');
+  return sectionTabMetadata(params.locale, 'about', 'staff');
 }
 
 /**
@@ -28,7 +27,7 @@ export default async function AboutStaffPage({ params }: { params: { locale: str
   const staff = await getStaffRuntime();
 
   return (
-    <AboutTabPage locale={params.locale} tab="staff">
+    <SectionTabPage locale={params.locale} section="about" tab="staff">
       <div className="overflow-x-auto">
         <table className="w-full min-w-[560px] text-left text-[15px]">
           <thead className="border-b border-t-2 border-surface-border border-t-yonsei-navy">
@@ -57,6 +56,6 @@ export default async function AboutStaffPage({ params }: { params: { locale: str
           </tbody>
         </table>
       </div>
-    </AboutTabPage>
+    </SectionTabPage>
   );
 }

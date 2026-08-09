@@ -3,8 +3,7 @@ import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { ContactInfoPanel } from '@/components/ContactInfoPanel';
 import { DirectionsInfo } from '@/components/DirectionsInfo';
 import { KakaoMap } from '@/components/KakaoMap';
-import { AboutTabPage } from '../_shared/AboutTabPage';
-import { aboutTabMetadata } from '../_shared/tabs';
+import { SectionTabPage, sectionTabMetadata } from '../../_shared/section-tabs';
 import type { Locale } from '@/i18n/routing';
 
 export async function generateMetadata({
@@ -12,7 +11,7 @@ export async function generateMetadata({
 }: {
   params: { locale: string };
 }): Promise<Metadata> {
-  return aboutTabMetadata(params.locale, 'directions');
+  return sectionTabMetadata(params.locale, 'about', 'directions');
 }
 
 // 연세대 신촌캠퍼스 제4공학관 좌표 기반 카카오맵 링크 (한글 포함 → encodeURI)
@@ -34,7 +33,7 @@ export default async function AboutDirectionsPage({ params }: { params: { locale
   ];
 
   return (
-    <AboutTabPage locale={params.locale} tab="directions">
+    <SectionTabPage locale={params.locale} section="about" tab="directions">
       {/* 연락처 패널과 지도를 한 카드로 합침 — 각진 톤(라운드 없이 테두리+그림자).
           좌측 카드는 우측 지도보다 좁게(총폭은 컨테이너 고정이라 불변) */}
       <div className="grid overflow-hidden border border-surface-border shadow-card lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.5fr)]">
@@ -55,6 +54,6 @@ export default async function AboutDirectionsPage({ params }: { params: { locale
       </div>
       {/* 지하철·버스 교통편 안내 */}
       <DirectionsInfo locale={params.locale as Locale} />
-    </AboutTabPage>
+    </SectionTabPage>
   );
 }

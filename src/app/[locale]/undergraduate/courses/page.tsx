@@ -10,10 +10,10 @@ import {
   getCourseDescriptionsRuntime,
 } from '@/lib/content-runtime';
 import {
-  UndergraduateTabPage,
-  undergraduateEmptyLabel,
-  undergraduateTabMetadata,
-} from '../_shared/UndergraduateTabPage';
+  SectionTabPage,
+  sectionEmptyLabel,
+  sectionTabMetadata,
+} from '../../_shared/section-tabs';
 import type { Locale } from '@/i18n/routing';
 
 // 콘텐츠 소스 전환(Stage A): 교과목·설명이 데이터 레이어를 읽는다 — ISR 안전망
@@ -35,7 +35,7 @@ export async function generateMetadata({
 }: {
   params: { locale: string };
 }): Promise<Metadata> {
-  return undergraduateTabMetadata(params.locale, 'courses');
+  return sectionTabMetadata(params.locale, 'undergraduate', 'courses');
 }
 
 /** 교과목 소개 — 분야 필터 편람 표 */
@@ -50,10 +50,10 @@ export default async function UndergraduateCoursesPage({
   // 콘텐츠 데이터 — 소스(db/git)는 lib/content-runtime 이 판별.
   const coursesUndergraduate = await getCoursesUndergraduateRuntime();
   const courseDescriptions = await getCourseDescriptionsRuntime();
-  const emptyLabel = await undergraduateEmptyLabel(locale);
+  const emptyLabel = await sectionEmptyLabel(locale);
 
   return (
-    <UndergraduateTabPage locale={params.locale} tab="courses">
+    <SectionTabPage locale={params.locale} section="undergraduate" tab="courses">
       <CourseCatalog
         courses={coursesUndergraduate as CatalogCourse[]}
         columns={COURSE_COLUMNS}
@@ -63,6 +63,6 @@ export default async function UndergraduateCoursesPage({
         // 교과목 소개 본문 — 체계도(CurriculumFlow)와 같은 원본을 편람 표에도 노출
         descriptions={courseDescriptions}
       />
-    </UndergraduateTabPage>
+    </SectionTabPage>
   );
 }

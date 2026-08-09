@@ -2,8 +2,7 @@ import type { Metadata } from 'next';
 import { setRequestLocale } from 'next-intl/server';
 import { GraduateRequirementSteps } from '@/components/GraduateRequirementSteps';
 import { getPageMarkdownRuntime } from '@/lib/content-runtime';
-import { GraduateTabPage } from '../_shared/GraduateTabPage';
-import { graduateTabMetadata } from '../_shared/tabs';
+import { SectionTabPage, sectionTabMetadata } from '../../_shared/section-tabs';
 
 // 콘텐츠 소스 전환(Stage A): 본문이 데이터 레이어를 읽는다 — ISR 안전망
 export const revalidate = 300;
@@ -13,7 +12,7 @@ export async function generateMetadata({
 }: {
   params: { locale: string };
 }): Promise<Metadata> {
-  return graduateTabMetadata(params.locale, 'requirements');
+  return sectionTabMetadata(params.locale, 'graduate', 'requirements');
 }
 
 /**
@@ -30,8 +29,8 @@ export default async function GraduateRequirementsPage({
   const requirementsMarkdown = (await getPageMarkdownRuntime('graduate-requirements')) ?? '';
 
   return (
-    <GraduateTabPage locale={params.locale} tab="requirements">
+    <SectionTabPage locale={params.locale} section="graduate" tab="requirements">
       <GraduateRequirementSteps markdown={requirementsMarkdown} />
-    </GraduateTabPage>
+    </SectionTabPage>
   );
 }

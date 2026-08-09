@@ -4,7 +4,7 @@ import { LabList } from '@/components/LabList';
 import { pick } from '@/lib/content';
 import { type ResearchField } from '@/lib/faculty';
 import { getLabsDirectoryRuntime, getLabSummariesRuntime } from '@/lib/content-runtime';
-import { ResearchTabPage, researchTabMetadata } from '../_shared/ResearchTabPage';
+import { SectionTabPage, sectionTabMetadata } from '../../_shared/section-tabs';
 import galleryData from '@content/research-gallery.json';
 import type { Locale } from '@/i18n/routing';
 
@@ -16,7 +16,7 @@ export async function generateMetadata({
 }: {
   params: { locale: string };
 }): Promise<Metadata> {
-  return researchTabMetadata(params.locale, 'labs');
+  return sectionTabMetadata(params.locale, 'research', 'labs');
 }
 
 /**
@@ -53,8 +53,8 @@ export default async function ResearchLabsPage({ params }: { params: { locale: s
   );
 
   return (
-    <ResearchTabPage locale={params.locale} tab="labs">
+    <SectionTabPage locale={params.locale} section="research" tab="labs">
       <LabList items={labs} fieldIntros={fieldIntros} summaries={labSummaries} />
-    </ResearchTabPage>
+    </SectionTabPage>
   );
 }

@@ -4,8 +4,7 @@ import { AboutIntro } from '@/components/AboutIntro';
 import { HistoryTimeline } from '@/components/HistoryTimeline';
 import { getHistoryRuntime } from '@/lib/content-runtime';
 import { getHistoryImages } from '@/lib/history-images';
-import { AboutTabPage } from '../_shared/AboutTabPage';
-import { aboutTabMetadata } from '../_shared/tabs';
+import { SectionTabPage, sectionTabMetadata } from '../../_shared/section-tabs';
 import type { Locale } from '@/i18n/routing';
 
 // 콘텐츠 소스 전환(Stage A): 연혁이 데이터 레이어를 읽는다 — ISR 안전망
@@ -16,7 +15,7 @@ export async function generateMetadata({
 }: {
   params: { locale: string };
 }): Promise<Metadata> {
-  return aboutTabMetadata(params.locale, 'history');
+  return sectionTabMetadata(params.locale, 'about', 'history');
 }
 
 /**
@@ -28,13 +27,13 @@ export default async function AboutHistoryPage({ params }: { params: { locale: s
   const history = await getHistoryRuntime();
 
   return (
-    <AboutTabPage locale={params.locale} tab="history">
+    <SectionTabPage locale={params.locale} section="about" tab="history">
       <AboutIntro locale={params.locale} />
       <HistoryTimeline
         events={history}
         locale={params.locale as Locale}
         images={getHistoryImages()}
       />
-    </AboutTabPage>
+    </SectionTabPage>
   );
 }
