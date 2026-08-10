@@ -97,6 +97,15 @@ const RECENCY_ALIAS = {
   MEU3600: { '2024-20': Number(TARGET_YEAR) * 2 + (TARGET_SEM === '10' || TARGET_SEM === '11' ? 0 : 1) },
 };
 
+/**
+ * 교수 무관 과목 — 이력을 교수 소유로 재구성하지 않고 **과목(분반 계보) 그대로** 매칭한다
+ * (사용자 지시). 세미나처럼 수요가 담당 교수와 무관한 과목이 대상이다: 기계공학세미나는
+ * 2019-2부터 매 학기 미달(컷 1)로, 누가 맡든 수요가 같은데 교수 재구성을 거치면 담당이
+ * 바뀔 때마다 "처음 맡는 교수"가 되어 멀쩡한 8개 학기 이력이 예측·화면 양쪽에서 사라진다.
+ * 상세 패널의 과거 이력도 교수 필터 없이 과목 전체를 싣는다.
+ */
+const PROF_AGNOSTIC = new Set(['MEU4002']);
+
 const db = new DatabaseSync(dbPath);
 
 // ── ① 진짜 컷 계산 ─────────────────────────────────────────────
@@ -442,7 +451,15 @@ const ownPoints = new Map();
 let rekeyed = 0;
 for (const s of sections) {
   let pts;
-  if (coursesWithProfData.has(s.code) && s.professor) {
+  if (PROF_AGNOSTIC.has(s.code)) {
+    // 교수 무관 과목 — 분반 계보를 그대로 쓰되, 점 단위 교수 귀속을 지워 predict 의
+    // 교수 그룹핑이 이 분반(현재 교수) 소유로 통일되게 한다. 지우지 않으면 보강표에
+    // 등재된 학기(예: MEU4002 황정호 24-2·25-2)가 predict 층에서 도로 갈라져 나간다.
+    pts = (histBySection.get(`${s.code}|${s.division}`) ?? []).map((p) => ({
+      ...p,
+      professor: undefined,
+    }));
+  } else if (coursesWithProfData.has(s.code) && s.professor) {
     // 이 교수가 이 과목에서 실제로 맡았던 학기 전부(어느 분반이든)
     const own = (pointsByCourse.get(s.code) ?? []).filter((p) => p.professor === s.professor);
     if (own.length) {
@@ -513,7 +530,7 @@ const { predictAll, buildRivalModel, DEFAULT_TUNING, semesterOrdinal } = await i
 const basePoint = new Map();
 for (const s of sections) {
   const lp = latestPoint(
-    coursesWithProfData.has(s.code) && s.professor
+    !PROF_AGNOSTIC.has(s.code) && coursesWithProfData.has(s.code) && s.professor
       ? (pointsByCourse.get(s.code) ?? []).filter((p) => p.professor === s.professor)
       : (histBySection.get(`${s.code}|${s.division}`) ?? []),
   );
@@ -717,13 +734,14 @@ for (const s of sections) {
      * ⚠️ 6번째 칸(학년별 실적)은 **뒤에 덧붙인** 것이다 — 기존 파서(0…4 고정 구조분해)는
      *    그대로 동작한다. 학년별 자료가 하나도 없는 학기에는 아예 넣지 않는다(용량).
      */
-    professorHistory: s.professor
+    professorHistory: s.professor || PROF_AGNOSTIC.has(s.code)
       ? [...histBySection.entries()]
           .filter(([k]) => k.startsWith(`${s.code}|`))
           .flatMap(([k, ps]) => {
             const div = k.split('|')[1];
             return ps
-              .filter((p) => p.professor && p.professor === s.professor)
+              // 교수 무관 과목은 과목 전체 이력을 필터 없이 싣는다(PROF_AGNOSTIC 주석 참고)
+              .filter((p) => PROF_AGNOSTIC.has(s.code) || (p.professor && p.professor === s.professor))
               .map((p) => {
                 const sm = summaryByKey.get(`${s.code}|${div}|${p.year}|${p.semester}`);
                 const byGrade = gradeSlices(s.code, div, p.year, p.semester, sm);
