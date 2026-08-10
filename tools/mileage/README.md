@@ -15,7 +15,7 @@
 tools/mileage/build-db.mjs
    │    크롤 JSON → SQLite. 기존 DB(--base)의 사라진 분반 이력을 이월 병합.
    ▼
-tools/mileage/data/mileage-history.db(.gz)      ← 저장소에는 .gz 만 추적(약 4.5MB)
+tools/mileage/data/mileage-history.db(.gz)      ← 저장소에는 .gz 만 추적(약 14MB · 2015-2~ 전 학기)
    │
    ├── tools/mileage/backtest.mjs        모델·데이터 변경의 정확도 측정(채택 판정용)
    │
@@ -142,6 +142,11 @@ src/components/MileagePlanner.tsx   ← 학부 › 마일리지 전략 탭
 
 ## 함정 모음
 
+- **학기 목록 API(`findMlgSyySmtDivCdList`)는 최근 6개 학기만 돌려주는 롤링 창입니다.**
+  하지만 학기 코드를 직접 지정해 요약·원장 API 를 부르면 그 이전도 나옵니다(제도 시작
+  2015-2 까지 실측). 2026-08 에 크롤러 저장소의 `src/backfill.mjs` 로 2015-2~2023-1 전
+  학기를 소급 수집해 DB 에 병합했습니다(+71만 행 · 백테스트 Hit±3 64.6→65.0% 확인 후 채택).
+  매 학기 일반 크롤은 최근 6학기만 받아도 됩니다 — 옛 학기는 `--base` 이월이 지킵니다.
 - **크롤은 "이번 학기 개설 분반"만 조회하므로, 분반 개편으로 사라진 번호의 과거 이력은
   영영 수집되지 않습니다.** 실례: 유체역학(MEU2640)이 3분반→2분반으로 줄면서 03분반(김원정,
   24-2·25-2)의 이력이 DB에 없었고, 교수 기준 재배치가 빈손이 됐습니다(2026-08 보수, 21개
