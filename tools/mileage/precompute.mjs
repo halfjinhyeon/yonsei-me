@@ -640,20 +640,24 @@ for (const s of sections) {
   const pts = (histBySection.get(k) ?? [])
     .slice()
     .sort((a, b) => Number(b.year) * 2 + (b.semester === '10' ? 0 : 1) - (Number(a.year) * 2 + (a.semester === '10' ? 0 : 1)));
-  const last = latestOf(k);
-  const lastSum = last ? summaryByKey.get(`${s.code}|${s.division}|${last.year}|${last.semester}`) : null;
-
   /**
-   * 동점 통계(학년별 실적·승부선)의 근거 학기·분반.
+   * 기본 통계·학년별 실적·승부선의 근거 학기·분반 — rows 의 tieWin 과 **같은 근거**
+   * (교수 소유 재구성 반영, ownPoints)를 쓴다.
    *
-   * 기본은 이 분반 번호의 최신 학기다. 라인업 일치 오버라이드가 걸린 과목만 그 별칭 학기의
-   * (그 교수가 있던) 분반 원장으로 바꾼다 — rows 의 tieWin 과 같은 기준을 쓰게 하려는 것이다.
-   * ①기본 통계(stats)·②정원&규정(rules)·③교수 이력(professorHistory)은 사실 이력이므로
-   * 여기서 건드리지 않는다.
+   * 교수가 분반을 옮겼으면 "이 분반 번호의 작년"은 다른 교수의 시장이다. 실례:
+   * 유체역학 02분반(2026-2 김원정)의 작년 02분반은 이준상 담당에 미달(49/60·컷 1)이었고,
+   * 김원정의 작년은 03분반 초과(87/60·컷 18)였다 — 분반 번호 계보를 보면 예측 컷 17과
+   * "내 학년 작년 컷 1"이 한 화면에 같이 뜨는 모순이 난다. 교수 이력이 없는 분반
+   * (재구성 미적용·처음 맡는 교수)은 기존대로 분반 번호 계보로 폴백한다.
+   * 라인업 일치 오버라이드가 걸린 과목은 그 별칭 학기가 다시 우선한다(aliasTieBasis).
    */
+  const own = latestPoint(ownPoints.get(k));
+  const last = own ?? latestOf(k);
+  const lastDiv = own ? own.division : s.division;
+  const lastSum = last ? summaryByKey.get(`${s.code}|${lastDiv}|${last.year}|${last.semester}`) : null;
   const tb = aliasTieBasis(s.code, ownPoints.get(k));
   const tieAt = tb ?? last;
-  const tieDiv = tb ? tb.division : s.division;
+  const tieDiv = tb ? tb.division : lastDiv;
 
   // 학년별 컷(동점 통계 근거 학기 기준)
   //
@@ -674,7 +678,7 @@ for (const s of sections) {
   const tc = tieAt ? tieCreditIdx.get(`${s.code}|${tieDiv}|${tieAt.year}|${tieAt.semester}`) : null;
   // 최신 학기와 같은 자리를 본 경우엔 표기를 붙이지 않는다(기존 파일과 바이트 동일)
   const tieBasis =
-    tb && !(last && tb.year === last.year && tb.semester === last.semester && tieDiv === s.division)
+    tb && !(last && tb.year === last.year && tb.semester === last.semester && tieDiv === lastDiv)
       ? `${tb.year}-${tb.semester}`
       : undefined;
 
