@@ -749,6 +749,24 @@ export interface Tuning {
   tauProfessor: number;
   tauCourse: number;
   /**
+   * 자기 이력(분반·교수 계층) 신선도 상한 — 최신 관측이 이보다 오래된 학기 수만큼
+   * 떨어져 있으면 그 계층을 비우고 과목/그룹 계층으로 폴백한다. Infinity = 게이트 없음.
+   *
+   * 동기: 2015-2 까지 소급 수집(2026-08) 후, 최근 관측이 전혀 없는 분반이 옛 이력만으로
+   * section 승격되어 변한 시장을 놓치는 꼬리 악화가 생겼다(STA1001-09: 옛 컷 ~32 를
+   * 그대로 믿어 정답 1 에 오차 31). 신선한 관측이 있는 분반은 반감기 0.5 가 이미 옛
+   * 관측을 사실상 지우므로, 게이트는 "자기 이력 전체가 낡은" 분반만 걸러낸다.
+   *
+   * **스윕 결과: 기각 — 기본 Infinity 유지.** (백테스트, MAX_AGE 환경변수로 재현)
+   *   2026-1 목표(n=1203): AGE=2 에서 MAE 4.24→4.19 · 꼬리 대형 오차 소거(총오차 -70)
+   *                        · Hit±3 변화 없음 — 여기까지만 보면 채택.
+   *   2025-2 목표(n=2290): AGE=2 에서 Hit±1 51.9→50.5%(-1.4pp) · Hit±3 -0.3pp · MAE 이득 없음.
+   * 가을 학기는 격년·비연속 담당이 흔해 게이트가 진짜 신호(같은 교수의 재작년 가을 컷)까지
+   * 잘라낸다. 실제 예측 대상이 가을(2026-2)이므로 가을 목표의 판정을 따른다. 꼬리의
+   * 대형 오차는 UI 의 basis·관측 수 표기가 완화하는 것으로 남겨 둔다.
+   */
+  maxAgeOwn: number;
+  /**
    * 교수 미상 관측을 현재 교수 것으로 가정할지.
    *
    * false(=가정하지 않음)가 이론적으로는 더 안전해 보이지만, 백테스트에서 이득이 없었다
@@ -802,6 +820,7 @@ export const DEFAULT_TUNING: Tuning = {
   tauSection: TAU.section,
   tauProfessor: TAU.professor,
   tauCourse: TAU.course,
+  maxAgeOwn: Infinity,
   assumeLineage: false,
   /**
    * 경쟁분반 보정은 **꺼져 있다** — 백테스트가 기각했다(위 절 주석의 표 참고).
@@ -884,11 +903,26 @@ export function predictAll({
   const globalPoints = histories.flatMap((h) => h.points);
   const globalMu = globalPoints.length ? summarize(globalPoints, targetOrd, T.halfLife)!.mu : COLD_MU;
 
+  /**
+   * 신선도 게이트(maxAgeOwn) — 최신 관측조차 상한보다 오래된 계층은 통째로 비운다.
+   * 관측 단위로 거르지 않는 이유: 신선한 관측이 있으면 반감기가 옛 것을 이미 지우는데,
+   * 개별 필터는 raw n 만 깎아 축소 강도를 불필요하게 키운다(소급 수집의 이득 상실).
+   */
+  const gateOwn = (pts: HistoryPoint[]): HistoryPoint[] => {
+    if (!pts.length || !Number.isFinite(T.maxAgeOwn)) return pts;
+    let latest = -Infinity;
+    for (const p of pts) {
+      const o = p.recencyOrd ?? semesterOrdinal(p.year, p.semester);
+      if (o > latest) latest = o;
+    }
+    return targetOrd - latest > T.maxAgeOwn ? [] : pts;
+  };
+
   return sections.map((s) => {
     const kSec = `${s.code}|${s.professor}|${s.division}`;
     const kProf = `${s.code}|${s.professor}`;
-    const ptsSec = byCourseProfDiv.get(kSec) ?? [];
-    const ptsProf = byCourseProf.get(kProf) ?? [];
+    const ptsSec = gateOwn(byCourseProfDiv.get(kSec) ?? []);
+    const ptsProf = gateOwn(byCourseProf.get(kProf) ?? []);
     const ptsCourse = byCourse.get(s.code) ?? [];
     const lSec = summarize(ptsSec, targetOrd, T.halfLife);
     const lProf = summarize(ptsProf, targetOrd, T.halfLife);
