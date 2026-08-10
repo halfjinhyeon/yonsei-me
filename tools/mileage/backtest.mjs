@@ -52,6 +52,8 @@ console.log(`DB: ${dbPath}`);
 const TUNING = {};
 if (process.env.HALF_LIFE) TUNING.halfLife = Number(process.env.HALF_LIFE);
 if (process.env.MAX_AGE) TUNING.maxAgeOwn = Number(process.env.MAX_AGE);
+if (process.env.SAME_SEM) TUNING.sameSemesterOwn = true;
+if (process.env.CROSS_W) TUNING.crossSemWeightOwn = Number(process.env.CROSS_W);
 if (process.env.TAU_SECTION) TUNING.tauSection = Number(process.env.TAU_SECTION);
 if (process.env.ASSUME_LINEAGE) TUNING.assumeLineage = true;
 // 경쟁분반(형제분반) 수요 재배분 보정

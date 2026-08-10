@@ -246,10 +246,21 @@ function pooledResidualSigma(
   return Math.sqrt(varW * (nEff / dof));
 }
 
-function summarize(points: HistoryPoint[], targetOrd: number, halfLife: number): Level | null {
+function summarize(
+  points: HistoryPoint[],
+  targetOrd: number,
+  halfLife: number,
+  /** 다른 학기(봄↔가을) 관측의 가중 배율. 1=계절 무시(기본), 0에 가까울수록 같은 학기만 본다 */
+  crossSemWeight = 1,
+): Level | null {
   if (points.length === 0) return null;
   const cuts = points.map((p) => p.cutoff);
-  const ws = points.map((p) => recencyWeight(p, targetOrd, halfLife));
+  const ws = points.map((p) => {
+    const w = recencyWeight(p, targetOrd, halfLife);
+    if (crossSemWeight === 1) return w;
+    const o = p.recencyOrd ?? semesterOrdinal(p.year, p.semester);
+    return o % 2 === targetOrd % 2 ? w : w * crossSemWeight;
+  });
   const mu = weightedMean(cuts, ws);
   return { mu, sigma: weightedStdev(cuts, ws, mu), n: points.length };
 }
@@ -758,14 +769,37 @@ export interface Tuning {
    * 관측을 사실상 지우므로, 게이트는 "자기 이력 전체가 낡은" 분반만 걸러낸다.
    *
    * **스윕 결과: 기각 — 기본 Infinity 유지.** (백테스트, MAX_AGE 환경변수로 재현)
-   *   2026-1 목표(n=1203): AGE=2 에서 MAE 4.24→4.19 · 꼬리 대형 오차 소거(총오차 -70)
-   *                        · Hit±3 변화 없음 — 여기까지만 보면 채택.
-   *   2025-2 목표(n=2290): AGE=2 에서 Hit±1 51.9→50.5%(-1.4pp) · Hit±3 -0.3pp · MAE 이득 없음.
-   * 가을 학기는 격년·비연속 담당이 흔해 게이트가 진짜 신호(같은 교수의 재작년 가을 컷)까지
-   * 잘라낸다. 실제 예측 대상이 가을(2026-2)이므로 가을 목표의 판정을 따른다. 꼬리의
-   * 대형 오차는 UI 의 basis·관측 수 표기가 완화하는 것으로 남겨 둔다.
+   *   v1(원시 학기 거리): 2026-1 목표(n=1203)에선 AGE=2 가 MAE 4.24→4.19 · 대형 오차
+   *     소거(총오차 -70)로 유망했으나, 2025-2 목표(n=2290)에서 Hit±1 -1.4pp — 격년·비연속
+   *     담당의 진짜 신호(같은 교수의 재작년 가을 컷)까지 잘라서다.
+   *   v2(같은 학기 주기 거리, 현재 구현): 격년 문제를 피했는데도 2025-2 목표에서
+   *     K=1~4 전부 Hit±1 -0.8~-2.0pp · Hit±3 -0.3~-0.8pp. 실제 예측 대상이 가을이므로
+   *     가을 목표의 판정을 따라 기각. 낡은 자기 이력조차 과목 평균보다 낫다는 뜻이다.
+   * 꼬리의 대형 오차는 UI 의 basis·관측 수 표기가 완화하는 것으로 남겨 둔다.
    */
   maxAgeOwn: number;
+  /**
+   * 자기 이력(분반·교수 계층)을 **대상 학기와 같은 학기(봄/가을) 관측만으로** 요약할지.
+   *
+   * 동기(사용자 제안 "2학기 표본만 모아서 보면 될텐데"): 봄·가을은 라인업이 달라 사실상
+   * 다른 시장인데, 반감기 0.5 에서는 매 학기 열리는 과목의 가을 예측을 "지난 봄" 관측이
+   * "지난 가을"의 4배 가중치로 지배한다(거리 1 vs 2). 계절성이 실재하면 이는 역방향이다.
+   * 과목·그룹 계층은 그대로 둔다(표본 확보용 폴백이라 계절 혼합이 덜 해롭다).
+   *
+   * **스윕 결과: 기각 — 기본 false.** (SAME_SEM=1 로 재현) 2025-2 목표(n=2290)에서
+   * MAE 3.89→4.07 · Hit±3 -0.4pp · Brier 악화. 표본 반토막의 손실(축소 강화)이 계절성
+   * 이득을 압도한다. 2026-1 목표에서도 Hit±1 +2.1pp vs Hit±3 -1.4pp · MAE 4.24→4.53 으로
+   * 몸통만 좁히고 꼬리를 키웠다. 인접 학기의 컷은 계절이 달라도 강하게 이어진다는 뜻.
+   */
+  sameSemesterOwn: boolean;
+  /**
+   * 자기 계층(분반·교수)에서 다른 학기(봄↔가을) 관측의 가중 배율 — sameSemesterOwn 의 연속판.
+   *
+   * **스윕 결과: 기각 — 기본 1(무보정).** (CROSS_W=γ 로 재현) 2025-2 목표에서
+   * γ=0.25/0.5/0.75 전부 기준선(Hit±1 51.9 · Hit±3 65.6)을 넘지 못했다
+   * (최고 γ=0.75: 51.7/65.3). 어느 강도로도 계절 패널티는 손해였다.
+   */
+  crossSemWeightOwn: number;
   /**
    * 교수 미상 관측을 현재 교수 것으로 가정할지.
    *
@@ -821,6 +855,8 @@ export const DEFAULT_TUNING: Tuning = {
   tauProfessor: TAU.professor,
   tauCourse: TAU.course,
   maxAgeOwn: Infinity,
+  sameSemesterOwn: false,
+  crossSemWeightOwn: 1,
   assumeLineage: false,
   /**
    * 경쟁분반 보정은 **꺼져 있다** — 백테스트가 기각했다(위 절 주석의 표 참고).
@@ -904,18 +940,31 @@ export function predictAll({
   const globalMu = globalPoints.length ? summarize(globalPoints, targetOrd, T.halfLife)!.mu : COLD_MU;
 
   /**
-   * 신선도 게이트(maxAgeOwn) — 최신 관측조차 상한보다 오래된 계층은 통째로 비운다.
+   * 신선도 게이트(maxAgeOwn) — **대상 학기와 같은 학기(봄/가을)의** 최신 관측이 상한
+   * 주기보다 오래된 계층은 통째로 비운다(같은 학기 관측이 하나도 없어도 비운다).
+   *
+   * 원시 학기 수로 재지 않는 이유: 봄과 가을은 개설 라인업이 달라 사실상 다른 시장이고,
+   * 가을 과목의 정상 이력 간격 자체가 2학기(격년 담당이면 4학기)다 — 원시 거리 게이트는
+   * "같은 교수의 재작년 가을 컷"이라는 진짜 신호를 잘라냈다(주석의 v1 스윕 기각 사유).
+   * 같은 학기 주기로 재면 재작년 가을 = 2주기로 신선, 2019 가을 = 7주기로 낡음이 된다.
    * 관측 단위로 거르지 않는 이유: 신선한 관측이 있으면 반감기가 옛 것을 이미 지우는데,
    * 개별 필터는 raw n 만 깎아 축소 강도를 불필요하게 키운다(소급 수집의 이득 상실).
    */
   const gateOwn = (pts: HistoryPoint[]): HistoryPoint[] => {
+    if (!pts.length) return pts;
+    // 같은 학기 표본만 요약(sameSemesterOwn) — 다른 학기(봄↔가을) 관측을 자기 계층에서 뺀다.
+    // 같은 학기 관측이 전무한 분반은 전부 잃고 과목 계층으로 폴백한다(계절이 다른 자기
+    // 이력보다 같은 계절의 과목 통계가 낫다는 가정 — 스윕으로 판정).
+    if (T.sameSemesterOwn) {
+      pts = pts.filter((p) => (p.recencyOrd ?? semesterOrdinal(p.year, p.semester)) % 2 === targetOrd % 2);
+    }
     if (!pts.length || !Number.isFinite(T.maxAgeOwn)) return pts;
     let latest = -Infinity;
     for (const p of pts) {
       const o = p.recencyOrd ?? semesterOrdinal(p.year, p.semester);
-      if (o > latest) latest = o;
+      if (o % 2 === targetOrd % 2 && o > latest) latest = o;
     }
-    return targetOrd - latest > T.maxAgeOwn ? [] : pts;
+    return (targetOrd - latest) / 2 > T.maxAgeOwn ? [] : pts;
   };
 
   return sections.map((s) => {
@@ -924,8 +973,8 @@ export function predictAll({
     const ptsSec = gateOwn(byCourseProfDiv.get(kSec) ?? []);
     const ptsProf = gateOwn(byCourseProf.get(kProf) ?? []);
     const ptsCourse = byCourse.get(s.code) ?? [];
-    const lSec = summarize(ptsSec, targetOrd, T.halfLife);
-    const lProf = summarize(ptsProf, targetOrd, T.halfLife);
+    const lSec = summarize(ptsSec, targetOrd, T.halfLife, T.crossSemWeightOwn);
+    const lProf = summarize(ptsProf, targetOrd, T.halfLife, T.crossSemWeightOwn);
     const lCourse = summarize(ptsCourse, targetOrd, T.halfLife);
     const lGroup = summarize(byGroup.get(groupKeyOf(s)) ?? [], targetOrd, T.halfLife);
 
