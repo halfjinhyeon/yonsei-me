@@ -21,6 +21,8 @@ export interface FacultyRecord {
    *  기간이 적혀 있으면 그것만으로도 퇴임으로 분류되므로, 둘 중 하나만 있으면 된다.
    *  구 데이터엔 이 키가 없어 optional 이다(없으면 false 취급). */
   emeritus?: boolean;
+  /** 교수 상세의 학술활동 섹션 숨김 — CMS 체크박스. 키가 없으면 노출(false 취급) */
+  hideActivities?: boolean;
   moreInfoUrl: string | null;
   photoAlt: string;
   lab: FacultyLab | null;

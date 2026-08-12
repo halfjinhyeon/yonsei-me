@@ -254,7 +254,8 @@ export async function FacultyProfileArticle({
         </div>
       </div>
 
-      {/* ── 학술활동 ── */}
+      {/* ── 학술활동 ── CMS 의 "학술활동 숨기기" 체크 시 섹션 전체(AI 요약 포함) 비노출 */}
+      {record?.hideActivities !== true && (
       <div className="mt-12 sm:mt-16">
         <p data-land="rise" data-land-order="1" className="eyebrow">
           {t('profile.activitiesEyebrow')}
@@ -288,6 +289,7 @@ export async function FacultyProfileArticle({
           />
         </div>
       </div>
+      )}
 
       <div className="mt-10">
         <Link

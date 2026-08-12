@@ -280,6 +280,7 @@ const FACULTY_BASE_FIELDS: FieldDef[] = [
   // 재직 기간을 모르는 퇴임 교원을 위한 수동 스위치. 기간이 적혀 있으면 그것만으로
   // 분류되므로(사이트의 isEmeritus 가 둘을 OR 로 본다) 이 체크는 "기간 미상" 보완용이다.
   { kind: 'checkbox', key: 'emeritus', label: '명예·퇴임 교원', width: 'half', hint: '재직 기간을 모를 때 직접 체크하세요. 기간을 적었다면 체크하지 않아도 됩니다.' },
+  { kind: 'checkbox', key: 'hideActivities', label: '학술활동 숨기기', width: 'half', hint: '체크하면 이 교수의 상세 페이지에서 학술활동 섹션(논문·연구과제·지적재산권·수상·학술활동)이 보이지 않습니다.' },
   { kind: 'text', key: 'moreInfoUrl', label: '상세 정보 URL', width: 'half', emptyAs: 'null' },
   { kind: 'text', key: 'photoAlt', label: '사진 대체 텍스트', width: 'half', hint: '비우면 이름을 사용' },
   {
@@ -336,6 +337,8 @@ const facultyDirectory: ResourceDef = {
     const nameEn = String(form.labNameEn ?? '').trim();
     const url = String(form.labUrl ?? '').trim();
     out.lab = nameKo || nameEn || url ? { nameKo, nameEn, url } : null;
+    // 숨기지 않으면 키 자체를 생략(JSON 최소화 — 기본값 false)
+    if (out.hideActivities !== true) delete out.hideActivities;
     return out;
   },
   summarize: (f) => cellText(f, 'name'),
