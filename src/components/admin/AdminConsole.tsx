@@ -62,7 +62,7 @@ export function AdminConsole(props: Props) {
 function AdminConsoleBody({ token, login }: Props) {
   // 저장소 설정은 세션 토큰으로 자동 구성한다(PAT 수동 입력 제거).
   const config = useMemo<RepoConfig>(
-    () => ({ token, owner: 'halfjinhyeon', repo: 'yonsei-me', branch: 'main' }),
+    () => ({ token, owner: 'yonsei-mech', repo: 'yonsei-me', branch: 'main' }),
     [token],
   );
 

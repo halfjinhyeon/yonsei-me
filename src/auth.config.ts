@@ -18,8 +18,8 @@ function allowedLogins(): string[] {
     .split(',')
     .map((s) => s.trim().toLowerCase())
     .filter(Boolean);
-  // 기본 허용: 저장소 소유자 계정
-  return Array.from(new Set(['halfjinhyeon', ...fromEnv]));
+  // 기본 허용: 저장소 소유자(yonsei-mech) + 인계 기간 임시 관리자(halfjinhyeon — 인계 완료 시 제거)
+  return Array.from(new Set(['yonsei-mech', 'halfjinhyeon', ...fromEnv]));
 }
 
 export const authConfig = {

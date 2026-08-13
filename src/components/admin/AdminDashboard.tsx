@@ -467,7 +467,7 @@ const NEW_ADMIN_STEPS = [
   },
   {
     t: '저장소 권한',
-    b: 'GitHub 저장소 halfjinhyeon/yonsei-me → Settings → Collaborators 에서 그 계정을 Write 권한으로 초대합니다(저장 = 커밋에 필요).',
+    b: 'GitHub 저장소 yonsei-mech/yonsei-me → Settings → Collaborators 에서 그 계정을 Write 권한으로 초대합니다(저장 = 커밋에 필요).',
   },
   {
     t: '재배포',
