@@ -118,6 +118,9 @@ export async function FacultyProfileArticle({
   // 칸을 넘어 전역 overflow-wrap:break-word 에 걸려 단어가 꺾인다. en 로케일만 넓힌다.
   const dtClass = `${locale === 'en' ? 'w-24' : 'w-16'} shrink-0 font-bold text-content`;
 
+  // 보직 배지 — en 로케일은 영문 표기(roleEn)를 우선하고 없으면 한국어로 폴백
+  const roleLabel = record ? (locale === 'en' && record.roleEn) || record.role : null;
+
   const lab = record?.lab;
   const labName = lab?.nameKo
     ? lab.nameEn
@@ -174,9 +177,9 @@ export async function FacultyProfileArticle({
           <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
             <h2 className="text-2xl font-bold text-content sm:text-[2rem]">{profile.name}</h2>
             {profile.nameEn && <p className="text-base text-content-faint">{profile.nameEn}</p>}
-            {record?.role && (
+            {roleLabel && (
               <span className="bg-yonsei-blue/10 px-2 py-0.5 text-xs font-semibold text-yonsei-blue">
-                {record.role}
+                {roleLabel}
               </span>
             )}
           </div>

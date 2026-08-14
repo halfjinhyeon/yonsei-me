@@ -10,12 +10,18 @@ export interface FacultyLab {
 
 export interface FacultyRecord {
   name: string;
+  /** 영문 이름 — en 로케일 표기(예: "Keonwook Kang"). 없으면 한국어 이름으로 폴백 */
+  nameEn?: string | null;
   title: string;
   role: string | null;
+  /** 보직 영문 표기 — en 로케일에서 role 대신 사용. 없으면 role(한국어)로 폴백 */
+  roleEn?: string | null;
   email: string | null;
   phone: string | null;
   room: string | null;
   specialty: string | null;
+  /** 전공 분야 영문 표기 — en 로케일에서 specialty 대신 사용. 없으면 specialty 로 폴백 */
+  specialtyEn?: string | null;
   yearRange: string | null;
   /** 명예·퇴임 교원 수동 표시 — 재직 기간(yearRange)을 모르는 경우를 위한 보완 스위치.
    *  기간이 적혀 있으면 그것만으로도 퇴임으로 분류되므로, 둘 중 하나만 있으면 된다.

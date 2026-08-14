@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from 'react';
 import Image from 'next/image';
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import { Link } from '@/i18n/navigation';
 import { UnderlineTabs } from '@/components/UnderlineTabs';
 import { EagleLoader } from '@/components/EagleLoader';
@@ -66,6 +66,9 @@ export function FacultyDirectoryGrid({
   profileNames?: readonly string[];
 }) {
   const t = useTranslations('faculty');
+  // en 로케일이면 영문 필드(nameEn·roleEn·specialtyEn·lab.nameEn)를 우선하고, 번역이
+  // 없는 레코드는 한국어 값으로 폴백한다(빈 칸보다 낫다 — 부분 번역 데이터 현실).
+  const isEn = useLocale() === 'en';
   const profileSet = useMemo(() => new Set(profileNames ?? []), [profileNames]);
   // 기본 선택 = 첫 탭(교수). 탭 순서를 교수→명예·퇴임→전체로 두었으므로 로드 시
   // 밑줄이 첫 탭에 오도록 초기값도 'active'로 맞춘다(사용자 지시).
@@ -120,7 +123,12 @@ export function FacultyDirectoryGrid({
       <ul key={filter} className="grid grid-cols-1 gap-5 md:grid-cols-2">
         {visible.map((f, i) => {
           const emeritus = isEmeritus(f);
+          // 카드 색상 해시는 한국어 이름 고정 — 로케일을 오가도 같은 교수는 같은 색
           const accent = accentFor(f.name);
+          const name = (isEn && f.nameEn) || f.name;
+          const role = (isEn && f.roleEn) || f.role;
+          const specialty = (isEn && f.specialtyEn) || f.specialty;
+          const labName = f.lab ? (isEn && f.lab.nameEn) || f.lab.nameKo : null;
 
           return (
             <li
@@ -148,7 +156,7 @@ export function FacultyDirectoryGrid({
                     </span>
                     <Image
                       src={f.photo}
-                      alt={f.name}
+                      alt={name}
                       fill
                       sizes="(min-width: 640px) 144px, 128px"
                       className="object-cover"
@@ -156,7 +164,7 @@ export function FacultyDirectoryGrid({
                   </>
                 ) : (
                   <div aria-hidden="true" className="absolute inset-0 flex items-center justify-center">
-                    <span className="text-3xl font-bold text-white/25">{f.name.charAt(0)}</span>
+                    <span className="text-3xl font-bold text-white/25">{name.charAt(0)}</span>
                   </div>
                 )}
               </div>
@@ -164,10 +172,10 @@ export function FacultyDirectoryGrid({
               {/* 정보 블록 — 이름·직함 / 픽토그램 연락처 / 라벨 행(연구실·주소·전공) */}
               <div className="flex min-w-0 flex-1 flex-col">
                 <h3 className={cn('text-lg font-bold sm:text-xl', emeritus ? 'text-content-soft' : 'text-content')}>
-                  {f.name}
-                  {f.role && (
+                  {name}
+                  {role && (
                     <span className="ml-2 align-middle bg-yonsei-blue/10 px-2 py-0.5 text-xs font-semibold text-yonsei-blue">
-                      {f.role}
+                      {role}
                     </span>
                   )}
                 </h3>
@@ -198,10 +206,10 @@ export function FacultyDirectoryGrid({
 
                 {emeritus ? (
                   <dl className="mt-3 space-y-1.5 border-t border-surface-border pt-3 text-sm">
-                    {f.specialty && (
+                    {specialty && (
                       <div className="flex items-start gap-3">
                         <dt className="w-12 shrink-0 font-bold text-content">{t('specialtyLabel')}</dt>
-                        <dd className="min-w-0 text-content-soft">{f.specialty}</dd>
+                        <dd className="min-w-0 text-content-soft">{specialty}</dd>
                       </div>
                     )}
                     {f.yearRange && (
@@ -212,19 +220,19 @@ export function FacultyDirectoryGrid({
                   </dl>
                 ) : (
                   <dl className="mt-3 space-y-1.5 text-sm">
-                    {f.lab?.nameKo && (
+                    {labName && (
                       <div className="flex items-center gap-3">
                         <dt className="w-12 shrink-0 font-bold text-content">{t('labLabel')}</dt>
                         <dd className="flex min-w-0 items-center gap-2 text-content-soft">
-                          <span className="truncate">{f.lab.nameKo}</span>
+                          <span className="truncate">{labName}</span>
                           {/* 연구실 바로가기 — 레퍼런스 '+' 버튼 역할(연구실 홈페이지 새 창) */}
-                          {f.lab.url && (
+                          {f.lab?.url && (
                             <a
                               href={f.lab.url}
                               target="_blank"
                               rel="noopener noreferrer"
-                              aria-label={t('labLink', { lab: f.lab.nameKo })}
-                              title={t('labLink', { lab: f.lab.nameKo })}
+                              aria-label={t('labLink', { lab: labName })}
+                              title={t('labLink', { lab: labName })}
                               className="relative inline-flex h-6 w-6 shrink-0 items-center justify-center border border-surface-border text-yonsei-blue transition-colors before:absolute before:-inset-2.5 before:content-[''] hover:border-yonsei-blue hover:bg-yonsei-blue hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yonsei-blue"
                             >
                               <svg
@@ -248,10 +256,10 @@ export function FacultyDirectoryGrid({
                         <dd className="min-w-0 text-content-soft">{f.room}</dd>
                       </div>
                     )}
-                    {f.specialty && (
+                    {specialty && (
                       <div className="flex items-start gap-3">
                         <dt className="w-12 shrink-0 font-bold text-content">{t('specialtyLabel')}</dt>
-                        <dd className="min-w-0 text-content-soft">{f.specialty}</dd>
+                        <dd className="min-w-0 text-content-soft">{specialty}</dd>
                       </div>
                     )}
                   </dl>
@@ -262,7 +270,7 @@ export function FacultyDirectoryGrid({
                 {profileSet.has(f.name) ? (
                   <Link
                     href={`/faculty/${encodeURIComponent(f.name)}`}
-                    aria-label={`${f.name} ${moreLabel}`}
+                    aria-label={`${name} ${moreLabel}`}
                     className={MORE_LINK_CLASS}
                   >
                     {moreLabel}
@@ -274,7 +282,7 @@ export function FacultyDirectoryGrid({
                       href={f.moreInfoUrl}
                       target={f.moreInfoUrl.startsWith('http') ? '_blank' : undefined}
                       rel={f.moreInfoUrl.startsWith('http') ? 'noopener noreferrer' : undefined}
-                      aria-label={`${f.name} ${moreLabel}`}
+                      aria-label={`${name} ${moreLabel}`}
                       className={MORE_LINK_CLASS}
                     >
                       {moreLabel}

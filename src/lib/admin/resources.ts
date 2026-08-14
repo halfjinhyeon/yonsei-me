@@ -270,12 +270,15 @@ export const FIELD_OPTIONS: SelectOption[] = [
 // 교수진: lab 중첩 객체를 labNameKo/labNameEn/labUrl 로 평면화해 편집한다.
 const FACULTY_BASE_FIELDS: FieldDef[] = [
   { kind: 'text', key: 'name', label: '이름', required: true, width: 'third' },
+  { kind: 'text', key: 'nameEn', label: '이름 (English)', width: 'third', emptyAs: 'null', placeholder: 'Keonwook Kang', hint: '영문 페이지 표기. 비우면 한국어 이름으로 표시됩니다' },
   { kind: 'text', key: 'title', label: '직급', required: true, width: 'third', placeholder: 'Professor', hint: 'Professor / Associate Professor / Assistant Professor' },
-  { kind: 'text', key: 'role', label: '보직', width: 'third', emptyAs: 'null', hint: '학부장 등. 없으면 비움' },
+  { kind: 'text', key: 'role', label: '보직', width: 'half', emptyAs: 'null', hint: '학부장 등. 없으면 비움' },
+  { kind: 'text', key: 'roleEn', label: '보직 (English)', width: 'half', emptyAs: 'null', placeholder: 'Department Chair', hint: '비우면 영문 페이지에도 한국어 보직이 표시됩니다' },
   { kind: 'text', key: 'email', label: '이메일', width: 'half', emptyAs: 'null' },
   { kind: 'text', key: 'phone', label: '전화', width: 'half', emptyAs: 'null', placeholder: '02)2123-0000' },
   { kind: 'text', key: 'room', label: '연구실 위치', width: 'half', emptyAs: 'null', placeholder: 'Engineering Building #1, Room 589' },
   { kind: 'text', key: 'specialty', label: '전공 분야', width: 'half', emptyAs: 'null', hint: '주로 전임(퇴임) 교원에 사용' },
+  { kind: 'text', key: 'specialtyEn', label: '전공 분야 (English)', width: 'half', emptyAs: 'null', hint: '비우면 영문 페이지에도 전공 분야 값이 그대로 표시됩니다' },
   { kind: 'text', key: 'yearRange', label: '재직 기간', width: 'half', emptyAs: 'null', placeholder: '1963~2002', hint: '퇴임 교원만. 재직 중이면 비움 — 적어 두면 아래 체크 없이도 명예·퇴임으로 분류됩니다' },
   // 재직 기간을 모르는 퇴임 교원을 위한 수동 스위치. 기간이 적혀 있으면 그것만으로
   // 분류되므로(사이트의 isEmeritus 가 둘을 OR 로 본다) 이 체크는 "기간 미상" 보완용이다.
@@ -309,7 +312,7 @@ const facultyDirectory: ResourceDef = {
     { key: 'email', label: '이메일' },
     { key: 'yearRange', label: '재직 기간' },
   ],
-  searchKeys: ['name', 'title', 'email', 'specialty'],
+  searchKeys: ['name', 'nameEn', 'title', 'email', 'specialty'],
   fields: [...FACULTY_BASE_FIELDS, ...FACULTY_LAB_FIELDS],
   orderable: true,
   // 카드에서 바로 고치는 값 = 자주 손대는 것들. 직급은 필터로만 쓴다(사용자 지시).
