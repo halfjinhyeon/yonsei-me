@@ -45,7 +45,9 @@ export async function buildNoticeList(
         id: n.id,
         date: n.date,
         title: pick(n.title, locale),
-        subtitle: n.excerpt ? pick(n.excerpt, locale) : undefined,
+        // 공지사항만 본문 미리보기를 끈다(사용자 지시) — 발췌는 화면에 그리지 않고
+        // 검색 색인으로만 남긴다. 다른 게시판은 그대로 subtitle 에 실어 미리보기를 낸다.
+        searchText: n.excerpt ? pick(n.excerpt, locale) : undefined,
         tag: tBoard(tagKey),
         href: boardPostHref({ id: n.id, boardKey: 'notices' }),
         image: n.image,

@@ -8,7 +8,11 @@ export interface BoardRow {
   /** 없으면 날짜 칸을 생략 (자료실 등 바로가기형 행) */
   date?: string;
   title: string;
+  /** 제목 아래 한 줄 — 발췌(미리보기) 또는 세미나 연사 같은 메타 */
   subtitle?: string;
+  /** 화면에 그리지 않는 검색 색인 — 미리보기를 끈 게시판(공지사항)이 '내용' 검색을
+   *  유지하려고 발췌를 여기에 싣는다. subtitle 이 있으면 그쪽이 검색 대상이다. */
+  searchText?: string;
   tag?: string;
   href?: string;
   /** 우측 썸네일 — 없으면 우측 칸을 그리지 않는다(행 높이 = 좌측 내용 높이) */
@@ -21,7 +25,7 @@ export interface BoardRow {
 
 /**
  * 게시판 목록 — 에디토리얼 행 스타일 (홍익 조형대 뉴스 레퍼런스).
- * 좌: 네이비 배지(tag) + 큰 볼드 제목 + 발췌 2줄(subtitle) + 날짜,
+ * 좌: 네이비 배지(tag) + 큰 볼드 제목 + 부제 1줄(subtitle) + 날짜,
  * 우: 16:10 썸네일(없으면 칸 자체를 생략 — 행 높이는 내용만큼). 행 사이는 헤어라인.
  * 고정 글(pinned)은 행 전체를 옅은 바탕 + 좌측 네이비 룰로 구분한다.
  * 공지/뉴스/세미나/행사/학위논문/자료실/취업 등 모든 게시판 탭 공용.
@@ -30,10 +34,13 @@ export function BoardList({
   items,
   locale,
   emptyLabel,
+  compactDate = false,
 }: {
   items: BoardRow[];
   locale: Locale;
   emptyLabel: string;
+  /** 발췌 없는 행의 제목–날짜 간격을 30px → 20px 로 (공지사항 전용) */
+  compactDate?: boolean;
 }) {
   const t = useTranslations('board');
 
@@ -90,14 +97,14 @@ export function BoardList({
                 </p>
               )}
               {/* 날짜 — 썸네일이 있는 행만 바닥 정렬(이미지 높이에 맞춘 균형).
-                  공지처럼 발췌·썸네일이 없는 행은 제목 바로 아래 30px 에 붙인다. */}
+                  발췌·썸네일이 없는 행은 제목 바로 아래 30px(공지사항은 compactDate 로 20px). */}
               {item.date && (
                 <time
                   dateTime={item.date}
                   className={cn(
                     'block text-[13px] tabular-nums text-content-faint',
                     item.image && 'mt-auto',
-                    item.subtitle ? 'pt-3.5' : 'pt-[1.875rem]',
+                    item.subtitle ? 'pt-3.5' : compactDate ? 'pt-5' : 'pt-[1.875rem]',
                   )}
                 >
                   {formatDate(item.date, locale)}

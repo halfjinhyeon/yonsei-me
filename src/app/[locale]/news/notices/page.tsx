@@ -29,6 +29,7 @@ export default async function NoticesBoardPage({ params }: { params: { locale: s
         items={items}
         categories={categories}
         showAll={false}
+        compactDate
         locale={locale}
         emptyLabel={emptyLabel}
       />

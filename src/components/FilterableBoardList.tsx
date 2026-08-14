@@ -26,6 +26,12 @@ const QS_CAT = 'cat';
 const QS_QUERY = 'q';
 const QS_SCOPE = 'in';
 
+/** '내용' 검색 대상은 화면에 없다 — 목록 행은 발췌를 그리지 않으므로 숨은 색인(searchText)을 본다
+ *  (없으면 부제. 세미나 연사 줄처럼 실제로 보이는 부제는 그대로 검색된다). */
+function matchesRow(row: BoardRow, f: BoardFilterState): boolean {
+  return matchesFilter({ title: row.title, subtitle: row.searchText ?? row.subtitle }, f);
+}
+
 /** ?in= 값 검증 — 모르는 값이면 기본 범위(제목+내용)로 떨어뜨린다 */
 function isSearchScope(value: string | null): value is SearchScope {
   return value === 'both' || value === 'title' || value === 'content';
@@ -54,6 +60,7 @@ export function FilterableBoardList({
   categories,
   categoryLabel,
   showAll = true,
+  compactDate = false,
 }: {
   items: BoardRow[];
   locale: Locale;
@@ -64,6 +71,8 @@ export function FilterableBoardList({
   categoryLabel?: string;
   /** '전체' 탭 노출 여부. 끄면 첫 분류가 기본 탭이고 목록은 항상 한 분류만 보여준다. */
   showAll?: boolean;
+  /** 발췌 없는 행의 제목–날짜 간격을 좁힌다(BoardList 로 전달, 공지사항 전용) */
+  compactDate?: boolean;
 }) {
   const t = useTranslations('news');
   // 기본 탭 — '전체'가 없으면 첫 분류. URL 에는 기본값이 아닐 때만 싣는다.
@@ -84,7 +93,7 @@ export function FilterableBoardList({
   const filtered = useMemo(() => {
     let list = items;
     if (catActive) list = list.filter((item) => item.category === cat);
-    if (searchActive) list = list.filter((item) => matchesFilter(item, filter));
+    if (searchActive) list = list.filter((item) => matchesRow(item, filter));
     return list;
   }, [items, catActive, cat, searchActive, filter]);
 
@@ -132,7 +141,7 @@ export function FilterableBoardList({
         let list = items;
         if (nextCat !== 'all') list = list.filter((item) => item.category === nextCat);
         if (isFilterActive(nextFilter)) {
-          list = list.filter((item) => matchesFilter(item, nextFilter));
+          list = list.filter((item) => matchesRow(item, nextFilter));
         }
         const maxPage = Math.max(1, Math.ceil(list.length / PAGE_SIZE));
         nextPage = Math.min(Math.max(1, parsed), maxPage);
@@ -227,6 +236,7 @@ export function FilterableBoardList({
         items={paged}
         locale={locale}
         emptyLabel={searchActive ? t('search.empty') : emptyLabel}
+        compactDate={compactDate}
       />
       {/* 빈 목록에서는 페이지 컨트롤이 의미가 없다 — 빈 상태 안내만 남긴다 */}
       {filtered.length > 0 && (
