@@ -114,6 +114,10 @@ export async function FacultyProfileArticle({
   // 꼴로 정규화한다. 크롤 원문은 내선만("2819") 오는 경우가 있어 그대로 쓰면 깨져 보인다.
   const phone = formatPhone(record?.phone ?? profile.phone);
 
+  // 라벨 칸 폭 — 한국어 라벨('소속' 등)은 64px 로 충분하지만 영어 "Department"(≈90px)는
+  // 칸을 넘어 전역 overflow-wrap:break-word 에 걸려 단어가 꺾인다. en 로케일만 넓힌다.
+  const dtClass = `${locale === 'en' ? 'w-24' : 'w-16'} shrink-0 font-bold text-content`;
+
   const lab = record?.lab;
   const labName = lab?.nameKo
     ? lab.nameEn
@@ -203,22 +207,22 @@ export async function FacultyProfileArticle({
 
           <dl className="mt-5 flex flex-col gap-[9px] text-[15px]">
             <div className="flex items-start gap-3">
-              <dt className="w-16 shrink-0 font-bold text-content">{t('profile.campusLabel')}</dt>
+              <dt className={dtClass}>{t('profile.campusLabel')}</dt>
               <dd className="min-w-0 text-content-soft">{t('profile.campusValue')}</dd>
             </div>
             <div className="flex items-start gap-3">
-              <dt className="w-16 shrink-0 font-bold text-content">{t('profile.deptLabel')}</dt>
+              <dt className={dtClass}>{t('profile.deptLabel')}</dt>
               <dd className="min-w-0 text-content-soft">{t('profile.deptValue')}</dd>
             </div>
             {profile.office && (
               <div className="flex items-start gap-3">
-                <dt className="w-16 shrink-0 font-bold text-content">{t('profile.officeLabel')}</dt>
+                <dt className={dtClass}>{t('profile.officeLabel')}</dt>
                 <dd className="min-w-0 text-content-soft">{profile.office}</dd>
               </div>
             )}
             {labName && (
               <div className="flex items-start gap-3">
-                <dt className="w-16 shrink-0 font-bold text-content">{t('profile.labLabel')}</dt>
+                <dt className={dtClass}>{t('profile.labLabel')}</dt>
                 <dd className="flex min-w-0 flex-wrap items-center gap-2 text-content-soft">
                   <span>{labName}</span>
                   {lab?.url && (
