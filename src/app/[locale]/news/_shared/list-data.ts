@@ -59,7 +59,7 @@ export async function buildNoticeList(
         (b.pinned ? 1 : 0) - (a.pinned ? 1 : 0) || ((a.date ?? '') < (b.date ?? '') ? 1 : -1),
     );
 
-  // 공지 필터 탭(전체/학부/대학원/외부기관/장학생 선발)
+  // 공지 필터 탭(학부/대학원/외부기관/장학생 선발 — '전체' 없음, 첫 탭이 기본)
   const categories: BoardCategory[] = [
     { id: 'undergrad', label: tMenu('undergraduate.label') },
     { id: 'graduate', label: tMenu('graduate.label') },

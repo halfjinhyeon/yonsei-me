@@ -28,6 +28,7 @@ export default async function NoticesBoardPage({ params }: { params: { locale: s
       <FilterableBoardList
         items={items}
         categories={categories}
+        showAll={false}
         locale={locale}
         emptyLabel={emptyLabel}
       />

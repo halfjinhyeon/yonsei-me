@@ -53,6 +53,7 @@ export function FilterableBoardList({
   emptyLabel,
   categories,
   categoryLabel,
+  showAll = true,
 }: {
   items: BoardRow[];
   locale: Locale;
@@ -61,10 +62,14 @@ export function FilterableBoardList({
   /** 카테고리 탭 그룹의 스크린리더 이름. 기본값이 "공지 구분"이라 공지 외
    *  게시판(뉴스 등)에서는 그 게시판의 문구를 넘겨야 한다. */
   categoryLabel?: string;
+  /** '전체' 탭 노출 여부. 끄면 첫 분류가 기본 탭이고 목록은 항상 한 분류만 보여준다. */
+  showAll?: boolean;
 }) {
   const t = useTranslations('news');
+  // 기본 탭 — '전체'가 없으면 첫 분류. URL 에는 기본값이 아닐 때만 싣는다.
+  const defaultCat = showAll || !categories?.length ? 'all' : categories[0].id;
   const [filter, setFilter] = useState(emptyFilter);
-  const [cat, setCat] = useState('all');
+  const [cat, setCat] = useState(defaultCat);
   const [page, setPage] = useState(1);
   /** URL 쿼리를 상태에 반영하기 전에는 URL 쓰기를 막는 빗장.
    *  ref 가 아니라 state 인 이유: 마운트 커밋에서 동기화 이펙트가 "아직 기본값인" 상태로
@@ -107,7 +112,7 @@ export function FilterableBoardList({
 
     // cat — categories 에 실제로 있는 key 일 때만. 없는 값을 그대로 쓰면 목록이 통째로 빈다.
     const rawCat = params.get(QS_CAT);
-    const nextCat = rawCat && categories?.some((c) => c.id === rawCat) ? rawCat : 'all';
+    const nextCat = rawCat && categories?.some((c) => c.id === rawCat) ? rawCat : defaultCat;
 
     // q / in — 검색어가 없으면 범위만 복원해도 의미가 없으므로 필터 전체를 비활성으로 둔다.
     const rawQuery = params.get(QS_QUERY) ?? '';
@@ -134,7 +139,7 @@ export function FilterableBoardList({
       }
     }
 
-    if (nextCat !== 'all') setCat(nextCat);
+    if (nextCat !== defaultCat) setCat(nextCat);
     if (nextFilter !== emptyFilter) setFilter(nextFilter);
     if (nextPage !== 1) setPage(nextPage);
     setUrlApplied(true);
@@ -163,7 +168,7 @@ export function FilterableBoardList({
     if (current > 1) params.set(QS_PAGE, String(current));
     else params.delete(QS_PAGE);
 
-    if (catActive) params.set(QS_CAT, cat);
+    if (catActive && cat !== defaultCat) params.set(QS_CAT, cat);
     else params.delete(QS_CAT);
 
     if (searchActive) {
@@ -179,7 +184,7 @@ export function FilterableBoardList({
     const now = `${window.location.pathname}${window.location.search}${window.location.hash}`;
     if (next === now) return; // 같은 주소를 다시 쓰지 않는다
     window.history.replaceState(null, '', next);
-  }, [urlApplied, current, catActive, cat, searchActive, filter]);
+  }, [urlApplied, current, catActive, cat, defaultCat, searchActive, filter]);
 
   /** 페이지를 넘기면 목록 머리로 되돌린다 — 안 그러면 새 페이지의 중간부터 보인다.
    *  헤더(64/80) + sticky 탭 바(48) 아래에 목록 첫 줄이 오도록 오프셋을 준다.
@@ -206,6 +211,7 @@ export function FilterableBoardList({
           active={cat}
           onChange={changeCat}
           ariaLabel={categoryLabel ?? t('filter.categoryLabel')}
+          showAll={showAll}
           categories={categories.map((c) => ({
             ...c,
             count: items.filter((it) => it.category === c.id).length,

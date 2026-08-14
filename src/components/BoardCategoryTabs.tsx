@@ -21,12 +21,15 @@ export function BoardCategoryTabs({
   onChange,
   ariaLabel,
   categories,
+  showAll = true,
 }: {
   active: string;
   onChange: (id: string) => void;
   /** 탭 그룹의 스크린리더 이름 (게시판마다 다르다 — "공지 구분", "자료 분류" 등) */
   ariaLabel: string;
   categories: BoardTabCategory[];
+  /** '전체' 탭을 그릴지. 끄면 첫 분류가 기본 탭이 된다(공지사항). */
+  showAll?: boolean;
 }) {
   const t = useTranslations('news');
 
@@ -37,7 +40,9 @@ export function BoardCategoryTabs({
         onChange={onChange}
         ariaLabel={ariaLabel}
         tabs={[
-          { id: 'all', label: <span className="whitespace-nowrap">{t('filter.all')}</span> },
+          ...(showAll
+            ? [{ id: 'all', label: <span className="whitespace-nowrap">{t('filter.all')}</span> }]
+            : []),
           ...categories.map((c) => ({
             id: c.id,
             label: (
