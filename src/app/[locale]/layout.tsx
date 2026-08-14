@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { Analytics } from '@vercel/analytics/next';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, getTranslations, setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
@@ -122,6 +123,9 @@ export default async function LocaleLayout({
         {/* Vercel Web Analytics — 프로덕션에서만 /_vercel/insights 로 집계(퍼스트파티
             경로라 광고 차단기에 잘 안 걸린다). 쿠키를 심지 않아 동의 배너가 필요 없다. */}
         <Analytics />
+        {/* Vercel Speed Insights — 실사용자 Web Vitals(CWV) 수집. Analytics 와 같은
+            퍼스트파티 경로(/_vercel/speed-insights)·무쿠키 방식이다. */}
+        <SpeedInsights />
       </body>
     </html>
   );
