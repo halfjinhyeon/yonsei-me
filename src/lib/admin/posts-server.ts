@@ -145,17 +145,16 @@ export function endDateError(p: AdminPostPayload): string | null {
 /** 페이로드 → posts 행 (본문은 md 보관 + 정화 HTML 동시 저장) */
 export function payloadToRow(p: AdminPostPayload) {
   const isNews = p.board === 'news' || p.board === 'alumniNews';
-  // 캘린더 전용 일정은 "그 날짜에 일어나는 일"이 본체라 행사와 똑같이 event_date 에
+  // 캘린더 전용 일정·세미나는 "그 날짜에 일어나는 일"이 본체라 행사와 똑같이 event_date 에
   // 시작일을 박는다. created_at 은 timestamptz 라 표시일로 쓰면 시간대에 휘둘린다.
+  // (세미나를 여기 넣은 건 캘린더 게시일 오배치 수정 — lib/posts.ts 의 dateOf 와 한 몸이다.)
   const isEvent =
     p.board === 'alumniEvents'
       ? p.isEvent === true
-      : p.board === 'events' || p.board === 'calendar';
+      : p.board === 'events' || p.board === 'seminars' || p.board === 'calendar';
   // 종료일·자동 라벨 대상: 행사 + 세미나 + 일정 + 동문(행사 체크 시). 그 외 게시판은 항상 null.
   // 일정을 여기 넣는 이유는 홈 캘린더의 날짜 pill 표기다 — 행사 글과 같은
   // formatPeriodLabel 을 타야 "7/20~7/24" 같은 기간 표기가 한 문법으로 나온다.
-  // is_event/event_date 의 기존 의미는 불변(세미나는 event_date null 유지 — dateOf 가
-  // created_at 으로 폴백해 표시 날짜가 동일하다).
   const hasSchedule =
     p.board === 'events' || p.board === 'seminars' || p.board === 'calendar' ||
     (p.board === 'alumniEvents' && p.isEvent === true);
@@ -246,7 +245,8 @@ export function rowToEditRecord(r: DbPostRow) {
   // 그대로 오답이 된다 — 시작일의 진실은 언제나 event_date 다.
   // 나머지 게시판도 사정은 같다: 예전에는 여기서 UTC 로 잘라 폼에 하루 이른 날짜가
   // 뜨고, 그 상태로 저장하면 진짜 하루가 밀렸다(왕복할수록 누적). kstDate 로 바로잡는다.
-  const date = (r.event_date && (r.board === 'events' || r.board === 'calendar' || r.is_event)
+  const date = (r.event_date &&
+  (r.board === 'events' || r.board === 'seminars' || r.board === 'calendar' || r.is_event)
     ? r.event_date
     : kstDate(String(r.created_at))) as string;
   // 종료일: end_date 우선. 없으면(구 데이터) 수동 기간 라벨을 파싱해 폼에 프리필한다 —

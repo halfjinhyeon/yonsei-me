@@ -49,8 +49,9 @@ const WEEKDAYS = ['일', '월', '화', '수', '목', '금', '토'];
 /** 요일 색 — 일요일 붉은색, 토요일 블루, 평일 회색(사이트 학사일정 표기 관례) */
 const WEEKDAY_COLOR = ['#b42318', '#6e6e6e', '#6e6e6e', '#6e6e6e', '#6e6e6e', '#6e6e6e', '#0057A8'];
 
-/** 캘린더에 함께 그리는 게시판 글 — 읽기 전용 */
-const BOARD_SOURCES: BoardKey[] = ['events', 'alumniEvents'];
+/** 캘린더에 함께 그리는 게시판 글 — 읽기 전용. 사이트 일정 탭(행사+세미나+캘린더 전용)과
+ *  같은 그림이 되도록 세미나를 포함한다(빠져 있어 "연동이 안 된다"는 오해를 낳았다). */
+const BOARD_SOURCES: BoardKey[] = ['events', 'seminars', 'alumniEvents'];
 
 interface BoardEvent {
   key: string;
@@ -606,8 +607,8 @@ export function CalendarEditor({ meta, items, busy, onSave, onDelete }: Props) {
         빈 날짜의 <strong className="text-content">+ 일정</strong> 을 누르면 그 날짜로 편집 패널이
         열립니다. <strong className="text-content">저장해야 달력에 올라갑니다</strong> — 저장하면
         사이트에 수 초 내 반영됩니다. 기울임체 칩은{' '}
-        <strong className="text-content">행사 게시판에서 자동으로 올라온 일정</strong>이라 여기서
-        고칠 수 없고, 해당 게시판에서 수정합니다 (Supabase · posts (board={meta.key})).
+        <strong className="text-content">행사·세미나·동문 행사 게시판에서 자동으로 올라온 일정</strong>
+        이라 여기서 고칠 수 없고, 해당 게시판에서 수정합니다 (Supabase · posts (board={meta.key})).
       </p>
 
       {boardNotice && (

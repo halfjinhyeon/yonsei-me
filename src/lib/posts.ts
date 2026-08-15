@@ -210,10 +210,13 @@ function loc(ko: string | null | undefined, en: string | null | undefined): Loca
 }
 
 
-/** 표시용 날짜 — 행사(또는 isEvent)는 행사일, 그 외는 작성일 */
+/** 표시용 날짜 — 행사·세미나(또는 isEvent)는 행사일, 그 외는 작성일.
+ *  세미나를 행사일 기준에 넣은 이유: 캘린더가 세미나를 게시일 칸에 올려 제목의
+ *  날짜(8/18)와 칸(8/11)이 어긋났다. event_date 없는 구 글은 작성일로 폴백한다. */
 function dateOf(r: DbPost): string {
   // event_date 는 date 칼럼이라 시간대가 없다 — 그대로 쓴다.
-  if ((r.board === 'events' || r.is_event) && r.event_date) return r.event_date;
+  if ((r.board === 'events' || r.board === 'seminars' || r.is_event) && r.event_date)
+    return r.event_date;
   return kstDate(r.created_at);
 }
 
