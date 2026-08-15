@@ -84,7 +84,7 @@ export function useAdminShell(): AdminShellValue {
 
 /** 상단 중앙 토스트. 5초 후 자동으로 사라지고, 그 전에 "확인"으로 닫을 수 있다. */
 export function AdminToast() {
-  const { toast, dismissToast, focusMode } = useAdminShell();
+  const { toast, dismissToast } = useAdminShell();
 
   useEffect(() => {
     if (!toast) return;
@@ -99,15 +99,12 @@ export function AdminToast() {
     <div
       role="status"
       aria-live="polite"
-      // 사이트 헤더(fixed) + 콘솔 상단 바 바로 아래 중앙. 둘 다 지나쳐야
-      // 가려지지 않는다. z-60 은 헤더(z-50)보다 위, 모달(z-70)보다 아래.
-      // 집중 모드에서는 콘솔 상단 바가 없으므로 그만큼(--cms-bar) 위로 올린다 —
-      // 그러지 않으면 글쓰기 화면 상단 고정 바를 덮는다.
+      // 콘솔 상단 바(--cms-bar) 바로 아래 중앙(크롬 없는 전체화면 기준).
+      // z-60 은 모달(z-70)보다 아래. 집중 모드에서는 콘솔 상단 바 대신 폼의
+      // 고정 바가 같은 자리(top-0)에 있으므로 기준선이 동일하다 —
+      // 폼 바 높이는 --cms-bar 와 다르지만 12px 여유로 겹침을 피한다.
       className={cn(
-        'anim-panel fixed left-1/2 z-[60] flex -translate-x-1/2 items-center gap-4 bg-yonsei-navy px-[18px] py-3.5 text-[13px] font-semibold text-white shadow-[0_20px_40px_-24px_rgba(0,40,94,.8)]',
-        focusMode
-          ? 'top-[calc(4rem+12px)] lg:top-[calc(5rem+12px)]'
-          : 'top-[calc(4rem+var(--cms-bar)+12px)] lg:top-[calc(5rem+var(--cms-bar)+12px)]',
+        'anim-panel fixed left-1/2 top-[calc(var(--cms-bar)+12px)] z-[60] flex -translate-x-1/2 items-center gap-4 bg-yonsei-navy px-[18px] py-3.5 text-[13px] font-semibold text-white shadow-[0_20px_40px_-24px_rgba(0,40,94,.8)]',
       )}
     >
       <span>{toast}</span>

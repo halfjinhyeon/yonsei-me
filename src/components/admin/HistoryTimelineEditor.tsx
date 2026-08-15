@@ -148,7 +148,7 @@ export function HistoryTimelineEditor({
           )}
         </div>
 
-        <aside className="border border-surface-border bg-[#fcfdfe] px-5 py-4 lg:sticky lg:top-[calc(5rem+var(--cms-bar)+1rem)]">
+        <aside className="border border-surface-border bg-[#fcfdfe] px-5 py-4 lg:sticky lg:top-[calc(var(--cms-bar)+1rem)]">
           <p className="cms-eyebrow">사이트 반영 방식</p>
           <p className="mt-2.5 text-xs leading-[1.8] text-content-soft">
             연월(YYYY-MM) 기준 <strong className="text-content">내림차순</strong>으로 자동

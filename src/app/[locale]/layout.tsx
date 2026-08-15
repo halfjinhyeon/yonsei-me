@@ -7,6 +7,7 @@ import { notFound } from 'next/navigation';
 import { routing } from '@/i18n/routing';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
+import { SiteChrome } from '@/components/SiteChrome';
 import { SmoothScroll } from '@/components/SmoothScroll';
 import { ScrollRestoration } from '@/components/ScrollRestoration';
 import { SITE_URL } from '@/lib/site';
@@ -114,11 +115,16 @@ export default async function LocaleLayout({
           <a href="#main" className="skip-link">
             {t('skipToContent')}
           </a>
-          <Header />
+          {/* 콘텐츠 관리 콘솔은 전용 전체화면 — 헤더·푸터를 렌더하지 않는다(SiteChrome) */}
+          <SiteChrome>
+            <Header />
+          </SiteChrome>
           <main id="main" className="overflow-x-clip">
             {children}
           </main>
-          <Footer />
+          <SiteChrome>
+            <Footer />
+          </SiteChrome>
         </NextIntlClientProvider>
         {/* Vercel Web Analytics — 프로덕션에서만 /_vercel/insights 로 집계(퍼스트파티
             경로라 광고 차단기에 잘 안 걸린다). 쿠키를 심지 않아 동의 배너가 필요 없다. */}

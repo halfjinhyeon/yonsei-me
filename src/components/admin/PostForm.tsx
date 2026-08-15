@@ -402,8 +402,8 @@ export function PostForm({
 
   return (
     <form onSubmit={handleSubmit} noValidate className="anim-panel min-h-[70vh] bg-surface">
-      {/* ── 상단 고정 바 — 콘솔 상단 바를 대신한다(집중 모드). 사이트 헤더 바로 아래 ── */}
-      <div className="sticky top-16 z-30 flex flex-wrap items-center gap-x-3.5 gap-y-2 border-b border-surface-border bg-surface px-6 py-3 lg:top-20 lg:px-8">
+      {/* ── 상단 고정 바 — 콘솔 상단 바를 대신한다(집중 모드). 크롬 없는 전체화면이라 맨 위 ── */}
+      <div className="sticky top-0 z-30 flex flex-wrap items-center gap-x-3.5 gap-y-2 border-b border-surface-border bg-surface px-6 py-3 lg:px-8">
         <button type="button" onClick={requestLeave} className="cms-btn cms-btn-sm">
           ← 목록으로
         </button>

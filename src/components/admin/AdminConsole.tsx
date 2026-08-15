@@ -6,14 +6,14 @@
 // 대시보드는 AdminDashboard, 실제 편집은 항목 종류별 에디터
 // (BoardEditor / CollectionEditor / MarkdownEditor)에 위임한다.
 //
-// 콘솔은 사이트에서 떨어져 나온 별도 앱이 아니라 "관리자용 세부 페이지"다.
-// 그래서 사이트 히어로·헤더·푸터를 그대로 두고(page.tsx), 그 아래에 자체 상단
-// 바(--cms-bar)와 좌측 사이드바를 얹는다. 편집 화면에서 목록과 메뉴가 동시에
-// 보여야 "보면서 그 자리에서 고친다"가 성립하기 때문이다.
+// 콘솔은 사이트 크롬(헤더·히어로·푸터) 없는 전용 전체화면 도구다 — 레이아웃의
+// SiteChrome 래퍼가 이 경로에서 크롬을 렌더하지 않는다. 자체 상단 바(--cms-bar)가
+// 화면 맨 위(top-0)에 붙고, 그 아래 좌측 사이드바 + 본문이 온다. 편집 화면에서
+// 목록과 메뉴가 동시에 보여야 "보면서 그 자리에서 고친다"가 성립하기 때문이다.
 //
-// ⚠️ 사이트 헤더가 fixed inset-x-0 top-0 (h-16 / lg:h-20) 이라 콘솔의 sticky
-// 요소는 전부 "헤더 높이 + --cms-bar" 만큼 아래를 기준선으로 삼는다. 이 오프셋이
-// 어긋나면 상단 바가 헤더 뒤로 숨거나 사이드바가 화면 밖으로 밀린다.
+// 콘솔의 sticky 요소 기준선은 전부 --cms-bar 하나다(집중 모드는 top-0).
+// 예전에는 사이트 헤더(h-16/lg:h-20) 높이까지 더한 calc 오프셋이 셸 곳곳에
+// 있었다 — 크롬을 걷어내며 함께 제거했다.
 //
 // 콘텐츠/코드 분리 원칙은 "사이트 콘텐츠"(content/*)에 적용된다.
 // 이 관리자 도구는 내부 운영용이라 한국어 UI 문자열을 컴포넌트에 직접 둔다.
@@ -260,9 +260,10 @@ function AdminConsoleBody({ token, login }: Props) {
     <AdminShellProvider value={shell}>
       <div className="bg-surface text-content">
         {/* 콘솔 상단 바 — 집중 모드(글쓰기)에서는 폼 자신의 고정 바가 그 자리를
-            대신하므로 렌더하지 않는다. 사이트 헤더·히어로·푸터는 그대로 둔다. */}
+            대신하므로 렌더하지 않는다. 사이트 크롬은 이 경로에서 렌더되지 않으므로
+            (SiteChrome) 콘솔 상단 바가 화면 맨 위(top-0)에 붙는다. */}
         {!focusMode && (
-        <header className="sticky top-16 z-30 flex h-[var(--cms-bar)] items-center justify-between gap-4 border-y border-surface-border bg-surface px-6 lg:top-20 lg:px-10">
+        <header className="sticky top-0 z-30 flex h-[var(--cms-bar)] items-center justify-between gap-4 border-b border-surface-border bg-surface px-6 lg:px-10">
           <div className="flex min-w-0 items-center gap-3.5">
             <button
               type="button"
@@ -312,9 +313,7 @@ function AdminConsoleBody({ token, login }: Props) {
           <div
             className={cn(
               'sticky z-[31]',
-              focusMode
-                ? 'top-16 lg:top-20'
-                : 'top-[calc(4rem+var(--cms-bar))] lg:top-[calc(5rem+var(--cms-bar))]',
+              focusMode ? 'top-0' : 'top-[var(--cms-bar)]',
             )}
           >
             <CmsBanner banner={activeBanner} onDismiss={dismissBanner} />
@@ -329,7 +328,7 @@ function AdminConsoleBody({ token, login }: Props) {
           <nav
             aria-label="콘텐츠 선택"
             data-lenis-prevent
-            className="sticky top-[calc(4rem+var(--cms-bar))] hidden h-[calc(100dvh-4rem-var(--cms-bar))] overflow-y-auto overscroll-contain border-r border-surface-border px-3.5 py-5 pb-12 lg:top-[calc(5rem+var(--cms-bar))] lg:block lg:h-[calc(100dvh-5rem-var(--cms-bar))]"
+            className="sticky top-[var(--cms-bar)] hidden h-[calc(100dvh-var(--cms-bar))] overflow-y-auto overscroll-contain border-r border-surface-border px-3.5 py-5 pb-12 lg:block"
           >
             <SidebarBody activeId={activeId} onNavigate={navigate} isDashboard={active === null} />
           </nav>
@@ -347,7 +346,7 @@ function AdminConsoleBody({ token, login }: Props) {
               <nav
                 aria-label="콘텐츠 선택"
                 data-lenis-prevent
-                className="fixed bottom-0 left-0 top-[calc(4rem+var(--cms-bar))] z-40 w-[280px] overflow-y-auto overscroll-contain border-r border-surface-border bg-surface px-3.5 py-5 pb-12 lg:hidden"
+                className="fixed bottom-0 left-0 top-[var(--cms-bar)] z-40 w-[280px] overflow-y-auto overscroll-contain border-r border-surface-border bg-surface px-3.5 py-5 pb-12 lg:hidden"
               >
                 <SidebarBody activeId={activeId} onNavigate={navigate} isDashboard={active === null} />
               </nav>
