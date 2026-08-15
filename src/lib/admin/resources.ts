@@ -664,7 +664,7 @@ export const MENU_GROUPS: MenuGroup[] = [
     entries: [{ type: 'board', boardKey: 'calendar' }],
   },
   {
-    label: '뉴스·공지 게시판',
+    label: '뉴스·공지',
     entries: [
       { type: 'board', boardKey: 'news' },
       { type: 'board', boardKey: 'noticesUndergrad' },

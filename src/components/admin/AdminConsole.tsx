@@ -2,18 +2,21 @@
 
 // 전체 콘텐츠 관리 콘솔 셸 (단일 페이지 앱).
 // 정적 사이트라 서버 DB가 없어 GitHub Contents API로 content/* 파일을 직접
-// 커밋한다("Git이 곧 DB"). 이 셸은 상단 바 + 사이드바 + 라우팅만 담당하고,
+// 커밋한다("Git이 곧 DB"). 이 셸은 사이드바 + 라우팅만 담당하고,
 // 대시보드는 AdminDashboard, 실제 편집은 항목 종류별 에디터
 // (BoardEditor / CollectionEditor / MarkdownEditor)에 위임한다.
 //
-// 콘솔은 사이트 크롬(헤더·히어로·푸터) 없는 전용 전체화면 도구다 — 레이아웃의
-// SiteChrome 래퍼가 이 경로에서 크롬을 렌더하지 않는다. 자체 상단 바(--cms-bar)가
-// 화면 맨 위(top-0)에 붙고, 그 아래 좌측 사이드바 + 본문이 온다. 편집 화면에서
-// 목록과 메뉴가 동시에 보여야 "보면서 그 자리에서 고친다"가 성립하기 때문이다.
+// 콘솔은 사이트 헤더(fixed, h-16/lg:h-20)와 히어로 아래에서 시작한다 — 푸터만
+// 렌더되지 않는다(레이아웃의 SiteChrome). 페이지가 통째로 스크롤되고, 스크롤이
+// 히어로를 지나면 사이드바가 헤더 바로 아래에 sticky 로 선다.
 //
-// 콘솔의 sticky 요소 기준선은 전부 --cms-bar 하나다(집중 모드는 top-0).
-// 예전에는 사이트 헤더(h-16/lg:h-20) 높이까지 더한 calc 오프셋이 셸 곳곳에
-// 있었다 — 크롬을 걷어내며 함께 제거했다.
+// 데스크톱에는 콘솔 전용 상단 바가 없다 — 저장소·계정·배포 상태·로그아웃은 전부
+// 사이드바 하단으로 내렸다. 가로로 긴 바 하나에 세로 공간을 또 내주는 대신 이미
+// 자리를 차지한 사이드바에 담는 편이 편집 화면을 넓게 쓴다. 모바일(<lg)에서만
+// 드로어를 여는 슬림 바(--cms-bar)를 남긴다 — 거기엔 사이드바가 상주하지 못한다.
+//
+// 그래서 콘솔의 sticky 기준선은 사이트 헤더 높이다:
+// 데스크톱 top-20(5rem), 모바일 top-16(4rem) + 슬림 바(--cms-bar).
 //
 // 콘텐츠/코드 분리 원칙은 "사이트 콘텐츠"(content/*)에 적용된다.
 // 이 관리자 도구는 내부 운영용이라 한국어 UI 문자열을 컴포넌트에 직접 둔다.
@@ -33,10 +36,27 @@ import {
 import { BoardEditor } from './BoardEditor';
 import { ChangeTray } from './ChangeTray';
 import { ChangeTrayProvider, useChangeTray } from './ChangeTrayContext';
+import {
+  GROUP_ICONS,
+  IcoChevronDown,
+  IcoDashboard,
+  IcoExternal,
+  IcoLogout,
+  IcoMenu,
+  IcoSearch,
+} from './cms-icons';
 import { CmsBanner, type CmsBannerData } from './CmsBanner';
 import { CmsModal } from './CmsModal';
 import { CollectionEditor } from './CollectionEditor';
-import { entryId, entryKind, entryLabel, isEditable, pushRecent } from './entries';
+import {
+  ALL_ENTRIES,
+  entryDescription,
+  entryGroupLabel,
+  entryId,
+  entryLabel,
+  isEditable,
+  pushRecent,
+} from './entries';
 import { MarkdownEditor } from './MarkdownEditor';
 
 interface Props {
@@ -47,6 +67,9 @@ interface Props {
 }
 
 const SITE_URL = 'https://yonsei-me.vercel.app/ko';
+
+/** 접힘 상태에서 기본으로 펼쳐 둘 그룹 — 손대는 빈도가 가장 높은 묶음 */
+const DEFAULT_OPEN_GROUP = '뉴스·공지';
 
 // 트레이 컨텍스트를 셸 자신도 읽어야 해서(이동 가드가 대기 변경을 봐야 한다)
 // Provider 와 본문을 한 겹 나눈다 — Provider 를 렌더하는 컴포넌트는 그 컨텍스트를
@@ -83,7 +106,7 @@ function AdminConsoleBody({ token, login }: Props) {
   const dismissToast = useCallback(() => setToast(null), []);
 
   // 집중 모드 — 글쓰기 화면(PostForm)이 마운트되는 동안만 참. 켜지면 사이드바와
-  // 콘솔 상단 바를 내려 본문을 전체화면 단일 컬럼으로 비운다. 값을 올리고 내리는
+  // 모바일 슬림 바를 내려 본문을 단일 컬럼으로 비운다. 값을 올리고 내리는
   // 쪽은 폼 자신이라 여기서는 상태만 들고 있는다.
   const [focusMode, setFocusMode] = useState(false);
 
@@ -142,7 +165,7 @@ function AdminConsoleBody({ token, login }: Props) {
   const { source: traySource, saving: traySaving, clearTray } = useChangeTray();
   const pendingCount = traySource?.changes.length ?? 0;
 
-  // 커밋이 도는 동안 배포 중 칩을 띄웠다가 스스로 내린다. Vercel 빌드가 대략
+  // 커밋이 도는 동안 배포 중 표시를 띄웠다가 스스로 내린다. Vercel 빌드가 대략
   // 1~2분이라 90초를 근사치로 잡았다(성공 여부를 폴링할 경로가 없다).
   // 타이머를 셸에 두는 이유: 저장이 끝나면 트레이가 곧바로 언마운트돼 트레이 안에
   // 타이머를 두면 즉시 정리돼 버린다.
@@ -259,82 +282,64 @@ function AdminConsoleBody({ token, login }: Props) {
   return (
     <AdminShellProvider value={shell}>
       <div className="bg-surface text-content">
-        {/* 콘솔 상단 바 — 집중 모드(글쓰기)에서는 폼 자신의 고정 바가 그 자리를
-            대신하므로 렌더하지 않는다. 사이트 크롬은 이 경로에서 렌더되지 않으므로
-            (SiteChrome) 콘솔 상단 바가 화면 맨 위(top-0)에 붙는다. */}
+        {/* 모바일 슬림 바 — 드로어 손잡이. lg 이상에서는 사이드바가 항상 보이므로
+            아예 렌더하지 않는다. 사이트 헤더가 이미 banner 랜드마크라 여기서
+            <header> 를 또 쓰지 않는다(랜드마크가 둘이면 탐색이 흐려진다).
+            집중 모드(글쓰기)에서는 폼 자신의 고정 바가 그 자리를 대신한다. */}
         {!focusMode && (
-        <header className="sticky top-0 z-30 flex h-[var(--cms-bar)] items-center justify-between gap-4 border-b border-surface-border bg-surface px-6 lg:px-10">
-          <div className="flex min-w-0 items-center gap-3.5">
+          <div className="sticky top-16 z-30 flex h-[var(--cms-bar)] items-center gap-3 border-b border-surface-border bg-surface px-4 lg:hidden">
             <button
               type="button"
               onClick={() => setNavOpen((v) => !v)}
               aria-expanded={navOpen}
               aria-label="콘텐츠 메뉴 열기"
-              className="cms-btn cms-btn-sm shrink-0 px-2 lg:hidden"
+              className="cms-btn cms-btn-sm shrink-0 px-2"
             >
-              <svg aria-hidden="true" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M4 7h16M4 12h16M4 17h16" strokeLinecap="round" />
-              </svg>
+              <IcoMenu size={16} />
             </button>
-            <span className="shrink-0 text-[15px] font-extrabold tracking-tight text-yonsei-navy">
-              기계공학부 콘텐츠 관리
-            </span>
-            <span className="hidden items-center gap-1.5 text-[11px] tabular-nums text-content-faint sm:flex">
-              <span>
-                {config.owner}/{config.repo}
-              </span>
-              <span className="bg-surface-soft px-1.5 py-0.5 font-semibold text-content">
-                {config.branch}
-              </span>
-            </span>
+            <span className="text-[15px] font-extrabold text-yonsei-navy">기계공학부 CMS</span>
           </div>
-
-          <div className="flex shrink-0 items-center gap-2.5">
-            <DeployChip state={deploy} />
-            {login && (
-              <span className="hidden items-center gap-1.5 bg-surface-soft px-2.5 py-1.5 text-[11px] font-semibold text-content-faint sm:flex">
-                <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-green-500" />
-                {login}
-              </span>
-            )}
-            <a href="/api/auth/signout" className="cms-btn cms-btn-sm">
-              로그아웃
-            </a>
-          </div>
-        </header>
         )}
 
-        {/* 운영 상태 배너 — 상단 바 바로 아래 한 자리에 sticky 로 붙는다.
+        {/* 운영 상태 배너 — 사이트 헤더(모바일은 슬림 바) 바로 아래 한 자리에 sticky.
             집중 모드(글쓰기)에서도 렌더한다: 긴 글을 쓰는 동안 연결이 끊긴 걸
             모르고 있다가 저장에서 처음 알게 되는 상황이 가장 나쁘다. 다만 그때는
-            콘솔 상단 바가 없으므로 --cms-bar 만큼 기준선을 올린다.
+            모바일 슬림 바가 없으므로 그만큼 기준선을 올린다.
             z-[31] 은 사이드바(sticky)보다 위, 드로어 오버레이(z-30/40)와 겹치지 않는 값. */}
         {activeBanner && (
           <div
             className={cn(
               'sticky z-[31]',
-              focusMode ? 'top-0' : 'top-[var(--cms-bar)]',
+              focusMode ? 'top-16 lg:top-20' : 'top-[calc(4rem+var(--cms-bar))] lg:top-20',
             )}
           >
             <CmsBanner banner={activeBanner} onDismiss={dismissBanner} />
           </div>
         )}
 
-        <div className={cn(!focusMode && 'grid lg:grid-cols-[248px_minmax(0,1fr)]')}>
-          {/* 데스크톱 사이드바 — 헤더+상단 바 아래에 붙어 화면 끝까지 자체 스크롤.
+        <div className={cn(!focusMode && 'grid lg:grid-cols-[296px_minmax(0,1fr)]')}>
+          {/* 데스크톱 사이드바 — 사이트 헤더(5rem) 아래에 붙어 화면 끝까지 채운다.
+              스크롤은 내비 목록 영역만 지고(로고·검색·하단 유틸리티는 고정),
               data-lenis-prevent 가 없으면 전역 Lenis 부드러운 스크롤이 휠 이벤트를
               가로채 사이드바 안쪽이 스크롤되지 않는다(항목이 화면보다 길다). */}
           {!focusMode && (
-          <nav
-            aria-label="콘텐츠 선택"
-            data-lenis-prevent
-            className="sticky top-[var(--cms-bar)] hidden h-[calc(100dvh-var(--cms-bar))] overflow-y-auto overscroll-contain border-r border-surface-border px-3.5 py-5 pb-12 lg:block"
-          >
-            <SidebarBody activeId={activeId} onNavigate={navigate} isDashboard={active === null} />
-          </nav>
+            <nav
+              aria-label="콘텐츠 선택"
+              data-lenis-prevent
+              className="sticky top-20 hidden h-[calc(100dvh-5rem)] flex-col border-r border-surface-border bg-surface lg:flex"
+            >
+              <SidebarBody
+                activeId={activeId}
+                isDashboard={active === null}
+                onNavigate={navigate}
+                config={config}
+                login={login}
+                deploy={deploy}
+              />
+            </nav>
           )}
 
-          {/* 모바일 드로어 — 같은 목록을 상단 바 아래에서 덮어 띄운다 */}
+          {/* 모바일 드로어 — 같은 사이드바를 슬림 바 아래에서 덮어 띄운다 */}
           {navOpen && !focusMode && (
             <>
               <button
@@ -346,9 +351,16 @@ function AdminConsoleBody({ token, login }: Props) {
               <nav
                 aria-label="콘텐츠 선택"
                 data-lenis-prevent
-                className="fixed bottom-0 left-0 top-[var(--cms-bar)] z-40 w-[280px] overflow-y-auto overscroll-contain border-r border-surface-border bg-surface px-3.5 py-5 pb-12 lg:hidden"
+                className="fixed bottom-0 left-0 top-[calc(4rem+var(--cms-bar))] z-40 flex w-[300px] flex-col border-r border-surface-border bg-surface lg:hidden"
               >
-                <SidebarBody activeId={activeId} onNavigate={navigate} isDashboard={active === null} />
+                <SidebarBody
+                  activeId={activeId}
+                  isDashboard={active === null}
+                  onNavigate={navigate}
+                  config={config}
+                  login={login}
+                  deploy={deploy}
+                />
               </nav>
             </>
           )}
@@ -414,114 +426,311 @@ function AdminConsoleBody({ token, login }: Props) {
   );
 }
 
-/** 배포 상태 칩 — 저장(커밋) 후 Vercel 재배포가 도는 동안을 알린다.
- *  값을 'deploying' 으로 올리는 쪽은 변경 트레이, 90초 뒤 내리는 쪽은 셸이다. */
-function DeployChip({ state }: { state: DeployState }) {
-  const deploying = state === 'deploying';
-  return (
-    <span className="flex items-center gap-1.5 border border-surface-border px-2.5 py-1.5 text-[11px] font-semibold text-content">
-      <span
-        aria-hidden="true"
-        className={cn(
-          'h-1.5 w-1.5 rounded-full',
-          deploying ? 'animate-pulse bg-yonsei-blue' : 'bg-[#c3cbd6]',
-        )}
-      />
-      <span className={cn(!deploying && 'hidden sm:inline')}>
-        {deploying ? '배포 중 · 1~2분' : '배포 대기 없음'}
-      </span>
-    </span>
-  );
-}
+/** 내비 행 공통 문법 — 대시보드·평평한 그룹·아코디언 부모가 같은 높이로 정렬된다 */
+const ROW =
+  'flex w-full cursor-pointer items-center gap-2.5 px-3 py-[9px] text-left text-sm transition-colors duration-200 ease-out-expo';
 
-/** 사이드바 본문 — 데스크톱 고정 열과 모바일 드로어가 같은 내용을 쓴다 */
+/**
+ * 사이드바 본문 — 데스크톱 고정 열과 모바일 드로어가 같은 내용을 쓴다.
+ *
+ * 위에서부터 로고 / 검색 / 내비 목록(유일한 스크롤 영역) / 하단 유틸리티.
+ * 검색·아코디언 상태는 여기서만 쓰는 표시 상태라 셸로 올리지 않는다 —
+ * 드로어와 데스크톱이 각자 마운트되지만 둘이 동시에 보이는 일이 없어 무해하다.
+ */
 function SidebarBody({
   activeId,
   isDashboard,
   onNavigate,
+  config,
+  login,
+  deploy,
 }: {
   activeId: string | null;
   isDashboard: boolean;
   onNavigate: (entry: MenuEntry | null) => void;
+  config: RepoConfig;
+  login: string;
+  deploy: DeployState;
 }) {
+  const [query, setQuery] = useState('');
+  // 검색 결과 키보드 커서 (↑↓ 이동, Enter 선택)
+  const [cursor, setCursor] = useState(0);
+  // 한 번에 한 그룹만 연다 — 전부 펼치면 13개 게시판이 화면을 넘겨 스크롤 없이는
+  // 어느 묶음에 있는지조차 보이지 않는다.
+  const [openGroup, setOpenGroup] = useState<string>(() => groupOf(activeId) ?? DEFAULT_OPEN_GROUP);
+
+  // 사이드바를 거치지 않는 이동(대시보드 카드·배너 안내)으로 현재 항목이 바뀌면
+  // 그 그룹을 펼친다. 접힌 그룹 안에 숨으면 "지금 어디에 있는지"가 사라진다.
+  useEffect(() => {
+    const g = groupOf(activeId);
+    if (g) setOpenGroup(g);
+  }, [activeId]);
+
+  const q = query.trim().toLowerCase();
+  const results = useMemo(() => {
+    if (!q) return [];
+    return ALL_ENTRIES.filter(
+      (e) =>
+        isEditable(e) &&
+        (entryLabel(e).toLowerCase().includes(q) || entryDescription(e).toLowerCase().includes(q)),
+    ).slice(0, 12);
+  }, [q]);
+
+  const choose = useCallback(
+    (entry: MenuEntry) => {
+      setQuery('');
+      setCursor(0);
+      onNavigate(entry);
+    },
+    [onNavigate],
+  );
+
+  function onSearchKeyDown(e: React.KeyboardEvent<HTMLInputElement>) {
+    if (e.key === 'Escape') {
+      setQuery('');
+      setCursor(0);
+      return;
+    }
+    if (results.length === 0) return;
+    if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      setCursor((c) => (c + 1) % results.length);
+    } else if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      setCursor((c) => (c - 1 + results.length) % results.length);
+    } else if (e.key === 'Enter') {
+      e.preventDefault();
+      const picked = results[cursor] ?? results[0];
+      if (picked) choose(picked);
+    }
+  }
+
+  const deploying = deploy === 'deploying';
+
   return (
     <>
-      {/* 대시보드 — 카테고리 밖 독립 항목 */}
-      <button
-        type="button"
-        onClick={() => onNavigate(null)}
-        aria-current={isDashboard ? 'page' : undefined}
-        className={cn(
-          'mb-[18px] flex w-full items-center justify-between gap-3 border-b border-surface-border px-1.5 pb-3.5 text-left text-sm transition-colors',
-          isDashboard ? 'font-bold text-yonsei-navy' : 'font-semibold text-content hover:text-yonsei-navy',
-        )}
-      >
-        <span>대시보드</span>
-        <span aria-hidden="true" className="text-xs text-yonsei-blue">
-          →
+      <div className="flex items-center gap-2.5 px-5 pb-3.5 pt-5">
+        <img src="/logo.svg" alt="" className="h-9 w-9" />
+        <span className="font-subhead text-xl font-bold tracking-[-0.01em] text-content">
+          기계공학부 CMS
         </span>
-      </button>
+      </div>
 
-      {MENU_GROUPS.map((group) => (
-        <div key={group.label} className="mb-6">
-          <p className="mb-2.5 text-[13px] font-extrabold text-content">{group.label}</p>
-          {/* 장식용 그룹 그라디언트 막대는 뒀다가 뺐다. 선택 항목을 알리는 막대와 둘 다
-              왼쪽 끝 세로선이라 겹쳐 보였고, 겹치는 순간 "지금 어디에 있는지"라는 정보가
-              장식에 묻힌다. 정보 쪽을 남기고 장식을 지운다. */}
-          <ul>
-            {group.entries.map((entry) => {
-              const id = entryId(entry);
-              const selected = id === activeId;
-              const editable = isEditable(entry);
-              const kind = entryKind(entry);
-              return (
-                <li key={id} className="border-b border-surface-border last:border-b-0">
+      {/* 검색 — 항목이 30개를 넘어 그룹을 짚어 가며 찾는 것보다 이름으로 부르는 쪽이 빠르다.
+          입력의 outline 을 지우는 대신 테두리를 focus-within 으로 켠다(초점 표시 유지). */}
+      <div className="mx-4 mb-3 flex items-center gap-2 border border-surface-border bg-surface-soft px-3 py-2 transition-colors duration-200 ease-out-expo focus-within:border-yonsei-blue">
+        <IcoSearch size={16} className="shrink-0 text-content-faint" />
+        <input
+          value={query}
+          onChange={(e) => {
+            setQuery(e.target.value);
+            setCursor(0);
+          }}
+          onKeyDown={onSearchKeyDown}
+          placeholder="검색"
+          aria-label="편집할 항목 검색"
+          className="w-full border-none bg-transparent text-sm outline-none placeholder:text-content-faint"
+        />
+      </div>
+
+      {/* 유일한 스크롤 영역. 검색 중에는 목록 대신 결과를 같은 자리에 그린다 —
+          드롭다운으로 띄우면 overflow 를 가진 이 컨테이너가 잘라 버린다. */}
+      <div
+        data-lenis-prevent
+        className="flex min-h-0 flex-1 flex-col gap-0.5 overflow-y-auto overscroll-contain px-4 pb-2"
+      >
+        {q ? (
+          results.length === 0 ? (
+            <p className="px-3 py-6 text-[13px] text-content-faint">검색 결과가 없습니다.</p>
+          ) : (
+            results.map((entry, i) => (
+              <button
+                key={entryId(entry)}
+                type="button"
+                onClick={() => choose(entry)}
+                onMouseEnter={() => setCursor(i)}
+                // ROW 를 쓰지 않는다 — cn 은 단순 join 이라 gap 을 덮어쓸 수 없다
+                className={cn(
+                  'flex w-full cursor-pointer items-center gap-2 px-3 py-[9px] text-left text-sm transition-colors duration-200 ease-out-expo',
+                  i === cursor ? 'bg-surface-soft text-yonsei-navy' : 'text-content',
+                )}
+              >
+                <span className="min-w-0 truncate font-semibold">{entryLabel(entry)}</span>
+                <span className="ml-auto shrink-0 text-[11px] text-content-faint">
+                  {entryGroupLabel(entry)}
+                </span>
+              </button>
+            ))
+          )
+        ) : (
+          <>
+            {/* 대시보드 — 카테고리 밖 독립 항목 */}
+            <button
+              type="button"
+              onClick={() => onNavigate(null)}
+              aria-current={isDashboard ? 'page' : undefined}
+              className={cn(
+                ROW,
+                isDashboard
+                  ? 'bg-yonsei-navy font-semibold text-white'
+                  : 'font-medium text-content hover:bg-surface-soft',
+              )}
+            >
+              <IcoDashboard size={18} className={cn('shrink-0', !isDashboard && 'text-content-faint')} />
+              대시보드
+            </button>
+
+            {MENU_GROUPS.map((group) => {
+              const GroupIcon = GROUP_ICONS[group.label];
+              // 항목이 하나뿐인 그룹(일정)은 펼칠 것이 없다 — 아코디언 대신 평평한 행으로
+              // 낸다. 클릭 한 번을 아끼는 것보다, 열어 봐야 한 줄인 그룹이 목록에 섞여
+              // 있으면 "여긴 뭐가 더 있나" 하는 오해를 만드는 쪽이 문제다.
+              const only = group.entries.length === 1 ? group.entries[0] : undefined;
+              if (only) {
+                const selected = entryId(only) === activeId;
+                const editable = isEditable(only);
+                return (
                   <button
+                    key={group.label}
                     type="button"
-                    onClick={() => editable && onNavigate(entry)}
+                    onClick={() => editable && onNavigate(only)}
                     disabled={!editable}
                     aria-current={selected ? 'page' : undefined}
-                    title={entry.type === 'placeholder' ? entry.note : undefined}
                     className={cn(
-                      'flex w-full items-center justify-between gap-2 px-2.5 py-2.5 text-left text-[13px] transition-colors',
-                      // 선택은 2px 막대 대신 네이비 면으로 — 목록 옆 얇은 선은 스크롤 중에
-                      // 놓치기 쉽다. 각진 채움은 콘솔의 필터 칩(FilterChip) 활성 상태와
-                      // 같은 문법이라 화면끼리 어휘가 어긋나지 않는다.
+                      ROW,
                       selected
-                        ? 'bg-yonsei-navy font-bold text-white'
+                        ? 'bg-yonsei-navy font-semibold text-white'
                         : editable
-                          ? 'font-medium text-content hover:bg-surface-soft hover:text-yonsei-blue'
+                          ? 'font-medium text-content hover:bg-surface-soft'
                           : 'cursor-not-allowed font-medium text-content-faint',
                     )}
                   >
-                    <span className="min-w-0 truncate">{entryLabel(entry)}</span>
-                    {kind && (
-                      <span
-                        className={cn(
-                          'cms-badge shrink-0',
-                          // 네이비 면 위에서는 원래 배지 색이 묻힌다 — 반투명 흰색으로 뒤집는다
-                          selected ? 'bg-white/20 text-white' : kind.cls,
-                        )}
-                      >
-                        {kind.label}
-                      </span>
+                    {GroupIcon && (
+                      <GroupIcon size={18} className={cn('shrink-0', !selected && 'text-content-faint')} />
                     )}
+                    <span className="min-w-0 truncate">{entryLabel(only)}</span>
                   </button>
-                </li>
+                );
+              }
+
+              const open = openGroup === group.label;
+              return (
+                <div key={group.label}>
+                  <button
+                    type="button"
+                    onClick={() => setOpenGroup((cur) => (cur === group.label ? '' : group.label))}
+                    aria-expanded={open}
+                    className={cn(ROW, 'font-medium text-content hover:bg-surface-soft')}
+                  >
+                    {GroupIcon && <GroupIcon size={18} className="shrink-0 text-content-faint" />}
+                    <span className="min-w-0 truncate">{group.label}</span>
+                    <IcoChevronDown
+                      size={16}
+                      className={cn(
+                        'ml-auto shrink-0 text-content-faint transition-transform duration-200 ease-out-expo',
+                        open && 'rotate-180',
+                      )}
+                    />
+                  </button>
+
+                  {open && (
+                    <ul className="flex flex-col gap-px py-0.5">
+                      {group.entries.map((entry) => {
+                        const id = entryId(entry);
+                        const selected = id === activeId;
+                        const editable = isEditable(entry);
+                        return (
+                          <li key={id}>
+                            <button
+                              type="button"
+                              onClick={() => editable && onNavigate(entry)}
+                              disabled={!editable}
+                              aria-current={selected ? 'page' : undefined}
+                              title={entry.type === 'placeholder' ? entry.note : undefined}
+                              className={cn(
+                                'flex w-full cursor-pointer items-center py-[7px] pl-11 pr-3 text-left text-[13.5px] transition-colors duration-200 ease-out-expo',
+                                // 선택은 얇은 막대 대신 네이비 면으로 — 목록 옆 세로선은
+                                // 스크롤 중에 놓치기 쉽다. 각진 채움은 콘솔의 필터 칩
+                                // (FilterChip) 활성 상태와 같은 문법이다.
+                                selected
+                                  ? 'bg-yonsei-navy font-semibold text-white'
+                                  : editable
+                                    ? 'text-content hover:bg-surface-soft hover:text-yonsei-navy'
+                                    : 'cursor-not-allowed text-content-faint',
+                              )}
+                            >
+                              <span className="min-w-0 truncate">{entryLabel(entry)}</span>
+                            </button>
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  )}
+                </div>
               );
             })}
-          </ul>
-        </div>
-      ))}
+          </>
+        )}
+      </div>
 
-      <a
-        href={SITE_URL}
-        target="_blank"
-        rel="noreferrer"
-        className="block border-t border-surface-border px-1.5 pt-3 text-[11px] font-bold text-content-faint transition-colors hover:text-yonsei-blue"
-      >
-        사이트 열기 ↗
-      </a>
+      {/* 하단 유틸리티 — 목록이 아무리 길어도 스크롤 밖에 남는다.
+          배포 상태·계정·저장소는 "지금 어디에 무엇으로 쓰고 있는지"라 항상 보여야 한다. */}
+      <div className="flex flex-col gap-0.5 border-t border-surface-border px-4 pb-4 pt-3">
+        {/* 배포 상태 — 값을 'deploying' 으로 올리는 쪽은 변경 트레이, 90초 뒤 내리는 쪽은 셸 */}
+        <div className="flex items-center gap-2.5 px-3 py-2 text-[13.5px] text-content">
+          <span
+            aria-hidden="true"
+            className={cn(
+              'h-2 w-2 shrink-0',
+              deploying ? 'animate-pulse bg-yonsei-blue' : 'bg-[#17B26A]',
+            )}
+          />
+          {deploying ? '배포 중 · 1~2분' : '배포 대기 없음'}
+        </div>
+
+        <a
+          href={SITE_URL}
+          target="_blank"
+          rel="noreferrer"
+          className="flex items-center gap-2.5 px-3 py-2 text-[13.5px] font-medium text-content transition-colors duration-200 ease-out-expo hover:bg-surface-soft hover:text-yonsei-navy"
+        >
+          <IcoExternal size={16} className="shrink-0 text-content-faint" />
+          사이트 열기
+        </a>
+
+        <div className="mt-2.5 flex items-center gap-2.5 border border-surface-border p-2.5">
+          <span
+            aria-hidden="true"
+            className="flex h-[34px] w-[34px] shrink-0 items-center justify-center bg-yonsei-navy text-sm font-bold text-white"
+          >
+            {(login || 'G').charAt(0).toUpperCase()}
+          </span>
+          <div className="min-w-0">
+            <div className="text-[13.5px] font-semibold">{login || '게스트'}</div>
+            <div className="truncate text-xs text-content-faint">
+              {config.owner}/{config.repo} · {config.branch}
+            </div>
+          </div>
+          <a
+            href="/api/auth/signout"
+            aria-label="로그아웃"
+            title="로그아웃"
+            className="ml-auto shrink-0 p-1.5 text-content-faint transition-colors duration-200 ease-out-expo hover:bg-surface-soft hover:text-yonsei-navy"
+          >
+            <IcoLogout size={16} />
+          </a>
+        </div>
+      </div>
     </>
   );
+}
+
+/** 항목이 속한 그룹 라벨 — 아코디언 대상(항목 2개 이상)만 돌려준다.
+ *  평평한 그룹(일정)은 열고 닫을 것이 없어 "열 그룹"이 될 수 없다. */
+function groupOf(activeId: string | null): string | null {
+  if (!activeId) return null;
+  const found = MENU_GROUPS.find(
+    (g) => g.entries.length > 1 && g.entries.some((e) => entryId(e) === activeId),
+  );
+  return found?.label ?? null;
 }

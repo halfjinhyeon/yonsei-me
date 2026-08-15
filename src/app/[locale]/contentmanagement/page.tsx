@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { setRequestLocale } from 'next-intl/server';
 import { routing } from '@/i18n/routing';
 import { auth } from '@/auth';
+import { Hero } from '@/components/Hero';
 import { AdminConsole } from '@/components/admin/AdminConsole';
 import { SignInCard } from '@/components/admin/SignInCard';
 
@@ -39,12 +40,19 @@ export default async function ContentManagementPage({
     login = 'dev';
   }
 
-  // 콘솔은 사이트 크롬(헤더·히어로·푸터) 없는 전용 전체화면 도구다.
-  // 크롬은 레이아웃의 SiteChrome 래퍼가 이 경로에서 렌더하지 않고, 히어로도
-  // 두지 않는다 — 전고 사이드바·자체 상단 바가 화면을 온전히 쓰기 위함이다.
+  // 콘솔은 사이트 헤더·히어로 아래에서 시작한다(다른 세부 페이지와 동일). 다만
+  // 푸터는 렌더하지 않는다(레이아웃의 SiteChrome) — 콘솔 하단에는 변경 트레이가
+  // 고정되는데, 그 아래로 사이트 푸터가 이어지면 "도구의 끝"이 흐려지기 때문.
+  // 스크롤이 히어로를 지나면 사이드바가 헤더 아래에 고정된다(졸업요건 페이지 문법).
   // 본문은 Container 없이 풀블리드, 좌우 여백은 콘솔 내부가 각자 책임진다.
   return (
     <>
+      <Hero
+        eyebrow="Content Management"
+        title="콘텐츠 관리 콘솔"
+        subtitle="연혁·교수진·교과목·게시판 등 사이트의 모든 콘텐츠를 한곳에서 편집하고 저장소에 바로 반영합니다."
+        breadcrumb={[{ label: '콘텐츠 관리' }]}
+      />
       {token !== undefined ? (
         <AdminConsole token={token} login={login} />
       ) : (

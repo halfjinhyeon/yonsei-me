@@ -3,31 +3,34 @@
 // 콘솔 대시보드 — "무엇을 수정할까요?"
 //
 // 구성 순서가 곧 사용 빈도 순서다:
-//   안내 한 줄 → 검색(자동완성) → 최근 편집 → 지금 할 일 → 전체 항목 → 안내(접이식)
-// 반복 방문자는 검색/최근 편집에서 두 번 안에 목적지에 닿고, 처음 온 사람만
+//   인사말 → 최근 편집 → 지금 할 일 → 전체 항목 → 안내(접이식)
+// 반복 방문자는 최근 편집 카드에서 한 번에 목적지에 닿고, 처음 온 사람만
 // 아래로 내려가 전체 항목과 안내를 읽는다.
 //
-// 제목은 페이지 히어로(사이트 공용 <Hero>)가 이미 말했으므로 여기서 h1 을 다시
-// 두지 않는다 — 대시보드는 곧바로 "무엇을 할 수 있는지" 한 줄과 검색으로 시작한다.
+// 검색은 사이드바로 옮겼다 — 어느 화면에서나 같은 자리에 있어야 하는 기능이라
+// 대시보드에만 두면 편집 화면에서는 쓸 수 없다. 여기에는 검색 UI 가 없다.
+//
+// 첫 줄은 인사말 h1 하나다. 편집 흐름 설명은 하단 접이식 안내가 맡는다 —
+// 매번 오는 사람에게 같은 문단을 매번 읽히지 않는다.
 //
 // "지금 할 일"은 콘텐츠를 실제로 읽어 비어 있는 곳을 세어 보여준다. 콘텐츠 파일은
 // 기존 loadJson(이제 /api/admin/content), 게시글 수는 게시판 admin API 로 센다.
 //
 // 내부 운영 도구라 한국어 UI 문자열을 컴포넌트에 직접 둔다.
 
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { cn } from '@/lib/utils';
 import { BOARDS, type BoardMeta } from '@/lib/admin/boards';
 import { loadJson, type RepoConfig } from '@/lib/admin/content-api';
 import { MENU_GROUPS, RESOURCES, type MenuEntry } from '@/lib/admin/resources';
+import { useAdminShell } from './AdminShellContext';
+import { entryIcon, IcoArrowRight, IcoChevronRight } from './cms-icons';
 import {
   ALL_ENTRIES,
   entryGroupLabel,
   entryId,
   entryKind,
   entryLabel,
-  entryDescription,
-  entryWhere,
   isEditable,
   readRecents,
 } from './entries';
@@ -50,10 +53,16 @@ interface TaskCard {
 }
 
 export function AdminDashboard({ config, onOpen, openGuide }: Props) {
+  // 로그인명은 셸이 이미 알고 있다 — 화면마다 다시 조회하지 않는다.
+  const { login } = useAdminShell();
+
   return (
-    <div className="anim-panel">
-      <Intro />
-      <SearchAndRecents onOpen={onOpen} />
+    // 좌우 여백은 셸이 준다. 여기서는 최대 폭과 섹션 사이 간격만 정한다.
+    <div className="anim-panel mx-auto flex max-w-[1024px] flex-col gap-7">
+      <h1 className="font-hero text-2xl font-bold tracking-[-0.01em] text-content">
+        안녕하세요, {login || '관리자'} 님
+      </h1>
+      <RecentSection onOpen={onOpen} />
       <TaskSection config={config} onOpen={onOpen} />
       <AllEntriesSection onOpen={onOpen} />
       <GuideSection openGuide={openGuide} />
@@ -61,149 +70,55 @@ export function AdminDashboard({ config, onOpen, openGuide }: Props) {
   );
 }
 
-// ---- 1. 인트로 한 줄 ----
+// ---- 1. 최근 편집 ----
 
-/** 편집 흐름(고른다 → 트레이에 모인다 → 한 번에 저장 → 자동 반영)을 한 문단으로.
- *  처음 온 사람이 아래 안내를 펴 보지 않아도 전체 그림을 갖게 하는 문장이다. */
-function Intro() {
-  return (
-    <p className="max-w-[62ch] text-sm leading-[1.8] text-content-soft">
-      항목을 고르면 <strong className="font-semibold text-content">목록에서 바로</strong> 고칩니다.
-      고친 내용은 아래 <strong className="font-semibold text-content">변경 트레이</strong>에 모이고,
-      한 번에 저장하면 수 초 내 사이트에 반영됩니다.
-    </p>
-  );
-}
-
-// ---- 2·3. 검색(자동완성) + 최근 편집 ----
-
-function SearchAndRecents({ onOpen }: { onOpen: (entry: MenuEntry) => void }) {
-  const [query, setQuery] = useState('');
-  // 키보드 하이라이트 위치. -1 이면 아직 아무것도 고르지 않은 상태.
-  const [cursor, setCursor] = useState(-1);
-  const boxRef = useRef<HTMLDivElement>(null);
-
-  const q = query.trim().toLowerCase();
-  const results = useMemo(() => {
-    if (!q) return [];
-    return ALL_ENTRIES.filter(
-      (e) =>
-        isEditable(e) &&
-        (entryLabel(e).toLowerCase().includes(q) || entryDescription(e).toLowerCase().includes(q)),
-    ).slice(0, 8);
-  }, [q]);
-
+/** 아이콘 타일 + 항목명 + 그룹 라벨의 카드 3장.
+ *  기록이 없으면(첫 방문) 섹션째 사라진다 — 빈 자리를 설명하지 않는다. */
+function RecentSection({ onOpen }: { onOpen: (entry: MenuEntry) => void }) {
   // 최근 편집 — localStorage. SSR 불일치를 피하려 마운트 후 로드.
   const [recents, setRecents] = useState<MenuEntry[]>([]);
   useEffect(() => {
     setRecents(readRecents());
   }, []);
 
-  // 바깥 클릭 시 자동완성을 닫는다(입력값은 유지 — 다시 포커스하면 되살아난다).
-  const [open, setOpen] = useState(false);
-  useEffect(() => {
-    function onDown(e: MouseEvent) {
-      if (boxRef.current && !boxRef.current.contains(e.target as Node)) setOpen(false);
-    }
-    document.addEventListener('mousedown', onDown);
-    return () => document.removeEventListener('mousedown', onDown);
-  }, []);
-
-  function choose(entry: MenuEntry) {
-    setQuery('');
-    setCursor(-1);
-    setOpen(false);
-    onOpen(entry);
-  }
-
-  function onKeyDown(e: React.KeyboardEvent<HTMLInputElement>) {
-    if (e.key === 'Escape') {
-      setQuery('');
-      setCursor(-1);
-      return;
-    }
-    if (results.length === 0) return;
-    if (e.key === 'ArrowDown') {
-      e.preventDefault();
-      setCursor((c) => (c + 1) % results.length);
-    } else if (e.key === 'ArrowUp') {
-      e.preventDefault();
-      setCursor((c) => (c <= 0 ? results.length - 1 : c - 1));
-    } else if (e.key === 'Enter') {
-      e.preventDefault();
-      choose(results[cursor >= 0 ? cursor : 0]);
-    }
-  }
-
-  const showDropdown = open && q.length > 0;
+  if (recents.length === 0) return null;
 
   return (
-    <>
-      <div ref={boxRef} className="relative mt-8 max-w-[520px]">
-        <input
-          type="text"
-          value={query}
-          onChange={(e) => {
-            setQuery(e.target.value);
-            setCursor(-1);
-            setOpen(true);
-          }}
-          onFocus={() => setOpen(true)}
-          onKeyDown={onKeyDown}
-          placeholder="편집할 항목 검색 (예: 세미나, 교수진, 장학금)"
-          aria-label="편집할 항목 검색"
-          className="cms-input"
-        />
-        {showDropdown && (
-          <div className="absolute inset-x-0 top-full z-20 border border-t-0 border-yonsei-blue bg-surface shadow-[0_6px_18px_-12px_rgba(0,40,94,.3)]">
-            {results.length === 0 ? (
-              <p className="px-4 py-3.5 text-xs text-content-faint">검색 결과가 없습니다.</p>
-            ) : (
-              results.map((entry, i) => (
-                <button
-                  key={entryId(entry)}
-                  type="button"
-                  onClick={() => choose(entry)}
-                  onMouseEnter={() => setCursor(i)}
-                  className={cn(
-                    'flex w-full items-center justify-between gap-2.5 border-b border-[#f1f4f8] px-4 py-[11px] text-left text-[13px] transition-colors last:border-b-0',
-                    i === cursor ? 'bg-surface-soft' : 'bg-surface',
-                  )}
-                >
-                  <span className="font-bold text-content">{entryLabel(entry)}</span>
-                  <span className="shrink-0 text-[11px] text-content-faint">
-                    {entryGroupLabel(entry)}
-                  </span>
-                </button>
-              ))
-            )}
-          </div>
-        )}
-      </div>
-
-      {/* 최근 편집 — 검색 중에는 숨겨 결과 목록에 집중시킨다 */}
-      {recents.length > 0 && !q && (
-        <div className="mt-[18px] flex flex-wrap items-center gap-2">
-          <span className="text-[11px] font-bold tracking-[0.06em] text-content-faint">
-            최근 편집
-          </span>
-          {recents.map((entry) => (
+    <section>
+      <h2 className="mb-2.5 text-[11px] font-bold tracking-[0.18em] text-yonsei-blue">최근 편집</h2>
+      {/* 한 줄에 최대 3장. 그 이상은 "최근"이 아니라 목록이 된다. */}
+      <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 xl:grid-cols-3">
+        {recents.slice(0, 3).map((entry) => {
+          const group = entryGroupLabel(entry);
+          const Icon = entryIcon(entry, group);
+          return (
             <button
               key={entryId(entry)}
               type="button"
               onClick={() => onOpen(entry)}
-              className="border border-surface-border bg-surface-soft px-3.5 py-1.5 text-xs font-semibold text-content transition-colors duration-200 ease-out-expo hover:border-yonsei-blue hover:text-yonsei-blue"
+              className="flex items-center gap-3 border border-surface-border bg-surface p-3.5 text-left transition-colors duration-200 ease-out-expo hover:border-yonsei-blue"
             >
-              {entryLabel(entry)} <span aria-hidden="true">→</span>
+              <span className="flex h-[38px] w-[38px] shrink-0 items-center justify-center bg-yonsei-navy text-white">
+                <Icon size={18} />
+              </span>
+              <span className="min-w-0">
+                <span className="block truncate text-[14.5px] font-semibold text-content">
+                  {entryLabel(entry)}
+                </span>
+                <span className="mt-px block truncate text-[12.5px] text-content-faint">
+                  {group}
+                </span>
+              </span>
+              <IcoArrowRight size={16} className="ml-auto shrink-0 text-content-faint" />
             </button>
-          ))}
-        </div>
-      )}
-    </>
+          );
+        })}
+      </div>
+    </section>
   );
 }
 
-// ---- 4. 지금 할 일 ----
+// ---- 2. 지금 할 일 ----
 
 /** 집계에 쓰는 최소 형태만 선언한다 (스키마 전체를 다시 적지 않는다) */
 interface FacultyRow {
@@ -339,30 +254,48 @@ function TaskSection({ config, onOpen }: Props) {
   if (tasks === undefined) return null;
 
   return (
-    <section className="mt-14">
-      <SectionHead title="지금 할 일" caption="콘텐츠를 훑어 자동으로 찾은 빈 곳" />
+    // 상단 네이비 2px — 대시보드에서 유일하게 "지금 처리할 것"인 카드라 여기만 강조한다.
+    <section className="border border-surface-border border-t-2 border-t-yonsei-navy bg-surface">
+      <div className="px-5 pb-2 pt-[18px]">
+        <div className="flex items-center gap-2">
+          <h2 className="text-base font-bold tracking-[-0.01em] text-content">지금 할 일</h2>
+          {/* 건수 필은 셀 수 있을 때만 — 로딩 중 0건, 빈 상태 0건은 말이 안 된다 */}
+          {tasks !== null && tasks.length > 0 && (
+            <span className="bg-yonsei-navy px-2 py-0.5 text-[12.5px] font-semibold tabular-nums text-white">
+              {tasks.length}건
+            </span>
+          )}
+        </div>
+        <p className="mt-1 text-[13px] text-content-faint">자동 점검으로 찾은 빈 곳</p>
+      </div>
+
       {tasks === null ? (
-        <div className="grid grid-cols-1 gap-[18px] sm:grid-cols-2 xl:grid-cols-4">
+        <div className="flex flex-col gap-1.5 px-3 pb-3 pt-1.5">
           {[0, 1, 2, 3].map((i) => (
-            <div key={i} className="h-[150px] animate-pulse border border-surface-border bg-[#eef1f5]" />
+            <div key={i} className="h-[52px] animate-pulse bg-[#eef1f5]" />
           ))}
         </div>
       ) : tasks.length === 0 ? (
-        <p className="text-[13px] text-content-faint">지금 채워야 할 빈 곳이 없습니다.</p>
+        <p className="px-5 py-4 text-[13px] text-content-faint">지금 채워야 할 빈 곳이 없습니다.</p>
       ) : (
-        <div className="grid grid-cols-1 gap-[18px] sm:grid-cols-2 xl:grid-cols-4">
+        <div className="flex flex-col px-2 pb-2.5 pt-1.5">
           {tasks.map((t) => (
             <button
               key={t.key}
               type="button"
               onClick={() => onOpen(t.entry)}
-              className="flex flex-col items-start gap-2 border border-surface-border bg-surface p-5 text-left transition-colors duration-200 ease-out-expo hover:border-yonsei-blue hover:bg-surface-soft"
+              className="flex items-start gap-3.5 p-3 text-left transition-colors duration-200 ease-out-expo hover:bg-surface-soft"
             >
-              <span className="text-[34px] font-light leading-none tabular-nums text-yonsei-blue/55">
+              <span className="flex h-[26px] min-w-[32px] shrink-0 items-center justify-center bg-yonsei-navy px-2 text-[13.5px] font-bold tabular-nums text-white">
                 {t.n}
               </span>
-              <span className="text-sm font-bold text-content">{t.title}</span>
-              <span className="text-xs leading-[1.65] text-content-faint">{t.body}</span>
+              <span className="min-w-0">
+                <span className="block text-[14.5px] font-semibold text-content">{t.title}</span>
+                <span className="mt-0.5 block text-[13.5px] leading-[1.6] text-content">
+                  {t.body}
+                </span>
+              </span>
+              <IcoChevronRight size={16} className="ml-auto self-center shrink-0 text-[#a8b0ba]" />
             </button>
           ))}
         </div>
@@ -371,69 +304,68 @@ function TaskSection({ config, onOpen }: Props) {
   );
 }
 
-// ---- 5. 전체 항목 ----
+// ---- 3. 전체 항목 ----
+
+/** 유형 점의 색 — 사이드바 배지와 같은 세 갈래(게시판·데이터·문서)를 점 하나로 줄였다.
+ *  entryKind 가 라벨을 단일 출처로 들고 있으므로 여기서는 라벨로만 분기한다. */
+const KIND_DOTS = [
+  { label: '게시판', dot: 'bg-yonsei-navy' },
+  { label: '데이터', dot: 'bg-[#2E86D6]' },
+  { label: '문서', dot: 'bg-[#6E6E6E]' },
+];
+
+function kindDot(entry: MenuEntry): string {
+  const label = entryKind(entry)?.label ?? '';
+  // 준비 중(placeholder)은 유형이 없다 — 회색 테두리 색으로 눕혀 둔다.
+  return KIND_DOTS.find((k) => k.label === label)?.dot ?? 'bg-surface-border';
+}
 
 function AllEntriesSection({ onOpen }: { onOpen: (entry: MenuEntry) => void }) {
+  // '일정'은 사이드바 상단 평면 항목이 담당하므로 카드에서 뺀다 — 항목 1개짜리
+  // 그룹이 카드 한 칸을 통째로 차지하면 그 아래가 통으로 빈다.
+  const groups = MENU_GROUPS.filter((g) => g.label !== '일정');
+
   return (
-    <section className="mt-14">
-      <SectionHead title="전체 항목" caption={`${ALL_ENTRIES.length}개 · 사이트 메뉴 순서`} />
-      {/* 그리드가 아니라 CSS 다단(columns) 이다. 그리드는 그룹 하나가 한 칸을 통째로
-          차지해, 항목이 1개인 '일정'과 11개인 '뉴스·공지'가 같은 행에 놓이면 짧은 쪽
-          아래로 화면 절반이 빈다. 다단은 그룹이 열을 따라 흘러 내려가 그 구멍이 없다.
-          (break-inside-avoid 는 다단에서만 실제로 동작한다 — 그리드에서는 무시된다.) */}
-      <div className="columns-1 [column-gap:2.75rem] md:columns-2 xl:columns-3">
-        {MENU_GROUPS.map((group) => (
-          <div key={group.label} className="mb-8 break-inside-avoid">
-            <p className="mb-1 text-xs font-bold tracking-[0.1em] text-yonsei-blue">
+    <section>
+      <div className="mb-2.5 flex items-baseline gap-2">
+        <h2 className="text-[11px] font-bold tracking-[0.18em] text-yonsei-blue">전체 항목</h2>
+        <span className="text-[12.5px] tabular-nums text-content-faint">{ALL_ENTRIES.length}</span>
+        <span className="ml-auto flex gap-3.5 text-[12.5px] text-content">
+          {KIND_DOTS.map((k) => (
+            <span key={k.label} className="flex items-center gap-1.5">
+              <span aria-hidden="true" className={cn('h-[7px] w-[7px]', k.dot)} />
+              {k.label}
+            </span>
+          ))}
+        </span>
+      </div>
+
+      {/* 항목이 11개인 '뉴스·공지'만 두 행을 쓰게 두면 나머지 카드가 옆으로 흘러
+          짧은 카드 아래가 비지 않는다(그룹마다 길이가 크게 다르다). */}
+      <div className="grid grid-cols-1 gap-3 md:grid-cols-2 xl:grid-cols-3">
+        {groups.map((group) => (
+          <div
+            key={group.label}
+            className={cn(
+              'border border-surface-border border-t-2 border-t-yonsei-navy bg-surface p-2',
+              group.label === '뉴스·공지' && 'md:row-span-2 xl:row-span-2',
+            )}
+          >
+            <p className="px-2.5 pb-1 pt-2 text-xs font-semibold tracking-[0.02em] text-content-faint">
               {group.label}
             </p>
-            {group.entries.map((entry) => {
-              const editable = isEditable(entry);
-              const where = entryWhere(entry);
-              const kind = entryKind(entry);
-              return (
-                <button
-                  key={entryId(entry)}
-                  type="button"
-                  disabled={!editable}
-                  onClick={() => editable && onOpen(entry)}
-                  className={cn(
-                    'flex w-full items-start justify-between gap-3 border-b border-surface-border px-1 py-3 text-left transition-colors',
-                    editable ? 'hover:bg-surface-soft' : 'cursor-not-allowed',
-                  )}
-                >
-                  <span className="min-w-0">
-                    <span
-                      className={cn(
-                        'block text-sm font-semibold',
-                        editable ? 'text-content' : 'text-content-faint',
-                      )}
-                    >
-                      {entryLabel(entry)}
-                    </span>
-                    {/* 노출 위치는 제목 아래 한 줄로 — 오른쪽에 두면 항목마다 길이가
-                        달라 줄 끝이 들쭉날쭉하고, 잘린 문장이 말줄임으로 남는다. */}
-                    {where !== '' && (
-                      <span
-                        title={where}
-                        className="mt-0.5 line-clamp-1 text-[11px] text-content-faint"
-                      >
-                        {where}
-                      </span>
-                    )}
-                  </span>
-                  {/* 오른쪽은 유형 배지로 통일 — 사이드바와 같은 표기라 두 화면이 같은
-                      어휘를 쓰고, 모든 행의 오른쪽 끝이 한 줄로 정렬된다. */}
-                  {editable && kind ? (
-                    <span className={cn('cms-badge mt-0.5 shrink-0', kind.cls)}>{kind.label}</span>
-                  ) : (
-                    <span className="mt-0.5 shrink-0 bg-surface-soft px-1.5 py-0.5 text-[10px] font-bold text-content-faint">
-                      준비 중
-                    </span>
-                  )}
-                </button>
-              );
-            })}
+            {group.entries.map((entry) => (
+              <button
+                key={entryId(entry)}
+                type="button"
+                disabled={!isEditable(entry)}
+                onClick={() => onOpen(entry)}
+                className="flex w-full items-center gap-2.5 px-2.5 py-[7px] text-left text-[13.5px] text-content transition-colors duration-200 ease-out-expo hover:bg-surface-soft hover:text-yonsei-navy disabled:cursor-not-allowed disabled:text-content-faint"
+              >
+                <span aria-hidden="true" className={cn('h-[7px] w-[7px] shrink-0', kindDot(entry))} />
+                {entryLabel(entry)}
+              </button>
+            ))}
           </div>
         ))}
       </div>
@@ -441,17 +373,7 @@ function AllEntriesSection({ onOpen }: { onOpen: (entry: MenuEntry) => void }) {
   );
 }
 
-/** 섹션 제목 + 우측 캡션 + 네이비 2px 룰 */
-function SectionHead({ title, caption }: { title: string; caption: string }) {
-  return (
-    <div className="cms-rule mb-5 flex items-baseline justify-between gap-4 pb-2.5">
-      <h2 className="text-lg font-bold text-content">{title}</h2>
-      <span className="shrink-0 text-[11px] text-content-faint">{caption}</span>
-    </div>
-  );
-}
-
-// ---- 6. 접이식 안내 ----
+// ---- 4. 접이식 안내 ----
 
 const FIRST_TIME_STEPS = [
   { t: '콘텐츠 선택', b: '왼쪽 메뉴나 위 목록에서 편집할 항목(게시판·연혁·교수진·교과목 등)을 고릅니다.' },
@@ -478,13 +400,13 @@ const NEW_ADMIN_STEPS = [
 /** 처음 한 번만 필요한 내용이라 접이식으로 하단에 — 반복 방문자의 동선을 가리지 않는다 */
 function GuideSection({ openGuide }: { openGuide?: string }) {
   return (
-    <section className="mt-14 border-t border-surface-border">
+    <section className="grid grid-cols-1 gap-3 md:grid-cols-2">
       <GuideDetails
         title="처음이신가요?"
-        note="— 사용 방법 4단계"
+        note="사용 방법 4단계"
         defaultOpen={openGuide === '처음이신가요?'}
       >
-        <ol className="grid gap-8 pb-8 pt-2 sm:grid-cols-2 lg:grid-cols-4">
+        <ol className="grid gap-4">
           {FIRST_TIME_STEPS.map((step, i) => (
             <NumberedStep key={step.t} i={i} title={step.t} body={step.b} />
           ))}
@@ -493,25 +415,23 @@ function GuideSection({ openGuide }: { openGuide?: string }) {
 
       <GuideDetails
         title="새 관리자 등록"
-        note="— GitHub 계정 허용 절차"
+        note="GitHub 계정 허용 절차"
         defaultOpen={openGuide === '새 관리자 등록'}
       >
-        <div className="pb-8 pt-2">
-          <p className="max-w-prose text-[13px] leading-[1.8] text-content-soft">
-            이 콘솔은 GitHub 로그인으로 접근합니다. 새 담당자를 추가하려면 아래 세 가지가
-            필요합니다 (Vercel·GitHub 설정 권한이 있는 사람이 진행하세요).
-          </p>
-          <ol className="mt-8 grid gap-8 md:grid-cols-3">
-            {NEW_ADMIN_STEPS.map((step, i) => (
-              <NumberedStep key={step.t} i={i} title={step.t} body={step.b} />
-            ))}
-          </ol>
-          <p className="mt-6 max-w-prose text-xs leading-relaxed text-content-faint">
-            계정명은 이메일·실명이 아니라 GitHub username 입니다. 관리자를 제거하려면
-            ALLOWED_GITHUB_LOGINS 에서 계정명을 지우고 다시 배포하세요. (저장소 소유자 계정은
-            코드에 항상 허용되어 있습니다.)
-          </p>
-        </div>
+        <p className="text-[13px] leading-[1.8] text-content-soft">
+          이 콘솔은 GitHub 로그인으로 접근합니다. 새 담당자를 추가하려면 아래 세 가지가
+          필요합니다 (Vercel·GitHub 설정 권한이 있는 사람이 진행하세요).
+        </p>
+        <ol className="mt-4 grid gap-4">
+          {NEW_ADMIN_STEPS.map((step, i) => (
+            <NumberedStep key={step.t} i={i} title={step.t} body={step.b} />
+          ))}
+        </ol>
+        <p className="mt-4 text-xs leading-relaxed text-content-faint">
+          계정명은 이메일·실명이 아니라 GitHub username 입니다. 관리자를 제거하려면
+          ALLOWED_GITHUB_LOGINS 에서 계정명을 지우고 다시 배포하세요. (저장소 소유자 계정은
+          코드에 항상 허용되어 있습니다.)
+        </p>
       </GuideDetails>
     </section>
   );
@@ -541,35 +461,35 @@ function GuideDetails({
   }, [defaultOpen]);
 
   return (
-    <details ref={ref} className="group border-b border-surface-border">
-      <summary className="flex cursor-pointer list-none items-center justify-between gap-3 py-5 text-base font-bold text-content transition-colors hover:text-yonsei-blue [&::-webkit-details-marker]:hidden">
-        <span>
-          {title} <span className="font-medium text-content-soft">{note}</span>
+    // 두 카드가 나란한 그리드라 self-start 가 필요하다 — 없으면 한쪽만 펼쳐도
+    // 접힌 카드가 같은 행 높이로 늘어나 빈 상자가 된다.
+    <details ref={ref} className="group w-full self-start border border-surface-border bg-surface">
+      <summary className="flex cursor-pointer list-none items-center gap-3 px-[18px] py-[15px] transition-colors duration-200 ease-out-expo hover:bg-surface-soft [&::-webkit-details-marker]:hidden">
+        <span className="min-w-0">
+          <span className="block text-sm font-semibold text-content">{title}</span>
+          <span className="mt-px block text-[13px] text-content-faint">{note}</span>
         </span>
-        <svg
-          aria-hidden="true"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          className="h-4 w-4 shrink-0 text-content-faint transition-transform group-open:rotate-180"
-        >
-          <path d="m6 9 6 6 6-6" strokeLinecap="round" strokeLinejoin="round" />
-        </svg>
+        <IcoChevronRight
+          size={16}
+          className="ml-auto shrink-0 text-content-faint transition-transform duration-200 group-open:rotate-90"
+        />
       </summary>
-      {children}
+      <div className="border-t border-surface-border px-[18px] py-4">{children}</div>
     </details>
   );
 }
 
+/** 안내 한 단계 — 번호 타일 + 제목 + 설명. 카드가 좁아 한 열로 쌓는다. */
 function NumberedStep({ i, title, body }: { i: number; title: string; body: string }) {
   return (
-    <li className="border-t border-surface-border pt-4">
-      <span className="block text-3xl font-light tabular-nums text-yonsei-blue/40">
-        {String(i + 1).padStart(2, '0')}
+    <li className="flex gap-3">
+      <span className="mt-[2px] flex h-[22px] w-[22px] shrink-0 items-center justify-center border border-surface-border text-[12px] font-bold tabular-nums text-yonsei-blue">
+        {i + 1}
       </span>
-      <h4 className="mt-3 text-base font-bold text-content">{title}</h4>
-      <p className="mt-1.5 text-sm leading-relaxed text-content-soft">{body}</p>
+      <span className="min-w-0">
+        <span className="block text-[13.5px] font-semibold text-content">{title}</span>
+        <span className="mt-0.5 block text-[13px] leading-[1.7] text-content-soft">{body}</span>
+      </span>
     </li>
   );
 }
