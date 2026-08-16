@@ -9,7 +9,7 @@
 // 값은 어디서도 여기서 직렬화하지 않는다 — onPatch 로 경로와 값을 그대로 올리고,
 // 저장 규칙은 lib/admin/inline.ts 한 곳이 정한다.
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { cn } from '@/lib/utils';
 import type { InlineValue } from '@/lib/admin/inline';
 import type { FormRecord, ResourceDef, SelectOption } from '@/lib/admin/resources';
@@ -198,10 +198,15 @@ export function InlineText({
   );
 }
 
+/** 접힌 셀의 높이(px) — 13px·leading-relaxed 기준 약 4줄 + 셀 패딩 */
+const COLLAPSED_MAX = 110;
+
 /** 인라인 여러 줄 셀 — 장학금 추천기준처럼 문단이 든 표 칸.
  *  높이는 렌더 후 scrollHeight 실측으로 내용에 딱 맞춘다. 행 수 추정(글자 수/폭)은
  *  좁은 열의 자동 줄바꿈을 과소평가해 셀 안에 스크롤바가 생겼다 — 표를 훑어 읽는
- *  흐름이 끊기므로 스크롤 없는 전체 표시가 원칙이다. */
+ *  흐름이 끊기므로 스크롤 없는 전체 표시가 원칙이다.
+ *  collapsible 이면 그보다 긴 내용은 4줄쯤에서 접고 '더보기'를 단다 — 긴 행 하나가
+ *  화면을 다 먹으면 표로서 훑어볼 수 없다. 편집(포커스)하면 자동으로 펴진다. */
 export function InlineTextArea({
   value,
   onChange,
@@ -210,6 +215,7 @@ export function InlineTextArea({
   ariaLabel,
   className,
   invalid,
+  collapsible = false,
 }: {
   value: string;
   onChange: (v: string) => void;
@@ -218,31 +224,58 @@ export function InlineTextArea({
   ariaLabel: string;
   className?: string;
   invalid?: boolean;
+  /** 긴 내용을 접고 더보기/접기 토글을 단다 (표 셀 전용) */
+  collapsible?: boolean;
 }) {
   const ref = useRef<HTMLTextAreaElement>(null);
+  const [expanded, setExpanded] = useState(false);
+  // 접기가 의미 있는 길이인지 — 실측 후에만 안다. 토글 버튼 노출 판단용.
+  const [overflows, setOverflows] = useState(false);
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
     // auto 로 줄였다가 실측 — 줄이지 않으면 내용을 지워도 높이가 남는다
     el.style.height = 'auto';
-    el.style.height = `${el.scrollHeight}px`;
-  }, [value]);
+    const full = el.scrollHeight;
+    const over = collapsible && full > COLLAPSED_MAX + 14;
+    setOverflows(over);
+    el.style.height = `${over && !expanded ? COLLAPSED_MAX : full}px`;
+  }, [value, expanded, collapsible]);
   return (
-    <textarea
-      ref={ref}
-      rows={2}
-      value={value}
-      onChange={(e) => onChange(e.target.value)}
-      disabled={disabled}
-      placeholder={placeholder}
-      aria-label={ariaLabel}
-      aria-invalid={invalid ? 'true' : undefined}
-      className={cn(
-        'cms-cell resize-none overflow-hidden leading-relaxed',
-        className,
-        invalid && INVALID_CELL,
+    <div>
+      <textarea
+        ref={ref}
+        rows={2}
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        onFocus={() => {
+          // 접힌 채 고치면 커서가 접힌 부분 아래로 사라진다 — 편집 진입 시 편다
+          if (overflows) setExpanded(true);
+        }}
+        disabled={disabled}
+        placeholder={placeholder}
+        aria-label={ariaLabel}
+        aria-invalid={invalid ? 'true' : undefined}
+        className={cn(
+          'cms-cell resize-none overflow-hidden leading-relaxed',
+          className,
+          invalid && INVALID_CELL,
+        )}
+      />
+      {overflows && (
+        <button
+          type="button"
+          onClick={() => {
+            if (expanded) ref.current?.blur();
+            setExpanded(!expanded);
+          }}
+          aria-expanded={expanded}
+          className="px-2 pb-1.5 text-[11px] font-semibold text-yonsei-blue transition-colors hover:text-yonsei-navy"
+        >
+          {expanded ? '접기 ▴' : '더보기 ▾'}
+        </button>
       )}
-    />
+    </div>
   );
 }
 

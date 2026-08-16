@@ -79,8 +79,11 @@ export interface ListColumn {
  * 알아서 한·영 두 줄로 펼친다(경로는 'role.ko' / 'role.en').
  */
 export type ListView =
-  /** 표 셀을 그 자리에서 고친다 — 학부/대학원 교과목, 교직원 */
-  | { kind: 'table'; inlineKeys: string[]; filterKeys?: string[] }
+  /** 표 셀을 그 자리에서 고친다 — 학부/대학원 교과목, 교직원, 장학금.
+   *  widths: 이 리소스만의 열 폭(px). InlineTable 의 전역 COLUMN_WIDTH 는 key 로
+   *  찾아서 리소스끼리 키가 겹치면(장학금 name ↔ 교과목 name) 서로 폭을 망가뜨린다
+   *  — 리소스 고유 키가 아닌 폭은 여기에 적는다. */
+  | { kind: 'table'; inlineKeys: string[]; filterKeys?: string[]; widths?: Record<string, number> }
   /** 카드 그리드 — 교수진(4:3 사진), 연구실(16:9), 동아리(가로 카드),
    *  메인 이미지(분야마다 가로 3:2 · 세로 9:16 두 벌을 나란히) */
   | {
@@ -584,23 +587,28 @@ const scholarships: ResourceDef = {
     { key: 'timing', label: '선발시기' },
   ],
   searchKeys: ['section', 'name', 'criteria'],
+  // 전 열이 textarea — 표 셀에서 줄바꿈으로 감겨 좁은 열에서도 전문이 보인다
+  // (input 은 넘친 글자가 잘려 보인다). 셀 안 줄바꿈은 사이트에서도 줄바꿈이 된다.
   fields: [
     {
-      kind: 'text', key: 'section', label: '묶음', required: true, width: 'third',
+      kind: 'textarea', key: 'section', label: '묶음', rows: 2, required: true, width: 'third',
       placeholder: '교외 장학금', hint: '같은 묶음끼리 한 표로 표시됩니다. 오타가 나면 표가 갈라지니 기존 표기를 그대로 쓰세요',
     },
-    { kind: 'text', key: 'name', label: '장학금명', required: true },
+    { kind: 'textarea', key: 'name', label: '장학금명', rows: 2, required: true },
     { kind: 'textarea', key: 'criteria', label: '추천기준', rows: 5, required: true },
-    { kind: 'text', key: 'count', label: '선발인원', width: 'third' },
+    { kind: 'textarea', key: 'count', label: '선발인원', rows: 2, width: 'third' },
     { kind: 'textarea', key: 'amount', label: '장학금액', rows: 3 },
-    { kind: 'text', key: 'timing', label: '선발시기', width: 'third' },
+    { kind: 'textarea', key: 'timing', label: '선발시기', rows: 2, width: 'third' },
   ],
   orderable: true,
   // 사이트 표와 같은 5열을 그 자리에서 고친다(교직원 방식). 묶음은 칩 필터로 오간다.
+  // 폭 합 838 + 동작열 110 = 948px — 사이드바 240 기준 1280 화면(본문 960px)에
+  // 가로 스크롤 없이 들어가는 상한이다. 추천기준만 폭을 비워 남는 폭을 다 가져간다.
   listView: {
     kind: 'table',
     inlineKeys: ['section', 'name', 'criteria', 'count', 'amount', 'timing'],
     filterKeys: ['section'],
+    widths: { section: 112, name: 160, count: 104, amount: 168, timing: 104 },
   },
   summarize: (f) => cellText(f, 'name'),
 };

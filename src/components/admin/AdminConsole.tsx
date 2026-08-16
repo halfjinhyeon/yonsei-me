@@ -317,7 +317,10 @@ function AdminConsoleBody({ token, login }: Props) {
           </div>
         )}
 
-        <div className={cn(!focusMode && 'grid lg:grid-cols-[296px_minmax(0,1fr)]')}>
+        {/* 사이드바 296→240 (2026-08): 장학금처럼 열 많은 인라인 표가 1280 급 화면에서
+            오른쪽이 잘렸다. 메뉴 라벨은 최장 7자(장학생 선발공고)라 240 으로 충분하고,
+            본문이 56px 을 돌려받는다. */}
+        <div className={cn(!focusMode && 'grid lg:grid-cols-[240px_minmax(0,1fr)]')}>
           {/* 데스크톱 사이드바 — 사이트 헤더(5rem) 아래에 붙어 화면 끝까지 채운다.
               스크롤은 내비 목록 영역만 지고(로고·검색·하단 유틸리티는 고정),
               data-lenis-prevent 가 없으면 전역 Lenis 부드러운 스크롤이 휠 이벤트를

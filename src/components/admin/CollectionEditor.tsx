@@ -1028,6 +1028,7 @@ export function CollectionEditor({ config, resource, onDirtyChange }: Props) {
               {...viewProps}
               inlineKeys={view.inlineKeys}
               filterKeys={view.filterKeys}
+              widths={view.widths}
             />
           )}
           {view?.kind === 'expandRows' && (

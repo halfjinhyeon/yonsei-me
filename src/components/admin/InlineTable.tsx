@@ -39,11 +39,6 @@ const COLUMN_WIDTH: Record<string, number> = {
   role: 190,
   phone: 150,
   location: 200,
-  // 장학금 — 추천기준(criteria)만 폭을 정하지 않아 남은 폭을 전부 가져간다(가장 긴 열)
-  section: 128,
-  timing: 128,
-  count: 132,
-  amount: 220,
 };
 
 /** 폭을 정하지 않은 열이 가져갈 최소 폭 — 이 값이 크면 4열짜리 표에도 가로 스크롤이 생긴다 */
@@ -52,6 +47,8 @@ const FLEX_MIN_WIDTH = 190;
 interface Props extends InlineEditorProps {
   inlineKeys: string[];
   filterKeys?: string[];
+  /** 리소스별 열 폭(px) — 전역 COLUMN_WIDTH 보다 우선한다(키 충돌 방지) */
+  widths?: Record<string, number>;
 }
 
 export function InlineTable({
@@ -72,7 +69,10 @@ export function InlineTable({
   onPatch,
   inlineKeys,
   filterKeys,
+  widths,
 }: Props) {
+  /** 열 폭 — 리소스별 지정이 전역 기본을 덮는다. 미지정 열은 남은 폭을 나눠 갖는다 */
+  const widthOf = (key: string): number | undefined => widths?.[key] ?? COLUMN_WIDTH[key];
   // 필터 값은 데이터에서 뽑는다 — 표기가 바뀌어도 칩이 따라간다
   const [filters, setFilters] = useState<Record<string, string>>({});
 
@@ -122,7 +122,7 @@ export function InlineTable({
   );
 
   const minWidth =
-    columns.reduce((sum, f) => sum + (COLUMN_WIDTH[f.key] ?? FLEX_MIN_WIDTH), 0) + 110;
+    columns.reduce((sum, f) => sum + (widthOf(f.key) ?? FLEX_MIN_WIDTH), 0) + 110;
   const cellDisabled = busy || locked;
 
   return (
@@ -200,7 +200,7 @@ export function InlineTable({
                   <th
                     key={f.key}
                     scope="col"
-                    style={{ width: COLUMN_WIDTH[f.key] }}
+                    style={{ width: widthOf(f.key) }}
                     className="border-b border-surface-border px-2 py-3 text-left text-xs font-bold text-content-faint"
                   >
                     {f.kind === 'localized' ? `${f.label} (한국어 / English)` : f.label}
@@ -342,7 +342,8 @@ function Cell({
     );
   }
 
-  // 여러 줄 셀(장학금 추천기준·장학금액) — 줄바꿈이 사이트에서도 줄바꿈으로 표시된다
+  // 여러 줄 셀(장학금 추천기준·장학금액) — 줄바꿈이 사이트에서도 줄바꿈으로 표시된다.
+  // collapsible: 긴 본문은 4줄쯤에서 접고 '더보기'로 편다(표 훑어보기 우선, 사용자 지시)
   if (field.kind === 'textarea') {
     return (
       <InlineTextArea
@@ -352,7 +353,8 @@ function Cell({
         placeholder={field.placeholder}
         ariaLabel={field.label}
         invalid={isInvalid(field.key)}
-        className="py-3"
+        collapsible
+        className={cn('py-3', bold && 'font-semibold')}
       />
     );
   }
