@@ -150,6 +150,8 @@ export function PostForm({
   const { setFocusMode, showToast } = useAdminShell();
 
   const [rec, setRec] = useState<PostEditRecord>(initial);
+  // 게시 예약 체크 — 시각이 이미 있는 글(예약 저장분)을 열면 켜진 채로 시작한다
+  const [schedule, setSchedule] = useState(!!initial.time);
   const [error, setError] = useState<string | null>(null);
   // 저장 전 미리보기 — 본문 자리를 그대로 바꿔 끼우는 토글(팝업 아님)
   const [preview, setPreview] = useState(false);
@@ -582,28 +584,48 @@ export function PostForm({
             />
           </MetaField>
 
-          {/* 공개 시각(예약) — 비우면 그 날 00:00, 즉 예전과 같은 즉시 공개다.
-              행사류 게시판은 위 canSchedule 주석대로 이 칸이 없다. */}
+          {/* 게시 예약 — 체크했을 때만 시각 입력이 열린다(사용자 지정: 평소엔 즉시
+              게시가 기본이라 시각 칸이 상시 보이면 오히려 헷갈린다). 체크를 끄면
+              time 을 비워 예전과 완전히 같은 저장 경로(그 날 00:00)로 돌아간다.
+              행사류 게시판은 위 canSchedule 주석대로 이 칸 자체가 없다. */}
           {canSchedule && (
             <MetaField
-              label="공개 시각"
-              htmlFor="pf-time"
+              label="게시 예약"
+              htmlFor="pf-schedule"
               hint={
                 isScheduled
                   ? '이 시각 전에는 사이트에 보이지 않습니다 (반영까지 10분 남짓 걸릴 수 있습니다).'
                   : undefined
               }
             >
-              <input
-                id="pf-time"
-                type="time"
-                value={rec.time ?? ''}
-                onChange={(e) => set('time', e.target.value)}
-                className={fieldClass}
-              />
-              <p className="mt-1 text-[11px] text-content-faint">
-                선택 — 비워 두면 위 게시일 0시에 공개됩니다(지난 날짜면 즉시).
-              </p>
+              <div className="flex flex-wrap items-center gap-x-3 gap-y-1.5">
+                <label className="flex cursor-pointer items-center gap-1.5 text-[13px] text-content">
+                  <input
+                    id="pf-schedule"
+                    type="checkbox"
+                    checked={schedule}
+                    onChange={(e) => {
+                      setSchedule(e.target.checked);
+                      if (!e.target.checked) set('time', '');
+                    }}
+                  />
+                  예약 공개
+                </label>
+                {schedule && (
+                  <input
+                    id="pf-time"
+                    type="time"
+                    value={rec.time ?? ''}
+                    onChange={(e) => set('time', e.target.value)}
+                    className={cn(fieldClass, 'w-auto')}
+                  />
+                )}
+                <p className="w-full text-[11px] text-content-faint">
+                  {schedule
+                    ? '위 게시일의 지정 시각에 공개됩니다 (시각을 비우면 그 날 0시).'
+                    : '체크하지 않으면 저장 즉시 공개됩니다.'}
+                </p>
+              </div>
             </MetaField>
           )}
 
