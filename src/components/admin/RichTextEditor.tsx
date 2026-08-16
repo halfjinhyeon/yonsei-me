@@ -190,10 +190,34 @@ function cleanPastedHtml(html: string): string {
   while (walker.nextNode()) comments.push(walker.currentNode as ChildNode);
   comments.forEach((c) => c.remove());
   doc.body.querySelectorAll('style, script, meta, link, xml').forEach((el) => el.remove());
+  // 정렬은 색·여백과 달리 구조에 가깝다 — 지우면 표가 통째로 왼쪽 정렬이 된다
+  // (실제 게시물 이전에서 확인). style 을 걷기 전에 정렬만 건져 되살린다.
+  const KEEP_ALIGN = /^(left|right|center|justify)$/;
   doc.body.querySelectorAll('*').forEach((el) => {
+    const align =
+      ((el as HTMLElement).style?.textAlign || el.getAttribute('align') || '').toLowerCase();
     el.removeAttribute('class');
     el.removeAttribute('lang');
     el.removeAttribute('style');
+    if (KEEP_ALIGN.test(align)) {
+      if (el.matches('td, th')) el.setAttribute('data-keep-align', align);
+      else if (el.matches('p, h1, h2, h3, h4, h5')) (el as HTMLElement).style.textAlign = align;
+    }
+  });
+  // 셀의 정렬은 셀이 아니라 "셀 안 문단"이 들고 있어야 에디터 파서에 살아남는다
+  // (파서가 셀의 날 텍스트를 문단으로 감쌀 때 셀 속성은 보지 않는다).
+  doc.body.querySelectorAll('td[data-keep-align], th[data-keep-align]').forEach((cell) => {
+    const align = cell.getAttribute('data-keep-align')!;
+    cell.removeAttribute('data-keep-align');
+    const p = doc.createElement('p');
+    p.style.textAlign = align;
+    while (cell.firstChild) p.appendChild(cell.firstChild);
+    cell.appendChild(p);
+  });
+  // 외부에서 온 표는 격자 1px 로 시작 — 안 그러면 "구형 줄무늬"로 보여
+  // 관리자가 테두리 설정을 찾아 헤맨다(실제 이전에서 확인).
+  doc.body.querySelectorAll('table:not([data-border])').forEach((t) => {
+    t.setAttribute('data-border', '1');
   });
   // <font> 는 껍데기만 벗긴다 — 안의 글자는 살린다
   doc.body.querySelectorAll('font').forEach((el) => {
@@ -719,9 +743,11 @@ export function RichTextEditor({
             블록(제목·정렬)은 그대로 — 그건 위 드롭다운으로 되돌린다 */}
         <TBtn title="서식 지우기" onClick={() => editor.chain().focus().unsetAllMarks().run()}><ClearFormatIcon /></TBtn>
         <Divider />
-        <TBtn title="왼쪽 정렬" active={editor.isActive({ textAlign: 'left' })} onClick={() => runOnSelection(editor, (c) => c.toggleTextAlign('left'))}><AlignIcon variant="left" /></TBtn>
-        <TBtn title="가운데 정렬" active={editor.isActive({ textAlign: 'center' })} onClick={() => runOnSelection(editor, (c) => c.toggleTextAlign('center'))}><AlignIcon variant="center" /></TBtn>
-        <TBtn title="오른쪽 정렬" active={editor.isActive({ textAlign: 'right' })} onClick={() => runOnSelection(editor, (c) => c.toggleTextAlign('right'))}><AlignIcon variant="right" /></TBtn>
+        {/* 정렬은 토글이 아니라 "설정" — 여러 셀 혼합 선택에서 토글은 이미 정렬된
+            쪽을 되돌려 버린다(실제 게시물 이전에서 43→29 실측). 워드프로세서 관례. */}
+        <TBtn title="왼쪽 정렬" active={editor.isActive({ textAlign: 'left' })} onClick={() => runOnSelection(editor, (c) => c.setTextAlign('left'))}><AlignIcon variant="left" /></TBtn>
+        <TBtn title="가운데 정렬" active={editor.isActive({ textAlign: 'center' })} onClick={() => runOnSelection(editor, (c) => c.setTextAlign('center'))}><AlignIcon variant="center" /></TBtn>
+        <TBtn title="오른쪽 정렬" active={editor.isActive({ textAlign: 'right' })} onClick={() => runOnSelection(editor, (c) => c.setTextAlign('right'))}><AlignIcon variant="right" /></TBtn>
         <Divider />
         <TBtn title="번호 목록" active={editor.isActive('orderedList')} onClick={() => editor.chain().focus().toggleOrderedList().run()}>1.</TBtn>
         <TBtn title="글머리 목록" active={editor.isActive('bulletList')} onClick={() => editor.chain().focus().toggleBulletList().run()}>•≡</TBtn>
