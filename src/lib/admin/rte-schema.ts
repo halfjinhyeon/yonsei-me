@@ -11,6 +11,7 @@
 
 import Image from '@tiptap/extension-image';
 import { Table, TableCell, TableHeader, TableRow } from '@tiptap/extension-table';
+import type { Node as PMNode, ResolvedPos } from '@tiptap/pm/model';
 
 declare module '@tiptap/core' {
   interface Commands<ReturnType> {
@@ -23,8 +24,18 @@ declare module '@tiptap/core' {
       /** 커서가 들어 있는 표의 모든 열 폭(colwidth)을 지운다 — 자동 폭 복귀 */
       resetColumnWidths: () => ReturnType;
     };
+    rteTableRow: {
+      /** 커서가 들어 있는 표의 모든 행 높이를 "지금 가장 높은 행"에 맞춘다 */
+      equalizeRowHeights: () => ReturnType;
+      /** 커서가 들어 있는 표의 행 높이 지정을 모두 지운다 — 내용 높이 복귀 */
+      resetRowHeights: () => ReturnType;
+    };
   }
 }
+
+/** 행 최소 높이(px) — 이보다 낮추면 한 줄 글자가 셀 밖으로 밀린다.
+ *  드래그 클램프(rte-row-resize.ts)와 커맨드가 같은 값을 쓴다. */
+export const MIN_ROW_HEIGHT = 24;
 
 /** 표 테두리 굵기 — null(미지정)이 사이트 기본 에디토리얼 톤 */
 export const TABLE_BORDERS = ['none', 'thin', 'thick'] as const;
@@ -135,7 +146,85 @@ export const RteTable = Table.extend({
   },
 });
 
-export const RteTableRow = TableRow;
+/** 커서가 든 표를 조상 사슬에서 찾아 [표 노드, 표 위치] 를 돌려준다(못 찾으면 null).
+ *  표 속성 커맨드와 같은 이유로 updateAttributes 를 못 쓴다 — RteTable 상단 주석 참고. */
+function findTable($from: ResolvedPos): [PMNode, number] | null {
+  for (let depth = $from.depth; depth > 0; depth--) {
+    const node = $from.node(depth);
+    if (node.type.name === 'table') return [node, $from.before(depth)];
+  }
+  return null;
+}
+
+/** 표의 각 행을 [행 노드, 행 위치] 로 훑는다. setNodeMarkup 은 문서 크기를 바꾸지
+ *  않으므로 순회 중에 위치가 밀리지 않는다(열 폭 초기화와 같은 전제). */
+function forEachRow(table: PMNode, tablePos: number, fn: (row: PMNode, rowPos: number) => void) {
+  table.forEach((row, offset) => {
+    if (row.type.name === 'tableRow') fn(row, tablePos + 1 + offset);
+  });
+}
+
+export const RteTableRow = TableRow.extend({
+  addCommands() {
+    return {
+      ...this.parent?.(),
+      equalizeRowHeights:
+        () =>
+        ({ tr, dispatch, view }) => {
+          const found = findTable(tr.selection.$from);
+          if (!found) return false;
+          if (dispatch) {
+            const [table, tablePos] = found;
+            // "지금 화면에 그려진" 높이를 잰다 — 내용이 가장 많은 행에 맞춰야 글자가
+            // 잘리지 않는다(rowheight 는 최소 높이 시맨틱이라 더 늘어날 수는 있다).
+            let max = 0;
+            forEachRow(table, tablePos, (_row, rowPos) => {
+              const dom = view.nodeDOM(rowPos);
+              if (dom instanceof HTMLElement) max = Math.max(max, dom.getBoundingClientRect().height);
+            });
+            const height = Math.max(MIN_ROW_HEIGHT, Math.ceil(max));
+            forEachRow(table, tablePos, (row, rowPos) => {
+              if (row.attrs.rowheight === height) return;
+              tr.setNodeMarkup(rowPos, undefined, { ...row.attrs, rowheight: height });
+            });
+          }
+          return true;
+        },
+      resetRowHeights:
+        () =>
+        ({ tr, dispatch }) => {
+          const found = findTable(tr.selection.$from);
+          if (!found) return false;
+          if (dispatch) {
+            const [table, tablePos] = found;
+            forEachRow(table, tablePos, (row, rowPos) => {
+              if (row.attrs.rowheight == null) return;
+              tr.setNodeMarkup(rowPos, undefined, { ...row.attrs, rowheight: null });
+            });
+          }
+          return true;
+        },
+    };
+  },
+  addAttributes() {
+    return {
+      ...this.parent?.(),
+      // 행 높이는 <tr style="height:Npx"> 로 직렬화한다 — 브라우저가 tr 의 height 를
+      // "최소 높이"로 다루므로 게시 화면(.prose-content)에 추가 CSS 가 필요 없다.
+      // 값이 연속적이라(드래그 결과) data 열거형이 아니라 인라인 style 이고,
+      // 정화(sanitize.ts)가 tr 의 height 를 px 패턴으로만 통과시킨다.
+      rowheight: {
+        default: null,
+        parseHTML: (element: HTMLElement) => {
+          const m = /^(\d+)px$/.exec(element.style.height || '');
+          return m ? Number(m[1]) : null;
+        },
+        renderHTML: (attributes: Record<string, unknown>) =>
+          attributes.rowheight ? { style: `height: ${attributes.rowheight}px` } : {},
+      },
+    };
+  },
+});
 
 /** 셀 배경 — 속성명을 backgroundColor 로 두면 표 확장의 setCellAttribute 가 그대로 먹는다 */
 const cellBackground = {

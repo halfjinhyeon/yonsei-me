@@ -25,6 +25,8 @@ export const SANITIZE_OPTS: sanitizeHtml.IOptions = {
     a: ['href', 'title', 'target', 'rel'],
     // style 은 아래 allowedStyles 의 img.width(백분율)만 통과 — 픽셀·자유 CSS 는 떨어진다
     img: ['src', 'alt', 'title', 'width', 'height', 'style', 'data-align'],
+    // 행 높이 드래그 결과(px) — tr 의 height 는 브라우저가 "최소 높이"로 다룬다
+    tr: ['style'],
     // data-colwidth: 열 드래그 결과(px) — 재편집 시 Tiptap 이 여기서 폭을 되읽는다
     th: ['colspan', 'rowspan', 'align', 'style', 'data-colwidth'],
     td: ['colspan', 'rowspan', 'align', 'style', 'data-colwidth'],
@@ -57,6 +59,8 @@ export const SANITIZE_OPTS: sanitizeHtml.IOptions = {
     // overflow-x-auto(가로 스크롤)가 받아낸다(모바일 트레이드오프 합의됨).
     col: { width: [/^\d+px$/], 'min-width': [/^\d+px$/] },
     table: { width: [/^\d+px$/], 'min-width': [/^\d+px$/] },
+    // 행 드래그 직렬화 — px 높이만(최소 높이 시맨틱이라 내용이 길면 알아서 더 늘어난다)
+    tr: { height: [/^\d+px$/] },
   },
   allowedSchemes: ['https', 'http', 'mailto'],
   // 임베드 허용 호스트 — 유튜브(+쿠키 없는 도메인)뿐

@@ -25,6 +25,7 @@ import TextAlign from '@tiptap/extension-text-align';
 import { TextStyle, Color } from '@tiptap/extension-text-style';
 import Youtube from '@tiptap/extension-youtube';
 import { Placeholder } from '@tiptap/extensions';
+import { RteRowResize } from '@/lib/admin/rte-row-resize';
 import {
   RteImage,
   RteTable,
@@ -384,6 +385,9 @@ export function RichTextEditor({
       RteTableRow,
       RteTableHeader,
       RteTableCell,
+      // 행 높이 실시간 드래그 — 열 드래그의 행 판(라이브러리에 없어 직접 만든 플러그인).
+      // 결과는 행 rowheight(px)로 저장되고 tr[style=height] 로 직렬화된다.
+      RteRowResize,
       // nocookie: 유튜브가 방문자에게 추적 쿠키를 심지 않게(정화 화이트리스트에도 두 호스트만)
       Youtube.configure({ nocookie: true, width: 640, height: 360 }),
       Placeholder.configure({ placeholder: placeholder ?? '' }),
@@ -746,6 +750,9 @@ export function RichTextEditor({
             머리행
           </TBtn>
           <TBtn title="열 너비 초기화" onClick={() => editor.chain().focus().resetColumnWidths().run()}>너비↺</TBtn>
+          {/* 행 높이 — 드래그로 하나씩 늘린 뒤 "높이=" 로 가장 높은 행에 맞춘다 */}
+          <TBtn title="행 높이 같게" onClick={() => editor.chain().focus().equalizeRowHeights().run()}>높이=</TBtn>
+          <TBtn title="행 높이 초기화" onClick={() => editor.chain().focus().resetRowHeights().run()}>높이↺</TBtn>
           <TBtn title="표 삭제" onClick={() => editor.chain().focus().deleteTable().run()}>표×</TBtn>
           <Divider />
           {/* 셀 배경 — 선택한 셀(들)에만 적용 */}
