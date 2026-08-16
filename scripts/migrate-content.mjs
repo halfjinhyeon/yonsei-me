@@ -44,6 +44,7 @@ const MANAGED_JSON = [
   'content/history.json',
   'content/faculty-directory.json',
   'content/staff.json',
+  'content/hero-slides.json',
   'content/courses-undergraduate.json',
   'content/course-descriptions.json',
   'content/courses-graduate.json',

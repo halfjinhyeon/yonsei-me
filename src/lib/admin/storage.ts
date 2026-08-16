@@ -68,11 +68,11 @@ function sanitizeName(name: string): string {
  * 이미지를 긴 변 MAX_DIMENSION 이하로 리사이즈하고 WebP 로 변환한다.
  * 압축 결과가 원본보다 크거나 변환에 실패하면 원본을 그대로 반환한다(무손실 폴백).
  */
-async function compressImage(file: File): Promise<File> {
+async function compressImage(file: File, maxDim: number = MAX_DIMENSION): Promise<File> {
   if (!COMPRESSIBLE.includes(file.type) || file.size < COMPRESS_THRESHOLD) return file;
   try {
     const bitmap = await createImageBitmap(file);
-    const scale = Math.min(1, MAX_DIMENSION / Math.max(bitmap.width, bitmap.height));
+    const scale = Math.min(1, maxDim / Math.max(bitmap.width, bitmap.height));
     const w = Math.round(bitmap.width * scale);
     const h = Math.round(bitmap.height * scale);
     const canvas = document.createElement('canvas');
@@ -172,13 +172,16 @@ export async function uploadAttachment(
   file: File,
   onProgress?: UploadProgressHandler,
   signal?: AbortSignal,
+  // maxDim: 압축 상한(긴 변 px) 상향 — 홈 히어로처럼 화면을 통째로 채우는 사진은
+  // 기본 1600 으로 눌리면 서빙 상한(2048w)보다 작아져 눈에 띄게 물러진다.
+  opts?: { maxDim?: number },
 ): Promise<{ url: string }> {
   if (file.size > MAX_UPLOAD_BYTES) {
     throw new Error('20MB 이하 파일만 올릴 수 있습니다.');
   }
 
   onProgress?.({ phase: 'preparing' });
-  const prepared = await compressImage(file);
+  const prepared = await compressImage(file, opts?.maxDim);
   if (signal?.aborted) throw new UploadCancelledError();
   const name = `${Date.now()}-${sanitizeName(prepared.name)}`;
   const pathname = `uploads/${boardKey}/${name}`;

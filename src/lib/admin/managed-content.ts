@@ -11,6 +11,7 @@ export const MANAGED_FILES = {
   history: 'content/history.json',
   facultyDirectory: 'content/faculty-directory.json',
   staff: 'content/staff.json',
+  heroSlides: 'content/hero-slides.json',
   coursesUndergraduate: 'content/courses-undergraduate.json',
   courseDescriptions: 'content/course-descriptions.json',
   coursesGraduate: 'content/courses-graduate.json',
@@ -30,7 +31,7 @@ export function isClubMarkdownPath(path: string): boolean {
   return CLUB_MD_RE.test(path);
 }
 
-/** CMS 가 쓸 수 있는 경로인지 — JSON 9종 + 장학금 + 동아리 본문 전부의 합집합 */
+/** CMS 가 쓸 수 있는 경로인지 — JSON 10종 + 장학금 + 동아리 본문 전부의 합집합 */
 export function isManagedPath(path: string): boolean {
   return (
     (Object.values(MANAGED_FILES) as readonly string[]).includes(path) ||

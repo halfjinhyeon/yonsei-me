@@ -18,10 +18,9 @@ import {
   fetchInstagramPosts,
   fetchCalendarPosts,
 } from '@/lib/posts';
-import heroSlidesData from '@content/hero-slides.json';
 import instagramData from '@content/instagram.json';
 import editorialTabs from '@content/editorial-tabs.json';
-import { getLabsDirectoryRuntime } from '@/lib/content-runtime';
+import { getHeroSlidesRuntime, getLabsDirectoryRuntime } from '@/lib/content-runtime';
 import {
   alumniEventHref,
   boardPostHref,
@@ -47,6 +46,9 @@ export default async function HomePage({ params }: { params: { locale: string } 
   const t = await getTranslations({ locale, namespace: 'home' });
   const tMenu = await getTranslations({ locale, namespace: 'menu' });
   const labs = await getLabsDirectoryRuntime();
+  // 히어로 배경 — CMS '메인 이미지' 탭이 편집한다. 정적 import 였으나 런타임 조회로
+  // 바꿨다: 정적 import 는 빌드 시점에 값이 굳어 CMS 저장이 재배포 전까지 안 보인다.
+  const heroSlidesData = await getHeroSlidesRuntime();
 
   // 게시판 데이터 — 기존 매핑 코드 유지를 위해 모듈 상수와 같은 이름의 지역 변수로
   const news = await fetchNews();
@@ -98,15 +100,8 @@ export default async function HomePage({ params }: { params: { locale: string } 
   // 히어로 슬라이드(content/hero-slides.json) — 로케일 라벨 해석 후 클라이언트로 전달.
   // 라벨 문구는 research-gallery 와 동일 분야명 재사용(콘텐츠/코드 분리).
   // linkLabel = 분야 목록의 '연구 분야 바로가기' 화살표 링크 접근성 라벨(ICU 보간).
-  const heroSlides = (
-    heroSlidesData as {
-      field: string;
-      title: { ko: string; en: string };
-      image: string;
-      /** 세로(9:16) 크롭본 — 세로로 긴 화면에서만 쓴다. 없으면 가로 원본으로 폴백 */
-      imageMobile?: string;
-    }[]
-  ).map((s) => ({
+  // (레코드 형태는 content-runtime 의 HeroSlideRecord — imageMobile 이 없으면 가로 원본 폴백)
+  const heroSlides = heroSlidesData.map((s) => ({
     field: s.field,
     label: pick(s.title, locale),
     image: s.image,

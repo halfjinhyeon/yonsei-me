@@ -49,8 +49,17 @@ export type FieldDef =
   | (FieldBase & { kind: 'image' }) // 경로 문자열 + 미리보기
   | (FieldBase & { kind: 'imageList' }) // 경로 문자열 배열
   // 파일 업로드 → 저장소 커밋 후 공개 URL 을 값으로 저장.
-  // folder: 커밋 대상 폴더(저장소 루트 기준), fileNameFrom: 파일명으로 쓸 폼 필드 key
-  | (FieldBase & { kind: 'imageUpload'; folder: string; fileNameFrom: string });
+  // folder: 커밋 대상 폴더(저장소 루트 기준 — 마지막 세그먼트가 스토리지 uploads/<키>),
+  // fileNameFrom: 파일명으로 쓸 폼 필드 key,
+  // maxDim/maxSizeMB: 압축 상한(긴 변 px)·원본 용량 게이트 — 히어로처럼 화면을 채우는
+  // 사진만 기본값(1600px/5MB)보다 높인다.
+  | (FieldBase & {
+      kind: 'imageUpload';
+      folder: string;
+      fileNameFrom: string;
+      maxDim?: number;
+      maxSizeMB?: number;
+    });
 
 // ---- 리소스 정의 ----
 
@@ -143,6 +152,7 @@ export type ResourceKey =
   | 'history'
   | 'facultyDirectory'
   | 'staff'
+  | 'heroSlides'
   | 'coursesUndergraduate'
   | 'courseDescriptions'
   | 'coursesGraduate'
@@ -395,6 +405,59 @@ const staff: ResourceDef = {
   summarize: (f) => cellText(f, 'name'),
 };
 
+// 홈 히어로 배경 — 분야 여섯 갈래가 돌아가는 첫 화면 슬라이드쇼.
+// 사진은 한 분야마다 두 벌이다: 가로 원본(데스크톱)과 세로 9:16 크롭본(휴대폰).
+// HeroSlideshow 가 <picture> 아트디렉션으로 화면비에 따라 하나만 내려받는다.
+const HERO_SLIDES_FIELDS: FieldDef[] = [
+  {
+    kind: 'select', key: 'field', label: '연구 분야', required: true, width: 'half',
+    options: FIELD_OPTIONS,
+    hint: '이 슬라이드의 분야 바로가기(화살표)가 여는 연구 분야입니다. 여섯 분야가 한 번씩만 쓰이도록 유지하세요.',
+  },
+  {
+    kind: 'localized', key: 'title', label: '분야명', required: true, width: 'half',
+    placeholder: '바이오·나노',
+    hint: '히어로 오른쪽 분야 목록에 표시되는 이름입니다.',
+  },
+  {
+    kind: 'imageUpload', key: 'image', label: '가로 사진 (데스크톱·태블릿)', required: true,
+    folder: 'public/img/hero', fileNameFrom: 'field',
+    // 히어로는 최대 2048w 로 서빙된다 — 기본 압축 상한(1600px)이면 눈에 띄게 물러져
+    // 이 필드만 상한을 올린다(용량 게이트도 카메라 원본을 받게 15MB).
+    maxDim: 2560, maxSizeMB: 15,
+    hint: '가로로 넓은 화면의 배경입니다. 폭 2048px 이상의 가로 사진을 올리세요(현재 사진 3504×2336 ~ 6720×4480). 화면을 꽉 채우도록 잘리므로 핵심 피사체는 가운데에 두세요.',
+  },
+  {
+    kind: 'imageUpload', key: 'imageMobile', label: '세로 사진 (휴대폰)', emptyAs: 'omit',
+    folder: 'public/img/hero-mobile', fileNameFrom: 'field',
+    maxDim: 2880, maxSizeMB: 15,
+    hint: '세로로 긴 화면에서만 쓰는 9:16 크롭본입니다. 1620×2880 권장. 비워 두면 위의 가로 사진을 확대해 쓰므로 좌우가 크게 잘립니다.',
+  },
+];
+
+const heroSlides: ResourceDef = {
+  key: 'heroSlides',
+  label: '메인 이미지',
+  description:
+    '홈(메인) 첫 화면 슬라이드쇼의 배경 사진입니다. 연구 분야 여섯 갈래가 차례로 돌아가고, 오른쪽 분야 목록의 이름도 여기서 옵니다. 한 분야마다 가로(데스크톱)·세로(휴대폰) 두 벌을 쓰며 — 가로는 폭 2048px 이상(현재 3504×2336 ~ 6720×4480), 세로는 1620×2880(9:16) 권장, 한 장당 5MB 이하 — 세로를 비우면 가로 사진으로 대체됩니다. ⚠️ 분야 6개는 고정입니다. 항목을 새로 추가하거나 지우지 말고 사진만 교체하세요.',
+  file: MANAGED_FILES.heroSlides,
+  format: 'array',
+  listColumns: [
+    { key: 'title', label: '분야' },
+    { key: 'image', label: '사진' },
+  ],
+  searchKeys: ['title', 'field'],
+  fields: HERO_SLIDES_FIELDS,
+  // 배열 순서 = 슬라이드 순서. 6장뿐이라 ▲▼ 로 충분하다.
+  orderable: true,
+  // listView 를 두지 않는다(폴백 표) — 이 리소스에서 실제로 고치는 값은 사진 두 벌이고,
+  // 사진은 미리보기와 업로드 버튼이 함께 있어야 고칠 수 있다. 그 UI 는 '자세히' 폼
+  // (RecordForm 의 imageUpload)에만 있고, 인라인 표·카드 화면은 이미지 칸을 URL 문자열
+  // 입력으로 떨어뜨린다(교수진 카드만 사진 업로드를 따로 받는다). 6줄짜리 목록이라
+  // 목록에서 한 번 더 고칠 이점도 없다.
+  summarize: (f) => cellText(f, 'title'),
+};
+
 const coursesUndergraduate: ResourceDef = {
   key: 'coursesUndergraduate',
   label: '학부 교과목',
@@ -606,6 +669,7 @@ export const RESOURCES: Record<ResourceKey, ResourceDef> = {
   history,
   facultyDirectory,
   staff,
+  heroSlides,
   coursesUndergraduate,
   courseDescriptions,
   coursesGraduate,
@@ -685,6 +749,7 @@ export const MENU_GROUPS: MenuGroup[] = [
       { type: 'collection', resourceKey: 'history' },
       { type: 'collection', resourceKey: 'facultyDirectory' },
       { type: 'collection', resourceKey: 'staff' },
+      { type: 'collection', resourceKey: 'heroSlides' },
     ],
   },
   {

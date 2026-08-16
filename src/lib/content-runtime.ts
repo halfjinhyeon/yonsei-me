@@ -39,6 +39,8 @@ import { getPageMarkdown } from './pages';
 import coursesUndergraduateJson from '@content/courses-undergraduate.json';
 import courseDescriptionsJson from '@content/course-descriptions.json';
 import coursesGraduateJson from '@content/courses-graduate.json';
+// 홈 히어로 배경 — 홈 페이지가 정적 import 하던 데이터(위 교과목 3종과 같은 사정).
+import heroSlidesJson from '@content/hero-slides.json';
 
 // ── 소스 판별 ──────────────────────────────────────────────────────────
 export type ContentSource = 'db' | 'git';
@@ -180,6 +182,25 @@ export async function getCourseDescriptionsRuntime(): Promise<typeof courseDescr
 export async function getCoursesGraduateRuntime(): Promise<typeof coursesGraduateJson> {
   const raw = await getManagedJson<typeof coursesGraduateJson>(MANAGED_FILES.coursesGraduate);
   return raw ?? coursesGraduateJson;
+}
+
+/** content/hero-slides.json 한 줄 — 홈 첫 화면 슬라이드쇼의 분야별 배경 사진.
+ *  CMS '메인 이미지' 탭(resources.ts 의 heroSlides)이 편집하는 스키마와 1:1 이다. */
+export interface HeroSlideRecord {
+  /** 연구 분야 키(FIELD_OPTIONS 와 동일 집합) — 분야 바로가기 링크의 목적지 */
+  field: string;
+  /** 히어로 분야 목록에 표시되는 이름(로케일 해석은 소비처가) */
+  title: { ko: string; en: string };
+  /** 가로 원본 — 사이트 내부 경로(/img/hero/…)이거나 업로드 결과 절대 URL */
+  image: string;
+  /** 세로(9:16) 크롭본. 없으면 소비처가 가로 원본으로 폴백한다 */
+  imageMobile?: string;
+}
+
+/** 홈 히어로 슬라이드 — 배열 순서가 슬라이드 순서다(정렬 없음) */
+export async function getHeroSlidesRuntime(): Promise<HeroSlideRecord[]> {
+  const raw = await getManagedJson<HeroSlideRecord[]>(MANAGED_FILES.heroSlides);
+  return raw ?? heroSlidesJson;
 }
 
 /** content/pages/<slug>.md 원문. 관리 대상(장학금·동아리 본문)만 DB 를 보고,

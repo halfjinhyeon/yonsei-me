@@ -135,8 +135,13 @@ export function CollectionEditor({ config, resource, onDirtyChange }: Props) {
    * 쓴다(파일명이 더 이상 이름과 묶이지 않는다 → 이름 매칭 규칙에 의존하지 않는다).
    */
   const uploadImage = useCallback(
-    async (file: File): Promise<string> => {
-      const { url } = await uploadAttachment(config, 'faculty', file);
+    async (file: File, opts?: { maxDim?: number; folder?: string }): Promise<string> => {
+      // folder 는 필드 정의(imageUpload.folder)의 마지막 세그먼트 — 교수진 'faculty',
+      // 메인 이미지 'hero' 처럼 리소스별로 저장 폴더가 갈린다(옛 하드코딩 'faculty' 폴백).
+      // maxDim 은 히어로처럼 큰 화면을 채우는 사진의 압축 상한 상향용(storage 기본 1600).
+      const { url } = await uploadAttachment(config, opts?.folder ?? 'faculty', file, undefined, undefined, {
+        maxDim: opts?.maxDim,
+      });
       return url;
     },
     [config],

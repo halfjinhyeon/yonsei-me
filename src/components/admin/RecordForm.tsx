@@ -49,8 +49,9 @@ interface Props {
   linkedSummary?: LinkedSummaryField | null;
   onDirty?: () => void;
   /** imageUpload 필드가 이미지를 올릴 때 호출 — 저장할 공개 URL 을 돌려준다
-   *  (업로드 경로·파일명은 상위/스토리지가 정한다. config 를 가진 상위가 주입) */
-  onUploadImage?: (file: File) => Promise<string>;
+   *  (업로드 경로·파일명은 상위/스토리지가 정한다. config 를 가진 상위가 주입)
+   *  opts: 필드 정의에서 온 저장 폴더 키·압축 상한(히어로 등 대형 사진용) */
+  onUploadImage?: (file: File, opts?: { maxDim?: number; folder?: string }) => Promise<string>;
 }
 
 // 그리드 폭 → col-span 매핑 (컨테이너는 sm:grid-cols-6)
@@ -152,11 +153,19 @@ export function RecordForm({
       setUploadState((s) => ({ ...s, [f.key]: { busy: false, error } }));
 
     if (!onUploadImage) return setErr('업로드를 사용할 수 없습니다.');
-    if (file.size > 5 * 1024 * 1024) return setErr('5MB 이하 이미지만 올릴 수 있습니다.');
+    // 용량 게이트 — 필드가 상한을 올릴 수 있다(히어로 15MB). 압축은 스토리지가 한다.
+    const limitMB = f.maxSizeMB ?? 5;
+    if (file.size > limitMB * 1024 * 1024) {
+      return setErr(`${limitMB}MB 이하 이미지만 올릴 수 있습니다.`);
+    }
 
     setUploadState((s) => ({ ...s, [f.key]: { busy: true, error: null } }));
     try {
-      const url = await onUploadImage(file);
+      // 저장 폴더 키 = 필드 folder 의 마지막 세그먼트(public/img/hero → uploads/hero/)
+      const url = await onUploadImage(file, {
+        maxDim: f.maxDim,
+        folder: f.folder.split('/').filter(Boolean).pop(),
+      });
       setValue(f.key, url);
       setPreviewBust((n) => n + 1);
       setUploadState((s) => ({ ...s, [f.key]: { busy: false, error: null } }));
