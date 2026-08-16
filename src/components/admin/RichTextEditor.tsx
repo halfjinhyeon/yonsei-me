@@ -708,11 +708,12 @@ export function RichTextEditor({
         <TBtn title="형광펜" active={openPanel === 'highlight' || editor.isActive('highlight')} onClick={() => togglePanel('highlight')}>
           <HighlightIcon />
         </TBtn>
+        {/* TBtn 은 grid 라 자식이 둘이면 세로로 쌓인다 — 한 span 으로 묶어야 픽토그램이 된다 */}
         <TBtn title="위첨자" active={editor.isActive('superscript')} onClick={() => editor.chain().focus().toggleSuperscript().run()}>
-          x<sup>2</sup>
+          <span className="leading-none">x<sup className="text-[9px]">2</sup></span>
         </TBtn>
         <TBtn title="아래첨자" active={editor.isActive('subscript')} onClick={() => editor.chain().focus().toggleSubscript().run()}>
-          x<sub>2</sub>
+          <span className="leading-none">x<sub className="text-[9px]">2</sub></span>
         </TBtn>
         {/* 서식 지우기 — 선택 구간의 인라인 마크(굵게·색·글꼴·크기…)를 한 번에 벗긴다.
             블록(제목·정렬)은 그대로 — 그건 위 드롭다운으로 되돌린다 */}
