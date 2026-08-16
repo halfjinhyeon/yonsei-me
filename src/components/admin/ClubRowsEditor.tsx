@@ -5,11 +5,11 @@
 // 동아리는 항목이 적고(한 자릿수) 카드 문구가 길어서, 세로 그리드보다 가로로 넓게
 // 펼치는 편이 문구를 그 자리에서 다듬기 좋다.
 //
-// ⚠️ 상세 카드뉴스(마크다운)는 여기서 펼치지 않는다. 그 본문은 content/pages/club-*.md
+// ⚠️ 상세 소개 피드(마크다운)는 여기서 펼치지 않는다. 그 본문은 content/pages/club-*.md
 // 라는 **별도 파일**이라 커밋 묶음이 JSON 과 다르고, 지금 변경 트레이는 "한 리소스의
 // 한 파일"을 한 번에 커밋하는 구조다. 목록에서 마크다운까지 대기시키면 저장 한 번에
-// 커밋이 둘 나가고 두 번째가 sha 충돌로 실패한다. 그래서 마크다운은 기존 '자세히'
-// 경로(RecordForm + linkedMarkdown + ClubCardsEditor 구조 편집기)를 그대로 쓴다.
+// 커밋이 둘 나가고 두 번째가 sha 충돌로 실패한다. 그래서 피드는 기존 '자세히'
+// 경로(RecordForm + linkedMarkdown + ClubFeedEditor 피드 편집기)를 그대로 쓴다.
 
 import { cn } from '@/lib/utils';
 import { cellText } from '@/lib/admin/resources';
@@ -70,7 +70,10 @@ export function ClubRowsEditor({
           {rows.map(({ index, form }) => {
             const dirty = dirtyIndices.has(index);
             const slug = cellText(form, 'slug');
-            const images = Array.isArray(form.images) ? form.images.length : 0;
+            // 빈 문자열은 "사진 없는 카드" 자리표시자(피드 편집기 규칙) — 장수에서 뺀다
+            const photos = (Array.isArray(form.images) ? (form.images as string[]) : []).filter(
+              (s) => String(s).trim() !== '',
+            );
             return (
               <li
                 key={index}
@@ -81,12 +84,12 @@ export function ClubRowsEditor({
               >
                 {dirty && <DirtyBar />}
                 <div className="grid sm:grid-cols-[200px_minmax(0,1fr)]">
-                  {/* 사진 — 개수만 보여주고 관리는 '자세히'(imageList 편집기)로 넘긴다 */}
+                  {/* 사진 — 개수만 보여주고 관리는 '자세히'(소개 피드 편집기)로 넘긴다 */}
                   <div className="flex min-h-[140px] flex-col items-center justify-center gap-2 bg-[#eef1f5] px-3 py-5">
-                    {images > 0 && Array.isArray(form.images) ? (
+                    {photos.length > 0 ? (
                       // eslint-disable-next-line @next/next/no-img-element
                       <img
-                        src={String(form.images[0])}
+                        src={photos[0]}
                         alt=""
                         className="h-[86px] w-full max-w-[168px] object-cover"
                       />
@@ -94,7 +97,7 @@ export function ClubRowsEditor({
                       <span className="text-xs text-[#a8b0ba]">대표 이미지 없음</span>
                     )}
                     <span className="bg-white/80 px-2 py-0.5 text-[11px] font-bold tabular-nums text-yonsei-navy">
-                      사진 {images}장
+                      사진 {photos.length}장
                     </span>
                   </div>
 
@@ -156,11 +159,11 @@ export function ClubRowsEditor({
                         disabled={disabled}
                         className="cms-btn cms-btn-sm"
                       >
-                        상세 마크다운 · 사진 편집
+                        소개 피드 편집 (사진 + 문단)
                       </button>
                       <span className="text-xs text-content-faint">
-                        상세 카드뉴스 본문 · content/pages/club-{slug}.md (별도 파일이라 자세히
-                        화면에서 저장합니다)
+                        상세 페이지 피드 — 사진 한 장에 설명 한 문단씩, 실제 배치 그대로
+                        편집합니다 (별도 파일이라 자세히 화면에서 저장)
                       </span>
                     </div>
                   </div>

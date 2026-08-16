@@ -8,7 +8,7 @@
 import { useState } from 'react';
 import type { FieldDef, FormRecord, LocalizedPair } from '@/lib/admin/resources';
 import { validateForm } from '@/lib/admin/resources';
-import { ClubCardsEditor } from './ClubCardsEditor';
+import { ClubFeedEditor } from './ClubFeedEditor';
 import { TranslateButton } from './TranslateButton';
 
 // PostForm 과 동일한 입력 스타일
@@ -19,8 +19,10 @@ const fieldClass =
 export interface LinkedMarkdownField {
   label: string;
   hint?: string;
-  /** 지정 시 원문 textarea 대신 전용 구조 편집기 탭을 함께 제공한다 */
-  structured?: 'clubCards';
+  /** 지정 시 원문 textarea 대신 전용 구조 편집기 탭을 함께 제공한다.
+   *  'clubFeed' 는 폼의 images('상세 페이지 사진')·name 필드까지 끌어와 사진·문단을
+   *  짝지어 편집하므로, 그 동안 images 는 필드 그리드에서 숨긴다(아래 feedActive). */
+  structured?: 'clubFeed';
   value: string;
   loading?: boolean;
   onChange: (v: string) => void;
@@ -87,6 +89,9 @@ export function RecordForm({
   const [previewBust, setPreviewBust] = useState(0);
 
   const hasLocalized = fields.some((f) => f.kind === 'localized');
+  // 소개 피드 편집기가 폼의 images 필드를 흡수한다 — 같은 값을 두 곳(피드·경로 입력줄)
+  // 에서 고치게 두면 어느 쪽이 진실인지 헷갈리므로, 피드가 있을 땐 그리드에서 뺀다.
+  const feedActive = linkedMarkdown?.structured === 'clubFeed';
 
   // 값 변경 시 상태 갱신 + dirty 통지
   function setValue(key: string, value: FormRecord[string]) {
@@ -458,11 +463,13 @@ export function RecordForm({
   return (
     <form onSubmit={handleSubmit} className="space-y-5" noValidate>
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-6">
-        {fields.map((f) => (
-          <div key={f.key} className={f.kind === 'localized' ? 'sm:col-span-6' : spanClass(f.width)}>
-            {renderField(f)}
-          </div>
-        ))}
+        {fields
+          .filter((f) => !(feedActive && f.kind === 'imageList' && f.key === 'images'))
+          .map((f) => (
+            <div key={f.key} className={f.kind === 'localized' ? 'sm:col-span-6' : spanClass(f.width)}>
+              {renderField(f)}
+            </div>
+          ))}
       </div>
 
       {hasLocalized && (
@@ -477,9 +484,9 @@ export function RecordForm({
           )}
           {linkedMarkdown.loading ? (
             <p className="text-sm text-content-soft">불러오는 중…</p>
-          ) : linkedMarkdown.structured === 'clubCards' ? (
+          ) : linkedMarkdown.structured === 'clubFeed' ? (
             <>
-              {/* 카드 편집 / 원문 세그먼트 토글 (MarkdownEditor 톤) */}
+              {/* 피드 편집 / 원문 세그먼트 토글 (MarkdownEditor 톤) */}
               <div className="mb-3 inline-flex overflow-hidden rounded-lg border border-surface-border">
                 {(['structured', 'raw'] as const).map((t) => (
                   <button
@@ -493,29 +500,40 @@ export function RecordForm({
                         : 'bg-surface-soft text-content-soft hover:bg-surface hover:text-content'
                     }`}
                   >
-                    {t === 'structured' ? '카드 편집' : '원문'}
+                    {t === 'structured' ? '피드 편집' : '원문'}
                   </button>
                 ))}
               </div>
               {mdTab === 'structured' ? (
-                <ClubCardsEditor
+                <ClubFeedEditor
                   value={linkedMarkdown.value}
                   onChange={(v) => {
                     onDirty?.();
                     linkedMarkdown.onChange(v);
                   }}
+                  // 사진·동아리명은 이 폼의 필드 값이 원본 — 피드가 대신 편집한다
+                  images={Array.isArray(form.images) ? (form.images as string[]) : []}
+                  onImagesChange={(arr) => setValue('images', arr)}
+                  clubName={typeof form.name === 'string' ? form.name : ''}
+                  busy={busy}
+                  onUploadImage={onUploadImage}
                 />
               ) : (
-                <textarea
-                  aria-label={linkedMarkdown.label}
-                  rows={14}
-                  value={linkedMarkdown.value}
-                  onChange={(e) => {
-                    onDirty?.();
-                    linkedMarkdown.onChange(e.target.value);
-                  }}
-                  className={`${fieldClass} font-mono`}
-                />
+                <>
+                  <textarea
+                    aria-label={linkedMarkdown.label}
+                    rows={14}
+                    value={linkedMarkdown.value}
+                    onChange={(e) => {
+                      onDirty?.();
+                      linkedMarkdown.onChange(e.target.value);
+                    }}
+                    className={`${fieldClass} font-mono`}
+                  />
+                  <p className="mt-2 text-xs text-content-faint">
+                    사진 짝은 피드 편집 탭에서 함께 관리됩니다.
+                  </p>
+                </>
               )}
             </>
           ) : (

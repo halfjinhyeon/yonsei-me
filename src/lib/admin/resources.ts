@@ -99,8 +99,10 @@ export interface LinkedMarkdown {
   hint?: string;
   /** 항목별 연결 마크다운 파일 경로 (저장소 루트 기준) */
   pathOf: (form: FormRecord) => string;
-  /** 지정 시 원문 textarea 대신 전용 구조 편집기를 함께 제공한다 */
-  structured?: 'clubCards';
+  /** 지정 시 원문 textarea 대신 전용 구조 편집기를 함께 제공한다.
+   *  'clubFeed' 는 동아리 소개 피드 — 마크다운 카드와 폼의 images 필드(사진 짝)를
+   *  한 화면에서 함께 편집한다(RecordForm 이 ClubFeedEditor 로 연결). */
+  structured?: 'clubFeed';
 }
 
 /** 항목 폼에서 함께 편집하는 "공유 record 파일 속 레코드 하나" — 연구실 AI 요약.
@@ -555,6 +557,22 @@ const coursesGraduate: ResourceDef = {
   summarize: (f) => `${cellText(f, 'code')} ${cellText(f, 'name')}`,
 };
 
+// 동아리: 사진 짝 보존 fromForm 이 images 필드를 다시 만지므로 필드를 상수로 분리한다.
+const CLUBS_FIELDS: FieldDef[] = [
+  {
+    kind: 'text', key: 'slug', label: 'slug', required: true, width: 'third', readOnlyOnEdit: true,
+    placeholder: 'yonseidrone', hint: '영문 소문자 식별자. 상세 페이지 주소와 소개 본문 파일명에 사용됩니다',
+  },
+  { kind: 'text', key: 'name', label: '이름', required: true, hint: '예: 메카 (MECar)' },
+  { kind: 'textarea', key: 'teaser', label: '카드 소개 문구', rows: 3, required: true },
+  // 상세 페이지 사진 — 폼 그리드에는 나오지 않는다(RecordForm 이 clubFeed 리소스의
+  // 'images' 를 숨긴다). 값 편집은 소개 피드(ClubFeedEditor)가 카드와 짝지어 대신한다.
+  {
+    kind: 'imageList', key: 'images', label: '상세 페이지 사진', emptyAs: 'omit',
+    hint: '소개 피드의 카드마다 한 장씩 짝지어 표시됩니다',
+  },
+];
+
 const clubs: ResourceDef = {
   key: 'clubs',
   label: '동아리 소개',
@@ -568,27 +586,33 @@ const clubs: ResourceDef = {
     { key: 'images', label: '사진' },
   ],
   searchKeys: ['slug', 'name', 'teaser'],
-  fields: [
-    {
-      kind: 'text', key: 'slug', label: 'slug', required: true, width: 'third', readOnlyOnEdit: true,
-      placeholder: 'yonseidrone', hint: '영문 소문자 식별자. 상세 페이지 주소와 소개 본문 파일명에 사용됩니다',
-    },
-    { kind: 'text', key: 'name', label: '이름', required: true, hint: '예: 메카 (MECar)' },
-    { kind: 'textarea', key: 'teaser', label: '카드 소개 문구', rows: 3, required: true },
-    {
-      kind: 'imageList', key: 'images', label: '상세 페이지 사진', emptyAs: 'omit',
-      hint: '/img/club-photos/ 경로. 상세 페이지 카드뉴스 패널에서 좌우 교대로 사용됩니다',
-    },
-  ],
+  fields: CLUBS_FIELDS,
   orderable: true,
   // 이름·카드 문구만 목록에서 고친다. 상세 카드뉴스(마크다운)는 별도 파일이라
   // 커밋 묶음이 달라 '자세히' 폼의 기존 경로(linkedMarkdown)를 그대로 쓴다.
   listView: { kind: 'cards', variant: 'clubs', inlineKeys: ['name', 'teaser'] },
   linkedMarkdown: {
-    label: '소개 카드뉴스',
-    hint: '각 카드(팀 소개)를 직접 편집합니다. SNS 링크도 아래에서 관리하세요.',
+    label: '소개 피드',
+    hint: '사진 한 장 + 설명 한 문단이 피드 카드 하나입니다. 실제 페이지와 같은 배치로 보면서 그 자리에서 고치세요.',
     pathOf: (form) => `content/pages/club-${String(form.slug ?? '').trim()}.md`,
-    structured: 'clubCards',
+    structured: 'clubFeed',
+  },
+  /**
+   * 사진·문단 짝(인덱스) 보존 — 사이트는 i번째 카드에 images[i] 를 붙인다.
+   * 기본 fromForm 은 imageList 의 빈 값을 전부 걸러내는데, 그러면 "가운데 카드만
+   * 사진 없음"(빈 문자열 자리표시자)이 사라져 뒤 카드 사진이 한 칸씩 밀린다.
+   * 그래서 가운데 빈 자리는 남기고 꼬리의 빈 값만 자른다. 사이트 렌더러는 falsy 값에
+   * 데코 블록을 그리므로 빈 문자열이 그대로 "사진 없는 카드"로 표시된다.
+   */
+  fromForm: (form) => {
+    const out = defaultFromForm(CLUBS_FIELDS, form) as Record<string, unknown>;
+    const images = (Array.isArray(form.images) ? (form.images as string[]) : []).map((s) =>
+      String(s).trim(),
+    );
+    while (images.length > 0 && images[images.length - 1] === '') images.pop();
+    if (images.length > 0) out.images = images;
+    else delete out.images; // 기본 규칙(emptyAs: 'omit')과 동일하게 키를 생략
+    return out;
   },
   summarize: (f) => cellText(f, 'name'),
 };
