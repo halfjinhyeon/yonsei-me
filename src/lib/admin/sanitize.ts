@@ -33,7 +33,7 @@ export const SANITIZE_OPTS: sanitizeHtml.IOptions = {
     // 표 테두리는 style 이 아니라 data 속성 "열거형"이다 — 값 집합이 CSS 한 곳
     // (globals.css)에 갇혀 있어 정화 화이트리스트를 넓히지 않고도 안전하다.
     // style 은 아래 table 패턴(width/min-width px)만 — 열 드래그 직렬화용.
-    table: ['data-border', 'data-border-color', 'style'],
+    table: ['data-border', 'data-border-color', 'data-cellpad', 'style'],
     // colgroup/col: 게시 화면이 열 폭을 재현하는 통로 (col 은 width px 만)
     col: ['style'],
     // 형광펜(Highlight) — 배경색 인라인 + 무손실 왕복용 data-color

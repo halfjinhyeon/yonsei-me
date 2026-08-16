@@ -298,6 +298,9 @@
   /* 표 테두리 변형 — CMS 에디터가 붙이는 data 속성(값 집합은 lib/admin/rte-schema.ts).
      속성이 없으면 위의 에디토리얼 기본형 그대로다. 색은 표에 CSS 변수로 심고
      셀이 상속받는다 — 굵기와 색을 따로 고를 수 있게 하려면 이 방법뿐. */
+  .prose-content table[data-border-color='black'] {
+    --table-border-color: #232323;
+  }
   .prose-content table[data-border-color='navy'] {
     --table-border-color: #003377;
   }
@@ -313,23 +316,50 @@
   .prose-content table[data-border-color='gray'] {
     --table-border-color: #9ca3af;
   }
-  /* 격자형(얇게/굵게) — 모든 셀에 선을 두른다. thead 의 네이비 룰은 격자와 이중선이
-     되므로 이때만 흡수시킨다(선 색이 하나로 읽히게).
-     색 미선택 기본은 검정(#232323, 본문 잉크색) — 새 표의 기본값이 "2px 검정 격자"라
-     (에디터가 삽입 시 data-border='thick' 를 붙인다) 이 폴백이 곧 기본 표의 색이다. */
-  .prose-content table[data-border='thin'] :is(th, td) {
+  /* 격자형 — 모든 셀에 선을 두른다. 굵기는 px 토큰(0~4) select, 구 토큰(thin/thick/
+     none)은 재저장 전의 게시물을 위해 같은 규칙으로 병행 유지한다(스키마가 다시 열면
+     px 토큰으로 승격). thead 의 네이비 룰은 격자와 이중선이 되므로 흡수시킨다.
+     색 미선택 기본은 검정(#232323) — 새 표 기본값이 "1px 검정 격자"라 이 폴백이 기본색. */
+  .prose-content table[data-border='thin'] :is(th, td),
+  .prose-content table[data-border='1'] :is(th, td) {
     border: 1px solid var(--table-border-color, #232323);
   }
-  .prose-content table[data-border='thick'] :is(th, td) {
+  .prose-content table[data-border='thick'] :is(th, td),
+  .prose-content table[data-border='2'] :is(th, td) {
     border: 2px solid var(--table-border-color, #232323);
   }
-  .prose-content table[data-border='thin'] thead,
-  .prose-content table[data-border='thick'] thead {
+  .prose-content table[data-border='3'] :is(th, td) {
+    border: 3px solid var(--table-border-color, #232323);
+  }
+  .prose-content table[data-border='4'] :is(th, td) {
+    border: 4px solid var(--table-border-color, #232323);
+  }
+  .prose-content table[data-border]:not([data-border='none']):not([data-border='0']) thead {
     border: 0;
   }
   /* 선 없는 표 — 행 구분 없이 여백만으로 읽히는 배치용(thead 위 룰은 남긴다) */
-  .prose-content table[data-border='none'] :is(th, td) {
+  .prose-content table[data-border='none'] :is(th, td),
+  .prose-content table[data-border='0'] :is(th, td) {
     border: 0;
+  }
+
+  /* 격자 표 셀 여백 — 사이트 기본 표의 널찍한 py-5 는 에디토리얼 레거시용이고,
+     에디터가 만드는 격자 표는 문서 표답게 조밀하게 시작한다(행 높이의 바닥이
+     "내용+여백"이라, 여백이 크면 행 높이를 줄일 방법이 없다는 사용자 피드백). */
+  .prose-content table[data-border] :is(th, td) {
+    padding: 8px 10px;
+  }
+  /* 셀 안 문단은 본문 문단이 아니다 — prose 의 문단 여백·measure 상한을 걷어야
+     빈 행이 문단 여백만큼 부풀지 않는다(행 높이 바닥의 숨은 절반이 이거였다). */
+  .prose-content table[data-border] :is(th, td) p {
+    margin: 0;
+    max-width: none;
+  }
+  .prose-content table[data-cellpad='narrow'] :is(th, td) {
+    padding: 4px 6px;
+  }
+  .prose-content table[data-cellpad='wide'] :is(th, td) {
+    padding: 14px 12px;
   }
 
   /* 이미지 정렬 — 폭을 줄였을 때만 눈에 띈다(원본 폭이면 어차피 꽉 찬다) */

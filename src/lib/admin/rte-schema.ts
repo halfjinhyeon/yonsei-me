@@ -10,7 +10,9 @@
 // 노드 하나하나를 직접 잡아야 한다. 구성은 TableKit 이 하던 것과 동일하다.
 
 import Image from '@tiptap/extension-image';
-import { Table, TableCell, TableHeader, TableRow } from '@tiptap/extension-table';
+import { Table, TableCell, TableHeader, TableRow, TableView } from '@tiptap/extension-table';
+import type { Node as ProseMirrorNode } from '@tiptap/pm/model';
+import type { EditorView } from '@tiptap/pm/view';
 import type { Node as PMNode, ResolvedPos } from '@tiptap/pm/model';
 
 declare module '@tiptap/core' {
@@ -20,6 +22,7 @@ declare module '@tiptap/core' {
       setTableAttrs: (attrs: {
         border?: TableBorder | null;
         borderColor?: TableBorderColor | null;
+        cellpad?: TableCellpad | null;
       }) => ReturnType;
       /** 커서가 들어 있는 표의 모든 열 폭(colwidth)을 지운다 — 자동 폭 복귀 */
       resetColumnWidths: () => ReturnType;
@@ -37,13 +40,56 @@ declare module '@tiptap/core' {
  *  드래그 클램프(rte-row-resize.ts)와 커맨드가 같은 값을 쓴다. */
 export const MIN_ROW_HEIGHT = 24;
 
-/** 표 테두리 굵기 — null(미지정)이 사이트 기본 에디토리얼 톤 */
-export const TABLE_BORDERS = ['none', 'thin', 'thick'] as const;
+/** 표 테두리 굵기(px 토큰) — null(미지정)은 구형 에디토리얼 톤(레거시 게시물용).
+ *  값이 자유 px 가 아니라 토큰인 이유: CSS 열거로만 효과가 나 정화를 넓힐 필요가 없다. */
+export const TABLE_BORDERS = ['0', '1', '2', '3', '4'] as const;
 export type TableBorder = (typeof TABLE_BORDERS)[number];
 
-/** 표 테두리 색 — 브랜드 토큰 이름(실제 색은 globals.css) */
-export const TABLE_BORDER_COLORS = ['navy', 'blue', 'sky', 'red', 'gray'] as const;
+/** 구 토큰(v1) → px 토큰. 이미 저장된 글을 다시 열면 여기서 승격되고, CSS 는
+ *  재저장 전의 게시물을 위해 구 토큰 규칙도 함께 유지한다(globals.css). */
+const LEGACY_BORDERS: Record<string, TableBorder> = { none: '0', thin: '1', thick: '2' };
+
+/** 표 테두리 색 — 브랜드 토큰 이름(실제 색은 globals.css). black 이 기본 폴백과 동색. */
+export const TABLE_BORDER_COLORS = ['black', 'navy', 'blue', 'sky', 'red', 'gray'] as const;
 export type TableBorderColor = (typeof TABLE_BORDER_COLORS)[number];
+
+/** 셀 여백 프리셋 — null(보통, 8px 10px)이 기본. 값은 globals.css 열거 */
+export const TABLE_CELLPADS = ['narrow', 'wide'] as const;
+export type TableCellpad = (typeof TABLE_CELLPADS)[number];
+
+/**
+ * 표 노드뷰 — prosemirror-tables 의 TableView 는 <table> DOM 을 처음부터 직접
+ * 만들면서 renderHTML 산출 속성을 입히지 않는다(실측: 문서 상태에는 data-border 가
+ * 있는데 편집 화면 DOM 에는 없음). 생성·갱신 양쪽에서 우리 표 속성을 손수 입힌다.
+ * 저장 경로(getHTML)는 renderHTML 을 타므로 이 클래스와 무관하게 항상 옳다.
+ */
+export class RteTableView extends TableView {
+  constructor(
+    node: ProseMirrorNode,
+    cellMinWidth: number,
+    view?: EditorView,
+    HTMLAttributes?: Record<string, unknown>,
+  ) {
+    super(node, cellMinWidth, view, HTMLAttributes);
+    this.syncTableAttrs(node);
+  }
+
+  update(node: ProseMirrorNode): boolean {
+    const handled = super.update(node);
+    if (handled) this.syncTableAttrs(node);
+    return handled;
+  }
+
+  private syncTableAttrs(node: ProseMirrorNode) {
+    const sync = (attr: string, value: unknown) => {
+      if (value) this.table.setAttribute(attr, String(value));
+      else this.table.removeAttribute(attr);
+    };
+    sync('data-border', node.attrs.border);
+    sync('data-border-color', node.attrs.borderColor);
+    sync('data-cellpad', node.attrs.cellpad);
+  }
+}
 
 /** 열거형 밖의 값은 버린다 — 손으로 편집된 HTML 을 되읽어도 스키마가 오염되지 않게 */
 function pickEnum(value: string | null, allowed: readonly string[]): string | null {
@@ -59,36 +105,16 @@ export const RteTable = Table.extend({
       ...this.parent?.(),
       setTableAttrs:
         (attrs) =>
-        ({ tr, dispatch, view }) => {
+        ({ tr, dispatch }) => {
           // state 가 아니라 tr 의 selection 을 읽는다 — 체인 중간(예: 삽입 직후)에도
           // 앞 커맨드가 만든 선택을 이어받아 한 트랜잭션(=undo 한 번)으로 묶인다.
+          // 편집 화면 DOM 반영은 RteTableView(생성·update 양쪽)가 책임진다.
           const { $from } = tr.selection;
           for (let depth = $from.depth; depth > 0; depth--) {
             const node = $from.node(depth);
             if (node.type.name === this.name) {
               if (dispatch) {
-                const pos = $from.before(depth);
-                const merged = { ...node.attrs, ...attrs };
-                tr.setNodeMarkup(pos, undefined, merged);
-                // prosemirror-tables 의 TableView.update 는 속성 변경을 DOM 에
-                // 반영하지 않는다(실측 — 문서 상태에는 들어가는데 라이브 미리보기만
-                // 낡는다). 저장 HTML 은 renderHTML 경로라 옳으므로, 여기서 뷰의
-                // <table> 만 손으로 맞춘다. 뷰가 재생성되면 renderHTML 과 동일해진다.
-                const dom = view.nodeDOM(pos);
-                const table =
-                  dom instanceof HTMLElement
-                    ? dom.matches('table')
-                      ? dom
-                      : dom.querySelector('table')
-                    : null;
-                if (table) {
-                  const sync = (attr: string, value: unknown) => {
-                    if (value) table.setAttribute(attr, String(value));
-                    else table.removeAttribute(attr);
-                  };
-                  sync('data-border', merged.border);
-                  sync('data-border-color', merged.borderColor);
-                }
+                tr.setNodeMarkup($from.before(depth), undefined, { ...node.attrs, ...attrs });
               }
               return true;
             }
@@ -131,9 +157,19 @@ export const RteTable = Table.extend({
       ...this.parent?.(),
       border: {
         default: null,
-        parseHTML: (element: HTMLElement) => pickEnum(element.getAttribute('data-border'), TABLE_BORDERS),
+        parseHTML: (element: HTMLElement) => {
+          const raw = element.getAttribute('data-border');
+          if (!raw) return null;
+          return pickEnum(LEGACY_BORDERS[raw] ?? raw, TABLE_BORDERS);
+        },
         renderHTML: (attributes: Record<string, unknown>) =>
           attributes.border ? { 'data-border': attributes.border } : {},
+      },
+      cellpad: {
+        default: null,
+        parseHTML: (element: HTMLElement) => pickEnum(element.getAttribute('data-cellpad'), TABLE_CELLPADS),
+        renderHTML: (attributes: Record<string, unknown>) =>
+          attributes.cellpad ? { 'data-cellpad': attributes.cellpad } : {},
       },
       borderColor: {
         default: null,

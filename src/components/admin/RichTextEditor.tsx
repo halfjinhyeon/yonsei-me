@@ -32,9 +32,11 @@ import {
   RteTableCell,
   RteTableHeader,
   RteTableRow,
+  RteTableView,
   TABLE_BORDER_COLORS,
   type TableBorder,
   type TableBorderColor,
+  type TableCellpad,
 } from '@/lib/admin/rte-schema';
 import { cn } from '@/lib/utils';
 
@@ -110,8 +112,10 @@ const CELL_BGS: { value: string | null; label: string }[] = [
   { value: '#FBECEA', label: '연레드' },
 ];
 
-/** 표 테두리 색 스와치 — 값은 토큰 이름, 실제 색은 globals.css 가 갖는다 */
+/** 표 테두리 색 스와치 — 값은 토큰 이름, 실제 색은 globals.css 가 갖는다.
+ *  검정(#232323)이 색 미지정 폴백과 같은 색 = 사실상의 기본색. */
 const BORDER_COLOR_SWATCHES: Record<TableBorderColor, { label: string; css: string }> = {
+  black: { label: '검정', css: '#232323' },
   navy: { label: '네이비', css: '#003377' },
   blue: { label: '블루', css: '#0057A8' },
   sky: { label: '스카이', css: '#2E86D6' },
@@ -119,11 +123,21 @@ const BORDER_COLOR_SWATCHES: Record<TableBorderColor, { label: string; css: stri
   gray: { label: '그레이', css: '#9CA3AF' },
 };
 
-const BORDER_OPTIONS: { value: TableBorder | null; label: string }[] = [
-  { value: null, label: '기본' },
-  { value: 'none', label: '없음' },
-  { value: 'thin', label: '얇게' },
-  { value: 'thick', label: '굵게' },
+/** 테두리 굵기 — px 토큰 select. ''(이전 기본)는 구형 에디토리얼 톤으로 되돌리는 탈출구 */
+const BORDER_WIDTHS: SelectOption[] = [
+  { value: '0', label: '0px (없음)' },
+  { value: '1', label: '1px' },
+  { value: '2', label: '2px' },
+  { value: '3', label: '3px' },
+  { value: '4', label: '4px' },
+  { value: '', label: '이전 기본(줄무늬)' },
+];
+
+/** 셀 여백 — 기본(보통)은 8px 10px, 좁게/넓게는 globals.css 열거 */
+const CELLPAD_OPTIONS: SelectOption[] = [
+  { value: '', label: '보통' },
+  { value: 'narrow', label: '좁게' },
+  { value: 'wide', label: '넓게' },
 ];
 
 /** 표 삽입 격자 피커 크기 — 더 큰 표는 삽입 후 행/열 추가로 늘린다 */
@@ -483,7 +497,8 @@ export function RichTextEditor({
       // TableKit 대신 개별 확장 4종 — 표/셀에 우리 속성을 얹은 rte-schema 판을 쓴다
       // 열 너비 실시간 드래그(한글 표 문법) — 결과는 셀 colwidth(px)로 저장되고
       // data-colwidth·colgroup 으로 직렬화된다(정화 화이트리스트와 짝).
-      RteTable.configure({ resizable: true, cellMinWidth: 48 }),
+      // View: 기본 TableView 는 표 속성(data-border 등)을 DOM 에 안 입혀 우리 상속판을 쓴다.
+      RteTable.configure({ resizable: true, cellMinWidth: 48, View: RteTableView }),
       RteTableRow,
       RteTableHeader,
       RteTableCell,
@@ -822,13 +837,13 @@ export function RichTextEditor({
                   onMouseEnter={() => setGridHover({ rows, cols })}
                   onFocus={() => setGridHover({ rows, cols })}
                   onClick={() => {
-                    // 새 표의 기본값은 2px 검정 격자(사용자 지정) — 삽입과 한 체인이라
+                    // 새 표의 기본값은 1px 검정 격자(사용자 지정) — 삽입과 한 체인이라
                     // 실행 취소 한 번에 함께 사라진다. 색은 폴백(#232323)이 담당한다.
                     editor
                       .chain()
                       .focus()
                       .insertTable({ rows, cols, withHeaderRow: true })
-                      .setTableAttrs({ border: 'thick' })
+                      .setTableAttrs({ border: '1' })
                       .run();
                     setGridHover(null);
                     setOpenPanel(null);
@@ -945,18 +960,16 @@ export function RichTextEditor({
             </button>
           ))}
           <Divider />
-          {/* 테두리 — 굵기·색은 표 전체 속성(data-*), 실제 색은 globals.css 가 갖는다 */}
+          {/* 테두리 — 굵기(px 토큰 select)·색은 표 전체 속성(data-*), 실제 색은 globals.css 가 갖는다 */}
           <span className="mr-0.5 text-content-faint">테두리</span>
-          {BORDER_OPTIONS.map((b) => (
-            <TBtn
-              key={b.label}
-              title={`표 테두리 ${b.label}`}
-              active={(tableAttrs.border ?? null) === b.value}
-              onClick={() => editor.chain().focus().setTableAttrs({ border: b.value }).run()}
-            >
-              {b.label}
-            </TBtn>
-          ))}
+          <TSelect
+            title="표 테두리 굵기"
+            value={(tableAttrs.border as string | null) ?? ''}
+            options={BORDER_WIDTHS}
+            onChange={(v) =>
+              editor.chain().focus().setTableAttrs({ border: (v || null) as TableBorder | null }).run()
+            }
+          />
           {TABLE_BORDER_COLORS.map((name) => (
             <button
               key={name}
@@ -974,6 +987,17 @@ export function RichTextEditor({
               style={{ backgroundColor: BORDER_COLOR_SWATCHES[name].css }}
             />
           ))}
+          <Divider />
+          {/* 셀 여백 — 행 높이의 바닥은 "내용+여백"이라, 줄이고 싶으면 여기를 좁힌다 */}
+          <span className="mr-0.5 text-content-faint">여백</span>
+          <TSelect
+            title="셀 여백"
+            value={(tableAttrs.cellpad as string | null) ?? ''}
+            options={CELLPAD_OPTIONS}
+            onChange={(v) =>
+              editor.chain().focus().setTableAttrs({ cellpad: (v || null) as TableCellpad | null }).run()
+            }
+          />
         </div>
       )}
 
