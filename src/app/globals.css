@@ -348,6 +348,9 @@
      "내용+여백"이라, 여백이 크면 행 높이를 줄일 방법이 없다는 사용자 피드백). */
   .prose-content table[data-border] :is(th, td) {
     padding: 8px 10px;
+    /* 병합(rowspan) 셀의 글이 위에 붙지 않게 — 격자 표는 워드프로세서 관례대로
+       세로 가운데(에디토리얼 레거시 표의 align-top 을 여기서만 뒤집는다) */
+    vertical-align: middle;
   }
   /* 셀 안 문단은 본문 문단이 아니다 — prose 의 문단 여백·measure 상한을 걷어야
      빈 행이 문단 여백만큼 부풀지 않는다(행 높이 바닥의 숨은 절반이 이거였다). */
