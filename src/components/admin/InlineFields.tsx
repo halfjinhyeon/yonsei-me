@@ -9,6 +9,7 @@
 // 값은 어디서도 여기서 직렬화하지 않는다 — onPatch 로 경로와 값을 그대로 올리고,
 // 저장 규칙은 lib/admin/inline.ts 한 곳이 정한다.
 
+import { useEffect, useRef } from 'react';
 import { cn } from '@/lib/utils';
 import type { InlineValue } from '@/lib/admin/inline';
 import type { FormRecord, ResourceDef, SelectOption } from '@/lib/admin/resources';
@@ -193,6 +194,54 @@ export function InlineText({
       aria-label={ariaLabel}
       aria-invalid={invalid ? 'true' : undefined}
       className={cn('cms-cell', numeric && 'tabular-nums', className, invalid && INVALID_CELL)}
+    />
+  );
+}
+
+/** 인라인 여러 줄 셀 — 장학금 추천기준처럼 문단이 든 표 칸.
+ *  높이는 렌더 후 scrollHeight 실측으로 내용에 딱 맞춘다. 행 수 추정(글자 수/폭)은
+ *  좁은 열의 자동 줄바꿈을 과소평가해 셀 안에 스크롤바가 생겼다 — 표를 훑어 읽는
+ *  흐름이 끊기므로 스크롤 없는 전체 표시가 원칙이다. */
+export function InlineTextArea({
+  value,
+  onChange,
+  disabled,
+  placeholder,
+  ariaLabel,
+  className,
+  invalid,
+}: {
+  value: string;
+  onChange: (v: string) => void;
+  disabled?: boolean;
+  placeholder?: string;
+  ariaLabel: string;
+  className?: string;
+  invalid?: boolean;
+}) {
+  const ref = useRef<HTMLTextAreaElement>(null);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    // auto 로 줄였다가 실측 — 줄이지 않으면 내용을 지워도 높이가 남는다
+    el.style.height = 'auto';
+    el.style.height = `${el.scrollHeight}px`;
+  }, [value]);
+  return (
+    <textarea
+      ref={ref}
+      rows={2}
+      value={value}
+      onChange={(e) => onChange(e.target.value)}
+      disabled={disabled}
+      placeholder={placeholder}
+      aria-label={ariaLabel}
+      aria-invalid={invalid ? 'true' : undefined}
+      className={cn(
+        'cms-cell resize-none overflow-hidden leading-relaxed',
+        className,
+        invalid && INVALID_CELL,
+      )}
     />
   );
 }

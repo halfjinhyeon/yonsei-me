@@ -55,8 +55,10 @@ const MANAGED_JSON = [
   //    시작해, 교수 한 명을 저장하는 순간 나머지 30명 문안이 사라진 파일이 올라간다
   //    (프로덕션 GET 은 행이 없으면 404 — git 폴백이 없다). 배포 전 반드시 시딩할 것.
   'content/faculty-summaries.json',
+  // 장학금 — 2026-08 md(content/pages/undergraduate-scholarship.md)에서 구조화 전환.
+  // 구 md 의 DB 행은 남아 있지만 allowlist 에서 빠져 더는 읽히지도 쓰이지도 않는다.
+  'content/scholarships.json',
 ];
-const SCHOLARSHIP_MD = 'content/pages/undergraduate-scholarship.md';
 const CLUBS_JSON = 'content/clubs.json';
 const FACULTY_JSON = 'content/faculty-directory.json';
 
@@ -130,7 +132,7 @@ if (clubsText === null) {
   process.exit(1);
 }
 const clubSlugs = JSON.parse(clubsText).map((c) => c.slug);
-const targets = [...MANAGED_JSON, SCHOLARSHIP_MD, ...clubSlugs.map((s) => `content/pages/club-${s}.md`)];
+const targets = [...MANAGED_JSON, ...clubSlugs.map((s) => `content/pages/club-${s}.md`)];
 
 console.log(`소스: ${fromWorktree ? '로컬 작업 트리' : 'origin/main'} · 대상 ${targets.length}개 파일`);
 if (enrichPhotos) console.log(`사진 보강: ${FACULTY_JSON} 의 빈 photo 를 파일명 매칭으로 채웁니다.`);

@@ -42,6 +42,8 @@ import courseDescriptionsJson from '@content/course-descriptions.json';
 import coursesGraduateJson from '@content/courses-graduate.json';
 // 홈 히어로 배경 — 홈 페이지가 정적 import 하던 데이터(위 교과목 3종과 같은 사정).
 import heroSlidesJson from '@content/hero-slides.json';
+// 장학금 — 2026-08 마크다운 표에서 구조화 전환(폴백 스냅샷).
+import scholarshipsJson from '@content/scholarships.json';
 
 // ── 소스 판별 ──────────────────────────────────────────────────────────
 export type ContentSource = 'db' | 'git';
@@ -215,7 +217,26 @@ export async function getHeroSlidesRuntime(): Promise<HeroSlideRecord[]> {
   return raw ?? heroSlidesJson;
 }
 
-/** content/pages/<slug>.md 원문. 관리 대상(장학금·동아리 본문)만 DB 를 보고,
+/** content/scholarships.json 한 줄 — 학부 > 장학금 표의 레코드.
+ *  CMS '장학금' 표(resources.ts 의 scholarships)가 편집하는 스키마와 1:1 이다.
+ *  여러 줄 셀은 \n 으로 담는다(구 md 의 <br> 에 대응 — 소비처가 줄로 나눠 그린다). */
+export interface ScholarshipRecord {
+  /** 표 묶음 제목(예: "교외 장학금") — 등장 순서대로 섹션이 된다 */
+  section: string;
+  name: string;
+  criteria: string;
+  count: string;
+  amount: string;
+  timing: string;
+}
+
+/** 장학금 — 배열 순서가 표의 행 순서다(정렬 없음) */
+export async function getScholarshipsRuntime(): Promise<ScholarshipRecord[]> {
+  const raw = await getManagedJson<ScholarshipRecord[]>(MANAGED_FILES.scholarships);
+  return raw ?? scholarshipsJson;
+}
+
+/** content/pages/<slug>.md 원문. 관리 대상(동아리 본문)만 DB 를 보고,
  *  나머지 임포트 문서는 기존처럼 파일에서 읽는다. */
 export async function getPageMarkdownRuntime(slug: string): Promise<string | null> {
   const path = `content/pages/${slug}.md`;

@@ -1,8 +1,8 @@
 'use client';
 
-// 표 셀을 그 자리에서 고치는 목록 — 학부/대학원 교과목, 교직원.
+// 표 셀을 그 자리에서 고치는 목록 — 학부/대학원 교과목, 교직원, 장학금.
 //
-// 이 세 리소스는 값이 짧고 항목이 많아, 카드로 펼치면 한 화면에 몇 개 못 담는다.
+// 이들 리소스는 값이 짧고 항목이 많아, 카드로 펼치면 한 화면에 몇 개 못 담는다.
 // 그래서 표 모양을 유지하되 셀 자체를 입력으로 만든다("보면서 그 자리에서 고친다").
 // Tab 으로 옆 칸까지 이어서 고칠 수 있는 게 표 모드의 핵심 이점이다.
 //
@@ -18,6 +18,7 @@ import {
   FilterChip,
   InlineSelect,
   InlineText,
+  InlineTextArea,
   InlineToolbar,
   MoveButtons,
   type InlineEditorProps,
@@ -38,6 +39,11 @@ const COLUMN_WIDTH: Record<string, number> = {
   role: 190,
   phone: 150,
   location: 200,
+  // 장학금 — 추천기준(criteria)만 폭을 정하지 않아 남은 폭을 전부 가져간다(가장 긴 열)
+  section: 128,
+  timing: 128,
+  count: 132,
+  amount: 220,
 };
 
 /** 폭을 정하지 않은 열이 가져갈 최소 폭 — 이 값이 크면 4열짜리 표에도 가로 스크롤이 생긴다 */
@@ -332,6 +338,21 @@ function Cell({
         ariaLabel={field.label}
         invalid={isInvalid(field.key)}
         className="py-2.5"
+      />
+    );
+  }
+
+  // 여러 줄 셀(장학금 추천기준·장학금액) — 줄바꿈이 사이트에서도 줄바꿈으로 표시된다
+  if (field.kind === 'textarea') {
+    return (
+      <InlineTextArea
+        value={String(formInlineValue([field], form, field.key))}
+        onChange={(v) => onPatch(index, field.key, v)}
+        disabled={disabled}
+        placeholder={field.placeholder}
+        ariaLabel={field.label}
+        invalid={isInvalid(field.key)}
+        className="py-3"
       />
     );
   }

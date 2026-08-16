@@ -19,10 +19,10 @@ export const MANAGED_FILES = {
   labs: 'content/labs-directory.json',
   labSummaries: 'content/lab-summaries.json',
   facultySummaries: 'content/faculty-summaries.json',
+  // 장학금 — 2026-08 마크다운 표(content/pages/undergraduate-scholarship.md)에서 전환.
+  // 섹션·5열(장학금명/추천기준/선발인원/장학금액/선발시기)이 그대로 레코드가 됐다.
+  scholarships: 'content/scholarships.json',
 } as const;
-
-/** 단일 마크다운 페이지 — 학부 > 장학금 본문 */
-export const SCHOLARSHIP_MD = 'content/pages/undergraduate-scholarship.md';
 
 /** 동아리 소개 카드뉴스 본문 — clubs.json 의 slug 마다 한 파일(content/pages/club-<slug>.md).
  *  slug 는 소문자·숫자·하이픈만 허용(resources.ts 의 slug 필드 안내와 동일 규약). */
@@ -32,11 +32,12 @@ export function isClubMarkdownPath(path: string): boolean {
   return CLUB_MD_RE.test(path);
 }
 
-/** CMS 가 쓸 수 있는 경로인지 — JSON 10종 + 장학금 + 동아리 본문 전부의 합집합 */
+/** CMS 가 쓸 수 있는 경로인지 — 관리 JSON + 동아리 본문 전부의 합집합.
+ *  구 장학금 md(content/pages/undergraduate-scholarship.md)는 scholarships.json 전환으로
+ *  빠졌다 — DB 에 남은 옛 행은 이 allowlist 가 거부해 더는 수정되지 않는다. */
 export function isManagedPath(path: string): boolean {
   return (
     (Object.values(MANAGED_FILES) as readonly string[]).includes(path) ||
-    path === SCHOLARSHIP_MD ||
     isClubMarkdownPath(path)
   );
 }

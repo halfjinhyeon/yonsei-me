@@ -5,7 +5,7 @@
 
 import type { BoardKey } from '@/lib/admin/boards';
 // 파일 경로는 여기 적지 않는다 — 저장소·DB 양쪽의 "관리 대상" 판정과 같은 목록을 쓴다.
-import { MANAGED_FILES, SCHOLARSHIP_MD } from '@/lib/admin/managed-content';
+import { MANAGED_FILES } from '@/lib/admin/managed-content';
 
 // ---- 폼 값 모델 ----
 // RecordForm 이 다루는 평면 값: 필드 kind 에 따라 문자열 / 한·영 쌍 / 문자열 배열.
@@ -159,6 +159,7 @@ export type ResourceKey =
   | 'coursesUndergraduate'
   | 'courseDescriptions'
   | 'coursesGraduate'
+  | 'scholarships'
   | 'clubs'
   | 'labs';
 
@@ -567,6 +568,43 @@ const coursesGraduate: ResourceDef = {
   summarize: (f) => `${cellText(f, 'code')} ${cellText(f, 'name')}`,
 };
 
+// 장학금 — 2026-08 마크다운 표에서 전환(교직원과 같은 인라인 표 방식, 사용자 지시).
+// 사이트의 5열 표가 그대로 편집 표가 된다. 여러 줄 셀(추천기준·장학금액)은 textarea 로,
+// 셀 안 줄바꿈이 사이트에서도 줄바꿈으로 표시된다(구 md 의 <br> 에 대응).
+const scholarships: ResourceDef = {
+  key: 'scholarships',
+  label: '장학금',
+  description:
+    '학부 > 장학금 탭의 표에 반영됩니다. "묶음"이 같은 행끼리 한 표가 되고(예: 교외 장학금), 행 순서가 표의 순서입니다.',
+  file: MANAGED_FILES.scholarships,
+  format: 'array',
+  listColumns: [
+    { key: 'section', label: '묶음' },
+    { key: 'name', label: '장학금명' },
+    { key: 'timing', label: '선발시기' },
+  ],
+  searchKeys: ['section', 'name', 'criteria'],
+  fields: [
+    {
+      kind: 'text', key: 'section', label: '묶음', required: true, width: 'third',
+      placeholder: '교외 장학금', hint: '같은 묶음끼리 한 표로 표시됩니다. 오타가 나면 표가 갈라지니 기존 표기를 그대로 쓰세요',
+    },
+    { kind: 'text', key: 'name', label: '장학금명', required: true },
+    { kind: 'textarea', key: 'criteria', label: '추천기준', rows: 5, required: true },
+    { kind: 'text', key: 'count', label: '선발인원', width: 'third' },
+    { kind: 'textarea', key: 'amount', label: '장학금액', rows: 3 },
+    { kind: 'text', key: 'timing', label: '선발시기', width: 'third' },
+  ],
+  orderable: true,
+  // 사이트 표와 같은 5열을 그 자리에서 고친다(교직원 방식). 묶음은 칩 필터로 오간다.
+  listView: {
+    kind: 'table',
+    inlineKeys: ['section', 'name', 'criteria', 'count', 'amount', 'timing'],
+    filterKeys: ['section'],
+  },
+  summarize: (f) => cellText(f, 'name'),
+};
+
 // 동아리: 사진 짝 보존 fromForm 이 images 필드를 다시 만지므로 필드를 상수로 분리한다.
 const CLUBS_FIELDS: FieldDef[] = [
   {
@@ -710,6 +748,7 @@ export const RESOURCES: Record<ResourceKey, ResourceDef> = {
   coursesUndergraduate,
   courseDescriptions,
   coursesGraduate,
+  scholarships,
   clubs,
   labs,
 };
@@ -727,14 +766,9 @@ export interface MarkdownPageDef {
   description: string;
 }
 
-export const MARKDOWN_PAGES: MarkdownPageDef[] = [
-  {
-    key: 'scholarship',
-    label: '장학금',
-    file: SCHOLARSHIP_MD,
-    description: '학부 > 장학금 탭 본문입니다. 마크다운 형식으로 작성합니다.',
-  },
-];
+// 장학금(scholarship)은 2026-08 구조화 전환으로 collection 리소스가 됐다 —
+// 마크다운 단일 페이지가 다시 생기면(BK21 등) 여기에 등록한다.
+export const MARKDOWN_PAGES: MarkdownPageDef[] = [];
 
 export function getMarkdownPage(key: string): MarkdownPageDef {
   const found = MARKDOWN_PAGES.find((p) => p.key === key);
@@ -795,7 +829,7 @@ export const MENU_GROUPS: MenuGroup[] = [
       { type: 'collection', resourceKey: 'coursesUndergraduate' },
       { type: 'collection', resourceKey: 'courseDescriptions' },
       { type: 'collection', resourceKey: 'coursesGraduate' },
-      { type: 'markdown', pageKey: 'scholarship' },
+      { type: 'collection', resourceKey: 'scholarships' },
     ],
   },
   {
