@@ -295,6 +295,79 @@
     @apply whitespace-nowrap font-semibold text-content;
   }
 
+  /* 표 테두리 변형 — CMS 에디터가 붙이는 data 속성(값 집합은 lib/admin/rte-schema.ts).
+     속성이 없으면 위의 에디토리얼 기본형 그대로다. 색은 표에 CSS 변수로 심고
+     셀이 상속받는다 — 굵기와 색을 따로 고를 수 있게 하려면 이 방법뿐. */
+  .prose-content table[data-border-color='navy'] {
+    --table-border-color: #003377;
+  }
+  .prose-content table[data-border-color='blue'] {
+    --table-border-color: #0057a8;
+  }
+  .prose-content table[data-border-color='sky'] {
+    --table-border-color: #2e86d6;
+  }
+  .prose-content table[data-border-color='red'] {
+    --table-border-color: #c0392b;
+  }
+  .prose-content table[data-border-color='gray'] {
+    --table-border-color: #9ca3af;
+  }
+  /* 격자형(얇게/굵게) — 모든 셀에 선을 두른다. thead 의 네이비 룰은 격자와 이중선이
+     되므로 이때만 흡수시킨다(선 색이 하나로 읽히게). */
+  .prose-content table[data-border='thin'] :is(th, td) {
+    border: 1px solid var(--table-border-color, #e0e6ed);
+  }
+  .prose-content table[data-border='thick'] :is(th, td) {
+    border: 2px solid var(--table-border-color, #e0e6ed);
+  }
+  .prose-content table[data-border='thin'] thead,
+  .prose-content table[data-border='thick'] thead {
+    border: 0;
+  }
+  /* 선 없는 표 — 행 구분 없이 여백만으로 읽히는 배치용(thead 위 룰은 남긴다) */
+  .prose-content table[data-border='none'] :is(th, td) {
+    border: 0;
+  }
+
+  /* 이미지 정렬 — 폭을 줄였을 때만 눈에 띈다(원본 폭이면 어차피 꽉 찬다) */
+  .prose-content img[data-align='left'] {
+    @apply mr-auto block;
+    margin-left: 0;
+  }
+  .prose-content img[data-align='center'] {
+    @apply mx-auto block;
+  }
+  .prose-content img[data-align='right'] {
+    @apply ml-auto block;
+    margin-right: 0;
+  }
+
+  /* 유튜브 임베드 — 저장된 iframe 의 고정 width/height 를 무시하고 본문 폭에 맞춘다 */
+  .prose-content [data-youtube-video] {
+    @apply my-8;
+  }
+  .prose-content [data-youtube-video] iframe {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+  }
+
+  /* 형광펜 — 색은 인라인 style 이 갖는다(여기 배경은 색 없는 구 <mark> 용 기본값).
+     브라우저 기본 노랑은 금색과 이웃해 보여 쓰지 않는다. color:inherit 은 정화에서
+     떨어지므로 여기서 되살린다 — 글자색을 준 형광 구간이 검게 눕지 않게. */
+  .prose-content mark {
+    padding: 0 0.1em;
+    color: inherit;
+    background-color: #dbeafe;
+  }
+
+  /* 소제목 서체 변형 — 세부탭 소제목과 같은 Paperlogy(--font-subhead)를 마크다운
+     제목에도 입힌다(개인정보처리방침·법적고지). */
+  .subhead-prose :is(h1, h2, h3, h4) {
+    font-family: var(--font-subhead), var(--font-sans), sans-serif;
+  }
+
   /* 에디토리얼 프로즈 변형(EditorialProse) — 문단·목록의 한 줄 길이 제한을
      해제해 페이지 폭에 꽉 차게 흐르도록 한다 */
   .prose-wide p,
@@ -592,6 +665,15 @@
   /* 편집 중에는 첫 컬럼도 자유롭게 줄바꿈 — 긴 입력으로 표가 옆으로 터지지 않게 */
   .rte .rte-area td:first-child {
     @apply whitespace-normal;
+  }
+  /* 편집 중 유튜브는 "재생"이 아니라 "노드 선택"이 되게 — iframe 이 포인터를 먹으면
+     클릭으로 고를 수가 없어 지우지도 못한다 */
+  .rte .rte-area [data-youtube-video] iframe {
+    pointer-events: none;
+  }
+  .rte .rte-area [data-youtube-video].ProseMirror-selectednode iframe {
+    outline: 2px solid #0057a8;
+    outline-offset: 2px;
   }
 
   /* 스크롤 고정 헤더 등장 — 위에서 살짝 슬라이드 다운(0.3s). scrolled 상태로

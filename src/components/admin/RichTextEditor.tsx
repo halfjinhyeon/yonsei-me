@@ -18,11 +18,23 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { EditorContent, useEditor, type Editor } from '@tiptap/react';
 import { TextSelection } from '@tiptap/pm/state';
 import StarterKit from '@tiptap/starter-kit';
-import Image from '@tiptap/extension-image';
+import Highlight from '@tiptap/extension-highlight';
+import Subscript from '@tiptap/extension-subscript';
+import Superscript from '@tiptap/extension-superscript';
 import TextAlign from '@tiptap/extension-text-align';
 import { TextStyle, Color } from '@tiptap/extension-text-style';
-import { TableKit } from '@tiptap/extension-table';
+import Youtube from '@tiptap/extension-youtube';
 import { Placeholder } from '@tiptap/extensions';
+import {
+  RteImage,
+  RteTable,
+  RteTableCell,
+  RteTableHeader,
+  RteTableRow,
+  TABLE_BORDER_COLORS,
+  type TableBorder,
+  type TableBorderColor,
+} from '@/lib/admin/rte-schema';
 import { cn } from '@/lib/utils';
 
 interface Props {
@@ -47,6 +59,102 @@ const COLORS: { value: string; label: string }[] = [
   { value: '#C0392B', label: '레드' },
   { value: '#6B7280', label: '그레이' },
 ];
+
+/** 형광펜 팔레트 — 검은 본문이 그대로 읽히는 옅은 면만. 노랑 계열은 금색과
+ *  이웃해 보여 디자인 언어에서 제외했다(글자색과 같은 이유). */
+const HIGHLIGHTS: { value: string; label: string }[] = [
+  { value: '#DBEAFE', label: '연블루' },
+  { value: '#DCFCE7', label: '연그린' },
+  { value: '#FEE2E2', label: '연레드' },
+  { value: '#E5E7EB', label: '연그레이' },
+];
+
+/** 표 셀 배경 — 강조 행/열용. 본문 위에 얹히는 면이라 형광펜보다 더 옅게. */
+const CELL_BGS: { value: string | null; label: string }[] = [
+  { value: null, label: '없음' },
+  { value: '#EAF2FB', label: '연블루' },
+  { value: '#F4F5F7', label: '연그레이' },
+  { value: '#FBECEA', label: '연레드' },
+];
+
+/** 표 테두리 색 스와치 — 값은 토큰 이름, 실제 색은 globals.css 가 갖는다 */
+const BORDER_COLOR_SWATCHES: Record<TableBorderColor, { label: string; css: string }> = {
+  navy: { label: '네이비', css: '#003377' },
+  blue: { label: '블루', css: '#0057A8' },
+  sky: { label: '스카이', css: '#2E86D6' },
+  red: { label: '레드', css: '#C0392B' },
+  gray: { label: '그레이', css: '#9CA3AF' },
+};
+
+const BORDER_OPTIONS: { value: TableBorder | null; label: string }[] = [
+  { value: null, label: '기본' },
+  { value: 'none', label: '없음' },
+  { value: 'thin', label: '얇게' },
+  { value: 'thick', label: '굵게' },
+];
+
+/** 표 삽입 격자 피커 크기 — 더 큰 표는 삽입 후 행/열 추가로 늘린다 */
+const GRID_ROWS = 5;
+const GRID_COLS = 8;
+
+/** 보조 행은 한 번에 하나만 — 서로 밀어내며 툴바 높이가 널뛰지 않게 한다 */
+type Panel = 'colors' | 'highlight' | 'table' | 'link' | 'youtube';
+
+/** 툴바 아래 보조 행 공통 껍데기 */
+const PANEL_ROW =
+  'flex flex-wrap items-center gap-1.5 border-b border-surface-border bg-surface-soft px-2 py-1.5 text-xs';
+
+/** 보조 행 안의 텍스트 입력 — 각진 톤 유지(폭은 쓰는 쪽에서 정한다) */
+const PANEL_INPUT =
+  'h-7 border border-surface-border bg-surface px-2 text-xs text-content outline-none focus:border-yonsei-blue';
+
+/** 보조 행 안의 실행 버튼 */
+const PANEL_BTN =
+  'h-7 shrink-0 border border-surface-border px-2 text-xs font-medium text-content-soft hover:bg-surface hover:text-content';
+
+/** 스킴 없는 입력을 https 로 보정 — 관리자가 'me.yonsei.ac.kr' 만 붙여넣는 일이 잦다.
+ *  (mailto/anchor 는 그대로 둔다) */
+function normalizeUrl(raw: string): string {
+  const url = raw.trim();
+  if (!url) return '';
+  if (/^(https?:|mailto:|#|\/)/i.test(url)) return url;
+  return `https://${url}`;
+}
+
+/**
+ * 외부 붙여넣기 정화 — Word/한글/웹에서 딸려오는 서식 잡음을 버린다.
+ * 남의 색·여백을 들여오면 사이트 톤이 깨지므로, 구조(표·목록·링크)만 남기고
+ * 표현(class/lang/style/font)은 전부 지워 우리 팔레트로 다시 칠하게 한다.
+ *
+ * ⚠ 내부 복붙도 이 훅을 탄다(ProseMirror 는 transformPastedHTML 을 부른 "뒤에"
+ * data-pm-slice 를 읽는다 — prosemirror-view/clipboard). 그래서 그 표식이 보이면
+ * 손대지 않고 통과시킨다. 안 그러면 에디터 안에서 복사한 글자색·형광펜·표 속성이
+ * 붙여넣는 순간 날아간다.
+ */
+function cleanPastedHtml(html: string): string {
+  if (html.includes('data-pm-slice')) return html;
+  if (typeof DOMParser === 'undefined') return html;
+  const doc = new DOMParser().parseFromString(html, 'text/html');
+  // 주석 먼저 — Word 의 조건부 주석(<!--[if gte mso 9]><xml>…) 안쪽까지 한 번에 사라진다
+  const walker = doc.createTreeWalker(doc.body, NodeFilter.SHOW_COMMENT);
+  const comments: ChildNode[] = [];
+  while (walker.nextNode()) comments.push(walker.currentNode as ChildNode);
+  comments.forEach((c) => c.remove());
+  doc.body.querySelectorAll('style, script, meta, link, xml').forEach((el) => el.remove());
+  doc.body.querySelectorAll('*').forEach((el) => {
+    el.removeAttribute('class');
+    el.removeAttribute('lang');
+    el.removeAttribute('style');
+  });
+  // <font> 는 껍데기만 벗긴다 — 안의 글자는 살린다
+  doc.body.querySelectorAll('font').forEach((el) => {
+    const parent = el.parentNode;
+    if (!parent) return;
+    while (el.firstChild) parent.insertBefore(el.firstChild, el);
+    parent.removeChild(el);
+  });
+  return doc.body.innerHTML;
+}
 
 /** 툴바 버튼 — 각진 톤(관리자 게시판 영역 관례) */
 function TBtn({
@@ -116,6 +224,36 @@ function ImageIcon() {
   );
 }
 
+/** 표 아이콘 — 격자(머리행이 진한 3×3) */
+function TableIcon() {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2">
+      <rect x="3" y="4" width="18" height="16" rx="1" />
+      <path d="M3 9h18M3 14.5h18M9 9v11M15 9v11" />
+    </svg>
+  );
+}
+
+/** 유튜브 아이콘 — 둥근 사각 + 재생 삼각형 */
+function YoutubeIcon() {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2">
+      <rect x="2.5" y="5" width="19" height="14" rx="3.5" />
+      <path d="M10.5 9.2l4.6 2.8-4.6 2.8z" fill="currentColor" stroke="none" />
+    </svg>
+  );
+}
+
+/** 형광펜 아이콘 — 마커 촉 + 그어진 자국 */
+function HighlightIcon() {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M14.5 3.5l6 6-8 8H8l-1.5-3z" />
+      <line x1="4" y1="21" x2="20" y2="21" strokeWidth="2.5" />
+    </svg>
+  );
+}
+
 /** 링크(사슬) 아이콘 */
 function LinkIcon() {
   return (
@@ -179,10 +317,23 @@ export function RichTextEditor({
   ariaLabel,
 }: Props) {
   const fileRef = useRef<HTMLInputElement | null>(null);
-  const [showColors, setShowColors] = useState(false);
+  // 보조 행은 한 번에 하나 — 색/형광펜/표/링크/유튜브가 서로를 닫는다
+  const [openPanel, setOpenPanel] = useState<Panel | null>(null);
+  // 표 격자 피커의 호버 좌표(1-base). null 이면 아직 안 짚음
+  const [gridHover, setGridHover] = useState<{ rows: number; cols: number } | null>(null);
+  const [linkUrl, setLinkUrl] = useState('');
+  const [youtubeUrl, setYoutubeUrl] = useState('');
+  const [panelError, setPanelError] = useState('');
   const [uploadingCount, setUploadingCount] = useState(0);
+  const altRef = useRef<HTMLInputElement | null>(null);
   // 드롭/붙여넣기 핸들러(editorProps)는 에디터 생성 전에 정의되므로 ref 로 참조한다
   const editorRef = useRef<Editor | null>(null);
+
+  /** 보조 행 열기/닫기 — 같은 버튼을 다시 누르면 닫힌다 */
+  const togglePanel = useCallback((panel: Panel) => {
+    setPanelError('');
+    setOpenPanel((cur) => (cur === panel ? null : panel));
+  }, []);
 
   /** 파일들을 업로드해 본문에 삽입 — 툴바·드롭·붙여넣기 공용 */
   const uploadAndInsert = useCallback(
@@ -221,9 +372,18 @@ export function RichTextEditor({
       }),
       TextStyle,
       Color,
+      Highlight.configure({ multicolor: true }),
+      Superscript,
+      Subscript,
       TextAlign.configure({ types: ['heading', 'paragraph'] }),
-      Image,
-      TableKit.configure({ table: { resizable: false } }),
+      RteImage,
+      // TableKit 대신 개별 확장 4종 — 표/셀에 우리 속성을 얹은 rte-schema 판을 쓴다
+      RteTable.configure({ resizable: false }),
+      RteTableRow,
+      RteTableHeader,
+      RteTableCell,
+      // nocookie: 유튜브가 방문자에게 추적 쿠키를 심지 않게(정화 화이트리스트에도 두 호스트만)
+      Youtube.configure({ nocookie: true, width: 640, height: 360 }),
       Placeholder.configure({ placeholder: placeholder ?? '' }),
     ],
     content: value || '',
@@ -233,6 +393,8 @@ export function RichTextEditor({
         class: 'prose-content rte-area',
         ...(ariaLabel ? { 'aria-label': ariaLabel } : {}),
       },
+      // 외부 HTML 붙여넣기 → 서식 잡음 제거(구조·링크는 보존)
+      transformPastedHTML: cleanPastedHtml,
       // 이미지 드래그앤드롭 → R2 업로드 후 드롭 지점에 삽입
       handleDrop: (view, event, _slice, moved) => {
         if (moved || !event.dataTransfer?.files?.length) return false;
@@ -284,16 +446,51 @@ export function RichTextEditor({
     };
   }, [editor]);
 
-  const setLink = useCallback(() => {
+  /** 링크 보조 행 열기 — 기존 링크 위에서 열면 현재 주소를 채워 수정하게 한다 */
+  const openLinkPanel = useCallback(() => {
     if (!editor) return;
-    if (editor.isActive('link')) {
-      editor.chain().focus().unsetLink().run();
+    if (openPanel === 'link') {
+      setOpenPanel(null);
       return;
     }
-    const url = window.prompt('링크 주소 (https://…)');
-    if (!url?.trim()) return;
-    editor.chain().focus().setLink({ href: url.trim() }).run();
+    const href = (editor.getAttributes('link').href as string | undefined) ?? '';
+    setLinkUrl(href);
+    setPanelError('');
+    setOpenPanel('link');
+  }, [editor, openPanel]);
+
+  /** 링크 적용 — extendMarkRange 로 링크 "전체"를 갈아끼운다(부분 수정 방지) */
+  const applyLink = useCallback(() => {
+    if (!editor) return;
+    const href = normalizeUrl(linkUrl);
+    if (!href) {
+      setPanelError('주소를 입력하세요.');
+      return;
+    }
+    editor.chain().focus().extendMarkRange('link').setLink({ href }).run();
+    setOpenPanel(null);
+  }, [editor, linkUrl]);
+
+  const clearLink = useCallback(() => {
+    if (!editor) return;
+    editor.chain().focus().extendMarkRange('link').unsetLink().run();
+    setLinkUrl('');
+    setOpenPanel(null);
   }, [editor]);
+
+  /** 유튜브 삽입 — URL 정규화(watch/shorts/youtu.be)는 확장이 처리하고,
+   *  못 알아듣는 주소면 커맨드가 false 를 돌려준다 */
+  const insertYoutube = useCallback(() => {
+    if (!editor) return;
+    const src = normalizeUrl(youtubeUrl);
+    const ok = src ? editor.chain().focus().setYoutubeVideo({ src }).run() : false;
+    if (!ok) {
+      setPanelError('유튜브 주소를 확인해 주세요.');
+      return;
+    }
+    setYoutubeUrl('');
+    setOpenPanel(null);
+  }, [editor, youtubeUrl]);
 
   if (!editor) {
     // immediatelyRender:false — 첫 클라이언트 렌더 전 자리표시
@@ -305,6 +502,10 @@ export function RichTextEditor({
   }
 
   const inTable = editor.isActive('table');
+  const onImage = editor.isActive('image');
+  // 보조 행의 active 표시용 현재 값 — 트랜잭션마다 리렌더되므로 매번 새로 읽는다
+  const tableAttrs = inTable ? editor.getAttributes('table') : {};
+  const imageAttrs = onImage ? editor.getAttributes('image') : {};
 
   return (
     <div className="rte border border-surface-border bg-surface">
@@ -323,9 +524,18 @@ export function RichTextEditor({
         <TBtn title="기울임" active={editor.isActive('italic')} onClick={() => editor.chain().focus().toggleItalic().run()}><i>I</i></TBtn>
         <TBtn title="밑줄" active={editor.isActive('underline')} onClick={() => editor.chain().focus().toggleUnderline().run()}><u>U</u></TBtn>
         <TBtn title="취소선" active={editor.isActive('strike')} onClick={() => editor.chain().focus().toggleStrike().run()}><s>S</s></TBtn>
-        {/* 글자색 — 토글 시 스와치 행 노출 */}
-        <TBtn title="글자색" active={showColors || editor.isActive('textStyle')} onClick={() => setShowColors((v) => !v)}>
+        <TBtn title="위첨자" active={editor.isActive('superscript')} onClick={() => editor.chain().focus().toggleSuperscript().run()}>
+          x<sup>2</sup>
+        </TBtn>
+        <TBtn title="아래첨자" active={editor.isActive('subscript')} onClick={() => editor.chain().focus().toggleSubscript().run()}>
+          x<sub>2</sub>
+        </TBtn>
+        {/* 글자색·형광펜 — 토글 시 스와치 행 노출 */}
+        <TBtn title="글자색" active={openPanel === 'colors' || editor.isActive('textStyle')} onClick={() => togglePanel('colors')}>
           <span className="border-b-2 border-current px-0.5">A</span>
+        </TBtn>
+        <TBtn title="형광펜" active={openPanel === 'highlight' || editor.isActive('highlight')} onClick={() => togglePanel('highlight')}>
+          <HighlightIcon />
         </TBtn>
         <Divider />
         <TBtn title="왼쪽 정렬" active={editor.isActive({ textAlign: 'left' })} onClick={() => runOnSelection(editor, (c) => c.toggleTextAlign('left'))}><AlignIcon variant="left" /></TBtn>
@@ -337,11 +547,13 @@ export function RichTextEditor({
         <TBtn title="인용" active={editor.isActive('blockquote')} onClick={() => runOnSelection(editor, (c) => c.toggleBlockquote())}>&ldquo;</TBtn>
         <TBtn title="구분선" onClick={() => editor.chain().focus().setHorizontalRule().run()}>—</TBtn>
         <Divider />
-        <TBtn title={editor.isActive('link') ? '링크 해제' : '링크'} active={editor.isActive('link')} onClick={setLink}><LinkIcon /></TBtn>
+        <TBtn title="링크" active={openPanel === 'link' || editor.isActive('link')} onClick={openLinkPanel}><LinkIcon /></TBtn>
         {onUploadImage && (
           <TBtn title="이미지 삽입" disabled={uploadingCount > 0} onClick={() => fileRef.current?.click()}><ImageIcon /></TBtn>
         )}
-        {/* 표 "삽입" 버튼은 제거 — 기존 글의 표를 편집하는 보조 툴바(inTable)만 유지 */}
+        {/* 표 삽입 — 격자 피커로 크기를 짚는다. 삽입한 표의 편집은 아래 inTable 보조 행 */}
+        <TBtn title="표 삽입" active={openPanel === 'table'} onClick={() => togglePanel('table')}><TableIcon /></TBtn>
+        <TBtn title="유튜브 영상" active={openPanel === 'youtube'} onClick={() => togglePanel('youtube')}><YoutubeIcon /></TBtn>
         <Divider />
         <TBtn title="실행 취소" disabled={!editor.can().undo()} onClick={() => editor.chain().focus().undo().run()}>↺</TBtn>
         <TBtn title="다시 실행" disabled={!editor.can().redo()} onClick={() => editor.chain().focus().redo().run()}>↻</TBtn>
@@ -353,8 +565,8 @@ export function RichTextEditor({
       </div>
 
       {/* 글자색 스와치 행 */}
-      {showColors && (
-        <div className="flex flex-wrap items-center gap-1.5 border-b border-surface-border bg-surface-soft px-2 py-1.5">
+      {openPanel === 'colors' && (
+        <div className={PANEL_ROW}>
           {COLORS.map((c) => (
             <button
               key={c.value}
@@ -383,7 +595,123 @@ export function RichTextEditor({
         </div>
       )}
 
-      {/* 표 안에 있을 때만 — 행/열 편집 보조 툴바 */}
+      {/* 형광펜 스와치 행 — 글자색과 같은 문법 */}
+      {openPanel === 'highlight' && (
+        <div className={PANEL_ROW}>
+          {HIGHLIGHTS.map((c) => (
+            <button
+              key={c.value}
+              type="button"
+              onMouseDown={(e) => e.preventDefault()}
+              onClick={() => editor.chain().focus().toggleHighlight({ color: c.value }).run()}
+              title={c.label}
+              aria-label={`형광펜 ${c.label}`}
+              className={cn(
+                'h-6 w-6 border',
+                editor.isActive('highlight', { color: c.value })
+                  ? 'border-content ring-1 ring-content'
+                  : 'border-surface-border',
+              )}
+              style={{ backgroundColor: c.value }}
+            />
+          ))}
+          <button
+            type="button"
+            onMouseDown={(e) => e.preventDefault()}
+            onClick={() => editor.chain().focus().unsetHighlight().run()}
+            className="ml-1 border border-surface-border px-2 py-0.5 text-xs text-content-soft hover:text-content"
+          >
+            형광펜 해제
+          </button>
+        </div>
+      )}
+
+      {/* 표 크기 격자 피커 — 짚은 만큼 하이라이트되고 클릭하면 그 크기로 삽입된다 */}
+      {openPanel === 'table' && (
+        <div className={cn(PANEL_ROW, 'flex-col items-start gap-2')}>
+          <div
+            className="grid gap-0.5"
+            style={{ gridTemplateColumns: `repeat(${GRID_COLS}, 1rem)` }}
+            onMouseLeave={() => setGridHover(null)}
+          >
+            {Array.from({ length: GRID_ROWS * GRID_COLS }, (_, i) => {
+              const rows = Math.floor(i / GRID_COLS) + 1;
+              const cols = (i % GRID_COLS) + 1;
+              const lit = !!gridHover && rows <= gridHover.rows && cols <= gridHover.cols;
+              return (
+                <button
+                  key={i}
+                  type="button"
+                  onMouseDown={(e) => e.preventDefault()}
+                  onMouseEnter={() => setGridHover({ rows, cols })}
+                  onFocus={() => setGridHover({ rows, cols })}
+                  onClick={() => {
+                    editor.chain().focus().insertTable({ rows, cols, withHeaderRow: true }).run();
+                    setGridHover(null);
+                    setOpenPanel(null);
+                  }}
+                  title={`${rows} × ${cols}`}
+                  aria-label={`${rows}행 ${cols}열 표 삽입`}
+                  className={cn(
+                    'h-4 w-4 border',
+                    lit ? 'border-yonsei-navy bg-yonsei-navy' : 'border-surface-border bg-surface',
+                  )}
+                />
+              );
+            })}
+          </div>
+          <span className="text-content-faint">
+            {gridHover ? `${gridHover.rows} × ${gridHover.cols}` : '표 크기를 짚으세요 (첫 행은 머리행)'}
+          </span>
+        </div>
+      )}
+
+      {/* 링크 주소 행 — window.prompt 대신 인라인 입력(기존 링크는 주소가 채워져 나온다) */}
+      {openPanel === 'link' && (
+        <div className={PANEL_ROW}>
+          <label className="font-semibold text-content-faint" htmlFor="rte-link-url">주소</label>
+          <input
+            id="rte-link-url"
+            type="text"
+            value={linkUrl}
+            onChange={(e) => setLinkUrl(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter') { e.preventDefault(); applyLink(); }
+              if (e.key === 'Escape') setOpenPanel(null);
+            }}
+            placeholder="https://… (생략하면 https 자동)"
+            className={cn(PANEL_INPUT, 'min-w-0 flex-1')}
+          />
+          <button type="button" onClick={applyLink} className={PANEL_BTN}>적용</button>
+          {editor.isActive('link') && (
+            <button type="button" onClick={clearLink} className={PANEL_BTN}>해제</button>
+          )}
+          {panelError && <span className="text-red-600">{panelError}</span>}
+        </div>
+      )}
+
+      {/* 유튜브 주소 행 — watch/shorts/youtu.be 는 확장이 임베드 주소로 바꾼다 */}
+      {openPanel === 'youtube' && (
+        <div className={PANEL_ROW}>
+          <label className="font-semibold text-content-faint" htmlFor="rte-youtube-url">유튜브</label>
+          <input
+            id="rte-youtube-url"
+            type="text"
+            value={youtubeUrl}
+            onChange={(e) => setYoutubeUrl(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter') { e.preventDefault(); insertYoutube(); }
+              if (e.key === 'Escape') setOpenPanel(null);
+            }}
+            placeholder="https://www.youtube.com/watch?v=…"
+            className={cn(PANEL_INPUT, 'min-w-0 flex-1')}
+          />
+          <button type="button" onClick={insertYoutube} className={PANEL_BTN}>삽입</button>
+          {panelError && <span className="text-red-600">{panelError}</span>}
+        </div>
+      )}
+
+      {/* 표 안에 있을 때만 — 행/열·병합·모양 보조 툴바 */}
       {inTable && (
         <div className="flex flex-wrap items-center gap-1 border-b border-surface-border bg-surface-soft px-2 py-1 text-xs">
           <span className="mr-1 font-semibold text-content-faint">표:</span>
@@ -391,7 +719,132 @@ export function RichTextEditor({
           <TBtn title="행 삭제" onClick={() => editor.chain().focus().deleteRow().run()}>행−</TBtn>
           <TBtn title="오른쪽에 열 추가" onClick={() => editor.chain().focus().addColumnAfter().run()}>열+</TBtn>
           <TBtn title="열 삭제" onClick={() => editor.chain().focus().deleteColumn().run()}>열−</TBtn>
+          <TBtn
+            title="셀 병합"
+            disabled={!editor.can().mergeCells()}
+            onClick={() => editor.chain().focus().mergeCells().run()}
+          >
+            병합
+          </TBtn>
+          <TBtn
+            title="셀 분할"
+            disabled={!editor.can().splitCell()}
+            onClick={() => editor.chain().focus().splitCell().run()}
+          >
+            분할
+          </TBtn>
+          <TBtn title="머리행 켜기/끄기" active={editor.isActive('tableHeader')} onClick={() => editor.chain().focus().toggleHeaderRow().run()}>
+            머리행
+          </TBtn>
           <TBtn title="표 삭제" onClick={() => editor.chain().focus().deleteTable().run()}>표×</TBtn>
+          <Divider />
+          {/* 셀 배경 — 선택한 셀(들)에만 적용 */}
+          <span className="mr-0.5 text-content-faint">셀 배경</span>
+          {CELL_BGS.map((c) => (
+            <button
+              key={c.label}
+              type="button"
+              onMouseDown={(e) => e.preventDefault()}
+              onClick={() => editor.chain().focus().setCellAttribute('backgroundColor', c.value).run()}
+              title={`셀 배경 ${c.label}`}
+              aria-label={`셀 배경 ${c.label}`}
+              className={cn(
+                'grid h-6 w-6 place-items-center border border-surface-border text-[10px] text-content-faint',
+                c.value ? '' : 'bg-surface',
+              )}
+              style={c.value ? { backgroundColor: c.value } : undefined}
+            >
+              {c.value ? '' : '×'}
+            </button>
+          ))}
+          <Divider />
+          {/* 테두리 — 굵기·색은 표 전체 속성(data-*), 실제 색은 globals.css 가 갖는다 */}
+          <span className="mr-0.5 text-content-faint">테두리</span>
+          {BORDER_OPTIONS.map((b) => (
+            <TBtn
+              key={b.label}
+              title={`표 테두리 ${b.label}`}
+              active={(tableAttrs.border ?? null) === b.value}
+              onClick={() => editor.chain().focus().setTableAttrs({ border: b.value }).run()}
+            >
+              {b.label}
+            </TBtn>
+          ))}
+          {TABLE_BORDER_COLORS.map((name) => (
+            <button
+              key={name}
+              type="button"
+              onMouseDown={(e) => e.preventDefault()}
+              onClick={() => editor.chain().focus().setTableAttrs({ borderColor: name }).run()}
+              title={`테두리 색 ${BORDER_COLOR_SWATCHES[name].label}`}
+              aria-label={`표 테두리 색 ${BORDER_COLOR_SWATCHES[name].label}`}
+              className={cn(
+                'h-6 w-6 border',
+                tableAttrs.borderColor === name
+                  ? 'border-content ring-1 ring-content'
+                  : 'border-surface-border',
+              )}
+              style={{ backgroundColor: BORDER_COLOR_SWATCHES[name].css }}
+            />
+          ))}
+        </div>
+      )}
+
+      {/* 이미지를 고른 동안만 — 정렬·폭·대체텍스트 보조 툴바 */}
+      {onImage && (
+        <div className="flex flex-wrap items-center gap-1 border-b border-surface-border bg-surface-soft px-2 py-1 text-xs">
+          <span className="mr-1 font-semibold text-content-faint">이미지:</span>
+          {(['left', 'center', 'right'] as const).map((align) => (
+            <TBtn
+              key={align}
+              title={`이미지 ${align === 'left' ? '왼쪽' : align === 'center' ? '가운데' : '오른쪽'} 정렬`}
+              active={imageAttrs['data-align'] === align}
+              onClick={() => editor.chain().focus().updateAttributes('image', { 'data-align': align }).run()}
+            >
+              <AlignIcon variant={align} />
+            </TBtn>
+          ))}
+          <Divider />
+          <TBtn
+            title="원본 폭"
+            active={!imageAttrs.widthPct}
+            onClick={() => editor.chain().focus().updateAttributes('image', { widthPct: null }).run()}
+          >
+            원본
+          </TBtn>
+          <TBtn
+            title="폭 50%"
+            active={imageAttrs.widthPct === 50}
+            onClick={() => editor.chain().focus().updateAttributes('image', { widthPct: 50 }).run()}
+          >
+            ½
+          </TBtn>
+          <Divider />
+          {/* 대체텍스트 — 접근성(WCAG) 필수. 이미지가 바뀌면 key 로 입력을 새로 그린다 */}
+          <label className="text-content-faint" htmlFor="rte-image-alt">대체텍스트</label>
+          <input
+            id="rte-image-alt"
+            key={`${String(imageAttrs.src ?? '')}-${editor.state.selection.from}`}
+            ref={altRef}
+            type="text"
+            defaultValue={(imageAttrs.alt as string | undefined) ?? ''}
+            placeholder="사진 설명(화면 낭독기용)"
+            className={cn(PANEL_INPUT, 'w-56')}
+            onKeyDown={(e) => {
+              if (e.key !== 'Enter') return;
+              e.preventDefault();
+              editor.chain().focus().updateAttributes('image', { alt: e.currentTarget.value.trim() || null }).run();
+            }}
+          />
+          <button
+            type="button"
+            className={PANEL_BTN}
+            onClick={() =>
+              editor.chain().focus().updateAttributes('image', { alt: altRef.current?.value.trim() || null }).run()
+            }
+          >
+            적용
+          </button>
         </div>
       )}
 

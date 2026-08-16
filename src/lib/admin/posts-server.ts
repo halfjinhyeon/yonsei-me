@@ -9,64 +9,22 @@ import { createClient, type SupabaseClient } from '@supabase/supabase-js';
 import { Marked } from 'marked';
 import sanitizeHtml from 'sanitize-html';
 import { auth } from '@/auth';
+import { SANITIZE_OPTS, sanitizeEditorHtml } from '@/lib/admin/sanitize';
 import { formatPeriodLabel, isoToDays, parseDateLabelRange } from '@/lib/calendar';
 import { kstDate } from '@/lib/utils';
 
 // 사이트 렌더와 동일 설정(breaks: 단일 개행도 줄바꿈 — 게시판 본문 관례)
 const marked = new Marked({ gfm: true, breaks: true });
 
-/** 정화 정책 — marked 산출물 + 에디터가 만들 만한 안전한 리치 텍스트만 허용.
- *  script/iframe/style/이벤트 핸들러는 여기서 전부 떨어진다. */
-const SANITIZE_OPTS: sanitizeHtml.IOptions = {
-  allowedTags: [
-    'p', 'br', 'hr', 'h1', 'h2', 'h3', 'h4', 'h5',
-    'strong', 'b', 'em', 'i', 'u', 's', 'del', 'mark', 'sup', 'sub',
-    'ul', 'ol', 'li', 'blockquote', 'code', 'pre',
-    'a', 'img', 'figure', 'figcaption',
-    'table', 'thead', 'tbody', 'tr', 'th', 'td', 'span',
-  ],
-  allowedAttributes: {
-    a: ['href', 'title', 'target', 'rel'],
-    img: ['src', 'alt', 'title', 'width', 'height'],
-    th: ['colspan', 'rowspan', 'align'],
-    td: ['colspan', 'rowspan', 'align'],
-    // Tiptap 글자색(span style="color:…") + 정렬(p/h* style="text-align:…") 허용
-    span: ['style'],
-    p: ['style'],
-    h1: ['style'], h2: ['style'], h3: ['style'], h4: ['style'], h5: ['style'],
-  },
-  // style 은 아래 속성·값 패턴만 통과 — 그 외 스타일은 제거된다
-  allowedStyles: {
-    '*': {
-      color: [/^#[0-9a-fA-F]{3,8}$/, /^rgb\(/],
-      'background-color': [/^#[0-9a-fA-F]{3,8}$/, /^rgb\(/],
-      'text-align': [/^(left|right|center|justify)$/],
-    },
-  },
-  allowedSchemes: ['https', 'http', 'mailto'],
-  // 외부 링크는 새 탭 + noopener 로 강제(에디터 산출물 신뢰하지 않음)
-  transformTags: {
-    a: (tagName, attribs) => ({
-      tagName,
-      attribs: /^https?:\/\//.test(attribs.href ?? '')
-        ? { ...attribs, target: '_blank', rel: 'noopener noreferrer' }
-        : attribs,
-    }),
-  },
-};
+// 정화 정책(SANITIZE_OPTS)은 lib/admin/sanitize.ts 가 단일 출처다 — 앱 의존성이 없어야
+// 노드 스크립트로 정책만 따로 검증할 수 있어 여기서 분리했다.
+export { sanitizeEditorHtml };
 
 /** 마크다운 → 정화된 HTML (빈 입력은 빈 문자열) */
 export function renderAndSanitize(markdown: string | null | undefined): string {
   const md = (markdown ?? '').trim();
   if (!md) return '';
   return sanitizeHtml(marked.parse(md) as string, SANITIZE_OPTS);
-}
-
-/** (WYSIWYG 대비) HTML 입력을 그대로 정화만 */
-export function sanitizeEditorHtml(html: string | null | undefined): string {
-  const h = (html ?? '').trim();
-  if (!h) return '';
-  return sanitizeHtml(h, SANITIZE_OPTS);
 }
 
 /** admin API 라우트 공용 인증 가드 — 프로덕션은 Auth.js 세션(=GitHub allowlist) 필수,
