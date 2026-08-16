@@ -314,12 +314,14 @@
     --table-border-color: #9ca3af;
   }
   /* 격자형(얇게/굵게) — 모든 셀에 선을 두른다. thead 의 네이비 룰은 격자와 이중선이
-     되므로 이때만 흡수시킨다(선 색이 하나로 읽히게). */
+     되므로 이때만 흡수시킨다(선 색이 하나로 읽히게).
+     색 미선택 기본은 검정(#232323, 본문 잉크색) — 새 표의 기본값이 "2px 검정 격자"라
+     (에디터가 삽입 시 data-border='thick' 를 붙인다) 이 폴백이 곧 기본 표의 색이다. */
   .prose-content table[data-border='thin'] :is(th, td) {
-    border: 1px solid var(--table-border-color, #e0e6ed);
+    border: 1px solid var(--table-border-color, #232323);
   }
   .prose-content table[data-border='thick'] :is(th, td) {
-    border: 2px solid var(--table-border-color, #e0e6ed);
+    border: 2px solid var(--table-border-color, #232323);
   }
   .prose-content table[data-border='thin'] thead,
   .prose-content table[data-border='thick'] thead {

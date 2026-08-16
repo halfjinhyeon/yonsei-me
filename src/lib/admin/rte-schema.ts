@@ -46,15 +46,17 @@ export const RteTable = Table.extend({
       ...this.parent?.(),
       setTableAttrs:
         (attrs) =>
-        ({ state, dispatch, view }) => {
-          const { $from } = state.selection;
+        ({ tr, dispatch, view }) => {
+          // state 가 아니라 tr 의 selection 을 읽는다 — 체인 중간(예: 삽입 직후)에도
+          // 앞 커맨드가 만든 선택을 이어받아 한 트랜잭션(=undo 한 번)으로 묶인다.
+          const { $from } = tr.selection;
           for (let depth = $from.depth; depth > 0; depth--) {
             const node = $from.node(depth);
             if (node.type.name === this.name) {
               if (dispatch) {
                 const pos = $from.before(depth);
                 const merged = { ...node.attrs, ...attrs };
-                dispatch(state.tr.setNodeMarkup(pos, undefined, merged));
+                tr.setNodeMarkup(pos, undefined, merged);
                 // prosemirror-tables 의 TableView.update 는 속성 변경을 DOM 에
                 // 반영하지 않는다(실측 — 문서 상태에는 들어가는데 라이브 미리보기만
                 // 낡는다). 저장 HTML 은 renderHTML 경로라 옳으므로, 여기서 뷰의

@@ -646,7 +646,14 @@ export function RichTextEditor({
                   onMouseEnter={() => setGridHover({ rows, cols })}
                   onFocus={() => setGridHover({ rows, cols })}
                   onClick={() => {
-                    editor.chain().focus().insertTable({ rows, cols, withHeaderRow: true }).run();
+                    // 새 표의 기본값은 2px 검정 격자(사용자 지정) — 삽입과 한 체인이라
+                    // 실행 취소 한 번에 함께 사라진다. 색은 폴백(#232323)이 담당한다.
+                    editor
+                      .chain()
+                      .focus()
+                      .insertTable({ rows, cols, withHeaderRow: true })
+                      .setTableAttrs({ border: 'thick' })
+                      .run();
                     setGridHover(null);
                     setOpenPanel(null);
                   }}
