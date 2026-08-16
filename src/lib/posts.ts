@@ -120,6 +120,36 @@ const LIST_COLUMNS =
 /** 상세 조회용 — 본문 포함 전체 행 */
 const DETAIL_COLUMNS = '*, attachments(*)';
 
+// ── 게시 예약 게이트 ───────────────────────────────────────────────────
+//
+// CMS 가 글에 "공개 시각"을 실을 수 있다(posts-server.ts 의 AdminPostPayload.time).
+// 스키마를 늘리지 않고 created_at(timestamptz) 에 `YYYY-MM-DDTHH:MM+09:00` 로 저장하므로,
+// **사이트 조회는 created_at 이 아직 오지 않은 글을 빼면** 그것이 곧 예약 게시다.
+//
+// ⚠️ event_date 가 있는 행은 면제한다. 그 행들(행사·세미나·일정·동문행사)은
+//    payloadToRow 가 created_at 에 **행사일**을 박는다 — 다음 달 행사를 지금 등록하면
+//    created_at 도 다음 달이다. 면제하지 않으면 "앞으로 열릴 행사"가 사이트 목록과
+//    홈 캘린더에서 통째로 사라진다(예약이 아니라 그 게시판의 날짜 의미가 그런 것뿐이다).
+//    이관된 구 행들은 created_at 이 작성일이라 어차피 과거지만, CMS 로 새로 쓰거나
+//    수정하는 순간 행사일로 덮인다 — 면제 조항이 실제로 일하는 지점은 거기다.
+//    바꿔 말해 예약 게시가 걸리는 곳은 event_date 를 쓰지 않는 게시판 —
+//    공지 4종·뉴스·동문 뉴스·학위논문·자료실·취업·인턴·인스타그램·비행사 동문글이다.
+//
+// ⚠️ 의미 변화: 이 게이트가 붙기 전에는 "게시일을 미래 날짜로 적어 둔" 글도 즉시 보였다.
+//    이제 그런 글은 그 날짜 00:00(KST)까지 숨는다. 예약 기능의 정의상 올바른 방향이라
+//    그대로 두되, 놀라지 않도록 여기 적어 둔다.
+//
+// ⚠️ 반영 지연: 아래 조회는 전부 unstable_cache(revalidate 600) 안에서 돌고 페이지도
+//    revalidate=300 이다. now() 는 캐시 미스 때만 다시 평가되므로 예약 시각이 지나도
+//    최대 10여 분 뒤에 나타난다. 분 단위 정확도가 필요한 기능이 아니라 그대로 둔다.
+//
+// ⚠️ 관리자 API(app/api/admin/**)에는 이 게이트를 넣지 않는다 — 관리자는 예약 글을
+//    목록에서 보고 고칠 수 있어야 한다.
+function scheduleGate(): string {
+  // PostgREST or= 그룹. 값에 ':' 가 들어가므로 큰따옴표로 감싼다(구분자 오인 방지).
+  return `event_date.not.is.null,created_at.lte."${new Date().toISOString()}"`;
+}
+
 // 전체 공개 글 1회 조회(본문 제외, 첨부 포함) — 'posts' 태그 하나로 단순·확실하게 캐시한다.
 // 목록을 파생하는 모든 API 가 이 하나를 공유하고 메모리에서 게시판별로 나눈다.
 const fetchListRows = unstable_cache(
@@ -135,6 +165,8 @@ const fetchListRows = unstable_cache(
         .from('posts')
         .select(LIST_COLUMNS)
         .eq('published', true)
+        // 예약 게시 — 공개 시각이 오지 않은 글은 어느 목록에도 실리지 않는다
+        .or(scheduleGate())
         .order('created_at', { ascending: false })
         // 같은 날짜가 여럿이면 정렬이 요청마다 흔들려 페이지 경계에서 행이
         // 중복·누락될 수 있다 — id 로 순서를 확정한다.
@@ -162,6 +194,8 @@ const fetchRowById = unstable_cache(
       .from('posts')
       .select(DETAIL_COLUMNS)
       .eq('published', true)
+      // 예약 게시 — 목록에서 뺀 글이 주소를 직접 쳐서 열리면 게이트가 무의미하다
+      .or(scheduleGate())
       .eq('id', id)
       .maybeSingle();
     if (error) throw new Error(`게시글 조회 실패(id=${id}): ${error.message}`);
@@ -177,6 +211,8 @@ const fetchRowBySlugOnly = unstable_cache(
       .from('posts')
       .select(DETAIL_COLUMNS)
       .eq('published', true)
+      // 예약 게시 — 뉴스형 상세(slug 주소)도 같은 규칙으로 막는다
+      .or(scheduleGate())
       .eq('board', board)
       .eq('slug', slug)
       // 목록 정렬과 같은 규칙 — slug 가 중복된 행이 생겨도 고르는 글이 흔들리지 않는다
@@ -548,6 +584,9 @@ const fetchResourceBodiesDb = unstable_cache(
       .from('posts')
       .select('id, body_html_ko, body_html_en')
       .eq('published', true)
+      // 예약 게시 — 목록(fetchBoardData)과 같은 집합이어야 검색 인덱스에 유령 항목이
+      // 생기지 않는다(자료실은 event_date 를 쓰지 않아 게이트가 실제로 걸린다)
+      .or(scheduleGate())
       .eq('board', 'resources');
     if (error) throw new Error(`자료실 본문 조회 실패: ${error.message}`);
     const rows = (data ?? []) as unknown as Array<{

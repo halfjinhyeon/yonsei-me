@@ -24,8 +24,18 @@ import Superscript from '@tiptap/extension-superscript';
 import TextAlign from '@tiptap/extension-text-align';
 import { TextStyle, Color, FontFamily, FontSize, LineHeight } from '@tiptap/extension-text-style';
 import Youtube from '@tiptap/extension-youtube';
-import { Placeholder } from '@tiptap/extensions';
+import { CharacterCount, Placeholder } from '@tiptap/extensions';
 import { RteRowResize } from '@/lib/admin/rte-row-resize';
+import {
+  RteSearch,
+  clearSearch,
+  findNext,
+  findPrev,
+  getSearchState,
+  replaceActive,
+  replaceAll,
+  setSearchQuery,
+} from '@/lib/admin/rte-search';
 import {
   RteImage,
   RteTable,
@@ -147,7 +157,7 @@ const GRID_ROWS = 5;
 const GRID_COLS = 8;
 
 /** 보조 행은 한 번에 하나만 — 서로 밀어내며 툴바 높이가 널뛰지 않게 한다 */
-type Panel = 'colors' | 'highlight' | 'table' | 'link' | 'youtube';
+type Panel = 'colors' | 'highlight' | 'table' | 'link' | 'youtube' | 'search';
 
 /** 툴바 아래 보조 행 공통 껍데기 */
 const PANEL_ROW =
@@ -392,6 +402,16 @@ function HighlightIcon() {
   );
 }
 
+/** 돋보기 아이콘 — 찾기/바꾸기 */
+function SearchIcon() {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+      <circle cx="10.5" cy="10.5" r="6.5" />
+      <line x1="15.4" y1="15.4" x2="21" y2="21" />
+    </svg>
+  );
+}
+
 /** 링크(사슬) 아이콘 */
 function LinkIcon() {
   return (
@@ -461,6 +481,11 @@ export function RichTextEditor({
   const [gridHover, setGridHover] = useState<{ rows: number; cols: number } | null>(null);
   const [linkUrl, setLinkUrl] = useState('');
   const [youtubeUrl, setYoutubeUrl] = useState('');
+  // 찾기/바꾸기 입력 — 하이라이트·매치 목록의 원본은 에디터 플러그인(rte-search)이 갖고,
+  // 여기 두 값은 입력 상자의 표시값일 뿐이다
+  const [findText, setFindText] = useState('');
+  const [replaceText, setReplaceText] = useState('');
+  const findRef = useRef<HTMLInputElement | null>(null);
   const [panelError, setPanelError] = useState('');
   const [uploadingCount, setUploadingCount] = useState(0);
   const altRef = useRef<HTMLInputElement | null>(null);
@@ -534,6 +559,10 @@ export function RichTextEditor({
       // nocookie: 유튜브가 방문자에게 추적 쿠키를 심지 않게(정화 화이트리스트에도 두 호스트만)
       Youtube.configure({ nocookie: true, width: 640, height: 360 }),
       Placeholder.configure({ placeholder: placeholder ?? '' }),
+      // 글자 수 — 제한 없이 세기만 한다(하단 표시줄). 문서 텍스트 기준(textSize 기본값)
+      CharacterCount,
+      // 찾기/바꾸기 — 하이라이트는 데코레이션이라 저장되는 HTML 에는 흔적이 남지 않는다
+      RteSearch,
     ],
     content: value || '',
     editorProps: {
@@ -594,6 +623,19 @@ export function RichTextEditor({
       editor.off('transaction', rerender);
     };
   }, [editor]);
+
+  // 찾기 행 열기/닫기 — 열면 입력에 포커스하고 직전 검색어를 되살리고, 닫으면 하이라이트를 지운다
+  useEffect(() => {
+    if (!editor) return;
+    if (openPanel !== 'search') {
+      clearSearch(editor);
+      return;
+    }
+    findRef.current?.select();
+    if (findText) setSearchQuery(editor, findText);
+    // findText 는 의도적으로 제외 — 타이핑마다가 아니라 "열 때 한 번" 복원이다(입력은 onChange 가 처리)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [editor, openPanel]);
 
   /** 링크 보조 행 열기 — 기존 링크 위에서 열면 현재 주소를 채워 수정하게 한다 */
   const openLinkPanel = useCallback(() => {
@@ -663,6 +705,12 @@ export function RichTextEditor({
   };
   // 형식만 마크가 아니라 블록 — heading 레벨을 짚고, 없으면 문단으로 본다
   const headingLevel = ([2, 3, 4] as const).find((level) => editor.isActive('heading', { level }));
+  // 찾기 결과 — 플러그인 상태가 원본이고, 트랜잭션마다 리렌더되므로 매 렌더 새로 읽는다
+  const searchState = getSearchState(editor);
+  const searchTotal = searchState.matches.length;
+  // 글자 수 — CharacterCount 확장의 저장소(문서가 바뀔 때마다 다시 센다)
+  const charCount = editor.storage.characterCount.characters();
+  const wordCount = editor.storage.characterCount.words();
 
   return (
     <div className="rte border border-surface-border bg-surface">
@@ -675,6 +723,8 @@ export function RichTextEditor({
         {/* 되돌리기가 맨 앞 — 실수 복구가 가장 손이 자주 가는 자리다 */}
         <TBtn title="실행 취소" disabled={!editor.can().undo()} onClick={() => editor.chain().focus().undo().run()}>↺</TBtn>
         <TBtn title="다시 실행" disabled={!editor.can().redo()} onClick={() => editor.chain().focus().redo().run()}>↻</TBtn>
+        {/* 찾기/바꾸기 — 되돌리기와 같은 "문서 전체를 다루는 도구" 자리 */}
+        <TBtn title="찾기/바꾸기" active={openPanel === 'search'} onClick={() => togglePanel('search')}><SearchIcon /></TBtn>
         <Divider />
         {/* 형식·글꼴·크기·줄 간격 — 값이 많아 버튼으로는 툴바가 넘친다(드롭다운).
             현재값은 상태가 아니라 매 렌더 editor 에서 읽는다 */}
@@ -940,6 +990,87 @@ export function RichTextEditor({
         </div>
       )}
 
+      {/* 찾기/바꾸기 행 — 이동은 하이라이트만 옮긴다(선택을 옮기면 고쳐 쓰던 커서를 잃는다).
+          버튼들은 mousedown 을 막아 입력 상자의 포커스를 지킨다(연타로 훑기 위해). */}
+      {openPanel === 'search' && (
+        <div className={PANEL_ROW}>
+          <label className="font-semibold text-content-faint" htmlFor="rte-search-find">찾기</label>
+          <input
+            id="rte-search-find"
+            ref={findRef}
+            type="text"
+            value={findText}
+            onChange={(e) => {
+              setFindText(e.target.value);
+              setSearchQuery(editor, e.target.value);
+            }}
+            onKeyDown={(e) => {
+              if (e.key === 'Escape') { e.preventDefault(); setOpenPanel(null); return; }
+              if (e.key !== 'Enter') return;
+              e.preventDefault();
+              if (e.shiftKey) findPrev(editor);
+              else findNext(editor);
+            }}
+            placeholder="찾을 내용"
+            className={cn(PANEL_INPUT, 'w-40 min-w-0 flex-1')}
+          />
+          <label className="font-semibold text-content-faint" htmlFor="rte-search-replace">바꾸기</label>
+          <input
+            id="rte-search-replace"
+            type="text"
+            value={replaceText}
+            onChange={(e) => setReplaceText(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === 'Escape') { e.preventDefault(); setOpenPanel(null); return; }
+              if (e.key !== 'Enter') return;
+              e.preventDefault();
+              replaceActive(editor, replaceText);
+            }}
+            placeholder="바꿀 내용"
+            className={cn(PANEL_INPUT, 'w-40 min-w-0 flex-1')}
+          />
+          <button
+            type="button"
+            onMouseDown={(e) => e.preventDefault()}
+            onClick={() => findPrev(editor)}
+            disabled={searchTotal === 0}
+            className={cn(PANEL_BTN, 'disabled:opacity-40')}
+          >
+            이전
+          </button>
+          <button
+            type="button"
+            onMouseDown={(e) => e.preventDefault()}
+            onClick={() => findNext(editor)}
+            disabled={searchTotal === 0}
+            className={cn(PANEL_BTN, 'disabled:opacity-40')}
+          >
+            다음
+          </button>
+          <button
+            type="button"
+            onMouseDown={(e) => e.preventDefault()}
+            onClick={() => replaceActive(editor, replaceText)}
+            disabled={searchState.activeIndex < 0}
+            className={cn(PANEL_BTN, 'disabled:opacity-40')}
+          >
+            바꾸기
+          </button>
+          <button
+            type="button"
+            onMouseDown={(e) => e.preventDefault()}
+            onClick={() => replaceAll(editor, replaceText)}
+            disabled={searchTotal === 0}
+            className={cn(PANEL_BTN, 'disabled:opacity-40')}
+          >
+            모두 바꾸기
+          </button>
+          <span aria-live="polite" className="tabular-nums text-content-faint">
+            {searchTotal === 0 ? 0 : searchState.activeIndex + 1}/{searchTotal}
+          </span>
+        </div>
+      )}
+
       {/* 표 안에 있을 때만 — 행/열·병합·모양 보조 툴바 */}
       {inTable && (
         <div className="flex flex-wrap items-center gap-1 border-b border-surface-border bg-surface-soft px-2 py-1 text-xs">
@@ -1104,6 +1235,11 @@ export function RichTextEditor({
       />
 
       <EditorContent editor={editor} />
+
+      {/* 글자 수 — 분량 감(공지 길이 등)만 주면 되는 자리라 조용한 한 줄로 둔다 */}
+      <div className="border-t border-surface-border px-3 py-1 text-right text-[11px] text-content-faint">
+        공백 포함 {charCount}자 · 단어 {wordCount}개
+      </div>
     </div>
   );
 }

@@ -770,6 +770,15 @@
     outline: 2px solid #0057a8;
     outline-offset: 2px;
   }
+  /* 찾기 하이라이트(rte-search.ts 의 데코레이션) — 문서에 저장되지 않는 표시용 면.
+     형광펜 노랑은 쓰지 않는다: 금색과 이웃해 보이고, 본문의 진짜 형광펜과 헷갈린다. */
+  .rte .rte-area .search-hit {
+    background: rgb(0 87 168 / 0.18);
+  }
+  .rte .rte-area .search-hit-active {
+    background: rgb(0 87 168 / 0.38);
+    outline: 1px solid #0057a8;
+  }
 
   /* 스크롤 고정 헤더 등장 — 위에서 살짝 슬라이드 다운(0.3s). scrolled 상태로
      클래스가 붙는 순간 1회 재생되고, 최상단 복귀로 클래스가 떨어지면 다음 고정 때

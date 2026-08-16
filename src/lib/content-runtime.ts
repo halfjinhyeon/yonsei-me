@@ -74,9 +74,14 @@ interface DbContentFile {
 
 // 관리 대상 파일은 십여 개·합쳐 수백 KB 라 전 행을 1회 조회해 메모리에서 고른다.
 // 'content' 태그 하나로 단순·확실하게 캐시한다(게시판의 'posts' 와 같은 관례).
+// drafts/ 는 CMS 임시저장 초안(/api/admin/drafts)이 같은 테이블에 얹혀 산다 —
+// 사이트 콘텐츠가 아니고, 쌓이면 이 전량 조회가 캐시 2MB 상한을 위협하므로 뺀다.
 const fetchAllContentFiles = unstable_cache(
   async (): Promise<DbContentFile[]> => {
-    const { data, error } = await sb().from('content_files').select('path, body, version');
+    const { data, error } = await sb()
+      .from('content_files')
+      .select('path, body, version')
+      .not('path', 'like', 'drafts/%');
     if (error) throw new Error(`콘텐츠 파일 조회 실패: ${error.message}`);
     return (data ?? []) as DbContentFile[];
   },

@@ -13,21 +13,28 @@
 // 뉴스 분류/요약/대표 이미지)를 조건부로 노출한다 — 판정은 전부 BoardMeta 플래그다.
 // (한국어 UI 문자열은 내부 운영 도구라 컴포넌트에 직접 둔다.)
 
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import type { Editor } from '@tiptap/react';
 import { cn } from '@/lib/utils';
-import type { BoardMeta, EditAttachment, EditRecord } from '@/lib/admin/boards';
+import type { BoardMeta, EditAttachment } from '@/lib/admin/boards';
 import { emptyAttachment } from '@/lib/admin/boards';
 // 첨부 크기 표기는 사이트 목록("PDF · 1.2MB")과 같은 함수를 쓴다 — 관리자와 학생이
 // 같은 문자열을 보게 해야 "왜 다르게 보이냐"는 문의가 생기지 않는다.
 import { formatBytes } from '@/lib/files';
 import {
   clearPostDraft,
+  clearServerDraft,
   draftAgeLabel,
+  newerDraft,
   postDraftKey,
   readPostDraft,
+  readServerDraft,
+  serverDraftKey,
   writePostDraft,
+  writeServerDraft,
+  type DraftOrigin,
   type PostDraft,
+  type PostEditRecord,
 } from '@/lib/admin/post-draft';
 import { formatPeriodLabel } from '@/lib/calendar';
 import { UploadCancelledError, type UploadProgress, type UploadProgressHandler } from '@/lib/admin/storage';
@@ -40,14 +47,14 @@ import { PostPreviewPane } from './PostPreviewPane';
 interface Props {
   meta: BoardMeta;
   /** 편집 대상 초기값 */
-  initial: EditRecord;
+  initial: PostEditRecord;
   /** 수정 모드면 id 읽기 전용 */
   isEdit: boolean;
   busy: boolean;
   /** 서버가 돌려준 저장 실패 사유 — 상단 바 아래 경고 줄에 함께 표시한다 */
   submitError?: string | null;
   onCancel: () => void;
-  onSubmit: (rec: EditRecord) => void;
+  onSubmit: (rec: PostEditRecord) => void;
   /** 첨부·이미지 파일을 외부 스토리지에 올리고 URL 을 반환 (config 를 가진 상위가 주입) */
   onUploadFile?: (
     file: File,
@@ -142,7 +149,7 @@ export function PostForm({
 }: Props) {
   const { setFocusMode, showToast } = useAdminShell();
 
-  const [rec, setRec] = useState<EditRecord>(initial);
+  const [rec, setRec] = useState<PostEditRecord>(initial);
   const [error, setError] = useState<string | null>(null);
   // 저장 전 미리보기 — 본문 자리를 그대로 바꿔 끼우는 토글(팝업 아님)
   const [preview, setPreview] = useState(false);
@@ -175,20 +182,67 @@ export function PostForm({
     return () => setFocusMode(false);
   }, [setFocusMode]);
 
-  // ── 임시저장(초안) — localStorage 전용, 저장소에는 커밋하지 않는다 ──
+  // ── 임시저장(초안) — 이 기기(localStorage) + 서버(/api/admin/drafts) ──
+  // 어느 쪽도 게시가 아니다. posts 테이블은 '저장'을 눌렀을 때만 움직인다.
   const draftKey = useMemo(
     () => postDraftKey(meta.key, isEdit ? initial.id : 'new'),
     [meta.key, isEdit, initial.id],
   );
+  const srvKey = useMemo(
+    () => serverDraftKey(meta.key, isEdit ? initial.id : 'new'),
+    [meta.key, isEdit, initial.id],
+  );
   const initialJson = useMemo(() => JSON.stringify(initial), [initial]);
-  const dirty = JSON.stringify(rec) !== initialJson;
-  // 열 때 발견한 초안 — 내용이 지금 값과 다를 때만 안내한다
-  const [foundDraft, setFoundDraft] = useState<PostDraft | null>(null);
+  const recJson = JSON.stringify(rec);
+  const dirty = recJson !== initialJson;
+
+  // 열 때 발견한 초안 — 이 기기와 서버 중 **더 최신**인 쪽을 제안한다.
+  // 내용이 지금 값과 같으면 물을 이유가 없다(막 게시한 글을 다시 열었을 때 등).
+  const [foundDraft, setFoundDraft] = useState<{ draft: PostDraft; origin: DraftOrigin } | null>(
+    null,
+  );
   useEffect(() => {
-    const d = readPostDraft(draftKey);
-    if (d && JSON.stringify(d.rec) !== initialJson) setFoundDraft(d);
+    let alive = true;
+    const local = readPostDraft(draftKey);
+    // 서버 조회는 실패해도 null 을 돌려주므로(post-draft.ts) 이 then 은 언제나 돈다 —
+    // 네트워크가 끊긴 자리에서도 로컬 초안 제안은 그대로 뜬다.
+    void readServerDraft(srvKey).then((server) => {
+      if (!alive) return;
+      const best = newerDraft(local, server);
+      if (best && JSON.stringify(best.draft.rec) !== initialJson) setFoundDraft(best);
+    });
     // 초안 확인은 폼을 열 때 한 번뿐이다 — 타이핑 중에 다시 물으면 방해가 된다.
-  }, [draftKey, initialJson]);
+    return () => {
+      alive = false;
+    };
+  }, [draftKey, srvKey, initialJson]);
+
+  // ── 자동저장 — 고친 게 있을 때만, 8초 디바운스 ──
+  // 상태는 상단 바에 조용한 한 줄로만 알린다. 토스트로 띄우면 글 쓰는 내내 방해가 된다.
+  const [savedLabel, setSavedLabel] = useState<string | null>(null);
+  // 방금 올린 것과 같은 내용을 다시 올리지 않기 위한 표식(자동저장·수동 임시저장 공용)
+  const lastSavedJsonRef = useRef<string | null>(null);
+
+  /** 초안 한 벌을 두 곳에 남긴다. 서버가 실패하면 그 사실을 문구로 밝힌다 */
+  const persistDraft = useCallback(
+    async (value: PostEditRecord, json: string) => {
+      lastSavedJsonRef.current = json;
+      writePostDraft(draftKey, value);
+      const ok = await writeServerDraft(srvKey, value);
+      const now = new Date();
+      const hh = String(now.getHours()).padStart(2, '0');
+      const mm = String(now.getMinutes()).padStart(2, '0');
+      setSavedLabel(ok ? `초안 저장됨 ${hh}:${mm}` : `초안 저장됨 ${hh}:${mm} · 이 기기만`);
+      return ok;
+    },
+    [draftKey, srvKey],
+  );
+
+  useEffect(() => {
+    if (!dirty || recJson === lastSavedJsonRef.current) return;
+    const timer = window.setTimeout(() => void persistDraft(rec, recJson), 8000);
+    return () => window.clearTimeout(timer);
+  }, [rec, recJson, dirty, persistDraft]);
 
   // 오류가 뜨면 그 자리로 데려간다 — 저장 버튼이 상단 고정 바에 있어서
   // 아래쪽에서 눌렀을 때 "아무 일도 안 일어난 것"처럼 보이기 때문이다.
@@ -196,7 +250,7 @@ export function PostForm({
     if (error) errorRef.current?.scrollIntoView({ block: 'center' });
   }, [error]);
 
-  function set<K extends keyof EditRecord>(key: K, value: EditRecord[K]) {
+  function set<K extends keyof PostEditRecord>(key: K, value: PostEditRecord[K]) {
     setRec((prev) => ({ ...prev, [key]: value }));
   }
 
@@ -343,11 +397,15 @@ export function PostForm({
     chain.run();
   }
 
-  /** 임시저장 — 이 브라우저에만 남는다(커밋 아님) */
-  function saveDraft() {
-    writePostDraft(draftKey, rec);
+  /** 임시저장 — 게시가 아니다. 이 기기와 서버에 초안 한 벌씩만 남긴다 */
+  async function saveDraft() {
     setFoundDraft(null);
-    showToast('임시저장했습니다 (이 브라우저에만 보관됩니다)');
+    const ok = await persistDraft(rec, recJson);
+    showToast(
+      ok
+        ? '임시저장했습니다 — 다른 기기에서도 이어 쓸 수 있습니다 (게시되지 않습니다)'
+        : '임시저장했습니다 (서버 저장 실패 — 이 브라우저에만 보관됩니다)',
+    );
   }
 
   /** ← 목록으로 / 취소 — 고친 게 있으면 한 번 붙잡는다 */
@@ -400,6 +458,16 @@ export function PostForm({
   const labelPreview = showEndDate && rec.date ? formatPeriodLabel(rec.date, rec.endDate) : null;
   const shownError = error ?? submitError ?? null;
 
+  // ── 게시 예약 ──
+  // 공개 시각은 created_at 에 실린다. 그런데 위 showEndDate 가 켜지는 게시판
+  // (행사·세미나·일정·동문 행사)은 payloadToRow 가 created_at 에 **행사일**을 넣으므로
+  // 그 자리에 "공개 시각"이라는 의미를 겹쳐 놓을 수 없다 — 사이트 게이트도 그런 글은
+  // 면제한다(lib/posts.ts 의 scheduleGate). 그래서 조건이 정확히 showEndDate 의 반대다.
+  const canSchedule = !showEndDate;
+  const publishAtMs =
+    canSchedule && rec.date ? Date.parse(`${rec.date}T${rec.time || '00:00'}:00+09:00`) : NaN;
+  const isScheduled = Number.isFinite(publishAtMs) && publishAtMs > Date.now();
+
   return (
     <form onSubmit={handleSubmit} noValidate className="anim-panel min-h-[70vh] bg-surface">
       {/* ── 상단 고정 바 — 집중 모드에서 사이드바를 대신한다. 사이트 헤더(fixed)가
@@ -421,10 +489,16 @@ export function PostForm({
           >
             {preview ? '편집으로' : '미리보기'}
           </button>
+          {/* 자동저장 상태 — 눌러야 알 수 있던 것을 조용히 알려 준다 */}
+          {savedLabel && (
+            <span className="whitespace-nowrap text-[11px] tabular-nums text-content-faint">
+              {savedLabel}
+            </span>
+          )}
           <button
             type="button"
-            onClick={saveDraft}
-            title="저장소에 커밋하지 않습니다 — 이 브라우저에만 보관되는 초안입니다"
+            onClick={() => void saveDraft()}
+            title="게시되지 않습니다 — 이 기기와 서버에 초안으로만 보관되어 다른 기기에서 이어 쓸 수 있습니다"
             className="cms-btn cms-btn-sm"
           >
             임시저장
@@ -441,16 +515,19 @@ export function PostForm({
         {foundDraft && (
           <div className="anim-panel mb-6 flex flex-wrap items-center gap-x-4 gap-y-2 border border-yonsei-blue/40 bg-yonsei-blue/[0.05] px-4 py-3">
             <p className="min-w-0 flex-1 text-[13px] text-content">
-              이 브라우저에 임시저장된 초안이 있습니다
-              {draftAgeLabel(foundDraft.savedAt) && (
-                <span className="ml-1.5 text-content-faint">({draftAgeLabel(foundDraft.savedAt)})</span>
-              )}
+              임시저장된 초안이 있습니다
+              <span className="ml-1.5 text-content-faint">
+                ({foundDraft.origin === 'server' ? '서버 · 다른 기기 포함' : '이 기기'}
+                {draftAgeLabel(foundDraft.draft.savedAt) &&
+                  ` · ${draftAgeLabel(foundDraft.draft.savedAt)}`}
+                )
+              </span>
             </p>
             <span className="flex shrink-0 gap-2">
               <button
                 type="button"
                 onClick={() => {
-                  setRec(foundDraft.rec);
+                  setRec(foundDraft.draft.rec);
                   setFoundDraft(null);
                 }}
                 className="cms-btn cms-btn-sm"
@@ -460,7 +537,9 @@ export function PostForm({
               <button
                 type="button"
                 onClick={() => {
+                  // 버리기는 양쪽 모두 — 한쪽만 지우면 다음에 열 때 나머지가 되살아난다
                   clearPostDraft(draftKey);
+                  void clearServerDraft(srvKey);
                   setFoundDraft(null);
                 }}
                 className="cms-btn cms-btn-sm"
@@ -502,6 +581,31 @@ export function PostForm({
               className={fieldClass}
             />
           </MetaField>
+
+          {/* 공개 시각(예약) — 비우면 그 날 00:00, 즉 예전과 같은 즉시 공개다.
+              행사류 게시판은 위 canSchedule 주석대로 이 칸이 없다. */}
+          {canSchedule && (
+            <MetaField
+              label="공개 시각"
+              htmlFor="pf-time"
+              hint={
+                isScheduled
+                  ? '이 시각 전에는 사이트에 보이지 않습니다 (반영까지 10분 남짓 걸릴 수 있습니다).'
+                  : undefined
+              }
+            >
+              <input
+                id="pf-time"
+                type="time"
+                value={rec.time ?? ''}
+                onChange={(e) => set('time', e.target.value)}
+                className={fieldClass}
+              />
+              <p className="mt-1 text-[11px] text-content-faint">
+                선택 — 비워 두면 위 게시일 0시에 공개됩니다(지난 날짜면 즉시).
+              </p>
+            </MetaField>
+          )}
 
           <MetaField label="영문 제목" htmlFor="pf-title-en">
             <div className="flex items-center gap-2">
@@ -623,7 +727,7 @@ export function PostForm({
               <select
                 id="pf-category"
                 value={rec.category ?? 'general'}
-                onChange={(e) => set('category', e.target.value as EditRecord['category'])}
+                onChange={(e) => set('category', e.target.value as PostEditRecord['category'])}
                 className={cn(fieldClass, 'cursor-pointer')}
               >
                 {meta.categories.map((c) => (
@@ -1057,7 +1161,7 @@ export function PostForm({
       {confirmLeave && (
         <CmsModal
           title="작성 중인 내용이 저장되지 않았습니다"
-          body="지금 목록으로 돌아가면 고친 내용이 사라집니다. 남겨 두려면 ‘임시저장’을 먼저 누르세요(이 브라우저에만 보관됩니다)."
+          body="지금 목록으로 돌아가면 고친 내용이 사라집니다. 남겨 두려면 ‘임시저장’을 먼저 누르세요(게시되지 않고 초안으로만 보관되며, 다른 기기에서 이어 쓸 수 있습니다)."
           confirmLabel="나가기"
           cancelLabel="계속 쓰기"
           tone="danger"

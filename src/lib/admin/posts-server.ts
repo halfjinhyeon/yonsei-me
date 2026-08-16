@@ -54,6 +54,11 @@ export interface AdminPostPayload {
   board: string;
   slug?: string | null;
   date: string; // YYYY-MM-DD (표시일 — created_at 으로 저장)
+  /** 공개 시각 HH:MM (KST, 선택) — 게시 예약. 비면 00:00(그 날 자정 = 사실상 즉시).
+   *  created_at 이 timestamptz 라 날짜와 함께 한 칼럼에 실린다(스키마 변경 없음).
+   *  ⚠️ 행사·세미나·일정·동문행사는 created_at 이 "행사일"로 쓰이므로(payloadToRow 의
+   *  isEvent/hasSchedule) 이 값이 예약으로 해석되지 않는다 — lib/posts.ts 의 게이트 주석 참조. */
+  time?: string;
   titleKo: string;
   titleEn?: string;
   bodyKo?: string; // 마크다운
@@ -90,6 +95,23 @@ const nn = (s: string | undefined | null) => {
   const v = (s ?? '').trim();
   return v === '' ? null : v;
 };
+
+/** HH:MM(24시) 검증 — <input type="time"> 이 주는 형태. 그 외(빈 값·구 페이로드·손으로
+ *  만든 요청)는 전부 자정으로 눕힌다. 예약이 없는 글은 예전과 완전히 같은 값(T00:00)을
+ *  쓰게 되므로, 이 기능이 붙기 전에 저장된 글과 새 글의 created_at 이 어긋나지 않는다. */
+const TIME_RE = /^([01]\d|2[0-3]):[0-5]\d$/;
+function publishTime(raw: string | undefined | null): string {
+  const v = (raw ?? '').trim();
+  return TIME_RE.test(v) ? v : '00:00';
+}
+
+/** created_at(timestamptz) → KST 시각 'HH:MM'. kstDate 와 같은 +9h 시프트 방식이라
+ *  둘을 함께 쓰면 항상 같은 KST 순간의 날짜·시각 쌍이 나온다. */
+function kstTime(ts: string): string {
+  const t = Date.parse(ts);
+  if (!Number.isFinite(t)) return '';
+  return new Date(t + 9 * 60 * 60 * 1000).toISOString().slice(11, 16);
+}
 
 /** 종료일 페이로드 검증 — 오류 메시지 반환(정상이면 null). 라우트 400 응답용(POST/PUT 공용) */
 export function endDateError(p: AdminPostPayload): string | null {
@@ -158,7 +180,9 @@ export function payloadToRow(p: AdminPostPayload) {
     // 고정 — 페이로드에 없으면(고정 대상이 아닌 게시판) 항상 false 로 눕힌다
     pinned: p.pinned === true,
     thumbnail_url: nn(p.image),
-    created_at: `${p.date}T00:00:00+09:00`,
+    // 게시일 + 공개 시각(KST). 시각을 비운 글은 이전과 같은 T00:00 이라 값이 안 바뀐다.
+    // 오프셋을 문자열에 박는 이유는 예전과 같다 — 서버 TZ 가 무엇이든 KST 자정이 되어야 한다.
+    created_at: `${p.date}T${publishTime(p.time)}:00+09:00`,
   };
 }
 
@@ -207,6 +231,11 @@ export function rowToEditRecord(r: DbPostRow) {
   (r.board === 'events' || r.board === 'seminars' || r.board === 'calendar' || r.is_event)
     ? r.event_date
     : kstDate(String(r.created_at))) as string;
+  // 공개 시각 — 날짜와 달리 언제나 created_at 에서 뽑는다(예약이 실린 칼럼이 거기 하나다).
+  // 자정은 "시각 지정 없음"과 구분할 수 없고 구분할 필요도 없으므로 빈 값으로 내린다 —
+  // 그래야 폼의 선택 입력이 비어 뜨고, 열자마자 dirty 로 잡히지도 않는다.
+  const rawTime = kstTime(String(r.created_at));
+  const time = rawTime === '00:00' ? '' : rawTime;
   // 종료일: end_date 우선. 없으면(구 데이터) 수동 기간 라벨을 파싱해 폼에 프리필한다 —
   // 라벨이 저장 시 자동 재생성되므로, 프리필 없이는 구 행사 글을 수정·저장하는 순간
   // "7/20~7/24" 같은 기간 정보가 하루짜리 라벨로 덮어써져 소실된다(프리필 → end_date 승격).
@@ -220,6 +249,7 @@ export function rowToEditRecord(r: DbPostRow) {
     board: r.board as string,
     slug: r.slug ?? null,
     date,
+    time,
     endDate,
     titleKo: r.title_ko ?? '',
     titleEn: r.title_en ?? '',

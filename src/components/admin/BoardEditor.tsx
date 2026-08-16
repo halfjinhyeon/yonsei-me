@@ -25,10 +25,15 @@ import {
   emptyAttachment,
   type BoardKey,
   type BoardMeta,
-  type EditRecord,
 } from '@/lib/admin/boards';
 import type { RepoConfig } from '@/lib/admin/content-api';
-import { clearPostDraft, postDraftKey } from '@/lib/admin/post-draft';
+import {
+  clearPostDraft,
+  clearServerDraft,
+  postDraftKey,
+  serverDraftKey,
+  type PostEditRecord,
+} from '@/lib/admin/post-draft';
 import { uploadAttachment } from '@/lib/admin/storage';
 import { CalendarEditor } from './CalendarEditor';
 import { CmsModal } from './CmsModal';
@@ -41,7 +46,7 @@ import { useAdminShell } from './AdminShellContext';
 /** admin API 가 돌려주는 레코드 — EditRecord + DB 식별자/slug.
  *  월 그리드(CalendarEditor)가 같은 목록을 그대로 받아 쓰므로 export 한다 —
  *  같은 모양을 두 곳에 선언해 두면 API 응답이 바뀔 때 한쪽만 고치게 된다. */
-export type ApiRecord = EditRecord & { board: string; slug: string | null };
+export type ApiRecord = PostEditRecord & { board: string; slug: string | null };
 
 /** 게시판별 목록 항목(공용 표시용) */
 interface ListItem {
@@ -51,6 +56,8 @@ interface ListItem {
   titleKo: string;
   /** 보조 표기 — 뉴스형은 slug, 게시판형은 DB 번호 */
   subId: string;
+  /** 공개 시각이 아직 오지 않아 사이트에 보이지 않는 글 — 목록의 '예약' 배지 */
+  scheduled: boolean;
   /** 카드·행이 함께 읽는 원본 (요약·대표 이미지·주최·첨부 건수) */
   rec: ApiRecord;
 }
@@ -87,11 +94,31 @@ const CATEGORY_LABELS: Record<string, string> = {
   achievement: '성과',
 };
 
-function blankRecord(key: BoardKey, suggestedId: string): EditRecord {
+/**
+ * 이 글이 사이트에서 아직 감춰져 있는가 — lib/posts.ts 의 scheduleGate 와 같은 규칙.
+ *
+ * 게이트는 created_at 이 미래인 행을 뺀다. 단 event_date 를 쓰는 글(행사·세미나·일정·
+ * 동문 '행사')은 created_at 이 곧 행사일이라 면제된다 — 다음 달 행사에 '예약' 배지를
+ * 붙이면 거짓말이 된다. 그 판정을 게시판 키가 아니라 플래그로 하는 식이
+ * `hasDateRange && (!hasEventFlag || isEvent)` 이고, 이는 payloadToRow 의 hasSchedule
+ * 과 같은 집합이다(PostForm 의 showEndDate 와도 같다).
+ */
+function isScheduledRecord(meta: BoardMeta, rec: ApiRecord): boolean {
+  const usesEventDate = !!meta.hasDateRange && (!meta.hasEventFlag || rec.isEvent === true);
+  if (usesEventDate || !rec.date) return false;
+  const at = Date.parse(`${rec.date}T${rec.time || '00:00'}:00+09:00`);
+  return Number.isFinite(at) && at > Date.now();
+}
+
+function blankRecord(key: BoardKey, suggestedId: string): PostEditRecord {
   const meta = getBoard(key);
   return {
     id: suggestedId,
     date: today(),
+    // 공개 시각은 비운 채로 시작한다 = 게시일 0시 = 예전과 같은 즉시 공개.
+    // 키를 미리 두는 이유는 dirty 판정(폼의 JSON 비교) 때문이다 — 나중에 생겼다
+    // 지워지는 키가 있으면 아무것도 안 바꾼 폼이 '고침'으로 잡힌다.
+    time: '',
     titleKo: '',
     titleEn: '',
     bodyKo: '',
@@ -164,7 +191,7 @@ export function BoardEditor({ config, boardKey, onDirtyChange }: Props) {
 
   // 편집 상태: null 이면 목록, 아니면 폼. dbId 는 수정(PUT) 대상 식별자.
   const [editing, setEditing] = useState<{
-    record: EditRecord;
+    record: PostEditRecord;
     isEdit: boolean;
     dbId?: string;
   } | null>(null);
@@ -215,9 +242,10 @@ export function BoardEditor({ config, boardKey, onDirtyChange }: Props) {
         date: r.date,
         titleKo: r.titleKo || '(제목 없음)',
         subId: meta.isNews ? (r.slug ?? r.id) : r.id,
+        scheduled: isScheduledRecord(meta, r),
         rec: r,
       })),
-    [records, meta.isNews],
+    [records, meta],
   );
 
   // 검색 — 제목(한/영)·날짜·slug·주최를 한 번에 훑는다(운영자가 기억하는 단서가 제각각이다)
@@ -279,18 +307,22 @@ export function BoardEditor({ config, boardKey, onDirtyChange }: Props) {
     setSaveError(null);
     // 뉴스형은 폼의 '번호' 칸에 slug 를 노출(URL 이 되는 값), 게시판형은 DB 번호(참고용)
     setEditing({
-      record: { ...r, id: meta.isNews ? (r.slug ?? r.id) : r.id },
+      // time 은 API 가 늘 내려주지만(rowToEditRecord), 빈 값으로 정규화해 둬야
+      // undefined ↔ '' 차이만으로 폼이 dirty 로 잡히지 않는다.
+      record: { ...r, time: r.time ?? '', id: meta.isNews ? (r.slug ?? r.id) : r.id },
       isEdit: true,
       dbId,
     });
   }
 
   /** 편집 레코드 → admin API 페이로드 */
-  function toPayload(rec: EditRecord) {
+  function toPayload(rec: PostEditRecord) {
     return {
       board: boardKey,
       slug: meta.isNews ? rec.id.trim() : undefined,
       date: rec.date,
+      // 공개 시각(예약) — 비면 보내지 않는다(서버가 00:00 으로 눕힌다)
+      time: rec.time || undefined,
       titleKo: rec.titleKo,
       titleEn: rec.titleEn,
       bodyKo: rec.bodyKo,
@@ -310,7 +342,14 @@ export function BoardEditor({ config, boardKey, onDirtyChange }: Props) {
     };
   }
 
-  async function handleSave(rec: EditRecord) {
+  /** 게시가 끝난 글의 초안 지우기 — 이 기기와 서버 양쪽. 한쪽만 지우면 다음에
+   *  그 글을 열 때 이미 반영된 내용이 "복원할 초안"으로 다시 제안된다. */
+  function dropDrafts(postId: string) {
+    clearPostDraft(postDraftKey(boardKey, postId));
+    void clearServerDraft(serverDraftKey(boardKey, postId));
+  }
+
+  async function handleSave(rec: PostEditRecord) {
     setSaving(true);
     setSaveError(null);
     try {
@@ -320,11 +359,11 @@ export function BoardEditor({ config, boardKey, onDirtyChange }: Props) {
           body: JSON.stringify(toPayload(rec)),
         });
         // 실제 게시가 끝났으니 이 글의 초안은 더 이상 의미가 없다.
-        clearPostDraft(postDraftKey(boardKey, editing.record.id));
+        dropDrafts(editing.record.id);
         finishSave('수정되었습니다');
       } else {
         await api('/api/admin/posts', { method: 'POST', body: JSON.stringify(toPayload(rec)) });
-        clearPostDraft(postDraftKey(boardKey, 'new'));
+        dropDrafts('new');
         finishSave('등록되었습니다');
       }
     } catch (err) {
@@ -342,7 +381,7 @@ export function BoardEditor({ config, boardKey, onDirtyChange }: Props) {
    * 패널을 닫기 때문이다. 조용히 성공한 척하면 저장되지 않은 일정의 패널이 닫혀
    * 방금 친 내용이 사라진 것처럼 보인다.
    */
-  async function saveCalendarRecord(rec: EditRecord, dbId?: string) {
+  async function saveCalendarRecord(rec: PostEditRecord, dbId?: string) {
     setSaving(true);
     setSaveError(null);
     try {
@@ -891,6 +930,13 @@ function NoticeRows({
                       고정
                     </span>
                   )}
+                  {/* 예약도 "왜 이 글이 사이트에 없는가"라 제목보다 먼저 읽혀야 한다 */}
+                  {item.scheduled && (
+                    <span className="cms-badge bg-yonsei-navy text-white">
+                      예약 {item.date}
+                      {rec.time ? ` ${rec.time}` : ''}
+                    </span>
+                  )}
                   <span className="truncate text-sm font-semibold text-content">{item.titleKo}</span>
                   {/* 배지는 BoardMeta 로 알 수 있는 것만 — 없는 정보를 지어내지 않는다 */}
                   {meta.hasHost && host !== '' && (
@@ -1012,6 +1058,11 @@ function NewsCards({
 
             <div className="flex-1 px-4 pb-3 pt-3.5">
               <span className="text-[11px] tabular-nums text-content-faint">{item.date}</span>
+              {item.scheduled && (
+                <span className="cms-badge ml-2 bg-yonsei-navy text-white">
+                  예약{rec.time ? ` ${rec.time}` : ''}
+                </span>
+              )}
               <p className="mt-1.5 text-[15px] font-bold leading-snug tracking-tight text-content">
                 {item.titleKo}
               </p>
@@ -1110,6 +1161,12 @@ function InstaTiles({ items, selected, busy, saving, onToggle, onEdit, onDelete 
               <span className="absolute left-2 top-2 bg-yonsei-navy/85 px-1.5 py-0.5 text-[10px] font-extrabold text-white">
                 {i + 1}
               </span>
+              {/* 예약 — 아직 홈 그리드에 나오지 않는 타일임을 그 자리에서 알린다 */}
+              {item.scheduled && (
+                <span className="absolute right-0 top-0 bg-yonsei-navy px-1.5 py-0.5 text-[10px] font-extrabold text-white">
+                  예약
+                </span>
+              )}
             </button>
 
             <div className="px-3 pb-2.5 pt-2.5">
