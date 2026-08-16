@@ -660,9 +660,34 @@
     pointer-events: none;
     background: rgb(0 87 168 / 0.12);
   }
-  /* prose-content 의 table 이 block+overflow 인데, 편집 중에는 일반 표처럼 다룬다 */
+  /* prose-content 의 table 이 block+overflow 인데, 편집 중에는 일반 표처럼 다룬다.
+     table-fixed 는 열 드래그의 전제 — auto 레이아웃에선 내용이 폭을 되빼앗아
+     드래그가 고무줄처럼 미끄러진다. (colwidth 없는 새 표는 편집 중 균등 폭으로
+     보이고, 게시 화면은 auto 라 내용 폭을 따른다 — 드래그로 지정한 폭은 양쪽 동일) */
   .rte .rte-area table {
-    @apply my-6 table w-full overflow-visible;
+    @apply my-6 table w-full table-fixed overflow-visible;
+  }
+  /* 열 리사이즈 핸들(prosemirror-tables 규격 클래스) — 경계에 붙는 파란 세로 바 */
+  .rte .rte-area td,
+  .rte .rte-area th {
+    position: relative;
+  }
+  .rte .rte-area .column-resize-handle {
+    position: absolute;
+    right: -2px;
+    top: 0;
+    bottom: -2px;
+    width: 4px;
+    background-color: #0057a8;
+    pointer-events: none;
+    z-index: 10;
+  }
+  .rte .rte-area.resize-cursor {
+    cursor: col-resize;
+  }
+  /* 드래그로 표가 본문보다 넓어질 수 있다 — 편집 중에는 표 래퍼가 가로 스크롤을 진다 */
+  .rte .rte-area .tableWrapper {
+    overflow-x: auto;
   }
   /* 편집 중에는 첫 컬럼도 자유롭게 줄바꿈 — 긴 입력으로 표가 옆으로 터지지 않게 */
   .rte .rte-area td:first-child {

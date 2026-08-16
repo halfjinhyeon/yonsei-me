@@ -378,7 +378,9 @@ export function RichTextEditor({
       TextAlign.configure({ types: ['heading', 'paragraph'] }),
       RteImage,
       // TableKit 대신 개별 확장 4종 — 표/셀에 우리 속성을 얹은 rte-schema 판을 쓴다
-      RteTable.configure({ resizable: false }),
+      // 열 너비 실시간 드래그(한글 표 문법) — 결과는 셀 colwidth(px)로 저장되고
+      // data-colwidth·colgroup 으로 직렬화된다(정화 화이트리스트와 짝).
+      RteTable.configure({ resizable: true, cellMinWidth: 48 }),
       RteTableRow,
       RteTableHeader,
       RteTableCell,
@@ -743,6 +745,7 @@ export function RichTextEditor({
           <TBtn title="머리행 켜기/끄기" active={editor.isActive('tableHeader')} onClick={() => editor.chain().focus().toggleHeaderRow().run()}>
             머리행
           </TBtn>
+          <TBtn title="열 너비 초기화" onClick={() => editor.chain().focus().resetColumnWidths().run()}>너비↺</TBtn>
           <TBtn title="표 삭제" onClick={() => editor.chain().focus().deleteTable().run()}>표×</TBtn>
           <Divider />
           {/* 셀 배경 — 선택한 셀(들)에만 적용 */}

@@ -17,7 +17,7 @@ export const SANITIZE_OPTS: sanitizeHtml.IOptions = {
     'strong', 'b', 'em', 'i', 'u', 's', 'del', 'mark', 'sup', 'sub',
     'ul', 'ol', 'li', 'blockquote', 'code', 'pre',
     'a', 'img', 'figure', 'figcaption',
-    'table', 'thead', 'tbody', 'tr', 'th', 'td', 'span',
+    'table', 'thead', 'tbody', 'tr', 'th', 'td', 'colgroup', 'col', 'span',
     // 유튜브 임베드 — Tiptap Youtube 확장이 div[data-youtube-video] > iframe 로 낸다
     'iframe', 'div',
   ],
@@ -25,11 +25,15 @@ export const SANITIZE_OPTS: sanitizeHtml.IOptions = {
     a: ['href', 'title', 'target', 'rel'],
     // style 은 아래 allowedStyles 의 img.width(백분율)만 통과 — 픽셀·자유 CSS 는 떨어진다
     img: ['src', 'alt', 'title', 'width', 'height', 'style', 'data-align'],
-    th: ['colspan', 'rowspan', 'align', 'style'],
-    td: ['colspan', 'rowspan', 'align', 'style'],
+    // data-colwidth: 열 드래그 결과(px) — 재편집 시 Tiptap 이 여기서 폭을 되읽는다
+    th: ['colspan', 'rowspan', 'align', 'style', 'data-colwidth'],
+    td: ['colspan', 'rowspan', 'align', 'style', 'data-colwidth'],
     // 표 테두리는 style 이 아니라 data 속성 "열거형"이다 — 값 집합이 CSS 한 곳
     // (globals.css)에 갇혀 있어 정화 화이트리스트를 넓히지 않고도 안전하다.
-    table: ['data-border', 'data-border-color'],
+    // style 은 아래 table 패턴(width/min-width px)만 — 열 드래그 직렬화용.
+    table: ['data-border', 'data-border-color', 'style'],
+    // colgroup/col: 게시 화면이 열 폭을 재현하는 통로 (col 은 width px 만)
+    col: ['style'],
     // 형광펜(Highlight) — 배경색 인라인 + 무손실 왕복용 data-color
     mark: ['style', 'data-color'],
     // Tiptap 글자색(span style="color:…") + 정렬(p/h* style="text-align:…") 허용
@@ -49,6 +53,10 @@ export const SANITIZE_OPTS: sanitizeHtml.IOptions = {
     },
     // 이미지 폭은 백분율만 — px 를 허용하면 모바일에서 본문을 뚫고 나간다
     img: { width: [/^\d{1,3}%$/] },
+    // 열 드래그 직렬화 — px 폭만. 표가 본문보다 넓어지는 건 게시 화면의
+    // overflow-x-auto(가로 스크롤)가 받아낸다(모바일 트레이드오프 합의됨).
+    col: { width: [/^\d+px$/], 'min-width': [/^\d+px$/] },
+    table: { width: [/^\d+px$/], 'min-width': [/^\d+px$/] },
   },
   allowedSchemes: ['https', 'http', 'mailto'],
   // 임베드 허용 호스트 — 유튜브(+쿠키 없는 도메인)뿐

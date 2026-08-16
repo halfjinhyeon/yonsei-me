@@ -20,6 +20,8 @@ declare module '@tiptap/core' {
         border?: TableBorder | null;
         borderColor?: TableBorderColor | null;
       }) => ReturnType;
+      /** 커서가 들어 있는 표의 모든 열 폭(colwidth)을 지운다 — 자동 폭 복귀 */
+      resetColumnWidths: () => ReturnType;
     };
   }
 }
@@ -76,6 +78,35 @@ export const RteTable = Table.extend({
                   sync('data-border', merged.border);
                   sync('data-border-color', merged.borderColor);
                 }
+              }
+              return true;
+            }
+          }
+          return false;
+        },
+      resetColumnWidths:
+        () =>
+        ({ tr, dispatch }) => {
+          const { $from } = tr.selection;
+          for (let depth = $from.depth; depth > 0; depth--) {
+            const table = $from.node(depth);
+            if (table.type.name === this.name) {
+              if (dispatch) {
+                const tablePos = $from.before(depth);
+                // colwidth 는 셀 속성이라 폭 제거도 셀 단위다. setNodeMarkup 은
+                // 문서 크기를 바꾸지 않으므로 순회 중 위치가 밀리지 않는다.
+                table.descendants((cell, rel) => {
+                  if (
+                    (cell.type.name === 'tableCell' || cell.type.name === 'tableHeader') &&
+                    cell.attrs.colwidth
+                  ) {
+                    tr.setNodeMarkup(tablePos + 1 + rel, undefined, {
+                      ...cell.attrs,
+                      colwidth: null,
+                    });
+                  }
+                  return true;
+                });
               }
               return true;
             }
