@@ -86,22 +86,24 @@ const BLOCK_FORMATS: SelectOption[] = [
 
 /** 글꼴 — 제네릭 패밀리만. 이름 폰트(맑은 고딕 등)는 방문자 PC마다 있고 없어
  *  "쓰는 화면 = 보이는 화면"이 깨지고, 정화 패턴도 자유 문자열로 열어야 한다. */
+// 빈 값(해제) 라벨은 "기본"이 아니라 자기 정체를 품는다 — 드롭다운 셋이
+// 나란히 "기본/기본/기본"으로 보이면 무엇의 기본인지 알 수 없다(사용자 피드백).
 const FONT_FAMILIES: SelectOption[] = [
-  { value: '', label: '기본' },
+  { value: '', label: '기본 글꼴' },
   { value: 'serif', label: '명조' },
   { value: 'monospace', label: '고정폭' },
 ];
 
 /** 글자 크기 — px. 정화 패턴(10~32px) 안쪽만 고를 수 있게 둔다 */
 const FONT_SIZES: SelectOption[] = [
-  { value: '', label: '기본' },
-  ...[12, 13, 14, 15, 16, 18, 20, 24, 28, 32].map((n) => ({ value: `${n}px`, label: String(n) })),
+  { value: '', label: '기본 크기' },
+  ...[12, 13, 14, 15, 16, 18, 20, 24, 28, 32].map((n) => ({ value: `${n}px`, label: `${n}px` })),
 ];
 
 /** 줄 간격 — 단위 없는 배수(글자 크기를 따라간다) */
 const LINE_HEIGHTS: SelectOption[] = [
-  { value: '', label: '기본' },
-  ...['1.2', '1.4', '1.6', '1.8', '2.0'].map((v) => ({ value: v, label: v })),
+  { value: '', label: '기본 줄간격' },
+  ...['1.2', '1.4', '1.6', '1.8', '2.0'].map((v) => ({ value: v, label: `줄간격 ${v}` })),
 ];
 
 /** 표 셀 배경 — 강조 행/열용. 본문 위에 얹히는 면이라 형광펜보다 더 옅게. */
@@ -839,10 +841,12 @@ export function RichTextEditor({
                   onClick={() => {
                     // 새 표의 기본값은 1px 검정 격자(사용자 지정) — 삽입과 한 체인이라
                     // 실행 취소 한 번에 함께 사라진다. 색은 폴백(#232323)이 담당한다.
+                    // 머리행은 만들지 않는다 — 전 셀이 본문과 같은 굵기로 시작하고,
+                    // 머리행이 필요하면 표 메뉴의 '머리행'으로 켠다(사용자 지정).
                     editor
                       .chain()
                       .focus()
-                      .insertTable({ rows, cols, withHeaderRow: true })
+                      .insertTable({ rows, cols, withHeaderRow: false })
                       .setTableAttrs({ border: '1' })
                       .run();
                     setGridHover(null);
@@ -859,7 +863,7 @@ export function RichTextEditor({
             })}
           </div>
           <span className="text-content-faint">
-            {gridHover ? `${gridHover.rows} × ${gridHover.cols}` : '표 크기를 짚으세요 (첫 행은 머리행)'}
+            {gridHover ? `${gridHover.rows} × ${gridHover.cols}` : '표 크기를 짚으세요 (머리행은 표 메뉴에서)'}
           </span>
         </div>
       )}

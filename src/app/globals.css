@@ -355,6 +355,20 @@
     margin: 0;
     max-width: none;
   }
+  /* 격자 표의 글자는 전부 본문과 동일하게 시작한다(사용자 지정) — 에디토리얼
+     레거시의 "첫 열 굵게·줄바꿈 금지"와 "th 축소 캡션체"를 여기서는 걷는다.
+     머리행을 의도적으로 켠 경우에만 세미볼드로 구분한다. */
+  .prose-content table[data-border] td:first-child {
+    font-weight: inherit;
+    white-space: inherit;
+    color: inherit;
+  }
+  .prose-content table[data-border] th {
+    font-size: inherit;
+    color: inherit;
+    font-weight: 600;
+    white-space: inherit;
+  }
   .prose-content table[data-cellpad='narrow'] :is(th, td) {
     padding: 4px 6px;
   }
