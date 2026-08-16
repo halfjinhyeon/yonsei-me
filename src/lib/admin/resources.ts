@@ -335,6 +335,16 @@ const facultyDirectory: ResourceDef = {
     inlineKeys: ['name', 'email', 'phone', 'room', 'photo'],
     filterKey: 'title',
   },
+  // AI 연구요약은 연구실과 같은 구조 — 교수 한글 이름을 키로 한 공유 record 파일
+  // 하나를 나눠 쓰고, 저장 시 그 레코드 한 칸만 갈아 끼운다.
+  // ⚠️ 크롤 산출물인 faculty-profiles/<이름>.json 에 쓰지 않는다(재크롤에 지워진다).
+  //    자세한 사정은 lib/faculty.ts 의 getFacultySummaries 주석.
+  linkedSummary: {
+    label: 'AI 연구요약',
+    hint: '교수 상세 페이지의 "AI 연구요약" 패널 문안입니다. 문단은 빈 줄로 나눕니다. 비워 두면 이 교수에게는 요약 버튼이 뜨지 않습니다. 상세 페이지가 있는 교수(학술활동 데이터가 있는 교수)에게만 표시됩니다.',
+    file: MANAGED_FILES.facultySummaries,
+    keyOf: (form) => String(form.name ?? '').trim(),
+  },
   toForm: (raw) => {
     const r = (raw ?? {}) as Record<string, unknown>;
     const lab = (r.lab ?? null) as { nameKo?: string; nameEn?: string; url?: string } | null;

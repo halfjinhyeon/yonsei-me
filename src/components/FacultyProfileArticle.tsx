@@ -96,10 +96,14 @@ export async function FacultyProfileArticle({
   profile,
   record,
   locale,
+  aiSummary,
 }: {
   profile: FacultyProfile;
   record: FacultyRecord | null;
   locale: string;
+  /** CMS 가 관리하는 AI 연구요약(content/faculty-summaries.json, 로케일 해석 완료).
+   *  이쪽이 원본이고, 넘어오지 않으면 크롤 파일에 남은 옛 aiSummary 로 폴백한다. */
+  aiSummary?: string | null;
 }) {
   const t = await getTranslations({ locale, namespace: 'faculty' });
   const rows = buildRows(profile);
@@ -113,6 +117,9 @@ export async function FacultyProfileArticle({
   // 목록과 상세가 어긋나지 않는다. 없으면(디렉터리에 비어 있는 5명) 크롤 값을 같은
   // 꼴로 정규화한다. 크롤 원문은 내선만("2819") 오는 경우가 있어 그대로 쓰면 깨져 보인다.
   const phone = formatPhone(record?.phone ?? profile.phone);
+
+  // 요약 원본은 CMS 파일 → 없으면 크롤 파일의 옛 값. 둘 다 비면 버튼 자체를 그리지 않는다.
+  const summary = (aiSummary ?? profile.aiSummary ?? '').trim();
 
   // 라벨 칸 폭 — 한국어 라벨('소속' 등)은 64px 로 충분하지만 영어 "Department"(≈90px)는
   // 칸을 넘어 전역 overflow-wrap:break-word 에 걸려 단어가 꺾인다. en 로케일만 넓힌다.
@@ -278,9 +285,9 @@ export async function FacultyProfileArticle({
           </h2>
           {/* 버튼과 패널은 형제다 — 패널이 basis-full 이라 flex-wrap 이 다음 줄로 내려
               제목 행 아래 전폭으로 펼쳐진다 */}
-          {profile.aiSummary && (
+          {summary && (
             <AiResearchSummary
-              summary={profile.aiSummary}
+              summary={summary}
               buttonLabel={t('profile.aiButton')}
               panelLabel={t('profile.aiPanelLabel')}
               betaLabel={t('profile.aiBeta')}

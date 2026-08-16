@@ -1,6 +1,7 @@
 import { readFileSync, readdirSync } from 'node:fs';
 import { join } from 'node:path';
 import labSummariesData from '@content/lab-summaries.json';
+import facultySummariesData from '@content/faculty-summaries.json';
 
 export interface FacultyLab {
   nameKo: string;
@@ -216,6 +217,18 @@ export function getLabsDirectory(): LabDirectoryEntry[] {
  *  정적 import 라 빌드 시 인라인된다(런타임 파일 I/O 없음) — DB 소스의 폴백 스냅샷이다. */
 export function getLabSummaries(): Record<string, { ko: string; en: string }> {
   return labSummariesData;
+}
+
+/** content/faculty-summaries.json — 교수 상세의 'AI 연구요약' 문안(교수 한글 이름 →
+ *  로케일별 문장). lab-summaries.json 과 같은 모양·같은 CMS 경로(linkedSummary)를 쓴다.
+ *
+ *  ⚠️ 이 문안을 faculty-profiles/<이름>.json 의 aiSummary 로 되돌리지 마라. 그 파일들은
+ *  tools/crawl-faculty-profiles.mjs 가 통째로 다시 쓰는 크롤 산출물이라(크롤러는
+ *  aiSummary 를 만들지 않는다) 재크롤 한 번에 사람이 쓴 문장이 사라진다. 합계 3.2MB 라
+ *  content_files 전량 조회 캐시(2MB 우려)에 올리기도 어렵다. 그래서 사람이 고치는
+ *  문장만 이 작은 파일로 떼어 CMS 가 관리한다. */
+export function getFacultySummaries(): Record<string, { ko: string; en: string }> {
+  return facultySummariesData;
 }
 
 /** content/faculty-profiles/*.json 파일명(확장자 제거) = 교수 상세 페이지 slug 목록.

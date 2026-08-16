@@ -6,7 +6,8 @@ import { Section } from '@/components/Section';
 import { DetailNavBar } from '@/components/DetailNavBar';
 import { FacultyProfileArticle } from '@/components/FacultyProfileArticle';
 import { getFacultyProfile, getFacultyProfileNames } from '@/lib/faculty';
-import { getFacultyDirectoryRuntime } from '@/lib/content-runtime';
+import { getFacultyDirectoryRuntime, getFacultySummariesRuntime } from '@/lib/content-runtime';
+import { pick } from '@/lib/content';
 import { pageAlternates } from '@/lib/seo';
 import { routing } from '@/i18n/routing';
 
@@ -50,6 +51,13 @@ export default async function FacultyProfilePage({
   // 직위·보직·연구실·사진은 프로필 JSON 에 없다 — 같은 이름의 인명록 레코드에서 가져온다
   const record = (await getFacultyDirectoryRuntime()).find((f) => f.name === profile.name) ?? null;
 
+  // AI 연구요약 — CMS 가 관리하는 별도 파일(교수 한글 이름이 키)에서 읽어 로케일을
+  // 서버에서 해석해 넘긴다. 연구실 목록과 달리 개행은 접지 않는다 — 이 패널은 문단
+  // 구분(빈 줄)을 그대로 살려 보여 주는 것이 기존 표시다.
+  const summaries = await getFacultySummariesRuntime();
+  const summaryPair = summaries[profile.name];
+  const aiSummary = summaryPair ? pick(summaryPair, params.locale as 'ko' | 'en') : null;
+
   const t = await getTranslations({ locale: params.locale, namespace: 'faculty' });
   const tNav = await getTranslations({ locale: params.locale, namespace: 'nav' });
   // 홈 라벨은 히어로 브레드크럼과 같은 출처를 쓴다(nav 에는 home 키가 없다)
@@ -73,7 +81,12 @@ export default async function FacultyProfilePage({
           리듬(py-section)만큼 띄우면 탈출구가 화면 밖으로 밀려난다.
           cn 은 tailwind-merge 가 아니라 단순 join 이므로 ! 로 확실히 덮는다. */}
       <Section className="!pt-[30px]">
-        <FacultyProfileArticle profile={profile} record={record} locale={params.locale} />
+        <FacultyProfileArticle
+          profile={profile}
+          record={record}
+          locale={params.locale}
+          aiSummary={aiSummary}
+        />
       </Section>
     </>
   );

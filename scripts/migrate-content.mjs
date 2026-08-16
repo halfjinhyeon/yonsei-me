@@ -51,6 +51,10 @@ const MANAGED_JSON = [
   'content/clubs.json',
   'content/labs-directory.json',
   'content/lab-summaries.json',
+  // ⚠️ 교수 AI 연구요약. 공유 record 파일이라 DB 행이 없으면 CMS 가 빈 객체에서
+  //    시작해, 교수 한 명을 저장하는 순간 나머지 30명 문안이 사라진 파일이 올라간다
+  //    (프로덕션 GET 은 행이 없으면 404 — git 폴백이 없다). 배포 전 반드시 시딩할 것.
+  'content/faculty-summaries.json',
 ];
 const SCHOLARSHIP_MD = 'content/pages/undergraduate-scholarship.md';
 const CLUBS_JSON = 'content/clubs.json';

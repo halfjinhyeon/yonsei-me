@@ -18,6 +18,7 @@ export const MANAGED_FILES = {
   clubs: 'content/clubs.json',
   labs: 'content/labs-directory.json',
   labSummaries: 'content/lab-summaries.json',
+  facultySummaries: 'content/faculty-summaries.json',
 } as const;
 
 /** 단일 마크다운 페이지 — 학부 > 장학금 본문 */
