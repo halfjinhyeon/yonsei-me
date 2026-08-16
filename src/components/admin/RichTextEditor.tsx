@@ -171,6 +171,12 @@ const PANEL_INPUT =
 const PANEL_BTN =
   'h-7 shrink-0 border border-surface-border px-2 text-xs font-medium text-content-soft hover:bg-surface hover:text-content';
 
+/** input[type=color] 는 #rrggbb 만 받는다 — 에디터가 저장 글에서 되읽은 색은
+ *  'rgb(0, 51, 119)' 꼴일 수 있어 hex 가 아니면 폴백으로 눕힌다(React 경고 방지) */
+function hexOr(value: unknown, fallback: string): string {
+  return typeof value === 'string' && /^#[0-9a-fA-F]{6}$/.test(value) ? value : fallback;
+}
+
 /** 스킴 없는 입력을 https 로 보정 — 관리자가 'me.yonsei.ac.kr' 만 붙여넣는 일이 잦다.
  *  (mailto/anchor 는 그대로 둔다) */
 function normalizeUrl(raw: string): string {
@@ -854,6 +860,19 @@ export function RichTextEditor({
               style={{ backgroundColor: c.value }}
             />
           ))}
+          {/* 자유 색 — OS 네이티브 피커. mousedown preventDefault 를 걸면 피커가
+              안 열린다(select 와 같은 이유) — 에디터 선택은 chain().focus() 가 되살린다.
+              드래그 중 input 이 연발돼도 PM 히스토리가 인접 스텝을 묶어 undo 는 짧다. */}
+          <label className="ml-1 flex cursor-pointer items-center gap-1.5 text-content-faint">
+            직접
+            <input
+              type="color"
+              aria-label="글자색 직접 선택"
+              value={hexOr(editor.getAttributes('textStyle').color, '#232323')}
+              onChange={(e) => editor.chain().focus().setColor(e.target.value).run()}
+              className="h-6 w-8 cursor-pointer border border-surface-border bg-surface p-0"
+            />
+          </label>
           <button
             type="button"
             onMouseDown={(e) => e.preventDefault()}
@@ -885,6 +904,17 @@ export function RichTextEditor({
               style={{ backgroundColor: c.value }}
             />
           ))}
+          {/* 자유 색 — 피커에서는 toggle 이 아니라 set(같은 색을 다시 골라도 꺼지지 않게) */}
+          <label className="ml-1 flex cursor-pointer items-center gap-1.5 text-content-faint">
+            직접
+            <input
+              type="color"
+              aria-label="형광펜 색 직접 선택"
+              value={hexOr(editor.getAttributes('highlight').color, '#DBEAFE')}
+              onChange={(e) => editor.chain().focus().setHighlight({ color: e.target.value }).run()}
+              className="h-6 w-8 cursor-pointer border border-surface-border bg-surface p-0"
+            />
+          </label>
           <button
             type="button"
             onMouseDown={(e) => e.preventDefault()}
