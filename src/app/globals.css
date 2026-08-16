@@ -257,8 +257,11 @@
   .prose-content ol {
     @apply my-5 list-decimal space-y-2 pl-5 text-base leading-[1.8] text-content-soft;
   }
+  /* ⚠️ 색을 강제하지 않는다 — text-content 를 걸면 글자색 마크가 굵은 글씨에서
+     조용히 무시된다(<span style="color"><strong> 구조에서 strong 쪽 CSS 가 이김,
+     실측). content 와 content-soft 가 같은 잉크색이라 강제할 이유도 없다. */
   .prose-content strong {
-    @apply font-semibold text-content;
+    @apply font-semibold;
   }
   .prose-content img {
     @apply my-6 rounded-lg;
