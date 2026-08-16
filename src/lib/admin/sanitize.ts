@@ -55,6 +55,14 @@ export const SANITIZE_OPTS: sanitizeHtml.IOptions = {
     },
     // 이미지 폭은 백분율만 — px 를 허용하면 모바일에서 본문을 뚫고 나간다
     img: { width: [/^\d{1,3}%$/] },
+    // 에디터의 글꼴·크기·줄 간격(Tiptap textStyle) — 전부 span 인라인 style 로 나온다.
+    // 글꼴은 제네릭 패밀리만 허용한다(로컬 폰트명 불허 — 시스템마다 있고 없어 렌더가 갈리고,
+    // 자유 문자열을 열면 CSS 주입 표면이 된다).
+    span: {
+      'font-size': [/^(1[0-9]|2[0-9]|3[0-2])px$/], // 10~32px
+      'font-family': [/^(serif|monospace)$/],
+      'line-height': [/^(1(\.\d)?|2(\.0)?|2)$/],
+    },
     // 열 드래그 직렬화 — px 폭만. 표가 본문보다 넓어지는 건 게시 화면의
     // overflow-x-auto(가로 스크롤)가 받아낸다(모바일 트레이드오프 합의됨).
     col: { width: [/^\d+px$/], 'min-width': [/^\d+px$/] },

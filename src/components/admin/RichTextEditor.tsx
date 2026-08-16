@@ -22,7 +22,7 @@ import Highlight from '@tiptap/extension-highlight';
 import Subscript from '@tiptap/extension-subscript';
 import Superscript from '@tiptap/extension-superscript';
 import TextAlign from '@tiptap/extension-text-align';
-import { TextStyle, Color } from '@tiptap/extension-text-style';
+import { TextStyle, Color, FontFamily, FontSize, LineHeight } from '@tiptap/extension-text-style';
 import Youtube from '@tiptap/extension-youtube';
 import { Placeholder } from '@tiptap/extensions';
 import { RteRowResize } from '@/lib/admin/rte-row-resize';
@@ -68,6 +68,38 @@ const HIGHLIGHTS: { value: string; label: string }[] = [
   { value: '#DCFCE7', label: '연그린' },
   { value: '#FEE2E2', label: '연레드' },
   { value: '#E5E7EB', label: '연그레이' },
+];
+
+/** 툴바 드롭다운의 옵션 — 값 ''(빈 문자열)은 언제나 "해제"다.
+ *  값 자체가 곧 CSS 값이라 정화(sanitize.ts)의 span 패턴과 1:1로 대응한다. */
+type SelectOption = { value: string; label: string };
+
+/** 형식(블록) — StarterKit heading levels [2,3,4] 와 짝. 값은 'p' 또는 레벨 숫자 문자열 */
+const BLOCK_FORMATS: SelectOption[] = [
+  { value: 'p', label: '문단' },
+  { value: '2', label: '제목 2' },
+  { value: '3', label: '제목 3' },
+  { value: '4', label: '제목 4' },
+];
+
+/** 글꼴 — 제네릭 패밀리만. 이름 폰트(맑은 고딕 등)는 방문자 PC마다 있고 없어
+ *  "쓰는 화면 = 보이는 화면"이 깨지고, 정화 패턴도 자유 문자열로 열어야 한다. */
+const FONT_FAMILIES: SelectOption[] = [
+  { value: '', label: '기본' },
+  { value: 'serif', label: '명조' },
+  { value: 'monospace', label: '고정폭' },
+];
+
+/** 글자 크기 — px. 정화 패턴(10~32px) 안쪽만 고를 수 있게 둔다 */
+const FONT_SIZES: SelectOption[] = [
+  { value: '', label: '기본' },
+  ...[12, 13, 14, 15, 16, 18, 20, 24, 28, 32].map((n) => ({ value: `${n}px`, label: String(n) })),
+];
+
+/** 줄 간격 — 단위 없는 배수(글자 크기를 따라간다) */
+const LINE_HEIGHTS: SelectOption[] = [
+  { value: '', label: '기본' },
+  ...['1.2', '1.4', '1.6', '1.8', '2.0'].map((v) => ({ value: v, label: v })),
 ];
 
 /** 표 셀 배경 — 강조 행/열용. 본문 위에 얹히는 면이라 형광펜보다 더 옅게. */
@@ -192,6 +224,46 @@ function TBtn({
   );
 }
 
+/**
+ * 툴바 드롭다운 — 각진 톤. 현재값은 상태로 들고 있지 않고 매 렌더 editor 에서 읽는다
+ * (트랜잭션마다 리렌더되므로 커서를 옮기면 그 자리 값이 저절로 비친다).
+ *
+ * ⚠ TBtn 과 달리 onMouseDown 을 막지 않는다 — 막으면 목록이 열리지 않는다.
+ * 대신 값을 적용할 때 chain().focus() 가 에디터 선택을 되살린다.
+ *
+ * 목록에 없는 값(예전 저장분)은 임시 옵션으로 덧붙인다. 안 그러면 select 가 빈칸이 되고,
+ * "기본"을 골라도 DOM 값이 이미 ''이라 change 가 안 나 해제할 방법이 사라진다.
+ */
+function TSelect({
+  title,
+  value,
+  options,
+  onChange,
+}: {
+  title: string;
+  value: string;
+  options: SelectOption[];
+  onChange: (value: string) => void;
+}) {
+  const known = options.some((o) => o.value === value);
+  return (
+    <select
+      title={title}
+      aria-label={title}
+      value={value}
+      onChange={(e) => onChange(e.target.value)}
+      className="h-8 border border-surface-border bg-surface px-1 text-xs text-content outline-none focus:border-yonsei-blue"
+    >
+      {options.map((o) => (
+        <option key={o.value} value={o.value}>
+          {o.label}
+        </option>
+      ))}
+      {!known && <option value={value}>{value}</option>}
+    </select>
+  );
+}
+
 function Divider() {
   return <span aria-hidden="true" className="mx-1 h-5 w-px self-center bg-surface-border" />;
 }
@@ -210,6 +282,31 @@ function AlignIcon({ variant }: { variant: 'left' | 'center' | 'right' }) {
       {rows[variant].map(([x1, x2], i) => (
         <line key={i} x1={x1} x2={x2} y1={5 + i * 4.5} y2={5 + i * 4.5} />
       ))}
+    </svg>
+  );
+}
+
+/** 들여쓰기·내어쓰기 아이콘 — 정렬 아이콘과 같은 선 문법(가로줄 + 방향 화살표) */
+function IndentIcon({ direction }: { direction: 'in' | 'out' }) {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <line x1="3" y1="5" x2="21" y2="5" />
+      <line x1="10" y1="9.5" x2="21" y2="9.5" />
+      <line x1="10" y1="14.5" x2="21" y2="14.5" />
+      <line x1="3" y1="19" x2="21" y2="19" />
+      <path d={direction === 'in' ? 'M3 9.5l3 2.5-3 2.5' : 'M6 9.5l-3 2.5 3 2.5'} />
+    </svg>
+  );
+}
+
+/** 서식 지우기 아이콘 — T + 지우는 ×(format_clear 관례) */
+function ClearFormatIcon() {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+      <path d="M4 5.5h11M10.5 5.5L8 18.5" />
+      <line x1="5.5" y1="18.5" x2="12" y2="18.5" />
+      <line x1="15.5" y1="12" x2="21.5" y2="18" />
+      <line x1="21.5" y1="12" x2="15.5" y2="18" />
     </svg>
   );
 }
@@ -373,6 +470,11 @@ export function RichTextEditor({
       }),
       TextStyle,
       Color,
+      // 글꼴·크기·줄 간격 — 셋 다 textStyle 마크의 속성이라 span 인라인 style 로 나간다
+      // (정화 화이트리스트의 span 패턴과 짝). 커스텀 확장 대신 공식 export 를 쓴다.
+      FontFamily,
+      FontSize,
+      LineHeight,
       Highlight.configure({ multicolor: true }),
       Superscript,
       Subscript,
@@ -512,6 +614,14 @@ export function RichTextEditor({
   // 보조 행의 active 표시용 현재 값 — 트랜잭션마다 리렌더되므로 매번 새로 읽는다
   const tableAttrs = inTable ? editor.getAttributes('table') : {};
   const imageAttrs = onImage ? editor.getAttributes('image') : {};
+  // 툴바 드롭다운의 현재값 — 글꼴·크기·줄 간격은 셋 다 textStyle 마크의 속성이라 한 번에 읽는다
+  const textStyleAttrs = editor.getAttributes('textStyle') as {
+    fontFamily?: string | null;
+    fontSize?: string | null;
+    lineHeight?: string | null;
+  };
+  // 형식만 마크가 아니라 블록 — heading 레벨을 짚고, 없으면 문단으로 본다
+  const headingLevel = ([2, 3, 4] as const).find((level) => editor.isActive('heading', { level }));
 
   return (
     <div className="rte border border-surface-border bg-surface">
@@ -521,21 +631,59 @@ export function RichTextEditor({
         aria-label="서식"
         className="flex flex-wrap items-stretch gap-0.5 border-b border-surface-border bg-surface-soft p-1"
       >
-        <TBtn title="문단" active={editor.isActive('paragraph')} onClick={() => runOnSelection(editor, (c) => c.setParagraph())}>¶</TBtn>
-        <TBtn title="제목 2" active={editor.isActive('heading', { level: 2 })} onClick={() => runOnSelection(editor, (c) => c.toggleHeading({ level: 2 }))}>H2</TBtn>
-        <TBtn title="제목 3" active={editor.isActive('heading', { level: 3 })} onClick={() => runOnSelection(editor, (c) => c.toggleHeading({ level: 3 }))}>H3</TBtn>
-        <TBtn title="제목 4" active={editor.isActive('heading', { level: 4 })} onClick={() => runOnSelection(editor, (c) => c.toggleHeading({ level: 4 }))}>H4</TBtn>
+        {/* 되돌리기가 맨 앞 — 실수 복구가 가장 손이 자주 가는 자리다 */}
+        <TBtn title="실행 취소" disabled={!editor.can().undo()} onClick={() => editor.chain().focus().undo().run()}>↺</TBtn>
+        <TBtn title="다시 실행" disabled={!editor.can().redo()} onClick={() => editor.chain().focus().redo().run()}>↻</TBtn>
+        <Divider />
+        {/* 형식·글꼴·크기·줄 간격 — 값이 많아 버튼으로는 툴바가 넘친다(드롭다운).
+            현재값은 상태가 아니라 매 렌더 editor 에서 읽는다 */}
+        <TSelect
+          title="형식"
+          value={headingLevel ? String(headingLevel) : 'p'}
+          options={BLOCK_FORMATS}
+          onChange={(v) => {
+            if (v === 'p') {
+              runOnSelection(editor, (c) => c.setParagraph());
+              return;
+            }
+            const level = Number(v) as 2 | 3 | 4;
+            // toggle 이 아니라 "설정" 의미 — 같은 레벨을 다시 골랐다고 문단으로 되돌아가면 안 된다
+            if (editor.isActive('heading', { level })) return;
+            runOnSelection(editor, (c) => c.toggleHeading({ level }));
+          }}
+        />
+        <TSelect
+          title="글꼴"
+          value={textStyleAttrs.fontFamily ?? ''}
+          options={FONT_FAMILIES}
+          onChange={(v) => {
+            const chain = editor.chain().focus();
+            (v ? chain.setFontFamily(v) : chain.unsetFontFamily()).run();
+          }}
+        />
+        <TSelect
+          title="글자 크기"
+          value={textStyleAttrs.fontSize ?? ''}
+          options={FONT_SIZES}
+          onChange={(v) => {
+            const chain = editor.chain().focus();
+            (v ? chain.setFontSize(v) : chain.unsetFontSize()).run();
+          }}
+        />
+        <TSelect
+          title="줄 간격"
+          value={textStyleAttrs.lineHeight ?? ''}
+          options={LINE_HEIGHTS}
+          onChange={(v) => {
+            const chain = editor.chain().focus();
+            (v ? chain.setLineHeight(v) : chain.unsetLineHeight()).run();
+          }}
+        />
         <Divider />
         <TBtn title="굵게" active={editor.isActive('bold')} onClick={() => editor.chain().focus().toggleBold().run()}><b>B</b></TBtn>
-        <TBtn title="기울임" active={editor.isActive('italic')} onClick={() => editor.chain().focus().toggleItalic().run()}><i>I</i></TBtn>
         <TBtn title="밑줄" active={editor.isActive('underline')} onClick={() => editor.chain().focus().toggleUnderline().run()}><u>U</u></TBtn>
+        <TBtn title="기울임" active={editor.isActive('italic')} onClick={() => editor.chain().focus().toggleItalic().run()}><i>I</i></TBtn>
         <TBtn title="취소선" active={editor.isActive('strike')} onClick={() => editor.chain().focus().toggleStrike().run()}><s>S</s></TBtn>
-        <TBtn title="위첨자" active={editor.isActive('superscript')} onClick={() => editor.chain().focus().toggleSuperscript().run()}>
-          x<sup>2</sup>
-        </TBtn>
-        <TBtn title="아래첨자" active={editor.isActive('subscript')} onClick={() => editor.chain().focus().toggleSubscript().run()}>
-          x<sub>2</sub>
-        </TBtn>
         {/* 글자색·형광펜 — 토글 시 스와치 행 노출 */}
         <TBtn title="글자색" active={openPanel === 'colors' || editor.isActive('textStyle')} onClick={() => togglePanel('colors')}>
           <span className="border-b-2 border-current px-0.5">A</span>
@@ -543,26 +691,48 @@ export function RichTextEditor({
         <TBtn title="형광펜" active={openPanel === 'highlight' || editor.isActive('highlight')} onClick={() => togglePanel('highlight')}>
           <HighlightIcon />
         </TBtn>
+        <TBtn title="위첨자" active={editor.isActive('superscript')} onClick={() => editor.chain().focus().toggleSuperscript().run()}>
+          x<sup>2</sup>
+        </TBtn>
+        <TBtn title="아래첨자" active={editor.isActive('subscript')} onClick={() => editor.chain().focus().toggleSubscript().run()}>
+          x<sub>2</sub>
+        </TBtn>
+        {/* 서식 지우기 — 선택 구간의 인라인 마크(굵게·색·글꼴·크기…)를 한 번에 벗긴다.
+            블록(제목·정렬)은 그대로 — 그건 위 드롭다운으로 되돌린다 */}
+        <TBtn title="서식 지우기" onClick={() => editor.chain().focus().unsetAllMarks().run()}><ClearFormatIcon /></TBtn>
         <Divider />
         <TBtn title="왼쪽 정렬" active={editor.isActive({ textAlign: 'left' })} onClick={() => runOnSelection(editor, (c) => c.toggleTextAlign('left'))}><AlignIcon variant="left" /></TBtn>
         <TBtn title="가운데 정렬" active={editor.isActive({ textAlign: 'center' })} onClick={() => runOnSelection(editor, (c) => c.toggleTextAlign('center'))}><AlignIcon variant="center" /></TBtn>
         <TBtn title="오른쪽 정렬" active={editor.isActive({ textAlign: 'right' })} onClick={() => runOnSelection(editor, (c) => c.toggleTextAlign('right'))}><AlignIcon variant="right" /></TBtn>
         <Divider />
-        <TBtn title="글머리 목록" active={editor.isActive('bulletList')} onClick={() => editor.chain().focus().toggleBulletList().run()}>•≡</TBtn>
         <TBtn title="번호 목록" active={editor.isActive('orderedList')} onClick={() => editor.chain().focus().toggleOrderedList().run()}>1.</TBtn>
+        <TBtn title="글머리 목록" active={editor.isActive('bulletList')} onClick={() => editor.chain().focus().toggleBulletList().run()}>•≡</TBtn>
+        {/* 목록 단계 — 목록 밖에서는 할 일이 없어 can() 이 false 라 자동으로 꺼진다 */}
+        <TBtn
+          title="내어쓰기"
+          disabled={!editor.can().liftListItem('listItem')}
+          onClick={() => editor.chain().focus().liftListItem('listItem').run()}
+        >
+          <IndentIcon direction="out" />
+        </TBtn>
+        <TBtn
+          title="들여쓰기"
+          disabled={!editor.can().sinkListItem('listItem')}
+          onClick={() => editor.chain().focus().sinkListItem('listItem').run()}
+        >
+          <IndentIcon direction="in" />
+        </TBtn>
+        <Divider />
         <TBtn title="인용" active={editor.isActive('blockquote')} onClick={() => runOnSelection(editor, (c) => c.toggleBlockquote())}>&ldquo;</TBtn>
+        <TBtn title="링크" active={openPanel === 'link' || editor.isActive('link')} onClick={openLinkPanel}><LinkIcon /></TBtn>
         <TBtn title="구분선" onClick={() => editor.chain().focus().setHorizontalRule().run()}>—</TBtn>
         <Divider />
-        <TBtn title="링크" active={openPanel === 'link' || editor.isActive('link')} onClick={openLinkPanel}><LinkIcon /></TBtn>
+        {/* 표 삽입 — 격자 피커로 크기를 짚는다. 삽입한 표의 편집은 아래 inTable 보조 행 */}
+        <TBtn title="표 삽입" active={openPanel === 'table'} onClick={() => togglePanel('table')}><TableIcon /></TBtn>
         {onUploadImage && (
           <TBtn title="이미지 삽입" disabled={uploadingCount > 0} onClick={() => fileRef.current?.click()}><ImageIcon /></TBtn>
         )}
-        {/* 표 삽입 — 격자 피커로 크기를 짚는다. 삽입한 표의 편집은 아래 inTable 보조 행 */}
-        <TBtn title="표 삽입" active={openPanel === 'table'} onClick={() => togglePanel('table')}><TableIcon /></TBtn>
         <TBtn title="유튜브 영상" active={openPanel === 'youtube'} onClick={() => togglePanel('youtube')}><YoutubeIcon /></TBtn>
-        <Divider />
-        <TBtn title="실행 취소" disabled={!editor.can().undo()} onClick={() => editor.chain().focus().undo().run()}>↺</TBtn>
-        <TBtn title="다시 실행" disabled={!editor.can().redo()} onClick={() => editor.chain().focus().redo().run()}>↻</TBtn>
         {uploadingCount > 0 && (
           <span className="ml-2 self-center text-xs font-medium text-yonsei-blue">
             이미지 업로드 중… ({uploadingCount})
