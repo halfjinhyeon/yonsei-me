@@ -81,10 +81,11 @@ export interface ListColumn {
 export type ListView =
   /** 표 셀을 그 자리에서 고친다 — 학부/대학원 교과목, 교직원 */
   | { kind: 'table'; inlineKeys: string[]; filterKeys?: string[] }
-  /** 카드 그리드 — 교수진(4:3 사진), 연구실(16:9), 동아리(가로 카드) */
+  /** 카드 그리드 — 교수진(4:3 사진), 연구실(16:9), 동아리(가로 카드),
+   *  메인 이미지(분야마다 가로 3:2 · 세로 9:16 두 벌을 나란히) */
   | {
       kind: 'cards';
-      variant: 'faculty' | 'labs' | 'clubs';
+      variant: 'faculty' | 'labs' | 'clubs' | 'hero';
       inlineKeys: string[];
       filterKey?: string;
     }
@@ -450,11 +451,13 @@ const heroSlides: ResourceDef = {
   fields: HERO_SLIDES_FIELDS,
   // 배열 순서 = 슬라이드 순서. 6장뿐이라 ▲▼ 로 충분하다.
   orderable: true,
-  // listView 를 두지 않는다(폴백 표) — 이 리소스에서 실제로 고치는 값은 사진 두 벌이고,
-  // 사진은 미리보기와 업로드 버튼이 함께 있어야 고칠 수 있다. 그 UI 는 '자세히' 폼
-  // (RecordForm 의 imageUpload)에만 있고, 인라인 표·카드 화면은 이미지 칸을 URL 문자열
-  // 입력으로 떨어뜨린다(교수진 카드만 사진 업로드를 따로 받는다). 6줄짜리 목록이라
-  // 목록에서 한 번 더 고칠 이점도 없다.
+  // 이 리소스에서 실제로 고치는 값은 사진 두 벌뿐이다. 그래서 표(파일 경로 문자열)가
+  // 아니라 분야마다 가로·세로 미리보기를 나란히 띄우고 그 아래 '수정'으로 바로 교체한다
+  // (HeroCardsEditor). inlineKeys 는 cards 서술자의 형식을 맞추기 위한 값이고, 두 칸의
+  // 배치·비율은 화면이 직접 안다 — 가로와 세로는 프레임 모양도 빈 값 규칙도 다르다.
+  // ⚠️ 이 화면에는 '자세히' 폼 진입도 삭제 버튼도 없다(사용자 지정) — 분야 6개는 고정이라
+  //    분야명을 고칠 일이 없고, 항목이 늘거나 줄면 슬라이드쇼가 깨진다.
+  listView: { kind: 'cards', variant: 'hero', inlineKeys: ['image', 'imageMobile'] },
   summarize: (f) => cellText(f, 'title'),
 };
 

@@ -52,6 +52,7 @@ import { RecordForm } from './RecordForm';
 import { ClubRowsEditor } from './ClubRowsEditor';
 import { ExpandRowsEditor } from './ExpandRowsEditor';
 import { FacultyCardsEditor } from './FacultyCardsEditor';
+import { HeroCardsEditor } from './HeroCardsEditor';
 import { HistoryTimelineEditor } from './HistoryTimelineEditor';
 import { InlineTable } from './InlineTable';
 import { MoveButtons } from './InlineFields';
@@ -1016,6 +1017,11 @@ export function CollectionEditor({ config, resource, onDirtyChange }: Props) {
           )}
           {view?.kind === 'cards' && view.variant === 'clubs' && (
             <ClubRowsEditor {...viewProps} />
+          )}
+          {/* 메인 이미지 — 가로·세로 두 벌을 나란히 보며 그 자리에서 교체한다.
+              업로드 통로는 '자세히' 폼(RecordForm)과 같은 uploadImage 하나다. */}
+          {view?.kind === 'cards' && view.variant === 'hero' && (
+            <HeroCardsEditor {...viewProps} onUploadImage={uploadImage} />
           )}
           {view?.kind === 'table' && (
             <InlineTable
