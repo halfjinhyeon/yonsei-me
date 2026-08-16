@@ -343,6 +343,14 @@
     border: 0;
   }
 
+  /* 격자 표의 바깥 여백 — 기본 표의 my-8(32px)은 문단과 표 사이를 "빈 줄 하나"처럼
+     벌린다(사용자 피드백). 8px 로 낮추면 이웃 문단의 my-5(20px)와 여백 붕괴로
+     문단 리듬 그대로 붙는다. */
+  .prose-content table[data-border] {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+
   /* 격자 표 셀 여백 — 사이트 기본 표의 널찍한 py-5 는 에디토리얼 레거시용이고,
      에디터가 만드는 격자 표는 문서 표답게 조밀하게 시작한다(행 높이의 바닥이
      "내용+여백"이라, 여백이 크면 행 높이를 줄일 방법이 없다는 사용자 피드백). */
@@ -713,6 +721,10 @@
      보이고, 게시 화면은 auto 라 내용 폭을 따른다 — 드래그로 지정한 폭은 양쪽 동일) */
   .rte .rte-area table {
     @apply my-6 table w-full table-fixed overflow-visible;
+  }
+  /* 격자 표는 편집 화면에서도 게시 화면과 같은 얕은 바깥 여백(문단 리듬) */
+  .rte .rte-area table[data-border] {
+    @apply my-2;
   }
   /* 열 리사이즈 핸들(prosemirror-tables 규격 클래스) — 경계에 붙는 파란 세로 바 */
   .rte .rte-area td,
