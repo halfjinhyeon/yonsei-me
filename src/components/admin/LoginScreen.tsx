@@ -1,22 +1,27 @@
 'use client';
 
 // 콘텐츠 관리 콘솔 로그인 — 사이트 크롬 없이 화면 전체를 쓰는 독립 진입 화면.
+// 레이아웃·상태 시각화는 Claude Design 목업(CMS 로그인.dc.html)이 원본이다:
+// 좌측 네이비 패널(사이트 헤더와 같은 자리의 로고 락업 + 독수리 워터마크) +
+// 우측 폼(이메일 → 인증번호 단계 전환), 오류는 붉은 박스, 카카오 안내는
+// 소셜 버튼 아래 별도 박스.
 //
 // 수단이 셋(이메일 인증번호 · 카카오 · GitHub)이지만 셋을 나란히 놓으면
 // "나는 뭘 눌러야 하나"가 매번 새 결정이 된다. 그래서 기본 경로인 이메일
 // 인증번호만 폼으로 펼쳐 두고, 나머지 둘은 구분선 아래 보조 수단으로 내린다.
-// 카카오·GitHub 는 이미 등록된 계정에만 열리므로 처음 오는 사람은 이메일로만
-// 들어올 수 있다 — 그 순서가 화면 위에서 그대로 보이게 한다.
 //
 // 인증번호 검증은 fetch 가 아니라 Auth.js 의 signIn('email-otp') 이다.
 // 세션 쿠키를 굽는 주체가 Auth.js 라, 코드 확인만 따로 API 로 하면 "맞았는데
 // 로그인은 안 된" 상태가 생긴다.
 //
+// 버튼·강조색은 시맨틱 토큰(brand)을 쓴다 — 다크모드에서 네이비가 배경에
+// 묻히므로 밝은 블루(#60A5FA) + 어두운 글자로 자동 반전되어야 한다.
+//
 // 내부 운영 도구라 한국어 UI 문자열을 컴포넌트에 직접 둔다.
 
 import { signIn } from 'next-auth/react';
 import { useCallback, useEffect, useId, useRef, useState } from 'react';
-import { cn } from '@/lib/utils';
+import { Logo } from '@/components/Logo';
 
 interface Props {
   /** 로그인 후 돌아갈 콘솔 경로에 쓸 로케일 */
@@ -26,12 +31,9 @@ interface Props {
 /** 재전송 잠금(초) — 서버 발송 제한과 같은 값이라 눌러 봐야 429 가 나는 시간대를 없앤다 */
 const RESEND_SECONDS = 60;
 
-/** 로그인 실패로 되돌려 보낼 때 Auth.js 가 붙이는 ?error= 값 → 화면 안내 */
-const ERROR_NOTICES: Record<string, string> = {
-  'kakao-unlinked':
-    '아직 연결되지 않은 카카오 계정입니다. 먼저 이메일 인증으로 로그인한 뒤, 콘솔의 계정 영역에서 카카오를 연결해 주세요.',
-  AccessDenied: '허용되지 않은 계정입니다. 학과 관리자에게 문의해 주세요.',
-};
+/** 미연결 카카오 안내 — 오류가 아니라 "다음에 할 일"이라 붉은 박스 대신 안내 박스로 말한다 */
+const KAKAO_UNLINKED_MSG =
+  '아직 연결되지 않은 카카오 계정입니다. 먼저 이메일 인증으로 로그인한 뒤, 콘솔의 계정 영역에서 카카오 계정을 연결해 주세요.';
 
 export function LoginScreen({ locale }: Props) {
   const consoleUrl = `/${locale}/contentmanagement`;
@@ -45,7 +47,10 @@ export function LoginScreen({ locale }: Props) {
   const [sending, setSending] = useState(false);
   const [verifying, setVerifying] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [notice, setNotice] = useState<string | null>(null);
+  /** 카카오 미연결 안내(오류 박스가 아니라 안내 박스) */
+  const [kakaoNotice, setKakaoNotice] = useState(false);
+  /** 로그인 성공 → 콘솔로 이동하는 사이의 확인 표시 */
+  const [done, setDone] = useState(false);
   /** dev 서버가 내려주는 고정 코드 — 메일 발송 없이 흐름을 시험할 수 있게 안내만 한다 */
   const [devCode, setDevCode] = useState<string | null>(null);
   const [cooldown, setCooldown] = useState(0);
@@ -61,7 +66,9 @@ export function LoginScreen({ locale }: Props) {
     const params = new URLSearchParams(window.location.search);
     const key = params.get('error');
     if (!key) return;
-    setNotice(ERROR_NOTICES[key] ?? '로그인하지 못했습니다. 다시 시도해 주세요.');
+    if (key === 'kakao-unlinked') setKakaoNotice(true);
+    else if (key === 'AccessDenied') setError('허용되지 않은 계정입니다. 학과 관리자에게 문의해 주세요.');
+    else setError('로그인하지 못했습니다. 다시 시도해 주세요.');
     params.delete('error');
     const qs = params.toString();
     window.history.replaceState(null, '', window.location.pathname + (qs ? `?${qs}` : ''));
@@ -123,7 +130,7 @@ export function LoginScreen({ locale }: Props) {
     }
     if (await requestCode(target)) {
       setCode('');
-      setNotice(null);
+      setKakaoNotice(false);
       setStep('code');
     }
   }
@@ -136,13 +143,15 @@ export function LoginScreen({ locale }: Props) {
     try {
       const res = await signIn('email-otp', { email: email.trim(), code, redirect: false });
       if (res?.error) {
-        setError('인증번호가 올바르지 않거나 만료되었습니다.');
+        setError('인증번호가 올바르지 않거나 만료되었습니다. 다시 확인해 주세요.');
         setCode('');
         codeRef.current?.focus();
         return;
       }
       // router.push 가 아니라 전체 이동 — 세션 쿠키가 막 생겼으므로 서버
       // 컴포넌트를 새 요청으로 다시 그려야 콘솔이 인증된 상태로 뜬다.
+      // 이동까지의 공백 동안 확인 박스를 보여 "눌렀는데 조용한" 순간을 없앤다.
+      setDone(true);
       window.location.href = consoleUrl;
     } catch {
       setError('로그인 처리 중 오류가 발생했습니다. 다시 시도해 주세요.');
@@ -153,35 +162,50 @@ export function LoginScreen({ locale }: Props) {
 
   return (
     <div className="flex min-h-svh flex-col lg:flex-row">
-      {/* 좌측 브랜드 패널 — 다크모드에서도 네이비를 유지한다. 이 면은 배경이
-          아니라 "학과의 도구"라는 표시라, 배경색이 따라 반전되면 정체가 흐려진다. */}
-      <aside className="relative flex flex-col justify-center overflow-hidden bg-yonsei-navy px-6 py-10 sm:px-10 lg:w-[42%] lg:px-14 lg:py-16">
-        <DecorLines />
-        <div className="relative">
-          <p className="text-[12px] font-bold uppercase tracking-[0.22em] text-white/60">
+      {/* 좌측 브랜드 패널 — 다크모드에서도 네이비 계열을 유지한다(더 깊은 톤으로만
+          가라앉힘). 이 면은 배경이 아니라 "학과의 도구"라는 표시라, 배경색이
+          그대로 반전되면 정체가 흐려진다. */}
+      <aside className="relative flex shrink-0 flex-col gap-3.5 overflow-hidden bg-yonsei-navy px-5 pb-6 text-white dark:bg-[#0A1424] lg:w-[42%] lg:justify-between lg:gap-12 lg:px-0 lg:pb-[60px]">
+        {/* 독수리 워터마크 — 데스크톱 전용. 선 장식 대신 학교 상징을 은은하게 깐다. */}
+        <div
+          aria-hidden="true"
+          className="eagle-mask pointer-events-none absolute -bottom-10 -right-[70px] hidden h-[420px] w-[420px] bg-white opacity-[0.12] dark:opacity-[0.16] lg:block"
+        />
+        {/* 로고 락업 — 실제 사이트 헤더와 같은 자리·크기(모바일 h-16, 데스크톱 h-20,
+            1440 뷰포트 기준 좌측 인셋 72px = 컨테이너 max 1360 + px-8). */}
+        <div className="relative flex h-16 items-center lg:h-20 lg:px-[72px]">
+          <Logo />
+        </div>
+        <div className="relative lg:pl-[72px] lg:pr-14">
+          <p className="mb-3.5 text-[12px] font-bold uppercase tracking-[0.22em] text-white/85">
             Yonsei Mechanical Engineering
           </p>
-          <h1 className="mt-4 text-[clamp(1.75rem,4vw,2.75rem)] font-bold leading-[1.15] tracking-tight text-white">
+          <h2 className="font-subhead text-[21px] font-bold leading-[1.35] tracking-[-0.02em] lg:text-[40px] lg:leading-[1.18]">
             콘텐츠 관리 콘솔
-          </h1>
-          <p className="mt-4 max-w-[36ch] text-[13.5px] leading-[1.8] text-white/70 lg:text-sm">
-            학과 홈페이지의 모든 콘텐츠를 한곳에서 편집합니다.
+          </h2>
+          <p className="mt-5 hidden max-w-[22em] text-base leading-[1.75] text-white/70 dark:text-[#BAC5D6] lg:block">
+            학과 홈페이지의 모든 콘텐츠를 한곳에서 편집합니다
           </p>
         </div>
       </aside>
 
       {/* 우측 폼 — 세로·가로 모두 가운데. 폼 폭을 400px 로 묶어 두면 넓은 화면에서도
           한 줄 길이가 읽기 좋은 범위에 남는다. */}
-      <div className="flex flex-1 items-center justify-center bg-surface px-6 py-12 sm:px-10">
-        <div className="w-full max-w-[400px]">
-          <h2 className="text-lg font-bold text-content">관리자 로그인</h2>
-          <p className="mt-2 text-[13px] leading-[1.7] text-content-soft">
-            등록된 계정의 이메일로 인증번호를 보내 드립니다.
+      <div className="flex flex-1 bg-surface px-5 pb-9 pt-6 lg:items-center lg:justify-center lg:p-16">
+        <div className="w-full lg:max-w-[400px]">
+          <p className="text-[12px] font-bold uppercase tracking-[0.18em] text-yonsei-blue dark:text-brand">
+            Content Management
+          </p>
+          <h1 className="mt-2.5 font-subhead text-[28px] font-bold tracking-[-0.01em] text-content">
+            관리자 로그인
+          </h1>
+          <p className="mt-2.5 text-[15px] leading-[1.7] text-content-faint">
+            등록된 학과 이메일로 인증번호를 받아 로그인합니다.
           </p>
 
           {step === 'email' ? (
-            <form onSubmit={onSubmitEmail} className="mt-7" noValidate>
-              <label htmlFor={emailFieldId} className="block text-[13px] font-semibold text-content">
+            <form onSubmit={onSubmitEmail} className="mt-8 flex flex-col gap-2.5" noValidate>
+              <label htmlFor={emailFieldId} className="text-sm font-semibold text-content">
                 이메일
               </label>
               <input
@@ -190,41 +214,27 @@ export function LoginScreen({ locale }: Props) {
                 type="email"
                 inputMode="email"
                 autoComplete="email"
+                placeholder="name@yonsei.ac.kr"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="mt-2 w-full rounded-[2px] border border-surface-border bg-surface px-3.5 py-3 text-sm text-content outline-none transition-colors placeholder:text-content-faint focus:border-yonsei-blue"
+                className="h-[50px] w-full rounded-[2px] border border-surface-border bg-surface px-3.5 text-base text-content outline-none transition-colors placeholder:text-[#a8b0ba] focus:border-yonsei-blue"
               />
-              {error && <ErrorText>{error}</ErrorText>}
               <button
                 type="submit"
                 disabled={sending}
-                className="mt-4 w-full rounded-[2px] bg-yonsei-navy px-4 py-3 text-sm font-semibold text-white transition-colors duration-200 ease-out-expo hover:bg-yonsei-blue disabled:cursor-not-allowed disabled:opacity-60"
+                className="mt-1.5 h-[52px] w-full rounded-[2px] bg-brand text-base font-semibold text-brand-fg transition-colors duration-200 ease-out-expo hover:bg-brand-muted disabled:cursor-not-allowed disabled:opacity-60"
               >
                 {sending ? '전송 중…' : '인증번호 받기'}
               </button>
             </form>
           ) : (
-            <form onSubmit={onSubmitCode} className="mt-7" noValidate>
-              <div className="flex items-center justify-between gap-3 border border-surface-border bg-surface-soft px-3.5 py-2.5">
-                <span className="min-w-0 truncate text-[13px] text-content-soft">{email}</span>
-                <button
-                  type="button"
-                  onClick={() => {
-                    setError(null);
-                    setDevCode(null);
-                    setStep('email');
-                  }}
-                  className="shrink-0 text-[12px] font-semibold text-yonsei-blue transition-colors duration-200 ease-out-expo hover:text-yonsei-navy"
-                >
-                  변경
-                </button>
-              </div>
-
-              <label
-                htmlFor={codeFieldId}
-                className="mt-5 block text-[13px] font-semibold text-content"
-              >
-                인증번호
+            <form onSubmit={onSubmitCode} className="mt-8 flex flex-col gap-2.5" noValidate>
+              <p className="text-sm leading-[1.6] text-content-faint">
+                인증번호를 <strong className="font-semibold text-content">{email}</strong> 로
+                보냈습니다.
+              </p>
+              <label htmlFor={codeFieldId} className="text-sm font-semibold text-content">
+                인증번호 6자리
               </label>
               <input
                 ref={codeRef}
@@ -234,110 +244,122 @@ export function LoginScreen({ locale }: Props) {
                 pattern="[0-9]{6}"
                 maxLength={6}
                 autoComplete="one-time-code"
+                placeholder="000000"
                 value={code}
                 // 숫자만 남긴다 — 붙여넣기로 공백·하이픈이 섞여 들어오는 쪽이 흔하다
                 onChange={(e) => setCode(e.target.value.replace(/\D/g, '').slice(0, 6))}
-                className="mt-2 w-full rounded-[2px] border border-surface-border bg-surface px-3.5 py-3 text-center text-lg tracking-[0.4em] text-content outline-none transition-colors focus:border-yonsei-blue"
+                className="h-14 w-full rounded-[2px] border border-surface-border bg-surface px-3.5 text-2xl font-semibold tracking-[0.42em] text-content outline-none transition-colors placeholder:text-[#a8b0ba] focus:border-yonsei-blue"
               />
-              <p className="mt-2 text-[12px] leading-[1.7] text-content-faint">
-                메일로 받은 6자리 코드를 입력하세요 · 10분간 유효
-              </p>
+              <div className="flex items-baseline justify-between gap-4">
+                <span className="text-[13px] text-content-faint">코드는 10분간 유효합니다</span>
+                <button
+                  type="button"
+                  onClick={() => void requestCode(email.trim())}
+                  disabled={sending || cooldown > 0}
+                  className="-m-1.5 p-1.5 text-[13px] font-semibold text-yonsei-blue hover:underline disabled:cursor-not-allowed disabled:text-content-faint disabled:no-underline dark:text-brand dark:disabled:text-content-faint"
+                >
+                  {cooldown > 0 ? `재전송 (${cooldown}초)` : '인증번호 재전송'}
+                </button>
+              </div>
               {devCode && (
-                <p className="mt-1 text-[12px] font-semibold text-content-faint">
+                <p className="text-[12px] font-semibold text-content-faint">
                   개발 모드 코드: {devCode}
                 </p>
               )}
-              {error && <ErrorText>{error}</ErrorText>}
-
               <button
                 type="submit"
                 disabled={verifying || code.length !== 6}
-                className="mt-4 w-full rounded-[2px] bg-yonsei-navy px-4 py-3 text-sm font-semibold text-white transition-colors duration-200 ease-out-expo hover:bg-yonsei-blue disabled:cursor-not-allowed disabled:opacity-60"
+                className="mt-2 h-[52px] w-full rounded-[2px] bg-brand text-base font-semibold text-brand-fg transition-colors duration-200 ease-out-expo hover:bg-brand-muted disabled:cursor-not-allowed disabled:opacity-60"
               >
                 {verifying ? '확인 중…' : '로그인'}
               </button>
-
               <button
                 type="button"
-                onClick={() => void requestCode(email.trim())}
-                disabled={sending || cooldown > 0}
-                className="mt-3 w-full text-[12.5px] font-semibold text-yonsei-blue transition-colors duration-200 ease-out-expo hover:text-yonsei-navy disabled:cursor-not-allowed disabled:text-content-faint"
+                onClick={() => {
+                  setError(null);
+                  setDevCode(null);
+                  setStep('email');
+                }}
+                className="-mx-1.5 mt-0.5 self-start p-1.5 text-[13.5px] text-content-faint hover:text-yonsei-blue hover:underline dark:hover:text-brand"
               >
-                {cooldown > 0 ? `재전송 (${cooldown}초)` : '인증번호 재전송'}
+                다른 이메일로 로그인
               </button>
             </form>
           )}
 
-          <div className="my-7 flex items-center gap-3" aria-hidden="true">
+          {error && (
+            <div
+              role="alert"
+              className="mt-4 flex gap-2.5 rounded-[2px] border border-[#B42318] bg-[#FDF3F2] px-3.5 py-3 dark:border-[#F2837B] dark:bg-[#1E1518]"
+            >
+              <span
+                aria-hidden="true"
+                className="mt-0.5 h-4 w-4 shrink-0 bg-[#B42318] text-center text-[11px] font-bold leading-4 text-white dark:bg-[#F2837B] dark:text-[#1E1518]"
+              >
+                !
+              </span>
+              <span className="text-sm leading-[1.6] text-[#B42318] dark:text-[#F2837B]">
+                {error}
+              </span>
+            </div>
+          )}
+
+          {done && (
+            <div
+              role="status"
+              className="mt-4 rounded-[2px] border border-yonsei-blue bg-surface-soft px-3.5 py-3 text-sm font-semibold leading-[1.6] text-yonsei-blue dark:border-brand dark:text-brand"
+            >
+              확인되었습니다. 콘텐츠 관리 콘솔로 이동합니다…
+            </div>
+          )}
+
+          <div className="my-7 flex items-center gap-3.5" aria-hidden="true">
             <span className="h-px flex-1 bg-surface-border" />
-            <span className="text-[12px] text-content-faint">또는</span>
+            <span className="text-[12.5px] tracking-[0.08em] text-content-faint">또는</span>
             <span className="h-px flex-1 bg-surface-border" />
           </div>
 
-          {notice && (
-            <p className="mb-4 border border-surface-border bg-surface-soft px-3.5 py-3 text-[13px] leading-[1.7] text-content-soft">
-              {notice}
-            </p>
+          <div className="flex flex-col gap-2.5">
+            {/* 카카오는 브랜드 규격(노랑 #FEE500 + 검정 85%)을 지켜야 하는 유일한 예외라
+                사이트 토큰을 쓰지 않고 다크모드에서도 그대로 둔다. */}
+            <button
+              type="button"
+              onClick={() => void signIn('kakao', { callbackUrl: consoleUrl })}
+              className="flex h-[52px] w-full items-center justify-center gap-2 rounded-[2px] bg-[#FEE500] text-base font-semibold text-black/85 transition-[filter] duration-200 ease-out-expo hover:brightness-[0.96]"
+            >
+              <KakaoMark />
+              카카오로 시작하기
+            </button>
+            <button
+              type="button"
+              onClick={() => void signIn('github', { callbackUrl: consoleUrl })}
+              className="flex h-[52px] w-full items-center justify-center gap-2 rounded-[2px] border border-surface-border bg-surface text-[15px] font-semibold text-content transition-colors duration-200 ease-out-expo hover:border-yonsei-blue hover:text-yonsei-blue dark:hover:border-brand dark:hover:text-brand"
+            >
+              <GithubMark />
+              GitHub으로 로그인
+            </button>
+          </div>
+
+          {kakaoNotice && (
+            <div
+              role="status"
+              className="mt-3.5 rounded-[2px] border border-surface-border bg-surface-soft p-3.5"
+            >
+              <p className="text-[12px] font-bold uppercase tracking-[0.14em] text-yonsei-blue dark:text-brand">
+                Kakao
+              </p>
+              <p className="mt-2 text-sm leading-[1.7] text-content">{KAKAO_UNLINKED_MSG}</p>
+            </div>
           )}
 
-          {/* 카카오는 브랜드 규격(노랑 #FEE500 + 검정 85%)을 지켜야 하는 유일한 예외라
-              사이트 토큰을 쓰지 않고 다크모드에서도 그대로 둔다. */}
-          <button
-            type="button"
-            onClick={() => void signIn('kakao', { callbackUrl: consoleUrl })}
-            className="flex h-11 w-full items-center justify-center gap-2 rounded-[2px] bg-[#FEE500] text-sm font-semibold text-black/85 transition-opacity duration-200 ease-out-expo hover:opacity-90"
-          >
-            <KakaoMark />
-            카카오로 로그인
-          </button>
-
-          <button
-            type="button"
-            onClick={() => void signIn('github', { callbackUrl: consoleUrl })}
-            className="mt-2.5 flex h-11 w-full items-center justify-center gap-2 rounded-[2px] border border-surface-border bg-surface text-sm font-semibold text-content transition-colors duration-200 ease-out-expo hover:border-yonsei-blue hover:text-yonsei-blue"
-          >
-            <GithubMark />
-            GitHub으로 로그인
-          </button>
-
-          <p className="mt-10 text-[12px] leading-[1.7] text-content-faint">
-            이 콘솔은 학과 관계자 전용입니다 · 계정 문의: 기계공학부 사무실
-          </p>
+          <div className="mt-8 border-t border-surface-border pt-[18px]">
+            <p className="text-[12.5px] leading-[1.7] text-content-faint">
+              이 콘솔은 학과 관계자 전용입니다 · 계정 문의: 기계공학부 사무실
+            </p>
+          </div>
         </div>
       </div>
     </div>
-  );
-}
-
-/** 오류 문구 — 색만으로 말하지 않도록 항상 문장으로 적고 alert 로 읽어 준다 */
-function ErrorText({ children }: { children: React.ReactNode }) {
-  return (
-    <p
-      role="alert"
-      className={cn('mt-2.5 text-[12.5px] leading-[1.7] text-red-600 dark:text-red-400')}
-    >
-      {children}
-    </p>
-  );
-}
-
-/** 좌측 패널 장식 — 유선형 곡선 몇 줄. 면을 채우는 그래픽 대신 1px 선만 쓴다
- *  (그림자·그라디언트 금지 규칙 안에서 빈 네이비 면에 깊이를 주는 최소 수단) */
-function DecorLines() {
-  return (
-    <svg
-      aria-hidden="true"
-      viewBox="0 0 400 600"
-      preserveAspectRatio="xMidYMid slice"
-      className="pointer-events-none absolute inset-0 h-full w-full"
-      fill="none"
-      stroke="#ffffff"
-      strokeWidth="1"
-    >
-      <path d="M-40 470C60 470 120 400 160 300S260 110 400 110" opacity="0.12" />
-      <path d="M-40 530C60 530 120 460 160 360S260 170 400 170" opacity="0.09" />
-      <path d="M-40 590C60 590 120 520 160 420S260 230 400 230" opacity="0.06" />
-    </svg>
   );
 }
 

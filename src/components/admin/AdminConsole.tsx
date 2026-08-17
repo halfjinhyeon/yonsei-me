@@ -21,6 +21,7 @@
 // 콘텐츠/코드 분리 원칙은 "사이트 콘텐츠"(content/*)에 적용된다.
 // 이 관리자 도구는 내부 운영용이라 한국어 UI 문자열을 컴포넌트에 직접 둔다.
 
+import { signOut } from 'next-auth/react';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { cn } from '@/lib/utils';
 import { type BoardKey } from '@/lib/admin/boards';
@@ -73,6 +74,7 @@ interface Props {
 /** 로그인한 계정 자신 — 사이드바 계정 블록이 이름·카카오 연결 상태를 여기서 읽는다 */
 interface MeInfo {
   name?: string;
+  email?: string | null;
   role?: 'admin' | 'editor';
   provider?: string;
   kakaoLinked?: boolean;
@@ -152,6 +154,9 @@ function AdminConsoleBody({ token, login, role }: Props) {
   // 로그인한 계정 정보 — 사이드바가 데스크톱·드로어로 두 번 마운트되므로
   // 조회는 셸에서 한 번만 하고 값을 내려 준다(같은 요청이 두 벌 나가지 않게).
   const [me, setMe] = useState<MeInfo | null>(null);
+  // 로그아웃 확인 팝업 — /api/auth/signout 의 Auth.js 기본 확인 페이지(무장식 영문
+  // 화면)를 콘솔 시각 언어의 CmsModal 로 대체한다(Claude Design 목업 '로그아웃 팝업').
+  const [confirmSignOut, setConfirmSignOut] = useState(false);
   useEffect(() => {
     let alive = true;
     fetch('/api/admin/users/me')
@@ -400,6 +405,7 @@ function AdminConsoleBody({ token, login, role }: Props) {
                 login={login}
                 me={me}
                 deploy={deploy}
+                onSignOut={() => setConfirmSignOut(true)}
               />
             </nav>
           )}
@@ -428,6 +434,7 @@ function AdminConsoleBody({ token, login, role }: Props) {
                   login={login}
                   me={me}
                   deploy={deploy}
+                  onSignOut={() => setConfirmSignOut(true)}
                 />
               </nav>
             </>
@@ -491,6 +498,38 @@ function AdminConsoleBody({ token, login, role }: Props) {
             onCancel={() => setPending(null)}
           />
         )}
+
+        {confirmSignOut && (
+          <CmsModal
+            title="로그아웃할까요?"
+            body={
+              <>
+                콘텐츠 관리 콘솔에서 나갑니다. 저장하지 않은 변경 사항은 사라집니다.
+                {(me?.name || me?.email || login) && (
+                  <div className="mt-2.5 flex items-baseline gap-2 border border-surface-border bg-surface-soft px-3 py-2.5">
+                    <span className="shrink-0 text-[11px] font-bold uppercase tracking-[0.18em] text-yonsei-blue">
+                      계정
+                    </span>
+                    <span className="min-w-0 truncate text-[13px] font-semibold text-content">
+                      {me?.name || login}
+                      {me?.email ? ` · ${me.email}` : ''}
+                    </span>
+                  </div>
+                )}
+              </>
+            }
+            confirmLabel="로그아웃"
+            onConfirm={() => {
+              setConfirmSignOut(false);
+              // 리다이렉트는 우리가 직접 — Auth.js 의 기본 목적지(사인인 페이지)가
+              // 아니라 콘솔 전용 로그인 화면으로 보낸다.
+              void signOut({ redirect: false }).finally(() => {
+                window.location.href = '/ko/contentmanagement/login';
+              });
+            }}
+            onCancel={() => setConfirmSignOut(false)}
+          />
+        )}
       </div>
     </AdminShellProvider>
   );
@@ -517,6 +556,7 @@ function SidebarBody({
   login,
   me,
   deploy,
+  onSignOut,
 }: {
   activeId: string | null;
   isDashboard: boolean;
@@ -528,6 +568,8 @@ function SidebarBody({
   login: string;
   me: MeInfo | null;
   deploy: DeployState;
+  /** 로그아웃 아이콘 — 즉시 나가지 않고 셸의 확인 팝업을 연다 */
+  onSignOut: () => void;
 }) {
   const [query, setQuery] = useState('');
   // 검색 결과 키보드 커서 (↑↓ 이동, Enter 선택)
@@ -827,14 +869,15 @@ function SidebarBody({
                 </button>
               ))}
           </div>
-          <a
-            href="/api/auth/signout"
+          <button
+            type="button"
+            onClick={onSignOut}
             aria-label="로그아웃"
             title="로그아웃"
             className="ml-auto shrink-0 p-1.5 text-content-faint transition-colors duration-200 ease-out-expo hover:bg-surface-soft hover:text-yonsei-navy"
           >
             <IcoLogout size={16} />
-          </a>
+          </button>
         </div>
       </div>
     </>

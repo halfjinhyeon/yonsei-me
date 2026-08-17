@@ -22,8 +22,11 @@ export default async function ContentManagementLoginPage({
   setRequestLocale(params.locale);
 
   // 이미 로그인한 사람에게 로그인 화면을 다시 보여 주면 "왜 또"가 된다 — 콘솔로 보낸다.
+  // ⚠️ 판정은 session 이 아니라 session.user 다 — AUTH_SECRET 미설정(dev) 등으로
+  // auth() 가 오류를 낼 때 truthy 한 오류 객체가 돌아와, 미로그인 방문자를
+  // 콘솔로 되돌리는 리다이렉트 루프성 오판이 실측됐다(콘솔 page.tsx 와 같은 기준).
   const session = await auth();
-  if (session) {
+  if (session?.user) {
     redirect(`/${params.locale}/contentmanagement`);
   }
 

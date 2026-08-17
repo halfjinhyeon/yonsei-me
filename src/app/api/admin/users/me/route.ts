@@ -13,13 +13,20 @@ export async function GET(): Promise<Response> {
   if (denied) return denied;
 
   if (process.env.NODE_ENV !== 'production') {
-    return Response.json({ name: 'dev', role: 'admin', provider: 'dev', kakaoLinked: false });
+    return Response.json({
+      name: 'dev',
+      email: null,
+      role: 'admin',
+      provider: 'dev',
+      kakaoLinked: false,
+    });
   }
 
   const session = await auth();
   // env allowlist 폴백으로 들어온 계정은 cms_users 행이 없다 — 세션 값으로 최선을 답한다
   const fallback = {
     name: session?.user?.name ?? session?.user?.login ?? '',
+    email: session?.user?.email ?? null,
     role: session?.user?.role ?? 'admin',
     provider: session?.provider ?? 'github',
     kakaoLinked: false,
@@ -33,6 +40,7 @@ export async function GET(): Promise<Response> {
     if (!row) return Response.json(fallback);
     return Response.json({
       name: row.name,
+      email: row.email ?? session?.user?.email ?? null,
       role: row.role,
       provider: session?.provider ?? 'github',
       kakaoLinked: row.kakaoLinked,
