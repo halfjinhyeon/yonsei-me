@@ -57,6 +57,7 @@ import {
   entryGroupLabel,
   entryId,
   entryLabel,
+  findEntry,
   isEditable,
   pushRecent,
 } from './entries';
@@ -235,9 +236,36 @@ function AdminConsoleBody({ token, login, role }: Props) {
       // 펼치러 가는 길이기 때문이다.
       if (next !== null) setOpenGuide(undefined);
       if (next && isEditable(next)) pushRecent(entryId(next));
+
+      // 현재 화면을 ?screen= 에 반영 — 새로고침해도 이 화면으로 복원되고(아래
+      // 마운트 효과), 특정 편집 화면의 딥링크 공유가 가능해진다. pushState 가
+      // 아니라 replaceState 인 이유: 뒤로가기가 화면 전환이 되면 미저장 이동
+      // 가드(navigate)를 우회하는 경로가 생긴다 — 히스토리는 쌓지 않는다.
+      const params = new URLSearchParams(window.location.search);
+      const screen = openUsers ? 'users' : next ? entryId(next) : null;
+      if (screen) params.set('screen', screen);
+      else params.delete('screen');
+      const qs = params.toString();
+      window.history.replaceState(null, '', window.location.pathname + (qs ? `?${qs}` : ''));
     },
     [clearTray],
   );
+
+  // 새로고침 복원 — 마운트 때 ?screen= 을 한 번 읽어 그 화면으로 들어간다.
+  // useSearchParams 는 이 프로젝트에서 정적 생성과 충돌해 쓰지 않는다(카카오
+  // 결과 처리와 같은 이유·같은 패턴). 모르는 ID·placeholder 는 대시보드 유지.
+  useEffect(() => {
+    const id = new URLSearchParams(window.location.search).get('screen');
+    if (!id) return;
+    if (id === 'users') {
+      if (role === 'admin') go(null, true);
+      return;
+    }
+    const entry = findEntry(id);
+    if (entry && isEditable(entry)) go(entry);
+    // 마운트 한 번만 — go 는 clearTray 에만 의존해 안정적이다
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   // 이동 가드: 편집 중이거나 트레이에 대기 변경이 있으면 모달로 확인한 뒤 전환한다.
   const navigate = useCallback(
