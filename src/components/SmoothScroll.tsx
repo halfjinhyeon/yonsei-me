@@ -34,6 +34,11 @@ export function SmoothScroll() {
       wheelMultiplier: 1,
       orientation: 'vertical',
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      // 중첩 스크롤 영역을 Lenis 가 직접 판정하게 한다(1.3 의 hasNestedScroll):
+      // 제스처 방향으로 **실제로 더 스크롤할 여지가 있는** 요소일 때만 비켜 준다.
+      // 이게 없으면 중첩 영역마다 data-lenis-prevent 를 손으로 달아야 하는데, 그
+      // 속성은 방향을 가리지 않아 "가로로만 스크롤되는 표"에서 세로 휠까지 막았다.
+      allowNestedScroll: true,
     });
 
     (window as unknown as { lenis?: Lenis }).lenis = lenis;

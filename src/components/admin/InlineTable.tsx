@@ -191,8 +191,18 @@ export function InlineTable({
         />
       ) : (
         // 네이비 2px 룰은 헤더 "위" — 사이트 본문 표와 같은 문법이다.
-        // 전역 Lenis 부드러운 스크롤이 휠을 가로채면 표 안쪽이 스크롤되지 않는다.
-        <div className="overflow-x-auto border-t-2 border-yonsei-navy" data-lenis-prevent>
+        //
+        // ⚠️ 스크롤 계약: **가로 제스처만** Lenis 에서 빼낸다(data-lenis-prevent-horizontal).
+        // 방향을 가리지 않는 data-lenis-prevent 를 쓰면 안 된다 — 두 가지가 겹쳐 표 위에서
+        // 세로 스크롤이 죽는다: ① overflow-x:auto 는 overflow-y 도 auto 로 만들어 이 요소가
+        // 세로로도 '스크롤 컨테이너'가 되는데 세로로 넘칠 내용은 없다, ② Lenis 의 dist CSS 가
+        // [data-lenis-prevent] 에 overscroll-behavior:contain 을 걸어 페이지로의 전파까지
+        // 막는다. 결과: 셀 위에 마우스를 두면 페이지가 안 움직인다.
+        // -horizontal 변형은 그 CSS 규칙 대상이 아니라 세로 휠이 정상적으로 Lenis 로 간다.
+        <div
+          className="overflow-x-auto border-t-2 border-yonsei-navy"
+          data-lenis-prevent-horizontal
+        >
           <table className="w-full border-collapse text-[13px]" style={{ minWidth }}>
             <thead>
               <tr>

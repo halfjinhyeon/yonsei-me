@@ -79,10 +79,11 @@ export function ChangeTray() {
           </span>
         </span>
 
-        {/* 칩 목록 — 건수가 많으면 가로로 스크롤한다.
-            data-lenis-prevent 가 없으면 전역 Lenis 가 휠을 가로채 안쪽이 안 움직인다. */}
+        {/* 칩 목록 — 건수가 많으면 가로로 스크롤한다. 가로 제스처만 Lenis 에서 빼낸다
+            (방향 무관 data-lenis-prevent 는 이 줄 위에서 세로 스크롤을 죽인다 —
+             사정은 InlineTable 의 표 래퍼 주석 참고). */}
         <div
-          data-lenis-prevent
+          data-lenis-prevent-horizontal
           className="order-last flex w-full min-w-0 items-center gap-2 overflow-x-auto pb-0.5 lg:order-none lg:w-auto lg:flex-1 lg:pb-0"
         >
           {changes.map((c) => (

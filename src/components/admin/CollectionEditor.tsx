@@ -1107,7 +1107,11 @@ export function CollectionEditor({ config, resource, onDirtyChange }: Props) {
                   {rows.length}개 · 총 {displayRaw.length}개
                 </span>
               </div>
-              <div className="overflow-x-auto border-t-2 border-yonsei-navy" data-lenis-prevent>
+              {/* 가로 제스처만 Lenis 에서 뺀다 — 사정은 InlineTable 의 같은 래퍼 주석 참고 */}
+              <div
+                className="overflow-x-auto border-t-2 border-yonsei-navy"
+                data-lenis-prevent-horizontal
+              >
                 <table className="w-full border-collapse text-[13px]">
                   <thead>
                     <tr>
