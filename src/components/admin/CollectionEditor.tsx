@@ -869,7 +869,6 @@ export function CollectionEditor({ config, resource, onDirtyChange }: Props) {
       <div className="anim-panel">
         <CmsPanelHead
           kind="collection"
-          file={resource.file}
           title={`${resource.label} · ${isNew ? '새 항목' : '수정'}`}
           description={resource.description}
           actions={
@@ -976,7 +975,6 @@ export function CollectionEditor({ config, resource, onDirtyChange }: Props) {
     <div className="anim-panel">
       <CmsPanelHead
         kind="collection"
-        file={resource.file}
         title={resource.label}
         description={resource.description}
         actions={

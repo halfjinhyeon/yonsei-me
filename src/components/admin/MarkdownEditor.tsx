@@ -93,9 +93,9 @@ export function MarkdownEditor({ config, page, onDirtyChange }: Props) {
   return (
     <div className="rounded-card border border-surface-border bg-surface p-5 shadow-card sm:p-6">
       <div className="mb-4">
+        {/* 파일 경로는 적지 않는다 — CmsPanelHead 와 같은 이유(내부 구현 정보) */}
         <h2 className="text-lg font-bold text-content">{page.label}</h2>
         <p className="mt-1 text-sm text-content-soft">{page.description}</p>
-        <p className="mt-0.5 text-xs text-content-faint">{page.file}</p>
       </div>
 
       {success && <CommitBanner message={success.message} url={success.url} />}

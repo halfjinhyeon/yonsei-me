@@ -44,7 +44,8 @@ export function AdminDashboard({ onOpen, openGuide }: Props) {
   return (
     // 좌우 여백은 셸이 준다. 여기서는 최대 폭과 섹션 사이 간격만 정한다.
     <div className="anim-panel mx-auto flex max-w-[1024px] flex-col gap-7">
-      <h1 className="font-hero text-2xl font-bold tracking-[-0.01em] text-content">
+      {/* 다른 화면의 머리말(CmsPanelHead)과 같은 계층이라 서체·굵기도 동일하게 */}
+      <h1 className="font-subhead text-2xl font-semibold tracking-[-0.01em] text-content">
         안녕하세요, {login || '관리자'} 님
       </h1>
       <RecentSection onOpen={onOpen} />
@@ -182,16 +183,16 @@ const FIRST_TIME_STEPS = [
 
 const NEW_ADMIN_STEPS = [
   {
-    t: '로그인 허용',
-    b: 'Vercel → Settings → Environment Variables 의 ALLOWED_GITHUB_LOGINS 에 그 사람의 GitHub 계정명을 추가합니다(여러 명은 쉼표로 구분).',
+    t: '사용자·권한 열기',
+    b: '왼쪽 메뉴 위쪽의 “사용자·권한”을 엽니다. 이 화면은 관리자에게만 보입니다.',
   },
   {
-    t: '저장소 권한',
-    b: 'GitHub 저장소 yonsei-mech/yonsei-me → Settings → Collaborators 에서 그 계정을 Write 권한으로 초대합니다(저장 = 커밋에 필요).',
+    t: '사람 추가',
+    b: '이름과 이메일을 넣고 역할(관리자 · 편집자)을 고른 뒤 “추가”를 누릅니다. GitHub 으로도 로그인하게 하려면 GitHub 아이디를 함께 넣습니다.',
   },
   {
-    t: '재배포',
-    b: '환경변수는 새 배포부터 적용됩니다. Vercel 에서 최신 배포를 Redeploy 하면 그 사람이 로그인할 수 있습니다.',
+    t: '로그인 안내',
+    b: '추가한 즉시 로그인할 수 있습니다. 그 사람은 로그인 화면에서 이메일로 인증번호를 받아 들어옵니다.',
   },
 ];
 
@@ -213,12 +214,12 @@ function GuideSection({ openGuide }: { openGuide?: string }) {
 
       <GuideDetails
         title="새 관리자 등록"
-        note="GitHub 계정 허용 절차"
+        note="콘솔에서 직접 · 3단계"
         defaultOpen={openGuide === '새 관리자 등록'}
       >
         <p className="text-[13px] leading-[1.8] text-content-soft">
-          이 콘솔은 GitHub 로그인으로 접근합니다. 새 담당자를 추가하려면 아래 세 가지가
-          필요합니다 (Vercel·GitHub 설정 권한이 있는 사람이 진행하세요).
+          새 담당자는 이 콘솔 안에서 바로 등록합니다. 여기 등록된 사람만 로그인할 수 있고,
+          추가·삭제는 재배포 없이 즉시 적용됩니다.
         </p>
         <ol className="mt-4 grid gap-4">
           {NEW_ADMIN_STEPS.map((step, i) => (
@@ -226,9 +227,10 @@ function GuideSection({ openGuide }: { openGuide?: string }) {
           ))}
         </ol>
         <p className="mt-4 text-xs leading-relaxed text-content-faint">
-          계정명은 이메일·실명이 아니라 GitHub username 입니다. 관리자를 제거하려면
-          ALLOWED_GITHUB_LOGINS 에서 계정명을 지우고 다시 배포하세요. (저장소 소유자 계정은
-          코드에 항상 허용되어 있습니다.)
+          관리자는 사용자 등록·권한 변경까지, 편집자는 콘텐츠 편집만 할 수 있습니다. 내보낼
+          때는 사용자·권한 목록에서 그 사람을 삭제하면 바로 막힙니다(마지막 관리자는 삭제·
+          강등되지 않습니다). 카카오 로그인은 본인이 로그인한 뒤 왼쪽 아래 계정에서 직접
+          연결합니다.
         </p>
       </GuideDetails>
     </section>

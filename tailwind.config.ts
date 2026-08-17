@@ -52,6 +52,11 @@ const config: Config = {
       },
       fontFamily: {
         sans: ['var(--font-sans)', 'Pretendard', 'system-ui', 'sans-serif'],
+        // 제목 서체 — 사이트 히어로 제목(Hero.tsx)과 같은 지마켓 산스.
+        // 700 단일 두께라 font-bold(700)와 맞아 가짜 볼드 합성이 없다.
+        hero: ['var(--font-hero)', 'var(--font-sans)', 'Pretendard', 'sans-serif'],
+        // 소제목 서체 — 세부탭 소제목(TabPageShell)과 같은 Paperlogy(600·700)
+        subhead: ['var(--font-subhead)', 'var(--font-sans)', 'Pretendard', 'sans-serif'],
       },
       fontSize: {
         // 타이포 스케일

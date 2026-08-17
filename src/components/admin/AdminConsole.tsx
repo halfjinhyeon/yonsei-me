@@ -555,9 +555,15 @@ function AdminConsoleBody({ token, login, role }: Props) {
   );
 }
 
-/** 내비 행 공통 문법 — 대시보드·평평한 그룹·아코디언 부모가 같은 높이로 정렬된다 */
+/** 내비 행 공통 문법 — 대시보드·평평한 그룹·아코디언 부모가 같은 높이로 정렬된다.
+ *  행 높이 33px 에 맞춘 비율: 글자 13px · 아이콘 16px · 간격 8px
+ *  (아이콘 16 + 좌우 여백 12 + 간격 8 = 라벨이 36px 에서 시작 → 하위 항목 pl-10)
+ *
+ *  ⚠️ shrink-0 은 필수다. 이 행들은 세로 flex 스크롤 영역의 직계 자식이라,
+ *  그룹을 펼쳐 목록이 화면을 넘기는 순간 flex 가 h-[33px] 를 무시하고 글자
+ *  높이까지 눌러 버린다(패딩으로 높이를 주던 때는 패딩이 안 줄어 안 보이던 문제). */
 const ROW =
-  'flex h-[33px] w-full cursor-pointer items-center gap-2.5 px-3 text-left text-sm transition-colors duration-200 ease-out-expo';
+  'flex h-[33px] w-full shrink-0 cursor-pointer items-center gap-2 px-3 text-left text-[13px] transition-colors duration-200 ease-out-expo';
 
 /**
  * 사이드바 본문 — 데스크톱 고정 열과 모바일 드로어가 같은 내용을 쓴다.
@@ -688,7 +694,7 @@ function SidebarBody({
                 onMouseEnter={() => setCursor(i)}
                 // ROW 를 쓰지 않는다 — cn 은 단순 join 이라 gap 을 덮어쓸 수 없다
                 className={cn(
-                  'flex h-[33px] w-full cursor-pointer items-center gap-2 px-3 text-left text-sm transition-colors duration-200 ease-out-expo',
+                  'flex h-[33px] w-full shrink-0 cursor-pointer items-center gap-2 px-3 text-left text-[13px] transition-colors duration-200 ease-out-expo',
                   i === cursor ? 'bg-surface-soft text-yonsei-navy' : 'text-content',
                 )}
               >
@@ -713,7 +719,7 @@ function SidebarBody({
                   : 'font-medium text-content hover:bg-surface-soft',
               )}
             >
-              <IcoDashboard size={18} className={cn('shrink-0', !isDashboard && 'text-content-faint')} />
+              <IcoDashboard size={16} className={cn('shrink-0', !isDashboard && 'text-content-faint')} />
               대시보드
             </button>
 
@@ -731,7 +737,7 @@ function SidebarBody({
                     : 'font-medium text-content hover:bg-surface-soft',
                 )}
               >
-                <IcoUsers size={18} className={cn('shrink-0', !usersOpen && 'text-content-faint')} />
+                <IcoUsers size={16} className={cn('shrink-0', !usersOpen && 'text-content-faint')} />
                 사용자·권한
               </button>
             )}
@@ -762,7 +768,7 @@ function SidebarBody({
                     )}
                   >
                     {GroupIcon && (
-                      <GroupIcon size={18} className={cn('shrink-0', !selected && 'text-content-faint')} />
+                      <GroupIcon size={16} className={cn('shrink-0', !selected && 'text-content-faint')} />
                     )}
                     <span className="min-w-0 truncate">{entryLabel(only)}</span>
                   </button>
@@ -771,17 +777,18 @@ function SidebarBody({
 
               const open = openGroup === group.label;
               return (
-                <div key={group.label}>
+                // shrink-0 — 아코디언 묶음도 스크롤 영역의 직계 자식이라 ROW 와 같은 이유로 눌린다
+                <div key={group.label} className="shrink-0">
                   <button
                     type="button"
                     onClick={() => setOpenGroup((cur) => (cur === group.label ? '' : group.label))}
                     aria-expanded={open}
                     className={cn(ROW, 'font-medium text-content hover:bg-surface-soft')}
                   >
-                    {GroupIcon && <GroupIcon size={18} className="shrink-0 text-content-faint" />}
+                    {GroupIcon && <GroupIcon size={16} className="shrink-0 text-content-faint" />}
                     <span className="min-w-0 truncate">{group.label}</span>
                     <IcoChevronDown
-                      size={16}
+                      size={14}
                       className={cn(
                         'ml-auto shrink-0 text-content-faint transition-transform duration-200 ease-out-expo',
                         open && 'rotate-180',
@@ -804,7 +811,7 @@ function SidebarBody({
                               aria-current={selected ? 'page' : undefined}
                               title={entry.type === 'placeholder' ? entry.note : undefined}
                               className={cn(
-                                'flex h-[33px] w-full cursor-pointer items-center pl-11 pr-3 text-left text-[13.5px] transition-colors duration-200 ease-out-expo',
+                                'flex h-[33px] w-full cursor-pointer items-center pl-10 pr-3 text-left text-[12.5px] transition-colors duration-200 ease-out-expo',
                                 // 선택은 얇은 막대 대신 네이비 면으로 — 목록 옆 세로선은
                                 // 스크롤 중에 놓치기 쉽다. 각진 채움은 콘솔의 필터 칩
                                 // (FilterChip) 활성 상태와 같은 문법이다.

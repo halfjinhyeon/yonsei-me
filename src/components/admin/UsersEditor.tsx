@@ -164,7 +164,7 @@ export function UsersEditor() {
   return (
     <>
       <header className="cms-rule mb-7 pb-[18px]">
-        <h2 className="text-[clamp(1.6rem,3.2vw,2.4rem)] font-bold leading-[1.15] tracking-tight text-content">
+        <h2 className="font-subhead text-[clamp(1.6rem,3.2vw,2.4rem)] font-semibold leading-[1.15] tracking-tight text-content">
           사용자·권한
         </h2>
         <p className="mt-3.5 max-w-[76ch] text-[13px] leading-[1.8] text-content-soft">

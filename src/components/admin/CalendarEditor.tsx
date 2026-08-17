@@ -608,7 +608,7 @@ export function CalendarEditor({ meta, items, busy, onSave, onDelete }: Props) {
         열립니다. <strong className="text-content">저장해야 달력에 올라갑니다</strong> — 저장하면
         사이트에 수 초 내 반영됩니다. 기울임체 칩은{' '}
         <strong className="text-content">행사·세미나·동문 행사 게시판에서 자동으로 올라온 일정</strong>
-        이라 여기서 고칠 수 없고, 해당 게시판에서 수정합니다 (Supabase · posts (board={meta.key})).
+        이라 여기서 고칠 수 없고, 해당 게시판에서 수정합니다.
       </p>
 
       {boardNotice && (

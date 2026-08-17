@@ -617,7 +617,6 @@ export function BoardEditor({ config, boardKey, onDirtyChange }: Props) {
       <div className="min-w-0">
         <CmsPanelHead
           kind="board"
-          file={`Supabase · posts (board=${boardKey})`}
           title={meta.label}
           description={`${BOARD_NOTES[boardKey]} 행사 게시판 글은 자동으로 캘린더에 오르므로 여기에 다시 적지 않아도 됩니다.`}
         />
@@ -659,9 +658,6 @@ export function BoardEditor({ config, boardKey, onDirtyChange }: Props) {
     <div className="min-w-0">
       <CmsPanelHead
         kind="board"
-        // 백엔드가 Supabase 로 옮겨간 뒤라 "파일 경로" 자리에 실제 저장처(테이블·구분값)를 적는다.
-        // 문제가 생겼을 때 담당자가 같은 레코드를 찾아갈 수 있어야 한다는 목적은 같다.
-        file={`Supabase · posts (board=${boardKey})`}
         title={meta.label}
         description={`${BOARD_NOTES[boardKey]} 같은 유형의 게시판은 이 화면과 동일한 목록·편집기를 씁니다.`}
       />
