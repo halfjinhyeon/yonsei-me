@@ -557,7 +557,7 @@ function AdminConsoleBody({ token, login, role }: Props) {
 
 /** 내비 행 공통 문법 — 대시보드·평평한 그룹·아코디언 부모가 같은 높이로 정렬된다 */
 const ROW =
-  'flex w-full cursor-pointer items-center gap-2.5 px-3 py-[9px] text-left text-sm transition-colors duration-200 ease-out-expo';
+  'flex h-[33px] w-full cursor-pointer items-center gap-2.5 px-3 text-left text-sm transition-colors duration-200 ease-out-expo';
 
 /**
  * 사이드바 본문 — 데스크톱 고정 열과 모바일 드로어가 같은 내용을 쓴다.
@@ -688,7 +688,7 @@ function SidebarBody({
                 onMouseEnter={() => setCursor(i)}
                 // ROW 를 쓰지 않는다 — cn 은 단순 join 이라 gap 을 덮어쓸 수 없다
                 className={cn(
-                  'flex w-full cursor-pointer items-center gap-2 px-3 py-[9px] text-left text-sm transition-colors duration-200 ease-out-expo',
+                  'flex h-[33px] w-full cursor-pointer items-center gap-2 px-3 text-left text-sm transition-colors duration-200 ease-out-expo',
                   i === cursor ? 'bg-surface-soft text-yonsei-navy' : 'text-content',
                 )}
               >
@@ -804,7 +804,7 @@ function SidebarBody({
                               aria-current={selected ? 'page' : undefined}
                               title={entry.type === 'placeholder' ? entry.note : undefined}
                               className={cn(
-                                'flex w-full cursor-pointer items-center py-[7px] pl-11 pr-3 text-left text-[13.5px] transition-colors duration-200 ease-out-expo',
+                                'flex h-[33px] w-full cursor-pointer items-center pl-11 pr-3 text-left text-[13.5px] transition-colors duration-200 ease-out-expo',
                                 // 선택은 얇은 막대 대신 네이비 면으로 — 목록 옆 세로선은
                                 // 스크롤 중에 놓치기 쉽다. 각진 채움은 콘솔의 필터 칩
                                 // (FilterChip) 활성 상태와 같은 문법이다.
