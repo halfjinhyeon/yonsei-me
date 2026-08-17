@@ -308,7 +308,7 @@ function TSelect({
       aria-label={title}
       value={value}
       onChange={(e) => onChange(e.target.value)}
-      className="h-8 border border-surface-border bg-surface px-1 text-xs text-content outline-none focus:border-yonsei-blue"
+      className="cms-select h-8 border border-surface-border bg-surface pl-2.5 text-xs text-content outline-none focus:border-yonsei-blue"
     >
       {options.map((o) => (
         <option key={o.value} value={o.value}>

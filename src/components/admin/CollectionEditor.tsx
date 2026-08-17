@@ -113,7 +113,7 @@ function withTrailingNewline(text: string): string {
 }
 
 export function CollectionEditor({ config, resource, onDirtyChange }: Props) {
-  // 저장 결과를 화면 한 곳(상단 토스트·배포 칩·권한 배너)에서만 말하게 한다.
+  // 저장 결과를 화면 한 곳(상단 토스트·권한 배너)에서만 말하게 한다.
   // 트레이 저장은 ChangeTray 가 이미 토스트를 띄우므로, 여기서는 트레이를 거치지
   // 않는 경로(폼 저장·삭제)만 직접 알린다 — 아래 finishSave 의 notify 인자 참고.
   const { showToast, setWriteDenied } = useAdminShell();
@@ -386,8 +386,8 @@ export function CollectionEditor({ config, resource, onDirtyChange }: Props) {
     // 쓰기가 통했으니 권한 배너를 내린다 — 권한은 나중에 부여될 수 있고,
     // 한 번 뜬 배너가 남아 있으면 이미 되는 일을 안 된다고 말하게 된다.
     setWriteDenied(false);
-    // ⚠️ setDeploy('deploying') 를 부르지 않는다. 콘텐츠 저장은 Supabase 행 갱신 +
-    // revalidateTag('content') 라 재배포를 기다리지 않는다(BoardEditor 와 같은 이유).
+    // 콘텐츠 저장은 Supabase 행 갱신 + revalidateTag('content') 라 재배포를
+    // 기다리지 않는다 — "배포 중" 안내가 필요 없다(BoardEditor 와 같은 이유).
     if (notice) showToast(notice);
     void load();
   }

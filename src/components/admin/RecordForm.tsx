@@ -322,7 +322,7 @@ export function RecordForm({
             id={id}
             value={str}
             onChange={(e) => setValue(f.key, e.target.value)}
-            className={fieldClass}
+            className={`${fieldClass} cms-select`}
           >
             {showEmpty && <option value="">{emptyLabel}</option>}
             {f.options.map((o) => (

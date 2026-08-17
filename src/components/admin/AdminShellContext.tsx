@@ -2,9 +2,7 @@
 
 // 콘솔 셸이 하위 에디터와 공유하는 최소 컨텍스트.
 //
-// 지금 필요한 것은 세 가지뿐이다:
-//  - deploy: 상단 바의 배포 상태 칩. 저장(커밋) 직후 "배포 중"으로 바뀌어야 하는데
-//    커밋을 실행하는 쪽은 에디터/변경 트레이(2단계)라 셸 상태를 위로 올려야 한다.
+// 지금 필요한 것은 두 가지뿐이다:
 //  - toast: 저장 완료 같은 일회성 알림. 각 에디터가 자기 배너를 따로 그리지 않고
 //           화면 한 곳에서만 말하게 한다.
 //  - focusMode: 글쓰기 화면(4단계)은 좌측 내비를 걷어낸 전체화면 단일 컬럼이다.
@@ -18,13 +16,9 @@ import type { RepoConfig } from '@/lib/admin/content-api';
 import type { MenuEntry } from '@/lib/admin/resources';
 import type { CmsBannerData } from './CmsBanner';
 
-export type DeployState = 'idle' | 'deploying';
-
 export interface AdminShellValue {
   config: RepoConfig;
   login: string;
-  deploy: DeployState;
-  setDeploy: (d: DeployState) => void;
   /** 상단 토스트 — 2단계 이후 저장 완료 안내에 쓴다 */
   toast: string | null;
   showToast: (msg: string) => void;

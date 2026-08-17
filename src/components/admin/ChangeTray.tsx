@@ -36,10 +36,8 @@ export function ChangeTray() {
     if (blocked) return;
     const ok = await runSave();
     if (!ok) return;
-    // ⚠️ 배포 칩(setDeploy('deploying'))을 올리지 않는다. 트레이를 쓰는 화면은
-    // 콘텐츠 편집(CollectionEditor)뿐이고, 콘텐츠 저장은 Supabase 행 갱신 +
-    // revalidateTag('content') 라 재배포를 기다리지 않는다 — "배포 중 · 1~2분" 칩은
-    // 이미 반영이 끝난 변경을 두고 더 기다리라는 거짓 안내가 된다(BoardEditor 와 동일).
+    // 콘텐츠 저장은 Supabase 행 갱신 + revalidateTag('content') 라 재배포를
+    // 기다리지 않는다 — 그래서 "배포 중" 표시 없이 완료 토스트만 말한다.
     showToast('저장했습니다 — 곧 사이트에 반영됩니다.');
   }
 

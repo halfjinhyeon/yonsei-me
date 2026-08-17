@@ -473,7 +473,7 @@ export function ClubFeedEditor({
                 value={link.label}
                 onChange={(e) => setLink(i, { label: e.target.value })}
                 disabled={disabled}
-                className="rounded-lg border border-surface-border bg-surface-soft px-3 py-2 text-sm text-content outline-none focus:border-yonsei-blue"
+                className="cms-select rounded-lg border border-surface-border bg-surface-soft px-3 py-2 text-sm text-content outline-none focus:border-yonsei-blue"
               >
                 {CLUB_LINK_LABELS.map((label) => (
                   <option key={label} value={label}>

@@ -36,6 +36,7 @@ import {
 } from '@/lib/admin/post-draft';
 import { uploadAttachment } from '@/lib/admin/storage';
 import { CalendarEditor } from './CalendarEditor';
+import { IcoPen } from './cms-icons';
 import { CmsModal } from './CmsModal';
 import { CmsPanelHead } from './CmsPanelHead';
 import { CmsSkeleton } from './CmsSkeleton';
@@ -543,11 +544,8 @@ export function BoardEditor({ config, boardKey, onDirtyChange }: Props) {
     showToast(full);
     // 쓰기가 통했으니 권한 배너를 내린다 (권한은 나중에 부여될 수 있다)
     setWriteDenied(false);
-    // ⚠️ 여기서 setDeploy('deploying') 를 부르지 않는다. 게시판 글은 Supabase 에
-    // 들어가고 서버가 revalidateTag('posts') 를 호출해 **재배포 없이** 즉시 반영된다.
-    // 배포 칩은 "배포 중 · 1~2분"이라고 말하므로, 이미 반영이 끝난 변경을 두고
-    // 1~2분을 더 기다리라는 거짓 안내가 된다. 배포 칩은 content/*.json 을 커밋하는
-    // CollectionEditor 쪽 저장에만 붙는다.
+    // 게시판 글은 Supabase 에 들어가고 서버가 revalidateTag('posts') 를 호출해
+    // **재배포 없이** 즉시 반영된다 — "배포 중" 같은 대기 안내를 붙이지 않는다.
     void loadEntries(boardKey);
   }
 
@@ -666,11 +664,6 @@ export function BoardEditor({ config, boardKey, onDirtyChange }: Props) {
         file={`Supabase · posts (board=${boardKey})`}
         title={meta.label}
         description={`${BOARD_NOTES[boardKey]} 같은 유형의 게시판은 이 화면과 동일한 목록·편집기를 씁니다.`}
-        actions={
-          <button type="button" onClick={startNew} disabled={busy} className="cms-btn-primary">
-            + 새 글 쓰기
-          </button>
-        }
       />
 
       {success && <CommitBanner message={success} url="" />}
@@ -736,6 +729,18 @@ export function BoardEditor({ config, boardKey, onDirtyChange }: Props) {
               />
               <span>{selected.size > 0 ? `${selected.size}개 선택` : '전체 선택'}</span>
             </label>
+
+            {/* 글쓰기 — 목록 바로 위 오른쪽. 화면 머리(CmsPanelHead)에 있던 것을
+                내렸다: 새 글은 목록을 보다가 누르는 동작이라 목록 곁이 자연스럽다. */}
+            <button
+              type="button"
+              onClick={startNew}
+              disabled={busy}
+              className="cms-btn-primary cms-btn-sm order-last ml-auto"
+            >
+              <IcoPen size={14} className="shrink-0" />
+              글쓰기
+            </button>
 
             {/* 선택 액션 — 1개 이상 선택했을 때만 (선택 삭제 + 다른 게시판으로 이동) */}
             {selected.size > 0 && (

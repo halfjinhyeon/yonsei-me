@@ -32,7 +32,6 @@ import {
   AdminShellProvider,
   AdminToast,
   type AdminShellValue,
-  type DeployState,
 } from './AdminShellContext';
 import { BoardEditor } from './BoardEditor';
 import { ChangeTray } from './ChangeTray';
@@ -42,11 +41,13 @@ import {
   IcoChevronDown,
   IcoDashboard,
   IcoExternal,
+  IcoKakaoMark,
   IcoLogout,
   IcoMenu,
   IcoSearch,
   IcoUsers,
 } from './cms-icons';
+import { KakaoLinkPopover } from './KakaoLinkPopover';
 import { CmsBanner, type CmsBannerData } from './CmsBanner';
 import { CmsModal } from './CmsModal';
 import { CollectionEditor } from './CollectionEditor';
@@ -91,9 +92,6 @@ const KAKAO_RESULTS: Record<string, string> = {
 
 const SITE_URL = 'https://yonsei-me.vercel.app/ko';
 
-/** 접힘 상태에서 기본으로 펼쳐 둘 그룹 — 손대는 빈도가 가장 높은 묶음 */
-const DEFAULT_OPEN_GROUP = '뉴스·공지';
-
 // 트레이 컨텍스트를 셸 자신도 읽어야 해서(이동 가드가 대기 변경을 봐야 한다)
 // Provider 와 본문을 한 겹 나눈다 — Provider 를 렌더하는 컴포넌트는 그 컨텍스트를
 // 구독할 수 없기 때문이다.
@@ -125,8 +123,7 @@ function AdminConsoleBody({ token, login, role }: Props) {
   // lg 미만에서 사이드바를 드로어로 연다
   const [navOpen, setNavOpen] = useState(false);
 
-  // 셸 컨텍스트 — 배포 상태 칩과 토스트. 값을 바꾸는 쪽은 변경 트레이다.
-  const [deploy, setDeploy] = useState<DeployState>('idle');
+  // 셸 컨텍스트 — 토스트. 값을 바꾸는 쪽은 변경 트레이·각 에디터다.
   const [toast, setToast] = useState<string | null>(null);
   const showToast = useCallback((msg: string) => setToast(msg), []);
   const dismissToast = useCallback(() => setToast(null), []);
@@ -225,16 +222,6 @@ function AdminConsoleBody({ token, login, role }: Props) {
   const { source: traySource, saving: traySaving, clearTray } = useChangeTray();
   const pendingCount = traySource?.changes.length ?? 0;
 
-  // 커밋이 도는 동안 배포 중 표시를 띄웠다가 스스로 내린다. Vercel 빌드가 대략
-  // 1~2분이라 90초를 근사치로 잡았다(성공 여부를 폴링할 경로가 없다).
-  // 타이머를 셸에 두는 이유: 저장이 끝나면 트레이가 곧바로 언마운트돼 트레이 안에
-  // 타이머를 두면 즉시 정리돼 버린다.
-  useEffect(() => {
-    if (deploy !== 'deploying') return;
-    const t = window.setTimeout(() => setDeploy('idle'), 90_000);
-    return () => window.clearTimeout(t);
-  }, [deploy]);
-
   const go = useCallback(
     (next: MenuEntry | null, openUsers = false) => {
       setDirty(false);
@@ -316,17 +303,17 @@ function AdminConsoleBody({ token, login, role }: Props) {
     setBanner(null);
   }, [writeDenied]);
 
-  // 셸 컨텍스트 — 배포 상태 칩·토스트·집중 모드, 화면 안 이동(openEntry),
+  // 셸 컨텍스트 — 토스트·집중 모드, 화면 안 이동(openEntry),
   // 그리고 운영 상태(온라인·권한·배너·저장 잠금).
   // navigate 를 참조하므로 그 선언 뒤에 둔다(이동 가드를 그대로 물려받기 위함).
   const shell = useMemo<AdminShellValue>(
     () => ({
-      config, login, deploy, setDeploy, toast, showToast, dismissToast,
+      config, login, toast, showToast, dismissToast,
       focusMode, setFocusMode, openEntry: navigate,
       online, writeDenied, setWriteDenied, banner, setBanner, saveBlock,
     }),
     [
-      config, login, deploy, toast, showToast, dismissToast, focusMode, navigate,
+      config, login, toast, showToast, dismissToast, focusMode, navigate,
       online, writeDenied, banner, saveBlock,
     ],
   );
@@ -400,10 +387,8 @@ function AdminConsoleBody({ token, login, role }: Props) {
                 usersOpen={usersOpen}
                 showUsers={role === 'admin'}
                 onNavigate={navigate}
-                config={config}
                 login={login}
                 me={me}
-                deploy={deploy}
                 onSignOut={() => setConfirmSignOut(true)}
               />
             </nav>
@@ -429,10 +414,8 @@ function AdminConsoleBody({ token, login, role }: Props) {
                   usersOpen={usersOpen}
                   showUsers={role === 'admin'}
                   onNavigate={navigate}
-                  config={config}
                   login={login}
                   me={me}
-                  deploy={deploy}
                   onSignOut={() => setConfirmSignOut(true)}
                 />
               </nav>
@@ -449,7 +432,7 @@ function AdminConsoleBody({ token, login, role }: Props) {
             {usersOpen ? (
               <UsersEditor />
             ) : active === null ? (
-              <AdminDashboard config={config} onOpen={navigate} openGuide={openGuide} />
+              <AdminDashboard onOpen={navigate} openGuide={openGuide} />
             ) : active.type === 'board' ? (
               <BoardEditor
                 key={activeId ?? undefined}
@@ -477,6 +460,16 @@ function AdminConsoleBody({ token, login, role }: Props) {
 
         <AdminToast />
         <ChangeTray />
+
+        {/* 카카오 연결 유도 — Claude Design 목업 '시안 B'(우하단 고정 팝오버).
+            미연결 계정에만, 계정 기준으로 닫음을 기억한다. 글쓰기 집중 모드에서는
+            띄우지 않는다 — 긴 글을 쓰는 화면에 로그인 안내가 떠 있을 이유가 없다. */}
+        {!focusMode && me && (
+          <KakaoLinkPopover
+            account={me.email || login || 'unknown'}
+            eligible={me.provider !== 'kakao' && !me.kakaoLinked}
+          />
+        )}
 
         {pending && (
           <CmsModal
@@ -551,10 +544,8 @@ function SidebarBody({
   usersOpen,
   showUsers,
   onNavigate,
-  config,
   login,
   me,
-  deploy,
   onSignOut,
 }: {
   activeId: string | null;
@@ -563,19 +554,21 @@ function SidebarBody({
   /** 관리자에게만 사용자·권한 항목을 보인다 — 편집자에게는 존재하지 않는 화면이다 */
   showUsers: boolean;
   onNavigate: (entry: MenuEntry | null, openUsers?: boolean) => void;
-  config: RepoConfig;
   login: string;
   me: MeInfo | null;
-  deploy: DeployState;
   /** 로그아웃 아이콘 — 즉시 나가지 않고 셸의 확인 팝업을 연다 */
   onSignOut: () => void;
 }) {
+  // 카카오 상태 한 줄 — 있으면 이메일 대신 이 문구가 둘째 줄을 차지한다(목업 ②·③)
+  const kakaoStatus =
+    me?.provider === 'kakao' ? '카카오로 로그인 중' : me?.kakaoLinked ? '카카오 연결됨' : null;
   const [query, setQuery] = useState('');
   // 검색 결과 키보드 커서 (↑↓ 이동, Enter 선택)
   const [cursor, setCursor] = useState(0);
   // 한 번에 한 그룹만 연다 — 전부 펼치면 13개 게시판이 화면을 넘겨 스크롤 없이는
-  // 어느 묶음에 있는지조차 보이지 않는다.
-  const [openGroup, setOpenGroup] = useState<string>(() => groupOf(activeId) ?? DEFAULT_OPEN_GROUP);
+  // 어느 묶음에 있는지조차 보이지 않는다. 기본은 모두 닫힘 — 현재 항목이 속한
+  // 그룹이 있을 때만 그 그룹을 펼치고 시작한다.
+  const [openGroup, setOpenGroup] = useState<string>(() => groupOf(activeId) ?? '');
 
   // 사이드바를 거치지 않는 이동(대시보드 카드·배너 안내)으로 현재 항목이 바뀌면
   // 그 그룹을 펼친다. 접힌 그룹 안에 숨으면 "지금 어디에 있는지"가 사라진다.
@@ -622,8 +615,6 @@ function SidebarBody({
       if (picked) choose(picked);
     }
   }
-
-  const deploying = deploy === 'deploying';
 
   return (
     <>
@@ -811,20 +802,8 @@ function SidebarBody({
       </div>
 
       {/* 하단 유틸리티 — 목록이 아무리 길어도 스크롤 밖에 남는다.
-          배포 상태·계정·저장소는 "지금 어디에 무엇으로 쓰고 있는지"라 항상 보여야 한다. */}
+          계정·저장소는 "지금 어디에 무엇으로 쓰고 있는지"라 항상 보여야 한다. */}
       <div className="flex flex-col gap-0.5 border-t border-surface-border px-4 pb-4 pt-3">
-        {/* 배포 상태 — 값을 'deploying' 으로 올리는 쪽은 변경 트레이, 90초 뒤 내리는 쪽은 셸 */}
-        <div className="flex items-center gap-2.5 px-3 py-2 text-[13.5px] text-content">
-          <span
-            aria-hidden="true"
-            className={cn(
-              'h-2 w-2 shrink-0',
-              deploying ? 'animate-pulse bg-yonsei-blue' : 'bg-[#17B26A]',
-            )}
-          />
-          {deploying ? '배포 중 · 1~2분' : '배포 대기 없음'}
-        </div>
-
         <a
           href={SITE_URL}
           target="_blank"
@@ -835,38 +814,30 @@ function SidebarBody({
           사이트 열기
         </a>
 
+        {/* 계정 블록 — Claude Design 목업 '시안 A' 공통형: 원형 아바타 + 이름·이메일.
+            저장소 경로는 관리자에게 무의미해 지웠고, 카카오 상태는 아바타의 15px
+            배지와 둘째 줄이 조용히 말한다. 연결 유도는 여기가 아니라 우하단
+            팝오버(KakaoLinkPopover, 시안 B)가 맡는다 — 본인만 연결할 수 있어
+            사용자 관리 화면이 아니라 자기 계정 자리에서 다루는 원칙은 그대로다. */}
         <div className="mt-2.5 flex items-center gap-2.5 border border-surface-border p-2.5">
           <span
             aria-hidden="true"
-            className="flex h-[34px] w-[34px] shrink-0 items-center justify-center bg-yonsei-navy text-sm font-bold text-white"
+            className="relative flex h-[34px] w-[34px] shrink-0 items-center justify-center rounded-full bg-yonsei-navy text-sm font-bold text-white"
           >
             {(me?.name || login || 'G').charAt(0).toUpperCase()}
+            {kakaoStatus && (
+              <span className="absolute -bottom-0.5 -right-0.5 flex h-[15px] w-[15px] items-center justify-center rounded-full bg-[#FEE500] ring-2 ring-surface">
+                <IcoKakaoMark size={9} />
+              </span>
+            )}
           </span>
           <div className="min-w-0">
             <div className="truncate text-[13.5px] font-semibold">
               {me?.name || login || '게스트'}
             </div>
-            <div className="truncate text-xs text-content-faint">
-              {config.owner}/{config.repo} · {config.branch}
-            </div>
-            {/* 카카오 연결은 본인만 할 수 있다(관리자가 대신 걸어 줄 수 없다) —
-                그래서 사용자 관리 화면이 아니라 자기 계정 블록에 둔다. */}
-            {me &&
-              (me.provider === 'kakao' ? (
-                <div className="text-xs text-content-faint">카카오 로그인</div>
-              ) : me.kakaoLinked ? (
-                <div className="text-xs text-content-faint">카카오 연결됨</div>
-              ) : (
-                <button
-                  type="button"
-                  onClick={() => {
-                    window.location.href = '/api/link/kakao';
-                  }}
-                  className="text-left text-xs font-semibold text-yonsei-blue transition-colors duration-200 ease-out-expo hover:text-yonsei-navy"
-                >
-                  카카오 계정 연결
-                </button>
-              ))}
+            {(kakaoStatus ?? me?.email) && (
+              <div className="truncate text-xs text-content-faint">{kakaoStatus ?? me?.email}</div>
+            )}
           </div>
           <button
             type="button"

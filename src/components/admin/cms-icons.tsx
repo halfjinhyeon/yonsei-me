@@ -25,11 +25,38 @@ function svgProps({ size = 18, className }: IconProps) {
   } as const;
 }
 
+/** 카카오 말풍선 심볼 — 유일한 채움(fill) 아이콘. 브랜드 마크라 스트로크 문법을
+ *  따르지 않고, 노란 원(#FEE500) 위에 검정 85%로 얹는 조합을 쓰는 쪽이 책임진다. */
+export function IcoKakaoMark({ size = 9, className }: IconProps) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="rgba(0,0,0,0.85)"
+      className={className}
+      aria-hidden
+    >
+      <path d="M12 3.2c-5.08 0-9.2 3.26-9.2 7.28 0 2.57 1.7 4.82 4.26 6.11-.19.68-.68 2.47-.78 2.85-.12.48.18.47.37.34.15-.1 2.4-1.63 3.38-2.3.63.09 1.29.14 1.97.14 5.08 0 9.2-3.26 9.2-7.28S17.08 3.2 12 3.2Z" />
+    </svg>
+  );
+}
+
 export function IcoSearch(p: IconProps) {
   return (
     <svg {...svgProps(p)}>
       <circle cx="11" cy="11" r="7" />
       <path d="m21 21-4.35-4.35" />
+    </svg>
+  );
+}
+
+/** 글쓰기 — 펜 픽토그램 (게시판 목록의 새 글 버튼) */
+export function IcoPen(p: IconProps) {
+  return (
+    <svg {...svgProps(p)}>
+      <path d="M12 20h9" />
+      <path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z" />
     </svg>
   );
 }

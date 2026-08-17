@@ -750,7 +750,7 @@ export function PostForm({
                 id="pf-category"
                 value={rec.category ?? 'general'}
                 onChange={(e) => set('category', e.target.value as PostEditRecord['category'])}
-                className={cn(fieldClass, 'cursor-pointer')}
+                className={cn(fieldClass, 'cms-select')}
               >
                 {meta.categories.map((c) => (
                   <option key={c.value} value={c.value}>
@@ -776,7 +776,7 @@ export function PostForm({
                 id="pf-category"
                 value={rec.category ?? ''}
                 onChange={(e) => set('category', e.target.value)}
-                className={cn(fieldClass, 'cursor-pointer')}
+                className={cn(fieldClass, 'cms-select')}
               >
                 {/* 미분류를 맨 앞에 — 자료실은 분류를 비워 둔 채로 저장할 수 있다 */}
                 <option value="">미분류</option>
