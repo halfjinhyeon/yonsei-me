@@ -11,10 +11,11 @@
     "specialty": "고체역학",
     "specialtyEn": "Solid Mechanics",
     "yearRange": "1963~2002",
+    "emeritus": false,
     "moreInfoUrl": null,
     "photoAlt": "김천욱",
-    "lab": null,
-    "photo": "/img/faculty/김천욱.jpg"
+    "photo": "/img/faculty/김천욱.jpg",
+    "lab": null
   },
   {
     "name": "강건욱",

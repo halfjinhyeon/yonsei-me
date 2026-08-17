@@ -5,8 +5,8 @@
       "ko": "바이오·나노",
       "en": "Bio · Nano"
     },
-    "image": "/img/hero/바이오나노.jpg",
-    "imageMobile": "/img/hero-mobile/바이오나노.jpg"
+    "image": "https://pub-946f4e5b1c334b1c90cd7564588d1d16.r2.dev/uploads/hero/바이오나노.jpg",
+    "imageMobile": "https://pub-946f4e5b1c334b1c90cd7564588d1d16.r2.dev/uploads/hero-mobile/바이오나노.jpg"
   },
   {
     "field": "thermoFluid",
@@ -14,8 +14,8 @@
       "ko": "열·유체",
       "en": "Thermal · Fluids"
     },
-    "image": "/img/hero/열유체.jpg",
-    "imageMobile": "/img/hero-mobile/열유체.jpg"
+    "image": "https://pub-946f4e5b1c334b1c90cd7564588d1d16.r2.dev/uploads/hero/열유체.jpg",
+    "imageMobile": "https://pub-946f4e5b1c334b1c90cd7564588d1d16.r2.dev/uploads/hero-mobile/열유체.jpg"
   },
   {
     "field": "dynamicsControl",
@@ -23,8 +23,8 @@
       "ko": "동역학·제어",
       "en": "Dynamics · Control"
     },
-    "image": "/img/hero/동역학제어.jpg",
-    "imageMobile": "/img/hero-mobile/동역학제어.jpg"
+    "image": "https://pub-946f4e5b1c334b1c90cd7564588d1d16.r2.dev/uploads/hero/동역학제어.jpg",
+    "imageMobile": "https://pub-946f4e5b1c334b1c90cd7564588d1d16.r2.dev/uploads/hero-mobile/동역학제어.jpg"
   },
   {
     "field": "manufacturingDesign",
@@ -32,8 +32,8 @@
       "ko": "생산·설계",
       "en": "Manufacturing · Design"
     },
-    "image": "/img/hero/생산설계.jpg",
-    "imageMobile": "/img/hero-mobile/생산설계.jpg"
+    "image": "https://pub-946f4e5b1c334b1c90cd7564588d1d16.r2.dev/uploads/hero/생산설계.jpg",
+    "imageMobile": "https://pub-946f4e5b1c334b1c90cd7564588d1d16.r2.dev/uploads/hero-mobile/생산설계.jpg"
   },
   {
     "field": "computation",
@@ -41,8 +41,8 @@
       "ko": "계산·해석",
       "en": "Computation · Analysis"
     },
-    "image": "/img/hero/계산해석.jpg",
-    "imageMobile": "/img/hero-mobile/계산해석.jpg"
+    "image": "https://pub-946f4e5b1c334b1c90cd7564588d1d16.r2.dev/uploads/hero/계산해석.jpg",
+    "imageMobile": "https://pub-946f4e5b1c334b1c90cd7564588d1d16.r2.dev/uploads/hero-mobile/계산해석.jpg"
   },
   {
     "field": "mechanicsMaterials",
@@ -50,7 +50,7 @@
       "ko": "역학·재료",
       "en": "Mechanics · Materials"
     },
-    "image": "/img/hero/역학재료.jpg",
-    "imageMobile": "/img/hero-mobile/역학재료.jpg"
+    "image": "https://pub-946f4e5b1c334b1c90cd7564588d1d16.r2.dev/uploads/hero/역학재료.jpg",
+    "imageMobile": "https://pub-946f4e5b1c334b1c90cd7564588d1d16.r2.dev/uploads/hero-mobile/역학재료.jpg"
   }
 ]
