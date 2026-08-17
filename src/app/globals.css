@@ -556,6 +556,19 @@
     mask: url('/img/eagle.png') center / contain no-repeat;
   }
 
+  /* CMS 로그인 인증번호 6칸(LoginScreen) — 빈 활성 칸의 깜빡이 캐럿.
+     실제 캐럿은 투명 input 에 있어 보이지 않으므로 그림 캐럿을 흉내 낸다. */
+  @keyframes cms-otp-caret {
+    0%, 49% { opacity: 1; }
+    50%, 100% { opacity: 0; }
+  }
+  .cms-otp-caret {
+    animation: cms-otp-caret 1.06s step-end infinite;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .cms-otp-caret { animation: none; }
+  }
+
   /* 카카오맵 퍼가기 임베드(KakaoMap.tsx): 지도만 남기고 하단 카카오맵 바·주소
      패널을 숨긴다. 숨긴 높이만큼 지도 크기는 컴포넌트가 보정 재렌더한다. */
   .root_daum_roughmap .wrap_controllers,

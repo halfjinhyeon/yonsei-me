@@ -21,6 +21,7 @@
 
 import { signIn } from 'next-auth/react';
 import { useCallback, useEffect, useId, useRef, useState } from 'react';
+import { cn } from '@/lib/utils';
 import { Logo } from '@/components/Logo';
 
 interface Props {
@@ -59,6 +60,8 @@ export function LoginScreen({ locale }: Props) {
   const codeFieldId = useId();
   const emailRef = useRef<HTMLInputElement>(null);
   const codeRef = useRef<HTMLInputElement>(null);
+  /** 6자리 완성 시 초점을 넘겨받는 로그인 버튼 (OtpInput onComplete) */
+  const loginBtnRef = useRef<HTMLButtonElement>(null);
 
   // ?error= 안내 — useSearchParams 는 이 프로젝트에서 정적 생성과 충돌해 금지다.
   // 읽은 뒤 쿼리를 지운다: 새로고침해도 남아 있으면 이미 해결된 사정을 계속 말한다.
@@ -226,6 +229,7 @@ export function LoginScreen({ locale }: Props) {
               >
                 {sending ? '전송 중…' : '인증번호 받기'}
               </button>
+              {error && <ErrorBox>{error}</ErrorBox>}
             </form>
           ) : (
             <form onSubmit={onSubmitCode} className="mt-8 flex flex-col gap-2.5" noValidate>
@@ -236,20 +240,21 @@ export function LoginScreen({ locale }: Props) {
               <label htmlFor={codeFieldId} className="text-sm font-semibold text-content">
                 인증번호 6자리
               </label>
-              <input
-                ref={codeRef}
+              <OtpInput
                 id={codeFieldId}
-                type="text"
-                inputMode="numeric"
-                pattern="[0-9]{6}"
-                maxLength={6}
-                autoComplete="one-time-code"
-                placeholder="000000"
                 value={code}
-                // 숫자만 남긴다 — 붙여넣기로 공백·하이픈이 섞여 들어오는 쪽이 흔하다
-                onChange={(e) => setCode(e.target.value.replace(/\D/g, '').slice(0, 6))}
-                className="h-14 w-full rounded-[2px] border border-surface-border bg-surface px-3.5 text-2xl font-semibold tracking-[0.42em] text-content outline-none transition-colors placeholder:text-[#a8b0ba] focus:border-yonsei-blue"
+                invalid={Boolean(error)}
+                inputRef={codeRef}
+                onChangeValue={(v) => {
+                  setCode(v);
+                  if (error) setError(null);
+                }}
+                // 6자리가 차면 로그인 버튼으로 초점만 옮긴다 — 자동 제출은 하지
+                // 않는다(오입력을 확인할 틈을 준다). 목업의 동작 명세 그대로.
+                onComplete={() => loginBtnRef.current?.focus()}
               />
+              {/* 오류는 6칸 바로 아래 — 시선이 머무는 곳에서 말한다(목업 배치) */}
+              {error && <ErrorBox>{error}</ErrorBox>}
               <div className="flex items-baseline justify-between gap-4">
                 <span className="text-[13px] text-content-faint">코드는 10분간 유효합니다</span>
                 <button
@@ -267,6 +272,7 @@ export function LoginScreen({ locale }: Props) {
                 </p>
               )}
               <button
+                ref={loginBtnRef}
                 type="submit"
                 disabled={verifying || code.length !== 6}
                 className="mt-2 h-[52px] w-full rounded-[2px] bg-brand text-base font-semibold text-brand-fg transition-colors duration-200 ease-out-expo hover:bg-brand-muted disabled:cursor-not-allowed disabled:opacity-60"
@@ -285,23 +291,6 @@ export function LoginScreen({ locale }: Props) {
                 다른 이메일로 로그인
               </button>
             </form>
-          )}
-
-          {error && (
-            <div
-              role="alert"
-              className="mt-4 flex gap-2.5 rounded-[2px] border border-[#B42318] bg-[#FDF3F2] px-3.5 py-3 dark:border-[#F2837B] dark:bg-[#1E1518]"
-            >
-              <span
-                aria-hidden="true"
-                className="mt-0.5 h-4 w-4 shrink-0 bg-[#B42318] text-center text-[11px] font-bold leading-4 text-white dark:bg-[#F2837B] dark:text-[#1E1518]"
-              >
-                !
-              </span>
-              <span className="text-sm leading-[1.6] text-[#B42318] dark:text-[#F2837B]">
-                {error}
-              </span>
-            </div>
           )}
 
           {done && (
@@ -359,6 +348,134 @@ export function LoginScreen({ locale }: Props) {
           </div>
         </div>
       </div>
+    </div>
+  );
+}
+
+/** 오류 박스 — 색만으로 말하지 않도록 아이콘+문장, alert 로 읽어 준다 */
+function ErrorBox({ children }: { children: React.ReactNode }) {
+  return (
+    <div
+      role="alert"
+      className="mt-1 flex gap-2.5 rounded-[2px] border border-[#B42318] bg-[#FDF3F2] px-3.5 py-3 dark:border-[#F2837B] dark:bg-[#1E1518]"
+    >
+      <span
+        aria-hidden="true"
+        className="mt-0.5 h-4 w-4 shrink-0 bg-[#B42318] text-center text-[11px] font-bold leading-4 text-white dark:bg-[#F2837B] dark:text-[#1E1518]"
+      >
+        !
+      </span>
+      <span className="text-sm leading-[1.6] text-[#B42318] dark:text-[#F2837B]">{children}</span>
+    </div>
+  );
+}
+
+/**
+ * 인증번호 분할 6칸 입력 — Claude Design 목업(인증번호 입력.dc.html)의 구조 그대로.
+ *
+ * 접근성 결정: "단일 input(투명 오버레이) + 시각적 6칸(aria-hidden)".
+ * 6개 input 로 쪼개면 iOS·안드로이드의 autocomplete="one-time-code" 코드 제안이
+ * 첫 칸만 채우거나 기기마다 분배가 갈리고, 스크린리더가 "편집란 6개"로 읽는다.
+ * 단일 input 이면 코드 제안이 6자리를 통째로 채우고, 자동 다음 칸·백스페이스·
+ * ←/→·붙여넣기가 전부 브라우저 기본 캐럿 동작이라 키 처리를 새로 만들지 않는다.
+ * 대가: 칸 클릭으로 캐럿을 옮길 수 없어 포커스는 항상 끝으로 간다(방향키로 대체).
+ */
+function OtpInput({
+  id,
+  value,
+  invalid,
+  inputRef,
+  onChangeValue,
+  onComplete,
+}: {
+  id: string;
+  value: string;
+  invalid: boolean;
+  inputRef: React.RefObject<HTMLInputElement>;
+  onChangeValue: (v: string) => void;
+  /** 6자리가 완성된 직후(입력 blur 후) 호출 — 로그인 버튼으로 초점 이동용 */
+  onComplete: () => void;
+}) {
+  const [caret, setCaret] = useState(0);
+  const [focused, setFocused] = useState(false);
+  const active = Math.min(caret, 5);
+
+  const syncCaret = (el: HTMLInputElement) =>
+    setCaret(typeof el.selectionStart === 'number' ? el.selectionStart : el.value.length);
+
+  return (
+    <div className="relative flex items-center justify-center gap-[7px] lg:gap-2">
+      <input
+        ref={inputRef}
+        id={id}
+        type="text"
+        inputMode="numeric"
+        pattern="[0-9]*"
+        maxLength={6}
+        autoComplete="one-time-code"
+        aria-label="인증번호 6자리 입력"
+        aria-invalid={invalid}
+        value={value}
+        // 숫자만 남긴다 — 붙여넣기의 공백·하이픈도 같은 경로로 걸러져 분배된다
+        onChange={(e) => {
+          const el = e.target;
+          const raw = el.value.replace(/\D/g, '').slice(0, 6);
+          onChangeValue(raw);
+          setCaret(raw.length);
+          if (raw.length === 6) {
+            window.requestAnimationFrame(() => {
+              el.blur();
+              onComplete();
+            });
+          }
+        }}
+        // 클릭·포커스 시 캐럿을 항상 끝으로 — 칸별 클릭 위치 지정은 지원하지 않는다
+        onFocus={(e) => {
+          const el = e.target;
+          const len = el.value.length;
+          window.requestAnimationFrame(() => {
+            try {
+              el.setSelectionRange(len, len);
+            } catch {
+              /* type=email 등 일부 상황의 예외 — 캐럿 보정만 포기한다 */
+            }
+          });
+          setFocused(true);
+          setCaret(len);
+        }}
+        onBlur={() => setFocused(false)}
+        // ←/→ 는 브라우저 기본 캐럿 이동을 그대로 쓰고 칸 강조에만 반영한다
+        onKeyUp={(e) => syncCaret(e.currentTarget)}
+        onSelect={(e) => syncCaret(e.currentTarget)}
+        // 텍스트·캐럿을 전부 투명하게 — 시각 표현은 아래 6칸이 담당한다.
+        // 폰트만은 16px 이상 유지(iOS 가 포커스 시 화면을 확대하는 기준선).
+        className="absolute inset-0 z-[2] h-full w-full cursor-text border-0 bg-transparent text-base text-transparent caret-transparent outline-none [-webkit-text-fill-color:transparent]"
+      />
+      {[0, 1, 2, 3, 4, 5].map((i) => {
+        const digit = value[i] ?? '';
+        const isActive = focused && i === active;
+        return (
+          <div
+            key={i}
+            aria-hidden="true"
+            className={cn(
+              'relative flex h-12 w-11 items-center justify-center rounded-[2px] border text-xl font-semibold tabular-nums lg:h-[52px] lg:w-12 lg:text-[22px]',
+              invalid
+                ? 'border-[#B42318] text-[#B42318] dark:border-[#F2837B] dark:text-[#F2837B]'
+                : digit
+                  ? 'border-yonsei-blue text-content dark:border-brand'
+                  : 'border-surface-border text-content',
+              isActive &&
+                'outline outline-2 outline-offset-2 outline-yonsei-blue dark:outline-brand',
+            )}
+          >
+            {digit}
+            {isActive && !digit && (
+              <span className="cms-otp-caret absolute h-6 w-[2px] bg-yonsei-blue dark:bg-brand" />
+            )}
+          </div>
+        );
+      })}
     </div>
   );
 }
