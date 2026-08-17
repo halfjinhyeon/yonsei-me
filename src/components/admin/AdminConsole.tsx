@@ -6,17 +6,17 @@
 // 대시보드는 AdminDashboard, 실제 편집은 항목 종류별 에디터
 // (BoardEditor / CollectionEditor / MarkdownEditor)에 위임한다.
 //
-// 콘솔은 사이트 헤더(fixed, h-16/lg:h-20)와 히어로 아래에서 시작한다 — 푸터만
-// 렌더되지 않는다(레이아웃의 SiteChrome). 페이지가 통째로 스크롤되고, 스크롤이
-// 히어로를 지나면 사이드바가 헤더 바로 아래에 sticky 로 선다.
+// 콘솔은 사이트 헤더·히어로·푸터 없이 독립 전체 화면으로 선다(빌더형 레이아웃,
+// 헤더·푸터는 레이아웃의 HeaderChrome·SiteChrome 이 이 경로에서 감춘다). 페이지가
+// 통째로 스크롤되고, 사이드바는 화면 맨 위(top-0)부터 끝까지 sticky 로 선다.
 //
 // 데스크톱에는 콘솔 전용 상단 바가 없다 — 저장소·계정·배포 상태·로그아웃은 전부
 // 사이드바 하단으로 내렸다. 가로로 긴 바 하나에 세로 공간을 또 내주는 대신 이미
 // 자리를 차지한 사이드바에 담는 편이 편집 화면을 넓게 쓴다. 모바일(<lg)에서만
 // 드로어를 여는 슬림 바(--cms-bar)를 남긴다 — 거기엔 사이드바가 상주하지 못한다.
 //
-// 그래서 콘솔의 sticky 기준선은 사이트 헤더 높이다:
-// 데스크톱 top-20(5rem), 모바일 top-16(4rem) + 슬림 바(--cms-bar).
+// 그래서 콘솔의 sticky 기준선은 화면 맨 위다:
+// 데스크톱 top-0, 모바일 top-0 + 슬림 바(--cms-bar).
 //
 // 콘텐츠/코드 분리 원칙은 "사이트 콘텐츠"(content/*)에 적용된다.
 // 이 관리자 도구는 내부 운영용이라 한국어 UI 문자열을 컴포넌트에 직접 둔다.
@@ -347,11 +347,10 @@ function AdminConsoleBody({ token, login, role }: Props) {
     <AdminShellProvider value={shell}>
       <div className="bg-surface text-content">
         {/* 모바일 슬림 바 — 드로어 손잡이. lg 이상에서는 사이드바가 항상 보이므로
-            아예 렌더하지 않는다. 사이트 헤더가 이미 banner 랜드마크라 여기서
-            <header> 를 또 쓰지 않는다(랜드마크가 둘이면 탐색이 흐려진다).
+            아예 렌더하지 않는다. 사이트 헤더가 없는 독립 화면이라 화면 맨 위에 선다.
             집중 모드(글쓰기)에서는 폼 자신의 고정 바가 그 자리를 대신한다. */}
         {!focusMode && (
-          <div className="sticky top-16 z-30 flex h-[var(--cms-bar)] items-center gap-3 border-b border-surface-border bg-surface px-4 lg:hidden">
+          <div className="sticky top-0 z-30 flex h-[var(--cms-bar)] items-center gap-3 border-b border-surface-border bg-surface px-4 lg:hidden">
             <button
               type="button"
               onClick={() => setNavOpen((v) => !v)}
@@ -365,7 +364,7 @@ function AdminConsoleBody({ token, login, role }: Props) {
           </div>
         )}
 
-        {/* 운영 상태 배너 — 사이트 헤더(모바일은 슬림 바) 바로 아래 한 자리에 sticky.
+        {/* 운영 상태 배너 — 화면 맨 위(모바일은 슬림 바 아래) 한 자리에 sticky.
             집중 모드(글쓰기)에서도 렌더한다: 긴 글을 쓰는 동안 연결이 끊긴 걸
             모르고 있다가 저장에서 처음 알게 되는 상황이 가장 나쁘다. 다만 그때는
             모바일 슬림 바가 없으므로 그만큼 기준선을 올린다.
@@ -374,7 +373,7 @@ function AdminConsoleBody({ token, login, role }: Props) {
           <div
             className={cn(
               'sticky z-[31]',
-              focusMode ? 'top-16 lg:top-20' : 'top-[calc(4rem+var(--cms-bar))] lg:top-20',
+              focusMode ? 'top-0' : 'top-[var(--cms-bar)] lg:top-0',
             )}
           >
             <CmsBanner banner={activeBanner} onDismiss={dismissBanner} />
@@ -385,7 +384,7 @@ function AdminConsoleBody({ token, login, role }: Props) {
             오른쪽이 잘렸다. 메뉴 라벨은 최장 7자(장학생 선발공고)라 240 으로 충분하고,
             본문이 56px 을 돌려받는다. */}
         <div className={cn(!focusMode && 'grid lg:grid-cols-[240px_minmax(0,1fr)]')}>
-          {/* 데스크톱 사이드바 — 사이트 헤더(5rem) 아래에 붙어 화면 끝까지 채운다.
+          {/* 데스크톱 사이드바 — 화면 맨 위부터 끝까지 통째로 채운다(빌더형).
               스크롤은 내비 목록 영역만 지고(로고·검색·하단 유틸리티는 고정),
               data-lenis-prevent 가 없으면 전역 Lenis 부드러운 스크롤이 휠 이벤트를
               가로채 사이드바 안쪽이 스크롤되지 않는다(항목이 화면보다 길다). */}
@@ -393,7 +392,7 @@ function AdminConsoleBody({ token, login, role }: Props) {
             <nav
               aria-label="콘텐츠 선택"
               data-lenis-prevent
-              className="sticky top-20 hidden h-[calc(100dvh-5rem)] flex-col border-r border-surface-border bg-surface lg:flex"
+              className="sticky top-0 hidden h-[100dvh] flex-col border-r border-surface-border bg-surface lg:flex"
             >
               <SidebarBody
                 activeId={activeId}
@@ -422,7 +421,7 @@ function AdminConsoleBody({ token, login, role }: Props) {
               <nav
                 aria-label="콘텐츠 선택"
                 data-lenis-prevent
-                className="fixed bottom-0 left-0 top-[calc(4rem+var(--cms-bar))] z-40 flex w-[300px] flex-col border-r border-surface-border bg-surface lg:hidden"
+                className="fixed bottom-0 left-0 top-[var(--cms-bar)] z-40 flex w-[300px] flex-col border-r border-surface-border bg-surface lg:hidden"
               >
                 <SidebarBody
                   activeId={activeId}

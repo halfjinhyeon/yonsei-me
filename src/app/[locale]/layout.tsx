@@ -116,14 +116,14 @@ export default async function LocaleLayout({
           <a href="#main" className="skip-link">
             {t('skipToContent')}
           </a>
-          {/* 콘솔 로그인 화면에서만 사이트 헤더를 감춘다(HeaderChrome) — 독립 전체 화면이라 */}
+          {/* 콘텐츠 관리 콘솔 전체에서 사이트 헤더를 감춘다(HeaderChrome) — 독립 전체 화면이라 */}
           <HeaderChrome>
             <Header />
           </HeaderChrome>
           <main id="main" className="overflow-x-clip">
             {children}
           </main>
-          {/* 콘텐츠 관리 콘솔에서는 푸터만 렌더하지 않는다(SiteChrome) — 헤더·히어로는 유지 */}
+          {/* 콘텐츠 관리 콘솔에서는 푸터도 렌더하지 않는다(SiteChrome) */}
           <SiteChrome>
             <Footer />
           </SiteChrome>

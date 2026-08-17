@@ -3,7 +3,6 @@ import { redirect } from 'next/navigation';
 import { setRequestLocale } from 'next-intl/server';
 import { routing } from '@/i18n/routing';
 import { auth } from '@/auth';
-import { Hero } from '@/components/Hero';
 import { AdminConsole } from '@/components/admin/AdminConsole';
 
 export function generateStaticParams() {
@@ -49,20 +48,9 @@ export default async function ContentManagementPage({
   // cms_users 행이 없는 세션(env allowlist 폴백 관리자)은 최고 권한으로 본다
   const role = devBypass ? 'admin' : session?.user?.role ?? 'admin';
 
-  // 콘솔은 사이트 헤더·히어로 아래에서 시작한다(다른 세부 페이지와 동일). 다만
-  // 푸터는 렌더하지 않는다(레이아웃의 SiteChrome) — 콘솔 하단에는 변경 트레이가
-  // 고정되는데, 그 아래로 사이트 푸터가 이어지면 "도구의 끝"이 흐려지기 때문.
-  // 스크롤이 히어로를 지나면 사이드바가 헤더 아래에 고정된다(졸업요건 페이지 문법).
+  // 콘솔은 사이트 헤더·히어로·푸터 없이 독립 전체 화면으로 선다(빌더형 레이아웃).
+  // 헤더는 레이아웃의 HeaderChrome 이, 푸터는 SiteChrome 이 이 경로에서 감춘다 —
+  // 사이드바가 화면 맨 위부터 끝까지 닿아야 "여기서부터는 도구"가 분명해진다.
   // 본문은 Container 없이 풀블리드, 좌우 여백은 콘솔 내부가 각자 책임진다.
-  return (
-    <>
-      <Hero
-        eyebrow="Content Management"
-        title="콘텐츠 관리 콘솔"
-        subtitle="연혁·교수진·교과목·게시판 등 사이트의 모든 콘텐츠를 한곳에서 편집하고 저장소에 바로 반영합니다."
-        breadcrumb={[{ label: '콘텐츠 관리' }]}
-      />
-      <AdminConsole token={token} login={login} role={role} />
-    </>
-  );
+  return <AdminConsole token={token} login={login} role={role} />;
 }

@@ -99,12 +99,10 @@ export function AdminToast() {
     <div
       role="status"
       aria-live="polite"
-      // 사이트 헤더(h-16 / lg:h-20) 바로 아래 중앙. 헤더는 fixed 라 콘솔이
-      // 어디까지 스크롤됐든 이 자리가 화면 맨 위의 빈 자리다.
-      // z-60 은 모달(z-70)보다 아래. 집중 모드에서도 폼의 고정 바가 헤더 아래
-      // 같은 기준선에 서므로 오프셋이 같다 — 12px 여유로 겹침을 피한다.
+      // 화면 맨 위 중앙 — 콘솔이 독립 전체 화면이라 뷰포트 상단 12px 이 기준선이다.
+      // z-60 은 모달(z-70)보다 아래.
       className={cn(
-        'anim-panel fixed left-1/2 top-[calc(4rem+12px)] z-[60] flex -translate-x-1/2 items-center gap-4 bg-yonsei-navy px-[18px] py-3.5 text-[13px] font-semibold text-white shadow-[0_20px_40px_-24px_rgba(0,40,94,.8)] lg:top-[calc(5rem+12px)]',
+        'anim-panel fixed left-1/2 top-3 z-[60] flex -translate-x-1/2 items-center gap-4 bg-yonsei-navy px-[18px] py-3.5 text-[13px] font-semibold text-white shadow-[0_20px_40px_-24px_rgba(0,40,94,.8)]',
       )}
     >
       <span>{toast}</span>
