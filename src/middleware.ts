@@ -13,9 +13,9 @@ const { auth } = NextAuth(authConfig);
 const intl = createMiddleware(routing);
 
 // 보호 경로: /ko/contentmanagement, /en/contentmanagement (그 하위 포함).
-// signin 하위 경로가 생겨도 로그인 페이지는 인증 없이 접근 가능해야 하므로,
-// 현재는 콘솔 진입 자체를 next-intl 이전에 가로챈다.
-const PROTECTED = /^\/(?:ko|en)\/contentmanagement(?:\/|$)/;
+// 단 /contentmanagement/login 은 제외한다 — 로그인 화면 자체가 인증을 요구하면
+// 무한 리다이렉트가 된다(부정 전방탐색으로 그 한 갈래만 뚫는다).
+const PROTECTED = /^\/(?:ko|en)\/contentmanagement(?!\/login(?:\/|$))(?:\/|$)/;
 
 export default auth((req) => {
   const { pathname } = req.nextUrl;
@@ -25,10 +25,13 @@ export default auth((req) => {
   const devBypass = process.env.NODE_ENV !== 'production';
 
   if (PROTECTED.test(pathname) && !req.auth && !devBypass) {
-    // 미인증 → Auth.js 기본 사인인 페이지로. 로그인 후 원래 경로로 복귀.
-    const signInUrl = new URL('/api/auth/signin', req.nextUrl.origin);
-    signInUrl.searchParams.set('callbackUrl', pathname);
-    return Response.redirect(signInUrl);
+    // 미인증 → 콘솔 전용 로그인 화면으로(Auth.js 기본 사인인 페이지 대신).
+    // 로그인 수단이 셋(GitHub·이메일 인증번호·카카오)이라 기본 화면으로는
+    // 안내가 안 된다. 로케일은 요청 경로의 첫 세그먼트를 따른다.
+    const locale = pathname.split('/')[1] === 'en' ? 'en' : 'ko';
+    const loginUrl = new URL(`/${locale}/contentmanagement/login`, req.nextUrl.origin);
+    loginUrl.searchParams.set('callbackUrl', pathname);
+    return Response.redirect(loginUrl);
   }
 
   // 보호 경로(인증 통과 포함)와 그 외 모든 경로는 기존 next-intl 처리로.

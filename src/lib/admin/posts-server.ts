@@ -36,6 +36,18 @@ export async function requireAdmin(): Promise<Response | null> {
   return null;
 }
 
+/** 사용자 관리 전용 가드 — cms_users.role='admin' 만 통과(편집자는 콘텐츠만 고친다).
+ *  requireAdmin 과 같이 dev 는 우회. 거부면 401/403 Response, 통과면 null. */
+export async function requireOwner(): Promise<Response | null> {
+  if (process.env.NODE_ENV !== 'production') return null; // dev 개방 모드
+  const session = await auth();
+  if (!session?.user) return Response.json({ error: '로그인이 필요합니다.' }, { status: 401 });
+  if (session.user.role !== 'admin') {
+    return Response.json({ error: '사용자 관리는 관리자만 할 수 있습니다.' }, { status: 403 });
+  }
+  return null;
+}
+
 // ── Supabase 서비스 클라이언트 (RLS 우회 — 라우트에서 인증 확인 후에만 사용) ──
 let _sb: SupabaseClient | null = null;
 export function adminDb(): SupabaseClient {

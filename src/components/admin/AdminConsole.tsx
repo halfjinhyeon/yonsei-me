@@ -44,6 +44,7 @@ import {
   IcoLogout,
   IcoMenu,
   IcoSearch,
+  IcoUsers,
 } from './cms-icons';
 import { CmsBanner, type CmsBannerData } from './CmsBanner';
 import { CmsModal } from './CmsModal';
@@ -58,13 +59,33 @@ import {
   pushRecent,
 } from './entries';
 import { MarkdownEditor } from './MarkdownEditor';
+import { UsersEditor } from './UsersEditor';
 
 interface Props {
   /** GitHub OAuth access token (세션에서 주입) — Contents API 커밋에 사용 */
   token: string;
   /** 로그인한 GitHub 계정명 */
   login: string;
+  /** 이 계정의 권한 — 관리자만 사용자·권한 화면에 들어갈 수 있다 */
+  role: 'admin' | 'editor';
 }
+
+/** 로그인한 계정 자신 — 사이드바 계정 블록이 이름·카카오 연결 상태를 여기서 읽는다 */
+interface MeInfo {
+  name?: string;
+  role?: 'admin' | 'editor';
+  provider?: string;
+  kakaoLinked?: boolean;
+}
+
+/** 카카오 연결 후 되돌아올 때 붙는 ?kakao= 값 → 토스트 문구 */
+const KAKAO_RESULTS: Record<string, string> = {
+  linked: '카카오 계정을 연결했습니다 — 다음부터 카카오로 로그인하세요.',
+  conflict: '이미 다른 계정에 연결된 카카오 계정입니다.',
+  norow: 'DB에 등록된 계정만 카카오를 연결할 수 있습니다.',
+  denied: '카카오 연결이 취소되었거나 실패했습니다.',
+  error: '카카오 연결이 취소되었거나 실패했습니다.',
+};
 
 const SITE_URL = 'https://yonsei-me.vercel.app/ko';
 
@@ -82,7 +103,7 @@ export function AdminConsole(props: Props) {
   );
 }
 
-function AdminConsoleBody({ token, login }: Props) {
+function AdminConsoleBody({ token, login, role }: Props) {
   // 저장소 설정은 세션 토큰으로 자동 구성한다(PAT 수동 입력 제거).
   const config = useMemo<RepoConfig>(
     () => ({ token, owner: 'yonsei-mech', repo: 'yonsei-me', branch: 'main' }),
@@ -91,11 +112,14 @@ function AdminConsoleBody({ token, login }: Props) {
 
   // active: null이면 대시보드, 아니면 선택된 편집 항목
   const [active, setActive] = useState<MenuEntry | null>(null);
+  // 사용자·권한 화면은 콘텐츠 항목(MenuEntry)이 아니라 콘솔 자체의 설정이라
+  // active 와 섞지 않고 별도 boolean 으로 둔다. 켜져 있으면 본문을 대신 차지한다.
+  const [usersOpen, setUsersOpen] = useState(false);
   // dirty: 현재 에디터에 저장되지 않은 편집이 있는지
   const [dirty, setDirty] = useState(false);
   // 미저장 상태에서 이동을 시도한 목적지. 확인 모달의 대상이 된다.
   // (목적지가 null=대시보드일 수 있어 "값 없음"과 구분하려 한 겹 감쌌다)
-  const [pending, setPending] = useState<{ next: MenuEntry | null } | null>(null);
+  const [pending, setPending] = useState<{ next: MenuEntry | null; users: boolean } | null>(null);
   // lg 미만에서 사이드바를 드로어로 연다
   const [navOpen, setNavOpen] = useState(false);
 
@@ -124,6 +148,37 @@ function AdminConsoleBody({ token, login }: Props) {
   // 대시보드에서 자동으로 펼쳐 둘 안내 제목 — 권한 배너의 "권한 안내 보기"가 쓴다.
   // 안내로 보내 놓고 사용자가 그 긴 목록에서 항목을 다시 찾게 두면 안내가 무의미하다.
   const [openGuide, setOpenGuide] = useState<string | undefined>(undefined);
+
+  // 로그인한 계정 정보 — 사이드바가 데스크톱·드로어로 두 번 마운트되므로
+  // 조회는 셸에서 한 번만 하고 값을 내려 준다(같은 요청이 두 벌 나가지 않게).
+  const [me, setMe] = useState<MeInfo | null>(null);
+  useEffect(() => {
+    let alive = true;
+    fetch('/api/admin/users/me')
+      .then((r) => (r.ok ? r.json() : null))
+      .then((data: MeInfo | null) => {
+        if (alive && data) setMe(data);
+      })
+      // 실패해도 화면은 그대로 쓴다 — 계정 표시는 편집 기능의 전제가 아니다
+      .catch(() => {});
+    return () => {
+      alive = false;
+    };
+  }, []);
+
+  // 카카오 연결 결과 안내 — 연결 라우트가 ?kakao= 를 달고 콘솔로 돌려보낸다.
+  // useSearchParams 는 이 프로젝트에서 정적 생성과 충돌해 쓰지 않는다.
+  // 읽은 뒤 쿼리를 지운다: 남아 있으면 새로고침마다 지난 결과를 다시 말한다.
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const result = params.get('kakao');
+    if (!result) return;
+    const msg = KAKAO_RESULTS[result];
+    if (msg) showToast(msg);
+    params.delete('kakao');
+    const qs = params.toString();
+    window.history.replaceState(null, '', window.location.pathname + (qs ? `?${qs}` : ''));
+  }, [showToast]);
 
   useEffect(() => {
     setOnline(navigator.onLine);
@@ -176,10 +231,12 @@ function AdminConsoleBody({ token, login }: Props) {
   }, [deploy]);
 
   const go = useCallback(
-    (next: MenuEntry | null) => {
+    (next: MenuEntry | null, openUsers = false) => {
       setDirty(false);
       clearTray();
       setActive(next);
+      // 다른 메뉴를 고르면 사용자·권한 화면은 닫힌다 — 본문은 언제나 한 화면이다
+      setUsersOpen(openUsers);
       setNavOpen(false);
       // 대시보드를 떠나면 "자동으로 펼쳐 둘 안내"는 소임을 다한 것이라 지운다.
       // 목적지가 대시보드(null)일 때는 지우지 않는다 — 그 이동이 바로 안내를
@@ -192,17 +249,19 @@ function AdminConsoleBody({ token, login }: Props) {
 
   // 이동 가드: 편집 중이거나 트레이에 대기 변경이 있으면 모달로 확인한 뒤 전환한다.
   const navigate = useCallback(
-    (next: MenuEntry | null) => {
+    // openUsers=true 는 "사용자·권한 화면으로" — 그 이동도 같은 가드를 타야
+    // 편집 중이던 내용이 조용히 사라지지 않는다.
+    (next: MenuEntry | null, openUsers = false) => {
       // 커밋 도중 에디터가 언마운트되면 결과를 알 수 없다 — 저장 중에는 붙잡는다.
       if (traySaving) {
         showToast('저장 중입니다. 잠시 후 이동해 주세요.');
         return;
       }
       if (dirty || pendingCount > 0) {
-        setPending({ next });
+        setPending({ next, users: openUsers });
         return;
       }
-      go(next);
+      go(next, openUsers);
     },
     [dirty, pendingCount, traySaving, showToast, go],
   );
@@ -333,10 +392,13 @@ function AdminConsoleBody({ token, login }: Props) {
             >
               <SidebarBody
                 activeId={activeId}
-                isDashboard={active === null}
+                isDashboard={active === null && !usersOpen}
+                usersOpen={usersOpen}
+                showUsers={role === 'admin'}
                 onNavigate={navigate}
                 config={config}
                 login={login}
+                me={me}
                 deploy={deploy}
               />
             </nav>
@@ -358,10 +420,13 @@ function AdminConsoleBody({ token, login }: Props) {
               >
                 <SidebarBody
                   activeId={activeId}
-                  isDashboard={active === null}
+                  isDashboard={active === null && !usersOpen}
+                  usersOpen={usersOpen}
+                  showUsers={role === 'admin'}
                   onNavigate={navigate}
                   config={config}
                   login={login}
+                  me={me}
                   deploy={deploy}
                 />
               </nav>
@@ -375,7 +440,9 @@ function AdminConsoleBody({ token, login }: Props) {
               집중 모드에서는 트레이가 뜨지 않고 폼이 자기 여백을 직접 잡으므로
               래퍼의 여백을 모두 걷어 전체화면 단일 컬럼으로 둔다. */}
           <div className={cn('min-w-0', !focusMode && 'px-6 py-8 pb-36 lg:px-10')}>
-            {active === null ? (
+            {usersOpen ? (
+              <UsersEditor />
+            ) : active === null ? (
               <AdminDashboard config={config} onOpen={navigate} openGuide={openGuide} />
             ) : active.type === 'board' ? (
               <BoardEditor
@@ -417,9 +484,9 @@ function AdminConsoleBody({ token, login }: Props) {
             cancelLabel="여기 머무르기"
             tone="danger"
             onConfirm={() => {
-              const next = pending.next;
+              const { next, users } = pending;
               setPending(null);
-              go(next);
+              go(next, users);
             }}
             onCancel={() => setPending(null)}
           />
@@ -443,16 +510,23 @@ const ROW =
 function SidebarBody({
   activeId,
   isDashboard,
+  usersOpen,
+  showUsers,
   onNavigate,
   config,
   login,
+  me,
   deploy,
 }: {
   activeId: string | null;
   isDashboard: boolean;
-  onNavigate: (entry: MenuEntry | null) => void;
+  usersOpen: boolean;
+  /** 관리자에게만 사용자·권한 항목을 보인다 — 편집자에게는 존재하지 않는 화면이다 */
+  showUsers: boolean;
+  onNavigate: (entry: MenuEntry | null, openUsers?: boolean) => void;
   config: RepoConfig;
   login: string;
+  me: MeInfo | null;
   deploy: DeployState;
 }) {
   const [query, setQuery] = useState('');
@@ -583,6 +657,25 @@ function SidebarBody({
               대시보드
             </button>
 
+            {/* 사용자·권한 — 콘텐츠가 아니라 콘솔 자체의 설정이라 MENU_GROUPS
+                (콘텐츠 파일 목록)에 넣지 않고 대시보드와 같은 계층의 독립 항목으로 둔다 */}
+            {showUsers && (
+              <button
+                type="button"
+                onClick={() => onNavigate(null, true)}
+                aria-current={usersOpen ? 'page' : undefined}
+                className={cn(
+                  ROW,
+                  usersOpen
+                    ? 'bg-yonsei-navy font-semibold text-white'
+                    : 'font-medium text-content hover:bg-surface-soft',
+                )}
+              >
+                <IcoUsers size={18} className={cn('shrink-0', !usersOpen && 'text-content-faint')} />
+                사용자·권한
+              </button>
+            )}
+
             {MENU_GROUPS.map((group) => {
               const GroupIcon = GROUP_ICONS[group.label];
               // 항목이 하나뿐인 그룹(일정)은 펼칠 것이 없다 — 아코디언 대신 평평한 행으로
@@ -706,13 +799,33 @@ function SidebarBody({
             aria-hidden="true"
             className="flex h-[34px] w-[34px] shrink-0 items-center justify-center bg-yonsei-navy text-sm font-bold text-white"
           >
-            {(login || 'G').charAt(0).toUpperCase()}
+            {(me?.name || login || 'G').charAt(0).toUpperCase()}
           </span>
           <div className="min-w-0">
-            <div className="text-[13.5px] font-semibold">{login || '게스트'}</div>
+            <div className="truncate text-[13.5px] font-semibold">
+              {me?.name || login || '게스트'}
+            </div>
             <div className="truncate text-xs text-content-faint">
               {config.owner}/{config.repo} · {config.branch}
             </div>
+            {/* 카카오 연결은 본인만 할 수 있다(관리자가 대신 걸어 줄 수 없다) —
+                그래서 사용자 관리 화면이 아니라 자기 계정 블록에 둔다. */}
+            {me &&
+              (me.provider === 'kakao' ? (
+                <div className="text-xs text-content-faint">카카오 로그인</div>
+              ) : me.kakaoLinked ? (
+                <div className="text-xs text-content-faint">카카오 연결됨</div>
+              ) : (
+                <button
+                  type="button"
+                  onClick={() => {
+                    window.location.href = '/api/link/kakao';
+                  }}
+                  className="text-left text-xs font-semibold text-yonsei-blue transition-colors duration-200 ease-out-expo hover:text-yonsei-navy"
+                >
+                  카카오 계정 연결
+                </button>
+              ))}
           </div>
           <a
             href="/api/auth/signout"

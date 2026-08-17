@@ -7,6 +7,7 @@ import { notFound } from 'next/navigation';
 import { routing } from '@/i18n/routing';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
+import { HeaderChrome } from '@/components/HeaderChrome';
 import { SiteChrome } from '@/components/SiteChrome';
 import { SmoothScroll } from '@/components/SmoothScroll';
 import { ScrollRestoration } from '@/components/ScrollRestoration';
@@ -115,7 +116,10 @@ export default async function LocaleLayout({
           <a href="#main" className="skip-link">
             {t('skipToContent')}
           </a>
-          <Header />
+          {/* 콘솔 로그인 화면에서만 사이트 헤더를 감춘다(HeaderChrome) — 독립 전체 화면이라 */}
+          <HeaderChrome>
+            <Header />
+          </HeaderChrome>
           <main id="main" className="overflow-x-clip">
             {children}
           </main>
