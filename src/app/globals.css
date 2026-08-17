@@ -205,6 +205,18 @@
     @apply w-full border border-transparent bg-transparent px-2 py-2 text-[13px] text-content outline-none transition-colors hover:bg-surface-soft focus:border-yonsei-blue focus:bg-surface disabled:cursor-not-allowed;
   }
 
+  /* 미러 편집 입력 — '자세히' 화면이 사이트 배치를 그대로 그릴 때 쓴다(교수·연구실).
+     .cms-cell 과 취지는 같지만 표 셀이 아니라 **본문 자리**에 놓이므로: 폭을 늘이지
+     않고(width:auto — 값 크기에 맞춰 글자가 자기 자리를 지킨다), 호버는 면이 아니라
+     점선 테두리다(본문 위에서 배경이 깔리면 읽기가 흔들린다). 글꼴 크기·색은 쓰는
+     쪽이 사이트 타이포로 덮어쓴다 — 그래야 "보이는 그대로"가 된다. */
+  .cms-mirror {
+    @apply border border-transparent bg-transparent px-[7px] py-[5px] text-content outline-none transition-colors hover:border-dashed hover:border-[#9fb3c8] focus:border-solid focus:border-yonsei-blue focus:bg-surface disabled:cursor-not-allowed placeholder:text-[#a8b0ba];
+  }
+  .cms-mirror-invalid {
+    @apply !border-solid !border-[#b42318] !bg-[#fdf3f2];
+  }
+
   .cms-eyebrow {
     @apply text-[11px] font-bold uppercase tracking-[0.18em] text-yonsei-blue;
   }

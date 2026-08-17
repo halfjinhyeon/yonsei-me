@@ -55,6 +55,9 @@ import { FacultyCardsEditor } from './FacultyCardsEditor';
 import { HeroCardsEditor } from './HeroCardsEditor';
 import { HistoryTimelineEditor } from './HistoryTimelineEditor';
 import { InlineTable } from './InlineTable';
+import { FacultyDetailEditor } from './FacultyDetailEditor';
+import { LabDetailEditor } from './LabDetailEditor';
+import type { DetailEditorProps } from './DetailEditorTypes';
 import { MoveButtons } from './InlineFields';
 import { LabCardsEditor } from './LabCardsEditor';
 import { CmsPanelHead } from './CmsPanelHead';
@@ -828,6 +831,40 @@ export function CollectionEditor({ config, resource, onDirtyChange }: Props) {
 
   if (editing) {
     const isNew = editing.index < 0;
+    // 전용 편집기와 기본 폼이 같은 입력을 받는다 — 분기는 "어느 컴포넌트를 그릴까"뿐이다.
+    const detailProps: DetailEditorProps = {
+      fields: resource.fields,
+      initial: editing.form,
+      isEdit: !isNew,
+      busy: saving,
+      onSubmit: handleSubmit,
+      onUploadImage: uploadImage,
+      onDirty: () => onDirtyChange?.(true),
+      onCancel: () => {
+        setEditing(null);
+        setMd(null);
+        setSummary(null);
+        setSaveError(null);
+      },
+      linkedSummary:
+        resource.linkedSummary && summary
+          ? {
+              label: resource.linkedSummary.label,
+              hint: resource.linkedSummary.hint,
+              ko: summary.ko,
+              en: summary.en,
+              loading: summary.loading,
+              onChangeKo: (v) => setSummary((prev) => (prev ? { ...prev, ko: v } : prev)),
+              onChangeEn: (v) => setSummary((prev) => (prev ? { ...prev, en: v } : prev)),
+            }
+          : null,
+    };
+    const detailEditor =
+      resource.detailView === 'facultyMirror' ? (
+        <FacultyDetailEditor {...detailProps} />
+      ) : resource.detailView === 'labMirror' ? (
+        <LabDetailEditor {...detailProps} />
+      ) : null;
     return (
       <div className="anim-panel">
         <CmsPanelHead
@@ -855,6 +892,12 @@ export function CollectionEditor({ config, resource, onDirtyChange }: Props) {
             {saveError}
           </p>
         )}
+        {/* 리소스 전용 '자세히' 편집기 — 사이트에서 이 항목이 보이는 배치를 그대로
+            그리고 값 위에서 고친다(목록의 listView 와 같은 취지). props 계약이
+            RecordForm 과 같아 저장·업로드·요약 로딩 경로는 그대로 공유한다. */}
+        {detailEditor ? (
+          detailEditor
+        ) : (
         <RecordForm
           fields={resource.fields}
           initial={editing.form}
@@ -894,6 +937,7 @@ export function CollectionEditor({ config, resource, onDirtyChange }: Props) {
               : null
           }
         />
+        )}
         {renderConflict()}
       </div>
     );

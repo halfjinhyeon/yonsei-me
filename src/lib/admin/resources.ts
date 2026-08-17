@@ -142,6 +142,13 @@ export interface ResourceDef {
    * "보면서 그 자리에서 고친다"를 리소스 성격에 맞는 모양으로 바꿔 주는 자리다.
    */
   listView?: ListView;
+  /**
+   * '자세히' 화면 모양. 없으면 기본 폼(RecordForm 의 6칸 필드 그리드)이다.
+   * 지정하면 그 자리에 리소스 전용 편집기가 들어가, 사이트에서 이 항목이 보이는
+   * 배치를 그대로 그리고 값 위에서 바로 고치게 한다(listView 와 같은 취지).
+   * 편집기는 RecordForm 과 같은 props 계약(DetailEditorProps)을 받는다.
+   */
+  detailView?: 'facultyMirror' | 'labMirror';
   /** 항목별 연결 마크다운 (동아리 소개 본문) */
   linkedMarkdown?: LinkedMarkdown;
   /** 공유 record 파일 속 이 항목의 레코드 (연구실 AI 요약) */
@@ -339,6 +346,8 @@ const facultyDirectory: ResourceDef = {
     inlineKeys: ['name', 'email', 'phone', 'room', 'photo'],
     filterKey: 'title',
   },
+  // '자세히'는 교수 개인 상세 페이지의 프로필 카드 배치를 그대로 미러링한다.
+  detailView: 'facultyMirror',
   // AI 연구요약은 연구실과 같은 구조 — 교수 한글 이름을 키로 한 공유 record 파일
   // 하나를 나눠 쓰고, 저장 시 그 레코드 한 칸만 갈아 끼운다.
   // ⚠️ 크롤 산출물인 faculty-profiles/<이름>.json 에 쓰지 않는다(재크롤에 지워진다).
@@ -727,6 +736,8 @@ const labs: ResourceDef = {
     ],
     filterKey: 'field',
   },
+  // '자세히'는 연구실 목록의 한 행이 보이는 모습을 그대로 미러링한다.
+  detailView: 'labMirror',
   // AI 요약은 연구실마다 파일이 따로 있는 게 아니라 지도교수 이름을 키로 한 공유
   // record 파일 하나를 나눠 쓴다 — 저장 시 그 레코드 한 칸만 갈아 끼운다.
   linkedSummary: {
