@@ -18,14 +18,76 @@ const RESEND_COOLDOWN_MS = 60 * 1000;
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
+/**
+ * 인증번호 메일 HTML.
+ *
+ * 이메일 클라이언트(특히 Gmail·Outlook·네이버)는 웹과 규칙이 다르다 — 여기 문법은
+ * 전부 그 제약 때문이다:
+ * - 레이아웃은 <table role="presentation"> + 인라인 style 만 (클래스·<style> 은 Gmail 이 제거)
+ * - 웹폰트 불가 → 한글 시스템 폰트 스택
+ * - 이미지 없이 텍스트 락업만 (수신측 이미지 차단이 기본값인 환경이 흔하다)
+ * - 배경색은 전부 명시 (다크모드 클라이언트에서 투명 배경은 뒤집힌다)
+ * - letter-spacing 은 마지막 글자 뒤에도 붙어 시각 중심이 오른쪽으로 밀린다
+ *   → 코드 셀에 같은 값의 padding-left 로 보정
+ */
 function otpEmailHtml(code: string): string {
-  return `<div style="font-family:'Pretendard',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;max-width:480px;margin:0 auto;padding:32px 24px;color:#232323">
-  <p style="margin:0 0 6px;font-size:12px;letter-spacing:0.12em;text-transform:uppercase;color:#0057A8">Yonsei Mechanical Engineering</p>
-  <h1 style="margin:0 0 20px;font-size:20px;font-weight:700;color:#003377">콘텐츠 관리 로그인 인증번호</h1>
-  <p style="margin:0 0 20px;font-size:14px;line-height:1.7">아래 인증번호를 로그인 화면에 입력해 주세요.</p>
-  <p style="margin:0 0 20px;padding:16px 0;border-top:1px solid #E0E6ED;border-bottom:1px solid #E0E6ED;font-size:34px;font-weight:700;letter-spacing:0.24em;text-align:center;color:#003377">${code}</p>
-  <p style="margin:0;font-size:13px;line-height:1.7;color:#6E6E6E">인증번호는 발급 후 10분간 유효합니다.<br />본인이 요청하지 않았다면 이 메일을 무시해 주세요.</p>
-</div>`;
+  const font =
+    "'Apple SD Gothic Neo','Malgun Gothic','맑은 고딕',Helvetica,Arial,sans-serif";
+  return `<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+</head>
+<body style="margin:0;padding:0;background-color:#F4F7FB">
+  <!-- 프리헤더: 받은편지함 미리보기 한 줄 (본문에는 보이지 않음) -->
+  <div style="display:none;max-height:0;overflow:hidden;mso-hide:all">인증번호 ${code} — 10분간 유효합니다</div>
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background-color:#F4F7FB">
+    <tr>
+      <td align="center" style="padding:32px 12px">
+        <!-- width 속성은 Outlook 데스크톱용(맥스폭 미지원), CSS 는 그 외 클라이언트의
+             반응형(100% 를 520 에서 캡) — 하이브리드 폭 지정의 표준 문법 -->
+        <table role="presentation" width="520" cellpadding="0" cellspacing="0" style="width:100%;max-width:520px">
+          <!-- 상단 브랜드 바 -->
+          <tr>
+            <td style="background-color:#003377;padding:16px 28px">
+              <span style="font-family:${font};font-size:14px;font-weight:700;color:#FFFFFF">연세대학교 기계공학부</span>
+              <!-- inline-block: 좁은 화면에서 어절 중간이 아니라 문구 전체가 둘째 줄로 내려간다 -->
+              <span style="display:inline-block;font-family:${font};font-size:11px;color:#8FA6C6">&nbsp;&nbsp;YONSEI MECHANICAL ENGINEERING</span>
+            </td>
+          </tr>
+          <!-- 본문 카드 -->
+          <tr>
+            <td style="background-color:#FFFFFF;border:1px solid #E0E6ED;border-top:0;padding:32px 28px">
+              <p style="margin:0;font-family:${font};font-size:11px;font-weight:700;letter-spacing:3px;color:#0057A8">CONTENT MANAGEMENT</p>
+              <h1 style="margin:10px 0 0;font-family:${font};font-size:20px;font-weight:700;color:#232323">로그인 인증번호</h1>
+              <p style="margin:14px 0 0;font-family:${font};font-size:14px;line-height:1.7;color:#232323">콘텐츠 관리 콘솔 로그인 화면에 아래 번호를 입력해 주세요.</p>
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin-top:22px">
+                <tr>
+                  <td align="center" style="background-color:#F4F7FB;border:1px solid #E0E6ED;padding:22px 10px 22px 20px">
+                    <span style="font-family:${font};font-size:34px;font-weight:700;letter-spacing:10px;color:#003377">${code}</span>
+                  </td>
+                </tr>
+              </table>
+              <p style="margin:14px 0 0;font-family:${font};font-size:13px;line-height:1.7;color:#6E6E6E">이 번호는 발급 후 10분간 유효합니다.</p>
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin-top:22px">
+                <tr><td style="border-top:1px solid #E0E6ED;font-size:0;line-height:0">&nbsp;</td></tr>
+              </table>
+              <p style="margin:14px 0 0;font-family:${font};font-size:13px;line-height:1.7;color:#6E6E6E">본인이 요청하지 않았다면 이 메일은 무시하셔도 됩니다.<br />인증번호를 다른 사람에게 알려주지 마세요.</p>
+            </td>
+          </tr>
+          <!-- 푸터 -->
+          <tr>
+            <td align="center" style="padding:18px 12px 0">
+              <p style="margin:0;font-family:${font};font-size:12px;line-height:1.7;color:#6E6E6E">연세대학교 기계공학부 · 본 메일은 CMS 로그인 요청에 따라 자동 발송되었습니다</p>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>`;
 }
 
 export async function POST(request: Request): Promise<Response> {
