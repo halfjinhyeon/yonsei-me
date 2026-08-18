@@ -40,7 +40,9 @@ import { formatPeriodLabel } from '@/lib/calendar';
 import { UploadCancelledError, type UploadProgress, type UploadProgressHandler } from '@/lib/admin/storage';
 import { useAdminShell } from './AdminShellContext';
 import { CmsModal } from './CmsModal';
-import { RichTextEditor } from './RichTextEditor';
+// BoardEditor(v2) — 구형(Froala) 툴바 파리티 + UI Components 스톡 룩.
+// 프롭 계약은 구판 RichTextEditor 와 동일(드롭인 스왑, 2026-08-18).
+import { BoardEditor } from './board-editor/BoardEditor';
 import { TranslateButton } from './TranslateButton';
 import { PostPreviewPane } from './PostPreviewPane';
 
@@ -849,7 +851,7 @@ export function PostForm({
                   사진은 툴바 🖼 버튼·드래그앤드롭·붙여넣기 모두 가능(자동 압축 후 스토리지 저장) */}
               <div onFocusCapture={() => { lastBodyRef.current = 'ko'; }}>
                 <p className="mb-1.5 text-[12px] font-semibold text-content-faint">본문 (한국어)</p>
-                <RichTextEditor
+                <BoardEditor
                   value={rec.bodyKo}
                   onChange={(html) => set('bodyKo', html)}
                   onUploadImage={onUploadFile ? (file) => onUploadFile(file) : undefined}
@@ -865,7 +867,7 @@ export function PostForm({
                   {/* 위지윅 본문은 HTML — 태그 보존 번역(tag_handling) */}
                   <TranslateButton source={rec.bodyKo} html onTranslated={(v) => set('bodyEn', v)} />
                 </div>
-                <RichTextEditor
+                <BoardEditor
                   value={rec.bodyEn}
                   onChange={(html) => set('bodyEn', html)}
                   onUploadImage={onUploadFile ? (file) => onUploadFile(file) : undefined}

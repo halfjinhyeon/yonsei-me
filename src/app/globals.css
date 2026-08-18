@@ -363,6 +363,10 @@
   .prose-content table[data-border-color='gray'] {
     --table-border-color: #9ca3af;
   }
+  /* 구형 CMS(Froala) 기본 테두리색 파리티 — 새 표의 초기값(에디터 삽입 체인이 지정) */
+  .prose-content table[data-border-color='lightgray'] {
+    --table-border-color: #dddddd;
+  }
   /* 격자형 — 모든 셀에 선을 두른다. 굵기는 px 토큰(0~4) select, 구 토큰(thin/thick/
      none)은 재저장 전의 게시물을 위해 같은 규칙으로 병행 유지한다(스키마가 다시 열면
      px 토큰으로 승격). thead 의 네이비 룰은 격자와 이중선이 되므로 흡수시킨다.
@@ -746,6 +750,20 @@
     min-height: 320px;
     padding: 1rem 1.25rem;
     outline: none; /* 포커스 링은 컨테이너(.rte)가 아닌 브라우저 기본 대신 border 로 */
+  }
+  /* 코드뷰(BoardEditor) — fieldset[disabled] 가 기능은 잠그지만 display:contents 라
+     자기 박스가 없어 시각 효과를 못 준다. 자식(그룹·구분자)에 흐림을 입힌다. */
+  .board-editor fieldset:disabled > * {
+    opacity: 0.45;
+    pointer-events: none;
+  }
+  /* 툴바 영역 구분 — 구형(Froala gray 테마) 실측 파리티: 배경 #F5F5F5 +
+     상단 5px #BDBDBD 액센트 바. 흰 본문과 흰 툴바가 이어져 헷갈린다는
+     사용자 피드백(2026-08-18)으로 추가. 하단 헤어라인은 경계 명확화용. */
+  .board-editor [role='toolbar'] {
+    background: #f5f5f5;
+    border-top: 5px solid #bdbdbd;
+    border-bottom: 1px solid #e0e0e0;
   }
   .rte:focus-within {
     border-color: rgb(var(--yonsei-blue, 0 87 168) / 1);

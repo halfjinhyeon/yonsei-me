@@ -49,8 +49,9 @@ export type TableBorder = (typeof TABLE_BORDERS)[number];
  *  재저장 전의 게시물을 위해 구 토큰 규칙도 함께 유지한다(globals.css). */
 const LEGACY_BORDERS: Record<string, TableBorder> = { none: '0', thin: '1', thick: '2' };
 
-/** 표 테두리 색 — 브랜드 토큰 이름(실제 색은 globals.css). black 이 기본 폴백과 동색. */
-export const TABLE_BORDER_COLORS = ['black', 'navy', 'blue', 'sky', 'red', 'gray'] as const;
+/** 표 테두리 색 — 브랜드 토큰 이름(실제 색은 globals.css). black 이 기본 폴백과 동색.
+ *  lightgray(#DDD)는 구형 CMS(Froala) 기본 테두리색 파리티 — 새 표의 초기값. */
+export const TABLE_BORDER_COLORS = ['black', 'navy', 'blue', 'sky', 'red', 'gray', 'lightgray'] as const;
 export type TableBorderColor = (typeof TABLE_BORDER_COLORS)[number];
 
 /** 셀 여백 프리셋 — null(보통, 8px 10px)이 기본. 값은 globals.css 열거 */
