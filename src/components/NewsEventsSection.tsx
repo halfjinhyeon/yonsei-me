@@ -16,6 +16,8 @@ export interface NewsEventItem {
   title: string;
   href: string;
   kind: 'news' | 'event';
+  /** 뉴스 분류(뉴스 kind 전용) — 대표 카드 칩이 '성과' 글을 구분해 표시한다 */
+  category?: 'general' | 'achievement';
   /** 좌측 대표 카드용 — 본문 첫 이미지(원본). 없으면 thumb 로 폴백(page.tsx 에서 조립) */
   image?: string;
   /** 우측 목록용 — 게시물 대표사진(thumbnail). 원본을 가로로 잘라 낸 별개 파일이라
@@ -351,7 +353,13 @@ export function NewsEventsSection({ items }: { items: NewsEventItem[] }) {
  */
 function HeroNewsCard({ item }: { item: NewsEventItem }) {
   const t = useTranslations('home');
-  const kindLabel = item.kind === 'news' ? t('newsEvents.kindNews') : t('newsEvents.kindEvent');
+  // 뉴스 칩은 분류를 따른다 — 성과 글은 '성과', 그 외(일반)는 '뉴스'
+  const kindLabel =
+    item.kind === 'news'
+      ? item.category === 'achievement'
+        ? t('newsEvents.kindAchievement')
+        : t('newsEvents.kindNews')
+      : t('newsEvents.kindEvent');
 
   return (
     <Link href={item.href} draggable={false} className="group relative block lg:h-full">

@@ -317,6 +317,7 @@
       "pause": "Pause news rotation",
       "play": "Play news rotation",
       "kindNews": "News",
+      "kindAchievement": "Highlight",
       "kindEvent": "Event"
     },
     "sectionNav": {

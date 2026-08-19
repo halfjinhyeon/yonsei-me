@@ -187,6 +187,8 @@ export default async function HomePage({ params }: { params: { locale: string } 
         // 뉴스 기사 상세는 /news/press/<slug> (탭 세그먼트와 자리를 나눠 쓰므로 헬퍼로만 만든다)
         href: newsArticleHref(n.slug),
         kind: 'news' as const,
+        // 대표 카드 칩이 성과 글을 구분해 표시한다(뉴스 분류 — DB posts.category)
+        category: n.category === 'achievement' ? ('achievement' as const) : ('general' as const),
         ...(summary ? { summary } : {}),
       };
     })
