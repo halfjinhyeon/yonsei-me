@@ -1080,45 +1080,8 @@ export function PostForm({
               )}
             </>
           )}
-          <div className="flex flex-wrap items-center gap-2.5">
-            <DropTitle>첨부</DropTitle>
-            {/* '사진 첨부'는 본문 에디터가 없는 게시판(noBody = 일정·인스타그램)에만 남긴다.
-                본문이 있는 게시판에서는 툴바 사진 버튼이 업로드·본문 삽입·트레이 등록을
-                한 번에 하므로(uploadImageIntoBody) 같은 일을 하는 버튼이 둘이 되고,
-                "어느 쪽으로 올려야 하나"를 다시 묻게 만든다. noBody 는 사진을 넣을
-                에디터 자체가 없어 이 버튼이 유일한 통로다 — 지우지 마라. */}
-            {meta.noBody && onUploadFile && (
-              <button
-                type="button"
-                onClick={() => poolInputRef.current?.click()}
-                disabled={uploading !== null}
-                className="cms-btn cms-btn-sm"
-              >
-                사진 첨부
-              </button>
-            )}
-            {uploading && (
-              <>
-                <span className="text-[11px] font-medium text-yonsei-blue">
-                  {uploadLabel(uploading)}
-                  {uploading.note ? ` (${uploading.note})` : ''}
-                </span>
-                <button type="button" onClick={cancelUpload} className="cms-btn-danger cms-btn-sm">
-                  취소
-                </button>
-              </>
-            )}
-          </div>
-          {uploading && (
-            <div className="mt-2 h-1 w-full overflow-hidden bg-surface-soft" aria-hidden="true">
-              <div
-                className={cn('h-full bg-yonsei-blue transition-[width] duration-200', isIndeterminate(uploading) && 'animate-pulse')}
-                style={{ width: `${uploadBarWidth(uploading)}%` }}
-              />
-            </div>
-          )}
+          {/* 트레이 본체 — 파생 목록·체크 통계를 한 번만 계산해 헤더·그리드·리스트에 나눠 쓴다 */}
           {(() => {
-            // 파생 목록·체크 통계를 한 번만 계산해 버튼 활성/그리드/리스트에 나눠 쓴다
             const entries = buildTrayEntries();
             const images = entries.filter((it) => it.kind === 'image');
             const files = entries.filter((it) => it.kind === 'file');
@@ -1127,156 +1090,229 @@ export function PostForm({
               (it.name.includes('.') ? it.name.split('.').pop()! : it.url.split('.').pop() ?? '')
                 .toUpperCase()
                 .slice(0, 5) || 'FILE';
+            /* 좌측 라벨 컬럼 — '사진'·'파일' 두 줄이 공유하는 기준선. 이 폭이 같아야
+               두 첨부 버튼의 좌측 엣지가 세로로 물린다(시안 B 의 유일한 판정 기준). */
+            const labelCol = 'flex h-9 w-14 shrink-0 items-baseline gap-1.5 pt-[9px] sm:w-20';
+            /* 첨부 버튼 자리 — 버튼이 없는 게시판(안내문으로 대체)에서도 이 행의 높이가
+               그대로여야 아래 그리드·리스트가 위아래로 흔들리지 않는다. */
+            const slotRow = 'flex h-9 items-center gap-2.5';
+            const emptyRow =
+              'flex h-8 items-center border border-dashed border-surface-border bg-surface px-2.5 text-[11px] text-content-faint';
             return (
               <>
-                {/* 아직 아무것도 없을 때의 안내 — 본문이 있는 게시판은 '사진 첨부' 버튼이
-                    없으므로(툴바로 통합), 이 한 줄이 없으면 "사진을 어떻게 올리지?"가 된다. */}
-                {entries.length === 0 && !meta.noBody && (
-                  <p className="mt-1.5 text-[11px] text-content-faint">
-                    사진은 본문 툴바의 사진 버튼으로 넣으면 여기에 함께 담깁니다.
-                  </p>
-                )}
-                {entries.length > 0 && (
-                  <>
-                    <div className="mt-3.5 flex flex-wrap items-center gap-1.5">
-                      <span className="mr-1 text-[12px] tabular-nums text-content-faint">{entries.length}개</span>
-                      <button
-                        type="button"
-                        onClick={() => setTrayChecked(new Set(entries.map((it) => it.key)))}
-                        className="cms-btn cms-btn-sm"
-                      >
-                        전체 선택
-                      </button>
-                      <button
-                        type="button"
-                        onClick={() => setTrayChecked(new Set())}
-                        disabled={trayChecked.size === 0}
-                        className="cms-btn cms-btn-sm"
-                      >
-                        전체 해제
-                      </button>
-                      <button
-                        type="button"
-                        onClick={setThumbnailFromTray}
-                        disabled={!(trayChecked.size === 1 && checkedImages.length === 1)}
-                        title="체크한 사진 1장을 목록 썸네일로 지정"
-                        className="cms-btn cms-btn-sm"
-                      >
-                        썸네일 지정
-                      </button>
-                      <button
-                        type="button"
-                        onClick={removeCheckedTray}
-                        disabled={trayChecked.size === 0}
-                        className="cms-btn cms-btn-sm"
-                      >
-                        선택 삭제
-                      </button>
-                      {!meta.noBody && (
-                        <button
-                          type="button"
-                          onClick={insertCheckedIntoBody}
-                          disabled={checkedImages.length === 0}
-                          title="체크한 사진을 본문 커서 위치에 삽입"
-                          className="cms-btn-primary cms-btn-sm"
-                        >
-                          본문 삽입
-                        </button>
-                      )}
-                    </div>
-                    {!meta.noBody && (
-                      <p className="mt-1.5 text-[11px] text-content-faint">
-                        본문 툴바의 사진 버튼으로 넣은 사진은 여기에 자동으로 담깁니다.
-                        ‘본문 삽입’은 지금 열려 있는 언어 탭({lang === 'ko' ? '한국어' : 'English'})의
-                        에디터에 들어갑니다.
-                      </p>
-                    )}
-                  </>
-                )}
-
-                {/* 사진 — 카드 그리드(미리보기·썸네일 배지) */}
-                {images.length > 0 && (
-                  <ul className="mt-3.5 grid grid-cols-3 gap-3 sm:grid-cols-4 md:grid-cols-6">
-                    {images.map((it) => {
-                      const checked = trayChecked.has(it.key);
-                      return (
-                        <li key={it.key}>
-                          <label
-                            className={cn(
-                              'relative block cursor-pointer border bg-surface transition-colors',
-                              checked
-                                ? 'border-yonsei-blue ring-2 ring-yonsei-blue/40'
-                                : 'border-surface-border hover:border-yonsei-blue/50',
-                            )}
-                          >
-                            <input
-                              type="checkbox"
-                              checked={checked}
-                              onChange={() => toggleTray(it.key)}
-                              className="absolute left-1.5 top-1.5 z-10 h-4 w-4 accent-yonsei-blue"
-                              aria-label={`${it.name} 선택`}
-                            />
-                            {it.isThumb && (
-                              <span className="absolute right-0 top-0 z-10 bg-yonsei-blue px-1.5 py-0.5 text-[10px] font-bold text-white">
-                                썸네일
-                              </span>
-                            )}
-                            {/* eslint-disable-next-line @next/next/no-img-element -- 관리자 트레이 미리보기 */}
-                            <img src={it.url} alt="" className="h-20 w-full object-cover" />
-                            <span className="block truncate px-1.5 py-1 text-[11px] text-content-faint">
-                              {it.name}
-                            </span>
-                          </label>
-                        </li>
-                      );
-                    })}
-                  </ul>
-                )}
-
-                {/* 파일(문서) — noBody(인스타·일정)는 첨부 개념이 없어 사진만 받는다 */}
-                {!meta.noBody && onUploadFile && (
-                  <div className="mt-4 flex flex-wrap items-center gap-2.5">
+                {/* 상단 — 제목 · 전체 개수 · 공용 액션 바(두 묶음 공용) */}
+                <div className="flex flex-wrap items-center gap-2">
+                  <DropTitle>첨부</DropTitle>
+                  <span className="text-[12px] tabular-nums text-content-faint">{entries.length}개</span>
+                  <div className="ml-auto flex flex-wrap items-center gap-1.5">
                     <button
                       type="button"
-                      onClick={() => docInputRef.current?.click()}
-                      disabled={uploading !== null}
-                      className="cms-btn cms-btn-sm"
+                      onClick={() => setTrayChecked(new Set(entries.map((it) => it.key)))}
+                      disabled={entries.length === 0}
+                      className="cms-btn cms-btn-sm h-7"
                     >
-                      파일 첨부
+                      전체 선택
                     </button>
+                    <button
+                      type="button"
+                      onClick={() => setTrayChecked(new Set())}
+                      disabled={trayChecked.size === 0}
+                      className="cms-btn cms-btn-sm h-7"
+                    >
+                      전체 해제
+                    </button>
+                    <button
+                      type="button"
+                      onClick={setThumbnailFromTray}
+                      disabled={!(trayChecked.size === 1 && checkedImages.length === 1)}
+                      title="체크한 사진 1장을 목록 썸네일로 지정"
+                      className="cms-btn cms-btn-sm h-7"
+                    >
+                      썸네일 지정
+                    </button>
+                    <button
+                      type="button"
+                      onClick={removeCheckedTray}
+                      disabled={trayChecked.size === 0}
+                      className="cms-btn cms-btn-sm h-7"
+                    >
+                      선택 삭제
+                    </button>
+                    {!meta.noBody && (
+                      <button
+                        type="button"
+                        onClick={insertCheckedIntoBody}
+                        disabled={checkedImages.length === 0}
+                        title="체크한 사진을 본문 커서 위치에 삽입"
+                        className="cms-btn-primary cms-btn-sm h-7"
+                      >
+                        본문 삽입
+                      </button>
+                    )}
                   </div>
+                </div>
+                {!meta.noBody && entries.length > 0 && (
+                  <p className="mt-1.5 text-[11px] leading-relaxed text-content-faint">
+                    ‘본문 삽입’은 지금 열려 있는 언어 탭({lang === 'ko' ? '한국어' : 'English'})의 에디터에
+                    들어갑니다.
+                  </p>
                 )}
-                {files.length > 0 && (
-                  <ul className="mt-2.5 border border-surface-border bg-surface">
-                    {files.map((it) => {
-                      const checked = trayChecked.has(it.key);
-                      return (
-                        <li key={it.key} className="border-b border-[#f1f4f8] last:border-b-0">
-                          <label
-                            className={cn(
-                              'flex cursor-pointer items-center gap-2.5 px-3 py-2 transition-colors',
-                              checked ? 'bg-yonsei-blue/[0.06]' : 'hover:bg-surface-soft/60',
-                            )}
-                          >
-                            <input
-                              type="checkbox"
-                              checked={checked}
-                              onChange={() => toggleTray(it.key)}
-                              className="h-4 w-4 shrink-0 accent-yonsei-blue"
-                              aria-label={`${it.name} 선택`}
-                            />
-                            <span className="shrink-0 border border-surface-border bg-surface-soft px-1.5 py-0.5 text-[10px] font-bold tracking-wide text-content-faint">
-                              {extOf(it)}
-                            </span>
-                            <span className="min-w-0 flex-1 truncate text-[13px] text-content">{it.name}</span>
-                            {it.size ? (
-                              <span className="shrink-0 text-[11px] text-content-faint">{formatBytes(it.size)}</span>
-                            ) : null}
-                          </label>
-                        </li>
-                      );
-                    })}
-                  </ul>
+                <div className="my-3 h-px bg-surface-border" aria-hidden="true" />
+
+                {/* ── 사진 ── */}
+                <div className="flex items-start">
+                  <div className={labelCol}>
+                    <span className="text-[12px] font-bold text-content">사진</span>
+                    <span className="text-[12px] tabular-nums text-content-faint">{images.length}</span>
+                  </div>
+                  <div className="min-w-0 flex-1">
+                    <div className={slotRow}>
+                      {/* '사진 첨부'는 본문 에디터가 없는 게시판(noBody = 일정·인스타그램)에만 남긴다.
+                          본문이 있는 게시판에서는 툴바 사진 버튼이 업로드·본문 삽입·트레이 등록을
+                          한 번에 하므로(uploadImageIntoBody) 같은 일을 하는 버튼이 둘이 되고,
+                          "어느 쪽으로 올려야 하나"를 다시 묻게 만든다. noBody 는 사진을 넣을
+                          에디터 자체가 없어 이 버튼이 유일한 통로다 — 지우지 마라.
+                          버튼이 없을 때는 같은 자리에 안내문이 들어가 행 높이와 기준선을 지킨다. */}
+                      {meta.noBody && onUploadFile ? (
+                        <button
+                          type="button"
+                          onClick={() => poolInputRef.current?.click()}
+                          disabled={uploading !== null}
+                          className="cms-btn cms-btn-sm h-7 min-w-[88px]"
+                        >
+                          사진 첨부
+                        </button>
+                      ) : (
+                        <span className="min-w-0 truncate text-[11px] text-content-faint">
+                          사진은 본문 툴바의 사진 버튼으로 넣으면 여기에 함께 담깁니다.
+                        </span>
+                      )}
+                      {uploading && (
+                        <span className="ml-auto flex shrink-0 items-center gap-2.5">
+                          <span className="text-[11px] font-medium tabular-nums text-yonsei-blue">
+                            {uploadLabel(uploading)}
+                            {uploading.note ? ` (${uploading.note})` : ''}
+                          </span>
+                          <button type="button" onClick={cancelUpload} className="cms-btn-danger cms-btn-sm h-7">
+                            취소
+                          </button>
+                        </span>
+                      )}
+                    </div>
+                    {uploading && (
+                      <div className="mb-2 h-[3px] w-full overflow-hidden bg-surface-soft" aria-hidden="true">
+                        <div
+                          className={cn(
+                            'h-full bg-yonsei-blue transition-[width] duration-200',
+                            isIndeterminate(uploading) && 'animate-pulse',
+                          )}
+                          style={{ width: `${uploadBarWidth(uploading)}%` }}
+                        />
+                      </div>
+                    )}
+                    {images.length === 0 ? (
+                      <p className={emptyRow}>아직 담긴 사진이 없습니다.</p>
+                    ) : (
+                      <ul className="grid grid-cols-3 gap-2 sm:grid-cols-4 md:grid-cols-5">
+                        {images.map((it) => {
+                          const checked = trayChecked.has(it.key);
+                          return (
+                            <li key={it.key}>
+                              <label
+                                className={cn(
+                                  'relative block cursor-pointer border bg-surface transition-colors',
+                                  checked
+                                    ? 'border-yonsei-blue ring-2 ring-yonsei-blue/40'
+                                    : 'border-surface-border hover:border-yonsei-blue/50',
+                                )}
+                              >
+                                <input
+                                  type="checkbox"
+                                  checked={checked}
+                                  onChange={() => toggleTray(it.key)}
+                                  className="absolute left-1.5 top-1.5 z-10 h-4 w-4 accent-yonsei-blue"
+                                  aria-label={`${it.name} 선택`}
+                                />
+                                {it.isThumb && (
+                                  <span className="absolute right-0 top-0 z-10 bg-yonsei-blue px-1.5 py-0.5 text-[10px] font-bold text-white">
+                                    썸네일
+                                  </span>
+                                )}
+                                {/* eslint-disable-next-line @next/next/no-img-element -- 관리자 트레이 미리보기 */}
+                                <img src={it.url} alt="" className="h-[72px] w-full object-cover" />
+                                <span className="block truncate border-t border-[#eef2f7] px-1.5 py-1 text-[11px] text-content-faint">
+                                  {it.name}
+                                </span>
+                              </label>
+                            </li>
+                          );
+                        })}
+                      </ul>
+                    )}
+                  </div>
+                </div>
+
+                {/* ── 파일(문서) — noBody(인스타·일정)는 첨부 개념이 없어 사진만 받는다 ── */}
+                {!meta.noBody && (
+                  <>
+                    <div className="my-3.5 h-px bg-surface-border" aria-hidden="true" />
+                    <div className="flex items-start">
+                      <div className={labelCol}>
+                        <span className="text-[12px] font-bold text-content">파일</span>
+                        <span className="text-[12px] tabular-nums text-content-faint">{files.length}</span>
+                      </div>
+                      <div className="min-w-0 flex-1">
+                        <div className={slotRow}>
+                          {onUploadFile && (
+                            <button
+                              type="button"
+                              onClick={() => docInputRef.current?.click()}
+                              disabled={uploading !== null}
+                              className="cms-btn cms-btn-sm h-7 min-w-[88px]"
+                            >
+                              파일 첨부
+                            </button>
+                          )}
+                        </div>
+                        {files.length === 0 ? (
+                          <p className={emptyRow}>첨부된 파일이 없습니다.</p>
+                        ) : (
+                          <ul className="border border-surface-border bg-surface">
+                            {files.map((it) => {
+                              const checked = trayChecked.has(it.key);
+                              return (
+                                <li key={it.key} className="border-b border-[#f1f4f8] last:border-b-0">
+                                  <label
+                                    className={cn(
+                                      'flex cursor-pointer items-center gap-2.5 px-2.5 py-2 transition-colors',
+                                      checked ? 'bg-yonsei-blue/[0.06]' : 'hover:bg-surface-soft/60',
+                                    )}
+                                  >
+                                    <input
+                                      type="checkbox"
+                                      checked={checked}
+                                      onChange={() => toggleTray(it.key)}
+                                      className="h-4 w-4 shrink-0 accent-yonsei-blue"
+                                      aria-label={`${it.name} 선택`}
+                                    />
+                                    <span className="min-w-[36px] shrink-0 bg-[#edf3fa] px-1 py-0.5 text-center text-[10px] font-extrabold tracking-wide text-yonsei-navy">
+                                      {extOf(it)}
+                                    </span>
+                                    <span className="min-w-0 flex-1 truncate text-[13px] text-content">{it.name}</span>
+                                    {it.size ? (
+                                      <span className="shrink-0 text-[11px] tabular-nums text-content-faint">
+                                        {formatBytes(it.size)}
+                                      </span>
+                                    ) : null}
+                                  </label>
+                                </li>
+                              );
+                            })}
+                          </ul>
+                        )}
+                      </div>
+                    </div>
+                  </>
                 )}
               </>
             );
