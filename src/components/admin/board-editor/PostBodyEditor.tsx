@@ -35,6 +35,7 @@ import { CharacterCount, Placeholder } from '@tiptap/extensions';
 import { RteRowResize } from '@/lib/admin/rte-row-resize';
 import {
   RteImage,
+  RteStyleCarry,
   RteTable,
   RteTableCell,
   RteTableHeader,
@@ -216,6 +217,9 @@ export function PostBodyEditor({
       RteTableHeader,
       RteTableCell,
       RteRowResize,
+      // 코드뷰로 붙여넣은 구형 디자인 공지의 style 을 WYSIWYG 복귀 때 살려 둔다
+      // (값 검사는 저장 경로의 정화가 한다 — rte-schema 주석 참조)
+      RteStyleCarry,
       Youtube.configure({ nocookie: true, width: 640, height: 360 }),
       Placeholder.configure({ placeholder: placeholder ?? '' }),
       CharacterCount,

@@ -111,38 +111,132 @@ const SITE_ORIGIN = 'https://me.yonsei.ac.kr';
 const SCHEDULE_BOARDS = new Set(['events', 'seminars']);
 
 // ── 정화 정책 ──────────────────────────────────────────────────────────
-/** ⚠ src/lib/admin/posts-server.ts 의 SANITIZE_OPTS 와 **글자 그대로 동일**해야 한다.
- *  (여기는 .mjs 라 TS 모듈을 import 할 수 없어 사본을 둔다. 한쪽을 고치면 반드시 양쪽.)
- *  이 허용목록에 없는 것 — div, font, class, id, img 아닌 태그의 width/height,
- *  color/background-color/text-align 을 제외한 모든 style 속성 — 은 여기서 전부 떨어진다.
- *  normalizeBody 는 "이걸 통과할 모양"으로 미리 다듬는 전처리기다. */
+/** ⚠ src/lib/admin/sanitize.ts 의 SANITIZE_OPTS 와 **내용상 동일**해야 한다
+ *  (TS 타입 표기만 뺀 사본 — 여기는 .mjs 라 TS 모듈을 import 할 수 없다).
+ *  한쪽을 고치면 반드시 양쪽. 사본이 뒤처지면 정본이 허용하는 표 속성
+ *  (data-border 계열·colgroup)이 여기서만 떨어져 임포트한 표가 통째로 깨진다.
+ *  이 허용목록에 없는 것 — font, class, id, img 아닌 태그의 자유 style 등 — 은
+ *  전부 떨어진다. normalizeBody 는 "이걸 통과할 모양"으로 미리 다듬는 전처리기다. */
+
+// ── 값 패턴 ────────────────────────────────────────────────────────────
+// 구 사이트에 흔한 "아래아한글·워드에서 디자인해 붙여넣은 공지"(색 배경 제목 바,
+// 번호 칩 표)를 살리려면 배경·테두리·여백까지 열어야 한다. 태그를 더 여는 대신
+// **값 패턴이 보안 경계**다 — 아래 어떤 패턴도 url(·expression(·세미콜론·역슬래시를
+// 통과시키지 않는다. sanitize-html 이 style 을 선언 단위로 파싱하므로(postcss)
+// 속성별 정규식만 조여 두면 선언 사이로 새는 경로가 없다.
+
+/** 순수 색상값만 — 이름색·rgba·함수 표기는 통과하지 않는다 */
+const COLOR = [
+  /^#[0-9a-fA-F]{3,8}$/,
+  /^rgb\(\s*\d{1,3}\s*,\s*\d{1,3}\s*,\s*\d{1,3}\s*\)$/,
+];
+
+/** 테두리 축약형 — 굵기·선 스타일·색 토큰이 **임의 순서로** 1~3개.
+ *  HWP 는 CSS 표준 순서가 아니라 `solid #203a7b 0.28pt` 로 낸다(실측). */
+const BORDER = [
+  /^(?=.{1,64}$)(?:(?:solid|dashed|dotted|double|none|hidden|[\d.]{1,6}(?:px|pt)|#[0-9a-fA-F]{3,8}|rgb\(\s*\d{1,3}\s*,\s*\d{1,3}\s*,\s*\d{1,3}\s*\))\s*){1,3}$/,
+];
+
+/** 여백 축약형 — 1~4값. pt 는 HWP 원문의 종이 좌표계라 값이 크게 나올 수 있다 */
+const PADDING = [
+  /^(?:[\d.]{1,6}(?:px|pt|em|%)|0)(?:\s+(?:[\d.]{1,6}(?:px|pt|em|%)|0)){0,3}$/,
+];
+
+/** 길이 한 값 — 셀 폭·높이 */
+const LENGTH = [/^[\d.]{1,6}(px|pt|%)$/];
+
+/** 셀(th/td)에 허용하는 디자인 스타일 — 값은 전부 위 패턴으로 조인다 */
+const CELL_STYLES = {
+  border: BORDER,
+  'border-top': BORDER,
+  'border-right': BORDER,
+  'border-bottom': BORDER,
+  'border-left': BORDER,
+  padding: PADDING,
+  'vertical-align': [/^(top|middle|bottom)$/],
+  width: LENGTH,
+  height: LENGTH,
+};
+
+/** 문단·제목에 허용하는 디자인 스타일 — 색 배경 제목 바가 이 둘로 이뤄진다 */
+const BLOCK_STYLES = { background: COLOR, padding: PADDING };
+
 const SANITIZE_OPTS = {
   allowedTags: [
     'p', 'br', 'hr', 'h1', 'h2', 'h3', 'h4', 'h5',
     'strong', 'b', 'em', 'i', 'u', 's', 'del', 'mark', 'sup', 'sub',
     'ul', 'ol', 'li', 'blockquote', 'code', 'pre',
     'a', 'img', 'figure', 'figcaption',
-    'table', 'thead', 'tbody', 'tr', 'th', 'td', 'span',
+    'table', 'thead', 'tbody', 'tr', 'th', 'td', 'colgroup', 'col', 'span',
+    // 유튜브 임베드 — Tiptap Youtube 확장이 div[data-youtube-video] > iframe 로 낸다
+    'iframe', 'div',
   ],
   allowedAttributes: {
     a: ['href', 'title', 'target', 'rel'],
-    img: ['src', 'alt', 'title', 'width', 'height'],
-    th: ['colspan', 'rowspan', 'align'],
-    td: ['colspan', 'rowspan', 'align'],
+    // style 은 아래 allowedStyles 의 img.width(백분율)만 통과 — 픽셀·자유 CSS 는 떨어진다
+    img: ['src', 'alt', 'title', 'width', 'height', 'style', 'data-align'],
+    // 행 높이 드래그 결과(px) — tr 의 height 는 브라우저가 "최소 높이"로 다룬다
+    tr: ['style'],
+    // data-colwidth: 열 드래그 결과(px) — 재편집 시 Tiptap 이 여기서 폭을 되읽는다.
+    // valign: HWP/워드 산출물의 세로 정렬(열거값이라 style 없이도 안전하다)
+    th: ['colspan', 'rowspan', 'align', 'valign', 'style', 'data-colwidth'],
+    td: ['colspan', 'rowspan', 'align', 'valign', 'style', 'data-colwidth'],
+    // 표 테두리는 style 이 아니라 data 속성 "열거형"이다 — 값 집합이 CSS 한 곳
+    // (globals.css)에 갇혀 있어 정화 화이트리스트를 넓히지 않고도 안전하다.
+    // style 은 아래 table 패턴(width/min-width px + border-collapse)만 — 앞의 둘은
+    // 열 드래그 직렬화용, border-collapse 는 붙여넣은 구형 표의 무해한 잔재다.
+    table: ['data-border', 'data-border-color', 'data-cellpad', 'style'],
+    // colgroup/col: 게시 화면이 열 폭을 재현하는 통로 (col 은 width px 만)
+    col: ['style'],
+    // 형광펜(Highlight) — 배경색 인라인 + 무손실 왕복용 data-color
+    mark: ['style', 'data-color'],
     // Tiptap 글자색(span style="color:…") + 정렬(p/h* style="text-align:…") 허용
     span: ['style'],
     p: ['style'],
     h1: ['style'], h2: ['style'], h3: ['style'], h4: ['style'], h5: ['style'],
+    div: ['data-youtube-video'],
+    iframe: ['src', 'width', 'height', 'allowfullscreen', 'allow', 'frameborder', 'start'],
   },
-  // style 은 아래 속성·값 패턴만 통과 — 그 외 스타일은 제거된다
+  // style 은 아래 속성·값 패턴만 통과 — 그 외 스타일은 제거된다.
+  // (태그별 규칙은 '*' 와 합쳐진다 — img 는 '*' 것에 width 가 더해진 집합)
   allowedStyles: {
     '*': {
       color: [/^#[0-9a-fA-F]{3,8}$/, /^rgb\(/],
       'background-color': [/^#[0-9a-fA-F]{3,8}$/, /^rgb\(/],
+      // background 는 축약형이지만 **순수 색상값만** 통과한다 — HWP 는 셀 배경을
+      // background-color 가 아니라 이 축약형으로 낸다(실측 `background:#466991;`).
+      background: COLOR,
       'text-align': [/^(left|right|center|justify)$/],
     },
+    // 이미지 폭은 백분율만 — px 를 허용하면 모바일에서 본문을 뚫고 나간다
+    img: { width: [/^\d{1,3}%$/] },
+    // 에디터의 글꼴·크기·줄 간격(Tiptap textStyle) — 전부 span 인라인 style 로 나온다.
+    // 글꼴·크기 범위는 구형 CMS(Froala) 파리티(2026-08-18 결정): 이름 폰트 12종을
+    // 열어야 해서 자유 문자열이지만, 문자클래스를 조여 CSS 주입(세미콜론·괄호·
+    // 역슬래시·url() 등)이 불가능하게 한다 — 값은 폰트명·따옴표·쉼표·공백만.
+    span: {
+      // pt 는 HWP 원문 파리티(구형 공지가 글자 크기를 pt 로 낸다) — px 는 구형 목록 범위
+      'font-size': [/^([1-4][0-9]|50)px$/, /^[\d.]{1,5}pt$/],
+      'font-family': [/^[A-Za-z0-9가-힣'" ,._-]{1,80}$/],
+      'line-height': [/^(1(\.\d)?|2(\.0)?|2)$/],
+    },
+    // 셀 디자인(배경은 '*' 의 background/background-color 가 받는다)
+    th: CELL_STYLES,
+    td: CELL_STYLES,
+    // 색 배경 제목 바 — 문단·제목 자체에 배경과 여백이 걸린 꼴
+    p: BLOCK_STYLES,
+    h1: BLOCK_STYLES, h2: BLOCK_STYLES, h3: BLOCK_STYLES, h4: BLOCK_STYLES, h5: BLOCK_STYLES,
+    // 열 드래그 직렬화 — px 폭만. 표가 본문보다 넓어지는 건 게시 화면의
+    // overflow-x-auto(가로 스크롤)가 받아낸다(모바일 트레이드오프 합의됨).
+    col: { width: [/^\d+px$/], 'min-width': [/^\d+px$/] },
+    // table-layout 은 열지 않는다 — fixed 가 우리 자동 레이아웃 결정과 충돌한다.
+    table: { width: [/^\d+px$/], 'min-width': [/^\d+px$/], 'border-collapse': [/^(collapse|separate)$/] },
+    // 행 드래그 직렬화 — px 높이만(최소 높이 시맨틱이라 내용이 길면 알아서 더 늘어난다)
+    tr: { height: [/^\d+px$/] },
   },
   allowedSchemes: ['https', 'http', 'mailto'],
+  // 임베드 허용 호스트 — 유튜브(+쿠키 없는 도메인)뿐
+  allowedIframeHostnames: ['www.youtube.com', 'www.youtube-nocookie.com'],
   // 외부 링크는 새 탭 + noopener 로 강제(에디터 산출물 신뢰하지 않음)
   transformTags: {
     a: (tagName, attribs) => ({
@@ -282,7 +376,9 @@ function parseTag(raw) {
       attrs[a[1].toLowerCase()] = decodeEntities(a[2] ?? a[3] ?? a[4] ?? '');
     }
   }
-  return { type: 'tag', name, closing, attrs, selfClosed: /\/>$/.test(raw) };
+  // raw 를 함께 들고 다닌다 — 표 재생성(wrapLoose)은 토큰을 그대로 되찍어야 해서
+  // 속성을 재직렬화하지 않고 원문 조각을 쓴다.
+  return { type: 'tag', name, closing, attrs, selfClosed: /\/>$/.test(raw), raw };
 }
 
 function tokenize(html) {
@@ -331,11 +427,25 @@ function parseColor(value) {
 const isDefaultText = (c) => c.r === c.g && c.g === c.b && c.r <= 51;
 const isDefaultBg = (c) => c.r === c.g && c.g === c.b && c.r >= 238;
 
-/** style 속성값 → 허용 3종만 남긴 문자열(전부 떨어지면 빈 문자열).
+// 정화가 태그별로만 통과시키는 디자인 스타일 — 여기서도 같은 태그에서만 살린다.
+// (정화가 어차피 떨어뜨릴 선언을 남기면 "살아남은 속성이 없는 span 은 벗긴다"는
+//  normalizeBody 의 판단만 흐려져 빈 <span> 껍데기가 늘어난다)
+const CELL_TAGS = new Set(['td', 'th']);
+const PADDING_TAGS = new Set(['p', 'h1', 'h2', 'h3', 'h4', 'h5', 'td', 'th']);
+const BORDER_PROPS = new Set(['border', 'border-top', 'border-right', 'border-bottom', 'border-left']);
+/** pt 는 원문의 종이 좌표계다 — 폭·여백을 그대로 옮기면 표가 화면을 뚫는다.
+ *  테두리 굵기(0.28pt 같은 헤어라인)만은 pt 여도 그대로 의미가 통해 예외다. */
+const hasPt = (s) => /\d\s*pt\b/i.test(s);
+
+/** style 속성값 → 허용 목록만 남긴 문자열(전부 떨어지면 빈 문자열).
  *  font-family/font-size 를 여기서 죽이는 것이 이 스크립트의 핵심 중 하나다:
- *  원문의 돋움·13px·Malgun Gothic 이 살아남으면 사이트 서체를 매 글마다 덮어쓴다. */
-function filterStyle(value) {
-  const kept = [];
+ *  원문의 돋움·13px·Malgun Gothic 이 살아남으면 사이트 서체를 매 글마다 덮어쓴다.
+ *  반대로 배경·테두리·세로 정렬은 구형 디자인 공지(색 배경 제목 바·번호 칩 표)의
+ *  실체라 살린다 — 값 패턴은 SANITIZE_OPTS 와 같은 것을 쓴다.
+ *  같은 속성이 두 번 오면 뒤엣것이 이긴다(CSS 캐스케이드와 같게 Map 으로 모은다). */
+function filterStyle(value, tag = '') {
+  const t = String(tag).toLowerCase();
+  const kept = new Map();
   for (const decl of String(value).split(';')) {
     const i = decl.indexOf(':');
     if (i < 0) continue;
@@ -343,20 +453,39 @@ function filterStyle(value) {
     const raw = decl.slice(i + 1).trim();
     if (prop === 'text-align') {
       // text-align: start/end 는 정화 통과 패턴이 아니고, 어차피 기본값이라 버린다
-      if (/^(left|right|center|justify)$/i.test(raw)) kept.push(`text-align: ${raw.toLowerCase()}`);
+      if (/^(left|right|center|justify)$/i.test(raw)) kept.set(prop, `text-align: ${raw.toLowerCase()}`);
       continue;
     }
-    if (prop === 'color' || prop === 'background-color') {
+    // background 는 축약형이지만 색 하나짜리만 받는다(그림·그러데이션은 parseColor 가
+    // 거른다) → 통과분은 background-color 로 정규화해 한 가지 표기로 모은다.
+    if (prop === 'color' || prop === 'background-color' || prop === 'background') {
       const c = parseColor(raw);
       if (!c) continue;
-      if (prop === 'color' && isDefaultText(c)) continue;
-      if (prop === 'background-color' && isDefaultBg(c)) continue;
-      kept.push(`${prop}: rgb(${c.r}, ${c.g}, ${c.b})`);
+      const out = prop === 'color' ? 'color' : 'background-color';
+      if (out === 'color' && isDefaultText(c)) continue;
+      if (out === 'background-color' && isDefaultBg(c)) continue;
+      kept.set(out, `${out}: rgb(${c.r}, ${c.g}, ${c.b})`);
+      continue;
+    }
+    if (BORDER_PROPS.has(prop) && CELL_TAGS.has(t)) {
+      if (BORDER[0].test(raw)) kept.set(prop, `${prop}: ${raw}`);
+      continue;
+    }
+    if (prop === 'vertical-align' && CELL_TAGS.has(t)) {
+      if (/^(top|middle|bottom)$/i.test(raw)) kept.set(prop, `vertical-align: ${raw.toLowerCase()}`);
+      continue;
+    }
+    if (prop === 'padding' && PADDING_TAGS.has(t)) {
+      if (!hasPt(raw) && PADDING[0].test(raw)) kept.set(prop, `padding: ${raw}`);
+      continue;
+    }
+    if ((prop === 'width' || prop === 'height') && CELL_TAGS.has(t)) {
+      if (!hasPt(raw) && LENGTH[0].test(raw)) kept.set(prop, `${prop}: ${raw}`);
       continue;
     }
     // font-family / font-size / line-height / margin … 나머지는 전부 폐기
   }
-  return kept.join('; ');
+  return [...kept.values()].join('; ');
 }
 
 // ── URL 절대화 ────────────────────────────────────────────────────────
@@ -575,7 +704,7 @@ function normalizeBody(html, { sourceUrl, sourcePath } = {}) {
         continue;
       }
       if (k === 'style') {
-        const s = filterStyle(v); // ③
+        const s = filterStyle(v, name); // ③
         if (s) attrs[k] = s; // 남는 게 없으면 속성 자체를 넣지 않는다
         continue;
       }
@@ -600,7 +729,11 @@ function normalizeBody(html, { sourceUrl, sourcePath } = {}) {
 
   // ④ 빈 여백 문단 제거 — <p><span><br></span></p>, <p>&nbsp;</p>, <p></p>.
   // 중첩 때문에 한 번으로 안 끝날 수 있어 변화가 없을 때까지 돌린다.
-  const EMPTY_P = /<p(?:\s[^>]*)?>(?:\s|&nbsp;|&#160;|<br\s*\/?>|<span(?:\s[^>]*)?>|<\/span>|<strong>|<\/strong>|<em>|<\/em>|<b>|<\/b>|<u>|<\/u>)*<\/p>/gi;
+  // ⚠ 셀 바로 안의 빈 문단(<td><p></p></td>)은 남긴다 — 에디터(Tiptap)도 게시
+  //   화면도 "빈 셀 = <p> 하나"를 전제하므로, 여기서 지우면 표 재생성이 만든
+  //   빈 칸이 <td></td> 가 돼 편집 시 셀이 무너진다. 뒤보기(lookbehind)로 셀
+  //   여는 태그 직후만 예외 처리한다.
+  const EMPTY_P = /(?<!<t[dh]>|<t[dh]\s[^>]*>)<p(?:\s[^>]*)?>(?:\s|&nbsp;|&#160;|<br\s*\/?>|<span(?:\s[^>]*)?>|<\/span>|<strong>|<\/strong>|<em>|<\/em>|<b>|<\/b>|<u>|<\/u>)*<\/p>/gi;
   for (let i = 0; i < 5; i += 1) {
     const next = result.replace(EMPTY_P, '');
     if (next === result) break;
@@ -611,10 +744,325 @@ function normalizeBody(html, { sourceUrl, sourcePath } = {}) {
   return sanitizeHtml(result, SANITIZE_OPTS);
 }
 
+// ── 표 재생성 ─────────────────────────────────────────────────────────
+// 원문 표는 대부분 MS 워드에서 붙여 넣은 산출물이라 셀 안이 <span> 껍데기 안에
+// <p> 가 든 불법 중첩(<td><span><span><p>…</p></span></span></td>)이다. 정화는
+// 태그 화이트리스트만 볼 뿐 중첩 규칙을 고치지 않으므로 그대로 통과하고, 브라우저가
+// 렌더 시점에 구조를 제멋대로 재조립한다. 게다가 원문 표에는 data-border 계열
+// 속성이 없어 게시 화면 CSS(.prose-content table[data-border=…])가 선을 안 그린다.
+// → 표만 따로 뜯어 "에디터(Tiptap)가 만들었을 모양"으로 다시 찍는다.
+//
+// ⚠ tools/board-source.mjs 에 같은 모양의 짝 세기 도우미가 있지만 import 하지
+//   않는다 — 크롤러와 적재기는 의도적으로 분리돼 있다(파일 상단 주석 참조).
+
+/** 에디터가 새 표에 붙이는 기본값 — PostBodyEditor.tsx 의 insertTable 체인과 동일. */
+const TABLE_ATTRS = 'data-border="1" data-border-color="lightgray" data-cellpad="narrow"';
+
+// 중첩 표 자리표시자 — 원문에 나올 수 없는 제어문자를 골랐다. HTML 특수문자가
+// 아니라 정화·엔티티 처리를 그대로 통과한다(재생성이 끝나면 하나도 남지 않는다).
+const NESTED_MARK = String.fromCharCode(1); // U+0001 (SOH)
+const NESTED_MARK_RE = new RegExp(`${NESTED_MARK}(\\d+)${NESTED_MARK}`, 'g');
+
+/** startIdx 의 여는 태그에 짝이 맞는 닫는 태그까지 잘라 낸다(중첩 감안).
+ *  닫는 태그가 모자란 깨진 마크업이면 null. */
+function balancedBlock(html, startIdx, tag) {
+  const re = new RegExp(`<(/?)${tag}\\b[^>]*>`, 'gi');
+  re.lastIndex = startIdx;
+  let depth = 0;
+  let m;
+  while ((m = re.exec(html)) !== null) {
+    if (m[1]) {
+      depth -= 1;
+      if (depth <= 0) return html.slice(startIdx, m.index + m[0].length);
+    } else {
+      depth += 1;
+    }
+  }
+  return null;
+}
+
+/** 여는/닫는 태그 한 겹을 벗겨 안쪽만 남긴다. */
+function stripOuterTag(block, tag) {
+  return block
+    .replace(new RegExp(`^<${tag}\\b[^>]*>`, 'i'), '')
+    .replace(new RegExp(`</${tag}\\s*>\\s*$`, 'i'), '');
+}
+
+/** 같은 층위의 <tag> 블록 목록 → [{ start, end, block, inner }].
+ *  게으른 매칭이면 표 안의 표에서 첫 </table> 에 끊기므로 짝을 센다. */
+function findBlocks(html, tag) {
+  const openRe = new RegExp(`<${tag}\\b[^>]*>`, 'gi');
+  const lazyRe = new RegExp(`^<${tag}\\b[^>]*>([\\s\\S]*?)</${tag}\\s*>`, 'i');
+  const out = [];
+  let m;
+  while ((m = openRe.exec(html)) !== null) {
+    const start = m.index;
+    const block = balancedBlock(html, start, tag);
+    if (block) {
+      out.push({ start, end: start + block.length, block, inner: stripOuterTag(block, tag) });
+      openRe.lastIndex = start + block.length;
+      continue;
+    }
+    // 닫는 태그가 모자란 깨진 마크업 — 게으른 방식으로, 그것도 없으면 끝까지.
+    const lazy = html.slice(start).match(lazyRe);
+    if (lazy) {
+      out.push({ start, end: start + lazy[0].length, block: lazy[0], inner: lazy[1] });
+      openRe.lastIndex = start + lazy[0].length;
+      continue;
+    }
+    out.push({ start, end: html.length, block: html.slice(start), inner: html.slice(start + m[0].length) });
+    break;
+  }
+  return out;
+}
+
+/** <tr>…</tr> 또는 <td>/<th> 를 순서대로 자른다.
+ *  중첩 표를 미리 자리표시자로 빼낸 뒤에만 부르므로 같은 이름이 겹칠 일이 없다
+ *  → 닫는 태그가 빠진 워드 산출물에서도 "다음 여는 태그"가 곧 경계다. */
+function splitByTag(inner, pattern) {
+  const out = [];
+  const re = new RegExp(`<(/?)(${pattern})\\b([^>]*)>`, 'gi');
+  let cur = null;
+  let m;
+  const close = (endIdx) => {
+    if (!cur) return;
+    cur.inner = inner.slice(cur.start, endIdx);
+    out.push(cur);
+    cur = null;
+  };
+  while ((m = re.exec(inner)) !== null) {
+    close(m.index);
+    if (!m[1]) cur = { tag: m[2].toLowerCase(), attrs: m[3], start: re.lastIndex };
+  }
+  close(inner.length);
+  return out;
+}
+
+/** 원문 셀에서 "디자인"만 건져 온다 — 배경색과 세로 정렬 둘뿐이다.
+ *  이 둘이 구형 디자인 공지(색 배경 제목 바·번호 칩 표)의 실체이고, 나머지
+ *  pt 단위 폭·여백은 원문의 종이 좌표계라 웹 폭에서 재현하면 표가 화면을 뚫는다.
+ *  배경 표기는 filterStyle 과 같게 rgb() 로 정규화한다(정화 통과 패턴). */
+function cellDesign(attrs) {
+  const raw = String(attrs ?? '');
+  const styleM = raw.match(/\bstyle\s*=\s*(?:"([^"]*)"|'([^']*)')/i);
+  let bg = null;
+  let valign = null;
+  for (const decl of (styleM ? (styleM[1] ?? styleM[2]) : '').split(';')) {
+    const i = decl.indexOf(':');
+    if (i < 0) continue;
+    const prop = decl.slice(0, i).trim().toLowerCase();
+    const v = decl.slice(i + 1).trim();
+    // HWP 는 셀 배경을 background-color 가 아니라 background 축약형으로 낸다
+    if (prop === 'background' || prop === 'background-color') {
+      const c = parseColor(v);
+      if (c && !isDefaultBg(c)) bg = `rgb(${c.r}, ${c.g}, ${c.b})`;
+    } else if (prop === 'vertical-align' && /^(top|middle|bottom)$/i.test(v)) {
+      valign = v.toLowerCase();
+    }
+  }
+  // style 이 없으면 구식 valign 속성 — 워드 산출물은 이쪽이 더 흔하다
+  if (!valign) {
+    const m = raw.match(/\bvalign\s*=\s*(?:"([^"]*)"|'([^']*)'|([A-Za-z]+))/i);
+    const v = String(m ? (m[1] ?? m[2] ?? m[3]) : '').toLowerCase();
+    if (/^(top|middle|bottom)$/.test(v)) valign = v;
+  }
+  return { bg, valign };
+}
+
+/** colspan/rowspan — 양의 정수만, 1(또는 못 읽음)이면 1. */
+function spanAttr(attrs, name) {
+  const m = String(attrs ?? '').match(new RegExp(`\\b${name}\\s*=\\s*(?:"(\\d+)"|'(\\d+)'|(\\d+))`, 'i'));
+  if (!m) return 1;
+  const n = Number(m[1] ?? m[2] ?? m[3]);
+  return Number.isInteger(n) && n > 1 && n < 100 ? n : 1;
+}
+
+// 셀 안에서 "문단 하나"로 감싸면 안 되는 블록들(그 자체가 이미 블록이다)
+const CELL_BLOCK_TAGS = new Set([
+  'p', 'div', 'table', 'ul', 'ol', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6',
+  'blockquote', 'pre', 'figure', 'hr',
+]);
+
+/** 최상위에 흩어진 인라인 조각(맨 텍스트·<b>·<img>…)을 <p> 단위로 묶는다.
+ *  워드 셀은 "<p> 한 개 + 맨 텍스트" 처럼 섞여 오는데, 셀 안에 맨 텍스트가 남으면
+ *  게시 화면의 표 셀 여백 규칙(td p { margin:0 })이 걸리지 않아 행 높이가 튄다. */
+function wrapLoose(html) {
+  const tokens = tokenize(String(html ?? ''));
+  const out = [];
+  let run = [];
+  let inline = []; // 최상위에서 열려 있는 인라인 태그 스택
+  let block = null; // { name, depth, parts } — 통째로 그대로 내보낼 블록
+  const flushRun = () => {
+    const s = run.join('');
+    run = [];
+    // 글자도 그림도 없는 여백 조각은 버린다(빈 <p> 를 양산하지 않는다)
+    const bare = s.replace(/<[^>]*>/g, '').replace(NBSP_RUN, ' ').trim();
+    if (bare === '' && !/<img\b/i.test(s)) return;
+    out.push(`<p>${s}</p>`);
+  };
+
+  for (const t of tokens) {
+    if (block) {
+      block.parts.push(t.raw);
+      if (t.type === 'tag' && t.name === block.name && !t.selfClosed && !VOID_TAGS.has(t.name)) {
+        block.depth += t.closing ? -1 : 1;
+        if (block.depth <= 0) {
+          out.push(block.parts.join(''));
+          block = null;
+        }
+      }
+      continue;
+    }
+    if (t.type === 'text') {
+      run.push(t.raw);
+      continue;
+    }
+    if (t.closing) {
+      const k = inline.lastIndexOf(t.name);
+      if (k < 0) continue; // 짝 없는 닫는 태그 — 버린다
+      inline.splice(k);
+      run.push(t.raw);
+      continue;
+    }
+    // 인라인 태그가 열려 있는 동안의 블록 태그는 최상위가 아니다 — 그냥 이어 붙인다
+    if (inline.length === 0 && CELL_BLOCK_TAGS.has(t.name)) {
+      flushRun();
+      if (t.selfClosed || VOID_TAGS.has(t.name)) out.push(t.raw);
+      else block = { name: t.name, depth: 1, parts: [t.raw] };
+      continue;
+    }
+    run.push(t.raw);
+    if (!t.selfClosed && !VOID_TAGS.has(t.name)) inline.push(t.name);
+  }
+  flushRun();
+  if (block) out.push(block.parts.join('')); // 닫히지 않은 채 끝난 블록
+  return out.join('');
+}
+
+/** 셀 하나의 내용 재생성 — 껍데기 span/div 를 걷고 <p> 단위로 다시 세운다.
+ *  normalizeBody 는 순수 함수라 셀 조각에 그대로 재귀 적용할 수 있다.
+ *  중첩 표는 자리표시자로 빠져 있다가 여기서 되돌아온다(안쪽은 이미 재생성 완료). */
+function rebuildCell(inner, ctx, nested) {
+  let html = normalizeBody(inner, ctx);
+  html = html.replace(NESTED_MARK_RE, (_, i) => nested[Number(i)] ?? '');
+  html = wrapLoose(html);
+  // 빈 셀도 <p> 하나는 있어야 한다(에디터·게시 화면 양쪽의 전제)
+  return html.trim() === '' ? '<p></p>' : html;
+}
+
+/** <table>…</table> 한 덩어리 → 에디터 문법으로 다시 찍은 표.
+ *  0행이면 빈 문자열, 1×1 이면 표를 벗기고 내용만. */
+function rebuildTableBlock(block, ctx, stats) {
+  const inner = stripOuterTag(block, 'table');
+
+  // ① 중첩 표를 자리표시자로 빼낸다 — 안쪽부터 재생성해 두어야 하고, 그래야
+  //    바깥 표의 tr/td 자르기가 안쪽 tr/td 에 오염되지 않는다.
+  const nested = [];
+  let work = '';
+  let last = 0;
+  for (const b of findBlocks(inner, 'table')) {
+    stats.nested += 1;
+    work += `${inner.slice(last, b.start)}${NESTED_MARK}${nested.length}${NESTED_MARK}`;
+    nested.push(rebuildTableBlock(b.block, ctx, stats));
+    last = b.end;
+  }
+  work += inner.slice(last);
+
+  // ② <caption> 은 행 밖에 있어 아래 tr 훑기에 안 잡힌다. 정화 화이트리스트에도
+  //    없어서 구 파이프라인에서도 태그만 떨어지고 글자는 표 앞에 남았다
+  //    (실측 3건이 이걸로만 5~7% 유실로 잡혔다) → 표 위 문단으로 승격시킨다.
+  let caption = '';
+  work = work.replace(/<caption\b[^>]*>([\s\S]*?)<\/caption\s*>/gi, (_, capInner) => {
+    caption += rebuildCell(capInner, ctx, nested);
+    return '';
+  });
+
+  // ③ 행 → 셀. thead/tbody/tfoot 껍데기는 무시하고 전부 한 tbody 로 눕힌다
+  //    (에디터도 withHeaderRow:false — th 는 원문이 쓴 셀만 유지한다).
+  const rows = [];
+  for (const r of splitByTag(work, 'tr')) {
+    const cells = splitByTag(r.inner, 't[dh]').map((c) => ({
+      tag: c.tag === 'th' ? 'th' : 'td',
+      colspan: spanAttr(c.attrs, 'colspan'),
+      rowspan: spanAttr(c.attrs, 'rowspan'),
+      ...cellDesign(c.attrs),
+      html: rebuildCell(c.inner, ctx, nested),
+    }));
+    if (cells.length > 0) rows.push(cells);
+  }
+
+  if (rows.length === 0) {
+    stats.dropped += 1;
+    return caption;
+  }
+  // 셀 배경이 하나라도 있으면 이 표는 배치용 껍데기가 아니라 "디자인 표"다
+  const designed = rows.some((cells) => cells.some((c) => c.bg));
+  // ④ 셀이 하나뿐인 표 = 워드의 레이아웃 껍데기지 표가 아니다 — 벗긴다.
+  //    ⚠ 단, 그 한 셀에 배경색이 있으면 벗기면 안 된다 — 구형 공지의 색 배경
+  //    제목 바가 정확히 1×1 표라, 벗기는 순간 흰 글자만 남아 안 보이게 된다.
+  if (rows.length === 1 && rows[0].length === 1 && !designed) {
+    stats.unwrapped += 1;
+    return caption + rows[0][0].html;
+  }
+
+  stats.tables += 1;
+  if (designed) stats.designed += 1;
+  const body = rows
+    .map((cells) => {
+      const tds = cells
+        .map((c) => {
+          // 게시 화면 CSS 가 격자 표 셀을 middle 로 고정하므로, 인라인으로 되살릴
+          // 세로 정렬은 middle 이 아닌 값뿐이다(valign 속성은 왕복 보존용).
+          const style = [
+            c.bg ? `background-color: ${c.bg}` : '',
+            c.valign && c.valign !== 'middle' ? `vertical-align: ${c.valign}` : '',
+          ]
+            .filter(Boolean)
+            .join('; ');
+          const a =
+            (c.colspan > 1 ? ` colspan="${c.colspan}"` : '') +
+            (c.rowspan > 1 ? ` rowspan="${c.rowspan}"` : '') +
+            (c.valign ? ` valign="${c.valign}"` : '') +
+            (style ? ` style="${style}"` : '');
+          return `<${c.tag}${a}>${c.html}</${c.tag}>`;
+        })
+        .join('');
+      return `<tr>${tds}</tr>`;
+    })
+    .join('');
+  // colgroup/col 은 만들지 않는다 — 워드가 남긴 폭 값은 신뢰할 수 없어서,
+  // 자동 레이아웃 + 게시 화면의 overflow-x-auto(가로 스크롤)에 맡긴다.
+  // 디자인 표에도 TABLE_ATTRS(기본 격자)는 그대로 붙인다 — 선이 있어야 읽힌다.
+  return `${caption}<table ${TABLE_ATTRS}><tbody>${body}</tbody></table>`;
+}
+
+/** 본문 안의 모든 <table> 을 재생성한다(normalizeBody 직전 전처리).
+ *  base64 이미지 추출이 끝난 뒤에 불러야 셀 안의 img src 교체분이 살아남는다. */
+function rebuildTables(html, ctx, stats) {
+  const src = String(html ?? '');
+  if (!/<table\b/i.test(src)) return src;
+  const blocks = findBlocks(src, 'table');
+  if (blocks.length === 0) return src;
+  let out = '';
+  let last = 0;
+  for (const b of blocks) {
+    out += src.slice(last, b.start) + rebuildTableBlock(b.block, ctx, stats);
+    last = b.end;
+  }
+  return out + src.slice(last);
+}
+
+// 재생성 집계(보고용) — toRow 에서 본문 하나당 한 번씩 누적된다.
+const tableStats = { posts: 0, tables: 0, nested: 0, unwrapped: 0, dropped: 0, designed: 0 };
+
 // ── 본문 유실 감시 ────────────────────────────────────────────────────
-/** 태그를 지우고 엔티티를 풀고 공백을 뭉갠 "보이는 글자". 태그를 빈 문자열로
+/** 태그를 지우고 엔티티를 풀고 **공백을 전부 뺀** "보이는 글자". 태그를 빈 문자열로
  *  지우는 이유: span 벗기기·div→p 로 태그 수가 변해도 길이가 흔들리지 않아야
- *  "실제 텍스트가 사라졌는가"만 순수하게 측정된다. */
+ *  "실제 텍스트가 사라졌는가"만 순수하게 측정된다.
+ *  공백까지 빼는 이유도 같다 — 원문 표는 `</td>` 와 `<td>` 사이에 줄바꿈·들여쓰기가
+ *  잔뜩 들어 있는데(워드가 뱉은 정렬 공백), 렌더에는 한 글자도 안 보이는 것들이다.
+ *  표 재생성이 이걸 걷어내면 "글자가 10~19% 줄었다"는 거짓 경보가 뜬다(실측 63건).
+ *  길이 비교 전용이라 사람이 읽을 문자열일 필요는 없다. */
 function visibleText(html) {
   return decodeEntities(
     String(html ?? '')
@@ -627,7 +1075,7 @@ function visibleText(html) {
     // noticesUndergrad 121건 중 7건이 오직 이 이유로 6~8% 감소로 잡혔다(내용은 동일).
     // 측정용이라 어떤 글자로 세는지는 상관없고, 양쪽을 같은 기준으로 세는 것만 중요하다.
     .replace(/&[a-zA-Z][a-zA-Z0-9]{1,31};/g, '�')
-    .replace(/[\s ]+/g, ' ')
+    .replace(/[\s ]+/g, '')
     .trim();
 }
 
@@ -795,7 +1243,14 @@ function toRow(post, snapshot, suspicious) {
     imagesFound = (rawBody.match(DATA_IMG_RE) ?? []).length;
   }
 
-  const body = normalizeBody(workingBody, { sourceUrl, sourcePath });
+  // 표 재생성은 base64 추출 **뒤**, 정규화 **앞** — 앞이면 셀 안 img 의 src 교체분이
+  // 날아가고, 뒤면 이미 정화된 표를 다시 뜯게 된다.
+  const ctx = { sourceUrl, sourcePath };
+  const beforeTables = tableStats.tables + tableStats.unwrapped + tableStats.dropped;
+  const tabled = rebuildTables(workingBody, ctx, tableStats);
+  if (tableStats.tables + tableStats.unwrapped + tableStats.dropped > beforeTables) tableStats.posts += 1;
+
+  const body = normalizeBody(tabled, ctx);
 
   // 본문 유실 감시 ① 글자 — 조용히 먹지 않고 사람이 볼 목록에 올린다
   const before = visibleText(rawBody);
@@ -1119,6 +1574,17 @@ console.log(
     ` · 건너뜀(수동) ${n4(tMan)} · 제외(불량) ${n4(tSkip)}`,
 );
 console.log(`  첨부 ${totalAtts}건`);
+
+// ── 표 재생성 ──
+// 표를 가진 글 수는 "행을 만들려고 정규화한" 전부가 기준이다(뒤에서 건너뛴 글 포함).
+if (tableStats.posts > 0) {
+  console.log(
+    `  표 재생성 ${tableStats.tables}개 (글 ${tableStats.posts}건)` +
+      ` · 중첩 표 ${tableStats.nested}개 · 1×1 껍데기 벗김 ${tableStats.unwrapped}개` +
+      ` · 디자인 표(셀 배경 보존) ${tableStats.designed}개` +
+      ` · 빈 표 제거 ${tableStats.dropped}개`,
+  );
+}
 
 // ── 본문 내 base64 이미지 ──
 if (imageStats.occurrences > 0) {

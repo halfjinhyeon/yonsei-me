@@ -9,6 +9,7 @@
 // TableKit 대신 개별 확장 4종을 쓰는 이유는 단순하다 — .extend() 로 속성을 더하려면
 // 노드 하나하나를 직접 잡아야 한다. 구성은 TableKit 이 하던 것과 동일하다.
 
+import { Extension } from '@tiptap/core';
 import Image from '@tiptap/extension-image';
 import { Table, TableCell, TableHeader, TableRow, TableView } from '@tiptap/extension-table';
 import type { Node as ProseMirrorNode } from '@tiptap/pm/model';
@@ -282,6 +283,59 @@ export const RteTableCell = TableCell.extend({
 export const RteTableHeader = TableHeader.extend({
   addAttributes() {
     return { ...this.parent?.(), ...cellBackground };
+  },
+});
+
+/* ── 손으로 쓴 style 의 왕복 보존 ──────────────────────────────────────
+   코드뷰(HTML 소스)로 붙여넣은 구형 디자인 공지의 style 은 Tiptap 스키마가 모르는
+   속성이라, WYSIWYG 로 돌아오는 순간(setContent → DOM 파싱) 통째로 증발한다.
+   그래서 원문 style 문자열을 그대로 실어 나르는 전역 속성을 둔다. 값 검사는 하지
+   않는다 — 저장 경로의 단일 경계는 정화(lib/admin/sanitize.ts)의 값 패턴이고,
+   여기서 또 거르면 두 곳이 어긋날 때 조용히 서식이 사라진다.
+
+   ⚠️ 각 노드 확장이 **이미 관리하는 선언**은 떼고 실어야 한다. 그대로 두면 같은
+   속성이 두 번 찍히고, 어느 쪽이 이기는지가 확장 등록 순서에 달리게 된다.
+   ⚠️ table 은 일부러 뺐다 — Table 확장의 renderHTML 이 "style 이 있으면 계산한
+   열 폭(width/min-width)을 통째로 그 값으로 대체"하는 구조라(3.30 실측), 전역
+   style 을 붙이면 드래그한 열 폭이 조용히 사라진다. 표에 새로 허용한 유일한
+   선언인 border-collapse 는 게시 화면 CSS 가 이미 collapse 로 고정하고 있다. */
+const MANAGED_STYLES: Record<string, readonly string[]> = {
+  paragraph: ['text-align'], // TextAlign 확장이 관리
+  heading: ['text-align'],
+  tableRow: ['height'], // RteTableRow.rowheight
+  // 셀의 text-align 은 표 확장의 align 속성이, 배경은 위 cellBackground 가 관리한다
+  // (background 축약형도 DOM 의 style.backgroundColor 로 읽히므로 그쪽이 받아 간다)
+  tableCell: ['text-align', 'background', 'background-color'],
+  tableHeader: ['text-align', 'background', 'background-color'],
+};
+
+/** style 문자열에서 managed 선언만 떼고 되돌린다(남는 게 없으면 null) */
+function carryStyle(raw: string | null, managed: readonly string[]): string | null {
+  if (!raw) return null;
+  const kept = raw
+    .split(';')
+    .map((decl) => decl.trim())
+    .filter((decl) => {
+      const i = decl.indexOf(':');
+      return i > 0 && !managed.includes(decl.slice(0, i).trim().toLowerCase());
+    });
+  return kept.length > 0 ? kept.join('; ') : null;
+}
+
+export const RteStyleCarry = Extension.create({
+  name: 'rteStyleCarry',
+  addGlobalAttributes() {
+    return Object.entries(MANAGED_STYLES).map(([type, managed]) => ({
+      types: [type],
+      attributes: {
+        style: {
+          default: null,
+          parseHTML: (element: HTMLElement) => carryStyle(element.getAttribute('style'), managed),
+          renderHTML: (attributes: Record<string, unknown>) =>
+            attributes.style ? { style: String(attributes.style) } : {},
+        },
+      },
+    }));
   },
 });
 
