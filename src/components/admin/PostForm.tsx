@@ -352,6 +352,19 @@ export function PostForm({
     }
   }
 
+  /** 본문 툴바(·드래그·붙여넣기)로 넣는 사진 — 업로드 후 첨부 트레이에도 함께 등록한다.
+   *  구판은 툴바 삽입과 하단 '사진 첨부'가 따로 놀아서, 본문에 넣은 사진이 첨부 목록에
+   *  없어 썸네일로 지정할 수 없었다. 통합 후에는 넣는 순간 트레이에 카드로 남는다
+   *  (본문에서 지워도 첨부로는 남는다 — 지우려면 트레이의 '선택 삭제').
+   *  진행 표시는 에디터 자신의 "이미지 업로드 중…"이 맡는다 — 트레이의 uploading
+   *  상태·취소 버튼은 건드리지 않는다(하단 '사진 첨부'·'파일 첨부' 전용). */
+  async function uploadImageIntoBody(file: File): Promise<string> {
+    if (!onUploadFile) throw new Error('업로드를 사용할 수 없습니다.');
+    const url = await onUploadFile(file);
+    setPool((prev) => (prev.some((p) => p.url === url) ? prev : [...prev, { url, name: file.name }]));
+    return url;
+  }
+
   function toggleTray(key: string) {
     setTrayChecked((prev) => {
       const next = new Set(prev);
@@ -685,7 +698,7 @@ export function PostForm({
                 <PostBodyEditor
                   value={rec.bodyKo}
                   onChange={(html) => set('bodyKo', html)}
-                  onUploadImage={onUploadFile ? (file) => onUploadFile(file) : undefined}
+                  onUploadImage={onUploadFile ? uploadImageIntoBody : undefined}
                   onEditorReady={(ed) => { editorsRef.current.ko = ed; }}
                   placeholder="본문을 입력하세요 — 사진은 끌어다 놓거나 붙여넣어도 됩니다"
                   ariaLabel="본문 (한국어)"
@@ -747,7 +760,7 @@ export function PostForm({
                 <PostBodyEditor
                   value={rec.bodyEn}
                   onChange={(html) => set('bodyEn', html)}
-                  onUploadImage={onUploadFile ? (file) => onUploadFile(file) : undefined}
+                  onUploadImage={onUploadFile ? uploadImageIntoBody : undefined}
                   onEditorReady={(ed) => { editorsRef.current.en = ed; }}
                   placeholder="English body — 비워두면 저장 시 한국어 값이 복사됩니다"
                   ariaLabel="본문 (English)"
@@ -1069,7 +1082,12 @@ export function PostForm({
           )}
           <div className="flex flex-wrap items-center gap-2.5">
             <DropTitle>첨부</DropTitle>
-            {onUploadFile && (
+            {/* '사진 첨부'는 본문 에디터가 없는 게시판(noBody = 일정·인스타그램)에만 남긴다.
+                본문이 있는 게시판에서는 툴바 사진 버튼이 업로드·본문 삽입·트레이 등록을
+                한 번에 하므로(uploadImageIntoBody) 같은 일을 하는 버튼이 둘이 되고,
+                "어느 쪽으로 올려야 하나"를 다시 묻게 만든다. noBody 는 사진을 넣을
+                에디터 자체가 없어 이 버튼이 유일한 통로다 — 지우지 마라. */}
+            {meta.noBody && onUploadFile && (
               <button
                 type="button"
                 onClick={() => poolInputRef.current?.click()}
@@ -1111,6 +1129,13 @@ export function PostForm({
                 .slice(0, 5) || 'FILE';
             return (
               <>
+                {/* 아직 아무것도 없을 때의 안내 — 본문이 있는 게시판은 '사진 첨부' 버튼이
+                    없으므로(툴바로 통합), 이 한 줄이 없으면 "사진을 어떻게 올리지?"가 된다. */}
+                {entries.length === 0 && !meta.noBody && (
+                  <p className="mt-1.5 text-[11px] text-content-faint">
+                    사진은 본문 툴바의 사진 버튼으로 넣으면 여기에 함께 담깁니다.
+                  </p>
+                )}
                 {entries.length > 0 && (
                   <>
                     <div className="mt-3.5 flex flex-wrap items-center gap-1.5">
@@ -1161,7 +1186,8 @@ export function PostForm({
                     </div>
                     {!meta.noBody && (
                       <p className="mt-1.5 text-[11px] text-content-faint">
-                        본문 삽입은 지금 열려 있는 언어 탭({lang === 'ko' ? '한국어' : 'English'})의
+                        본문 툴바의 사진 버튼으로 넣은 사진은 여기에 자동으로 담깁니다.
+                        ‘본문 삽입’은 지금 열려 있는 언어 탭({lang === 'ko' ? '한국어' : 'English'})의
                         에디터에 들어갑니다.
                       </p>
                     )}

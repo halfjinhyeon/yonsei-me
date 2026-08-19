@@ -382,8 +382,8 @@ export function PostBodyEditor({
                 <Button
                   type="button"
                   variant="ghost"
-                  tooltip="이미지 삽입"
-                  aria-label="이미지 삽입"
+                  tooltip="사진 넣기 — 본문에 넣고 첨부에도 함께 담습니다"
+                  aria-label="사진 넣기"
                   disabled={uploadingCount > 0}
                   onClick={() => fileRef.current?.click()}
                 >
