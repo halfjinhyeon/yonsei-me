@@ -1172,13 +1172,11 @@ export function PostForm({
                   </div>
                   <div className="min-w-0 flex-1">
                     <div className={slotRow}>
-                      {/* '사진 첨부'는 본문 에디터가 없는 게시판(noBody = 일정·인스타그램)에만 남긴다.
-                          본문이 있는 게시판에서는 툴바 사진 버튼이 업로드·본문 삽입·트레이 등록을
-                          한 번에 하므로(uploadImageIntoBody) 같은 일을 하는 버튼이 둘이 되고,
-                          "어느 쪽으로 올려야 하나"를 다시 묻게 만든다. noBody 는 사진을 넣을
-                          에디터 자체가 없어 이 버튼이 유일한 통로다 — 지우지 마라.
-                          버튼이 없을 때는 같은 자리에 안내문이 들어가 행 높이와 기준선을 지킨다. */}
-                      {meta.noBody && onUploadFile ? (
+                      {/* '사진 첨부'는 모든 게시판에 둔다. 툴바 사진 버튼과 하는 일이 다르다 —
+                          툴바는 업로드하고 커서 위치에 바로 넣고(uploadImageIntoBody), 이 버튼은
+                          카드 그리드에만 담아 두었다가 '본문 삽입'으로 원하는 때에 넣는다.
+                          noBody(일정·인스타그램)는 넣을 에디터가 없어 이 버튼이 유일한 통로다. */}
+                      {onUploadFile && (
                         <button
                           type="button"
                           onClick={() => poolInputRef.current?.click()}
@@ -1187,9 +1185,10 @@ export function PostForm({
                         >
                           사진 첨부
                         </button>
-                      ) : (
+                      )}
+                      {!meta.noBody && (
                         <span className="min-w-0 truncate text-[11px] text-content-faint">
-                          사진은 본문 툴바의 사진 버튼으로 넣으면 여기에 함께 담깁니다.
+                          툴바 사진 버튼은 커서 위치에 바로 넣고, ‘사진 첨부’는 여기 목록에만 담깁니다.
                         </span>
                       )}
                       {uploading && (
