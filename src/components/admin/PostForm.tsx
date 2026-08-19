@@ -176,6 +176,8 @@ export function PostForm({
   const [preview, setPreview] = useState(false);
   // 미저장 이탈 확인 모달
   const [confirmLeave, setConfirmLeave] = useState(false);
+  // 본문에 안 넣은 사진이 있을 때 저장 직전에 뜨는 확인 — 값은 그 장수(0 이면 안 뜸)
+  const [confirmUnused, setConfirmUnused] = useState(0);
   // 파일 업로드 진행 상태(대상 + 단계 + 퍼센트 + 다중 업로드 순번 note)
   const [uploading, setUploading] = useState<
     (UploadProgress & { target: UploadTarget; note?: string }) | null
@@ -462,6 +464,19 @@ export function PostForm({
     else onCancel();
   }
 
+  /** 이번에 올려 놓고 어느 언어 본문에도 넣지 않은 사진 — 저장 직전 경고용.
+   *  - 이미지 풀(이번 편집에서 올린 사진)만 본다. 구형 이관 게시물은 사진이 첨부파일로
+   *    저장돼 있어 본문에 없는 게 정상이라, 전부 세면 열 때마다 경고가 뜬다.
+   *  - 썸네일로 지정한 사진은 목록 타일이 제자리라 본문에 없어도 정상이므로 뺀다.
+   *  - 본문이 없는 게시판(noBody)은 '삽입'이라는 개념 자체가 없어 항상 빈 배열. */
+  function unusedImages(): TrayEntry[] {
+    if (meta.noBody) return [];
+    const html = `${rec.bodyKo}\n${rec.bodyEn}`;
+    return buildTrayEntries().filter(
+      (it) => it.kind === 'image' && it.poolIdx !== undefined && !it.isThumb && !html.includes(it.url),
+    );
+  }
+
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setError(null);
@@ -494,7 +509,19 @@ export function PostForm({
         return;
       }
     }
-    // 종료일 피커가 숨겨진 상태(동문 '행사' 체크 해제 등)의 잔존값은 비워서 제출
+    // 넣으려고 올려 놓고 잊은 사진은 저장 전에 한 번 되묻는다 — 막지는 않는다
+    // (첨부로만 남기려는 경우도 있어서). 확인하면 confirmUnused 경유로 다시 들어온다.
+    const unused = unusedImages();
+    if (unused.length > 0) {
+      setConfirmUnused(unused.length);
+      return;
+    }
+    commit();
+  }
+
+  /** 검증을 통과한 뒤의 실제 제출 — 경고 모달의 '이대로 저장'도 같은 곳으로 들어온다.
+   *  종료일 피커가 숨겨진 상태(동문 '행사' 체크 해제 등)의 잔존값은 비워서 제출한다. */
+  function commit() {
     onSubmit(showEndDate ? rec : { ...rec, endDate: '' });
   }
 
@@ -1349,6 +1376,20 @@ export function PostForm({
             onCancel();
           }}
           onCancel={() => setConfirmLeave(false)}
+        />
+      )}
+
+      {confirmUnused > 0 && (
+        <CmsModal
+          title={`본문에 넣지 않은 사진이 ${confirmUnused}장 있습니다`}
+          body="첨부 목록에는 담겼지만 본문 어디에도 들어가지 않은 사진입니다. 본문에 보이게 하려면 목록에서 체크한 뒤 ‘본문 삽입’을 누르세요. 첨부 파일로만 남길 생각이라면 이대로 저장해도 됩니다."
+          confirmLabel="이대로 저장"
+          cancelLabel="돌아가서 넣기"
+          onConfirm={() => {
+            setConfirmUnused(0);
+            commit();
+          }}
+          onCancel={() => setConfirmUnused(0)}
         />
       )}
     </form>
