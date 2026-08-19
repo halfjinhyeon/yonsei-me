@@ -49,7 +49,9 @@ const limitArg = process.argv.find((a) => a.startsWith('--limit='));
 const LIMIT = limitArg ? Number(limitArg.slice(8)) : Infinity;
 
 const DELAY_MS = 300;
-const TIMEOUT_MS = 30000;
+// 시한은 연결이 아니라 "바디 완주까지"다 — 구 서버가 수십 MB 첨부를 느리게 내려줘서
+// 30초로는 정상 파일이 잘린다(실측). 죽은 URL 은 어차피 연결 단계에서 빨리 실패한다.
+const TIMEOUT_MS = 120000;
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
 // 치환 대상 텍스트 컬럼 (source_url 제외 — 위 설계 메모)
@@ -207,8 +209,17 @@ let uploaded = 0, skipped = 0, bytesTotal = 0;
 const fetchList = [...uniqueFetch.entries()].slice(0, LIMIT);
 
 console.log(`\n── 다운로드 ${fetchList.length}개 (요청 간 ${DELAY_MS}ms) ──────────────`);
+// 병렬 다운로드 — 순차 300ms 로는 3천 건에 30분+ 걸린다(실측). 워커들이 커서를
+// 나눠 갖고 각자 DELAY_MS 를 지키므로 상대 서버가 받는 실효 간격은
+// DELAY_MS/워커수(기본 4개 ≈ 75ms). 구 서버가 힘들어하면 MIRROR_CONCURRENCY=1.
+// 커서 읽기+증가 사이에 await 가 없어 워커 간 중복 배정은 구조적으로 없다.
+const CONCURRENCY = Math.max(1, Number(process.env.MIRROR_CONCURRENCY ?? 4) || 1);
 let i = 0;
-for (const [fetchUrl, matchStrs] of fetchList) {
+let cursor = 0;
+async function mirrorWorker() {
+  while (cursor < fetchList.length) {
+  const [fetchUrl, matchStrs] = fetchList[cursor];
+  cursor += 1;
   i += 1;
   await sleep(DELAY_MS);
   let res;
@@ -222,7 +233,16 @@ for (const [fetchUrl, matchStrs] of fetchList) {
     failures.push({ url: fetchUrl, reason: `HTTP ${res.status}` });
     continue;
   }
-  const buf = Buffer.from(await res.arrayBuffer());
+  // 본문 수신도 try 안에 — AbortSignal.timeout 은 바디를 다 받을 때까지 계속 돌아서,
+  // 큰 첨부가 시한을 넘기면 여기서 TimeoutError 가 터진다(2026-08-20 1075/3056 실측:
+  // try 밖이라 프로세스째 죽었다). 그 파일만 실패 목록에 남기고 계속 간다.
+  let buf;
+  try {
+    buf = Buffer.from(await res.arrayBuffer());
+  } catch (e) {
+    failures.push({ url: fetchUrl, reason: `본문 수신 실패: ${e.message}` });
+    continue;
+  }
   if (buf.length === 0) {
     failures.push({ url: fetchUrl, reason: '빈 응답' });
     continue;
@@ -247,10 +267,16 @@ for (const [fetchUrl, matchStrs] of fetchList) {
     const disp = name
       ? `${ctype.startsWith('image/') ? 'inline' : 'attachment'}; filename*=UTF-8''${encodeURIComponent(name)}`
       : undefined;
-    await s3.send(new PutObjectCommand({
-      Bucket: BUCKET, Key: key, Body: buf, ContentType: ctype,
-      ...(disp ? { ContentDisposition: disp } : {}),
-    }));
+    try {
+      await s3.send(new PutObjectCommand({
+        Bucket: BUCKET, Key: key, Body: buf, ContentType: ctype,
+        ...(disp ? { ContentDisposition: disp } : {}),
+      }));
+    } catch (e) {
+      // 업로드 한 건의 일시 오류로 전체 실행이 죽으면 안 된다 — 본문 수신과 같은 원칙.
+      failures.push({ url: fetchUrl, reason: `R2 업로드 실패: ${e.message}` });
+      continue;
+    }
     uploaded += 1;
     bytesTotal += buf.length;
   }
@@ -259,7 +285,9 @@ for (const [fetchUrl, matchStrs] of fetchList) {
   if (i % 25 === 0 || i === fetchList.length) {
     console.log(`  ${i}/${fetchList.length} · 업로드 ${uploaded} · 기존재 ${skipped} · 실패 ${failures.length} · ${(bytesTotal / 1048576).toFixed(1)}MB`);
   }
+  }
 }
+await Promise.all(Array.from({ length: CONCURRENCY }, () => mirrorWorker()));
 
 // ── 스냅숏 → DB 치환 ───────────────────────────────────────────
 function rewrite(text) {
