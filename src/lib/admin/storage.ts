@@ -5,7 +5,7 @@
 //  차단이라 탈락, R2 는 무료 10GB + 전송 영구 무료.)
 //
 // 경로 선택:
-//  - dev(토큰 없는 로컬 백엔드): /api/dev-content 로 public/uploads/ 에 기록 —
+//  - dev(NODE_ENV≠production): /api/dev-content 로 public/uploads/ 에 기록 —
 //    실제 스토리지 없이 동일한 흐름을 검증한다(.gitignore, 커밋되지 않음).
 //  - 작은 파일(≤4MB, 대부분의 이미지·문서): 같은 출처 /api/upload-file 서버 경유 —
 //    프록시·백신의 HTTPS 검사가 교차 출처 직접 업로드를 막는 환경(과거 Blob 74% 스톨)
@@ -18,9 +18,12 @@ import { MAX_UPLOAD_BYTES, SERVER_RELAY_MAX } from './upload-validate';
 
 export { MAX_UPLOAD_BYTES };
 
-/** 이 설정이 dev 로컬 백엔드를 써야 하는지 (토큰 없음 = dev 개방 모드) — 구 github.ts 에서 이식 */
-function isLocalBackend(cfg: RepoConfig): boolean {
-  return !cfg.token;
+/** dev 로컬 백엔드(/api/dev-content → public/uploads/)를 써야 하는지.
+ *  ⚠ 토큰 유무로 판별하면 안 된다 — 카카오·이메일 로그인 세션은 GitHub 토큰이 없어
+ *  프로덕션에서도 dev 경로로 빠지고, /api/dev-content 는 프로덕션에서 404('Not found')다.
+ *  서버 라우트들의 devBypass 와 같은 기준(NODE_ENV, 빌드 시점 인라인)을 쓴다. */
+function isLocalBackend(): boolean {
+  return process.env.NODE_ENV !== 'production';
 }
 
 /** 원시 바이트를 base64 로 (dev 로컬 백엔드가 JSON 본문에 바이너리를 실을 때) */
@@ -167,7 +170,7 @@ function xhrSend(opts: {
  * signal(취소 버튼)로 어느 단계에서든 중단할 수 있다.
  */
 export async function uploadAttachment(
-  cfg: RepoConfig,
+  _cfg: RepoConfig,
   boardKey: string,
   file: File,
   onProgress?: UploadProgressHandler,
@@ -188,7 +191,7 @@ export async function uploadAttachment(
   const contentType = prepared.type || 'application/octet-stream';
 
   // dev 로컬 백엔드: 스토리지 키 없이 public/uploads/ 에 기록 → dev 서버가 즉시 서빙
-  if (isLocalBackend(cfg)) {
+  if (isLocalBackend()) {
     onProgress?.({ phase: 'uploading', percent: 0 });
     const base64 = base64FromBytes(new Uint8Array(await prepared.arrayBuffer()));
     let res: Response;
