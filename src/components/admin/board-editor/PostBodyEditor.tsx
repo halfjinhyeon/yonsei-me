@@ -1,6 +1,7 @@
 'use client';
 
-// BoardEditor — 게시판 글쓰기 에디터 v2 (Tiptap v3 + Tiptap UI Components).
+// PostBodyEditor — 게시판 본문 에디터 v2 (구명 BoardEditor 에서 개명: 목록 화면
+// admin/BoardEditor.tsx 와 이름이 충돌했다) (Tiptap v3 + Tiptap UI Components).
 //
 // 목적: 구형 학과 CMS(Froala 2.5.0, devcms2 실측 2026-08-18)의 툴바를 순서·형식까지
 // 재현하고, 껍데기만 UI Components 스톡 룩으로 — "구형 서식 + 신형 UX"(사용자 지정).
@@ -135,7 +136,7 @@ function prettyHtml(html: string): string {
     .replace(/\n(<\/(?:td|th|li|p|h[1-5])>)/g, '$1');
 }
 
-export function BoardEditor({
+export function PostBodyEditor({
   value,
   onChange,
   onUploadImage,

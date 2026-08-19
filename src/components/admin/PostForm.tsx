@@ -17,7 +17,6 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import type { Editor } from '@tiptap/react';
 import { cn } from '@/lib/utils';
 import type { BoardMeta, EditAttachment } from '@/lib/admin/boards';
-import { emptyAttachment } from '@/lib/admin/boards';
 // 첨부 크기 표기는 사이트 목록("PDF · 1.2MB")과 같은 함수를 쓴다 — 관리자와 학생이
 // 같은 문자열을 보게 해야 "왜 다르게 보이냐"는 문의가 생기지 않는다.
 import { formatBytes } from '@/lib/files';
@@ -40,9 +39,10 @@ import { formatPeriodLabel } from '@/lib/calendar';
 import { UploadCancelledError, type UploadProgress, type UploadProgressHandler } from '@/lib/admin/storage';
 import { useAdminShell } from './AdminShellContext';
 import { CmsModal } from './CmsModal';
-// BoardEditor(v2) — 구형(Froala) 툴바 파리티 + UI Components 스톡 룩.
+// PostBodyEditor(v2) — 구형(Froala) 툴바 파리티 + UI Components 스톡 룩.
 // 프롭 계약은 구판 RichTextEditor 와 동일(드롭인 스왑, 2026-08-18).
-import { BoardEditor } from './board-editor/BoardEditor';
+// (목록 화면 BoardEditor.tsx 와 이름이 겹쳐 BoardEditor → PostBodyEditor 로 개명)
+import { PostBodyEditor } from './board-editor/PostBodyEditor';
 import { TranslateButton } from './TranslateButton';
 import { PostPreviewPane } from './PostPreviewPane';
 
@@ -104,13 +104,28 @@ function DropTitle({ children }: { children: React.ReactNode }) {
   return <p className="text-[12px] font-bold text-content">{children}</p>;
 }
 
-/** 파일 업로드 대상: 첨부 행 인덱스, 대표 이미지, 또는 이미지 풀(다중) */
-type UploadTarget = number | 'image' | 'pool';
+/** 파일 업로드 대상 — 첨부 트레이(다중) 하나로 통일(2026-08-18, DC식 트레이 개편) */
+type UploadTarget = 'pool';
 
 /** 이미지 풀 항목 — 업로드된 사진 (본문 삽입·썸네일 지정의 재료) */
 interface PoolItem {
   url: string;
   name: string;
+}
+
+/** 첨부 트레이 파생 항목 — 세 출처(기존 썸네일·이미지 풀·첨부파일)를 한 판(체크박스
+ *  그리드)으로 합쳐 보여주기 위한 뷰 모델. 데이터 원본은 rec.image/pool/rec.attachments
+ *  그대로다(기존 게시물 무손실). key 는 출처+인덱스라 삭제로 인덱스가 밀리면
+ *  체크 전체 해제로 정합성을 지킨다. */
+interface TrayEntry {
+  key: string;
+  kind: 'image' | 'file';
+  url: string;
+  name: string;
+  size?: number;
+  poolIdx?: number;
+  attIdx?: number;
+  isThumb: boolean;
 }
 
 /** 진행 단계 → 사용자 표시 문구 (uploading 은 실제 퍼센트, 미정이면 호환 모드 전송) */
@@ -163,17 +178,18 @@ export function PostForm({
   const [uploading, setUploading] = useState<
     (UploadProgress & { target: UploadTarget; note?: string }) | null
   >(null);
-  const attInputRef = useRef<HTMLInputElement | null>(null);
-  const imgInputRef = useRef<HTMLInputElement | null>(null);
   const poolInputRef = useRef<HTMLInputElement | null>(null);
-  const pendingTargetRef = useRef<UploadTarget>(0);
+  // 문서(비이미지) 첨부용 입력 — 사진과 파일 버튼을 분리(사용자 지정). 분류 자체는
+  // MIME 기준(handleTrayPicked)이라 어느 쪽으로 올려도 올바른 자리로 간다.
+  const docInputRef = useRef<HTMLInputElement | null>(null);
   // 진행 중 업로드의 취소 컨트롤러 (취소 버튼이 abort)
   const abortRef = useRef<AbortController | null>(null);
   const errorRef = useRef<HTMLParagraphElement | null>(null);
 
   // ── 이미지 풀 + 본문 에디터(Tiptap) 상태 ──
   const [pool, setPool] = useState<PoolItem[]>([]);
-  const [poolChecked, setPoolChecked] = useState<ReadonlySet<number>>(new Set());
+  // 트레이 체크 — 파생 목록(trayEntries)의 key 기준. 항목이 밀리는 삭제 뒤엔 전체 해제.
+  const [trayChecked, setTrayChecked] = useState<ReadonlySet<string>>(new Set());
   // 위지윅 에디터 인스턴스(ko/en) — 이미지 풀 '본문 삽입'이 명령을 내릴 대상
   const editorsRef = useRef<{ ko: Editor | null; en: Editor | null }>({ ko: null, en: null });
   // 본문 삽입이 적용될 에디터 = 마지막으로 포커스한 쪽
@@ -258,89 +274,45 @@ export function PostForm({
     setRec((prev) => ({ ...prev, [key]: value }));
   }
 
-  function updateAtt(i: number, key: 'labelKo' | 'labelEn' | 'href', value: string) {
-    setRec((prev) => {
-      const attachments = prev.attachments.map((a, idx) => {
-        if (idx !== i) return a;
-        const next: EditAttachment = { ...a, [key]: value };
-        // href 를 손으로 고치면 업로드 때 기록해 둔 size 는 더 이상 그 파일의 크기가
-        // 아니다. 틀린 용량을 목록에 띄우느니 아예 표기하지 않는 편이 낫다.
-        if (key === 'href') delete next.size;
-        return next;
-      });
-      return { ...prev, attachments };
-    });
-  }
-
-  function addAtt() {
-    setRec((prev) => ({ ...prev, attachments: [...prev.attachments, emptyAttachment()] }));
-  }
-
-  function removeAtt(i: number) {
-    setRec((prev) => ({ ...prev, attachments: prev.attachments.filter((_, idx) => idx !== i) }));
-  }
-
-  /** 업로드 버튼 → 대상 기억 후 숨은 입력 열기 */
-  function pickFile(target: UploadTarget) {
-    pendingTargetRef.current = target;
-    (target === 'image' ? imgInputRef : attInputRef).current?.click();
-  }
-
-  /** 파일 선택 → 외부 스토리지 업로드(단계·퍼센트 실시간 표시, 취소 가능) → 대상 필드에 URL 기입 */
-  async function handleFilePicked(file: File | null | undefined) {
-    const target = pendingTargetRef.current;
-    if (!file || !onUploadFile) return;
-    setError(null);
-    const ctrl = new AbortController();
-    abortRef.current = ctrl;
-    setUploading({ target, phase: 'preparing' });
-    try {
-      const url = await onUploadFile(file, (p) => setUploading({ target, ...p }), ctrl.signal);
-      if (target === 'image') {
-        set('image', url);
-      } else {
-        setRec((prev) => {
-          const attachments = prev.attachments.map((a, idx) =>
-            idx === target
-              ? {
-                  ...a,
-                  href: url,
-                  // 라벨이 비어 있으면 파일명으로 채워 한 번에 입력을 끝낸다
-                  labelKo: a.labelKo || file.name,
-                  labelEn: a.labelEn || file.name,
-                  // 목록의 "PDF · 1.2MB" 표기에 쓸 용량. 사용자가 칠 값이 아니라
-                  // 고른 파일에서만 알 수 있으므로 업로드 성공 시점에 여기서 함께 넣는다.
-                  size: file.size,
-                }
-              : a,
-          );
-          return { ...prev, attachments };
-        });
-      }
-    } catch (err) {
-      // 사용자 취소는 실패가 아니라 안내로 표시
-      if (err instanceof UploadCancelledError) {
-        setError(err.message);
-      } else {
-        setError(err instanceof Error ? err.message : '파일 업로드에 실패했습니다.');
-      }
-    } finally {
-      abortRef.current = null;
-      setUploading(null);
-      if (attInputRef.current) attInputRef.current.value = '';
-      if (imgInputRef.current) imgInputRef.current.value = '';
-    }
-  }
-
   /** 진행 중 업로드 취소 (취소 버튼) */
   function cancelUpload() {
     abortRef.current?.abort();
   }
 
-  // ── 이미지 풀: 다중 업로드 → 체크 → 본문 삽입 / 썸네일 지정 ──
+  // ── 첨부 트레이(DC식): 파일 첨부 → 체크 → 전체 선택/해제·썸네일 지정·선택 삭제·본문 삽입 ──
+  // 대표 이미지 입력란·href 입력란·라벨 편집은 제거(사용자 지정, 2026-08-18) — 전부 자동:
+  // 썸네일은 '썸네일 지정'이 rec.image 에 넣고, 첨부 라벨·용량은 파일명·파일에서 온다.
 
-  /** 여러 이미지를 순차 업로드해 풀에 쌓는다 (중간 취소 시 이미 올라간 것은 유지) */
-  async function handlePoolPicked(files: FileList | null) {
+  /** 트레이 파생 목록 — 기존 썸네일(풀에 없을 때만) + 이미지 풀 + 첨부파일 */
+  function buildTrayEntries(): TrayEntry[] {
+    const entries: TrayEntry[] = [];
+    const thumbUrl = rec.image?.trim() ?? '';
+    if (thumbUrl && !pool.some((p) => p.url === thumbUrl)) {
+      entries.push({ key: 'thumb', kind: 'image', url: thumbUrl, name: '(기존 썸네일)', isThumb: true });
+    }
+    pool.forEach((p, i) => {
+      entries.push({ key: `p${i}`, kind: 'image', url: p.url, name: p.name, poolIdx: i, isThumb: p.url === thumbUrl });
+    });
+    rec.attachments.forEach((a, i) => {
+      if (!a.href?.trim()) return; // 구 UI 의 빈 수동 행은 표시하지 않는다(저장 시엔 유지)
+      // 구형 이관 게시물은 사진도 첨부파일로 저장돼 있다 — 확장자가 이미지면
+      // 이미지 카드로 취급해 미리보기·썸네일 지정·본문 삽입이 전부 살아난다.
+      const isImage = /\.(jpe?g|png|gif|webp|avif|bmp)(\?|$)/i.test(a.href);
+      entries.push({
+        key: `a${i}`,
+        kind: isImage ? 'image' : 'file',
+        url: a.href,
+        name: a.labelKo || a.href.split('/').pop() || '파일',
+        size: a.size,
+        attIdx: i,
+        isThumb: isImage && a.href === thumbUrl,
+      });
+    });
+    return entries;
+  }
+
+  /** 여러 파일을 순차 업로드 — 사진은 이미지 풀로, 문서는 첨부파일로 (중간 취소 시 완료분 유지) */
+  async function handleTrayPicked(files: FileList | null) {
     if (!files || files.length === 0 || !onUploadFile) return;
     const list = Array.from(files);
     setError(null);
@@ -353,46 +325,68 @@ export function PostForm({
         setUploading({ target: 'pool', note, phase: 'preparing' });
         // eslint-disable-next-line no-await-in-loop -- 순차 업로드(진행 표시·취소 단순화)
         const url = await onUploadFile(f, (p) => setUploading({ target: 'pool', note, ...p }), ctrl.signal);
-        setPool((prev) => [...prev, { url, name: f.name }]);
+        if (f.type.startsWith('image/')) {
+          setPool((prev) => [...prev, { url, name: f.name }]);
+        } else {
+          // 라벨은 파일명, 용량은 파일에서 — 목록의 "PDF · 1.2MB" 표기 재료
+          const att: EditAttachment = { labelKo: f.name, labelEn: f.name, href: url, size: f.size };
+          setRec((prev) => ({ ...prev, attachments: [...prev.attachments, att] }));
+        }
       }
     } catch (err) {
       if (err instanceof UploadCancelledError) {
         setError(err.message);
       } else {
-        setError(err instanceof Error ? err.message : '이미지 업로드에 실패했습니다.');
+        setError(err instanceof Error ? err.message : '파일 업로드에 실패했습니다.');
       }
     } finally {
       abortRef.current = null;
       setUploading(null);
       if (poolInputRef.current) poolInputRef.current.value = '';
+      if (docInputRef.current) docInputRef.current.value = '';
     }
   }
 
-  function togglePoolCheck(i: number) {
-    setPoolChecked((prev) => {
+  function toggleTray(key: string) {
+    setTrayChecked((prev) => {
       const next = new Set(prev);
-      if (next.has(i)) next.delete(i);
-      else next.add(i);
+      if (next.has(key)) next.delete(key);
+      else next.add(key);
       return next;
     });
   }
 
-  function removeCheckedFromPool() {
-    setPool((prev) => prev.filter((_, i) => !poolChecked.has(i)));
-    setPoolChecked(new Set());
+  /** 체크 항목 삭제 — 출처별로 나눠 지운다. 썸네일이던 사진을 지우면 지정도 해제. */
+  function removeCheckedTray() {
+    const poolIdxs = new Set<number>();
+    const attIdxs = new Set<number>();
+    let clearThumb = false;
+    for (const it of buildTrayEntries()) {
+      if (!trayChecked.has(it.key)) continue;
+      if (it.key === 'thumb' || it.isThumb) clearThumb = true;
+      if (it.poolIdx !== undefined) poolIdxs.add(it.poolIdx);
+      if (it.attIdx !== undefined) attIdxs.add(it.attIdx);
+    }
+    if (poolIdxs.size > 0) setPool((prev) => prev.filter((_, i) => !poolIdxs.has(i)));
+    if (attIdxs.size > 0) {
+      setRec((prev) => ({ ...prev, attachments: prev.attachments.filter((_, i) => !attIdxs.has(i)) }));
+    }
+    if (clearThumb) set('image', '');
+    setTrayChecked(new Set()); // 인덱스가 밀리므로 전체 해제
   }
 
-  /** 체크한 사진 1장을 대표 이미지(썸네일)로 지정 */
-  function setThumbnailFromPool() {
-    const idx = [...poolChecked][0];
-    if (idx === undefined || !pool[idx]) return;
-    set('image', pool[idx].url);
+  /** 체크한 사진 1장을 대표 이미지(썸네일)로 지정 — rec.image 에 자동 기입 */
+  function setThumbnailFromTray() {
+    const checked = buildTrayEntries().filter((it) => trayChecked.has(it.key));
+    if (checked.length !== 1 || checked[0].kind !== 'image') return;
+    set('image', checked[0].url);
   }
 
-  /** 체크한 사진들을 마지막에 포커스한 본문 에디터의 커서 위치에 삽입.
-   *  (Tiptap 전환으로 마크다운 참조식 우회가 필요 없어졌다 — 이미지 노드 직삽입) */
+  /** 체크한 사진들을 마지막에 포커스한 본문 에디터의 커서 위치에 삽입 */
   function insertCheckedIntoBody() {
-    const urls = pool.filter((_, i) => poolChecked.has(i)).map((p) => p.url);
+    const urls = buildTrayEntries()
+      .filter((it) => trayChecked.has(it.key) && it.kind === 'image')
+      .map((it) => it.url);
     if (urls.length === 0) return;
     const ed = editorsRef.current[lastBodyRef.current] ?? editorsRef.current.ko;
     if (!ed) return;
@@ -851,7 +845,7 @@ export function PostForm({
                   사진은 툴바 🖼 버튼·드래그앤드롭·붙여넣기 모두 가능(자동 압축 후 스토리지 저장) */}
               <div onFocusCapture={() => { lastBodyRef.current = 'ko'; }}>
                 <p className="mb-1.5 text-[12px] font-semibold text-content-faint">본문 (한국어)</p>
-                <BoardEditor
+                <PostBodyEditor
                   value={rec.bodyKo}
                   onChange={(html) => set('bodyKo', html)}
                   onUploadImage={onUploadFile ? (file) => onUploadFile(file) : undefined}
@@ -867,7 +861,7 @@ export function PostForm({
                   {/* 위지윅 본문은 HTML — 태그 보존 번역(tag_handling) */}
                   <TranslateButton source={rec.bodyKo} html onTranslated={(v) => set('bodyEn', v)} />
                 </div>
-                <BoardEditor
+                <PostBodyEditor
                   value={rec.bodyEn}
                   onChange={(html) => set('bodyEn', html)}
                   onUploadImage={onUploadFile ? (file) => onUploadFile(file) : undefined}
@@ -880,57 +874,76 @@ export function PostForm({
           )
         )}
 
-        {/* ── 첨부 · 대표 이미지 — 본문 아래 점선 묶음 한 덩어리 ── */}
+        {/* ── 첨부 트레이 — 구형 게시판(DC식) 형식(사용자 지정, 2026-08-18):
+              [사진 첨부] [파일 첨부] → 체크박스 그리드 → 전체 선택 | 전체 해제 |
+              썸네일 지정 | 선택 삭제 | 본문 삽입. 대표 이미지 입력란·href 입력란·라벨
+              편집은 제거 — 전부 자동 기입이라 노출할 이유가 없다(썸네일 지정→rec.image,
+              라벨→파일명). 사진/파일 버튼은 분리하되 분류는 MIME 기준이라 어느 쪽으로
+              올려도 올바른 자리(이미지 풀/첨부파일)로 간다. ── */}
         <div className="mt-6 border border-dashed border-surface-border bg-[#fcfdfe] px-5 py-4">
-          {/* 대표 이미지 (모든 게시판 공통) */}
-          <div className="flex flex-wrap items-center gap-x-4 gap-y-2.5">
-            <DropTitle>대표 이미지</DropTitle>
-            {onUploadFile && (
+          {onUploadFile && (
+            <>
               <input
-                ref={imgInputRef}
+                ref={poolInputRef}
                 type="file"
+                multiple
                 accept="image/*"
                 className="hidden"
                 aria-hidden="true"
                 tabIndex={-1}
-                onChange={(e) => void handleFilePicked(e.target.files?.[0])}
+                onChange={(e) => void handleTrayPicked(e.target.files)}
               />
-            )}
-            <input
-              id="pf-image"
-              type="text"
-              aria-label="대표 이미지 경로 또는 링크"
-              value={rec.image ?? ''}
-              onChange={(e) => set('image', e.target.value)}
-              placeholder="/img/programs/bk21.jpg 또는 https://… — 업로드 시 자동 기입"
-              className={cn(fieldClass, 'min-w-[200px] flex-1')}
-            />
+              {!meta.noBody && (
+                <input
+                  ref={docInputRef}
+                  type="file"
+                  multiple
+                  accept=".pdf,.zip,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.hwp,.hwpx"
+                  className="hidden"
+                  aria-hidden="true"
+                  tabIndex={-1}
+                  onChange={(e) => void handleTrayPicked(e.target.files)}
+                />
+              )}
+            </>
+          )}
+          <div className="flex flex-wrap items-center gap-2.5">
+            <DropTitle>첨부</DropTitle>
             {onUploadFile && (
-              <button
-                type="button"
-                onClick={() => pickFile('image')}
-                disabled={uploading !== null}
-                className="cms-btn cms-btn-sm shrink-0"
-              >
-                {uploading?.target === 'image' ? uploadLabel(uploading) : '이미지 업로드'}
-              </button>
+              <>
+                <button
+                  type="button"
+                  onClick={() => poolInputRef.current?.click()}
+                  disabled={uploading !== null}
+                  className="cms-btn cms-btn-sm"
+                >
+                  사진 첨부
+                </button>
+                {!meta.noBody && (
+                  <button
+                    type="button"
+                    onClick={() => docInputRef.current?.click()}
+                    disabled={uploading !== null}
+                    className="cms-btn cms-btn-sm"
+                  >
+                    파일 첨부
+                  </button>
+                )}
+              </>
             )}
-            {uploading?.target === 'image' && (
-              <button type="button" onClick={cancelUpload} className="cms-btn-danger cms-btn-sm shrink-0">
-                취소
-              </button>
-            )}
-            {rec.image?.trim() && (
-              /* eslint-disable-next-line @next/next/no-img-element -- 관리자 미리보기(임의 외부 URL 허용) */
-              <img
-                src={rec.image}
-                alt="대표 이미지 미리보기"
-                className="h-[34px] w-[52px] shrink-0 border border-surface-border object-cover"
-              />
+            {uploading && (
+              <>
+                <span className="text-[11px] font-medium text-yonsei-blue">
+                  {uploadLabel(uploading)}
+                  {uploading.note ? ` (${uploading.note})` : ''}
+                </span>
+                <button type="button" onClick={cancelUpload} className="cms-btn-danger cms-btn-sm">
+                  취소
+                </button>
+              </>
             )}
           </div>
-          {/* 진행 바 — 단계·퍼센트를 시각화 (불확정 단계는 얇은 펄스) */}
-          {uploading?.target === 'image' && (
+          {uploading && (
             <div className="mt-2 h-1 w-full overflow-hidden bg-surface-soft" aria-hidden="true">
               <div
                 className={cn('h-full bg-yonsei-blue transition-[width] duration-200', isIndeterminate(uploading) && 'animate-pulse')}
@@ -938,100 +951,67 @@ export function PostForm({
               />
             </div>
           )}
-          {!rec.image?.trim() && (
-            <p className="mt-1.5 text-[11px] text-content-faint">
-              비워 두면 본문에 넣은 첫 번째 사진이 목록 썸네일로 자동 사용됩니다.
-            </p>
-          )}
-
-          {/* 이미지 풀 — 여러 장 올려두고 체크해서 본문 삽입 / 썸네일 지정 */}
-          {onUploadFile && !meta.noBody && (
-            <div className="mt-4 border-t border-[#f1f4f8] pt-4">
-              <input
-                ref={poolInputRef}
-                type="file"
-                accept="image/*"
-                multiple
-                className="hidden"
-                aria-hidden="true"
-                tabIndex={-1}
-                onChange={(e) => void handlePoolPicked(e.target.files)}
-              />
-              <div className="flex flex-wrap items-center gap-2">
-                <DropTitle>본문 사진</DropTitle>
-                <button
-                  type="button"
-                  onClick={() => poolInputRef.current?.click()}
-                  disabled={uploading !== null}
-                  className="cms-btn cms-btn-sm"
-                >
-                  {uploading?.target === 'pool'
-                    ? `${uploadLabel(uploading)}${uploading.note ? ` (${uploading.note})` : ''}`
-                    : '+ 사진 추가 (여러 장 가능)'}
-                </button>
-                {uploading?.target === 'pool' && (
-                  <button type="button" onClick={cancelUpload} className="cms-btn-danger cms-btn-sm">
-                    취소
+          {(() => {
+            // 파생 목록·체크 통계를 한 번만 계산해 버튼 활성/그리드에 나눠 쓴다
+            const entries = buildTrayEntries();
+            if (entries.length === 0) return null;
+            const checkedImages = entries.filter((it) => trayChecked.has(it.key) && it.kind === 'image');
+            return (
+              <>
+                <div className="mt-3 flex flex-wrap items-center gap-1.5">
+                  <span className="mr-1 text-[12px] tabular-nums text-content-faint">{entries.length}개</span>
+                  <button
+                    type="button"
+                    onClick={() => setTrayChecked(new Set(entries.map((it) => it.key)))}
+                    className="cms-btn cms-btn-sm"
+                  >
+                    전체 선택
                   </button>
-                )}
-                {pool.length > 0 && (
-                  <>
-                    <span className="mx-1 h-5 w-px bg-surface-border" aria-hidden="true" />
-                    <button type="button" onClick={() => setPoolChecked(new Set(pool.map((_, i) => i)))} className="cms-btn cms-btn-sm">
-                      전체 선택
-                    </button>
-                    <button type="button" onClick={() => setPoolChecked(new Set())} className="cms-btn cms-btn-sm">
-                      전체 해제
-                    </button>
+                  <button
+                    type="button"
+                    onClick={() => setTrayChecked(new Set())}
+                    disabled={trayChecked.size === 0}
+                    className="cms-btn cms-btn-sm"
+                  >
+                    전체 해제
+                  </button>
+                  <button
+                    type="button"
+                    onClick={setThumbnailFromTray}
+                    disabled={!(trayChecked.size === 1 && checkedImages.length === 1)}
+                    title="체크한 사진 1장을 목록 썸네일로 지정"
+                    className="cms-btn cms-btn-sm"
+                  >
+                    썸네일 지정
+                  </button>
+                  <button
+                    type="button"
+                    onClick={removeCheckedTray}
+                    disabled={trayChecked.size === 0}
+                    className="cms-btn cms-btn-sm"
+                  >
+                    선택 삭제
+                  </button>
+                  {!meta.noBody && (
                     <button
                       type="button"
                       onClick={insertCheckedIntoBody}
-                      disabled={poolChecked.size === 0}
+                      disabled={checkedImages.length === 0}
+                      title="체크한 사진을 본문 커서 위치에 삽입"
                       className="cms-btn-primary cms-btn-sm"
                     >
                       본문 삽입
                     </button>
-                    <button
-                      type="button"
-                      onClick={setThumbnailFromPool}
-                      disabled={poolChecked.size !== 1}
-                      title="체크한 사진 1장을 대표 이미지로 지정"
-                      className="cms-btn cms-btn-sm"
-                    >
-                      썸네일 지정
-                    </button>
-                    <button
-                      type="button"
-                      onClick={removeCheckedFromPool}
-                      disabled={poolChecked.size === 0}
-                      className="cms-btn cms-btn-sm"
-                    >
-                      선택 삭제
-                    </button>
-                  </>
-                )}
-              </div>
-              {uploading?.target === 'pool' && (
-                <div className="mt-2 h-1 w-full overflow-hidden bg-surface-soft" aria-hidden="true">
-                  <div
-                    className={cn('h-full bg-yonsei-blue transition-[width] duration-200', isIndeterminate(uploading) && 'animate-pulse')}
-                    style={{ width: `${uploadBarWidth(uploading)}%` }}
-                  />
+                  )}
                 </div>
-              )}
-              {pool.length === 0 ? (
-                <p className="mt-2 text-[11px] leading-relaxed text-content-faint">
-                  사진을 올린 뒤 체크하고 &lsquo;본문 삽입&rsquo;(커서 위치에 사진 배치) 또는
-                  &lsquo;썸네일 지정&rsquo;(대표 이미지)을 누르세요. 이미지는 자동 압축(1600px·WebP)되어
-                  외부 스토리지에 저장됩니다.
-                </p>
-              ) : (
                 <ul className="mt-3 grid grid-cols-3 gap-3 sm:grid-cols-4 md:grid-cols-6">
-                  {pool.map((item, i) => {
-                    const checked = poolChecked.has(i);
-                    const isThumb = rec.image === item.url;
+                  {entries.map((it) => {
+                    const checked = trayChecked.has(it.key);
+                    const ext = (it.name.includes('.') ? it.name.split('.').pop()! : it.url.split('.').pop() ?? '')
+                      .toUpperCase()
+                      .slice(0, 5);
                     return (
-                      <li key={item.url}>
+                      <li key={it.key}>
                         <label
                           className={cn(
                             'relative block cursor-pointer border bg-surface transition-colors',
@@ -1043,129 +1023,35 @@ export function PostForm({
                           <input
                             type="checkbox"
                             checked={checked}
-                            onChange={() => togglePoolCheck(i)}
+                            onChange={() => toggleTray(it.key)}
                             className="absolute left-1.5 top-1.5 z-10 h-4 w-4 accent-yonsei-blue"
-                            aria-label={`${item.name} 선택`}
+                            aria-label={`${it.name} 선택`}
                           />
-                          {isThumb && (
+                          {it.isThumb && (
                             <span className="absolute right-0 top-0 z-10 bg-yonsei-blue px-1.5 py-0.5 text-[10px] font-bold text-white">
                               썸네일
                             </span>
                           )}
-                          {/* eslint-disable-next-line @next/next/no-img-element -- 관리자 풀 미리보기 */}
-                          <img src={item.url} alt="" className="h-20 w-full object-cover" />
+                          {it.kind === 'image' ? (
+                            /* eslint-disable-next-line @next/next/no-img-element -- 관리자 트레이 미리보기 */
+                            <img src={it.url} alt="" className="h-20 w-full object-cover" />
+                          ) : (
+                            <span className="grid h-20 w-full place-items-center bg-surface-soft text-[13px] font-bold tracking-wide text-content-faint">
+                              {ext || 'FILE'}
+                            </span>
+                          )}
                           <span className="block truncate px-1.5 py-1 text-[11px] text-content-faint">
-                            {item.name}
+                            {it.name}
+                            {it.size ? ` · ${formatBytes(it.size)}` : ''}
                           </span>
                         </label>
                       </li>
                     );
                   })}
                 </ul>
-              )}
-            </div>
-          )}
-
-          {/* 첨부파일 — noBody(인스타그램 등 링크형)는 첨부 개념이 없어 숨김 */}
-          {!meta.noBody && (
-            <div className="mt-4 border-t border-[#f1f4f8] pt-4">
-              {onUploadFile && (
-                <input
-                  ref={attInputRef}
-                  type="file"
-                  accept="image/*,.pdf,.zip,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.hwp,.hwpx"
-                  className="hidden"
-                  aria-hidden="true"
-                  tabIndex={-1}
-                  onChange={(e) => void handleFilePicked(e.target.files?.[0])}
-                />
-              )}
-              <div className="flex flex-wrap items-center gap-3">
-                <DropTitle>첨부파일</DropTitle>
-                {rec.attachments.length === 0 && (
-                  <span className="text-[11px] text-content-faint">첨부파일이 없습니다.</span>
-                )}
-                <button type="button" onClick={addAtt} className="cms-btn cms-btn-sm ml-auto">
-                  + 파일 추가
-                </button>
-              </div>
-              <div className="mt-3 space-y-2.5">
-                {rec.attachments.map((att, i) => {
-                  // 업로드로 알게 된 용량만 표기한다(직접 붙여넣은 URL 은 크기를 알 수 없다)
-                  const sizeLabel = formatBytes(att.size);
-                  return (
-                  <div key={i}>
-                    <div className="grid gap-2 sm:grid-cols-[1fr_1fr_1.5fr_auto_auto]">
-                      <input
-                        type="text"
-                        aria-label={`첨부 ${i + 1} 라벨 한국어`}
-                        value={att.labelKo}
-                        onChange={(e) => updateAtt(i, 'labelKo', e.target.value)}
-                        placeholder="라벨(한)"
-                        className={fieldClass}
-                      />
-                      <input
-                        type="text"
-                        aria-label={`첨부 ${i + 1} 라벨 영어`}
-                        value={att.labelEn}
-                        onChange={(e) => updateAtt(i, 'labelEn', e.target.value)}
-                        placeholder="Label (en)"
-                        className={fieldClass}
-                      />
-                      {/* 링크 아래에 용량을 읽기 전용으로 붙인다 — 목록·상세의
-                          "PDF · 1.2MB" 가 어디서 오는 값인지 그 자리에서 보이게 */}
-                      <div className="min-w-0">
-                        <input
-                          type="text"
-                          aria-label={`첨부 ${i + 1} 링크`}
-                          value={att.href}
-                          onChange={(e) => updateAtt(i, 'href', e.target.value)}
-                          placeholder="href — 파일 업로드 시 자동 기입"
-                          className={fieldClass}
-                        />
-                        {sizeLabel && (
-                          <p className="mt-1 text-[11px] text-content-faint">{sizeLabel}</p>
-                        )}
-                      </div>
-                      {onUploadFile && (
-                        <button
-                          type="button"
-                          onClick={() => (uploading?.target === i ? cancelUpload() : pickFile(i))}
-                          disabled={uploading !== null && uploading.target !== i}
-                          className={cn(
-                            'whitespace-nowrap',
-                            uploading?.target === i ? 'cms-btn-danger cms-btn-sm' : 'cms-btn cms-btn-sm',
-                          )}
-                          title={uploading?.target === i ? '클릭하면 업로드를 취소합니다' : undefined}
-                        >
-                          {uploading?.target === i ? `${uploadLabel(uploading)} ✕` : '파일'}
-                        </button>
-                      )}
-                      <button type="button" onClick={() => removeAtt(i)} className="cms-btn cms-btn-sm">
-                        삭제
-                      </button>
-                    </div>
-                    {/* 진행 바 — 업로드 중인 행 아래에만 표시 */}
-                    {uploading?.target === i && (
-                      <div className="mt-1.5 h-1 w-full overflow-hidden bg-surface-soft" aria-hidden="true">
-                        <div
-                          className={cn('h-full bg-yonsei-blue transition-[width] duration-200', isIndeterminate(uploading) && 'animate-pulse')}
-                          style={{ width: `${uploadBarWidth(uploading)}%` }}
-                        />
-                      </div>
-                    )}
-                  </div>
-                  );
-                })}
-              </div>
-              {onUploadFile && (
-                <p className="mt-2 text-[11px] text-content-faint">
-                  파일은 외부 스토리지(Cloudflare R2)에 저장되고 게시물에는 링크만 기록됩니다. 이미지
-                  최대 20MB(자동 압축), 문서 20MB.
-                </p>
-              )}
-            </div>
-          )}
+              </>
+            );
+          })()}
         </div>
 
         {/* ── 하단 — 네이비 2px 룰 위에 취소/저장 반복 + id 캡션 ── */}
