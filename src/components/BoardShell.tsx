@@ -57,7 +57,7 @@ export function BoardShell({
 
         {/* 우측 목차 박스 (데스크톱 전용, 모바일은 상단 스크롤 탭으로 대체) —
             TabbedContent와 동일한 세로 그라디언트 막대 + 링크 리스트 */}
-        <nav className="hidden shrink-0 lg:sticky lg:top-28 lg:block lg:w-72" aria-label="섹션 목차">
+        <nav className="hidden shrink-0 lg:sticky lg:top-28 lg:block lg:w-[218px]" aria-label="섹션 목차">
           {navTitle && (
             <p className="mb-4 text-xl font-bold text-content">{navTitle}</p>
           )}
