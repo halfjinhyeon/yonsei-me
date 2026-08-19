@@ -16,7 +16,9 @@
 // 문서 스키마·저장 계약은 RichTextEditor(구판)와 동일 — rte-schema 확장을 그대로
 // 쓰므로 저장 HTML 형식이 변하지 않고, PostForm 프롭 그대로 스왑된다.
 // 내용 영역 타이포는 prose-content(사이트 본문과 동일) — 진짜 WYSIWYG.
-// 표 보조 바·이미지 보조 바는 구판 기능 그대로(사용자 지정: 표 커스텀 유지),
+// 표 보조 바·이미지 보조 바는 2026-08 시안(1a/1d)으로 다시 그렸다 — 툴바와 같은 면에
+// 붙는 인라인 바 + 아이콘·라벨 버튼, 색/테두리/여백은 "표 스타일" 팝오버 한 곳.
+// 명령 자체는 구판 그대로다(새로 만든 에디터 명령 없음).
 // 새 표의 초기 디자인은 구형 기본(1px 연회색 격자·좁은 여백).
 
 import { useCallback, useEffect, useRef, useState } from 'react';
@@ -89,12 +91,15 @@ import '@/styles/_keyframe-animations.scss';
 import {
   AlignIcon,
   BORDER_COLOR_SWATCHES,
+  BORDER_WIDTH_TILE_LABELS,
   BORDER_WIDTHS,
   CELL_BGS,
   CELLPAD_OPTIONS,
   CodeViewIcon,
   COLORS_STEP,
-  Divider,
+  CTX_CAPTION,
+  CtxBtn,
+  CtxDivider,
   DropletIcon,
   EraserIcon,
   FONT_FAMILIES,
@@ -102,15 +107,25 @@ import {
   FROALA_COLORS,
   GRID_COLS,
   GRID_ROWS,
+  ImageWidthFullIcon,
+  ImageWidthHalfIcon,
   IndentIcon,
   PANEL_BTN,
   PANEL_INPUT,
   PrinterIcon,
   SelectAllIcon,
+  TableColAddIcon,
+  TableColDeleteIcon,
+  TableDeleteIcon,
+  TableHeaderRowIcon,
   TableIcon,
-  TBtn,
-  TSelect,
+  TableMergeIcon,
+  TableRowAddIcon,
+  TableRowDeleteIcon,
+  TableSplitIcon,
+  TableStyleIcon,
   YoutubeIcon,
+  borderWidthPreviewStyle,
   cleanPastedHtml,
   normalizeUrl,
   runOnSelection,
@@ -457,127 +472,121 @@ export function PostBodyEditor({
           <Spacer />
         </Toolbar>
 
-        {/* ── 표 보조 바 — 구판 기능 그대로(사용자 지정) + 행 위/열 왼쪽 삽입 ── */}
+        {/* ── 표 보조 바 (2026-08 시안 1a) — 툴바와 같은 면에 붙는 인라인 바.
+              캡션(행·열·셀)이 버튼 묶음의 대상을 말하고, 아이콘의 강조면이 작용 지점을 말한다.
+              색·테두리·여백은 "표 스타일" 팝오버 한 곳으로 모아 바 길이를 줄였다.
+              ⚠️ 크기 초기화 3종(열 너비 초기화·행 높이 같게·행 높이 초기화)은 바에서 뺐다 —
+              표 안에서 마우스로 직접 끄는 편이 빠르기 때문이다. rte-schema 의 명령
+              (resetColumnWidths·equalizeRowHeights·resetRowHeights)은 그대로 살아 있다. ── */}
         {inTable && (
-          <div className="flex flex-wrap items-center gap-1 border-b border-surface-border bg-surface-soft px-2 py-1 text-xs">
-            <span className="mr-1 font-semibold text-content-faint">표:</span>
-            <TBtn title="위에 행 추가" onClick={() => editor.chain().focus().addRowBefore().run()}>행↑+</TBtn>
-            <TBtn title="아래에 행 추가" onClick={() => editor.chain().focus().addRowAfter().run()}>행↓+</TBtn>
-            <TBtn title="행 삭제" onClick={() => editor.chain().focus().deleteRow().run()}>행−</TBtn>
-            <TBtn title="왼쪽에 열 추가" onClick={() => editor.chain().focus().addColumnBefore().run()}>열←+</TBtn>
-            <TBtn title="오른쪽에 열 추가" onClick={() => editor.chain().focus().addColumnAfter().run()}>열→+</TBtn>
-            <TBtn title="열 삭제" onClick={() => editor.chain().focus().deleteColumn().run()}>열−</TBtn>
-            <TBtn
+          <div className="rte-ctxbar relative z-[5] flex flex-wrap items-center gap-0.5 px-2 py-[5px]">
+            <span className={CTX_CAPTION}>행</span>
+            <CtxBtn
+              title="위에 행 추가"
+              label="위"
+              icon={<TableRowAddIcon where="before" />}
+              onClick={() => editor.chain().focus().addRowBefore().run()}
+            />
+            <CtxBtn
+              title="아래에 행 추가"
+              label="아래"
+              icon={<TableRowAddIcon where="after" />}
+              onClick={() => editor.chain().focus().addRowAfter().run()}
+            />
+            <CtxBtn
+              title="행 삭제"
+              label="삭제"
+              icon={<TableRowDeleteIcon />}
+              onClick={() => editor.chain().focus().deleteRow().run()}
+            />
+            <CtxDivider />
+            <span className={CTX_CAPTION}>열</span>
+            <CtxBtn
+              title="왼쪽에 열 추가"
+              label="왼쪽"
+              icon={<TableColAddIcon where="before" />}
+              onClick={() => editor.chain().focus().addColumnBefore().run()}
+            />
+            <CtxBtn
+              title="오른쪽에 열 추가"
+              label="오른쪽"
+              icon={<TableColAddIcon where="after" />}
+              onClick={() => editor.chain().focus().addColumnAfter().run()}
+            />
+            <CtxBtn
+              title="열 삭제"
+              label="삭제"
+              icon={<TableColDeleteIcon />}
+              onClick={() => editor.chain().focus().deleteColumn().run()}
+            />
+            <CtxDivider />
+            <span className={CTX_CAPTION}>셀</span>
+            <CtxBtn
               title="셀 병합"
+              label="병합"
+              icon={<TableMergeIcon />}
               disabled={!editor.can().mergeCells()}
               onClick={() => editor.chain().focus().mergeCells().run()}
-            >
-              병합
-            </TBtn>
-            <TBtn
+            />
+            <CtxBtn
               title="셀 분할"
+              label="분할"
+              icon={<TableSplitIcon />}
               disabled={!editor.can().splitCell()}
               onClick={() => editor.chain().focus().splitCell().run()}
-            >
-              분할
-            </TBtn>
-            <TBtn title="머리행 켜기/끄기" active={editor.isActive('tableHeader')} onClick={() => editor.chain().focus().toggleHeaderRow().run()}>
-              머리행
-            </TBtn>
-            <TBtn title="열 너비 초기화" onClick={() => editor.chain().focus().resetColumnWidths().run()}>너비↺</TBtn>
-            <TBtn title="행 높이 같게" onClick={() => editor.chain().focus().equalizeRowHeights().run()}>높이=</TBtn>
-            <TBtn title="행 높이 초기화" onClick={() => editor.chain().focus().resetRowHeights().run()}>높이↺</TBtn>
-            <TBtn title="표 삭제" onClick={() => editor.chain().focus().deleteTable().run()}>표×</TBtn>
-            <Divider />
-            <span className="mr-0.5 text-content-faint">셀 배경</span>
-            {CELL_BGS.map((c) => (
-              <button
-                key={c.label}
-                type="button"
-                onMouseDown={(e) => e.preventDefault()}
-                onClick={() => editor.chain().focus().setCellAttribute('backgroundColor', c.value).run()}
-                title={`셀 배경 ${c.label}`}
-                aria-label={`셀 배경 ${c.label}`}
-                className={cn(
-                  'grid h-6 w-6 place-items-center border border-surface-border text-[10px] text-content-faint',
-                  c.value ? '' : 'bg-surface',
-                )}
-                style={c.value ? { backgroundColor: c.value } : undefined}
-              >
-                {c.value ? '' : '×'}
-              </button>
-            ))}
-            <Divider />
-            <span className="mr-0.5 text-content-faint">테두리</span>
-            <TSelect
-              title="표 테두리 굵기"
-              value={(tableAttrs.border as string | null) ?? ''}
-              options={BORDER_WIDTHS}
-              onChange={(v) =>
-                editor.chain().focus().setTableAttrs({ border: (v || null) as TableBorder | null }).run()
-              }
             />
-            {TABLE_BORDER_COLORS.map((name) => (
-              <button
-                key={name}
-                type="button"
-                onMouseDown={(e) => e.preventDefault()}
-                onClick={() => editor.chain().focus().setTableAttrs({ borderColor: name }).run()}
-                title={`테두리 색 ${BORDER_COLOR_SWATCHES[name].label}`}
-                aria-label={`표 테두리 색 ${BORDER_COLOR_SWATCHES[name].label}`}
-                className={cn(
-                  'h-6 w-6 border',
-                  tableAttrs.borderColor === name
-                    ? 'border-content ring-1 ring-content'
-                    : 'border-surface-border',
-                )}
-                style={{ backgroundColor: BORDER_COLOR_SWATCHES[name].css }}
-              />
-            ))}
-            <Divider />
-            <span className="mr-0.5 text-content-faint">여백</span>
-            <TSelect
-              title="셀 여백"
-              value={(tableAttrs.cellpad as string | null) ?? ''}
-              options={CELLPAD_OPTIONS}
-              onChange={(v) =>
-                editor.chain().focus().setTableAttrs({ cellpad: (v || null) as TableCellpad | null }).run()
-              }
+            <CtxDivider />
+            <CtxBtn
+              title="머리행 켜기/끄기"
+              label="머리행"
+              icon={<TableHeaderRowIcon />}
+              active={editor.isActive('tableHeader')}
+              onClick={() => editor.chain().focus().toggleHeaderRow().run()}
+            />
+            <CtxDivider />
+            <TableStylePopover editor={editor} attrs={tableAttrs} />
+            {/* 파괴적 명령은 넓은 구분자 뒤에 홀로 둔다 — 실수 클릭을 거리로 막는다 */}
+            <CtxDivider wide />
+            <CtxBtn
+              title="표 삭제"
+              tone="danger"
+              icon={<TableDeleteIcon />}
+              onClick={() => editor.chain().focus().deleteTable().run()}
             />
           </div>
         )}
 
-        {/* ── 이미지 보조 바 — 구판 그대로 ── */}
+        {/* ── 이미지 보조 바 (2026-08 시안 1d) — 표 보조 바와 같은 문법(면·버튼·구분자) ── */}
         {onImage && (
-          <div className="flex flex-wrap items-center gap-1 border-b border-surface-border bg-surface-soft px-2 py-1 text-xs">
-            <span className="mr-1 font-semibold text-content-faint">이미지:</span>
+          <div className="rte-ctxbar relative z-[5] flex flex-wrap items-center gap-0.5 px-2 py-[5px]">
+            <span className={CTX_CAPTION}>정렬</span>
             {(['left', 'center', 'right'] as const).map((align) => (
-              <TBtn
+              <CtxBtn
                 key={align}
                 title={`이미지 ${align === 'left' ? '왼쪽' : align === 'center' ? '가운데' : '오른쪽'} 정렬`}
+                icon={<AlignIcon variant={align} />}
                 active={imageAttrs['data-align'] === align}
                 onClick={() => editor.chain().focus().updateAttributes('image', { 'data-align': align }).run()}
-              >
-                <AlignIcon variant={align} />
-              </TBtn>
+              />
             ))}
-            <Divider />
-            <TBtn
+            <CtxDivider />
+            <span className={CTX_CAPTION}>폭</span>
+            <CtxBtn
               title="원본 폭"
+              label="원본"
+              icon={<ImageWidthFullIcon />}
               active={!imageAttrs.widthPct}
               onClick={() => editor.chain().focus().updateAttributes('image', { widthPct: null }).run()}
-            >
-              원본
-            </TBtn>
-            <TBtn
+            />
+            <CtxBtn
               title="폭 50%"
+              label="50%"
+              icon={<ImageWidthHalfIcon />}
               active={imageAttrs.widthPct === 50}
               onClick={() => editor.chain().focus().updateAttributes('image', { widthPct: 50 }).run()}
-            >
-              ½
-            </TBtn>
-            <Divider />
-            <label className="text-content-faint" htmlFor="board-editor-image-alt">대체텍스트</label>
+            />
+            <CtxDivider />
+            <label className={CTX_CAPTION} htmlFor="board-editor-image-alt">대체텍스트</label>
             <input
               id="board-editor-image-alt"
               key={`${String(imageAttrs.src ?? '')}-${editor.state.selection.from}`}
@@ -585,7 +594,7 @@ export function PostBodyEditor({
               type="text"
               defaultValue={(imageAttrs.alt as string | undefined) ?? ''}
               placeholder="사진 설명(화면 낭독기용)"
-              className={cn(PANEL_INPUT, 'w-56')}
+              className={cn(PANEL_INPUT, 'w-[280px]')}
               onKeyDown={(e) => {
                 if (e.key !== 'Enter') return;
                 e.preventDefault();
@@ -594,7 +603,7 @@ export function PostBodyEditor({
             />
             <button
               type="button"
-              className={PANEL_BTN}
+              className={cn(PANEL_BTN, 'ml-1')}
               onClick={() =>
                 editor.chain().focus().updateAttributes('image', { alt: altRef.current?.value.trim() || null }).run()
               }
@@ -1037,5 +1046,168 @@ function TableInsertPopover({ editor }: { editor: Editor }) {
         </p>
       </PopoverContent>
     </Popover>
+  );
+}
+
+/** 표 스타일 — 셀 배경·테두리 굵기·테두리 색·셀 여백을 한 팝오버로 모은다.
+ *  보조 바에 스와치를 늘어놓던 구판은 바가 두 줄로 넘쳐 표를 가렸다.
+ *  트리거의 칩(굵기 글자 + 색 사각)은 팝오버를 열지 않아도 현재 값을 비춘다. */
+function TableStylePopover({ editor, attrs }: { editor: Editor; attrs: Record<string, unknown> }) {
+  const [open, setOpen] = useState(false);
+  // 열거값 밖은 스키마(pickEnum)가 null 로 정규화하므로 키 조회가 안전하다.
+  // null = "미지정" — 굵기는 레거시 기본(줄무늬), 색은 구형 기본(연회색), 여백은 보통.
+  const border = (attrs.border as TableBorder | null | undefined) ?? null;
+  const borderColor = (attrs.borderColor as TableBorderColor | null | undefined) ?? 'lightgray';
+  const cellpad = (attrs.cellpad as TableCellpad | null | undefined) ?? null;
+
+  return (
+    <DropdownMenu modal={false} open={open} onOpenChange={setOpen}>
+      <DropdownMenuTrigger asChild>
+        <button
+          type="button"
+          onMouseDown={(e) => e.preventDefault() /* 에디터 선택 유지 */}
+          title="표 스타일 (셀 배경·테두리·여백)"
+          aria-label="표 스타일"
+          className={cn(
+            'flex h-[30px] shrink-0 items-center gap-1.5 whitespace-nowrap rounded-[12px] border-0 pl-2 pr-[7px] text-[11.5px] font-semibold leading-none text-content transition-colors',
+            open ? 'bg-[rgba(15,22,36,0.05)]' : 'bg-transparent hover:bg-[var(--tt-button-hover-bg-color)]',
+          )}
+        >
+          <TableStyleIcon />
+          표 스타일
+          <span className="flex items-center gap-1 border-l border-surface-border pl-1.5">
+            <span className="text-[11px] font-medium text-content-faint">
+              {border === null ? '이전 기본' : `${border}px`}
+            </span>
+            <span
+              aria-hidden="true"
+              className="h-3 w-3 rounded-[2px] shadow-[inset_0_0_0_1px_rgba(0,0,0,0.14)]"
+              style={{ backgroundColor: BORDER_COLOR_SWATCHES[borderColor].css }}
+            />
+          </span>
+          <ChevronDownIcon className="h-3 w-3" />
+        </button>
+      </DropdownMenuTrigger>
+      {/* 명령이 .focus() 로 에디터를 되잡아도 닫히지 않게 한다 — 굵기·색·여백을
+          연달아 만지는 패널이라 한 번 클릭에 닫히면 4번 다시 열어야 한다.
+          바깥 클릭·ESC 로는 그대로 닫힌다. */}
+      <DropdownMenuContent
+        align="end"
+        style={{ width: 300, padding: 14 }}
+        onFocusOutside={(e) => e.preventDefault()}
+      >
+        <p className="mb-[7px] text-[11px] font-bold text-content-faint">
+          셀 배경 <span className="font-medium">— 선택한 셀에만</span>
+        </p>
+        <div className="flex gap-1.5">
+          {CELL_BGS.map((c) => (
+            <button
+              key={c.label}
+              type="button"
+              onMouseDown={(e) => e.preventDefault()}
+              onClick={() => editor.chain().focus().setCellAttribute('backgroundColor', c.value).run()}
+              title={`셀 배경 ${c.label}`}
+              aria-label={`셀 배경 ${c.label}`}
+              className={cn(
+                'grid h-[26px] w-[26px] place-items-center rounded-[3px] border border-surface-border text-[11px] text-content-faint',
+                c.value ? '' : 'bg-surface',
+              )}
+              style={c.value ? { backgroundColor: c.value } : undefined}
+            >
+              {c.value ? '' : '×'}
+            </button>
+          ))}
+        </div>
+
+        <p className="mb-[7px] mt-[14px] text-[11px] font-bold text-content-faint">테두리 굵기</p>
+        <div className="grid grid-cols-3 gap-1.5">
+          {BORDER_WIDTHS.map((o) => {
+            const selected = (border ?? '') === o.value;
+            return (
+              <button
+                key={o.value || 'unset'}
+                type="button"
+                onMouseDown={(e) => e.preventDefault()}
+                onClick={() =>
+                  editor
+                    .chain()
+                    .focus()
+                    .setTableAttrs({ border: (o.value || null) as TableBorder | null })
+                    .run()
+                }
+                title={o.label}
+                aria-label={`표 테두리 굵기 ${o.label}`}
+                aria-pressed={selected}
+                className={cn(
+                  'flex h-[38px] flex-col items-center justify-center gap-[6px] rounded-[3px] border',
+                  selected
+                    ? 'border-yonsei-navy bg-surface-soft font-bold text-yonsei-navy'
+                    : 'border-surface-border bg-surface font-semibold text-content-faint',
+                )}
+              >
+                <span aria-hidden="true" className="w-[34px]" style={borderWidthPreviewStyle(o.value)} />
+                <span className="text-[10.5px] leading-none">{BORDER_WIDTH_TILE_LABELS[o.value]}</span>
+              </button>
+            );
+          })}
+        </div>
+
+        <p className="mb-[7px] mt-[14px] text-[11px] font-bold text-content-faint">테두리 색</p>
+        <div className="flex flex-wrap gap-1.5">
+          {TABLE_BORDER_COLORS.map((name) => (
+            <button
+              key={name}
+              type="button"
+              onMouseDown={(e) => e.preventDefault()}
+              onClick={() => editor.chain().focus().setTableAttrs({ borderColor: name }).run()}
+              title={`테두리 색 ${BORDER_COLOR_SWATCHES[name].label}`}
+              aria-label={`표 테두리 색 ${BORDER_COLOR_SWATCHES[name].label}`}
+              aria-pressed={borderColor === name}
+              className={cn(
+                'h-[26px] w-[26px] rounded-[3px] border',
+                borderColor === name
+                  ? 'border-content shadow-[0_0_0_2px_#fff,0_0_0_3px_#232323]'
+                  : 'border-surface-border',
+              )}
+              style={{ backgroundColor: BORDER_COLOR_SWATCHES[name].css }}
+            />
+          ))}
+        </div>
+
+        <p className="mb-[7px] mt-[14px] text-[11px] font-bold text-content-faint">셀 여백</p>
+        <div className="flex">
+          {CELLPAD_OPTIONS.map((o, i) => {
+            const selected = (cellpad ?? '') === o.value;
+            return (
+              <button
+                key={o.value || 'default'}
+                type="button"
+                onMouseDown={(e) => e.preventDefault()}
+                onClick={() =>
+                  editor
+                    .chain()
+                    .focus()
+                    .setTableAttrs({ cellpad: (o.value || null) as TableCellpad | null })
+                    .run()
+                }
+                aria-label={`셀 여백 ${o.label}`}
+                aria-pressed={selected}
+                className={cn(
+                  'relative h-[28px] border px-3 text-[11.5px] leading-none',
+                  i > 0 && '-ml-px',
+                  i === 0 && 'rounded-l-[3px]',
+                  i === CELLPAD_OPTIONS.length - 1 && 'rounded-r-[3px]',
+                  selected
+                    ? 'z-[1] border-yonsei-navy bg-yonsei-navy font-bold text-white'
+                    : 'border-surface-border bg-surface text-content',
+                )}
+              >
+                {o.label}
+              </button>
+            );
+          })}
+        </div>
+      </DropdownMenuContent>
+    </DropdownMenu>
   );
 }

@@ -68,7 +68,7 @@ export const BORDER_COLOR_SWATCHES: Record<TableBorderColor, { label: string; cs
   lightgray: { label: '연회색(구형 기본)', css: '#DDDDDD' },
 };
 
-/** 테두리 굵기 — px 토큰 select */
+/** 테두리 굵기 — px 토큰. '' 은 "미지정(null)" = 레거시 게시물의 이전 기본 */
 export const BORDER_WIDTHS: SelectOption[] = [
   { value: '0', label: '0px (없음)' },
   { value: '1', label: '1px' },
@@ -77,6 +77,24 @@ export const BORDER_WIDTHS: SelectOption[] = [
   { value: '4', label: '4px' },
   { value: '', label: '이전 기본(줄무늬)' },
 ];
+
+/** 표 스타일 팝오버의 굵기 타일용 짧은 라벨 — 위 라벨의 괄호 설명은 38px 타일에 안 들어간다 */
+export const BORDER_WIDTH_TILE_LABELS: Record<string, string> = {
+  '0': '0px',
+  '1': '1px',
+  '2': '2px',
+  '3': '3px',
+  '4': '4px',
+  '': '이전 기본',
+};
+
+/** 굵기 타일 위의 미리보기 선 — 굵기를 글자가 아니라 선 자체로 보여준다.
+ *  0px(없음)은 옅은 점선, '이전 기본'은 진한 점선으로 "실선 아님"을 표시한다. */
+export function borderWidthPreviewStyle(value: string): React.CSSProperties {
+  if (value === '0') return { borderTop: '1px dashed #C9CFD6' };
+  if (value === '') return { borderTop: '2px dashed #232323' };
+  return { borderTop: `${value}px solid #232323` };
+}
 
 /** 셀 여백 — 기본(보통)은 py-5 에디토리얼, 좁게/넓게는 globals.css 열거 */
 export const CELLPAD_OPTIONS: SelectOption[] = [
@@ -89,11 +107,12 @@ export const CELLPAD_OPTIONS: SelectOption[] = [
 export const GRID_ROWS = 5;
 export const GRID_COLS = 8;
 
-/** 보조 바 공통 스타일 (표/이미지 컨텍스트 바) */
+/** 보조 바의 입력·확정 버튼 (이미지 대체텍스트) — 버튼은 hover 에서 파란 선으로만
+ *  반응한다(면을 채우면 옆의 12px 라운드 아이콘 버튼들과 무게가 겹친다). */
 export const PANEL_INPUT =
   'h-7 border border-surface-border bg-surface px-2 text-xs text-content outline-none focus:border-yonsei-blue';
 export const PANEL_BTN =
-  'h-7 shrink-0 border border-surface-border px-2 text-xs font-medium text-content-soft hover:bg-surface hover:text-content';
+  'h-7 shrink-0 border border-surface-border px-2 text-xs font-medium text-content-soft hover:border-yonsei-blue hover:text-yonsei-blue';
 
 /** 스킴 없는 입력을 https 로 보정 */
 export function normalizeUrl(raw: string): string {
@@ -189,79 +208,83 @@ export function runOnSelection(
   apply(chain).run();
 }
 
-/* ── 보조 바(표/이미지 컨텍스트)용 소형 프레젠테이션 — 구판 각진 톤 유지 ── */
+/* ── 보조 바(표/이미지 컨텍스트)용 소형 프레젠테이션 ──
+   2026-08 시안 1a/1d: 보조 바는 툴바와 같은 면(#F5F5F5)에 붙는 인라인 바다.
+   버튼 라운드가 12px 인 것은 오타가 아니다 — 이 에디터만 Tiptap UI Components
+   스톡 룩(button.scss 의 --tt-radius-lg)을 쓴다. 사이트 본체의 "각진 엣지 ≤2px"
+   규칙은 여기 적용되지 않으니 되돌리지 마라. */
 
-export function TBtn({
+/** 그룹 캡션("행"·"열"·"셀"·"정렬"…) — 무엇에 대한 버튼 묶음인지 알려주는 회색 글씨.
+ *  span 과 label(대체텍스트 입력) 양쪽에 붙일 수 있게 클래스 문자열로 둔다. */
+export const CTX_CAPTION =
+  'whitespace-nowrap pl-0.5 pr-[5px] text-[11px] font-bold text-content-faint';
+
+/**
+ * 보조 바 버튼 — 아이콘(+선택적 라벨) 한 벌.
+ * label 을 주면 아이콘+글자, 안 주면 30×30 정사각 아이콘 버튼이다.
+ * hover 배경은 툴바 버튼과 같은 --tt-button-hover-bg-color 를 쓴다 —
+ * 팔레트를 갈아도 툴바와 함께 따라오게 하려는 것이니 하드코딩으로 되돌리지 마라.
+ */
+export function CtxBtn({
   onClick,
-  active = false,
-  disabled = false,
+  icon,
+  label,
   title,
-  children,
+  active,
+  disabled = false,
+  tone = 'default',
 }: {
   onClick: () => void;
+  icon: React.ReactNode;
+  label?: string;
+  title: string;
+  /** 토글 버튼만 넘긴다 — 안 넘기면 aria-pressed 가 아예 안 붙는다(일반 실행 버튼) */
   active?: boolean;
   disabled?: boolean;
-  title: string;
-  children: React.ReactNode;
+  /** danger 는 파괴적 명령(표 삭제) — hover 에서만 붉게 든다 */
+  tone?: 'default' | 'danger';
 }) {
   return (
     <button
       type="button"
-      onMouseDown={(e) => e.preventDefault() /* 에디터 포커스 유지 */}
+      onMouseDown={(e) => e.preventDefault() /* 에디터 선택 유지 — 없으면 명령이 엉뚱한 데 걸린다 */}
       onClick={onClick}
       disabled={disabled}
       title={title}
       aria-label={title}
       aria-pressed={active}
       className={cn(
-        'grid h-8 min-w-8 place-items-center px-1.5 text-sm font-semibold transition-colors disabled:opacity-40',
-        active
-          ? 'bg-yonsei-navy text-white'
-          : 'text-content-soft hover:bg-surface-soft hover:text-content',
+        'flex h-[30px] shrink-0 items-center whitespace-nowrap rounded-[12px] border-0 bg-transparent text-[11.5px] font-semibold leading-none transition-colors',
+        label ? 'gap-[5px] px-2' : 'w-[30px] justify-center px-0',
+        disabled && 'cursor-not-allowed text-[rgba(40,44,51,0.42)]',
+        !disabled && active && 'cursor-pointer bg-yonsei-navy text-white',
+        !disabled &&
+          !active &&
+          (tone === 'danger'
+            ? 'cursor-pointer text-content hover:bg-[#FBECEA] hover:text-[#B42318]'
+            : 'cursor-pointer text-content hover:bg-[var(--tt-button-hover-bg-color)]'),
       )}
     >
-      {children}
+      {icon}
+      {label}
     </button>
   );
 }
 
-export function TSelect({
-  title,
-  value,
-  options,
-  onChange,
-}: {
-  title: string;
-  value: string;
-  options: SelectOption[];
-  onChange: (value: string) => void;
-}) {
-  const known = options.some((o) => o.value === value);
+/** 보조 바 구분자 — wide 는 파괴적 명령(표 삭제) 앞에만. 실수 클릭을 거리로 막는다 */
+export function CtxDivider({ wide = false }: { wide?: boolean }) {
   return (
-    <select
-      title={title}
-      aria-label={title}
-      value={value}
-      onChange={(e) => onChange(e.target.value)}
-      className="cms-select h-8 border border-surface-border bg-surface pl-2.5 text-xs text-content outline-none focus:border-yonsei-blue"
-    >
-      {options.map((o) => (
-        <option key={o.value} value={o.value}>
-          {o.label}
-        </option>
-      ))}
-      {!known && <option value={value}>{value}</option>}
-    </select>
+    <span
+      aria-hidden="true"
+      className={cn('h-5 w-px shrink-0 self-center bg-surface-border', wide ? 'mx-[9px]' : 'mx-[5px]')}
+    />
   );
-}
-
-export function Divider() {
-  return <span aria-hidden="true" className="mx-1 h-5 w-px self-center bg-surface-border" />;
 }
 
 /* ── 인라인 아이콘 — Froala 아이콘 형태를 따른 선 아이콘 ── */
 
-/** 표준 정렬 아이콘 — 이미지 보조 바에서 사용(1차 툴바는 tiptap-icons) */
+/** 표준 정렬 아이콘 — 이미지 보조 바에서 사용(1차 툴바는 tiptap-icons).
+ *  17px 은 보조 바 아이콘 공통 크기(CtxIcon)와 맞춘 값이다. */
 export function AlignIcon({ variant }: { variant: 'left' | 'center' | 'right' }) {
   const rows: Record<'left' | 'center' | 'right', [number, number][]> = {
     left: [
@@ -284,7 +307,7 @@ export function AlignIcon({ variant }: { variant: 'left' | 'center' | 'right' })
     ],
   };
   return (
-    <svg viewBox="0 0 24 24" aria-hidden="true" className="h-4 w-4" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+    <svg viewBox="0 0 24 24" aria-hidden="true" className="h-[17px] w-[17px] shrink-0" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
       {rows[variant].map(([x1, x2], i) => (
         <line key={i} x1={x1} x2={x2} y1={5 + i * 4.6} y2={5 + i * 4.6} />
       ))}
@@ -373,5 +396,163 @@ export function SelectAllIcon() {
     <svg viewBox="0 0 24 24" aria-hidden="true" className="tiptap-button-icon" fill="none" stroke="currentColor" strokeWidth="2" strokeDasharray="3 2.5">
       <rect x="4.5" y="4.5" width="15" height="15" />
     </svg>
+  );
+}
+
+/* ── 보조 바 아이콘 — 20 격자에 17px. 표 아이콘은 "표 그림 + 작용 지점 강조면"이
+      한 문법이다: 18% 불투명 면이 이 명령이 표의 어디에 작용하는지(추가될 자리,
+      지워질 줄)를 말한다. 새 표 아이콘을 더할 때도 이 문법을 지켜라. ── */
+
+/** 강조면 — 명령이 작용하는 행/열 */
+const CTX_ICON_FILL = { fill: 'currentColor', fillOpacity: 0.18, stroke: 'none' } as const;
+
+function CtxIcon({
+  children,
+  strokeWidth = 1.7,
+  round = false,
+}: {
+  children: React.ReactNode;
+  strokeWidth?: number;
+  round?: boolean;
+}) {
+  return (
+    <svg
+      viewBox="0 0 20 20"
+      aria-hidden="true"
+      width="17"
+      height="17"
+      className="shrink-0"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={strokeWidth}
+      {...(round ? { strokeLinecap: 'round' as const, strokeLinejoin: 'round' as const } : {})}
+    >
+      {children}
+    </svg>
+  );
+}
+
+/** 행 추가 — 강조면이 새 행이 들어갈 자리(위/아래)다 */
+export function TableRowAddIcon({ where }: { where: 'before' | 'after' }) {
+  return (
+    <CtxIcon>
+      <rect x="2.6" y={where === 'before' ? '3.6' : '12.13'} width="14.8" height="4.27" {...CTX_ICON_FILL} />
+      <rect x="2.6" y="3.6" width="14.8" height="12.8" />
+      <line x1="2.6" y1="7.87" x2="17.4" y2="7.87" />
+      <line x1="2.6" y1="12.13" x2="17.4" y2="12.13" />
+    </CtxIcon>
+  );
+}
+
+/** 행 삭제 — 가운데 행을 강조하고 대각선으로 그어 지운다 */
+export function TableRowDeleteIcon() {
+  return (
+    <CtxIcon>
+      <rect x="2.6" y="7.87" width="14.8" height="4.26" {...CTX_ICON_FILL} />
+      <rect x="2.6" y="3.6" width="14.8" height="12.8" />
+      <line x1="2.6" y1="7.87" x2="17.4" y2="7.87" />
+      <line x1="2.6" y1="12.13" x2="17.4" y2="12.13" />
+      <line x1="4.2" y1="12.6" x2="15.8" y2="7.4" />
+    </CtxIcon>
+  );
+}
+
+/** 열 추가 — 강조면이 새 열이 들어갈 자리(왼쪽/오른쪽)다 */
+export function TableColAddIcon({ where }: { where: 'before' | 'after' }) {
+  return (
+    <CtxIcon>
+      <rect x={where === 'before' ? '2.6' : '12.47'} y="3.6" width="4.93" height="12.8" {...CTX_ICON_FILL} />
+      <rect x="2.6" y="3.6" width="14.8" height="12.8" />
+      <line x1="7.53" y1="3.6" x2="7.53" y2="16.4" />
+      <line x1="12.47" y1="3.6" x2="12.47" y2="16.4" />
+    </CtxIcon>
+  );
+}
+
+/** 열 삭제 — 가운데 열을 강조하고 대각선으로 그어 지운다 */
+export function TableColDeleteIcon() {
+  return (
+    <CtxIcon>
+      <rect x="7.53" y="3.6" width="4.94" height="12.8" {...CTX_ICON_FILL} />
+      <rect x="2.6" y="3.6" width="14.8" height="12.8" />
+      <line x1="7.53" y1="3.6" x2="7.53" y2="16.4" />
+      <line x1="12.47" y1="3.6" x2="12.47" y2="16.4" />
+      <line x1="12.9" y1="5.2" x2="7.1" y2="14.8" />
+    </CtxIcon>
+  );
+}
+
+/** 셀 병합 — 사라질 경계라 점선 */
+export function TableMergeIcon() {
+  return (
+    <CtxIcon>
+      <rect x="2.6" y="4.6" width="14.8" height="10.8" />
+      <line x1="10" y1="4.6" x2="10" y2="15.4" strokeDasharray="2 2" />
+    </CtxIcon>
+  );
+}
+
+/** 셀 분할 — 생겨날 경계라 실선 */
+export function TableSplitIcon() {
+  return (
+    <CtxIcon>
+      <rect x="2.6" y="4.6" width="14.8" height="10.8" />
+      <line x1="10" y1="4.6" x2="10" y2="15.4" />
+    </CtxIcon>
+  );
+}
+
+/** 머리행 — 첫 줄만 짙게 찬 표(강조면 18% 가 아니라 70%: 머리행은 실제로 진하다) */
+export function TableHeaderRowIcon() {
+  return (
+    <CtxIcon>
+      <rect x="2.6" y="3.6" width="14.8" height="4.4" fill="currentColor" fillOpacity="0.7" stroke="none" />
+      <rect x="2.6" y="3.6" width="14.8" height="12.8" />
+      <line x1="2.6" y1="8" x2="17.4" y2="8" />
+    </CtxIcon>
+  );
+}
+
+/** 표 스타일 — 격자 없는 굵은 테두리 하나(이 팝오버가 다루는 게 "테두리·면"이라서) */
+export function TableStyleIcon() {
+  return (
+    <CtxIcon strokeWidth={2.6}>
+      <rect x="3.4" y="4.4" width="13.2" height="11.2" />
+    </CtxIcon>
+  );
+}
+
+/** 표 삭제 — 쓰레기통. 표 아이콘 문법에서 벗어난 유일한 표 버튼이라 눈에 걸린다 */
+export function TableDeleteIcon() {
+  return (
+    <CtxIcon round>
+      <line x1="3.2" y1="5.8" x2="16.8" y2="5.8" />
+      <path d="M7.6 5.8V4.4a.9.9 0 0 1 .9-.9h3a.9.9 0 0 1 .9.9v1.4" />
+      <path d="M5.3 5.8l.8 9.9a.9.9 0 0 0 .9.8h6a.9.9 0 0 0 .9-.8l.8-9.9" />
+      <line x1="8.5" y1="8.6" x2="8.7" y2="13.6" />
+      <line x1="11.5" y1="8.6" x2="11.3" y2="13.6" />
+    </CtxIcon>
+  );
+}
+
+/** 이미지 원본 폭 — 좌우 화살표가 프레임을 가득 채운다 */
+export function ImageWidthFullIcon() {
+  return (
+    <CtxIcon round>
+      <rect x="2.6" y="4.6" width="14.8" height="10.8" />
+      <line x1="5.6" y1="10" x2="14.4" y2="10" />
+      <polyline points="7.2,8.4 5.6,10 7.2,11.6" />
+      <polyline points="12.8,8.4 14.4,10 12.8,11.6" />
+    </CtxIcon>
+  );
+}
+
+/** 이미지 폭 50% — 점선이 원본 폭, 찬 면이 실제로 차지할 절반 */
+export function ImageWidthHalfIcon() {
+  return (
+    <CtxIcon>
+      <rect x="2.6" y="4.6" width="7.4" height="10.8" fill="currentColor" fillOpacity="0.18" />
+      <rect x="2.6" y="4.6" width="14.8" height="10.8" strokeDasharray="2.4 2.4" />
+    </CtxIcon>
   );
 }

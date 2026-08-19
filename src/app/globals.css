@@ -765,6 +765,16 @@
     border-top: 5px solid #bdbdbd;
     border-bottom: 1px solid #e0e0e0;
   }
+  /* 표·이미지 보조 바 — 툴바와 같은 면으로 붙여 한 몸으로 읽히게 한다(2026-08 시안 1a).
+     색은 위 툴바 규칙과 한 쌍이라 팔레트 교체 시 두 규칙을 함께 고친다. */
+  .board-editor .rte-ctxbar {
+    background: #f5f5f5;
+    border-bottom: 1px solid #e0e0e0;
+    /* 보조 바 버튼의 hover 배경. UI Components 는 이 변수를 .tiptap-button 안에서만
+       선언하는데(button-colors.scss) 보조 바 버튼은 그 클래스를 안 쓰므로 여기서 쥐여준다.
+       값은 툴바 ghost 버튼과 같은 회색 토큰 — 팔레트를 갈면 둘이 함께 움직인다. */
+    --tt-button-hover-bg-color: var(--tt-gray-light-200);
+  }
   .rte:focus-within {
     border-color: rgb(var(--yonsei-blue, 0 87 168) / 1);
     border-color: #0057a8;
