@@ -37,6 +37,8 @@ import {
 } from '@/lib/admin/post-draft';
 import { formatPeriodLabel } from '@/lib/calendar';
 import { UploadCancelledError, type UploadProgress, type UploadProgressHandler } from '@/lib/admin/storage';
+// '한국어에서 번역해 채우기'(English 탭) — 제목·본문을 한 번에 초안으로 채운다
+import { translate } from '@/lib/admin/translate';
 import { useAdminShell } from './AdminShellContext';
 import { CmsModal } from './CmsModal';
 // PostBodyEditor(v2) — 구형(Froala) 툴바 파리티 + UI Components 스톡 룩.
@@ -192,8 +194,11 @@ export function PostForm({
   const [trayChecked, setTrayChecked] = useState<ReadonlySet<string>>(new Set());
   // 위지윅 에디터 인스턴스(ko/en) — 이미지 풀 '본문 삽입'이 명령을 내릴 대상
   const editorsRef = useRef<{ ko: Editor | null; en: Editor | null }>({ ko: null, en: null });
-  // 본문 삽입이 적용될 에디터 = 마지막으로 포커스한 쪽
-  const lastBodyRef = useRef<'ko' | 'en'>('ko');
+  // 언어 탭 — 열려 있는 탭이 곧 트레이 '본문 삽입'의 대상 에디터다(디자인 개편 2026-08-19).
+  // 예전의 lastBodyRef(마지막 포커스 추적)는 탭 구조에선 활성 탭과 항상 같아 제거했다.
+  const [lang, setLang] = useState<'ko' | 'en'>('ko');
+  // '한국어에서 번역해 채우기' 진행 상태 — 제목(text)·본문(html) 두 번역을 묶는다
+  const [translating, setTranslating] = useState(false);
 
   // 폼이 살아 있는 동안만 집중 모드 — 언마운트 정리를 빠뜨리면 목록으로 돌아와도
   // 사이드바가 영영 사라진다.
@@ -382,17 +387,49 @@ export function PostForm({
     set('image', checked[0].url);
   }
 
-  /** 체크한 사진들을 마지막에 포커스한 본문 에디터의 커서 위치에 삽입 */
+  /** 체크한 사진들을 지금 열려 있는 언어 탭의 에디터 커서 위치에 삽입 */
   function insertCheckedIntoBody() {
     const urls = buildTrayEntries()
       .filter((it) => trayChecked.has(it.key) && it.kind === 'image')
       .map((it) => it.url);
     if (urls.length === 0) return;
-    const ed = editorsRef.current[lastBodyRef.current] ?? editorsRef.current.ko;
+    const ed = editorsRef.current[lang] ?? editorsRef.current.ko;
     if (!ed) return;
     const chain = ed.chain().focus();
     for (const url of urls) chain.setImage({ src: url });
     chain.run();
+  }
+
+  // ── 언어 탭 (디자인 개편 2026-08-19) ──
+
+  function switchLang(next: 'ko' | 'en') {
+    setLang(next);
+  }
+
+  /** English 탭의 초안 채우기 — 제목·본문을 함께 번역해 넣는다(검토·수정 전제) */
+  async function fillEnglishFromKorean() {
+    if (!rec.titleKo.trim() && !rec.bodyKo.trim()) {
+      setError('먼저 한국어 탭에서 제목이나 본문을 입력하세요.');
+      return;
+    }
+    if (
+      (rec.titleEn.trim() || rec.bodyEn.trim()) &&
+      !window.confirm('영문 제목·본문을 번역 결과로 덮어씁니다. 계속할까요?')
+    ) {
+      return;
+    }
+    setTranslating(true);
+    setError(null);
+    try {
+      if (rec.titleKo.trim()) set('titleEn', await translate(rec.titleKo, 'EN', false));
+      // 위지윅 본문은 HTML — 태그 보존 번역(tag_handling). 결과는 en 에디터의
+      // value 동기화 효과가 받아 화면에 바로 나타난다.
+      if (rec.bodyKo.trim()) set('bodyEn', await translate(rec.bodyKo, 'EN', true));
+    } catch (err) {
+      setError(err instanceof Error ? err.message : '번역에 실패했습니다.');
+    } finally {
+      setTranslating(false);
+    }
   }
 
   /** 임시저장 — 게시가 아니다. 이 기기와 서버에 초안 한 벌씩만 남긴다 */
@@ -417,6 +454,7 @@ export function PostForm({
     setError(null);
     // id/slug 는 자동 부여(작성자 미입력) → 검증 대상 아님
     if (rec.titleKo.trim() === '') {
+      setLang('ko'); // 제목은 한국어 탭에 있다 — 에러가 가리키는 곳을 열어 준다
       setError('제목을 입력하세요. 저장하려면 반드시 필요합니다.');
       return;
     }
@@ -450,6 +488,8 @@ export function PostForm({
   const idLabel = meta.isNews ? 'slug' : 'id';
   // 행사 게시판, 또는 동문에서 '행사'로 체크된 글 → '날짜'를 행사 일정으로 안내(캘린더 연동)
   const dateIsEvent = meta.dateIsEvent || (meta.hasEventFlag && !!rec.isEvent);
+  // English 탭 배지 — 영문 제목·본문 중 하나라도 있으면 "작성됨(✓)"
+  const enFilled = !!(rec.titleEn.trim() || rec.bodyEn.trim());
   // 종료일 피커 노출: 행사·세미나는 항상, 동문은 '행사' 체크 시에만.
   // 기간 라벨은 수동 입력 대신 시작/종료일로 서버가 자동 생성한다(아래 미리보기와 동일 함수).
   const showEndDate = !!meta.hasDateRange && (!meta.hasEventFlag || !!rec.isEvent);
@@ -548,24 +588,180 @@ export function PostForm({
           </div>
         )}
 
-        {/* 대형 제목 — 테두리 없이 아래 1px, 포커스에서 네이비로 선다 */}
-        <input
-          type="text"
-          value={rec.titleKo}
-          onChange={(e) => set('titleKo', e.target.value)}
-          placeholder="제목을 입력하세요"
-          aria-label="제목 (한국어)"
-          aria-invalid={shownError !== null || undefined}
-          className="w-full border-0 border-b border-surface-border bg-transparent pb-3 text-[30px] font-bold leading-tight tracking-tight text-content outline-none transition-colors placeholder:text-[#a8b0ba] focus:border-yonsei-navy"
-        />
+        {/* ── 언어 탭 — 디자인 개편(2026-08-19, claude.ai/design 시안 '게시물 글쓰기
+               (언어탭)'): ko/en 본문을 세로로 쌓지 않고 탭으로 전환한다. 두 에디터는
+               항상 마운트(숨김만) — 인스턴스·undo 히스토리·editorsRef 계약이 유지되고,
+               '본문 삽입'은 열려 있는 탭의 에디터로 들어간다. noBody(일정·인스타그램)는
+               본문이 없어 탭도 없다 — 영문 제목은 아래 공통 메타에 남는다. */}
+        {!meta.noBody && !preview && (
+          <div role="tablist" aria-label="언어" className="inline-flex border border-surface-border bg-surface">
+            <button
+              type="button"
+              role="tab"
+              aria-selected={lang === 'ko'}
+              onClick={() => switchLang('ko')}
+              className={cn(
+                'flex h-[38px] items-center gap-2 px-[18px] text-[13px] font-bold transition-colors',
+                lang === 'ko' ? 'bg-yonsei-navy text-white' : 'bg-surface text-content-faint hover:text-content',
+              )}
+            >
+              한국어
+            </button>
+            <button
+              type="button"
+              role="tab"
+              aria-selected={lang === 'en'}
+              onClick={() => switchLang('en')}
+              className={cn(
+                'flex h-[38px] items-center gap-2 border-l border-surface-border px-3.5 text-[13px] font-bold transition-colors',
+                lang === 'en' ? 'bg-yonsei-navy text-white' : 'bg-surface text-content-faint hover:text-content',
+              )}
+            >
+              English (선택)
+              {enFilled ? (
+                <span
+                  aria-label="영문판 작성됨"
+                  className={cn(
+                    'px-1.5 py-0.5 text-[11px] font-bold text-white',
+                    lang === 'en' ? 'bg-yonsei-sky' : 'bg-yonsei-blue',
+                  )}
+                >
+                  ✓
+                </span>
+              ) : (
+                <span
+                  className={cn(
+                    'px-1.5 py-0.5 text-[11px] font-semibold',
+                    lang === 'en'
+                      ? 'bg-white/15 text-white'
+                      : 'border border-surface-border bg-surface-soft text-content-faint',
+                  )}
+                >
+                  미작성 (한국어판으로 게시됩니다)
+                </span>
+              )}
+            </button>
+          </div>
+        )}
+
+        {/* 검증 에러 — 탭과 무관한 공통 자리(영문 탭에서 저장해도 보인다) */}
         {shownError && (
-          <p ref={errorRef} role="alert" className="mt-2 text-[12px] font-semibold text-[#b42318]">
+          <p ref={errorRef} role="alert" className="mt-3 text-[12px] font-semibold text-[#b42318]">
             ⚠ {shownError}
           </p>
         )}
 
-        {/* ── 메타 — 게시일·영문 제목 + 게시판별 조건 필드 ── */}
-        <div className="mt-4 grid gap-x-8 border-b border-surface-border md:grid-cols-2">
+        {/* ── 본문 ↔ 미리보기 (같은 자리를 토글로 바꿔 낀다) ── */}
+        {preview ? (
+          <div className="mt-5">
+            <PostPreviewPane meta={meta} rec={rec} />
+          </div>
+        ) : meta.noBody ? (
+          /* 본문 없는 게시판 — 제목 한 줄만(영문 제목은 아래 공통 메타) */
+          <input
+            type="text"
+            value={rec.titleKo}
+            onChange={(e) => set('titleKo', e.target.value)}
+            placeholder="제목을 입력하세요"
+            aria-label="제목 (한국어)"
+            aria-invalid={shownError !== null || undefined}
+            className="mt-4 w-full border-0 border-b border-surface-border bg-transparent pb-3 text-[30px] font-bold leading-tight tracking-tight text-content outline-none transition-colors placeholder:text-[#a8b0ba] focus:border-yonsei-navy"
+          />
+        ) : (
+          <>
+            {/* ── 한국어 탭 — 제목 + 본문 ── */}
+            <div className={lang === 'ko' ? 'mt-5' : 'hidden'}>
+              <input
+                type="text"
+                value={rec.titleKo}
+                onChange={(e) => set('titleKo', e.target.value)}
+                placeholder="제목을 입력하세요"
+                aria-label="제목 (한국어)"
+                aria-invalid={shownError !== null || undefined}
+                className="w-full border-0 border-b border-surface-border bg-transparent pb-3 text-[30px] font-bold leading-tight tracking-tight text-content outline-none transition-colors placeholder:text-[#a8b0ba] focus:border-yonsei-navy"
+              />
+              <div className="mt-5">
+                <p className="mb-1.5 text-[12px] font-semibold text-content-faint">본문 (한국어)</p>
+                <PostBodyEditor
+                  value={rec.bodyKo}
+                  onChange={(html) => set('bodyKo', html)}
+                  onUploadImage={onUploadFile ? (file) => onUploadFile(file) : undefined}
+                  onEditorReady={(ed) => { editorsRef.current.ko = ed; }}
+                  placeholder="본문을 입력하세요 — 사진은 끌어다 놓거나 붙여넣어도 됩니다"
+                  ariaLabel="본문 (한국어)"
+                />
+              </div>
+            </div>
+
+            {/* ── English 탭 — 안내 · 번역 채우기 · 원문 보기 · 영문 제목 + 본문 ── */}
+            <div className={lang === 'en' ? 'mt-5' : 'hidden'}>
+              <div className="border border-surface-border bg-surface-soft px-4 py-3.5 text-[13px] leading-[1.75] text-content">
+                영어판을 비워두면 영어 페이지에 한국어 내용이 그대로 게시됩니다.
+                <br />
+                영문 제목을 입력하면 영어판이 검색(hreflang)에 별도로 잡힙니다.
+              </div>
+
+              <div className="mt-4 flex flex-wrap items-center gap-2.5">
+                <button
+                  type="button"
+                  onClick={() => void fillEnglishFromKorean()}
+                  disabled={translating}
+                  className="cms-btn cms-btn-sm"
+                >
+                  {translating ? '번역 중…' : '한국어에서 번역해 채우기'}
+                </button>
+                <span className="text-[11px] text-content-faint">
+                  제목과 본문을 초안으로 채웁니다. 저장 전에 한 번 검토해 주세요.
+                </span>
+              </div>
+
+              <details className="mt-4 border border-surface-border bg-[#fcfdfe]">
+                <summary className="cursor-pointer px-3 py-2 text-[12px] font-semibold text-content-faint">
+                  한국어 원문 보기 (읽기 전용)
+                </summary>
+                <div className="border-t border-surface-border px-4 py-3.5 text-[13px] leading-relaxed text-content-soft">
+                  <p className="mb-2 text-[15px] font-bold text-content">{rec.titleKo || '(제목 없음)'}</p>
+                  {rec.bodyKo.trim() ? (
+                    /* 관리자 본인이 에디터로 만든 HTML — 미리보기(PostPreviewPane)와 같은 취급 */
+                    <div className="prose-content" dangerouslySetInnerHTML={{ __html: rec.bodyKo }} />
+                  ) : (
+                    <p className="m-0 text-content-faint">(본문 없음)</p>
+                  )}
+                </div>
+              </details>
+
+              <div className="mt-5">
+                <p className="mb-1.5 text-[12px] font-semibold text-content-faint">영문 제목</p>
+                <input
+                  type="text"
+                  value={rec.titleEn}
+                  onChange={(e) => set('titleEn', e.target.value)}
+                  placeholder="비우면 한국어 제목이 그대로 노출됩니다"
+                  aria-label="영문 제목"
+                  className="w-full border-0 border-b border-surface-border bg-transparent pb-3 text-[30px] font-bold leading-tight tracking-tight text-content outline-none transition-colors placeholder:text-[#a8b0ba] focus:border-yonsei-navy"
+                />
+              </div>
+
+              <div className="mt-5">
+                <p className="mb-1.5 text-[12px] font-semibold text-content-faint">본문 (English)</p>
+                <PostBodyEditor
+                  value={rec.bodyEn}
+                  onChange={(html) => set('bodyEn', html)}
+                  onUploadImage={onUploadFile ? (file) => onUploadFile(file) : undefined}
+                  onEditorReady={(ed) => { editorsRef.current.en = ed; }}
+                  placeholder="English body — 비워두면 저장 시 한국어 값이 복사됩니다"
+                  ariaLabel="본문 (English)"
+                />
+              </div>
+            </div>
+          </>
+        )}
+
+        {/* ── 공통 · 언어와 무관 — 메타(게시일·예약·고정 + 게시판별 필드) ── */}
+        <p className="mt-8 border-t border-surface-border pt-2.5 font-mono text-[11px] tracking-[.06em] text-content-faint">
+          공통 · 언어와 무관
+        </p>
+        <div className="mt-1 grid gap-x-8 border-b border-surface-border md:grid-cols-2">
           <MetaField
             label={showEndDate ? (dateIsEvent ? '행사 시작일' : '시작일') : '게시일'}
             htmlFor="pf-date"
@@ -625,19 +821,23 @@ export function PostForm({
             </MetaField>
           )}
 
-          <MetaField label="영문 제목" htmlFor="pf-title-en">
-            <div className="flex items-center gap-2">
-              <input
-                id="pf-title-en"
-                type="text"
-                value={rec.titleEn}
-                onChange={(e) => set('titleEn', e.target.value)}
-                placeholder="비우면 한국어 제목이 그대로 노출됩니다"
-                className={fieldClass}
-              />
-              <TranslateButton source={rec.titleKo} onTranslated={(v) => set('titleEn', v)} />
-            </div>
-          </MetaField>
+          {/* 영문 제목 — 본문 있는 게시판은 English 탭이 받는다(디자인 개편).
+              noBody 는 탭이 없어 여기(공통 메타)가 유일한 입력처다. */}
+          {meta.noBody && (
+            <MetaField label="영문 제목" htmlFor="pf-title-en">
+              <div className="flex items-center gap-2">
+                <input
+                  id="pf-title-en"
+                  type="text"
+                  value={rec.titleEn}
+                  onChange={(e) => set('titleEn', e.target.value)}
+                  placeholder="비우면 한국어 제목이 그대로 노출됩니다"
+                  className={fieldClass}
+                />
+                <TranslateButton source={rec.titleKo} onTranslated={(v) => set('titleEn', v)} />
+              </div>
+            </MetaField>
+          )}
 
           {/* 목록 고정 — 글 목록을 가진 게시판에만. 일정·인스타그램(noBody)은 목록이
               달력·그리드라 "맨 위"라는 개념이 성립하지 않는다. */}
@@ -833,53 +1033,13 @@ export function PostForm({
           )}
         </div>
 
-        {/* ── 본문 ↔ 미리보기 (같은 자리를 토글로 바꿔 낀다) ── */}
-        {preview ? (
-          <div className="mt-7">
-            <PostPreviewPane meta={meta} rec={rec} />
-          </div>
-        ) : (
-          !meta.noBody && (
-            <div className="mt-7">
-              {/* 본문 (한국어) — 위지윅(Tiptap). 편집 화면 = 게시 화면(같은 prose 타이포).
-                  사진은 툴바 🖼 버튼·드래그앤드롭·붙여넣기 모두 가능(자동 압축 후 스토리지 저장) */}
-              <div onFocusCapture={() => { lastBodyRef.current = 'ko'; }}>
-                <p className="mb-1.5 text-[12px] font-semibold text-content-faint">본문 (한국어)</p>
-                <PostBodyEditor
-                  value={rec.bodyKo}
-                  onChange={(html) => set('bodyKo', html)}
-                  onUploadImage={onUploadFile ? (file) => onUploadFile(file) : undefined}
-                  onEditorReady={(ed) => { editorsRef.current.ko = ed; }}
-                  placeholder="본문을 입력하세요 — 사진은 끌어다 놓거나 붙여넣어도 됩니다"
-                  ariaLabel="본문 (한국어)"
-                />
-              </div>
-
-              <div className="mt-6" onFocusCapture={() => { lastBodyRef.current = 'en'; }}>
-                <div className="mb-1.5 flex flex-wrap items-center justify-between gap-2">
-                  <p className="text-[12px] font-semibold text-content-faint">본문 (English)</p>
-                  {/* 위지윅 본문은 HTML — 태그 보존 번역(tag_handling) */}
-                  <TranslateButton source={rec.bodyKo} html onTranslated={(v) => set('bodyEn', v)} />
-                </div>
-                <PostBodyEditor
-                  value={rec.bodyEn}
-                  onChange={(html) => set('bodyEn', html)}
-                  onUploadImage={onUploadFile ? (file) => onUploadFile(file) : undefined}
-                  onEditorReady={(ed) => { editorsRef.current.en = ed; }}
-                  placeholder="English body — 비워두면 저장 시 한국어 값이 복사됩니다"
-                  ariaLabel="본문 (English)"
-                />
-              </div>
-            </div>
-          )
-        )}
-
-        {/* ── 첨부 트레이 — 구형 게시판(DC식) 형식(사용자 지정, 2026-08-18):
-              [사진 첨부] [파일 첨부] → 체크박스 그리드 → 전체 선택 | 전체 해제 |
-              썸네일 지정 | 선택 삭제 | 본문 삽입. 대표 이미지 입력란·href 입력란·라벨
-              편집은 제거 — 전부 자동 기입이라 노출할 이유가 없다(썸네일 지정→rec.image,
-              라벨→파일명). 사진/파일 버튼은 분리하되 분류는 MIME 기준이라 어느 쪽으로
-              올려도 올바른 자리(이미지 풀/첨부파일)로 간다. ── */}
+        {/* ── 첨부 트레이 — 구형 게시판(DC식) 형식 + 디자인 개편(2026-08-19):
+              사진은 카드 그리드, 파일(문서)은 리스트로 나눠 보여준다. 체크·버튼
+              (전체 선택 | 전체 해제 | 썸네일 지정 | 선택 삭제 | 본문 삽입)은 두 묶음
+              공용이고, '본문 삽입'은 지금 열려 있는 언어 탭의 에디터로 들어간다.
+              대표 이미지 입력란·href 입력란·라벨 편집은 없다 — 전부 자동 기입
+              (썸네일 지정→rec.image, 라벨→파일명). 데이터 원본(rec.image/이미지 풀/
+              rec.attachments)은 그대로다. ── */}
         <div className="mt-6 border border-dashed border-surface-border bg-[#fcfdfe] px-5 py-4">
           {onUploadFile && (
             <>
@@ -910,26 +1070,14 @@ export function PostForm({
           <div className="flex flex-wrap items-center gap-2.5">
             <DropTitle>첨부</DropTitle>
             {onUploadFile && (
-              <>
-                <button
-                  type="button"
-                  onClick={() => poolInputRef.current?.click()}
-                  disabled={uploading !== null}
-                  className="cms-btn cms-btn-sm"
-                >
-                  사진 첨부
-                </button>
-                {!meta.noBody && (
-                  <button
-                    type="button"
-                    onClick={() => docInputRef.current?.click()}
-                    disabled={uploading !== null}
-                    className="cms-btn cms-btn-sm"
-                  >
-                    파일 첨부
-                  </button>
-                )}
-              </>
+              <button
+                type="button"
+                onClick={() => poolInputRef.current?.click()}
+                disabled={uploading !== null}
+                className="cms-btn cms-btn-sm"
+              >
+                사진 첨부
+              </button>
             )}
             {uploading && (
               <>
@@ -952,103 +1100,158 @@ export function PostForm({
             </div>
           )}
           {(() => {
-            // 파생 목록·체크 통계를 한 번만 계산해 버튼 활성/그리드에 나눠 쓴다
+            // 파생 목록·체크 통계를 한 번만 계산해 버튼 활성/그리드/리스트에 나눠 쓴다
             const entries = buildTrayEntries();
-            if (entries.length === 0) return null;
-            const checkedImages = entries.filter((it) => trayChecked.has(it.key) && it.kind === 'image');
+            const images = entries.filter((it) => it.kind === 'image');
+            const files = entries.filter((it) => it.kind === 'file');
+            const checkedImages = images.filter((it) => trayChecked.has(it.key));
+            const extOf = (it: TrayEntry) =>
+              (it.name.includes('.') ? it.name.split('.').pop()! : it.url.split('.').pop() ?? '')
+                .toUpperCase()
+                .slice(0, 5) || 'FILE';
             return (
               <>
-                <div className="mt-3 flex flex-wrap items-center gap-1.5">
-                  <span className="mr-1 text-[12px] tabular-nums text-content-faint">{entries.length}개</span>
-                  <button
-                    type="button"
-                    onClick={() => setTrayChecked(new Set(entries.map((it) => it.key)))}
-                    className="cms-btn cms-btn-sm"
-                  >
-                    전체 선택
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => setTrayChecked(new Set())}
-                    disabled={trayChecked.size === 0}
-                    className="cms-btn cms-btn-sm"
-                  >
-                    전체 해제
-                  </button>
-                  <button
-                    type="button"
-                    onClick={setThumbnailFromTray}
-                    disabled={!(trayChecked.size === 1 && checkedImages.length === 1)}
-                    title="체크한 사진 1장을 목록 썸네일로 지정"
-                    className="cms-btn cms-btn-sm"
-                  >
-                    썸네일 지정
-                  </button>
-                  <button
-                    type="button"
-                    onClick={removeCheckedTray}
-                    disabled={trayChecked.size === 0}
-                    className="cms-btn cms-btn-sm"
-                  >
-                    선택 삭제
-                  </button>
-                  {!meta.noBody && (
+                {entries.length > 0 && (
+                  <>
+                    <div className="mt-3.5 flex flex-wrap items-center gap-1.5">
+                      <span className="mr-1 text-[12px] tabular-nums text-content-faint">{entries.length}개</span>
+                      <button
+                        type="button"
+                        onClick={() => setTrayChecked(new Set(entries.map((it) => it.key)))}
+                        className="cms-btn cms-btn-sm"
+                      >
+                        전체 선택
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setTrayChecked(new Set())}
+                        disabled={trayChecked.size === 0}
+                        className="cms-btn cms-btn-sm"
+                      >
+                        전체 해제
+                      </button>
+                      <button
+                        type="button"
+                        onClick={setThumbnailFromTray}
+                        disabled={!(trayChecked.size === 1 && checkedImages.length === 1)}
+                        title="체크한 사진 1장을 목록 썸네일로 지정"
+                        className="cms-btn cms-btn-sm"
+                      >
+                        썸네일 지정
+                      </button>
+                      <button
+                        type="button"
+                        onClick={removeCheckedTray}
+                        disabled={trayChecked.size === 0}
+                        className="cms-btn cms-btn-sm"
+                      >
+                        선택 삭제
+                      </button>
+                      {!meta.noBody && (
+                        <button
+                          type="button"
+                          onClick={insertCheckedIntoBody}
+                          disabled={checkedImages.length === 0}
+                          title="체크한 사진을 본문 커서 위치에 삽입"
+                          className="cms-btn-primary cms-btn-sm"
+                        >
+                          본문 삽입
+                        </button>
+                      )}
+                    </div>
+                    {!meta.noBody && (
+                      <p className="mt-1.5 text-[11px] text-content-faint">
+                        본문 삽입은 지금 열려 있는 언어 탭({lang === 'ko' ? '한국어' : 'English'})의
+                        에디터에 들어갑니다.
+                      </p>
+                    )}
+                  </>
+                )}
+
+                {/* 사진 — 카드 그리드(미리보기·썸네일 배지) */}
+                {images.length > 0 && (
+                  <ul className="mt-3.5 grid grid-cols-3 gap-3 sm:grid-cols-4 md:grid-cols-6">
+                    {images.map((it) => {
+                      const checked = trayChecked.has(it.key);
+                      return (
+                        <li key={it.key}>
+                          <label
+                            className={cn(
+                              'relative block cursor-pointer border bg-surface transition-colors',
+                              checked
+                                ? 'border-yonsei-blue ring-2 ring-yonsei-blue/40'
+                                : 'border-surface-border hover:border-yonsei-blue/50',
+                            )}
+                          >
+                            <input
+                              type="checkbox"
+                              checked={checked}
+                              onChange={() => toggleTray(it.key)}
+                              className="absolute left-1.5 top-1.5 z-10 h-4 w-4 accent-yonsei-blue"
+                              aria-label={`${it.name} 선택`}
+                            />
+                            {it.isThumb && (
+                              <span className="absolute right-0 top-0 z-10 bg-yonsei-blue px-1.5 py-0.5 text-[10px] font-bold text-white">
+                                썸네일
+                              </span>
+                            )}
+                            {/* eslint-disable-next-line @next/next/no-img-element -- 관리자 트레이 미리보기 */}
+                            <img src={it.url} alt="" className="h-20 w-full object-cover" />
+                            <span className="block truncate px-1.5 py-1 text-[11px] text-content-faint">
+                              {it.name}
+                            </span>
+                          </label>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                )}
+
+                {/* 파일(문서) — noBody(인스타·일정)는 첨부 개념이 없어 사진만 받는다 */}
+                {!meta.noBody && onUploadFile && (
+                  <div className="mt-4 flex flex-wrap items-center gap-2.5">
                     <button
                       type="button"
-                      onClick={insertCheckedIntoBody}
-                      disabled={checkedImages.length === 0}
-                      title="체크한 사진을 본문 커서 위치에 삽입"
-                      className="cms-btn-primary cms-btn-sm"
+                      onClick={() => docInputRef.current?.click()}
+                      disabled={uploading !== null}
+                      className="cms-btn cms-btn-sm"
                     >
-                      본문 삽입
+                      파일 첨부
                     </button>
-                  )}
-                </div>
-                <ul className="mt-3 grid grid-cols-3 gap-3 sm:grid-cols-4 md:grid-cols-6">
-                  {entries.map((it) => {
-                    const checked = trayChecked.has(it.key);
-                    const ext = (it.name.includes('.') ? it.name.split('.').pop()! : it.url.split('.').pop() ?? '')
-                      .toUpperCase()
-                      .slice(0, 5);
-                    return (
-                      <li key={it.key}>
-                        <label
-                          className={cn(
-                            'relative block cursor-pointer border bg-surface transition-colors',
-                            checked
-                              ? 'border-yonsei-blue ring-2 ring-yonsei-blue/40'
-                              : 'border-surface-border hover:border-yonsei-blue/50',
-                          )}
-                        >
-                          <input
-                            type="checkbox"
-                            checked={checked}
-                            onChange={() => toggleTray(it.key)}
-                            className="absolute left-1.5 top-1.5 z-10 h-4 w-4 accent-yonsei-blue"
-                            aria-label={`${it.name} 선택`}
-                          />
-                          {it.isThumb && (
-                            <span className="absolute right-0 top-0 z-10 bg-yonsei-blue px-1.5 py-0.5 text-[10px] font-bold text-white">
-                              썸네일
+                  </div>
+                )}
+                {files.length > 0 && (
+                  <ul className="mt-2.5 border border-surface-border bg-surface">
+                    {files.map((it) => {
+                      const checked = trayChecked.has(it.key);
+                      return (
+                        <li key={it.key} className="border-b border-[#f1f4f8] last:border-b-0">
+                          <label
+                            className={cn(
+                              'flex cursor-pointer items-center gap-2.5 px-3 py-2 transition-colors',
+                              checked ? 'bg-yonsei-blue/[0.06]' : 'hover:bg-surface-soft/60',
+                            )}
+                          >
+                            <input
+                              type="checkbox"
+                              checked={checked}
+                              onChange={() => toggleTray(it.key)}
+                              className="h-4 w-4 shrink-0 accent-yonsei-blue"
+                              aria-label={`${it.name} 선택`}
+                            />
+                            <span className="shrink-0 border border-surface-border bg-surface-soft px-1.5 py-0.5 text-[10px] font-bold tracking-wide text-content-faint">
+                              {extOf(it)}
                             </span>
-                          )}
-                          {it.kind === 'image' ? (
-                            /* eslint-disable-next-line @next/next/no-img-element -- 관리자 트레이 미리보기 */
-                            <img src={it.url} alt="" className="h-20 w-full object-cover" />
-                          ) : (
-                            <span className="grid h-20 w-full place-items-center bg-surface-soft text-[13px] font-bold tracking-wide text-content-faint">
-                              {ext || 'FILE'}
-                            </span>
-                          )}
-                          <span className="block truncate px-1.5 py-1 text-[11px] text-content-faint">
-                            {it.name}
-                            {it.size ? ` · ${formatBytes(it.size)}` : ''}
-                          </span>
-                        </label>
-                      </li>
-                    );
-                  })}
-                </ul>
+                            <span className="min-w-0 flex-1 truncate text-[13px] text-content">{it.name}</span>
+                            {it.size ? (
+                              <span className="shrink-0 text-[11px] text-content-faint">{formatBytes(it.size)}</span>
+                            ) : null}
+                          </label>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                )}
               </>
             );
           })()}
