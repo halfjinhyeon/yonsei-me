@@ -357,6 +357,18 @@ const BOARD_POST_META: Record<string, { boardKey: BoardPost['boardKey']; meta?: 
   internships: { boardKey: 'internships' },
 };
 
+/**
+ * 저장 계층 board 값 → 통합 게시판 boardKey (표에 없으면 undefined).
+ *
+ * 구 사이트 URL 리졸버(app/me)가 쓴다. 매핑 스냅숏(legacy-redirects.gen.json)에는
+ * DB 의 board 값(noticesUndergrad 등)이 그대로 들어 있는데 그건 **주소 세그먼트가
+ * 아니다** — /news/noticesUndergrad/… 같은 라우트는 없다. 위 표를 복사해 가지 말고
+ * 이 함수를 거쳐라(공지 4종이 한 게시판으로 합쳐지는 규칙이 여기 한 곳에만 있다).
+ */
+export function boardKeyOf(board: string): BoardPost['boardKey'] | undefined {
+  return BOARD_POST_META[board]?.boardKey;
+}
+
 function noticeToBoardPost(n: Notice, board: string): BoardPost {
   const m = BOARD_POST_META[board];
   return { ...n, boardKey: m.boardKey, ...(m.meta ? { meta: m.meta } : {}) };
@@ -416,6 +428,25 @@ export async function fetchNewsBySlug(slug: string): Promise<NewsItem | undefine
   if (postsSource() === 'git') return gitNews.find((n) => n.slug === slug);
   const r = await fetchRowBySlug('news', slug);
   return r ? toNews(r) : undefined;
+}
+
+/**
+ * 뉴스 기사의 주소 slug 를 DB id 로 되찾는다 — 구 사이트 URL 리졸버(app/me) 전용.
+ *
+ * 게시판 10종 중 뉴스만 상세 주소가 id 가 아니라 slug 라(/news/press/<slug>),
+ * 매핑 스냅숏이 들고 있는 id 만으로는 새 주소를 만들 수 없다. 스냅숏에 slug 를
+ * 박아 두지 않고 여기서 읽는 이유: CMS 에서 slug 를 고치면 박아 둔 값은 그대로
+ * 죽지만 이 조회는 따라간다. 비용은 fetchRowById 의 캐시(태그 'posts') 1건이다.
+ *
+ * slug 계산 규칙은 toNews 와 같아야 한다(slug 가 비면 목록도 id 를 주소로 쓴다).
+ * git 소스에는 DB id 가 없어 항상 undefined — 호출부가 목록으로 폴백한다.
+ */
+export async function fetchNewsSlugById(id: string): Promise<string | undefined> {
+  if (postsSource() === 'git') return undefined;
+  if (!/^\d+$/.test(id)) return undefined;
+  const r = await fetchRowById(Number(id));
+  if (!r || r.board !== 'news') return undefined;
+  return r.slug ?? String(r.id);
 }
 
 /** 홈 인스타그램 그리드용 게시물 — CMS '인스타그램' 게시판(DB 전용, git 폴백은 빈 목록).
