@@ -141,6 +141,10 @@ interface Props {
   onUploadImage?: (file: File) => Promise<string>;
   /** 에디터 인스턴스 노출 — 부모(이미지 풀 '본문 삽입' 등)가 명령을 내릴 때 사용 */
   onEditorReady?: (editor: Editor) => void;
+  /** 원문 모드 — 글 단위 설정(양쪽 언어 공통). 켜져 있으면 코드뷰로 열린다 */
+  bodyRaw?: boolean;
+  /** 원문 모드 토글 — 없으면 체크박스를 그리지 않는다 */
+  onBodyRawChange?: (value: boolean) => void;
   placeholder?: string;
   ariaLabel?: string;
 }
@@ -157,6 +161,8 @@ export function PostBodyEditor({
   onChange,
   onUploadImage,
   onEditorReady,
+  bodyRaw = false,
+  onBodyRawChange,
   placeholder,
   ariaLabel,
 }: Props) {
@@ -164,9 +170,13 @@ export function PostBodyEditor({
   const [uploadingCount, setUploadingCount] = useState(0);
   const altRef = useRef<HTMLInputElement | null>(null);
   const editorRef = useRef<Editor | null>(null);
-  // 코드뷰 — 켜면 본문 대신 HTML 소스를 편집한다(구형 html 버튼 파리티)
-  const [codeView, setCodeView] = useState(false);
-  const [codeHtml, setCodeHtml] = useState('');
+  // 코드뷰 — 켜면 본문 대신 HTML 소스를 편집한다(구형 html 버튼 파리티).
+  // 원문 모드로 저장된 글은 코드뷰로 열린다 — WYSIWYG 로 들어가는 순간 Tiptap 이
+  // 지원하지 않는 마크업을 정규화해 디자인이 깎이기 때문이다.
+  const [codeView, setCodeView] = useState(bodyRaw);
+  // 원문 모드로 시작할 때는 value 를 **손대지 않고** 그대로 싣는다(정형화조차 하지 않는다 —
+  // 바이트가 곧 디자인인 원문이라 <pre> 등에서 줄바꿈 추가가 의미를 바꿀 수 있다).
+  const [codeHtml, setCodeHtml] = useState(() => (bodyRaw ? value : ''));
 
   /** 파일들을 업로드해 본문에 삽입 — 툴바·드롭·붙여넣기 공용 */
   const uploadAndInsert = useCallback(
@@ -288,9 +298,19 @@ export function PostBodyEditor({
       setCodeView(true);
       return;
     }
+    // 원문 모드에서 WYSIWYG 로 돌아가면 Tiptap 스키마가 원문을 정규화한다 — 되돌릴 수
+    // 없는 손실이라 반드시 한 번 묻는다(수락하면 예전과 같은 왕복).
+    if (
+      bodyRaw &&
+      !window.confirm(
+        'WYSIWYG 로 전환하면 에디터가 지원하지 않는 마크업이 정규화되어 디자인이 소실될 수 있습니다.\n계속할까요?',
+      )
+    ) {
+      return;
+    }
     editor.commands.setContent(codeHtml, { emitUpdate: true });
     setCodeView(false);
-  }, [editor, codeView, codeHtml]);
+  }, [editor, codeView, codeHtml, bodyRaw]);
 
   /** 인쇄 — 본문만 담은 숨은 iframe 에 사이트 스타일을 실어 인쇄한다(구형 print 파리티) */
   const printContent = useCallback(() => {
@@ -634,10 +654,34 @@ export function PostBodyEditor({
         <div className={codeView ? 'hidden' : undefined}>
           <EditorContent editor={editor} />
         </div>
+        {/* 원문 모드 토글 — 코드뷰 안에서만 보인다(구형처럼 소스를 직접 붙여넣는 자리) */}
+        {codeView && onBodyRawChange && (
+          <div className="rte-ctxbar flex flex-wrap items-center gap-x-3 gap-y-1 px-2 py-[6px]">
+            <label className="flex items-center gap-1.5 text-[12px] font-semibold text-content">
+              <input
+                type="checkbox"
+                checked={bodyRaw}
+                onChange={(e) => onBodyRawChange(e.target.checked)}
+                className="h-3.5 w-3.5"
+              />
+              원문 그대로 저장 (정화 최소화)
+            </label>
+            <span className="text-[11px] leading-snug text-content-faint">
+              {bodyRaw
+                ? '실행 코드(스크립트)만 제거하고 나머지 HTML·CSS 를 그대로 게시합니다. 레이아웃 충돌·접근성은 보장되지 않습니다.'
+                : '아래아한글·워드에서 만든 HTML 을 원래 디자인 그대로 올릴 때만 켜세요.'}
+            </span>
+          </div>
+        )}
         {codeView && (
           <textarea
             value={codeHtml}
-            onChange={(e) => setCodeHtml(e.target.value)}
+            onChange={(e) => {
+              setCodeHtml(e.target.value);
+              // 코드뷰에서 고친 소스를 폼으로 바로 올린다 — 원문 모드는 WYSIWYG 로
+              // 되돌아가지 않고 그대로 저장하는 것이 정상 경로이기 때문이다.
+              onChange(e.target.value);
+            }}
             aria-label="HTML 소스"
             spellCheck={false}
             className="block min-h-[380px] w-full resize-y bg-[#1E2430] p-4 font-mono text-[12px] leading-relaxed text-[#E6EAF2] outline-none"

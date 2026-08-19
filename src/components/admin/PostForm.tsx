@@ -700,6 +700,9 @@ export function PostForm({
                   onChange={(html) => set('bodyKo', html)}
                   onUploadImage={onUploadFile ? uploadImageIntoBody : undefined}
                   onEditorReady={(ed) => { editorsRef.current.ko = ed; }}
+                  // 원문 모드는 글 단위 설정이라 한/영 에디터가 같은 값을 나눠 쓴다
+                  bodyRaw={rec.bodyRaw === true}
+                  onBodyRawChange={(v) => set('bodyRaw', v)}
                   placeholder="본문을 입력하세요 — 사진은 끌어다 놓거나 붙여넣어도 됩니다"
                   ariaLabel="본문 (한국어)"
                 />
@@ -762,6 +765,8 @@ export function PostForm({
                   onChange={(html) => set('bodyEn', html)}
                   onUploadImage={onUploadFile ? uploadImageIntoBody : undefined}
                   onEditorReady={(ed) => { editorsRef.current.en = ed; }}
+                  bodyRaw={rec.bodyRaw === true}
+                  onBodyRawChange={(v) => set('bodyRaw', v)}
                   placeholder="English body — 비워두면 저장 시 한국어 값이 복사됩니다"
                   ariaLabel="본문 (English)"
                 />

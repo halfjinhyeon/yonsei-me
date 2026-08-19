@@ -5,11 +5,14 @@
 import { revalidateTag } from 'next/cache';
 import {
   adminDb,
+  BODY_RAW_MIGRATION_HINT,
   endDateError,
+  isMissingBodyRawColumn,
   isValidBoard,
   payloadToRow,
   requireAdmin,
   rowToEditRecord,
+  withoutBodyRaw,
   type AdminPostPayload,
 } from '@/lib/admin/posts-server';
 
@@ -53,9 +56,17 @@ export async function POST(request: Request): Promise<Response> {
   if (endErr) return Response.json({ error: endErr }, { status: 400 });
 
   const row = payloadToRow(payload);
-  const { data, error } = await adminDb().from('posts').insert(row).select('id').single();
-  if (error) {
-    const msg = error.code === '23505' ? '이미 같은 slug 의 글이 있습니다.' : error.message;
+  const insert = (r: object) => adminDb().from('posts').insert(r).select('id').single();
+  let { data, error } = await insert(row);
+  // body_raw 컬럼이 아직 없는 DB — 원문 모드가 아니면 그 칼럼만 빼고 예전처럼 저장한다
+  if (error && isMissingBodyRawColumn(error)) {
+    if (payload.bodyRaw === true) {
+      return Response.json({ error: BODY_RAW_MIGRATION_HINT }, { status: 400 });
+    }
+    ({ data, error } = await insert(withoutBodyRaw(row)));
+  }
+  if (error || !data) {
+    const msg = error?.code === '23505' ? '이미 같은 slug 의 글이 있습니다.' : (error?.message ?? '저장에 실패했습니다.');
     return Response.json({ error: msg }, { status: 400 });
   }
 

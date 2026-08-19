@@ -41,6 +41,9 @@ alter table posts add column if not exists body_md_en text;
 alter table posts add column if not exists end_date date;
 alter table posts add column if not exists link_url text;
 alter table posts add column if not exists pinned boolean not null default false;
+-- 원문 모드 — true 면 본문을 화이트리스트 정화 대신 scrubRawHtml(스크립트류만 제거)로
+-- 저장한다. 배경·위험 수용 범위는 scripts/sql/2026-08-post-body-raw.sql 참조.
+alter table posts add column if not exists body_raw boolean not null default false;
 -- 원문 게시물 주소 — 현행 학과 사이트에서 옮겨 온 글의 출처.
 -- 이전 스크립트(scripts/import-boards.mjs)의 멱등 키이자 중복 적재 방지선이고,
 -- 사람이 눌러 원문을 바로 대조할 수 있는 값이기도 하다. 손으로 옮긴 글은 일회성

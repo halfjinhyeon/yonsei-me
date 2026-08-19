@@ -9,7 +9,7 @@ import { createClient, type SupabaseClient } from '@supabase/supabase-js';
 import { Marked } from 'marked';
 import sanitizeHtml from 'sanitize-html';
 import { auth } from '@/auth';
-import { SANITIZE_OPTS, sanitizeEditorHtml } from '@/lib/admin/sanitize';
+import { SANITIZE_OPTS, sanitizeEditorHtml, scrubRawHtml } from '@/lib/admin/sanitize';
 import { formatPeriodLabel, isoToDays, parseDateLabelRange } from '@/lib/calendar';
 import { kstDate } from '@/lib/utils';
 
@@ -88,6 +88,9 @@ export interface AdminPostPayload {
   /** 목록 최상단 고정 — 글 목록이 아닌 게시판(noBody)은 보내지 않는다 */
   pinned?: boolean;
   image?: string;
+  /** 원문 모드 — true 면 본문을 화이트리스트 정화 대신 scrubRawHtml 로 처리한다.
+   *  (부재·false 면 예전과 완전히 같은 경로) 배경은 sanitize.ts 의 원문 모드 주석. */
+  bodyRaw?: boolean;
   attachments?: { labelKo?: string; labelEn?: string; href: string; size?: number }[];
 }
 
@@ -165,6 +168,9 @@ export function payloadToRow(p: AdminPostPayload) {
   else if (p.board === 'calendar') category = nn(p.category) ?? 'academic';
   // 자료실은 미분류를 허용한다 — 분류 없는 글은 목록의 '전체' 탭에만 잡힌다
   else if (p.board === 'resources') category = nn(p.category);
+  // 본문 처리기 — 원문 모드만 갈린다. 정책 자체는 sanitize.ts 한 곳에 있다.
+  const bodyRaw = p.bodyRaw === true;
+  const toHtml = bodyRaw ? scrubRawHtml : sanitizeEditorHtml;
   return {
     board: p.board,
     slug: isNews ? nn(p.slug) : null,
@@ -174,8 +180,11 @@ export function payloadToRow(p: AdminPostPayload) {
     // body_md_* 는 마크다운 시대의 원문 보관용이었고 이제 동결(신규 글은 null).
     body_md_ko: null,
     body_md_en: null,
-    body_html_ko: sanitizeEditorHtml(p.bodyKo),
-    body_html_en: nn(p.bodyEn) ? sanitizeEditorHtml(p.bodyEn) : null,
+    body_html_ko: toHtml(p.bodyKo),
+    body_html_en: nn(p.bodyEn) ? toHtml(p.bodyEn) : null,
+    // 저장 시점에 이미 처리했으므로 렌더 경로는 이 값을 보지 않는다 — 편집 화면이
+    // 다시 열릴 때 "이 글은 원문 모드"임을 알기 위한 기억이다.
+    body_raw: bodyRaw,
     excerpt_ko: nn(p.excerptKo),
     excerpt_en: nn(p.excerptEn),
     category,
@@ -198,6 +207,31 @@ export function payloadToRow(p: AdminPostPayload) {
   };
 }
 
+// ── body_raw 컬럼 방어 (마이그레이션 전 안전망) ───────────────────────
+// 컬럼 추가 SQL 은 사람이 Supabase 에서 직접 돌린다. 그 사이에 CMS 전체가 죽으면
+// 안 되므로, 원문 모드를 **쓰지 않는** 저장은 컬럼 없이 한 번 더 시도해 통과시킨다.
+// (원문 모드를 켠 저장만 안내 메시지로 막는다 — 조용히 정화해 버리면 관리자가
+//  디자인이 깎인 걸 나중에야 발견하게 된다.)
+
+export const BODY_RAW_MIGRATION_HINT =
+  '원문 모드를 쓰려면 DB 컬럼이 필요합니다. Supabase SQL Editor 에서 ' +
+  'scripts/sql/2026-08-post-body-raw.sql 을 실행한 뒤 다시 저장해 주세요.';
+
+/** PostgREST/Postgres 오류가 "body_raw 컬럼 없음"인가 */
+export function isMissingBodyRawColumn(error: { code?: string; message?: string } | null): boolean {
+  if (!error) return false;
+  const msg = error.message ?? '';
+  if (!msg.includes('body_raw')) return false;
+  // PGRST204: 스키마 캐시에 컬럼 없음 · 42703: undefined_column
+  return error.code === 'PGRST204' || error.code === '42703' || /column/i.test(msg);
+}
+
+/** 저장 행에서 body_raw 만 뺀 사본 — 컬럼 없는 DB 재시도용 */
+export function withoutBodyRaw<T extends { body_raw?: unknown }>(row: T): Omit<T, 'body_raw'> {
+  const { body_raw: _omit, ...rest } = row;
+  return rest;
+}
+
 /** posts 행(+attachments 관계) — select('*, attachments(*)') 결과의 필요한 필드만 */
 export interface DbPostRow {
   id: number | string;
@@ -214,6 +248,8 @@ export interface DbPostRow {
   title_en: string | null;
   body_html_ko: string | null;
   body_html_en: string | null;
+  /** 원문 모드로 저장된 글 — 마이그레이션(2026-08-post-body-raw.sql) 전 DB 는 undefined */
+  body_raw?: boolean | null;
   excerpt_ko: string | null;
   excerpt_en: string | null;
   category: string | null;
@@ -268,6 +304,9 @@ export function rowToEditRecord(r: DbPostRow) {
     // Tiptap 은 HTML 왕복 — 기존 글(마이그레이션분 포함)도 body_html 이 원본이다
     bodyKo: r.body_html_ko ?? '',
     bodyEn: r.body_html_en ?? '',
+    // 컬럼이 없는 DB(마이그레이션 전)에서도 언제나 boolean 이다 — 폼의 dirty 판정이
+    // undefined ↔ false 차이만으로 흔들리지 않아야 한다.
+    bodyRaw: r.body_raw === true,
     excerptKo: r.excerpt_ko ?? '',
     excerptEn: r.excerpt_en ?? '',
     category: r.category ?? undefined,

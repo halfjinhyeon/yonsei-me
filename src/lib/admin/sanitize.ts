@@ -9,6 +9,10 @@
 // 표)를 살리려고 배경·테두리·여백·세로 정렬을 열었다. 태그를 더 여는 게 아니라
 // **값 패턴이 경계**다 — 아래 패턴 어느 것도 url(·expression(·세미콜론·역슬래시를
 // 통과시키지 않으므로 스크립트 주입 경로는 그대로 닫혀 있다.
+//
+// 이 파일에는 정책이 **둘** 있다. 기본은 아래 화이트리스트(sanitizeEditorHtml)고,
+// 게시물 단위 "원문 모드"(posts.body_raw)만 파일 아래쪽의 블랙리스트-라이트
+// (scrubRawHtml)를 탄다 — 두 정책의 경계와 근거는 그 함수 주석에 적어 두었다.
 
 import sanitizeHtml from 'sanitize-html';
 
@@ -151,4 +155,245 @@ export function sanitizeEditorHtml(html: string | null | undefined): string {
   const h = (html ?? '').trim();
   if (!h) return '';
   return sanitizeHtml(h, SANITIZE_OPTS);
+}
+
+/* ════════════════════════════════════════════════════════════════════════
+   원문 모드 — 게시물 단위(posts.body_raw)로만 타는 두 번째 정책.
+
+   ⚠️ **사이트 소유자가 위험을 명시적으로 수용한 관리자 전용 경로**다(2026-08).
+   구 사이트(Froala, 사실상 무정화)에서 쓰던 아래아한글·워드 산출물을 교수·관리자가
+   "붙여넣은 그대로" 게시할 수 있어야 한다는 요구에서 나왔다. 수용된 위험:
+   정화 우회 가능성 · 임의 CSS 의 레이아웃 충돌 · 게시물 내 접근성 비보장 ·
+   다크모드 대비 미고려. 이 경로는 CMS 로그인(cms_users)을 통과한 사람만 쓴다.
+
+   그래서 정책이 위와 반대다 — 화이트리스트가 아니라 **블랙리스트-라이트**:
+   실행 코드(스크립트)만 골라 빼고 나머지 태그·속성·인라인 style·<style> 태그·
+   임의 호스트 iframe·pt 단위·표 레이아웃은 전부 통과시킨다.
+
+   구현이 sanitize-html 이 아니라 자체 토크나이저인 이유: **바이트 원형 보존**이
+   목적이기 때문이다. sanitize-html 은 통과시킬 때도 문서를 다시 직렬화해
+   따옴표·엔티티·자기닫음 표기·속성 순서를 바꾼다(HWP 산출물이 미묘하게 달라진다).
+   여기서는 잘라낼 구간만 원문에서 도려내고 나머지는 손대지 않는다.
+   ════════════════════════════════════════════════════════════════════════ */
+
+/** 내용째 제거 — 실행 코드 하나뿐 */
+const RAW_DROP_WITH_CONTENT = new Set(['script']);
+
+/** 태그만 제거(내용은 남긴다) — 플러그인·문서 헤더·프레임.
+ *  object/applet 의 자식은 대체 콘텐츠라 살려 두는 편이 원문에 가깝다.
+ *  base 는 문서 전체의 상대 경로를, meta[http-equiv] 는 이동·CSP 를 바꾸고,
+ *  link 는 임의 스타일시트를 끌어온다 — 셋 다 게시물 한 편의 권한을 넘는다. */
+const RAW_DROP_TAG = new Set([
+  'object', 'embed', 'applet', 'base', 'meta', 'link', 'frame', 'frameset',
+]);
+
+/** 자식이 태그가 아닌 요소 — 내용을 통째로 원문 그대로 지나간다 */
+const RAW_TEXT_TAGS = new Set(['style', 'textarea', 'title']);
+
+/** URL 을 값으로 갖는 속성 — 스킴 검사 대상(그 외 속성은 값을 보지 않는다) */
+const RAW_URL_ATTRS = new Set([
+  'href', 'src', 'action', 'background', 'poster', 'cite', 'longdesc',
+  'data', 'xlink:href', 'formaction',
+]);
+
+/** 스킴 판정 전용 문자 참조 해석 — `javascript&colon;` `&#106;avascript:` 우회 차단.
+ *  출력에는 쓰지 않는다(원문 보존). */
+const NAMED_REFS: Record<string, string> = {
+  colon: ':', tab: '\t', newline: '\n', amp: '&', sol: '/', lpar: '(', rpar: ')',
+};
+function decodeRefs(value: string): string {
+  return value
+    .replace(/&#[xX]([0-9a-fA-F]{1,6});?/g, (_m, hex: string) =>
+      String.fromCodePoint(Math.min(parseInt(hex, 16), 0x10ffff)))
+    .replace(/&#(\d{1,7});?/g, (_m, dec: string) =>
+      String.fromCodePoint(Math.min(parseInt(dec, 10), 0x10ffff)))
+    .replace(/&([a-zA-Z]{2,8});?/g, (m, name: string) =>
+      NAMED_REFS[name.toLowerCase()] ?? m);
+}
+
+/** URL 속성값을 통과시킬 것인가 — javascript:·vbscript: 는 차단,
+ *  data: 는 img[src] 의 data:image/* 만(그림 붙여넣기 원문 보존용). */
+function rawUrlAllowed(tag: string, attr: string, value: string): boolean {
+  // 제어문자는 브라우저가 무시하므로 판정 전에 털어낸다(`java\tscript:` 우회)
+  const v = decodeRefs(value).replace(/[\u0000-\u0020\u007f]/g, '');
+  const scheme = /^([a-zA-Z][a-zA-Z0-9+.-]*):/.exec(v)?.[1].toLowerCase() ?? '';
+  if (!scheme) return true; // 상대 경로·앵커·프로토콜 상대(//host)
+  if (scheme === 'javascript' || scheme === 'vbscript') return false;
+  if (scheme === 'data') return tag === 'img' && attr === 'src' && /^data:image\//i.test(v);
+  return true; // http·https·mailto·tel·ftp… 전부 통과
+}
+
+interface RawAttr {
+  /** 태그 문자열 안의 속성 시작·끝(끝은 배타적) */
+  start: number;
+  end: number;
+  name: string;
+  value: string;
+}
+
+/** 여는 태그 원문에서 속성 목록을 위치와 함께 뽑는다(HTML5 토크나이저 규칙 축약:
+ *  따옴표 안의 `>` 는 태그를 끝내지 않고, 값 없는 속성도 허용된다). */
+function parseRawAttrs(tag: string, from: number, end: number): RawAttr[] {
+  const attrs: RawAttr[] = [];
+  let i = from;
+  while (i < end) {
+    const ch = tag[i];
+    if (/[\s/]/.test(ch)) {
+      i += 1;
+      continue;
+    }
+    const start = i;
+    while (i < end && !/[\s=/]/.test(tag[i])) i += 1;
+    const name = tag.slice(start, i);
+    if (name === '') {
+      i += 1; // '=' 로 시작하는 쓰레기 — 한 글자 흘린다
+      continue;
+    }
+    let attrEnd = i;
+    let value = '';
+    let j = i;
+    while (j < end && /\s/.test(tag[j])) j += 1;
+    if (tag[j] === '=') {
+      j += 1;
+      while (j < end && /\s/.test(tag[j])) j += 1;
+      const quote = tag[j];
+      if (quote === '"' || quote === "'") {
+        const close = tag.indexOf(quote, j + 1);
+        const valueEnd = close === -1 ? end : close;
+        value = tag.slice(j + 1, valueEnd);
+        attrEnd = close === -1 ? end : close + 1;
+      } else {
+        const valueStart = j;
+        while (j < end && !/\s/.test(tag[j])) j += 1;
+        value = tag.slice(valueStart, j);
+        attrEnd = j;
+      }
+    }
+    attrs.push({ start, end: attrEnd, name, value });
+    i = attrEnd;
+  }
+  return attrs;
+}
+
+/** 여는 태그 하나를 걸러 낸다 — 떨어뜨릴 속성 구간만 도려내고 나머지는 원문 그대로.
+ *  (통과할 태그는 문자열이 그대로 반환돼 바이트가 보존된다) */
+function scrubRawTag(tag: string, name: string, nameEnd: number): string {
+  const close = tag.endsWith('>') ? tag.length - 1 : tag.length; // '>' 위치(잘린 태그 대비)
+  const attrs = parseRawAttrs(tag, nameEnd, close);
+  const drop = attrs.filter((a) => {
+    const lower = a.name.toLowerCase();
+    if (lower.startsWith('on')) return true; // 이벤트 핸들러 전부(ONMouseOver 포함)
+    if (lower === 'formaction') return true; // 버튼이 폼 목적지를 바꾼다
+    if (lower === 'srcdoc') return true; // iframe 안에 문서를 통째로 심는다
+    if (RAW_URL_ATTRS.has(lower)) return !rawUrlAllowed(name, lower, a.value);
+    return false;
+  });
+  if (drop.length === 0) return tag;
+  let out = '';
+  let cursor = 0;
+  for (const a of drop) {
+    // 앞선 공백까지 함께 지운다 — 속성만 빼면 `<a  >` 처럼 공백이 남는다
+    let start = a.start;
+    while (start > nameEnd && /\s/.test(tag[start - 1])) start -= 1;
+    out += tag.slice(cursor, start);
+    cursor = a.end;
+  }
+  return out + tag.slice(cursor);
+}
+
+/**
+ * 원문 모드 정화 — "위험한 것만 골라 빼고 나머지는 전부 통과"(위 블록 주석 참조).
+ * 관리자가 body_raw 를 켠 게시물의 저장 경로에서만 호출한다.
+ */
+export function scrubRawHtml(html: string | null | undefined): string {
+  const src = (html ?? '').trim();
+  if (!src) return '';
+  let out = '';
+  let i = 0;
+  while (i < src.length) {
+    const lt = src.indexOf('<', i);
+    if (lt === -1) {
+      out += src.slice(i);
+      break;
+    }
+    out += src.slice(i, lt);
+    const rest = src.slice(lt);
+
+    // 주석·선언(DOCTYPE·CDATA) — 원문 그대로
+    if (rest.startsWith('<!--')) {
+      const end = src.indexOf('-->', lt + 4);
+      const stop = end === -1 ? src.length : end + 3;
+      out += src.slice(lt, stop);
+      i = stop;
+      continue;
+    }
+    if (rest.startsWith('<!') || rest.startsWith('<?')) {
+      const end = src.indexOf('>', lt + 2);
+      const stop = end === -1 ? src.length : end + 1;
+      out += src.slice(lt, stop);
+      i = stop;
+      continue;
+    }
+
+    const isEnd = rest.startsWith('</');
+    const nameMatch = /^<\/?([a-zA-Z][^\s/>]*)/.exec(rest);
+    if (!nameMatch) {
+      // 태그가 아닌 '<' — 본문 글자다
+      out += '<';
+      i = lt + 1;
+      continue;
+    }
+    const name = nameMatch[1].toLowerCase();
+
+    // 태그 끝 찾기 — 따옴표 안의 '>' 는 태그를 끝내지 않는다
+    let k = lt + nameMatch[0].length;
+    let quote = '';
+    while (k < src.length) {
+      const c = src[k];
+      if (quote) {
+        if (c === quote) quote = '';
+      } else if (c === '"' || c === "'") quote = c;
+      else if (c === '>') break;
+      k += 1;
+    }
+    const tagEnd = k < src.length ? k + 1 : src.length;
+    const tag = src.slice(lt, tagEnd);
+
+    if (RAW_DROP_WITH_CONTENT.has(name)) {
+      if (isEnd) {
+        i = tagEnd; // 짝 없는 </script> — 조용히 버린다
+        continue;
+      }
+      // 내용째 제거: 닫는 태그까지(없으면 끝까지) 통째로 버린다
+      const closeAt = src.toLowerCase().indexOf(`</${name}`, tagEnd);
+      if (closeAt === -1) {
+        i = src.length;
+        continue;
+      }
+      const closeGt = src.indexOf('>', closeAt);
+      i = closeGt === -1 ? src.length : closeGt + 1;
+      continue;
+    }
+
+    if (RAW_DROP_TAG.has(name)) {
+      i = tagEnd; // 태그만 제거 — 자식(대체 콘텐츠)은 이어서 그대로 처리된다
+      continue;
+    }
+
+    out += isEnd ? tag : scrubRawTag(tag, name, nameMatch[0].length);
+    i = tagEnd;
+
+    // style·textarea 등은 내용이 태그가 아니다 — 닫는 태그까지 원문 그대로 지난다
+    if (!isEnd && RAW_TEXT_TAGS.has(name) && !tag.endsWith('/>')) {
+      const closeAt = src.toLowerCase().indexOf(`</${name}`, i);
+      if (closeAt === -1) {
+        out += src.slice(i);
+        i = src.length;
+      } else {
+        out += src.slice(i, closeAt);
+        i = closeAt;
+      }
+    }
+  }
+  return out;
 }

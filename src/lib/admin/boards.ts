@@ -49,6 +49,9 @@ export interface EditRecord {
   titleEn: string;
   bodyKo: string;
   bodyEn: string;
+  // 원문 모드 — 켜면 본문을 화이트리스트 정화 대신 "스크립트류만 제거"로 저장한다.
+  // HTML 소스 모드(코드뷰) 안의 체크박스가 켜고, 서버 처리는 sanitize.ts 의 scrubRawHtml.
+  bodyRaw?: boolean;
   // 세미나 전용
   hostKo?: string;
   hostEn?: string;

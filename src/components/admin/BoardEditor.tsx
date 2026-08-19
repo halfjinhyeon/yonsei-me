@@ -124,6 +124,8 @@ function blankRecord(key: BoardKey, suggestedId: string): PostEditRecord {
     titleEn: '',
     bodyKo: '',
     bodyEn: '',
+    // 새 글은 언제나 정화 경로로 시작한다(키를 미리 두는 이유는 time 과 같다 — dirty 판정)
+    bodyRaw: false,
     ...(meta.hasHost ? { hostKo: '', hostEn: '' } : {}),
     ...(meta.hasDateLabel ? { dateLabelKo: '', dateLabelEn: '' } : {}),
     ...(meta.hasDateRange ? { endDate: '' } : {}),
@@ -310,7 +312,13 @@ export function BoardEditor({ config, boardKey, onDirtyChange }: Props) {
     setEditing({
       // time 은 API 가 늘 내려주지만(rowToEditRecord), 빈 값으로 정규화해 둬야
       // undefined ↔ '' 차이만으로 폼이 dirty 로 잡히지 않는다.
-      record: { ...r, time: r.time ?? '', id: meta.isNews ? (r.slug ?? r.id) : r.id },
+      // bodyRaw 도 time 과 같은 이유로 boolean 으로 눕힌다(구 API 응답 호환 + dirty 판정)
+      record: {
+        ...r,
+        time: r.time ?? '',
+        bodyRaw: r.bodyRaw === true,
+        id: meta.isNews ? (r.slug ?? r.id) : r.id,
+      },
       isEdit: true,
       dbId,
     });
@@ -328,6 +336,8 @@ export function BoardEditor({ config, boardKey, onDirtyChange }: Props) {
       titleEn: rec.titleEn,
       bodyKo: rec.bodyKo,
       bodyEn: rec.bodyEn,
+      // 원문 모드(정화 최소화) — 켠 글만 true 가 실린다
+      bodyRaw: rec.bodyRaw === true,
       excerptKo: rec.excerptKo,
       excerptEn: rec.excerptEn,
       category: rec.category,
