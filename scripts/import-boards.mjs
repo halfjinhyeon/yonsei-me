@@ -30,6 +30,11 @@
 //  3) 재크롤이 중복 적재가 되면 안 된다 → source_url 이 멱등 키다.
 //     기존 행은 title_ko/body_html_ko/pinned/created_at 과 첨부만 갱신하고,
 //     손으로 채운 영문·발췌·썸네일은 절대 null 로 덮지 않는다(손번역 7건 보호).
+//  4) 그런데 1)의 정화·재생성이 **원본을 파괴하는 글**이 있다 — 아래아한글에서
+//     디자인해 붙여넣은 공지(색 배경 제목 바·번호 칩·pt 단위 레이아웃)다.
+//     저 글들에서는 표가 곧 디자인이라, 표준 격자로 다시 찍는 순간 원본이 사라진다.
+//     → 셀 배경이 있는 글은 **글 단위로 원문 모드**(posts.body_raw — CMS 와 같은
+//     정책)로 보낸다. 절대화만 하고 scrubRawHtml 만 태워 바이트를 그대로 남긴다.
 //
 // 소유권 3상태 — "중복 적재 금지"와 "갱신 허용"은 다른 문제다. source_url 만으로는
 // 둘을 구분할 수 없어서 import_managed 로 소유자를 표시한다:
@@ -1053,7 +1058,359 @@ function rebuildTables(html, ctx, stats) {
 }
 
 // 재생성 집계(보고용) — toRow 에서 본문 하나당 한 번씩 누적된다.
+// ⚠ 원문 모드로 빠진 글은 재생성 경로를 아예 타지 않으므로 여기 안 잡힌다
+//   (그래서 "디자인 표" 수치는 이 개편 이후 크게 줄어드는 것이 정상이다).
 const tableStats = { posts: 0, tables: 0, nested: 0, unwrapped: 0, dropped: 0, designed: 0 };
+
+// ── 원문 모드(디자인 글) ──────────────────────────────────────────────
+// 위의 재생성은 "표를 표로 되살리는" 도구다. 그런데 구 사이트 공지 중에는 표가
+// 표가 아니라 **레이아웃 도구**인 글이 있다 — 아래아한글에서 색 배경 제목 바,
+// 번호 칩, pt 단위 칸을 그려 붙여넣은 디자인 공지(예: noticesUndergrad 459512).
+// 이걸 data-border 격자로 다시 찍으면 글자는 남아도 원본 디자인은 통째로 사라진다.
+// CMS 에는 이런 글을 위한 자리가 이미 있다(posts.body_raw = 원문 모드) → 임포트도
+// 같은 길로 보낸다: 표 재생성·normalizeBody 를 건너뛰고 URL 절대화 + scrubRawHtml
+// (블랙리스트-라이트)만 태워 바이트를 그대로 남긴다.
+//
+// 판정은 **글 단위**다. 저장 정책이 게시물 단위 플래그 하나뿐이라 "이 표만 원문,
+// 저 표는 재생성" 같은 혼합이 애초에 표현되지 않는다. 기준은 rebuildTableBlock 의
+// designed 판정과 같은 것(cellDesign 의 배경색)을 그대로 쓴다.
+
+/** 셀 배경이 있는 표가 하나라도 있는가 = 이 글은 디자인 글인가.
+ *  cellDesign 을 그대로 부르므로 기본 흰 배경(isDefaultBg)은 디자인이 아니다. */
+const CELL_OPEN_RE = /<(?:td|th)\b([^>]*)>/gi;
+function isDesignPost(html) {
+  const src = String(html ?? '');
+  if (!/<t[dh]\b/i.test(src)) return false;
+  CELL_OPEN_RE.lastIndex = 0;
+  let m;
+  while ((m = CELL_OPEN_RE.exec(src)) !== null) {
+    if (cellDesign(m[1]).bg) return true;
+  }
+  return false;
+}
+
+/* ── scrubRawHtml 사본 ──────────────────────────────────────────────────
+   ⚠ src/lib/admin/sanitize.ts 의 scrubRawHtml 과 **내용상 동일**해야 한다
+   (여기는 .mjs 라 TS 모듈을 import 할 수 없다 — SANITIZE_OPTS 사본과 같은 사정).
+   한쪽을 고치면 반드시 양쪽. 사본이 뒤처지면 임포트한 글과 CMS 에서 저장한 글이
+   서로 다른 정책을 타게 된다.
+
+   정책이 위쪽 화이트리스트와 반대다 — **블랙리스트-라이트**: 실행 코드(script)와
+   이벤트 핸들러·위험 스킴만 골라 빼고 나머지 태그·속성·인라인 style·pt 단위·
+   표 레이아웃은 전부 통과시킨다. 구현이 sanitize-html 이 아니라 자체 스캐너인
+   이유는 **바이트 원형 보존**이다(sanitize-html 은 통과시킬 때도 따옴표·엔티티·
+   속성 순서를 다시 직렬화해 HWP 산출물이 미묘하게 달라진다). */
+
+/** 내용째 제거 — 실행 코드 하나뿐 */
+const RAW_DROP_WITH_CONTENT = new Set(['script']);
+
+/** 태그만 제거(내용은 남긴다) — 플러그인·문서 헤더·프레임 */
+const RAW_DROP_TAG = new Set([
+  'object', 'embed', 'applet', 'base', 'meta', 'link', 'frame', 'frameset',
+]);
+
+/** 자식이 태그가 아닌 요소 — 내용을 통째로 원문 그대로 지나간다 */
+const RAW_TEXT_TAGS = new Set(['style', 'textarea', 'title']);
+
+/** URL 을 값으로 갖는 속성 — 스킴 검사 대상(그 외 속성은 값을 보지 않는다) */
+const RAW_URL_ATTRS = new Set([
+  'href', 'src', 'action', 'background', 'poster', 'cite', 'longdesc',
+  'data', 'xlink:href', 'formaction',
+]);
+
+/** 스킴 판정 전용 문자 참조 해석 — `javascript&colon;` `&#106;avascript:` 우회 차단.
+ *  출력에는 쓰지 않는다(원문 보존). */
+const NAMED_REFS = {
+  colon: ':', tab: '\t', newline: '\n', amp: '&', sol: '/', lpar: '(', rpar: ')',
+};
+function decodeRefs(value) {
+  return String(value)
+    .replace(/&#[xX]([0-9a-fA-F]{1,6});?/g, (_m, hex) =>
+      String.fromCodePoint(Math.min(parseInt(hex, 16), 0x10ffff)))
+    .replace(/&#(\d{1,7});?/g, (_m, dec) =>
+      String.fromCodePoint(Math.min(parseInt(dec, 10), 0x10ffff)))
+    .replace(/&([a-zA-Z]{2,8});?/g, (m, name) =>
+      NAMED_REFS[name.toLowerCase()] ?? m);
+}
+
+/** URL 속성값을 통과시킬 것인가 — javascript:·vbscript: 는 차단,
+ *  data: 는 img[src] 의 data:image/* 만(그림 붙여넣기 원문 보존용). */
+function rawUrlAllowed(tag, attr, value) {
+  // 제어문자는 브라우저가 무시하므로 판정 전에 털어낸다(`java\tscript:` 우회)
+  const v = decodeRefs(value).replace(/[\u0000-\u0020\u007f]/g, '');
+  const scheme = /^([a-zA-Z][a-zA-Z0-9+.-]*):/.exec(v)?.[1].toLowerCase() ?? '';
+  if (!scheme) return true; // 상대 경로·앵커·프로토콜 상대(//host)
+  if (scheme === 'javascript' || scheme === 'vbscript') return false;
+  if (scheme === 'data') return tag === 'img' && attr === 'src' && /^data:image\//i.test(v);
+  return true; // http·https·mailto·tel·ftp… 전부 통과
+}
+
+/** 여는 태그 원문에서 속성 목록을 위치와 함께 뽑는다(HTML5 토크나이저 규칙 축약:
+ *  따옴표 안의 `>` 는 태그를 끝내지 않고, 값 없는 속성도 허용된다).
+ *  @returns {{ start:number, end:number, name:string, value:string }[]} */
+function parseRawAttrs(tag, from, end) {
+  const attrs = [];
+  let i = from;
+  while (i < end) {
+    const ch = tag[i];
+    if (/[\s/]/.test(ch)) {
+      i += 1;
+      continue;
+    }
+    const start = i;
+    while (i < end && !/[\s=/]/.test(tag[i])) i += 1;
+    const name = tag.slice(start, i);
+    if (name === '') {
+      i += 1; // '=' 로 시작하는 쓰레기 — 한 글자 흘린다
+      continue;
+    }
+    let attrEnd = i;
+    let value = '';
+    let j = i;
+    while (j < end && /\s/.test(tag[j])) j += 1;
+    if (tag[j] === '=') {
+      j += 1;
+      while (j < end && /\s/.test(tag[j])) j += 1;
+      const quote = tag[j];
+      if (quote === '"' || quote === "'") {
+        const close = tag.indexOf(quote, j + 1);
+        const valueEnd = close === -1 ? end : close;
+        value = tag.slice(j + 1, valueEnd);
+        attrEnd = close === -1 ? end : close + 1;
+      } else {
+        const valueStart = j;
+        while (j < end && !/\s/.test(tag[j])) j += 1;
+        value = tag.slice(valueStart, j);
+        attrEnd = j;
+      }
+    }
+    attrs.push({ start, end: attrEnd, name, value });
+    i = attrEnd;
+  }
+  return attrs;
+}
+
+/** 여는 태그 하나를 걸러 낸다 — 떨어뜨릴 속성 구간만 도려내고 나머지는 원문 그대로.
+ *  (통과할 태그는 문자열이 그대로 반환돼 바이트가 보존된다) */
+function scrubRawTag(tag, name, nameEnd) {
+  const close = tag.endsWith('>') ? tag.length - 1 : tag.length; // '>' 위치(잘린 태그 대비)
+  const attrs = parseRawAttrs(tag, nameEnd, close);
+  const drop = attrs.filter((a) => {
+    const lower = a.name.toLowerCase();
+    if (lower.startsWith('on')) return true; // 이벤트 핸들러 전부(ONMouseOver 포함)
+    if (lower === 'formaction') return true; // 버튼이 폼 목적지를 바꾼다
+    if (lower === 'srcdoc') return true; // iframe 안에 문서를 통째로 심는다
+    if (RAW_URL_ATTRS.has(lower)) return !rawUrlAllowed(name, lower, a.value);
+    return false;
+  });
+  if (drop.length === 0) return tag;
+  let out = '';
+  let cursor = 0;
+  for (const a of drop) {
+    // 앞선 공백까지 함께 지운다 — 속성만 빼면 `<a  >` 처럼 공백이 남는다
+    let start = a.start;
+    while (start > nameEnd && /\s/.test(tag[start - 1])) start -= 1;
+    out += tag.slice(cursor, start);
+    cursor = a.end;
+  }
+  return out + tag.slice(cursor);
+}
+
+/** 원문 모드 정화 — "위험한 것만 골라 빼고 나머지는 전부 통과". */
+function scrubRawHtml(html) {
+  const src = String(html ?? '').trim();
+  if (!src) return '';
+  let out = '';
+  let i = 0;
+  while (i < src.length) {
+    const lt = src.indexOf('<', i);
+    if (lt === -1) {
+      out += src.slice(i);
+      break;
+    }
+    out += src.slice(i, lt);
+    const rest = src.slice(lt);
+
+    // 주석·선언(DOCTYPE·CDATA) — 원문 그대로
+    if (rest.startsWith('<!--')) {
+      const end = src.indexOf('-->', lt + 4);
+      const stop = end === -1 ? src.length : end + 3;
+      out += src.slice(lt, stop);
+      i = stop;
+      continue;
+    }
+    if (rest.startsWith('<!') || rest.startsWith('<?')) {
+      const end = src.indexOf('>', lt + 2);
+      const stop = end === -1 ? src.length : end + 1;
+      out += src.slice(lt, stop);
+      i = stop;
+      continue;
+    }
+
+    const isEnd = rest.startsWith('</');
+    const nameMatch = /^<\/?([a-zA-Z][^\s/>]*)/.exec(rest);
+    if (!nameMatch) {
+      // 태그가 아닌 '<' — 본문 글자다
+      out += '<';
+      i = lt + 1;
+      continue;
+    }
+    const name = nameMatch[1].toLowerCase();
+
+    // 태그 끝 찾기 — 따옴표 안의 '>' 는 태그를 끝내지 않는다
+    let k = lt + nameMatch[0].length;
+    let quote = '';
+    while (k < src.length) {
+      const c = src[k];
+      if (quote) {
+        if (c === quote) quote = '';
+      } else if (c === '"' || c === "'") quote = c;
+      else if (c === '>') break;
+      k += 1;
+    }
+    const tagEnd = k < src.length ? k + 1 : src.length;
+    const tag = src.slice(lt, tagEnd);
+
+    if (RAW_DROP_WITH_CONTENT.has(name)) {
+      if (isEnd) {
+        i = tagEnd; // 짝 없는 </script> — 조용히 버린다
+        continue;
+      }
+      // 내용째 제거: 닫는 태그까지(없으면 끝까지) 통째로 버린다
+      const closeAt = src.toLowerCase().indexOf(`</${name}`, tagEnd);
+      if (closeAt === -1) {
+        i = src.length;
+        continue;
+      }
+      const closeGt = src.indexOf('>', closeAt);
+      i = closeGt === -1 ? src.length : closeGt + 1;
+      continue;
+    }
+
+    if (RAW_DROP_TAG.has(name)) {
+      i = tagEnd; // 태그만 제거 — 자식(대체 콘텐츠)은 이어서 그대로 처리된다
+      continue;
+    }
+
+    out += isEnd ? tag : scrubRawTag(tag, name, nameMatch[0].length);
+    i = tagEnd;
+
+    // style·textarea 등은 내용이 태그가 아니다 — 닫는 태그까지 원문 그대로 지난다
+    if (!isEnd && RAW_TEXT_TAGS.has(name) && !tag.endsWith('/>')) {
+      const closeAt = src.toLowerCase().indexOf(`</${name}`, i);
+      if (closeAt === -1) {
+        out += src.slice(i);
+        i = src.length;
+      } else {
+        out += src.slice(i, closeAt);
+        i = closeAt;
+      }
+    }
+  }
+  return out;
+}
+/* ── 사본 끝 ─────────────────────────────────────────────────────────── */
+
+// 여는 태그 안의 src/href — 따옴표 세 표기(겹·홑·없음)를 모두 잡는다.
+// `data-src`·`xlink:href` 처럼 접두사가 붙은 것도 값만 바뀌고 접두사는 남는다.
+const RAW_LINK_ATTR_RE = /\b(src|href)\s*=\s*(?:"([^"]*)"|'([^']*)'|([^\s"'>]+))/gi;
+
+/** 여는 태그 하나의 src/href 값을 절대화한다. 바뀔 게 없으면 원문 조각 그대로 —
+ *  엔티티 표기·따옴표·속성 순서를 건드리지 않기 위해서다(바이트 보존). */
+function absolutizeTagUrls(tag, base) {
+  return tag.replace(RAW_LINK_ATTR_RE, (whole, name, dq, sq, bare) => {
+    const value = dq ?? sq ?? bare ?? '';
+    // `?mode=download&amp;attachNo=1` 을 그대로 해석하면 `&amp;` 가 쿼리 키가 된다
+    const decoded = decodeEntities(value);
+    const abs = absolutize(decoded, base);
+    if (abs === decoded) return whole;
+    const quote = sq !== undefined ? "'" : '"';
+    return `${name}=${quote}${escapeAttr(abs)}${quote}`;
+  });
+}
+
+/** 원문 모드용 URL 절대화 — normalizeBody 가 하던 절대화(absolutize, 게시물 주소
+ *  기준)를 **속성 값에만** 적용한다. 그 밖의 마크업은 한 글자도 건드리지 않는다.
+ *  이걸 놓치면 루트 상대(/_res/editor_image/…)·쿼리 전용(?mode=download&…) 주소가
+ *  우리 도메인 기준으로 해석돼 전부 404 가 된다(이렇게 절대화된 me.yonsei URL 은
+ *  나중에 mirror-legacy-assets 가 R2 로 바꿔 준다 — 이 스크립트 밖의 일이다).
+ *  주석·<style> 내용은 태그가 아니므로 건너뛴다(워드의 조건부 주석 보존). */
+function absolutizeRawUrls(html, { sourceUrl, sourcePath } = {}) {
+  const src = String(html ?? '');
+  if (!src) return '';
+  const base = baseUrlOf({ sourceUrl }, sourcePath);
+  let out = '';
+  let i = 0;
+  while (i < src.length) {
+    const lt = src.indexOf('<', i);
+    if (lt === -1) {
+      out += src.slice(i);
+      break;
+    }
+    out += src.slice(i, lt);
+    const rest = src.slice(lt);
+
+    if (rest.startsWith('<!--')) {
+      const end = src.indexOf('-->', lt + 4);
+      const stop = end === -1 ? src.length : end + 3;
+      out += src.slice(lt, stop);
+      i = stop;
+      continue;
+    }
+    if (rest.startsWith('<!') || rest.startsWith('<?')) {
+      const end = src.indexOf('>', lt + 2);
+      const stop = end === -1 ? src.length : end + 1;
+      out += src.slice(lt, stop);
+      i = stop;
+      continue;
+    }
+
+    const nameMatch = /^<\/?([a-zA-Z][^\s/>]*)/.exec(rest);
+    if (!nameMatch) {
+      out += '<';
+      i = lt + 1;
+      continue;
+    }
+    const name = nameMatch[1].toLowerCase();
+    const isEnd = rest.startsWith('</');
+
+    let k = lt + nameMatch[0].length;
+    let quote = '';
+    while (k < src.length) {
+      const c = src[k];
+      if (quote) {
+        if (c === quote) quote = '';
+      } else if (c === '"' || c === "'") quote = c;
+      else if (c === '>') break;
+      k += 1;
+    }
+    const tagEnd = k < src.length ? k + 1 : src.length;
+    const tag = src.slice(lt, tagEnd);
+
+    out += isEnd ? tag : absolutizeTagUrls(tag, base);
+    i = tagEnd;
+
+    if (!isEnd && RAW_TEXT_TAGS.has(name) && !tag.endsWith('/>')) {
+      const closeAt = src.toLowerCase().indexOf(`</${name}`, i);
+      if (closeAt === -1) {
+        out += src.slice(i);
+        i = src.length;
+      } else {
+        out += src.slice(i, closeAt);
+        i = closeAt;
+      }
+    }
+  }
+  return out;
+}
+
+/** 디자인 글의 본문 — 절대화 → 원문 정화. 재생성·normalizeBody 는 타지 않는다. */
+function rawModeBody(html, ctx) {
+  return scrubRawHtml(absolutizeRawUrls(html, ctx));
+}
+
+// 원문 모드 집계(보고용) — 게시판별로도 센다.
+const rawStats = { posts: 0, byBoard: new Map() };
 
 // ── 본문 유실 감시 ────────────────────────────────────────────────────
 /** 태그를 지우고 엔티티를 풀고 **공백을 전부 뺀** "보이는 글자". 태그를 빈 문자열로
@@ -1243,14 +1600,25 @@ function toRow(post, snapshot, suspicious) {
     imagesFound = (rawBody.match(DATA_IMG_RE) ?? []).length;
   }
 
-  // 표 재생성은 base64 추출 **뒤**, 정규화 **앞** — 앞이면 셀 안 img 의 src 교체분이
-  // 날아가고, 뒤면 이미 정화된 표를 다시 뜯게 된다.
   const ctx = { sourceUrl, sourcePath };
-  const beforeTables = tableStats.tables + tableStats.unwrapped + tableStats.dropped;
-  const tabled = rebuildTables(workingBody, ctx, tableStats);
-  if (tableStats.tables + tableStats.unwrapped + tableStats.dropped > beforeTables) tableStats.posts += 1;
 
-  const body = normalizeBody(tabled, ctx);
+  // 갈림길 — 디자인 글(셀 배경이 있는 표)은 재생성이 원본을 파괴한다. 그런 글만
+  // 원문 모드로 보낸다(파일 상단 4) 참조). 판정 기준은 base64 추출이 끝난 본문:
+  // 추출은 img 의 src 값만 바꾸므로 표 구조·배경색에는 영향이 없다.
+  const isRaw = isDesignPost(workingBody);
+  let body;
+  if (isRaw) {
+    rawStats.posts += 1;
+    rawStats.byBoard.set(board, (rawStats.byBoard.get(board) ?? 0) + 1);
+    body = rawModeBody(workingBody, ctx);
+  } else {
+    // 표 재생성은 base64 추출 **뒤**, 정규화 **앞** — 앞이면 셀 안 img 의 src 교체분이
+    // 날아가고, 뒤면 이미 정화된 표를 다시 뜯게 된다.
+    const beforeTables = tableStats.tables + tableStats.unwrapped + tableStats.dropped;
+    const tabled = rebuildTables(workingBody, ctx, tableStats);
+    if (tableStats.tables + tableStats.unwrapped + tableStats.dropped > beforeTables) tableStats.posts += 1;
+    body = normalizeBody(tabled, ctx);
+  }
 
   // 본문 유실 감시 ① 글자 — 조용히 먹지 않고 사람이 볼 목록에 올린다
   const before = visibleText(rawBody);
@@ -1291,6 +1659,9 @@ function toRow(post, snapshot, suspicious) {
     body_html_en: null,
     body_md_ko: null,
     body_md_en: null,
+    // 원문 모드 — 읽기·재편집 층이 이 글을 정화 없이 그대로 다루게 하는 표시.
+    // (컬럼이 없는 DB 는 insert/update 가 에러가 난다 — 아래 hintBodyRaw 참조)
+    body_raw: isRaw,
     // 발췌·썸네일은 뉴스만 — 다른 게시판은 읽기 층(thumbOf)이 본문 첫 <img> 로 폴백한다
     excerpt_ko: isNews ? nn(post?.excerpt) : null,
     excerpt_en: null,
@@ -1342,6 +1713,15 @@ function toRow(post, snapshot, suspicious) {
 }
 
 // ── Supabase ──────────────────────────────────────────────────────────
+/** posts.body_raw 컬럼이 없는 DB(마이그레이션 전)의 오류에 안내 한 줄을 덧붙인다.
+ *  posts-server.ts 처럼 컬럼 없이 재시도하지는 않는다 — 이 스크립트는 사람이
+ *  한 번 돌리는 배치라 조용히 폴백하는 것보다 멈추고 알려 주는 편이 낫다. */
+const hintBodyRaw = (message) =>
+  String(message ?? '').includes('body_raw')
+    ? `${message}\n  ↳ posts.body_raw 컬럼이 없습니다 — Supabase SQL Editor 에서` +
+      ' scripts/sql/2026-08-post-body-raw.sql 을 실행한 뒤 다시 시도하세요.'
+    : message;
+
 function makeClient() {
   const url = process.env.SUPABASE_URL;
   const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
@@ -1498,11 +1878,14 @@ for (const snap of snapshots) {
       const patch = {
         title_ko: row.title_ko,
         body_html_ko: row.body_html_ko,
+        // 본문과 짝인 값이다 — 함께 덮지 않으면 이미 있던 행이 정화 모드로 남아
+        // 원문 본문을 화이트리스트 렌더로 그리게 된다(디자인 소실).
+        body_raw: row.body_raw,
         pinned: row.pinned,
         created_at: row.created_at,
       };
       const up = await sb.from('posts').update(patch).eq('id', id);
-      if (up.error) { console.error(`update 실패: ${row.source_url} — ${up.error.message}`); process.exit(1); }
+      if (up.error) { console.error(`update 실패: ${row.source_url} — ${hintBodyRaw(up.error.message)}`); process.exit(1); }
       // 첨부는 통째로 교체(원문 첨부 목록이 곧 진실)
       const del = await sb.from('attachments').delete().eq('post_id', id);
       if (del.error) { console.error(`첨부 삭제 실패: ${row.source_url} — ${del.error.message}`); process.exit(1); }
@@ -1514,7 +1897,7 @@ for (const snap of snapshots) {
       stat.atts += attachments.length;
     } else {
       const ins = await sb.from('posts').insert(row).select('id').single();
-      if (ins.error) { console.error(`insert 실패: ${row.source_url} — ${ins.error.message}`); process.exit(1); }
+      if (ins.error) { console.error(`insert 실패: ${row.source_url} — ${hintBodyRaw(ins.error.message)}`); process.exit(1); }
       existing.set(row.source_url, { id: ins.data.id, managed: true });
       if (attachments.length > 0) {
         const a = await sb.from('attachments').insert(attachments.map((x) => ({ ...x, post_id: ins.data.id })));
@@ -1574,6 +1957,17 @@ console.log(
     ` · 건너뜀(수동) ${n4(tMan)} · 제외(불량) ${n4(tSkip)}`,
 );
 console.log(`  첨부 ${totalAtts}건`);
+
+// ── 원문 모드(디자인 글) ──
+// 이 글들은 아래 표 재생성 통계에 잡히지 않는다 — 재생성 경로 자체를 타지 않는다.
+if (rawStats.posts > 0) {
+  console.log(`  원문 모드(디자인 글) ${rawStats.posts}건 — 표 재생성 없이 원문 그대로(body_raw)`);
+  for (const key of BOARD_KEYS) {
+    const n = rawStats.byBoard.get(key);
+    if (!n) continue;
+    console.log(`    ${key.padEnd(18)} ${String(n).padStart(3)}건`);
+  }
+}
 
 // ── 표 재생성 ──
 // 표를 가진 글 수는 "행을 만들려고 정규화한" 전부가 기준이다(뒤에서 건너뛴 글 포함).
