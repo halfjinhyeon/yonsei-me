@@ -28,6 +28,7 @@ import {
   type InlineEditorProps,
 } from './InlineFields';
 import { CmsEmptyState } from './CmsEmptyState';
+import { FacultyActivitiesDialog } from './FacultyActivitiesDialog';
 
 /** 사진이 없을 때 쓰는 이름 첫 글자 아바타 색 — 이름 해시로 고정(사이트 카드와 같은 방식) */
 function accentFor(name: string): string {
@@ -76,6 +77,9 @@ export function FacultyCardsEditor({
     return [...set].sort();
   }, [rows, key]);
   const [titleFilter, setTitleFilter] = useState('');
+  // 학술활동은 교수마다 별도 파일(content/faculty-profiles/<이름>.json)이라 카드 트레이가
+  // 아니라 자기 파일을 직접 읽고 쓰는 다이얼로그가 맡는다
+  const [activitiesFor, setActivitiesFor] = useState<string | null>(null);
 
   /** 0건 안내의 "초기화" — 검색어와 직급 칩을 함께 비운다. 하나만 지우면 여전히 0건이다 */
   function resetQuery() {
@@ -151,9 +155,14 @@ export function FacultyCardsEditor({
               onMove={onMove}
               onPatch={onPatch}
               onUploadPhoto={onUploadPhoto}
+              onOpenActivities={setActivitiesFor}
             />
           ))}
         </ul>
+      )}
+
+      {activitiesFor && (
+        <FacultyActivitiesDialog name={activitiesFor} onClose={() => setActivitiesFor(null)} />
       )}
     </div>
   );
@@ -175,6 +184,7 @@ function FacultyCard({
   onMove,
   onPatch,
   onUploadPhoto,
+  onOpenActivities,
 }: {
   resource: ResourceDef;
   index: number;
@@ -192,6 +202,7 @@ function FacultyCard({
   onMove: (i: number, d: -1 | 1) => void;
   onPatch: (i: number, path: string, value: string) => void;
   onUploadPhoto: (file: File) => Promise<string>;
+  onOpenActivities: (name: string) => void;
 }) {
   const name = cellText(form, 'name');
   const title = cellText(form, 'title');
@@ -390,6 +401,29 @@ function FacultyCard({
         <CardFootBar
           dirty={dirty}
           disabled={disabled}
+          left={
+            // left 를 넘기면 CardFootBar 기본 "수정됨" 배지가 사라지므로 같은 마크업을
+            // 여기서 재현하고 그 옆에 학술활동 버튼을 나란히 둔다.
+            <span className="flex items-center gap-2">
+              <span
+                className={cn('text-[11px] font-bold', dirty ? 'text-yonsei-blue' : 'text-transparent')}
+              >
+                {dirty ? '수정됨' : '·'}
+              </span>
+              {/* 조회는 잠금과 무관하게 열린다 — 실적 파일은 카드 트레이와 별개로 저장된다 */}
+              <button
+                type="button"
+                onClick={() => {
+                  const n = name.trim();
+                  if (n) onOpenActivities(n);
+                }}
+                disabled={busy}
+                className="text-[11px] font-bold text-yonsei-blue hover:underline disabled:opacity-40"
+              >
+                학술활동
+              </button>
+            </span>
+          }
           onDetail={() => onEditDetail(index)}
           onDelete={() => onDelete(index)}
           className="mt-3 border-surface-border bg-transparent px-0 pb-0 pt-2.5"

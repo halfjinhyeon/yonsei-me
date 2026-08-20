@@ -125,6 +125,29 @@ function enrichFacultyPhotos(text) {
   return { text: `${JSON.stringify(records, null, 2)}\n`, filled };
 }
 
+// ── 교수 학술활동 프로필 (content/faculty-profiles/<한글이름>.json — 교수마다 한 파일) ──
+// 파일 집합이 교수 명단을 따라 변하므로 club-*.md 처럼 소스에서 동적으로 나열한다.
+// (managed-content.ts 의 isFacultyProfilePath 정규식과 같은 대상 — 변경 시 함께 갱신.)
+function listFacultyProfiles() {
+  if (fromWorktree) {
+    try {
+      return readdirSync(join('content', 'faculty-profiles'))
+        .filter((f) => f.endsWith('.json'))
+        .map((f) => `content/faculty-profiles/${f}`);
+    } catch {
+      return [];
+    }
+  }
+  // core.quotepath=false — 한글 파일명이 8진수 이스케이프("\354…")로 나오지 않게
+  const r = spawnSync(
+    'git',
+    ['-c', 'core.quotepath=false', 'ls-tree', '--name-only', 'origin/main', 'content/faculty-profiles/'],
+    { encoding: 'utf8' },
+  );
+  if (r.status !== 0) return [];
+  return r.stdout.split(/\r?\n/).filter((p) => p.endsWith('.json'));
+}
+
 // ── 대상 경로 확정 (club-*.md 는 clubs.json 의 slug 에서 동적 생성) ──
 const clubsText = readSource(CLUBS_JSON);
 if (clubsText === null) {
@@ -132,7 +155,15 @@ if (clubsText === null) {
   process.exit(1);
 }
 const clubSlugs = JSON.parse(clubsText).map((c) => c.slug);
-const targets = [...MANAGED_JSON, ...clubSlugs.map((s) => `content/pages/club-${s}.md`)];
+const facultyProfiles = listFacultyProfiles();
+if (facultyProfiles.length === 0) {
+  console.warn('  ⚠ content/faculty-profiles 대상이 0개입니다 — 소스에 파일이 없거나 나열 실패.');
+}
+const targets = [
+  ...MANAGED_JSON,
+  ...clubSlugs.map((s) => `content/pages/club-${s}.md`),
+  ...facultyProfiles,
+];
 
 console.log(`소스: ${fromWorktree ? '로컬 작업 트리' : 'origin/main'} · 대상 ${targets.length}개 파일`);
 if (enrichPhotos) console.log(`사진 보강: ${FACULTY_JSON} 의 빈 photo 를 파일명 매칭으로 채웁니다.`);

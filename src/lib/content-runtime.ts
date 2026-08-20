@@ -14,7 +14,11 @@
 
 import { unstable_cache } from 'next/cache';
 import { createClient, type SupabaseClient } from '@supabase/supabase-js';
-import { MANAGED_FILES, isManagedPath } from '@/lib/admin/managed-content';
+import {
+  MANAGED_FILES,
+  isManagedPath,
+  isFacultyProfilePath,
+} from '@/lib/admin/managed-content';
 import {
   history as gitHistory,
   staff as gitStaff,
@@ -27,9 +31,11 @@ import {
   getLabSummaries as gitLabSummaries,
   getFacultySummaries as gitFacultySummaries,
   getClubs as gitClubs,
+  getFacultyProfile as gitFacultyProfile,
   getFacultyPhotoMap,
   adaptFacultyRecords,
   adaptClubs,
+  type FacultyProfile,
   type FacultyRecord,
   type LabDirectoryEntry,
   type ClubSummary,
@@ -85,12 +91,15 @@ interface DbContentFile {
 // 'content' 태그 하나로 단순·확실하게 캐시한다(게시판의 'posts' 와 같은 관례).
 // drafts/ 는 CMS 임시저장 초안(/api/admin/drafts)이 같은 테이블에 얹혀 산다 —
 // 사이트 콘텐츠가 아니고, 쌓이면 이 전량 조회가 캐시 2MB 상한을 위협하므로 뺀다.
+// 교수 학술활동 프로필(faculty-profiles/)도 뺀다 — 31개 합계 ~2.5MB 라 전량 캐시에
+// 실으면 상한을 넘긴다. 프로필은 아래 getFacultyProfileRuntime 이 한 명씩 따로 캐시한다.
 const fetchAllContentFiles = unstable_cache(
   async (): Promise<DbContentFile[]> => {
     const { data, error } = await sb()
       .from('content_files')
       .select('path, body, version')
-      .not('path', 'like', 'drafts/%');
+      .not('path', 'like', 'drafts/%')
+      .not('path', 'like', 'content/faculty-profiles/%');
     if (error) throw new Error(`콘텐츠 파일 조회 실패: ${error.message}`);
     return (data ?? []) as DbContentFile[];
   },
@@ -246,6 +255,36 @@ export interface ScholarshipRecord {
 export async function getScholarshipsRuntime(): Promise<ScholarshipRecord[]> {
   const raw = await getManagedJson<ScholarshipRecord[]>(MANAGED_FILES.scholarships);
   return raw ?? scholarshipsJson;
+}
+
+/** 교수 학술활동 프로필 한 명 — content/faculty-profiles/<이름>.json.
+ *  전량 조회(fetchAllContentFiles)에서 일부러 뺀 데이터라 한 명씩 개별 캐시한다
+ *  (합계 ~2.5MB 는 캐시 2MB 상한을 넘지만 한 명 15~140KB 는 문제없다).
+ *  같은 'content' 태그를 달아 CMS 저장(revalidateTag)이 즉시 무효화한다.
+ *  이름은 URL slug 에서 오므로 경로 조립 전에 allowlist 정규식으로 거른다. */
+export async function getFacultyProfileRuntime(name: string): Promise<FacultyProfile | null> {
+  const path = `content/faculty-profiles/${name}.json`;
+  if (contentSource() !== 'git' && isFacultyProfilePath(path)) {
+    try {
+      const text = await unstable_cache(
+        async (): Promise<string | null> => {
+          const { data, error } = await sb()
+            .from('content_files')
+            .select('body')
+            .eq('path', path)
+            .maybeSingle();
+          if (error) throw new Error(`콘텐츠 파일 조회 실패: ${error.message}`);
+          return data ? String(data.body) : null;
+        },
+        ['content-file-one', path],
+        { tags: ['content'], revalidate: 3600 },
+      )();
+      if (text !== null) return JSON.parse(text) as FacultyProfile;
+    } catch (err) {
+      console.error(`[content-runtime] ${path} 조회 실패 — 파일 폴백:`, err);
+    }
+  }
+  return gitFacultyProfile(name);
 }
 
 /** content/pages/<slug>.md 원문. 관리 대상(동아리 본문)만 DB 를 보고,

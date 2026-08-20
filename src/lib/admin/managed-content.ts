@@ -37,12 +37,21 @@ export function isClubMarkdownPath(path: string): boolean {
   return CLUB_MD_RE.test(path);
 }
 
-/** CMS 가 쓸 수 있는 경로인지 — 관리 JSON + 동아리 본문 전부의 합집합.
+/** 교수 학술활동 프로필 — 교수마다 한 파일(content/faculty-profiles/<한글이름>.json).
+ *  파일명이 곧 교수 한글 이름이자 상세 페이지 slug 라 한글만 허용한다(경로 탈출 차단 겸). */
+const FACULTY_PROFILE_RE = /^content\/faculty-profiles\/[가-힣]{2,10}\.json$/;
+
+export function isFacultyProfilePath(path: string): boolean {
+  return FACULTY_PROFILE_RE.test(path);
+}
+
+/** CMS 가 쓸 수 있는 경로인지 — 관리 JSON + 동아리 본문 + 교수 프로필 전부의 합집합.
  *  구 장학금 md(content/pages/undergraduate-scholarship.md)는 scholarships.json 전환으로
  *  빠졌다 — DB 에 남은 옛 행은 이 allowlist 가 거부해 더는 수정되지 않는다. */
 export function isManagedPath(path: string): boolean {
   return (
     (Object.values(MANAGED_FILES) as readonly string[]).includes(path) ||
-    isClubMarkdownPath(path)
+    isClubMarkdownPath(path) ||
+    isFacultyProfilePath(path)
   );
 }

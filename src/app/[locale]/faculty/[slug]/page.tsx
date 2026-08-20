@@ -5,8 +5,12 @@ import { Hero } from '@/components/Hero';
 import { Section } from '@/components/Section';
 import { DetailNavBar } from '@/components/DetailNavBar';
 import { FacultyProfileArticle } from '@/components/FacultyProfileArticle';
-import { getFacultyProfile, getFacultyProfileNames } from '@/lib/faculty';
-import { getFacultyDirectoryRuntime, getFacultySummariesRuntime } from '@/lib/content-runtime';
+import { getFacultyProfileNames } from '@/lib/faculty';
+import {
+  getFacultyDirectoryRuntime,
+  getFacultyProfileRuntime,
+  getFacultySummariesRuntime,
+} from '@/lib/content-runtime';
 import { pick } from '@/lib/content';
 import { pageAlternates } from '@/lib/seo';
 import { routing } from '@/i18n/routing';
@@ -26,7 +30,8 @@ export async function generateMetadata({
   params: { locale: string; slug: string };
 }): Promise<Metadata> {
   const name = decodeURIComponent(params.slug);
-  const profile = getFacultyProfile(name);
+  // CMS 학술활동 편집(content_files)이 재배포 없이 반영되도록 데이터 레이어를 읽는다
+  const profile = await getFacultyProfileRuntime(name);
   if (!profile) return {};
   const record = (await getFacultyDirectoryRuntime()).find((f) => f.name === profile.name) ?? null;
   return {
@@ -45,7 +50,7 @@ export default async function FacultyProfilePage({
 }) {
   setRequestLocale(params.locale);
   const name = decodeURIComponent(params.slug);
-  const profile = getFacultyProfile(name);
+  const profile = await getFacultyProfileRuntime(name);
   if (!profile) notFound();
 
   // 직위·보직·연구실·사진은 프로필 JSON 에 없다 — 같은 이름의 인명록 레코드에서 가져온다
