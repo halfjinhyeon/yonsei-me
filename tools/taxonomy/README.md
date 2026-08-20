@@ -55,7 +55,18 @@ node tools/taxonomy/migrate-fields-db.mjs --apply
   01→06)와 다르다: 그대로 쓰면 화살표의 레인 통과가 9회인데, 설계·제조와 로보틱스·제어를
   맞바꾸면 5회로 줄어든다(6! 전수 탐색 최소값).
 
-## 남은 일
+## 히어로 사진
 
-- **히어로 사진**: 구 계산·해석 슬라이드 사진을 마이크로·나노가 임시로 물려받았다.
-  분야에 맞는 사진으로 CMS 에서 교체할 것.
+분야 구성이 바뀌면 새 분야가 임시로 물려받은 사진을 제 사진으로 갈아야 한다. 파일을 R2 에
+올리고 `content/hero-slides.json` 의 URL 을 고친 뒤:
+
+```bash
+node tools/taxonomy/sync-hero-images.mjs           # 드라이런
+node tools/taxonomy/sync-hero-images.mjs --apply   # DB 의 image·imageMobile 만 갱신
+```
+
+분야 키·순서·라벨은 건드리지 않는다. CMS 히어로 편집기로 올려도 결과는 같다.
+
+마이크로·나노(2026-08 신설)는 구 계산·해석 슬라이드 사진이 코드 에디터 스톡컷이라 쓸 수
+없어, 학부가 이미 쓰던 현미경 원본(6720×4480)에서 대물렌즈부를 크롭해 만들었다 —
+`public/img/hero{,-mobile}/마이크로나노.jpg`. 학부 자체 촬영본이 생기면 CMS 에서 교체할 것.
