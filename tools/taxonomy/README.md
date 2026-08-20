@@ -44,6 +44,25 @@ node tools/taxonomy/migrate-fields-db.mjs --apply
 들어 있는 내용에 같은 변환만 적용한다 — CMS 편집분(연구실 사진·인턴 모집 여부·히어로
 슬라이드 사진)을 덮어쓰지 않기 위해서다.
 
+### ⚠️ DB 를 고쳐도 화면은 바로 안 바뀐다
+
+이 스크립트들은 Postgres 에 직접 쓰기 때문에 CMS 저장 경로(`/api/admin/content`)와 달리
+`revalidateTag('content')` 를 부르지 않는다. 그래서 반영까지 두 겹의 캐시를 기다려야 한다:
+
+- `fetchAllContentFiles`(content-runtime.ts) — 전량 조회 `unstable_cache`, TTL **1시간**
+- 각 페이지의 ISR — `export const revalidate = 300`, **5분**
+
+실제로 겪은 모습: 교과목 페이지만 구 데이터로 남아 탭 수가 `역학·소재 27 · 나머지 0` 으로
+보였다(구 키라 새 탭에 하나도 안 걸린다). 다른 페이지는 멀쩡해서 데이터가 안 들어간 줄
+알기 쉬운데, **ISR 창이 아직 안 끝났을 뿐**이었다. 5분 뒤 저절로 맞았다.
+
+바로 반영이 필요하면 CMS 에서 아무 콘텐츠나 한 번 저장하면 된다(그 경로가 태그를 턴다).
+확인은 DB·레포가 아니라 **화면의 탭 수**로 한다:
+
+```bash
+curl -s https://<도메인>/ko/graduate/courses | grep -o '역학 · 소재</span><span[^>]*>[0-9]*'
+```
+
 ## 코드 쪽 단일 출처
 
 - `src/lib/research-fields.ts` — 타입 + 표시 순서. **클라이언트 컴포넌트가 값으로
