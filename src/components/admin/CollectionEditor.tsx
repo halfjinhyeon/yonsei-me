@@ -25,12 +25,13 @@ import {
   savedBanner,
   type RepoConfig,
 } from '@/lib/admin/content-api';
-import { uploadAttachment } from '@/lib/admin/storage';
+import { uploadAttachment, type UploadProgressHandler } from '@/lib/admin/storage';
 import {
   arrayToRecord,
   cellText,
   defaultFromForm,
   defaultToForm,
+  fileNameOf,
   recordToArray,
   type FormRecord,
   type LinkedSummary,
@@ -139,11 +140,16 @@ export function CollectionEditor({ config, resource, onDirtyChange }: Props) {
    * 쓴다(파일명이 더 이상 이름과 묶이지 않는다 → 이름 매칭 규칙에 의존하지 않는다).
    */
   const uploadImage = useCallback(
-    async (file: File, opts?: { maxDim?: number; folder?: string }): Promise<string> => {
+    async (
+      file: File,
+      opts?: { maxDim?: number; folder?: string; onProgress?: UploadProgressHandler },
+    ): Promise<string> => {
       // folder 는 필드 정의(imageUpload.folder)의 마지막 세그먼트 — 교수진 'faculty',
       // 메인 이미지 'hero' 처럼 리소스별로 저장 폴더가 갈린다(옛 하드코딩 'faculty' 폴백).
       // maxDim 은 히어로처럼 큰 화면을 채우는 사진의 압축 상한 상향용(storage 기본 1600).
-      const { url } = await uploadAttachment(config, opts?.folder ?? 'faculty', file, undefined, undefined, {
+      // onProgress 는 실시간 % 를 그리는 화면(연혁 연대 사진)만 넘긴다 — 넘기지 않는
+      // 화면은 지금처럼 불확정 막대를 쓴다.
+      const { url } = await uploadAttachment(config, opts?.folder ?? 'faculty', file, opts?.onProgress, undefined, {
         maxDim: opts?.maxDim,
       });
       return url;
@@ -186,8 +192,20 @@ export function CollectionEditor({ config, resource, onDirtyChange }: Props) {
   const [inlineEdits, setInlineEdits] = useState<Record<number, InlinePatch>>({});
   const cardDirty = Object.keys(inlineEdits).length > 0;
 
+  /**
+   * 곁 파일(resource.linkedImageMap — 연혁 연대 사진) 의 로드 시점 원본과 버전.
+   * sha 가 없으면 파일이 아직 없다는 뜻이라 저장이 신규 생성 경로를 탄다
+   * (연구실 AI 요약 loadSummary 와 같은 규약).
+   */
+  const [imageMap, setImageMap] = useState<{ loaded: Record<string, string>; sha?: string }>({
+    loaded: {},
+  });
+  /** 대기 중인 사진 편집 — 키=맵의 키(연대), 값=새 URL('' 이면 삭제) */
+  const [imageEdits, setImageEdits] = useState<Record<string, string>>({});
+  const imagesDirty = Object.keys(imageEdits).length > 0;
+
   const orderDirty = orderedRaw !== null;
-  const dirty = editing !== null || orderDirty || cardDirty;
+  const dirty = editing !== null || orderDirty || cardDirty || imagesDirty;
 
   useEffect(() => {
     onDirtyChange?.(dirty);
@@ -211,6 +229,21 @@ export function CollectionEditor({ config, resource, onDirtyChange }: Props) {
       setRaw([]);
       setListError(err instanceof Error ? err.message : '목록을 불러오지 못했습니다.');
     } finally {
+      // 곁 파일(연대 사진 맵)은 본 목록과 성패를 묶지 않는다 — 아직 없을 수도 있고
+      // (Optional 로드), 읽기에 실패해도 연혁 항목 편집까지 막을 이유가 없다.
+      // 실패해 sha 를 못 받으면 저장이 '신규 생성' 으로 가는데, 행이 이미 있으면
+      // 서버가 409 로 막으므로 남의 맵을 덮어쓰지는 않는다.
+      if (resource.linkedImageMap) {
+        try {
+          const map = await loadJsonOptional<Record<string, string>>(
+            config,
+            resource.linkedImageMap.file,
+          );
+          setImageMap({ loaded: map?.data ?? {}, sha: map?.sha });
+        } catch {
+          setImageMap({ loaded: {} });
+        }
+      }
       setLoading(false);
     }
   }, [config, resource]);
@@ -222,6 +255,7 @@ export function CollectionEditor({ config, resource, onDirtyChange }: Props) {
     setMd(null);
     setSummary(null);
     setOrderedRaw(null);
+    setImageEdits({});
     setSearch('');
     setSuccess(null);
     setSaveError(null);
@@ -259,6 +293,19 @@ export function CollectionEditor({ config, resource, onDirtyChange }: Props) {
     [inlineEdits],
   );
 
+  /** 대기 편집이 얹힌 사진 맵 — '' 는 삭제이므로 키 자체를 뺀다(저장 형태와 같다) */
+  const imageValues = useMemo(() => {
+    const out: Record<string, string> = { ...imageMap.loaded };
+    for (const [key, url] of Object.entries(imageEdits)) {
+      if (url === '') delete out[key];
+      else out[key] = url;
+    }
+    return out;
+  }, [imageMap.loaded, imageEdits]);
+
+  /** '수정됨' 배지를 붙일 맵 키 */
+  const imageDirtyKeys = useMemo(() => new Set(Object.keys(imageEdits)), [imageEdits]);
+
   // ---- 필수값 누락 ----
   //
   // 목록에서 필수 칸을 비우면 커밋 자체는 성공하고 사이트에 빈 카드가 뜬다. 저장
@@ -285,6 +332,9 @@ export function CollectionEditor({ config, resource, onDirtyChange }: Props) {
   // 유지해 애초에 공존하지 못하게 막고(순서 변경 중 카드 편집 잠금 + 카드 편집 중
   // 순서 이동 잠금), 저장은 둘 중 대기 중인 쪽 하나만 실행한다.
   const ORDER_CHANGE_ID = `${resource.key}:__order__`;
+  /** 사진 맵 변경의 트레이 id 접두 — 인덱스 기반 변경과 구분해 되돌리기·삭제 경고가
+   *  각자 다르게 다룬다(사진은 키가 연대라 항목을 지워도 살아남는다) */
+  const IMAGE_CHANGE_PREFIX = `${resource.key}:__image__:`;
 
   const trayChanges = useMemo<PendingChange[]>(() => {
     const list: PendingChange[] = [];
@@ -318,12 +368,53 @@ export function CollectionEditor({ config, resource, onDirtyChange }: Props) {
         });
       }
     }
+    // 곁 파일(연대 사진) — 항목이 아니라 연대에 붙는 변경이라 itemLabel 이 '1990년대' 다.
+    // 값은 긴 업로드 URL 이므로 칩에는 파일명만 말한다(빈 값은 칩이 '없음' 으로 그린다).
+    if (resource.linkedImageMap) {
+      const link = resource.linkedImageMap;
+      for (const [key, url] of Object.entries(imageEdits)) {
+        list.push({
+          id: `${IMAGE_CHANGE_PREFIX}${key}`,
+          scopeLabel: resource.label,
+          itemLabel: `${key}년대`,
+          fieldLabel: link.label,
+          before: fileNameOf(imageMap.loaded[key] ?? ''),
+          after: fileNameOf(url),
+        });
+      }
+    }
     return list;
-  }, [ORDER_CHANGE_ID, inlineEdits, orderedRaw, raw, displayRaw, formOf, resource]);
+  }, [
+    ORDER_CHANGE_ID,
+    IMAGE_CHANGE_PREFIX,
+    inlineEdits,
+    imageEdits,
+    imageMap.loaded,
+    orderedRaw,
+    raw,
+    displayRaw,
+    formOf,
+    resource,
+  ]);
+
+  /** 항목 삭제로 함께 잃게 되는 대기 변경 수 — 인덱스에 묶인 것만 센다.
+   *  (연대 사진은 키가 연대라 항목이 밀려도 그대로 쓸 수 있어 살려 둔다) */
+  const indexBoundChanges = trayChanges.filter(
+    (c) => !c.id.startsWith(IMAGE_CHANGE_PREFIX),
+  ).length;
 
   function revertTrayChange(id: string) {
     if (id === ORDER_CHANGE_ID) {
       resetOrder();
+      return;
+    }
+    if (id.startsWith(IMAGE_CHANGE_PREFIX)) {
+      const key = id.slice(IMAGE_CHANGE_PREFIX.length);
+      setImageEdits((prev) => {
+        const next = { ...prev };
+        delete next[key];
+        return next;
+      });
       return;
     }
     // id = `${resource.key}:${index}:${path}` — 리소스 키·경로에는 ':' 이 없다
@@ -346,9 +437,12 @@ export function CollectionEditor({ config, resource, onDirtyChange }: Props) {
   function revertAllTray() {
     resetOrder();
     resetInlineEdits();
+    setImageEdits({});
   }
 
-  /** 트레이의 "저장 (커밋)" — 대기 중인 쪽 하나를 기존 커밋 경로로 그대로 넘긴다 */
+  /** 트레이의 "저장 (커밋)" — 대기 중인 쪽 하나를 기존 커밋 경로로 그대로 넘긴다.
+   *  연대 사진 맵은 **다른 파일**이라 본 파일과 버전을 다투지 않으므로, 값 편집과
+   *  같은 저장에 이어 붙는다(saveInlineEdits 안쪽 참고). */
   async function saveTray() {
     if (orderDirty) {
       await saveOrder();
@@ -642,6 +736,9 @@ export function CollectionEditor({ config, resource, onDirtyChange }: Props) {
   // 본문까지 다시 쓰게 하는 편이 더 나쁘다.
   async function handleDelete(index: number) {
     const form = formOf(index);
+    // ⚠️ 대기 중인 연대 사진(imageEdits)은 **지우지 않는다** — 키가 배열 인덱스가
+    // 아니라 연대라 항목이 밀려도 가리키는 곳이 바뀌지 않는다. 아래 삭제 확인
+    // 모달도 같은 이유로 사진 변경을 "함께 사라지는 건수" 에서 뺀다.
     setInlineEdits({});
     setOrderedRaw(null);
     setSaving(true);
@@ -697,40 +794,79 @@ export function CollectionEditor({ config, resource, onDirtyChange }: Props) {
     setSuccess(null);
   }
 
-  /** 목록에서 고친 값들을 한 번에 커밋 */
+  /** 곁 파일(연대 사진) 지정·삭제. url='' 이면 삭제다.
+   *  값 편집과 같은 규약 — 원본과 같아진 키는 대기 목록에서 뺀다(안 바뀐 값으로
+   *  트레이에 칩이 남지 않게). */
+  function patchImage(key: string, url: string) {
+    setSuccess(null);
+    setImageEdits((prev) => {
+      const next = { ...prev, [key]: url };
+      if ((imageMap.loaded[key] ?? '') === url) delete next[key];
+      return next;
+    });
+  }
+
+  /** 목록에서 고친 값들 + 곁 파일(연대 사진 맵)을 한 번의 저장으로 커밋 */
   async function saveInlineEdits() {
     const indices = Object.keys(inlineEdits).map(Number);
-    if (indices.length === 0) return;
+    if (indices.length === 0 && !imagesDirty) return;
     setSaving(true);
     setSaveError(null);
     setSuccess(null);
     try {
-      // 저장 기준은 로드 시점 배열(raw) — 순서 변경과 겹치면 sha 충돌로 방어된다.
-      // 직렬화는 전부 applyInlinePatch 가 맡는다(필드 종류별 빈 값 규칙·localized
-      // en 폴백·checkbox 키 생략). 여기서 값 모양을 다시 판단하지 않는다.
-      const next = raw.slice();
-      for (const i of indices) {
-        next[i] = applyInlinePatch(
-          resource.fields,
-          next[i] as Record<string, unknown>,
-          inlineEdits[i],
+      if (indices.length > 0) {
+        // 저장 기준은 로드 시점 배열(raw) — 순서 변경과 겹치면 sha 충돌로 방어된다.
+        // 직렬화는 전부 applyInlinePatch 가 맡는다(필드 종류별 빈 값 규칙·localized
+        // en 폴백·checkbox 키 생략). 여기서 값 모양을 다시 판단하지 않는다.
+        const next = raw.slice();
+        for (const i of indices) {
+          next[i] = applyInlinePatch(
+            resource.fields,
+            next[i] as Record<string, unknown>,
+            inlineEdits[i],
+          );
+        }
+        const payload =
+          resource.format === 'record' ? arrayToRecord(next, resource.idField!) : next;
+        const names = indices
+          .map((i) => resource.summarize(toForm(next[i])) || `#${i + 1}`)
+          .slice(0, 3)
+          .join(', ');
+        const more = indices.length > 3 ? ` 외 ${indices.length - 3}건` : '';
+        await commitJson(
+          config,
+          resource.file,
+          payload,
+          sha,
+          `content: ${resource.label} 수정 — ${names}${more}`,
         );
+        setInlineEdits({});
       }
-      const payload =
-        resource.format === 'record' ? arrayToRecord(next, resource.idField!) : next;
-      const names = indices
-        .map((i) => resource.summarize(toForm(next[i])) || `#${i + 1}`)
-        .slice(0, 3)
-        .join(', ');
-      const more = indices.length > 3 ? ` 외 ${indices.length - 3}건` : '';
-      await commitJson(
-        config,
-        resource.file,
-        payload,
-        sha,
-        `content: ${resource.label} 수정 — ${names}${more}`,
-      );
-      setInlineEdits({});
+
+      // 곁 파일은 본 파일 저장 성공 뒤에 이어 붙인다(linkedMarkdown·linkedSummary 와
+      // 같은 순서·같은 한계 — 두 파일을 한 트랜잭션으로 묶지 않으므로, 여기서
+      // 실패하면 값만 저장되고 사진은 대기 상태로 남는다. 남은 대기는 지우지 않아
+      // 사용자가 그대로 다시 저장할 수 있다).
+      if (resource.linkedImageMap && imagesDirty) {
+        const link = resource.linkedImageMap;
+        const nextMap: Record<string, string> = { ...imageMap.loaded };
+        for (const [key, url] of Object.entries(imageEdits)) {
+          // 빈 값은 키를 지운다 — 사이트는 키가 없는 연대를 "사진 없음" 으로 읽는다
+          if (url === '') delete nextMap[key];
+          else nextMap[key] = url;
+        }
+        // 파일이 아직 없으면 sha 가 없다 → 빈 문자열로 넘겨 신규 생성 경로를 탄다
+        // (키가 연대 숫자 문자열이라 JSON 직렬화 순서는 자동으로 오름차순이 된다)
+        await commitJson(
+          config,
+          link.file,
+          nextMap,
+          imageMap.sha ?? '',
+          `content: ${resource.label} ${link.label} — ${Object.keys(imageEdits).join(', ')}`,
+        );
+        setImageEdits({});
+      }
+
       finishSave();
     } catch (err) {
       // 오류 문구는 트레이가 띄운다. 여기서는 409/422 재로드만 하고 다시 던져
@@ -822,6 +958,9 @@ export function CollectionEditor({ config, resource, onDirtyChange }: Props) {
           setConflict(null);
           setInlineEdits({});
           setOrderedRaw(null);
+          // 사진 대기 변경도 함께 비운다 — 재로드가 곁 파일 원본까지 새로 받으므로
+          // 옛 원본 기준으로 쌓인 편집을 그 위에 얹으면 무엇이 바뀌는지 알 수 없다.
+          setImageEdits({});
           void load();
         }}
         onCancel={() => setConflict(null)}
@@ -1080,11 +1219,24 @@ export function CollectionEditor({ config, resource, onDirtyChange }: Props) {
               expandKeys={view.expandKeys}
             />
           )}
+          {/* 연혁 — 항목 타임라인 + 연대마다 사진 한 장(곁 파일). 사진 편집 묶음은
+              linkedImageMap 이 선언돼 있을 때만 넘긴다(없으면 슬롯 없이 그린다). */}
           {view?.kind === 'timeline' && (
             <HistoryTimelineEditor
               {...viewProps}
               dateKey={view.dateKey}
               bodyKey={view.bodyKey}
+              decadeImages={
+                resource.linkedImageMap
+                  ? {
+                      spec: resource.linkedImageMap,
+                      values: imageValues,
+                      dirtyKeys: imageDirtyKeys,
+                      onUpload: uploadImage,
+                      onPatch: patchImage,
+                    }
+                  : null
+              }
             />
           )}
 
@@ -1199,9 +1351,11 @@ export function CollectionEditor({ config, resource, onDirtyChange }: Props) {
                 {resource.summarize(formOf(deleting))}
               </p>
               <p className="mt-2">삭제는 즉시 저장되어 사이트에 반영되며, 화면에서 되돌릴 수 없습니다.</p>
-              {trayChanges.length > 0 && (
+              {/* 사라지는 것은 **인덱스에 묶인** 대기 변경뿐이다 — 연대 사진은 키가
+                  연대라 항목이 밀려도 그대로 남는다(handleDelete 주석 참고) */}
+              {indexBoundChanges > 0 && (
                 <p className="mt-2 text-[#b42318]">
-                  저장 대기 중인 변경 {trayChanges.length}건은 함께 사라집니다 — 삭제하면 항목
+                  저장 대기 중인 변경 {indexBoundChanges}건은 함께 사라집니다 — 삭제하면 항목
                   위치가 밀려 그 변경을 그대로 적용할 수 없기 때문입니다.
                 </p>
               )}

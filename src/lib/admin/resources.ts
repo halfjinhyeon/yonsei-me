@@ -119,6 +119,27 @@ export interface LinkedSummary {
   keyOf: (form: FormRecord) => string;
 }
 
+/**
+ * 목록 화면이 본 파일과 **함께** 편집하는 "키 → 사진 URL" 맵 — 연혁 연대 사진.
+ *
+ * linkedSummary 가 항목 폼 곁에 붙는 공유 파일이라면, 이쪽은 목록 화면 곁에 붙는다.
+ * 키가 항목(배열 인덱스)이 아니라 연대라, 항목을 지우거나 순서가 바뀌어도 어긋나지
+ * 않는다 — 그래서 인덱스 기반 대기 편집(inlineEdits)과 달리 삭제에도 살아남는다.
+ * 저장은 트레이의 같은 "저장 (커밋)" 한 번에 본 파일 뒤로 이어 붙는다.
+ */
+export interface LinkedImageMap {
+  /** 트레이 칩의 필드 이름 — '사진' */
+  label: string;
+  /** 맵 파일 경로 (저장소 루트 기준) */
+  file: string;
+  /** 업로드 저장 폴더 키 (스토리지의 uploads/<키>/) */
+  folder: string;
+  /** 원본 용량 게이트(MB) — 압축은 업로드 경로가 한다 */
+  maxSizeMB: number;
+  /** 압축 상한(긴 변 px). 생략하면 스토리지 기본(1600) */
+  maxDim?: number;
+}
+
 export interface ResourceDef {
   key: ResourceKey;
   /** 사이드바·제목 라벨 */
@@ -153,6 +174,8 @@ export interface ResourceDef {
   linkedMarkdown?: LinkedMarkdown;
   /** 공유 record 파일 속 이 항목의 레코드 (연구실 AI 요약) */
   linkedSummary?: LinkedSummary;
+  /** 목록 화면이 함께 편집하는 "키 → 사진 URL" 맵 파일 (연혁 연대 사진) */
+  linkedImageMap?: LinkedImageMap;
   /** 도메인 레코드 → 폼 값 (기본: defaultToForm) */
   toForm?: (raw: unknown) => FormRecord;
   /** 폼 값 → 도메인 레코드 (기본: defaultFromForm) */
@@ -242,6 +265,19 @@ export function validateForm(fields: FieldDef[], form: FormRecord): string | nul
     }
   }
   return null;
+}
+
+/** URL 에서 파일명만 — 트레이 칩·사진 슬롯이 긴 업로드 URL 대신 사람이 알아보는
+ *  이름을 말한다. 값이 비었으면 빈 문자열(칩은 그걸 '없음' 으로 그린다). */
+export function fileNameOf(url: string): string {
+  const clean = url.split(/[?#]/)[0];
+  const last = clean.split('/').filter(Boolean).pop() ?? '';
+  try {
+    return decodeURIComponent(last);
+  } catch {
+    // 퍼센트 인코딩이 깨진 URL — 원문을 그대로 보여 주는 편이 빈칸보다 낫다
+    return last;
+  }
 }
 
 /** 목록 셀·검색용 표시 문자열 */
@@ -402,6 +438,15 @@ const history: ResourceDef = {
   orderable: false,
   // 사이트가 연월 내림차순으로 자동 정렬하므로 순서 이동을 두지 않는다(orderable:false).
   listView: { kind: 'timeline', dateKey: 'date', bodyKey: 'title' },
+  // 연대 사진 — 사진은 항목이 아니라 **연대**에 붙으므로 별도 맵 파일이다.
+  // 좌우 배치는 사이트가 정한다(사진 있는 연대끼리 자동 교대) — 고를 값이 없어
+  // 필드로 두지 않는다. 자세한 사정은 managed-content.ts 의 historyImages 주석.
+  linkedImageMap: {
+    label: '사진',
+    file: MANAGED_FILES.historyImages,
+    folder: 'history',
+    maxSizeMB: 10,
+  },
   summarize: (f) => `${cellText(f, 'date')} ${cellText(f, 'title')}`,
 };
 

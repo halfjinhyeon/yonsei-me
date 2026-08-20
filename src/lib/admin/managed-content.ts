@@ -9,6 +9,11 @@
  *  ResourceKey 를 import 하지 않는다 — resources.ts 가 이 모듈을 참조하므로 순환이 된다. */
 export const MANAGED_FILES = {
   history: 'content/history.json',
+  // 연혁 연대 사진 — 연대(10년) → 사진 URL 맵. 연혁 항목 배열과 **다른 파일**이다:
+  // 사진은 항목이 아니라 연대에 붙고, 항목을 지워도 어긋나면 안 되기 때문이다.
+  // (2026-08 전까지는 public/img/history/<연도>.jpg 폴더 스캔이었다 — CMS 에서
+  //  손댈 수 없어 맵 파일로 옮겼다. src/lib/history-images.ts 주석 참고)
+  historyImages: 'content/history-images.json',
   facultyDirectory: 'content/faculty-directory.json',
   staff: 'content/staff.json',
   heroSlides: 'content/hero-slides.json',

@@ -201,6 +201,15 @@ export function IcoArrowRight(p: IconProps) {
   );
 }
 
+/** 더하기 — 비어 있는 자리에 무언가를 넣으라는 표시(연혁 연대 사진 빈 슬롯) */
+export function IcoPlus(p: IconProps) {
+  return (
+    <svg {...svgProps(p)}>
+      <path d="M12 5v14M5 12h14" />
+    </svg>
+  );
+}
+
 export function IcoMenu(p: IconProps) {
   return (
     <svg {...svgProps(p)}>

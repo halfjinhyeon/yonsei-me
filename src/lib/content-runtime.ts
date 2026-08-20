@@ -34,6 +34,10 @@ import {
   type LabDirectoryEntry,
   type ClubSummary,
 } from './faculty';
+import {
+  adaptHistoryImages,
+  getHistoryImages as gitHistoryImages,
+} from './history-images';
 import { getPageMarkdown } from './pages';
 // 교과목 3종은 content.ts 를 거치지 않고 페이지가 직접 정적 import 하던 데이터다.
 // 폴백 원본(= 빌드 시점 스냅샷)을 여기로 모아, 소비처는 getter 만 부르면 되게 한다.
@@ -125,6 +129,14 @@ export async function getHistoryRuntime(): Promise<typeof gitHistory> {
   const raw = await getManagedJson<HistoryEvent[]>(MANAGED_FILES.history);
   if (!raw) return gitHistory;
   return raw.slice().sort((a, b) => (a.date < b.date ? 1 : -1));
+}
+
+/** 연혁 연대 사진 — 연대 → 사진 URL. 원본은 문자열 키라 어댑터로 숫자 키를 만든다
+ *  (소스와 무관하게 같은 어댑터를 태운다 — 교수진 사진 매칭과 같은 구조). */
+export async function getHistoryImagesRuntime(): Promise<Record<number, string>> {
+  const raw = await getManagedJson<Record<string, string>>(MANAGED_FILES.historyImages);
+  if (!raw) return gitHistoryImages();
+  return adaptHistoryImages(raw);
 }
 
 /** 행정 교직원 — 파일 순서가 표 순서다(정렬 없음, content.ts 와 동일) */

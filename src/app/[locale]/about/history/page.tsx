@@ -2,8 +2,7 @@ import type { Metadata } from 'next';
 import { setRequestLocale } from 'next-intl/server';
 import { AboutIntro } from '@/components/AboutIntro';
 import { HistoryTimeline } from '@/components/HistoryTimeline';
-import { getHistoryRuntime } from '@/lib/content-runtime';
-import { getHistoryImages } from '@/lib/history-images';
+import { getHistoryImagesRuntime, getHistoryRuntime } from '@/lib/content-runtime';
 import { SectionTabPage, sectionTabMetadata } from '../../_shared/section-tabs';
 import type { Locale } from '@/i18n/routing';
 
@@ -24,7 +23,9 @@ export async function generateMetadata({
  */
 export default async function AboutHistoryPage({ params }: { params: { locale: string } }) {
   setRequestLocale(params.locale);
-  const history = await getHistoryRuntime();
+  // 연대 사진도 CMS 데이터가 됐다(구 public/img/history 폴더 스캔 → content-runtime).
+  // 두 조회는 서로를 기다릴 이유가 없다.
+  const [history, images] = await Promise.all([getHistoryRuntime(), getHistoryImagesRuntime()]);
 
   return (
     <SectionTabPage locale={params.locale} section="about" tab="history">
@@ -32,7 +33,7 @@ export default async function AboutHistoryPage({ params }: { params: { locale: s
       <HistoryTimeline
         events={history}
         locale={params.locale as Locale}
-        images={getHistoryImages()}
+        images={images}
       />
     </SectionTabPage>
   );
