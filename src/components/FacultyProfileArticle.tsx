@@ -10,7 +10,7 @@ import {
   type FacultyActivityRow,
   type FacultyActivityTab,
 } from '@/components/FacultyActivityTabs';
-import type { FacultyProfile, FacultyRecord } from '@/lib/faculty';
+import { facultyInfoSystemUrl, type FacultyProfile, type FacultyRecord } from '@/lib/faculty';
 
 /** 외부 링크 화살표 (장식) */
 function ExternalIcon({ className }: { className: string }) {
@@ -120,6 +120,11 @@ export async function FacultyProfileArticle({
 
   // 요약 원본은 CMS 파일 → 없으면 크롤 파일의 옛 값. 둘 다 비면 버튼 자체를 그리지 않는다.
   const summary = (aiSummary ?? profile.aiSummary ?? '').trim();
+
+  // 학술활동은 **기본 비노출**이다 — 실적 공개 여부가 교수 개인의 선택이라, 본 사이트는
+  // 교원정보시스템으로 넘기고 공개를 원하는 교수만 CMS 에서 켠다(2026-08 학부 방침).
+  const showActivities = record?.showActivities === true;
+  const infoSystemUrl = facultyInfoSystemUrl(record, profile.sourceUrl);
 
   // 라벨 칸 폭 — 한국어 라벨('소속' 등)은 64px 로 충분하지만 영어 "Department"(≈90px)는
   // 칸을 넘어 전역 overflow-wrap:break-word 에 걸려 단어가 꺾인다. en 로케일만 넓힌다.
@@ -252,40 +257,56 @@ export async function FacultyProfileArticle({
             )}
           </dl>
 
-          {profile.homepage && (
-            <div className="mt-auto pt-6">
-              <a
-                href={profile.homepage}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 border border-surface-border px-6 py-2.5 text-sm font-semibold text-content transition-colors hover:border-yonsei-blue hover:text-yonsei-blue focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yonsei-blue"
-              >
-                {t('profile.homepage')}
-                <ExternalIcon className="h-3.5 w-3.5" />
-              </a>
+          {/* 바깥 링크 두 개 — 개인 홈페이지, 그리고 실적을 보러 가는 교원정보시스템.
+              실적은 이 사이트에 싣지 않는 것이 기본이라(공개 여부는 교수 개인의 선택),
+              여기가 논문·연구과제로 가는 정규 경로다. */}
+          {(profile.homepage || infoSystemUrl) && (
+            <div className="mt-auto flex flex-wrap gap-3 pt-6">
+              {profile.homepage && (
+                <a
+                  href={profile.homepage}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 border border-surface-border px-6 py-2.5 text-sm font-semibold text-content transition-colors hover:border-yonsei-blue hover:text-yonsei-blue focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yonsei-blue"
+                >
+                  {t('profile.homepage')}
+                  <ExternalIcon className="h-3.5 w-3.5" />
+                </a>
+              )}
+              {infoSystemUrl && (
+                <a
+                  href={infoSystemUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  title={t('profile.infoSystemHint')}
+                  className="inline-flex items-center gap-2 border border-yonsei-blue bg-yonsei-blue px-6 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-yonsei-navy hover:border-yonsei-navy focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yonsei-blue"
+                >
+                  {t('profile.infoSystem')}
+                  <ExternalIcon className="h-3.5 w-3.5" />
+                </a>
+              )}
             </div>
           )}
         </div>
       </div>
 
-      {/* ── 학술활동 ── CMS 의 "학술활동 숨기기" 체크 시 섹션 전체(AI 요약 포함) 비노출 */}
-      {record?.hideActivities !== true && (
-      <div className="mt-12 sm:mt-16">
-        <p data-land="rise" data-land-order="1" className="eyebrow">
-          {t('profile.activitiesEyebrow')}
-        </p>
-        {/* 제목 옆에 AI 연구요약 토글 — 요약문이 있는 교수만 */}
-        <div className="mt-3 flex flex-wrap items-center gap-5">
-          <h2
-            data-land="rise"
-            data-land-order="1"
-            className="text-2xl font-bold text-content sm:text-[2rem]"
-          >
-            {t('profile.activitiesTitle')}
-          </h2>
+      {/* ── AI 연구요약 ── 학술활동 노출 여부와 무관하게 항상 보인다. 실적 표를 내리더라도
+          "이 교수가 무엇을 연구하는가"는 남아야 하고, 요약은 학부가 관리하는 문장이다. */}
+      {summary && (
+        <div className="mt-12 sm:mt-16">
+          <p data-land="rise" data-land-order="1" className="eyebrow">
+            {t('profile.researchEyebrow')}
+          </p>
           {/* 버튼과 패널은 형제다 — 패널이 basis-full 이라 flex-wrap 이 다음 줄로 내려
               제목 행 아래 전폭으로 펼쳐진다 */}
-          {summary && (
+          <div className="mt-3 flex flex-wrap items-center gap-5">
+            <h2
+              data-land="rise"
+              data-land-order="1"
+              className="text-2xl font-bold text-content sm:text-[2rem]"
+            >
+              {t('profile.researchTitle')}
+            </h2>
             <AiResearchSummary
               summary={summary}
               buttonLabel={t('profile.aiButton')}
@@ -293,16 +314,54 @@ export async function FacultyProfileArticle({
               betaLabel={t('profile.aiBeta')}
               disclaimer={t('profile.aiDisclaimer')}
             />
-          )}
+          </div>
         </div>
-        <div className="mt-6">
-          <FacultyActivityTabs
-            tabs={tabs}
-            emptyLabel={t('profile.emptySection')}
-            ariaLabel={t('profile.activitiesNav')}
-          />
+      )}
+
+      {/* ── 학술활동 ── 기본 비노출. CMS 의 "학술활동 사이트에 공개"를 켠 교수만 표가 뜨고,
+          나머지는 교원정보시스템으로 안내하는 한 줄만 남는다. */}
+      {showActivities ? (
+        <div className="mt-12 sm:mt-16">
+          <p data-land="rise" data-land-order="1" className="eyebrow">
+            {t('profile.activitiesEyebrow')}
+          </p>
+          <h2
+            data-land="rise"
+            data-land-order="1"
+            className="mt-3 text-2xl font-bold text-content sm:text-[2rem]"
+          >
+            {t('profile.activitiesTitle')}
+          </h2>
+          <div className="mt-6">
+            <FacultyActivityTabs
+              tabs={tabs}
+              emptyLabel={t('profile.emptySection')}
+              ariaLabel={t('profile.activitiesNav')}
+            />
+          </div>
         </div>
-      </div>
+      ) : (
+        infoSystemUrl && (
+          <div
+            data-land="rise"
+            data-land-order="1"
+            className="mt-12 border border-surface-border bg-surface-soft p-6 sm:mt-16 sm:p-8"
+          >
+            <h2 className="text-lg font-bold text-content">{t('profile.activitiesTitle')}</h2>
+            <p className="mt-2 max-w-[64ch] text-[15px] leading-relaxed text-content-soft">
+              {t('profile.activitiesOffNotice')}
+            </p>
+            <a
+              href={infoSystemUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-5 inline-flex items-center gap-2 border border-yonsei-blue px-6 py-2.5 text-sm font-semibold text-yonsei-blue transition-colors hover:bg-yonsei-blue hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yonsei-blue"
+            >
+              {t('profile.infoSystem')}
+              <ExternalIcon className="h-3.5 w-3.5" />
+            </a>
+          </div>
+        )
       )}
 
       <div className="mt-10">

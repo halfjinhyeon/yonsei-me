@@ -28,8 +28,12 @@ export interface FacultyRecord {
    *  기간이 적혀 있으면 그것만으로도 퇴임으로 분류되므로, 둘 중 하나만 있으면 된다.
    *  구 데이터엔 이 키가 없어 optional 이다(없으면 false 취급). */
   emeritus?: boolean;
-  /** 교수 상세의 학술활동 섹션 숨김 — CMS 체크박스. 키가 없으면 노출(false 취급) */
-  hideActivities?: boolean;
+  /** 교수 상세에 학술활동(논문·연구과제·지적재산권·수상·학술활동) 섹션을 **노출**한다.
+   *  기본값은 비노출이다(키가 없으면 false). 실적 공개 여부는 교수 개인의 선택이라
+   *  본 사이트는 기본적으로 교원정보시스템으로 넘기고, 공개를 원하는 교수만 CMS 에서
+   *  이 체크를 켜 사이트에도 함께 싣는다(2026-08 학부 방침). AI 연구요약은 이 값과
+   *  무관하게 항상 보인다. */
+  showActivities?: boolean;
   moreInfoUrl: string | null;
   photoAlt: string;
   lab: FacultyLab | null;
@@ -54,14 +58,11 @@ const CLUB_LOGOS: Record<string, string> = {
   spacey: '/img/clubs/spacey.jpeg',
 };
 
-/** 6개 연구 분야 taxonomy 키 (분야 필터 공통 타입) */
-export type ResearchField =
-  | 'bioNano'
-  | 'thermoFluid'
-  | 'dynamicsControl'
-  | 'manufacturingDesign'
-  | 'computation'
-  | 'mechanicsMaterials';
+/** 6개 연구 분야 taxonomy — 원본은 @/lib/research-fields (클라이언트 안전 모듈).
+ *  이 파일은 node:fs 를 쓰는 서버 전용이라 값 상수를 여기 두면 안 된다. */
+import type { ResearchField } from './research-fields';
+
+export type { ResearchField };
 
 export interface LabDirectoryEntry {
   nameKo: string;
@@ -144,6 +145,38 @@ export interface FacultyProfile {
   conferences: FacultyProfileConferenceRow[];
   fundings: FacultyProfileFundingRow[];
   patents: FacultyProfilePatentRow[];
+}
+
+/** 구 학부 CMS 의 공개 별칭 호스트 — 도메인 컷오버 뒤 이 사이트가 가져갈 주소다. */
+const LEGACY_PUBLIC_HOST = 'me.yonsei.ac.kr';
+/** 같은 페이지를 그대로 서빙하는 원본 CMS 호스트(2026-08 실측: 상세·리포트 모두 200) */
+const FACULTY_INFO_HOST = 'devcms.yonsei.ac.kr';
+
+/**
+ * 교원정보시스템의 교수 개인 페이지 URL — 상세 페이지의 "교원정보시스템" 버튼이 연다.
+ *
+ * ⚠️ 크롤 원본의 `sourceUrl` 은 me.yonsei.ac.kr 을 가리키는데, 도메인 컷오버 뒤 그
+ * 주소는 **이 사이트**가 된다. 그대로 링크하면 자기 자신으로 돌아 구 URL 리졸버에
+ * 걸린다. 원본 CMS 호스트가 같은 페이지를 서빙하므로 호스트만 바꿔 쓴다.
+ *
+ * CMS 의 '상세 정보 URL'(moreInfoUrl)이 채워져 있으면 그쪽이 우선이다 — 학교가 주소
+ * 체계를 옮겨도 코드 수정 없이 교수별로 대응하기 위한 수동 오버라이드다.
+ */
+export function facultyInfoSystemUrl(
+  record: Pick<FacultyRecord, 'moreInfoUrl'> | null,
+  sourceUrl: string | null,
+): string | null {
+  const manual = record?.moreInfoUrl?.trim();
+  if (manual) return manual;
+  if (!sourceUrl) return null;
+  try {
+    const url = new URL(sourceUrl);
+    if (url.hostname === LEGACY_PUBLIC_HOST) url.hostname = FACULTY_INFO_HOST;
+    return url.toString();
+  } catch {
+    // 크롤 원본이 상대경로·빈 문자열인 경우 — 링크를 만들지 않는다.
+    return null;
+  }
 }
 
 const FACULTY_PROFILE_DIR = 'faculty-profiles';

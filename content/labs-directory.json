@@ -9,7 +9,7 @@
     "url": "https://sites.google.com/site/kwkanglab/",
     "image": "/img/labs/computational-materials-mechanics.jpg",
     "video": "https://drive.google.com/file/d/1wPuVgLQfQ6rUszJtn4loqx9ZC7x3-jKN/view",
-    "field": "computation"
+    "field": "mechanicsMaterials"
   },
   {
     "nameKo": "마이크로 나노 응용 기술 개발 연구실",
@@ -21,7 +21,7 @@
     "url": "http://nanofab.yonsei.ac.kr/",
     "image": "/img/labs/micro-nano-optics.jpg",
     "video": "https://www.youtube.com/watch?v=t4BxyHiDGiY",
-    "field": "bioNano"
+    "field": "designManufacturing"
   },
   {
     "nameKo": "광학 양자 연구실",
@@ -32,7 +32,7 @@
     "phone": "02-2123-7725",
     "url": "https://sites.google.com/yonsei.ac.kr/oql/",
     "image": "/img/labs/optics-quantum.jpg",
-    "field": "bioNano"
+    "field": "microNano"
   },
   {
     "nameKo": "트라이볼로지 연구실",
@@ -55,7 +55,7 @@
     "phone": "02-2123-4463",
     "url": "https://sites.google.com/view/seoklab/max",
     "image": "/img/labs/extreme-manufacturing.jpg",
-    "field": "manufacturingDesign"
+    "field": "designManufacturing"
   },
   {
     "nameKo": "나노광전자시스템 연구실",
@@ -66,7 +66,7 @@
     "phone": "02-2123-7211",
     "url": "http://nos.yonsei.ac.kr/",
     "image": "/img/labs/nano-optoelectronics.jpg",
-    "field": "bioNano"
+    "field": "bioPhotonics"
   },
   {
     "nameKo": "마이크로시스템 연구실",
@@ -78,7 +78,7 @@
     "url": "http://mems.yonsei.ac.kr/",
     "image": "/img/labs/mems-microsystem.jpg",
     "video": "https://drive.google.com/file/d/1-E4zgeYdmcRBtxDaFRELuveaBp6Q5L5M/view",
-    "field": "bioNano"
+    "field": "microNano"
   },
   {
     "nameKo": "어드밴스드 열공학 연구실",
@@ -90,7 +90,7 @@
     "url": "http://atel.yonsei.ac.kr/",
     "image": "/img/labs/advanced-thermal.jpg",
     "video": "https://drive.google.com/file/d/1X3AUNfLahaoD3fixMtU-KpYU77s1HiCN/view",
-    "field": "thermoFluid"
+    "field": "energyThermofluid"
   },
   {
     "nameKo": "미소유체연구실",
@@ -101,7 +101,7 @@
     "phone": "02-2123-4471",
     "url": "https://ssfl.yonsei.ac.kr/",
     "image": "/img/labs/small-scale-fluids.jpg",
-    "field": "thermoFluid"
+    "field": "energyThermofluid"
   },
   {
     "nameKo": "나노기전시스템 연구실",
@@ -113,7 +113,7 @@
     "url": "http://ntl.yonsei.ac.kr/",
     "image": "/img/labs/nano-transducers.jpg",
     "video": "https://www.youtube.com/watch?v=dCRkFroCc74",
-    "field": "bioNano"
+    "field": "microNano"
   },
   {
     "nameKo": "지능소자공정 연구실",
@@ -124,7 +124,7 @@
     "phone": "02-2123-2819",
     "url": "http://yslidm.com/",
     "image": "/img/labs/intelligent-device-manufacturing.jpg",
-    "field": "manufacturingDesign"
+    "field": "microNano"
   },
   {
     "nameKo": "바이오메디컬 & 에너지 시스템 연구실",
@@ -136,7 +136,7 @@
     "url": "https://sites.google.com/a/bmesyonsei.com/bmeslab/",
     "image": "/img/labs/biomedical-energy.jpg",
     "video": "https://www.youtube.com/watch?v=DmrV8KGZz9U",
-    "field": "bioNano"
+    "field": "bioPhotonics"
   },
   {
     "nameKo": "계산과학-인공지능 연구실",
@@ -147,7 +147,7 @@
     "phone": "02-2123-4464",
     "url": "https://csailabyonsei.quv.kr/",
     "image": "/img/labs/computational-ai.jpg",
-    "field": "computation"
+    "field": "mechanicsMaterials"
   },
   {
     "nameKo": "생산 & 메카트로닉스 연구실",
@@ -158,7 +158,7 @@
     "phone": "02-2123-6611",
     "url": "http://minlab.yonsei.ac.kr/",
     "image": "/img/labs/manufacturing-mechatronics.jpg",
-    "field": "manufacturingDesign"
+    "field": "designManufacturing"
   },
   {
     "nameKo": "진동 및 광메카트로닉스 연구실",
@@ -170,7 +170,7 @@
     "url": "http://optomecha.yonsei.ac.kr/",
     "image": "/img/labs/vibration-optomechatronics.jpg",
     "video": "https://www.youtube.com/watch?v=Vi5OucBLUH8",
-    "field": "dynamicsControl"
+    "field": "roboticsControl"
   },
   {
     "nameKo": "내연기관 & 청정에너지 연구실",
@@ -181,7 +181,7 @@
     "phone": "02-2123-7221",
     "url": "http://cleanenergy.yonsei.ac.kr/",
     "image": "/img/labs/clean-energy-engine.jpg",
-    "field": "thermoFluid"
+    "field": "energyThermofluid"
   },
   {
     "nameKo": "인간중심AI로보틱스 연구실",
@@ -192,7 +192,7 @@
     "phone": "02-2123-2826",
     "url": "http://hcr.yonsei.ac.kr/",
     "image": "/img/labs/ai-robotics.jpg",
-    "field": "dynamicsControl"
+    "field": "roboticsControl"
   },
   {
     "nameKo": "정밀제어시스템 연구실",
@@ -203,7 +203,7 @@
     "phone": "02-2123-7214",
     "url": "http://mservo.yonsei.ac.kr/",
     "image": "/img/labs/precision-control.jpg",
-    "field": "dynamicsControl"
+    "field": "roboticsControl"
   },
   {
     "nameKo": "전산구조설계 연구실",
@@ -215,7 +215,7 @@
     "url": "http://ssd.yonsei.ac.kr/",
     "image": "/img/labs/structure-design.jpg",
     "video": "https://www.youtube.com/watch?v=Y3TfPB8vGow",
-    "field": "computation"
+    "field": "designManufacturing"
   },
   {
     "nameKo": "정밀 생산 메카트로닉스 연구실",
@@ -227,7 +227,7 @@
     "url": "",
     "image": "/img/labs/manufacturing-mechatronics2.jpg",
     "video": "https://drive.google.com/file/d/1tZEQSZ6khHt5pT3p8upwsaXvU-3bdt_z/view",
-    "field": "manufacturingDesign"
+    "field": "designManufacturing"
   },
   {
     "nameKo": "열전달 및 열설계 연구실",
@@ -238,7 +238,7 @@
     "phone": "02-2123-2820",
     "url": "https://sites.google.com/view/httd-yonsei",
     "image": "/img/labs/heat-transfer.jpg",
-    "field": "thermoFluid"
+    "field": "energyThermofluid"
   },
   {
     "nameKo": "멀티피직스 최적설계 & 건전성진단예지 연구실",
@@ -250,7 +250,7 @@
     "url": "http://mdophm.yonsei.ac.kr/",
     "image": "/img/labs/multiphysics-phm.jpg",
     "video": "https://drive.google.com/file/d/1jYJr4n2BbGoDcmpRbAv8pbY5ITF_oU8I/view",
-    "field": "computation"
+    "field": "designManufacturing"
   },
   {
     "nameKo": "멀티스케일 유체역학 연구실",
@@ -262,7 +262,7 @@
     "url": "https://mfdl.yonsei.ac.kr/",
     "image": "/img/labs/multiscale-fluid.jpg",
     "video": "https://www.youtube.com/watch?v=39VE42jtsR8",
-    "field": "thermoFluid"
+    "field": "energyThermofluid"
   },
   {
     "nameKo": "난류 연구실",
@@ -273,7 +273,7 @@
     "phone": "-",
     "url": "http://euler.yonsei.ac.kr/",
     "image": "/img/labs/turbulence.jpg",
-    "field": "thermoFluid"
+    "field": "energyThermofluid"
   },
   {
     "nameKo": "생체역학 및 연성재료 연구실",
@@ -285,7 +285,7 @@
     "url": "http://leelab.yonsei.ac.kr/",
     "image": "/img/labs/biomechanics-soft.jpg",
     "video": "https://www.youtube.com/watch?v=9PtwLfg8ReE",
-    "field": "bioNano"
+    "field": "mechanicsMaterials"
   },
   {
     "nameKo": "마이크로역학 연구실",
@@ -309,7 +309,7 @@
     "url": "http://nemd.yonsei.ac.kr/",
     "image": "/img/labs/nano-device.jpg",
     "video": "https://www.youtube.com/watch?v=d1NR13s6doc",
-    "field": "bioNano"
+    "field": "microNano"
   },
   {
     "nameKo": "지능형 구조 및 통합 설계 연구실",
@@ -332,7 +332,7 @@
     "url": "https://sites.google.com/view/yonseilbt/introduction",
     "image": "/img/labs/biochip.jpg",
     "video": "https://www.youtube.com/watch?v=GdIw_G1UX-k",
-    "field": "bioNano"
+    "field": "bioPhotonics"
   },
   {
     "nameKo": "산술 광학 영상 및 응용 연구실",
@@ -344,7 +344,7 @@
     "url": "http://boilab.wordpress.com/",
     "image": "/img/labs/computational-imaging.jpg",
     "video": "https://www.youtube.com/watch?v=6ykXbisx7g0",
-    "field": "bioNano"
+    "field": "bioPhotonics"
   },
   {
     "nameKo": "기계학습 및 제어 시스템 연구실",
@@ -356,7 +356,7 @@
     "url": "http://mlcs.yonsei.ac.kr/",
     "image": "/img/labs/machine-learning-control.jpg",
     "video": "https://www.youtube.com/watch?v=RBKoYopm2C8",
-    "field": "dynamicsControl"
+    "field": "roboticsControl"
   },
   {
     "nameKo": "정밀 측정 및 지능형 센싱 연구실",
@@ -367,7 +367,7 @@
     "phone": "02-2123-2818",
     "url": "https://sites.google.com/view/damislab",
     "image": "/img/labs/precision-sensing.jpg",
-    "field": "manufacturingDesign"
+    "field": "bioPhotonics"
   },
   {
     "nameKo": "지속가능한 에너지 플랫폼 개발 연구실",
@@ -379,6 +379,6 @@
     "url": "http://mes.yonsei.ac.kr/",
     "image": "/img/labs/sustainable-energy.jpg",
     "video": "https://www.youtube.com/watch?v=QyO40rVVPg0",
-    "field": "thermoFluid"
+    "field": "energyThermofluid"
   }
 ]

@@ -1,0 +1,55 @@
+# 교수 학술활동 자동 수집 — 교원정보시스템에서 받아 프로덕션 DB 에 **병합**한다.
+#
+# 왜 GitHub Actions 인가
+#   교수 33명 × 6~11요청 × 300ms 지연이라 한 바퀴가 몇 분 걸린다. Vercel 서버리스
+#   함수(Hobby 최대 60초)로는 끝까지 돌지 못해서 별도 러너가 필요하다.
+#
+# 안전장치
+#   수집기는 **병합 전용**이다 — 기존 행을 지우거나 덮어쓰지 않고 없던 행만 붙인다.
+#   그래서 자동 실행이 CMS 편집분·AI 요약·원본에서 밀려난 옛 실적을 훼손하지 않는다.
+#
+# 비밀값이 없으면 드라이런
+#   SUPABASE_URL / SUPABASE_SERVICE_ROLE_KEY 를 저장소 Secrets 에 넣기 전까지는
+#   기록하지 않고 "신규 몇 건"만 로그에 찍는다. 실제 반영을 원하면 두 값을 넣을 것.
+#   ⚠️ 이 저장소는 Public 이다. 포크 PR 에는 비밀값이 전달되지 않지만, service-role
+#   키를 넣는 결정 자체는 사람이 판단해야 한다.
+name: 교수 학술활동 수집
+
+on:
+  schedule:
+    # 매월 2일 03:00 KST (= 매월 1일 18:00 UTC). 논문·과제는 학기 단위로 갱신되므로
+    # 월 1회면 충분하고, 학교 서버에 부담도 거의 없다.
+    - cron: '0 18 1 * *'
+  workflow_dispatch:
+    inputs:
+      apply:
+        description: 'DB 에 기록 (끄면 드라이런)'
+        type: boolean
+        default: true
+
+jobs:
+  crawl:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      # supabase-js 한 개만 있으면 되지만, lockfile 재현성을 위해 통째로 설치한다.
+      - run: npm ci
+      - name: 수집·병합
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+          APPLY_INPUT: ${{ inputs.apply }}
+        run: |
+          if [ -z "$SUPABASE_URL" ] || [ -z "$SUPABASE_SERVICE_ROLE_KEY" ]; then
+            echo "::warning::Supabase 비밀값이 없어 드라이런으로 돕니다."
+            node tools/crawl-faculty-profiles.mjs
+          elif [ "$APPLY_INPUT" = "false" ]; then
+            node tools/crawl-faculty-profiles.mjs --source=db
+          else
+            node tools/crawl-faculty-profiles.mjs --source=db --apply
+          fi

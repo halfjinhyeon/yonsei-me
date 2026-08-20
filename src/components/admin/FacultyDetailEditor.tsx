@@ -499,15 +499,16 @@ export function FacultyDetailEditor({
               <label className="flex cursor-pointer items-start gap-2.5">
                 <input
                   type="checkbox"
-                  checked={form.hideActivities === true}
-                  onChange={(e) => set('hideActivities', e.target.checked)}
+                  checked={form.showActivities === true}
+                  onChange={(e) => set('showActivities', e.target.checked)}
                   disabled={busy}
                   className="mt-0.5 h-[15px] w-[15px] flex-none accent-yonsei-blue"
                 />
                 <span className="text-[12.5px] leading-normal">
-                  <span className="font-bold text-content">학술활동 숨기기</span>
+                  <span className="font-bold text-content">학술활동 사이트에 공개</span>
                   <span className="mt-0.5 block text-[11px] text-content-faint">
-                    체크하면 상세 페이지의 학술활동 섹션(AI 요약 포함)이 보이지 않습니다.
+                    기본은 비공개(교원정보시스템 링크만). 체크하면 실적 표가 상세 페이지에도
+                    실립니다. AI 연구요약은 체크와 무관하게 항상 보입니다.
                   </span>
                 </span>
               </label>

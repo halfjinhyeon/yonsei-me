@@ -58,12 +58,12 @@ export function DirtyBar() {
 
 /** 연구 분야 배지 색 — 시안 그대로(금색 아님). 값이 없으면 회색 */
 const FIELD_BADGE: Record<string, string> = {
-  bioNano: '#0F766E',
-  thermoFluid: '#B45309',
-  dynamicsControl: '#4338CA',
-  manufacturingDesign: '#A21CAF',
-  computation: '#0057A8',
   mechanicsMaterials: '#166534',
+  energyThermofluid: '#B45309',
+  roboticsControl: '#4338CA',
+  designManufacturing: '#A21CAF',
+  microNano: '#0057A8',
+  bioPhotonics: '#0F766E',
 };
 
 function fieldBadgeColor(value: string): string {

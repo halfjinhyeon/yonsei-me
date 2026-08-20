@@ -5,17 +5,11 @@ import Image from 'next/image';
 import { useLocale, useTranslations } from 'next-intl';
 import { cn } from '@/lib/utils';
 import { AiSummaryPanel, AiSummaryToggle, useAiSummaryTyping } from '@/components/AiResearchSummary';
-import type { LabDirectoryEntry, ResearchField } from '@/lib/faculty';
+import { RESEARCH_FIELDS, type ResearchField } from '@/lib/research-fields';
+import type { LabDirectoryEntry } from '@/lib/faculty';
 
 /** 분야 탭 표시 순서 (research.fieldFilter 메시지 키와 동일) */
-const FIELDS: ResearchField[] = [
-  'bioNano',
-  'thermoFluid',
-  'dynamicsControl',
-  'manufacturingDesign',
-  'computation',
-  'mechanicsMaterials',
-];
+const FIELDS: ResearchField[] = RESEARCH_FIELDS;
 
 /** 연구실별 이미지가 없을 때 순환 사용하는 더미 배경 3장 (LabCarousel 과 동일 관례) */
 const FALLBACK_IMAGES = [

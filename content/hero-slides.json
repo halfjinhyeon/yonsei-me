@@ -1,56 +1,56 @@
 [
   {
-    "field": "bioNano",
+    "field": "mechanicsMaterials",
     "title": {
-      "ko": "바이오·나노",
-      "en": "Bio · Nano"
+      "ko": "역학 · 소재",
+      "en": "Mechanics & Materials"
     },
-    "image": "https://pub-946f4e5b1c334b1c90cd7564588d1d16.r2.dev/uploads/hero/바이오나노.jpg",
-    "imageMobile": "https://pub-946f4e5b1c334b1c90cd7564588d1d16.r2.dev/uploads/hero-mobile/바이오나노.jpg"
+    "image": "https://pub-946f4e5b1c334b1c90cd7564588d1d16.r2.dev/uploads/hero/역학재료.jpg",
+    "imageMobile": "https://pub-946f4e5b1c334b1c90cd7564588d1d16.r2.dev/uploads/hero-mobile/역학재료.jpg"
   },
   {
-    "field": "thermoFluid",
+    "field": "energyThermofluid",
     "title": {
-      "ko": "열·유체",
-      "en": "Thermal · Fluids"
+      "ko": "에너지 · 열유체",
+      "en": "Energy / Thermal-Fluid Systems"
     },
     "image": "https://pub-946f4e5b1c334b1c90cd7564588d1d16.r2.dev/uploads/hero/열유체.jpg",
     "imageMobile": "https://pub-946f4e5b1c334b1c90cd7564588d1d16.r2.dev/uploads/hero-mobile/열유체.jpg"
   },
   {
-    "field": "dynamicsControl",
+    "field": "roboticsControl",
     "title": {
-      "ko": "동역학·제어",
-      "en": "Dynamics · Control"
+      "ko": "로보틱스 · 제어",
+      "en": "Robotics & Intelligent Control"
     },
     "image": "https://pub-946f4e5b1c334b1c90cd7564588d1d16.r2.dev/uploads/hero/동역학제어.jpg",
     "imageMobile": "https://pub-946f4e5b1c334b1c90cd7564588d1d16.r2.dev/uploads/hero-mobile/동역학제어.jpg"
   },
   {
-    "field": "manufacturingDesign",
+    "field": "designManufacturing",
     "title": {
-      "ko": "생산·설계",
-      "en": "Manufacturing · Design"
+      "ko": "설계 · 제조",
+      "en": "Design & Smart Manufacturing"
     },
     "image": "https://pub-946f4e5b1c334b1c90cd7564588d1d16.r2.dev/uploads/hero/생산설계.jpg",
     "imageMobile": "https://pub-946f4e5b1c334b1c90cd7564588d1d16.r2.dev/uploads/hero-mobile/생산설계.jpg"
   },
   {
-    "field": "computation",
+    "field": "microNano",
     "title": {
-      "ko": "계산·해석",
-      "en": "Computation · Analysis"
+      "ko": "마이크로 · 나노",
+      "en": "Micro / Nano Systems"
     },
     "image": "https://pub-946f4e5b1c334b1c90cd7564588d1d16.r2.dev/uploads/hero/계산해석.jpg",
     "imageMobile": "https://pub-946f4e5b1c334b1c90cd7564588d1d16.r2.dev/uploads/hero-mobile/계산해석.jpg"
   },
   {
-    "field": "mechanicsMaterials",
+    "field": "bioPhotonics",
     "title": {
-      "ko": "역학·재료",
-      "en": "Mechanics · Materials"
+      "ko": "바이오 · 포토닉스",
+      "en": "Bio & Photonics"
     },
-    "image": "https://pub-946f4e5b1c334b1c90cd7564588d1d16.r2.dev/uploads/hero/역학재료.jpg",
-    "imageMobile": "https://pub-946f4e5b1c334b1c90cd7564588d1d16.r2.dev/uploads/hero-mobile/역학재료.jpg"
+    "image": "https://pub-946f4e5b1c334b1c90cd7564588d1d16.r2.dev/uploads/hero/바이오나노.jpg",
+    "imageMobile": "https://pub-946f4e5b1c334b1c90cd7564588d1d16.r2.dev/uploads/hero-mobile/바이오나노.jpg"
   }
 ]

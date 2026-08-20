@@ -4,7 +4,7 @@ import { useMemo, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { UnderlineTabs } from '@/components/UnderlineTabs';
 import { cn } from '@/lib/utils';
-import type { ResearchField } from '@/lib/faculty';
+import { RESEARCH_FIELDS, type ResearchField } from '@/lib/research-fields';
 
 /**
  * 교과목 한 행. 학부(content/courses-undergraduate.json)는 모든 컬럼을,
@@ -32,14 +32,7 @@ export interface CatalogColumn {
 export type CatalogDescriptions = Record<string, { nameEn?: string; desc?: string } | undefined>;
 
 /** 분야 탭 표시 순서 (research.fieldFilter 메시지 키와 동일) */
-const FIELDS: ResearchField[] = [
-  'bioNano',
-  'thermoFluid',
-  'dynamicsControl',
-  'manufacturingDesign',
-  'computation',
-  'mechanicsMaterials',
-];
+const FIELDS: ResearchField[] = RESEARCH_FIELDS;
 
 type Filter = 'all' | ResearchField;
 

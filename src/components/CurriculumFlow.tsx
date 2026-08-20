@@ -4,7 +4,7 @@ import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } fr
 import { useTranslations } from 'next-intl';
 import { UnderlineTabs } from '@/components/UnderlineTabs';
 import { cn } from '@/lib/utils';
-import type { ResearchField } from '@/lib/faculty';
+import { RESEARCH_FIELDS, type ResearchField } from '@/lib/research-fields';
 import type { Locale } from '@/i18n/routing';
 // 교과목·설명은 CMS 대상이라 정적 import 를 걷고 서버(page.tsx)에서 props 로 받는다.
 // 타입만 파일에서 가져온다(type-only import — 런타임 번들에 데이터가 들어가지 않는다).
@@ -63,29 +63,22 @@ type Filter = 'all' | ResearchField;
 // SSR 안전 layout effect — 서버 렌더 시 useLayoutEffect 경고 회피(사이트 공통 패턴)
 const useIsoLayoutEffect = typeof window !== 'undefined' ? useLayoutEffect : useEffect;
 
-const FIELD_TABS: ResearchField[] = [
-  'bioNano',
-  'thermoFluid',
-  'dynamicsControl',
-  'manufacturingDesign',
-  'computation',
-  'mechanicsMaterials',
-];
+const FIELD_TABS: ResearchField[] = RESEARCH_FIELDS;
 
 /** 레인 표시 순서(위→아래) — 기초·공통은 항상 맨 위(사용자 지정).
- *  화살표 꼬임 최소화 재배치(2026-07-22 사용자 승인 2건):
- *  ① 생산·설계 ↔ 열·유체 교환 — 레인 통과 총합 10→7, 열·유체 레인 관통 제거
- *  ② 계산·해석을 생산·설계-열·유체 사이로 — 총합 7→3, 컴퓨터응용기계설계→
- *     컴퓨터해석기반설계가 인접 레인화(통과 0)
+ *  화살표 꼬임 최소화 순서다. 탭 순서(공식 01→06)를 그대로 쓰면 레인 통과 9회인데,
+ *  설계·제조와 로보틱스·제어만 맞바꾸면 5회로 줄어든다(6! 전수 탐색 최소값, 동점
+ *  8개 중 공식 순서와 가장 가까운 것). 분야 개편(2026-08)으로 구 순서의 튜닝 근거가
+ *  사라져 같은 기준으로 다시 계산했다.
  *  이 배열이 기본형·트리형·모바일 스택의 유일한 순서 출처다. */
 const LANES: { key: LaneKey }[] = [
   { key: 'basics' },
   { key: 'mechanicsMaterials' },
-  { key: 'dynamicsControl' },
-  { key: 'manufacturingDesign' },
-  { key: 'computation' },
-  { key: 'thermoFluid' },
-  { key: 'bioNano' },
+  { key: 'designManufacturing' },
+  { key: 'roboticsControl' },
+  { key: 'energyThermofluid' },
+  { key: 'microNano' },
+  { key: 'bioPhotonics' },
 ];
 
 const laneOf = (c: RoadmapCourse): LaneKey => c.field ?? 'basics';

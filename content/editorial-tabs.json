@@ -166,38 +166,45 @@
     ],
     "items": [
       {
-        "title": { "ko": "역학·재료 (Mechanics, Materials)", "en": "Mechanics, Materials" },
+        "title": { "ko": "역학 · 소재 (Mechanics & Materials)", "en": "Mechanics & Materials" },
         "body": {
-          "ko": "고체역학 · 첨단재료 · 멀티스케일 모델링",
-          "en": "Solid mechanics · Advanced materials · Multiscale modeling"
+          "ko": "고체역학 · 첨단소재 · 트라이볼로지 · 멀티스케일 모델링",
+          "en": "Solid mechanics · Advanced materials · Tribology · Multiscale modeling"
         }
       },
       {
-        "title": { "ko": "열·유체 시스템 (Thermal/Fluid Systems)", "en": "Thermal/Fluid Systems" },
+        "title": { "ko": "에너지 · 열유체 (Energy / Thermal-Fluid Systems)", "en": "Energy / Thermal-Fluid Systems" },
         "body": {
-          "ko": "열전달 · 유체역학 · 에너지 시스템",
-          "en": "Heat transfer · Fluid dynamics · Energy systems"
+          "ko": "열전달 · 유체역학 · 연소 · 청정에너지 시스템",
+          "en": "Heat transfer · Fluid dynamics · Combustion · Clean-energy systems"
         }
       },
       {
-        "title": { "ko": "동역학 시스템·제어 (Dynamic Systems and Control)", "en": "Dynamic Systems and Control" },
+        "title": { "ko": "로보틱스 · 제어 (Robotics & Intelligent Control)", "en": "Robotics & Intelligent Control" },
         "body": {
-          "ko": "로보틱스 · 자율 시스템 · 지능형 제어",
-          "en": "Robotics · Autonomous systems · Intelligent control"
+          "ko": "로보틱스 · 자율 시스템 · 정밀 제어 · 진동",
+          "en": "Robotics · Autonomous systems · Precision control · Vibration"
         }
       },
       {
-        "title": { "ko": "생산·설계 (Manufacturing and Design)", "en": "Manufacturing and Design" },
+        "title": { "ko": "설계 · 제조 (Design & Smart Manufacturing)", "en": "Design & Smart Manufacturing" },
         "body": {
-          "ko": "정밀가공 · 설계공학 · 디지털 제조",
-          "en": "Precision manufacturing · Design engineering · Digital fabrication"
+          "ko": "최적설계 · 정밀가공 · 생산 메카트로닉스 · 디지털 제조",
+          "en": "Design optimization · Precision machining · Production mechatronics · Digital fabrication"
         }
       },
       {
-        "title": { "ko": "신흥 분야 (Emerging Areas)", "en": "Emerging Areas" },
+        "title": { "ko": "마이크로 · 나노 (Micro / Nano Systems)", "en": "Micro / Nano Systems" },
         "body": {
-          "ko": "바이오 · 의료 · 나노 · 마이크로 · 광학 기술",
-          "en": "Bio · Medical · Nano · Micro · Optical technology"
+          "ko": "MEMS · 미세가공 · 나노 소자 · 정밀 센서",
+          "en": "MEMS · Microfabrication · Nanoscale devices · Precision sensors"
+        }
+      },
+      {
+        "title": { "ko": "바이오 · 포토닉스 (Bio & Photonics)", "en": "Bio & Photonics" },
+        "body": {
+          "ko": "광학 이미징 · 바이오칩 · 생체역학 · 의료기기",
+          "en": "Optical imaging · Biochips · Biomechanics · Medical devices"
         }
       }
     ],
