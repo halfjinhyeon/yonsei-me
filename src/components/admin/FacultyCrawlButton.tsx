@@ -12,7 +12,21 @@
 import type { FacultyCrawlState } from './useFacultyCrawl';
 
 export function FacultyCrawlButton({ crawl, disabled }: { crawl: FacultyCrawlState; disabled?: boolean }) {
-  const { running, finished, done, rows, lastCrawledAt, totalAdded, targets } = crawl;
+  const { running, finished, done, rows, lastCrawledAt, totalAdded, targets, loadError } = crawl;
+
+  // 버튼 밑 한 줄은 "이 버튼이 지금 왜 이런 상태인지"를 말한다. 셋을 구분하지 않으면
+  // 조회 실패도 '아직 수집한 적이 없습니다'로 보여, 담당자가 눌러도 되는 줄 알고 기다린다.
+  const note: { text: string; error?: boolean } = loadError
+    ? { text: `명단을 불러오지 못했습니다 — ${loadError}`, error: true }
+    : targets === null
+      ? { text: '명단 불러오는 중…' }
+      : targets.length === 0
+        ? { text: '수집 대상이 없습니다 — 교수 상세의 정보 URL을 채워 주세요', error: true }
+        : finished
+          ? { text: `방금 수집 · 신규 ${totalAdded}건` }
+          : lastCrawledAt
+            ? { text: `마지막 수집 ${lastCrawledAt}` }
+            : { text: '아직 수집한 적이 없습니다' };
 
   return (
     <span className="flex flex-col items-end gap-[7px]">
@@ -51,12 +65,12 @@ export function FacultyCrawlButton({ crawl, disabled }: { crawl: FacultyCrawlSta
           진행 상황 보기
         </button>
       ) : (
-        <p className="text-[11.5px] leading-none tracking-[-0.01em] text-content-soft">
-          {finished
-            ? `방금 수집 · 신규 ${totalAdded}건`
-            : lastCrawledAt
-              ? `마지막 수집 ${lastCrawledAt}`
-              : '아직 수집한 적이 없습니다'}
+        <p
+          role={note.error ? 'alert' : undefined}
+          className="max-w-[34ch] text-right text-[11.5px] leading-[1.5] tracking-[-0.01em]"
+          style={note.error ? { color: '#b42318' } : undefined}
+        >
+          <span className={note.error ? undefined : 'text-content-soft'}>{note.text}</span>
         </p>
       )}
     </span>
