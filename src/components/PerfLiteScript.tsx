@@ -12,16 +12,22 @@
  *
  * 판정 방법: WebGL 렌더러 문자열. 하드웨어 가속이 꺼지면 여기에 SwiftShader /
  * llvmpipe / Microsoft Basic Render Driver 같은 소프트웨어 래스터라이저 이름이 뜬다.
- * WebGL 컨텍스트 생성 자체가 소프트웨어에선 수십 ms 들 수 있어 결과를 localStorage 에
- * 캐시하고, 사용자가 나중에 설정을 바꿀 수 있으므로 7일이 지나면 다시 판정한다.
+ *
+ * ⚠️ 캐시는 **sessionStorage** 여야 한다. localStorage(7일)로 했더니 가속을 켠 채
+ * 방문한 적 있는 사용자는 이후 설정을 꺼도 낡은 "GPU 있음" 판정이 남아 판정이
+ * 안 걸렸다(시크릿탭에서만 걸리는 증상으로 드러남). 가속 설정 변경은 브라우저
+ * 재시작이 필요하므로, 탭 세션 수명이 이 판정의 유효기간과 정확히 일치한다.
+ * 캐시를 두는 이유는 소프트웨어 래스터에서 WebGL 컨텍스트 생성이 수십 ms 들 수 있어서다.
  *
  * body 최상단에서 동기 실행 — 헤더 마크업이 파싱되기 전에 클래스가 붙어야
  * 블러가 한 프레임도 그려지지 않는다.
  */
 const SCRIPT = `(function(){try{
-var d=document.documentElement,K='perf-lite:v1',W=6048e5,now=Date.now(),c=null;
-try{c=JSON.parse(localStorage.getItem(K)||'null')}catch(e){}
-if(c&&now-c.t<W){if(c.s){d.classList.add('perf-lite')}return}
+var d=document.documentElement,K='perf-lite:v2',c=null;
+try{localStorage.removeItem('perf-lite:v1')}catch(e){}
+try{c=sessionStorage.getItem(K)}catch(e){}
+if(c==='1'){d.classList.add('perf-lite');return}
+if(c==='0'){return}
 var soft=false;
 try{
 var g=document.createElement('canvas').getContext('webgl')||document.createElement('canvas').getContext('experimental-webgl');
@@ -32,7 +38,7 @@ soft=!r||/swiftshader|llvmpipe|softpipe|basic render|generic renderer|software|m
 var lc=g.getExtension('WEBGL_lose_context');if(lc){lc.loseContext()}}
 }catch(e){soft=true}
 if(soft){d.classList.add('perf-lite')}
-try{localStorage.setItem(K,JSON.stringify({s:soft?1:0,t:now}))}catch(e){}
+try{sessionStorage.setItem(K,soft?'1':'0')}catch(e){}
 }catch(e){}})();`;
 
 export function PerfLiteScript() {
