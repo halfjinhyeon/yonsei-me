@@ -26,7 +26,13 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { cn } from '@/lib/utils';
 import { type BoardKey } from '@/lib/admin/boards';
 import { type RepoConfig } from '@/lib/admin/content-api';
-import { getMarkdownPage, getResource, MENU_GROUPS, type MenuEntry } from '@/lib/admin/resources';
+import {
+  getMarkdownPage,
+  getResource,
+  getScreen,
+  MENU_GROUPS,
+  type MenuEntry,
+} from '@/lib/admin/resources';
 import { AdminDashboard } from './AdminDashboard';
 import {
   AdminShellProvider,
@@ -51,6 +57,7 @@ import { KakaoLinkPopover } from './KakaoLinkPopover';
 import { CmsBanner, type CmsBannerData } from './CmsBanner';
 import { CmsModal } from './CmsModal';
 import { CollectionEditor } from './CollectionEditor';
+import { CurriculumMapEditor } from './CurriculumMapEditor';
 import {
   ALL_ENTRIES,
   entryDescription,
@@ -480,6 +487,13 @@ function AdminConsoleBody({ token, login, role }: Props) {
                 key={activeId ?? undefined}
                 config={config}
                 page={getMarkdownPage(active.pageKey)}
+                onDirtyChange={setDirty}
+              />
+            ) : active.type === 'screen' ? (
+              <CurriculumMapEditor
+                key={activeId ?? undefined}
+                config={config}
+                screen={getScreen(active.screenKey)}
                 onDirtyChange={setDirty}
               />
             ) : null}

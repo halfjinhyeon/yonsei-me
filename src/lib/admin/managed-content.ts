@@ -19,6 +19,10 @@ export const MANAGED_FILES = {
   heroSlides: 'content/hero-slides.json',
   coursesUndergraduate: 'content/courses-undergraduate.json',
   courseDescriptions: 'content/course-descriptions.json',
+  // 교과목 체계도 — 선수·연계 관계(edges)와 칸 안 세로 슬롯(nodes[].row).
+  // 다른 리소스와 달리 배열도 키-객체도 아닌 {nodes, edges} 한 덩어리라
+  // CollectionEditor 가 아니라 전용 편집 화면(CurriculumMapEditor)이 다룬다.
+  curriculumMap: 'content/course-flow.json',
   coursesGraduate: 'content/courses-graduate.json',
   clubs: 'content/clubs.json',
   labs: 'content/labs-directory.json',

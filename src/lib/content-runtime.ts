@@ -50,6 +50,10 @@ import { getPageMarkdown } from './pages';
 import coursesUndergraduateJson from '@content/courses-undergraduate.json';
 import courseDescriptionsJson from '@content/course-descriptions.json';
 import coursesGraduateJson from '@content/courses-graduate.json';
+// 교과목 체계도 관계·슬롯 — 2026-08 CMS 편집 대상이 되면서 CurriculumFlow 안의
+// 정적 import 를 걷고 폴백 스냅샷으로 여기 모았다(위 교과목 3종과 같은 사정).
+import courseFlowJson from '@content/course-flow.json';
+import type { CurriculumMapData } from '@/lib/curriculum-map';
 // 홈 히어로 배경 — 홈 페이지가 정적 import 하던 데이터(위 교과목 3종과 같은 사정).
 import heroSlidesJson from '@content/hero-slides.json';
 // 장학금 — 2026-08 마크다운 표에서 구조화 전환(폴백 스냅샷).
@@ -211,6 +215,17 @@ export async function getCourseDescriptionsRuntime(): Promise<typeof courseDescr
     MANAGED_FILES.courseDescriptions,
   );
   return raw ?? courseDescriptionsJson;
+}
+
+/** 교과목 체계도 — 선수·연계 관계(edges)와 칸 안 세로 슬롯(nodes[].row).
+ *  관리자 콘솔의 '교과목 체계도' 화면이 이 파일을 통째로 쓴다. 형태가 깨진 저장이
+ *  들어와도 화면이 통째로 죽지 않도록 배열 여부를 확인하고 아니면 스냅샷으로 돌린다. */
+export async function getCurriculumMapRuntime(): Promise<CurriculumMapData> {
+  const raw = await getManagedJson<CurriculumMapData>(MANAGED_FILES.curriculumMap);
+  if (!raw || !Array.isArray(raw.edges) || !Array.isArray(raw.nodes)) {
+    return courseFlowJson as unknown as CurriculumMapData;
+  }
+  return raw;
 }
 
 /** 대학원 교과목 */

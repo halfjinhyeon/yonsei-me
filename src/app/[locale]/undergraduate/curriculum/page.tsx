@@ -4,6 +4,7 @@ import { CurriculumFlow } from '@/components/CurriculumFlow';
 import {
   getCoursesUndergraduateRuntime,
   getCourseDescriptionsRuntime,
+  getCurriculumMapRuntime,
 } from '@/lib/content-runtime';
 import { SectionTabPage, sectionTabMetadata } from '../../_shared/section-tabs';
 import type { Locale } from '@/i18n/routing';
@@ -31,6 +32,7 @@ export default async function UndergraduateCurriculumPage({
   // 콘텐츠 데이터 — 소스(db/git)는 lib/content-runtime 이 판별.
   const coursesUndergraduate = await getCoursesUndergraduateRuntime();
   const courseDescriptions = await getCourseDescriptionsRuntime();
+  const curriculumMap = await getCurriculumMapRuntime();
 
   return (
     <SectionTabPage locale={params.locale} section="undergraduate" tab="curriculum">
@@ -38,6 +40,7 @@ export default async function UndergraduateCurriculumPage({
         locale={locale}
         courses={coursesUndergraduate}
         descriptions={courseDescriptions}
+        flow={curriculumMap}
       />
     </SectionTabPage>
   );

@@ -842,12 +842,44 @@ export function getMarkdownPage(key: string): MarkdownPageDef {
   return found;
 }
 
+// ---- 전용 편집 화면 ----
+//
+// 목록+폼(CollectionEditor)으로 표현할 수 없는 데이터를 위한 자리다. 체계도의
+// course-flow.json 은 배열도 키-객체도 아닌 {nodes, edges} 한 덩어리이고, 무엇보다
+// "어느 카드가 어디 있고 어떤 선으로 이어지는가"는 표로 봐서는 알 수 없다 — 그래서
+// 학생이 보는 그림을 그대로 그려 놓고 그 위에서 고치는 전용 화면을 준다.
+
+export type ScreenKey = 'curriculumMap';
+
+export interface ScreenDef {
+  key: ScreenKey;
+  label: string;
+  description: string;
+  /** 저장소 루트 기준 파일 경로 */
+  file: string;
+}
+
+export const SCREENS: Record<ScreenKey, ScreenDef> = {
+  curriculumMap: {
+    key: 'curriculumMap',
+    label: '교과목 체계도',
+    description:
+      '학부 > 교과목 체계도에 반영됩니다. 화살표(선수·연계 관계)와 카드의 세로 자리를 학생이 보는 화면 그대로 고칩니다. 과목 추가·삭제와 학년·학기·분야(어느 칸에 놓일지)는 "학부 교과목"에서 합니다.',
+    file: MANAGED_FILES.curriculumMap,
+  },
+};
+
+export function getScreen(key: ScreenKey): ScreenDef {
+  return SCREENS[key];
+}
+
 // ---- 콘솔 사이드바 구성 ----
 
 export type MenuEntry =
   | { type: 'board'; boardKey: BoardKey }
   | { type: 'collection'; resourceKey: ResourceKey }
   | { type: 'markdown'; pageKey: string }
+  | { type: 'screen'; screenKey: ScreenKey }
   | { type: 'placeholder'; label: string; note: string };
 
 export interface MenuGroup {
@@ -894,6 +926,7 @@ export const MENU_GROUPS: MenuGroup[] = [
     entries: [
       { type: 'collection', resourceKey: 'coursesUndergraduate' },
       { type: 'collection', resourceKey: 'courseDescriptions' },
+      { type: 'screen', screenKey: 'curriculumMap' },
       { type: 'collection', resourceKey: 'coursesGraduate' },
       { type: 'collection', resourceKey: 'scholarships' },
     ],

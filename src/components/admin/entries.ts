@@ -8,7 +8,13 @@
 // 하드코딩하지 않는다(콘텐츠/코드 분리와 같은 이유: 정의는 한 곳에만).
 
 import { getBoard } from '@/lib/admin/boards';
-import { getMarkdownPage, MENU_GROUPS, RESOURCES, type MenuEntry } from '@/lib/admin/resources';
+import {
+  getMarkdownPage,
+  getScreen,
+  MENU_GROUPS,
+  RESOURCES,
+  type MenuEntry,
+} from '@/lib/admin/resources';
 
 /** 메뉴 항목의 표시 라벨 */
 export function entryLabel(entry: MenuEntry): string {
@@ -19,6 +25,8 @@ export function entryLabel(entry: MenuEntry): string {
       return RESOURCES[entry.resourceKey].label;
     case 'markdown':
       return getMarkdownPage(entry.pageKey).label;
+    case 'screen':
+      return getScreen(entry.screenKey).label;
     case 'placeholder':
       return entry.label;
   }
@@ -33,6 +41,8 @@ export function entryDescription(entry: MenuEntry): string {
       return RESOURCES[entry.resourceKey].description;
     case 'markdown':
       return getMarkdownPage(entry.pageKey).description;
+    case 'screen':
+      return getScreen(entry.screenKey).description;
     case 'placeholder':
       return entry.note;
   }
@@ -66,6 +76,8 @@ export function entryId(entry: MenuEntry): string {
       return `collection:${entry.resourceKey}`;
     case 'markdown':
       return `markdown:${entry.pageKey}`;
+    case 'screen':
+      return `screen:${entry.screenKey}`;
     case 'placeholder':
       return `placeholder:${entry.label}`;
   }
@@ -89,6 +101,10 @@ export function entryKind(entry: MenuEntry): { label: string; cls: string } | nu
       return { label: '데이터', cls: 'bg-yonsei-navy/10 text-yonsei-navy' };
     case 'markdown':
       return { label: '문서', cls: 'bg-[#2E86D6]/15 text-[#1b5e9e]' };
+    // 전용 화면도 관리자에겐 '데이터'다 — 편집 UI 가 표가 아니라는 사실은
+    // 배지가 아니라 화면 자체가 말해 준다. 유형을 하나 더 만들 이유가 없다.
+    case 'screen':
+      return { label: '데이터', cls: 'bg-yonsei-navy/10 text-yonsei-navy' };
     case 'placeholder':
       return { label: '준비 중', cls: 'bg-surface-soft text-content-faint' };
   }

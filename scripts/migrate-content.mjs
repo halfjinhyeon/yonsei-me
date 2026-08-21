@@ -47,6 +47,9 @@ const MANAGED_JSON = [
   'content/hero-slides.json',
   'content/courses-undergraduate.json',
   'content/course-descriptions.json',
+  // ⚠️ 교과목 체계도(관계·슬롯). 사이트는 행이 없으면 빌드 스냅샷으로 폴백하지만
+  //    CMS 편집 화면은 GET 404 를 그대로 오류로 띄운다 — 배포 전 반드시 시딩할 것.
+  'content/course-flow.json',
   'content/courses-graduate.json',
   'content/clubs.json',
   'content/labs-directory.json',
