@@ -2,8 +2,10 @@
 
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
-import { UnderlineTabs } from '@/components/UnderlineTabs';
+import { useTranslations } from 'next-intl';
+import { FieldBarTabs } from '@/components/FieldBarTabs';
 import { cn } from '@/lib/utils';
+import { RESEARCH_FIELDS, type ResearchField } from '@/lib/research-fields';
 import type { LabDirectoryEntry } from '@/lib/faculty';
 import type { Locale } from '@/i18n/routing';
 
@@ -66,14 +68,15 @@ interface ActiveVideo {
   trigger: HTMLElement;
 }
 
-/** 필터 상태 — 기본은 영상 보유 연구실만, "전체"는 미보유 연구실까지 노출 */
-type Filter = 'withVideo' | 'all';
+/** 필터 상태 — 연구실 목록(/research/labs)과 같은 6분야 탭. 기본은 "전체" */
+type Filter = 'all' | ResearchField;
 
 const PAGE_SIZE = 9;
 
 export function LabVideoGallery({ items, locale }: { items: LabDirectoryEntry[]; locale: Locale }) {
   const ko = locale === 'ko';
-  const [filter, setFilter] = useState<Filter>('withVideo');
+  const t = useTranslations('research');
+  const [filter, setFilter] = useState<Filter>('all');
   const [page, setPage] = useState(1);
   const [active, setActive] = useState<ActiveVideo | null>(null);
   const gridRef = useRef<HTMLDivElement>(null);
@@ -82,11 +85,19 @@ export function LabVideoGallery({ items, locale }: { items: LabDirectoryEntry[];
   const totalLabs = items.length;
   const videoCount = useMemo(() => items.filter((l) => l.video).length, [items]);
 
-  // 필터별 표시 목록. "전체"에서는 영상 보유 연구실을 앞으로 모으되(그 안에선 원본 순서 유지),
-  // 안정 정렬을 위해 원본 인덱스를 부여해 정렬한다.
+  // 분야 탭에 붙는 개수 배지 — "전체"는 총 연구실 수, 나머지는 분야별 연구실 수
+  const counts = useMemo(() => {
+    const map = { all: items.length } as Record<Filter, number>;
+    for (const field of RESEARCH_FIELDS) map[field] = 0;
+    for (const lab of items) map[lab.field] += 1;
+    return map;
+  }, [items]);
+
+  // 분야별 표시 목록. 영상 갤러리라 어느 분야에서든 영상 보유 연구실을 앞으로 모으되
+  // (그 안에선 원본 순서 유지), 안정 정렬을 위해 원본 인덱스를 부여해 정렬한다.
   const visible = useMemo(() => {
-    if (filter === 'withVideo') return items.filter((l) => l.video);
-    return items
+    const list = filter === 'all' ? items : items.filter((l) => l.field === filter);
+    return list
       .map((lab, idx) => ({ lab, idx }))
       .sort((a, b) => {
         const av = a.lab.video ? 0 : 1;
@@ -139,14 +150,16 @@ export function LabVideoGallery({ items, locale }: { items: LabDirectoryEntry[];
         )}
       </p>
 
-      {/* 필터 토글 — 사이트 공통 언더라인 탭 (선택 시 컬러바 슬라이드) */}
-      <UnderlineTabs
+      {/* 분야 필터 — 연구실 목록(/research/labs)과 같은 6분야 탭을 공유한다 */}
+      <FieldBarTabs
         active={filter}
-        onChange={(id) => changeFilter(id as 'withVideo' | 'all')}
-        tabs={[
-          { id: 'withVideo', label: ko ? '영상 보유' : 'With video' },
-          { id: 'all', label: ko ? '전체 연구실' : 'All labs' },
-        ]}
+        onChange={(id) => changeFilter(id as Filter)}
+        ariaLabel={ko ? '연구실 분야 필터' : 'Research field filter'}
+        tabs={(['all', ...RESEARCH_FIELDS] as Filter[]).map((id) => ({
+          id,
+          label: t(`fieldFilter.${id}`),
+          count: counts[id],
+        }))}
       />
 
       {/* 카드 그리드 — key로 필터·페이지 전환 시 진입 애니메이션 재생 */}

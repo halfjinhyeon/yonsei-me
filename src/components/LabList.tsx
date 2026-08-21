@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { useLocale, useTranslations } from 'next-intl';
 import { cn } from '@/lib/utils';
 import { AiSummaryPanel, AiSummaryToggle, useAiSummaryTyping } from '@/components/AiResearchSummary';
+import { FieldBarTabs } from '@/components/FieldBarTabs';
 import { RESEARCH_FIELDS, type ResearchField } from '@/lib/research-fields';
 import type { LabDirectoryEntry } from '@/lib/faculty';
 
@@ -26,61 +27,6 @@ export interface LabFieldIntro {
   title: string;
   description: string;
   image: string;
-}
-
-/**
- * 분야 필터 탭 — 레퍼런스 디자인 이식: 활성 항목의 위·아래에 굵은 바가 붙는
- * 텍스트 탭(구 UnderlineTabs 대체). 좁은 화면은 가로 스크롤.
- */
-function FieldBarTabs({
-  active,
-  onChange,
-  tabs,
-  ariaLabel,
-}: {
-  active: string;
-  onChange: (id: Filter) => void;
-  tabs: { id: Filter; label: string; count: number }[];
-  ariaLabel: string;
-}) {
-  return (
-    <div role="group" aria-label={ariaLabel} className="flex items-stretch gap-5 overflow-x-auto sm:gap-9">
-      {tabs.map((tab) => {
-        const on = active === tab.id;
-        return (
-          <button
-            key={tab.id}
-            type="button"
-            onClick={() => onChange(tab.id)}
-            aria-pressed={on}
-            className={cn(
-              'relative whitespace-nowrap py-3.5 text-base font-bold transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yonsei-blue sm:text-lg',
-              on ? 'text-yonsei-blue' : 'text-content-soft hover:text-content',
-            )}
-          >
-            {/* 활성 표시 — 텍스트 위·아래의 굵은 바(레퍼런스 문법) */}
-            <span
-              aria-hidden="true"
-              className={cn('absolute inset-x-0 top-0 h-[3px] bg-yonsei-blue transition-opacity', on ? 'opacity-100' : 'opacity-0')}
-            />
-            <span
-              aria-hidden="true"
-              className={cn('absolute inset-x-0 bottom-0 h-[3px] bg-yonsei-blue transition-opacity', on ? 'opacity-100' : 'opacity-0')}
-            />
-            {tab.label}
-            <span
-              className={cn(
-                'ml-1.5 align-middle text-xs font-medium tabular-nums',
-                on ? 'text-yonsei-blue/70' : 'text-content-faint',
-              )}
-            >
-              {tab.count}
-            </span>
-          </button>
-        );
-      })}
-    </div>
-  );
 }
 
 /**
@@ -301,7 +247,7 @@ export function LabList({
       <div className="mb-8">
         <FieldBarTabs
           active={filter}
-          onChange={setFilter}
+          onChange={(id) => setFilter(id as Filter)}
           ariaLabel="연구실 분야 필터"
           tabs={(['all', ...FIELDS] as Filter[]).map((id) => ({
             id,
