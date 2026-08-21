@@ -23,6 +23,8 @@ export interface CmsPanelHeadProps {
   siteUrl?: string;
   /** 우측 상단 동작 버튼들 (저장·새 글 등). 배치만 여기서 맡고 내용은 에디터가 정한다 */
   actions?: React.ReactNode;
+  /** 0~1 이면 제목 아래 룰이 그만큼 찬 진행 바가 된다. null/undefined = 평소의 룰 */
+  progress?: number | null;
 }
 
 /** 유형별 배지 문구와 색. entries.ts 의 entryKind 와 같은 규칙을 쓴다
@@ -33,10 +35,17 @@ const KIND: Record<CmsPanelHeadProps['kind'], { label: string; cls: string }> = 
   markdown: { label: '문서', cls: 'bg-[#2E86D6]/15 text-[#1b5e9e]' },
 };
 
-export function CmsPanelHead({ kind, title, description, siteUrl, actions }: CmsPanelHeadProps) {
+export function CmsPanelHead({
+  kind,
+  title,
+  description,
+  siteUrl,
+  actions,
+  progress,
+}: CmsPanelHeadProps) {
   const badge = KIND[kind];
   return (
-    <header className="cms-rule mb-7 pb-[18px]">
+    <header className={cn('cms-rule mb-7 pb-[18px]', progress != null && 'relative')}>
       <div className="flex flex-wrap items-start justify-between gap-x-6 gap-y-3.5">
         <div className="min-w-0">
           <p className="flex items-center gap-2.5">
@@ -68,6 +77,17 @@ export function CmsPanelHead({ kind, title, description, siteUrl, actions }: Cms
         >
           사이트에서 보기 ↗
         </a>
+      )}
+
+      {/* 오래 걸리는 작업(교수 실적 수집)이 도는 동안, 제목 아래 룰이 진행 바를 겸한다.
+          패널을 닫고 다른 것을 하다 돌아와도 "아직 돌고 있다"가 이 자리에 남는다. */}
+      {progress != null && (
+        <div className="absolute inset-x-0 bottom-0 h-0.5 bg-surface-border" aria-hidden="true">
+          <div
+            className="h-0.5 bg-yonsei-navy transition-[width] duration-500 ease-out-expo"
+            style={{ width: `${Math.round(progress * 100)}%` }}
+          />
+        </div>
       )}
     </header>
   );

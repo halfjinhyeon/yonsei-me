@@ -521,6 +521,10 @@ export function FacultyActivitiesDialog({ name, onClose }: { name: string; onClo
   const [saveError, setSaveError] = useState<string | null>(null);
   const [snack, setSnack] = useState<Snack | null>(null);
   const [confirmClose, setConfirmClose] = useState(false);
+  /** 이 교수만 재수집 중 — 3~5초짜리라 진행률 대신 버튼 자리가 바뀐다 */
+  const [crawling, setCrawling] = useState(false);
+  /** 수집 직후 몇 초간 '방금 갱신됨' 표시 — 그 뒤 평상시 버튼으로 돌아온다 */
+  const [justCrawled, setJustCrawled] = useState(false);
 
   const searchRef = useRef<HTMLInputElement>(null);
   const snackTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -569,6 +573,48 @@ export function FacultyActivitiesDialog({ name, onClose }: { name: string; onClo
     setSnack({ text, undo });
     snackTimer.current = setTimeout(() => setSnack(null), ms);
   }
+
+  /** 이 교수 한 명만 교원정보시스템에서 다시 받아온다(병합 — 지우지 않는다).
+   *  서버가 파일을 갱신하므로 화면은 저장된 최신본을 통째로 다시 읽는다. */
+  const crawlThis = useCallback(async () => {
+    if (dirty > 0) {
+      showSnack('먼저 저장한 뒤 불러오세요 — 미저장 변경이 덮어써질 수 있습니다.', null, 4000);
+      return;
+    }
+    setCrawling(true);
+    try {
+      const res = await fetch('/api/admin/faculty-crawl', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name }),
+      });
+      const data = (await res.json()) as {
+        added?: number;
+        addedByKey?: Record<string, number>;
+        error?: string;
+      };
+      if (!res.ok) throw new Error(data.error ?? `수집 실패 (HTTP ${res.status})`);
+      await load();
+      const added = data.added ?? 0;
+      setJustCrawled(true);
+      setTimeout(() => setJustCrawled(false), 5000);
+      if (added === 0) {
+        showSnack('변경 없음 — 새로 추가된 실적이 없습니다.', null, 3000);
+      } else {
+        const parts = CATEGORIES.filter((c) => (data.addedByKey?.[c.id] ?? 0) > 0).map(
+          (c) => `${c.label} ${data.addedByKey?.[c.id]}건`,
+        );
+        showSnack(`${parts.join(' · ')} 추가됨 · 기존 기록은 그대로입니다`, null, 5000);
+      }
+    } catch (err) {
+      showSnack(err instanceof Error ? err.message : '실적을 불러오지 못했습니다.', null, 5000);
+    } finally {
+      setCrawling(false);
+    }
+    // showSnack 은 렌더마다 새로 만들어지는 일반 함수라 의존성에 넣지 않는다
+    // (넣으면 이 콜백이 매 렌더 새로 생긴다 — 동작은 같다).
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [dirty, load, name]);
 
   const attemptClose = useCallback(() => {
     if (dirty > 0) setConfirmClose(true);
@@ -775,6 +821,35 @@ export function FacultyActivitiesDialog({ name, onClose }: { name: string; onClo
             <h2 className="flex items-baseline gap-2.5 text-[19px] font-bold text-content">
               학술활동 관리 — {name}
               <span className="text-[13px] font-medium text-content-faint">총 {total}건</span>
+              {/* 이 교수만 다시 받아오기 — 한 명은 3~5초라 확인 모달도 진행률도 없다.
+                  버튼 자리에서 그대로 로딩 → '방금 갱신됨' 으로 바뀌고, 결과는 스낵바가 말한다.
+                  ⚠️ 미저장 변경이 있으면 막는다: 수집이 서버 파일을 갱신하는데 그 뒤에
+                  이 화면의 옛 원본을 저장하면 방금 받아온 행이 통째로 사라진다. */}
+              {crawling ? (
+                <span className="inline-flex cursor-not-allowed items-center gap-[7px] border border-surface-border bg-surface-soft px-2.5 py-[5px] text-xs font-semibold text-content-soft">
+                  <span
+                    aria-hidden="true"
+                    className="inline-block h-2.5 w-2.5 animate-spin rounded-full border-2 border-surface-border border-t-yonsei-blue"
+                  />
+                  받아오는 중…
+                </span>
+              ) : justCrawled ? (
+                <span className="inline-flex items-center gap-1.5 border border-yonsei-blue px-2.5 py-[5px] text-xs font-bold text-yonsei-blue">
+                  <span aria-hidden="true">✓</span>방금 갱신됨
+                </span>
+              ) : (
+                <button
+                  type="button"
+                  onClick={() => void crawlThis()}
+                  disabled={saving || loading}
+                  className="inline-flex items-center gap-1.5 border border-surface-border bg-surface px-2.5 py-[5px] text-xs font-semibold text-content transition-colors hover:border-yonsei-blue hover:text-yonsei-blue disabled:cursor-not-allowed disabled:opacity-40"
+                >
+                  <span aria-hidden="true" className="text-[13px] leading-none">
+                    ↻
+                  </span>
+                  최신 실적 받아오기
+                </button>
+              )}
             </h2>
             <span className="flex shrink-0 items-center gap-2.5">
               {dirty > 0 && (

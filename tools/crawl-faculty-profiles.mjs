@@ -9,61 +9,38 @@
  * 하는 일
  *   ① content/faculty-profiles/*.json 의 `sourceUrl`(암호화 userId)로 대상을 고른다.
  *      프로필이 아직 없는 교수는 faculty-directory 의 moreInfoUrl 로 보완한다.
- *   ② 상세 셸에서 이름·영문명·이메일·전화·연구실·홈페이지를 뽑는다 (mode=view).
- *   ③ 같은 userId 의 리포트 5종(논문·수상·학술활동·연구과제·지적재산권)을 받아 표를
- *      행 단위로 파싱한다 (mode=report&reportType=article|award|conference|funding|patent).
- *      ⚠️ 한 페이지가 100행에서 끊긴다. 하단 paging 에 2쪽 링크(mode=report_next)가 있으면
- *         그 쪽까지 받아 이어 붙인다. 원본이 제공하는 쪽은 최대 2쪽뿐이다(실측).
- *   ④ 기존 프로필에 **없던 행만 뒤에 붙여** 저장한다. 지우거나 덮어쓰지 않는다.
+ *   ② 교수 한 명씩 crawlPerson() 에 넘긴다 — 상세 셸 + 리포트 5종(논문·수상·학술활동·
+ *      연구과제·지적재산권) 수집과 병합은 전부 그 안에서 끝난다.
+ *   ③ 결과 원문이 달라진 교수만 저장한다.
+ *
+ * ⚠️ **크롤·파싱·병합 규칙은 여기 없다** — src/lib/faculty-crawl/core.ts 한 곳에 있고,
+ *    CMS 의 "실적 불러오기" 버튼(/api/admin/faculty-crawl)도 같은 파일을 쓴다. 규칙이 두
+ *    벌로 갈리면 행 키 순서가 어긋나 고치지도 않은 행이 전부 신규로 잡힌다. 이 파일이
+ *    맡는 것은 **대상 선별 · 저장처 · 콘솔 출력**뿐이다.
+ *    (Node 24 가 .ts 를 그대로 import 한다 — 내장 타입 스트리핑. core.ts 에 의존성이
+ *     생기는 순간 이 경로가 깨지므로 그 파일은 순수 모듈로 유지할 것.)
  *
  * ⚠️ 병합인 이유 두 가지
  *   ⓐ 원본 리포트는 분류당 최대 2쪽·200건 하드캡이라, 새 실적이 등록되면 오래된 실적이
  *      창밖으로 밀려난다. 덮어쓰면 우리 쪽 기록까지 같이 사라진다(조형희 학술활동에서 실측).
  *   ⓑ CMS(교수 학술활동 팝업 편집기)에서 손본 행과 AI 연구요약이 지워진다.
  *
- * ⚠️ 호스트
- *   원본은 me.yonsei.ac.kr 인데, 도메인 컷오버 뒤 그 주소는 이 사이트가 된다. 같은 페이지를
- *   서빙하는 원본 CMS 호스트(devcms.yonsei.ac.kr)로 요청한다 — 2026-08 실측으로 상세·리포트
- *   모두 동일 응답. 학교가 주소를 옮기면 FACULTY_INFO_HOST 만 고치면 된다.
- *
  * 언제 도는가
- *   학기마다 한 번이면 충분하다(논문·과제가 학기 단위로 갱신된다). 자동 실행은 GitHub
- *   Actions 스케줄(.github/workflows/crawl-faculty-profiles.yml)이 맡는다 — 한 바퀴가
- *   몇 분 걸려 서버리스 함수 타임아웃에 맞지 않는다.
- *
- * 상대 서버 배려
- *   순차 처리 + 요청 사이 300ms 지연. 교수 한 명당 6~11요청(셸 1 + 리포트 5 + 2쪽 추가).
- *   개별 요청 실패는 그 분류만 기존 값을 유지한 채 넘어가고, 마지막에 실패 목록을 찍는다.
+ *   무인 전량 수집은 GitHub Actions 스케줄(.github/workflows/crawl-faculty-profiles.yml)이
+ *   맡는다 — 한 바퀴가 몇 분 걸려 서버리스 함수 타임아웃에 맞지 않는다. 담당자가 지금
+ *   당장 받아야 할 때는 CMS 교수진 화면의 "실적 불러오기" 버튼을 쓴다(브라우저가 한 명씩
+ *   같은 로직을 호출한다).
  *
  * 의존성: Node 24 내장 fetch. --source=db 일 때만 @supabase/supabase-js 를 쓴다.
  */
 import { readFileSync, writeFileSync, readdirSync, mkdirSync, existsSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { SECTION_KEYS, crawlPerson, serializeProfile } from '../src/lib/faculty-crawl/core.ts';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const DIRECTORY = join(ROOT, 'content', 'faculty-directory.json');
 const OUT_DIR = join(ROOT, 'content', 'faculty-profiles');
-
-const DELAY_MS = 300;
-const TIMEOUT_MS = 15000;
-const REPORT_TYPES = ['article', 'award', 'conference', 'funding', 'patent'];
-
-/** 원본 CMS 호스트. me.yonsei.ac.kr 은 컷오버 뒤 이 사이트가 되므로 쓰지 않는다. */
-const FACULTY_INFO_HOST = 'devcms.yonsei.ac.kr';
-
-/** 저장돼 있는 URL 이 옛 호스트를 가리키면 원본 CMS 호스트로 바꾼다. */
-function infoHost(url) {
-  try {
-    const u = new URL(url);
-    if (u.hostname === 'me.yonsei.ac.kr') u.hostname = FACULTY_INFO_HOST;
-    return u.toString();
-  } catch {
-    return url;
-  }
-}
-
-const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
 // ── 저장소 (레포 파일 / Supabase content_files) ─────────────────
 /** 공통 인터페이스: raw(name) → 원문 문자열|null, read(name) → 파싱본|null, write(name, body) */
@@ -134,145 +111,6 @@ async function openDbStore() {
   };
 }
 
-// ── HTML 유틸 ──────────────────────────────────────────────────
-/** 엔티티 최소 6종 + 숫자 참조를 되돌린다. 사이트가 그 이상은 쓰지 않는다(실측). */
-function decodeEntities(s) {
-  return s
-    .replace(/&nbsp;/g, ' ')
-    .replace(/&#(\d+);/g, (_, d) => String.fromCharCode(Number(d)))
-    .replace(/&#x([0-9a-fA-F]+);/g, (_, h) => String.fromCharCode(parseInt(h, 16)))
-    .replace(/&quot;/g, '"')
-    .replace(/&#39;/g, "'")
-    .replace(/&lt;/g, '<')
-    .replace(/&gt;/g, '>')
-    .replace(/&amp;/g, '&');
-}
-
-/** 태그를 걷어내고 공백을 접는다. <br/> 은 붙여 쓴다 — 기간 셀이 `2026-03-01~<br/>2027-02-28` 꼴이라. */
-function text(html) {
-  if (html == null) return '';
-  return decodeEntities(
-    String(html)
-      .replace(/<br\s*\/?>/gi, '')
-      .replace(/<[^>]*>/g, ' '),
-  )
-    .replace(/\s+/g, ' ')
-    .trim();
-}
-
-/**
- * 기간 셀 정리. 원본이 `2023.08.21~<br/> 2023.08.25` 처럼 <br/> 뒤에 공백을 두기도 해서
- * 물결표 좌우 공백을 없애 `2023.08.21~2023.08.25` 한 덩어리로 만든다.
- */
-function period(s) {
-  return s ? s.replace(/\s*~\s*/g, '~').trim() : s;
-}
-
-/** <tr>…</tr> 안의 <td>/<th> 원문(태그 포함)을 순서대로 돌려준다. */
-function cellsOf(rowHtml) {
-  const out = [];
-  const re = /<t([dh])\b[^>]*>([\s\S]*?)<\/t\1>/gi;
-  let m;
-  while ((m = re.exec(rowHtml))) out.push(m[2]);
-  return out;
-}
-
-/** 표(첫 <table>)의 본문 행만. 헤더행(<th> 포함)과 "데이터가 없습니다" 한 칸짜리 행은 버린다. */
-function tableRows(html) {
-  const table = html.match(/<table[\s\S]*?<\/table>/i);
-  if (!table) return [];
-  const rows = [];
-  const re = /<tr\b[^>]*>([\s\S]*?)<\/tr>/gi;
-  let m;
-  while ((m = re.exec(table[0]))) {
-    const raw = m[1];
-    if (/<th\b/i.test(raw)) continue;
-    const cells = cellsOf(raw).map(text);
-    if (cells.length < 2) continue; // colspan 안내 문구 행
-    rows.push(cells);
-  }
-  return rows;
-}
-
-// ── 네트워크 ───────────────────────────────────────────────────
-async function get(url) {
-  const res = await fetch(url, {
-    signal: AbortSignal.timeout(TIMEOUT_MS),
-    headers: {
-      'User-Agent':
-        'Mozilla/5.0 (compatible; yonsei-me-site-builder/1.0; +https://me.yonsei.ac.kr/faculty/)',
-      'Accept-Language': 'ko-KR,ko;q=0.9',
-    },
-  });
-  if (!res.ok) throw new Error(`HTTP ${res.status}`);
-  return res.text();
-}
-
-// ── 상세 셸 파싱 ───────────────────────────────────────────────
-function parseProfile(html) {
-  const box = html.match(/<div class="info-box"[\s\S]*?<div class="career-box"/i);
-  const scope = box ? box[0] : html;
-
-  const dt = scope.match(/<dt>([\s\S]*?)<\/dt>/i);
-  let name = null;
-  let nameEn = null;
-  if (dt) {
-    const span = dt[1].match(/<span>([\s\S]*?)<\/span>/i);
-    nameEn = span ? text(span[1]) || null : null;
-    name = text(dt[1].replace(/<span>[\s\S]*?<\/span>/gi, '')) || null;
-  }
-
-  const mail = scope.match(/href="mailto:([^"]+)"/i);
-  const email = mail ? decodeEntities(mail[1]).trim() : null;
-
-  const items = [...scope.matchAll(/<li>([\s\S]*?)<\/li>/gi)].map((m) => text(m[1]));
-  const field = (label) => {
-    const hit = items.find((v) => v.startsWith(`${label} :`));
-    if (!hit) return null;
-    const v = hit.slice(label.length + 2).trim();
-    return v || null;
-  };
-
-  const sns = scope.match(/<ul class="btn-sns"[\s\S]*?<\/ul>/i);
-  const home = sns ? sns[0].match(/href="([^"]+)"/i) : null;
-  const homepage = home ? decodeEntities(home[1]).trim() : null;
-
-  return {
-    name,
-    nameEn,
-    email,
-    phone: field('Tel'),
-    office: field('Office'),
-    homepage,
-  };
-}
-
-// ── 리포트 파싱 (헤더 순서는 실측 고정) ─────────────────────────
-const REPORT_MAP = {
-  // Issue Date | Title | Journals
-  article: (c) => ({ date: c[0] || null, title: c[1] || '', journal: c[2] || null }),
-  // No | Title | Contents | Date
-  award: (c) => ({ title: c[1] || '', contents: c[2] || null, date: c[3] || null }),
-  // No | Title | Academic Conference | Period
-  conference: (c) => ({ title: c[1] || '', conference: c[2] || null, period: period(c[3]) || null }),
-  // No | Title | Support Org | Period
-  funding: (c) => ({ title: c[1] || '', org: c[2] || null, period: period(c[3]) || null }),
-  // No | Title | Type | Applicant | Appl.Date
-  patent: (c) => ({
-    title: c[1] || '',
-    type: c[2] || null,
-    applicant: c[3] || null,
-    date: c[4] || null,
-  }),
-};
-const KEY_OF = {
-  article: 'articles',
-  award: 'awards',
-  conference: 'conferences',
-  funding: 'fundings',
-  patent: 'patents',
-};
-
 // ── 대상 선별 ──────────────────────────────────────────────────
 // 기준은 **각 프로필 파일의 sourceUrl** 이다(암호화된 userId 가 들어 있다).
 // 과거엔 faculty-directory 의 moreInfoUrl 을 썼는데, 레거시 링크 청산(2026-08) 때
@@ -304,24 +142,6 @@ function listTargets() {
   return [...seen].map(([name, viewUrl]) => ({ name, viewUrl }));
 }
 
-// ── 병합 ───────────────────────────────────────────────────────
-/** 행 동일성 판정 — CMS 편집기(FacultyActivitiesDialog)와 같은 문자열 비교다.
- *  키 순서가 크롤러 산출물과 어긋나면 전 행이 신규로 잡히므로 REPORT_MAP 의
- *  프로퍼티 순서를 함부로 바꾸지 말 것. */
-const rowKey = (row) => JSON.stringify(row);
-
-/** 기존 행은 순서 그대로 두고, 없던 행만 뒤에 붙인다. 절대 지우지 않는다 —
- *  원본이 분류당 200건 하드캡이라 오래된 실적이 창밖으로 밀려나는데, 여기서
- *  덮어쓰면 그 기록까지 같이 사라진다. CMS 에서 손본 행도 같은 이유로 보존된다. */
-function appendNew(base, fresh) {
-  const known = new Set((base ?? []).map(rowKey));
-  const added = (fresh ?? []).filter((r) => !known.has(rowKey(r)));
-  return { rows: [...(base ?? []), ...added], added: added.length };
-}
-
-/** 스칼라는 기존 값 우선 — 비어 있을 때만 크롤 값으로 채운다(CMS 편집분 보호) */
-const keepOr = (base, fresh) => (base != null && base !== '' ? base : (fresh ?? null));
-
 // ── 실행 ───────────────────────────────────────────────────────
 const args = process.argv.slice(2);
 const APPLY = args.includes('--apply');
@@ -351,84 +171,26 @@ let totalAdded = 0;
 
 console.log(
   `대상 ${targets.length}명 · 소스 ${useDb ? 'DB(content_files)' : '레포 파일'} · ` +
-    `${APPLY ? '기록' : '드라이런'} · 요청 간 ${DELAY_MS}ms 지연\n`,
+    `${APPLY ? '기록' : '드라이런'}\n`,
 );
 
 for (const person of targets) {
-  const viewUrl = infoHost(person.viewUrl);
-  const userId = (viewUrl.match(/[?&]userId=([^&]*)/) || [])[1] || '';
+  const result = await crawlPerson(person, await store.read(person.name), { today });
+  failures.push(...result.failures);
 
-  let shell = null;
-  try {
-    shell = await get(viewUrl);
-  } catch (e) {
-    failures.push({ name: person.name, what: 'view', reason: String(e.message || e) });
-  }
-  await sleep(DELAY_MS);
-
-  const fresh = shell
-    ? parseProfile(shell)
-    : { name: null, nameEn: null, email: null, phone: null, office: null, homepage: null };
-
-  const sections = {};
-  let sectionOk = 0;
-  for (const rt of REPORT_TYPES) {
-    const url = (mode) =>
-      infoHost(`https://${FACULTY_INFO_HOST}/faculty/name_search.do?mode=${mode}&userId=${userId}&reportType=${rt}`);
-    try {
-      const html = await get(url('report'));
-      const rows = tableRows(html);
-      // 2쪽 링크가 있으면(=100행에서 잘렸으면) 나머지를 받아 이어 붙인다.
-      if (html.includes('mode=report_next')) {
-        await sleep(DELAY_MS);
-        try {
-          rows.push(...tableRows(await get(url('report_next'))));
-        } catch (e) {
-          failures.push({ name: person.name, what: `${rt} 2쪽`, reason: String(e.message || e) });
-        }
-      }
-      sections[KEY_OF[rt]] = rows.map(REPORT_MAP[rt]);
-      sectionOk += 1;
-    } catch (e) {
-      sections[KEY_OF[rt]] = null; // null = 받아오지 못함(빈 배열과 구분 — 병합에서 건너뛴다)
-      failures.push({ name: person.name, what: rt, reason: String(e.message || e) });
-    }
-    await sleep(DELAY_MS);
-  }
-
-  if (!shell && sectionOk === 0) {
+  if (!result.merged) {
     console.log(`${person.name} … 전부 실패 — 건너뜀`);
     continue;
   }
 
-  const base = (await store.read(person.name)) ?? {};
-  const merged = {
-    name: base.name ?? person.name,
-    nameEn: keepOr(base.nameEn, fresh.nameEn),
-    email: keepOr(base.email, fresh.email),
-    phone: keepOr(base.phone, fresh.phone),
-    office: keepOr(base.office, fresh.office),
-    homepage: keepOr(base.homepage, fresh.homepage),
-    sourceUrl: base.sourceUrl ?? person.viewUrl,
-    crawledAt: today,
-  };
-  // AI 연구요약은 CMS 가 관리한다 — 크롤러가 만들지도, 지우지도 않는다.
-  if (base.aiSummary != null) merged.aiSummary = base.aiSummary;
+  const counts = SECTION_KEYS.map((key) => {
+    if (result.missing.includes(key)) return `${key} ✗`;
+    const added = result.addedByKey[key] ?? 0;
+    return `${key} ${result.totalByKey[key]}${added ? ` (+${added})` : ''}`;
+  });
+  totalAdded += result.added;
 
-  const counts = [];
-  for (const key of ['articles', 'awards', 'conferences', 'fundings', 'patents']) {
-    if (sections[key] == null) {
-      merged[key] = base[key] ?? []; // 이번에 못 받은 분류는 기존 그대로
-      counts.push(`${key} ✗`);
-      continue;
-    }
-    const { rows, added } = appendNew(base[key], sections[key]);
-    merged[key] = rows;
-    totalAdded += added;
-    counts.push(`${key} ${rows.length}${added ? ` (+${added})` : ''}`);
-  }
-
-  const body = JSON.stringify(merged, null, 2) + '\n';
+  const body = serializeProfile(result.merged);
   const changed = body !== (await store.raw(person.name));
   if (APPLY && changed) {
     await store.write(person.name, body);

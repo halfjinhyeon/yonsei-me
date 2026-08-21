@@ -62,6 +62,9 @@ import type { DetailEditorProps } from './DetailEditorTypes';
 import { MoveButtons } from './InlineFields';
 import { LabCardsEditor } from './LabCardsEditor';
 import { CmsPanelHead } from './CmsPanelHead';
+import { FacultyCrawlButton } from './FacultyCrawlButton';
+import { FacultyCrawlDrawer } from './FacultyCrawlDrawer';
+import { useFacultyCrawl } from './useFacultyCrawl';
 import { CommitBanner } from './CommitBanner';
 import { CmsModal } from './CmsModal';
 import { CmsEmptyState } from './CmsEmptyState';
@@ -118,6 +121,11 @@ export function CollectionEditor({ config, resource, onDirtyChange }: Props) {
   // 트레이 저장은 ChangeTray 가 이미 토스트를 띄우므로, 여기서는 트레이를 거치지
   // 않는 경로(폼 저장·삭제)만 직접 알린다 — 아래 finishSave 의 notify 인자 참고.
   const { showToast, setWriteDenied } = useAdminShell();
+
+  // 교수진 화면에만 붙는 학술활동 자동 수집. 상태를 여기서 한 벌 만들어 머리말 버튼 ·
+  // 머리말 진행 바 · 진행 패널이 같은 값을 보게 한다(세 곳이 각자 들면 어긋난다).
+  const showCrawl = resource.listView?.kind === 'cards' && resource.listView.variant === 'faculty';
+  const crawl = useFacultyCrawl(showCrawl);
 
   const toForm = useCallback(
     (r: unknown): FormRecord =>
@@ -1116,17 +1124,29 @@ export function CollectionEditor({ config, resource, onDirtyChange }: Props) {
         kind="collection"
         title={resource.label}
         description={resource.description}
+        // 수집이 도는 동안 제목 아래 룰이 진행 바를 겸한다(패널을 닫아도 남는 표시)
+        progress={showCrawl ? crawl.progress : null}
         actions={
-          <button
-            type="button"
-            onClick={startNew}
-            disabled={loading || saving || orderDirty}
-            className="cms-btn cms-btn-primary cms-btn-sm"
-          >
-            + 새 항목
-          </button>
+          <>
+            {/* 교수진에만 붙는 자동 수집 — 교원정보시스템에서 실적을 받아 프로필 파일에
+                병합한다. 교수 카드가 다루는 faculty-directory 와는 **다른 파일**
+                (faculty-profiles/<이름>.json)을 건드리므로 트레이(값 patch → 일괄 저장)와
+                섞이지 않는다. 다만 이 화면이 저장 중일 때는 시작을 막아 둔다 — 담당자가
+                두 저장을 동시에 지켜보지 않아도 되게. */}
+            {showCrawl && <FacultyCrawlButton crawl={crawl} disabled={loading || saving} />}
+            <button
+              type="button"
+              onClick={startNew}
+              disabled={loading || saving || orderDirty}
+              className="cms-btn cms-btn-primary cms-btn-sm"
+            >
+              + 새 항목
+            </button>
+          </>
         }
       />
+
+      {showCrawl && <FacultyCrawlDrawer crawl={crawl} />}
 
       {success && <CommitBanner message={success.message} url={success.url} />}
 
