@@ -19,7 +19,11 @@ export function MeshCanvas({ className }: { className?: string }) {
     const canvas: HTMLCanvasElement = el;
     const ctx: CanvasRenderingContext2D = context;
 
-    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    // GPU 가속이 꺼진 브라우저(html.perf-lite)에서는 매 프레임 풀스크린 2D 드로잉이
+    // 그대로 CPU 부담이 되므로 reduced-motion 과 동일하게 한 프레임만 그리고 멈춘다.
+    const reduce =
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches ||
+      document.documentElement.classList.contains('perf-lite');
     let raf = 0;
     let width = 0;
     let height = 0;

@@ -141,7 +141,9 @@ export function Header() {
             <div
               aria-hidden="true"
               className={cn(
-                'pointer-events-none invisible fixed inset-x-0 bottom-0 top-16 bg-black/15 opacity-0 transition-all duration-200 lg:top-20',
+                // transition-all 금지 — 뷰포트 전체를 덮는 레이어라 all 로 두면 바뀌지도
+                // 않는 속성까지 전이 후보가 된다. 실제로 변하는 두 가지만 전이한다.
+                'pointer-events-none invisible fixed inset-x-0 bottom-0 top-16 bg-black/15 opacity-0 transition-[opacity,visibility] duration-200 lg:top-20',
                 !megaSuppressed &&
                   'group-hover/nav:visible group-hover/nav:opacity-100 group-focus-within/nav:visible group-focus-within/nav:opacity-100',
               )}
@@ -215,7 +217,7 @@ export function Header() {
                 내용상자가 좁아져 'Social Challenge Board' 가 두 줄로 깨진다. */}
             <div
               className={cn(
-                'invisible fixed inset-x-0 top-16 translate-y-1 opacity-0 transition-all duration-200 lg:top-20',
+                'invisible fixed inset-x-0 top-16 translate-y-1 opacity-0 transition-[opacity,transform,visibility] duration-200 lg:top-20',
                 !megaSuppressed &&
                   'group-hover/nav:visible group-hover/nav:translate-y-0 group-hover/nav:opacity-100 group-focus-within/nav:visible group-focus-within/nav:translate-y-0 group-focus-within/nav:opacity-100',
               )}
