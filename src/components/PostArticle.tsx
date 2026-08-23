@@ -99,7 +99,12 @@ export function PostArticle({
 
       {/* 에디토리얼 헤더 — 굵은 네이비 룰 + 제목 + 슬림 메타 라인(작성일 · 작성자/분류) */}
       <header className="border-t-2 border-yonsei-navy pt-6">
-        <h3 className="max-w-4xl text-2xl font-bold leading-snug tracking-tight text-content sm:text-3xl">
+        {/* 제목도 폭 제한을 두지 않는다 — 본문과 같은 열 폭에서 접혀야 CMS 편집 캔버스가
+            재현하는 줄바꿈이 공개 화면과 일치한다.
+            text-pretty: 전역 h1–h4 의 text-wrap:balance 를 끈다 — 긴 게시물 제목을 두 줄로
+            똑같이 나누면 첫 줄이 열 폭의 절반에서 접혀 "자리가 있는데도 갇힌" 인상을 준다
+            (사용자 지적). pretty 는 줄을 끝까지 채우되 마지막 줄 외톨이 단어만 막는다. */}
+        <h3 className="text-pretty text-2xl font-bold leading-snug tracking-tight text-content sm:text-3xl">
           {title}
         </h3>
         <dl className="mt-5 flex flex-wrap items-baseline gap-x-7 gap-y-1.5 border-b border-surface-border pb-6 text-sm">
@@ -124,10 +129,13 @@ export function PostArticle({
         </dl>
       </header>
 
-      {/* 본문 — 사이트 공통 prose 타이포, 가독 줄길이 제한.
+      {/* 본문 — 사이트 공통 prose 타이포. 게시물 본문은 **열 폭 전체**를 쓴다
+          (사용자 지시 2026-08-23 — 좁은 측정폭 안에 갇혀 답답하다는 지적).
+          줄길이 제한(--measure-prose)은 이제 콘텐츠 페이지의 Prose 에만 남는다.
+          폭이 곧 줄바꿈이라, CMS 편집 캔버스(PostCanvas)가 이 열 폭을 그대로 재현한다.
           markdown 은 marked 로 렌더, html 은 DB 저장 시 서버에서 정화된 산출물 그대로 */}
       <div
-        className="prose-content mt-10 max-w-3xl"
+        className="prose-content prose-wide mt-10"
         // 관리자 작성 + (html 인 경우) 서버 정화 콘텐츠 — Prose 와 동일한 신뢰 전제
         dangerouslySetInnerHTML={{
           __html: bodyFormat === 'html' ? body : (marked.parse(body) as string),

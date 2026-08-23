@@ -42,10 +42,14 @@ interface DragSession {
   row: HTMLElement;
   /** 드래그 시작 시점의 커서 Y — 이동량의 기준 */
   startY: number;
-  /** 드래그 시작 시점의 렌더된 행 높이(px) */
+  /** 드래그 시작 시점의 행 높이(레이아웃 px) */
   startHeight: number;
-  /** 현재 미리보기 높이(px) — mouseup 에서 이 값이 문서로 들어간다 */
+  /** 현재 미리보기 높이(레이아웃 px) — mouseup 에서 이 값이 문서로 들어간다 */
   height: number;
+  /** 조상에 걸린 CSS zoom 배율 — 편집 캔버스(PostCanvas)가 폼이 좁을 때 1 미만으로 준다.
+   *  마우스 좌표는 화면 px, 높이 값(style.height·rowheight)은 레이아웃 px 이라 서로 단위가
+   *  다르다. 보정 없이 빼면 zoom 0.8 에서 커서보다 25% 더 늘어난다. */
+  zoom: number;
   /** 실제로 움직였는가 — 경계 클릭만으로 높이가 박제되지 않게 */
   moved: boolean;
 }
@@ -88,7 +92,11 @@ export function rowResizingPlugin(): Plugin {
     if (!drag) return;
     if (event.clientY === drag.startY && !drag.moved) return;
     drag.moved = true;
-    const next = Math.max(MIN_ROW_HEIGHT, Math.round(drag.startHeight + (event.clientY - drag.startY)));
+    // 커서 이동량(화면 px)을 zoom 으로 나눠 레이아웃 px 로 되돌린 뒤 더한다
+    const next = Math.max(
+      MIN_ROW_HEIGHT,
+      Math.round(drag.startHeight + (event.clientY - drag.startY) / drag.zoom),
+    );
     if (next === drag.height) return;
     drag.height = next;
     // 라이브 미리보기 — 문서가 아니라 DOM 만 만진다(감시자는 꺼 둔 상태)
@@ -137,12 +145,17 @@ export function rowResizingPlugin(): Plugin {
         mousedown: (view, event) => {
           if (drag || event.button !== 0 || !hoverRow) return false;
           event.preventDefault(); // 텍스트 선택(드래그 셀렉션) 시작 차단
+          // 높이는 offsetHeight(레이아웃 px)로 잰다 — rowheight 로 저장될 값이 레이아웃 값이고,
+          // zoom 아래에서 rect 는 화면 px 라 저장하는 순간 표가 줄어든다.
+          const startHeight = hoverRow.offsetHeight;
           drag = {
             view,
             row: hoverRow,
             startY: event.clientY,
-            startHeight: Math.round(hoverRow.getBoundingClientRect().height),
-            height: Math.round(hoverRow.getBoundingClientRect().height),
+            startHeight,
+            height: startHeight,
+            // rect(화면) ÷ offset(레이아웃) = 조상 누적 zoom. 0 나눗셈·미측정은 1 로 폴백.
+            zoom: hoverRow.getBoundingClientRect().height / startHeight || 1,
             moved: false,
           };
           domObserver(view)?.stop();

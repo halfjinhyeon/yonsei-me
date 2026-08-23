@@ -12,6 +12,7 @@
 
 import { useState } from 'react';
 import { PostArticle } from '@/components/PostArticle';
+import { PostCanvas } from '@/components/admin/PostCanvas';
 import type { BoardMeta, EditRecord } from '@/lib/admin/boards';
 
 interface Props {
@@ -121,8 +122,11 @@ export function PostPreviewPane({ meta, rec }: Props) {
         Link 나 본문 내부 링크를 누르면 라우팅이 일어나 편집 중이던 글이 사라지므로,
         새 탭(첨부의 외부 링크, target=_blank)이 아닌 앵커는 기본 동작을 막는다.
       */}
+      {/* 좌우 20px 은 에디터 편집 영역의 좌우 패딩(--rte-pad-x, 1.25rem)과 같은 값이다 —
+          편집↔미리보기를 오갈 때 글의 왼쪽 선이 제자리에 있어야 "같은 글"로 읽힌다.
+          안쪽은 PostCanvas 로 감싸 공개 게시물과 같은 폭(=같은 줄바꿈)으로 그린다. */}
       <div
-        className="px-5 py-10 sm:px-9"
+        className="px-5 py-10"
         onClickCapture={(e) => {
           const anchor = (e.target as HTMLElement).closest('a');
           if (anchor && anchor.getAttribute('target') !== '_blank') {
@@ -130,19 +134,21 @@ export function PostPreviewPane({ meta, rec }: Props) {
           }
         }}
       >
-        <PostArticle
-          boardName={meta.label}
-          title={title}
-          date={rec.date}
-          metaValue={metaValue}
-          body={body}
-          bodyFormat="html" /* Tiptap 전환: rec.body* 는 위지윅 HTML */
-          attachments={attachments}
-          attachmentLabels={attachmentLabels}
-          backHref="/news"
-          labels={labels}
-          locale={previewLocale}
-        />
+        <PostCanvas>
+          <PostArticle
+            boardName={meta.label}
+            title={title}
+            date={rec.date}
+            metaValue={metaValue}
+            body={body}
+            bodyFormat="html" /* Tiptap 전환: rec.body* 는 위지윅 HTML */
+            attachments={attachments}
+            attachmentLabels={attachmentLabels}
+            backHref="/news"
+            labels={labels}
+            locale={previewLocale}
+          />
+        </PostCanvas>
       </div>
     </div>
   );

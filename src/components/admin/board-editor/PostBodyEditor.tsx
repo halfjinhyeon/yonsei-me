@@ -16,6 +16,9 @@
 // 문서 스키마·저장 계약은 RichTextEditor(구판)와 동일 — rte-schema 확장을 그대로
 // 쓰므로 저장 HTML 형식이 변하지 않고, PostForm 프롭 그대로 스왑된다.
 // 내용 영역 타이포는 prose-content(사이트 본문과 동일) — 진짜 WYSIWYG.
+// 폭까지 진짜다: 편집 영역을 PostCanvas 로 감싸 게시물 설계 폭(1022px)으로 레이아웃하고,
+// 폼이 그보다 좁으면 zoom 으로 통째로 줄인다 — 글자 크기는 실치수가 아니지만(사용자 승인)
+// 줄바꿈이 공개 화면과 한 글자도 어긋나지 않는다.
 // 표 보조 바·이미지 보조 바는 2026-08 시안(1a/1d)으로 다시 그렸다 — 툴바와 같은 면에
 // 붙는 인라인 바 + 아이콘·라벨 버튼, 색/테두리/여백은 "표 스타일" 팝오버 한 곳.
 // 명령 자체는 구판 그대로다(새로 만든 에디터 명령 없음).
@@ -32,6 +35,7 @@ import { TextStyle, Color, FontFamily, FontSize, LineHeight } from '@tiptap/exte
 import Youtube from '@tiptap/extension-youtube';
 import { CharacterCount, Placeholder } from '@tiptap/extensions';
 
+import { PostCanvas } from '../PostCanvas';
 import { RteRowResize } from '@/lib/admin/rte-row-resize';
 import {
   RteImage,
@@ -237,7 +241,7 @@ export function PostBodyEditor({
     content: value || '',
     editorProps: {
       attributes: {
-        class: 'prose-content rte-area',
+        class: 'prose-content prose-wide rte-area',
         ...(ariaLabel ? { 'aria-label': ariaLabel } : {}),
       },
       transformPastedHTML: cleanPastedHtml,
@@ -330,7 +334,7 @@ export function PostBodyEditor({
     doc.open();
     doc.write(
       `<!doctype html><html><head><meta charset="utf-8">${styles}</head>` +
-        `<body><div class="prose-content" style="padding:24px">${html}</div></body></html>`,
+        `<body><div class="prose-content prose-wide" style="padding:24px">${html}</div></body></html>`,
     );
     doc.close();
     // 스타일 적용 여유를 준 뒤 인쇄 — 끝나면 프레임 제거
@@ -652,7 +656,9 @@ export function PostBodyEditor({
 
         {/* 본문 ↔ 코드뷰 — 에디터 인스턴스는 숨겨서 보존한다(상태·히스토리 유지) */}
         <div className={codeView ? 'hidden' : undefined}>
-          <EditorContent editor={editor} />
+          <PostCanvas>
+            <EditorContent editor={editor} />
+          </PostCanvas>
         </div>
         {/* 원문 모드 토글 — 코드뷰 안에서만 보인다(구형처럼 소스를 직접 붙여넣는 자리) */}
         {codeView && onBodyRawChange && (

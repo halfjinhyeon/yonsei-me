@@ -587,8 +587,10 @@ export function PostForm({
         </span>
       </div>
 
-      {/* ── 본문 단일 컬럼 ── */}
-      <div className="mx-auto max-w-[1000px] px-6 py-9 pb-24 lg:px-8">
+      {/* ── 본문 단일 컬럼 ──
+          1152 = 본문 설계 폭 1046(POST_BODY_WIDTH) + 편집 영역 좌우 패딩 40 + 테두리 2 + 폼 좌우 패딩 64(lg:px-8).
+          데스크톱에서 편집 캔버스(PostCanvas)가 축소 없이(zoom 1) 공개 화면과 1:1 이 되는 최소 폭이다. */}
+      <div className="mx-auto max-w-[1152px] px-6 py-9 pb-24 lg:px-8">
         {/* 초안 안내 — 쓰다 만 글이 남아 있을 때만 */}
         {foundDraft && (
           <div className="anim-panel mb-6 flex flex-wrap items-center gap-x-4 gap-y-2 border border-yonsei-blue/40 bg-yonsei-blue/[0.05] px-4 py-3">
@@ -766,7 +768,10 @@ export function PostForm({
                   <p className="mb-2 text-[15px] font-bold text-content">{rec.titleKo || '(제목 없음)'}</p>
                   {rec.bodyKo.trim() ? (
                     /* 관리자 본인이 에디터로 만든 HTML — 미리보기(PostPreviewPane)와 같은 취급 */
-                    <div className="prose-content" dangerouslySetInnerHTML={{ __html: rec.bodyKo }} />
+                    <div
+                      className="prose-content prose-wide"
+                      dangerouslySetInnerHTML={{ __html: rec.bodyKo }}
+                    />
                   ) : (
                     <p className="m-0 text-content-faint">(본문 없음)</p>
                   )}

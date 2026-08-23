@@ -56,7 +56,10 @@ export function BoardShell({
         <section className="min-w-0 flex-1">{children}</section>
 
         {/* 우측 목차 박스 (데스크톱 전용, 모바일은 상단 스크롤 탭으로 대체) —
-            TabbedContent와 동일한 세로 그라디언트 막대 + 링크 리스트 */}
+            TabbedContent와 동일한 세로 그라디언트 막대 + 링크 리스트.
+            ⚠️ 목차 폭(lg:w-[218px])과 위 gap(lg:gap-14)이 콘텐츠 열 폭을 정한다 —
+            CMS 편집 캔버스가 그 값을 @/lib/post-layout 의 POST_BODY_WIDTH 로 복제하므로
+            둘 중 하나를 고치면 반드시 함께 맞춘다. */}
         <nav className="hidden shrink-0 lg:sticky lg:top-28 lg:block lg:w-[218px]" aria-label="섹션 목차">
           {navTitle && (
             <p className="mb-4 text-xl font-bold text-content">{navTitle}</p>

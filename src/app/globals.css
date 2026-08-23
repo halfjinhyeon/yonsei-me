@@ -476,11 +476,20 @@
     font-family: var(--font-subhead), var(--font-sans), sans-serif;
   }
 
-  /* 에디토리얼 프로즈 변형(EditorialProse) — 문단·목록의 한 줄 길이 제한을
-     해제해 페이지 폭에 꽉 차게 흐르도록 한다 */
+  /* 에디토리얼 프로즈 변형(EditorialProse·게시물 본문) — 문단·목록뿐 아니라
+     제목(max-w-3xl)·인용구(max-w-2xl)의 폭 제한까지 모두 해제해 페이지(열) 폭에
+     꽉 차게 흐르도록 한다. 게시물 본문은 이 변형이 기본이다(PostArticle) —
+     폭이 곧 줄바꿈이라, CMS 편집 캔버스(PostCanvas)가 재현하는 열 폭과 어긋나면 안 된다.
+     ⚠️ 기본 규칙(.prose-content h1 …)과 명시도가 같아 **순서로 이긴다** —
+     반드시 위의 .prose-content 블록보다 뒤에 둘 것. */
   .prose-wide p,
   .prose-wide ul,
-  .prose-wide ol {
+  .prose-wide ol,
+  .prose-wide h1,
+  .prose-wide h2,
+  .prose-wide h3,
+  .prose-wide h4,
+  .prose-wide blockquote {
     @apply max-w-none;
   }
 
@@ -746,10 +755,25 @@
      통합 글쓰기 에디터(Tiptap, admin/RichTextEditor) 전용
      — 편집 영역은 prose-content 를 그대로 입어 사이트 본문과 동일 타이포.
      여기엔 "편집기라서만" 필요한 최소 규칙만 둔다. */
+  /* 편집 영역 좌우 패딩은 변수로 — 편집 캔버스가 "글줄 폭 = 설계 폭"을 맞추려면
+     자기 폭에 이 패딩을 더해야 한다(아래 .post-canvas 규칙). */
+  .rte {
+    --rte-pad-x: 1.25rem;
+  }
   .rte .rte-area {
     min-height: 320px;
-    padding: 1rem 1.25rem;
+    padding: 1rem var(--rte-pad-x);
     outline: none; /* 포커스 링은 컨테이너(.rte)가 아닌 브라우저 기본 대신 border 로 */
+  }
+  /* 편집 캔버스(PostCanvas) — data-fit 이면 본문 설계 폭으로 고정 레이아웃하고
+     JS 가 zoom 으로 칸에 맞춘다. 없으면(너무 좁은 화면·zoom 미지원) 그냥 흐른다.
+     이 한 규칙 덕분에 편집기·미리보기의 줄바꿈이 공개 게시물과 같아진다. */
+  .post-canvas[data-fit] {
+    width: var(--post-body-w);
+  }
+  /* 에디터 안에서는 편집 영역의 좌우 패딩까지 더해야 글줄 폭이 설계 폭과 같아진다 */
+  .rte .post-canvas[data-fit] {
+    width: calc(var(--post-body-w) + 2 * var(--rte-pad-x));
   }
   /* 코드뷰(BoardEditor) — fieldset[disabled] 가 기능은 잠그지만 display:contents 라
      자기 박스가 없어 시각 효과를 못 준다. 자식(그룹·구분자)에 흐림을 입힌다. */

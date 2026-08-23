@@ -213,12 +213,15 @@ export const RteTableRow = TableRow.extend({
           if (!found) return false;
           if (dispatch) {
             const [table, tablePos] = found;
-            // "지금 화면에 그려진" 높이를 잰다 — 내용이 가장 많은 행에 맞춰야 글자가
+            // "지금 그려진" 높이를 잰다 — 내용이 가장 많은 행에 맞춰야 글자가
             // 잘리지 않는다(rowheight 는 최소 높이 시맨틱이라 더 늘어날 수는 있다).
+            // ⚠️ rect 가 아니라 offsetHeight 다: 편집 캔버스(PostCanvas)의 CSS zoom 아래에서
+            // rect 는 화면 px 라 zoom 0.8 이면 실제보다 20% 작은 값이 문서에 박힌다.
+            // rowheight 는 레이아웃 값이므로 같은 단위인 offsetHeight 로 재야 한다.
             let max = 0;
             forEachRow(table, tablePos, (_row, rowPos) => {
               const dom = view.nodeDOM(rowPos);
-              if (dom instanceof HTMLElement) max = Math.max(max, dom.getBoundingClientRect().height);
+              if (dom instanceof HTMLElement) max = Math.max(max, dom.offsetHeight);
             });
             const height = Math.max(MIN_ROW_HEIGHT, Math.ceil(max));
             forEachRow(table, tablePos, (row, rowPos) => {
