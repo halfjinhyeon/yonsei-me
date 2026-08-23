@@ -566,7 +566,20 @@
       "authorLabel": "Author",
       "categoryLabel": "Category",
       "attachmentsLabel": "Attachments",
-      "defaultAuthor": "School of Mechanical Engineering"
+      "defaultAuthor": "School of Mechanical Engineering",
+      "share": "Share",
+      "copyUrl": "Copy URL",
+      "copied": "Copied",
+      "copyFailed": "Copy failed"
+    },
+    "context": {
+      "viewAll": "View full list",
+      "viewAllShort": "View all",
+      "total": "{count} posts",
+      "prev": "Previous",
+      "next": "Next",
+      "none": "None",
+      "navLabel": "Previous and next post"
     },
     "view": {
       "card": "Cards",

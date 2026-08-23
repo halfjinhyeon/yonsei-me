@@ -78,6 +78,10 @@ export default async function AlumniNewsDetailPage({
             metaRow: t('detail.categoryLabel'),
             attachments: t('detail.attachmentsLabel'),
             backToList: t('backToList'),
+            share: t('detail.share'),
+            copyUrl: t('detail.copyUrl'),
+            copied: t('detail.copied'),
+            copyFailed: t('detail.copyFailed'),
           }}
           locale={locale}
         />

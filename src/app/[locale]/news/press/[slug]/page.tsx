@@ -4,11 +4,14 @@ import { notFound } from 'next/navigation';
 import { Hero } from '@/components/Hero';
 import { BoardShell } from '@/components/BoardShell';
 import { PostArticle } from '@/components/PostArticle';
+import { PostBoardContext } from '@/components/PostBoardContext';
 import { pick } from '@/lib/content';
 import { fetchNewsBySlug, postsBodyFormat } from '@/lib/posts';
+import { locateInBoard } from '@/lib/board-paging';
 import { documentMetadata } from '@/lib/seo';
 import { DEFAULT_NEWS_TAB, newsTabHref } from '@/lib/board-links';
 import { getNewsTabs } from '../../_shared/tabs';
+import { buildPressList } from '../../_shared/list-data';
 import type { Locale } from '@/i18n/routing';
 
 // DB 소스 전환(Phase 2): 글이 DB 에 살므로 빌드 시 열거하지 않고 요청 시 렌더 + ISR.
@@ -61,6 +64,12 @@ export default async function NewsArticlePage({
   const boardName = tMenu('news.items.news');
   const tabs = await getNewsTabs(locale);
 
+  // 본문 아래 '같은 게시판 목록' — 뉴스 기사 목록은 게시판 하나뿐이라 분류(일반/성과)로
+  // 쪼개지 않는다. ⚠️ 이 게시판의 행 id 는 DB 연번이 아니라 **slug** 다
+  // (buildPressList 가 `id: item.slug`) — 현재 글도 같은 키로 찾아야 한다.
+  const { items: pressRows } = await buildPressList(locale);
+  const slice = locateInBoard(pressRows, params.slug);
+
   return (
     <>
       <Hero
@@ -88,8 +97,28 @@ export default async function NewsArticlePage({
             metaRow: t('detail.categoryLabel'),
             attachments: t('detail.attachmentsLabel'),
             backToList: t('backToList'),
+            share: t('detail.share'),
+            copyUrl: t('detail.copyUrl'),
+            copied: t('detail.copied'),
+            copyFailed: t('detail.copyFailed'),
           }}
           locale={locale}
+        />
+        <PostBoardContext
+          boardName={boardName}
+          slice={slice}
+          currentId={params.slug}
+          listHref={newsTabHref('press')}
+          locale={locale}
+          labels={{
+            viewAll: t('context.viewAll'),
+            viewAllShort: t('context.viewAllShort'),
+            total: t('context.total', { count: slice.total }),
+            prev: t('context.prev'),
+            next: t('context.next'),
+            none: t('context.none'),
+            navLabel: t('context.navLabel'),
+          }}
         />
       </BoardShell>
     </>

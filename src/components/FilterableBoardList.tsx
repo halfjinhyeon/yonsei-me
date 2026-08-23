@@ -13,11 +13,14 @@ import {
 } from '@/components/BoardFilterBar';
 import { BoardPagination } from '@/components/BoardPagination';
 import { BoardCategoryTabs } from '@/components/BoardCategoryTabs';
+import { BOARD_PAGE_SIZE } from '@/lib/board-paging';
 import type { Locale } from '@/i18n/routing';
 
 /** 한 페이지에 싣는 글 수 — 행 높이 ~180px 기준으로 한 페이지가 대략 2,000px.
- *  이보다 길어지면 "스크롤로 끝까지 훑는" 목록이 되어 페이지 넘김의 의미가 사라진다. */
-const PAGE_SIZE = 10;
+ *  이보다 길어지면 "스크롤로 끝까지 훑는" 목록이 되어 페이지 넘김의 의미가 사라진다.
+ *  값은 lib/board-paging 이 단일 출처다 — 게시물 하단의 '같은 게시판 목록'이 이 목록의
+ *  페이지 번호로 링크를 걸기 때문에, 두 곳이 각자 10을 들고 있으면 언젠가 갈라진다. */
+const PAGE_SIZE = BOARD_PAGE_SIZE;
 
 /** URL 쿼리 키 — 새로고침·공유·뒤로가기에서 보던 페이지가 유지되도록 상태를 주소에 싣는다.
  *  한 페이지에 이 컴포넌트가 하나만 놓인다는 전제(게시판 라우트 1:1)라 접두어를 두지 않는다. */

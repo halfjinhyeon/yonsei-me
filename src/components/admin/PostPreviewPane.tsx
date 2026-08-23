@@ -74,6 +74,10 @@ export function PostPreviewPane({ meta, rec }: Props) {
           metaRow: meta.isNews ? 'Category' : 'Author',
           attachments: 'Attachments',
           backToList: 'Back to list',
+          share: 'Share',
+          copyUrl: 'Copy URL',
+          copied: 'Copied',
+          copyFailed: 'Copy failed',
         }
       : {
           title: '제목',
@@ -81,6 +85,10 @@ export function PostPreviewPane({ meta, rec }: Props) {
           metaRow: meta.isNews ? '분류' : '작성자',
           attachments: '첨부파일',
           backToList: '목록으로',
+          share: '공유',
+          copyUrl: 'URL 복사',
+          copied: '복사됨',
+          copyFailed: '복사 실패',
         };
 
   return (
@@ -147,6 +155,9 @@ export function PostPreviewPane({ meta, rec }: Props) {
             backHref="/news"
             labels={labels}
             locale={previewLocale}
+            /* 미리보기의 공유·복사는 모양만 남기고 죽인다 — 편집 중인 글은 아직
+               사이트에 없어 지금 주소를 복사해 봤자 CMS 화면을 가리킨다 */
+            shareInert
           />
         </PostCanvas>
       </div>

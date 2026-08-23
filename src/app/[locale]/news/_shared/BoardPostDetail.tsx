@@ -16,9 +16,11 @@ import type { Metadata } from 'next';
 import { notFound, permanentRedirect } from 'next/navigation';
 import { Hero } from '@/components/Hero';
 import { PostArticle } from '@/components/PostArticle';
+import { PostBoardContext } from '@/components/PostBoardContext';
 import { BoardShell } from '@/components/BoardShell';
 import { pick, type BoardPost } from '@/lib/content';
 import { fetchBoardPost, postsBodyFormat } from '@/lib/posts';
+import { locateInBoard } from '@/lib/board-paging';
 import { documentMetadata } from '@/lib/seo';
 import { htmlToDescription } from '@/lib/excerpt';
 import {
@@ -29,6 +31,7 @@ import {
   sectionTabHref,
 } from '@/lib/board-links';
 import { getNewsTabs, getResearchTabs } from './tabs';
+import { buildBoardContext } from './list-data';
 import type { Locale } from '@/i18n/routing';
 
 /** 라우트가 기대하는 게시판 (= URL 세그먼트) */
@@ -105,6 +108,11 @@ export async function BoardPostDetail({ locale, id, board }: BoardPostRouteParam
       ? t(post.category === 'form' ? 'library.catForm' : 'library.catRule')
       : undefined;
 
+  // 본문 아래에 세울 '같은 게시판 목록' — 이 글이 속한 (하위)게시판의 목록 한 페이지와
+  // 앞뒤 글. 모르는 게시판이면 context 가 null 이라 아무것도 그리지 않는다.
+  const context = await buildBoardContext(l, post.boardKey, post.id);
+  const slice = context ? locateInBoard(context.rows, post.id) : null;
+
   return (
     <>
       <Hero
@@ -138,9 +146,31 @@ export async function BoardPostDetail({ locale, id, board }: BoardPostRouteParam
             zipPreparing: t('library.zipPreparing'),
             zipFailed: t('library.zipFailed'),
             zipFileName: t('library.zipFileName'),
+            share: t('detail.share'),
+            copyUrl: t('detail.copyUrl'),
+            copied: t('detail.copied'),
+            copyFailed: t('detail.copyFailed'),
           }}
           locale={l}
         />
+        {context && slice && (
+          <PostBoardContext
+            boardName={context.boardName}
+            slice={slice}
+            currentId={post.id}
+            listHref={context.listHref}
+            locale={l}
+            labels={{
+              viewAll: t('context.viewAll'),
+              viewAllShort: t('context.viewAllShort'),
+              total: t('context.total', { count: slice.total }),
+              prev: t('context.prev'),
+              next: t('context.next'),
+              none: t('context.none'),
+              navLabel: t('context.navLabel'),
+            }}
+          />
+        )}
       </BoardShell>
     </>
   );

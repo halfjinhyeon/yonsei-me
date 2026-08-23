@@ -1,6 +1,7 @@
 import { Marked } from 'marked';
 import { Link } from '@/i18n/navigation';
 import { AttachmentsZipButton } from '@/components/AttachmentsZipButton';
+import { PostShareActions } from '@/components/PostShareActions';
 import type { Attachment } from '@/lib/content';
 import type { Locale } from '@/i18n/routing';
 import { formatBytes } from '@/lib/files';
@@ -25,6 +26,14 @@ export interface PostArticleLabels {
   zipFailed?: string;
   /** 서버가 Content-Disposition 을 안 줬을 때 쓸 zip 파일명 (로케일별) */
   zipFileName?: string;
+  /** 헤더 우측 공유 버튼 문구 (Web Share 가 없는 브라우저에서는 URL 복사로 동작) */
+  share: string;
+  /** 헤더 우측 URL 복사 버튼 문구 */
+  copyUrl: string;
+  /** 복사 성공 직후 2초간 보이는 문구 */
+  copied: string;
+  /** 복사 실패 직후 2초간 보이는 문구 */
+  copyFailed: string;
 }
 
 /**
@@ -49,6 +58,7 @@ export function PostArticle({
   backHref,
   labels,
   locale,
+  shareInert,
 }: {
   /** 게시판명 (h2, TabbedContent h2와 동일 스타일) */
   boardName: string;
@@ -71,6 +81,8 @@ export function PostArticle({
   backHref: string;
   labels: PostArticleLabels;
   locale: Locale;
+  /** CMS 미리보기 — 공유·복사 버튼을 모양만 남기고 죽인다 */
+  shareInert?: boolean;
 }) {
   const hasAttachments = attachments && attachments.length > 0;
 
@@ -107,26 +119,42 @@ export function PostArticle({
         <h3 className="text-pretty text-2xl font-bold leading-snug tracking-tight text-content sm:text-3xl">
           {title}
         </h3>
-        <dl className="mt-5 flex flex-wrap items-baseline gap-x-7 gap-y-1.5 border-b border-surface-border pb-6 text-sm">
-          <div className="flex items-baseline gap-2">
-            <dt className="font-semibold text-content-faint">{labels.date}</dt>
-            <dd className="tabular-nums text-content-soft">
-              <time dateTime={date}>{formatDate(date, locale)}</time>
-            </dd>
-          </div>
-          <div className="flex items-baseline gap-2">
-            <dt className="font-semibold text-content-faint">{labels.metaRow}</dt>
-            <dd className="text-content-soft">{metaValue}</dd>
-          </div>
-          {/* 분류는 자료실처럼 게시판 자체 분류를 가진 글에만 붙는다 —
-              라벨·값이 다 있을 때만 그려 다른 게시판의 두 줄 메타를 그대로 둔다 */}
-          {categoryLabel && categoryValue && (
+        {/* 메타 줄 — 왼쪽은 작성일·작성자/분류, 오른쪽 빈자리는 공유·URL 복사 버튼이 쓴다.
+            밑줄(border-b)과 아래 여백은 두 덩어리를 함께 감싸는 이 래퍼가 갖는다.
+            버튼의 ml-auto: 좁은 화면에서 줄이 접혀 버튼만 아랫줄로 내려가도 오른쪽 정렬을
+            유지한다(justify-between 은 한 덩어리만 남으면 왼쪽으로 붙어 버린다). */}
+        <div className="mt-5 flex flex-wrap items-center justify-between gap-x-7 gap-y-3 border-b border-surface-border pb-6">
+          <dl className="flex flex-wrap items-baseline gap-x-7 gap-y-1.5 text-sm">
             <div className="flex items-baseline gap-2">
-              <dt className="font-semibold text-content-faint">{categoryLabel}</dt>
-              <dd className="text-content-soft">{categoryValue}</dd>
+              <dt className="font-semibold text-content-faint">{labels.date}</dt>
+              <dd className="tabular-nums text-content-soft">
+                <time dateTime={date}>{formatDate(date, locale)}</time>
+              </dd>
             </div>
-          )}
-        </dl>
+            <div className="flex items-baseline gap-2">
+              <dt className="font-semibold text-content-faint">{labels.metaRow}</dt>
+              <dd className="text-content-soft">{metaValue}</dd>
+            </div>
+            {/* 분류는 자료실처럼 게시판 자체 분류를 가진 글에만 붙는다 —
+                라벨·값이 다 있을 때만 그려 다른 게시판의 두 줄 메타를 그대로 둔다 */}
+            {categoryLabel && categoryValue && (
+              <div className="flex items-baseline gap-2">
+                <dt className="font-semibold text-content-faint">{categoryLabel}</dt>
+                <dd className="text-content-soft">{categoryValue}</dd>
+              </div>
+            )}
+          </dl>
+          <PostShareActions
+            title={title}
+            labels={{
+              share: labels.share,
+              copyUrl: labels.copyUrl,
+              copied: labels.copied,
+              copyFailed: labels.copyFailed,
+            }}
+            inert={shareInert}
+          />
+        </div>
       </header>
 
       {/* 본문 — 사이트 공통 prose 타이포. 게시물 본문은 **열 폭 전체**를 쓴다

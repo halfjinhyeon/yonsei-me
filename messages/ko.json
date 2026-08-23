@@ -566,7 +566,20 @@
       "authorLabel": "작성자",
       "categoryLabel": "분류",
       "attachmentsLabel": "첨부",
-      "defaultAuthor": "기계공학부"
+      "defaultAuthor": "기계공학부",
+      "share": "공유",
+      "copyUrl": "URL 복사",
+      "copied": "복사됨",
+      "copyFailed": "복사 실패"
+    },
+    "context": {
+      "viewAll": "목록 전체 보기",
+      "viewAllShort": "전체 보기",
+      "total": "전체 {count}건",
+      "prev": "이전 글",
+      "next": "다음 글",
+      "none": "없음",
+      "navLabel": "이전 글 · 다음 글"
     },
     "view": {
       "card": "카드형",

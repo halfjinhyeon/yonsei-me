@@ -15,12 +15,32 @@ import type { BoardCategory } from '@/components/FilterableBoardList';
 import type { ResourceItem } from '@/components/ResourceLibrary';
 // 분류 상수는 클라이언트 컴포넌트가 아니라 순수 모듈에서 가져온다 — 이유는 그 파일 주석 참조.
 import { CALENDAR_KIND, type CalendarEntry } from '@/lib/calendar-kinds';
-import { pick } from '@/lib/content';
+import { pick, type BoardPost } from '@/lib/content';
 import { fileFormat } from '@/lib/files';
 import { parseDateLabelRange } from '@/lib/calendar';
-import { boardPostHref, newsArticleHref } from '@/lib/board-links';
+import {
+  boardPostHref,
+  newsArticleHref,
+  newsTabHref,
+  sectionTabHref,
+} from '@/lib/board-links';
 import { fetchNews, fetchBoardData, fetchCalendarPosts, fetchResourceBodies } from '@/lib/posts';
 import type { Locale } from '@/i18n/routing';
+
+/**
+ * 공지사항을 이루는 하위 게시판 4종.
+ *
+ * 병합 목록의 태그 배지(buildNoticeList)와 게시물 하단 목록의 헤더(buildBoardContext)가
+ * **같은 라벨·같은 분류값**을 써야 해서 표를 한 곳에 둔다. category 는 목록 필터 탭 id
+ * 이자 목록 URL 의 `?cat=` 값이기도 하다 — 셋이 갈리면 상세에서 넘어간 목록이 다른
+ * 탭으로 열린다.
+ */
+const NOTICE_BOARDS = [
+  { field: 'noticesUndergrad', tagKey: 'noticesUndergrad.title', category: 'undergrad' },
+  { field: 'noticesGraduate', tagKey: 'noticesGraduate.title', category: 'graduate' },
+  { field: 'noticesExternal', tagKey: 'noticesExternal.title', category: 'external' },
+  { field: 'noticesScholarship', tagKey: 'noticesScholarship.title', category: 'scholarship' },
+] as const;
 
 /** 공지사항 — 4개 공지 게시판 병합 목록 + 상단 필터 탭 정의 */
 export async function buildNoticeList(
@@ -33,12 +53,11 @@ export async function buildNoticeList(
 
   // 공지사항: 학부/대학원/외부기관/장학생 4개 공지 게시판을 하나로 병합, 최신순
   // (클릭 → 상세). category 로 상단 필터 탭에서 구분한다.
-  const noticeBoards = [
-    { rows: board.noticesUndergrad, tagKey: 'noticesUndergrad.title', category: 'undergrad' },
-    { rows: board.noticesGraduate, tagKey: 'noticesGraduate.title', category: 'graduate' },
-    { rows: board.noticesExternal, tagKey: 'noticesExternal.title', category: 'external' },
-    { rows: board.noticesScholarship, tagKey: 'noticesScholarship.title', category: 'scholarship' },
-  ] as const;
+  const noticeBoards = NOTICE_BOARDS.map(({ field, tagKey, category }) => ({
+    rows: board[field],
+    tagKey,
+    category,
+  }));
   const items: BoardRow[] = noticeBoards
     .flatMap(({ rows, tagKey, category }) =>
       rows.map((n) => ({
@@ -247,4 +266,108 @@ export async function buildResourceItems(locale: Locale): Promise<ResourceItem[]
         .toLowerCase(),
     };
   });
+}
+
+/**
+ * 게시물 하단 '같은 게시판 목록'의 데이터 (PostBoardContext 용).
+ *
+ * 각 게시판의 목록 페이지가 쓰는 **바로 그 빌더**를 부른다 — 순서가 조금이라도 다르면
+ * 하단 목록의 "3페이지" 링크가 목록 페이지의 3페이지와 다른 글 묶음을 가리켜, 링크가
+ * 거짓말이 된다.
+ *
+ * ⚠️ 범위는 하위 게시판까지 내려간다. 공지사항 탭은 학부·대학원·외부기관·장학 4개
+ *    게시판을 합친 화면이라, 학부 공지 글 아래에 대학원 공지가 섞이면 "이 게시판의
+ *    목록"이라는 약속이 깨진다(사용자 지시). 목록 링크에 `?cat=` 을 실어 목록 페이지도
+ *    같은 분류 탭으로 열리게 한다. 반면 뉴스 기사의 일반/성과는 한 게시판 **안의**
+ *    분류라 나누지 않는다.
+ *
+ * 모르는 게시판이면 null — 호출자는 아무것도 그리지 않는다.
+ */
+export async function buildBoardContext(
+  locale: Locale,
+  boardKey: BoardPost['boardKey'],
+  currentId: string,
+): Promise<{ rows: BoardRow[]; boardName: string; listHref: string } | null> {
+  const tMenu = await getTranslations({ locale, namespace: 'menu' });
+
+  switch (boardKey) {
+    case 'notices': {
+      const tBoard = await getTranslations({ locale, namespace: 'board' });
+      const { items } = await buildNoticeList(locale);
+      const current = items.find((r) => r.id === currentId);
+      const sub = NOTICE_BOARDS.find((b) => b.category === current?.category);
+      // 하위 게시판을 못 찾으면(목록에 없는 글) 병합 목록 그대로 — 화면을 비우는 것보다 낫다
+      if (!sub) {
+        return {
+          rows: items,
+          boardName: tMenu('news.items.notices'),
+          listHref: newsTabHref('notices'),
+        };
+      }
+      return {
+        rows: items.filter((r) => r.category === sub.category),
+        // 목록의 태그 배지와 같은 라벨 — 헤더가 다른 말을 하면 같은 게시판인지 알 수 없다
+        boardName: tBoard(sub.tagKey),
+        listHref: `${newsTabHref('notices')}?cat=${sub.category}`,
+      };
+    }
+    case 'seminars':
+      return {
+        rows: await buildSeminarRows(locale),
+        boardName: tMenu('news.items.seminars'),
+        listHref: newsTabHref('seminars'),
+      };
+    case 'events':
+      return {
+        rows: await buildEventRows(locale),
+        boardName: tMenu('news.items.events'),
+        listHref: newsTabHref('events'),
+      };
+    case 'thesis':
+      return {
+        rows: await buildThesisRows(locale),
+        boardName: tMenu('news.items.thesis'),
+        listHref: newsTabHref('thesis'),
+      };
+    case 'career':
+      return {
+        rows: await buildCareerRows(locale),
+        boardName: tMenu('news.items.career'),
+        listHref: newsTabHref('career'),
+      };
+    case 'resources': {
+      // 자료실은 전용 목록(ResourceLibrary)이라 행 타입이 BoardRow 가 아니다 — 순서는
+      // 같은 빌더가 정한 그대로 두고, 하단 목록이 쓰는 최소 필드만 옮겨 담는다.
+      const items = await buildResourceItems(locale);
+      return {
+        rows: items.map((r) => ({
+          id: r.id,
+          date: r.date,
+          title: r.title,
+          href: r.href,
+          pinned: r.pinned,
+        })),
+        boardName: tMenu('news.items.resources'),
+        listHref: newsTabHref('resources'),
+      };
+    }
+    case 'internships': {
+      // 인턴 모집만 연구 메뉴 소속이라 목록이 /research 아래에 있다. 목록 페이지와 같은
+      // 소스·같은 순서(fetchBoardData().internships)에서 최소 필드만 뽑는다.
+      const board = await fetchBoardData();
+      return {
+        rows: board.internships.map((n) => ({
+          id: n.id,
+          date: n.date,
+          title: pick(n.title, locale),
+          href: boardPostHref({ id: n.id, boardKey: 'internships' }),
+          pinned: n.pinned,
+        })),
+        boardName: tMenu('research.items.internships'),
+        listHref: sectionTabHref('research', 'internships'),
+      };
+    }
+    default:
+      return null;
+  }
 }
