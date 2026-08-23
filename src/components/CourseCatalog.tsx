@@ -1,8 +1,15 @@
 'use client';
 
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { UnderlineTabs } from '@/components/UnderlineTabs';
+import {
+  TextbookMobilePanel,
+  TextbookPopover,
+  TextbookTrigger,
+  type TextbookData,
+  type TextbookLabels,
+} from '@/components/TextbookPopover';
 import { cn } from '@/lib/utils';
 import { RESEARCH_FIELDS, type ResearchField } from '@/lib/research-fields';
 
@@ -90,6 +97,10 @@ function matchesNum(raw: string | undefined, sel: string): boolean {
   return (raw ?? '').match(/\d+/g)?.includes(sel) ?? false;
 }
 
+/** 행 키(그룹 라벨 + 학정번호 + 인덱스)를 id 로 쓸 수 있게 다듬는다 — 그룹 라벨에 공백이
+ *  들어 있어(‘1학년 1학기’) 그대로 쓰면 공백 구분 목록인 aria-controls 가 쪼개진다. */
+const domId = (rowKey: string) => rowKey.replace(/[^A-Za-z0-9_-]+/g, '-');
+
 /**
  * 교과목 편람 표. 상단 언더라인 탭(전체 + 6개 분야, 건수 배지)으로 분야를 필터링하는
  * 에디토리얼 표(굵은 상단 룰 + 헤어라인, 헤더 셀만 옅은 면색). 탭 아래 학년·학기
@@ -108,6 +119,7 @@ export function CourseCatalog({
   emptyLabel,
   grouped,
   descriptions,
+  textbooks,
 }: {
   courses: CatalogCourse[];
   columns: CatalogColumn[];
@@ -115,6 +127,8 @@ export function CourseCatalog({
   emptyLabel: string;
   /** 교과목 소개 본문(+영문 과목명). 없으면 설명 열 자체가 렌더되지 않는다. */
   descriptions?: CatalogDescriptions;
+  /** 학정번호별 교재 목록. 없으면(대학원 편람) 책 아이콘도 팝오버도 렌더되지 않는다. */
+  textbooks?: TextbookData;
   /** 그룹 에디토리얼 표(홍익대 레퍼런스 스타일) 기준 — 대형 그룹 제목 + 널찍한 행.
    *  'semester' = 학년·학기 그룹(학부, year/semester 필요),
    *  'field' = 연구 분야 그룹(대학원, field 기반. null 은 공통·기초 그룹). */
@@ -135,6 +149,59 @@ export function CourseCatalog({
       if (!next.delete(key)) next.add(key);
       return next;
     });
+  // 교재 팝오버는 설명과 달리 한 번에 하나만 연다(떠 있는 패널이 여럿이면 겹친다).
+  const [openBooks, setOpenBooks] = useState<string | null>(null);
+  // ESC·× 로 닫을 때 포커스를 돌려줄 트리거. 열려 있는 것이 하나뿐이라 참조도 하나면 된다.
+  const booksTriggerRef = useRef<HTMLButtonElement | null>(null);
+  const closeBooks = () => {
+    setOpenBooks(null);
+    booksTriggerRef.current?.focus();
+  };
+
+  // 바깥 클릭·ESC 로 닫기(RelatedSites·TabNavBar 와 같은 규약). 팝오버는 교과목명 셀 안,
+  // 모바일 패널은 별도 <tr> 에 있어 하나의 래퍼로 묶을 수 없다 — 두 조각에 같은
+  // data-tb-root 를 달고 그 값으로 '열려 있는 항목의 내부인지'를 판정한다.
+  useEffect(() => {
+    if (!openBooks) return;
+    function onPointerDown(e: PointerEvent) {
+      const target = e.target;
+      const root = target instanceof Element ? target.closest('[data-tb-root]') : null;
+      if (root?.getAttribute('data-tb-root') === openBooks) return;
+      setOpenBooks(null);
+    }
+    function onKey(e: KeyboardEvent) {
+      if (e.key === 'Escape') {
+        setOpenBooks(null);
+        booksTriggerRef.current?.focus();
+      }
+    }
+    document.addEventListener('pointerdown', onPointerDown);
+    document.addEventListener('keydown', onKey);
+    return () => {
+      document.removeEventListener('pointerdown', onPointerDown);
+      document.removeEventListener('keydown', onKey);
+    };
+  }, [openBooks]);
+
+  // 필터·검색이 바뀌면 목록이 통째로 리마운트되지만 이 상태는 부모에 남는다 —
+  // 같은 행 키가 다시 나타나면 팝오버가 혼자 되살아나므로 함께 닫는다.
+  useEffect(() => {
+    setOpenBooks(null);
+  }, [filter, query, year, semester]);
+
+  const bookLabels: TextbookLabels = useMemo(
+    () => ({
+      label: t('textbooks.label'),
+      close: t('textbooks.close'),
+      noBib: t('textbooks.noBib'),
+      kinds: {
+        main: t('textbooks.kinds.main'),
+        sub: t('textbooks.kinds.sub'),
+        ref: t('textbooks.kinds.ref'),
+      },
+    }),
+    [t],
+  );
 
   const counts = useMemo(() => {
     const map = { all: courses.length } as Record<Filter, number>;
@@ -408,20 +475,79 @@ export function CourseCatalog({
                           </td>
                         </tr>
                       ) : null;
+                      // 교재 — 데이터가 있는 과목만. 좁은 화면 패널은 설명과 같은 문법의
+                      // 별도 행이지만, 열려 있을 때만 렌더한다(팝오버 등장 애니메이션을
+                      // 매번 재생시키려면 조건부 마운트여야 한다).
+                      const shelf = textbooks?.[course.code];
+                      const booksOpen = !!shelf && openBooks === rowKey;
+                      const bookIds = `books-${domId(rowKey)}`;
+                      const booksRow = booksOpen ? (
+                        <tr
+                          key={`${rowKey}-books`}
+                          data-tb-root={rowKey}
+                          className="border-b border-surface-border lg:hidden"
+                        >
+                          <td colSpan={2 + (hasKind ? 1 : 0) + (hasHours ? 1 : 0)} className="p-0 align-top">
+                            <TextbookMobilePanel
+                              id={`${bookIds}-m`}
+                              code={course.code}
+                              books={shelf!.books}
+                              labels={bookLabels}
+                              onClose={closeBooks}
+                            />
+                          </td>
+                        </tr>
+                      ) : null;
                       return [
                         <tr
                           key={rowKey}
                           className={cn(
                             'anim-nav-item border-b border-surface-border',
-                            // 펼친 상태에서는 과목 행과 설명 행 사이 구분선을 지운다(한 과목 = 한 덩어리)
-                            descRow && open && 'max-lg:border-b-0',
+                            // 펼친 상태에서는 과목 행과 설명 행 사이 구분선을 지운다(한 과목 = 한 덩어리).
+                            // 교재 패널은 스스로 네이비 상단 룰을 그으므로 겹치지 않게 함께 지운다.
+                            ((descRow && open) || booksOpen) && 'max-lg:border-b-0',
+                            // anim-nav-item 이 forwards 라 끝난 뒤에도 transform 이 남아 행마다
+                            // 쌓임 맥락이 생긴다 — 팝오버의 z-index 가 행 안에 갇혀 아래 행 글자가
+                            // 위로 비친다. 열린 행 자체를 올려야 팝오버가 뒤 내용을 덮는다.
+                            booksOpen && 'relative z-30',
                           )}
                           style={{ animationDelay: `${Math.min(i, 10) * 40}ms` }}
                         >
-                          <td className={cn('py-5 pr-4 align-top', descRow && open && 'max-lg:pb-3')}>
-                            <span className="block text-base font-bold leading-snug text-content">
+                          <td
+                            className={cn(
+                              'py-5 pr-4 align-top',
+                              ((descRow && open) || booksOpen) && 'max-lg:pb-3',
+                            )}
+                          >
+                            {/* 팝오버의 절대 배치 기준 — 과목명 왼쪽 끝에 맞춰 이름 아래로 편다.
+                                (블록 요소를 품어야 해서 span 이 아니라 div 다) */}
+                            <div
+                              data-tb-root={shelf ? rowKey : undefined}
+                              className="relative text-base font-bold leading-snug text-content"
+                            >
                               {mainName}
-                            </span>
+                              {shelf && (
+                                <TextbookTrigger
+                                  open={booksOpen}
+                                  label={bookLabels.label}
+                                  controls={`${bookIds} ${bookIds}-m`}
+                                  onToggle={(el) => {
+                                    booksTriggerRef.current = el;
+                                    setOpenBooks((prev) => (prev === rowKey ? null : rowKey));
+                                  }}
+                                />
+                              )}
+                              {booksOpen && (
+                                <TextbookPopover
+                                  id={bookIds}
+                                  name={mainName}
+                                  code={course.code}
+                                  books={shelf!.books}
+                                  labels={bookLabels}
+                                  onClose={closeBooks}
+                                />
+                              )}
+                            </div>
                             <span className="mt-1 block text-xs font-medium tracking-wide text-content-faint">
                               {course.code}
                               {/* 과목명에 붙어 있던 영문(대학원)은 그대로, 설명 데이터에서
@@ -474,6 +600,8 @@ export function CourseCatalog({
                             </td>
                           )}
                         </tr>,
+                        // 교재 패널이 설명보다 위 — 트리거(과목명 옆)가 설명 토글보다 위에 있다
+                        booksRow,
                         descRow,
                       ];
                     })}

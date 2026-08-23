@@ -9,6 +9,10 @@ import {
   getCoursesUndergraduateRuntime,
   getCourseDescriptionsRuntime,
 } from '@/lib/content-runtime';
+// 교재는 CMS 관리 대상이 아니라 학술정보원 수강편람에서 뽑아 고정한 자료라
+// content-runtime(db/git 분기)을 거치지 않고 빌드에 그대로 인라인한다.
+import textbooks from '@content/textbooks.json';
+import type { TextbookData } from '@/components/TextbookPopover';
 import {
   SectionTabPage,
   sectionEmptyLabel,
@@ -62,6 +66,7 @@ export default async function UndergraduateCoursesPage({
         grouped="semester"
         // 교과목 소개 본문 — 체계도(CurriculumFlow)와 같은 원본을 편람 표에도 노출
         descriptions={courseDescriptions}
+        textbooks={textbooks as TextbookData}
       />
     </SectionTabPage>
   );

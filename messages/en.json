@@ -527,7 +527,17 @@
     "commonGroup": "Core & Common Courses",
     "descColumn": "Description",
     "descShow": "Description",
-    "descHide": "Hide"
+    "descHide": "Hide",
+    "textbooks": {
+      "label": "Textbooks",
+      "close": "Close",
+      "noBib": "Course notes · no bibliographic info",
+      "kinds": {
+        "main": "Required",
+        "sub": "Supplementary",
+        "ref": "Reference"
+      }
+    }
   },
   "news": {
     "hero": {

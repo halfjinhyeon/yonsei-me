@@ -527,7 +527,17 @@
     "commonGroup": "공통·기초 과목",
     "descColumn": "교과목 소개",
     "descShow": "교과목 소개",
-    "descHide": "접기"
+    "descHide": "접기",
+    "textbooks": {
+      "label": "교재 정보",
+      "close": "닫기",
+      "noBib": "자체 강의노트 · 서지 정보 없음",
+      "kinds": {
+        "main": "주교재",
+        "sub": "부교재",
+        "ref": "참고자료"
+      }
+    }
   },
   "news": {
     "hero": {

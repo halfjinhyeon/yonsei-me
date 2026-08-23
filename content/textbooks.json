@@ -1,0 +1,428 @@
+{
+  "MEU2300": {
+    "name": "기계공학창의설계",
+    "books": [
+      {
+        "kind": "주교재",
+        "title": "생각의 탄생 : 다빈치에서 파인먼까지 창조성을 빛낸 사람들의 13가지 생각도구",
+        "author": "Root-Bernstein, Robert Scott",
+        "publisher": "에코의서재",
+        "year": "2008 / 개정판",
+        "isbn": "9788992717076",
+        "cover": "/img/textbooks/9788992717076.jpg"
+      }
+    ]
+  },
+  "MEU2600": {
+    "name": "고체역학",
+    "books": [
+      {
+        "kind": "주교재",
+        "title": "Mechanics of Materials",
+        "author": "R. C. Hibbeler",
+        "publisher": "Pearson",
+        "year": "2017",
+        "isbn": "9781292178202",
+        "cover": "/img/textbooks/9781292178202.jpg"
+      },
+      {
+        "kind": "주교재",
+        "title": "Engineering mechanics. v.1, Statics",
+        "author": "Meriam, J. L. (James L.)",
+        "publisher": "Wiley",
+        "year": "2016",
+        "isbn": "9781119044673",
+        "cover": "/img/textbooks/9781119044673.jpg"
+      },
+      {
+        "kind": "주교재",
+        "title": "Mechanics of Materials (11th ed.)",
+        "author": "Hibbeler, R. C.",
+        "publisher": "Pearson",
+        "year": "2023",
+        "isbn": "9781292725734",
+        "cover": "/img/textbooks/9781292725734.jpg"
+      }
+    ]
+  },
+  "MEU2610": {
+    "name": "열역학",
+    "books": [
+      {
+        "kind": "주교재",
+        "title": "Principles of Engineering Thermodynamics",
+        "author": "Moran, Howard N. Shapiro, Daisie D. Boettner, Margaret B.",
+        "publisher": "Wiley",
+        "year": "2018",
+        "isbn": "9781119454069",
+        "cover": "/img/textbooks/9781119454069.jpg"
+      },
+      {
+        "kind": "참고자료",
+        "title": "Thermodynamics: An Engineering Approach 8th Edition",
+        "author": "Yunus Cengel, Michael Boles",
+        "publisher": "McGraw-Hill Education",
+        "year": "2017",
+        "isbn": "9780073398174",
+        "cover": "/img/textbooks/9780073398174.jpg"
+      }
+    ]
+  },
+  "MEU2620": {
+    "name": "컴퓨터응용기계설계",
+    "books": [
+      {
+        "kind": "주교재",
+        "title": "기계공학제도 : 창의적 신제품 설계의 기초",
+        "author": "김종원",
+        "publisher": "문운당",
+        "year": "2021 / 제4판",
+        "isbn": "9788973935321",
+        "cover": "/img/textbooks/9788973935321.jpg"
+      }
+    ]
+  },
+  "MEU2640": {
+    "name": "유체역학",
+    "books": [
+      {
+        "kind": "주교재",
+        "title": "Fundamentals of Fluid Mechanics",
+        "author": "A. Gerhart, J Hochstein, P. Gerhart",
+        "publisher": "Wiley",
+        "year": "2021",
+        "isbn": "9781119703266",
+        "cover": "/img/textbooks/9781119703266.jpg"
+      }
+    ]
+  },
+  "MEU2650": {
+    "name": "동역학",
+    "books": [
+      {
+        "kind": "주교재",
+        "title": "Engineering mechanics, Dynamics",
+        "author": "Meriam, J. L",
+        "publisher": "Wiley ; John Wiley [distributor]",
+        "year": "2013",
+        "isbn": "9781118083451",
+        "cover": "/img/textbooks/9781118083451.jpg"
+      },
+      {
+        "kind": "주교재",
+        "title": "Engineering mechanics - Dynamics",
+        "author": "Meriam, J. L. (James L.)",
+        "publisher": "Wiley",
+        "year": "2020",
+        "isbn": "9781119665281",
+        "cover": "/img/textbooks/9781119665281.jpg"
+      },
+      {
+        "kind": "주교재",
+        "title": "Vector Mechanics for Engineers: Dynamics",
+        "author": "Ferdinand P. Beer, E. Russell Johnston",
+        "publisher": "McGraw-Hill",
+        "year": "2026",
+        "isbn": "9789813313934",
+        "cover": "/img/textbooks/9789813313934.jpg"
+      },
+      {
+        "kind": "부교재",
+        "title": "Dynamics",
+        "author": "W. F. Riley, and L. D. Sturges",
+        "publisher": "Wiley",
+        "year": "",
+        "isbn": "9780471053392",
+        "cover": "/img/textbooks/9780471053392.jpg"
+      }
+    ]
+  },
+  "MEU3002": {
+    "name": "메카니즘설계",
+    "books": [
+      {
+        "kind": "주교재",
+        "title": "Kinematics and Dynamics of Machinery",
+        "author": "Robert L. Norton",
+        "publisher": "McGraw Hill",
+        "year": "",
+        "isbn": "9780073529356",
+        "cover": "/img/textbooks/9780073529356.jpg"
+      },
+      {
+        "kind": "주교재",
+        "title": "Design of Machinery",
+        "author": "Robert L. Norton",
+        "publisher": "McGraw Hill",
+        "year": "",
+        "isbn": "9780077421717",
+        "cover": "/img/textbooks/9780077421717.jpg"
+      }
+    ]
+  },
+  "MEU3003": {
+    "name": "공학수치해석",
+    "books": [
+      {
+        "kind": "주교재",
+        "title": "Numerical methods for engineers and scientists : an introduction with applications using MATLAB (3rd ed.)",
+        "author": "Gilat, Amos & Vish Subramaniam",
+        "publisher": "John Wiley & Sons, Inc.",
+        "year": "2014",
+        "isbn": "9781118554937",
+        "cover": "/img/textbooks/9781118554937.jpg"
+      }
+    ]
+  },
+  "MEU3004": {
+    "name": "바이오의료기계",
+    "books": [
+      {
+        "kind": "주교재",
+        "title": "Biomedical Engineering",
+        "author": "W. Mark Saltzman",
+        "publisher": "Cambridge University Press",
+        "year": "2015",
+        "isbn": "9781107037199",
+        "cover": "/img/textbooks/9781107037199.jpg"
+      }
+    ]
+  },
+  "MEU3010": {
+    "name": "마이크로기계시스템",
+    "books": [
+      {
+        "kind": "주교재",
+        "title": "Fundamentals of Semiconductor Fabrication",
+        "author": "G. May, S. Sze",
+        "publisher": "Wiley",
+        "year": "",
+        "isbn": "9780471232797",
+        "cover": "/img/textbooks/9780471232797.jpg"
+      },
+      {
+        "kind": "부교재",
+        "title": "Class note",
+        "author": "",
+        "publisher": "",
+        "year": "",
+        "isbn": "",
+        "cover": null
+      }
+    ]
+  },
+  "MEU3014": {
+    "name": "메카트로닉스",
+    "books": [
+      {
+        "kind": "부교재",
+        "title": "Introduction to Mechatronics and Measurement Systems",
+        "author": "David G. Alciatore",
+        "publisher": "McGraw Hill",
+        "year": "",
+        "isbn": "9780073380230",
+        "cover": "/img/textbooks/9780073380230.jpg"
+      }
+    ]
+  },
+  "MEU3015": {
+    "name": "전자기학및응용",
+    "books": [
+      {
+        "kind": "주교재",
+        "title": "Fundamentals of Engineering Electromagnetics",
+        "author": "D. K. Cheng",
+        "publisher": "Addison Wesley",
+        "year": "1989",
+        "isbn": "9780201566116",
+        "cover": "/img/textbooks/9780201566116.jpg"
+      }
+    ]
+  },
+  "MEU3301": {
+    "name": "재료거동학",
+    "books": [
+      {
+        "kind": "주교재",
+        "title": "Mechanical Behavior of Materials",
+        "author": "Norman E. Dowling",
+        "publisher": "Pearson Prentice Hall",
+        "year": "2007",
+        "isbn": "9780132256094",
+        "cover": "/img/textbooks/9780132256094.jpg"
+      }
+    ]
+  },
+  "MEU3600": {
+    "name": "응용고체역학",
+    "books": [
+      {
+        "kind": "주교재",
+        "title": "Mechanics of materials",
+        "author": "Hibbeler, R. C",
+        "publisher": "Pearson",
+        "year": "",
+        "isbn": "9781292178202",
+        "cover": "/img/textbooks/9781292178202.jpg"
+      }
+    ]
+  },
+  "MEU3610": {
+    "name": "응용열역학",
+    "books": [
+      {
+        "kind": "주교재",
+        "title": "Fundamentals of Engineering Thermodynamics, 9th Ed",
+        "author": "Moran, Shapiro, Boettner, Bailey",
+        "publisher": "Wiley",
+        "year": "2018",
+        "isbn": "9781119391388",
+        "cover": "/img/textbooks/9781119391388.jpg"
+      }
+    ]
+  },
+  "MEU3620": {
+    "name": "생산공학",
+    "books": [
+      {
+        "kind": "주교재",
+        "title": "Manufacturing processes for engineering materials",
+        "author": "Kalpakjian, Serope",
+        "publisher": "Pearson Education",
+        "year": "2008 / 5th ed",
+        "isbn": "9780132272711",
+        "cover": "/img/textbooks/9780132272711.jpg"
+      }
+    ]
+  },
+  "MEU3630": {
+    "name": "기계요소설계",
+    "books": [
+      {
+        "kind": "주교재",
+        "title": "Mechanical engineering design",
+        "author": "Ugural, A. C.",
+        "publisher": "CRC Press",
+        "year": "2021 / 3rd ed",
+        "isbn": "9780367513474",
+        "cover": "/img/textbooks/9780367513474.jpg"
+      }
+    ]
+  },
+  "MEU3640": {
+    "name": "응용유체역학",
+    "books": [
+      {
+        "kind": "주교재",
+        "title": "Munson, Young and Okiishi's Fundamentals of Fluid Mechanics",
+        "author": "",
+        "publisher": "",
+        "year": "",
+        "isbn": "9781119703266",
+        "cover": "/img/textbooks/9781119703266.jpg"
+      }
+    ]
+  },
+  "MEU3650": {
+    "name": "열전달",
+    "books": [
+      {
+        "kind": "주교재",
+        "title": "Introduction to heat transfer",
+        "author": "Incropera, Frank P",
+        "publisher": "Wiley",
+        "year": "2007 / 5th ed",
+        "isbn": "9780471457275",
+        "cover": "/img/textbooks/9780471457275.jpg"
+      }
+    ]
+  },
+  "MEU3660": {
+    "name": "공학재료",
+    "books": [
+      {
+        "kind": "주교재",
+        "title": "Fundamentals of Materials Science and Engineering",
+        "author": "W.D. Callister, Jr. and D.G. Rethwisch",
+        "publisher": "Wiley (6th or 5th Edition)",
+        "year": "2022",
+        "isbn": "9781119820543",
+        "cover": "/img/textbooks/9781119820543.jpg"
+      }
+    ]
+  },
+  "MEU3670": {
+    "name": "기계진동",
+    "books": [
+      {
+        "kind": "주교재",
+        "title": "Mechanical vibrations",
+        "author": "Rao, Singiresu S.",
+        "publisher": "Pearson",
+        "year": "2018 / 6th ed. in SI units",
+        "isbn": "9781292178608",
+        "cover": "/img/textbooks/9781292178608.jpg"
+      }
+    ]
+  },
+  "MEU3680": {
+    "name": "기계시스템제어",
+    "books": [
+      {
+        "kind": "주교재",
+        "title": "Control Systems Engineering",
+        "author": "Norman S. Nise",
+        "publisher": "Wiley",
+        "year": "",
+        "isbn": "9781119721406",
+        "cover": "/img/textbooks/9781119721406.jpg"
+      },
+      {
+        "kind": "주교재",
+        "title": "Modern Control Engineering 5th",
+        "author": "Ogata",
+        "publisher": "Pearson",
+        "year": "2009",
+        "isbn": "9780136156734",
+        "cover": "/img/textbooks/9780136156734.jpg"
+      },
+      {
+        "kind": "부교재",
+        "title": "Feedback control of dynamic systems 8th",
+        "author": "Franklin, Gene F",
+        "publisher": "Pearson",
+        "year": "2019",
+        "isbn": "9781292274522",
+        "cover": "/img/textbooks/9781292274522.jpg"
+      }
+    ]
+  },
+  "MEU3700": {
+    "name": "생체역학",
+    "books": [
+      {
+        "kind": "주교재",
+        "title": "Introductory biomechanics : from cells to organisms",
+        "author": "Ethier, Christopher Ross",
+        "publisher": "Cambridge University Press",
+        "year": "2007",
+        "isbn": "9780521841122",
+        "cover": "/img/textbooks/9780521841122.jpg"
+      }
+    ]
+  },
+  "MEU3802": {
+    "name": "인공위성개론",
+    "books": [
+      {
+        "kind": "주교재",
+        "title": "Understanding space : an introduction to astronautics",
+        "author": "Sellers, Jerry Jon",
+        "publisher": "McGraw-Hill",
+        "year": "2015",
+        "isbn": "9780072943641",
+        "cover": "/img/textbooks/9780072943641.jpg"
+      }
+    ]
+  }
+}
