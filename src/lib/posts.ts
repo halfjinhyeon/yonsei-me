@@ -106,6 +106,12 @@ interface DbPost {
 // 있었다(사이트가 눈에 띄게 느려진 원인). 측정해 보니 그중 body_html_* 만 1.57MB —
 // 본문만 빼면 한도 아래로 넉넉히 내려온다.
 //
+// …였는데 전수 이전이 끝나 3,548건이 되자 **본문 없는 응답조차 2.5MB** 로 한도를
+// 다시 넘겼다(2026-08 실측: 캐시 전멸 → 매 재생성이 전수 조회 → Supabase Free 의
+// 월 5GB egress 초과, 하루 1~1.7GB). 그래서 캐시 항목을 **게시판 단위**로 쪼갰다
+// (fetchBoardRows). 최대 게시판이 news 575kB 로 한도의 28% — 게시판당 ~2,800건쯤에
+// 다시 닿는데, 그때는 게시판 안에서 연도 분할 같은 다음 단계가 필요하다.
+//
 // 그리고 목록은 본문을 **쓰지 않는다**. 본문이 필요한 곳은 상세 페이지 한 곳뿐이고
 // (fetchRowById/fetchRowBySlug), 자료실 검색 인덱스만 예외라 7건짜리 전용 조회
 // (fetchResourceBodies)로 따로 뗐다. 썸네일 폴백(firstBodyImage)도 thumbnail_url
@@ -150,14 +156,17 @@ function scheduleGate(): string {
   return `event_date.not.is.null,created_at.lte."${new Date().toISOString()}"`;
 }
 
-// 전체 공개 글 1회 조회(본문 제외, 첨부 포함) — 'posts' 태그 하나로 단순·확실하게 캐시한다.
-// 목록을 파생하는 모든 API 가 이 하나를 공유하고 메모리에서 게시판별로 나눈다.
-const fetchListRows = unstable_cache(
-  async (): Promise<DbPost[]> => {
+// 게시판 하나의 공개 글 조회(본문 제외, 첨부 포함) — 캐시 항목을 **게시판 단위**로 나눈다.
+// 전신은 전체 코퍼스를 한 항목에 담는 fetchListRows 였는데, 3,548건에서 2MB 한도를
+// 다시 넘겨 캐시가 전멸했다(위 LIST_COLUMNS 주석 참조). unstable_cache 는 인자를
+// 캐시 키에 포함하므로 board 별로 항목이 따로 잡히고, 무효화는 전과 같이 'posts'
+// 태그 하나 — CMS 쓰기(revalidateTag)가 전 게시판을 함께 턴다.
+const fetchBoardRows = unstable_cache(
+  async (board: string): Promise<DbPost[]> => {
     // ⚠️ PostgREST 는 응답 행 수에 상한(Supabase 기본 1,000)이 걸려 있고, 넘치면
-    //    오류가 아니라 조용히 잘라서 준다. 학과 사이트 게시물을 대량 이전한 뒤로
-    //    전체 공개 글이 1,000건을 넘으므로 range 로 끝까지 페이지를 넘겨 받는다.
-    //    이 루프가 없으면 오래된 글이 전 게시판에서 소리 없이 사라진다.
+    //    오류가 아니라 조용히 잘라서 준다. career 게시판이 936건으로 이미 턱밑이라
+    //    게시판 단위가 된 뒤에도 range 페이지 루프는 유지한다.
+    //    이 루프가 없으면 오래된 글이 소리 없이 사라진다.
     const PAGE = 1000;
     const rows: DbPost[] = [];
     for (let from = 0; ; from += PAGE) {
@@ -165,6 +174,7 @@ const fetchListRows = unstable_cache(
         .from('posts')
         .select(LIST_COLUMNS)
         .eq('published', true)
+        .eq('board', board)
         // 예약 게시 — 공개 시각이 오지 않은 글은 어느 목록에도 실리지 않는다
         .or(scheduleGate())
         .order('created_at', { ascending: false })
@@ -172,14 +182,14 @@ const fetchListRows = unstable_cache(
         // 중복·누락될 수 있다 — id 로 순서를 확정한다.
         .order('id', { ascending: false })
         .range(from, from + PAGE - 1);
-      if (error) throw new Error(`게시글 조회 실패: ${error.message}`);
+      if (error) throw new Error(`게시글 조회 실패(board=${board}): ${error.message}`);
       const page = (data ?? []) as unknown as DbPost[];
       rows.push(...page);
       if (page.length < PAGE) break;
     }
     return rows;
   },
-  ['posts-list-nobody'],
+  ['posts-list-board'],
   { tags: ['posts'], revalidate: 600 },
 );
 
@@ -408,7 +418,7 @@ const pinnedFirst = <T extends { pinned?: boolean }>(arr: T[]) => [
 ];
 
 async function rowsOf(board: string): Promise<DbPost[]> {
-  return (await fetchListRows()).filter((r) => r.board === board);
+  return fetchBoardRows(board);
 }
 
 // ── 공개 API (기존 content.ts 이름과 대응) ─────────────────────────────
@@ -532,20 +542,31 @@ export async function fetchBoardData(): Promise<typeof gitBoard> {
       alumniEvents: pinnedFirst(gitBoard.alumniEvents),
     };
   }
-  const rows = await fetchListRows();
-  const of = (b: string) => rows.filter((r) => r.board === b);
+  // 게시판별 캐시 항목을 병렬로 읽는다 — 캐시가 실제로 저장되므로(항목당 ≤575kB)
+  // 대부분 히트고, 미스도 그 게시판 하나만 다시 조회한다.
+  const [
+    seminars, events, noticesUndergrad, noticesGraduate, noticesExternal,
+    noticesScholarship, thesis, career, resources, internships, alumniEvents,
+  ] = await Promise.all([
+    fetchBoardRows('seminars'), fetchBoardRows('events'),
+    fetchBoardRows('noticesUndergrad'), fetchBoardRows('noticesGraduate'),
+    fetchBoardRows('noticesExternal'), fetchBoardRows('noticesScholarship'),
+    fetchBoardRows('thesis'), fetchBoardRows('career'),
+    fetchBoardRows('resources'), fetchBoardRows('internships'),
+    fetchBoardRows('alumniEvents'),
+  ]);
   return {
-    seminars: byPinnedDate(of('seminars').map(toSeminar)),
-    events: byPinnedDate(of('events').map(toEvent)),
-    noticesUndergrad: byPinnedDate(of('noticesUndergrad').map(toNotice)),
-    noticesGraduate: byPinnedDate(of('noticesGraduate').map(toNotice)),
-    noticesExternal: byPinnedDate(of('noticesExternal').map(toNotice)),
-    noticesScholarship: byPinnedDate(of('noticesScholarship').map(toNotice)),
-    thesis: byPinnedDate(of('thesis').map(toNotice)),
-    career: byPinnedDate(of('career').map(toNotice)),
-    resources: byPinnedDate(of('resources').map(toNotice)),
-    internships: byPinnedDate(of('internships').map(toNotice)),
-    alumniEvents: byPinnedDate(of('alumniEvents').map(toAlumniEvent)),
+    seminars: byPinnedDate(seminars.map(toSeminar)),
+    events: byPinnedDate(events.map(toEvent)),
+    noticesUndergrad: byPinnedDate(noticesUndergrad.map(toNotice)),
+    noticesGraduate: byPinnedDate(noticesGraduate.map(toNotice)),
+    noticesExternal: byPinnedDate(noticesExternal.map(toNotice)),
+    noticesScholarship: byPinnedDate(noticesScholarship.map(toNotice)),
+    thesis: byPinnedDate(thesis.map(toNotice)),
+    career: byPinnedDate(career.map(toNotice)),
+    resources: byPinnedDate(resources.map(toNotice)),
+    internships: byPinnedDate(internships.map(toNotice)),
+    alumniEvents: byPinnedDate(alumniEvents.map(toAlumniEvent)),
   };
 }
 
