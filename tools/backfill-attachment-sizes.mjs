@@ -168,14 +168,31 @@ for (const [i, row] of rows.entries()) {
     continue;
   }
 
-  const patchRes = await fetch(
-    `${SUPABASE_URL.replace(/\/$/, '')}/rest/v1/attachments?id=eq.${row.id}`,
-    {
-      method: 'PATCH',
-      headers: { ...restHeaders, 'Content-Type': 'application/json', Prefer: 'return=minimal' },
-      body: JSON.stringify({ size_bytes: size }),
-    },
-  );
+  // ⚠ 이 PATCH 가 try 밖에 있으면 일시적 연결 리셋(ECONNRESET 등) 한 건에 실행
+  //   전체가 죽는다(2026-08-31 실측 — 두 번 연속 중단). 한 번 재시도하고, 그래도
+  //   안 되면 그 행만 실패로 세고 계속 간다.
+  let patchRes = null;
+  for (let attempt = 0; attempt < 2 && !patchRes; attempt++) {
+    try {
+      patchRes = await fetch(
+        `${SUPABASE_URL.replace(/\/$/, '')}/rest/v1/attachments?id=eq.${row.id}`,
+        {
+          method: 'PATCH',
+          headers: { ...restHeaders, 'Content-Type': 'application/json', Prefer: 'return=minimal' },
+          body: JSON.stringify({ size_bytes: size }),
+          signal: AbortSignal.timeout(HTTP_TIMEOUT_MS),
+        },
+      );
+    } catch (err) {
+      if (attempt === 0) { await sleep(1000); continue; }
+      console.log(`${prefix} — 기록 실패 (요청 오류: ${err?.message ?? err})`);
+    }
+  }
+  if (!patchRes) {
+    failed++;
+    await sleep(GAP_MS);
+    continue;
+  }
   if (!patchRes.ok) {
     console.log(`${prefix} — 기록 실패 (HTTP ${patchRes.status} ${await patchRes.text()})`);
     failed++;
