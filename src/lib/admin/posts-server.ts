@@ -65,11 +65,13 @@ export function adminDb(): SupabaseClient {
 export interface AdminPostPayload {
   board: string;
   slug?: string | null;
-  date: string; // YYYY-MM-DD (표시일 — created_at 으로 저장)
+  date: string; // YYYY-MM-DD (표시일 — created_at 으로 저장. 단 세미나는 행사일이라 저장 안 함)
   /** 공개 시각 HH:MM (KST, 선택) — 게시 예약. 비면 00:00(그 날 자정 = 사실상 즉시).
    *  created_at 이 timestamptz 라 날짜와 함께 한 칼럼에 실린다(스키마 변경 없음).
-   *  ⚠️ 행사·세미나·일정·동문행사는 created_at 이 "행사일"로 쓰이므로(payloadToRow 의
-   *  isEvent/hasSchedule) 이 값이 예약으로 해석되지 않는다 — lib/posts.ts 의 게이트 주석 참조. */
+   *  ⚠️ 행사·일정·동문행사는 created_at 이 "행사일"로 쓰이므로(payloadToRow 의
+   *  isEvent/hasSchedule) 이 값이 예약으로 해석되지 않는다 — lib/posts.ts 의 게이트 주석 참조.
+   *  ⚠️ 세미나(2026-08-31 분리)는 폼 날짜가 행사일이라 created_at 을 아예 저장하지 않는다 —
+   *  게시일이 보존되므로 이 시각도 세미나에서는 아무 효력이 없다. */
   time?: string;
   titleKo: string;
   titleEn?: string;
@@ -142,7 +144,9 @@ export function payloadToRow(p: AdminPostPayload) {
   const isNews = p.board === 'news' || p.board === 'alumniNews';
   // 캘린더 전용 일정·세미나는 "그 날짜에 일어나는 일"이 본체라 행사와 똑같이 event_date 에
   // 시작일을 박는다. created_at 은 timestamptz 라 표시일로 쓰면 시간대에 휘둘린다.
-  // (세미나를 여기 넣은 건 캘린더 게시일 오배치 수정 — lib/posts.ts 의 dateOf 와 한 몸이다.)
+  // (세미나도 폼 날짜가 행사일이라 여기 들어간다. 다만 2026-08-31 분리 이후 세미나는
+  //  created_at 을 건드리지 않는다 — 게시일과 행사일이 다른 칼럼으로 갈렸다.
+  //  lib/posts.ts 의 dateOf·toSeminar 와 한 몸이다.)
   const isEvent =
     p.board === 'alumniEvents'
       ? p.isEvent === true
@@ -203,7 +207,12 @@ export function payloadToRow(p: AdminPostPayload) {
     thumbnail_url: nn(p.image),
     // 게시일 + 공개 시각(KST). 시각을 비운 글은 이전과 같은 T00:00 이라 값이 안 바뀐다.
     // 오프셋을 문자열에 박는 이유는 예전과 같다 — 서버 TZ 가 무엇이든 KST 자정이 되어야 한다.
-    created_at: `${p.date}T${publishTime(p.time)}:00+09:00`,
+    // ⚠️ 세미나만 이 키를 통째로 뺀다(2026-08-31 분리). 세미나 폼의 날짜는 행사일이므로
+    //    여기 박으면 저장 한 번에 게시일이 행사일로 덮인다. 키가 없으면 PUT 은 기존
+    //    created_at 을 그대로 두고, POST 는 DB 기본값 now() 가 게시일이 된다.
+    ...(p.board === 'seminars'
+      ? {}
+      : { created_at: `${p.date}T${publishTime(p.time)}:00+09:00` }),
   };
 }
 

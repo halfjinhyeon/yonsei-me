@@ -226,8 +226,9 @@ export default async function HomePage({ params }: { params: { locale: string } 
     }),
     ...board.seminars.map((s) => ({
       id: s.id,
-      date: s.date,
-      endDate: s.endDate ?? s.date, // 종료일 없으면 하루
+      // 세미나의 date 는 게시일이다 — 캘린더는 행사일에 놓고, 없는 구 글만 게시일 폴백
+      date: s.eventDate ?? s.date,
+      endDate: s.endDate ?? s.eventDate ?? s.date, // 종료일 없으면 하루
       title: orKo(s.title),
       kind: 'seminar' as const,
       href: boardPostHref({ id: s.id, boardKey: 'seminars' }),

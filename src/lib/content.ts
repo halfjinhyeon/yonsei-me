@@ -122,6 +122,8 @@ export interface Seminar {
   date: string;
   /** 종료일(YYYY-MM-DD, DB end_date) — 없으면 하루 일정 */
   endDate?: string;
+  /** 행사일(YYYY-MM-DD, DB event_date) — 캘린더 배치용. 목록의 date 는 게시일이다. */
+  eventDate?: string;
   host: Localized;
   title: Localized;
   body: Localized;

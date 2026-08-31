@@ -132,12 +132,15 @@ const DETAIL_COLUMNS = '*, attachments(*)';
 // 스키마를 늘리지 않고 created_at(timestamptz) 에 `YYYY-MM-DDTHH:MM+09:00` 로 저장하므로,
 // **사이트 조회는 created_at 이 아직 오지 않은 글을 빼면** 그것이 곧 예약 게시다.
 //
-// ⚠️ event_date 가 있는 행은 면제한다. 그 행들(행사·세미나·일정·동문행사)은
+// ⚠️ event_date 가 있는 행은 면제한다. 그 행들 중 행사·일정·동문행사는
 //    payloadToRow 가 created_at 에 **행사일**을 박는다 — 다음 달 행사를 지금 등록하면
 //    created_at 도 다음 달이다. 면제하지 않으면 "앞으로 열릴 행사"가 사이트 목록과
 //    홈 캘린더에서 통째로 사라진다(예약이 아니라 그 게시판의 날짜 의미가 그런 것뿐이다).
 //    이관된 구 행들은 created_at 이 작성일이라 어차피 과거지만, CMS 로 새로 쓰거나
 //    수정하는 순간 행사일로 덮인다 — 면제 조항이 실제로 일하는 지점은 거기다.
+//    세미나는 2026-08-31 분리 이후 created_at 이 **게시일**로 남지만(payloadToRow 가
+//    세미나 행에서 created_at 을 아예 빼서 보낸다), event_date 를 여전히 채우므로
+//    면제 조건 자체는 그대로 성립한다.
 //    바꿔 말해 예약 게시가 걸리는 곳은 event_date 를 쓰지 않는 게시판 —
 //    공지 4종·뉴스·동문 뉴스·학위논문·자료실·취업·인턴·인스타그램·비행사 동문글이다.
 //
@@ -256,13 +259,14 @@ function loc(ko: string | null | undefined, en: string | null | undefined): Loca
 }
 
 
-/** 표시용 날짜 — 행사·세미나(또는 isEvent)는 행사일, 그 외는 작성일.
- *  세미나를 행사일 기준에 넣은 이유: 캘린더가 세미나를 게시일 칸에 올려 제목의
- *  날짜(8/18)와 칸(8/11)이 어긋났다. event_date 없는 구 글은 작성일로 폴백한다. */
+/** 표시용 날짜 — 행사(또는 isEvent)는 행사일, 그 외는 작성일(게시일).
+ *  ⚠️ 2026-08-31 분리: 세미나는 여기서 빠졌다. 세미나 목록·상세의 날짜는 **게시일**이고,
+ *  캘린더 배치는 toSeminar 가 따로 싣는 Seminar.eventDate 가 담당한다. 예전에는 캘린더가
+ *  세미나를 게시일 칸에 올려 어긋났기에 표시일까지 행사일로 밀었지만, 이제 캘린더 쪽이
+ *  eventDate 를 보므로 양쪽 요구가 같이 만족된다. event_date 없는 구 글은 작성일 폴백. */
 function dateOf(r: DbPost): string {
   // event_date 는 date 칼럼이라 시간대가 없다 — 그대로 쓴다.
-  if ((r.board === 'events' || r.board === 'seminars' || r.is_event) && r.event_date)
-    return r.event_date;
+  if ((r.board === 'events' || r.is_event) && r.event_date) return r.event_date;
   return kstDate(r.created_at);
 }
 
@@ -332,6 +336,8 @@ function toSeminar(r: DbPost): Seminar {
     ...toNotice(r),
     host: loc(r.host_ko, r.host_en),
     ...(r.end_date ? { endDate: r.end_date } : {}),
+    // 행사일 — 세미나의 date 는 게시일이므로 캘린더가 쓸 실제 날짜를 따로 싣는다
+    ...(r.event_date ? { eventDate: r.event_date } : {}),
   };
 }
 
