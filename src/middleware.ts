@@ -20,11 +20,15 @@ const PROTECTED = /^\/(?:ko|en)\/contentmanagement(?!\/login(?:\/|$))(?:\/|$)/;
 export default auth((req) => {
   const { pathname } = req.nextUrl;
 
-  // 구 사이트 루트(/me, /me/) — 점이 없어 matcher 세 번째 패턴에 걸리는 유일한 구 주소다.
-  // 그대로 두면 next-intl 이 /ko/me 로 보내 404 가 되므로 인트르 처리 전에 홈으로 308 한다.
-  // 나머지 `/me/*.do` 는 점 때문에 matcher 를 통과하지 못하고 app/me 리졸버로 직행한다.
+  // 구 사이트 루트(/me, /me/ 와 영문 미러 /me_en, /me_en/) — 점이 없어 matcher 세 번째
+  // 패턴에 걸리는 유일한 구 주소들이다. 그대로 두면 next-intl 이 /ko/me 로 보내 404 가
+  // 되므로 인트르 처리 전에 각 언어 홈으로 308 한다. 나머지 `/me/*.do`·`/me_en/*.do` 는
+  // 점 때문에 matcher 를 통과하지 못하고 app/me·app/me_en 리졸버로 직행한다.
   if (pathname === '/me' || pathname === '/me/') {
     return Response.redirect(new URL('/ko', req.nextUrl.origin), 308);
+  }
+  if (pathname === '/me_en' || pathname === '/me_en/') {
+    return Response.redirect(new URL('/en', req.nextUrl.origin), 308);
   }
 
   // 개발 편의: 로컬 dev 서버에서는 콘솔 진입 게이트를 건너뛴다(레이아웃 작업용).
