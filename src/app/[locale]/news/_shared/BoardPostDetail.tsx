@@ -108,8 +108,8 @@ export async function BoardPostDetail({ locale, id, board }: BoardPostRouteParam
       ? t(post.category === 'form' ? 'library.catForm' : 'library.catRule')
       : undefined;
 
-  // 본문 아래에 세울 '같은 게시판 목록' — 이 글이 속한 (하위)게시판의 목록 한 페이지와
-  // 앞뒤 글. 모르는 게시판이면 context 가 null 이라 아무것도 그리지 않는다.
+  // 본문 아래 이전/다음 글 — 이 글이 실제로 속한 (하위)게시판 기준의 앞뒤 글.
+  // 모르는 게시판이면 context 가 null 이라 아무것도 그리지 않는다.
   const context = await buildBoardContext(l, post.boardKey, post.id);
   const slice = context ? locateInBoard(context.rows, post.id) : null;
 
@@ -155,15 +155,8 @@ export async function BoardPostDetail({ locale, id, board }: BoardPostRouteParam
         />
         {context && slice && (
           <PostBoardContext
-            boardName={context.boardName}
             slice={slice}
-            currentId={post.id}
-            listHref={context.listHref}
-            locale={l}
             labels={{
-              viewAll: t('context.viewAll'),
-              viewAllShort: t('context.viewAllShort'),
-              total: t('context.total', { count: slice.total }),
               prev: t('context.prev'),
               next: t('context.next'),
               none: t('context.none'),

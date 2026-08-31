@@ -105,15 +105,8 @@ export default async function NewsArticlePage({
           locale={locale}
         />
         <PostBoardContext
-          boardName={boardName}
           slice={slice}
-          currentId={params.slug}
-          listHref={newsTabHref('press')}
-          locale={locale}
           labels={{
-            viewAll: t('context.viewAll'),
-            viewAllShort: t('context.viewAllShort'),
-            total: t('context.total', { count: slice.total }),
             prev: t('context.prev'),
             next: t('context.next'),
             none: t('context.none'),
