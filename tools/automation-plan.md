@@ -9,22 +9,57 @@
 
 ## 1. 현황 인벤토리
 
-### A. 자동화 완료 (1건)
+### A. 자동화 대상 5건 — 사이트 사용처와 출처
 
-| 데이터 | 출처 | 코드 | 주기 |
+각 데이터가 **사이트 어디에서 소비되고**(경로 · 컴포넌트), **어디에서 오는지**(원 출처
+링크)를 먼저 고정합니다. 구체 계획은 이 표를 기준으로 씁니다.
+
+| # | 데이터 | 사이트에서 쓰는 곳 | 원 출처 | 저장 위치(산출물) |
+| --- | --- | --- | --- | --- |
+| 1 | 교수 학술활동 프로필 — 셸(연락처·홈페이지) + 논문·수상·학술활동·연구과제·지적재산권 (31명) | 교수진 상세 `/{locale}/faculty/<교수이름>` (`src/app/[locale]/faculty/[slug]/page.tsx`, 전수 프리렌더) · CMS 교수진 "실적 불러오기" | 교원정보시스템 `devcms.yonsei.ac.kr` — 링크 상세 ① | Supabase `content_files` = `content/faculty-profiles/<이름>.json` |
+| 2 | 수강편람 과목 카탈로그 — 2022-1~현재 전 학기 통합(학정번호 키·별칭) | 학부 › 졸업요건 진단기 `/{locale}/undergraduate/checker` (`GraduationChecker.tsx` 가 `/data/course-catalog.json` fetch) | 연세포털 수강편람 내부 API `underwood1.yonsei.ac.kr` — 링크 상세 ② | `public/data/course-catalog.json` + 이력 정본 `tools/checker/data/catalog-history.json` |
+| 3 | 수강신청 마일리지 이력 — 2015-2~ 분반별 컷·배정·순위 | 학부 › 마일리지 전략 `/{locale}/undergraduate/mileage` (`MileagePlanner.tsx`, 번들 URL 은 `src/lib/mileage/bundle.ts` 의 `MILEAGE_TERM`) | 같은 수강편람 내부 API(요약·원장) — 링크 상세 ② | `public/data/mileage-<년>-<학기>[-detail].json` + `tools/mileage/data/mileage-history.db.gz` |
+| 4 | 강의계획서 교재 — 과목별 주교재·부교재·참고자료 서지 + 표지 이미지 | 학부 › 교과목 소개 `/{locale}/undergraduate/courses` 의 교재 팝업 (`CourseCatalog.tsx` → `TextbookPopover.tsx`; 대학원 교과목 페이지에는 미사용) | 수강편람 강의계획서(②) + 교보문고 CDN — 링크 상세 ③ | `content/textbooks.json` + `public/img/textbooks/<ISBN>.jpg` |
+| 5 | 입학 캘린더 — 2026학년도 전형 일정 22건(수시 21 · 재외국민 1) | 소개 › 입학 안내 `/{locale}/about/admission` 3번 섹션 (`AdmissionGuide.tsx` → `AdmissionCalendar.tsx`) | 연세대 입학처 공지·모집요강 — 링크 상세 ④ | `content/admission-guide.json` 의 `calendar` 블록 |
+
+수집 코드·주기·현재 상태:
+
+| # | 수집 코드 | 주기 | 현재 상태 |
 | --- | --- | --- | --- |
-| 교수 학술활동 프로필 (셸 + 논문·수상·학술활동·연구과제·지적재산권) | 교원정보시스템 `devcms.yonsei.ac.kr/faculty/name_search.do` | `tools/crawl-faculty-profiles.mjs` + `src/lib/faculty-crawl/core.ts` (CMS 버튼과 공용) | GitHub Actions 매월 2일 03:00 KST → Supabase `content_files` 병합 |
+| 1 | `tools/crawl-faculty-profiles.mjs` + `src/lib/faculty-crawl/core.ts` (CMS 버튼 `/api/admin/faculty-crawl` 과 공용) | 매월 2일 03:00 KST | **자동화 완료** — `.github/workflows/crawl-faculty-profiles.yml` → DB 병합 |
+| 2 | 외부 크롤러 `courses` 명령 + 래퍼 `tools/checker/crawl-terms.mjs` → `build-catalog.mjs` | 학기 1회 | 수동 — **로그인 쿠키 필요** |
+| 3 | 외부 크롤러 `npm run mileage` + `tools/mileage/build-db.mjs` → `precompute.mjs` | 학기 1회 | 수동 — **로그인 쿠키 필요, 수 시간 소요** |
+| 4 | 외부 크롤러(강의계획서) + `tools/textbooks/mirror-covers.mjs` → `build-content.mjs` | 학기 1회 | 수동 — 표지 미러링만 쿠키 불필요 |
+| 5 | 수집 코드 없음 — 전량 수기 입력(관리자 콘솔 미지원, 파일 직접 편집) | 학년도 1회 전면 + 변경 시 | 수동 |
 
-### B. 주기적 수동 수집 — 자동화 대상 (4건)
+### 출처 링크 상세
 
-| 데이터 | 출처 | 코드 → 산출물 | 주기 |
-| --- | --- | --- | --- |
-| 수강편람 과목 카탈로그 (졸업요건 체커) | `underwood1.yonsei.ac.kr` 내부 API — **로그인 쿠키 필요** | 외부 크롤러 repo + `tools/checker/crawl-terms.mjs` → `public/data/course-catalog.json` | 학기 1회 |
-| 수강신청 마일리지 이력 | 같은 곳 (요약·원장 API) — **로그인 쿠키 필요, 수 시간 소요** | 외부 크롤러 `npm run mileage` + `tools/mileage/build-db.mjs`·`precompute.mjs` → `public/data/mileage-*.json` | 학기 1회 |
-| 강의계획서 교재 정보 + 표지 | 수강편람 강의계획서(쿠키 필요) + 교보문고 CDN(공개) | `tools/textbooks/build-content.mjs`·`mirror-covers.mjs` → `content/textbooks.json` | 학기 1회 |
-| 입학 캘린더 (2026학년도 22건: 수시 21 + 재외국민 1) | 연세대 입학처 공지·모집요강 `admission.yonsei.ac.kr` — **크롤러 없음, 전량 수기** | 수기 편집 → `content/admission-guide.json` `calendar` 블록 | 학년도 1회 전면 + 수시 변경 반영 |
+**① 교원정보시스템** (공개 — 로그인 불필요)
 
-### C. 1회성 완료 — 자동화 제외 (5건)
+- 상세 셸: `https://devcms.yonsei.ac.kr/faculty/name_search.do?mode=view&userId=<암호화ID>`
+- 리포트: `https://devcms.yonsei.ac.kr/faculty/name_search.do?mode=report&userId=<암호화ID>&reportType=<article|award|conference|funding|patent>` — 100행 초과 시 2쪽은 `mode=report_next` (원본 제공은 분류당 최대 2쪽·200건)
+- `userId` 는 각 프로필 파일의 `sourceUrl` 에 저장돼 있고, 옛 `me.yonsei.ac.kr` 표기는 `core.ts` 의 `infoHost()` 가 devcms 로 바꿔 요청합니다.
+
+**② 연세포털 수강편람 시스템** (로그인 세션 쿠키 `YONSEI_COOKIE` 필요 — 수 시간 만료)
+
+- 베이스: `https://underwood1.yonsei.ac.kr/` — 과목 카탈로그·마일리지 요약/원장·강의계획서 모두 이 시스템의 내부 `.do` API 입니다.
+- 이 저장소에 문서화된 API 명: 학기 목록 `findMlgSyySmtDivCdList` (최근 6개 학기 롤링 창 — 그 이전 학기는 학기 코드를 직접 지정해 요약·원장 API 호출).
+- **엔드포인트별 정확한 경로·파라미터의 정본은 크롤러 저장소** <https://github.com/halfjinhyeon/yosnei-mileage-crawler> 의 `src/`(courses·mileage·backfill) 입니다. 이 저장소에는 래퍼만 있으므로, 구체 계획서 단계에서 크롤러 저장소의 실제 요청 URL 을 옮겨 적어 확정할 것.
+
+**③ 교재 표지**
+
+- 교보문고 CDN: `https://contents.kyobobook.co.kr/sih/fit-in/458x0/pdt/<ISBN>.jpg` — ⚠️ 미보유 ISBN 도 HTTP 200 + `image/jpeg` 헤더의 플레이스홀더(실제는 PNG 34,150B)를 주므로 JPEG 매직바이트로 판별.
+- 교보 미보유·오기 ISBN 의 대체 출처(Open Library 등)는 `tools/textbooks/mirror-covers.mjs` 의 `FALLBACK`/`OVERRIDE` 표에 ISBN 별 URL·검수 근거가 명시돼 있습니다.
+
+**④ 연세대 입학처·일반대학원** (공개 — 로그인 불필요)
+
+- 수시: `https://admission.yonsei.ac.kr/seoul/admission/html/rolling/`
+- 정시: `https://admission.yonsei.ac.kr/seoul/admission/html/regular/`
+- 편입: `https://admission.yonsei.ac.kr/seoul/admission/html/transfer/`
+- 대학원: `https://graduate.yonsei.ac.kr/graduate/admission/`
+- 참고: 링크 허브 페이지(`/{locale}/admission`)는 같은 섹션의 `guide.asp` 딥링크(예 `…/rolling/guide.asp`)를 씁니다. 변경 감지 워커(3절 1-2)의 감시 대상 후보이기도 합니다.
+
+### B. 1회성 완료 — 자동화 제외 (5건)
 
 구 게시판 10종 전량(`tools/crawl-boards.mjs`), 구 사이트 자산 R2 미러링
 (`scripts/mirror-legacy-assets.mjs`), 첨부 크기 백필, 구 홈페이지 정적 페이지 스크랩
