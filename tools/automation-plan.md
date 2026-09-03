@@ -29,7 +29,7 @@
 | 1 | `tools/crawl-faculty-profiles.mjs` + `src/lib/faculty-crawl/core.ts` (CMS 버튼 `/api/admin/faculty-crawl` 과 공용) | 매월 2일 03:00 KST | **자동화 완료** — `.github/workflows/crawl-faculty-profiles.yml` → DB 병합 |
 | 2 | 외부 크롤러 `courses` 명령 + 래퍼 `tools/checker/crawl-terms.mjs` → `build-catalog.mjs` | 학기 1회 | 수동 — **로그인 쿠키 필요** |
 | 3 | 외부 크롤러 `npm run mileage` + `tools/mileage/build-db.mjs` → `precompute.mjs` | 학기 1회 | 수동 — **로그인 쿠키 필요, 수 시간 소요** |
-| 4 | 외부 크롤러(강의계획서) + `tools/textbooks/mirror-covers.mjs` → `build-content.mjs` | 학기 1회 | 수동 — 표지 미러링만 쿠키 불필요 |
+| 4 | ⚠️ 강의계획서 크롤 코드 부재(재작성 필요, 백로그 0b) + `tools/textbooks/mirror-covers.mjs` → `build-content.mjs` | 학기 1회 | 수동 — 표지 미러링만 쿠키 불필요 |
 | 5 | 수집 코드 없음 — 전량 수기 입력(관리자 콘솔 미지원, 파일 직접 편집) | 학년도 1회 전면 + 변경 시 | 수동 |
 
 ### 출처 링크 상세
@@ -43,9 +43,29 @@
 **② 연세포털 수강편람 시스템** (로그인 세션 쿠키 `YONSEI_COOKIE` 필요 — 수 시간 만료)
 
 - 베이스: `https://underwood1.yonsei.ac.kr/` — 과목 카탈로그·마일리지 요약/원장·강의계획서 모두 이 시스템의 내부 `.do` API 입니다.
-- 이 저장소에 문서화된 API 명: 학기 목록 `findMlgSyySmtDivCdList` (최근 6개 학기 롤링 창 — 그 이전 학기는 학기 코드를 직접 지정해 요약·원장 API 호출).
-- **엔드포인트별 정확한 경로·파라미터의 정본은 크롤러 코드**(`src/` 의 courses·mileage·backfill)입니다. 이 저장소에는 래퍼만 있습니다.
-- 크롤러는 로컬 작업 사본(`Desktop\크롤링`, 원본 <https://github.com/halfjinhyeon/yosnei-mileage-crawler>)을 **조직 저장소로 푸시해 정본으로 삼기로 결정**(2026-09). 이관 절차는 3절 **2-0** 체크리스트를 따르고, 엔드포인트 상세는 이관 후 그 저장소 기준으로 확정합니다.
+- **요청 규약** (크롤러 `src/api.js` 실측 정본 — 2026-09-03 크롤러 사본에서 확정):
+  - 전부 **POST**, `Content-Type: application/x-www-form-urlencoded` + `Cookie: <YONSEI_COOKIE>`.
+  - eXBuilder6/Cleopatra 폼 인코딩: 고정 파라미터 `_menuId=MTA5MzM2MTI3MjkzMTI2NzYwMDA=` ·
+    `_pgmId=NDE0MDA4NTU1NjY=` · `_menuNm=`(빈 값), 데이터 필드는 `@d1#<필드명>=<값>` 키,
+    말미에 `@d#=@d1#` · `@d1#=dmCond` · `@d1tp=dm` 세 항목 고정.
+  - 응답 본문이 `{` 로 시작하지 않으면 **세션 만료**(로그인 HTML) — 크롤러의 만료 판정 기준.
+- **엔드포인트 5개** (전부 `/sch/sles/` 하위, 크롤러 `src/courses.js`·`mileage.js`·`backfill.mjs`):
+
+  | 용도 | 경로 | 핵심 파라미터 | 응답 데이터셋 |
+  | --- | --- | --- | --- |
+  | 코드 목록 (캠퍼스→대학→학과 3단) | `SlescsCtr/findSchSlesHandbList.do` | `dsNm=dsCampsBusnsCd\|dsUnivCd\|dsFaclyCd`, `lv1~lv3`(상위 코드·`%`), `univGbn=A`, `findAuthGbn=8`, `level=B`, `syy`, `smtDivCd` | `dsNm` 과 동명 (신촌 학부는 `deptCd='s1'`) |
+  | 과목 목록 | `SlessyCtr/findAtnlcHandbList.do` | `syy`, `smtDivCd`, `campsBusnsCd='s1'`, `univCd`, `faclyCd`, `hy`(학년), `cdt='%'`, `kwdDivCd='1'`, `searchGbn='1'` 등 | `dsSles251` — **200건 상한**, 초과 시 `hy=1~6` 분할 재조회 |
+  | 마일리지 학기 목록 | `SlessyCtr/findMlgSyySmtDivCdList.do` | `sysinstDivCd`, `subjtnb`, `corseDvclsNo`, `prctsCorseDvclsNo` | `dsSyySmtDivCd` — **최근 6학기 롤링 창** |
+  | 마일리지 요약 | `SlessyCtr/findMlgAppcsResltList.do` | 위 4개 + `syy`, `smtDivCd`, `syySmtDivCd` | `dsSles251[0]` |
+  | 마일리지 순위(원장) | `SlessyCtr/findMlgRankResltList.do` | 요약과 동일 | `dsSles440` |
+
+  옛 학기는 학기 목록 API 를 거치지 않고 요약·원장에 `syy`·`smtDivCd` 를 직접 지정하면
+  조회됩니다(2015-2 까지 실측 — `backfill.mjs` 가 이 방식). 요청 간 지연은 크롤러 기준
+  40~150ms + 동시성 5~6, 실패 시 1초 간격 2회 재시도.
+- ⚠️ **강의계획서(교재) 엔드포인트는 미확정** — 크롤 코드가 어느 저장소에도 남아 있지
+  않습니다(과거 1회성 크롤 산출물 "교재 매칭 폴더"를 `build-content.mjs` 가 소비했을 뿐).
+  2-1 ③ 자동화 때 크롤러를 새로 작성하면서 실측·문서화해야 합니다.
+- 크롤러 정본 저장소: <https://github.com/yonsei-mech/yosnei-mileage-crawler> — 이관 상태는 3절 **2-0**.
 
 **③ 교재 표지**
 
@@ -133,26 +153,36 @@ cron 스케줄 하나짜리 워크플로가 시기별 체크리스트 이슈를 
 커밋·Secrets 저장 금지 대상입니다. 그래서 목표를 "완전 무인"이 아니라 **"쿠키 한 번
 넣으면 나머지 전 단계가 스스로 돈다"**로 잡습니다.
 
-**2-0. 크롤러 저장소 이관** (선결 작업 — 사람이 로컬에서 푸시)
+**2-0. 크롤러 저장소 이관** (선결 작업 — 진행 중, 실사 결과 2026-09-03)
 
-로컬 작업 사본(`Desktop\크롤링`)을 `yonsei-mech` 조직 저장소(예: `yonsei-mech/yonsei-crawler`)
-로 푸시해 정본으로 삼습니다. 같은 소유자여야 Claude 세션 attach 와 Actions 체크아웃이
-됩니다. **푸시 전 체크리스트**:
+실사해 보니 이관은 **이미 절반 진행돼 있습니다**: 로컬 사본(`Desktop\크롤링`)의 origin 이
+`yonsei-mech/yosnei-mileage-crawler` 로 옮겨져 있고, 원격에 초기 커밋 + 쿠키 값 제거
+커밋(`b0ecf3d`)까지 올라가 있습니다. 로컬 main 은 origin/main 위로 리베이스해 동기화를
+마쳤습니다(로컬 유일 커밋 1개 미푸시). 체크리스트별 실제 상태:
 
-1. **`.env`(YONSEI_COOKIE)가 커밋 대상에 없는지** — `.gitignore` 에 `.env` 명시 후
-   `git status` 로 확인. 로컬에 git 이력이 이미 있다면 **과거 커밋에 쿠키가 들어간 적
-   없는지도** 확인하고, 의심되면 이력 없이 새 저장소로 초기화해 푸시합니다.
-   (쿠키가 이력에 있었다면 푸시 여부와 무관하게 즉시 재로그인으로 세션을 무효화할 것.)
-2. **크롤 산출물 제외** — `courses.json`, `courses.json.pre-checker`, `mileage_data.json`,
-   `mileage_data_*.json`(백업 세대) 등은 `.gitignore` 로 막습니다. 데이터는 이 저장소
-   파이프라인이 관리하고, 크롤러 저장소는 코드만 둡니다.
-3. **README 경고 유지** — "쿠키는 `.env` 로만, 절대 커밋 금지"를 크롤러 README 에도 명시.
-4. **공개/비공개 판단** — 5절 결정 표 참조.
-5. **이관 후 이 저장소 참조 갱신** — `tools/checker/crawl-terms.mjs` 의 `CRAWLER_DIR`
-   기본값(현재 Windows 절대경로 하드코딩)과 `tools/checker/README.md` ·
-   `tools/mileage/README.md` 의 경로·링크 표기를 새 저장소 기준으로 바꿉니다.
-   오케스트레이터(2-1)는 `CRAWLER_DIR` 미지정 시 조직 저장소를 클론하도록 만들 수
-   있게 됩니다.
+1. **`.env`(YONSEI_COOKIE) 커밋 방지** — ✅ 조치 완료(2026-09-03): `git rm --cached .env`
+   로 추적 해제 + `.gitignore` 추가(로컬 스테이징 상태, 커밋 대기).
+   ⚠️ 단, **과거 커밋에 실제 쿠키가 들어갔던 이력을 확인**했습니다(원격 `b0ecf3d`
+   "Clear YONSEI_COOKIE and NetFunnel_ID values" — 값을 지운 커밋이므로 그 이전 이력에
+   값이 남아 있음). 규칙대로 **재로그인으로 해당 세션은 즉시 무효화**하고(쿠키 수명이
+   수 시간이라 실효 위험은 낮음), 4번 공개/비공개 결정 시 **이력 재초기화(새 저장소로
+   squash 푸시)를 함께 검토**합니다.
+2. **크롤 산출물 제외** — ⏳ 부분 완료: 백업 세대(`mileage_data_*.json`,
+   `*.json.pre-checker`)는 `.gitignore` 로 막았습니다. 그러나 `courses.json`·
+   `mileage_data.json`(556만 줄)은 **이미 원격 이력에 커밋돼 있습니다**. 추적 해제·이력
+   정리는 1번의 재초기화 여부와 한 번에 결정합니다(어차피 이력을 다시 쓸 거면 그때 함께).
+3. **README 경고 유지** — ✅ 크롤러 README 에 IMPORTANT 블록으로 이미 존재.
+4. **공개/비공개 판단** — 미결. 5절 결정 표 참조(비공개 권장). 1·2번의 이력 정리와 묶어
+   한 번에 처리하는 것이 효율적입니다.
+5. **이 저장소 참조 갱신** — `tools/checker/crawl-terms.mjs` 의 `CRAWLER_DIR` 기본값
+   (`C:\Users\aquae\Desktop\크롤링` 하드코딩)은 로컬 실행 기준으로는 계속 유효합니다.
+   `tools/mileage/README.md` 의 저장소 URL 표기(halfjinhyeon → yonsei-mech)만 갱신
+   대상입니다. 오케스트레이터(2-1)는 `CRAWLER_DIR` 미지정 시 조직 저장소를 클론하도록
+   만들 수 있게 됩니다.
+
+참고: 크롤러 저장소 루트에 **마일리지 구간 한정 원샷 스크립트 `run-update.mjs`** 가
+생겼습니다(2026-09-03, 이 계획과 별개로 선행 작성 — 크롤→에러 재시도→build-db→precompute
+자동 연결). 2-1 의 `update-semester.mjs` 를 만들 때 이 스크립트를 흡수·대체합니다.
 
 **2-1. 원샷 오케스트레이터 `tools/update-semester.mjs`** (신규)
 
@@ -165,7 +195,8 @@ cron 스케줄 하나짜리 워크플로가 시기별 체크리스트 이슈를 
 ② mileage:   크롤러 courses + npm run mileage → build-db --base --verify-against
              → backtest 신·구 공통 분반 비교(리포트 출력, 채택 판단은 사람)
              → precompute --target → bundle.ts MILEAGE_TERM 갱신
-③ textbooks: 강의계획서 크롤 → mirror-covers(신규 ISBN만) → build-content
+③ textbooks: 강의계획서 크롤(⚠️ 크롤러 신규 작성 필요 — 기존 코드 부재, 1절 ② 참조)
+             → mirror-covers(신규 ISBN만) → build-content
 ④ 마무리:    npm run typecheck → 커밋 대상 파일 목록 출력(명시 스테이징 — git add -A 금지)
 ```
 
@@ -229,7 +260,8 @@ cron 스케줄 하나짜리 워크플로가 시기별 체크리스트 이슈를 
 
 | # | 작업 | 단계 | 규모 | 비고 |
 | --- | --- | --- | --- | --- |
-| 0 | 크롤러 저장소 이관 (로컬 → `yonsei-mech` 조직) | 2-0 | S | **사람이 푸시** — 체크리스트 2-0 준수. 이후 이 저장소의 경로·링크 참조 갱신은 코드 작업 |
+| 0 | 크롤러 저장소 이관 마무리 (원격은 이미 `yonsei-mech`) | 2-0 | S | **사람 판단 잔여**: 공개/비공개 + 이력 정리(쿠키·크롤 산출물) 일괄 결정 후 푸시. 상태는 2-0 실사 참조 |
+| 0b | 강의계획서(교재) 크롤러 신규 작성 — 엔드포인트 실측·문서화 포함 | 2-1 ③ | M | 기존 코드 부재(1절 ②). 4의 선행 작업 |
 | 1 | 교수 수집기 실패 임계 exit 1 + 실패 이슈 스텝 | 1-1 | S | 기존 워크플로 수정 |
 | 2 | 입학처 스냅샷·diff 스크립트 + 주 1회 워크플로 | 1-2 | M | 본문 정규화가 핵심 |
 | 3 | 정기 리마인더 워크플로 (체크리스트 이슈 5종) | 1-3 | S | cron + 이슈 템플릿 |
