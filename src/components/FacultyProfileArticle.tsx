@@ -97,15 +97,21 @@ export async function FacultyProfileArticle({
   record,
   locale,
   aiSummary,
+  titleTag = 'h2',
 }: {
   profile: FacultyProfile;
   record: FacultyRecord | null;
   locale: string;
+  /** 교수 이름 제목의 요소. 기본 'h2'(히어로 '교수진' 이 h1 인 기존 구조). 상세 페이지는
+   *  히어로를 p 로 낮추고 'h1' 을 넘겨 이름을 문서의 대표 제목으로 삼는다 — 한 문서에
+   *  큰 제목이 둘이면 구글이 검색결과 제목을 임의로 고른다. 클래스는 같아 시각 변화 없음. */
+  titleTag?: 'h1' | 'h2';
   /** CMS 가 관리하는 AI 연구요약(content/faculty-summaries.json, 로케일 해석 완료).
    *  이쪽이 원본이고, 넘어오지 않으면 크롤 파일에 남은 옛 aiSummary 로 폴백한다. */
   aiSummary?: string | null;
 }) {
   const t = await getTranslations({ locale, namespace: 'faculty' });
+  const NameTag = titleTag;
   const rows = buildRows(profile);
   const tabs: FacultyActivityTab[] = TAB_IDS.map((id) => ({
     id,
@@ -187,7 +193,7 @@ export async function FacultyProfileArticle({
 
         <div className="flex min-w-0 flex-1 basis-[320px] flex-col">
           <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
-            <h2 className="text-2xl font-bold text-content sm:text-[2rem]">{profile.name}</h2>
+            <NameTag className="text-2xl font-bold text-content sm:text-[2rem]">{profile.name}</NameTag>
             {profile.nameEn && <p className="text-base text-content-faint">{profile.nameEn}</p>}
             {roleLabel && (
               <span className="bg-yonsei-blue/10 px-2 py-0.5 text-xs font-semibold text-yonsei-blue">

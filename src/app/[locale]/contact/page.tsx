@@ -6,7 +6,7 @@ import { Section } from '@/components/Section';
 import { ContactInfoPanel } from '@/components/ContactInfoPanel';
 import { DirectionsInfo } from '@/components/DirectionsInfo';
 import { KakaoMap } from '@/components/KakaoMap';
-import { pageAlternates } from '@/lib/seo';
+import { pageMetadata } from '@/lib/page-metadata';
 import type { Locale } from '@/i18n/routing';
 
 export async function generateMetadata({
@@ -14,12 +14,14 @@ export async function generateMetadata({
 }: {
   params: { locale: string };
 }): Promise<Metadata> {
-  const t = await getTranslations({ locale: params.locale, namespace: 'contact' });
-  return {
+  const locale = params.locale as Locale;
+  const t = await getTranslations({ locale, namespace: 'contact' });
+  return pageMetadata({
+    locale,
+    path: 'contact',
     title: t('hero.title'),
     description: t('hero.subtitle'),
-    alternates: pageAlternates('contact'),
-  };
+  });
 }
 
 // 연세대 신촌캠퍼스 제4공학관 좌표 기반 카카오맵 링크 (한글 포함 → encodeURI)

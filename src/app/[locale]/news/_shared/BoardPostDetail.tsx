@@ -21,7 +21,7 @@ import { BoardShell } from '@/components/BoardShell';
 import { pick, type BoardPost } from '@/lib/content';
 import { fetchBoardPost, postsBodyFormat } from '@/lib/posts';
 import { locateInBoard } from '@/lib/board-paging';
-import { documentMetadata } from '@/lib/seo';
+import { pageMetadata } from '@/lib/page-metadata';
 import { htmlToDescription } from '@/lib/excerpt';
 import {
   DEFAULT_NEWS_TAB,
@@ -44,6 +44,17 @@ export interface BoardPostRouteParams {
   board: BoardKey;
 }
 
+/**
+ * 게시판 라벨 — 인턴 모집만 연구 메뉴 소속이라 다른 키를 쓴다.
+ * 메타(제목 꼬리)와 화면(크럼·본문)이 같은 문자열을 써야 검색결과와 페이지가 일치한다.
+ */
+async function boardNameOf(locale: Locale, boardKey: BoardKey): Promise<string> {
+  const tMenu = await getTranslations({ locale, namespace: 'menu' });
+  return boardKey === 'internships'
+    ? tMenu('research.items.internships')
+    : tMenu(`news.items.${boardKey}`);
+}
+
 export async function boardPostMetadata({
   locale,
   id,
@@ -55,17 +66,26 @@ export async function boardPostMetadata({
   // 게시판이 어긋난 주소는 페이지가 308 로 보낸다 — 메타를 낼 자리가 아니다.
   if (post.boardKey !== board) return {};
   const l = locale as Locale;
-  // 게시판 글에는 excerpt 필드가 없어 description 이 비어 있었고, 그러면 레이아웃의
-  // 사이트 기본 설명이 수천 문서에 똑같이 붙는다(GSC 중복 신호) — 본문에서 만들어 준다.
-  const description = htmlToDescription(pick(post.body, l));
-  return {
-    title: pick(post.title, l),
+  // description 이 비면 레이아웃의 사이트 기본 설명이 수천 문서에 똑같이 붙는다
+  // (GSC 중복 신호). 편집자가 쓴 요약을 먼저 쓰고, 없으면 본문에서 만든다.
+  const description =
+    (post.excerpt ? pick(post.excerpt, l).trim() : '') || htmlToDescription(pick(post.body, l));
+  return pageMetadata({
+    locale: l,
+    // 글의 정본 주소(선행 슬래시 제거) — hreflang 과 og:url 이 제 URL 을 가리키게 한다
+    path: boardPostHref(post).slice(1),
+    // 제목 뒤에 게시판을 붙인다 — "공지사항" 같은 맥락이 없으면 검색결과 제목이
+    // 글 제목 한 줄로만 서서 어느 사이트의 무엇인지 읽히지 않는다.
+    title: `${pick(post.title, l)} | ${await boardNameOf(l, post.boardKey)}`,
     ...(description ? { description } : {}),
-    // ⚠️ 번역 판정 필드는 사이트맵(목록 조회)과 같아야 한다. BoardPost 에는 excerpt 가
-    //    없으므로 **제목만** 넘긴다. 본문을 넣으면 사이트맵과 결론이 갈린다.
-    //    path 는 글의 정본 주소(선행 슬래시 제거) — hreflang 이 제 URL 을 가리키게 한다.
-    ...documentMetadata({ path: boardPostHref(post).slice(1), locale: l, fields: [post.title] }),
-  };
+    type: 'article',
+    image: post.image ?? null,
+    publishedTime: post.date,
+    // ⚠️ 번역 판정 필드는 사이트맵(목록 조회)과 같아야 한다 — **제목만** 넘긴다.
+    //    (요약이 BoardPost 에 실리게 됐어도 판정 필드는 늘리지 않는다: 사이트맵이
+    //     제목만 보므로 여기서 늘리면 두 곳 결론이 갈려 hreflang 상호 참조가 깨진다.)
+    fields: [post.title],
+  });
 }
 
 export async function BoardPostDetail({ locale, id, board }: BoardPostRouteParams) {
@@ -82,9 +102,7 @@ export async function BoardPostDetail({ locale, id, board }: BoardPostRouteParam
   // 인턴 모집은 연구 메뉴 소속 — 브레드크럼·목록 링크·셸을 연구 컨텍스트로 전환한다.
   const isResearch = post.boardKey === 'internships';
   const tResearch = await getTranslations({ locale: l, namespace: 'research' });
-  const boardName = isResearch
-    ? tMenu('research.items.internships')
-    : tMenu(`news.items.${post.boardKey}`);
+  const boardName = await boardNameOf(l, post.boardKey);
   const tabs = isResearch ? await getResearchTabs(l) : await getNewsTabs(l);
   const sectionLabel = isResearch ? tMenu('research.label') : tMenu('news.label');
   // 섹션 크럼: 양쪽 다 기본 탭이 곧 섹션 첫 화면이다
@@ -115,15 +133,28 @@ export async function BoardPostDetail({ locale, id, board }: BoardPostRouteParam
 
   return (
     <>
+      {/* 히어로 제목은 섹션명('소식'·'연구')이라 h1 은 본문의 글 제목이 갖는다 —
+          한 문서에 큰 제목이 둘이면 구글이 제목 링크를 임의로 골라 쓴다. 시각 변화 없음.
+          crumbLeaf: 글 제목을 BreadcrumbList JSON-LD 의 마지막 항목으로만 덧붙인다
+          (화면 크럼은 게시판까지만 — 긴 제목이 크럼 줄을 무너뜨리므로). */}
       <Hero
         title={isResearch ? tResearch('hero.title') : t('hero.title')}
         subtitle={isResearch ? tResearch('hero.subtitle') : t('hero.subtitle')}
-        breadcrumb={[{ label: sectionLabel, href: sectionHref }, { label: boardName }]}
+        // 게시판 크럼에도 목록 URL 을 채운다 — 화면에서는 마지막 항목이라 링크로 그려지지
+        // 않지만(시각 변화 없음), JSON-LD 는 중간 항목에 item 이 없으면 그 뒤(crumbLeaf)를
+        // 통째로 버린다(Hero 의 ③ 주석).
+        breadcrumb={[
+          { label: sectionLabel, href: sectionHref },
+          { label: boardName, href: backHref },
+        ]}
+        crumbLeaf={pick(post.title, l)}
+        titleTag="p"
       />
       <BoardShell tabs={tabs} activeKey={post.boardKey} navTitle={sectionLabel}>
         <PostArticle
           boardName={boardName}
           title={pick(post.title, l)}
+          titleTag="h1"
           date={post.date}
           metaValue={author}
           categoryLabel={libraryCategory ? t('detail.categoryLabel') : undefined}

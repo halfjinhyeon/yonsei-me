@@ -6,7 +6,7 @@ import { PostArticle } from '@/components/PostArticle';
 import { BoardShell } from '@/components/BoardShell';
 import { pick } from '@/lib/content';
 import { fetchAlumniEventById, postsBodyFormat } from '@/lib/posts';
-import { documentMetadata } from '@/lib/seo';
+import { pageMetadata } from '@/lib/page-metadata';
 import { htmlToDescription } from '@/lib/excerpt';
 import { getAlumniTabs } from '../../_shared/tabs';
 import type { Locale } from '@/i18n/routing';
@@ -28,16 +28,18 @@ export async function generateMetadata({
   const description =
     (event.excerpt ? pick(event.excerpt, locale).trim() : '') ||
     htmlToDescription(pick(event.body, locale));
-  return {
-    title: pick(event.title, locale),
+  const tMenu = await getTranslations({ locale, namespace: 'menu' });
+  return pageMetadata({
+    locale,
+    path: `alumni/network/${params.id}`,
+    title: `${pick(event.title, locale)} | ${tMenu('alumni.items.network')}`,
     ...(description ? { description } : {}),
+    type: 'article',
+    image: event.image ?? null,
+    publishedTime: event.date,
     // 판정 필드는 사이트맵(목록 조회)과 동일한 제목·요약만 — 본문은 넘기지 않는다.
-    ...documentMetadata({
-      path: `alumni/network/${params.id}`,
-      locale,
-      fields: [event.title, event.excerpt],
-    }),
-  };
+    fields: [event.title, event.excerpt],
+  });
 }
 
 export default async function AlumniNetworkDetailPage({
@@ -59,18 +61,25 @@ export default async function AlumniNetworkDetailPage({
 
   return (
     <>
+      {/* 히어로 제목은 섹션명이라 h1 은 본문의 글 제목이 갖는다(시각 변화 없음).
+          crumbLeaf 는 JSON-LD 에만 붙는 마지막 항목 — 화면 크럼은 게시판까지만 그린다. */}
       <Hero
         title={t('hero.title')}
         subtitle={t('hero.subtitle')}
+        // 게시판 크럼의 href 는 JSON-LD 용이다 — 화면에서는 마지막 항목이라 링크로 그려지지
+        // 않지만, 중간 항목에 item 이 없으면 구글이 crumbLeaf 까지 버린다(Hero 의 ③ 주석).
         breadcrumb={[
           { label: tMenu('alumni.label'), href: '/alumni' },
-          { label: boardName },
+          { label: boardName, href: '/alumni/network' },
         ]}
+        crumbLeaf={pick(event.title, locale)}
+        titleTag="p"
       />
       <BoardShell tabs={tabs} activeKey="network" navTitle={tMenu('alumni.label')}>
         <PostArticle
           boardName={boardName}
           title={pick(event.title, locale)}
+          titleTag="h1"
           date={event.date}
           metaValue={pick(event.host, locale)}
           body={pick(event.body, locale)}

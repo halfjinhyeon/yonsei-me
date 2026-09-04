@@ -30,7 +30,12 @@ export async function generateMetadata({
   return {
     title: {
       default: t('siteName'),
-      template: `%s · ${t('shortName')}`,
+      // `제목 | 사이트명` — 구글의 제목 링크 지침이 권하는 브랜딩 형태이자,
+      // 여기 붙는 이름이 아래 WebSite JSON-LD 의 name 과 **같은 문자열**이어야
+      // 구글이 이것을 사이트명으로 인식한다. 예전엔 shortName('기계공학부')을
+      // 가운뎃점으로 붙였는데, 구글이 그 꼬리를 잘라 내 제목을 "교직원" 한 단어로
+      // 표시하고 사이트명은 호스팅사(Vercel)로 떨어졌다.
+      template: `%s | ${t('siteName')}`,
     },
     description: t('description'),
     // 배포 도메인 단일 출처(robots·sitemap·JSON-LD 와 동일). 예전엔 여기만 학교
@@ -39,17 +44,19 @@ export async function generateMetadata({
     openGraph: {
       title: t('siteName'),
       description: t('description'),
+      siteName: t('siteName'),
       locale: params.locale === 'ko' ? 'ko_KR' : 'en_US',
       type: 'website',
-      // 정적 커버(public/og/cover.png) — 처음엔 opengraph-image.tsx 라우트였지만
+      // 정적 커버(public/og/cover.jpg) — 처음엔 opengraph-image.tsx 라우트였지만
       // @vercel/og 가 woff2 폰트를 못 읽어 빌드가 깨졌다(Unsupported OpenType
       // signature wOF2). 같은 디자인을 헤드리스 Chrome 으로 한 번 구워 정적 자산으로
       // 쓴다 — 런타임 폰트 파싱이 사라져 어떤 환경에서도 깨질 수 없다.
+      // 치수는 og 표준 1200×630 — lib/page-metadata.ts 의 기본값과 같은 파일이다.
       images: [
         {
-          url: '/og/cover.png',
-          width: 2400,
-          height: 1260,
+          url: '/og/cover.jpg',
+          width: 1200,
+          height: 630,
           alt: '연세대학교 기계공학부 · School of Mechanical Engineering',
         },
       ],
@@ -101,6 +108,24 @@ export default async function LocaleLayout({
     },
   };
 
+  // 사이트명 구조화 데이터(JSON-LD) — 검색결과 헤더에 표시할 **사이트 이름**의 1차 신호다.
+  // 이게 없으면 구글은 도메인에서 이름을 유추하는데, 서브도메인은 상위 도메인의 이름으로
+  // 떨어진다 — yonsei-me.vercel.app 이 "Vercel" 로 표시된 실측 원인이 이것이다.
+  //
+  // url 은 로케일 URL 이 아니라 **루트**(`${SITE_URL}/`) 다. 구글은 사이트를 홈에서
+  // 판정하고, 홈이 리다이렉트하면 그 목적지(/ → 307 → /ko)를 평가한다.
+  // name 은 `<title>` 템플릿이 붙이는 접미사와 같은 문자열이어야 인식률이 높다.
+  const siteJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: tMeta('siteName'),
+    alternateName:
+      locale === 'ko'
+        ? ['연세대 기계공학부', 'Yonsei University School of Mechanical Engineering', 'Yonsei ME']
+        : ['연세대학교 기계공학부', 'Yonsei ME'],
+    url: `${SITE_URL}/`,
+  };
+
   return (
     <html lang={locale} className={`${pretendard.variable} ${gmarket.variable} ${paperlogy.variable}`} suppressHydrationWarning>
       <body className="min-h-dvh bg-surface antialiased">
@@ -115,6 +140,11 @@ export default async function LocaleLayout({
           type="application/ld+json"
           // 자체 생성 정적 데이터(사용자 입력 미포함) — XSS 벡터 없음
           dangerouslySetInnerHTML={{ __html: JSON.stringify(orgJsonLd) }}
+        />
+        <script
+          type="application/ld+json"
+          // 자체 생성 정적 데이터(사용자 입력 미포함) — XSS 벡터 없음
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(siteJsonLd) }}
         />
         <NextIntlClientProvider messages={messages}>
           <a href="#main" className="skip-link">

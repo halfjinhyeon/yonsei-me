@@ -385,19 +385,29 @@ export function boardKeyOf(board: string): BoardPost['boardKey'] | undefined {
   return BOARD_POST_META[board]?.boardKey;
 }
 
+// ⚠️ 세 어댑터는 excerpt·image 를 반드시 실어 보내야 한다 — 상세 페이지의
+//    description 이 요약을 먼저 쓰고(없으면 본문에서 생성), og:image 가 썸네일을 쓴다.
+//    예전엔 세미나·행사 어댑터가 필드를 손으로 나열하며 이 둘을 떨어뜨려, 같은 글이
+//    목록에서는 요약·썸네일을 갖고 상세에서만 없었다.
 function noticeToBoardPost(n: Notice, board: string): BoardPost {
   const m = BOARD_POST_META[board];
+  // 스프레드라 excerpt·image 는 toNotice 가 넣어 준 그대로 따라온다
   return { ...n, boardKey: m.boardKey, ...(m.meta ? { meta: m.meta } : {}) };
 }
 
 const seminarToBoardPost = (s: Seminar): BoardPost => ({
   id: s.id, date: s.date, title: s.title, body: s.body,
   boardKey: 'seminars', meta: s.host, attachments: s.attachments,
+  // 값이 있을 때만 — toNotice 와 같은 관례(빈 키를 만들지 않는다)
+  ...(s.excerpt ? { excerpt: s.excerpt } : {}),
+  ...(s.image ? { image: s.image } : {}),
 });
 
 const eventToBoardPost = (e: EventItem): BoardPost => ({
   id: e.id, date: e.date, title: e.title, body: e.body,
   boardKey: 'events', meta: e.dateLabel, attachments: e.attachments,
+  ...(e.excerpt ? { excerpt: e.excerpt } : {}),
+  ...(e.image ? { image: e.image } : {}),
 });
 
 /** DB 행 → BoardPost. 통합 게시판 소속이 아니면 undefined(상세 페이지의 404 경로). */

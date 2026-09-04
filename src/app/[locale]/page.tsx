@@ -28,17 +28,31 @@ import {
   newsTabHref,
   sectionTabHref,
 } from '@/lib/board-links';
-import { pageAlternates } from '@/lib/seo';
+import { pageMetadata } from '@/lib/page-metadata';
 import type { Metadata } from 'next';
 import type { Locale } from '@/i18n/routing';
 
 // DB 소스 전환(Phase 2): 홈의 뉴스&행사가 DB 를 읽는다 — ISR 안전망
 export const revalidate = 300;
 
-// 홈은 제목·설명을 레이아웃 기본값 그대로 쓰므로 로케일 의존 값이 없다 → 정적 metadata.
-// alternates 는 **통째로** 대입한다: metadata 병합이 top-level 얕은 병합이라 일부만
-// 넣으면 레이아웃의 canonical 이 사라진다(pageAlternates 가 canonical 을 함께 돌려준다).
-export const metadata: Metadata = { alternates: pageAlternates('') };
+// 홈의 제목은 사이트명 그 자체다 — absolute 로 넘겨 레이아웃 템플릿(`%s | 사이트명`)을
+// 건너뛴다(안 그러면 "연세대학교 기계공학부 | 연세대학교 기계공학부" 가 된다).
+// og/twitter 까지 pageMetadata 가 통째로 만든다: metadata 병합이 top-level 얕은 병합이라
+// 부분만 넣으면 레이아웃 값이 통째로 사라지거나 그대로 남는다(lib/page-metadata.ts 주석).
+export async function generateMetadata({
+  params,
+}: {
+  params: { locale: string };
+}): Promise<Metadata> {
+  const locale = params.locale as Locale;
+  const tMeta = await getTranslations({ locale, namespace: 'meta' });
+  return pageMetadata({
+    locale,
+    path: '',
+    title: { absolute: tMeta('siteName') },
+    description: tMeta('description'),
+  });
+}
 
 export default async function HomePage({ params }: { params: { locale: string } }) {
   setRequestLocale(params.locale);

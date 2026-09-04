@@ -16,6 +16,7 @@ export function TabPageShell({
   tabs,
   activeKey,
   title,
+  titleTag = 'h2',
   markdown,
   emptyLabel,
   narrow = false,
@@ -26,8 +27,13 @@ export function TabPageShell({
   tabs: TabNavItem[];
   /** 현재 페이지에 해당하는 탭 key */
   activeKey: string;
-  /** h2 큰 제목 (탭 라벨) */
+  /** 큰 제목 (탭 라벨) — 요소는 titleTag 가 정한다 */
   title: string;
+  /** 큰 제목을 어떤 요소로 그릴지. 기본 'h2'(히어로 제목이 h1 인 기존 동작).
+   *  이 제목을 문서의 대표 제목으로 삼는 페이지는 'h1' 을 넘기고 히어로 쪽을 낮춘다 —
+   *  한 문서에 눈에 띄는 제목이 둘이면 구글이 검색결과 제목을 임의로 바꿔 쓴다.
+   *  id·클래스·스타일은 동일해서 시각 변화는 없다. */
+  titleTag?: 'h1' | 'h2';
   markdown?: string | null;
   /** 본문이 비었을 때 보여 줄 문구. 없으면 빈 상태 자체를 렌더하지 않는다 */
   emptyLabel?: string;
@@ -37,6 +43,7 @@ export function TabPageShell({
   children?: ReactNode;
 }) {
   const containerWidth = narrow ? NARROW_MAX_W : undefined;
+  const TitleTag = titleTag;
 
   return (
     <>
@@ -55,13 +62,13 @@ export function TabPageShell({
             />
             {/* 탭 큰 제목 서체 = Paperlogy 6 SemiBold(사용자 지정) — font-semibold(600)가
                 text-display-sm 내장 굵기(700)를 덮어 600 파일이 물린다(가짜 볼드 없음). */}
-            <h2
+            <TitleTag
               id={`${activeKey}-title`}
               style={{ fontFamily: 'var(--font-subhead), var(--font-sans), sans-serif' }}
               className="mb-10 scroll-mt-24 text-display-sm font-semibold tracking-tight text-content"
             >
               {title}
-            </h2>
+            </TitleTag>
             {children ? (
               children
             ) : markdown ? (

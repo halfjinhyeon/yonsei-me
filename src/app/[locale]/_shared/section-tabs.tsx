@@ -27,7 +27,7 @@ import {
   sectionTabHref,
   type ContentSection,
 } from '@/lib/board-links';
-import { pageAlternates } from '@/lib/seo';
+import { pageMetadata } from '@/lib/page-metadata';
 import type { Locale } from '@/i18n/routing';
 
 /** 섹션별 탭 키 — CONTENT_SECTIONS 에서 파생(오타를 타입이 잡는다) */
@@ -38,9 +38,9 @@ type Msg = [ns: string, key: string];
 
 /**
  * 섹션별로 실제로 다른 것 전부 — 히어로 문구 출처와 크럼 모양뿐이다.
- * desc 는 metadata description 의 꼬리: 구 섹션 한 장의 설명을 재사용하되 앞에
- * 탭 라벨을 붙여 탭끼리 서로 달라지게 한다(같은 설명이 여러 URL 에 붙으면
- * GSC 중복 신호가 된다).
+ * (description 은 예전엔 여기 desc 로 조립했다: "탭 라벨 · 섹션 설명". 구글이 그런
+ *  기계적 문구를 스니펫으로 안 쓰고 표 내용을 대신 긁어 갔다 — 탭마다 사람이 쓴
+ *  문장을 messages 의 `seo.<섹션>.<탭>` 에 두는 방식으로 바꿨다.)
  */
 const SPEC: Record<
   ContentSection,
@@ -51,7 +51,6 @@ const SPEC: Record<
     crumb: 'simple' | 'linked';
     /** simple 크럼의 라벨 출처(생략 시 메뉴 라벨) — about 만 nav 라벨을 쓴다 */
     crumbLabel?: Msg;
-    desc: Msg;
   }
 > = {
   about: {
@@ -59,23 +58,19 @@ const SPEC: Record<
     heroSubtitle: ['about', 'hero.subtitle'],
     crumb: 'simple',
     crumbLabel: ['nav', 'about'],
-    desc: ['about', 'hero.subtitle'],
   },
   undergraduate: {
     heroTitle: ['menu', 'undergraduate.label'],
     crumb: 'linked',
-    desc: ['pages', 'undergraduate.subtitle'],
   },
   graduate: {
     heroTitle: ['menu', 'graduate.label'],
     heroSubtitle: ['pages', 'graduate.subtitle'],
     crumb: 'simple',
-    desc: ['pages', 'graduate.subtitle'],
   },
   research: {
     heroTitle: ['menu', 'research.label'],
     crumb: 'linked',
-    desc: ['research', 'hero.subtitle'],
   },
 };
 
@@ -101,12 +96,18 @@ export async function sectionEmptyLabel(locale: Locale): Promise<string> {
   return tStub('body');
 }
 
+/** 섹션 라벨 — 브레드크럼과 제목이 같은 출처를 쓴다(about 만 nav 라벨) */
+async function sectionLabel(locale: Locale, section: ContentSection): Promise<string> {
+  const spec = SPEC[section];
+  return msg(locale, spec.crumbLabel ?? ['menu', `${section}.label`]);
+}
+
 /**
  * 탭 페이지 metadata.
- * title 은 탭 라벨만 — 레이아웃 템플릿이 `· 기계공학부` 를 붙인다.
- * alternates 는 hreflang(ko/en/x-default) + 자기 canonical 을 **통째로** 대입한다 —
- * 부분만 넣으면 얕은 병합이라 레이아웃의 canonical 이 사라진다.
- * pageAlternates 는 선행 슬래시 없는 경로를 받는다.
+ * title 은 `탭 라벨 | 섹션 라벨` — 여기에 레이아웃 템플릿이 ` | 사이트명` 을 더 붙인다.
+ * 탭 라벨만 두면 "교직원" 처럼 맥락 없는 한 단어가 검색결과 제목이 된다(실측).
+ * openGraph·twitter 까지 pageMetadata 가 통째로 만든다 — 부분 대입은 얕은 병합에
+ * 걸려 레이아웃 값이 통째로 사라지거나 그대로 남는다(lib/page-metadata.ts 주석).
  */
 export async function sectionTabMetadata<S extends ContentSection>(
   locale: string,
@@ -114,12 +115,18 @@ export async function sectionTabMetadata<S extends ContentSection>(
   tab: SectionTabKey<S>,
 ): Promise<Metadata> {
   const l = locale as Locale;
-  const label = await sectionTabLabel(l, section, tab);
-  return {
-    title: label,
-    description: `${label} · ${await msg(l, SPEC[section].desc)}`,
-    alternates: pageAlternates(sectionTabHref(section, tab).slice(1)),
-  };
+  const [label, group, tSeo] = await Promise.all([
+    sectionTabLabel(l, section, tab),
+    sectionLabel(l, section),
+    getTranslations({ locale: l, namespace: 'seo' }),
+  ]);
+  return pageMetadata({
+    locale: l,
+    // pageMetadata 는 선행 슬래시 없는 경로를 받는다
+    path: sectionTabHref(section, tab).slice(1),
+    title: `${label} | ${group}`,
+    description: tSeo(`${section}.${tab}`),
+  });
 }
 
 /**
@@ -148,11 +155,14 @@ export async function SectionTabPage<S extends ContentSection>({
   const label = await sectionTabLabel(l, section, tab);
   const heroTitle = await msg(l, spec.heroTitle);
   const heroSubtitle = spec.heroSubtitle ? await msg(l, spec.heroSubtitle) : undefined;
-  // 그룹 크럼은 기본 탭으로 보낸다 — 섹션 루트로 걸면 크럼 클릭마다 308 을 한 번 더 탄다
+  // 그룹 크럼은 기본 탭으로 보낸다 — 섹션 루트로 걸면 크럼 클릭마다 308 을 한 번 더 탄다.
+  // simple 크럼은 그룹 하나가 마지막 항목이라 히어로가 링크로 그리지 않는다(시각 변화 없음).
+  // href 를 붙이는 이유는 구조화 데이터뿐 — BreadcrumbList 의 각 항목은 URL 이 있어야
+  // 검색결과 경로 표기로 쓰인다. 현재 탭은 crumbLeaf 로 JSON-LD 에만 덧붙인다.
   const breadcrumb =
     spec.crumb === 'linked'
       ? [{ label: menuLabel, href: sectionDefaultHref(section) }, { label }]
-      : [{ label: spec.crumbLabel ? await msg(l, spec.crumbLabel) : menuLabel }];
+      : [{ label: await sectionLabel(l, section), href: sectionDefaultHref(section) }];
   // 유니온 튜플에는 .map 을 바로 못 부르므로 readonly string[] 으로 넓힌다(사이트맵과 동일)
   const tabs: TabNavItem[] = (CONTENT_SECTIONS[section] as readonly string[]).map((key) => ({
     key,
@@ -162,12 +172,22 @@ export async function SectionTabPage<S extends ContentSection>({
 
   return (
     <>
-      <Hero title={heroTitle} subtitle={heroSubtitle} breadcrumb={breadcrumb} />
+      {/* 히어로 제목은 섹션명(전 탭 공통)이라 h1 을 본문 쪽 탭 제목에 넘긴다 —
+          한 문서에 큰 제목이 둘이면 구글이 제목 링크를 임의로 골라 쓴다.
+          시각적으로는 아무것도 바뀌지 않는다(요소만 p/h1 로 교체). */}
+      <Hero
+        title={heroTitle}
+        subtitle={heroSubtitle}
+        breadcrumb={breadcrumb}
+        crumbLeaf={spec.crumb === 'linked' ? undefined : label}
+        titleTag="p"
+      />
       <TabPageShell
         navTitle={menuLabel}
         tabs={tabs}
         activeKey={tab}
         title={label}
+        titleTag="h1"
         markdown={markdown}
         emptyLabel={tStub('body')}
       >

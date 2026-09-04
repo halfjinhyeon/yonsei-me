@@ -672,6 +672,62 @@
     "toTop": "Back to top",
     "copyright": "School of Mechanical Engineering, Yonsei University. All rights reserved."
   },
+  "seo": {
+    "about": {
+      "history": "Vision, educational goals, and key numbers of the School of Mechanical Engineering at Yonsei University, with a timeline from its 1958 founding.",
+      "faculty": "Directory of Yonsei mechanical engineering professors with position, research field, email, phone, and lab website links, including emeritus faculty.",
+      "staff": "Administrative staff of Yonsei mechanical engineering: undergraduate, graduate, and BK21 contacts with phone, email, and offices in Engineering Bldg. IV.",
+      "directions": "Finding Yonsei mechanical engineering: Engineering Bldg. IV on the Sinchon campus, a map, Sinchon Station exits, bus routes, and contact details.",
+      "admission": "Admissions to Yonsei mechanical engineering: undergraduate early, regular, and transfer tracks, MS, PhD, and integrated programs, and the calendar.",
+      "careers": "Careers after Yonsei mechanical engineering: seven industry roles, routes to graduate school, public-sector tracks, and what each degree opens up."
+    },
+    "undergraduate": {
+      "goals": "Undergraduate educational goals at Yonsei mechanical engineering: design practice, communication, innovation, ethics, and global leadership.",
+      "requirements": "Undergraduate graduation requirements by cohort: general education and major credits, totals, 3000/4000-level rules, double major and minor tables.",
+      "checker": "Self-check tool for Yonsei mechanical engineering students: choose your cohort, upload timetable images, and see which graduation requirements remain.",
+      "mileage": "Course registration mileage planner: predicted cutoffs and admission odds for each section from past results, plus an optimal bid allocation.",
+      "courses": "Undergraduate course catalog for Yonsei mechanical engineering: codes, credits, and descriptions by year and semester, with textbook information.",
+      "curriculum": "Curriculum map for Yonsei mechanical engineering — courses by semester and subject lane, with arrows linking prerequisites and follow-on courses.",
+      "clubs": "Student clubs at Yonsei mechanical engineering — Yonsei Drone, MECar, Roboin, and SPACE Y — what each team builds, with photos of their work.",
+      "scholarship": "Scholarships at Yonsei mechanical engineering: external and school endowment awards with criteria, number of recipients, amounts, and timing."
+    },
+    "graduate": {
+      "requirements": "Graduate degree requirements in mechanical engineering: advisor assignment, minimum credits, required courses, qualifying and English exams, defense.",
+      "courses": "Graduate course listing in mechanical engineering: 183 courses grouped by research field, searchable by course code, title, and credits.",
+      "labs": "Lab introductions for graduate study in mechanical engineering: intro videos, advisors, and websites for 33 labs across six research fields.",
+      "bk21": "The BK21 FOUR education and research group at Yonsei mechanical engineering — the vision and goals of the Phase 4 Brain Korea 21 program."
+    },
+    "research": {
+      "vision": "Research vision of Yonsei mechanical engineering — the department since 1960 and the college’s vision, educational purpose, and key objectives.",
+      "capacity": "Research capacity at Yonsei mechanical engineering: faculty and some 300 graduate researchers, BK21, national labs, a machine shop, and output.",
+      "labs": "The 33 laboratories of Yonsei mechanical engineering across six research fields, each with its advisor, location, phone number, and website.",
+      "internships": "Undergraduate research internship openings in Yonsei mechanical engineering labs — how many students each lab seeks, topics, and how to apply.",
+      "social": "The Social Challenge Petition desk: submit a company’s technical problem, get matched with a professor or research group, and receive R&D support.",
+      "recruit": "Tenure-track faculty openings at Yonsei mechanical engineering: fields sought, qualifications, how to submit a CV, and the search committee contact."
+    },
+    "news": {
+      "notices": "Notices from Yonsei mechanical engineering — undergraduate, graduate, external organizations, and scholarship announcements in one filterable list.",
+      "news": "News from Yonsei mechanical engineering: research results, awards, and department updates from our faculty, students, and laboratories.",
+      "thesis": "Thesis defense announcements for graduate students in mechanical engineering — schedules and candidates for master’s and doctoral examinations.",
+      "resources": "Downloads for Yonsei mechanical engineering: administrative forms and academic regulations, sorted by category with file attachments.",
+      "career": "Career board for Yonsei mechanical engineering students: job postings, internship openings, and employment support programs.",
+      "events": "Events at Yonsei mechanical engineering: intensive lecture series, forums, and department programs, with dates and venues.",
+      "seminars": "Academic seminars at Yonsei mechanical engineering, including the BK21 series — invited speakers, topics, dates, and venues.",
+      "calendar": "Monthly calendar for Yonsei mechanical engineering: events, seminars, academic dates, application periods, and exams in one view."
+    },
+    "alumni": {
+      "news": "Alumni news from Yonsei mechanical engineering — startups, research achievements, and what graduates are doing across industry.",
+      "network": "Alumni network of Yonsei mechanical engineering: general meetings, homecoming, networking nights, and student mentoring events."
+    },
+    "pages": {
+      "legal": "Legal notice for the Yonsei mechanical engineering website: copyright and rights, font, image, and open-source licenses, and disclaimers.",
+      "privacy": "Privacy policy for the Yonsei mechanical engineering website: purposes and retention of personal data, third-party provision, and your rights.",
+      "sitemap": "Sitemap of the Yonsei mechanical engineering website — every page under About, Undergraduate, Graduate, Research, News, and Alumni."
+    },
+    "facultyProfile": "{name}, {position} of mechanical engineering at Yonsei University. Research area: {specialty}.",
+    "facultyProfileBasic": "{name}, {position} of mechanical engineering at Yonsei University. Research focus, publications, and contact.",
+    "facultyProfileLab": "Lab: {lab}."
+  },
   "breadcrumb": {
     "home": "Home"
   }

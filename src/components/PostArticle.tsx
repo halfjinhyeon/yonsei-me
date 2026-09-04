@@ -45,6 +45,7 @@ export interface PostArticleLabels {
  */
 export function PostArticle({
   boardName,
+  titleTag = 'h2',
   title,
   date,
   metaValue,
@@ -60,8 +61,13 @@ export function PostArticle({
   locale,
   shareInert,
 }: {
-  /** 게시판명 (h2, TabbedContent h2와 동일 스타일) */
+  /** 게시판명 (TabbedContent 큰 제목과 동일 스타일, 요소는 titleTag) */
   boardName: string;
+  /** 문서의 대표 제목을 어디에 둘지. 기본 'h2' = 예전 구조(게시판명 h2, 글 제목 h3,
+   *  히어로가 h1). 'h1' 을 넘기면 **글 제목이 h1**, 게시판명은 같은 모양의 p 가 된다 —
+   *  히어로 제목을 p 로 낮춘 페이지에서 쓴다. 눈에 띄는 제목이 둘이면 구글이 검색결과
+   *  제목을 임의로 바꿔 쓴다. 클래스·스타일은 동일해서 시각 변화는 없다. */
+  titleTag?: 'h1' | 'h2';
   title: string;
   date: string;
   /** 세 번째 메타 행 값 — 카테고리 라벨 또는 작성자 */
@@ -85,6 +91,12 @@ export function PostArticle({
   shareInert?: boolean;
 }) {
   const hasAttachments = attachments && attachments.length > 0;
+  // titleTag='h1' 은 **글 제목**이 문서의 대표 제목이 된다는 뜻이다 — 게시판명은 같은
+  // 글꼴·크기의 p 로 내려 제목 경합을 없앤다(모든 글이 "공지사항"을 h1 으로 갖는 것은
+  // 검색결과 제목 신호로도, 스크린리더 문서 개요로도 무의미하다). 기본(h2)은 예전
+  // 구조 그대로: 게시판명 h2 + 글 제목 h3.
+  const BoardTag = titleTag === 'h1' ? 'p' : 'h2';
+  const HeadingTag = titleTag === 'h1' ? 'h1' : 'h3';
 
   // ZIP 버튼은 "한 번에 받을 게 여럿"일 때만 의미가 있다 — 첨부 1개면 파일 링크가 곧 답이다.
   // 라벨 3종과 postId 가 모두 온 호출부에서만 켜지므로, 넘기지 않는 화면(CMS 미리보기 등)엔 안 생긴다.
@@ -102,12 +114,12 @@ export function PostArticle({
           글꼴 var(--font-subhead)(Paperlogy) + text-display-sm + font-semibold.
           예전에는 여기만 text-display(clamp 2~3rem, Pretendard 700)라, 목록에서 보던
           '공지사항·뉴스'와 게시물에 들어갔을 때의 크기·서체가 서로 달랐다(사용자 지적). */}
-      <h2
+      <BoardTag
         style={{ fontFamily: 'var(--font-subhead), var(--font-sans), sans-serif' }}
-        className="mb-10 scroll-mt-24 text-display-sm font-semibold tracking-tight text-content"
+        className="mb-10 scroll-mt-24 text-balance text-display-sm font-semibold tracking-tight text-content"
       >
         {boardName}
-      </h2>
+      </BoardTag>
 
       {/* 에디토리얼 헤더 — 굵은 네이비 룰 + 제목 + 슬림 메타 라인(작성일 · 작성자/분류) */}
       <header className="border-t-2 border-yonsei-navy pt-6">
@@ -116,9 +128,9 @@ export function PostArticle({
             text-pretty: 전역 h1–h4 의 text-wrap:balance 를 끈다 — 긴 게시물 제목을 두 줄로
             똑같이 나누면 첫 줄이 열 폭의 절반에서 접혀 "자리가 있는데도 갇힌" 인상을 준다
             (사용자 지적). pretty 는 줄을 끝까지 채우되 마지막 줄 외톨이 단어만 막는다. */}
-        <h3 className="text-pretty text-2xl font-bold leading-snug tracking-tight text-content sm:text-3xl">
+        <HeadingTag className="text-pretty text-2xl font-bold leading-snug tracking-tight text-content sm:text-3xl">
           {title}
-        </h3>
+        </HeadingTag>
         {/* 메타 줄 — 왼쪽은 작성일·작성자/분류, 오른쪽 빈자리는 공유·URL 복사 버튼이 쓴다.
             밑줄(border-b)과 아래 여백은 두 덩어리를 함께 감싸는 이 래퍼가 갖는다.
             버튼의 ml-auto: 좁은 화면에서 줄이 접혀 버튼만 아랫줄로 내려가도 오른쪽 정렬을

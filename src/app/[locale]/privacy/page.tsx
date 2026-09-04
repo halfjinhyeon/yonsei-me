@@ -4,15 +4,23 @@ import { Hero } from '@/components/Hero';
 import { Container } from '@/components/Container';
 import { Prose } from '@/components/Prose';
 import { getPageMarkdown } from '@/lib/pages';
-import { pageAlternates } from '@/lib/seo';
+import { pageMetadata } from '@/lib/page-metadata';
+import type { Locale } from '@/i18n/routing';
 
 export async function generateMetadata({
   params,
 }: {
   params: { locale: string };
 }): Promise<Metadata> {
-  const t = await getTranslations({ locale: params.locale, namespace: 'footer' });
-  return { title: t('privacy'), alternates: pageAlternates('privacy') };
+  const locale = params.locale as Locale;
+  const t = await getTranslations({ locale, namespace: 'footer' });
+  const tSeo = await getTranslations({ locale, namespace: 'seo' });
+  return pageMetadata({
+    locale,
+    path: 'privacy',
+    title: t('privacy'),
+    description: tSeo('pages.privacy'),
+  });
 }
 
 /** 개인정보처리방침 — 본문은 content/pages/privacy.md (콘텐츠/코드 분리) */

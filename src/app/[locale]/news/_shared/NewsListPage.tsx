@@ -22,7 +22,7 @@ import {
   newsTabHref,
   type NewsTabSeg,
 } from '@/lib/board-links';
-import { pageAlternates } from '@/lib/seo';
+import { pageMetadata } from '@/lib/page-metadata';
 import { getNewsTabs } from './tabs';
 import type { Locale } from '@/i18n/routing';
 
@@ -48,20 +48,26 @@ export async function newsEmptyLabel(locale: Locale): Promise<string> {
 
 /**
  * 목록 페이지 metadata.
- * title 은 게시판 라벨만 — 레이아웃 템플릿이 `· 기계공학부` 를 붙인다.
- * description 은 구 `/news` 의 설명을 재사용하되 라벨을 앞에 붙여 8개가 서로 달라지게 한다
- * (같은 설명이 여러 URL 에 붙으면 GSC 중복 신호가 된다).
+ * title 은 `게시판 라벨 | 소식` — 여기에 레이아웃 템플릿이 ` | 사이트명` 을 더 붙인다.
+ * description 은 게시판마다 사람이 쓴 문장(`seo.news.<라벨키>`)이다. 예전엔
+ * "라벨 · 소식 섹션 설명" 을 기계적으로 조립했는데, 그런 문구는 구글이 스니펫으로
+ * 쓰지 않고 목록 표를 대신 긁어 갔다(실측).
  */
 export async function newsListMetadata(locale: string, seg: NewsTabSeg): Promise<Metadata> {
   const l = locale as Locale;
-  const tNews = await getTranslations({ locale: l, namespace: 'news' });
-  const label = await newsTabLabel(l, seg);
-  return {
-    title: label,
-    description: `${label} · ${tNews('hero.subtitle')}`,
-    // pageAlternates 는 선행 슬래시 없는 경로를 받는다
-    alternates: pageAlternates(newsTabHref(seg).slice(1)),
-  };
+  const [tMenu, tSeo, label] = await Promise.all([
+    getTranslations({ locale: l, namespace: 'menu' }),
+    getTranslations({ locale: l, namespace: 'seo' }),
+    newsTabLabel(l, seg),
+  ]);
+  return pageMetadata({
+    locale: l,
+    // pageMetadata 는 선행 슬래시 없는 경로를 받는다
+    path: newsTabHref(seg).slice(1),
+    title: `${label} | ${tMenu('news.label')}`,
+    // seo 키는 URL 세그먼트가 아니라 **라벨 키**다(press 탭의 키는 'news')
+    description: tSeo(`news.${labelKeyOf(seg)}`),
+  });
 }
 
 /**
@@ -87,10 +93,13 @@ export async function NewsListPage({
   return (
     <>
       {/* narrow: 히어로 글줄 → 남색 바 → 목록이 같은 좌측선에 서도록(개편 전 `/news` 와 동일) */}
+      {/* 히어로 제목은 '소식'(8개 탭 공통)이라 h1 은 아래 탭 제목(게시판 라벨)이 갖는다 —
+          한 문서에 큰 제목이 둘이면 구글이 제목 링크를 임의로 골라 쓴다. 시각 변화 없음. */}
       <Hero
         title={tNews('hero.title')}
         subtitle={tNews('hero.subtitle')}
         narrow
+        titleTag="p"
         // 그룹 크럼은 기본 탭으로 보낸다 — `/news` 로 걸면 크럼 클릭마다 308 을 한 번 더 탄다
         breadcrumb={[
           { label: tMenu('news.label'), href: newsTabHref(DEFAULT_NEWS_TAB) },
@@ -98,13 +107,14 @@ export async function NewsListPage({
         ]}
       />
       {/* 히어로 아래 남색 내비게이션 바(홈 + 그룹명 + 현재 게시판 드롭다운) —
-          개편 전 TabbedContent 의 바를 라우트 기반으로 되살린 것. title 은 h2 큰 제목이라
-          게시판 라벨(= 탭 라벨)을 넘긴다. */}
+          개편 전 TabbedContent 의 바를 라우트 기반으로 되살린 것. title 은 큰 제목이라
+          게시판 라벨(= 탭 라벨)을 넘긴다(이 화면에서는 h1). */}
       <TabPageShell
         navTitle={tMenu('news.label')}
         tabs={tabs}
         activeKey={seg}
         title={label}
+        titleTag="h1"
         narrow
       >
         {children}

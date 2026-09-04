@@ -201,6 +201,11 @@ export interface BoardPost {
   boardKey: 'notices' | 'seminars' | 'events' | 'thesis' | 'career' | 'resources' | 'internships';
   /** 부가 정보 한 줄 — 세미나 연사, 행사 기간, 공지 구분(학부/대학원) 등 */
   meta?: Localized;
+  /** 편집자가 쓴 요약 — 상세 페이지의 meta description·og:description 이 우선 쓴다.
+   *  없으면 본문에서 기계적으로 만든다(lib/excerpt.ts). 목록의 Notice.excerpt 와 같은 값. */
+  excerpt?: Localized;
+  /** 대표 이미지(썸네일 또는 본문 첫 이미지) — 공유 카드(og:image)에 쓴다 */
+  image?: string;
   attachments?: Attachment[];
   /** 게시판 자체 분류(Notice.category 가 그대로 실려 온다) — 자료실의 'form'/'rule'.
    *  상세 화면의 '분류' 메타 줄이 이 값을 읽는다. */

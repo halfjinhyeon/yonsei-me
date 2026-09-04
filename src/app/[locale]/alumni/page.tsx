@@ -5,7 +5,7 @@ import { TabPageShell } from '@/components/TabPageShell';
 import { LegacyBoardHash } from '@/components/LegacyBoardHash';
 import { GuideSections, type GuideSection } from '@/components/AdmissionGuide';
 import { LEGACY_ALUMNI_HASH } from '@/lib/board-links';
-import { pageAlternates } from '@/lib/seo';
+import { pageMetadata } from '@/lib/page-metadata';
 import { getAlumniTabs } from './_shared/tabs';
 import assoc from '@content/alumni-association.json';
 import type { Locale } from '@/i18n/routing';
@@ -19,12 +19,14 @@ export async function generateMetadata({
 }: {
   params: { locale: string };
 }): Promise<Metadata> {
-  const t = await getTranslations({ locale: params.locale, namespace: 'alumni' });
-  return {
+  const locale = params.locale as Locale;
+  const t = await getTranslations({ locale, namespace: 'alumni' });
+  return pageMetadata({
+    locale,
+    path: 'alumni',
     title: t('hero.title'),
     description: t('hero.subtitle'),
-    alternates: pageAlternates('alumni'),
-  };
+  });
 }
 
 export default async function AlumniPage({ params }: { params: { locale: string } }) {

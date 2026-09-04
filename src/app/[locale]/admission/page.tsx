@@ -3,19 +3,22 @@ import { getTranslations, setRequestLocale } from 'next-intl/server';
 import type { Metadata } from 'next';
 import { Hero } from '@/components/Hero';
 import { Section } from '@/components/Section';
-import { pageAlternates } from '@/lib/seo';
+import { pageMetadata } from '@/lib/page-metadata';
+import type { Locale } from '@/i18n/routing';
 
 export async function generateMetadata({
   params,
 }: {
   params: { locale: string };
 }): Promise<Metadata> {
-  const t = await getTranslations({ locale: params.locale, namespace: 'admission' });
-  return {
+  const locale = params.locale as Locale;
+  const t = await getTranslations({ locale, namespace: 'admission' });
+  return pageMetadata({
+    locale,
+    path: 'admission',
     title: t('hero.title'),
     description: t('hero.subtitle'),
-    alternates: pageAlternates('admission'),
-  };
+  });
 }
 
 /**

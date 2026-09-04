@@ -8,8 +8,8 @@ import { ClubCardNews } from '@/components/ClubCardNews';
 import { parseClubContent } from '@/lib/pages';
 import { getClubsRuntime, getPageMarkdownRuntime } from '@/lib/content-runtime';
 import { sectionDefaultHref, sectionTabHref } from '@/lib/board-links';
-import { pageAlternates } from '@/lib/seo';
-import { routing } from '@/i18n/routing';
+import { pageMetadata } from '@/lib/page-metadata';
+import { routing, type Locale } from '@/i18n/routing';
 
 // 콘텐츠 소스 전환(Stage A): 동아리 인덱스·소개 본문이 데이터 레이어를 읽는다 — ISR 안전망
 export const revalidate = 300;
@@ -24,13 +24,18 @@ export async function generateMetadata({
 }: {
   params: { locale: string; slug: string };
 }): Promise<Metadata> {
+  const locale = params.locale as Locale;
   const club = (await getClubsRuntime()).find((c) => c.slug === params.slug);
-  return {
-    title: club?.name,
-    description: club?.teaser,
-    // 동아리 상세는 두 로케일 모두 같은 셸로 존재한다 → 항상 ko/en 양쪽 hreflang.
-    alternates: pageAlternates(`undergraduate/clubs/${params.slug}`),
-  };
+  // 없는 동아리는 페이지가 notFound() 로 떨어진다 — 메타를 낼 자리가 아니다.
+  if (!club) return {};
+  const tMenu = await getTranslations({ locale, namespace: 'menu' });
+  // 동아리 상세는 두 로케일 모두 같은 셸로 존재한다 → 항상 ko/en 양쪽 hreflang(fields 없음).
+  return pageMetadata({
+    locale,
+    path: `undergraduate/clubs/${params.slug}`,
+    title: `${club.name} | ${tMenu('undergraduate.items.clubs')}`,
+    description: club.teaser,
+  });
 }
 
 export default async function ClubDetailPage({

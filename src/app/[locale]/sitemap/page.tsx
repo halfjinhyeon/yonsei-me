@@ -4,15 +4,23 @@ import { Hero } from '@/components/Hero';
 import { Container } from '@/components/Container';
 import { Link } from '@/i18n/navigation';
 import { menu } from '@/components/menu';
-import { pageAlternates } from '@/lib/seo';
+import { pageMetadata } from '@/lib/page-metadata';
+import type { Locale } from '@/i18n/routing';
 
 export async function generateMetadata({
   params,
 }: {
   params: { locale: string };
 }): Promise<Metadata> {
-  const t = await getTranslations({ locale: params.locale, namespace: 'footer' });
-  return { title: t('sitemap'), alternates: pageAlternates('sitemap') };
+  const locale = params.locale as Locale;
+  const t = await getTranslations({ locale, namespace: 'footer' });
+  const tSeo = await getTranslations({ locale, namespace: 'seo' });
+  return pageMetadata({
+    locale,
+    path: 'sitemap',
+    title: t('sitemap'),
+    description: tSeo('pages.sitemap'),
+  });
 }
 
 /**
