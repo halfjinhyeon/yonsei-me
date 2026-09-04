@@ -3,7 +3,8 @@
 작성 2026-09. 저장소의 크롤 파이프라인 전수 조사를 바탕으로, **무엇을 어떤 순서로
 자동화할지**와 **일부러 자동화하지 않는 것**을 정리한 계획서입니다. 각 파이프라인의
 상세 절차는 해당 디렉터리 README(`tools/checker/`, `tools/mileage/`)가 정본이고,
-이 문서는 그 위의 운영 계획만 다룹니다.
+이 문서는 그 위의 운영 계획만 다룹니다. 백로그 항목별 구현 설계(파일·CLI·종료 코드·검증
+절차)는 [`automation-spec.md`](automation-spec.md) 에 있습니다.
 
 ---
 
@@ -82,7 +83,8 @@
 - 정시: `https://admission.yonsei.ac.kr/seoul/admission/html/regular/`
 - 편입: `https://admission.yonsei.ac.kr/seoul/admission/html/transfer/`
 - 대학원: `https://graduate.yonsei.ac.kr/graduate/admission/`
-- 참고: 링크 허브 페이지(`/{locale}/admission`)는 같은 섹션의 `guide.asp` 딥링크(예 `…/rolling/guide.asp`)를 씁니다. 변경 감지 워커(3절 1-2)의 감시 대상 후보이기도 합니다.
+- 참고: 링크 허브 페이지(`/{locale}/admission`)는 같은 섹션의 `guide.asp` 딥링크(예 `…/rolling/guide.asp`)를 씁니다.
+- ⚠️ 실측(2026-09-04): 위 디렉터리 루트 URL 4개 중 `admission.yonsei.ac.kr/…/rolling|regular|transfer/` 와 `graduate.yonsei.ac.kr/graduate/admission/` 은 **403** 이고, 열리는 것은 `guide.asp`·`notice.asp`(EUC-KR)와 대학원 `index.do` 입니다. 입학 캘린더의 원 출처는 `…/html/counsel/calendar.asp?s_year=<YYYY>` 입니다(변경 감지 워커의 1순위 대상).
 
 ### B. 1회성 완료 — 자동화 제외 (5건)
 
@@ -129,9 +131,10 @@
 입학처 일정은 구조화 API가 아니라 공지 HTML·모집요강 PDF이고, 파일 disclaimer부터
 "세부 시간·장소 변경 가능"인 데이터라 **무검수 자동 반영은 하지 않습니다**. 대신:
 
-- 주 1회 GitHub Actions로 `admission.yonsei.ac.kr` 수시(`rolling/`)·정시(`regular/`)·
-  편입(`transfer/`) 페이지를 받아 **본문 영역만 추출·정규화**(매 요청 변하는 토큰·배너
-  노이즈 제거) 후 직전 스냅샷과 비교합니다.
+- 주 1회 GitHub Actions로 입학처의 **공식 입학 캘린더**(`counsel/calendar.asp` — 우리
+  `admission-guide.json` 의 일정이 바로 이 표에서 온 것) · 모집요강 PDF 링크(`guide.asp`) ·
+  공지 목록(`notice.asp`)을 받아 정규화한 뒤 직전 스냅샷과 비교합니다. 디렉터리 루트
+  (`rolling/` 등)는 403 이라 대상이 아닙니다 — 실측과 파서 설계는 `automation-spec.md` 3절.
 - 스냅샷은 전용 브랜치(예: `bot/admission-watch`)에 봇 커밋으로 보관해 main을 오염시키지
   않습니다. 변경이 있으면 diff 요약을 이슈로 올리고, 담당자가 확인 후
   `content/admission-guide.json`을 갱신합니다(영문은 콘솔의 DeepL 번역 재사용).
@@ -181,9 +184,9 @@ cron 스케줄 하나짜리 워크플로가 시기별 체크리스트 이슈를 
 필수는 아닙니다 — 고치면 이 문서·두 README·로컬 origin URL 을 함께 바꿉니다.
 `run-update.mjs` 는 마일리지 구간 한정이라 2-1 의 `update-semester.mjs` 가 흡수·대체합니다.
 
-**2-1. 원샷 오케스트레이터 `tools/update-semester.mjs`** (신규)
+**2-1. 원샷 오케스트레이터 `tools/automation/update-semester.mjs`** (신규 — 설계는 `automation-spec.md` 4절)
 
-로컬(크롤러 repo가 있는 머신)에서 `node tools/update-semester.mjs --target 2027-10`
+로컬(크롤러 repo가 있는 머신)에서 `node tools/automation/update-semester.mjs --target 2027-10`
 한 번으로 다음을 순서대로 실행·검증합니다. 각 단계는 기존 스크립트를 그대로 호출하고,
 게이트 실패 시 그 지점에서 멈춰 **재실행하면 이어서 진행**합니다(기존 이어받기 설계 활용).
 
@@ -260,7 +263,7 @@ cron 스케줄 하나짜리 워크플로가 시기별 체크리스트 이슈를 
 | 1 | 교수 수집기 실패 임계 exit 1 + 실패 이슈 스텝 | 1-1 | S | 기존 워크플로 수정 |
 | 2 | 입학처 스냅샷·diff 스크립트 + 주 1회 워크플로 | 1-2 | M | 본문 정규화가 핵심 |
 | 3 | 정기 리마인더 워크플로 (체크리스트 이슈 5종) | 1-3 | S | cron + 이슈 템플릿 |
-| 4 | `tools/update-semester.mjs` 오케스트레이터 | 2-1 | L | 기존 스크립트 조립 + 게이트 연결 |
+| 4 | `tools/automation/update-semester.mjs` 오케스트레이터 | 2-1 | L | 기존 스크립트 조립 + 게이트 연결 + 체커 학기 목록 단일화(`tools/checker/terms.mjs`) |
 | 5 | ~~교재 파이프라인 분리 옵션~~ | — | — | 삭제 — 교재는 자동화 제외(6절) |
 | 6 | (선택) 연구실 링크 생존 체크 워커 | 6절 | S | 이슈 보고 전용 |
 | 7 | (보류) 예약 반자동 실행 검토 | 3 | — | 5절 결정 후 |

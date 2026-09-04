@@ -5,6 +5,8 @@
 
 - `automation-plan.md` — 크롤 파이프라인 전수 인벤토리와 자동화 단계별 계획
   (무엇을 자동화하고 무엇은 일부러 하지 않는지). 운영 자동화 작업의 출발점
+- `automation-spec.md` — 위 계획의 백로그 항목별 구현 설계(파일·CLI·종료 코드·검증 절차).
+  Worker 브리프의 원본. 구현 코드는 `automation/` 아래에 모임
 
 - `checker/` — 졸업요건 체커의 과목 카탈로그 파이프라인 (학기별 수강편람 크롤 →
   학정번호 키 통합 → `public/data/course-catalog.json`). 갱신 절차와 함정 모음은
