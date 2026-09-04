@@ -79,7 +79,7 @@
           { "ko": "2026. 2. 3.(화) ~ 2. 5.(목) 16:00", "en": "Feb 3 (Tue) – Feb 5 (Thu) 16:00, 2026" },
           { "ko": "자세한 사항은 합격자 발표 시 안내함", "en": "Details are provided when the admission results are announced." },
           {
-            "ko": "※ 외국적 합격자는 2026년 1월 중 납부 (대상자 개별 안내 예정)",
+            "ko": "※ 외국국적 합격자는 2026년 1월 중 납부 (대상자 개별 안내 예정)",
             "en": "※ Admits with foreign citizenship pay during January 2026 (individual notices to follow)."
           }
         ]
@@ -377,12 +377,12 @@
         "title": { "ko": "6차 충원 합격자 발표 및 등록", "en": "6th Waitlist Admits Announced and Enrollment" },
         "lines": [
           {
-            "ko": "6차 충원 합격자 발표: 2026. 12. 29.(화) 14:00, 입학처 홈페이지",
-            "en": "6th waitlist admits announced: Dec 29 (Tue) 14:00, 2026, Office of Admissions website"
+            "ko": "6차 충원 합격자 발표: 2026. 12. 29.(화) 14:00 이전, 입학처 홈페이지",
+            "en": "6th waitlist admits announced: before 14:00 on Dec 29 (Tue), 2026, Office of Admissions website"
           },
           {
-            "ko": "6차 충원 합격자 등록: 2026. 12. 30.(수) 14:00 까지",
-            "en": "6th waitlist admits enroll: by Dec 30 (Wed) 14:00, 2026"
+            "ko": "6차 충원 합격자 등록: 2026. 12. 30.(수) 16:00 까지",
+            "en": "6th waitlist admits enroll: by Dec 30 (Wed) 16:00, 2026"
           }
         ]
       }
