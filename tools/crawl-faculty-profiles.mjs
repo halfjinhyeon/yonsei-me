@@ -5,6 +5,11 @@
  *   node tools/crawl-faculty-profiles.mjs --apply            # 레포 파일에 병합 기록
  *   node tools/crawl-faculty-profiles.mjs --source=db --apply # 프로덕션 DB 에 병합 기록
  *   node tools/crawl-faculty-profiles.mjs --only=강건욱,김대은  # 일부만
+ *   node tools/crawl-faculty-profiles.mjs --fail-threshold=0.2 # 전부 실패 비율이 20% 이상이면 exit 2
+ *   node tools/crawl-faculty-profiles.mjs --timeout-ms=1       # 요청 타임아웃 강제(실패 경로 재현용)
+ *
+ * 종료 코드
+ *   0 정상 · 1 사용법·환경 오류 · 2 실패 임계 초과(--fail-threshold 를 준 경우에만)
  *
  * 하는 일
  *   ① content/faculty-profiles/*.json 의 `sourceUrl`(암호화 userId)로 대상을 고른다.
@@ -30,6 +35,15 @@
  *   맡는다 — 한 바퀴가 몇 분 걸려 서버리스 함수 타임아웃에 맞지 않는다. 담당자가 지금
  *   당장 받아야 할 때는 CMS 교수진 화면의 "실적 불러오기" 버튼을 쓴다(브라우저가 한 명씩
  *   같은 로직을 호출한다).
+ *
+ * ⚠️ 실패 가시화 (--fail-threshold)
+ *   한 명의 요청이 전부 실패해도 이 스크립트는 "전부 실패 — 건너뜀"만 찍고 계속 간다.
+ *   원본 마크업 변경·차단(403)·호스트 이전 같은 **구조적 실패**가 나도 워크플로가
+ *   초록불이 되던 문제라, 워크플로는 `--fail-threshold=0.2` 를 붙여 부른다. 전부 실패한
+ *   교수 비율이 임계 이상이면 요약을 다 찍은 뒤 `::error::` 한 줄과 exit 2 로 끝난다.
+ *   부분 실패(분류 일부만 실패)는 세지 않는다 — 병합 전용이라 데이터가 상하지 않고,
+ *   원본이 100행 하드캡으로 흔들리는 게 평소 상태다. 플래그가 없으면 동작은 종전과
+ *   완전히 같다(CMS·로컬 호출 경로 불변).
  *
  * 의존성: Node 24 내장 fetch. --source=db 일 때만 @supabase/supabase-js 를 쓴다.
  */
@@ -153,6 +167,28 @@ if (sourceArg !== 'file' && sourceArg !== 'db') {
 const useDb = sourceArg === 'db';
 const only = args.find((a) => a.startsWith('--only='))?.slice('--only='.length).split(',').filter(Boolean);
 
+// 전부 실패한 교수 비율의 임계(0~1). 없으면 종전대로 항상 exit 0.
+const thresholdArg = args.find((a) => a.startsWith('--fail-threshold='))?.slice('--fail-threshold='.length);
+let failThreshold = null;
+if (thresholdArg !== undefined) {
+  failThreshold = Number(thresholdArg);
+  if (!Number.isFinite(failThreshold) || failThreshold < 0 || failThreshold > 1) {
+    console.error(`--fail-threshold 는 0~1 사이의 수여야 한다: ${thresholdArg}`);
+    process.exit(1);
+  }
+}
+
+// 요청 타임아웃(ms). 실패 경로를 실제로 재현하는 검증용이다(1이면 전 요청 타임아웃).
+const timeoutArg = args.find((a) => a.startsWith('--timeout-ms='))?.slice('--timeout-ms='.length);
+let timeoutMs = null;
+if (timeoutArg !== undefined) {
+  timeoutMs = Number(timeoutArg);
+  if (!Number.isFinite(timeoutMs) || timeoutMs <= 0) {
+    console.error(`--timeout-ms 는 양수여야 한다: ${timeoutArg}`);
+    process.exit(1);
+  }
+}
+
 const store = useDb ? await openDbStore() : openFileStore();
 
 let targets = listTargets();
@@ -168,6 +204,7 @@ const today = new Date().toISOString().slice(0, 10);
 const failures = []; // { name, what, reason }
 let written = 0;
 let totalAdded = 0;
+let allFailed = 0; // 요청이 전부 실패해 병합 결과가 없는 교수 수
 
 console.log(
   `대상 ${targets.length}명 · 소스 ${useDb ? 'DB(content_files)' : '레포 파일'} · ` +
@@ -175,10 +212,14 @@ console.log(
 );
 
 for (const person of targets) {
-  const result = await crawlPerson(person, await store.read(person.name), { today });
+  const result = await crawlPerson(person, await store.read(person.name), {
+    today,
+    ...(timeoutMs === null ? {} : { timeoutMs }),
+  });
   failures.push(...result.failures);
 
   if (!result.merged) {
+    allFailed += 1;
     console.log(`${person.name} … 전부 실패 — 건너뜀`);
     continue;
   }
@@ -208,4 +249,17 @@ if (failures.length) {
   for (const f of failures) console.log(`  - ${f.name} / ${f.what} : ${f.reason}`);
 } else {
   console.log('실패한 요청 없음.');
+}
+
+// 임계 판정은 요약을 전부 찍은 뒤에 한다 — 로그(tee crawl.log)에 원인이 남아야 이슈 본문이
+// 쓸모 있다. 임계를 안 주면 여기서 아무 일도 하지 않는다(종전 동작).
+if (failThreshold !== null) {
+  const ratio = allFailed / targets.length;
+  const pct = (n) => `${Math.round(n * 100)}%`;
+  if (ratio >= failThreshold) {
+    console.error(
+      `::error::전부 실패 ${allFailed}/${targets.length}명 (${pct(ratio)}) ≥ 임계 ${pct(failThreshold)} — 구조적 실패 의심`,
+    );
+    process.exit(2);
+  }
 }
