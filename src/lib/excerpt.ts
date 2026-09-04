@@ -44,7 +44,10 @@ export function htmlToDescription(raw: string | undefined | null, maxLength = DE
     .replace(/!\[[^\]]*\]\([^)]*\)/g, '') // ![alt](src) 이미지 삭제
     .replace(/\[([^\]]*)\]\([^)]*\)/g, '$1') // [텍스트](url) → 텍스트
     .replace(/^\s*(?:[#>]+|[*-]\s|\d+\.\s)\s*/gm, '') // 줄머리 마크다운 기호 제거
-    .replace(/[*_`~]/g, '') // 강조 기호 제거
+    // 강조 기호 제거. 물결표는 **짝(~~ 취소선)일 때만** 지운다 — 한국어 본문의 범위 표기
+    // ("1~4학년", "MEU3006 ~ 3009")에서 낱개 ~ 를 지우면 "14학년" 같은 오독이 생긴다(실측).
+    .replace(/~~/g, '')
+    .replace(/[*_`]/g, '')
     .replace(/\s+/g, ' ') // 개행·연속 공백 접기
     .trim();
 
