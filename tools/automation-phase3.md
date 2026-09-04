@@ -105,7 +105,14 @@
 지금 감시 워커는 변경분을 **우리 스키마 JSON 조각**까지 만들어 이슈에 싣습니다. 남은 것은
 그 조각을 파일에 넣고, 영문을 채우고, 커밋하는 손일입니다. 셋 다 자동화됩니다.
 
-### P3-4 캘린더 PR 자동 생성 + 영문 자동 번역 (M)
+### P3-4 캘린더 PR 자동 생성 + 영문 자동 번역 (M) — ✅ 2026-09-04 구현 완료 (저장소 설정 1건 대기)
+
+> 구현: `admission-watch.mjs --patch/--translate/--rollover`(사이트 기준 갱신본 생성, 키 = date+정규화
+> 제목, 삭제는 후보 나열만), `deepl.mjs`(콘솔 `/api/translate` 와 같은 요청·용어집 플레이스홀더·키
+> 없으면 en 빈칸), 워크플로는 캘린더가 실제로 바뀐 주만 `bot/admission-<날짜>` 브랜치 + PR, 공지·PDF
+> 만 바뀐 주는 종전대로 이슈. ⚠️ 사람이 켜야 할 것: Settings → Actions → General → "Allow GitHub
+> Actions to create and approve pull requests" (없으면 브랜치만 남고 PR 이 안 열린다) · 선택:
+> `DEEPL_API_KEY` 시크릿. 용어집은 현재 캘린더 본문에 등장하는 낱말이 없어 사실상 no-op(보험).
 
 - **패치 생성**: 워커가 `content/admission-guide.json` 의 `calendar.events` 를 사이트 기준으로
   갱신한 파일을 만든다 — 기존 이벤트는 `date + 정규화 제목` 키로 찾아 `lines` 를 갱신, 새
