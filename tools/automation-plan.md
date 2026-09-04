@@ -9,7 +9,7 @@
 
 ## 1. 현황 인벤토리
 
-### A. 자동화 대상 5건 — 사이트 사용처와 출처
+### A. 자동화 후보 5건 — 사이트 사용처와 출처 (4번 교재는 조사 후 제외)
 
 각 데이터가 **사이트 어디에서 소비되고**(경로 · 컴포넌트), **어디에서 오는지**(원 출처
 링크)를 먼저 고정합니다. 구체 계획은 이 표를 기준으로 씁니다.
@@ -19,7 +19,7 @@
 | 1 | 교수 학술활동 프로필 — 셸(연락처·홈페이지) + 논문·수상·학술활동·연구과제·지적재산권 (31명) | 교수진 상세 `/{locale}/faculty/<교수이름>` (`src/app/[locale]/faculty/[slug]/page.tsx`, 전수 프리렌더) · CMS 교수진 "실적 불러오기" | 교원정보시스템 `devcms.yonsei.ac.kr` — 링크 상세 ① | Supabase `content_files` = `content/faculty-profiles/<이름>.json` |
 | 2 | 수강편람 과목 카탈로그 — 2022-1~현재 전 학기 통합(학정번호 키·별칭) | 학부 › 졸업요건 진단기 `/{locale}/undergraduate/checker` (`GraduationChecker.tsx` 가 `/data/course-catalog.json` fetch) | 연세포털 수강편람 내부 API `underwood1.yonsei.ac.kr` — 링크 상세 ② | `public/data/course-catalog.json` + 이력 정본 `tools/checker/data/catalog-history.json` |
 | 3 | 수강신청 마일리지 이력 — 2015-2~ 분반별 컷·배정·순위 | 학부 › 마일리지 전략 `/{locale}/undergraduate/mileage` (`MileagePlanner.tsx`, 번들 URL 은 `src/lib/mileage/bundle.ts` 의 `MILEAGE_TERM`) | 같은 수강편람 내부 API(요약·원장) — 링크 상세 ② | `public/data/mileage-<년>-<학기>[-detail].json` + `tools/mileage/data/mileage-history.db.gz` |
-| 4 | 강의계획서 교재 — 과목별 주교재·부교재·참고자료 서지 + 표지 이미지 | 학부 › 교과목 소개 `/{locale}/undergraduate/courses` 의 교재 팝업 (`CourseCatalog.tsx` → `TextbookPopover.tsx`; 대학원 교과목 페이지에는 미사용) | 수강편람 강의계획서(②) + 교보문고 CDN — 링크 상세 ③ | `content/textbooks.json` + `public/img/textbooks/<ISBN>.jpg` |
+| 4 | 강의계획서 교재 — 과목별 주교재·부교재·참고자료 서지 + 표지 이미지 (**자동화 제외** — 사유 6절) | 학부 › 교과목 소개 `/{locale}/undergraduate/courses` 의 교재 팝업 (`CourseCatalog.tsx` → `TextbookPopover.tsx`; 대학원 교과목 페이지에는 미사용) | 수강편람 강의계획서(②) + 교보문고 CDN — 링크 상세 ③ | `content/textbooks.json` + `public/img/textbooks/<ISBN>.jpg` |
 | 5 | 입학 캘린더 — 2026학년도 전형 일정 22건(수시 21 · 재외국민 1) | 소개 › 입학 안내 `/{locale}/about/admission` 3번 섹션 (`AdmissionGuide.tsx` → `AdmissionCalendar.tsx`) | 연세대 입학처 공지·모집요강 — 링크 상세 ④ | `content/admission-guide.json` 의 `calendar` 블록 |
 
 수집 코드·주기·현재 상태:
@@ -29,7 +29,7 @@
 | 1 | `tools/crawl-faculty-profiles.mjs` + `src/lib/faculty-crawl/core.ts` (CMS 버튼 `/api/admin/faculty-crawl` 과 공용) | 매월 2일 03:00 KST | **자동화 완료** — `.github/workflows/crawl-faculty-profiles.yml` → DB 병합 |
 | 2 | 외부 크롤러 `courses` 명령 + 래퍼 `tools/checker/crawl-terms.mjs` → `build-catalog.mjs` | 학기 1회 | 수동 — **로그인 쿠키 필요** |
 | 3 | 외부 크롤러 `npm run mileage` + `tools/mileage/build-db.mjs` → `precompute.mjs` | 학기 1회 | 수동 — **로그인 쿠키 필요, 수 시간 소요** |
-| 4 | ⚠️ 강의계획서 크롤 코드 부재(재작성 필요, 백로그 0b) + `tools/textbooks/mirror-covers.mjs` → `build-content.mjs` | 학기 1회 | 수동 — 표지 미러링만 쿠키 불필요 |
+| 4 | 크롤 코드 없음 — 수업계획서는 JSON API 가 없는 ClipReport PDF 라 2026-08-20 수동 추출본(`Desktop\교재 매칭`)을 `generate_all_formats.py` 로 후처리 → `mirror-covers.mjs` → `build-content.mjs` | 학기 1회 | **자동화 제외**(6절) — 수동 갱신 |
 | 5 | 수집 코드 없음 — 전량 수기 입력(관리자 콘솔 미지원, 파일 직접 편집) | 학년도 1회 전면 + 변경 시 | 수동 |
 
 ### 출처 링크 상세
@@ -62,9 +62,13 @@
   옛 학기는 학기 목록 API 를 거치지 않고 요약·원장에 `syy`·`smtDivCd` 를 직접 지정하면
   조회됩니다(2015-2 까지 실측 — `backfill.mjs` 가 이 방식). 요청 간 지연은 크롤러 기준
   40~150ms + 동시성 5~6, 실패 시 1초 간격 2회 재시도.
-- ⚠️ **강의계획서(교재) 엔드포인트는 미확정** — 크롤 코드가 어느 저장소에도 남아 있지
-  않습니다(과거 1회성 크롤 산출물 "교재 매칭 폴더"를 `build-content.mjs` 가 소비했을 뿐).
-  2-1 ③ 자동화 때 크롤러를 새로 작성하면서 실측·문서화해야 합니다.
+- **강의계획서(교재)는 API 가 없습니다** (2026-09-04 확정) — 수업계획서는 JSON 데이터셋이
+  아니라 ClipReport 리포트 엔진이 PDF 로 렌더링합니다(`Y.Report.callReport()` 가
+  `slessy0020_prn01.crf`, 영문·캠퍼스·학번대별 01~11 변형을 리포트 서버에 POST — 2026-07-31
+  세션 실측). 포털 딥링크는 `/com/lgin/SsoCtr/initExtPageWork.do?link=sylla&params=<base64>`.
+  `Desktop\교재 매칭` 의 2026-08-20 결과 JSON 은 화면에서 수동 추출한 것이고, 크롤 코드는
+  이 PC 어디에도 없습니다(Desktop·Documents·Downloads 코드 파일 전수 스캔 + 세션 기록
+  검색). 따라서 교재 파이프라인은 **자동화 대상에서 제외**합니다(6절).
 - 크롤러 정본 저장소: <https://github.com/yonsei-mech/yosnei-mileage-crawler> — 이관 상태는 3절 **2-0**.
 
 **③ 교재 표지**
@@ -142,7 +146,7 @@ cron 스케줄 하나짜리 워크플로가 시기별 체크리스트 이슈를 
 
 | 시기(안) | 이슈 내용 |
 | --- | --- |
-| 12월 초 · 1월 중순 · 6월 초 · 7월 중순 | 새 학기(겨울·1학기·여름·2학기) 데이터 갱신 체크리스트 — `tools/checker/README.md`·`tools/mileage/README.md` 절차 링크 |
+| 12월 초 · 1월 중순 · 6월 초 · 7월 중순 | 새 학기(겨울·1학기·여름·2학기) 데이터 갱신 체크리스트 — `tools/checker/README.md`·`tools/mileage/README.md` 절차 링크 + 교재 수동 갱신 항목(6절) |
 | 4월 말 | 새 학년도 입학 캘린더 전면 재작성 |
 
 시기는 실제 수강신청·모집요강 공표 일정에 맞춰 조정합니다(cron 값만 고치면 됨).
@@ -153,36 +157,29 @@ cron 스케줄 하나짜리 워크플로가 시기별 체크리스트 이슈를 
 커밋·Secrets 저장 금지 대상입니다. 그래서 목표를 "완전 무인"이 아니라 **"쿠키 한 번
 넣으면 나머지 전 단계가 스스로 돈다"**로 잡습니다.
 
-**2-0. 크롤러 저장소 이관** (선결 작업 — 진행 중, 실사 결과 2026-09-03)
+**2-0. 크롤러 저장소 이관** (✅ 결정·정리 완료 2026-09-04 — 남은 것은 푸시 1회)
 
-실사해 보니 이관은 **이미 절반 진행돼 있습니다**: 로컬 사본(`Desktop\크롤링`)의 origin 이
-`yonsei-mech/yosnei-mileage-crawler` 로 옮겨져 있고, 원격에 초기 커밋 + 쿠키 값 제거
-커밋(`b0ecf3d`)까지 올라가 있습니다. 로컬 main 은 origin/main 위로 리베이스해 동기화를
-마쳤습니다(로컬 유일 커밋 1개 미푸시). 체크리스트별 실제 상태:
+원격 `yonsei-mech/yosnei-mileage-crawler` 는 **이미 비공개**(`gh repo view`: PRIVATE, 용량
+2MB)이고, 로컬에서만 만들어졌던 556만 줄 데이터 커밋은 원격에 간 적이 없습니다(185MB
+단일 파일이라 GitHub 100MB 한도에 걸려 푸시 자체가 불가 — 폐기). 초기 커밋 `ae1242e` 의
+`.env` 에 세션 쿠키가 들어갔던 이력은 사실이지만, 비공개 저장소 + 2026-07-26 발급으로
+이미 만료된 세션 ID 라 실효 위험이 없습니다.
 
-1. **`.env`(YONSEI_COOKIE) 커밋 방지** — ✅ 조치 완료(2026-09-03): `git rm --cached .env`
-   로 추적 해제 + `.gitignore` 추가(로컬 스테이징 상태, 커밋 대기).
-   ⚠️ 단, **과거 커밋에 실제 쿠키가 들어갔던 이력을 확인**했습니다(원격 `b0ecf3d`
-   "Clear YONSEI_COOKIE and NetFunnel_ID values" — 값을 지운 커밋이므로 그 이전 이력에
-   값이 남아 있음). 규칙대로 **재로그인으로 해당 세션은 즉시 무효화**하고(쿠키 수명이
-   수 시간이라 실효 위험은 낮음), 4번 공개/비공개 결정 시 **이력 재초기화(새 저장소로
-   squash 푸시)를 함께 검토**합니다.
-2. **크롤 산출물 제외** — ⏳ 부분 완료: 백업 세대(`mileage_data_*.json`,
-   `*.json.pre-checker`)는 `.gitignore` 로 막았습니다. 그러나 `courses.json`·
-   `mileage_data.json`(556만 줄)은 **이미 원격 이력에 커밋돼 있습니다**. 추적 해제·이력
-   정리는 1번의 재초기화 여부와 한 번에 결정합니다(어차피 이력을 다시 쓸 거면 그때 함께).
-3. **README 경고 유지** — ✅ 크롤러 README 에 IMPORTANT 블록으로 이미 존재.
-4. **공개/비공개 판단** — 미결. 5절 결정 표 참조(비공개 권장). 1·2번의 이력 정리와 묶어
-   한 번에 처리하는 것이 효율적입니다.
-5. **이 저장소 참조 갱신** — `tools/checker/crawl-terms.mjs` 의 `CRAWLER_DIR` 기본값
-   (`C:\Users\aquae\Desktop\크롤링` 하드코딩)은 로컬 실행 기준으로는 계속 유효합니다.
-   `tools/mileage/README.md` 의 저장소 URL 표기(halfjinhyeon → yonsei-mech)만 갱신
-   대상입니다. 오케스트레이터(2-1)는 `CRAWLER_DIR` 미지정 시 조직 저장소를 클론하도록
-   만들 수 있게 됩니다.
+**결정: 비공개 유지, 이력 재초기화(force-push)는 하지 않는다.** 얻는 것(만료 쿠키·2MB
+데이터 제거)이 force-push 의 실수 비용보다 작습니다. 대신 로컬에서 정리 커밋 `be347a5`
+를 만들었습니다(origin/main 위 fast-forward — `git push origin main` 만 하면 됨):
 
-참고: 크롤러 저장소 루트에 **마일리지 구간 한정 원샷 스크립트 `run-update.mjs`** 가
-생겼습니다(2026-09-03, 이 계획과 별개로 선행 작성 — 크롤→에러 재시도→build-db→precompute
-자동 연결). 2-1 의 `update-semester.mjs` 를 만들 때 이 스크립트를 흡수·대체합니다.
+1. ✅ `.env`·`courses.json`·`mileage_data.json` 추적 해제 + `.gitignore`(쿠키·산출물·
+   백업 세대·`courses.json.pre-checker`). 파일은 디스크에 그대로 남아 파이프라인이 씁니다.
+2. ✅ 코드 반영 — `mileage.js` 동시 워커·키 기반 재개, `backfill.mjs`(2015-1~2023-1 소급),
+   `run-update.mjs`(크롤→에러 재시도→build-db→precompute 원샷), README·기본 학기.
+3. ✅ README 의 쿠키 경고 블록 유지.
+4. ✅ 이 저장소 참조 갱신 — `tools/mileage/README.md` 의 저장소 URL 을 yonsei-mech 로.
+   `tools/checker/crawl-terms.mjs` 의 `CRAWLER_DIR` 기본값(로컬 경로)은 그대로 유효.
+
+참고: 저장소 이름의 오타(`yosnei-`)는 GitHub 이 옛 이름을 리다이렉트하므로 고쳐도 되지만
+필수는 아닙니다 — 고치면 이 문서·두 README·로컬 origin URL 을 함께 바꿉니다.
+`run-update.mjs` 는 마일리지 구간 한정이라 2-1 의 `update-semester.mjs` 가 흡수·대체합니다.
 
 **2-1. 원샷 오케스트레이터 `tools/update-semester.mjs`** (신규)
 
@@ -195,9 +192,8 @@ cron 스케줄 하나짜리 워크플로가 시기별 체크리스트 이슈를 
 ② mileage:   크롤러 courses + npm run mileage → build-db --base --verify-against
              → backtest 신·구 공통 분반 비교(리포트 출력, 채택 판단은 사람)
              → precompute --target → bundle.ts MILEAGE_TERM 갱신
-③ textbooks: 강의계획서 크롤(⚠️ 크롤러 신규 작성 필요 — 기존 코드 부재, 1절 ② 참조)
-             → mirror-covers(신규 ISBN만) → build-content
-④ 마무리:    npm run typecheck → 커밋 대상 파일 목록 출력(명시 스테이징 — git add -A 금지)
+③ 마무리:    npm run typecheck → 커밋 대상 파일 목록 출력(명시 스테이징 — git add -A 금지)
+   (교재는 자동화 제외 — 6절)
 ```
 
 - 쿠키 만료(FatalError)는 정상 시나리오로 취급: "쿠키 갱신 후 같은 명령 재실행" 안내를
@@ -206,12 +202,6 @@ cron 스케줄 하나짜리 워크플로가 시기별 체크리스트 이슈를 
   필요한 지점은 자동화하지 않고** 체크리스트로 출력만 합니다.
 - 커밋·푸시는 하지 않습니다. 산출물 검토 후 사람이 커밋합니다(마일리지 README의
   "측정하지 않은 개선은 주장하지 않는다" 원칙과 명시 스테이징 규칙 유지).
-
-**2-2. 교보 표지 미러링 분리 실행** (소규모)
-
-표지 미러링(`mirror-covers.mjs`)은 로그인이 필요 없으므로, 강의계획서 크롤 산출물만
-있으면 언제든 단독 재실행 가능하게 오케스트레이터에서 분리 옵션(`--only textbooks-covers`)
-을 둡니다. 플레이스홀더 판정(JPEG 매직바이트)·OVERRIDE/FALLBACK 표는 기존 로직 그대로.
 
 ### Phase 3 — 완전 무인화 검토 (착수 보류, 판단 필요)
 
@@ -232,7 +222,7 @@ cron 스케줄 하나짜리 워크플로가 시기별 체크리스트 이슈를 
 | 교수 학술활동 수집 | GitHub Actions (기존) + 실패 이슈(1-1) | 매월 2일 03:00 KST |
 | 입학처 변경 감지 | GitHub Actions (신규 1-2) | 주 1회 |
 | 학기 갱신·입학 캘린더 리마인더 | GitHub Actions (신규 1-3) | 연 5회 이슈 |
-| 학기 데이터 갱신 (체커·마일리지·교재) | 로컬 오케스트레이터 (신규 2-1) — 쿠키는 사람 | 학기 1회, 리마인더로 트리거 |
+| 학기 데이터 갱신 (체커·마일리지) | 로컬 오케스트레이터 (신규 2-1) — 쿠키는 사람 | 학기 1회, 리마인더로 트리거 |
 
 ## 5. 리스크와 열어 둔 결정
 
@@ -243,7 +233,7 @@ cron 스케줄 하나짜리 워크플로가 시기별 체크리스트 이슈를 
 | 입학처 페이지 구조 변경·차단 | 감지 워커는 실패해도 사이트에 무영향(알림 전용). 실패 자체도 이슈로 보고 |
 | 마일리지 `--base` 누락 시 과거 이력 소실 | 오케스트레이터가 `--base`·`--verify-against`를 강제 인자로 고정 |
 | 스냅샷 브랜치 비대화 (입학처 감지) | 정규화된 텍스트만 저장(수 KB), 연 1회 스쿼시 |
-| 이관된 크롤러 저장소의 공개/비공개 | 학교 내부 API 를 다루므로 **비공개 권장**. 원본(halfjinhyeon)이 이미 공개인 점은 참고 사항일 뿐 근거는 아님. 비공개 시 Actions 에서 쓰려면 체크아웃 토큰이 필요해짐(당장은 로컬 실행이라 무관) |
+| 크롤러 저장소의 공개/비공개 | ✅ 결정: **비공개 유지**(이미 PRIVATE, 2-0). Actions 에서 쓰려면 체크아웃 토큰이 필요해짐(당장은 로컬 실행이라 무관) |
 
 ## 6. 자동화하지 않는 것
 
@@ -254,23 +244,28 @@ cron 스케줄 하나짜리 워크플로가 시기별 체크리스트 이슈를 
   렌더링) 탓에 무인 크롤 신뢰도가 낮습니다. AI 연구요약 문안은 CMS에서 관리 중이므로
   필요할 때 수동 갱신합니다. (선택 아이디어: `labs-directory.json` 외부 링크 생존
   확인만 월 1회 자동화 — 죽은 링크 이슈 보고. 저부하·무검수 가능이라 Phase 1에 편입 가능)
+- **교재(강의계획서) 파이프라인** — 수업계획서는 JSON API 없이 ClipReport 가 PDF 로
+  렌더링하는 화면이라(1절 ②) 크롤러를 새로 쓰려면 리포트 엔진 응답을 파싱해야 하고,
+  실제 대상은 학과 개설 과목 30여 개/학기에 교재 등록 과목은 그 절반입니다. 학기당
+  한 번 화면에서 뽑아 `Desktop\교재 매칭` 의 후처리(`generate_all_formats.py`) →
+  `tools/textbooks/mirror-covers.mjs` → `build-content.mjs` 로 반영하는 지금 절차가
+  더 경제적입니다. 1-3 리마인더 이슈의 학기 체크리스트에 항목으로만 넣습니다.
 - **학교 SSO 자동 로그인** — 5절 리스크 판단 전까지 금지.
 
 ## 7. 구현 백로그
 
 | # | 작업 | 단계 | 규모 | 비고 |
 | --- | --- | --- | --- | --- |
-| 0 | 크롤러 저장소 이관 마무리 (원격은 이미 `yonsei-mech`) | 2-0 | S | **사람 판단 잔여**: 공개/비공개 + 이력 정리(쿠키·크롤 산출물) 일괄 결정 후 푸시. 상태는 2-0 실사 참조 |
-| 0b | 강의계획서(교재) 크롤러 신규 작성 — 엔드포인트 실측·문서화 포함 | 2-1 ③ | M | 기존 코드 부재(1절 ②). 4의 선행 작업 |
+| 0 | 크롤러 저장소 이관 마무리 | 2-0 | S | ✅ 결정·정리 완료 — 로컬 커밋 `be347a5` 를 `git push origin main` 하면 끝 |
 | 1 | 교수 수집기 실패 임계 exit 1 + 실패 이슈 스텝 | 1-1 | S | 기존 워크플로 수정 |
 | 2 | 입학처 스냅샷·diff 스크립트 + 주 1회 워크플로 | 1-2 | M | 본문 정규화가 핵심 |
 | 3 | 정기 리마인더 워크플로 (체크리스트 이슈 5종) | 1-3 | S | cron + 이슈 템플릿 |
 | 4 | `tools/update-semester.mjs` 오케스트레이터 | 2-1 | L | 기존 스크립트 조립 + 게이트 연결 |
-| 5 | 교재 파이프라인 분리 옵션 | 2-2 | S | 4에 포함 가능 |
+| 5 | ~~교재 파이프라인 분리 옵션~~ | — | — | 삭제 — 교재는 자동화 제외(6절) |
 | 6 | (선택) 연구실 링크 생존 체크 워커 | 6절 | S | 이슈 보고 전용 |
 | 7 | (보류) 예약 반자동 실행 검토 | 3 | — | 5절 결정 후 |
 
-권장 착수 순서는 0 → 1 → 3 → 2 → 4입니다. 0은 사람의 푸시 한 번(+참조 갱신)이고,
+권장 착수 순서는 1 → 3 → 2 → 4입니다(0은 푸시 한 번만 남음).
 1·3은 반나절 규모로 즉시 효과가 있습니다. 2는 2027학년도 입학 캘린더 갱신 전
 (2027년 봄)까지만 준비되면 됩니다. 4는 0이 끝나야 크롤러를 저장소 기준으로 부를 수
 있으므로 그 뒤에 착수하되, 다음 학기 갱신(2026-21 겨울, 12월경)을 첫 실전으로 삼아

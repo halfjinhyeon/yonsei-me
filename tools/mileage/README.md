@@ -8,7 +8,7 @@
 
 ```
 연세대 수강편람 내부 API (underwood1.yonsei.ac.kr)
-   │  크롤러: https://github.com/halfjinhyeon/yosnei-mileage-crawler  (로컬: Desktop\크롤링)
+   │  크롤러: https://github.com/yonsei-mech/yosnei-mileage-crawler  (로컬: Desktop\크롤링)
    │    node src/index.js courses <년> <학기코드>   → courses.json       (개설 분반 카탈로그)
    │    npm run mileage                            → mileage_data.json  (분반별 과거 마일리지 이력)
    ▼
@@ -36,7 +36,7 @@ src/components/MileagePlanner.tsx   ← 학부 › 마일리지 전략 탭
 
 ## 크롤러
 
-- 저장소: <https://github.com/halfjinhyeon/yosnei-mileage-crawler> (로컬 작업 사본 `Desktop\크롤링`)
+- 저장소: <https://github.com/yonsei-mech/yosnei-mileage-crawler> (로컬 작업 사본 `Desktop\크롤링`)
 - 의존성 0. Node 18+ 내장 `fetch` 만 씁니다.
 - 실행 전 저장소 루트에 `.env` 를 만들고 로그인 세션 쿠키를 넣습니다:
 
