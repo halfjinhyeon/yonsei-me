@@ -167,12 +167,12 @@ node tools/automation/remind.mjs --kind admission-calendar --year 2027 [--dry-ru
 node tools/automation/remind.mjs --schedule "0 0 1 12 *" [--dry-run]   # 워크플로가 쓰는 형태
 ```
 
-- 템플릿의 `{{term}}`·`{{termLabel}}`(예 "2026-2 겨울계절학기")·`{{year}}` 를 채웁니다.
+- 템플릿의 `{{term}}`·`{{termLabel}}`(= `{{year}}학년도 <학기명>`, 예 "2026학년도 겨울계절학기")·`{{year}}` 를 채웁니다.
 - **계절학기는 마일리지 제도 밖**(크롤러 `backfill.mjs` 주석 실측)이라 `semester-seasonal.md`
   는 체커 카탈로그 갱신만 담고, `semester-regular.md` 는 체커 + 마일리지 + 교재 수동 갱신
   (계획서 6절) + 오케스트레이터 명령(`node tools/automation/update-semester.mjs --target {{term}}`)
   + 각 README 링크를 담습니다.
-- 이슈 제목: `[자동] {{term}} {{termLabel}} 데이터 갱신 체크리스트` /
+- 이슈 제목(정확히 이 형식): `[자동] {{termLabel}}({{term}}) 데이터 갱신 체크리스트` /
   `[자동] {{year}}학년도 입학 캘린더 재작성`. 학기가 제목에 들어가 자연히 유일하고, 그래도
   `issue.mjs` 의 중복 방지가 겹칩니다.
 - dispatch 입력: `kind`(choice), `term`/`year`(override), `dry_run`(기본 true).
@@ -377,9 +377,9 @@ node tools/automation/update-semester.mjs --target 2026-21 [--only checker|milea
 
 | Worker | 항목 | 선행 | 병렬 가능 |
 | --- | --- | --- | --- |
-| A | 0-3 `issue.mjs` + 항목 1 + 항목 2(리마인더) | — | 먼저 단독 |
-| B | 항목 3 (입학처 감지) | A 의 `issue.mjs` | A 완료 후 C 와 병렬 |
-| C | 항목 4 (오케스트레이터 + 체커 학기 리팩터) | 없음 (이슈를 만들지 않음) | A 완료 후 B 와 병렬 |
+| A | 0-3 `issue.mjs` + 항목 1 + 항목 2(리마인더) | — | C 와 동시 시작 (수정 파일이 겹치지 않음) |
+| B | 항목 3 (입학처 감지) | A 의 `issue.mjs` | A 완료 후 |
+| C | 항목 4 (오케스트레이터 + 체커 학기 리팩터) | 없음 (이슈를 만들지 않음) | A 와 동시 시작 |
 
 - 브리프에는 이 문서의 해당 절 전체 + 계획서 2절(원칙) + 관련 README 경로 + 위 검증 명령을
   그대로 넣습니다. Worker 는 `tools/automation/` 밖의 파일 중 표에 적힌 것만 수정합니다.
