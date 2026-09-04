@@ -40,6 +40,10 @@ next-env.d.ts
 .vercel
 /public/fonts/
 
+# 자동화 실행 상태 — 학기 갱신 오케스트레이터가 어디까지 했는지 적어 두는 로컬 파일
+# (tools/automation/update-semester.mjs · 백테스트 덤프도 여기 떨어진다)
+/tools/automation/.state/
+
 # 게시판 이전 중간 산출물 — 원본 사이트 크롤 스냅샷(수 MB, 언제든 재생성 가능)
 /tools/boards-raw/
 /tools/link-report.json

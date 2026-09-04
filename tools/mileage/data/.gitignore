@@ -3,3 +3,7 @@
 *.db
 *.db-wal
 *.db-shm
+
+# 학기 갱신 직전의 DB 백업 — update-semester.mjs 가 build-db 전에 떠 둔다(신·구 백테스트
+# 비교 기준이자 되돌릴 자리). 추적본은 mileage-history.db.gz 하나뿐이다.
+mileage-history.prev.db.gz
