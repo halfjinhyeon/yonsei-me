@@ -1,0 +1,92 @@
+# 정기 리마인더 — 사람이 해야 하는 갱신을 때가 되면 이슈로 띄운다.
+#
+# 왜 있는가
+#   자동화하지 않기로 한 작업이 둘 있다. ① 학기 데이터 갱신(수강편람 크롤)은 학사 계정
+#   세션 쿠키가 필요하고 그 쿠키는 수 시간이면 만료돼 Secrets 에 둘 수 없다. 게다가
+#   마일리지 모델 채택 여부처럼 사람이 판단할 지점이 남는다. ② 입학 캘린더는 매년 문구·
+#   구성이 바뀌고 입학처가 정본이라 옮겨 적는 일이다. 둘 다 "잊어버려서" 늦어지는 게
+#   유일한 실패 모드라, 알림만 자동화한다(automation-plan.md 1-3, automation-spec.md 2절).
+#
+# 시기 (전부 09:00 KST = 00:00 UTC)
+#   12/1  → 겨울계절학기 YYYY-21 체크리스트
+#   1/15  → 1학기      YYYY-10
+#   6/1   → 여름계절학기 YYYY-11
+#   7/15  → 2학기      YYYY-20
+#   4/25  → 다음 학년도(YYYY+1) 입학 캘린더 재작성
+#   cron 문자열이 곧 종류다 — remind.mjs 의 SCHEDULES 표와 **짝을 맞춰서** 고칠 것.
+#   모르는 cron 이 오면 remind.mjs 가 exit 1 로 죽어 조용한 오작동이 되지 않는다.
+#
+# 손으로 돌려 볼 때
+#   workflow_dispatch 의 dry_run 기본값이 true 라, 실제 이슈 대신 step summary 에 본문만
+#   찍는다. 실제 이슈를 만들려면 dry_run 을 꺼야 한다.
+name: 정기 리마인더
+
+on:
+  schedule:
+    - cron: '0 0 1 12 *' # 12/1 겨울계절
+    - cron: '0 0 15 1 *' # 1/15 1학기
+    - cron: '0 0 1 6 *' #  6/1 여름계절
+    - cron: '0 0 15 7 *' # 7/15 2학기
+    - cron: '0 0 25 4 *' # 4/25 입학 캘린더
+  workflow_dispatch:
+    inputs:
+      kind:
+        description: '리마인더 종류'
+        type: choice
+        options:
+          - semester
+          - admission-calendar
+        default: semester
+      term:
+        description: '대상 학기 (kind=semester, 예: 2026-21)'
+        type: string
+        required: false
+      year:
+        description: '대상 학년도 (kind=admission-calendar, 예: 2027)'
+        type: string
+        required: false
+      dry_run:
+        description: '이슈를 만들지 않고 summary 에만'
+        type: boolean
+        default: true
+
+jobs:
+  remind:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    # 최소 권한: 코드 읽기 + 이슈 쓰기.
+    permissions:
+      contents: read
+      issues: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      # npm ci 는 하지 않는다 — tools/automation 은 의존성 0(Node 내장 + gh CLI)이다.
+      - name: 리마인더 이슈
+        env:
+          GH_TOKEN: ${{ github.token }}
+          EVENT: ${{ github.event_name }}
+          SCHEDULE: ${{ github.event.schedule }}
+          KIND: ${{ inputs.kind }}
+          TERM: ${{ inputs.term }}
+          YEAR: ${{ inputs.year }}
+          # boolean 입력은 workflow_dispatch 에서만 진짜 boolean 이고 schedule 실행에서는
+          # null 이다. GitHub 식 비교는 타입이 다르면 숫자로 캐스팅하므로(null→0, true→1)
+          # `inputs.dry_run == true` 는 스케줄 실행에서 자연히 false 가 된다 — 스케줄은
+          # 언제나 실제 이슈, 손으로 돌린 시험만 dry-run 이 될 수 있다.
+          DRY_RUN: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run == true }}
+        run: |
+          # 인자는 문자열 이어붙이기가 아니라 위치 인자 배열("$@")로 만든다 — cron 문자열에
+          # 공백과 `*` 가 있어 따옴표 없이 펼치면 `*` 가 파일 이름으로 글롭 확장된다.
+          if [ "$EVENT" = "schedule" ]; then
+            set -- --schedule "$SCHEDULE"
+          else
+            set -- --kind "$KIND"
+            if [ -n "$TERM" ]; then set -- "$@" --term "$TERM"; fi
+            if [ -n "$YEAR" ]; then set -- "$@" --year "$YEAR"; fi
+          fi
+          if [ "$DRY_RUN" = "true" ]; then set -- "$@" --dry-run; fi
+          echo "실행: node tools/automation/remind.mjs $*"
+          node tools/automation/remind.mjs "$@"
