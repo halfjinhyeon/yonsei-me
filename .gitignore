@@ -49,3 +49,6 @@ next-env.d.ts
 /tools/link-report.json
 /tools/link-body-cache.json
 /tools/pre-import-snapshot.json
+
+# 입학처 변경 감지 워크플로가 스냅샷 브랜치(bot/admission-watch)를 체크아웃하는 자리 — 로컬 시험용
+/.admission-snapshots/
