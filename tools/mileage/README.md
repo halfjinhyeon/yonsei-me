@@ -83,6 +83,13 @@ src/components/MileagePlanner.tsx   ← 학부 › 마일리지 전략 탭
      --verify-against tools/mileage/data/mileage-history.db.gz
    ```
 
+   - ⚠️ `--base`·`--verify-against` 에 준 gz 는 나란한 `.db` 로 풀리는데, 그 `.db` 가 곧
+     기본 `--out` 입니다. 2026-09 이전 build-db 는 out 을 먼저 비우고 base 를 열어 **빈 DB 를
+     base 로 삼고(이월 0건), 새 DB 를 자기 자신과 대조(불일치 0건)** 하면서도 조용히
+     통과했습니다. 지금은 build-db 가 겹침을 감지해 임시 사본을 열므로 위 명령이 안전하며,
+     출력에 `(base 가 --out 과 같은 파일이라 사본으로 연다)` 가 찍히면 그 방어가 동작한 것입니다.
+     `tools/automation/update-semester.mjs` 는 아예 `mileage-history.prev.db.gz` 사본을 base 로
+     줍니다(신·구 백테스트 비교 기준도 됩니다).
    - `--base` 를 빼면 **이번에 개설하지 않는 과목의 과거 이력이 통째로 사라집니다.**
      크롤은 "이번 학기 개설 분반"만 대상이라, 폐강·미개설 분반의 이력은 예전 DB 에만 남아
      있습니다. 그 관측들은 과목·학과 계층 통계의 표본이므로 반드시 이월합니다.

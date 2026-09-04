@@ -37,11 +37,11 @@
  *    화면 표기에만 쓰므로 교양의 흔들림은 무해하나, 사실은 알고 있어야 한다.
  */
 import { DatabaseSync } from 'node:sqlite';
-import { createReadStream, readFileSync, writeFileSync, mkdirSync, existsSync, rmSync, statSync } from 'node:fs';
+import { createReadStream, readFileSync, writeFileSync, mkdirSync, existsSync, rmSync, statSync, copyFileSync } from 'node:fs';
 import { gzipSync } from 'node:zlib';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { DEFAULT_DB_PATH, openHistoryDb } from './db-util.mjs';
+import { DEFAULT_DB_PATH, resolveDbPath } from './db-util.mjs';
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const REPO = resolve(HERE, '../..');
@@ -96,6 +96,40 @@ CREATE TABLE mileage_bids (id INTEGER PRIMARY KEY AUTOINCREMENT, course_code TEX
 CREATE TABLE crawl_status (course_code TEXT NOT NULL, division TEXT NOT NULL, status TEXT NOT NULL, crawled_at REAL, PRIMARY KEY (course_code, division));
 `;
 
+// ── base / verify 경로가 --out 과 겹치면 사본으로 연다 ──────────
+// resolveDbPath 는 `.gz` 를 나란한 `.db` 로 풀어 쓰는데, 그 `.db` 가 곧 기본 --out 이다.
+// 아래에서 out 을 비우고 새로 만든 뒤에 base 를 열면 "방금 만든 빈 DB" 가 base 가 되어
+// 이월 0건으로, 다 만든 뒤 verify 를 열면 새 DB 를 자기 자신과 대조해 불일치 0건으로
+// **조용히 통과**한다(README 의 `--base tools/mileage/data/mileage-history.db.gz` 그대로가
+// 이 경우다 — 2026-09 실측). 그래서 out 을 건드리기 **전에** 두 경로를 풀어 두고, out 과
+// 같은 파일이면 임시 사본을 대신 연다. 사본은 종료 시 닫고 지운다.
+const isolated = []; // { path, db } — 종료 시 정리
+function isolateFromOut(label, explicit) {
+  if (!explicit) return null;
+  const resolved = resolveDbPath(explicit); // 필요하면 여기서 gz 가 풀린다
+  if (resolve(resolved) !== outPath) return resolved;
+  const copy = `${outPath}.${label}-${process.pid}.db`;
+  copyFileSync(resolved, copy);
+  isolated.push({ path: copy, db: null });
+  console.log(`  (${label} 가 --out 과 같은 파일이라 사본으로 연다: ${copy})`);
+  return copy;
+}
+const basePath = isolateFromOut('base', opt.base);
+const verifyPath = isolateFromOut('verify', opt['verify-against']);
+/** 사본 경로면 핸들을 등록해 두었다가 종료 시 닫고 지운다 */
+function openReadOnly(path) {
+  const db = new DatabaseSync(path, { readOnly: true });
+  const entry = isolated.find((e) => e.path === path);
+  if (entry) entry.db = db;
+  return db;
+}
+process.on('exit', () => {
+  for (const e of isolated) {
+    try { e.db?.close(); } catch { /* 이미 닫힘 */ }
+    try { rmSync(e.path); } catch { /* 지우지 못해도 무해 — *.db 는 미추적 */ }
+  }
+});
+
 mkdirSync(dirname(outPath), { recursive: true });
 for (const suffix of ['', '-wal', '-shm']) {
   const p = outPath + suffix;
@@ -108,8 +142,8 @@ db.exec(SCHEMA);
 
 // ── base(기존 DB) 열기 ────────────────────────────────────────
 let base = null;
-if (opt.base) {
-  base = openHistoryDb(opt.base, { readOnly: true });
+if (basePath) {
+  base = openReadOnly(basePath);
   console.log(`base: ${opt.base}`);
 }
 
@@ -408,7 +442,7 @@ process.stdout.write(`\r  이력 적재 ${recs}개 과목 · 요약 ${sumRows} �
 // 크롤 시점 차이(중단-재개 중 누락 등)를 뜻한다.
 let verifyReport = null;
 if (opt['verify-against']) {
-  const vdb = openHistoryDb(opt['verify-against'], { readOnly: true });
+  const vdb = openReadOnly(verifyPath);
   const rep = {
     groupsCompared: 0,
     onlyNew: 0,
