@@ -7,6 +7,8 @@
   (무엇을 자동화하고 무엇은 일부러 하지 않는지). 운영 자동화 작업의 출발점
 - `automation-spec.md` — 위 계획의 백로그 항목별 구현 설계(파일·CLI·종료 코드·검증 절차).
   Worker 브리프의 원본. 구현 코드는 `automation/` 아래에 모임
+- `automation-phase3.md` — 반자동·수동 반영 3건(카탈로그·마일리지·입학 캘린더)을 완전 자동화하는
+  계획. 병목 3개와 단계 P3-0~P3-6, 첫 단계는 세션 수명 실험
 - `automation/` — 운영 자동화 코드(의존성 0, Node 24). `issue.mjs`(이슈 생성·중복 방지),
   `remind.mjs`+`reminders/`(정기 리마인더), `admission-watch.mjs`(입학처 변경 감지),
   `update-semester.mjs`(학기 갱신 오케스트레이터 — 쿠키 한 번이면 체커·마일리지 전 단계).
