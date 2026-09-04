@@ -1,7 +1,8 @@
 /**
  * 학기별 수강편람 크롤 래퍼 (개발 전용 · 졸업요건 체커 과목 DB 구축용)
  *
- *   node tools/checker/crawl-terms.mjs [--list] [--only 2022-10,2023-20] [--force] [--help]
+ *   node tools/checker/crawl-terms.mjs [--list] [--only 2022-10,2023-20] [--through 2026-20]
+ *                                      [--force] [--help]
  *
  * 하는 일
  *   ① 별도 저장소의 크롤러(`<크롤러repo>/src/index.js courses <syy> <smtDivCd>`)를 학기 목록
@@ -34,6 +35,7 @@ import { spawnSync } from 'node:child_process';
 import { copyFileSync, existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { DEFAULT_LAST_TERM, termsThrough } from './terms.mjs';
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 
@@ -48,15 +50,11 @@ const LOG_PATH = join(RAW_DIR, 'crawl-log.json');
 
 // ── 학기 목록 ──────────────────────────────────────────────────
 // 학기코드: 10=1학기 · 11=여름계절 · 20=2학기 · 21=겨울계절 (연도 내 시간순 10→11→20→21)
-// 2026-21(겨울)은 아직 미래라 제외한다.
+// 목록의 정본은 `terms.mjs` 한 곳이다 — 여기에 학기를 또 적지 마라.
+// 마지막 학기는 `--through <YYYY-SS>` 로 넘기거나 terms.mjs 의 DEFAULT_LAST_TERM 을 올린다.
 const SEMESTER_NAMES = { 10: '1학기', 11: '여름계절', 20: '2학기', 21: '겨울계절' };
-const TERMS = [];
-for (const syy of ['2022', '2023', '2024', '2025', '2026']) {
-  for (const code of ['10', '11', '20', '21']) {
-    if (syy === '2026' && code === '21') continue;
-    TERMS.push({ syy, code, term: `${syy}-${code}` });
-  }
-}
+/** `'2026-20'` → `{ syy: '2026', code: '20', term: '2026-20' }` */
+const toTerm = (term) => ({ syy: term.slice(0, 4), code: term.slice(5), term });
 
 /**
  * 카탈로그 JSON 이 어느 학기의 것인지 판별한다 — 전 레코드의 syy/smtDivCd 가
@@ -94,6 +92,7 @@ const USAGE = `사용법: node tools/checker/crawl-terms.mjs [옵션]
 
   --list              계획된 학기와 현재 수집 상태만 출력하고 종료 (크롤하지 않음)
   --only <학기목록>   쉼표로 구분한 학기만 대상으로 한다 (예: --only 2022-10,2023-20)
+  --through <학기>    계획의 마지막 학기 (기본: ${DEFAULT_LAST_TERM}) — 새 학기는 이걸로 넣는다
   --force             이미 받아둔 학기도 다시 크롤한다
   --help, -h          이 도움말
 
@@ -104,10 +103,11 @@ const USAGE = `사용법: node tools/checker/crawl-terms.mjs [옵션]
   · 대상 학기를 순차로 크롤해 tools/checker/data/raw/courses-<yyyy>-<code>.json 에 저장한다.
   · 이미 있는 파일은 건너뛴다 — 쿠키가 만료돼 중단돼도 갱신 후 재실행하면 이어서 진행된다.
   · 실행 전 courses.json 은 courses.json.pre-checker 로 스냅샷 후 종료 시 그대로 복원된다.
-  · 스냅샷이 곧 어느 대상 학기의 카탈로그면 그 학기는 크롤 없이 검증·복사로 시드된다.`;
+  · 스냅샷이 곧 어느 대상 학기의 카탈로그면 그 학기는 크롤 없이 검증·복사로 시드된다.
+  · 계획 학기 목록의 정본은 tools/checker/terms.mjs 다 (build-catalog.mjs 와 공유).`;
 
 const argv = process.argv.slice(2);
-const opt = { list: false, force: false, help: false, only: null };
+const opt = { list: false, force: false, help: false, only: null, through: null };
 for (let i = 0; i < argv.length; i++) {
   const a = argv[i];
   if (a === '--help' || a === '-h') opt.help = true;
@@ -115,6 +115,8 @@ for (let i = 0; i < argv.length; i++) {
   else if (a === '--force') opt.force = true;
   else if (a === '--only') opt.only = argv[++i];
   else if (a.startsWith('--only=')) opt.only = a.slice('--only='.length);
+  else if (a === '--through') opt.through = argv[++i];
+  else if (a.startsWith('--through=')) opt.through = a.slice('--through='.length);
   else {
     console.error(`알 수 없는 인자: ${a}\n`);
     console.error(USAGE);
@@ -124,6 +126,15 @@ for (let i = 0; i < argv.length; i++) {
 if (opt.help) {
   console.log(USAGE);
   process.exit(0);
+}
+
+// ── 계획 학기 (terms.mjs 가 정본) ──────────────────────────────
+let TERMS;
+try {
+  TERMS = termsThrough(opt.through ?? DEFAULT_LAST_TERM).map(toTerm);
+} catch (err) {
+  console.error(`--through 값이 잘못됐다: ${err.message}`);
+  process.exit(1);
 }
 
 // --only 해석 (없으면 전체)

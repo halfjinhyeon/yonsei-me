@@ -2,7 +2,7 @@
  * 수강편람 크롤 JSON(학기별) → 졸업요건 체커용 과목 카탈로그 통합 빌더 (개발 전용)
  *
  *   node tools/checker/build-catalog.mjs [--raw-dir tools/checker/data/raw]
- *                                        [--out-root .] [--help]
+ *                                        [--out-root .] [--through 2026-20] [--help]
  *
  * 하는 일
  *   ① `--raw-dir` 의 `courses-<yyyy>-<smt>.json` 을 학기 시간순으로 읽어 **학정번호(code) 키**로
@@ -34,6 +34,7 @@ import { readFileSync, writeFileSync, mkdirSync, existsSync, readdirSync, statSy
 import { gzipSync } from 'node:zlib';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { DEFAULT_LAST_TERM, termsThrough } from './terms.mjs';
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const REPO = resolve(HERE, '../..');
@@ -55,6 +56,7 @@ if (opt.help) {
     `사용법: node tools/checker/build-catalog.mjs \\\n` +
       `         [--raw-dir tools/checker/data/raw]   학기별 courses-<yyyy>-<smt>.json 디렉토리\n` +
       `         [--out-root .]                       세 출력 전부를 이 루트 밑으로 재지정(스모크용)\n` +
+      `         [--through 2026-20]                  기대 학기의 마지막 (기본: terms.mjs 의 ${DEFAULT_LAST_TERM})\n` +
       `         [--help]\n\n` +
       `출력\n` +
       `  <out-root>/tools/checker/data/catalog-history.json   통합 이력 정본(과목당 한 줄)\n` +
@@ -77,13 +79,15 @@ if (!existsSync(rawDir) || !statSync(rawDir).isDirectory()) {
 
 // ── 기대 학기 (결번 판정용) ────────────────────────────────────
 // smtDivCd: 10=1학기, 11=여름, 20=2학기, 21=겨울. 문자열 사전순 = 시간순이라 그대로 정렬한다.
-const EXPECTED_TERMS = [
-  '2022-10', '2022-11', '2022-20', '2022-21',
-  '2023-10', '2023-11', '2023-20', '2023-21',
-  '2024-10', '2024-11', '2024-20', '2024-21',
-  '2025-10', '2025-11', '2025-20', '2025-21',
-  '2026-10', '2026-11', '2026-20',
-];
+// 목록의 정본은 `terms.mjs` — crawl-terms.mjs 와 공유한다(여기에 학기를 또 적지 마라).
+// 결번은 게이트가 아니다. 미수집 학기는 커버리지 줄에 이름만 찍히고 빌드는 계속된다.
+let EXPECTED_TERMS;
+try {
+  EXPECTED_TERMS = termsThrough(opt.through ?? DEFAULT_LAST_TERM);
+} catch (err) {
+  console.error(`--through 값이 잘못됐다: ${err.message}`);
+  process.exit(1);
+}
 
 // ── 정규화 (src/lib/checker-match.ts 51-58행과 반드시 동기화) ──
 /**

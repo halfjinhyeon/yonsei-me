@@ -18,10 +18,13 @@
 
 1. 브라우저에서 수강편람(underwood1.yonsei.ac.kr) 로그인 → Network 탭 `.do` 요청의
    Cookie 전체 값을 `크롤링\.env`의 `YONSEI_COOKIE=`에 갱신 (수 시간 만료)
-2. `crawl-terms.mjs`의 `TERMS` 생성부에 새 학기가 포함되는지 확인(연도 범위 확장),
-   `build-catalog.mjs`의 `EXPECTED_TERMS`에도 같은 학기를 추가
-3. `node tools/checker/crawl-terms.mjs --list` 로 계획 확인 → `--only <새학기>` 로 크롤
-4. `node tools/checker/build-catalog.mjs` — **게이트가 exit 1이면** 리포트의
+2. 학기 목록의 정본은 **`tools/checker/terms.mjs` 한 곳**이다(예전엔 두 스크립트에 따로 박혀
+   있었다). 새 학기를 넣는 방법은 둘 중 하나 — 두 스크립트에 **`--through <새학기>`** 를 주거나,
+   상시로 올릴 거면 `terms.mjs`의 **`DEFAULT_LAST_TERM`** 을 새 학기로 고친다.
+   `--through`로 갈 때는 3·4단계 **양쪽에 같은 값**을 줘야 한다(한쪽만 주면 결번으로 보인다)
+3. `node tools/checker/crawl-terms.mjs [--through <새학기>] --list` 로 계획 확인 →
+   `--only <새학기>` 로 크롤
+4. `node tools/checker/build-catalog.mjs [--through <새학기>]` — **게이트가 exit 1이면** 리포트의
    `curatedRenameRequired`를 보고 `content/checker-requirements.json`(전공) 또는
    `content/liberal-arts.json`(교양)의 name/aliases를 갱신한 뒤 재실행
 5. 리포트의 `codeChangeCandidates`(개번 후보 — `curatedCodeOffered:true`는 동명이과 잡음),
