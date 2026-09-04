@@ -124,10 +124,37 @@ src/components/MileagePlanner.tsx   ← 학부 › 마일리지 전략 탭
    `{ year: '2027', semester: '10' }` 으로. 번들 URL과 화면 표기가 여기서 파생됩니다.
 
 7. **교수 보강표·오버라이드 재검토**
-   - `tools/mileage/professor-history.csv` — 크롤 원본에는 **현재 학기 교수만** 있습니다.
-     교수가 분반을 서로 맞바꾸는 과목(공학수학이 대표적)은 이 표가 있어야 이력을 분반이
-     아니라 교수 기준으로 재배치할 수 있습니다. 새 학기 라인업을 확인해 채웁니다.
+   - `tools/mileage/professor-history.csv` — 크롤 원본(마일리지 DB 의 `courses`)에는
+     **현재 학기 교수만** 있습니다. 교수가 분반을 서로 맞바꾸는 과목(공학수학이 대표적)은
+     이 표가 있어야 이력을 분반이 아니라 교수 기준으로 재배치할 수 있습니다.
      형식: `year,semester,code,division,professor`
+   - **이 표는 이제 자동으로 쌓입니다.** 체커 수강편람 raw
+     (`tools/checker/data/raw/courses-<년>-<학기>.json`)에는 **그 학기의** 담당 교수
+     `cgprfNm` 이 들어 있어, 2022-1 이후는 사람이 적을 필요가 없습니다.
+
+     ```bash
+     node tools/mileage/build-professor-history.mjs --scope curated          # 요약만(파일 무변경)
+     node tools/mileage/build-professor-history.mjs --scope curated --write  # 과거분 일괄 소급(최초 1회)
+     node tools/mileage/build-professor-history.mjs --scope curated --terms 2027-10 --write
+     node tools/mileage/build-professor-history.mjs --scope all --out /tmp/ph-all.csv   # 실험용 사본
+     ```
+
+     오케스트레이터(`tools/automation/update-semester.mjs`)의 ⑤-c 가 매 학기
+     `--scope all --terms <target> --write` 로 부르므로, 손으로 돌릴 일은 보통 없습니다.
+     다만 ⑤-c 는 **그 학기만** 훑으므로, 2022-1~현재의 과거분은 `--terms` 없이 한 번
+     돌려 소급해 두어야 합니다(2026-09 기준 95행 · 과목 18개 추가).
+     사람이 적은 행(자동 축적 구분선 **위**)은 절대 덮지 않고, 값이 어긋나면 충돌로 목록만
+     찍습니다. 남은 수기 몫은 **raw 가 없는 2022-1 이전 학기**뿐입니다.
+   - 범위 `all`(전 과목 32,148행)은 정보 추가가 아니라 **모델 입력 변경**입니다(아래 함정 참고).
+     2026-09-04 에 `PROF_HISTORY=<csv>` 로 세 표(수기·curated·all)를 같은 자로 재고 채택했습니다 —
+     공통 분반 기준 2026-10: MAE 4.228→3.934 · Median 1.20→1.10 · Hit±3 65.0→64.3% · Brier .1182→.1152,
+     2025-20: MAE 3.876→3.709 · Median 1.00→0.90 · Hit±3 65.7→66.5% · Brier .1215→.1178
+     (curated 는 수기와 동일). 모델 입력을 또 바꿀 때는 같은 방식으로 먼저 재십시오.
+
+     ```bash
+     PROF_HISTORY=/tmp/ph-all.csv DUMP=/tmp/all.json \
+       node --experimental-strip-types tools/mileage/backtest.mjs 2026-10
+     ```
    - `precompute.mjs` 의 `RECENCY_ALIAS` — 특정 학기 라인업에만 유효한 수동 보정입니다.
      라인업이 또 바뀌었으면 **삭제**해야 합니다.
 
@@ -141,7 +168,7 @@ src/components/MileagePlanner.tsx   ← 학부 › 마일리지 전략 탭
    public/data/mileage-<년>-<학기>.json
    public/data/mileage-<년>-<학기>-detail.json
    src/lib/mileage/bundle.ts
-   tools/mileage/professor-history.csv        (보강했다면)
+   tools/mileage/professor-history.csv        (⑤-c 가 자동 축적 — diff 를 훑고 넣습니다)
    ```
 
    지난 학기 번들은 아무도 읽지 않으므로 지워도 됩니다. 저장소에 다른 세션의 WIP 이
@@ -160,6 +187,19 @@ src/components/MileagePlanner.tsx   ← 학부 › 마일리지 전략 탭
   그룹·원장 791행). 새 학기 갱신 후 `professor-history.csv` 의 각 (과목·분반·학기)가
   `mileage_summary` 에 실제로 있는지 대조하고, 빠진 그룹은 마일리지 API 를 그 분반으로
   직접 호출해 채우십시오(분반 번호만 바꾸면 과거 학기도 조회됩니다).
+- **교수 보강표의 이름은 크롤 원본 `cgprfNm` 과 한 글자도 달라선 안 됩니다.** `build-db` 가
+  `courses.professor = cgprfNm` 을 그대로 싣고, `predict.ts` 는 교수를 `lineupLabel()` ·
+  `${code}|${professor}` 키로 **문자열 동일 비교**합니다(2026-20 raw ↔ DB 3,151행 전수 일치
+  실측). 공동 담당은 `"주원구,김보경"` 처럼 **쉼표가 들어간 한 문자열**이므로, 첫 사람만
+  남기고 자르면 같은 분반이 학기마다 다른 라인업으로 보여 없던 교체가 생깁니다. CSV 파서는
+  그래서 앞 4칸만 필드로 끊고 **나머지 전부**를 이름으로 봅니다 — 이 규약을 깨지 마십시오.
+- **보강표에 과목이 "등재되기만 해도" 모델 입력이 바뀝니다.** `profAt()` 은 표에 등재된
+  과목의 **미기재 학기**를 현재 교수로 메우지 않고 미상(`''`)으로 둡니다(등재 과목은 교수가
+  분반을 옮기는 것이 확인된 과목이라, 오귀속이 곧 가짜 라인업 변화가 되기 때문). 그래서
+  `build-professor-history.mjs --scope all` 은 raw 가 없는 **2022-1 이전 학기 전부**를 미상으로
+  돌려 놓습니다. 정보를 더하는 것처럼 보이지만 실제로는 이력 묶는 방식을 바꾸는 변경이니
+  반드시 백테스트로 재고 채택하십시오(2026-09 측정: 공통 분반 기준 2026-10 MAE 4.23→3.93 ·
+  Hit±3 65.0→64.3%, 2025-20 MAE 3.88→3.71 · Hit±3 65.7→66.5%. `curated` 는 두 학기 모두 무변화).
 - **컷은 `remark='*'` 를 뺀 합격자의 최저 배점입니다.** 우선·예외 배정(별표) 8천여 건을
   포함하면 컷이 최대 32점까지 왜곡되고 외부 기록과도 어긋납니다. `mileage_summary.min_mileage`
   도 컷이 아닙니다(미달 학기에는 전체 최저값이라 실제 컷과 다릅니다).

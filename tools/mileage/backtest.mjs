@@ -5,6 +5,8 @@
  *
  *   db 를 생략하면 tools/mileage/data/mileage-history.db (없으면 `.db.gz` 자동 해제)를 쓴다.
  *   신·구 DB 비교처럼 특정 파일을 재려면 경로를 명시한다.
+ *   `PROF_HISTORY=<csv>` 로 교수 보강표를 갈아 끼우고(자동 축적본 비교),
+ *   `NO_PROF_HISTORY=1` 로 표 없이 잰다.
  *
  * 목표 학기의 실제 컷을 정답으로 두고, 그 이전 학기까지만 써서 예측한 뒤 오차를 잰다.
  * "최신 컷을 얼마나 중시할지"(반감기) 같은 모수를 감이 아니라 수치로 고르기 위한 자.
@@ -21,15 +23,22 @@ import { dirname, join } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { resolveDbPath } from './db-util.mjs';
 
-/** 과거 담당 교수 보강표 — precompute 와 동일 자료 */
+/**
+ * 과거 담당 교수 보강표 — precompute 와 동일 자료·동일 파싱.
+ *
+ * `PROF_HISTORY=<csv>` 로 다른 표를 물리고(자동 축적본 비교), `NO_PROF_HISTORY` 로 끈다.
+ * 교수 이름에 쉼표가 들어갈 수 있어(공동 담당) 앞 4칸만 끊고 나머지를 이름으로 본다.
+ */
 function loadProfessorHistory() {
-  const p = join(dirname(fileURLToPath(import.meta.url)), 'professor-history.csv');
+  const p = process.env.PROF_HISTORY || join(dirname(fileURLToPath(import.meta.url)), 'professor-history.csv');
   const m = new Map();
   if (!existsSync(p) || process.env.NO_PROF_HISTORY) return m;
   for (const line of readFileSync(p, 'utf8').split(/\r?\n/)) {
     const t = line.trim();
     if (!t || t.startsWith('#') || t.startsWith('year,')) continue;
-    const [y, s, c, d, prof] = t.split(',').map(x => x.trim());
+    const cells = t.split(',');
+    const [y, s, c, d] = cells.slice(0, 4).map(x => (x ?? '').trim());
+    const prof = cells.slice(4).join(',').trim();
     if (!y || !c || !d || !prof) continue;
     m.set(`${c}|${d.padStart(2,'0')}|${y}|${s}`, prof);
   }

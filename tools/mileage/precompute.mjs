@@ -7,6 +7,8 @@
  *     DB 는 tools/mileage/build-db.mjs 가 크롤 JSON 에서 만든다.
  *   · `--out` 생략 시 public/data/mileage-<년>-<학기>.json (+ `-detail.json`).
  *   · 위치 인자 `<db> [출력경로]` 도 예전처럼 받는다.
+ *   · 환경변수 `PROF_HISTORY=<csv>` 로 교수 보강표를 갈아 끼운다(기본: 나란한
+ *     professor-history.csv). 자동 축적본을 재 보는 측정용이다.
  *   · 학기를 바꿀 때는 아래 RECENCY_ALIAS 와 src/lib/mileage/bundle.ts 의 MILEAGE_TERM 을
  *     함께 손봐야 한다 — 자세한 절차는 tools/mileage/README.md.
  *
@@ -33,15 +35,25 @@ import { resolveDbPath } from './db-util.mjs';
  * 크롤링 원본에는 현재 학기 교수만 있어, 분반-교수 교체가 잦은 과목은 분반 번호로 이력을
  * 묶으면 서로 다른 교수의 컷이 섞인다. 이 표가 있는 (과목·분반·학기)는 실제 교수를 붙여
  * 교수 기준으로 재배치한다. 표에 없으면 기존대로 분반 계보를 따른다.
+ *
+ * 환경변수 `PROF_HISTORY=<csv 경로>` 로 다른 표를 물릴 수 있다(자동 축적본 비교 측정용 —
+ * tools/mileage/build-professor-history.mjs). 없으면 위 기본 경로.
+ *
+ * ⚠️ 교수 이름은 담당이 여럿이면 `"주원구,김보경"` 처럼 **쉼표가 들어간다**(크롤 원본
+ *    cgprfNm 을 그대로 싣는 courses.professor 와 문자열이 정확히 같아야 매칭된다). 그래서
+ *    앞 4칸만 필드로 끊고 **나머지 전부**를 교수 이름으로 본다 — 5칸으로 분해하면 두 번째
+ *    이름부터 잘려 같은 분반이 학기마다 다른 라인업으로 보인다.
  */
 function loadProfessorHistory() {
-  const p = join(dirname(fileURLToPath(import.meta.url)), 'professor-history.csv');
+  const p = process.env.PROF_HISTORY || join(dirname(fileURLToPath(import.meta.url)), 'professor-history.csv');
   const map = new Map(); // "code|division|year|semester" -> professor
   if (!existsSync(p)) return map;
   for (const line of readFileSync(p, 'utf8').split(/\r?\n/)) {
     const t = line.trim();
     if (!t || t.startsWith('#') || t.startsWith('year,')) continue;
-    const [year, semester, code, division, professor] = t.split(',').map((x) => x.trim());
+    const cells = t.split(',');
+    const [year, semester, code, division] = cells.slice(0, 4).map((x) => (x ?? '').trim());
+    const professor = cells.slice(4).join(',').trim();
     if (!year || !code || !division || !professor) continue;
     map.set(`${code}|${division.padStart(2, '0')}|${year}|${semester}`, professor);
   }

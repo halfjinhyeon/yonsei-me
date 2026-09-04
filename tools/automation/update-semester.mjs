@@ -17,6 +17,7 @@
  *   ③ 카탈로그    build-catalog.mjs --through <t>          (개명 게이트 exit 1)
  *   ④ 매칭 하네스 verify-matching.mjs                       (픽스처 FAIL 이면 exit 1)
  *   ⑤ 마일리지    raw → 크롤러 courses.json 시드 · mileage 크롤(+에러 재시도) · build-db
+ *                 · 교수 보강표 자동 축적(build-professor-history.mjs — 실패해도 계속)
  *   ⑥ 백테스트    신·구 DB 를 직전 정규학기로 각각 재고 공통 분반만 비교 (멈추지 않음)
  *   ⑦ 번들       precompute.mjs --target <t>
  *   ⑧ 상수       src/lib/mileage/bundle.ts 의 MILEAGE_TERM
@@ -69,6 +70,18 @@ const RENAME_REPORT = join(REPO, 'tools/checker/reports/rename-report.json');
 const DEFAULT_CRAWLER_DIR = 'C:\\Users\\aquae\\Desktop\\크롤링';
 /** 계절학기 코드 — 마일리지 제도 밖이다 */
 const SEASONAL = new Set(['11', '21']);
+/**
+ * ⑤-c 교수 보강표 자동 축적 범위 — 'curated'(표에 이미 있는 과목만) | 'all'(전 과목).
+ *
+ * `all` 은 정보를 더하는 데 그치지 않고 **모델 입력을 바꾼다**(보강표에 과목이 등재되면
+ * precompute·backtest 의 profAt() 폴백이 꺼져, 표에 없는 학기는 현재 교수 대신 미상 '' 이
+ * 된다 — raw 가 없는 2022-1 이전 학기 전부가 여기 걸린다). 그래서 백테스트로 재고 골랐다
+ * (2026-09-04, 공통 분반 기준 · 기준=수기 116행 대비):
+ *   2026-10 (1,203분반)  MAE 4.228→3.934 · Median 1.20→1.10 · Hit±3 65.0→64.3% · Brier .1182→.1152
+ *   2025-20 (2,290분반)  MAE 3.876→3.709 · Median 1.00→0.90 · Hit±3 65.7→66.5% · Brier .1215→.1178
+ * 네 지표 중 셋이 두 학기에서 일관되게 좋아져 `all` 을 채택했다. 되돌리려면 'curated'.
+ */
+const PROF_HISTORY_SCOPE = 'all';
 
 const USAGE = `사용법: node tools/automation/update-semester.mjs --target <YYYY-SS> [옵션]
 
@@ -455,6 +468,26 @@ if (RUN_MILEAGE) {
     }
     markDone('build-db');
   }
+
+  // ── ⑤-c 교수 보강표 자동 축적 ────────────────────────────────
+  // 수강편람 raw 의 cgprfNm 을 (년,학기,과목,분반,교수) 로 옮겨 적는다. 사람이 적은 행은
+  // 덮지 않는다. 실패해도 파이프라인은 멈추지 않는다 — 표가 없어도 예측은 돌아가고, 이
+  // 단계의 값은 "다음 학기부터 수기 보강이 필요 없다" 는 것뿐이다.
+  banner('⑤-c', `교수 보강표 자동 축적 — build-professor-history.mjs --scope ${PROF_HISTORY_SCOPE}`);
+  if (!done('professor-history')) {
+    const code = run(NODE, [
+      'tools/mileage/build-professor-history.mjs',
+      '--scope', PROF_HISTORY_SCOPE,
+      '--terms', TARGET,
+      '--write',
+    ]);
+    if (code !== 0) {
+      console.warn(`\n  ! 교수 보강표 축적이 실패했다 (exit ${code}) — 건너뛰고 계속한다.`);
+      console.warn('    수기 표는 그대로 남아 있다. ⑩ 체크리스트에서 사람이 확인하면 된다.');
+    } else {
+      markDone('professor-history');
+    }
+  }
 }
 
 // ── ⑥ 백테스트 신·구 비교 (판단은 사람 — 멈추지 않는다) ───────
@@ -578,7 +611,7 @@ banner('⑩', '마무리 — 스테이징 목록과 사람이 판단할 것');
       `public/data/mileage-${TARGET}.json`,
       `public/data/mileage-${TARGET}-detail.json`,
       'src/lib/mileage/bundle.ts',
-      '(보강했다면) tools/mileage/professor-history.csv',
+      'tools/mileage/professor-history.csv  (⑤-c 가 자동 축적 — diff 를 눈으로 훑고 넣어라)',
     );
   }
   console.log('\n  스테이징 대상 — 파일을 하나씩 명시해서 넣어라 (`git add -A` 금지):');
@@ -589,8 +622,9 @@ banner('⑩', '마무리 — 스테이징 목록과 사람이 판단할 것');
   const manual = [];
   if (RUN_MILEAGE) {
     manual.push(
-      'tools/mileage/professor-history.csv 에 새 학기 라인업을 채우고, 표의 각 (과목·분반·학기)가',
-      '  mileage_summary 에 실재하는지 대조한다 (없으면 그 분반으로 마일리지 API 를 직접 호출해 보강).',
+      'tools/mileage/professor-history.csv 는 ⑤-c 가 자동 축적됨 — 새로 교수가 바뀐 과목이 있으면 첫 행만 수기로.',
+      '  (수강편람 raw 가 없는 2022-1 이전 학기가 그 대상이다. ⑤-c 가 "사람 행과 raw 가 다른 키" 를',
+      '  찍었다면 수기 오류이거나 크롤 표기 차이이니 그 줄만 확인한다.)',
       'tools/mileage/precompute.mjs 의 RECENCY_ALIAS 재검토 — 라인업이 또 바뀌었으면 삭제한다.',
       '⑥ 백테스트 비교표를 보고 채택 여부를 판단한다 (측정하지 않은 개선은 주장하지 않는다).',
       '화면 확인: 학부 › 마일리지 전략 탭에서 검색·담기·상세·시간표가 새 학기 과목으로 나오는지.',
