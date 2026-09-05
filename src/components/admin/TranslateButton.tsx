@@ -18,9 +18,11 @@ interface Props {
   /** 번역 결과를 대상 칸에 채운다 */
   onTranslated: (text: string) => void;
   disabled?: boolean;
+  /** 40px 입력 옆에 나란히 설 때 — 높이를 입력과 맞춘다(팝업 편집기의 행 폼) */
+  tall?: boolean;
 }
 
-export function TranslateButton({ source, target = 'EN', html = false, onTranslated, disabled }: Props) {
+export function TranslateButton({ source, target = 'EN', html = false, onTranslated, disabled, tall }: Props) {
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -50,7 +52,9 @@ export function TranslateButton({ source, target = 'EN', html = false, onTransla
         type="button"
         onClick={run}
         disabled={disabled || busy}
-        className="whitespace-nowrap border border-surface-border px-2.5 py-1.5 text-xs font-semibold text-yonsei-blue transition-colors hover:border-yonsei-blue disabled:opacity-50"
+        className={`whitespace-nowrap border border-surface-border px-2.5 text-xs font-semibold text-yonsei-blue transition-colors hover:border-yonsei-blue disabled:opacity-50 ${
+          tall ? 'h-10' : 'py-1.5'
+        }`}
       >
         {busy ? '번역 중…' : label}
       </button>

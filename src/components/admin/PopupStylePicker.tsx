@@ -178,9 +178,13 @@ function StylePreview({
   const zoom = device === 'mobile' ? 0.6 : 1;
 
   return (
-    <div className="justify-self-center">
+    // 왼쪽 맞춤 — 입력 열의 다른 컨트롤과 같은 세로선에서 시작해야 눈이 흔들리지 않는다
+    <div className="justify-self-start">
       <p className="mb-2 text-xs font-semibold text-content-faint">
-        미리보기 ({device === 'mobile' ? '모바일' : 'PC'})
+        {/* 프레임이 실제 화면 크기가 아니라는 것을 수치로 밝힌다(모바일은 축소본) */}
+        {device === 'mobile'
+          ? '미리보기 (모바일 · 390×700, 60% 축소)'
+          : '미리보기 (PC · 640×520)'}
       </p>
       <div
         className="relative overflow-hidden rounded-[2px] border border-surface-border bg-surface-soft"

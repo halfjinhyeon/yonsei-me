@@ -26,7 +26,11 @@ import {
   type RepoConfig,
 } from '@/lib/admin/content-api';
 import { uploadAttachment, type UploadProgressHandler } from '@/lib/admin/storage';
-import { popupTemplate } from '@/lib/popup-templates';
+import {
+  PopupHiddenBadgeInline,
+  popupListCell,
+  popupNowKst,
+} from './popup-list-cells';
 import {
   arrayToRecord,
   cellText,
@@ -1027,25 +1031,30 @@ export function CollectionEditor({ config, resource, onDirtyChange }: Props) {
       ) : null;
     return (
       <div className="anim-panel">
-        <CmsPanelHead
-          kind="collection"
-          title={`${resource.label} · ${isNew ? '새 항목' : '수정'}`}
-          description={resource.description}
-          actions={
-            <button
-              type="button"
-              onClick={() => {
-                setEditing(null);
-                setMd(null);
-                setSummary(null);
-                setSaveError(null);
-              }}
-              className="cms-btn cms-btn-sm"
-            >
-              ← 목록으로
-            </button>
-          }
-        />
+        {/* 팝업 전용 편집기는 머리말(뒤로·제목·취소/저장)을 자기가 그린다 — 헤더의
+            '저장'이 편집기 안의 폼 상태·검증을 눌러야 해서, 여기서 그리면 같은
+            핸들러를 두 컴포넌트에 나눠 갖게 된다. */}
+        {resource.detailView !== 'popupForm' && (
+          <CmsPanelHead
+            kind="collection"
+            title={`${resource.label} · ${isNew ? '새 항목' : '수정'}`}
+            description={resource.description}
+            actions={
+              <button
+                type="button"
+                onClick={() => {
+                  setEditing(null);
+                  setMd(null);
+                  setSummary(null);
+                  setSaveError(null);
+                }}
+                className="cms-btn cms-btn-sm"
+              >
+                ← 목록으로
+              </button>
+            }
+          />
+        )}
         {saveError && (
           <p role="alert" className="mb-4 border border-[#b42318]/30 bg-[#b42318]/[0.06] px-3.5 py-2.5 text-sm text-[#b42318]">
             {saveError}
@@ -1105,6 +1114,12 @@ export function CollectionEditor({ config, resource, onDirtyChange }: Props) {
   // 목록 화면 서술자와, 모든 인라인 화면이 공유하는 입력 묶음.
   // 화면 컴포넌트는 "무엇을 보여줄까"만 알고, 편집·저장 규칙은 전부 여기에 있다.
   const view = resource.listView;
+
+  // 팝업 공지만 폴백 표를 특수하게 그린다(썸네일·기간 두 줄·상태 배지).
+  const isPopups = resource.key === 'popups';
+  // 상태 판정 기준 시각은 렌더 한 번에 하나 — 행마다 다시 만들면 같은 표 안에서
+  // 경계 시각을 넘나드는 행이 생긴다.
+  const nowKst = popupNowKst();
 
   // 뼈대는 도착할 화면과 같은 모양이어야 의미가 있다 — 표가 올 자리에 카드 뼈대를
   // 깔면 데이터가 들어오는 순간 레이아웃이 통째로 튀어 없느니만 못하다.
@@ -1200,10 +1215,16 @@ export function CollectionEditor({ config, resource, onDirtyChange }: Props) {
       {loading && <CmsSkeleton shape={skeletonShape} />}
 
       {!loading && !listError && displayRaw.length === 0 && (
+        // 팝업은 "하나도 없는 상태"가 비정상이 아니라 평소다 — 만들라고 재촉하는 대신
+        // 지우지 않아도 된다는 규칙을 알려 준다.
         <CmsEmptyState
           variant="empty"
-          title="아직 항목이 없습니다"
-          body={`${resource.description} 첫 항목을 만들면 사이트에 바로 반영됩니다.`}
+          title={isPopups ? '등록된 팝업이 없습니다.' : '아직 항목이 없습니다'}
+          body={
+            isPopups
+              ? '게재가 끝난 팝업은 자동으로 사라지므로 지우지 않아도 됩니다.'
+              : `${resource.description} 첫 항목을 만들면 사이트에 바로 반영됩니다.`
+          }
           actionLabel="+ 새 항목"
           onAction={startNew}
         />
@@ -1282,12 +1303,14 @@ export function CollectionEditor({ config, resource, onDirtyChange }: Props) {
                   aria-label="검색"
                   value={search}
                   onChange={(e) => setSearch(e.target.value)}
-                  placeholder="검색…"
+                  placeholder={isPopups ? '제목으로 검색' : '검색…'}
                   disabled={orderDirty}
-                  className="cms-input-sm w-full sm:w-[250px]"
+                  className={cn('cms-input-sm w-full', isPopups ? 'sm:w-[320px]' : 'sm:w-[250px]')}
                 />
                 <span className="ml-auto text-xs tabular-nums text-content-faint">
-                  {rows.length}개 · 총 {displayRaw.length}개
+                  {isPopups && rows.length === displayRaw.length
+                    ? `총 ${displayRaw.length}개`
+                    : `${rows.length}개 · 총 ${displayRaw.length}개`}
                 </span>
               </div>
               {/* 가로 제스처만 Lenis 에서 뺀다 — 사정은 InlineTable 의 같은 래퍼 주석 참고 */}
@@ -1307,8 +1330,22 @@ export function CollectionEditor({ config, resource, onDirtyChange }: Props) {
                           {c.label}
                         </th>
                       ))}
-                      <th className="border-b border-surface-border px-2 py-3">
-                        <span className="sr-only">동작</span>
+                      <th
+                        scope="col"
+                        className="whitespace-nowrap border-b border-surface-border px-2 py-3 text-right text-xs font-bold text-content-faint"
+                      >
+                        {isPopups ? (
+                          // 목록 순서에 뜻이 있다는 것은 표만 봐서는 알 수 없다 —
+                          // 열 이름에 점선 밑줄을 그어 설명이 있음을 알린다.
+                          <span
+                            title="목록 순서가 사이트에서 팝업이 나란히 놓이는 순서입니다"
+                            className="cursor-help underline decoration-dotted underline-offset-[3px]"
+                          >
+                            순서·작업
+                          </span>
+                        ) : (
+                          <span className="sr-only">동작</span>
+                        )}
                       </th>
                     </tr>
                   </thead>
@@ -1317,22 +1354,24 @@ export function CollectionEditor({ config, resource, onDirtyChange }: Props) {
                       <tr key={index} className="align-top transition-colors hover:bg-surface-soft">
                         {resource.listColumns.map((c, col) => {
                           const val = cellText(form, c.key);
+                          // 팝업은 값 하나로 읽히지 않는 칸(썸네일·기간·상태)이 있어
+                          // 전용 셀이 먼저 답한다. 답이 없으면(null) 평범한 값 셀.
+                          const special = isPopups ? popupListCell(c.key, form, nowKst) : null;
                           // 영상 등 URL 셀은 값 유무만 표시
-                          // 팝업 스타일 셀은 키('basicB') 대신 라벨('기본 스타일 B')
                           const display =
-                            c.key === 'video' || c.key === 'url'
-                              ? val
-                                ? '✓'
-                                : ''
-                              : c.key === 'styleDesktop' || c.key === 'styleMobile'
-                                ? popupTemplate(val).label
-                                : val;
+                            special ??
+                            (c.key === 'video' || c.key === 'url' ? (val ? '✓' : '') : val);
+                          // 제목 열이 팝업에서는 두 번째 칸이다 — 굵게 하는 기준을
+                          // "첫 칸"이 아니라 실제 제목 키로 잡는다.
+                          const strong = isPopups ? c.key === 'title' : col === 0;
                           return (
                             <td
                               key={c.key}
                               className={cn(
-                                'max-w-[16rem] truncate border-b border-[#f1f4f8] px-2 py-2.5',
-                                col === 0 ? 'font-semibold text-content' : 'text-content-soft',
+                                'border-b border-[#f1f4f8] px-2 py-2.5',
+                                // 썸네일·기간·상태는 잘리면 안 된다(줄바꿈·이미지)
+                                special === null ? 'max-w-[16rem] truncate' : 'whitespace-nowrap',
+                                strong ? 'font-semibold text-content' : 'text-content-soft',
                               )}
                             >
                               {display}
@@ -1372,6 +1411,11 @@ export function CollectionEditor({ config, resource, onDirtyChange }: Props) {
                   </tbody>
                 </table>
               </div>
+              {isPopups && (
+                <p className="mt-3 text-xs text-content-faint">
+                  노출을 끈 항목은 상태가 <PopupHiddenBadgeInline /> 으로 표시됩니다.
+                </p>
+              )}
             </>
           )}
         </>

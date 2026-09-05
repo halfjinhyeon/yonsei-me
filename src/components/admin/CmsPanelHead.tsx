@@ -23,6 +23,11 @@ export interface CmsPanelHeadProps {
   siteUrl?: string;
   /** 우측 상단 동작 버튼들 (저장·새 글 등). 배치만 여기서 맡고 내용은 에디터가 정한다 */
   actions?: React.ReactNode;
+  /** 동작 묶음을 제목 줄 위(기본)가 아니라 아래끝에 붙인다 — 취소·저장처럼
+   *  "이 화면을 끝내는" 버튼은 제목보다 낮은 자리에 있어야 배지·제목과 경쟁하지 않는다 */
+  actionsAlign?: 'start' | 'end';
+  /** 배지 위 한 줄 — '← 목록으로' 같은 상위 화면 복귀 링크 */
+  back?: React.ReactNode;
   /** 0~1 이면 제목 아래 룰이 그만큼 찬 진행 바가 된다. null/undefined = 평소의 룰 */
   progress?: number | null;
 }
@@ -41,11 +46,14 @@ export function CmsPanelHead({
   description,
   siteUrl,
   actions,
+  actionsAlign = 'start',
+  back,
   progress,
 }: CmsPanelHeadProps) {
   const badge = KIND[kind];
   return (
     <header className={cn('cms-rule mb-7 pb-[18px]', progress != null && 'relative')}>
+      {back && <div className="mb-2.5">{back}</div>}
       <div className="flex flex-wrap items-start justify-between gap-x-6 gap-y-3.5">
         <div className="min-w-0">
           <p className="flex items-center gap-2.5">
@@ -61,7 +69,16 @@ export function CmsPanelHead({
           </h2>
         </div>
         {/* 동작 버튼은 제목과 같은 줄 오른쪽 끝 — 좁은 화면에서는 아래로 흘러간다 */}
-        {actions && <div className="flex shrink-0 flex-wrap items-center gap-2">{actions}</div>}
+        {actions && (
+          <div
+            className={cn(
+              'flex shrink-0 flex-wrap items-center gap-2',
+              actionsAlign === 'end' && 'self-end',
+            )}
+          >
+            {actions}
+          </div>
+        )}
       </div>
 
       <p className="mt-3.5 max-w-[76ch] text-[13px] leading-[1.8] text-content-soft">

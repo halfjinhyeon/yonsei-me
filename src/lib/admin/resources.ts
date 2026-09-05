@@ -935,20 +935,22 @@ const popups: ResourceDef = {
   key: 'popups',
   label: '팝업 공지',
   description:
-    '지정한 페이지의 첫 화면에 게재 기간 동안만 뜨는 사진 팝업입니다. PC 와 모바일의 스타일을 각각 골라 한 항목으로 두 화면을 모두 덮습니다(팝업을 두 개 만들 필요가 없습니다). 여러 개를 만들면 목록 순서대로 나란히 표시됩니다. 권장 사진 — 폭 320~600px 의 세로형. 게재가 끝나면 자동으로 사라지므로 항목을 지우지 않아도 됩니다.',
+    '지정한 페이지의 첫 화면에 게재 기간 동안만 뜨는 사진 팝업입니다. PC와 모바일의 스타일을 각각 골라 한 항목으로 두 화면을 모두 덮습니다.',
   file: MANAGED_FILES.popups,
   format: 'array',
   // 평소에는 팝업이 하나도 없는 게 정상이라 파일이 없어도 빈 목록에서 시작한다.
   emptyIfMissing: true,
+  // 셀 내용은 값 그대로가 아니라 CollectionEditor 의 팝업 전용 셀(popup-list-cells)이
+  // 그린다 — 썸네일·기간 두 줄·상태 배지는 한 값만으로 만들 수 없기 때문이다.
+  // 'period'·'status' 는 폼에 없는 **가상 키**라 특수 셀에서만 의미가 있다.
   listColumns: [
+    { key: 'image', label: '썸네일' },
     { key: 'title', label: '제목' },
-    // 스타일 두 칸은 키('basicB')가 아니라 라벨('기본 스타일 B')로 보인다
-    // (CollectionEditor 의 목록 셀이 POPUP_TEMPLATES 로 옮겨 적는다).
+    // 스타일 두 칸은 키('basicB')가 아니라 라벨('기본 스타일 B')로 보인다.
     { key: 'styleDesktop', label: 'PC 스타일' },
     { key: 'styleMobile', label: '모바일 스타일' },
-    { key: 'start', label: '게재 시작' },
-    { key: 'end', label: '게재 종료' },
-    { key: 'enabled', label: '노출' },
+    { key: 'period', label: '게재 기간' },
+    { key: 'status', label: '상태' },
   ],
   searchKeys: ['title'],
   fields: POPUPS_FIELDS,

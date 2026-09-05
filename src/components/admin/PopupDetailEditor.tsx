@@ -8,6 +8,10 @@
 // 입력 외형은 프로젝트의 기존 폼(PostForm·RecordForm 의 fieldClass)을 그대로 쓴다 —
 // 아임웹의 밑줄 입력은 흉내 내지 않는다(각진 엣지·그림자 없음·금색 금지).
 //
+// 머리말(뒤로 · 배지 · 제목 · 취소/저장)도 여기서 그린다. 헤더의 '저장'이 이 컴포넌트의
+// 폼 상태와 검증을 눌러야 하므로, CollectionEditor 가 대신 그리면 같은 핸들러를 두
+// 컴포넌트가 나눠 갖게 된다(CollectionEditor 는 popupForm 일 때 제 헤더를 접는다).
+//
 // 값 직렬화는 여기서 하지 않는다. 폼 값을 모아 onSubmit 으로 올리면 resources.ts 의
 // fromForm 한 곳이 책임진다(DetailEditorProps 계약).
 //
@@ -17,12 +21,18 @@ import { useRef, useState } from 'react';
 import type { FieldDef, FormRecord, LocalizedPair } from '@/lib/admin/resources';
 import { validateForm } from '@/lib/admin/resources';
 import type { DetailEditorProps } from './DetailEditorTypes';
+import { CmsPanelHead } from './CmsPanelHead';
 import { PopupStylePicker } from './PopupStylePicker';
 import { TranslateButton } from './TranslateButton';
 
-// RecordForm·PostForm 과 동일한 입력 스타일
+// 40px 한 줄 입력 — 라벨 열(140px)과 같은 리듬으로 읽히게 높이를 고정한다.
 const fieldClass =
-  'w-full rounded-lg border border-surface-border bg-surface-soft px-3 py-2 text-sm text-content outline-none focus:border-yonsei-blue';
+  'h-10 w-full rounded-[2px] border border-surface-border bg-surface px-3 text-sm text-content outline-none transition-colors focus:border-yonsei-blue disabled:opacity-60';
+
+/** 필수인데 비어 있는 칸의 테두리 — 배너만으로는 "어디가" 를 못 말한다 */
+const ERROR_BORDER = 'border-[#b42318] focus:border-[#b42318]';
+
+const REQUIRED_MSG = '필수 항목입니다';
 
 function str(form: FormRecord, key: string): string {
   const v = form[key];
@@ -33,31 +43,59 @@ function pair(form: FormRecord, key: string): LocalizedPair {
   return (form[key] ?? { ko: '', en: '' }) as LocalizedPair;
 }
 
-/** 한 줄 = 왼쪽 라벨(고정 폭) + 오른쪽 입력. 좁은 화면에서는 위아래로 접힌다. */
+/** 비어 있는 필수 필드 키 — validateForm 과 **같은 규칙**을 필드 단위로 편 것이다
+ *  (validateForm 은 첫 하나의 문장만 돌려주므로 칸마다 표시할 수 없다). */
+function missingRequired(fields: FieldDef[], form: FormRecord): Set<string> {
+  const out = new Set<string>();
+  for (const f of fields) {
+    if (!f.required) continue;
+    const v = form[f.key];
+    if (f.kind === 'localized') {
+      if (!((v as LocalizedPair | undefined)?.ko ?? '').trim()) out.add(f.key);
+    } else if (typeof v !== 'string' || v.trim() === '') {
+      out.add(f.key);
+    }
+  }
+  return out;
+}
+
+/** 입력 아래 빨간 한 줄 */
+function FieldError({ show }: { show: boolean }) {
+  if (!show) return null;
+  return <p className="mt-1.5 text-xs text-[#b42318]">{REQUIRED_MSG}</p>;
+}
+
+/** 한 줄 = 왼쪽 라벨(고정 폭) + 오른쪽 입력. 좁은 화면에서는 위아래로 접힌다.
+ *  라벨의 윗 여백은 오른쪽에 오는 컨트롤 종류에 따라 다르다 — 40px 입력의 글줄,
+ *  16px 체크박스, 스타일 위젯의 토글이 각각 다른 높이에서 시작하기 때문이다. */
 function Row({
   label,
   hint,
   htmlFor,
+  align = 'input',
   children,
 }: {
   label: string;
   hint?: string;
   htmlFor?: string;
+  align?: 'input' | 'control' | 'style';
   children: React.ReactNode;
 }) {
+  const labelPad =
+    align === 'input' ? 'sm:pt-[11px]' : align === 'style' ? 'sm:pt-1.5' : 'sm:pt-0.5';
   return (
-    <div className="grid grid-cols-1 items-start gap-x-6 gap-y-2 py-4 sm:grid-cols-[140px_minmax(0,1fr)]">
-      <div className="sm:pt-2 sm:text-right">
+    <div className="grid grid-cols-1 items-start gap-x-6 gap-y-2 py-3 sm:grid-cols-[140px_minmax(0,1fr)]">
+      <div className={`${labelPad} sm:text-right`}>
         {htmlFor ? (
-          <label htmlFor={htmlFor} className="text-sm text-content-faint">
+          <label htmlFor={htmlFor} className="text-[13px] text-content-faint">
             {label}
           </label>
         ) : (
           // 라디오·체크박스 묶음은 개별 라벨이 따로 있으므로 그룹 이름만 둔다
-          <span className="text-sm text-content-faint">{label}</span>
+          <span className="text-[13px] text-content-faint">{label}</span>
         )}
       </div>
-      <div className="min-w-0">
+      <div className="min-w-0 sm:max-w-[760px]">
         {children}
         {hint && <p className="mt-1.5 text-xs text-content-faint">{hint}</p>}
       </div>
@@ -90,7 +128,7 @@ function RadioRow({
             checked={value === o.value}
             disabled={disabled}
             onChange={() => onChange(o.value)}
-            className="h-4 w-4 accent-[#003377]"
+            className="h-4 w-4 accent-[#0057A8]"
           />
           {o.label}
         </label>
@@ -108,7 +146,9 @@ function PhotoBox({
   onUploadImage,
   disabled,
   caption,
+  captionNote,
   note,
+  invalid,
 }: {
   field: Extract<FieldDef, { kind: 'imageUpload' }> | undefined;
   value: string;
@@ -116,7 +156,10 @@ function PhotoBox({
   onUploadImage?: (file: File, opts?: { maxDim?: number; folder?: string }) => Promise<string>;
   disabled?: boolean;
   caption: string;
+  /** 제목 옆 괄호 — '(필수)' / '(비우면 PC 사진)' */
+  captionNote?: string;
   note?: string;
+  invalid?: boolean;
 }) {
   const fileRef = useRef<HTMLInputElement>(null);
   const [uploading, setUploading] = useState(false);
@@ -153,8 +196,17 @@ function PhotoBox({
 
   return (
     <div className="min-w-0 flex-1">
-      <p className="mb-1.5 text-xs font-bold text-content">{caption}</p>
-      <div className="relative flex min-h-[280px] items-center justify-center overflow-hidden rounded-[2px] border border-surface-border bg-surface-soft p-3">
+      <p className="mb-1.5 text-xs font-bold text-content">
+        {caption}
+        {captionNote && (
+          <span className="ml-1 font-normal text-content-faint">{captionNote}</span>
+        )}
+      </p>
+      <div
+        className={`relative flex min-h-[280px] flex-col items-center justify-center gap-2 overflow-hidden rounded-[2px] border bg-surface-soft p-3 ${
+          invalid ? 'border-[#b42318]' : 'border-surface-border'
+        }`}
+      >
         {has ? (
           <>
             {/* 관리자 화면이라 최적화보다 즉시 반영이 중요 — next/image 대신 일반 img. */}
@@ -175,14 +227,20 @@ function PhotoBox({
             </button>
           </>
         ) : (
-          <button
-            type="button"
-            onClick={() => fileRef.current?.click()}
-            disabled={disabled || uploading || !onUploadImage}
-            className="rounded-[2px] border border-surface-border bg-surface px-4 py-2 text-sm font-semibold text-content transition-colors hover:border-yonsei-blue hover:text-yonsei-blue disabled:opacity-50"
-          >
-            파일 선택
-          </button>
+          <>
+            <button
+              type="button"
+              onClick={() => fileRef.current?.click()}
+              disabled={disabled || uploading || !onUploadImage}
+              className="rounded-[2px] border border-surface-border bg-surface px-4 py-2 text-sm font-semibold text-content transition-colors hover:border-yonsei-blue hover:text-yonsei-blue disabled:opacity-50"
+            >
+              파일 선택
+            </button>
+            {/* 규격을 고른 뒤가 아니라 고르기 전에 알려야 다시 만들지 않는다 */}
+            <p className="text-[11px] leading-relaxed text-content-faint">
+              권장: 폭 320~600px 세로형, 5MB 이하
+            </p>
+          </>
         )}
 
         {uploading && (
@@ -202,6 +260,7 @@ function PhotoBox({
           사진 교체
         </button>
       )}
+      {invalid && <p className="mt-1.5 text-xs text-[#b42318]">{REQUIRED_MSG}</p>}
       {note && <p className="mt-1.5 text-[11px] leading-relaxed text-content-faint">{note}</p>}
       {error && (
         <p role="alert" className="mt-1.5 text-[11px] text-[#b42318]">
@@ -235,7 +294,9 @@ export function PopupDetailEditor({
   onUploadImage,
 }: DetailEditorProps) {
   const [form, setForm] = useState<FormRecord>({ ...initial });
-  const [error, setError] = useState<string | null>(null);
+  // 오류는 **저장을 한 번 눌렀는지**만 상태로 둔다. 어떤 칸이 비었는지는 매 렌더
+  // 값에서 다시 세므로, 채우는 즉시 그 칸의 빨간 표시가 사라진다.
+  const [submitted, setSubmitted] = useState(false);
   // 노출 페이지 모드는 **화면 상태**다 — pages 에서 매번 유도하면 '홈' 하나만 고른 채로
   // '사용자 정의'를 열 수 없다(값이 그대로라 곧장 '홈 화면'으로 되돌아간다).
   const [pageMode, setPageMode] = useState<'home' | 'custom'>(() => {
@@ -268,17 +329,19 @@ export function PopupDetailEditor({
   const devices = (form.devices ?? []) as string[];
   const pages = (form.pages ?? []) as string[];
 
+  const missing = submitted ? missingRequired(fields, form) : new Set<string>();
+  const bad = (key: string) => missing.has(key);
+  const showBanner = missing.size > 0;
+
   function toggleList(key: string, value: string, list: string[]) {
     set(key, list.includes(value) ? list.filter((v) => v !== value) : [...list, value]);
   }
 
   function handleSubmit() {
-    const msg = validateForm(fields, form);
-    if (msg) {
-      setError(msg);
-      return;
-    }
-    setError(null);
+    setSubmitted(true);
+    // 게이트는 기존 검증 한 곳(validateForm)이 그대로 맡는다 — 위의 칸별 표시는
+    // 같은 규칙을 화면에 편 것일 뿐, 저장 여부를 따로 정하지 않는다.
+    if (validateForm(fields, form)) return;
     onSubmit(form);
   }
 
@@ -290,33 +353,53 @@ export function PopupDetailEditor({
       type="button"
       onClick={handleSubmit}
       disabled={busy}
-      className="btn-primary disabled:opacity-60"
+      className="cms-btn-primary disabled:opacity-60"
     >
       {busy ? '저장 중…' : '저장'}
     </button>
   );
 
   return (
-    <div className="rounded-[2px] border border-surface-border bg-surface">
-      {/* 상단 바 — 제목 + 취소·저장 */}
-      <div className="flex flex-wrap items-center justify-between gap-3 border-b border-surface-border px-5 py-4">
-        <h3 className="m-0 text-base font-bold text-content">
-          {isEdit ? '팝업 편집' : '새 팝업'}
-        </h3>
-        <div className="flex items-center gap-2">
+    <div>
+      <CmsPanelHead
+        kind="collection"
+        title={`팝업 공지 · ${isEdit ? '편집' : '새 항목'}`}
+        description="저장하면 이 항목이 화면 하단 변경 트레이에 올라가고, 트레이에서 한 번에 저장합니다."
+        back={
           <button
             type="button"
             onClick={onCancel}
-            disabled={busy}
-            className="btn-secondary disabled:opacity-60"
+            className="text-xs font-bold text-yonsei-blue transition-colors hover:text-yonsei-navy"
           >
-            취소
+            ← 목록으로
           </button>
-          {saveButton}
-        </div>
-      </div>
+        }
+        actionsAlign="end"
+        actions={
+          <>
+            <button
+              type="button"
+              onClick={onCancel}
+              disabled={busy}
+              className="cms-btn disabled:opacity-60"
+            >
+              취소
+            </button>
+            {saveButton}
+          </>
+        }
+      />
 
-      <div className="px-5 py-2">
+      {showBanner && (
+        <p
+          role="alert"
+          className="mb-5 border border-[#b42318]/30 bg-[#b42318]/[0.06] px-3.5 py-2.5 text-sm font-semibold text-[#b42318]"
+        >
+          필수 항목을 입력하세요
+        </p>
+      )}
+
+      <div className="rounded-[2px] border border-surface-border bg-surface px-5 py-2">
         {isEdit && str(form, 'id') !== '' && (
           <p className="pt-3 text-xs text-content-faint">식별자: {str(form, 'id')}</p>
         )}
@@ -324,16 +407,20 @@ export function PopupDetailEditor({
         {/* 1. 제목 (한/영) */}
         <Row label="제목" hint={field('title')?.hint}>
           <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
-            <input
-              id="popup-title-ko"
-              type="text"
-              value={titlePair.ko}
-              disabled={busy}
-              onChange={(e) => set('title', { ...titlePair, ko: e.target.value })}
-              aria-label="제목 (한국어)"
-              placeholder="한국어"
-              className={fieldClass}
-            />
+            <div>
+              <input
+                id="popup-title-ko"
+                type="text"
+                value={titlePair.ko}
+                disabled={busy}
+                onChange={(e) => set('title', { ...titlePair, ko: e.target.value })}
+                aria-label="제목 (한국어)"
+                aria-invalid={bad('title') ? true : undefined}
+                placeholder="한국어"
+                className={`${fieldClass} ${bad('title') ? ERROR_BORDER : ''}`}
+              />
+              <FieldError show={bad('title')} />
+            </div>
             <div className="flex items-start gap-2">
               <input
                 id="popup-title-en"
@@ -349,13 +436,14 @@ export function PopupDetailEditor({
                 source={titlePair.ko}
                 onTranslated={(en) => set('title', { ...titlePair, en })}
                 disabled={busy}
+                tall
               />
             </div>
           </div>
         </Row>
 
         {/* 2. 기간 */}
-        <Row label="기간" hint="한국 시간 기준입니다. 종료가 시작보다 빠르면 팝업이 뜨지 않습니다">
+        <Row label="기간" hint="한국 시간 기준입니다.">
           <div className="flex flex-wrap items-center gap-2">
             <input
               type="datetime-local"
@@ -363,7 +451,8 @@ export function PopupDetailEditor({
               disabled={busy}
               onChange={(e) => set('start', e.target.value)}
               aria-label="게재 시작"
-              className={`${fieldClass} w-auto min-w-[210px] flex-1`}
+              aria-invalid={bad('start') ? true : undefined}
+              className={`${fieldClass} w-auto min-w-[210px] flex-1 ${bad('start') ? ERROR_BORDER : ''}`}
             />
             <span aria-hidden="true" className="text-sm text-content-faint">
               ~
@@ -374,13 +463,16 @@ export function PopupDetailEditor({
               disabled={busy}
               onChange={(e) => set('end', e.target.value)}
               aria-label="게재 종료"
-              className={`${fieldClass} w-auto min-w-[210px] flex-1`}
+              aria-invalid={bad('end') ? true : undefined}
+              className={`${fieldClass} w-auto min-w-[210px] flex-1 ${bad('end') ? ERROR_BORDER : ''}`}
             />
           </div>
+          {/* 시작·종료가 한 줄이라 문구도 한 번만 — 칸마다 붙이면 같은 말이 두 번 */}
+          <FieldError show={bad('start') || bad('end')} />
         </Row>
 
         {/* 3. 대상 기기 */}
-        <Row label="대상 기기" hint={field('devices')?.hint}>
+        <Row label="대상 기기" hint={field('devices')?.hint} align="control">
           <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
             {deviceOptions.map((o) => (
               <label
@@ -392,7 +484,7 @@ export function PopupDetailEditor({
                   checked={devices.includes(o.value)}
                   disabled={busy}
                   onChange={() => toggleList('devices', o.value, devices)}
-                  className="h-4 w-4 accent-[#003377]"
+                  className="h-4 w-4 accent-[#0057A8]"
                 />
                 {o.label}
               </label>
@@ -401,7 +493,7 @@ export function PopupDetailEditor({
         </Row>
 
         {/* 4. 노출 페이지 */}
-        <Row label="노출 페이지">
+        <Row label="노출 페이지" align="control">
           <RadioRow
             name="popup-page-mode"
             value={pageMode}
@@ -428,7 +520,7 @@ export function PopupDetailEditor({
                         checked={pages.includes(o.value)}
                         disabled={busy}
                         onChange={() => toggleList('pages', o.value, pages)}
-                        className="h-4 w-4 accent-[#003377]"
+                        className="h-4 w-4 accent-[#0057A8]"
                       />
                       {o.label}
                     </label>
@@ -442,13 +534,13 @@ export function PopupDetailEditor({
 
         {/* 5. 스타일 */}
         {styleField?.kind === 'popupStyle' && (
-          <Row label="스타일" hint={styleField.hint}>
+          <Row label="스타일" hint={styleField.hint} align="style">
             <PopupStylePicker form={form} keys={styleField.keys} setValue={set} />
           </Row>
         )}
 
         {/* 6. 버튼 설정 */}
-        <Row label="버튼 설정">
+        <Row label="버튼 설정" align="control">
           <RadioRow
             name="popup-hide-today-button"
             value={form.hideTodayButton === true ? 'show' : 'hide'}
@@ -460,12 +552,12 @@ export function PopupDetailEditor({
             onChange={(v) => set('hideTodayButton', v === 'show')}
           />
           <p className="mt-1.5 text-xs text-content-faint">
-            팝업 아래쪽의 &ldquo;오늘 하루 보지 않기&rdquo; 버튼입니다.
+            하단 &lsquo;오늘 하루 보지 않기&rsquo; 체크박스와 닫기 버튼
           </p>
         </Row>
 
         {/* 7. 우측 상단 닫기 설정 */}
-        <Row label="우측 상단 닫기 설정">
+        <Row label="우측 상단 닫기 설정" align="control">
           <RadioRow
             name="popup-close-control"
             value={str(form, 'closeControl') || 'close'}
@@ -476,7 +568,7 @@ export function PopupDetailEditor({
         </Row>
 
         {/* 8. 이미지 */}
-        <Row label="이미지">
+        <Row label="이미지" align="control">
           <div className="flex flex-col gap-4 sm:flex-row">
             <PhotoBox
               field={imageField?.kind === 'imageUpload' ? imageField : undefined}
@@ -485,7 +577,9 @@ export function PopupDetailEditor({
               onUploadImage={onUploadImage}
               disabled={busy}
               caption="PC 사진"
+              captionNote="(필수)"
               note={imageField?.hint}
+              invalid={bad('image')}
             />
             <PhotoBox
               field={imageMobileField?.kind === 'imageUpload' ? imageMobileField : undefined}
@@ -494,6 +588,7 @@ export function PopupDetailEditor({
               onUploadImage={onUploadImage}
               disabled={busy}
               caption="모바일 사진"
+              captionNote="(비우면 PC 사진)"
               note="비우면 PC 사진을 씁니다."
             />
           </div>
@@ -517,7 +612,7 @@ export function PopupDetailEditor({
                 checked={form.newTab === true}
                 disabled={busy}
                 onChange={(e) => set('newTab', e.target.checked)}
-                className="h-4 w-4 accent-[#003377]"
+                className="h-4 w-4 accent-[#0057A8]"
               />
               새 창에서 열기
             </label>
@@ -550,33 +645,26 @@ export function PopupDetailEditor({
                 source={buttonPair.ko}
                 onTranslated={(en) => set('buttonLabel', { ...buttonPair, en })}
                 disabled={busy}
+                tall
               />
             </div>
           </div>
         </Row>
 
         {/* 11. 노출 */}
-        <Row label="노출">
+        <Row label="노출" align="control">
           <label className="flex cursor-pointer items-center gap-2 text-sm text-content">
             <input
               type="checkbox"
               checked={form.enabled === true}
               disabled={busy}
               onChange={(e) => set('enabled', e.target.checked)}
-              className="h-4 w-4 accent-[#003377]"
+              className="h-4 w-4 accent-[#0057A8]"
             />
             노출
           </label>
-          <p className="mt-1.5 text-xs text-content-faint">
-            꺼 두면 게재 기간 안이어도 사이트에 뜨지 않습니다.
-          </p>
+          <p className="mt-1.5 text-xs text-content-faint">끄면 기간 안이라도 뜨지 않습니다</p>
         </Row>
-
-        {error && (
-          <p role="alert" className="pt-2 text-sm font-semibold text-[#b42318]">
-            {error}
-          </p>
-        )}
 
         <div className="flex justify-end border-t border-surface-border py-4">{saveButton}</div>
       </div>
