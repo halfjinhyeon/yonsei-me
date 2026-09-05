@@ -9,7 +9,7 @@ import { useState } from 'react';
 import type { FieldDef, FormRecord, LocalizedPair } from '@/lib/admin/resources';
 import { validateForm } from '@/lib/admin/resources';
 import { ClubFeedEditor } from './ClubFeedEditor';
-import { PopupStylePicker } from './PopupStylePicker';
+import { PopupPositionPicker } from './PopupPositionPicker';
 import { TranslateButton } from './TranslateButton';
 
 // PostForm 과 동일한 입력 스타일
@@ -328,13 +328,13 @@ export function RecordForm({
       );
     }
 
-    // 팝업 스타일 — 값이 두 칸(styleDesktop/styleMobile)이라 전용 위젯이 통째로 맡는다
-    if (f.kind === 'popupStyle') {
+    // 팝업 위치 — 값이 두 칸(positionDesktop/positionMobile)이라 전용 위젯이 통째로 맡는다
+    if (f.kind === 'popupPosition') {
       return (
         <fieldset>
           <legend className="text-sm font-semibold text-content">{f.label}</legend>
           {f.hint && <p className="mb-3 mt-1 text-xs text-content-faint">{f.hint}</p>}
-          <PopupStylePicker form={form} keys={f.keys} setValue={setValue} />
+          <PopupPositionPicker form={form} keys={f.keys} setValue={setValue} />
         </fieldset>
       );
     }

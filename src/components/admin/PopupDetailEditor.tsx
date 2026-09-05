@@ -22,7 +22,7 @@ import type { FieldDef, FormRecord, LocalizedPair } from '@/lib/admin/resources'
 import { validateForm } from '@/lib/admin/resources';
 import type { DetailEditorProps } from './DetailEditorTypes';
 import { CmsPanelHead } from './CmsPanelHead';
-import { PopupStylePicker } from './PopupStylePicker';
+import { PopupPositionPicker } from './PopupPositionPicker';
 import { TranslateButton } from './TranslateButton';
 
 // 40px 한 줄 입력 — 라벨 열(140px)과 같은 리듬으로 읽히게 높이를 고정한다.
@@ -312,7 +312,7 @@ export function PopupDetailEditor({
   const field = (key: string) => fields.find((f) => f.key === key);
   const imageField = field('image');
   const imageMobileField = field('imageMobile');
-  const styleField = field('style');
+  const positionField = field('position');
   const pageOptions =
     field('pages')?.kind === 'checkboxGroup'
       ? (field('pages') as Extract<FieldDef, { kind: 'checkboxGroup' }>).options
@@ -346,7 +346,6 @@ export function PopupDetailEditor({
   }
 
   const titlePair = pair(form, 'title');
-  const buttonPair = pair(form, 'buttonLabel');
 
   const saveButton = (
     <button
@@ -532,10 +531,10 @@ export function PopupDetailEditor({
           )}
         </Row>
 
-        {/* 5. 스타일 */}
-        {styleField?.kind === 'popupStyle' && (
-          <Row label="스타일" hint={styleField.hint} align="style">
-            <PopupStylePicker form={form} keys={styleField.keys} setValue={set} />
+        {/* 5. 위치 */}
+        {positionField?.kind === 'popupPosition' && (
+          <Row label="위치" hint={positionField.hint} align="style">
+            <PopupPositionPicker form={form} keys={positionField.keys} setValue={set} />
           </Row>
         )}
 
@@ -552,7 +551,7 @@ export function PopupDetailEditor({
             onChange={(v) => set('hideTodayButton', v === 'show')}
           />
           <p className="mt-1.5 text-xs text-content-faint">
-            하단 &lsquo;오늘 하루 보지 않기&rsquo; 체크박스와 닫기 버튼
+            하단 바의 &lsquo;오늘 하루 보지 않기&rsquo; 칸 (끄면 &lsquo;닫기&rsquo; 만 남습니다)
           </p>
         </Row>
 
@@ -619,39 +618,7 @@ export function PopupDetailEditor({
           </div>
         </Row>
 
-        {/* 10. 버튼 문구 */}
-        <Row label="버튼 문구" hint={field('buttonLabel')?.hint}>
-          <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
-            <input
-              type="text"
-              value={buttonPair.ko}
-              disabled={busy}
-              onChange={(e) => set('buttonLabel', { ...buttonPair, ko: e.target.value })}
-              aria-label="버튼 문구 (한국어)"
-              placeholder="자세히 보기"
-              className={fieldClass}
-            />
-            <div className="flex items-start gap-2">
-              <input
-                type="text"
-                value={buttonPair.en}
-                disabled={busy}
-                onChange={(e) => set('buttonLabel', { ...buttonPair, en: e.target.value })}
-                aria-label="버튼 문구 (English)"
-                placeholder="Learn more"
-                className={fieldClass}
-              />
-              <TranslateButton
-                source={buttonPair.ko}
-                onTranslated={(en) => set('buttonLabel', { ...buttonPair, en })}
-                disabled={busy}
-                tall
-              />
-            </div>
-          </div>
-        </Row>
-
-        {/* 11. 노출 */}
+        {/* 10. 노출 */}
         <Row label="노출" align="control">
           <label className="flex cursor-pointer items-center gap-2 text-sm text-content">
             <input

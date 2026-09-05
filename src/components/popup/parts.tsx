@@ -1,70 +1,78 @@
 'use client';
 
-// 4개 템플릿이 나눠 쓰는 공통 부품 + 바깥 배치 컨테이너.
+// 두 고정 카드(PopupDesktop·PopupMobile)가 나눠 쓰는 공통 부품 + 바깥 배치 컨테이너.
 //
-// 템플릿 파일은 Claude Design 산출물로 교체되지만, 여기 있는 것들은 동작(닫기·
-// 오늘 하루 숨김·링크)과 배치라 그대로 살아남는다. 시각은 사이트 규칙을 따른다 —
-// 각진 엣지(≤2px), 그림자 없음, 금색 없음, 토큰 색만 사용.
+// 시각은 사이트 규칙을 따른다 — 각진 엣지(≤2px), 그림자 없음, 딤 없음, 금색 없음,
+// 토큰 색만 사용. 캐러셀 점만 예외적으로 원(8px)이다.
 
 import { useState } from 'react';
-import type { PopupPlacement } from '@/lib/popup-templates';
-import type { PopupTemplateProps } from './types';
+import {
+  popupPosition,
+  type PopupDevice,
+  type PopupPositionKey,
+} from '@/lib/popup-positions';
+import type { PopupCardProps } from './types';
 
 /** 헤더(z-50)보다 위 */
 export const POPUP_Z = 60;
 
+/** 위치 키 → 바깥 컨테이너의 배치 클래스. 화면 가장자리 여백은 24px,
+ *  상단 배치는 헤더에 겹치지 않게 96px 아래에서 시작한다. */
+const DESKTOP_BOX: Record<string, string> = {
+  center: 'inset-0 flex items-center justify-center p-4',
+  topLeft: 'left-6 top-24',
+  topRight: 'right-6 top-24',
+  bottomLeft: 'bottom-6 left-6',
+  bottomRight: 'bottom-6 right-6',
+};
+
+const MOBILE_BOX: Record<string, string> = {
+  bottom: 'inset-x-0 bottom-0',
+  top: 'inset-x-0 top-0',
+  center: 'inset-0 flex items-center justify-center',
+};
+
 /**
- * 같은 배치(placement)를 쓰는 팝업들의 바깥 컨테이너.
+ * 같은 위치를 쓰는 팝업들의 바깥 컨테이너.
  *
- * 템플릿은 자기 카드만 그리고 위치는 몰라야 한다 — 그래야 디자인 산출물로 파일을
- * 통째로 갈아 끼워도 여러 개가 동시에 뜰 때의 겹침 규칙이 유지된다.
+ * 카드는 자기 모양만 그리고 위치는 몰라야 한다 — 그래야 여러 개가 동시에 뜰 때의
+ * 규칙(같은 자리면 캐러셀)이 카드 밖 한 곳에 모인다.
  * contained 면 fixed 대신 absolute 를 써서 관리자 미리보기 프레임을 벗어나지 않는다.
  */
 export function PopupGroup({
-  placement,
   device,
+  position,
   contained = false,
   children,
 }: {
-  placement: PopupPlacement;
-  device: 'desktop' | 'mobile';
+  device: PopupDevice;
+  position: PopupPositionKey;
   contained?: boolean;
   children: React.ReactNode;
 }) {
-  const pos = contained ? 'absolute' : 'fixed';
-  // 하단은 세로 스택(시트가 쌓인다), 가운데는 flex-wrap(옆으로 늘어선다)
-  const box =
-    placement === 'bottom'
-      ? `${pos} inset-x-0 bottom-0 flex flex-col items-center gap-2`
-      : `${pos} inset-0 flex flex-wrap items-center justify-center gap-3 p-4`;
+  const key = popupPosition(device, position).key;
+  const box = (device === 'mobile' ? MOBILE_BOX : DESKTOP_BOX)[key];
   return (
     <div
-      className={`pointer-events-none ${box}`}
-      style={{
-        zIndex: contained ? undefined : POPUP_Z,
-        // PC 하단 시트는 화면 끝에 붙이지 않고 살짝 띄운다(모바일은 붙인 바텀시트)
-        paddingBottom: placement === 'bottom' && device === 'desktop' ? 24 : undefined,
-      }}
+      className={`pointer-events-none ${contained ? 'absolute' : 'fixed'} ${box}`}
+      style={{ zIndex: contained ? undefined : POPUP_Z }}
     >
       {children}
     </div>
   );
 }
 
-/** 카드 폭 — 템플릿 4개가 같은 규칙을 쓴다(가운데 420 / 하단 480, 모바일은 전폭) */
-export function popupCardWidth(
-  placement: PopupPlacement,
-  device: 'desktop' | 'mobile',
-  contained: boolean,
-): string {
-  if (device === 'desktop') return placement === 'bottom' ? '480px' : '420px';
-  if (placement === 'bottom') return '100%';
-  return contained ? 'calc(100% - 32px)' : 'calc(100vw - 32px)';
+/** 카드 폭 — PC 는 360px 고정, 모바일은 전폭 시트(가운데 배치만 좌우 16px 여백) */
+export function popupCardWidth(device: PopupDevice, position: PopupPositionKey): string {
+  if (device === 'desktop') return '360px';
+  return position === 'center' ? 'calc(100% - 32px)' : '100%';
 }
 
-/** 사진 최대 높이 — 미리보기 프레임 안에서는 뷰포트 단위를 쓰지 않는다 */
-export function popupImageMaxHeight(contained: boolean): string {
-  return contained ? '360px' : '70svh';
+/** 사진 최대 높이. 미리보기 프레임 안(contained)에서는 뷰포트 단위를 쓸 수 없으므로
+ *  프레임 높이(--popup-frame-h, 미리보기가 심어 준다)의 70% 를 쓴다. */
+export function popupImageMaxHeight(device: PopupDevice, contained: boolean): string {
+  if (contained) return 'calc(var(--popup-frame-h, 520px) * 0.7)';
+  return device === 'mobile' ? '70svh' : 'min(70vh, 640px)';
 }
 
 /** 사진 — 링크가 있으면 <a> 로 감싼다. 값이 없으면 회색 플레이스홀더(미리보기) */
@@ -73,13 +81,15 @@ export function PopupImage({
   alt,
   link,
   newTab,
+  device,
   contained = false,
-}: Pick<PopupTemplateProps, 'image' | 'alt' | 'link' | 'newTab' | 'contained'>) {
-  const maxHeight = popupImageMaxHeight(contained);
+}: Pick<PopupCardProps, 'image' | 'alt' | 'link' | 'newTab' | 'contained'> & {
+  device: PopupDevice;
+}) {
   if (!image) {
     return (
       <div
-        className="grid w-full place-items-center border-b border-surface-border bg-surface-soft text-xs text-content-faint"
+        className="grid w-full place-items-center bg-surface-soft text-xs text-content-faint"
         style={{ height: contained ? 180 : 220 }}
       >
         사진 없음
@@ -93,7 +103,7 @@ export function PopupImage({
       src={image}
       alt={alt}
       className="block w-full object-contain"
-      style={{ maxHeight }}
+      style={{ maxHeight: popupImageMaxHeight(device, contained) }}
     />
   );
   if (!link) return img;
@@ -109,12 +119,13 @@ export function PopupImage({
   );
 }
 
-/** 우측 상단 X — closeControl 이 'none' 이면 그리지 않는다 */
+/** 우측 상단 X — 사진 위에 겹치는 얇은 회색 아이콘(배경 없음).
+ *  closeControl 이 'none' 이면 그리지 않는다. */
 export function PopupCloseX({
   closeControl,
   labels,
   onDismiss,
-}: Pick<PopupTemplateProps, 'closeControl' | 'labels' | 'onDismiss'>) {
+}: Pick<PopupCardProps, 'closeControl' | 'labels' | 'onDismiss'>) {
   if (closeControl === 'none') return null;
   const remember = closeControl === 'hideToday';
   const label = remember ? labels.hideToday : labels.close;
@@ -123,65 +134,134 @@ export function PopupCloseX({
       type="button"
       onClick={() => onDismiss(remember)}
       aria-label={label}
-      className="absolute right-0 top-0 grid h-9 w-9 place-items-center border-b border-l border-surface-border bg-surface text-content-faint hover:text-content"
+      className="absolute right-1 top-1 grid h-7 w-7 place-items-center text-[#6E6E6E] transition-colors hover:text-[#232323]"
     >
-      <span aria-hidden="true" className="text-base leading-none">
-        ✕
-      </span>
+      <svg
+        width="14"
+        height="14"
+        viewBox="0 0 14 14"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        aria-hidden="true"
+      >
+        <path d="M1.75 1.75 12.25 12.25" />
+        <path d="M12.25 1.75 1.75 12.25" />
+      </svg>
     </button>
   );
 }
 
-/** A 계열의 이미지 아래 전폭 남색 버튼. link 가 없으면 아무것도 그리지 않는다 */
-export function PopupActionButton({
-  link,
-  newTab,
-  buttonLabel,
-}: Pick<PopupTemplateProps, 'link' | 'newTab' | 'buttonLabel'>) {
-  if (!link) return null;
-  return (
-    <a
-      href={link}
-      target={newTab ? '_blank' : undefined}
-      rel={newTab ? 'noopener noreferrer' : undefined}
-      className="block rounded-[2px] bg-yonsei-navy px-4 py-3 text-center text-sm font-semibold text-white hover:bg-yonsei-blue"
-    >
-      {buttonLabel}
-    </a>
-  );
-}
+const FOOT_BASE =
+  'h-full text-[13px] leading-none transition-colors disabled:opacity-60';
 
-/** 하단 바 — "오늘 하루 보지 않기" 체크박스 + 닫기.
- *  hideTodayButton 이 꺼져 있어도 닫기 버튼은 남긴다(X 를 '표시안함' 으로 둔 경우
- *  닫을 방법이 아예 없어지면 안 된다). */
+/**
+ * 하단 바(44px, 위 헤어라인).
+ * - split(PC): 좌우 반반 두 칸 + 가운데 세로 헤어라인. 왼쪽 칸이 없으면 '닫기' 전폭.
+ * - 모바일: 좌우 정렬(좌우 여백 16px). 왼쪽 칸이 없으면 그 자리를 비운다.
+ *
+ * hideTodayButton 이 꺼져 있어도 '닫기' 는 남긴다 — X 를 '표시안함' 으로 둔 경우
+ * 닫을 방법이 아예 없어지면 안 된다.
+ */
 export function PopupFooterBar({
+  split,
   hideTodayButton,
   labels,
   onDismiss,
-}: Pick<PopupTemplateProps, 'hideTodayButton' | 'labels' | 'onDismiss'>) {
-  const [hideToday, setHideToday] = useState(false);
+}: Pick<PopupCardProps, 'hideTodayButton' | 'labels' | 'onDismiss'> & { split: boolean }) {
+  const hideBtn = (
+    <button
+      type="button"
+      onClick={() => onDismiss(true)}
+      className={`${FOOT_BASE} ${split ? 'flex-1' : ''} text-content-faint hover:text-content`}
+    >
+      {labels.hideToday}
+    </button>
+  );
+  const closeBtn = (
+    <button
+      type="button"
+      onClick={() => onDismiss(false)}
+      className={`${FOOT_BASE} ${
+        split ? `flex-1 ${hideTodayButton ? 'border-l border-surface-border' : ''}` : ''
+      } font-semibold text-content hover:text-yonsei-blue`}
+    >
+      {labels.close}
+    </button>
+  );
+
+  if (split) {
+    return (
+      <div className="flex h-11 border-t border-surface-border">
+        {hideTodayButton && hideBtn}
+        {closeBtn}
+      </div>
+    );
+  }
   return (
-    <div className="flex items-center justify-between gap-3 border-t border-surface-border px-3 py-2">
-      {hideTodayButton ? (
-        <label className="flex cursor-pointer items-center gap-2 text-xs text-content-faint">
-          <input
-            type="checkbox"
-            checked={hideToday}
-            onChange={(e) => setHideToday(e.target.checked)}
-            className="h-3.5 w-3.5 accent-yonsei-blue"
-          />
-          {labels.hideToday}
-        </label>
-      ) : (
-        <span />
-      )}
-      <button
-        type="button"
-        onClick={() => onDismiss(hideToday)}
-        className="rounded-[2px] px-2 py-1 text-xs font-semibold text-content hover:text-yonsei-blue"
-      >
-        {labels.close}
-      </button>
+    <div className="flex h-11 items-center justify-between border-t border-surface-border px-4">
+      {hideTodayButton ? hideBtn : <span />}
+      {closeBtn}
+    </div>
+  );
+}
+
+/** 캐러셀 점 — 현재 남색, 나머지 연회색. 누르면 그 팝업으로 옮긴다 */
+export function PopupDots({
+  count,
+  index,
+  onSelect,
+}: {
+  count: number;
+  index: number;
+  onSelect: (i: number) => void;
+}) {
+  return (
+    <div className="pointer-events-auto flex items-center justify-center gap-2">
+      {Array.from({ length: count }, (_, i) => (
+        <button
+          key={i}
+          type="button"
+          aria-label={String(i + 1)}
+          aria-current={i === index ? 'true' : undefined}
+          onClick={() => onSelect(i)}
+          className="block h-2 w-2 rounded-full transition-colors"
+          style={{ backgroundColor: i === index ? '#003377' : '#C8D0DB' }}
+        />
+      ))}
+    </div>
+  );
+}
+
+/**
+ * 같은 자리에 여러 개가 뜰 때 — 한 자리에 하나씩 보여 주고 점으로 옮긴다.
+ *
+ * 닫기는 여기서 처리하지 않는다. 목록(count)이 줄면 활성 index 를 끝으로 당겨
+ * "닫으면 다음 팝업이 같은 자리에 보인다" 가 저절로 성립한다.
+ *
+ * 점의 자리는 기기마다 다르다 — PC 는 카드 **아래**, 모바일은 시트 **안쪽**
+ * (하단 바 아래). 그래서 모바일은 점을 카드에 넘겨 준다.
+ */
+export function PopupCarousel({
+  device,
+  count,
+  children,
+}: {
+  device: PopupDevice;
+  count: number;
+  /** (활성 index, 점 묶음) → 카드 하나 */
+  children: (index: number, dots: React.ReactNode) => React.ReactNode;
+}) {
+  const [index, setIndex] = useState(0);
+  const active = count > 0 ? Math.min(index, count - 1) : 0;
+  const dots = count > 1 ? <PopupDots count={count} index={active} onSelect={setIndex} /> : null;
+
+  if (device === 'mobile') return <>{children(active, dots)}</>;
+  return (
+    <div className="flex flex-col items-center gap-2">
+      {children(active, null)}
+      {dots}
     </div>
   );
 }

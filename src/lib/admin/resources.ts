@@ -6,11 +6,7 @@
 import type { BoardKey } from '@/lib/admin/boards';
 // 파일 경로는 여기 적지 않는다 — 저장소·DB 양쪽의 "관리 대상" 판정과 같은 목록을 쓴다.
 import { MANAGED_FILES } from '@/lib/admin/managed-content';
-import {
-  DEFAULT_DESKTOP_TEMPLATE,
-  DEFAULT_MOBILE_TEMPLATE,
-  POPUP_TEMPLATES,
-} from '@/lib/popup-templates';
+import { DEFAULT_POSITION, isPopupPosition } from '@/lib/popup-positions';
 
 // ---- 폼 값 모델 ----
 // RecordForm 이 다루는 평면 값: 필드 kind 에 따라 문자열 / 한·영 쌍 / 문자열 배열.
@@ -60,10 +56,10 @@ export type FieldDef =
   | (FieldBase & { kind: 'checkboxGroup'; options: SelectOption[] })
   // 하나만 고르는 라디오 묶음 — 값은 문자열(select 와 같은 취급)
   | (FieldBase & { kind: 'radio'; options: SelectOption[] })
-  // 팝업 공지 전용 — PC·모바일 템플릿을 **한 위젯에서 함께** 고른다(PopupStylePicker).
+  // 팝업 공지 전용 — PC·모바일 위치를 **한 위젯에서 함께** 고른다(PopupPositionPicker).
   // 폼 값에는 keys.desktop / keys.mobile 두 문자열 키가 따로 존재하고, 이 필드의
   // key 자체는 값을 갖지 않는다(React key·라벨 용도).
-  | (FieldBase & { kind: 'popupStyle'; keys: { desktop: string; mobile: string } })
+  | (FieldBase & { kind: 'popupPosition'; keys: { desktop: string; mobile: string } })
   | (FieldBase & { kind: 'image' }) // 경로 문자열 + 미리보기
   | (FieldBase & { kind: 'imageList' }) // 경로 문자열 배열
   // 파일 업로드 → 저장소 커밋 후 공개 URL 을 값으로 저장.
@@ -243,7 +239,7 @@ export function defaultToForm(fields: FieldDef[], raw: unknown): FormRecord {
       form[f.key] = Array.isArray(v) ? v.map(String) : [];
     } else if (f.kind === 'checkbox') {
       form[f.key] = r[f.key] === true;
-    } else if (f.kind === 'popupStyle') {
+    } else if (f.kind === 'popupPosition') {
       // 이 필드는 자기 key 에 값을 두지 않는다 — keys.desktop / keys.mobile 두 칸이 값이다.
       for (const k of [f.keys.desktop, f.keys.mobile]) {
         const v = r[k];
@@ -269,7 +265,7 @@ export function defaultFromForm(fields: FieldDef[], form: FormRecord): Record<st
       if (arr.length > 0 || f.emptyAs !== 'omit') out[f.key] = arr;
     } else if (f.kind === 'checkbox') {
       out[f.key] = form[f.key] === true;
-    } else if (f.kind === 'popupStyle') {
+    } else if (f.kind === 'popupPosition') {
       out[f.keys.desktop] = String(form[f.keys.desktop] ?? '').trim();
       out[f.keys.mobile] = String(form[f.keys.mobile] ?? '').trim();
     } else {
@@ -855,11 +851,6 @@ const POPUP_PAGE_OPTIONS: SelectOption[] = [
   { value: 'contact', label: '문의' },
 ];
 
-/** 알려진 템플릿 키인가 — 옛 데이터·오타를 기본값으로 떨어뜨리는 판정 */
-function isPopupStyle(v: unknown): boolean {
-  return POPUP_TEMPLATES.some((t) => t.key === v);
-}
-
 const POPUPS_FIELDS: FieldDef[] = [
   {
     kind: 'text', key: 'id', label: '식별자', readOnlyOnEdit: true, width: 'third',
@@ -878,9 +869,9 @@ const POPUPS_FIELDS: FieldDef[] = [
     hint: '한국 시간 기준입니다. 종료가 시작보다 빠르면 팝업이 뜨지 않습니다',
   },
   {
-    kind: 'popupStyle', key: 'style', label: '스타일',
-    keys: { desktop: 'styleDesktop', mobile: 'styleMobile' },
-    hint: 'PC 와 모바일에 각각 다른 스타일을 고를 수 있습니다 — 팝업을 두 개 만들 필요가 없습니다',
+    kind: 'popupPosition', key: 'position', label: '위치',
+    keys: { desktop: 'positionDesktop', mobile: 'positionMobile' },
+    hint: 'PC 와 모바일의 위치를 각각 고를 수 있습니다 — 팝업을 두 개 만들 필요가 없습니다',
   },
   {
     kind: 'checkboxGroup', key: 'devices', label: '대상 기기',
@@ -923,11 +914,6 @@ const POPUPS_FIELDS: FieldDef[] = [
     hint: '비워 두면 사진을 눌러도 아무 일도 일어나지 않습니다',
   },
   { kind: 'checkbox', key: 'newTab', label: '새 창에서 열기', width: 'half' },
-  {
-    kind: 'localized', key: 'buttonLabel', label: '버튼 문구',
-    placeholder: '자세히 보기',
-    hint: "'이미지 + 버튼' 스타일에서만 보입니다",
-  },
   { kind: 'checkbox', key: 'enabled', label: '노출' },
 ];
 
@@ -935,7 +921,7 @@ const popups: ResourceDef = {
   key: 'popups',
   label: '팝업 공지',
   description:
-    '지정한 페이지의 첫 화면에 게재 기간 동안만 뜨는 사진 팝업입니다. PC와 모바일의 스타일을 각각 골라 한 항목으로 두 화면을 모두 덮습니다.',
+    '지정한 페이지의 첫 화면에 게재 기간 동안만 뜨는 사진 팝업입니다. PC와 모바일의 위치를 각각 골라 한 항목으로 두 화면을 모두 덮습니다.',
   file: MANAGED_FILES.popups,
   format: 'array',
   // 평소에는 팝업이 하나도 없는 게 정상이라 파일이 없어도 빈 목록에서 시작한다.
@@ -946,9 +932,9 @@ const popups: ResourceDef = {
   listColumns: [
     { key: 'image', label: '썸네일' },
     { key: 'title', label: '제목' },
-    // 스타일 두 칸은 키('basicB')가 아니라 라벨('기본 스타일 B')로 보인다.
-    { key: 'styleDesktop', label: 'PC 스타일' },
-    { key: 'styleMobile', label: '모바일 스타일' },
+    // 위치 두 칸은 키('topRight')가 아니라 라벨('우측 상단')로 보인다.
+    { key: 'positionDesktop', label: 'PC 위치' },
+    { key: 'positionMobile', label: '모바일 위치' },
     { key: 'period', label: '게재 기간' },
     { key: 'status', label: '상태' },
   ],
@@ -964,11 +950,13 @@ const popups: ResourceDef = {
     if ((form.devices as string[]).length === 0) form.devices = ['desktop', 'mobile'];
     if ((form.pages as string[]).length === 0) form.pages = ['home'];
     if (form.closeControl === '') form.closeControl = 'close';
-    // 스타일은 옛 항목(kind/position 시절)에 아예 없으므로 기기별 기본값을 채운다.
-    if (!isPopupStyle(form.styleDesktop)) form.styleDesktop = DEFAULT_DESKTOP_TEMPLATE;
-    if (!isPopupStyle(form.styleMobile)) form.styleMobile = DEFAULT_MOBILE_TEMPLATE;
-    const btn = form.buttonLabel as LocalizedPair;
-    if (!btn.ko.trim()) form.buttonLabel = { ko: '자세히 보기', en: btn.en || 'Learn more' };
+    // 위치는 옛 항목(스타일 시절)에 아예 없으므로 기기별 기본값을 채운다.
+    if (!isPopupPosition('desktop', form.positionDesktop)) {
+      form.positionDesktop = DEFAULT_POSITION.desktop;
+    }
+    if (!isPopupPosition('mobile', form.positionMobile)) {
+      form.positionMobile = DEFAULT_POSITION.mobile;
+    }
     // checkbox 는 defaultToForm 이 `=== true` 로 읽어 키가 없으면 false 가 된다.
     // 노출·"오늘 하루" 버튼은 없을 때 켜져 있는 편이 기대에 맞다.
     if (r.enabled === undefined) form.enabled = true;
@@ -983,9 +971,13 @@ const popups: ResourceDef = {
     const pages = (out.pages as string[] | undefined) ?? [];
     out.pages = pages.length > 0 ? pages : ['home'];
     if (!out.closeControl) out.closeControl = 'close';
-    // 알 수 없는 스타일 값은 기본값으로 — 사이트도 같은 규칙으로 떨어뜨린다.
-    if (!isPopupStyle(out.styleDesktop)) out.styleDesktop = DEFAULT_DESKTOP_TEMPLATE;
-    if (!isPopupStyle(out.styleMobile)) out.styleMobile = DEFAULT_MOBILE_TEMPLATE;
+    // 알 수 없는 위치 값(옛 스타일 키 포함)은 기본값으로 — 사이트도 같은 규칙이다.
+    if (!isPopupPosition('desktop', out.positionDesktop)) {
+      out.positionDesktop = DEFAULT_POSITION.desktop;
+    }
+    if (!isPopupPosition('mobile', out.positionMobile)) {
+      out.positionMobile = DEFAULT_POSITION.mobile;
+    }
     return out;
   },
   summarize: (f) => cellText(f, 'title'),

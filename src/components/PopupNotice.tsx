@@ -2,9 +2,10 @@
 
 // 팝업 공지 — CMS '팝업 공지'(content/popups.json)가 만든 사진 팝업.
 //
-// PC 와 모바일이 **각각** 템플릿을 갖는다(styleDesktop / styleMobile). 이 파일은
-// "언제·어디서·어느 기기에 뜨는가" 만 판정하고, 실제 생김새는 components/popup 의
-// 템플릿 컴포넌트가 그린다(계약: components/popup/types.ts).
+// 형식은 기기마다 하나로 고정이고, 관리자가 고르는 것은 **위치**다
+// (positionDesktop / positionMobile). 이 파일은 "언제·어디서·어느 기기에 뜨는가" 만
+// 판정하고, 실제 생김새는 components/popup 의 PopupDesktop·PopupMobile 이 그린다
+// (계약: components/popup/types.ts).
 //
 // ⚠️ 게재 기간·기기·페이지 판정을 **전부 브라우저에서** 한다. 페이지가 정적으로
 // 생성되므로 서버에서 걸러 내면 종료 시각이 지난 팝업이 다음 재생성까지 남는다.
@@ -20,8 +21,12 @@
 import { useCallback, useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
 import type { PopupRecord } from '@/lib/content-runtime';
-import { popupTemplate, type PopupPlacement } from '@/lib/popup-templates';
-import { PopupGroup, templateComponent } from './popup';
+import {
+  POPUP_POSITIONS,
+  popupPosition,
+  type PopupMobilePosition,
+} from '@/lib/popup-positions';
+import { PopupCarousel, PopupDesktop, PopupGroup, PopupMobile } from './popup';
 
 interface Labels {
   close: string;
@@ -91,8 +96,6 @@ function localized(v: { ko: string; en: string } | undefined, locale: string): s
   return (locale === 'en' ? v.en : v.ko) || v.ko || '';
 }
 
-const PLACEMENTS: PopupPlacement[] = ['center', 'bottom'];
-
 export function PopupNotice({ popups, locale, labels }: Props) {
   const pathname = usePathname();
   const [visible, setVisible] = useState<PopupRecord[]>([]);
@@ -138,40 +141,40 @@ export function PopupNotice({ popups, locale, labels }: Props) {
 
   if (visible.length === 0 || device === null) return null;
 
-  /** 이 기기에서 이 항목이 쓸 템플릿 키 */
-  const styleOf = (p: PopupRecord) => (device === 'mobile' ? p.styleMobile : p.styleDesktop);
+  /** 이 기기에서 이 항목이 앉을 위치 키 (옛 값·오타는 기본 위치로) */
+  const positionOf = (p: PopupRecord) =>
+    popupPosition(device, device === 'mobile' ? p.positionMobile : p.positionDesktop).key;
 
   return (
     <>
-      {PLACEMENTS.map((placement) => {
-        const group = visible.filter(
-          (p) => popupTemplate(styleOf(p), device).placement === placement,
-        );
+      {POPUP_POSITIONS[device].map(({ key: position }) => {
+        // 같은 자리에 여러 개면 한 장씩(캐러셀) — 겹쳐 쌓지 않는다
+        const group = visible.filter((p) => positionOf(p) === position);
         if (group.length === 0) return null;
         return (
-          <PopupGroup key={placement} placement={placement} device={device}>
-            {group.map((p) => {
-              const Template = templateComponent(styleOf(p), device);
-              const image = (device === 'mobile' && p.imageMobile) || p.image;
-              return (
-                <Template
-                  key={p.id}
-                  image={image}
-                  alt={localized(p.title, locale)}
-                  link={p.link || undefined}
-                  newTab={p.newTab === true}
-                  buttonLabel={
-                    localized(p.buttonLabel, locale) ||
-                    (locale === 'en' ? 'Learn more' : '자세히 보기')
-                  }
-                  device={device}
-                  labels={labels}
-                  closeControl={p.closeControl ?? 'close'}
-                  hideTodayButton={p.hideTodayButton !== false}
-                  onDismiss={(remember) => dismiss(p, remember)}
-                />
-              );
-            })}
+          <PopupGroup key={position} device={device} position={position}>
+            <PopupCarousel device={device} count={group.length}>
+              {(index, dots) => {
+                const p = group[index];
+                const card = {
+                  image: (device === 'mobile' && p.imageMobile) || p.image,
+                  alt: localized(p.title, locale),
+                  link: p.link || undefined,
+                  newTab: p.newTab === true,
+                  labels,
+                  closeControl: p.closeControl ?? ('close' as const),
+                  hideTodayButton: p.hideTodayButton !== false,
+                  onDismiss: (remember: boolean) => dismiss(p, remember),
+                };
+                return device === 'mobile' ? (
+                  <PopupMobile key={p.id} position={position as PopupMobilePosition} {...card}>
+                    {dots}
+                  </PopupMobile>
+                ) : (
+                  <PopupDesktop key={p.id} {...card} />
+                );
+              }}
+            </PopupCarousel>
           </PopupGroup>
         );
       })}

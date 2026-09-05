@@ -13,7 +13,7 @@
 //
 // (한국어 UI 문자열은 내부 운영 도구라 컴포넌트에 직접 둔다.)
 
-import { popupTemplate } from '@/lib/popup-templates';
+import { popupPosition } from '@/lib/popup-positions';
 import { cellText, type FormRecord } from '@/lib/admin/resources';
 
 export type PopupStatus = 'hidden' | 'scheduled' | 'live' | 'ended';
@@ -106,8 +106,9 @@ export function popupListCell(
     );
   }
 
-  if (key === 'styleDesktop' || key === 'styleMobile') {
-    return popupTemplate(cellText(form, key)).label;
+  if (key === 'positionDesktop' || key === 'positionMobile') {
+    const device = key === 'positionMobile' ? 'mobile' : 'desktop';
+    return popupPosition(device, cellText(form, key)).label;
   }
 
   if (key === 'period') {
