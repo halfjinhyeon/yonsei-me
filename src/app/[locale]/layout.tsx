@@ -12,6 +12,8 @@ import { SiteChrome } from '@/components/SiteChrome';
 import { SmoothScroll } from '@/components/SmoothScroll';
 import { ScrollRestoration } from '@/components/ScrollRestoration';
 import { PerfLiteScript } from '@/components/PerfLiteScript';
+import { PopupNotice } from '@/components/PopupNotice';
+import { getEnabledPopupsRuntime } from '@/lib/content-runtime';
 import { SITE_URL } from '@/lib/site';
 import { pretendard, gmarket, paperlogy } from '../fonts';
 import '../globals.css';
@@ -90,6 +92,11 @@ export default async function LocaleLayout({
   const messages = await getMessages();
   const t = await getTranslations({ locale, namespace: 'nav' });
   const tMeta = await getTranslations({ locale, namespace: 'meta' });
+  const tPopup = await getTranslations({ locale, namespace: 'popup' });
+
+  // 팝업 공지 — '노출' 이 켜진 것만 통째로 내려보내고, 게재 기간·기기·페이지 판정은
+  // 브라우저가 한다(정적 페이지라 서버에서 거르면 끝난 팝업이 남는다).
+  const popups = await getEnabledPopupsRuntime();
 
   // 조직 구조화 데이터(JSON-LD) — 검색엔진에 기관 정보를 명시(사이트링크·지식패널 신호).
   // 로케일별 이름을 넣고 반대 로케일 명칭은 alternateName 으로 제공한다.
@@ -150,6 +157,16 @@ export default async function LocaleLayout({
           <a href="#main" className="skip-link">
             {t('skipToContent')}
           </a>
+          {/* 팝업 공지 — 게재 기간 안에만, 지정한 페이지에서만 스스로 뜬다 */}
+          <PopupNotice
+            popups={popups}
+            locale={locale}
+            labels={{
+              close: tPopup('close'),
+              hideToday: tPopup('hideToday'),
+              dialog: tPopup('dialog'),
+            }}
+          />
           {/* 콘텐츠 관리 콘솔 전체에서 사이트 헤더를 감춘다(HeaderChrome) — 독립 전체 화면이라 */}
           <HeaderChrome>
             <Header />

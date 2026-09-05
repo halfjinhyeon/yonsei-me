@@ -6,6 +6,11 @@
 import type { BoardKey } from '@/lib/admin/boards';
 // 파일 경로는 여기 적지 않는다 — 저장소·DB 양쪽의 "관리 대상" 판정과 같은 목록을 쓴다.
 import { MANAGED_FILES } from '@/lib/admin/managed-content';
+import {
+  DEFAULT_DESKTOP_TEMPLATE,
+  DEFAULT_MOBILE_TEMPLATE,
+  POPUP_TEMPLATES,
+} from '@/lib/popup-templates';
 
 // ---- 폼 값 모델 ----
 // RecordForm 이 다루는 평면 값: 필드 kind 에 따라 문자열 / 한·영 쌍 / 문자열 배열.
@@ -45,7 +50,20 @@ export type FieldDef =
   | (FieldBase & { kind: 'localized'; multiline?: boolean; rows?: number })
   | (FieldBase & { kind: 'select'; options: SelectOption[]; emptyOptionLabel?: string })
   | (FieldBase & { kind: 'month' })
+  // 날짜+시각 한 칸 ('YYYY-MM-DDTHH:mm' 문자열 — 시간대는 사이트 기준 KST 로 읽는다)
+  | (FieldBase & { kind: 'datetime' })
+  // 숫자 입력. 값은 폼 안에서 문자열로 다루고(FormValue 를 늘리지 않는다),
+  // 숫자로의 변환·클램프는 리소스의 fromForm 이 한다.
+  | (FieldBase & { kind: 'number'; min?: number; max?: number })
   | (FieldBase & { kind: 'checkbox' }) // 불리언 체크박스 (true/false 저장)
+  // 여러 개를 고르는 체크박스 묶음 — 값은 문자열 배열(imageList 와 같은 취급)
+  | (FieldBase & { kind: 'checkboxGroup'; options: SelectOption[] })
+  // 하나만 고르는 라디오 묶음 — 값은 문자열(select 와 같은 취급)
+  | (FieldBase & { kind: 'radio'; options: SelectOption[] })
+  // 팝업 공지 전용 — PC·모바일 템플릿을 **한 위젯에서 함께** 고른다(PopupStylePicker).
+  // 폼 값에는 keys.desktop / keys.mobile 두 문자열 키가 따로 존재하고, 이 필드의
+  // key 자체는 값을 갖지 않는다(React key·라벨 용도).
+  | (FieldBase & { kind: 'popupStyle'; keys: { desktop: string; mobile: string } })
   | (FieldBase & { kind: 'image' }) // 경로 문자열 + 미리보기
   | (FieldBase & { kind: 'imageList' }) // 경로 문자열 배열
   // 파일 업로드 → 저장소 커밋 후 공개 URL 을 값으로 저장.
@@ -169,13 +187,19 @@ export interface ResourceDef {
    * 배치를 그대로 그리고 값 위에서 바로 고치게 한다(listView 와 같은 취지).
    * 편집기는 RecordForm 과 같은 props 계약(DetailEditorProps)을 받는다.
    */
-  detailView?: 'facultyMirror' | 'labMirror';
+  detailView?: 'facultyMirror' | 'labMirror' | 'popupForm';
   /** 항목별 연결 마크다운 (동아리 소개 본문) */
   linkedMarkdown?: LinkedMarkdown;
   /** 공유 record 파일 속 이 항목의 레코드 (연구실 AI 요약) */
   linkedSummary?: LinkedSummary;
   /** 목록 화면이 함께 편집하는 "키 → 사진 URL" 맵 파일 (연혁 연대 사진) */
   linkedImageMap?: LinkedImageMap;
+  /**
+   * 파일이 아직 없어도(GET 404) 목록을 빈 배열로 시작한다 — 팝업 공지처럼
+   * "평소에는 비어 있는 게 정상"인 리소스용. 저장은 신규 생성 경로를 탄다.
+   * 다른 리소스는 404 를 오류로 띄우는 편이 맞다(시딩 누락을 조용히 덮지 않는다).
+   */
+  emptyIfMissing?: boolean;
   /** 도메인 레코드 → 폼 값 (기본: defaultToForm) */
   toForm?: (raw: unknown) => FormRecord;
   /** 폼 값 → 도메인 레코드 (기본: defaultFromForm) */
@@ -194,7 +218,8 @@ export type ResourceKey =
   | 'coursesGraduate'
   | 'scholarships'
   | 'clubs'
-  | 'labs';
+  | 'labs'
+  | 'popups';
 
 // ---- 변환 헬퍼 ----
 
@@ -213,11 +238,17 @@ export function defaultToForm(fields: FieldDef[], raw: unknown): FormRecord {
     if (f.kind === 'localized') {
       const v = (r[f.key] ?? {}) as Partial<LocalizedPair>;
       form[f.key] = { ko: v.ko ?? '', en: v.en ?? '' };
-    } else if (f.kind === 'imageList') {
+    } else if (f.kind === 'imageList' || f.kind === 'checkboxGroup') {
       const v = r[f.key];
       form[f.key] = Array.isArray(v) ? v.map(String) : [];
     } else if (f.kind === 'checkbox') {
       form[f.key] = r[f.key] === true;
+    } else if (f.kind === 'popupStyle') {
+      // 이 필드는 자기 key 에 값을 두지 않는다 — keys.desktop / keys.mobile 두 칸이 값이다.
+      for (const k of [f.keys.desktop, f.keys.mobile]) {
+        const v = r[k];
+        form[k] = v == null ? '' : String(v);
+      }
     } else {
       const v = r[f.key];
       form[f.key] = v == null ? '' : String(v);
@@ -233,11 +264,14 @@ export function defaultFromForm(fields: FieldDef[], form: FormRecord): Record<st
     if (f.kind === 'localized') {
       const v = (form[f.key] ?? { ko: '', en: '' }) as LocalizedPair;
       out[f.key] = localizedValue(v.ko, v.en);
-    } else if (f.kind === 'imageList') {
+    } else if (f.kind === 'imageList' || f.kind === 'checkboxGroup') {
       const arr = ((form[f.key] ?? []) as string[]).map((s) => s.trim()).filter(Boolean);
       if (arr.length > 0 || f.emptyAs !== 'omit') out[f.key] = arr;
     } else if (f.kind === 'checkbox') {
       out[f.key] = form[f.key] === true;
+    } else if (f.kind === 'popupStyle') {
+      out[f.keys.desktop] = String(form[f.keys.desktop] ?? '').trim();
+      out[f.keys.mobile] = String(form[f.keys.mobile] ?? '').trim();
     } else {
       const s = String(form[f.key] ?? '').trim();
       if (s === '') {
@@ -806,6 +840,155 @@ const labs: ResourceDef = {
   summarize: (f) => cellText(f, 'nameKo'),
 };
 
+// 팝업 공지 — 게재 기간 안에만 사이트 위에 뜨는 사진 팝업(레이어)·상단 배너.
+// 항목 순서가 화면에 나란히 놓이는 순서다. 기간·기기·페이지 판정은 브라우저가
+// 하므로(정적 페이지는 종료일에 다시 그려지지 않는다) 여기 값은 그대로 사이트로 간다.
+const POPUP_PAGE_OPTIONS: SelectOption[] = [
+  { value: 'home', label: '홈(메인)' },
+  { value: 'about', label: '학부소개' },
+  { value: 'undergraduate', label: '학부' },
+  { value: 'graduate', label: '대학원' },
+  { value: 'research', label: '연구' },
+  { value: 'news', label: '뉴스·공지' },
+  { value: 'faculty', label: '교수진' },
+  { value: 'alumni', label: '동문' },
+  { value: 'contact', label: '문의' },
+];
+
+/** 알려진 템플릿 키인가 — 옛 데이터·오타를 기본값으로 떨어뜨리는 판정 */
+function isPopupStyle(v: unknown): boolean {
+  return POPUP_TEMPLATES.some((t) => t.key === v);
+}
+
+const POPUPS_FIELDS: FieldDef[] = [
+  {
+    kind: 'text', key: 'id', label: '식별자', readOnlyOnEdit: true, width: 'third',
+    hint: '자동 생성됩니다. 비워 두세요',
+  },
+  {
+    kind: 'localized', key: 'title', label: '제목', required: true,
+    hint: '관리용 제목입니다. 사진을 못 보는 방문자에게 읽어 주는 설명으로도 쓰입니다',
+  },
+  {
+    kind: 'datetime', key: 'start', label: '게재 시작', required: true, width: 'half',
+    hint: '한국 시간 기준입니다',
+  },
+  {
+    kind: 'datetime', key: 'end', label: '게재 종료', required: true, width: 'half',
+    hint: '한국 시간 기준입니다. 종료가 시작보다 빠르면 팝업이 뜨지 않습니다',
+  },
+  {
+    kind: 'popupStyle', key: 'style', label: '스타일',
+    keys: { desktop: 'styleDesktop', mobile: 'styleMobile' },
+    hint: 'PC 와 모바일에 각각 다른 스타일을 고를 수 있습니다 — 팝업을 두 개 만들 필요가 없습니다',
+  },
+  {
+    kind: 'checkboxGroup', key: 'devices', label: '대상 기기',
+    options: [
+      { value: 'desktop', label: '데스크톱' },
+      { value: 'mobile', label: '모바일' },
+    ],
+    hint: '아무것도 고르지 않으면 두 기기 모두에 표시됩니다',
+  },
+  {
+    kind: 'checkboxGroup', key: 'pages', label: '노출 페이지',
+    options: POPUP_PAGE_OPTIONS,
+    hint: '아무것도 고르지 않으면 홈(메인)에만 표시됩니다',
+  },
+  {
+    kind: 'radio', key: 'closeControl', label: '우측 상단 닫기 설정', width: 'half',
+    options: [
+      { value: 'close', label: '닫기' },
+      { value: 'hideToday', label: '오늘 하루 다시 보지 않기' },
+      { value: 'none', label: '표시안함' },
+    ],
+  },
+  {
+    kind: 'checkbox', key: 'hideTodayButton',
+    label: '배너 하단 "오늘 하루 보지 않기" 버튼 표시',
+  },
+  {
+    kind: 'imageUpload', key: 'image', label: '사진', required: true,
+    folder: 'public/img/popup', fileNameFrom: 'id', maxDim: 1600, maxSizeMB: 5,
+    hint: '폭 320~600px 의 세로형 사진을 권장합니다',
+  },
+  {
+    kind: 'imageUpload', key: 'imageMobile', label: '모바일 사진', emptyAs: 'omit',
+    folder: 'public/img/popup', fileNameFrom: 'id', maxDim: 1600, maxSizeMB: 5,
+    hint: '비우면 PC 사진을 씁니다',
+  },
+  {
+    kind: 'text', key: 'link', label: '이미지 링크', emptyAs: 'omit', width: 'half',
+    placeholder: 'https://',
+    hint: '비워 두면 사진을 눌러도 아무 일도 일어나지 않습니다',
+  },
+  { kind: 'checkbox', key: 'newTab', label: '새 창에서 열기', width: 'half' },
+  {
+    kind: 'localized', key: 'buttonLabel', label: '버튼 문구',
+    placeholder: '자세히 보기',
+    hint: "'이미지 + 버튼' 스타일에서만 보입니다",
+  },
+  { kind: 'checkbox', key: 'enabled', label: '노출' },
+];
+
+const popups: ResourceDef = {
+  key: 'popups',
+  label: '팝업 공지',
+  description:
+    '지정한 페이지의 첫 화면에 게재 기간 동안만 뜨는 사진 팝업입니다. PC 와 모바일의 스타일을 각각 골라 한 항목으로 두 화면을 모두 덮습니다(팝업을 두 개 만들 필요가 없습니다). 여러 개를 만들면 목록 순서대로 나란히 표시됩니다. 권장 사진 — 폭 320~600px 의 세로형. 게재가 끝나면 자동으로 사라지므로 항목을 지우지 않아도 됩니다.',
+  file: MANAGED_FILES.popups,
+  format: 'array',
+  // 평소에는 팝업이 하나도 없는 게 정상이라 파일이 없어도 빈 목록에서 시작한다.
+  emptyIfMissing: true,
+  listColumns: [
+    { key: 'title', label: '제목' },
+    // 스타일 두 칸은 키('basicB')가 아니라 라벨('기본 스타일 B')로 보인다
+    // (CollectionEditor 의 목록 셀이 POPUP_TEMPLATES 로 옮겨 적는다).
+    { key: 'styleDesktop', label: 'PC 스타일' },
+    { key: 'styleMobile', label: '모바일 스타일' },
+    { key: 'start', label: '게재 시작' },
+    { key: 'end', label: '게재 종료' },
+    { key: 'enabled', label: '노출' },
+  ],
+  searchKeys: ['title'],
+  fields: POPUPS_FIELDS,
+  // 설정을 위에서 아래로 읽으며 정하는 화면이라 범용 6칸 그리드 대신 전용 행 폼을 쓴다.
+  detailView: 'popupForm',
+  orderable: true,
+  toForm: (raw) => {
+    const r = (raw ?? {}) as Record<string, unknown>;
+    const form = defaultToForm(POPUPS_FIELDS, r);
+    // 기본값 보정 — 새 항목이든 옛 항목이든 폼에서는 항상 유효한 조합을 보여 준다.
+    if ((form.devices as string[]).length === 0) form.devices = ['desktop', 'mobile'];
+    if ((form.pages as string[]).length === 0) form.pages = ['home'];
+    if (form.closeControl === '') form.closeControl = 'close';
+    // 스타일은 옛 항목(kind/position 시절)에 아예 없으므로 기기별 기본값을 채운다.
+    if (!isPopupStyle(form.styleDesktop)) form.styleDesktop = DEFAULT_DESKTOP_TEMPLATE;
+    if (!isPopupStyle(form.styleMobile)) form.styleMobile = DEFAULT_MOBILE_TEMPLATE;
+    const btn = form.buttonLabel as LocalizedPair;
+    if (!btn.ko.trim()) form.buttonLabel = { ko: '자세히 보기', en: btn.en || 'Learn more' };
+    // checkbox 는 defaultToForm 이 `=== true` 로 읽어 키가 없으면 false 가 된다.
+    // 노출·"오늘 하루" 버튼은 없을 때 켜져 있는 편이 기대에 맞다.
+    if (r.enabled === undefined) form.enabled = true;
+    if (r.hideTodayButton === undefined) form.hideTodayButton = true;
+    return form;
+  },
+  fromForm: (form) => {
+    const out = defaultFromForm(POPUPS_FIELDS, form);
+    if (!String(out.id ?? '').trim()) out.id = `popup-${Date.now().toString(36)}`;
+    const devices = (out.devices as string[] | undefined) ?? [];
+    out.devices = devices.length > 0 ? devices : ['desktop', 'mobile'];
+    const pages = (out.pages as string[] | undefined) ?? [];
+    out.pages = pages.length > 0 ? pages : ['home'];
+    if (!out.closeControl) out.closeControl = 'close';
+    // 알 수 없는 스타일 값은 기본값으로 — 사이트도 같은 규칙으로 떨어뜨린다.
+    if (!isPopupStyle(out.styleDesktop)) out.styleDesktop = DEFAULT_DESKTOP_TEMPLATE;
+    if (!isPopupStyle(out.styleMobile)) out.styleMobile = DEFAULT_MOBILE_TEMPLATE;
+    return out;
+  },
+  summarize: (f) => cellText(f, 'title'),
+};
+
 export const RESOURCES: Record<ResourceKey, ResourceDef> = {
   history,
   facultyDirectory,
@@ -817,6 +1000,7 @@ export const RESOURCES: Record<ResourceKey, ResourceDef> = {
   scholarships,
   clubs,
   labs,
+  popups,
 };
 
 export function getResource(key: ResourceKey): ResourceDef {
@@ -899,6 +1083,8 @@ export const MENU_GROUPS: MenuGroup[] = [
   {
     label: '뉴스·공지',
     entries: [
+      // 팝업 공지는 "지금 사이트 위에 무엇이 떠 있나"라 이 묶음 맨 앞에 둔다.
+      { type: 'collection', resourceKey: 'popups' },
       { type: 'board', boardKey: 'news' },
       { type: 'board', boardKey: 'noticesUndergrad' },
       { type: 'board', boardKey: 'noticesGraduate' },

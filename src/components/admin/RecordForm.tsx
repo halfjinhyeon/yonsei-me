@@ -9,6 +9,7 @@ import { useState } from 'react';
 import type { FieldDef, FormRecord, LocalizedPair } from '@/lib/admin/resources';
 import { validateForm } from '@/lib/admin/resources';
 import { ClubFeedEditor } from './ClubFeedEditor';
+import { PopupStylePicker } from './PopupStylePicker';
 import { TranslateButton } from './TranslateButton';
 
 // PostForm 과 동일한 입력 스타일
@@ -241,6 +242,71 @@ export function RecordForm({
       );
     }
 
+    // 여러 개를 고르는 체크박스 묶음 — 값은 문자열 배열
+    if (f.kind === 'checkboxGroup') {
+      const selected = (form[f.key] ?? []) as string[];
+      return (
+        <fieldset>
+          <legend className="block text-sm font-semibold text-content">
+            {f.label}
+            {f.required && <span className="text-red-500"> *</span>}
+          </legend>
+          <div className="mt-2 flex flex-wrap gap-x-5 gap-y-2">
+            {f.options.map((o) => (
+              <label key={o.value} htmlFor={`${id}-${o.value}`} className="flex cursor-pointer items-center gap-2 text-sm text-content">
+                <input
+                  id={`${id}-${o.value}`}
+                  type="checkbox"
+                  checked={selected.includes(o.value)}
+                  onChange={(e) =>
+                    setValue(
+                      f.key,
+                      e.target.checked
+                        ? [...selected, o.value]
+                        : selected.filter((v) => v !== o.value),
+                    )
+                  }
+                  className="h-4 w-4 shrink-0 accent-yonsei-blue"
+                />
+                {o.label}
+              </label>
+            ))}
+          </div>
+          {f.hint && <p className="mt-1 text-xs text-content-faint">{f.hint}</p>}
+        </fieldset>
+      );
+    }
+
+    // 하나만 고르는 라디오 묶음 — 값은 문자열(select 와 같은 취급)
+    if (f.kind === 'radio') {
+      const cur = String(form[f.key] ?? '');
+      return (
+        <fieldset>
+          <legend className="block text-sm font-semibold text-content">
+            {f.label}
+            {f.required && <span className="text-red-500"> *</span>}
+          </legend>
+          <div className="mt-2 flex flex-wrap gap-x-5 gap-y-2">
+            {f.options.map((o) => (
+              <label key={o.value} htmlFor={`${id}-${o.value}`} className="flex cursor-pointer items-center gap-2 text-sm text-content">
+                <input
+                  id={`${id}-${o.value}`}
+                  type="radio"
+                  name={id}
+                  value={o.value}
+                  checked={cur === o.value}
+                  onChange={() => setValue(f.key, o.value)}
+                  className="h-4 w-4 shrink-0 accent-yonsei-blue"
+                />
+                {o.label}
+              </label>
+            ))}
+          </div>
+          {f.hint && <p className="mt-1 text-xs text-content-faint">{f.hint}</p>}
+        </fieldset>
+      );
+    }
+
     if (f.kind === 'checkbox') {
       const checked = form[f.key] === true;
       return (
@@ -259,6 +325,17 @@ export function RecordForm({
             )}
           </span>
         </label>
+      );
+    }
+
+    // 팝업 스타일 — 값이 두 칸(styleDesktop/styleMobile)이라 전용 위젯이 통째로 맡는다
+    if (f.kind === 'popupStyle') {
+      return (
+        <fieldset>
+          <legend className="text-sm font-semibold text-content">{f.label}</legend>
+          {f.hint && <p className="mb-3 mt-1 text-xs text-content-faint">{f.hint}</p>}
+          <PopupStylePicker form={form} keys={f.keys} setValue={setValue} />
+        </fieldset>
       );
     }
 
@@ -331,6 +408,43 @@ export function RecordForm({
               </option>
             ))}
           </select>
+          {f.hint && <p className="mt-1 text-xs text-content-faint">{f.hint}</p>}
+        </div>
+      );
+    }
+
+    // 날짜+시각 — 값은 'YYYY-MM-DDTHH:mm' 문자열(시간대 없음, 사이트가 KST 로 읽는다)
+    if (f.kind === 'datetime') {
+      return (
+        <div>
+          {labelEl}
+          <input
+            id={id}
+            type="datetime-local"
+            value={str}
+            onChange={(e) => setValue(f.key, e.target.value)}
+            className={fieldClass}
+          />
+          {f.hint && <p className="mt-1 text-xs text-content-faint">{f.hint}</p>}
+        </div>
+      );
+    }
+
+    // 숫자 — 폼 안에서는 문자열로 다루고 숫자 변환·클램프는 리소스 fromForm 이 한다
+    if (f.kind === 'number') {
+      return (
+        <div>
+          {labelEl}
+          <input
+            id={id}
+            type="number"
+            min={f.min}
+            max={f.max}
+            value={str}
+            onChange={(e) => setValue(f.key, e.target.value)}
+            placeholder={f.placeholder}
+            className={fieldClass}
+          />
           {f.hint && <p className="mt-1 text-xs text-content-faint">{f.hint}</p>}
         </div>
       );

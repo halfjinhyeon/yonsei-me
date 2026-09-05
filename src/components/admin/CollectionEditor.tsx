@@ -26,6 +26,7 @@ import {
   type RepoConfig,
 } from '@/lib/admin/content-api';
 import { uploadAttachment, type UploadProgressHandler } from '@/lib/admin/storage';
+import { popupTemplate } from '@/lib/popup-templates';
 import {
   arrayToRecord,
   cellText,
@@ -58,6 +59,7 @@ import { HistoryTimelineEditor } from './HistoryTimelineEditor';
 import { InlineTable } from './InlineTable';
 import { FacultyDetailEditor } from './FacultyDetailEditor';
 import { LabDetailEditor } from './LabDetailEditor';
+import { PopupDetailEditor } from './PopupDetailEditor';
 import type { DetailEditorProps } from './DetailEditorTypes';
 import { MoveButtons } from './InlineFields';
 import { LabCardsEditor } from './LabCardsEditor';
@@ -224,7 +226,14 @@ export function CollectionEditor({ config, resource, onDirtyChange }: Props) {
     setLoading(true);
     setListError(null);
     try {
-      const file = await loadJson<unknown>(config, resource.file);
+      // emptyIfMissing 리소스(팝업 공지)는 파일이 아직 없는 게 정상이라 404 를
+      // 빈 목록으로 받는다 — sha 가 빈 문자열이면 저장이 신규 생성 경로를 탄다.
+      const file = resource.emptyIfMissing
+        ? ((await loadJsonOptional<unknown>(config, resource.file)) ?? {
+            data: resource.format === 'record' ? {} : [],
+            sha: '',
+          })
+        : await loadJson<unknown>(config, resource.file);
       let arr: RawItem[];
       if (resource.format === 'record') {
         arr = recordToArray(file.data as Record<string, RawItem>, resource.idField!);
@@ -560,7 +569,9 @@ export function CollectionEditor({ config, resource, onDirtyChange }: Props) {
   function startNew() {
     setSuccess(null);
     setSaveError(null);
-    const form = defaultToForm(resource.fields, {});
+    // 리소스의 toForm 을 태운다 — 빈 항목에도 리소스 기본값(팝업 공지의 노출·형태
+    // 등)이 얹혀야 새 항목 폼이 편집 폼과 같은 규칙을 보인다.
+    const form = toForm({});
     setEditing({ index: -1, form });
     // 새 항목은 로드 없이 빈 마크다운에서 시작
     if (resource.linkedMarkdown) {
@@ -1011,6 +1022,8 @@ export function CollectionEditor({ config, resource, onDirtyChange }: Props) {
         <FacultyDetailEditor {...detailProps} />
       ) : resource.detailView === 'labMirror' ? (
         <LabDetailEditor {...detailProps} />
+      ) : resource.detailView === 'popupForm' ? (
+        <PopupDetailEditor {...detailProps} />
       ) : null;
     return (
       <div className="anim-panel">
@@ -1305,8 +1318,15 @@ export function CollectionEditor({ config, resource, onDirtyChange }: Props) {
                         {resource.listColumns.map((c, col) => {
                           const val = cellText(form, c.key);
                           // 영상 등 URL 셀은 값 유무만 표시
+                          // 팝업 스타일 셀은 키('basicB') 대신 라벨('기본 스타일 B')
                           const display =
-                            c.key === 'video' || c.key === 'url' ? (val ? '✓' : '') : val;
+                            c.key === 'video' || c.key === 'url'
+                              ? val
+                                ? '✓'
+                                : ''
+                              : c.key === 'styleDesktop' || c.key === 'styleMobile'
+                                ? popupTemplate(val).label
+                                : val;
                           return (
                             <td
                               key={c.key}

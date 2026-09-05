@@ -730,5 +730,10 @@
   },
   "breadcrumb": {
     "home": "홈"
+  },
+  "popup": {
+    "close": "닫기",
+    "hideToday": "오늘 하루 보지 않기",
+    "dialog": "공지 팝업"
   }
 }

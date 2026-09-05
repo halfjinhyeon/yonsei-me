@@ -31,6 +31,10 @@ export const MANAGED_FILES = {
   // 장학금 — 2026-08 마크다운 표(content/pages/undergraduate-scholarship.md)에서 전환.
   // 섹션·5열(장학금명/추천기준/선발인원/장학금액/선발시기)이 그대로 레코드가 됐다.
   scholarships: 'content/scholarships.json',
+  // 팝업 공지 — 게재 기간 안에만 사이트에 뜨는 사진 팝업(레이어)·상단 배너.
+  // 기간·기기·페이지 판정은 클라이언트가 한다(정적 페이지는 종료일에 다시 그려지지
+  // 않으므로 서버에서 걸러 내면 끝난 팝업이 남는다 — PopupNotice 주석 참고).
+  popups: 'content/popups.json',
 } as const;
 
 /** 동아리 소개 카드뉴스 본문 — clubs.json 의 slug 마다 한 파일(content/pages/club-<slug>.md).

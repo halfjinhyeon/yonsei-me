@@ -61,6 +61,8 @@ const MANAGED_JSON = [
   // 장학금 — 2026-08 md(content/pages/undergraduate-scholarship.md)에서 구조화 전환.
   // 구 md 의 DB 행은 남아 있지만 allowlist 에서 빠져 더는 읽히지도 쓰이지도 않는다.
   'content/scholarships.json',
+  // 팝업 공지 — 행이 없어도 CMS 가 빈 목록에서 시작한다(resources 의 emptyIfMissing).
+  'content/popups.json',
 ];
 const CLUBS_JSON = 'content/clubs.json';
 const FACULTY_JSON = 'content/faculty-directory.json';

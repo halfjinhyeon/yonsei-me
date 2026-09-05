@@ -730,5 +730,10 @@
   },
   "breadcrumb": {
     "home": "Home"
+  },
+  "popup": {
+    "close": "Close",
+    "hideToday": "Don't show again today",
+    "dialog": "Announcement"
   }
 }

@@ -54,10 +54,13 @@ import coursesGraduateJson from '@content/courses-graduate.json';
 // 정적 import 를 걷고 폴백 스냅샷으로 여기 모았다(위 교과목 3종과 같은 사정).
 import courseFlowJson from '@content/course-flow.json';
 import type { CurriculumMapData } from '@/lib/curriculum-map';
+import type { PopupTemplateKey } from '@/lib/popup-templates';
 // 홈 히어로 배경 — 홈 페이지가 정적 import 하던 데이터(위 교과목 3종과 같은 사정).
 import heroSlidesJson from '@content/hero-slides.json';
 // 장학금 — 2026-08 마크다운 표에서 구조화 전환(폴백 스냅샷).
 import scholarshipsJson from '@content/scholarships.json';
+// 팝업 공지 — 평소에는 빈 배열이다(폴백 스냅샷).
+import popupsJson from '@content/popups.json';
 
 // ── 소스 판별 ──────────────────────────────────────────────────────────
 export type ContentSource = 'db' | 'git';
@@ -270,6 +273,52 @@ export interface ScholarshipRecord {
 export async function getScholarshipsRuntime(): Promise<ScholarshipRecord[]> {
   const raw = await getManagedJson<ScholarshipRecord[]>(MANAGED_FILES.scholarships);
   return raw ?? scholarshipsJson;
+}
+
+/** content/popups.json 한 줄 — 게재 기간 안에만 뜨는 사진 팝업.
+ *  PC·모바일이 각각 다른 템플릿(styleDesktop / styleMobile)을 쓴다.
+ *  CMS '팝업 공지' 탭(resources.ts 의 popups)이 편집하는 스키마와 1:1 이다.
+ *  ⚠️ 게재 기간·기기·페이지 판정은 **하지 않는다** — 페이지가 정적으로 생성되므로
+ *  종료 시각이 지나도 다시 그려지지 않아, 서버에서 걸러 내면 끝난 팝업이 남는다.
+ *  판정은 전부 클라이언트(PopupNotice)가 한다. */
+export interface PopupRecord {
+  id: string;
+  title: { ko: string; en: string };
+  /** 'YYYY-MM-DDTHH:mm' (KST) */
+  start: string;
+  /** 'YYYY-MM-DDTHH:mm' (KST) */
+  end: string;
+  devices: ('desktop' | 'mobile')[];
+  /** 노출 페이지 — 경로 첫 세그먼트(홈은 'home') */
+  pages: string[];
+  /** PC 에서 쓸 템플릿 (lib/popup-templates.ts 의 키) */
+  styleDesktop: PopupTemplateKey;
+  /** 모바일에서 쓸 템플릿 — PC 와 **따로** 고른다(팝업을 두 개 만들지 않아도 되게) */
+  styleMobile: PopupTemplateKey;
+  /** 하단 "오늘 하루 보지 않기" 버튼 표시 */
+  hideTodayButton: boolean;
+  /** 우측 상단 X 의 동작 */
+  closeControl: 'close' | 'hideToday' | 'none';
+  image: string;
+  /** 모바일 전용 사진. 없으면 image 를 쓴다 */
+  imageMobile?: string;
+  link?: string;
+  /** A 계열 템플릿의 버튼 문구 */
+  buttonLabel?: { ko: string; en: string };
+  newTab: boolean;
+  enabled: boolean;
+}
+
+/** 팝업 공지 전체 — 배열 순서가 화면에 놓이는 순서다 */
+export async function getPopupsRuntime(): Promise<PopupRecord[]> {
+  const raw = await getManagedJson<PopupRecord[]>(MANAGED_FILES.popups);
+  const list = raw ?? (popupsJson as unknown as PopupRecord[]);
+  return Array.isArray(list) ? list : [];
+}
+
+/** '노출' 이 켜진 팝업만 (순서 유지). 기간·기기·페이지는 클라이언트가 판정한다 */
+export async function getEnabledPopupsRuntime(): Promise<PopupRecord[]> {
+  return (await getPopupsRuntime()).filter((p) => p.enabled !== false && p.image);
 }
 
 /** 교수 학술활동 프로필 한 명 — content/faculty-profiles/<이름>.json.
