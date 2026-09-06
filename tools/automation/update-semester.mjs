@@ -7,13 +7,13 @@
  *        [--force-adopt] [--unattended] [--help]
  *
  * 하는 일
- *   "쿠키 한 번 넣으면 나머지 전 단계가 스스로 돈다." 체커 카탈로그 파이프라인
+ *   "명령 한 번이면 나머지 전 단계가 스스로 돈다." 체커 카탈로그 파이프라인
  *   (tools/checker/README.md)과 마일리지 파이프라인(tools/mileage/README.md)의 갱신
  *   체크리스트를 한 명령으로 잇는다. **로직을 복제하지 않는다** — 각 단계는 기존
  *   스크립트를 그대로 spawn 하고, 게이트(학기 일치·개명 게이트·매칭 하네스·필드 매핑
  *   검증·typecheck)는 그 스크립트들의 종료 코드를 그대로 존중한다.
  *
- *   ① 사전 점검   쿠키·경로·입력 파일
+ *   ① 사전 점검   경로·입력 파일 (쿠키는 게이트가 아니라 정보 줄 — 아래 참고)
  *   ② 체커 크롤   crawl-terms.mjs --through <t> --only <t>
  *   ③ 카탈로그    build-catalog.mjs --through <t>          (개명 게이트 exit 1)
  *   ④ 매칭 하네스 verify-matching.mjs                       (픽스처 FAIL 이면 exit 1)
@@ -41,11 +41,18 @@
  *   `--pr-dry-run` 은 이 단계를 켜되 bot-pr.mjs 를 `--dry-run` 으로 부른다 — 커밋 객체와
  *   `git show --stat` 까지만 보고 ref·푸시·PR 은 하지 않는다(`--pr` 을 따로 줄 필요 없다).
  *
+ * 쿠키는 선택이다 (2026-09-06 실측)
+ *   수강편람 읽기 API 는 Cookie 헤더 없이도 같은 JSON 을 돌려준다(요약·순위·코드·과목 목록
+ *   전부 확인). 그래서 ①은 쿠키가 없다고 멈추지 않고 정보 한 줄만 찍는다. 크롤 도중
+ *   "JSON 대신 HTML" 을 받으면 그건 로그인 문제가 아니라 **게이트**(수강신청 기간 NetFunnel
+ *   대기열·점검·WAF)로 보고, 브라우저로 상태를 확인한 뒤 필요하면 쿠키를 넣는다.
+ *
  * 무인 실행 (--unattended)
- *   `--pr` 을 켜고, 중단(stop)마다 GitHub 이슈를 남긴다 — 쿠키 문제면
- *   `[자동] 수강편람 로그인 필요 (<target>)`, 백테스트 규칙 실패면
- *   `[자동] <target> 마일리지 갱신 보류 — 백테스트 규칙 실패 (<날짜>)`, 그 밖은
+ *   `--pr` 을 켜고, 중단(stop)마다 GitHub 이슈를 남긴다 — 백테스트 규칙 실패면
+ *   `[자동] <target> 마일리지 갱신 보류 — 백테스트 규칙 실패 (<날짜>)`, 그 밖은 전부
  *   `[자동] <target> 학기 갱신 중단 (<날짜>)`. 이슈는 issue.mjs 가 접두로 중복을 막는다.
+ *   (옛 전용 제목 `[자동] 수강편람 로그인 필요` 는 없앴다 — 쿠키가 게이트가 아니게 되면서
+ *    "로그인이 필요하다" 를 단정할 근거가 사라졌다.)
  *
  * 종료 코드
  *   0 성공 · 1 사전 점검·게이트·인자 오류 · **3 백테스트 채택 규칙 실패** ·
@@ -53,7 +60,7 @@
  *
  * 재개
  *   완료한 단계를 `tools/automation/.state/update-<target>.json` 에 적는다(미추적).
- *   쿠키가 만료돼 끊기면 .env 를 갱신하고 **같은 명령을 다시** 돌리면 된다 — 완료 단계는
+ *   게이트에 막혀 끊기면 상태를 확인한 뒤 **같은 명령을 다시** 돌리면 된다 — 완료 단계는
  *   건너뛰고, 크롤 자체도 각 도구가 학기 파일·분반 키 단위로 이어서 받는다.
  *   특정 단계를 일부러 다시 돌리려면 상태 파일에서 그 키만 지운다.
  *
@@ -264,7 +271,7 @@ function reportIssue(title, lines) {
 
 /**
  * 안내를 찍고 그 종료 코드로 끝낸다. --unattended 면 같은 안내를 이슈로도 남긴다.
- * @param {string} [issueTitle] 사건이 뚜렷할 때(쿠키·채택 규칙) 쓸 이슈 제목
+ * @param {string} [issueTitle] 사건이 뚜렷할 때(백테스트 채택 규칙 등) 쓸 이슈 제목
  */
 function stop(code, lines, issueTitle) {
   console.error('');
@@ -350,9 +357,12 @@ const NPM = process.platform === 'win32' ? 'npm.cmd' : 'npm';
 
 // ── 게이트(사전 점검) ──────────────────────────────────────────
 const checks = [];
-/** ok=false 면 실패로 모은다. dry-run 에서는 경고로만 남기고 계속한다. key 는 사건 구분용. */
-function gate(ok, label, hint, key) {
-  checks.push({ ok, label, hint, key });
+/**
+ * ok=false 면 실패로 모은다. dry-run 에서는 경고로만 남기고 계속한다.
+ * (옛 `key` 인자는 없앴다 — 유일한 사용처였던 쿠키 게이트가 정보 줄이 되면서 쓸모가 사라졌다.)
+ */
+function gate(ok, label, hint) {
+  checks.push({ ok, label, hint });
   console.log(`  ${ok ? '✔' : '✘'} ${label}`);
   if (!ok && hint) console.log(`      → ${hint}`);
 }
@@ -428,14 +438,16 @@ if (RUN_CHECKER || !SKIP_CRAWL) {
   gate(existsSync(CRAWLER_ENTRY), `크롤러 진입점: ${CRAWLER_ENTRY}`, '--crawler-dir 또는 CRAWLER_DIR 로 경로를 준다');
 }
 if (!SKIP_CRAWL) {
+  // 쿠키는 **게이트가 아니라 정보**다 — 2026-09-06 실측으로 읽기 API 가 익명 접근 가능임이
+  // 확인됐다(요약·순위·코드·과목 목록 전부). 없다고 여기서 멈추면 멀쩡한 크롤을 막게 된다.
   const cookie = existsSync(CRAWLER_ENV)
     ? (readFileSync(CRAWLER_ENV, 'utf-8').match(/^YONSEI_COOKIE=(.+)$/m)?.[1] ?? '')
     : '';
-  gate(
-    /JSESSIONID=[^;\s]{20,}/.test(cookie),
-    `크롤러 .env 의 YONSEI_COOKIE 에 JSESSIONID 존재`,
-    '수강편람(underwood1.yonsei.ac.kr) 로그인 → F12 → Network → .do 요청의 Cookie 전체를 .env 에 붙여넣는다',
-    'cookie',
+  console.log(
+    /JSESSIONID=[^;\s]{20,}/.test(cookie)
+      ? '  ✔ 쿠키 있음(게이트 대비)'
+      : '  ℹ 크롤러 .env 에 YONSEI_COOKIE 없음 — 읽기 API 는 익명 접근 가능(2026-09-06 실측).\n' +
+          '      게이트가 켜진 기간이면 크롤이 HTML 을 받고 멈춘다.',
   );
 }
 if (RUN_MILEAGE) {
@@ -451,15 +463,15 @@ if (RUN_MILEAGE) {
     if (DRY) {
       console.log(`\n  (dry-run: 점검 실패 ${failed.length}건은 경고로만 남기고 계획을 마저 찍는다)`);
     } else {
-      // 쿠키만 문제면 사람이 할 일이 뚜렷하다(로그인해서 .env 갱신) — 무인 실행에서 전용 제목을 쓴다.
-      const cookieOnly = failed.every((c) => c.key === 'cookie');
       const lines = [`[중단] 사전 점검 ${failed.length}건 실패 — 위 → 안내를 따른 뒤 같은 명령을 다시 돌려라.`];
       // 이슈 본문에는 화면의 ✔/✘ 목록이 안 실린다 — 실패한 항목을 여기 옮겨 적는다.
       for (const c of failed) {
         lines.push(`  ✘ ${c.label}`);
         if (c.hint) lines.push(`      → ${c.hint}`);
       }
-      stop(1, lines, cookieOnly ? `[자동] 수강편람 로그인 필요 (${TARGET})` : undefined);
+      // 옛 전용 제목(`[자동] 수강편람 로그인 필요`)은 없앴다 — 쿠키가 더 이상 게이트가 아니라
+      // 이 자리에서 "로그인 필요" 를 단정할 근거가 없다. 기본 제목(학기 갱신 중단)을 쓴다.
+      stop(1, lines);
     }
   }
 }
@@ -480,8 +492,10 @@ if (RUN_CHECKER) {
     if (code !== 0) {
       stop(code, [
         `[중단] ${TARGET} 수강편람 크롤이 실패했다 (exit ${code}).`,
-        '  쿠키 만료가 가장 흔한 원인이다. 크롤러 .env 의 YONSEI_COOKIE 를 갱신하고',
-        '  **같은 명령을 그대로 다시** 돌려라 — 학기 파일 단위로 이어서 진행한다.',
+        '  "JSON 대신 HTML" 이면 게이트 가능성 — 수강신청 기간 NetFunnel 대기열·점검·WAF 다.',
+        '  브라우저로 https://underwood1.yonsei.ac.kr 에 접속해 무슨 화면이 뜨는지 먼저 확인하고,',
+        '  필요하면 그 세션의 Cookie 를 크롤러 .env 의 YONSEI_COOKIE 에 넣어라(선택 — 게이트 대비).',
+        '  그 뒤 **같은 명령을 그대로 다시** 돌려라 — 학기 파일 단위로 이어서 진행한다.',
         `  진행 상황: node tools/checker/crawl-terms.mjs --through ${TARGET} --list`,
       ]);
     }
@@ -559,8 +573,9 @@ if (RUN_MILEAGE) {
       console.log('\n  수 시간 걸린다. Ctrl+C 로 끊어도 10건마다 저장돼 이어서 진행된다.');
       console.log(`  에러 레코드가 남으면 최대 ${opt.maxRetries}회까지 그 분반만 재수집한다.`);
       const cookieHelp = [
-        '  쿠키 만료가 가장 흔한 원인이다. 크롤러 .env 의 YONSEI_COOKIE 를 갱신하고',
-        '  같은 명령을 다시 돌려라 — 이미 받은 분반은 보존된다.',
+        '  "JSON 대신 HTML" 이면 게이트 가능성(대기열·점검·WAF) — 브라우저로',
+        '  https://underwood1.yonsei.ac.kr 상태를 확인하고, 필요하면 크롤러 .env 의',
+        '  YONSEI_COOKIE 를 넣거나 갱신한 뒤(선택) 같은 명령을 다시 돌려라 — 이미 받은 분반은 보존된다.',
       ];
       let code = run(NODE, ['src/index.js', 'mileage'], { cwd: CRAWLER_DIR });
       if (code !== 0) stop(code, [`[중단] 마일리지 수집이 실패했다 (exit ${code}).`, ...cookieHelp]);

@@ -38,7 +38,14 @@ src/components/MileagePlanner.tsx   ← 학부 › 마일리지 전략 탭
 
 - 저장소: <https://github.com/yonsei-mech/yosnei-mileage-crawler> (로컬 작업 사본 `Desktop\크롤링`)
 - 의존성 0. Node 18+ 내장 `fetch` 만 씁니다.
-- 실행 전 저장소 루트에 `.env` 를 만들고 로그인 세션 쿠키를 넣습니다:
+- **쿠키는 선택입니다** (2026-09-06 실측). 수강편람 읽기 API 는 Cookie 헤더를 아예 보내지
+  않아도 같은 JSON 을 돌려줍니다 — 요약(`findMlgAppcsResltList`)·순위
+  (`findMlgRankResltList`)·코드(`findSchSlesHandbList`)·과목 목록(`findAtnlcHandbList`)
+  전부 확인했고, 무효한 `JSESSIONID` 로도 결과가 같았습니다. 그래서 평소에는 `.env` 없이
+  그냥 실행하면 됩니다.
+- 크롤이 `수강편람이 JSON 대신 HTML 을 돌려줬다` 로 멈추면 **게이트**입니다 — 수강신청
+  기간 NetFunnel 대기열, 시스템 점검, WAF 차단. 브라우저로 상태를 먼저 확인하고, 통과가
+  필요하면 그때만 저장소 루트에 `.env` 를 만들어 세션 쿠키를 넣습니다:
 
   ```env
   YONSEI_COOKIE=JSESSIONID=...
@@ -50,7 +57,7 @@ src/components/MileagePlanner.tsx   ← 학부 › 마일리지 전략 탭
 > [!CAUTION]
 > **`.env` 와 쿠키 값은 절대 커밋하지 마십시오.** 본인 계정의 로그인 세션이 그대로 노출되며,
 > 학사 시스템 계정이 걸린 문제입니다. 이 저장소에도, 크롤러 저장소에도 넣지 않습니다.
-> 쿠키는 몇 시간이면 만료되므로 크롤을 재개할 때마다 새로 복사해야 합니다.
+> 쿠키를 넣었다면 몇 시간 뒤 만료되니, 게이트 기간에 크롤을 재개할 때는 새로 복사하십시오.
 
 ## 새 학기 갱신 체크리스트
 
@@ -70,8 +77,8 @@ src/components/MileagePlanner.tsx   ← 학부 › 마일리지 전략 탭
 
    과목 3천여 개 × 개설 학기마다 2회 요청이라 수 시간 걸립니다. 10건마다 저장하고
    `Ctrl+C` 로 끊어도 이어서 진행합니다(처음부터 다시 받으려면 `--reset`).
-   끝나면 `error` 필드를 가진 레코드가 0인지 확인하십시오 — 쿠키 만료로 뭉텅이 실패가
-   나는 일이 흔합니다.
+   끝나면 `error` 필드를 가진 레코드가 0인지 확인하십시오 — 게이트(대기열·점검·WAF)에
+   걸리면 뭉텅이로 실패합니다.
 
 3. **DB 빌드 (반드시 `--base` 로 병합)**
 
