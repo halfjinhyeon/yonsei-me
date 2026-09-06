@@ -41,7 +41,7 @@
 - 리포트: `https://devcms.yonsei.ac.kr/faculty/name_search.do?mode=report&userId=<암호화ID>&reportType=<article|award|conference|funding|patent>` — 100행 초과 시 2쪽은 `mode=report_next` (원본 제공은 분류당 최대 2쪽·200건)
 - `userId` 는 각 프로필 파일의 `sourceUrl` 에 저장돼 있고, 옛 `me.yonsei.ac.kr` 표기는 `core.ts` 의 `infoHost()` 가 devcms 로 바꿔 요청합니다.
 
-**② 연세포털 수강편람 시스템** (로그인 세션 쿠키 `YONSEI_COOKIE` 필요 — 수 시간 만료)
+**② 연세포털 수강편람 시스템** (로그인 세션 쿠키 `YONSEI_COOKIE` 필요 — 수 시간 만료) — ⚠️ 2026-09-06 실측 정정: 읽기 API 5종 모두 **Cookie 없이 정상 응답**. 쿠키는 게이트(NetFunnel·점검) 시 통과용 선택 사항. 상세는 `automation-phase3.md` 1절
 
 - 베이스: `https://underwood1.yonsei.ac.kr/` — 과목 카탈로그·마일리지 요약/원장·강의계획서 모두 이 시스템의 내부 `.do` API 입니다.
 - **요청 규약** (크롤러 `src/api.js` 실측 정본 — 2026-09-03 크롤러 사본에서 확정):
