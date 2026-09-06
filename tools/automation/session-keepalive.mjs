@@ -77,7 +77,9 @@ const { callApi } = await import(pathToFileURL(API).href);
 
 // ── 상태 ──
 mkdirSync(STATE_DIR, { recursive: true });
-const state = existsSync(STATE) && !opt.once
+// --once 도 누적 상태를 **읽는다**(수명 표시용) — 다만 아래 save() 는 --once 에서 건너뛰어
+// 한 번 찔러 본 것이 데몬의 측정 시작 시각을 덮어쓰지 않게 한다(2026-09-06 실사고).
+const state = existsSync(STATE)
   ? JSON.parse(readFileSync(STATE, 'utf-8'))
   : { startedAt: new Date().toISOString(), lastOk: null, pings: 0, expired: 0, network: 0 };
 // 새 쿠키로 다시 시작한 경우(로그인 갱신) 수명 측정을 처음부터 — 쿠키 지문으로 구분한다.
@@ -86,7 +88,10 @@ if (state.fingerprint && state.fingerprint !== fingerprint) {
   Object.assign(state, { startedAt: new Date().toISOString(), lastOk: null, pings: 0, expired: 0, network: 0 });
 }
 state.fingerprint = fingerprint;
-const save = () => writeFileSync(STATE, `${JSON.stringify(state, null, 2)}\n`);
+const save = () => {
+  if (opt.once) return; // 단발 점검은 상태를 남기지 않는다(로그에는 남는다)
+  writeFileSync(STATE, `${JSON.stringify(state, null, 2)}\n`);
+};
 const log = (kind, ms, msg = '') => appendFileSync(LOG, `${new Date().toISOString()} ${kind} ${ms} ${msg}\n`);
 const lifetime = () => {
   const ms = Date.now() - Date.parse(state.startedAt);
