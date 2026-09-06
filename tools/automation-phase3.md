@@ -108,9 +108,18 @@
   실패 시 이슈로 멈춥니다. 다만 리포트의 `curatedRenameRequired` 를 이슈 본문에 그대로
   실어 판단 시간을 줄입니다.
 
-### P3-3 로컬 러너 스케줄 + 쿠키 상태 이슈 (S~M) — 🔄 절반: 무인 모드(`--unattended`)는 P3-2 에서 구현, 남은 것은 스케줄러 등록
+### P3-3 로컬 러너 스케줄 + 포털 응답 감시 (S~M) — ✅ 2026-09-06 완료 (사용자 PC 에 등록)
 
-> 남은 일: 로컬 러너(사용자 PC 작업 스케줄러 또는 소형 VM)에 리마인더 날짜마다
+> 구현: `tools/automation/scheduled-update.mjs`(매일 03:00 호출되는 래퍼 — 갱신 창 12/1·1/15·6/1·7/15
+> +14일 안이면 `update-semester.mjs --unattended`, `.done`/`.lock`/포털 비정상 우회, tee 로그),
+> `session-keepalive.mjs`(포털 응답 감시 상시 서비스 — 비정상 연속 2회면 `[자동] 수강편람 응답
+> 비정상` 이슈, 정상 복귀 시 자동 해제), `register-tasks.ps1`(작업 2개, 현재 사용자·비승격·콘솔
+> 숨김). **등록 상태**: `yonsei-me keep-alive`(로그온 시 자동 시작, 지금 Running) ·
+> `yonsei-me semester-update`(매일 03:00, WakeToRun, 시험 실행 exit 0). 확인 `Get-ScheduledTask
+> -TaskName 'yonsei-me*'`, 제거 `register-tasks.ps1 -Unregister`. 첫 실전 2026-12-01 → 2026-21.
+> 제약: Interactive 로그온이라 사용자가 로그온해 있을 때만 돈다(잠금 화면은 됨, 로그오프는 안 됨).
+
+> (원래 계획) 로컬 러너(사용자 PC 작업 스케줄러 또는 소형 VM)에 리마인더 날짜마다
 > `node tools/automation/update-semester.mjs --target <term> --unattended` 를 등록하고, keep-alive
 > 데몬(P3-0)을 상시 서비스로 올리는 것. **P3-0 판정이 A 로 났으므로(2026-09-06) 착수 가능** — 다음 단계.
 
