@@ -111,7 +111,10 @@ const fetchAllContentFiles = unstable_cache(
     return (data ?? []) as DbContentFile[];
   },
   ['content-files-all'],
-  { tags: ['content'], revalidate: 3600 },
+  // 수명 하루 — 갱신의 방아쇠는 CMS 저장의 revalidateTag('content') 이고 이 타이머는
+  // 안전망일 뿐이다(태그 무효화가 어떤 이유로 불발했을 때만 일한다). 3600 이던 시절엔
+  // 크롤러 트래픽이 이 전량 조회를 하루 수십 번 되풀이해 Supabase 무료 egress 를 태웠다.
+  { tags: ['content'], revalidate: 86400 },
 );
 
 /** 관리 대상 파일의 DB 원문. git 모드거나 행이 없거나 조회가 실패하면 null(→ 호출측 폴백) */
@@ -340,7 +343,9 @@ export async function getFacultyProfileRuntime(name: string): Promise<FacultyPro
           return data ? String(data.body) : null;
         },
         ['content-file-one', path],
-        { tags: ['content'], revalidate: 3600 },
+        // 전량 조회와 같은 규칙 — CMS 저장의 revalidateTag('content') 가 갱신을 맡고
+        // 하루짜리 타이머는 안전망이다(egress 절감, 위 fetchAllContentFiles 주석 참조).
+        { tags: ['content'], revalidate: 86400 },
       )();
       if (text !== null) return JSON.parse(text) as FacultyProfile;
     } catch (err) {

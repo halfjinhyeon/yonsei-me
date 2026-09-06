@@ -96,7 +96,7 @@ const CATEGORY_LABELS: Record<string, string> = {
 };
 
 /**
- * 이 글이 사이트에서 아직 감춰져 있는가 — lib/posts.ts 의 scheduleGate 와 같은 규칙.
+ * 이 글이 사이트에서 아직 감춰져 있는가 — lib/posts.ts 의 isVisibleNow 와 같은 규칙.
  *
  * 게이트는 created_at 이 미래인 행을 뺀다. 단 event_date 를 쓰는 글(행사·세미나·일정·
  * 동문 '행사')은 created_at 이 곧 행사일이라 면제된다 — 다음 달 행사에 '예약' 배지를

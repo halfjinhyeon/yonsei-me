@@ -540,7 +540,7 @@ export function PostForm({
   // 공개 시각은 created_at 에 실린다. 그런데 위 showEndDate 가 켜지는 게시판
   // (행사·세미나·일정·동문 행사)은 payloadToRow 가 created_at 에 **행사일**을 넣으므로
   // 그 자리에 "공개 시각"이라는 의미를 겹쳐 놓을 수 없다 — 사이트 게이트도 그런 글은
-  // 면제한다(lib/posts.ts 의 scheduleGate). 그래서 조건이 정확히 showEndDate 의 반대다.
+  // 면제한다(lib/posts.ts 의 isVisibleNow). 그래서 조건이 정확히 showEndDate 의 반대다.
   const canSchedule = !showEndDate;
   const publishAtMs =
     canSchedule && rec.date ? Date.parse(`${rec.date}T${rec.time || '00:00'}:00+09:00`) : NaN;
